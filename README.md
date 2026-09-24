@@ -16,7 +16,7 @@ Open `index.html` in a modern browser.
 ## Project layout
 
 - `assets/`: UI icons and favicon assets. The light and dark brand icons are the only theme variants; the 180px file is reserved for Apple touch icons.
-- `data/`: local coral snapshots, Reef raster tiles/vector chunks, raw data packages, and `fish_map_units.json.gz`.
+- `data/`: local coral snapshots and occurrence chunks, Reef raster tiles/vector chunks, and their manifests.
 - `data/.build/`: generated build intermediates; intentionally ignored by Git.
 - `tools/`: reusable local-data build utilities.
 

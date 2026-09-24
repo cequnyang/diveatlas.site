@@ -653,17 +653,6 @@ def build_reef():
             feature["bbox"] = bbox
 
     source = "UNEP-WCMC WCMC-008 v4.1"
-    payload = {
-        "v": 1,
-        "source": source,
-        "features": features
-    }
-    write_gzip_js(
-        payload,
-        DATA / "reef_extent_snapshot.js",
-        "DIVEATLAS_REEF_SNAPSHOT"
-    )
-
     # Runtime rendering uses exact cached source geometry:
     # - Z3-Z7: build-time local raster tiles
     # - Z8+: viewport-lazy exact vector chunks
