@@ -1724,24 +1724,75 @@
     }
 
     .top-menu-theme {
-      width: 24px;
-      height: 24px;
-      padding: 0;
-      border: 0;
-      border-radius: 6px;
-      background: transparent;
-      color: var(--text);
+      position: relative;
+      width: 52px;
+      min-width: 52px;
+      height: 30px;
+      padding: 2px;
+      border: 1px solid #8c959f;
+      border-radius: 15px;
+      background: #eaeef2;
+      color: #59636e;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       cursor: pointer;
       font: inherit;
-      font-size: 13px;
+      font-size: 0;
       line-height: 1;
+      transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
     }
 
     .top-menu-theme:hover {
-      background: color-mix(in srgb, var(--panel-soft) 78%, transparent);
+      background: #dfe4ea;
+      border-color: #6e7781;
+    }
+
+    .top-menu-theme::before {
+      content: "";
+      position: absolute;
+      inset: 2px auto 2px 2px;
+      width: 23px;
+      border: 1px solid #afb8c1;
+      border-radius: 13px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(31, 35, 40, .2);
+      transition: left .16s ease, background-color .16s ease, border-color .16s ease;
+    }
+
+    .top-menu-theme::after { display: none; }
+    .top-menu-theme .theme-mode-icon {
+      position: absolute;
+      top: 50%;
+      z-index: 1;
+      width: 14px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .top-menu-theme .theme-mode-icon:first-child { left: 14px; color: #57606a; }
+    .top-menu-theme .theme-mode-icon:last-child { left: 38px; color: #aab2bb; }
+    .top-menu-theme .theme-mode-icon svg { display: block; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+    [data-theme="dark"] .top-menu-theme {
+      justify-content: flex-start;
+      border-color: #3d444d;
+      background: #21262d;
+      color: #c9d1d9;
+    }
+
+    [data-theme="dark"] .top-menu-theme:hover { background: #30363d; border-color: #6e7681; }
+    [data-theme="dark"] .top-menu-theme::before {
+      left: 25px;
+      border-color: #6e7681;
+      background: #30363d;
+    }
+    [data-theme="dark"] .top-menu-theme .theme-mode-icon:first-child { color: #768390; }
+    [data-theme="dark"] .top-menu-theme .theme-mode-icon:last-child { color: #e6edf3; }
+
+    .top-menu-theme:focus-visible {
+      outline: 2px solid #0969da;
+      outline-offset: 2px;
     }
 
     /* Minimal language selector: plain text + one chevron, no heavy button chrome. */
@@ -1930,7 +1981,26 @@
       background: transparent;
     }
 
-    .top-menu-theme { width: 28px; }
+    .top-menu-controls .top-menu-theme {
+      width: 52px;
+      min-width: 52px;
+      height: 30px;
+      border: 1px solid #8c959f;
+      border-radius: 15px;
+      background: #eaeef2;
+    }
+    .top-menu-controls .top-menu-theme:hover {
+      border-color: #6e7781;
+      background: #dfe4ea;
+    }
+    [data-theme="dark"] .top-menu-controls .top-menu-theme {
+      border-color: #3d444d;
+      background: #21262d;
+    }
+    [data-theme="dark"] .top-menu-controls .top-menu-theme:hover {
+      border-color: #6e7681;
+      background: #30363d;
+    }
     .top-menu-theme:hover,
     .top-menu-lang:hover {
       background: var(--gh-neutral-muted);
@@ -1942,12 +2012,17 @@
       min-width: var(--lang-control-width, 56px);
       max-width: var(--lang-control-width, 56px);
       flex: 0 0 var(--lang-control-width, 56px);
+      border: 1px solid transparent;
+      border-radius: 6px;
+      transition: background-color .14s ease;
     }
+
+    .top-menu-lang:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     .top-menu-lang-select {
       height: 28px;
       line-height: 28px;
-      padding: 0 17px 0 8px;
+      padding: 0 23px 0 8px;
       border-radius: 6px;
       font-size: 12px;
       font-weight: 500;
@@ -2035,6 +2110,31 @@
       background: var(--gh-neutral-muted);
       outline: none;
     }
+
+    .top-menu-lang-trigger {
+      width: var(--lang-control-width, 56px);
+      min-width: var(--lang-control-width, 56px);
+      max-width: var(--lang-control-width, 56px);
+      flex: 0 0 var(--lang-control-width, 56px);
+      height: 28px;
+      box-sizing: border-box;
+      padding: 0 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .top-menu-lang-trigger svg { width: 12px; height: 12px; flex: 0 0 12px; fill: none; }
+    .top-menu-lang-trigger[aria-expanded="true"] { background: var(--gh-neutral-muted); }
+    .top-menu-lang::after { display: none; }
+    .language-dropdown { width: min(210px, calc(100vw - 24px)); min-width: 150px; max-height: min(360px, 70vh); overflow-y: auto; }
+    .language-dropdown .top-menu-dropdown-item { min-height: 34px; padding: 7px 10px; font-size: 13px; }
+    .language-dropdown .top-menu-dropdown-item[aria-checked="true"] { font-weight: 600; }
+    .top-menu-lang-select { display: none; }
 
     body.contact-modal-open {
       overflow: hidden;
@@ -2563,6 +2663,191 @@
       background: #66558f;
     }
 
+    /* Keep the first-visit guide visually aligned with the map's existing panel surfaces. */
+    .tutorial-backdrop[hidden] { display: none; }
+    .tutorial-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(8, 20, 28, .45);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .tutorial-dialog {
+      position: relative;
+      width: min(900px, calc(100vw - 48px));
+      max-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 24px 28px 20px;
+      border: 1px solid rgba(227, 235, 240, .9);
+      border-radius: 22px;
+      background: #f8fafb;
+      color: #172d3e;
+      box-shadow: 0 22px 72px rgba(0, 15, 26, .30);
+      animation: tutorial-enter .22s ease-out both;
+    }
+    [data-theme="dark"] .tutorial-dialog {
+      border-color: #303b46;
+      background: #151d25;
+      color: #e6edf3;
+      box-shadow: 0 22px 72px rgba(0, 0, 0, .55);
+    }
+    @keyframes tutorial-enter {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .tutorial-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+    .tutorial-header { position: static; display: block; text-align: left; }
+    .tutorial-eyebrow { display: none; }
+    .tutorial-title {
+      margin: 0 42px;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      font-weight: 650;
+    }
+    .tutorial-intro {
+      margin: 5px 0 14px;
+      color: #667c99;
+      font-size: clamp(13px, 1.6vw, 16px);
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .tutorial-intro,
+    [data-theme="dark"] .tutorial-layer p,
+    [data-theme="dark"] .tutorial-tip { color: #9aabba; }
+    .tutorial-close {
+      display: grid;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+      place-items: center;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted, #63727a);
+      font-size: 0;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .tutorial-close::before,
+    .tutorial-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 19px;
+      height: 1.8px;
+      border-radius: 2px;
+      background: currentColor;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .tutorial-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+    .tutorial-close:hover { background: rgba(127, 150, 160, .12); color: var(--text); }
+    [data-theme="dark"] .tutorial-close { color: #9aabba; }
+    [data-theme="dark"] .tutorial-close:hover { background: rgba(174, 195, 209, .12); color: #f0f6fc; }
+    .tutorial-layers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .tutorial-layer {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 6px;
+      gap: 6px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .tutorial-map-preview {
+      position: relative;
+      width: 100%;
+      height: clamp(145px, 16vh, 160px);
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      line-height: 0;
+    }
+    .tutorial-map-preview img { display: block; width: 100%; height: 100%; object-fit: cover; margin: 0; padding: 0; border: 0; border-radius: 0; }
+    .tutorial-photo-bubble { position: absolute; z-index: 1; top: 12px; right: 12px; width: 108px; height: 108px; box-sizing: border-box; overflow: hidden; border: 2px solid rgba(255,255,255,.92); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.04); pointer-events: none; }
+    .tutorial-photo-bubble img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 900px) and (min-width: 521px) { .tutorial-photo-bubble { width: 88px; height: 88px; } }
+    [data-theme="dark"] .tutorial-map-preview.reef > img { content: url('assets/tutorial/previews/reef-extent-dark.webp'); }
+    [data-theme="dark"] .tutorial-map-preview.coral > img { content: url('assets/tutorial/previews/coral-records-dark.webp'); }
+    [data-theme="dark"] .tutorial-map-preview.fish > img { content: url('assets/tutorial/previews/fish-density-dark.webp'); }
+    [data-theme="dark"] .tutorial-map-preview.dive > img { content: url('assets/tutorial/previews/dive-sites-dark.webp'); }
+    .tutorial-layer-copy { width: 100%; }
+    .tutorial-layer h3 { margin: 0 0 2px; font-size: clamp(14px, 1.65vw, 17px); font-weight: 750; }
+    .tutorial-layer p { margin: 0; color: #657a89; font-size: clamp(11px, 1.15vw, 12px); line-height: 1.4; }
+    .tutorial-map-legend { margin: 12px 0 0; padding: 8px 0 0; border: 0; border-top: 1px solid #d8e0e5; border-radius: 0; background: transparent; }
+    [data-theme="dark"] .tutorial-map-legend { border-top-color: #34414b; }
+    .tutorial-map-legend h3 { margin: 0 0 6px; font-size: 12px; font-weight: 600; }
+    .tutorial-legend-items { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 7px 16px; }
+    .tutorial-legend-item { display: inline-flex; align-items: center; gap: 7px; color: #647887; font-size: 11px; }
+    [data-theme="dark"] .tutorial-legend-item { color: #9aabba; }
+    .tutorial-legend-mark { display: inline-block; width: 18px; height: 13px; border-radius: 4px; background: #29c9bd; }
+    .tutorial-legend-mark.coral { width: 8px; height: 8px; border: 1px solid #fff; border-radius: 50%; background: #bd58e5; box-shadow: 0 0 0 1px rgba(189,88,229,.45); }
+    .tutorial-legend-mark.fish { width: 9px; height: 9px; border-radius: 50%; background: #eca53c; box-shadow: 0 0 7px 3px rgba(238,125,53,.45); }
+    .tutorial-legend-mark.dive { width: 9px; height: 9px; border: 1px solid #fff; border-radius: 50%; background: #4b9cff; box-shadow: 0 0 0 1px rgba(75,156,255,.5); }
+    .tutorial-tip { margin: 10px 0 8px; color: #657a89; text-align: center; font-size: 12px; line-height: 1.35; }
+    .tutorial-actions { display: flex; align-items: center; justify-content: center; gap: 9px; }
+    .tutorial-button {
+      min-height: 40px;
+      padding: 0 20px;
+      border: 1px solid #d8e2e6;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tutorial-button.primary { min-width: 220px; min-height: 40px; border-color: #158b8c; background: #158b8c; color: #fff; font-size: 14px; box-shadow: none; }
+    [data-theme="dark"] .tutorial-button:not(.primary) {
+      border-color: #3a4b57;
+      color: #d8e2e9;
+    }
+    [data-theme="dark"] .tutorial-button.primary {
+      border-color: #168f91;
+      background: linear-gradient(120deg, #168f91, #116d78);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .28);
+    }
+    .tutorial-button:hover { filter: brightness(.96); }
+    .tutorial-menu-item { cursor: pointer; }
+    body.tutorial-open { overflow: hidden; }
+    @media (max-width: 520px) {
+      .tutorial-backdrop { padding: 12px; align-items: center; }
+      .tutorial-dialog { max-height: calc(100dvh - 24px); padding: 18px 14px 14px; border-radius: 18px; }
+      .tutorial-close { top: 12px; right: 10px; }
+      .tutorial-title { margin: 7px 42px 0 0; font-size: 28px; }
+      .tutorial-intro { margin: 6px 0 11px; font-size: 12px; }
+      .tutorial-layers { gap: 8px; }
+      .tutorial-layer { padding: 0; gap: 6px; border-radius: 0; }
+      .tutorial-map-preview { height: clamp(82px, 15vh, 120px); border-radius: 7px; }
+      .tutorial-photo-bubble { width: 68px; height: 68px; top: 10px; right: 10px; }
+      .tutorial-layer h3 { font-size: 12px; }
+      .tutorial-layer p { font-size: 10px; }
+      .tutorial-map-legend { margin-top: 9px; padding: 8px 0 0; }
+      .tutorial-legend-items { justify-content: flex-start; gap: 7px 13px; }
+      .tutorial-legend-item { font-size: 10px; }
+      .tutorial-tip { margin: 7px 0; font-size: 11px; }
+      .tutorial-button.primary { min-width: 0; min-height: 40px; padding: 0 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tutorial-dialog { animation: none; }
+    }
+
   </style>
 </head>
 
@@ -2580,9 +2865,17 @@
     </div>
 
     <div class="top-menu-controls" aria-label="Page settings">
-      <button class="top-menu-theme" id="themeBtn" type="button" title="Toggle map style" aria-label="Toggle map style"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM8 0a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 8 0Zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 13ZM16 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 16 8ZM3 8a.75.75 0 0 1-.75.75H.75a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 3 8Zm10.66-5.66a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0ZM4.46 11.54a.75.75 0 0 1 0 1.06L3.4 13.66a.75.75 0 0 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0Zm9.2 2.12a.75.75 0 0 1-1.06 0l-1.06-1.06a.75.75 0 0 1 1.06-1.06l1.06 1.06a.75.75 0 0 1 0 1.06ZM4.46 4.46a.75.75 0 0 1-1.06 0L2.34 3.4A.75.75 0 0 1 3.4 2.34L4.46 3.4a.75.75 0 0 1 0 1.06Z"/></svg></button>
-      <label class="top-menu-lang" aria-label="Language">
-        <select class="top-menu-lang-select" id="langSelect" aria-label="Language">
+      <button class="top-menu-theme" id="themeBtn" type="button" title="Toggle map style" aria-label="Toggle map style" aria-pressed="false">
+        <span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.7"/><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M12.6 3.4l-.9.9M4.3 11.7l-.9.9"/></svg></span>
+        <span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M12.8 10.2A5.8 5.8 0 0 1 5.8 3.1a5.8 5.8 0 1 0 7 7.1Z"/></svg></span>
+      </button>
+      <div class="top-menu-lang" id="languageMenu">
+        <button class="top-menu-menu-button top-menu-lang-trigger" id="languageMenuButton" type="button" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="languageDropdown">
+          <span id="languageMenuLabel">EN</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="top-menu-dropdown language-dropdown" id="languageDropdown" role="menu" aria-label="Language" hidden></div>
+        <select class="top-menu-lang-select" id="langSelect" aria-label="Language" tabindex="-1" aria-hidden="true">
           <option value="en">EN</option>
           <option value="zh">中文</option>
           <option value="es">ES</option>
@@ -2598,7 +2891,7 @@
           <option value="sv">SV</option>
           <option value="no">NO</option>
         </select>
-      </label>
+      </div>
       <div class="top-menu-menu">
         <button
           class="top-menu-menu-button"
@@ -2611,7 +2904,8 @@
           aria-controls="topMenuDropdown"
         ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
         <div class="top-menu-dropdown" id="topMenuDropdown" role="menu" hidden>
-          <a class="top-menu-dropdown-item" id="aboutMenuItem" href="https://cequnyang.github.io" target="_blank" rel="noopener noreferrer" role="menuitem">About</a>
+      <button class="top-menu-dropdown-item tutorial-menu-item" id="tutorialMenuItem" type="button" role="menuitem">Tutorial</button>
+      <a class="top-menu-dropdown-item" id="aboutMenuItem" href="https://cequnyang.github.io" target="_blank" rel="noopener noreferrer" role="menuitem">About</a>
           <button class="top-menu-dropdown-item" id="contactMenuItem" type="button" role="menuitem">Contact</button>
         </div>
       </div>
@@ -2784,6 +3078,52 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <div class="tutorial-backdrop" id="tutorialBackdrop" hidden>
+    <section class="tutorial-dialog" id="tutorialDialog" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle" aria-describedby="tutorialIntro">
+      <div class="tutorial-content">
+      <div class="tutorial-header">
+        <div>
+          <p class="tutorial-eyebrow" id="tutorialEyebrow">DiveAtlas guide</p>
+          <h2 class="tutorial-title" id="tutorialTitle">Welcome to DiveAtlas</h2>
+        </div>
+        <button class="tutorial-close" id="tutorialClose" type="button" aria-label="Close tutorial"></button>
+      </div>
+      <p class="tutorial-intro" id="tutorialIntro">Explore coral reefs, marine observations and dive sites around the world.</p>
+      <div class="tutorial-layers">
+        <article class="tutorial-layer">
+          <div class="tutorial-map-preview reef"><img src="assets/tutorial/previews/reef-extent.webp" alt="Map preview showing mapped coral reef extent"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/reef-extent.webp" alt=""></span></div>
+          <div class="tutorial-layer-copy"><h3 id="tutorialReefTitle">Reef extent</h3><p id="tutorialReefCopy">Areas where coral reefs have been mapped. Shows reef distribution, not reef health.</p></div>
+        </article>
+        <article class="tutorial-layer">
+          <div class="tutorial-map-preview coral"><img src="assets/tutorial/previews/coral-records.webp" alt="Map preview showing recorded coral observations"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/coral-records.webp" alt=""></span></div>
+          <div class="tutorial-layer-copy"><h3 id="tutorialCoralTitle">Coral records</h3><p id="tutorialCoralCopy">Recorded coral occurrences from marine biodiversity observations.</p></div>
+        </article>
+        <article class="tutorial-layer">
+          <div class="tutorial-map-preview fish"><img src="assets/tutorial/previews/fish-density.webp" alt="Map preview showing fish survey density"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/fish-density.webp" alt=""></span></div>
+          <div class="tutorial-layer-copy"><h3 id="tutorialFishTitle">Fish density</h3><p id="tutorialFishCopy">Reef-fish survey locations and observed fish density from standardized surveys.</p></div>
+        </article>
+        <article class="tutorial-layer">
+          <div class="tutorial-map-preview dive"><img src="assets/tutorial/previews/dive-sites.webp" alt="Map preview showing dive sites"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/dive-sites.webp" alt=""></span></div>
+          <div class="tutorial-layer-copy"><h3 id="tutorialDiveTitle">Dive sites</h3><p id="tutorialDiveCopy">Known recreational dive locations around the world.</p></div>
+        </article>
+      </div>
+      <section class="tutorial-map-legend" aria-labelledby="tutorialLegendTitle">
+        <h3 id="tutorialLegendTitle">Map legend</h3>
+        <div class="tutorial-legend-items">
+          <span class="tutorial-legend-item"><i class="tutorial-legend-mark" aria-hidden="true"></i><span id="tutorialLegendReef">Reef extent</span></span>
+          <span class="tutorial-legend-item"><i class="tutorial-legend-mark coral" aria-hidden="true"></i><span id="tutorialLegendCoral">Coral records</span></span>
+          <span class="tutorial-legend-item"><i class="tutorial-legend-mark fish" aria-hidden="true"></i><span id="tutorialLegendFish">Fish density</span></span>
+          <span class="tutorial-legend-item"><i class="tutorial-legend-mark dive" aria-hidden="true"></i><span id="tutorialLegendDive">Dive sites</span></span>
+        </div>
+      </section>
+      <p class="tutorial-tip" id="tutorialTip">Zoom in for more detail. Click map features to inspect their data.</p>
+      <div class="tutorial-actions">
+        <button class="tutorial-button primary" id="tutorialStart" type="button">Start exploring →</button>
+      </div>
+      </div>
+    </section>
+  </div>
 </div>
 
 <!-- V34 embedded biodiversity payloads. The Builder fills these with gzip+base64 JSON. -->
@@ -3123,10 +3463,36 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
     collapseBtn: document.getElementById('collapseBtn'),
     panelLauncher: document.getElementById('panelLauncher'),
     langSelect: document.getElementById('langSelect'),
+    languageMenu: document.getElementById('languageMenu'),
+    languageMenuButton: document.getElementById('languageMenuButton'),
+    languageMenuLabel: document.getElementById('languageMenuLabel'),
+    languageDropdown: document.getElementById('languageDropdown'),
     topMenuButton: document.getElementById('topMenuButton'),
     topMenuDropdown: document.getElementById('topMenuDropdown'),
     aboutMenuItem: document.getElementById('aboutMenuItem'),
+    tutorialMenuItem: document.getElementById('tutorialMenuItem'),
     contactMenuItem: document.getElementById('contactMenuItem'),
+    tutorialBackdrop: document.getElementById('tutorialBackdrop'),
+    tutorialDialog: document.getElementById('tutorialDialog'),
+    tutorialClose: document.getElementById('tutorialClose'),
+    tutorialEyebrow: document.getElementById('tutorialEyebrow'),
+    tutorialTitle: document.getElementById('tutorialTitle'),
+    tutorialIntro: document.getElementById('tutorialIntro'),
+    tutorialReefTitle: document.getElementById('tutorialReefTitle'),
+    tutorialReefCopy: document.getElementById('tutorialReefCopy'),
+    tutorialCoralTitle: document.getElementById('tutorialCoralTitle'),
+    tutorialCoralCopy: document.getElementById('tutorialCoralCopy'),
+    tutorialFishTitle: document.getElementById('tutorialFishTitle'),
+    tutorialFishCopy: document.getElementById('tutorialFishCopy'),
+    tutorialDiveTitle: document.getElementById('tutorialDiveTitle'),
+    tutorialDiveCopy: document.getElementById('tutorialDiveCopy'),
+    tutorialLegendTitle: document.getElementById('tutorialLegendTitle'),
+    tutorialLegendReef: document.getElementById('tutorialLegendReef'),
+    tutorialLegendCoral: document.getElementById('tutorialLegendCoral'),
+    tutorialLegendFish: document.getElementById('tutorialLegendFish'),
+    tutorialLegendDive: document.getElementById('tutorialLegendDive'),
+    tutorialTip: document.getElementById('tutorialTip'),
+    tutorialStart: document.getElementById('tutorialStart'),
     contactModal: document.getElementById('contactModal'),
     contactDialog: document.getElementById('contactDialog'),
     contactDialogTitle: document.getElementById('contactDialogTitle'),
@@ -3190,6 +3556,7 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
   const TURNSTILE_SITE_KEY = '0x4AAAAAAFCEklFmZKeIgpIp';
   const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
+  const TUTORIAL_SEEN_STORAGE_KEY = 'diveatlas-tutorial-seen-v1';
   const LEGEND_AUTO_COLLAPSE_MS = 5000;
 
   let contactTurnstileWidgetId = null;
@@ -4574,6 +4941,240 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
     return I18N[currentLang]?.[key] ?? I18N.en[key] ?? key;
   }
 
+  const TUTORIAL_I18N = {
+    en: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'DiveAtlas guide', tutorialTitle: 'Welcome to DiveAtlas',
+      tutorialIntro: 'Explore coral reefs, marine observations and dive sites around the world.',
+      tutorialReefCopy: 'Areas where coral reefs have been mapped. Shows reef distribution, not reef health.',
+      tutorialCoralCopy: 'Recorded coral occurrences from marine biodiversity observations.',
+      tutorialFishCopy: 'Reef-fish survey locations and observed fish density from standardized surveys.',
+      tutorialDiveCopy: 'Known recreational dive locations around the world.',
+      tutorialLegendTitle: 'Map legend', tutorialTip: 'Drag to explore · Scroll to zoom · Toggle layers',
+      tutorialStart: 'Start exploring →', tutorialClose: 'Close tutorial'
+    },
+    zh: {
+      tutorialMenu: '使用教程', tutorialEyebrow: 'DiveAtlas 使用指南', tutorialTitle: '探索 DiveAtlas',
+      tutorialIntro: '探索全球珊瑚礁、海洋观测记录与潜水点。',
+      tutorialReefCopy: '已绘制的珊瑚礁分布范围，表示珊瑚礁在哪里，不代表珊瑚礁健康状况。',
+      tutorialCoralCopy: '海洋生物多样性观测中记录到的珊瑚出现记录。',
+      tutorialFishCopy: '标准化调查的珊瑚礁鱼类调查位置及观测到的鱼类密度。',
+      tutorialDiveCopy: '全球已知的休闲潜水地点。',
+      tutorialLegendTitle: '地图图例', tutorialTip: '拖动地图探索 · 滚动缩放 · 切换图层',
+      tutorialStart: '开始探索　→', tutorialClose: '关闭教程'
+    },
+    ja: {
+      tutorialMenu: 'チュートリアル', tutorialEyebrow: 'DiveAtlas ガイド', tutorialTitle: 'DiveAtlas を探索',
+      tutorialIntro: '世界のサンゴ礁、海洋観測記録、ダイビングスポットを探索できます。',
+      tutorialReefCopy: '地図化されたサンゴ礁の分布範囲です。健康状態を示すものではありません。',
+      tutorialCoralCopy: '海洋生物多様性の観測で記録されたサンゴの出現情報です。',
+      tutorialFishCopy: '標準化調査によるサンゴ礁魚類の調査地点と観測密度です。',
+      tutorialDiveCopy: '世界各地で知られているレジャーダイビングスポットです。',
+      tutorialLegendTitle: '地図の凡例', tutorialTip: 'ドラッグして探索 · スクロールで拡大 · レイヤーを切り替え',
+      tutorialStart: '探索を始める　→', tutorialClose: 'チュートリアルを閉じる'
+    },
+    fr: {
+      tutorialMenu: 'Tutoriel', tutorialEyebrow: 'Guide DiveAtlas', tutorialTitle: 'Explorer DiveAtlas',
+      tutorialIntro: 'Explorez les récifs coralliens, les observations marines et les sites de plongée du monde entier.',
+      tutorialReefCopy: 'Zones où des récifs coralliens ont été cartographiés. Cela montre leur répartition, pas leur état de santé.',
+      tutorialCoralCopy: 'Occurrences de coraux enregistrées lors d’observations de biodiversité marine.',
+      tutorialFishCopy: 'Sites d’étude des poissons de récif et densités observées lors de relevés standardisés.',
+      tutorialDiveCopy: 'Sites de plongée de loisir connus dans le monde entier.',
+      tutorialLegendTitle: 'Légende', tutorialTip: 'Faites glisser pour explorer · Défilez pour zoomer · Activez les couches',
+      tutorialStart: 'Commencer à explorer　→', tutorialClose: 'Fermer le tutoriel'
+    },
+    de: {
+      tutorialMenu: 'Einführung', tutorialEyebrow: 'DiveAtlas Leitfaden', tutorialTitle: 'DiveAtlas erkunden',
+      tutorialIntro: 'Entdecke Korallenriffe, Meeresbeobachtungen und Tauchplätze weltweit.',
+      tutorialReefCopy: 'Kartierte Korallenriffgebiete. Die Ebene zeigt ihre Verbreitung, nicht ihren Gesundheitszustand.',
+      tutorialCoralCopy: 'Erfasste Korallenvorkommen aus Beobachtungen der marinen Biodiversität.',
+      tutorialFishCopy: 'Standorte von Riff-Fisch-Erhebungen und beobachtete Dichte aus standardisierten Erhebungen.',
+      tutorialDiveCopy: 'Bekannte Freizeittauchplätze auf der ganzen Welt.',
+      tutorialLegendTitle: 'Kartenlegende', tutorialTip: 'Ziehen zum Erkunden · Scrollen zum Zoomen · Ebenen umschalten',
+      tutorialStart: 'Jetzt entdecken　→', tutorialClose: 'Einführung schließen'
+    },
+    es: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'Guía de DiveAtlas', tutorialTitle: 'Explora DiveAtlas',
+      tutorialIntro: 'Explora arrecifes de coral, observaciones marinas y sitios de buceo de todo el mundo.',
+      tutorialReefCopy: 'Zonas donde se han cartografiado arrecifes. Muestra su distribución, no su estado de salud.',
+      tutorialCoralCopy: 'Presencias de coral registradas en observaciones de biodiversidad marina.',
+      tutorialFishCopy: 'Lugares de estudio de peces de arrecife y densidad observada en estudios estandarizados.',
+      tutorialDiveCopy: 'Sitios recreativos de buceo conocidos en todo el mundo.',
+      tutorialLegendTitle: 'Leyenda del mapa', tutorialTip: 'Arrastra para explorar · Desplázate para acercar · Activa las capas',
+      tutorialStart: 'Empezar a explorar　→', tutorialClose: 'Cerrar tutorial'
+    },
+    it: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'Guida DiveAtlas', tutorialTitle: 'Esplora DiveAtlas',
+      tutorialIntro: 'Esplora le barriere coralline, le osservazioni marine e i siti di immersione in tutto il mondo.',
+      tutorialReefCopy: 'Aree in cui le barriere coralline sono state mappate. Mostra la distribuzione, non lo stato di salute.',
+      tutorialCoralCopy: 'Presenze di coralli registrate nelle osservazioni sulla biodiversità marina.',
+      tutorialFishCopy: 'Siti di indagine sui pesci di barriera e densità osservata in rilevamenti standardizzati.',
+      tutorialDiveCopy: 'Siti ricreativi per immersioni conosciuti in tutto il mondo.',
+      tutorialLegendTitle: 'Legenda della mappa', tutorialTip: 'Trascina per esplorare · Scorri per ingrandire · Attiva i livelli',
+      tutorialStart: 'Inizia a esplorare　→', tutorialClose: 'Chiudi il tutorial'
+    },
+    pt: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'Guia DiveAtlas', tutorialTitle: 'Explore o DiveAtlas',
+      tutorialIntro: 'Explore recifes de coral, observações marinhas e locais de mergulho em todo o mundo.',
+      tutorialReefCopy: 'Áreas onde os recifes foram mapeados. Mostra a distribuição, não a saúde dos recifes.',
+      tutorialCoralCopy: 'Ocorrências de corais registradas em observações de biodiversidade marinha.',
+      tutorialFishCopy: 'Locais de pesquisa de peixes de recife e densidade observada em levantamentos padronizados.',
+      tutorialDiveCopy: 'Locais de mergulho recreativo conhecidos em todo o mundo.',
+      tutorialLegendTitle: 'Legenda do mapa', tutorialTip: 'Arraste para explorar · Role para ampliar · Alterne as camadas',
+      tutorialStart: 'Começar a explorar　→', tutorialClose: 'Fechar tutorial'
+    },
+    ru: {
+      tutorialMenu: 'Обучение', tutorialEyebrow: 'Гид DiveAtlas', tutorialTitle: 'Исследуйте DiveAtlas',
+      tutorialIntro: 'Изучайте коралловые рифы, морские наблюдения и места для дайвинга по всему миру.',
+      tutorialReefCopy: 'Области с нанесёнными на карту коралловыми рифами. Показывает их распространение, а не состояние.',
+      tutorialCoralCopy: 'Зафиксированные находки кораллов в наблюдениях за морским биоразнообразием.',
+      tutorialFishCopy: 'Места учёта рифовых рыб и их плотность по результатам стандартизированных исследований.',
+      tutorialDiveCopy: 'Известные места для любительского дайвинга по всему миру.',
+      tutorialLegendTitle: 'Условные обозначения', tutorialTip: 'Перемещайте карту · Меняйте масштаб · Включайте слои',
+      tutorialStart: 'Начать исследование　→', tutorialClose: 'Закрыть обучение'
+    },
+    ko: {
+      tutorialMenu: '튜토리얼', tutorialEyebrow: 'DiveAtlas 안내', tutorialTitle: 'DiveAtlas 둘러보기',
+      tutorialIntro: '전 세계 산호초, 해양 관측 기록, 다이빙 포인트를 살펴보세요.',
+      tutorialReefCopy: '지도에 표시된 산호초 분포 범위입니다. 분포를 나타내며 건강 상태를 뜻하지는 않습니다.',
+      tutorialCoralCopy: '해양 생물다양성 관측에서 기록된 산호 출현 정보입니다.',
+      tutorialFishCopy: '표준화 조사에서 측정한 암초 어류 조사 위치와 관측 밀도입니다.',
+      tutorialDiveCopy: '전 세계에 알려진 레크리에이션 다이빙 장소입니다.',
+      tutorialLegendTitle: '지도 범례', tutorialTip: '드래그하여 탐색 · 스크롤하여 확대 · 레이어 전환',
+      tutorialStart: '탐색 시작　→', tutorialClose: '튜토리얼 닫기'
+    },
+    nl: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'DiveAtlas-gids', tutorialTitle: 'Ontdek DiveAtlas',
+      tutorialIntro: 'Ontdek koraalriffen, mariene waarnemingen en duiklocaties wereldwijd.',
+      tutorialReefCopy: 'Gebieden waar koraalriffen in kaart zijn gebracht. Dit toont de verspreiding, niet de gezondheid.',
+      tutorialCoralCopy: 'Geregistreerde koraalvoorkomens uit waarnemingen van mariene biodiversiteit.',
+      tutorialFishCopy: 'Onderzoekslocaties voor rifvissen en waargenomen dichtheid uit gestandaardiseerde tellingen.',
+      tutorialDiveCopy: 'Bekende recreatieve duiklocaties over de hele wereld.',
+      tutorialLegendTitle: 'Kaartlegenda', tutorialTip: 'Sleep om te verkennen · Scroll om te zoomen · Wissel lagen',
+      tutorialStart: 'Begin met verkennen　→', tutorialClose: 'Tutorial sluiten'
+    },
+    sv: {
+      tutorialMenu: 'Guide', tutorialEyebrow: 'DiveAtlas-guide', tutorialTitle: 'Utforska DiveAtlas',
+      tutorialIntro: 'Utforska korallrev, marina observationer och dykplatser världen över.',
+      tutorialReefCopy: 'Områden där korallrev har kartlagts. Visar revens utbredning, inte deras hälsa.',
+      tutorialCoralCopy: 'Registrerade korallförekomster från observationer av marin biologisk mångfald.',
+      tutorialFishCopy: 'Platser för revfiskundersökningar och observerad täthet från standardiserade studier.',
+      tutorialDiveCopy: 'Kända platser för fritidsdykning runt om i världen.',
+      tutorialLegendTitle: 'Kartförklaring', tutorialTip: 'Dra för att utforska · Scrolla för att zooma · Växla lager',
+      tutorialStart: 'Börja utforska　→', tutorialClose: 'Stäng guiden'
+    },
+    no: {
+      tutorialMenu: 'Veiledning', tutorialEyebrow: 'DiveAtlas-veiledning', tutorialTitle: 'Utforsk DiveAtlas',
+      tutorialIntro: 'Utforsk korallrev, marine observasjoner og dykkesteder over hele verden.',
+      tutorialReefCopy: 'Områder der korallrev er kartlagt. Viser utbredelse, ikke revenes helsetilstand.',
+      tutorialCoralCopy: 'Registrerte korallforekomster fra observasjoner av marint biologisk mangfold.',
+      tutorialFishCopy: 'Steder for undersøkelser av revfisk og observert tetthet fra standardiserte undersøkelser.',
+      tutorialDiveCopy: 'Kjente steder for fritidsdykking over hele verden.',
+      tutorialLegendTitle: 'Kartforklaring', tutorialTip: 'Dra for å utforske · Rull for å zoome · Bytt lag',
+      tutorialStart: 'Begynn å utforske　→', tutorialClose: 'Lukk veiledningen'
+    },
+    id: {
+      tutorialMenu: 'Tutorial', tutorialEyebrow: 'Panduan DiveAtlas', tutorialTitle: 'Jelajahi DiveAtlas',
+      tutorialIntro: 'Jelajahi terumbu karang, pengamatan laut, dan lokasi menyelam di seluruh dunia.',
+      tutorialReefCopy: 'Area terumbu karang yang telah dipetakan. Menunjukkan sebaran, bukan kondisi kesehatannya.',
+      tutorialCoralCopy: 'Kemunculan karang yang tercatat dari pengamatan keanekaragaman hayati laut.',
+      tutorialFishCopy: 'Lokasi survei ikan karang dan kepadatan yang diamati dalam survei terstandar.',
+      tutorialDiveCopy: 'Lokasi menyelam rekreasi yang dikenal di seluruh dunia.',
+      tutorialLegendTitle: 'Legenda peta', tutorialTip: 'Seret untuk menjelajah · Gulir untuk memperbesar · Ganti lapisan',
+      tutorialStart: 'Mulai menjelajah　→', tutorialClose: 'Tutup tutorial'
+    }
+  };
+
+  function tutorialText(key) {
+    return TUTORIAL_I18N[currentLang]?.[key] ?? TUTORIAL_I18N.en[key];
+  }
+
+  function renderTutorialTexts() {
+    els.tutorialMenuItem.textContent = tutorialText('tutorialMenu');
+    els.tutorialEyebrow.textContent = tutorialText('tutorialEyebrow');
+    els.tutorialTitle.textContent = tutorialText('tutorialTitle');
+    els.tutorialIntro.textContent = tutorialText('tutorialIntro');
+    els.tutorialReefTitle.textContent = t('reefLegend');
+    els.tutorialReefCopy.textContent = tutorialText('tutorialReefCopy');
+    els.tutorialCoralTitle.textContent = t('speciesLegend');
+    els.tutorialCoralCopy.textContent = tutorialText('tutorialCoralCopy');
+    els.tutorialFishTitle.textContent = t('fishLegend');
+    els.tutorialFishCopy.textContent = tutorialText('tutorialFishCopy');
+    els.tutorialDiveTitle.textContent = t('diveLegend');
+    els.tutorialDiveCopy.textContent = tutorialText('tutorialDiveCopy');
+    els.tutorialLegendTitle.textContent = tutorialText('tutorialLegendTitle');
+    els.tutorialLegendReef.textContent = t('reefLegend');
+    els.tutorialLegendCoral.textContent = t('speciesLegend');
+    els.tutorialLegendFish.textContent = t('fishLegend');
+    els.tutorialLegendDive.textContent = t('diveLegend');
+    els.tutorialTip.textContent = tutorialText('tutorialTip');
+    els.tutorialStart.textContent = tutorialText('tutorialStart');
+    els.tutorialClose.setAttribute('aria-label', tutorialText('tutorialClose'));
+    els.tutorialClose.title = tutorialText('tutorialClose');
+  }
+
+  let tutorialPreviousFocus = null;
+
+  function openTutorial({ automatic = false } = {}) {
+    if (automatic) {
+      try {
+        if (localStorage.getItem(TUTORIAL_SEEN_STORAGE_KEY) === '1') return;
+      } catch (_) {}
+    }
+    if (!tutorialPreviousFocus || tutorialPreviousFocus === document.activeElement) {
+      tutorialPreviousFocus = document.activeElement;
+    }
+    renderTutorialTexts();
+    els.tutorialBackdrop.hidden = false;
+    document.body.classList.add('tutorial-open');
+    els.tutorialClose.focus();
+  }
+
+  function closeTutorial() {
+    if (els.tutorialBackdrop.hidden) return;
+    els.tutorialBackdrop.hidden = true;
+    document.body.classList.remove('tutorial-open');
+    try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
+    if (tutorialPreviousFocus instanceof HTMLElement && tutorialPreviousFocus.isConnected) {
+      tutorialPreviousFocus.focus();
+    }
+    tutorialPreviousFocus = null;
+  }
+
+  els.tutorialMenuItem.addEventListener('click', () => {
+    tutorialPreviousFocus = els.topMenuButton;
+    setTopMenuOpen(false);
+    openTutorial();
+  });
+  els.tutorialClose.addEventListener('click', closeTutorial);
+  els.tutorialStart.addEventListener('click', closeTutorial);
+  els.tutorialBackdrop.addEventListener('click', (event) => {
+    if (event.target === els.tutorialBackdrop) closeTutorial();
+  });
+  els.tutorialDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      closeTutorial();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const controls = Array.from(els.tutorialDialog.querySelectorAll('button:not([disabled])'));
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => openTutorial({ automatic: true }), { once: true });
+  } else {
+    openTutorial({ automatic: true });
+  }
+
   function tf(key, values = {}) {
     return String(t(key)).replace(/\{(\w+)\}/g, (_, name) =>
       Object.prototype.hasOwnProperty.call(values, name)
@@ -4646,7 +5247,27 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
     const option = select?.options?.[select.selectedIndex];
     if (!select || !wrapper || !option) return;
 
-    const style = getComputedStyle(select);
+    if (!els.languageDropdown.childElementCount) {
+      Array.from(select.options).forEach(optionItem => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'top-menu-dropdown-item';
+        item.setAttribute('role', 'menuitemradio');
+        item.dataset.language = optionItem.value;
+        item.textContent = optionItem.textContent;
+        els.languageDropdown.appendChild(item);
+      });
+    }
+
+    els.languageMenuLabel.textContent = option.textContent || option.value.toUpperCase();
+    Array.from(els.languageDropdown.children).forEach(item => {
+      const selected = item.dataset.language === select.value;
+      item.setAttribute('aria-checked', String(selected));
+      if (selected) item.setAttribute('aria-current', 'true');
+      else item.removeAttribute('aria-current');
+    });
+
+    const style = getComputedStyle(els.languageMenuButton);
     const canvas =
       syncLanguageSelectWidth._canvas ||
       (syncLanguageSelectWidth._canvas =
@@ -4671,12 +5292,13 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
       textWidth +
       cssPixelValue(style.paddingLeft) +
       cssPixelValue(style.paddingRight) +
-      2
+      cssPixelValue(style.columnGap || style.gap) +
+      14
     );
 
     wrapper.style.setProperty(
       '--lang-control-width',
-      Math.max(50, Math.min(96, width)) + 'px'
+      Math.max(56, Math.min(124, width)) + 'px'
     );
   }
 
@@ -4769,6 +5391,7 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
       els.bioCacheRefreshLabel.textContent = t('cacheRefresh');
     }
     els.bioCacheRefreshBtn.title = t('cacheRefreshTitle');
+    renderTutorialTexts();
 
     [
       [els.reefLayerToggle, t('reefLegend')],
@@ -9905,9 +10528,9 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
       map.removeLayer(coralTileLayer);
     }
 
-    els.themeBtn.innerHTML = dark
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" vector-effect="non-scaling-stroke"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>';
+    els.themeBtn.setAttribute('aria-pressed', String(dark));
+    els.themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    els.themeBtn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
     const icon = dark
       ? 'assets/diveatlas-icon-dark.png?v=2'
       : 'assets/diveatlas-icon-light.png?v=2';
@@ -9936,6 +10559,55 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
 
   els.langSelect.addEventListener('change', () => {
     setLanguage(els.langSelect.value, { persist: true });
+  });
+
+  function setLanguageMenuOpen(open, { focusFirst = false } = {}) {
+    const isOpen = Boolean(open);
+    els.languageDropdown.hidden = !isOpen;
+    els.languageMenuButton.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      setTopMenuOpen(false);
+      if (focusFirst) els.languageDropdown.querySelector('[role="menuitemradio"]')?.focus();
+    }
+  }
+
+  els.languageMenuButton.addEventListener('click', event => {
+    event.stopPropagation();
+    setLanguageMenuOpen(els.languageDropdown.hidden);
+  });
+
+  els.languageDropdown.addEventListener('click', event => {
+    event.stopPropagation();
+    const item = event.target.closest('[data-language]');
+    if (!item) return;
+    els.langSelect.value = item.dataset.language;
+    els.langSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    setLanguageMenuOpen(false);
+    els.languageMenuButton.focus();
+  });
+
+  els.languageDropdown.addEventListener('keydown', event => {
+    const items = Array.from(els.languageDropdown.querySelectorAll('[role="menuitemradio"]'));
+    const currentIndex = items.indexOf(document.activeElement);
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % items.length;
+    else if (event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + items.length) % items.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = items.length - 1;
+    else if (event.key === 'Escape') {
+      event.preventDefault();
+      setLanguageMenuOpen(false);
+      els.languageMenuButton.focus();
+      return;
+    } else return;
+    event.preventDefault();
+    items[nextIndex]?.focus();
+  });
+
+  els.languageMenu.addEventListener('focusout', event => {
+    if (!els.languageMenu.contains(event.relatedTarget)) {
+      setLanguageMenuOpen(false);
+    }
   });
 
   function renderContactStatus() {
@@ -10140,6 +10812,7 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
 
   els.topMenuButton.addEventListener('click', event => {
     event.stopPropagation();
+    setLanguageMenuOpen(false);
     setTopMenuOpen(els.topMenuDropdown.hidden);
   });
 
@@ -10252,6 +10925,7 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
 
   document.addEventListener('click', () => {
     setTopMenuOpen(false);
+    setLanguageMenuOpen(false);
   });
 
   document.addEventListener('keydown', event => {
@@ -10287,7 +10961,10 @@ window.DIVE_SITES_DATA=[["Twins Koh Tao",10.1166,99.8119,null,null,14.0,"Beginne
       }
     }
 
-    if (event.key === 'Escape' && !els.topMenuDropdown.hidden) {
+    if (event.key === 'Escape' && !els.languageDropdown.hidden) {
+      setLanguageMenuOpen(false);
+      els.languageMenuButton.focus();
+    } else if (event.key === 'Escape' && !els.topMenuDropdown.hidden) {
       setTopMenuOpen(false);
       els.topMenuButton.focus();
     }
