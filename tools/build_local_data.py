@@ -6,7 +6,9 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 WORK = DATA / ".build"
-REEF_PARTS = WORK / "reef_parts"
+# Version the cache because earlier responses were requested with a geometry
+# offset and cannot be reused for the higher-fidelity local vector layer.
+REEF_PARTS = WORK / "reef_parts_exact"
 DATA.mkdir(exist_ok=True)
 WORK.mkdir(exist_ok=True)
 REEF_PARTS.mkdir(exist_ok=True)
@@ -80,11 +82,8 @@ def geometry_bbox(coords):
         return None
     return [min_x, min_y, max_x, max_y]
 
-# Reef LOD simplification should remain visually faithful to the API geometry.
-# The source query already uses maxAllowableOffset=0.0005°, so overview keeps
-# that effective fidelity. Low zoom uses a sub-pixel 0.002° tolerance at Z7.
-# min_span is intentionally zero: tiny reefs must not disappear merely to save
-# rendering work; performance is handled by polygon-part batching + viewport culling.
+# Legacy RDP helpers below remain for older LOD tooling; the active map uses
+# unsimplified local vectors and raster tiles generated from the source response.
 REEF_OVERVIEW_TOLERANCE = 0.0005
 REEF_OVERVIEW_MIN_SPAN = 0.0
 REEF_LOW_TOLERANCE = 0.002
@@ -312,6 +311,7 @@ def batch_reef_lod(payload, cell_size):
 REEF_VECTOR_CHUNK_DEGREES = 1.0
 REEF_RASTER_MIN_ZOOM = 3
 REEF_RASTER_MAX_ZOOM = 7
+REEF_RASTER_OVERSAMPLE = 2
 
 
 def reef_polygon_parts(features):
@@ -469,7 +469,7 @@ def project_web_mercator_pixel(point, zoom):
 
 
 def build_reef_raster_tiles(features):
-    """Rasterize exact source polygons at Z3-Z7 for low-zoom fidelity/speed."""
+    """Rasterize exact source polygons with antialiased edges for Z3-Z7."""
     out_dir = DATA / "reef_tiles"
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -527,20 +527,22 @@ def build_reef_raster_tiles(features):
                     key = (output_x, tile_y)
                     mask = masks.get(key)
                     if mask is None:
-                        mask = Image.new("L", (256, 256), 0)
+                        tile_size = 256 * REEF_RASTER_OVERSAMPLE
+                        mask = Image.new("L", (tile_size, tile_size), 0)
                         masks[key] = mask
                     draw = ImageDraw.Draw(mask)
 
                     if tiny:
-                        center_x = (min_x + max_x) / 2 - origin_x
+                        center_x = ((min_x + max_x) / 2 - origin_x) * REEF_RASTER_OVERSAMPLE
                         center_y = (
                             (min_y + max_y) / 2 -
                             tile_y * 256
-                        )
+                        ) * REEF_RASTER_OVERSAMPLE
                         draw.rectangle(
                             [
                                 int(center_x), int(center_y),
-                                int(center_x) + 1, int(center_y) + 1
+                                int(center_x) + REEF_RASTER_OVERSAMPLE - 1,
+                                int(center_y) + REEF_RASTER_OVERSAMPLE - 1
                             ],
                             fill=255
                         )
@@ -548,7 +550,10 @@ def build_reef_raster_tiles(features):
 
                     draw.polygon(
                         [
-                            (x - origin_x, y - tile_y * 256)
+                            (
+                                (x - origin_x) * REEF_RASTER_OVERSAMPLE,
+                                (y - tile_y * 256) * REEF_RASTER_OVERSAMPLE
+                            )
                             for x, y in exterior
                         ],
                         fill=255
@@ -556,7 +561,10 @@ def build_reef_raster_tiles(features):
                     for hole in projected[1:]:
                         draw.polygon(
                             [
-                                (x - origin_x, y - tile_y * 256)
+                                (
+                                    (x - origin_x) * REEF_RASTER_OVERSAMPLE,
+                                    (y - tile_y * 256) * REEF_RASTER_OVERSAMPLE
+                                )
                                 for x, y in hole
                             ],
                             fill=0
@@ -567,6 +575,7 @@ def build_reef_raster_tiles(features):
         written = 0
 
         for (tile_x, tile_y), mask in masks.items():
+            mask = mask.resize((256, 256), Image.Resampling.LANCZOS)
             if mask.getbbox() is None:
                 continue
 
@@ -575,11 +584,11 @@ def build_reef_raster_tiles(features):
 
             image = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
             outline = Image.new(
-                "RGBA", (256, 256), (0, 109, 115, 255)
+                "RGBA", (256, 256), (20, 134, 142, 255)
             )
-            outline.putalpha(edge)
+            outline.putalpha(edge.point(lambda alpha: round(alpha * 0.82)))
             fill = Image.new(
-                "RGBA", (256, 256), (23, 198, 179, 255)
+                "RGBA", (256, 256), (46, 196, 182, 255)
             )
             fill.putalpha(mask)
             image.alpha_composite(outline)
@@ -633,7 +642,6 @@ def build_reef():
             "returnGeometry": "true",
             "outSR": "4326",
             "geometryPrecision": "5",
-            "maxAllowableOffset": "0.0005",
             "f": "geojson"
         })
         features = data.get("features") or []
