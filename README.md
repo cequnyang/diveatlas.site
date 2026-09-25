@@ -9,6 +9,24 @@ Interactive global reef and dive map integrating coral reef extent, coral observ
 - AODN / NRMN fish-density surveys
 - Embedded global dive-site dataset
 
+## Product features
+
+- New visitors start with Reef extent and Dive sites enabled. Once a visitor has saved layer preferences, those preferences take precedence; a shared URL restores its own view without replacing the saved defaults.
+- The Tutorial and Map Layers panel use the same live layer state, including the compact `All` / `Default` action and matching layer symbols.
+- Dive-site records have persistent DiveAtlas UUIDs in `data/dive-sites.js`. Photo metadata is keyed only by those IDs in `data/dive-site-photos.js`; preserve IDs when updating records. Same-name records within 3 km are consolidated, with retired IDs retained on the merged row.
+- Dive-site popups can show locally stored hero photos from `assets/dive-sites/<siteId>/hero.webp`. Portrait photos use a sharp, fully visible foreground over a subdued blurred copy in a fixed 16:9 frame. Photo credits and source metadata are kept in the photo registry.
+- Opening a dive-site popup accounts for the rendered header height and keeps a 14px safe margin around the visible map area. Popup height is constrained to the available viewport, and a one-time bounds check makes only a minimal corrective pan when needed.
+- Share opens a small popover with a context-aware map/site link action. It copies the same canonical URL that restores center, zoom, visible layers, and a selected dive-site ID.
+- The browser tab icon follows the browser's light/dark preference; the site also uses a small Apple touch icon. See [DESIGN.md](DESIGN.md) for the product's visual conventions and [the dive-site photo guide](assets/dive-sites/README.md) for the asset and stable-ID workflow.
+
+## Updating dive-site photos
+
+1. Keep one permanent UUID in field `[12]` of each `data/dive-sites.js` row. Do not generate IDs during page load or rebuilds.
+2. Optimize each approved image to WebP and store it at `assets/dive-sites/<siteId>/hero.webp`.
+3. Add its `alt`, credit, source, license, and location confidence to `data/dive-site-photos.js` under that same ID.
+
+The photo guide documents duplicate consolidation and UUID retirement rules. The original flattened source has no reliable per-site identifier, so the stored DiveAtlas UUID is the durable key.
+
 ## Run
 
 Open `index.html` in a modern browser.
@@ -24,7 +42,7 @@ Open `index.html` in a modern browser.
 
 - Primary datasets remain local/static; online refreshes are optional rather than the normal rendering path.
 - Reef rendering no longer deletes small polygons or relies on aggressively simplified low-zoom geometry. The runtime source is the cached UNEP-WCMC geometry at the same 0.0005° API offset used by the original local snapshot.
-- Z3-Z7 Reef is pre-rendered into 1,019 local PNG tiles (~1.45 MB total) directly from the source polygons. This preserves the source footprint at screen resolution while avoiding hundreds of thousands of Leaflet paths.
+- Z3-Z7 Reef is pre-rendered into 1,020 local PNG tiles (~7.8 MiB total) directly from the source polygons. Tiles are rasterized at 2x and downsampled with Lanczos filtering for smoother boundaries while preserving the source footprint and avoiding hundreds of thousands of Leaflet paths.
 - Z8+ Reef uses 1,738 local gzip/base64 vector chunks partitioned by individual polygon parts with a small 84 KB bbox manifest. Only chunks intersecting the padded viewport are decoded. A bounded 320-chunk LRU keeps nearby decoded chunks hot so short back-pans do not immediately re-fetch/re-decode them. Z8-Z11 batches visible polygons into Canvas paths, while Z12+ keeps feature-level paths for viewport clipping.
 - Coral observations, coral grid cells, fish surveys, and dive sites use 5° in-memory spatial indexes so pan/zoom refreshes query nearby buckets rather than scanning each global dataset.
 - Coral grid resolution scales with zoom and uses a build-time Z3-Z11 pyramid, preserving summed occurrence counts while avoiding runtime re-binning of the 130k base cells.
