@@ -3888,19 +3888,19 @@
       <div class="tutorial-layers">
         <article class="tutorial-layer" data-layer="reef">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialReefTitle">Reef extent</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialReefLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialReefLayerToggle" type="checkbox" data-layer="reef" aria-labelledby="tutorialReefTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialReefCopy">Mapped reef distribution, not reef health.</p></div>
-          <div class="tutorial-map-preview reef"><img src="assets/tutorial/previews/reef-extent.webp" alt="Map preview showing mapped coral reef extent"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/reef-extent.webp" alt=""></span></div>
+          <div class="tutorial-map-preview reef"><img src="assets/tutorial/previews/reef-extent.webp" alt="Map preview showing mapped coral reef extent" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/reef-extent.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer" data-layer="species">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialCoralTitle">Coral records</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialSpeciesLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialSpeciesLayerToggle" type="checkbox" data-layer="species" aria-labelledby="tutorialCoralTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialCoralCopy">Coral observations from marine biodiversity records; purple squares show a density grid at some zoom levels.</p></div>
-          <div class="tutorial-map-preview coral"><img src="assets/tutorial/previews/coral-records.webp" alt="Map preview showing recorded coral observations"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/coral-records.webp" alt=""></span></div>
+          <div class="tutorial-map-preview coral"><img src="assets/tutorial/previews/coral-records.webp" alt="Map preview showing recorded coral observations" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/coral-records.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer" data-layer="fish">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialFishTitle">Fish density</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialFishLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialFishLayerToggle" type="checkbox" data-layer="fish" aria-labelledby="tutorialFishTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialFishCopy">Reef-fish survey sites and observed density.</p></div>
-          <div class="tutorial-map-preview fish"><img src="assets/tutorial/previews/fish-density.webp" alt="Map preview showing fish survey density"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/fish-density.webp" alt=""></span></div>
+          <div class="tutorial-map-preview fish"><img src="assets/tutorial/previews/fish-density.webp" alt="Map preview showing fish survey density" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/fish-density.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer dive" data-layer="dive">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialDiveTitle">Dive sites</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialDiveLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialDiveLayerToggle" type="checkbox" data-layer="dive" aria-labelledby="tutorialDiveTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialDiveCopy">Known recreational dive sites worldwide.</p></div>
-          <div class="tutorial-map-preview dive"><img src="assets/tutorial/previews/dive-sites.webp" alt="Map preview showing dive sites"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/dive-sites.webp" alt=""></span></div>
+          <div class="tutorial-map-preview dive"><img src="assets/tutorial/previews/dive-sites.webp" alt="Map preview showing dive sites" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/dive-sites.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
       </div>
       <section class="tutorial-map-legend" aria-labelledby="tutorialLegendTitle">
@@ -3970,8 +3970,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
-<script src="data/dive-sites.js?v=1"></script>
-<script src="data/dive-site-photos.js?v=2"></script>
 <script>
 /* V58: embedded AODN fish fallback + non-destructive online refresh + persistent top bar + upper-left search + V34 full biodiversity snapshot builder + embedded offline runtime.
    V42 internal legend-section collapse + popup source links + persistent cache/clustering retained. Embedded dive-site dataset: 17,875 records. */
@@ -3996,11 +3994,7 @@
   const MAP_VIEW_STORAGE_KEY = 'global-coral-map-view-v1';
   // Parse once before constructing Leaflet so shared coordinates win before the first map paint.
   const SHARE_LAYER_IDS = ['reef', 'coral', 'fish', 'dive'];
-  const SHARE_SITE_BY_ID = new Map(
-    (Array.isArray(window.DIVE_SITES_DATA) ? window.DIVE_SITES_DATA : [])
-      .map((site, index) => [String(site?.[12] || '').trim().toLowerCase(), index])
-      .filter(([siteId]) => siteId)
-  );
+  let SHARE_SITE_BY_ID = new Map();
 
   function parseMapState(url) {
     let params;
@@ -4042,8 +4036,8 @@
     }
 
     const rawSiteId = String(params.get('site') || '').trim().toLowerCase();
-    if (rawSiteId && SHARE_SITE_BY_ID.has(rawSiteId)) {
-      state.selectedSiteId = rawSiteId;
+    if (rawSiteId) {
+      state.requestedSiteId = rawSiteId;
       state.hasValidState = true;
     }
 
@@ -4175,7 +4169,8 @@
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
   const hasSharedViewport = Boolean(
-    sharedMapState.center || Number.isFinite(sharedMapState.zoom) || sharedMapState.selectedSiteId
+    sharedMapState.center || Number.isFinite(sharedMapState.zoom) ||
+    sharedMapState.selectedSiteId || sharedMapState.requestedSiteId
   );
   let initialIpLocationPending = !savedMapView && !hasSharedViewport;
   let initialIpLocationCancelled = false;
@@ -4983,14 +4978,18 @@
     }
   }
 
-  function rebuildDiveLods(sourceItems) {
-    diveLodByZoom.clear();
-    const validItems = sourceItems.filter(item =>
+  function rebuildDiveLods(sourceItems, zooms = null, preparedItems = null) {
+    const validItems = preparedItems || sourceItems.filter(item =>
       Number.isFinite(Number(item.site?.[1])) &&
       Number.isFinite(Number(item.site?.[2]))
     );
 
-    for (let zoom = OBSERVATION_MIN_ZOOM; zoom <= 8; zoom += 1) {
+    const zoomsToBuild = zooms || Array.from(
+      { length: 8 - OBSERVATION_MIN_ZOOM + 1 },
+      (_, index) => OBSERVATION_MIN_ZOOM + index
+    );
+    for (const zoom of zoomsToBuild) {
+      if (diveLodByZoom.has(zoom)) continue;
       const step = fishLodStepForZoom(zoom);
       const grouped = new Map();
 
@@ -5105,9 +5104,14 @@
     return 0.04;
   }
 
-  const DIVE_SITES = Array.isArray(window.DIVE_SITES_DATA)
+  let DIVE_SITES = Array.isArray(window.DIVE_SITES_DATA)
     ? window.DIVE_SITES_DATA
     : [];
+  let DIVE_SITE_ITEMS = [];
+  let diveSiteDataReady = false;
+  let diveSiteDataPromise = null;
+  let DIVE_SEARCH_INDEX = null;
+  let diveSearchIndexPromise = null;
 
   function getDiveSiteStableId(site) {
     if (Array.isArray(site)) return String(site[12] || '').trim();
@@ -5145,18 +5149,6 @@
     return photo;
   }
 
-  const DIVE_SITE_ITEMS = DIVE_SITES.map(
-    (site, index) => ({ site, index })
-  );
-
-  rebuildPointSpatialIndex(
-    diveSpatialIndex,
-    DIVE_SITE_ITEMS,
-    item => Number(item.site?.[1]),
-    item => Number(item.site?.[2])
-  );
-  rebuildDiveLods(DIVE_SITE_ITEMS);
-
   const OBIS_CORAL_TAXA = [
     'Scleractinia',
     'Octocorallia',
@@ -5167,6 +5159,7 @@
   let diveSearchTimer = null;
   let diveSearchActiveIndex = -1;
   let diveSearchMatches = [];
+  let diveSearchRenderRequest = 0;
 
   let currentLang = 'en';
 
@@ -5198,11 +5191,13 @@
     layerVisibility.reef = sharedMapState.layers.reef;
     layerVisibility.species = sharedMapState.layers.coral;
     layerVisibility.fish = sharedMapState.layers.fish;
-    layerVisibility.dive = sharedMapState.selectedSiteId ? true : sharedMapState.layers.dive;
+    layerVisibility.dive = (sharedMapState.selectedSiteId || sharedMapState.requestedSiteId)
+      ? true
+      : sharedMapState.layers.dive;
   }
   // A shared URL overrides this view only; these assignments never persist to the visitor's defaults.
   // Showing a specifically shared site needs its layer for this view, not as a saved preference.
-  if (sharedMapState.selectedSiteId) layerVisibility.dive = true;
+  if (sharedMapState.selectedSiteId || sharedMapState.requestedSiteId) layerVisibility.dive = true;
 
   /* ---------- persistent biodiversity cache ---------- */
 
@@ -7533,6 +7528,102 @@
     });
   }
 
+  function ensureDiveSiteData() {
+    if (diveSiteDataReady) return Promise.resolve();
+    if (diveSiteDataPromise) return diveSiteDataPromise;
+
+    diveSiteDataPromise = Promise.all([
+      loadLocalScript('data/dive-sites.js?v=1'),
+      loadLocalScript('data/dive-site-photos.js?v=2')
+    ])
+      .then(() => {
+        const sites = window.DIVE_SITES_DATA;
+        if (!Array.isArray(sites)) {
+          throw new Error('Dive-site dataset did not expose an array.');
+        }
+
+        DIVE_SITES = sites;
+        DIVE_SITE_ITEMS = DIVE_SITES.map((site, index) => ({ site, index }));
+        SHARE_SITE_BY_ID = new Map(
+          DIVE_SITES
+            .map((site, index) => [getDiveSiteStableId(site).toLowerCase(), index])
+            .filter(([siteId]) => siteId)
+        );
+
+        rebuildPointSpatialIndex(
+          diveSpatialIndex,
+          DIVE_SITE_ITEMS,
+          item => Number(item.site?.[1]),
+          item => Number(item.site?.[2])
+        );
+
+        const validItems = DIVE_SITE_ITEMS.filter(item =>
+          Number.isFinite(Number(item.site?.[1])) &&
+          Number.isFinite(Number(item.site?.[2]))
+        );
+        const initialZoom = Math.round(map.getZoom());
+        if (
+          initialZoom >= OBSERVATION_MIN_ZOOM &&
+          initialZoom <= 8
+        ) {
+          rebuildDiveLods(DIVE_SITE_ITEMS, [initialZoom], validItems);
+        }
+
+        diveSiteDataReady = true;
+
+        const requestedSiteId = sharedMapState.requestedSiteId;
+        if (requestedSiteId) {
+          if (SHARE_SITE_BY_ID.has(requestedSiteId)) {
+            sharedMapState.selectedSiteId = requestedSiteId;
+            layerVisibility.dive = true;
+            setLayerVisibility('dive', true, { persist: false });
+            restoreSharedSiteDetail(requestedSiteId);
+          } else {
+            delete sharedMapState.requestedSiteId;
+            sharedMapState.hasValidState = Boolean(
+              sharedMapState.center || Number.isFinite(sharedMapState.zoom) || sharedMapState.layers
+            );
+          }
+        }
+
+        scheduleDiveRefresh(0);
+
+        const pendingZooms = [];
+        for (let zoom = OBSERVATION_MIN_ZOOM; zoom <= 8; zoom += 1) {
+          if (!diveLodByZoom.has(zoom)) pendingZooms.push(zoom);
+        }
+        const buildNextLod = () => {
+          const zoom = pendingZooms.shift();
+          if (zoom == null) return;
+          rebuildDiveLods(DIVE_SITE_ITEMS, [zoom], validItems);
+          if (Math.round(map.getZoom()) === zoom) scheduleDiveRefresh(0);
+          const scheduleNext = () => {
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(buildNextLod, { timeout: 1500 });
+            } else {
+              setTimeout(buildNextLod, 0);
+            }
+          };
+          scheduleNext();
+        };
+        if (pendingZooms.length) {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(buildNextLod, { timeout: 1500 });
+          } else {
+            setTimeout(buildNextLod, 0);
+          }
+        }
+      })
+      .catch(error => {
+        diveSiteDataPromise = null;
+        setMapDataLoading('dive', false);
+        console.warn('Dive-site data failed to load:', error);
+        throw error;
+      });
+
+    return diveSiteDataPromise;
+  }
+
   let embeddedBiodiversityDataReady = false;
   let embeddedBiodiversityLoadPromise = null;
 
@@ -8509,7 +8600,7 @@
         reef: state.layers.reef,
         species: state.layers.coral,
         fish: state.layers.fish,
-        dive: state.selectedSiteId ? true : state.layers.dive
+        dive: (state.selectedSiteId || state.requestedSiteId) ? true : state.layers.dive
       };
       for (const [key, visible] of Object.entries(targets)) {
         if (typeof visible === 'boolean' && layerVisibility[key] !== visible) {
@@ -8518,7 +8609,7 @@
       }
     }
 
-    if (state.selectedSiteId && !layerVisibility.dive) {
+    if ((state.selectedSiteId || state.requestedSiteId) && !layerVisibility.dive) {
       setLayerVisibility('dive', true, { persist: false });
     }
   }
@@ -8913,23 +9004,56 @@
       .trim();
   }
 
-  const DIVE_SEARCH_INDEX = DIVE_SITES.map((site, index) => {
-    const nameKey = normalizeDiveSearchText(site[0] || '');
-    const aliasKey = normalizeDiveSearchText(site[11] || '');
-    const metaKey = normalizeDiveSearchText(
-      `${site[9] || ''} ${site[10] || ''}`
-    );
+  function ensureDiveSearchIndex() {
+    if (DIVE_SEARCH_INDEX) return Promise.resolve();
+    if (diveSearchIndexPromise) return diveSearchIndexPromise;
 
-    return {
-      index,
-      nameKey,
-      aliasKey,
-      metaKey,
-      nameTokens: nameKey.split(' ').filter(Boolean),
-      aliasTokens: aliasKey.split(' ').filter(Boolean),
-      metaTokens: metaKey.split(' ').filter(Boolean)
-    };
-  });
+    const index = [];
+    let cursor = 0;
+    const batchSize = 750;
+    diveSearchIndexPromise = new Promise((resolve, reject) => {
+      const appendBatch = () => {
+        try {
+          const end = Math.min(cursor + batchSize, DIVE_SITES.length);
+          for (; cursor < end; cursor += 1) {
+            const site = DIVE_SITES[cursor];
+            const nameKey = normalizeDiveSearchText(site[0] || '');
+            const aliasKey = normalizeDiveSearchText(site[11] || '');
+            const metaKey = normalizeDiveSearchText(
+              `${site[9] || ''} ${site[10] || ''}`
+            );
+
+            index.push({
+              index: cursor,
+              nameKey,
+              aliasKey,
+              metaKey,
+              nameTokens: nameKey.split(' ').filter(Boolean),
+              aliasTokens: aliasKey.split(' ').filter(Boolean),
+              metaTokens: metaKey.split(' ').filter(Boolean)
+            });
+          }
+
+          if (cursor < DIVE_SITES.length) {
+            setTimeout(appendBatch, 0);
+            return;
+          }
+
+          DIVE_SEARCH_INDEX = index;
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      appendBatch();
+    }).catch(error => {
+      diveSearchIndexPromise = null;
+      throw error;
+    });
+
+    return diveSearchIndexPromise;
+  }
 
   function diveSearchMeta(site) {
     const country = String(site[9] || '').trim();
@@ -9088,6 +9212,7 @@
 
   function renderDiveSearchResults() {
     if (!els.diveSearchInput) return;
+    const renderRequest = ++diveSearchRenderRequest;
 
     const query =
       els.diveSearchInput.value.trim();
@@ -9098,12 +9223,48 @@
     );
 
     if (!query) {
+      els.diveSearchResults.setAttribute('aria-busy', 'false');
       hideDiveSearchResults();
+      return;
+    }
+
+    const showLoading = () => {
+      els.diveSearchResultsScroll.innerHTML =
+        `<div class="dive-search-empty">${escapeHtml(t('diveLoading'))}</div>`;
+      els.diveSearchResults.setAttribute('aria-busy', 'true');
+      els.diveSearchResults.classList.add('visible');
+    };
+    const showUnavailable = () => {
+      if (renderRequest !== diveSearchRenderRequest) return;
+      els.diveSearchResultsScroll.innerHTML =
+        `<div class="dive-search-empty">${escapeHtml(t('divePartial'))}</div>`;
+      els.diveSearchResults.setAttribute('aria-busy', 'false');
+      els.diveSearchResults.classList.add('visible');
+    };
+
+    if (!diveSiteDataReady) {
+      showLoading();
+      void ensureDiveSiteData()
+        .then(() => {
+          if (renderRequest === diveSearchRenderRequest) renderDiveSearchResults();
+        })
+        .catch(showUnavailable);
+      return;
+    }
+
+    if (!DIVE_SEARCH_INDEX) {
+      showLoading();
+      void ensureDiveSearchIndex()
+        .then(() => {
+          if (renderRequest === diveSearchRenderRequest) renderDiveSearchResults();
+        })
+        .catch(showUnavailable);
       return;
     }
 
     diveSearchMatches = findDiveSites(query);
     diveSearchActiveIndex = -1;
+    els.diveSearchResults.setAttribute('aria-busy', 'false');
 
     if (!diveSearchMatches.length) {
       els.diveSearchResultsScroll.innerHTML =
@@ -9209,6 +9370,10 @@
       !Number.isFinite(lng)
     ) {
       return;
+    }
+
+    if (!layerVisibility.dive) {
+      setLayerVisibility('dive', true, { persist: false });
     }
 
     els.diveSearchInput.value =
@@ -12878,6 +13043,7 @@
     clearTimeout(diveRefreshTimer);
 
     if (!diveSiteLayer || !layerVisibility.dive) return;
+    if (!diveSiteDataReady) return;
 
     const zoom = map.getZoom();
     diveSiteLayer.clearLayers();
@@ -13230,6 +13396,18 @@
     const shouldLoad =
       pointDisplayModeForZoom(map.getZoom()) !== 'zoomIn';
     setMapDataLoading('dive', shouldLoad);
+
+    if (!diveSiteDataReady && shouldLoad) {
+      void ensureDiveSiteData()
+        .then(() => {
+          if (layerVisibility.dive) scheduleDiveRefresh(0);
+          else setMapDataLoading('dive', false);
+        })
+        .catch(() => {
+          if (els.bioLegendNote) els.bioLegendNote.textContent = t('divePartial');
+        });
+      return;
+    }
 
     diveRefreshTimer = setTimeout(() => {
       try {
@@ -14511,8 +14689,8 @@
     map.whenReady(scheduleReefInitialization);
     setTimeout(scheduleReefInitialization, 1000);
 
-    if (sharedMapState.selectedSiteId) {
-      setTimeout(() => restoreSharedSiteDetail(sharedMapState.selectedSiteId), 240);
+    if (sharedMapState.requestedSiteId) {
+      void ensureDiveSiteData().catch(() => {});
     }
   }
 

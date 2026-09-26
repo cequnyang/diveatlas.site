@@ -74,7 +74,7 @@ python -m pip install rasterio numpy Pillow contourpy
 python tools/build_bathymetry.py
 ```
 
-The current surface is capped at Z7; contours and terrain stop at Z8 because finer display pixels would imply unsupported source detail. Terrain uses a Horn 3×3 slope calculation and is generated offline; the browser only loads the precomputed atlas when the layer is enabled and in range. `data/terrain_z9_z10_demo/` is a separate bounded display/storage experiment and is not referenced by the production manifest; its overzoomed pixels do not represent higher-resolution measurements. Generated manifests and tiles belong in Git; source rasters, extracted source data, and intermediate overviews under `data/.build/` do not.
+The current surface is capped at Z7; contours and terrain stop at Z8 because finer display pixels would imply unsupported source detail. Terrain uses a Horn 3×3 slope calculation and is generated offline; the browser only loads the precomputed atlas when the layer is enabled and in range. Generated manifests and tiles belong in Git; source rasters, extracted source data, and intermediate overviews under `data/.build/` do not.
 
 ### Reef and coral products
 
@@ -85,6 +85,17 @@ The current surface is capped at Z7; contours and terrain stop at Z8 because fin
 Rows in `data/dive-sites.js` keep their persistent UUID in field `[12]`; never regenerate IDs from names, coordinates, or row order. Field `[13]`, when present, retains retired IDs after a merge. Same-name records within 3 km may be consolidated; see [the dive-site photo guide](assets/dive-sites/README.md) before changing IDs or photos.
 
 Approved site photos are stored as WebP at `assets/dive-sites/<siteId>/hero.webp`. Add metadata to `data/dive-site-photos.js` under the matching stable ID, including meaningful alt text, credit, source, license, and location confidence. Only verified photos for the exact site should be registered.
+
+## Tutorial image maintenance
+
+The tutorial uses resized WebP previews and square photo bubbles to keep its first-visit imagery lightweight. Rebuild these production assets from the preserved originals with Pillow:
+
+```powershell
+python -m pip install Pillow
+python tools/optimize_tutorial_images.py
+```
+
+By default, the script reads `bubbles-original/` and `previews-original/` from the sibling `diveatlas-source-assets/tutorial/` archive. Keep the originals outside the published site; pass `--source-root <path>` to use a different archive, or `--preset bubble` / `--preset preview` to rebuild one group.
 
 ## Project layout
 
