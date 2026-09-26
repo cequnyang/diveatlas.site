@@ -476,6 +476,7 @@ def build_reef_raster_tiles(features):
     out_dir.mkdir(parents=True)
 
     polygons = reef_polygon_parts(features)
+    tile_index = []
 
     for zoom in range(REEF_RASTER_MIN_ZOOM, REEF_RASTER_MAX_ZOOM + 1):
         started = time.time()
@@ -601,6 +602,7 @@ def build_reef_raster_tiles(features):
                 compress_level=6
             )
             written += 1
+            tile_index.append([zoom, tile_x, tile_y])
 
         print(
             "reef raster",
@@ -609,6 +611,15 @@ def build_reef_raster_tiles(features):
             "seconds", round(time.time() - started, 1),
             flush=True
         )
+
+    tile_index.sort()
+    manifest = {"v": 1, "tiles": tile_index}
+    (DATA / "reef_raster_manifest.js").write_text(
+        "window.DIVEATLAS_REEF_RASTER_MANIFEST=" +
+        json.dumps(manifest, separators=(",", ":")) +
+        ";\n",
+        encoding="utf-8"
+    )
 
 
 def build_reef_static_assets(features, source):
@@ -801,6 +812,8 @@ def build_coral_grid_pyramid(cells):
     return pyramid
 
 def build_coral():
+    from coral_qc import load_accepted_cells
+
     db = coral_db()
     for taxon in TAXA:
         for south in range(-90, 90, 30):
@@ -809,12 +822,16 @@ def build_coral():
                 east = min(180, west + 30)
                 process_coral_box(db,taxon,west,south,east,north)
 
-    cells = [
+    raw_cells = [
         [int(y), int(x), int(records)]
         for y,x,records in db.execute(
             "SELECT y,x,records FROM cells ORDER BY y,x"
         )
     ]
+    accepted_cells, _, qc = load_accepted_cells(
+        WORK / "coral_grid.sqlite", CORAL_STEP
+    )
+    cells = [row for row in raw_cells if (row[0], row[1]) in accepted_cells]
     total_records = sum(row[2] for row in cells)
     grid_pyramid = build_coral_grid_pyramid(cells)
     payload = {
@@ -828,7 +845,8 @@ def build_coral():
     }
     write_gzip_js(payload, DATA / "coral_records_snapshot.js",
                   "DIVEATLAS_CORAL_SNAPSHOT")
-    print("coral cells", len(cells), "records", total_records, flush=True)
+    print("coral cells", len(cells), "records", total_records,
+          "inland QC", qc, flush=True)
     db.close()
 
 if __name__ == "__main__":
@@ -844,10 +862,14 @@ if __name__ == "__main__":
     if args.target in ("coral","coral-grid","all"):
         build_coral()
     if args.target in ("coral","coral-species","all"):
-        subprocess.run(
-            [
-                sys.executable,
-                str(ROOT / "tools" / "build_coral_species_local.py")
-            ],
-            check=True
-        )
+        # The QC guard checks the completed public artifacts, so run it only
+        # after enrichment and occurrence chunk generation have both finished.
+        for script in (
+            "build_coral_species_local.py",
+            "build_coral_occurrence_chunks.py",
+            "validate_coral_qc.py",
+        ):
+            subprocess.run(
+                [sys.executable, str(ROOT / "tools" / script)],
+                check=True,
+            )

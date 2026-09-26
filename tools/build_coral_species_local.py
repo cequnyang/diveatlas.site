@@ -12,6 +12,7 @@ from build_local_data import (
     DATA, WORK, CORAL_STEP, TAXA,
     CORAL_GRID_PYRAMID_STEPS, write_gzip_js
 )
+from coral_qc import load_accepted_cells
 
 OBIS_OCCURRENCE = "https://api.obis.org/v3/occurrence"
 PAGE_SIZE = 10000
@@ -99,11 +100,9 @@ def open_species_db():
     db.commit()
     return db
 def occupied_boxes_and_cells():
-    grid = sqlite3.connect(GRID_DB)
-    rows = list(grid.execute(
-        "SELECT y,x,records FROM cells ORDER BY y,x"
-    ))
-    grid.close()
+    accepted, raw_rows, qc = load_accepted_cells(GRID_DB, CORAL_STEP)
+    rows = [row for row in raw_rows if (row[0], row[1]) in accepted]
+    print("Coral inland QC", qc, flush=True)
 
     valid_cells = {(int(y), int(x)) for y, x, _ in rows}
     boxes = set()
@@ -318,13 +317,15 @@ def download_species_index():
     return base_rows
 
 
-def load_cell_species():
+def load_cell_species(valid_cells):
     db = sqlite3.connect(SPECIES_DB)
     result = {}
     all_names = set()
     for y, x, name in db.execute(
         "SELECT y,x,species FROM cell_species ORDER BY y,x,species"
     ):
+        if (int(y), int(x)) not in valid_cells:
+            continue
         result.setdefault((int(y), int(x)), []).append(name)
         all_names.add(name)
     db.close()
@@ -364,7 +365,8 @@ def build_pyramid(base_rows, cell_species_ids):
 
 
 def export_snapshot(base_rows):
-    species, cell_species_ids = load_cell_species()
+    valid_cells = {(int(y), int(x)) for y, x, _ in base_rows}
+    species, cell_species_ids = load_cell_species(valid_cells)
     cells = [
         [
             int(y),

@@ -1,55 +1,99 @@
-# diveatlas.site
+# DiveAtlas
 
-Interactive global reef and dive map integrating coral reef extent, coral observations, fish-density surveys, and dive-site data.
+![DiveAtlas global marine map project cover](assets/diveatlas-project-cover.jpg)
 
-## Current data layers
+*Project cover artwork. The supported live map layers are listed below; labels shown in the artwork may differ from the current build.*
 
-- Global coral reef extent
-- OBIS coral records
-- AODN / NRMN fish-density surveys
-- Embedded global dive-site dataset
+DiveAtlas is a static-first interactive map for exploring mapped dive sites and marine geographic data around the world. It brings dive locations together with coral observations, reef extent, fish-survey density, bathymetry, depth contours, and seafloor terrain.
 
-## Product features
+- **Open the map:** [diveatlas.site](https://diveatlas.site/)
+- **Browse the dive-site pilot:** [/dive-sites/](https://diveatlas.site/dive-sites/)
+- **Browse pilot regions:** [/regions/](https://diveatlas.site/regions/)
 
-- New visitors start with Reef extent and Dive sites enabled. Once a visitor has saved layer preferences, those preferences take precedence; a shared URL restores its own view without replacing the saved defaults.
-- The Tutorial and Map Layers panel use the same live layer state, including the compact `All` / `Default` action and matching layer symbols.
-- Dive-site records have persistent DiveAtlas UUIDs in `data/dive-sites.js`. Photo metadata is keyed only by those IDs in `data/dive-site-photos.js`; preserve IDs when updating records. Same-name records within 3 km are consolidated, with retired IDs retained on the merged row.
-- Dive-site popups can show locally stored hero photos from `assets/dive-sites/<siteId>/hero.webp`. Portrait photos use a sharp, fully visible foreground over a subdued blurred copy in a fixed 16:9 frame. Photo credits and source metadata are kept in the photo registry.
-- Opening a dive-site popup accounts for the rendered header height and keeps a 14px safe margin around the visible map area. Popup height is constrained to the available viewport, and a one-time bounds check makes only a minimal corrective pan when needed.
-- Share opens a small popover with a context-aware map/site link action. It copies the same canonical URL that restores center, zoom, visible layers, and a selected dive-site ID.
-- The browser tab icon follows the browser's light/dark preference; the site also uses a small Apple touch icon. See [DESIGN.md](DESIGN.md) for the product's visual conventions and [the dive-site photo guide](assets/dive-sites/README.md) for the asset and stable-ID workflow.
+## Explore the map
 
-## Updating dive-site photos
+The map combines these local/static datasets and overlays:
 
-1. Keep one permanent UUID in field `[12]` of each `data/dive-sites.js` row. Do not generate IDs during page load or rebuilds.
-2. Optimize each approved image to WebP and store it at `assets/dive-sites/<siteId>/hero.webp`.
-3. Add its `alt`, credit, source, license, and location confidence to `data/dive-site-photos.js` under that same ID.
+- **Dive sites:** mapped recreational dive locations, with stable record IDs, selected local photos, and factual details where the source record provides them.
+- **Coral records:** OBIS coral observations. Derived records are screened at build time against a GEBCO land mask; cells classified as land more than 50 km from the coast are excluded from the published coral products. Source inputs remain unchanged.
+- **Reef extent:** UNEP-WCMC reef geometry, served as low-zoom raster tiles and viewport-loaded vector chunks at higher zoom.
+- **Fish density:** AODN / NRMN reef-fish survey locations and recorded density.
+- **Bathymetry:** GEBCO_2026 seafloor context, loaded from local viewport tile atlases. Depth samples are fetched only after a map click.
+- **Depth contours:** independently toggleable depth lines, generated for supported zoom levels.
+- **Terrain:** an optional slope overlay derived from GEBCO bathymetry.
 
-The photo guide documents duplicate consolidation and UUID retirement rules. The original flattened source has no reliable per-site identifier, so the stored DiveAtlas UUID is the durable key.
+Bathymetry is the persistent base context and has no visibility switch. Terrain is optional; contours can be toggled separately. Layer preferences are saved locally, and share links can restore map position, visible layers, and a selected dive site. The first-visit tutorial can be reopened from the map menu.
 
-## Run
+Bathymetry and terrain describe gridded, sometimes interpolated source data. Display resolution is not a guarantee of local survey accuracy. These layers are for exploration and must not be used for navigation or safety at sea.
 
-Open `index.html` in a modern browser.
+## Dive-site and region pages
+
+The repository includes a small HTML-first SEO pilot generated from `data/dive-sites.js`:
+
+- `/dive-sites/` links to the selected site pages.
+- `/dive-sites/<slug>/` contains a static title, description, canonical URL, site facts, and links to its recorded region and map deep link.
+- `/regions/` links to qualifying recorded country/region groups.
+- `/regions/<country>/<region>/` (or `/regions/<region>/` when the country field is absent) lists the pilot sites and a coordinate range calculated from those records.
+
+The current pilot contains 20 site pages and 2 region pages. Site selection is based on record completeness, not popularity. Generation excludes duplicate-coordinate records and requires stable identity, valid coordinates, location context, and multiple factual attributes. Region pages require at least three generated sites. Pages use source fields only; no reverse geocoding or generated descriptions are used.
+
+Run the generator from the repository root to rebuild the pages and `sitemap.xml`:
+
+```powershell
+python tools/generate_seo_pages.py
+```
+
+Limits can be raised after reviewing the pilot, for example:
+
+```powershell
+python tools/generate_seo_pages.py --site-limit 50 --region-limit 10
+```
+
+The `dive-sites/` and `regions/` directories are generator-owned and replaced on each run. See [SEO_GENERATION.md](tools/SEO_GENERATION.md) for schema, thresholds, slug rules, and validation details. `robots.txt` allows the site and disallows only `/data/reef_tiles/`; the sitemap contains page URLs, not data or image assets. Cloudflare may serve managed robots content independently of the repository file, so verify the live response after publishing.
+
+## Run locally
+
+The project is a static site; there is no build step for normal map use. From the repository root, start a local static server:
+
+```powershell
+python -m http.server 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000). The map uses local data files and remote basemap/style resources, so an internet connection is needed for those external map resources.
+
+## Rebuild data assets
+
+Normal browsing does not run Python, download source datasets, or call a reverse-geocoding service. Python tools are for maintainers rebuilding generated assets.
+
+### Bathymetry, contours, and terrain
+
+`tools/build_bathymetry.py` requires `rasterio`, `numpy`, `Pillow`, and `contourpy`. It downloads the GEBCO_2026 global GeoTIFF archive (about 4 GB) into ignored `data/.build/`, then writes static viewport-addressable assets under `data/`.
+
+```powershell
+python -m pip install rasterio numpy Pillow contourpy
+python tools/build_bathymetry.py
+```
+
+The current surface is capped at Z7; contours and terrain stop at Z8 because finer display pixels would imply unsupported source detail. Terrain uses a Horn 3×3 slope calculation and is generated offline; the browser only loads the precomputed atlas when the layer is enabled and in range. `data/terrain_z9_z10_demo/` is a separate bounded display/storage experiment and is not referenced by the production manifest; its overzoomed pixels do not represent higher-resolution measurements. Generated manifests and tiles belong in Git; source rasters, extracted source data, and intermediate overviews under `data/.build/` do not.
+
+### Reef and coral products
+
+`tools/build_local_data.py` contains the local Reef and coral build pipeline. The coral occurrence and species exporters share the inland QC policy in `tools/coral_qc.py`; `tools/validate_coral_qc.py` checks the generated outputs and regression controls. Build dependencies and cached source inputs vary by target; inspect the selected tool's header and `--help` before rebuilding. Generated snapshots, manifests, and chunks are the browser's static inputs.
+
+## Dive-site record and photo maintenance
+
+Rows in `data/dive-sites.js` keep their persistent UUID in field `[12]`; never regenerate IDs from names, coordinates, or row order. Field `[13]`, when present, retains retired IDs after a merge. Same-name records within 3 km may be consolidated; see [the dive-site photo guide](assets/dive-sites/README.md) before changing IDs or photos.
+
+Approved site photos are stored as WebP at `assets/dive-sites/<siteId>/hero.webp`. Add metadata to `data/dive-site-photos.js` under the matching stable ID, including meaningful alt text, credit, source, license, and location confidence. Only verified photos for the exact site should be registered.
 
 ## Project layout
 
-- `assets/`: UI icons and favicon assets. The light and dark brand icons are the only theme variants; the 180px file is reserved for Apple touch icons.
-- `data/`: local coral snapshots and occurrence chunks, Reef raster tiles/vector chunks, and their manifests.
-- `data/.build/`: generated build intermediates; intentionally ignored by Git.
-- `tools/`: reusable local-data build utilities.
+- `index.html` — map UI, styles, translations, and client-side map behavior.
+- `assets/` — icons, tutorial imagery, verified dive-site photos, and the SEO-page stylesheet.
+- `data/` — static dive-site records, coral snapshots/chunks, reef tiles/manifests, and bathymetry/terrain atlases.
+- `dive-sites/`, `regions/` — generated SEO HTML pages.
+- `robots.txt`, `sitemap.xml` — crawler policy and page URL list.
+- `tools/` — local data builders, QC tools, and the SEO generator.
+- `data/.build/` — ignored source caches and generated intermediates; never commit this directory.
 
-## Performance architecture
-
-- Primary datasets remain local/static; online refreshes are optional rather than the normal rendering path.
-- Reef rendering no longer deletes small polygons or relies on aggressively simplified low-zoom geometry. The runtime source is the cached UNEP-WCMC geometry at the same 0.0005° API offset used by the original local snapshot.
-- Z3-Z7 Reef is pre-rendered into 1,020 local PNG tiles (~7.8 MiB total) directly from the source polygons. Tiles are rasterized at 2x and downsampled with Lanczos filtering for smoother boundaries while preserving the source footprint and avoiding hundreds of thousands of Leaflet paths.
-- Z8+ Reef uses 1,738 local gzip/base64 vector chunks partitioned by individual polygon parts with a small 84 KB bbox manifest. Only chunks intersecting the padded viewport are decoded. A bounded 320-chunk LRU keeps nearby decoded chunks hot so short back-pans do not immediately re-fetch/re-decode them. Z8-Z11 batches visible polygons into Canvas paths, while Z12+ keeps feature-level paths for viewport clipping.
-- Coral observations, coral grid cells, fish surveys, and dive sites use 5° in-memory spatial indexes so pan/zoom refreshes query nearby buckets rather than scanning each global dataset.
-- Coral grid resolution scales with zoom and uses a build-time Z3-Z11 pyramid, preserving summed occurrence counts while avoiding runtime re-binning of the 130k base cells.
-- Coral Z3-Z11 uses monotonically finer geographic cells for spatial fidelity (3°, 1.5°, 0.75°, 0.375°, 0.1875°, 0.140625°, 0.09375°, 0.0625°, 0.03125°). Visible cells are grouped into six opacity bins and rendered as only a handful of non-interactive Canvas paths; hover/click is resolved separately against the in-memory grid lookup. Z12+ point markers remain SVG.
-- Fish surveys and dive sites use coarser pre-aggregated local LOD pyramids from Z3-Z8 before screen-distance clustering, while preserving original counts and expansion bounds.
-- The batched Coral grid stays visible during zoom animation and local grid refresh runs synchronously at move/zoom end. For Z8+ Reef interaction, exact vector layers are detached during pan/zoom and the lightweight Z7 raster is temporarily scaled as a visual fallback; after the gesture settles, the next exact vector viewport is attached once and atomically replaces the raster. This avoids continuous vector reprojection and stale-vector redraw flashes.
-- Popup auto-pan is guarded from triggering layer rebuilds; coral, fish, and dive SVG points retain hover tooltips and click popups. Reef Canvas paths never intercept pointer events; from Z8 onward Reef click detection is performed only on demand against the currently visible exact vector chunks.
-- Compressed/base64 payload strings are released after decoding to avoid retaining duplicate representations in memory.
-
-The map remains local/static-first: normal browsing does not call the Reef API. The build tool can regenerate the low-zoom raster tiles and viewport-lazy vector chunks from the cached Reef source geometry.
+The site remains a client-side map application. Static SEO pages do not load the map bundles or full map datasets unless a visitor follows the explicit link back to the interactive map.

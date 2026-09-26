@@ -1,0 +1,85 @@
+{
+  "name": "Palau Terrain Z9/Z10 demo",
+  "purpose": "Standalone Terrain-only atlas sample; not wired into production layer zoom limits",
+  "boundsWestSouthEastNorth": [
+    132.0,
+    6.0,
+    135.0,
+    9.0
+  ],
+  "source": "GEBCO_2026 15-arc-second source",
+  "algorithm": "Horn 3x3 slope classification",
+  "paletteIndexes": "Same palette and class alpha as production Terrain v3",
+  "atlasTiles": 8,
+  "zooms": {
+    "z9": {
+      "atlasCount": 2,
+      "tilesWithSlope": 30,
+      "bytes": 277680,
+      "atlasCoordinates": [
+        [
+          55,
+          30
+        ],
+        [
+          56,
+          30
+        ]
+      ]
+    },
+    "z10": {
+      "atlasCount": 6,
+      "tilesWithSlope": 90,
+      "bytes": 587407,
+      "atlasCoordinates": [
+        [
+          110,
+          60
+        ],
+        [
+          110,
+          61
+        ],
+        [
+          111,
+          60
+        ],
+        [
+          111,
+          61
+        ],
+        [
+          112,
+          60
+        ],
+        [
+          112,
+          61
+        ]
+      ]
+    }
+  },
+  "globalStorageEstimate": {
+    "method": "16 stratified global Mercator atlas samples per zoom; estimates use mean compressed bytes per sampled atlas, including empty atlas samples",
+    "atlasTiles": 8,
+    "z9": {
+      "globalAtlasGrid": 4096,
+      "sampledAtlases": 16,
+      "populatedSampleAtlases": 11,
+      "populatedRatio": 0.6875,
+      "meanSampleBytes": 96019,
+      "estimateBytes": 393293824,
+      "allAtlasesPopulatedUpperBytes": 572063744
+    },
+    "z10": {
+      "globalAtlasGrid": 16384,
+      "sampledAtlases": 16,
+      "populatedSampleAtlases": 10,
+      "populatedRatio": 0.625,
+      "meanSampleBytes": 66403,
+      "estimateBytes": 1087946752,
+      "allAtlasesPopulatedUpperBytes": 1740718080
+    },
+    "caveat": "Regional terrain complexity and PNG compression vary; estimates are planning estimates. Z9/Z10 resample the existing GEBCO 15-arc-second grid and do not add native source detail."
+  }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /data/reef_tiles/
+
+Sitemap: https://diveatlas.site/sitemap.xml

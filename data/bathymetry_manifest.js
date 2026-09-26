@@ -1,0 +1,1 @@
+window.DIVEATLAS_BATHYMETRY_MANIFEST={"version":"gebco2026-2min-surface-native15arcsec-contours-v2","atlasTiles":8,"surfaceMinZoom":3,"surfaceMaxZoom":7,"contourMinZoom":5,"contourMaxZoom":8,"terrainMinZoom":6,"terrainMaxZoom":8,"sampleChunkDegrees":15,"sampleGridSize":225,"sampleGridSpacingMetres":7408};

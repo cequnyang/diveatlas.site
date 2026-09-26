@@ -11,6 +11,7 @@ from pathlib import Path
 import requests
 
 from build_local_data import DATA, WORK, CORAL_STEP, TAXA
+from coral_qc import load_accepted_cells
 
 OBIS_OCCURRENCE = "https://api.obis.org/v3/occurrence"
 PAGE_SIZE = 10000
@@ -72,12 +73,9 @@ def species_name(row):
         row.get("scientificname") or ""
     ).strip()
 def load_valid_cells_and_tasks():
-    grid = sqlite3.connect(GRID_DB)
-    rows = list(grid.execute(
-        "SELECT y,x,records FROM cells ORDER BY y,x"
-    ))
-    grid.close()
-    valid_cells = {(int(y), int(x)) for y, x, _ in rows}
+    valid_cells, raw_rows, qc = load_accepted_cells(GRID_DB, CORAL_STEP)
+    rows = [row for row in raw_rows if (row[0], row[1]) in valid_cells]
+    print("Coral inland QC", qc, flush=True)
     dense_boxes = set()
     sparse_boxes = set()
     for y, x, _ in rows:
@@ -299,13 +297,18 @@ def export_chunks():
         old.unlink()
 
     db = sqlite3.connect(DB_PATH)
-    species = [
-        row[0]
-        for row in db.execute(
-            "SELECT DISTINCT species FROM occurrence "
-            "WHERE species<>'' ORDER BY species"
-        )
-    ]
+    valid_cells, _, qc = load_accepted_cells(GRID_DB, CORAL_STEP)
+    print("Coral occurrence export QC", qc, flush=True)
+    species_set = set()
+    for cy, cx, lat_i, lng_i, name in db.execute(
+        "SELECT cy,cx,lat_i,lng_i,species FROM occurrence"
+    ):
+        lat, lon = lat_i / 1_000_000, lng_i / 1_000_000
+        key = (math.floor((lat + 90) / CORAL_STEP),
+               math.floor((lon + 180) / CORAL_STEP))
+        if key in valid_cells and name:
+            species_set.add(name)
+    species = sorted(species_set)
     species_to_id = {
         name: index for index, name in enumerate(species)
     }
@@ -321,7 +324,14 @@ def export_chunks():
       FROM occurrence
       ORDER BY cy,cx,id
     """)
+    skipped_occurrences = 0
     for cy, cx, lat_i, lng_i, name in cursor:
+        lat, lon = lat_i / 1_000_000, lng_i / 1_000_000
+        base_key = (math.floor((lat + 90) / CORAL_STEP),
+                    math.floor((lon + 180) / CORAL_STEP))
+        if base_key not in valid_cells:
+            skipped_occurrences += 1
+            continue
         key = f"{int(cy)}:{int(cx)}"
         if current_key is not None and key != current_key:
             file_name, count, raw_size, packed_size = write_chunk(
@@ -369,6 +379,7 @@ def export_chunks():
         "exported chunks", len(manifest),
         "species", len(species),
         "records", total,
+        "skipped inland occurrences", skipped_occurrences,
         "raw_MB", round(raw_total / 1048576, 2),
         "gzip_MB", round(packed_total / 1048576, 2),
         flush=True
