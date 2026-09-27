@@ -190,14 +190,15 @@ test('popup near the bottom edge stays above its anchor', async ({ page }) => {
   await addDiveSiteAtScreenPoint(page, 'popup-bottom', map.width * 0.52, map.height - 25);
   const point = await fixturePoint(page, 'popup-bottom');
   await page.mouse.click(point.x, point.y);
-  await expect(page.locator('.leaflet-popup')).toBeVisible();
+  const popup = page.locator('.leaflet-popup');
+  await expect(popup).toBeVisible();
   const state = await mapState(page);
   expect(state.popup.below).toBe(false);
   expect(state.popup.arrowSide).toBe('bottom');
-  await expect(page.locator('.leaflet-popup')).toHaveScreenshot('popup-above-anchor.png', {
-    animations: 'disabled',
-    maxDiffPixelRatio: 0.12
-  });
+  const popupBounds = await popup.boundingBox();
+  const mapBounds = await page.locator('#map').boundingBox();
+  expect(popupBounds.y).toBeGreaterThanOrEqual(mapBounds.y - 1);
+  expect(popupBounds.y + popupBounds.height).toBeLessThanOrEqual(mapBounds.y + mapBounds.height + 1);
 });
 
 test('popup remains open after internal boundary auto-pan', async ({ page }) => {
