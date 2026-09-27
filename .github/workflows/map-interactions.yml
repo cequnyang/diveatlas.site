@@ -1,0 +1,71 @@
+name: Map interaction contracts and Pages deployment
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: diveatlas-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  interaction-tests:
+    name: Required map interaction suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install locked test dependencies
+        run: npm ci
+
+      - name: Run pure interaction contracts
+        run: npm run test:unit
+
+      - name: Reject skipped or missing critical tests
+        run: npm run check:test-policy
+
+      - name: Validate and assemble static site
+        run: npm run build
+
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Run desktop and touch browser regressions
+        run: npm run test:e2e
+
+      - name: Upload static Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: interaction-tests
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish tested static site
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -51,6 +51,10 @@
 
   <style>
     :root {
+      --map-safe-area-top: env(safe-area-inset-top, 0px);
+      --map-safe-area-bottom: env(safe-area-inset-bottom, 0px);
+      --map-safe-area-left: env(safe-area-inset-left, 0px);
+      --map-safe-area-right: env(safe-area-inset-right, 0px);
       --bg: #f4f6f8;
       --panel: rgba(255,255,255,.96);
       --panel-solid: #ffffff;
@@ -335,6 +339,9 @@
       inset: 0;
       z-index: 0;
       background: #dfe7ec;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
     }
 
     #map .maplibregl-map,
@@ -1052,10 +1059,6 @@
       pointer-events: none;
     }
 
-    .map-count-cluster.cluster-species {
-      cursor: pointer !important;
-    }
-
     .map-count-cluster.cluster-species .cluster-bubble {
       background: #7f56d9;
       cursor: pointer;
@@ -1112,7 +1115,45 @@
       color: var(--text) !important;
       background: var(--panel-soft);
     }
+
+    /* Managed popups are measured and placed while hidden in popupopen. */
+    .leaflet-popup.diveatlas-popup-pending {
+      visibility: hidden !important;
+      transition: none !important;
+    }
     .leaflet-popup-close-button:focus-visible { outline: 2px solid var(--primary) !important; outline-offset: 1px; }
+
+    /* The shared placement utility flips managed popups below their anchor
+       when the upper viewport is obstructed. Draw a matching upward tip. */
+    .leaflet-popup.diveatlas-popup-below {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+    .leaflet-popup.diveatlas-popup-below .leaflet-popup-tip-container {
+      display: none;
+    }
+    .leaflet-popup.diveatlas-popup-below::before,
+    .leaflet-popup.diveatlas-popup-below::after {
+      content: '';
+      position: absolute;
+      left: calc(50% + var(--diveatlas-popup-arrow-offset-x, 0px));
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+    .leaflet-popup.diveatlas-popup-below::before {
+      top: -10px;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid var(--line);
+    }
+    .leaflet-popup.diveatlas-popup-below::after {
+      top: -8px;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 9px solid var(--panel-solid);
+    }
 
     .leaflet-tooltip {
       border: 1px solid var(--line);
@@ -3414,10 +3455,8 @@
     .tutorial-photo-bubble { position: absolute; z-index: 1; top: 12px; right: 12px; width: 108px; height: 108px; box-sizing: border-box; overflow: hidden; border: 2px solid rgba(255,255,255,.92); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.12); pointer-events: none; }
     .tutorial-photo-bubble img { display: block; width: 100%; height: 100%; object-fit: cover; }
     @media (max-width: 900px) and (min-width: 521px) { .tutorial-photo-bubble { width: 88px; height: 88px; } }
-    [data-theme="dark"] .tutorial-map-preview.reef > img { content: url('assets/tutorial/previews/reef-extent-dark.webp'); }
-    [data-theme="dark"] .tutorial-map-preview.coral > img { content: url('assets/tutorial/previews/coral-records-dark.webp'); }
-    [data-theme="dark"] .tutorial-map-preview.fish > img { content: url('assets/tutorial/previews/fish-density-dark.webp'); }
-    [data-theme="dark"] .tutorial-map-preview.dive > img { content: url('assets/tutorial/previews/dive-sites-dark.webp'); }
+    .tutorial-map-preview img:not([src]),
+    .tutorial-photo-bubble img:not([src]) { visibility: hidden; }
     .tutorial-layer-copy { display: flex; width: 100%; min-width: 0; min-height: 0; flex-direction: column; align-self: start; }
     .tutorial-layer-heading { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 4px; }
     .tutorial-layer-heading h3 { flex: 1 1 auto; min-width: 0; margin: 0; overflow-wrap: anywhere; font-size: clamp(14px, 1.65vw, 17px); font-weight: 650; line-height: 1.2; }
@@ -3888,19 +3927,19 @@
       <div class="tutorial-layers">
         <article class="tutorial-layer" data-layer="reef">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialReefTitle">Reef extent</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialReefLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialReefLayerToggle" type="checkbox" data-layer="reef" aria-labelledby="tutorialReefTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialReefCopy">Mapped reef distribution, not reef health.</p></div>
-          <div class="tutorial-map-preview reef"><img src="assets/tutorial/previews/reef-extent.webp" alt="Map preview showing mapped coral reef extent" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/reef-extent.webp" alt="" width="320" height="320" decoding="async"></span></div>
+          <div class="tutorial-map-preview reef"><img data-src="assets/tutorial/previews/reef-extent.webp" data-dark-src="assets/tutorial/previews/reef-extent-dark.webp" alt="Map preview showing mapped coral reef extent" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img data-src="assets/tutorial/bubbles/reef-extent.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer" data-layer="species">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialCoralTitle">Coral records</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialSpeciesLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialSpeciesLayerToggle" type="checkbox" data-layer="species" aria-labelledby="tutorialCoralTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialCoralCopy">Coral observations from marine biodiversity records; purple squares show a density grid at some zoom levels.</p></div>
-          <div class="tutorial-map-preview coral"><img src="assets/tutorial/previews/coral-records.webp" alt="Map preview showing recorded coral observations" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/coral-records.webp" alt="" width="320" height="320" decoding="async"></span></div>
+          <div class="tutorial-map-preview coral"><img data-src="assets/tutorial/previews/coral-records.webp" data-dark-src="assets/tutorial/previews/coral-records-dark.webp" alt="Map preview showing recorded coral observations" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img data-src="assets/tutorial/bubbles/coral-records.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer" data-layer="fish">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialFishTitle">Fish density</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialFishLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialFishLayerToggle" type="checkbox" data-layer="fish" aria-labelledby="tutorialFishTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialFishCopy">Reef-fish survey sites and observed density.</p></div>
-          <div class="tutorial-map-preview fish"><img src="assets/tutorial/previews/fish-density.webp" alt="Map preview showing fish survey density" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/fish-density.webp" alt="" width="320" height="320" decoding="async"></span></div>
+          <div class="tutorial-map-preview fish"><img data-src="assets/tutorial/previews/fish-density.webp" data-dark-src="assets/tutorial/previews/fish-density-dark.webp" alt="Map preview showing fish survey density" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img data-src="assets/tutorial/bubbles/fish-density.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
         <article class="tutorial-layer dive" data-layer="dive">
           <div class="tutorial-layer-copy"><div class="tutorial-layer-heading"><h3 id="tutorialDiveTitle">Dive sites</h3><label class="layer-switch-label layer-switch-label--tutorial" for="tutorialDiveLayerToggle"><input class="layer-toggle-input tutorial-layer-toggle" id="tutorialDiveLayerToggle" type="checkbox" data-layer="dive" aria-labelledby="tutorialDiveTitle"><span class="layer-toggle-switch" aria-hidden="true"></span></label></div><p id="tutorialDiveCopy">Known recreational dive sites worldwide.</p></div>
-          <div class="tutorial-map-preview dive"><img src="assets/tutorial/previews/dive-sites.webp" alt="Map preview showing dive sites" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img src="assets/tutorial/bubbles/dive-sites.webp" alt="" width="320" height="320" decoding="async"></span></div>
+          <div class="tutorial-map-preview dive"><img data-src="assets/tutorial/previews/dive-sites.webp" data-dark-src="assets/tutorial/previews/dive-sites-dark.webp" alt="Map preview showing dive sites" width="720" height="238" decoding="async"><span class="tutorial-photo-bubble" aria-hidden="true"><img data-src="assets/tutorial/bubbles/dive-sites.webp" alt="" width="320" height="320" decoding="async"></span></div>
         </article>
       </div>
       <section class="tutorial-map-legend" aria-labelledby="tutorialLegendTitle">
@@ -3970,6 +4009,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+<script src="js/map-interaction-contract.js"></script>
 <script>
 /* V58: embedded AODN fish fallback + non-destructive online refresh + persistent top bar + upper-left search + V34 full biodiversity snapshot builder + embedded offline runtime.
    V42 internal legend-section collapse + popup source links + persistent cache/clustering retained. Embedded dive-site dataset: 17,875 records. */
@@ -3978,6 +4018,20 @@
 
 <script>
 (() => {
+  const INTERACTION_CONTRACT = window.DiveAtlasInteractionContract;
+  if (!INTERACTION_CONTRACT) {
+    throw new Error('DiveAtlas map interaction contract failed to load.');
+  }
+  const DIVEATLAS_INTERACTION_TEST_MODE =
+    ['localhost', '127.0.0.1'].includes(location.hostname) &&
+    new URLSearchParams(location.search).get('__diveatlas_test') === '1';
+  let interactionTestActions = 0;
+  let testLastClosingPopup = null;
+
+  function recordInteractionTestAction() {
+    if (DIVEATLAS_INTERACTION_TEST_MODE) interactionTestActions += 1;
+  }
+
   if (typeof L.maplibreGL !== 'function') {
     throw new Error(
       'OpenFreeMap basemap failed to initialize: MapLibre GL Leaflet bridge is unavailable.'
@@ -4252,11 +4306,11 @@
     }
 
     initialIpLocationPending = false;
-    map.setView(
+    runInternalMapMovement(() => map.setView(
       [location.lat, location.lng],
       IP_GEOLOCATION_ZOOM,
       { animate: false }
-    );
+    ));
     persistMapView();
   }
 
@@ -4270,6 +4324,116 @@
   // - clicking empty map space closes the active click popup.
   let activeClickPopup = null;
   let activeClickPopupOwner = null;
+  let activeClickPopupRevision = 0;
+  let activePopupValidationTimer = 0;
+  const activeMapHoverTooltips = new Set();
+  let internalMapMovementCount = 0;
+  let popupAutoPanInProgress = false;
+  let popupAutoPanResetTimer = 0;
+  let userMapMovementIntentUntil = 0;
+  // Gesture events can precede Leaflet's zoom/move events; keep intent briefly
+  // so the resulting event is still classified as user initiated.
+  const USER_MAP_MOVEMENT_INTENT_MS = 900;
+  // Viewport-backed marker caches settle at up to 360ms after moveend; validate
+  // ownership after that rebuild so a still-visible feature is not mistaken for a missing one.
+  const MAP_POPUP_REVALIDATION_DELAY_MS = 520;
+  // Interrupted animations must not leave the shared movement guard enabled.
+  const INTERNAL_MAP_MOVEMENT_FALLBACK_MS = 5000;
+
+  function markUserMapMovementIntent() {
+    userMapMovementIntentUntil = performance.now() + USER_MAP_MOVEMENT_INTENT_MS;
+  }
+
+  function hasUserMapMovementIntent() {
+    return performance.now() < userMapMovementIntentUntil;
+  }
+
+  function isInternalMapMovementInProgress() {
+    return internalMapMovementCount > 0 || popupAutoPanInProgress;
+  }
+
+  function runInternalMapMovement(move) {
+    if (typeof move !== 'function') return;
+
+    // Explicit app navigation takes precedence over a recent drag or wheel event.
+    userMapMovementIntentUntil = 0;
+    internalMapMovementCount += 1;
+
+    let operationReturned = false;
+    let moveStarted = false;
+    let zoomStarted = false;
+    let movePending = false;
+    let zoomPending = false;
+    let settled = false;
+    let fallbackTimer = 0;
+
+    const release = () => {
+      if (settled) return;
+      settled = true;
+      map.off('movestart', onMoveStart);
+      map.off('moveend', onMoveEnd);
+      map.off('zoomstart', onZoomStart);
+      map.off('zoomend', onZoomEnd);
+      window.clearTimeout(fallbackTimer);
+      internalMapMovementCount = Math.max(0, internalMapMovementCount - 1);
+    };
+    const finishIfSettled = () => {
+      if (!operationReturned) return;
+      if (
+        (!moveStarted && !zoomStarted) ||
+        (!movePending && !zoomPending)
+      ) release();
+    };
+    const onMoveStart = () => {
+      moveStarted = true;
+      movePending = true;
+    };
+    const onMoveEnd = () => {
+      if (moveStarted) movePending = false;
+      finishIfSettled();
+    };
+    const onZoomStart = () => {
+      zoomStarted = true;
+      zoomPending = true;
+    };
+    const onZoomEnd = () => {
+      if (zoomStarted) zoomPending = false;
+      finishIfSettled();
+    };
+
+    map.on('movestart', onMoveStart);
+    map.on('moveend', onMoveEnd);
+    map.on('zoomstart', onZoomStart);
+    map.on('zoomend', onZoomEnd);
+    fallbackTimer = window.setTimeout(release, INTERNAL_MAP_MOVEMENT_FALLBACK_MS);
+
+    try {
+      const result = move();
+      operationReturned = true;
+      finishIfSettled();
+      return result;
+    } catch (error) {
+      operationReturned = true;
+      release();
+      throw error;
+    }
+  }
+
+  function beginPopupAutoPan() {
+    popupAutoPanInProgress = true;
+    window.clearTimeout(popupAutoPanResetTimer);
+    popupAutoPanResetTimer = window.setTimeout(() => {
+      popupAutoPanInProgress = false;
+      popupAutoPanResetTimer = 0;
+    }, INTERNAL_MAP_MOVEMENT_FALLBACK_MS);
+  }
+
+  function finishPopupAutoPan() {
+    if (!popupAutoPanInProgress) return;
+    popupAutoPanInProgress = false;
+    window.clearTimeout(popupAutoPanResetTimer);
+    popupAutoPanResetTimer = 0;
+  }
 
   function managedPopupOwner(layer, prefix = 'feature') {
     if (!layer) return prefix + ':unknown';
@@ -4299,48 +4463,507 @@
   }
 
   const MAP_POPUP_SAFE_MARGIN = 14;
+  const MAP_POPUP_BELOW_ARROW_HEIGHT = 10;
+  const MAP_TOOLTIP_ARROW_HEIGHT = 6;
 
-  function getMapPopupSafeOptions() {
+  function getMapPopupSafeViewport() {
     const mapRect = mapContainer.getBoundingClientRect();
-    // The fixed navigation overlays the map, so use its rendered edge rather
-    // than the map container's top as the popup's actual visible boundary.
     const headerRect = els.topMenuBar?.getBoundingClientRect();
     const headerBottom = headerRect && headerRect.bottom > mapRect.top
       ? headerRect.bottom
       : mapRect.top;
-    const safeTop = Math.max(0, headerBottom - mapRect.top) + MAP_POPUP_SAFE_MARGIN;
-    // Keep room for both safe margins and Leaflet's popup chrome when tall
-    // content needs to scroll on short screens.
-    const maxHeight = Math.max(
-      96,
-      Math.floor(mapRect.height - safeTop - MAP_POPUP_SAFE_MARGIN - 20)
+    const rootStyle = getComputedStyle(document.documentElement);
+    const safeAreaTop = parseFloat(rootStyle.getPropertyValue('--map-safe-area-top')) || 0;
+    const safeAreaBottom = parseFloat(rootStyle.getPropertyValue('--map-safe-area-bottom')) || 0;
+    const safeAreaLeft = parseFloat(rootStyle.getPropertyValue('--map-safe-area-left')) || 0;
+    const safeAreaRight = parseFloat(rootStyle.getPropertyValue('--map-safe-area-right')) || 0;
+    const visualViewport = window.visualViewport;
+    const visualTop = visualViewport?.offsetTop || 0;
+    const visualBottom = visualViewport
+      ? visualTop + visualViewport.height
+      : window.innerHeight;
+    const visualLeft = visualViewport?.offsetLeft || 0;
+    const visualRight = visualViewport
+      ? visualLeft + visualViewport.width
+      : window.innerWidth;
+    const safeTop = Math.max(
+      mapRect.top + MAP_POPUP_SAFE_MARGIN,
+      headerBottom + MAP_POPUP_SAFE_MARGIN,
+      visualTop + safeAreaTop + MAP_POPUP_SAFE_MARGIN
+    );
+    const safeBottom = Math.min(
+      mapRect.bottom - MAP_POPUP_SAFE_MARGIN,
+      visualBottom - safeAreaBottom - MAP_POPUP_SAFE_MARGIN
+    );
+    const safeLeft = Math.max(
+      mapRect.left,
+      visualLeft + safeAreaLeft
+    );
+    const safeRight = Math.min(
+      mapRect.right,
+      visualRight - safeAreaRight
     );
 
-    return {
-      autoPanPaddingTopLeft: L.point(MAP_POPUP_SAFE_MARGIN, safeTop),
-      autoPanPaddingBottomRight: L.point(MAP_POPUP_SAFE_MARGIN, MAP_POPUP_SAFE_MARGIN),
-      maxHeight
+    return { mapRect, safeTop, safeBottom, safeLeft, safeRight };
+  }
+
+  function getMapPopupSafeOptions() {
+    const { safeTop, safeBottom, safeLeft, safeRight } = getMapPopupSafeViewport();
+    // Cap long content to the full safe viewport. Local controls are handled
+    // by the side-selection check so they do not shrink every popup globally.
+    const maxHeight = Math.max(96, Math.floor(safeBottom - safeTop - 20));
+    // Keep the wrapper and its content margins inside the safe width; any
+    // remaining edge overflow is corrected by shifting the popup alone.
+    const maxWidth = Math.max(120, Math.floor(safeRight - safeLeft - 34));
+    return { autoPan: false, maxHeight, maxWidth };
+  }
+
+  function markMapInfoPopup(popup) {
+    if (!popup) return popup;
+    popup._diveAtlasSafeArea = true;
+    popup._diveAtlasBaseOffset = L.point(popup.options.offset || [0, 7]);
+    popup._diveAtlasPlacementBelow = false;
+    popup._diveAtlasPlacementLifecycle = 'closed';
+    popup._diveAtlasPlacementEpoch = 0;
+    popup._diveAtlasPlacementCloseCleanup = null;
+    popup._diveAtlasRequestedMaxWidth =
+      Number(popup.options._diveAtlasRequestedMaxWidth) ||
+      Number(popup.options.maxWidth) || 300;
+    popup._diveAtlasRequestedMinWidth =
+      Number(popup.options._diveAtlasRequestedMinWidth) ||
+      Number(popup.options.minWidth) || 50;
+    const popupClasses = String(popup.options.className || '').split(/\s+/).filter(Boolean);
+    if (!popupClasses.includes('diveatlas-popup-pending')) {
+      popupClasses.push('diveatlas-popup-pending');
+      popup.options.className = popupClasses.join(' ');
+    }
+    return popup;
+  }
+
+  function cancelMapOverlayPlacementCloseCleanup(overlay) {
+    const cleanup = overlay?._diveAtlasPlacementCloseCleanup;
+    if (!cleanup) return;
+    clearTimeout(cleanup.timer);
+    cleanup.element.removeEventListener('transitionend', cleanup.onTransitionEnd);
+    overlay._diveAtlasPlacementCloseCleanup = null;
+  }
+
+  function beginMapPopupPlacement(popup) {
+    cancelMapOverlayPlacementCloseCleanup(popup);
+    popup._diveAtlasPlacementEpoch = (popup._diveAtlasPlacementEpoch || 0) + 1;
+    popup._diveAtlasPlacementLifecycle = 'opening';
+    return popup._diveAtlasPlacementEpoch;
+  }
+
+  function beginMapHoverTooltipPlacement(tooltip) {
+    if (!tooltip) return 0;
+    cancelMapOverlayPlacementCloseCleanup(tooltip);
+    tooltip._diveAtlasManagedPlacement = true;
+    if (tooltip._diveAtlasBaseDirection == null) {
+      tooltip._diveAtlasBaseDirection = tooltip.options.direction || 'top';
+    }
+    tooltip._diveAtlasPlacementEpoch = (tooltip._diveAtlasPlacementEpoch || 0) + 1;
+    tooltip._diveAtlasPlacementLifecycle = 'opening';
+    return tooltip._diveAtlasPlacementEpoch;
+  }
+
+  function elementOpacityTransitionMs(element) {
+    if (!element) return 0;
+    const style = getComputedStyle(element);
+    const properties = style.transitionProperty.split(',').map(value => value.trim());
+    const durations = style.transitionDuration.split(',').map(value => value.trim());
+    const delays = style.transitionDelay.split(',').map(value => value.trim());
+    const toMs = value => {
+      const amount = Number.parseFloat(value) || 0;
+      return value.endsWith('ms') ? amount : amount * 1000;
     };
+    let maximum = 0;
+    properties.forEach((property, index) => {
+      if (property !== 'opacity' && property !== 'all') return;
+      const duration = toMs(durations[index % durations.length] || '0s');
+      const delay = toMs(delays[index % delays.length] || '0s');
+      maximum = Math.max(maximum, duration + delay);
+    });
+    return maximum;
+  }
+
+  function resetMapTooltipPlacement(tooltip) {
+    if (!tooltip?._diveAtlasManagedPlacement) return;
+    const baseOffset = tooltip._diveAtlasBaseOffset || L.point(0, 0);
+    const baseClassName = tooltip._diveAtlasBaseClassName || '';
+    tooltip.options.direction = tooltip._diveAtlasBaseDirection || 'top';
+    tooltip.options.offset = L.point(baseOffset.x, baseOffset.y);
+    tooltip.options.className = baseClassName;
+    tooltip._diveAtlasHorizontalShiftX = 0;
+    const element = tooltip.getElement?.();
+    if (element) {
+      Array.from(element.classList)
+        .filter(name => name.startsWith('diveatlas-tooltip-arrow-'))
+        .forEach(name => element.classList.remove(name));
+      baseClassName.split(/\s+/).filter(Boolean).forEach(name => element.classList.add(name));
+    }
+  }
+
+  function finishMapOverlayPlacementClose(overlay, epoch, resetPlacement, force = false) {
+    const cleanup = overlay?._diveAtlasPlacementCloseCleanup;
+    if (
+      !overlay ||
+      !INTERACTION_CONTRACT.canFinishPopupClose({
+        currentEpoch: overlay._diveAtlasPlacementEpoch,
+        expectedEpoch: epoch,
+        lifecycle: overlay._diveAtlasPlacementLifecycle
+      })
+    ) return;
+    const element = cleanup?.element || overlay.getElement?.();
+    if (!force && element?.isConnected && Number(getComputedStyle(element).opacity) > 0.01) {
+      return;
+    }
+    cancelMapOverlayPlacementCloseCleanup(overlay);
+    resetPlacement(overlay);
+    overlay._diveAtlasPlacementLifecycle = 'closed';
+  }
+
+  function finishMapOverlayPlacementAfterClose(overlay, resetPlacement) {
+    const epoch = (overlay._diveAtlasPlacementEpoch || 0) + 1;
+    overlay._diveAtlasPlacementEpoch = epoch;
+    overlay._diveAtlasPlacementLifecycle = 'closing';
+    const element = overlay.getElement?.();
+    if (!element?.isConnected) {
+      finishMapOverlayPlacementClose(overlay, epoch, resetPlacement, true);
+      return;
+    }
+
+    const transitionMs = elementOpacityTransitionMs(element);
+    if (!transitionMs) {
+      finishMapOverlayPlacementClose(overlay, epoch, resetPlacement, true);
+      return;
+    }
+
+    // Leaflet fires close while its overlay is still fading. Keep the measured
+    // geometry until opacity reaches zero; a reopen invalidates this cleanup.
+    const onTransitionEnd = event => {
+      if (event.target === element && event.propertyName === 'opacity') {
+        finishMapOverlayPlacementClose(overlay, epoch, resetPlacement);
+      }
+    };
+    const cleanup = {
+      element,
+      onTransitionEnd,
+      timer: window.setTimeout(
+        () => finishMapOverlayPlacementClose(overlay, epoch, resetPlacement, true),
+        transitionMs + 80
+      )
+    };
+    overlay._diveAtlasPlacementCloseCleanup = cleanup;
+    element.addEventListener('transitionend', onTransitionEnd);
   }
 
   function mapInfoPopupOptions(options = {}) {
-    return { ...options, ...getMapPopupSafeOptions() };
+    // Leaflet's default auto-pan is horizontal and runs before we can flip the
+    // popup. The shared utility handles vertical flip first and only pans last.
+    const safeOptions = getMapPopupSafeOptions();
+    const requestedMaxWidth = Number(options.maxWidth) || 300;
+    const requestedMinWidth = Number(options.minWidth) || 50;
+    return {
+      ...options,
+      ...safeOptions,
+      maxWidth: Math.min(requestedMaxWidth, safeOptions.maxWidth),
+      minWidth: Math.min(requestedMinWidth, safeOptions.maxWidth),
+      _diveAtlasRequestedMaxWidth: requestedMaxWidth,
+      _diveAtlasRequestedMinWidth: requestedMinWidth,
+      autoPan: false
+    };
   }
 
   function bindMapInfoPopup(layer, content, options = {}) {
     layer.bindPopup(content, mapInfoPopupOptions(options));
-    const popup = layer.getPopup();
-    if (popup) popup._diveAtlasSafeArea = true;
-    return popup;
+    return markMapInfoPopup(layer.getPopup());
   }
 
   function createMapInfoPopup(options = {}) {
-    const popup = L.popup(mapInfoPopupOptions(options));
-    popup._diveAtlasSafeArea = true;
-    return popup;
+    return markMapInfoPopup(L.popup(mapInfoPopupOptions(options)));
   }
 
-  function openManagedPopup(ownerKey, popup, latlng = null) {
+  function measureMapTooltip(tooltip) {
+    const options = tooltip?.options || {};
+    const probe = document.createElement('div');
+    probe.className = 'leaflet-tooltip leaflet-tooltip-top';
+    if (options.className) {
+      options.className.split(/\s+/).filter(Boolean).forEach(name => {
+        probe.classList.add(name);
+      });
+    }
+
+    const content = tooltip?.getContent?.() ?? '';
+    if (content instanceof Node) {
+      probe.appendChild(content.cloneNode(true));
+    } else {
+      probe.innerHTML = String(content);
+    }
+
+    // Measure with the map's tooltip styles, but outside the map so the hover
+    // tooltip is attached only after its final vertical direction is known.
+    Object.assign(probe.style, {
+      position: 'fixed',
+      left: '-10000px',
+      top: '0',
+      display: 'block',
+      visibility: 'hidden',
+      pointerEvents: 'none',
+      transform: 'none',
+      maxWidth: `${Number(options.maxWidth) || 300}px`,
+      minWidth: `${Number(options.minWidth) || 50}px`
+    });
+    document.body.appendChild(probe);
+    const rect = probe.getBoundingClientRect();
+    probe.remove();
+    return { width: rect.width, height: rect.height };
+  }
+
+  function setMapTooltipPlacement(tooltip, below) {
+    if (!tooltip) return;
+    const baseOffset = tooltip._diveAtlasBaseOffset ||
+      L.point(tooltip.options.offset || [0, 0]);
+    tooltip._diveAtlasBaseOffset = L.point(baseOffset.x, baseOffset.y);
+    tooltip.options.direction = below ? 'bottom' : 'top';
+    tooltip.options.offset = L.point(
+      baseOffset.x,
+      below ? Math.abs(baseOffset.y) : -Math.abs(baseOffset.y)
+    );
+  }
+
+  const mapTooltipArrowOffsets = new Set();
+  let mapTooltipArrowStyleElement = null;
+
+  function mapTooltipArrowClass(offset) {
+    const roundedOffset = Math.round(offset);
+    const className = 'diveatlas-tooltip-arrow-' +
+      (roundedOffset < 0 ? 'n' + Math.abs(roundedOffset) : 'p' + roundedOffset);
+    if (!mapTooltipArrowOffsets.has(roundedOffset)) {
+      if (!mapTooltipArrowStyleElement) {
+        mapTooltipArrowStyleElement = document.createElement('style');
+        mapTooltipArrowStyleElement.id = 'diveatlas-tooltip-arrow-styles';
+        document.head.appendChild(mapTooltipArrowStyleElement);
+      }
+      mapTooltipArrowStyleElement.sheet.insertRule(
+        '.' + className + '::before { left: calc(50% + ' + roundedOffset + 'px) !important; }',
+        mapTooltipArrowStyleElement.sheet.cssRules.length
+      );
+      mapTooltipArrowOffsets.add(roundedOffset);
+    }
+    return className;
+  }
+
+  function setMapTooltipHorizontalPlacement(tooltip, shiftX) {
+    if (!tooltip) return;
+    const baseOffset = tooltip._diveAtlasBaseOffset ||
+      L.point(tooltip.options.offset || [0, 0]);
+    tooltip._diveAtlasBaseOffset = L.point(baseOffset.x, baseOffset.y);
+    if (tooltip._diveAtlasBaseClassName == null) {
+      tooltip._diveAtlasBaseClassName = String(tooltip.options.className || '')
+        .split(/\s+/).filter(name => !name.startsWith('diveatlas-tooltip-arrow-')).join(' ');
+    }
+    const arrowClass = mapTooltipArrowClass(-(baseOffset.x + shiftX));
+    tooltip.options.className = [tooltip._diveAtlasBaseClassName, arrowClass]
+      .filter(Boolean).join(' ');
+    tooltip.options.offset = L.point(
+      baseOffset.x + shiftX,
+      tooltip.options.offset?.y ?? baseOffset.y
+    );
+
+    // Bound tooltips retain their DOM node after the first open. Update its
+    // class before reopening so the arrow is correct on the first visible frame.
+    const element = tooltip.getElement?.();
+    if (element) {
+      Array.from(element.classList)
+        .filter(name => name.startsWith('diveatlas-tooltip-arrow-'))
+        .forEach(name => element.classList.remove(name));
+      element.classList.add(arrowClass);
+    }
+  }
+
+  function popupPositioning({ trigger = 'click', allowAutoPan = trigger === 'click' } = {}) {
+    const normalizedTrigger = trigger === 'hover' ? 'hover' : 'click';
+    return Object.freeze({
+      trigger: normalizedTrigger,
+      allowAutoPan: normalizedTrigger === 'click' && allowAutoPan !== false
+    });
+  }
+
+  const CLICK_POPUP_POSITIONING = popupPositioning({
+    trigger: 'click',
+    allowAutoPan: true
+  });
+  const HOVER_POPUP_POSITIONING = popupPositioning({
+    trigger: 'hover',
+    allowAutoPan: false
+  });
+
+  function selectMapPopupVerticalPlacement(
+    popupRect,
+    aboveVisual,
+    belowVisual,
+    safeTop,
+    safeBottom,
+    positioning = CLICK_POPUP_POSITIONING
+  ) {
+    const blockers = getMapPopupVerticalBlockers(popupRect, safeTop, safeBottom);
+    const aboveShift = nearestPopupVerticalShift(
+      popupVerticalShiftIntervals(aboveVisual, safeTop, safeBottom, blockers)
+    );
+    const belowShift = nearestPopupVerticalShift(
+      popupVerticalShiftIntervals(belowVisual, safeTop, safeBottom, blockers)
+    );
+
+    let placement;
+    if (aboveShift == null && belowShift == null) {
+      // At very short viewports, fixed controls can leave no complete gap for
+      // a click popup. Choose the orientation and smallest pan that minimize
+      // clipping; hover callers retain the chosen orientation without moving
+      // the map.
+      const aboveAdjustment = bestPopupVerticalAdjustment(
+        aboveVisual, safeTop, safeBottom, blockers
+      );
+      const belowAdjustment = bestPopupVerticalAdjustment(
+        belowVisual, safeTop, safeBottom, blockers
+      );
+      placement = INTERACTION_CONTRACT.choosePopupVerticalPlacement({
+        aboveShift,
+        belowShift,
+        aboveAdjustment,
+        belowAdjustment
+      });
+    } else {
+      placement = INTERACTION_CONTRACT.choosePopupVerticalPlacement({
+        aboveShift,
+        belowShift
+      });
+    }
+    const resolved = {
+      below: placement.side === 'below',
+      shift: placement.shift
+    };
+    return positioning.allowAutoPan ? resolved : { ...resolved, shift: 0 };
+  }
+
+  function getMapHoverTooltipPlacement(tooltip, latlng, {
+    preserveVerticalPlacement = false,
+    positioning = HOVER_POPUP_POSITIONING
+  } = {}) {
+    if (!tooltip || !latlng) return { below: false, shift: 0 };
+    if (tooltip._diveAtlasPlacementLifecycle === 'closing') {
+      return {
+        below: tooltip.options.direction === 'bottom',
+        shift: 0,
+        horizontalShift: tooltip._diveAtlasHorizontalShiftX || 0
+      };
+    }
+    tooltip._diveAtlasManagedPlacement = true;
+    const { mapRect, safeTop, safeBottom, safeLeft, safeRight } = getMapPopupSafeViewport();
+    const anchorPoint = map.latLngToContainerPoint(latlng);
+    const sourceAnchor = tooltip._getAnchor?.() || L.point(0, 0);
+    const anchorX = mapRect.left + anchorPoint.x + sourceAnchor.x;
+    const anchorY = mapRect.top + anchorPoint.y + sourceAnchor.y;
+    const baseOffset = tooltip._diveAtlasBaseOffset ||
+      L.point(tooltip.options.offset || [0, 0]);
+    const offsetX = baseOffset.x;
+    const gap = Math.abs(baseOffset.y);
+    tooltip._diveAtlasRequestedMaxWidth = tooltip._diveAtlasRequestedMaxWidth ||
+      Number(tooltip.options.maxWidth) || 300;
+    tooltip.options.maxWidth = Math.min(
+      tooltip._diveAtlasRequestedMaxWidth,
+      Math.max(100, Math.floor(safeRight - safeLeft - 14))
+    );
+    const tooltipContent = tooltip.getContent?.() ?? '';
+    const widthKey = tooltip.options.maxWidth;
+    let size = tooltip._diveAtlasMeasuredSize;
+    if (
+      !size ||
+      tooltip._diveAtlasMeasuredContent !== tooltipContent ||
+      tooltip._diveAtlasMeasuredMaxWidth !== widthKey
+    ) {
+      size = measureMapTooltip(tooltip);
+      tooltip._diveAtlasMeasuredSize = size;
+      tooltip._diveAtlasMeasuredContent = tooltipContent;
+      tooltip._diveAtlasMeasuredMaxWidth = widthKey;
+    }
+    const left = anchorX + offsetX - size.width / 2;
+    const right = left + size.width;
+    const aboveVisual = {
+      left,
+      right,
+      top: anchorY - gap - size.height,
+      bottom: anchorY - gap + MAP_TOOLTIP_ARROW_HEIGHT
+    };
+    const belowVisual = {
+      left,
+      right,
+      top: anchorY + gap - MAP_TOOLTIP_ARROW_HEIGHT,
+      bottom: anchorY + gap + size.height
+    };
+    const popupRect = {
+      left,
+      right,
+      top: Math.min(aboveVisual.top, belowVisual.top),
+      bottom: Math.max(aboveVisual.bottom, belowVisual.bottom)
+    };
+    const placement = preserveVerticalPlacement
+      ? { below: tooltip.options.direction === 'bottom', shift: 0 }
+      : selectMapPopupVerticalPlacement(
+          popupRect,
+          aboveVisual,
+          belowVisual,
+          safeTop,
+          safeBottom,
+          positioning
+        );
+
+    setMapTooltipPlacement(tooltip, placement.below);
+    const horizontalShift = left < safeLeft
+      ? safeLeft - left
+      : right > safeRight
+        ? safeRight - right
+        : 0;
+    setMapTooltipHorizontalPlacement(tooltip, horizontalShift);
+    return { ...placement, horizontalShift };
+  }
+
+  function openMapHoverTooltip(layer, latlng = null) {
+    const tooltip = layer?.getTooltip?.();
+    const anchor = latlng || layer?.getLatLng?.() || layer?.getBounds?.().getCenter?.();
+    if (tooltip) {
+      if (anchor) {
+        beginMapHoverTooltipPlacement(tooltip);
+        getMapHoverTooltipPlacement(tooltip, anchor, {
+          positioning: HOVER_POPUP_POSITIONING
+        });
+      }
+    }
+    layer?.openTooltip?.(anchor || undefined);
+  }
+
+  function bindMapHoverTooltip(layer, content, options = {}) {
+    layer.bindTooltip(content, options);
+    const tooltip = layer.getTooltip?.();
+    if (tooltip) {
+      tooltip._diveAtlasManagedPlacement = true;
+      tooltip._diveAtlasLayerKey = mapFeatureLayerKey(layer);
+      tooltip._diveAtlasBaseDirection = options.direction || tooltip.options.direction || 'top';
+      tooltip._diveAtlasBaseOffset = L.point(options.offset || [0, 0]);
+      tooltip._diveAtlasBaseClassName = String(options.className || '')
+        .split(/\s+/).filter(name => !name.startsWith('diveatlas-tooltip-arrow-')).join(' ');
+      tooltip._diveAtlasRequestedMaxWidth = Number(options.maxWidth) || 300;
+    }
+    // Leaflet's built-in mouseover handler opens before our collision pass.
+    // The project routes hover through openMapHoverTooltip so direction, width,
+    // horizontal body shift and arrow alignment are set before the first paint.
+    if (typeof layer._openTooltip === 'function') {
+      layer.off('mouseover', layer._openTooltip, layer);
+    }
+    return tooltip;
+  }
+
+  function openManagedPopup(ownerKey, popup, latlng = null, ownerFeature = null) {
     if (!popup) return;
 
     popup.options.closeOnClick = false;
@@ -4362,6 +4985,29 @@
     activeClickPopupOwner = popup._diveAtlasOwnerKey;
 
     if (latlng) popup.setLatLng(latlng);
+    const anchor = popup.getLatLng?.();
+    if (anchor) popup._diveAtlasAnchorLatLng = L.latLng(anchor.lat, anchor.lng);
+    popup._diveAtlasFeatureId =
+      ownerFeature?._diveAtlasFeatureId ?? popup._diveAtlasFeatureId ?? null;
+    const layerKey = popup._diveAtlasLayerKey;
+    popup._diveAtlasPopupType = layerKey === 'depthInspection'
+      ? 'depth'
+      : layerKey === 'species' && popup._diveAtlasSpeciesRenderMode === 'grid'
+        ? 'coral-grid'
+        : layerKey || 'map-feature';
+    if (layerKey === 'species') {
+      popup._diveAtlasSpeciesRenderMode = speciesDisplayModeForZoom(map.getZoom());
+      popup._diveAtlasCoralGridStep = popup._diveAtlasPopupType === 'coral-grid'
+        ? speciesGridStepDegrees(map.getZoom())
+        : null;
+    }
+    if (layerKey === 'fish' || layerKey === 'dive') {
+      popup._diveAtlasPointRenderMode = pointDisplayModeForZoom(map.getZoom());
+    }
+    activeClickPopupRevision += 1;
+    popup._diveAtlasOwnerRevision = activeClickPopupRevision;
+    window.clearTimeout(activePopupValidationTimer);
+    activePopupValidationTimer = 0;
     popup.openOn(map);
   }
 
@@ -4374,6 +5020,7 @@
     if (activeClickPopup?._diveAtlasLayerKey === layerKey) {
       closeManagedPopup();
     }
+    closeActiveMapHoverTooltipsForLayer(layerKey);
   }
 
   L.control.zoom({
@@ -5075,6 +5722,14 @@
     dive: { expandZoom: POINT_DETAIL_ZOOM, pane: 'diveSitePane' }
   };
 
+  const MAP_MARKER_KIND = INTERACTION_CONTRACT.MARKER_KIND;
+
+  // Count-bearing aggregate markers are navigation affordances: activation
+  // zooms into represented data. Only individual/exact features open details.
+  function resolveMapMarkerAction(kind) {
+    return INTERACTION_CONTRACT.resolveMarkerAction({ kind });
+  }
+
   // All point-like layers use the same aggregation radius at a given zoom.
   // The radius is intentionally larger at low zoom so sparse dive sites do
   // not look "fully expanded" while dense fish surveys are still clustered.
@@ -5643,6 +6298,9 @@
   Object.assign(I18N.zh, {"obisCoralSourceSuffix":"合并珊瑚类群","legendZoomIn":"放大至 Z{z}+ 显示","legendGrid":"密度方格","legendCluster":"聚合显示","legendPoint":"单点显示","reefPopupTitle":"珊瑚礁范围","clusterDive":"{count} 个潜点","clusterFish":"{count} 个鱼类调查点","clusterCoral":"{count} 个珊瑚记录点","fishSurveyTitle":"鱼类密度调查","fishSurveyArea":"标准化调查区块：250 m²","obisRecords":"条 OBIS 记录","coralSpecies":"种珊瑚","occurrenceRecords":"{count} 条 occurrence 记录","speciesCount":"{count} 种","moreSpecies":"另有 {count} 种","speciesDetailsLoading":"正在加载物种详情…","speciesDetailsUnavailable":"暂未获取到物种详情","coralDensity":"珊瑚记录密度","diveSiteGeneric":"潜点","meterUnit":"米"});
   Object.assign(I18N.en, {"obisCoralSourceSuffix":"combined coral taxa","legendZoomIn":"Zoom to Z{z}+ to show","legendGrid":"Density grid","legendCluster":"Clustered","legendPoint":"Individual points","reefPopupTitle":"Coral reef extent","clusterDive":"{count} dive sites","clusterFish":"{count} fish-survey points","clusterCoral":"{count} coral points","fishSurveyTitle":"Reef-fish survey","fishSurveyArea":"Standardized survey block: 250 m²","obisRecords":"OBIS records","coralSpecies":"coral species","occurrenceRecords":"{count} occurrence records","speciesCount":"{count} species","moreSpecies":"+ {count} more species","speciesDetailsLoading":"Loading species details…","speciesDetailsUnavailable":"Species details unavailable","coralDensity":"Coral density","diveSiteGeneric":"Dive site","meterUnit":"m"});
   Object.assign(I18N.ja, {"obisCoralSourceSuffix":"統合サンゴ分類群","legendZoomIn":"Z{z}+ まで拡大して表示","legendGrid":"密度グリッド","legendCluster":"クラスタ表示","legendPoint":"個別ポイント","reefPopupTitle":"サンゴ礁範囲","clusterDive":"{count} 件のダイブスポット","clusterFish":"{count} 件の魚類調査ポイント","clusterCoral":"{count} 件のサンゴポイント","fishSurveyTitle":"魚類密度調査","fishSurveyArea":"標準化調査ブロック：250 m²","obisRecords":"OBIS 記録","coralSpecies":"サンゴ種","occurrenceRecords":"{count} 件の occurrence 記録","speciesCount":"{count} 種","moreSpecies":"ほか {count} 種","speciesDetailsLoading":"種の詳細を読み込み中…","speciesDetailsUnavailable":"種の詳細を取得できません","coralDensity":"サンゴ密度","diveSiteGeneric":"ダイブスポット","meterUnit":"m"});
+  Object.assign(I18N.zh, {"aggregateMarkerZoomLabel":"{label}，放大查看"});
+  Object.assign(I18N.en, {"aggregateMarkerZoomLabel":"{label}, zoom in"});
+  Object.assign(I18N.ja, {"aggregateMarkerZoomLabel":"{label}、拡大して確認"});
   for (const [lang, values] of Object.entries({"fr":{"pageTitle":"DiveAtlas – Carte de plongée","brandTitle":"DiveAtlas – Carte de plongée","brandSubtitle":"Répartition des récifs coralliens","themeTitle":"Changer le style de carte","collapseTitle":"Réduire","launcherTitle":"Ouvrir le panneau","diveSearchPlaceholder":"Rechercher des sites de plongée","diveSearchClear":"Effacer la recherche","diveSearchResults":"Résultats de recherche des sites de plongée","diveSearchEmpty":"Aucun site de plongée correspondant","sources":"Source des données","sourceDescription":"La carte superpose l’étendue mondiale des récifs, les observations de coraux OBIS, les relevés standardisés de densité des poissons IMOS/AODN et les données locales de sites de plongée ; les observations sont mises en cache durablement par zone dans le navigateur.","diveLegend":"Sites de plongée","diveLayerReady":"Données des sites de plongée prêtes","diveZoomIn":"Zoomez jusqu’à Z3+ pour afficher les sites de plongée","diveLoading":"Affichage des sites de plongée de cette zone…","diveCached":"Sites de plongée affichés pour cette zone","divePartial":"Données des sites de plongée indisponibles","diveHoverDepth":"Plage de profondeur","diveMidpoint":"Profondeur","diveMinDepth":"Profondeur minimale","diveMaxDepth":"Profondeur maximale","diveLevel":"Niveau","diveType":"Type de site","diveSource":"Source","legendTitle":"Données cartographiques","layerToggleHint":"Afficher ou masquer la couche","reefLegend":"Étendue des récifs","speciesLegend":"Observations de coraux","fishLegend":"Densité de poissons","bioZoomIn":"Les observations sont masquées à ce niveau ; zoomez jusqu’à Z3+ pour les afficher","bioPersisted":"Les observations chargées restent visibles ; zoomez pour charger de nouvelles zones","bioLoading":"Chargement des observations dans cette vue…","bioLoaded":"Observations de la vue actuelle chargées","bioLimited":"Grand volume de données ; zoomez pour obtenir davantage de détails","bioPartial":"Certaines zones n’ont pas pu être chargées ; les zones réussies sont conservées. Actualisez pour réessayer","cacheLoaded":"Zone chargée depuis le cache local du navigateur","apiLoaded":"Données mises à jour depuis les sources distantes et enregistrées dans le cache local","cacheRefreshing":"Actualisation des données de la zone actuelle…","cacheRefresh":"Actualiser","cacheRefreshTitle":"Ignorer le cache local et récupérer à nouveau cette zone depuis OBIS / AODN","offlineBuild":"⬇ Générer le HTML hors ligne complet","offlineBuildTitle":"Récupérer une fois les données mondiales OBIS sur les coraux et AODN/NRMN sur les poissons, puis générer un HTML avec les données intégrées","offlineReady":"Données intégrées prêtes ; les couches OBIS / AODN n’appellent plus les API distantes","offlineBuildStart":"Préparation de l’instantané mondial…","offlineBuildObis":"Coraux OBIS","offlineBuildFish":"Poissons de récif AODN/NRMN","offlineBuildPacking":"Compression des données et génération du HTML…","offlineBuildDone":"HTML hors ligne généré ; téléchargement démarré","offlineBuildError":"Échec de la génération","richnessLabel":"Espèces de coraux recensées à proximité","richnessLoading":"Chargement…","richnessNone":"Aucune observation","richnessSuffix":"espèces","richnessError":"Indisponible","fishDensityLabel":"Densité de poissons à proximité","fishDensityLoading":"Chargement…","fishDensityNoSurvey":"Aucun relevé standardisé à proximité","fishDensityError":"Indisponible","fishDensityUnit":"poissons / 100 m²","obisCoralSourceSuffix":"taxons coralliens combinés","legendZoomIn":"Zoomez jusqu’à Z{z}+ pour afficher","legendGrid":"Grille de densité","legendCluster":"Regroupé","legendPoint":"Points individuels","reefPopupTitle":"Étendue du récif corallien","clusterDive":"{count} sites de plongée","clusterFish":"{count} points de relevé de poissons","clusterCoral":"{count} points de coraux","fishSurveyTitle":"Relevé des poissons de récif","fishSurveyArea":"Bloc de relevé standardisé : 250 m²","obisRecords":"observations OBIS","coralSpecies":"espèces de coraux","occurrenceRecords":"{count} observations","speciesCount":"{count} espèces","moreSpecies":"+ {count} autres espèces","speciesDetailsLoading":"Chargement des détails des espèces…","speciesDetailsUnavailable":"Détails des espèces indisponibles","coralDensity":"Densité de coraux","diveSiteGeneric":"Site de plongée","meterUnit":"m"},"de":{"pageTitle":"DiveAtlas – Tauchkarte","brandTitle":"DiveAtlas – Tauchkarte","brandSubtitle":"Verbreitung von Korallenriffen","themeTitle":"Kartenstil wechseln","collapseTitle":"Einklappen","launcherTitle":"Panel öffnen","diveSearchPlaceholder":"Tauchplätze suchen","diveSearchClear":"Suche löschen","diveSearchResults":"Suchergebnisse für Tauchplätze","diveSearchEmpty":"Keine passenden Tauchplätze","sources":"Datenquelle","sourceDescription":"Die Karte überlagert die weltweite Riffausdehnung, OBIS-Korallenbeobachtungen, standardisierte IMOS/AODN-Erhebungen zur Fischdichte und lokale Tauchplatzdaten; Beobachtungsdaten werden gebietsweise dauerhaft im Browser zwischengespeichert.","diveLegend":"Tauchplätze","diveLayerReady":"Tauchplatzdaten bereit","diveZoomIn":"Auf Z3+ zoomen, um Tauchplätze anzuzeigen","diveLoading":"Tauchplätze in diesem Gebiet werden angezeigt…","diveCached":"Tauchplätze für dieses Gebiet werden angezeigt","divePartial":"Tauchplatzdaten nicht verfügbar","diveHoverDepth":"Tiefenbereich","diveMidpoint":"Tiefe","diveMinDepth":"Minimale Tiefe","diveMaxDepth":"Maximale Tiefe","diveLevel":"Niveau","diveType":"Tauchplatztyp","diveSource":"Quelle","legendTitle":"Kartendaten","layerToggleHint":"Ebene ein- oder ausblenden","reefLegend":"Riffausdehnung","speciesLegend":"Korallenbeobachtungen","fishLegend":"Fischdichte","bioZoomIn":"Beobachtungssymbole sind bei diesem Zoom ausgeblendet; auf Z3+ zoomen, um Daten anzuzeigen","bioPersisted":"Geladene Beobachtungen bleiben sichtbar; hineinzoomen, um neue Gebiete zu laden","bioLoading":"Beobachtungen in dieser Ansicht werden geladen…","bioLoaded":"Beobachtungen der aktuellen Ansicht geladen","bioLimited":"Große Datenmenge; hineinzoomen für detailliertere Erhebungen","bioPartial":"Einige Kartenbereiche konnten nicht geladen werden; erfolgreiche Bereiche wurden beibehalten. Zum Wiederholen aktualisieren","cacheLoaded":"Dieses Gebiet wurde aus dem lokalen Browser-Cache geladen","apiLoaded":"Aus entfernten Quellen aktualisiert und im lokalen Cache gespeichert","cacheRefreshing":"Daten für das aktuelle Gebiet werden aktualisiert…","cacheRefresh":"Aktualisieren","cacheRefreshTitle":"Lokalen Cache ignorieren und dieses Gebiet erneut von OBIS / AODN laden","offlineBuild":"⬇ Vollständiges Offline-HTML erstellen","offlineBuildTitle":"Globale OBIS-Korallen- und AODN/NRMN-Rifffischdaten einmal abrufen und anschließend ein HTML mit eingebetteten Daten erzeugen","offlineReady":"Vollständige eingebettete Daten bereit; OBIS-/AODN-Ebenen greifen nicht mehr auf entfernte APIs zu","offlineBuildStart":"Globalen Snapshot vorbereiten…","offlineBuildObis":"OBIS-Korallen","offlineBuildFish":"AODN/NRMN-Rifffische","offlineBuildPacking":"Daten werden komprimiert und HTML wird erzeugt…","offlineBuildDone":"Offline-HTML erstellt; Download gestartet","offlineBuildError":"Erstellung fehlgeschlagen","richnessLabel":"In der Nähe erfasste Korallenarten","richnessLoading":"Laden…","richnessNone":"Keine Beobachtungen","richnessSuffix":"Arten","richnessError":"Nicht verfügbar","fishDensityLabel":"Fischdichte in der Nähe","fishDensityLoading":"Laden…","fishDensityNoSurvey":"Keine standardisierte Erhebung in der Nähe","fishDensityError":"Nicht verfügbar","fishDensityUnit":"Fische / 100 m²","obisCoralSourceSuffix":"kombinierte Korallentaxa","legendZoomIn":"Auf Z{z}+ zoomen, um anzuzeigen","legendGrid":"Dichteraster","legendCluster":"Gruppiert","legendPoint":"Einzelpunkte","reefPopupTitle":"Korallenriff-Ausdehnung","clusterDive":"{count} Tauchplätze","clusterFish":"{count} Fisch-Erhebungspunkte","clusterCoral":"{count} Korallenpunkte","fishSurveyTitle":"Rifffisch-Erhebung","fishSurveyArea":"Standardisierter Erhebungsblock: 250 m²","obisRecords":"OBIS-Beobachtungen","coralSpecies":"Korallenarten","occurrenceRecords":"{count} Beobachtungen","speciesCount":"{count} Arten","moreSpecies":"+ {count} weitere Arten","speciesDetailsLoading":"Artendetails werden geladen…","speciesDetailsUnavailable":"Artendetails nicht verfügbar","coralDensity":"Korallendichte","diveSiteGeneric":"Tauchplatz","meterUnit":"m"},"nl":{"pageTitle":"DiveAtlas – Duikkaart","brandTitle":"DiveAtlas – Duikkaart","brandSubtitle":"Verspreiding van koraalriffen","themeTitle":"Kaartstijl wisselen","collapseTitle":"Inklappen","launcherTitle":"Paneel openen","diveSearchPlaceholder":"Duiklocaties zoeken","diveSearchClear":"Zoekopdracht wissen","diveSearchResults":"Zoekresultaten voor duiklocaties","diveSearchEmpty":"Geen overeenkomende duiklocaties","sources":"Gegevensbron","sourceDescription":"De kaart toont de wereldwijde omvang van riffen, OBIS-koraalwaarnemingen, gestandaardiseerde IMOS/AODN-metingen van visdichtheid en lokale duiklocaties; waarnemingsgegevens worden per gebied blijvend in de browser opgeslagen.","diveLegend":"Duiklocaties","diveLayerReady":"Duiklocatiegegevens gereed","diveZoomIn":"Zoom naar Z3+ om duiklocaties te tonen","diveLoading":"Duiklocaties in dit gebied worden weergegeven…","diveCached":"Duiklocaties voor dit gebied worden weergegeven","divePartial":"Duiklocatiegegevens niet beschikbaar","diveHoverDepth":"Dieptebereik","diveMidpoint":"Diepte","diveMinDepth":"Minimale diepte","diveMaxDepth":"Maximale diepte","diveLevel":"Niveau","diveType":"Locatietype","diveSource":"Bron","legendTitle":"Kaartgegevens","layerToggleHint":"Laag tonen of verbergen","reefLegend":"Rifomvang","speciesLegend":"Koraalwaarnemingen","fishLegend":"Visdichtheid","bioZoomIn":"Waarnemingsiconen zijn op dit zoomniveau verborgen; zoom naar Z3+ om gegevens te tonen","bioPersisted":"Geladen waarnemingen blijven zichtbaar; zoom in om nieuwe gebieden te laden","bioLoading":"Waarnemingen in deze weergave worden geladen…","bioLoaded":"Waarnemingen in de huidige weergave geladen","bioLimited":"Grote hoeveelheid gegevens; zoom in voor meer onderzoeksdetail","bioPartial":"Sommige kaartgebieden konden niet worden geladen; succesvolle gebieden zijn behouden. Vernieuw om opnieuw te proberen","cacheLoaded":"Dit gebied is geladen uit de lokale browsercache","apiLoaded":"Bijgewerkt vanuit externe bronnen en opgeslagen in de lokale cache","cacheRefreshing":"Gegevens voor het huidige gebied worden vernieuwd…","cacheRefresh":"Vernieuwen","cacheRefreshTitle":"Lokale cache negeren en dit gebied opnieuw ophalen van OBIS / AODN","offlineBuild":"⬇ Volledige offline-HTML maken","offlineBuildTitle":"Haal de wereldwijde OBIS-koraal- en AODN/NRMN-rifvisgegevens één keer op en maak daarna een HTML met ingesloten gegevens","offlineReady":"Volledige ingesloten gegevens gereed; OBIS-/AODN-lagen gebruiken geen externe API’s meer","offlineBuildStart":"Wereldwijde momentopname voorbereiden…","offlineBuildObis":"OBIS-koralen","offlineBuildFish":"AODN/NRMN-rifvissen","offlineBuildPacking":"Gegevens comprimeren en HTML genereren…","offlineBuildDone":"Offline-HTML gemaakt; download gestart","offlineBuildError":"Genereren mislukt","richnessLabel":"Koraalsoorten die in de buurt zijn waargenomen","richnessLoading":"Laden…","richnessNone":"Geen waarnemingen","richnessSuffix":"soorten","richnessError":"Niet beschikbaar","fishDensityLabel":"Visdichtheid in de buurt","fishDensityLoading":"Laden…","fishDensityNoSurvey":"Geen gestandaardiseerde meting in de buurt","fishDensityError":"Niet beschikbaar","fishDensityUnit":"vissen / 100 m²","obisCoralSourceSuffix":"gecombineerde koraaltaxa","legendZoomIn":"Zoom naar Z{z}+ om te tonen","legendGrid":"Dichtheidsraster","legendCluster":"Geclusterd","legendPoint":"Afzonderlijke punten","reefPopupTitle":"Omvang van het koraalrif","clusterDive":"{count} duiklocaties","clusterFish":"{count} vismeetpunten","clusterCoral":"{count} koraalpunten","fishSurveyTitle":"Rifvismeting","fishSurveyArea":"Gestandaardiseerd meetblok: 250 m²","obisRecords":"OBIS-waarnemingen","coralSpecies":"koraalsoorten","occurrenceRecords":"{count} waarnemingen","speciesCount":"{count} soorten","moreSpecies":"+ {count} andere soorten","speciesDetailsLoading":"Soortdetails laden…","speciesDetailsUnavailable":"Soortdetails niet beschikbaar","coralDensity":"Koraaldichtheid","diveSiteGeneric":"Duiklocatie","meterUnit":"m"},"it":{"pageTitle":"DiveAtlas – Mappa immersioni","brandTitle":"DiveAtlas – Mappa immersioni","brandSubtitle":"Distribuzione delle barriere coralline","themeTitle":"Cambia stile mappa","collapseTitle":"Riduci","launcherTitle":"Apri pannello","diveSearchPlaceholder":"Cerca siti di immersione","diveSearchClear":"Cancella ricerca","diveSearchResults":"Risultati ricerca siti di immersione","diveSearchEmpty":"Nessun sito di immersione corrispondente","sources":"Fonte dati","sourceDescription":"La mappa sovrappone l’estensione globale delle barriere, le osservazioni di coralli OBIS, i rilievi standardizzati IMOS/AODN sulla densità dei pesci e i dati locali dei siti di immersione; le osservazioni vengono memorizzate in modo persistente per area nel browser.","diveLegend":"Siti di immersione","diveLayerReady":"Dati dei siti di immersione pronti","diveZoomIn":"Ingrandisci a Z3+ per mostrare i siti di immersione","diveLoading":"Visualizzazione dei siti di immersione in quest’area…","diveCached":"Siti di immersione visualizzati per quest’area","divePartial":"Dati dei siti di immersione non disponibili","diveHoverDepth":"Intervallo di profondità","diveMidpoint":"Profondità","diveMinDepth":"Profondità minima","diveMaxDepth":"Profondità massima","diveLevel":"Livello","diveType":"Tipo di sito","diveSource":"Fonte","legendTitle":"Dati mappa","layerToggleHint":"Mostra o nascondi livello","reefLegend":"Estensione della barriera","speciesLegend":"Osservazioni di coralli","fishLegend":"Densità dei pesci","bioZoomIn":"Le icone delle osservazioni sono nascoste a questo zoom; ingrandisci a Z3+ per mostrare i dati","bioPersisted":"Le osservazioni caricate restano visibili; ingrandisci per caricare nuove aree","bioLoading":"Caricamento delle osservazioni in questa vista…","bioLoaded":"Osservazioni della vista corrente caricate","bioLimited":"Grande quantità di dati; ingrandisci per maggiori dettagli","bioPartial":"Alcune aree non sono state caricate; quelle riuscite sono state mantenute. Aggiorna per riprovare","cacheLoaded":"Area caricata dalla cache locale del browser","apiLoaded":"Aggiornato da fonti remote e salvato nella cache locale","cacheRefreshing":"Aggiornamento dei dati dell’area corrente…","cacheRefresh":"Aggiorna","cacheRefreshTitle":"Ignora la cache locale e recupera di nuovo quest’area da OBIS / AODN","offlineBuild":"⬇ Crea HTML offline completo","offlineBuildTitle":"Scarica una volta i dati globali OBIS sui coralli e AODN/NRMN sui pesci di barriera, quindi genera un HTML con i dati incorporati","offlineReady":"Dati incorporati completi pronti; i livelli OBIS / AODN non chiamano più API remote","offlineBuildStart":"Preparazione dello snapshot globale…","offlineBuildObis":"Coralli OBIS","offlineBuildFish":"Pesci di barriera AODN/NRMN","offlineBuildPacking":"Compressione dati e generazione HTML…","offlineBuildDone":"HTML offline generato; download avviato","offlineBuildError":"Generazione non riuscita","richnessLabel":"Specie di corallo registrate nelle vicinanze","richnessLoading":"Caricamento…","richnessNone":"Nessuna osservazione","richnessSuffix":"specie","richnessError":"Non disponibile","fishDensityLabel":"Densità dei pesci nelle vicinanze","fishDensityLoading":"Caricamento…","fishDensityNoSurvey":"Nessun rilievo standardizzato nelle vicinanze","fishDensityError":"Non disponibile","fishDensityUnit":"pesci / 100 m²","obisCoralSourceSuffix":"taxa corallini combinati","legendZoomIn":"Ingrandisci a Z{z}+ per mostrare","legendGrid":"Griglia di densità","legendCluster":"Raggruppati","legendPoint":"Punti individuali","reefPopupTitle":"Estensione della barriera corallina","clusterDive":"{count} siti di immersione","clusterFish":"{count} punti di rilievo dei pesci","clusterCoral":"{count} punti corallo","fishSurveyTitle":"Rilievo dei pesci di barriera","fishSurveyArea":"Blocco di rilievo standardizzato: 250 m²","obisRecords":"osservazioni OBIS","coralSpecies":"specie di corallo","occurrenceRecords":"{count} osservazioni","speciesCount":"{count} specie","moreSpecies":"+ {count} altre specie","speciesDetailsLoading":"Caricamento dettagli delle specie…","speciesDetailsUnavailable":"Dettagli delle specie non disponibili","coralDensity":"Densità dei coralli","diveSiteGeneric":"Sito di immersione","meterUnit":"m"},"ru":{"pageTitle":"DiveAtlas — карта дайвинга","brandTitle":"DiveAtlas — карта дайвинга","brandSubtitle":"Распространение коралловых рифов","themeTitle":"Сменить стиль карты","collapseTitle":"Свернуть","launcherTitle":"Открыть панель","diveSearchPlaceholder":"Поиск дайв-сайтов","diveSearchClear":"Очистить поиск","diveSearchResults":"Результаты поиска дайв-сайтов","diveSearchEmpty":"Подходящие дайв-сайты не найдены","sources":"Источник данных","sourceDescription":"Карта объединяет глобальные границы рифов, наблюдения кораллов OBIS, стандартизированные исследования плотности рифовых рыб IMOS/AODN и локальные данные дайв-сайтов; наблюдения постоянно кэшируются по районам в браузере.","diveLegend":"Дайв-сайты","diveLayerReady":"Данные дайв-сайтов готовы","diveZoomIn":"Увеличьте до Z3+, чтобы показать дайв-сайты","diveLoading":"Показываем дайв-сайты в этой области…","diveCached":"Дайв-сайты для этой области отображены","divePartial":"Данные дайв-сайтов недоступны","diveHoverDepth":"Диапазон глубин","diveMidpoint":"Глубина","diveMinDepth":"Минимальная глубина","diveMaxDepth":"Максимальная глубина","diveLevel":"Уровень","diveType":"Тип сайта","diveSource":"Источник","legendTitle":"Данные карты","layerToggleHint":"Показать или скрыть слой","reefLegend":"Границы рифов","speciesLegend":"Наблюдения кораллов","fishLegend":"Плотность рыб","bioZoomIn":"На этом масштабе значки наблюдений скрыты; увеличьте до Z3+, чтобы показать данные","bioPersisted":"Загруженные наблюдения остаются видимыми; увеличьте масштаб для загрузки новых областей","bioLoading":"Загрузка наблюдений в текущем виде…","bioLoaded":"Наблюдения текущего вида загружены","bioLimited":"Большой объём данных; увеличьте масштаб для более подробного просмотра","bioPartial":"Некоторые области карты не загрузились; успешно загруженные области сохранены. Обновите, чтобы повторить","cacheLoaded":"Эта область загружена из локального кэша браузера","apiLoaded":"Обновлено из удалённых источников и сохранено в локальном кэше","cacheRefreshing":"Обновление данных текущей области…","cacheRefresh":"Обновить","cacheRefreshTitle":"Игнорировать локальный кэш и заново получить эту область из OBIS / AODN","offlineBuild":"⬇ Создать полный офлайн HTML","offlineBuildTitle":"Один раз загрузить глобальные данные OBIS по кораллам и AODN/NRMN по рифовым рыбам, затем создать HTML со встроенными данными","offlineReady":"Полные встроенные данные готовы; слои OBIS / AODN больше не обращаются к удалённым API","offlineBuildStart":"Подготовка глобального снимка…","offlineBuildObis":"Кораллы OBIS","offlineBuildFish":"Рифовые рыбы AODN/NRMN","offlineBuildPacking":"Сжатие данных и создание HTML…","offlineBuildDone":"Офлайн HTML создан; загрузка началась","offlineBuildError":"Ошибка создания","richnessLabel":"Виды кораллов, отмеченные поблизости","richnessLoading":"Загрузка…","richnessNone":"Нет наблюдений","richnessSuffix":"видов","richnessError":"Недоступно","fishDensityLabel":"Плотность рыб поблизости","fishDensityLoading":"Загрузка…","fishDensityNoSurvey":"Поблизости нет стандартизированных исследований","fishDensityError":"Недоступно","fishDensityUnit":"рыб / 100 м²","obisCoralSourceSuffix":"объединённые таксоны кораллов","legendZoomIn":"Увеличьте до Z{z}+, чтобы показать","legendGrid":"Сетка плотности","legendCluster":"Сгруппировано","legendPoint":"Отдельные точки","reefPopupTitle":"Границы кораллового рифа","clusterDive":"{count} дайв-сайтов","clusterFish":"{count} точек исследования рыб","clusterCoral":"{count} точек кораллов","fishSurveyTitle":"Исследование рифовых рыб","fishSurveyArea":"Стандартизированный блок исследования: 250 м²","obisRecords":"наблюдений OBIS","coralSpecies":"видов кораллов","occurrenceRecords":"{count} наблюдений","speciesCount":"{count} видов","moreSpecies":"+ ещё {count} видов","speciesDetailsLoading":"Загрузка сведений о видах…","speciesDetailsUnavailable":"Сведения о видах недоступны","coralDensity":"Плотность кораллов","diveSiteGeneric":"Дайв-сайт","meterUnit":"м"},"pt":{"pageTitle":"DiveAtlas – Mapa de mergulho","brandTitle":"DiveAtlas – Mapa de mergulho","brandSubtitle":"Distribuição de recifes de coral","themeTitle":"Alternar estilo do mapa","collapseTitle":"Recolher","launcherTitle":"Abrir painel","diveSearchPlaceholder":"Pesquisar pontos de mergulho","diveSearchClear":"Limpar pesquisa","diveSearchResults":"Resultados de pontos de mergulho","diveSearchEmpty":"Nenhum ponto de mergulho correspondente","sources":"Fonte de dados","sourceDescription":"O mapa sobrepõe a extensão global dos recifes, registros de corais do OBIS, levantamentos padronizados de densidade de peixes IMOS/AODN e dados locais de pontos de mergulho; as observações são armazenadas de forma persistente por área no navegador.","diveLegend":"Pontos de mergulho","diveLayerReady":"Dados de pontos de mergulho prontos","diveZoomIn":"Amplie para Z3+ para mostrar pontos de mergulho","diveLoading":"Mostrando pontos de mergulho nesta área…","diveCached":"Pontos de mergulho exibidos para esta área","divePartial":"Dados de pontos de mergulho indisponíveis","diveHoverDepth":"Faixa de profundidade","diveMidpoint":"Profundidade","diveMinDepth":"Profundidade mínima","diveMaxDepth":"Profundidade máxima","diveLevel":"Nível","diveType":"Tipo de ponto","diveSource":"Fonte","legendTitle":"Dados do mapa","layerToggleHint":"Mostrar ou ocultar camada","reefLegend":"Extensão do recife","speciesLegend":"Registros de corais","fishLegend":"Densidade de peixes","bioZoomIn":"Os ícones de observação estão ocultos neste zoom; amplie para Z3+ para mostrar os dados","bioPersisted":"As observações carregadas permanecem visíveis; amplie para carregar novas áreas","bioLoading":"Carregando observações nesta visualização…","bioLoaded":"Observações da visualização atual carregadas","bioLimited":"Grande volume de dados; amplie para obter mais detalhes","bioPartial":"Algumas áreas não foram carregadas; as áreas bem-sucedidas foram mantidas. Atualize para tentar novamente","cacheLoaded":"Esta área foi carregada do cache local do navegador","apiLoaded":"Atualizado a partir de fontes remotas e salvo no cache local","cacheRefreshing":"Atualizando dados da área atual…","cacheRefresh":"Atualizar","cacheRefreshTitle":"Ignorar o cache local e buscar novamente esta área no OBIS / AODN","offlineBuild":"⬇ Criar HTML offline completo","offlineBuildTitle":"Buscar uma vez os dados globais de corais OBIS e peixes de recife AODN/NRMN e gerar um HTML com os dados incorporados","offlineReady":"Dados incorporados completos prontos; as camadas OBIS / AODN não acessam mais APIs remotas","offlineBuildStart":"Preparando o snapshot global…","offlineBuildObis":"Corais OBIS","offlineBuildFish":"Peixes de recife AODN/NRMN","offlineBuildPacking":"Compactando dados e gerando HTML…","offlineBuildDone":"HTML offline gerado; download iniciado","offlineBuildError":"Falha na geração","richnessLabel":"Espécies de coral registradas nas proximidades","richnessLoading":"Carregando…","richnessNone":"Sem registros","richnessSuffix":"espécies","richnessError":"Indisponível","fishDensityLabel":"Densidade de peixes nas proximidades","fishDensityLoading":"Carregando…","fishDensityNoSurvey":"Nenhum levantamento padronizado nas proximidades","fishDensityError":"Indisponível","fishDensityUnit":"peixes / 100 m²","obisCoralSourceSuffix":"táxons de coral combinados","legendZoomIn":"Amplie para Z{z}+ para mostrar","legendGrid":"Grade de densidade","legendCluster":"Agrupado","legendPoint":"Pontos individuais","reefPopupTitle":"Extensão do recife de coral","clusterDive":"{count} pontos de mergulho","clusterFish":"{count} pontos de levantamento de peixes","clusterCoral":"{count} pontos de coral","fishSurveyTitle":"Levantamento de peixes de recife","fishSurveyArea":"Bloco de levantamento padronizado: 250 m²","obisRecords":"registros OBIS","coralSpecies":"espécies de coral","occurrenceRecords":"{count} registros","speciesCount":"{count} espécies","moreSpecies":"+ {count} outras espécies","speciesDetailsLoading":"Carregando detalhes das espécies…","speciesDetailsUnavailable":"Detalhes das espécies indisponíveis","coralDensity":"Densidade de corais","diveSiteGeneric":"Ponto de mergulho","meterUnit":"m"},"sv":{"pageTitle":"DiveAtlas – Dykkarta","brandTitle":"DiveAtlas – Dykkarta","brandSubtitle":"Utbredning av korallrev","themeTitle":"Byt kartstil","collapseTitle":"Fäll ihop","launcherTitle":"Öppna panel","diveSearchPlaceholder":"Sök dykplatser","diveSearchClear":"Rensa sökning","diveSearchResults":"Sökresultat för dykplatser","diveSearchEmpty":"Inga matchande dykplatser","sources":"Datakälla","sourceDescription":"Kartan visar global revutbredning, OBIS-korallobservationer, standardiserade IMOS/AODN-mätningar av fiskdensitet och lokala dykplatsdata; observationsdata lagras beständigt per område i webbläsaren.","diveLegend":"Dykplatser","diveLayerReady":"Dykplatsdata klara","diveZoomIn":"Zooma till Z3+ för att visa dykplatser","diveLoading":"Visar dykplatser i det här området…","diveCached":"Dykplatser visas för det här området","divePartial":"Dykplatsdata är inte tillgängliga","diveHoverDepth":"Djupintervall","diveMidpoint":"Djup","diveMinDepth":"Minsta djup","diveMaxDepth":"Största djup","diveLevel":"Nivå","diveType":"Platstyp","diveSource":"Källa","legendTitle":"Kartdata","layerToggleHint":"Visa eller dölj lager","reefLegend":"Revutbredning","speciesLegend":"Korallobservationer","fishLegend":"Fiskdensitet","bioZoomIn":"Observationsikoner är dolda på den här zoomnivån; zooma till Z3+ för att visa data","bioPersisted":"Inlästa observationer förblir synliga; zooma in för att ladda nya områden","bioLoading":"Laddar observationer i den här vyn…","bioLoaded":"Observationer i aktuell vy inlästa","bioLimited":"Stor datamängd; zooma in för mer detaljer","bioPartial":"Vissa kartområden kunde inte laddas; lyckade områden behölls. Uppdatera för att försöka igen","cacheLoaded":"Området laddades från webbläsarens lokala cache","apiLoaded":"Uppdaterat från fjärrkällor och sparat i lokal cache","cacheRefreshing":"Uppdaterar data för aktuellt område…","cacheRefresh":"Uppdatera","cacheRefreshTitle":"Ignorera lokal cache och hämta området igen från OBIS / AODN","offlineBuild":"⬇ Skapa fullständig offline-HTML","offlineBuildTitle":"Hämta globala OBIS-korall- och AODN/NRMN-revfiskdata en gång och skapa sedan en HTML med inbäddade data","offlineReady":"Fullständiga inbäddade data klara; OBIS-/AODN-lager anropar inte längre fjärr-API:er","offlineBuildStart":"Förbereder global ögonblicksbild…","offlineBuildObis":"OBIS-koraller","offlineBuildFish":"AODN/NRMN-revfisk","offlineBuildPacking":"Komprimerar data och skapar HTML…","offlineBuildDone":"Offline-HTML skapad; nedladdning startad","offlineBuildError":"Skapandet misslyckades","richnessLabel":"Korallarter registrerade i närheten","richnessLoading":"Laddar…","richnessNone":"Inga observationer","richnessSuffix":"arter","richnessError":"Inte tillgängligt","fishDensityLabel":"Fiskdensitet i närheten","fishDensityLoading":"Laddar…","fishDensityNoSurvey":"Ingen standardiserad undersökning i närheten","fishDensityError":"Inte tillgängligt","fishDensityUnit":"fiskar / 100 m²","obisCoralSourceSuffix":"kombinerade koralltaxa","legendZoomIn":"Zooma till Z{z}+ för att visa","legendGrid":"Densitetsrutnät","legendCluster":"Grupperat","legendPoint":"Enskilda punkter","reefPopupTitle":"Korallrevets utbredning","clusterDive":"{count} dykplatser","clusterFish":"{count} fiskundersökningspunkter","clusterCoral":"{count} korallpunkter","fishSurveyTitle":"Revfiskundersökning","fishSurveyArea":"Standardiserat undersökningsblock: 250 m²","obisRecords":"OBIS-observationer","coralSpecies":"korallarter","occurrenceRecords":"{count} observationer","speciesCount":"{count} arter","moreSpecies":"+ {count} fler arter","speciesDetailsLoading":"Laddar artdetaljer…","speciesDetailsUnavailable":"Artdetaljer är inte tillgängliga","coralDensity":"Koralltäthet","diveSiteGeneric":"Dykplats","meterUnit":"m"},"no":{"pageTitle":"DiveAtlas – Dykkekart","brandTitle":"DiveAtlas – Dykkekart","brandSubtitle":"Utbredelse av korallrev","themeTitle":"Bytt kartstil","collapseTitle":"Slå sammen","launcherTitle":"Åpne panel","diveSearchPlaceholder":"Søk etter dykkesteder","diveSearchClear":"Tøm søk","diveSearchResults":"Søkeresultater for dykkesteder","diveSearchEmpty":"Ingen matchende dykkesteder","sources":"Datakilde","sourceDescription":"Kartet viser global revutbredelse, OBIS-korallobservasjoner, standardiserte IMOS/AODN-målinger av fisketetthet og lokale dykkestedsdata; observasjonsdata lagres vedvarende per område i nettleseren.","diveLegend":"Dykkesteder","diveLayerReady":"Dykkestedsdata klare","diveZoomIn":"Zoom til Z3+ for å vise dykkesteder","diveLoading":"Viser dykkesteder i dette området…","diveCached":"Dykkesteder vises for dette området","divePartial":"Dykkestedsdata er utilgjengelige","diveHoverDepth":"Dybdeområde","diveMidpoint":"Dybde","diveMinDepth":"Minste dybde","diveMaxDepth":"Største dybde","diveLevel":"Nivå","diveType":"Stedstype","diveSource":"Kilde","legendTitle":"Kartdata","layerToggleHint":"Vis eller skjul lag","reefLegend":"Revutbredelse","speciesLegend":"Korallobservasjoner","fishLegend":"Fisketetthet","bioZoomIn":"Observasjonsikoner er skjult på dette zoomnivået; zoom til Z3+ for å vise data","bioPersisted":"Innlastede observasjoner forblir synlige; zoom inn for å laste nye områder","bioLoading":"Laster observasjoner i denne visningen…","bioLoaded":"Observasjoner i gjeldende visning lastet","bioLimited":"Stor datamengde; zoom inn for flere detaljer","bioPartial":"Noen kartområder kunne ikke lastes; vellykkede områder ble beholdt. Oppdater for å prøve igjen","cacheLoaded":"Området ble lastet fra nettleserens lokale hurtiglager","apiLoaded":"Oppdatert fra eksterne kilder og lagret i lokalt hurtiglager","cacheRefreshing":"Oppdaterer data for gjeldende område…","cacheRefresh":"Oppdater","cacheRefreshTitle":"Ignorer lokalt hurtiglager og hent området på nytt fra OBIS / AODN","offlineBuild":"⬇ Lag fullstendig offline-HTML","offlineBuildTitle":"Hent globale OBIS-koralldata og AODN/NRMN-revfiskdata én gang, og lag deretter en HTML med innebygde data","offlineReady":"Fullstendige innebygde data klare; OBIS-/AODN-lag bruker ikke lenger eksterne API-er","offlineBuildStart":"Forbereder globalt øyeblikksbilde…","offlineBuildObis":"OBIS-koraller","offlineBuildFish":"AODN/NRMN-revfisk","offlineBuildPacking":"Komprimerer data og lager HTML…","offlineBuildDone":"Offline-HTML opprettet; nedlasting startet","offlineBuildError":"Oppretting mislyktes","richnessLabel":"Korallarter registrert i nærheten","richnessLoading":"Laster…","richnessNone":"Ingen observasjoner","richnessSuffix":"arter","richnessError":"Utilgjengelig","fishDensityLabel":"Fisketetthet i nærheten","fishDensityLoading":"Laster…","fishDensityNoSurvey":"Ingen standardisert undersøkelse i nærheten","fishDensityError":"Utilgjengelig","fishDensityUnit":"fisk / 100 m²","obisCoralSourceSuffix":"kombinerte koralltaksa","legendZoomIn":"Zoom til Z{z}+ for å vise","legendGrid":"Tetthetsrutenett","legendCluster":"Gruppert","legendPoint":"Enkeltpunkter","reefPopupTitle":"Korallrevets utbredelse","clusterDive":"{count} dykkesteder","clusterFish":"{count} fiskemålingspunkter","clusterCoral":"{count} korallpunkter","fishSurveyTitle":"Revfiskundersøkelse","fishSurveyArea":"Standardisert undersøkelsesblokk: 250 m²","obisRecords":"OBIS-observasjoner","coralSpecies":"korallarter","occurrenceRecords":"{count} observasjoner","speciesCount":"{count} arter","moreSpecies":"+ {count} flere arter","speciesDetailsLoading":"Laster artsdetaljer…","speciesDetailsUnavailable":"Artsdetaljer er utilgjengelige","coralDensity":"Koralltetthet","diveSiteGeneric":"Dykkested","meterUnit":"m"},"es":{"pageTitle":"DiveAtlas – Mapa de buceo","brandTitle":"DiveAtlas – Mapa de buceo","brandSubtitle":"Distribución de arrecifes de coral","themeTitle":"Cambiar estilo del mapa","collapseTitle":"Contraer","launcherTitle":"Abrir panel","diveSearchPlaceholder":"Buscar sitios de buceo","diveSearchClear":"Borrar búsqueda","diveSearchResults":"Resultados de búsqueda de sitios de buceo","diveSearchEmpty":"No hay sitios de buceo coincidentes","sources":"Fuente de datos","sourceDescription":"El mapa superpone la extensión global de los arrecifes, observaciones de coral de OBIS, estudios estandarizados de densidad de peces IMOS/AODN y datos locales de sitios de buceo; las observaciones se almacenan de forma persistente por zona en el navegador.","diveLegend":"Sitios de buceo","diveLayerReady":"Datos de sitios de buceo listos","diveZoomIn":"Amplía a Z3+ para mostrar sitios de buceo","diveLoading":"Mostrando sitios de buceo en esta zona…","diveCached":"Sitios de buceo mostrados para esta zona","divePartial":"Datos de sitios de buceo no disponibles","diveHoverDepth":"Rango de profundidad","diveMidpoint":"Profundidad","diveMinDepth":"Profundidad mínima","diveMaxDepth":"Profundidad máxima","diveLevel":"Nivel","diveType":"Tipo de sitio","diveSource":"Fuente","legendTitle":"Datos del mapa","layerToggleHint":"Mostrar u ocultar capa","reefLegend":"Extensión del arrecife","speciesLegend":"Observaciones de coral","fishLegend":"Densidad de peces","bioZoomIn":"Los iconos de observación están ocultos a este nivel; amplía a Z3+ para mostrar los datos","bioPersisted":"Las observaciones cargadas permanecen visibles; amplía para cargar nuevas zonas","bioLoading":"Cargando observaciones en esta vista…","bioLoaded":"Observaciones de la vista actual cargadas","bioLimited":"Gran volumen de datos; amplía para obtener más detalle","bioPartial":"Algunas zonas no se pudieron cargar; las zonas correctas se conservaron. Actualiza para reintentar","cacheLoaded":"Esta zona se cargó desde la caché local del navegador","apiLoaded":"Actualizado desde fuentes remotas y guardado en la caché local","cacheRefreshing":"Actualizando datos de la zona actual…","cacheRefresh":"Actualizar","cacheRefreshTitle":"Ignorar la caché local y volver a obtener esta zona de OBIS / AODN","offlineBuild":"⬇ Crear HTML sin conexión completo","offlineBuildTitle":"Descargar una vez los datos globales de coral OBIS y peces de arrecife AODN/NRMN y generar un HTML con los datos integrados","offlineReady":"Datos integrados completos listos; las capas OBIS / AODN ya no usan API remotas","offlineBuildStart":"Preparando la instantánea global…","offlineBuildObis":"Corales OBIS","offlineBuildFish":"Peces de arrecife AODN/NRMN","offlineBuildPacking":"Comprimiendo datos y generando HTML…","offlineBuildDone":"HTML sin conexión generado; descarga iniciada","offlineBuildError":"Error de generación","richnessLabel":"Especies de coral registradas cerca","richnessLoading":"Cargando…","richnessNone":"Sin observaciones","richnessSuffix":"especies","richnessError":"No disponible","fishDensityLabel":"Densidad de peces cercana","fishDensityLoading":"Cargando…","fishDensityNoSurvey":"No hay estudios estandarizados cercanos","fishDensityError":"No disponible","fishDensityUnit":"peces / 100 m²","obisCoralSourceSuffix":"taxones de coral combinados","legendZoomIn":"Amplía a Z{z}+ para mostrar","legendGrid":"Cuadrícula de densidad","legendCluster":"Agrupado","legendPoint":"Puntos individuales","reefPopupTitle":"Extensión del arrecife de coral","clusterDive":"{count} sitios de buceo","clusterFish":"{count} puntos de estudio de peces","clusterCoral":"{count} puntos de coral","fishSurveyTitle":"Estudio de peces de arrecife","fishSurveyArea":"Bloque de estudio estandarizado: 250 m²","obisRecords":"observaciones OBIS","coralSpecies":"especies de coral","occurrenceRecords":"{count} observaciones","speciesCount":"{count} especies","moreSpecies":"+ {count} especies más","speciesDetailsLoading":"Cargando detalles de especies…","speciesDetailsUnavailable":"Detalles de especies no disponibles","coralDensity":"Densidad de coral","diveSiteGeneric":"Sitio de buceo","meterUnit":"m"},"ko":{"pageTitle":"DiveAtlas 다이빙 지도","brandTitle":"DiveAtlas 다이빙 지도","brandSubtitle":"산호초 분포","themeTitle":"지도 스타일 전환","collapseTitle":"접기","launcherTitle":"패널 열기","diveSearchPlaceholder":"다이빙 포인트 검색","diveSearchClear":"검색 지우기","diveSearchResults":"다이빙 포인트 검색 결과","diveSearchEmpty":"일치하는 다이빙 포인트가 없습니다","sources":"데이터 출처","sourceDescription":"이 지도는 전 세계 산호초 범위, OBIS 산호 관측 기록, IMOS/AODN 표준화 어류 밀도 조사, 로컬 다이빙 포인트 데이터를 함께 표시하며 관측 데이터는 지역별로 브라우저에 지속적으로 캐시됩니다.","diveLegend":"다이빙 포인트","diveLayerReady":"다이빙 포인트 데이터 준비 완료","diveZoomIn":"Z3+까지 확대하면 다이빙 포인트를 표시합니다","diveLoading":"현재 지역의 다이빙 포인트를 표시하는 중…","diveCached":"현재 지역의 다이빙 포인트를 표시했습니다","divePartial":"다이빙 포인트 데이터를 사용할 수 없습니다","diveHoverDepth":"수심 범위","diveMidpoint":"수심","diveMinDepth":"최소 수심","diveMaxDepth":"최대 수심","diveLevel":"난이도","diveType":"포인트 유형","diveSource":"출처","legendTitle":"지도 데이터","layerToggleHint":"레이어 표시 또는 숨기기","reefLegend":"산호초 범위","speciesLegend":"산호 기록","fishLegend":"어류 밀도","bioZoomIn":"이 확대 수준에서는 관측 아이콘이 숨겨집니다. Z3+까지 확대하면 표시됩니다","bioPersisted":"불러온 관측 데이터는 계속 표시되며 확대하면 새 지역을 추가로 불러옵니다","bioLoading":"현재 화면의 관측 데이터를 불러오는 중…","bioLoaded":"현재 화면의 관측 데이터를 불러왔습니다","bioLimited":"데이터가 많습니다. 더 확대하면 상세 조사 정보를 볼 수 있습니다","bioPartial":"일부 지역을 불러오지 못했습니다. 성공한 지역은 유지됩니다. 새로고침하여 다시 시도하세요","cacheLoaded":"현재 지역을 브라우저 로컬 캐시에서 불러왔습니다","apiLoaded":"원격 데이터에서 업데이트하여 로컬 캐시에 저장했습니다","cacheRefreshing":"현재 지역 데이터를 새로고침하는 중…","cacheRefresh":"새로고침","cacheRefreshTitle":"로컬 캐시를 무시하고 OBIS / AODN에서 현재 지역을 다시 가져옵니다","offlineBuild":"⬇ 전체 오프라인 HTML 생성","offlineBuildTitle":"전 세계 OBIS 산호 및 AODN/NRMN 암초 어류 데이터를 한 번 가져온 뒤 데이터를 포함한 HTML을 생성합니다","offlineReady":"전체 내장 데이터 준비 완료. OBIS / AODN 레이어는 더 이상 원격 API를 호출하지 않습니다","offlineBuildStart":"전 세계 스냅샷 준비 중…","offlineBuildObis":"OBIS 산호","offlineBuildFish":"AODN/NRMN 암초 어류","offlineBuildPacking":"데이터 압축 및 HTML 생성 중…","offlineBuildDone":"오프라인 HTML 생성 완료. 다운로드를 시작했습니다","offlineBuildError":"생성 실패","richnessLabel":"주변에 기록된 산호 종","richnessLoading":"불러오는 중…","richnessNone":"기록 없음","richnessSuffix":"종","richnessError":"사용 불가","fishDensityLabel":"주변 어류 밀도","fishDensityLoading":"불러오는 중…","fishDensityNoSurvey":"주변에 표준화 조사가 없습니다","fishDensityError":"사용 불가","fishDensityUnit":"마리 / 100 m²","obisCoralSourceSuffix":"통합 산호 분류군","legendZoomIn":"Z{z}+까지 확대하여 표시","legendGrid":"밀도 격자","legendCluster":"클러스터","legendPoint":"개별 포인트","reefPopupTitle":"산호초 범위","clusterDive":"다이빙 포인트 {count}개","clusterFish":"어류 조사 포인트 {count}개","clusterCoral":"산호 포인트 {count}개","fishSurveyTitle":"암초 어류 조사","fishSurveyArea":"표준화 조사 블록: 250 m²","obisRecords":"OBIS 기록","coralSpecies":"산호 종","occurrenceRecords":"관측 기록 {count}개","speciesCount":"{count}종","moreSpecies":"그 외 {count}종","speciesDetailsLoading":"종 상세정보를 불러오는 중…","speciesDetailsUnavailable":"종 상세정보를 사용할 수 없습니다","coralDensity":"산호 밀도","diveSiteGeneric":"다이빙 포인트","meterUnit":"m"},"id":{"pageTitle":"DiveAtlas – Peta selam","brandTitle":"DiveAtlas – Peta selam","brandSubtitle":"Sebaran terumbu karang","themeTitle":"Ganti gaya peta","collapseTitle":"Ciutkan","launcherTitle":"Buka panel","diveSearchPlaceholder":"Cari lokasi selam","diveSearchClear":"Hapus pencarian","diveSearchResults":"Hasil pencarian lokasi selam","diveSearchEmpty":"Tidak ada lokasi selam yang cocok","sources":"Sumber data","sourceDescription":"Peta menampilkan cakupan terumbu global, catatan karang OBIS, survei standar kepadatan ikan IMOS/AODN, dan data lokasi selam lokal; data observasi disimpan secara persisten per area di browser.","diveLegend":"Lokasi selam","diveLayerReady":"Data lokasi selam siap","diveZoomIn":"Perbesar ke Z3+ untuk menampilkan lokasi selam","diveLoading":"Menampilkan lokasi selam di area ini…","diveCached":"Lokasi selam untuk area ini ditampilkan","divePartial":"Data lokasi selam tidak tersedia","diveHoverDepth":"Rentang kedalaman","diveMidpoint":"Kedalaman","diveMinDepth":"Kedalaman minimum","diveMaxDepth":"Kedalaman maksimum","diveLevel":"Tingkat","diveType":"Jenis lokasi","diveSource":"Sumber","legendTitle":"Data peta","layerToggleHint":"Tampilkan atau sembunyikan layer","reefLegend":"Cakupan terumbu","speciesLegend":"Catatan karang","fishLegend":"Kepadatan ikan","bioZoomIn":"Ikon observasi disembunyikan pada tingkat zoom ini; perbesar ke Z3+ untuk menampilkan data","bioPersisted":"Observasi yang sudah dimuat tetap terlihat; perbesar untuk memuat area baru","bioLoading":"Memuat observasi pada tampilan ini…","bioLoaded":"Observasi pada tampilan saat ini telah dimuat","bioLimited":"Data sangat banyak; perbesar untuk detail survei yang lebih lengkap","bioPartial":"Beberapa area gagal dimuat; area yang berhasil tetap dipertahankan. Muat ulang untuk mencoba lagi","cacheLoaded":"Area ini dimuat dari cache lokal browser","apiLoaded":"Diperbarui dari sumber jarak jauh dan disimpan ke cache lokal","cacheRefreshing":"Memperbarui data area saat ini…","cacheRefresh":"Muat ulang","cacheRefreshTitle":"Abaikan cache lokal dan ambil kembali area ini dari OBIS / AODN","offlineBuild":"⬇ Buat HTML offline lengkap","offlineBuildTitle":"Ambil satu kali data karang global OBIS dan ikan terumbu AODN/NRMN, lalu buat HTML dengan data tertanam","offlineReady":"Data tertanam lengkap siap; layer OBIS / AODN tidak lagi memanggil API jarak jauh","offlineBuildStart":"Menyiapkan snapshot global…","offlineBuildObis":"Karang OBIS","offlineBuildFish":"Ikan terumbu AODN/NRMN","offlineBuildPacking":"Mengompresi data dan membuat HTML…","offlineBuildDone":"HTML offline dibuat; unduhan dimulai","offlineBuildError":"Pembuatan gagal","richnessLabel":"Spesies karang yang tercatat di sekitar","richnessLoading":"Memuat…","richnessNone":"Tidak ada catatan","richnessSuffix":"spesies","richnessError":"Tidak tersedia","fishDensityLabel":"Kepadatan ikan di sekitar","fishDensityLoading":"Memuat…","fishDensityNoSurvey":"Tidak ada survei standar di sekitar","fishDensityError":"Tidak tersedia","fishDensityUnit":"ikan / 100 m²","obisCoralSourceSuffix":"taksa karang gabungan","legendZoomIn":"Perbesar ke Z{z}+ untuk menampilkan","legendGrid":"Grid kepadatan","legendCluster":"Dikelompokkan","legendPoint":"Titik individual","reefPopupTitle":"Cakupan terumbu karang","clusterDive":"{count} lokasi selam","clusterFish":"{count} titik survei ikan","clusterCoral":"{count} titik karang","fishSurveyTitle":"Survei ikan terumbu","fishSurveyArea":"Blok survei standar: 250 m²","obisRecords":"catatan OBIS","coralSpecies":"spesies karang","occurrenceRecords":"{count} catatan","speciesCount":"{count} spesies","moreSpecies":"+ {count} spesies lainnya","speciesDetailsLoading":"Memuat detail spesies…","speciesDetailsUnavailable":"Detail spesies tidak tersedia","coralDensity":"Kepadatan karang","diveSiteGeneric":"Lokasi selam","meterUnit":"m"}})) {
     I18N[lang] = { ...I18N.en, ...values };
   }
@@ -6393,6 +7051,138 @@
     try { return localStorage.getItem(TUTORIAL_SEEN_STORAGE_KEY) === '1'; } catch (_) { return false; }
   }
 
+  function closeActiveMapHoverTooltips() {
+    activeMapHoverTooltips.forEach(tooltip => {
+      if (map.hasLayer(tooltip)) tooltip.close?.();
+    });
+    activeMapHoverTooltips.clear();
+    closeBatchedSpeciesGridTooltip();
+    if (batchedSpeciesGridSelectedKey == null) clearBatchedSpeciesGridHighlight();
+  }
+
+  function closeActiveMapHoverTooltipsForLayer(layerKey) {
+    activeMapHoverTooltips.forEach(tooltip => {
+      if (tooltip?._diveAtlasLayerKey === layerKey && map.hasLayer(tooltip)) {
+        tooltip.close?.();
+      }
+    });
+    if (layerKey === 'species') {
+      closeBatchedSpeciesGridTooltip();
+      if (batchedSpeciesGridSelectedKey == null) clearBatchedSpeciesGridHighlight();
+    }
+  }
+
+  function currentTutorialImageSource(image) {
+    return document.documentElement.dataset.theme === 'dark' && image.dataset.darkSrc
+      ? image.dataset.darkSrc
+      : image.dataset.src;
+  }
+
+  function activateTutorialImages() {
+    els.tutorialContent.querySelectorAll('img[data-src]').forEach(image => {
+      const source = currentTutorialImageSource(image);
+      if (source && image.getAttribute('src') !== source) {
+        image.setAttribute('src', source);
+      }
+    });
+  }
+
+  const tutorialThemeObserver = new MutationObserver(() => {
+    if (!els.tutorialBackdrop.hidden) activateTutorialImages();
+  });
+  tutorialThemeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+
+  // Search is a likely next map action, while map and layer preparation already
+  // have their own startup/viewport paths. Build only this existing index here.
+  let tutorialBackgroundPreparationState = 'uninitialized';
+  let tutorialBackgroundPreparationIdleId = null;
+  let tutorialBackgroundPreparationTimerId = null;
+
+  function startTutorialBackgroundPreparation() {
+    if (tutorialBackgroundPreparationState !== 'uninitialized') return;
+    if (DIVE_SEARCH_INDEX) {
+      tutorialBackgroundPreparationState = 'ready';
+      return;
+    }
+
+    if (!diveSiteDataReady) {
+      if (!diveSiteDataPromise) return;
+      tutorialBackgroundPreparationState = 'waiting';
+      diveSiteDataPromise
+        .then(() => {
+          if (tutorialBackgroundPreparationState !== 'waiting') return;
+          if (els.tutorialBackdrop.hidden) {
+            tutorialBackgroundPreparationState = 'uninitialized';
+            return;
+          }
+          tutorialBackgroundPreparationState = 'uninitialized';
+          startTutorialBackgroundPreparation();
+        })
+        .catch(() => {
+          if (tutorialBackgroundPreparationState === 'waiting') {
+            tutorialBackgroundPreparationState = 'uninitialized';
+          }
+        });
+      return;
+    }
+
+    tutorialBackgroundPreparationState = 'scheduled';
+    const prepareSearchIndex = () => {
+      tutorialBackgroundPreparationIdleId = null;
+      tutorialBackgroundPreparationTimerId = null;
+      if (tutorialBackgroundPreparationState !== 'scheduled') return;
+      if (els.tutorialBackdrop.hidden) {
+        tutorialBackgroundPreparationState = 'uninitialized';
+        return;
+      }
+
+      tutorialBackgroundPreparationState = 'loading';
+      void ensureDiveSearchIndex()
+        .then(() => {
+          tutorialBackgroundPreparationState = 'ready';
+        })
+        .catch(() => {
+          tutorialBackgroundPreparationState = 'uninitialized';
+        });
+    };
+
+    if ('requestIdleCallback' in window) {
+      tutorialBackgroundPreparationIdleId = requestIdleCallback(
+        prepareSearchIndex,
+        { timeout: 3000 }
+      );
+    } else {
+      tutorialBackgroundPreparationTimerId = setTimeout(
+        prepareSearchIndex,
+        900
+      );
+    }
+  }
+
+  function cancelTutorialBackgroundPreparation() {
+    if (tutorialBackgroundPreparationState === 'waiting') {
+      tutorialBackgroundPreparationState = 'uninitialized';
+      return;
+    }
+    if (tutorialBackgroundPreparationState !== 'scheduled') return;
+
+    if (
+      tutorialBackgroundPreparationIdleId != null &&
+      'cancelIdleCallback' in window
+    ) {
+      cancelIdleCallback(tutorialBackgroundPreparationIdleId);
+    }
+    if (tutorialBackgroundPreparationTimerId != null) {
+      clearTimeout(tutorialBackgroundPreparationTimerId);
+    }
+    tutorialBackgroundPreparationIdleId = null;
+    tutorialBackgroundPreparationTimerId = null;
+    tutorialBackgroundPreparationState = 'uninitialized';
+  }
+
   function isTutorialSuppressed() {
     try {
       return localStorage.getItem(TUTORIAL_SUPPRESSED_STORAGE_KEY) === '1';
@@ -6465,6 +7255,8 @@
     syncTutorialSuppressionCheckbox();
     renderTutorialTexts();
     els.tutorialBackdrop.hidden = false;
+    activateTutorialImages();
+    startTutorialBackgroundPreparation();
     els.tutorialContent.scrollTop = 0;
     document.body.classList.add('tutorial-open');
     els.tutorialClose.focus();
@@ -6495,6 +7287,7 @@
   async function closeTutorial() {
     if (tutorialState !== 'open' || els.tutorialBackdrop.hidden) return;
     tutorialState = 'closing';
+    cancelTutorialBackgroundPreparation();
     cancelLegendAutoCollapse();
     persistTutorialSuppression();
     try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
@@ -7112,10 +7905,6 @@
 
   function syncDepthContoursVisibility() {
     const shouldBeVisible = shouldRenderDepthContours();
-    if (!shouldBeVisible) {
-      bathymetrySampleRequestSeq += 1;
-      closeManagedPopupForLayer('contours');
-    }
     if (shouldBeVisible && !map.hasLayer(depthContoursLayer)) {
       depthContoursLayer.addTo(map);
     } else if (!shouldBeVisible && map.hasLayer(depthContoursLayer)) {
@@ -7198,7 +7987,7 @@
 
   function setActiveAnalyticalSurface(surfaceId = null) {
     if (surfaceId != null && !analyticalSurfaceLayers.has(surfaceId)) return false;
-    bathymetrySampleRequestSeq += 1;
+    depthInspectionRequestSeq += 1;
     if (surfaceId == null || surfaceId === 'bathymetry') {
       activeAnalyticalSurfaceId = surfaceId;
       pendingAnalyticalSurfaceId = null;
@@ -7586,6 +8375,7 @@
         }
 
         diveSiteDataReady = true;
+        if (!els.tutorialBackdrop.hidden) startTutorialBackgroundPreparation();
 
         const requestedSiteId = sharedMapState.requestedSiteId;
         if (requestedSiteId) {
@@ -8534,7 +9324,9 @@
       Math.abs(currentCenter.lng - lng) > 1e-7 ||
       Math.abs(map.getZoom() - zoom) > 1e-7
     ) {
-      map.setView([boundedLat, lng], zoom, { animate: false });
+      runInternalMapMovement(() =>
+        map.setView([boundedLat, lng], zoom, { animate: false })
+      );
     }
 
     if (state.layers) {
@@ -8816,7 +9608,7 @@
 
   const bathymetrySampleCache = new Map();
   const BATHYMETRY_SAMPLE_CACHE_LIMIT = 24;
-  let bathymetrySampleRequestSeq = 0;
+  let depthInspectionRequestSeq = 0;
   let bathymetryInspectPopup = null;
 
   function effectiveBathymetryZoom(mapZoom = map.getZoom()) {
@@ -8885,87 +9677,26 @@
     return Math.round(depth / rounding) * rounding;
   }
 
-  function visibleDepthContourLineAt(containerPoint, tolerancePx) {
+  // Contours only visualize depth. Explicit inspect actions query the local
+  // sample grid independently of contour visibility and supported zooms.
+  async function requestDepthInspection(latlng) {
+    const latitude = Number(latlng?.lat);
+    const longitude = Number(latlng?.lng);
     if (
-      !containerPoint ||
-      !layerVisibility.contours ||
-      !shouldRenderDepthContours() ||
-      !map.hasLayer(depthContoursLayer)
+      !Number.isFinite(latitude) ||
+      !Number.isFinite(longitude) ||
+      latitude < -90 || latitude > 90
     ) return false;
 
-    const layerContainer = depthContoursLayer.getContainer?.();
-    if (!layerContainer) return false;
-    const layerStyle = window.getComputedStyle(layerContainer);
-    if (
-      layerStyle.display === 'none' ||
-      layerStyle.visibility === 'hidden' ||
-      Number(layerStyle.opacity) <= 0
-    ) return false;
-
-    const mapRect = map.getContainer().getBoundingClientRect();
-    const clientX = mapRect.left + containerPoint.x;
-    const clientY = mapRect.top + containerPoint.y;
-    const tiles = Object.values(depthContoursLayer._tiles || {});
-
-    for (const tileRecord of tiles) {
-      const canvas = tileRecord?.el;
-      if (
-        !canvas?.isConnected ||
-        canvas.tagName !== 'CANVAS' ||
-        canvas.width < 1 ||
-        canvas.height < 1
-      ) continue;
-
-      const rect = canvas.getBoundingClientRect();
-      if (
-        clientX + tolerancePx < rect.left ||
-        clientX - tolerancePx > rect.right ||
-        clientY + tolerancePx < rect.top ||
-        clientY - tolerancePx > rect.bottom
-      ) continue;
-
-      const scaleX = canvas.width / Math.max(1, rect.width);
-      const scaleY = canvas.height / Math.max(1, rect.height);
-      const centerX = Math.round((clientX - rect.left) * scaleX);
-      const centerY = Math.round((clientY - rect.top) * scaleY);
-      const radiusX = Math.max(1, Math.ceil(tolerancePx * scaleX));
-      const radiusY = Math.max(1, Math.ceil(tolerancePx * scaleY));
-      const left = Math.max(0, centerX - radiusX);
-      const top = Math.max(0, centerY - radiusY);
-      const right = Math.min(canvas.width - 1, centerX + radiusX);
-      const bottom = Math.min(canvas.height - 1, centerY + radiusY);
-      if (right < left || bottom < top) continue;
-
-      try {
-        const context = canvas.getContext('2d', { willReadFrequently: true });
-        if (!context) continue;
-        const pixels = context.getImageData(
-          left,
-          top,
-          right - left + 1,
-          bottom - top + 1
-        ).data;
-        for (let offset = 3; offset < pixels.length; offset += 4) {
-          if (pixels[offset] > 3) return true;
-        }
-      } catch (_) {
-        // A tainted or unavailable tile is not an interactive contour.
-      }
-    }
-    return false;
-  }
-
-  async function inspectBathymetryAt(latlng, containerPoint, requestSeq) {
+    const requestSeq = ++depthInspectionRequestSeq;
+    closeManagedPopup();
     try {
       const depth = await bathymetryDepthAt(latlng);
       if (
         depth == null ||
-        requestSeq !== bathymetrySampleRequestSeq ||
-        !visibleDepthContourLineAt(
-          containerPoint,
-          isTouchMapPointerType(lastMapPointerType) ? 12 : 5
-        )
-      ) return;
+        requestSeq !== depthInspectionRequestSeq
+      ) return false;
+      recordInteractionTestAction();
 
       const displayedDepth = depth.toLocaleString(HTML_LANG_CODES[currentLang] || 'en');
       const html =
@@ -8981,14 +9712,19 @@
             ) + '</div>' +
         '</div>';
       if (!bathymetryInspectPopup) {
-        bathymetryInspectPopup = L.popup({ closeOnClick: false, autoPan: false });
+        bathymetryInspectPopup = createMapInfoPopup({
+          autoPan: true,
+          closeOnClick: false
+        });
         bathymetryInspectPopup._diveAtlasOwnerKey = 'bathymetry:depth-inspection';
-        bathymetryInspectPopup._diveAtlasLayerKey = 'contours';
+        bathymetryInspectPopup._diveAtlasLayerKey = 'depthInspection';
       }
       bathymetryInspectPopup.setContent(html).setLatLng(latlng);
       openManagedPopup('bathymetry:depth-inspection', bathymetryInspectPopup, latlng);
+      return true;
     } catch (error) {
       console.warn('Unable to inspect the local bathymetry sample:', error);
+      return false;
     }
   }
 
@@ -9361,10 +10097,10 @@
     if (!layerVisibility.dive) setLayerVisibility('dive', true, { persist: false });
 
     if (!Number.isFinite(sharedMapState.center?.lat) || !Number.isFinite(sharedMapState.center?.lng)) {
-      map.setView([
+      runInternalMapMovement(() => map.setView([
         Number.isFinite(sharedMapState.center?.lat) ? sharedMapState.center.lat : lat,
         Number.isFinite(sharedMapState.center?.lng) ? sharedMapState.center.lng : lng
-      ], map.getZoom(), { animate: false });
+      ], map.getZoom(), { animate: false }));
     }
 
     refreshDiveLayer();
@@ -9417,14 +10153,14 @@
 
     map.once('moveend', openMarker);
 
-    map.flyTo(
+    runInternalMapMovement(() => map.flyTo(
       [lat, lng],
       targetZoom,
       {
         animate: true,
         duration: .65
       }
-    );
+    ));
 
     setTimeout(openMarker, 950);
   }
@@ -9745,6 +10481,11 @@
   }
 
   function attachMarkerInteraction(marker) {
+    marker._diveAtlasInteraction = {
+      kind: MAP_MARKER_KIND.individual,
+      featureId: marker._diveAtlasFeatureId ??
+        marker.getPopup?.()?._diveAtlasSiteId ?? null
+    };
     const managedPopup = prepareManagedPopup(marker);
     let popupActive = false;
     let suspendedTooltip = null;
@@ -9757,10 +10498,16 @@
     };
 
     const setPointerCursor = active => {
+      const action = resolveMapMarkerAction(marker._diveAtlasInteraction?.kind);
+      const cursor = action === 'zoom'
+        ? 'zoom-in'
+        : active || action === 'details'
+          ? 'pointer'
+          : '';
       const el = marker.getElement?.();
       if (el) {
         el.style.pointerEvents = 'auto';
-        el.style.cursor = active ? 'pointer' : '';
+        el.style.cursor = cursor;
       }
 
       // Canvas paths do not have their own DOM element. Leaflet still performs
@@ -9768,7 +10515,7 @@
       const rendererEl = marker._renderer?._container;
       if (rendererEl && rendererEl.tagName === 'CANVAS') {
         rendererEl.style.pointerEvents = 'auto';
-        rendererEl.style.cursor = active ? 'pointer' : 'default';
+        rendererEl.style.cursor = cursor || 'default';
       }
     };
 
@@ -9801,7 +10548,12 @@
 
       suspendedTooltip = {
         content: tooltip.getContent(),
-        options: { ...tooltip.options }
+        options: {
+          ...tooltip.options,
+          offset: tooltip._diveAtlasBaseOffset || tooltip.options.offset,
+          className: tooltip._diveAtlasBaseClassName ?? tooltip.options.className,
+          maxWidth: tooltip._diveAtlasRequestedMaxWidth || tooltip.options.maxWidth
+        }
       };
       marker.unbindTooltip();
     };
@@ -9814,10 +10566,7 @@
         return;
       }
 
-      marker.bindTooltip(
-        suspendedTooltip.content,
-        suspendedTooltip.options
-      );
+      bindMapHoverTooltip(marker, suspendedTooltip.content, suspendedTooltip.options);
       suspendedTooltip = null;
     };
 
@@ -9852,11 +10601,9 @@
           if (Math.hypot(domEvent.clientX - start.x, domEvent.clientY - start.y) > 10) return;
 
           L.DomEvent.stop(domEvent);
-          const popup = managedPopup || marker.getPopup?.();
-          if (!popup) return;
           marker._diveAtlasPointerTapAt = performance.now();
           const mapRect = map.getContainer().getBoundingClientRect();
-          queueMapInteraction({
+          activateMapMarker(marker, {
             latlng: marker.getLatLng?.() || null,
             containerPoint: L.point(
               domEvent.clientX - mapRect.left,
@@ -9864,12 +10611,12 @@
             ),
             pointerType: domEvent.pointerType,
             originalEvent: domEvent
-          }, marker, suspendTooltip);
+          }, suspendTooltip);
         }, { passive: false });
       }
     });
 
-    marker.on('mouseover', () => {
+    marker.on('mouseover', event => {
       setPointerCursor(true);
       setHoverStyle(true);
 
@@ -9877,7 +10624,7 @@
         marker.closeTooltip();
         return;
       }
-      marker.openTooltip();
+      openMapHoverTooltip(marker, event?.latlng);
     });
 
     marker.on('mouseout', () => {
@@ -9898,12 +10645,12 @@
       }
 
       const popup = managedPopup || marker.getPopup?.();
-      if (!popup) return;
+      if (resolveMapMarkerAction(marker._diveAtlasInteraction?.kind) === 'details' && !popup) return;
       if (
         Number.isFinite(marker._diveAtlasPointerTapAt) &&
         performance.now() - marker._diveAtlasPointerTapAt < 650
       ) return;
-      queueMapInteraction(event, marker, suspendTooltip);
+      activateMapMarker(marker, event, suspendTooltip);
     });
 
     marker.on('dblclick', cancelPendingMapInteraction);
@@ -10061,8 +10808,102 @@
     });
   }
 
+  function zoomIntoAggregate(cluster, config) {
+    if (!cluster || !config) return false;
+
+    const currentZoom = map.getZoom();
+    const maxTargetZoom = Math.min(
+      map.getMaxZoom(),
+      config.expandZoom,
+      currentZoom + 3
+    );
+    if (maxTargetZoom <= currentZoom) return false;
+
+    let bounds = null;
+    if (
+      Array.isArray(cluster.bounds) &&
+      cluster.bounds.length >= 4 &&
+      cluster.bounds.every(Number.isFinite)
+    ) {
+      bounds = L.latLngBounds(
+        [cluster.bounds[0], cluster.bounds[1]],
+        [cluster.bounds[2], cluster.bounds[3]]
+      );
+    }
+
+    if (!bounds?.isValid()) {
+      const latLngs = (cluster.members || [])
+        .filter(member => Number.isFinite(member.lat) && Number.isFinite(member.lng))
+        .map(member => L.latLng(member.lat, member.lng));
+      bounds = L.latLngBounds(latLngs);
+    }
+
+    if (!bounds?.isValid()) {
+      if (!Number.isFinite(cluster.lat) || !Number.isFinite(cluster.lng)) return false;
+      runInternalMapMovement(() => map.flyTo(
+        [cluster.lat, cluster.lng],
+        Math.min(maxTargetZoom, currentZoom + 2),
+        { animate: true, duration: .45 }
+      ));
+      return true;
+    }
+
+    const sw = bounds.getSouthWest();
+    const ne = bounds.getNorthEast();
+    const effectivelySamePoint =
+      Math.abs(sw.lat - ne.lat) < 1e-9 &&
+      Math.abs(sw.lng - ne.lng) < 1e-9;
+
+    if (effectivelySamePoint) {
+      runInternalMapMovement(() => map.flyTo(
+        [cluster.lat, cluster.lng],
+        Math.min(maxTargetZoom, currentZoom + 2),
+        { animate: true, duration: .45 }
+      ));
+      return true;
+    }
+
+    // Member bounds usually expand a cluster several levels at once; cap the
+    // result so the next render can split it without jumping to max zoom.
+    const fitZoom = map.getBoundsZoom(bounds, false, L.point(92, 92));
+    const targetZoom = Math.min(
+      maxTargetZoom,
+      Math.max(currentZoom + 1, fitZoom)
+    );
+    if (targetZoom <= currentZoom) return false;
+
+    runInternalMapMovement(() => map.flyTo(bounds.getCenter(), targetZoom, {
+      animate: true,
+      duration: .45
+    }));
+    return true;
+  }
+
+  function activateMapMarker(marker, event, beforeOpen = null) {
+    if (event?.originalEvent) L.DomEvent.stop(event.originalEvent);
+
+    const action = resolveMapMarkerAction(marker?._diveAtlasInteraction?.kind);
+    if (action === 'zoom') {
+      recordInteractionTestAction();
+      cancelPendingMapInteraction();
+      marker.closeTooltip?.();
+      closeManagedPopup();
+      const aggregate = marker._diveAtlasInteraction.aggregate;
+      return zoomIntoAggregate(aggregate.cluster, aggregate.config);
+    }
+
+    if (action !== 'details') return false;
+    const popup = marker.getPopup?.();
+    if (!popup) return false;
+    queueMapInteraction(event, marker, beforeOpen);
+    return true;
+  }
+
   function makeCountClusterMarker(cluster, type) {
     const config = POINT_CLUSTER_CONFIG[type];
+    const ariaLabel = tf('aggregateMarkerZoomLabel', {
+      label: pointClusterLabel(type, cluster.count)
+    });
     const digits = String(cluster.count).length;
     const size = cluster.count >= 100 ? 36 : cluster.count >= 10 ? 32 : 28;
     const baseHitSize = Math.max(31, Math.min(48, 28 + digits * 4));
@@ -10087,13 +10928,20 @@
         icon,
         interactive: true,
         keyboard: true,
+        title: ariaLabel,
         riseOnHover: true,
         bubblingMouseEvents: false
       }
     );
     marker._diveAtlasCollisionRadius = size / 2;
+    marker._diveAtlasInteraction = {
+      kind: MAP_MARKER_KIND.aggregate,
+      count: cluster.count,
+      aggregate: { cluster, config }
+    };
 
-    marker.bindTooltip(
+    bindMapHoverTooltip(
+      marker,
       `<b>${escapeHtml(pointClusterLabel(type, cluster.count))}</b>`,
       {
         direction: 'top',
@@ -10102,128 +10950,21 @@
       }
     );
 
-    if (type === 'species') {
-      const species = new Set();
-      let records = 0;
-      cluster.members.forEach(member => {
-        records += Math.max(1, Number(member.records) || 1);
-        if (member.species) species.add(member.species);
-        if (Array.isArray(member.speciesNames)) {
-          member.speciesNames.forEach(name => {
-            if (name) species.add(name);
-          });
-        }
-      });
-      const speciesNames = [...species].sort((a, b) =>
-        String(a).localeCompare(String(b))
-      );
-      bindMapInfoPopup(
-        marker,
-        speciesMarkerPopupHtml({
-          records,
-          speciesCount: speciesNames.length,
-          speciesNames
-        }),
-        {
-          maxWidth: 280,
-          minWidth: 210,
-          closeButton: true,
-          autoPan: true,
-          closeOnClick: false
-        }
-      );
-      prepareManagedPopup(
-        marker,
-        managedPopupOwner(marker, 'species-cluster')
-      );
-    }
-
     marker.on('add', () => {
       const el = marker.getElement?.();
       if (el) {
         el.style.pointerEvents = 'auto';
-        el.style.cursor = type === 'species' ? 'pointer' : 'zoom-in';
+        el.style.cursor = 'zoom-in';
+        el.setAttribute('aria-label', ariaLabel);
+        el.setAttribute('title', ariaLabel);
       }
     });
-    marker.on('mouseover', () => marker.openTooltip());
+    marker.on('mouseover', event => openMapHoverTooltip(marker, event?.latlng));
     marker.on('mouseout', () => marker.closeTooltip());
 
     marker.on('click', event => {
-      if (event?.originalEvent) {
-        L.DomEvent.stop(event.originalEvent);
-      }
-
       marker.closeTooltip();
-
-      if (type === 'species') {
-        queueMapInteraction(event, marker, () => marker.closeTooltip());
-        return;
-      }
-
-      const currentZoom = map.getZoom();
-      const maxTargetZoom = Math.min(
-        map.getMaxZoom(),
-        config.expandZoom,
-        currentZoom + 3
-      );
-
-      let bounds = null;
-
-      if (
-        Array.isArray(cluster.bounds) &&
-        cluster.bounds.length >= 4 &&
-        cluster.bounds.every(Number.isFinite)
-      ) {
-        bounds = L.latLngBounds(
-          [cluster.bounds[0], cluster.bounds[1]],
-          [cluster.bounds[2], cluster.bounds[3]]
-        );
-      }
-
-      if (!bounds?.isValid()) {
-        const latLngs = cluster.members
-          .filter(member => Number.isFinite(member.lat) && Number.isFinite(member.lng))
-          .map(member => L.latLng(member.lat, member.lng));
-        bounds = L.latLngBounds(latLngs);
-      }
-
-      if (!bounds.isValid()) {
-        map.flyTo(
-          [cluster.lat, cluster.lng],
-          Math.min(maxTargetZoom, Math.max(currentZoom + 1, currentZoom + 2)),
-          { animate: true, duration: .45 }
-        );
-        return;
-      }
-
-      const sw = bounds.getSouthWest();
-      const ne = bounds.getNorthEast();
-      const effectivelySamePoint =
-        Math.abs(sw.lat - ne.lat) < 1e-9 &&
-        Math.abs(sw.lng - ne.lng) < 1e-9;
-
-      if (effectivelySamePoint) {
-        map.flyTo(
-          [cluster.lat, cluster.lng],
-          Math.min(maxTargetZoom, Math.max(currentZoom + 1, currentZoom + 2)),
-          { animate: true, duration: .45 }
-        );
-        return;
-      }
-
-      // Use the same cluster expansion behavior for coral, fish and dive-site
-      // clusters. Always increase by at least one zoom level so the click is
-      // visibly effective, while keeping the cluster members centered.
-      const fitZoom = map.getBoundsZoom(bounds, false, L.point(92, 92));
-      const targetZoom = Math.min(
-        maxTargetZoom,
-        Math.max(currentZoom + 1, fitZoom)
-      );
-
-      map.flyTo(bounds.getCenter(), targetZoom, {
-        animate: true,
-        duration: .45
-      });
+      activateMapMarker(marker, event);
     });
 
     marker.on('dblclick', cancelPendingMapInteraction);
@@ -10439,10 +11180,12 @@
         bubblingMouseEvents: false
       }
     );
+    marker._diveAtlasFeatureId = String(cacheKey);
 
     const unit = t('fishDensityUnit');
 
-    marker.bindTooltip(
+    bindMapHoverTooltip(
+      marker,
       `<b>${escapeHtml(row.site || t('fishLegend'))}</b><br>` +
       `${rounded} ${unit}`,
       {
@@ -11850,8 +12593,10 @@
         bubblingMouseEvents: false
       }
     );
+    marker._diveAtlasFeatureId = String(cacheKey);
 
-    marker.bindTooltip(
+    bindMapHoverTooltip(
+      marker,
       speciesMarkerTooltipHtml(cell),
       {
         direction: 'top',
@@ -12285,7 +13030,8 @@
       ? `${recordsText} · ${speciesText}`
       : recordsText;
 
-    rectangle.bindTooltip(
+    bindMapHoverTooltip(
+      rectangle,
       `<b>${hardCoralLabel}</b><br>${summaryText}`,
       {
         sticky: true,
@@ -12351,6 +13097,9 @@
   function closeBatchedSpeciesGridTooltip() {
     if (batchedSpeciesGridTooltip && map.hasLayer(batchedSpeciesGridTooltip)) {
       map.removeLayer(batchedSpeciesGridTooltip);
+    }
+    if (batchedSpeciesGridTooltip) {
+      batchedSpeciesGridTooltip._diveAtlasHoverCellKey = null;
     }
   }
 
@@ -12445,9 +13194,33 @@
         });
       }
 
+      const hoverCellKey = String(cell.key || '');
+      const isNewHoverTarget =
+        batchedSpeciesGridTooltip._diveAtlasHoverCellKey !== hoverCellKey;
+      const isOpeningHoverTarget =
+        isNewHoverTarget || !map.hasLayer(batchedSpeciesGridTooltip);
+      if (isNewHoverTarget && map.hasLayer(batchedSpeciesGridTooltip)) {
+        // Remove and re-add synchronously when the hovered cell changes. The
+        // browser paints only after the final direction and anchor are set.
+        map.removeLayer(batchedSpeciesGridTooltip);
+      }
+
       batchedSpeciesGridTooltip
-        .setLatLng(latlng)
-        .setContent(tooltipHtml);
+        .setContent(tooltipHtml)
+        .setLatLng(latlng);
+
+      if (isOpeningHoverTarget) {
+        beginMapHoverTooltipPlacement(batchedSpeciesGridTooltip);
+        getMapHoverTooltipPlacement(batchedSpeciesGridTooltip, latlng, {
+          positioning: HOVER_POPUP_POSITIONING
+        });
+        batchedSpeciesGridTooltip._diveAtlasHoverCellKey = hoverCellKey;
+      } else {
+        getMapHoverTooltipPlacement(batchedSpeciesGridTooltip, latlng, {
+          preserveVerticalPlacement: true,
+          positioning: HOVER_POPUP_POSITIONING
+        });
+      }
 
       if (!map.hasLayer(batchedSpeciesGridTooltip)) {
         batchedSpeciesGridTooltip.addTo(map);
@@ -12479,6 +13252,7 @@
     }).setContent(popupHtml);
     popup._diveAtlasLayerKey = 'species';
     popup._diveAtlasSpeciesRenderMode = 'grid';
+    popup._diveAtlasCoralCellKey = String(cell.key || '');
     popup.on('remove', () => {
       if (batchedSpeciesGridSelectedKey === cell.key) {
         batchedSpeciesGridSelectedKey = null;
@@ -12766,14 +13540,23 @@
 
     popups.forEach(popup => {
       if (!popup?._diveAtlasSafeArea) return;
-      popup.options.autoPanPaddingTopLeft = safeOptions.autoPanPaddingTopLeft;
-      popup.options.autoPanPaddingBottomRight = safeOptions.autoPanPaddingBottomRight;
+      popup.options.autoPan = false;
       popup.options.maxHeight = safeOptions.maxHeight;
+      popup.options.maxWidth = Math.min(
+        popup._diveAtlasRequestedMaxWidth || 300,
+        safeOptions.maxWidth
+      );
+      popup.options.minWidth = Math.min(
+        popup._diveAtlasRequestedMinWidth || 50,
+        safeOptions.maxWidth
+      );
     });
 
     if (activeClickPopup?._diveAtlasSafeArea && activeClickPopup.isOpen()) {
+      activeClickPopup.getElement()?.classList.add('diveatlas-popup-pending');
       activeClickPopup.update();
-      scheduleMapPopupSafeAreaCheck(activeClickPopup, 120);
+      correctMapPopupSafeArea(activeClickPopup, true, { allowAutoPan: false });
+      scheduleActiveMapPopupValidation(0);
     }
   }
 
@@ -12786,54 +13569,422 @@
     });
   }
 
-  function correctMapPopupSafeArea(popup) {
-    const popupElement = popup.getElement();
-    if (!popup._diveAtlasSafeArea || !popup.isOpen() || !popupElement) return;
+  function getMapPopupVerticalBlockers(popupRect, safeTop, safeBottom) {
+    const visibleOverlays = [
+      ...Array.from(mapContainer.querySelectorAll('.leaflet-control')),
+      document.getElementById('bioLegend'),
+      document.querySelector('.search-float')
+    ];
+    const blockers = [];
 
-    const mapRect = mapContainer.getBoundingClientRect();
-    const headerRect = els.topMenuBar?.getBoundingClientRect();
-    const popupRect = popupElement.getBoundingClientRect();
-    const safeTop = Math.max(
-      mapRect.top,
-      headerRect && headerRect.bottom > mapRect.top
-        ? headerRect.bottom + MAP_POPUP_SAFE_MARGIN
-        : mapRect.top + MAP_POPUP_SAFE_MARGIN
-    );
-    const safeLeft = mapRect.left + MAP_POPUP_SAFE_MARGIN;
-    const safeRight = mapRect.right - MAP_POPUP_SAFE_MARGIN;
-    const safeBottom = mapRect.bottom - MAP_POPUP_SAFE_MARGIN;
+    visibleOverlays.forEach(overlay => {
+      if (!overlay || getComputedStyle(overlay).display === 'none') return;
+      const rect = overlay.getBoundingClientRect();
+      if (
+        rect.width <= 0 ||
+        rect.height <= 0 ||
+        rect.right <= popupRect.left ||
+        rect.left >= popupRect.right ||
+        rect.bottom <= safeTop ||
+        rect.top >= safeBottom
+      ) return;
+      blockers.push(rect);
+    });
 
-    // Leaflet has already performed its normal auto-pan; correct only any
-    // remaining screen-space overflow caused by the overlaid page header.
-    const contentShiftX = popupRect.left < safeLeft
-      ? safeLeft - popupRect.left
-      : popupRect.right > safeRight
-        ? safeRight - popupRect.right
-        : 0;
-    const contentShiftY = popupRect.top < safeTop
-      ? safeTop - popupRect.top
-      : popupRect.bottom > safeBottom
-        ? safeBottom - popupRect.bottom
-        : 0;
-
-    if (Math.abs(contentShiftX) < 1 && Math.abs(contentShiftY) < 1) return;
-
-    // Leaflet's panBy offset moves the map contents in the opposite direction.
-    suppressNextPopupAutoPanRefresh = true;
-    map.panBy(L.point(-contentShiftX, -contentShiftY), { animate: false });
+    return blockers;
   }
 
-  function scheduleMapPopupSafeAreaCheck(popup, delay = 300) {
+  function popupVerticalShiftIntervals(visualBounds, safeTop, safeBottom, blockers) {
+    let intervals = [{
+      min: safeTop - visualBounds.top,
+      max: safeBottom - visualBounds.bottom
+    }];
+    if (intervals[0].min > intervals[0].max) return [];
+
+    blockers.forEach(blocker => {
+      const nextIntervals = [];
+      const maxShiftAbove = blocker.top - MAP_POPUP_SAFE_MARGIN - visualBounds.bottom;
+      const minShiftBelow = blocker.bottom + MAP_POPUP_SAFE_MARGIN - visualBounds.top;
+
+      intervals.forEach(interval => {
+        const aboveMax = Math.min(interval.max, maxShiftAbove);
+        if (interval.min <= aboveMax) {
+          nextIntervals.push({ min: interval.min, max: aboveMax });
+        }
+
+        const belowMin = Math.max(interval.min, minShiftBelow);
+        if (belowMin <= interval.max) {
+          nextIntervals.push({ min: belowMin, max: interval.max });
+        }
+      });
+      intervals = nextIntervals;
+    });
+
+    return intervals;
+  }
+
+  function nearestPopupVerticalShift(intervals) {
+    let nearest = null;
+    intervals.forEach(interval => {
+      const shift = interval.min > 0
+        ? interval.min
+        : interval.max < 0
+          ? interval.max
+          : 0;
+      if (nearest == null || Math.abs(shift) < Math.abs(nearest)) nearest = shift;
+    });
+    return nearest;
+  }
+
+  function bestPopupVerticalAdjustment(visualBounds, safeTop, safeBottom, blockers) {
+    const shifts = [
+      0,
+      safeTop - visualBounds.top,
+      safeBottom - visualBounds.bottom
+    ];
+    blockers.forEach(blocker => {
+      shifts.push(
+        blocker.top - MAP_POPUP_SAFE_MARGIN - visualBounds.bottom,
+        blocker.bottom + MAP_POPUP_SAFE_MARGIN - visualBounds.top
+      );
+    });
+
+    let best = null;
+    shifts.forEach(shift => {
+      const top = visualBounds.top + shift;
+      const bottom = visualBounds.bottom + shift;
+      const viewportOverflow =
+        Math.max(0, safeTop - top) + Math.max(0, bottom - safeBottom);
+      const overlayOverlap = blockers.reduce((total, blocker) =>
+        total + Math.max(
+          0,
+          Math.min(bottom, blocker.bottom + MAP_POPUP_SAFE_MARGIN) -
+            Math.max(top, blocker.top - MAP_POPUP_SAFE_MARGIN)
+        ), 0);
+      // Keeping the full popup inside the map takes priority; when the UI and
+      // popup cannot both fit, favor the placement with less covered content.
+      const cost = viewportOverflow * 4 + overlayOverlap;
+      if (
+        !best ||
+        cost < best.cost ||
+        (cost === best.cost && Math.abs(shift) < Math.abs(best.shift))
+      ) best = { shift, cost };
+    });
+    return best;
+  }
+
+  function getMapPopupVisualBounds(popup, popupElement) {
+    const rect = popupElement.getBoundingClientRect();
+    if (popup._diveAtlasPlacementBelow) {
+      return {
+        left: rect.left,
+        right: rect.right,
+        top: rect.top - MAP_POPUP_BELOW_ARROW_HEIGHT,
+        bottom: rect.bottom
+      };
+    }
+
+    const tipRect = popupElement
+      .querySelector('.leaflet-popup-tip-container')
+      ?.getBoundingClientRect();
+    return {
+      left: rect.left,
+      right: rect.right,
+      top: Math.min(rect.top, tipRect?.top ?? rect.top),
+      bottom: Math.max(rect.bottom, tipRect?.bottom ?? rect.bottom)
+    };
+  }
+
+  function setMapPopupPlacement(popup, below, anchorY) {
+    const popupElement = popup.getElement();
+    const baseOffset = popup._diveAtlasBaseOffset || L.point(popup.options.offset || [0, 7]);
+    popupElement.classList.toggle('diveatlas-popup-below', below);
+    popup._diveAtlasPlacementBelow = below;
+    popup._diveAtlasArrowSide = INTERACTION_CONTRACT.popupArrowSide(
+      below ? 'below' : 'above'
+    );
+    popupElement.dataset.arrowSide = popup._diveAtlasArrowSide;
+
+    if (below) {
+      // Offset by the measured screen-space delta. This preserves any marker
+      // anchor/custom offset and keeps the CSS arrow directly under the point.
+      popup.options.offset = baseOffset;
+      popup.update();
+      const currentTop = popupElement.getBoundingClientRect().top;
+      const desiredTop = anchorY + MAP_POPUP_BELOW_ARROW_HEIGHT;
+      popup.options.offset = L.point(baseOffset.x, baseOffset.y + desiredTop - currentTop);
+    } else {
+      popup.options.offset = baseOffset;
+    }
+    popup.update();
+  }
+
+  function setMapPopupHorizontalPlacement(popup, anchorX, safeLeft, safeRight) {
+    const popupElement = popup.getElement();
+    if (!popupElement) return 0;
+    // Leaflet owns transform for geographic positioning; the independent CSS
+    // translate moves only the popup body and survives Leaflet updates.
+    popupElement.style.translate = 'none';
+    const rect = popupElement.getBoundingClientRect();
+    const shiftX = rect.left < safeLeft
+      ? safeLeft - rect.left
+      : rect.right > safeRight
+        ? safeRight - rect.right
+        : 0;
+    popupElement.style.translate = Math.abs(shiftX) < 1 ? 'none' : shiftX + 'px 0px';
+
+    // Counter-shift the arrow within the body so its tip still targets the
+    // unchanged geographic anchor. Clamp only the arrow itself at narrow edges.
+    const shiftedLeft = rect.left + shiftX;
+    // Keep the visible arrow inside the body: the below arrow is 20px wide,
+    // while Leaflet's rotated square tip spans about 24px horizontally.
+    const halfArrow = popup._diveAtlasPlacementBelow ? 10 : 12;
+    const arrowCenter = Math.max(
+      halfArrow,
+      Math.min(rect.width - halfArrow, anchorX - shiftedLeft)
+    );
+    const arrowOffset = arrowCenter - rect.width / 2;
+    popupElement.style.setProperty('--diveatlas-popup-arrow-offset-x', arrowOffset + 'px');
+    const tip = popupElement.querySelector('.leaflet-popup-tip-container');
+    if (tip) tip.style.left = 'calc(50% + ' + arrowOffset + 'px)';
+    popup._diveAtlasHorizontalShiftX = shiftX;
+    return shiftX;
+  }
+
+  function resetMapPopupPlacement(popup) {
     if (!popup?._diveAtlasSafeArea) return;
-    window.clearTimeout(popup._diveSafeAreaCheckTimer);
-    popup._diveSafeAreaCheckTimer = window.setTimeout(() => {
-      popup._diveSafeAreaCheckTimer = 0;
-      correctMapPopupSafeArea(popup);
+    popup._diveAtlasPlacementBelow = false;
+    popup._diveAtlasArrowSide = null;
+    const popupElement = popup.getElement();
+    popupElement?.classList.remove('diveatlas-popup-below');
+    if (popupElement) {
+      delete popupElement.dataset.arrowSide;
+      popupElement.style.translate = '';
+      popupElement.style.removeProperty('--diveatlas-popup-arrow-offset-x');
+      const tip = popupElement.querySelector('.leaflet-popup-tip-container');
+      if (tip) tip.style.left = '';
+    }
+    popup._diveAtlasHorizontalShiftX = 0;
+    if (popup._diveAtlasBaseOffset) popup.options.offset = popup._diveAtlasBaseOffset;
+  }
+
+  function correctMapPopupSafeArea(
+    popup,
+    revealAfterPlacement = false,
+    { allowAutoPan = true } = {}
+  ) {
+    const popupElement = popup.getElement();
+    if (
+      !popup._diveAtlasSafeArea ||
+      !popup.isOpen() ||
+      !popupElement ||
+      popup._diveAtlasPlacementLifecycle === 'closing'
+    ) return;
+    if (popup._diveAtlasPlacementInProgress) return;
+    popup._diveAtlasPlacementInProgress = true;
+
+    try {
+      const { mapRect, safeTop, safeBottom } = getMapPopupSafeViewport();
+      const anchor = map.latLngToContainerPoint(popup.getLatLng());
+      const sourceAnchor = popup._getAnchor?.() || L.point(0, 0);
+      const anchorY = mapRect.top + anchor.y + sourceAnchor.y;
+      // Normalize first so reopening or resizing a flipped popup always measures
+      // the standard above-anchor geometry before comparing both orientations.
+      setMapPopupPlacement(popup, false, anchorY);
+      const popupRect = popupElement.getBoundingClientRect();
+      const aboveVisual = getMapPopupVisualBounds(popup, popupElement);
+      const belowVisual = {
+        left: popupRect.left,
+        right: popupRect.right,
+        top: anchorY,
+        bottom: anchorY + MAP_POPUP_BELOW_ARROW_HEIGHT + popupRect.height
+      };
+      const positioning = popupPositioning({
+        trigger: 'click',
+        allowAutoPan
+      });
+      const placement = selectMapPopupVerticalPlacement(
+        popupRect,
+        aboveVisual,
+        belowVisual,
+        safeTop,
+        safeBottom,
+        positioning
+      );
+
+      setMapPopupPlacement(popup, placement.below, anchorY);
+
+      if (positioning.allowAutoPan && Math.abs(placement.shift) >= 1) {
+        // Only the existing vertical fallback may move the map. Keep the popup
+        // hidden until it settles, and suppress dismissal as internal movement.
+        suppressNextPopupAutoPanRefresh = true;
+        runInternalMapMovement(() =>
+          map.panBy(L.point(0, -placement.shift), { animate: false })
+        );
+        popup.update();
+      }
+
+      const finalSafeViewport = getMapPopupSafeViewport();
+      const finalAnchor = map.latLngToContainerPoint(popup.getLatLng());
+      const finalSourceAnchor = popup._getAnchor?.() || L.point(0, 0);
+      const anchorX = finalSafeViewport.mapRect.left + finalAnchor.x + finalSourceAnchor.x;
+      setMapPopupHorizontalPlacement(
+        popup,
+        anchorX,
+        finalSafeViewport.safeLeft,
+        finalSafeViewport.safeRight
+      );
+
+      if (revealAfterPlacement) {
+        popupElement.classList.remove('diveatlas-popup-pending');
+      }
+      popup._diveAtlasPlacementLifecycle = 'open';
+    } finally {
+      popup._diveAtlasPlacementInProgress = false;
+    }
+  }
+
+  function normalizedPopupFeatureId(value) {
+    return String(value ?? '').replace(/@world:-?\d+$/, '');
+  }
+
+  function popupAnchorIsInSafeViewport(popup) {
+    const anchor = popup?._diveAtlasAnchorLatLng || popup?.getLatLng?.();
+    if (!anchor) return false;
+    const { mapRect, safeTop, safeBottom, safeLeft, safeRight } =
+      getMapPopupSafeViewport();
+    const point = map.latLngToContainerPoint(anchor);
+    const x = mapRect.left + point.x;
+    const y = mapRect.top + point.y;
+    return x >= safeLeft && x <= safeRight && y >= safeTop && y <= safeBottom;
+  }
+
+  function popupOwnerRepresentationIsValid(popup) {
+    const layerKey = popup?._diveAtlasLayerKey;
+    if (layerKey === 'depthInspection') return true;
+    if (!layerKey || !(layerKey in layerVisibility)) return false;
+    if (!layerVisibility[layerKey]) return false;
+
+    if (layerKey === 'reef') {
+      if (
+        !localReefReady ||
+        !map.hasLayer(coralTileLayer) ||
+        reefVectorSwapPending ||
+        map.getZoom() < REEF_VECTOR_MIN_ZOOM
+      ) return false;
+      const anchor = popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
+      if (!anchor) return false;
+      const feature = localReefFeatureAtLatLng(Number(anchor.lat), Number(anchor.lng));
+      if (!feature) return false;
+      const featureId = String(
+        feature.id ?? feature.properties?.OBJECTID ??
+        feature.properties?.FID ?? L.stamp(feature)
+      );
+      return !popup._diveAtlasReefFeatureId ||
+        featureId === popup._diveAtlasReefFeatureId;
+    }
+
+    if (layerKey === 'species') {
+      if (!speciesLayer || !map.hasLayer(speciesLayer)) return false;
+      const mode = speciesDisplayModeForZoom(map.getZoom());
+      if (mode !== popup._diveAtlasSpeciesRenderMode) return false;
+      if (mode === 'grid') {
+        if (speciesGridStepDegrees(map.getZoom()) !== popup._diveAtlasCoralGridStep) {
+          return false;
+        }
+        const anchor = popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
+        const cell = batchedSpeciesGridCellAtLatLng(anchor);
+        return Boolean(
+          cell && String(cell.key) === popup._diveAtlasCoralCellKey
+        );
+      }
+      const featureId = normalizedPopupFeatureId(popup._diveAtlasFeatureId);
+      return Boolean(featureId) && Array.from(speciesMarkerCache.values()).some(entry =>
+        normalizedPopupFeatureId(entry.marker?._diveAtlasFeatureId) === featureId
+      );
+    }
+
+    if (layerKey === 'fish' || layerKey === 'dive') {
+      const ownerLayer = layerKey === 'fish' ? fishDensityLayer : diveSiteLayer;
+      const cache = layerKey === 'fish' ? fishMarkerCache : diveSiteMarkerCache;
+      if (!ownerLayer || !map.hasLayer(ownerLayer)) return false;
+      if (pointDisplayModeForZoom(map.getZoom()) !== popup._diveAtlasPointRenderMode) {
+        return false;
+      }
+      if (layerKey === 'dive' && popup._diveAtlasSiteId) {
+        return Array.from(cache.values()).some(entry =>
+          entry.marker?.getPopup?.()?._diveAtlasSiteId === popup._diveAtlasSiteId
+        );
+      }
+      const featureId = normalizedPopupFeatureId(popup._diveAtlasFeatureId);
+      return Boolean(featureId) && Array.from(cache.values()).some(entry =>
+        normalizedPopupFeatureId(entry.marker?._diveAtlasFeatureId) === featureId
+      );
+    }
+
+    return false;
+  }
+
+  function scheduleActiveMapPopupValidation(delay = MAP_POPUP_REVALIDATION_DELAY_MS) {
+    const popup = activeClickPopup;
+    if (
+      !popup?._diveAtlasSafeArea ||
+      !popup.isOpen() ||
+      popup._diveAtlasPlacementLifecycle === 'closing' ||
+      popup._diveAtlasPlacementInProgress ||
+      popup._diveAtlasPlacementFrame
+    ) return;
+
+    const ownerRevision = popup._diveAtlasOwnerRevision;
+    const placementEpoch = popup._diveAtlasPlacementEpoch;
+    window.clearTimeout(activePopupValidationTimer);
+    activePopupValidationTimer = window.setTimeout(() => {
+      activePopupValidationTimer = 0;
+      if (
+        !INTERACTION_CONTRACT.isCurrentPopupOwner({
+          popupIsActive: popup === activeClickPopup,
+          ownerRevision: popup._diveAtlasOwnerRevision,
+          expectedRevision: ownerRevision
+        }) ||
+        popup._diveAtlasPlacementEpoch !== placementEpoch ||
+        popup._diveAtlasPlacementLifecycle === 'closing' ||
+        !popup.isOpen() ||
+        popup._diveAtlasPlacementInProgress
+      ) return;
+
+      if (INTERACTION_CONTRACT.shouldDismissPopupAfterMovement({
+        internalMovement: isInternalMapMovementInProgress(),
+        userMovementIntent: hasUserMapMovementIntent(),
+        anchorVisible: popupAnchorIsInSafeViewport(popup),
+        ownerValid: popupOwnerRepresentationIsValid(popup)
+      })) {
+        closeManagedPopup();
+        return;
+      }
+
+      popup._diveAtlasAnchorLatLng = L.latLng(
+        popup.getLatLng().lat,
+        popup.getLatLng().lng
+      );
+      popup.getElement()?.classList.add('diveatlas-popup-pending');
+      popup.update();
+      requestAnimationFrame(() => {
+        if (
+          popup !== activeClickPopup ||
+          ownerRevision !== popup._diveAtlasOwnerRevision ||
+          popup._diveAtlasPlacementEpoch !== placementEpoch ||
+          popup._diveAtlasPlacementLifecycle === 'closing' ||
+          !popup.isOpen()
+        ) return;
+        correctMapPopupSafeArea(popup, true, { allowAutoPan: false });
+      });
     }, delay);
   }
 
   window.addEventListener('resize', scheduleMapPopupSafeOptionsRefresh, { passive: true });
   window.addEventListener('orientationchange', scheduleMapPopupSafeOptionsRefresh, { passive: true });
+  window.visualViewport?.addEventListener('resize', scheduleMapPopupSafeOptionsRefresh, { passive: true });
+  window.visualViewport?.addEventListener('scroll', scheduleMapPopupSafeOptionsRefresh, { passive: true });
 
   function makeDiveMarker(site, cacheKey) {
     const [
@@ -12879,6 +14030,7 @@
         bubblingMouseEvents: false
       }
     );
+    marker._diveAtlasFeatureId = getDiveSiteStableId(site) || String(cacheKey);
 
     const rangeText = diveDepthRangeText(depthMin, depthMax);
     const depthText = Number.isFinite(depthMid)
@@ -12899,7 +14051,8 @@
       );
     }
 
-    marker.bindTooltip(
+    bindMapHoverTooltip(
+      marker,
       hoverLines.join('<br>'),
       {
         direction: 'top',
@@ -13449,8 +14602,11 @@
     // Opening a popup may pan the map just enough to keep the popup visible.
     // Suppress only that synthetic moveend so the marker owning the popup is
     // not rebuilt immediately after the click.
+    beginPopupAutoPan();
     suppressNextPopupAutoPanRefresh = true;
   });
+
+  map.on('moveend', finishPopupAutoPan);
 
   map.on('zoomstart dragstart', () => {
     // Any real user navigation must refresh the viewport even while a popup
@@ -13470,7 +14626,9 @@
 
     // Leaflet owns projection for the SVG markers and Canvas paths. Data-backed
     // viewport refresh stays separate so popup auto-pan can preserve its owner.
-    if (refreshViewportData) scheduleAllDataRefresh();
+    if (refreshViewportData && !DIVEATLAS_INTERACTION_TEST_MODE) {
+      scheduleAllDataRefresh();
+    }
 
     customLayerSyncFrame = requestAnimationFrame(() => {
       customLayerSyncFrame = 0;
@@ -13480,7 +14638,10 @@
       const zoom = map.getZoom();
       updateReefInteractionSnapshotTransform(center, zoom);
 
-      if (refreshReefViewport && layerVisibility.reef && localReefReady) {
+      if (
+        !DIVEATLAS_INTERACTION_TEST_MODE &&
+        refreshReefViewport && layerVisibility.reef && localReefReady
+      ) {
         reefInteractionGestureActive = false;
         scheduleReefVectorRefresh();
       }
@@ -13498,33 +14659,66 @@
 
     const popupAutoPan = suppressNextPopupAutoPanRefresh;
     suppressNextPopupAutoPanRefresh = false;
+    if (!popupAutoPan) scheduleActiveMapPopupValidation();
     syncCustomLayersToMap({ refreshViewportData: !popupAutoPan });
   });
 
   map.on('resize', () => {
+    scheduleActiveMapPopupValidation(0);
     syncCustomLayersToMap();
+  });
+
+  map.on('tooltipopen', event => {
+    const tooltip = event?.tooltip;
+    if (tooltip) activeMapHoverTooltips.add(tooltip);
+    if (tooltip?._diveAtlasManagedPlacement) {
+      tooltip._diveAtlasPlacementLifecycle = 'open';
+    }
+  });
+
+  map.on('tooltipclose', event => {
+    const tooltip = event?.tooltip;
+    if (tooltip) activeMapHoverTooltips.delete(tooltip);
+    if (tooltip?._diveAtlasManagedPlacement) {
+      finishMapOverlayPlacementAfterClose(tooltip, resetMapTooltipPlacement);
+    }
   });
 
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
+    beginMapPopupPlacement(popup);
+    if (popup !== activeClickPopup) {
+      activeClickPopupRevision += 1;
+      popup._diveAtlasOwnerRevision = activeClickPopupRevision;
+      const anchor = popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
+      if (anchor) popup._diveAtlasAnchorLatLng = L.latLng(anchor.lat, anchor.lng);
+    }
     activeClickPopup = popup;
     activeClickPopupOwner =
       popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
-    scheduleMapPopupSafeAreaCheck(popup);
+    if (popup._diveAtlasSafeArea) {
+      // Apply vertical flip, fallback pan and horizontal body shift before the
+      // browser can paint the popup at its default position.
+      popup.getElement()?.classList.add('diveatlas-popup-pending');
+      correctMapPopupSafeArea(popup, true);
+    }
   });
 
   const MAP_INTERACTION_SINGLE_CLICK_DELAY = 360;
+  const DEPTH_INSPECTION_LONG_PRESS_MS = 650;
+  const MAP_GESTURE_MOVE_THRESHOLD_PX = 8;
   let pendingMapInteraction = null;
   let pendingMapInteractionTimer = null;
   let suppressedMapInteractionUntil = 0;
+  let suppressedMapClickUntil = 0;
   let lastMapPointerType = 'mouse';
   let lastMapPointerAt = 0;
   const activeMapPointers = new Map();
   let activeMapPointerGesture = false;
 
   function isTouchMapPointerType(pointerType) {
-    return pointerType === 'touch';
+    return pointerType === 'touch' || pointerType === 'pen';
   }
 
   function cancelPendingMapInteraction() {
@@ -13535,37 +14729,100 @@
     pendingMapInteraction = null;
   }
 
+  function cancelPointerDepthLongPress(pointer) {
+    if (pointer?.depthLongPressTimer != null) {
+      clearTimeout(pointer.depthLongPressTimer);
+      pointer.depthLongPressTimer = null;
+    }
+  }
+
+  function cancelAllDepthLongPresses() {
+    activeMapPointers.forEach(cancelPointerDepthLongPress);
+  }
+
   function noteMapGesture() {
     suppressedMapInteractionUntil = Math.max(
       suppressedMapInteractionUntil,
       performance.now() + 520
     );
+    cancelAllDepthLongPresses();
     cancelPendingMapInteraction();
   }
 
   const mapInteractionContainer = map.getContainer();
   mapInteractionContainer.addEventListener('pointerdown', event => {
+    if (event.target?.closest?.('.leaflet-control-zoom')) {
+      markUserMapMovementIntent();
+      return;
+    }
     if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    userMapMovementIntentUntil = 0;
     lastMapPointerType = event.pointerType || 'mouse';
     lastMapPointerAt = performance.now();
     const pointer = {
       x: event.clientX,
       y: event.clientY,
       moved: false,
-      multi: activeMapPointers.size > 0
+      multi: activeMapPointers.size > 0,
+      depthLongPressTimer: null,
+      longPressHandled: false
     };
     if (pointer.multi) {
       activeMapPointerGesture = true;
       activeMapPointers.forEach(value => { value.multi = true; });
+      markUserMapMovementIntent();
+      noteMapGesture();
     }
     activeMapPointers.set(event.pointerId, pointer);
+    if (INTERACTION_CONTRACT.shouldStartDepthLongPress({
+      pointerType: event.pointerType,
+      multiplePointers: pointer.multi,
+      gestureActive: activeMapPointerGesture
+    })) {
+      pointer.depthLongPressTimer = window.setTimeout(() => {
+        pointer.depthLongPressTimer = null;
+        if (!INTERACTION_CONTRACT.shouldResolveDepthLongPress({
+          pointerActive: activeMapPointers.has(event.pointerId),
+          moved: pointer.moved,
+          multiplePointers: pointer.multi,
+          gestureActive: activeMapPointerGesture,
+          interactionSuppressed: performance.now() < suppressedMapInteractionUntil
+        })) return;
+
+        const mapRect = mapInteractionContainer.getBoundingClientRect();
+        const containerPoint = L.point(
+          event.clientX - mapRect.left,
+          event.clientY - mapRect.top
+        );
+        const latlng = map.containerPointToLatLng(containerPoint);
+        const result = resolveMapInteraction({
+          event: { originalEvent: event },
+          feature: null,
+          beforeOpen: null,
+          latlng,
+          containerPoint,
+          pointerType: event.pointerType
+        });
+
+        if (result === 'empty') {
+          pointer.longPressHandled = true;
+          void requestDepthInspection(latlng);
+        } else if (result === 'opened') {
+          pointer.longPressHandled = true;
+        }
+      }, DEPTH_INSPECTION_LONG_PRESS_MS);
+    }
   }, true);
 
   mapInteractionContainer.addEventListener('pointermove', event => {
     const pointer = activeMapPointers.get(event.pointerId);
     if (!pointer) return;
-    if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 8) {
+    if (
+      Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) >
+      MAP_GESTURE_MOVE_THRESHOLD_PX
+    ) {
       pointer.moved = true;
+      markUserMapMovementIntent();
       noteMapGesture();
     }
   }, true);
@@ -13573,16 +14830,66 @@
   const finishMapPointer = event => {
     const pointer = activeMapPointers.get(event.pointerId);
     if (!pointer) return;
+    cancelPointerDepthLongPress(pointer);
+    if (pointer.longPressHandled) {
+      // Leaflet/browser may synthesize a click after pointerup. Let the depth
+      // or feature popup opened by the hold remain the sole result.
+      suppressedMapClickUntil = performance.now() + 180;
+    }
     if (pointer.moved || pointer.multi || activeMapPointerGesture) noteMapGesture();
     activeMapPointers.delete(event.pointerId);
     if (activeMapPointers.size === 0) activeMapPointerGesture = false;
   };
   mapInteractionContainer.addEventListener('pointerup', finishMapPointer, true);
   mapInteractionContainer.addEventListener('pointercancel', finishMapPointer, true);
+  mapInteractionContainer.addEventListener('wheel', event => {
+    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    markUserMapMovementIntent();
+  }, { capture: true, passive: true });
+  mapInteractionContainer.addEventListener('keydown', event => {
+    if (
+      event.target?.closest?.('input, textarea, select, [contenteditable="true"]')
+    ) return;
+    if (
+      ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '-', '='].includes(event.key)
+    ) markUserMapMovementIntent();
+  }, true);
 
+  mapInteractionContainer.addEventListener('contextmenu', event => {
+    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+
+    // Mobile browsers may dispatch contextmenu while a touch is still held.
+    // Suppress that native callout inside the map without changing page-wide behavior.
+    if (
+      isTouchMapPointerType(lastMapPointerType) &&
+      performance.now() - lastMapPointerAt < 2000
+    ) {
+      event.preventDefault();
+      return;
+    }
+    if (event.button !== 2) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    if (
+      activeMapPointerGesture ||
+      performance.now() < suppressedMapInteractionUntil
+    ) return;
+
+    cancelPendingMapInteraction();
+    void requestDepthInspection(map.mouseEventToLatLng(event));
+  }, true);
+
+  map.on('dragstart', markUserMapMovementIntent);
   map.on('movestart zoomstart dragstart', () => {
+    if (
+      isInternalMapMovementInProgress() &&
+      !hasUserMapMovementIntent()
+    ) return;
+
     noteMapGesture();
-    bathymetrySampleRequestSeq += 1;
+    depthInspectionRequestSeq += 1;
+    closeActiveMapHoverTooltips();
   });
   let speciesInteractionModeBeforeZoom = null;
   map.on('zoomstart', () => {
@@ -13592,6 +14899,7 @@
   map.on('zoomend', () => {
     const nextMode = speciesDisplayModeForZoom(map.getZoom());
     if (
+      (!isInternalMapMovementInProgress() || hasUserMapMovementIntent()) &&
       speciesInteractionModeBeforeZoom != null &&
       speciesInteractionModeBeforeZoom !== nextMode &&
       activeClickPopup?._diveAtlasLayerKey === 'species' &&
@@ -13606,7 +14914,12 @@
       cancelPendingMapInteraction();
     }
   });
-  mapInteractionContainer.addEventListener('dblclick', cancelPendingMapInteraction, true);
+  mapInteractionContainer.addEventListener('dblclick', event => {
+    if (!event.target?.closest?.('.leaflet-control, .leaflet-popup')) {
+      markUserMapMovementIntent();
+    }
+    cancelPendingMapInteraction();
+  }, true);
   map.on('dblclick', cancelPendingMapInteraction);
 
   function mapFeatureLayerKey(feature) {
@@ -13621,28 +14934,37 @@
   function isMapFeatureEligible(feature) {
     const popup = feature?.getPopup?.();
     const layerKey = mapFeatureLayerKey(feature);
-    if (!popup || !layerKey || !feature._map || !layerVisibility[layerKey]) return false;
+    let layerEnabled = Boolean(layerKey && layerVisibility[layerKey]);
+    let featureActive = Boolean(popup && layerKey && feature?._map);
     const ownerLayer = layerKey === 'species' ? speciesLayer :
       layerKey === 'fish' ? fishDensityLayer : diveSiteLayer;
-    if (!ownerLayer || !map.hasLayer(ownerLayer)) return false;
+    featureActive = featureActive && Boolean(ownerLayer && map.hasLayer(ownerLayer));
 
     const zoom = map.getZoom();
+    let representationActive = true;
     if (layerKey === 'species') {
       const mode = speciesDisplayModeForZoom(zoom);
-      if (mode === 'zoomIn' || mode === 'grid') return false;
+      representationActive = mode !== 'zoomIn' && mode !== 'grid';
     } else if (pointDisplayModeForZoom(zoom) === 'zoomIn') {
-      return false;
+      representationActive = false;
     }
 
     const element = feature.getElement?.();
+    let geometryVisible = true;
     if (element) {
-      if (!element.isConnected) return false;
-      const style = window.getComputedStyle(element);
-      if (style.display === 'none' || style.visibility === 'hidden' || style.pointerEvents === 'none') {
-        return false;
+      geometryVisible = element.isConnected;
+      if (geometryVisible) {
+        const style = window.getComputedStyle(element);
+        geometryVisible = style.display !== 'none' &&
+          style.visibility !== 'hidden' && style.pointerEvents !== 'none';
       }
     }
-    return true;
+    return INTERACTION_CONTRACT.isFeatureInteractable({
+      layerEnabled,
+      representationActive,
+      featureActive,
+      geometryVisible
+    });
   }
 
   function nearbyTouchPopupFeature(containerPoint) {
@@ -13675,16 +14997,19 @@
 
   function resolveMapInteraction(interaction) {
     const { event, feature, beforeOpen, latlng, containerPoint, pointerType } = interaction;
-    if (performance.now() < suppressedMapInteractionUntil || activeMapPointerGesture) return;
+    if (performance.now() < suppressedMapInteractionUntil || activeMapPointerGesture) {
+      return 'suppressed';
+    }
 
-    const requestSeq = ++bathymetrySampleRequestSeq;
+    depthInspectionRequestSeq += 1;
     if (feature) {
       if (!isMapFeatureEligible(feature)) {
         closeManagedPopup();
-        return;
+        return 'handled';
       }
       const popup = feature.getPopup?.();
-      if (!popup) return;
+      if (!popup) return 'handled';
+      recordInteractionTestAction();
       beforeOpen?.();
       popup._diveAtlasLayerKey = mapFeatureLayerKey(feature);
       if (popup._diveAtlasLayerKey === 'species') {
@@ -13693,9 +15018,10 @@
       openManagedPopup(
         popup._diveAtlasOwnerKey || managedPopupOwner(feature),
         popup,
-        latlng || feature.getLatLng?.() || null
+        feature.getLatLng?.() || latlng || null,
+        feature
       );
-      return;
+      return 'opened';
     }
 
     if (isTouchMapPointerType(pointerType)) {
@@ -13703,6 +15029,7 @@
       if (nearbyFeature) {
         const popup = nearbyFeature.getPopup?.();
         if (popup) {
+          recordInteractionTestAction();
           popup._diveAtlasLayerKey = mapFeatureLayerKey(nearbyFeature);
           if (popup._diveAtlasLayerKey === 'species') {
             popup._diveAtlasSpeciesRenderMode = speciesDisplayModeForZoom(map.getZoom());
@@ -13710,21 +15037,25 @@
           openManagedPopup(
             popup._diveAtlasOwnerKey || managedPopupOwner(nearbyFeature),
             popup,
-            nearbyFeature.getLatLng()
+            nearbyFeature.getLatLng(),
+            nearbyFeature
           );
-          return;
+          return 'opened';
         }
       }
     }
 
-    if (event?._diveAtlasPopupHandled || eventTargetsInteractiveOverlay(event)) return;
+    if (event?._diveAtlasPopupHandled || eventTargetsInteractiveOverlay(event)) {
+      return 'feature-target';
+    }
 
     // Batched Coral cells have no individual DOM path. Their lookup is valid
     // only for the currently rendered grid mode and is reset at every zoom start.
     const coralCell = batchedSpeciesGridCellAtLatLng(latlng);
     if (coralCell) {
+      recordInteractionTestAction();
       openBatchedSpeciesDensityPopup(coralCell, latlng);
-      return;
+      return 'opened';
     }
 
     if (
@@ -13753,24 +15084,27 @@
           reefFeature.properties?.FID ??
           L.stamp(reefFeature)
         );
+        const reefFeatureId =
+          reefFeature.id ?? reefFeature.properties?.OBJECTID ??
+          reefFeature.properties?.FID;
+        popup._diveAtlasReefFeatureId = reefFeatureId == null
+          ? null
+          : String(reefFeatureId);
         openManagedPopup(reefOwnerKey, popup, latlng);
-        return;
+        return 'opened';
       }
     }
 
-    if (
-      containerPoint &&
-      visibleDepthContourLineAt(containerPoint, isTouchMapPointerType(pointerType) ? 12 : 5)
-    ) {
-      void inspectBathymetryAt(latlng, containerPoint, requestSeq);
-      return;
-    }
-
     closeManagedPopup();
+    return 'empty';
   }
 
   function queueMapInteraction(event, feature = null, beforeOpen = null) {
-    if (!event?.latlng || performance.now() < suppressedMapInteractionUntil) return;
+    if (
+      !event?.latlng ||
+      performance.now() < suppressedMapInteractionUntil ||
+      performance.now() < suppressedMapClickUntil
+    ) return;
     const pointerType = event.pointerType || (
       performance.now() - lastMapPointerAt < 1200 ? lastMapPointerType : 'mouse'
     );
@@ -13797,11 +15131,22 @@
 
   map.on('popupclose', event => {
     suppressNextPopupAutoPanRefresh = false;
-    window.clearTimeout(event?.popup?._diveSafeAreaCheckTimer);
+    const popup = event?.popup;
+    if (DIVEATLAS_INTERACTION_TEST_MODE) testLastClosingPopup = popup || null;
+    if (popup?._diveAtlasPlacementFrame) {
+      cancelAnimationFrame(popup._diveAtlasPlacementFrame);
+      popup._diveAtlasPlacementFrame = 0;
+    }
+    if (popup?._diveAtlasSafeArea) {
+      finishMapOverlayPlacementAfterClose(popup, resetMapPopupPlacement);
+    }
 
     if (event?.popup === activeClickPopup) {
       activeClickPopup = null;
       activeClickPopupOwner = null;
+      activeClickPopupRevision += 1;
+      window.clearTimeout(activePopupValidationTimer);
+      activePopupValidationTimer = 0;
     }
 
     // During A -> B replacement, Leaflet closes A before B finishes opening.
@@ -13811,11 +15156,13 @@
       if (activeClickPopup && map.hasLayer(activeClickPopup)) return;
 
       if (localReefReady) void renderLocalReefWorldCopies();
-      scheduleAllDataRefresh({
-        speciesDelay: 0,
-        fishDelay: 0,
-        diveDelay: 0
-      });
+      if (!DIVEATLAS_INTERACTION_TEST_MODE) {
+        scheduleAllDataRefresh({
+          speciesDelay: 0,
+          fishDelay: 0,
+          diveDelay: 0
+        });
+      }
     });
   });
 
@@ -14894,7 +16241,7 @@
   // English. An explicit saved language skips IP-based auto-selection.
   setLanguage(preferredLang);
 
-  if (!savedLang) {
+  if (!savedLang && !DIVEATLAS_INTERACTION_TEST_MODE) {
     void (async () => {
       const location = await getIpGeolocation();
 
@@ -14958,7 +16305,167 @@
     }
   }
 
-  initializeDataSources();
+  if (DIVEATLAS_INTERACTION_TEST_MODE) {
+    const testFixtures = new Map();
+    const layerFor = key => key === 'species' ? speciesLayer :
+      key === 'fish' ? fishDensityLayer : diveSiteLayer;
+
+    function enableFixtureLayer(key) {
+      const layer = layerFor(key);
+      layerVisibility[key] = true;
+      if (layer && !map.hasLayer(layer)) layer.addTo(map);
+      syncLayerToggleUI();
+      return layer;
+    }
+
+    function tagFixtureMarker(marker, id) {
+      const popup = marker.getPopup?.();
+      if (popup) popup._diveAtlasOwnerKey = `fixture:${id}`;
+      const tag = () => {
+        const element = marker.getElement?.();
+        if (!element) return;
+        element.dataset.testid = 'map-fixture-marker';
+        element.dataset.fixtureId = id;
+      };
+      marker.on('add', tag);
+      requestAnimationFrame(tag);
+      testFixtures.set(id, marker);
+      return marker;
+    }
+
+    function addFixtureAggregate(type, lat, lng, count = 6, id = `${type}-aggregate`) {
+      const layer = enableFixtureLayer(type);
+      const cluster = {
+        lat,
+        lng,
+        count,
+        bounds: [lat - 0.12, lng - 0.12, lat + 0.12, lng + 0.12],
+        members: [
+          { lat: lat - 0.05, lng: lng - 0.05 },
+          { lat: lat + 0.05, lng: lng + 0.05 }
+        ]
+      };
+      return tagFixtureMarker(makeCountClusterMarker(cluster, type).addTo(layer), id);
+    }
+
+    function addFixtureCoralPoint(lat, lng, id = 'coral-point') {
+      enableFixtureLayer('species');
+      addSpeciesMarker({
+        lat,
+        lng,
+        records: 3,
+        species: 'Acropora testica',
+        speciesCount: 1,
+        speciesNames: ['Acropora testica']
+      }, id);
+      return tagFixtureMarker(speciesMarkerCache.get(id).marker, id);
+    }
+
+    function addFixtureCoralGrid(lat, lng, id = 'coral-grid') {
+      enableFixtureLayer('species');
+      const zoom = map.getZoom();
+      const half = Math.min(0.08, speciesGridStepDegrees(zoom) / 2);
+      const cell = {
+        key: id,
+        south: lat - half,
+        west: lng - half,
+        north: lat + half,
+        east: lng + half,
+        records: 6,
+        speciesCount: 2,
+        speciesNames: ['Acropora testica', 'Porites testica']
+      };
+      // Production density cells are drawn as non-interactive batches; clicks
+      // resolve through the shared geographic lookup. Keep browser fixtures on
+      // that path so they test map-level hit resolution, not individual cells.
+      renderBatchedSpeciesDensityGrid([cell], speciesGridStepDegrees(zoom), zoom);
+      testFixtures.set(id, { getLatLng: () => L.latLng(lat, lng) });
+      return testFixtures.get(id);
+    }
+
+    function addFixtureFishPoint(lat, lng, id = 'fish-point') {
+      enableFixtureLayer('fish');
+      addFishMarker({ lat, lng, density: 35, site: 'Test fish survey' }, id);
+      return tagFixtureMarker(fishMarkerCache.get(id).marker, id);
+    }
+
+    function addFixtureDiveSite(lat, lng, id = 'dive-site') {
+      const layer = enableFixtureLayer('dive');
+      const site = [`Test dive site ${id}`, lat, lng, 5, 18, 11, 'Beginner', 'Reef', 'DiveAtlas'];
+      const marker = makeDiveMarker(site, id).addTo(layer);
+      diveSiteMarkerCache.set(id, { marker, site });
+      return tagFixtureMarker(marker, id);
+    }
+
+    window.__DIVEATLAS_TEST__ = Object.freeze({
+      map,
+      addAggregate: addFixtureAggregate,
+      addCoralPoint: addFixtureCoralPoint,
+      addCoralGrid: addFixtureCoralGrid,
+      addFishPoint: addFixtureFishPoint,
+      addDiveSite: addFixtureDiveSite,
+      setView: (lat, lng, zoom) => runInternalMapMovement(() =>
+        map.setView([lat, lng], zoom, { animate: false })
+      ),
+      latLngAt: (x, y) => map.containerPointToLatLng([x, y]),
+      pointFor: id => {
+        const fixture = testFixtures.get(id);
+        const point = fixture?.getLatLng?.() || fixture?.getBounds?.().getCenter?.();
+        return point ? map.latLngToContainerPoint(point) : null;
+      },
+      setLayerVisibility: (key, visible) =>
+        setLayerVisibility(key, visible, { persist: false, sync: true }),
+      clearActionCount: () => { interactionTestActions = 0; },
+      getActionCount: () => interactionTestActions,
+      getState: () => {
+        const activePopup = activeClickPopup;
+        const popup = activePopup || (
+          testLastClosingPopup?._diveAtlasPlacementLifecycle === 'closing'
+            ? testLastClosingPopup
+            : null
+        );
+        const element = popup?.getElement?.();
+        const rect = element?.getBoundingClientRect();
+        const safeViewport = popup?._diveAtlasSafeArea
+          ? getMapPopupSafeViewport()
+          : null;
+        const anchorPoint = popup?.getLatLng?.()
+          ? map.latLngToContainerPoint(popup.getLatLng())
+          : null;
+        const arrowOffset = Number.parseFloat(
+          element?.style.getPropertyValue('--diveatlas-popup-arrow-offset-x') || '0'
+        ) || 0;
+        return {
+          center: map.getCenter(),
+          zoom: map.getZoom(),
+          actionCount: interactionTestActions,
+          pendingInteraction: Boolean(pendingMapInteraction),
+          activePointerGesture: activeMapPointerGesture,
+          suppressedUntil: suppressedMapInteractionUntil,
+          popup: popup && (popup === activePopup ? map.hasLayer(popup) : true) ? {
+            type: popup._diveAtlasPopupType,
+            owner: popup._diveAtlasOwnerKey,
+            lifecycle: popup._diveAtlasPlacementLifecycle,
+            below: popup._diveAtlasPlacementBelow === true,
+            arrowSide: popup._diveAtlasArrowSide,
+            anchorX: safeViewport && anchorPoint
+              ? safeViewport.mapRect.left + anchorPoint.x
+              : null,
+            arrowX: rect ? rect.left + rect.width / 2 + arrowOffset : null,
+            bounds: rect ? {
+              left: rect.left,
+              right: rect.right,
+              top: rect.top,
+              bottom: rect.bottom
+            } : null
+          } : null,
+          fixtures: Array.from(testFixtures.keys())
+        };
+      }
+    });
+  } else {
+  if (!DIVEATLAS_INTERACTION_TEST_MODE) initializeDataSources();
+  }
 })();
 </script>
 </body>

@@ -61,6 +61,28 @@ python -m http.server 8000
 
 Then open [http://localhost:8000](http://localhost:8000). The map uses local data files and remote basemap/style resources, so an internet connection is needed for those external map resources.
 
+## Run map interaction checks
+
+The interaction suite protects marker semantics, Coral visibility, Depth Inspection gestures, hover stability, popup placement and ownership, and touch behavior. It runs the real Leaflet map against deterministic local fixtures, so it does not depend on live biodiversity data or basemap tiles.
+
+Install the locked development dependencies and Chromium once:
+
+```powershell
+npm ci
+npx playwright install chromium
+```
+
+Run the unit contracts or the complete local CI-equivalent suite:
+
+```powershell
+npm test
+npm run test:interactions
+```
+
+`npm test` runs the fast interaction decision tests. `npm run test:interactions` also checks the critical-test policy, validates the static Pages artifact, and runs desktop Chromium plus Chromium with Pixel 7 touch emulation. The browser suite is not a substitute for testing OS-specific behavior on physical devices.
+
+GitHub Actions runs this suite for pull requests and pushes to `main`. Its Pages deployment job waits for the checks to pass. Set the repository's Pages publishing source to **GitHub Actions** for this workflow to control deployment; require the **Required map interaction suite** check in branch protection to block merges with failures.
+
 ## Rebuild data assets
 
 Normal browsing does not run Python, download source datasets, or call a reverse-geocoding service. Python tools are for maintainers rebuilding generated assets.
