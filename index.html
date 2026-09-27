@@ -4283,6 +4283,12 @@
     popup.options.closeOnClick = false;
     popup._diveAtlasOwnerKey =
       ownerKey || popup._diveAtlasOwnerKey || managedPopupOwner(layer);
+    const pane = layer.options?.pane || '';
+    popup._diveAtlasLayerKey =
+      pane === 'speciesPane' || pane === 'speciesGridPane' ? 'species' :
+      pane === 'fishDensityPane' ? 'fish' :
+      pane === 'diveSitePane' ? 'dive' :
+      popup._diveAtlasLayerKey || null;
 
     // Leaflet bindPopup() installs a click-to-toggle handler. Remove it so
     // our controller owns click semantics and same-feature clicks never close.
@@ -4362,6 +4368,12 @@
   function closeManagedPopup() {
     if (!activeClickPopup || !map.hasLayer(activeClickPopup)) return;
     map.closePopup(activeClickPopup);
+  }
+
+  function closeManagedPopupForLayer(layerKey) {
+    if (activeClickPopup?._diveAtlasLayerKey === layerKey) {
+      closeManagedPopup();
+    }
   }
 
   L.control.zoom({
@@ -7100,6 +7112,10 @@
 
   function syncDepthContoursVisibility() {
     const shouldBeVisible = shouldRenderDepthContours();
+    if (!shouldBeVisible) {
+      bathymetrySampleRequestSeq += 1;
+      closeManagedPopupForLayer('contours');
+    }
     if (shouldBeVisible && !map.hasLayer(depthContoursLayer)) {
       depthContoursLayer.addTo(map);
     } else if (!shouldBeVisible && map.hasLayer(depthContoursLayer)) {
@@ -8244,81 +8260,6 @@
     );
   });
 
-  function openNearbyPointPopupOnCoarsePointer(event) {
-    const coarsePointer =
-      Boolean(window.matchMedia?.('(pointer: coarse)').matches) ||
-      Number(navigator.maxTouchPoints || 0) > 0;
-    if (!coarsePointer || !event?.latlng) return false;
-
-    const tapPoint = map.latLngToContainerPoint(event.latlng);
-    let nearestMarker = null;
-    let nearestDistance = 20;
-
-    [speciesLayer, fishDensityLayer, diveSiteLayer].forEach(group => {
-      group?.eachLayer?.(layer => {
-        if (!(layer instanceof L.CircleMarker) || !layer.getPopup?.()) return;
-        const latlng = layer.getLatLng?.();
-        if (!latlng) return;
-
-        const point = map.latLngToContainerPoint(latlng);
-        const distance = tapPoint.distanceTo(point);
-        if (distance <= nearestDistance) {
-          nearestDistance = distance;
-          nearestMarker = layer;
-        }
-      });
-    });
-
-    if (!nearestMarker) return false;
-
-    const popup = nearestMarker.getPopup?.();
-    if (!popup) return false;
-
-    event._diveAtlasPopupHandled = true;
-    openManagedPopup(
-      popup._diveAtlasOwnerKey || managedPopupOwner(nearestMarker),
-      popup,
-      nearestMarker.getLatLng?.() || event.latlng
-    );
-    return true;
-  }
-
-  map.on('click', event => {
-    if (openNearbyPointPopupOnCoarsePointer(event)) return;
-
-    if (
-      !localReefReady ||
-      !layerVisibility.reef ||
-      reefVectorSwapPending ||
-      map.getZoom() < REEF_VECTOR_MIN_ZOOM
-    ) return;
-
-    const feature = localReefFeatureAtLatLng(
-      Number(event.latlng?.lat),
-      Number(event.latlng?.lng)
-    );
-    if (!feature) return;
-
-    event._diveAtlasPopupHandled = true;
-    const popup = createMapInfoPopup({
-      maxWidth: 280,
-      minWidth: 210,
-      closeButton: true,
-      autoPan: true,
-      closeOnClick: false
-    }).setContent(reefPopupHtml());
-
-    const reefOwnerKey =
-      'reef:' + String(
-        feature.id ??
-        feature.properties?.OBJECTID ??
-        feature.properties?.FID ??
-        L.stamp(feature)
-      );
-
-    openManagedPopup(reefOwnerKey, popup, event.latlng);
-  });
-
   // Keep the dense low/mid-zoom coral grid in its own pane. This prevents
   // its full-screen Canvas hit surface from ever sitting on top of the SVG
   // point layers used at higher zooms.
@@ -8507,6 +8448,7 @@
     if (!(key in layerVisibility)) return;
 
     layerVisibility[key] = Boolean(visible);
+    if (!layerVisibility[key]) closeManagedPopupForLayer(key);
     if (persist) persistLayerVisibility();
     if (sync) {
       syncLayerToggleUI();
@@ -8943,14 +8885,86 @@
     return Math.round(depth / rounding) * rounding;
   }
 
-  async function inspectBathymetryAt(latlng, requestSeq) {
+  function visibleDepthContourLineAt(containerPoint, tolerancePx) {
+    if (
+      !containerPoint ||
+      !layerVisibility.contours ||
+      !shouldRenderDepthContours() ||
+      !map.hasLayer(depthContoursLayer)
+    ) return false;
+
+    const layerContainer = depthContoursLayer.getContainer?.();
+    if (!layerContainer) return false;
+    const layerStyle = window.getComputedStyle(layerContainer);
+    if (
+      layerStyle.display === 'none' ||
+      layerStyle.visibility === 'hidden' ||
+      Number(layerStyle.opacity) <= 0
+    ) return false;
+
+    const mapRect = map.getContainer().getBoundingClientRect();
+    const clientX = mapRect.left + containerPoint.x;
+    const clientY = mapRect.top + containerPoint.y;
+    const tiles = Object.values(depthContoursLayer._tiles || {});
+
+    for (const tileRecord of tiles) {
+      const canvas = tileRecord?.el;
+      if (
+        !canvas?.isConnected ||
+        canvas.tagName !== 'CANVAS' ||
+        canvas.width < 1 ||
+        canvas.height < 1
+      ) continue;
+
+      const rect = canvas.getBoundingClientRect();
+      if (
+        clientX + tolerancePx < rect.left ||
+        clientX - tolerancePx > rect.right ||
+        clientY + tolerancePx < rect.top ||
+        clientY - tolerancePx > rect.bottom
+      ) continue;
+
+      const scaleX = canvas.width / Math.max(1, rect.width);
+      const scaleY = canvas.height / Math.max(1, rect.height);
+      const centerX = Math.round((clientX - rect.left) * scaleX);
+      const centerY = Math.round((clientY - rect.top) * scaleY);
+      const radiusX = Math.max(1, Math.ceil(tolerancePx * scaleX));
+      const radiusY = Math.max(1, Math.ceil(tolerancePx * scaleY));
+      const left = Math.max(0, centerX - radiusX);
+      const top = Math.max(0, centerY - radiusY);
+      const right = Math.min(canvas.width - 1, centerX + radiusX);
+      const bottom = Math.min(canvas.height - 1, centerY + radiusY);
+      if (right < left || bottom < top) continue;
+
+      try {
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        if (!context) continue;
+        const pixels = context.getImageData(
+          left,
+          top,
+          right - left + 1,
+          bottom - top + 1
+        ).data;
+        for (let offset = 3; offset < pixels.length; offset += 4) {
+          if (pixels[offset] > 3) return true;
+        }
+      } catch (_) {
+        // A tainted or unavailable tile is not an interactive contour.
+      }
+    }
+    return false;
+  }
+
+  async function inspectBathymetryAt(latlng, containerPoint, requestSeq) {
     try {
       const depth = await bathymetryDepthAt(latlng);
       if (
         depth == null ||
         requestSeq !== bathymetrySampleRequestSeq ||
-        !isBathymetryVisible() ||
-        effectiveBathymetryZoom() < BATHYMETRY_MANIFEST.surfaceMinZoom
+        !visibleDepthContourLineAt(
+          containerPoint,
+          isTouchMapPointerType(lastMapPointerType) ? 12 : 5
+        )
       ) return;
 
       const displayedDepth = depth.toLocaleString(HTML_LANG_CODES[currentLang] || 'en');
@@ -8969,6 +8983,7 @@
       if (!bathymetryInspectPopup) {
         bathymetryInspectPopup = L.popup({ closeOnClick: false, autoPan: false });
         bathymetryInspectPopup._diveAtlasOwnerKey = 'bathymetry:depth-inspection';
+        bathymetryInspectPopup._diveAtlasLayerKey = 'contours';
       }
       bathymetryInspectPopup.setContent(html).setLatLng(latlng);
       openManagedPopup('bathymetry:depth-inspection', bathymetryInspectPopup, latlng);
@@ -9839,12 +9854,17 @@
           L.DomEvent.stop(domEvent);
           const popup = managedPopup || marker.getPopup?.();
           if (!popup) return;
-          suspendTooltip();
-          openManagedPopup(
-            popup._diveAtlasOwnerKey,
-            popup,
-            marker.getLatLng?.() || null
-          );
+          marker._diveAtlasPointerTapAt = performance.now();
+          const mapRect = map.getContainer().getBoundingClientRect();
+          queueMapInteraction({
+            latlng: marker.getLatLng?.() || null,
+            containerPoint: L.point(
+              domEvent.clientX - mapRect.left,
+              domEvent.clientY - mapRect.top
+            ),
+            pointerType: domEvent.pointerType,
+            originalEvent: domEvent
+          }, marker, suspendTooltip);
         }, { passive: false });
       }
     });
@@ -9879,17 +9899,14 @@
 
       const popup = managedPopup || marker.getPopup?.();
       if (!popup) return;
-
-      // Click interaction always wins over hover interaction. The unified
-      // controller keeps same-feature clicks open and replaces another popup
-      // atomically within this same click.
-      suspendTooltip();
-      openManagedPopup(
-        popup._diveAtlasOwnerKey,
-        popup,
-        event?.latlng || marker.getLatLng?.() || null
-      );
+      if (
+        Number.isFinite(marker._diveAtlasPointerTapAt) &&
+        performance.now() - marker._diveAtlasPointerTapAt < 650
+      ) return;
+      queueMapInteraction(event, marker, suspendTooltip);
     });
+
+    marker.on('dblclick', cancelPendingMapInteraction);
   }
 
 
@@ -10139,13 +10156,7 @@
       marker.closeTooltip();
 
       if (type === 'species') {
-        const popup = marker.getPopup?.();
-        openManagedPopup(
-          popup?._diveAtlasOwnerKey ||
-            managedPopupOwner(marker, 'species-cluster'),
-          popup,
-          event?.latlng || marker.getLatLng?.() || null
-        );
+        queueMapInteraction(event, marker, () => marker.closeTooltip());
         return;
       }
 
@@ -10214,6 +10225,8 @@
         duration: .45
       });
     });
+
+    marker.on('dblclick', cancelPendingMapInteraction);
 
     return marker;
   }
@@ -12161,7 +12174,15 @@
 
   function batchedSpeciesGridCellAtLatLng(latlng) {
     const state = batchedSpeciesGridState;
-    if (!state || !latlng) return null;
+    const zoom = map.getZoom();
+    if (
+      !state ||
+      !latlng ||
+      !layerVisibility.species ||
+      !map.hasLayer(speciesLayer) ||
+      speciesDisplayModeForZoom(zoom) !== 'grid' ||
+      Math.round(state.zoom) !== Math.round(zoom)
+    ) return null;
     return state.lookup.get(
       batchedSpeciesGridLookupKey(latlng.lat, latlng.lng, state.step)
     ) || null;
@@ -12456,6 +12477,8 @@
       autoPan: true,
       closeOnClick: false
     }).setContent(popupHtml);
+    popup._diveAtlasLayerKey = 'species';
+    popup._diveAtlasSpeciesRenderMode = 'grid';
     popup.on('remove', () => {
       if (batchedSpeciesGridSelectedKey === cell.key) {
         batchedSpeciesGridSelectedKey = null;
@@ -12469,34 +12492,6 @@
       latlng
     );
   }
-
-  map.on('click', event => {
-    cancelPendingBatchedSpeciesGridClick();
-    if (
-      !layerVisibility.species ||
-      !map.hasLayer(speciesLayer) ||
-      !batchedSpeciesGridState ||
-      eventTargetsInteractiveOverlay(event)
-    ) return;
-
-    const cell = batchedSpeciesGridCellAtLatLng(event.latlng);
-    if (!cell) return;
-
-    event._diveAtlasPopupHandled = true;
-    const latlng = event.latlng;
-    batchedSpeciesGridClickTimer = setTimeout(() => {
-      batchedSpeciesGridClickTimer = null;
-      if (
-        !layerVisibility.species ||
-        !map.hasLayer(speciesLayer) ||
-        !batchedSpeciesGridState
-      ) return;
-      openBatchedSpeciesDensityPopup(cell, latlng);
-    }, 240);
-  });
-
-  map.on('dblclick', cancelPendingBatchedSpeciesGridClick);
-  map.on('movestart zoomstart', cancelPendingBatchedSpeciesGridClick);
 
   function renderSpeciesCache() {
     if (!speciesLayer) return;
@@ -13519,17 +13514,286 @@
     scheduleMapPopupSafeAreaCheck(popup);
   });
 
-  map.on('click', event => {
-    if (event?._diveAtlasPopupHandled || eventTargetsInteractiveOverlay(event)) return;
-    closeManagedPopup();
+  const MAP_INTERACTION_SINGLE_CLICK_DELAY = 360;
+  let pendingMapInteraction = null;
+  let pendingMapInteractionTimer = null;
+  let suppressedMapInteractionUntil = 0;
+  let lastMapPointerType = 'mouse';
+  let lastMapPointerAt = 0;
+  const activeMapPointers = new Map();
+  let activeMapPointerGesture = false;
+
+  function isTouchMapPointerType(pointerType) {
+    return pointerType === 'touch';
+  }
+
+  function cancelPendingMapInteraction() {
+    if (pendingMapInteractionTimer != null) {
+      clearTimeout(pendingMapInteractionTimer);
+    }
+    pendingMapInteractionTimer = null;
+    pendingMapInteraction = null;
+  }
+
+  function noteMapGesture() {
+    suppressedMapInteractionUntil = Math.max(
+      suppressedMapInteractionUntil,
+      performance.now() + 520
+    );
+    cancelPendingMapInteraction();
+  }
+
+  const mapInteractionContainer = map.getContainer();
+  mapInteractionContainer.addEventListener('pointerdown', event => {
+    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    lastMapPointerType = event.pointerType || 'mouse';
+    lastMapPointerAt = performance.now();
+    const pointer = {
+      x: event.clientX,
+      y: event.clientY,
+      moved: false,
+      multi: activeMapPointers.size > 0
+    };
+    if (pointer.multi) {
+      activeMapPointerGesture = true;
+      activeMapPointers.forEach(value => { value.multi = true; });
+    }
+    activeMapPointers.set(event.pointerId, pointer);
+  }, true);
+
+  mapInteractionContainer.addEventListener('pointermove', event => {
+    const pointer = activeMapPointers.get(event.pointerId);
+    if (!pointer) return;
+    if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 8) {
+      pointer.moved = true;
+      noteMapGesture();
+    }
+  }, true);
+
+  const finishMapPointer = event => {
+    const pointer = activeMapPointers.get(event.pointerId);
+    if (!pointer) return;
+    if (pointer.moved || pointer.multi || activeMapPointerGesture) noteMapGesture();
+    activeMapPointers.delete(event.pointerId);
+    if (activeMapPointers.size === 0) activeMapPointerGesture = false;
+  };
+  mapInteractionContainer.addEventListener('pointerup', finishMapPointer, true);
+  mapInteractionContainer.addEventListener('pointercancel', finishMapPointer, true);
+
+  map.on('movestart zoomstart dragstart', () => {
+    noteMapGesture();
+    bathymetrySampleRequestSeq += 1;
+  });
+  let speciesInteractionModeBeforeZoom = null;
+  map.on('zoomstart', () => {
+    speciesInteractionModeBeforeZoom = speciesDisplayModeForZoom(map.getZoom());
+    resetBatchedSpeciesGridInteraction();
+  });
+  map.on('zoomend', () => {
+    const nextMode = speciesDisplayModeForZoom(map.getZoom());
     if (
-      isBathymetryVisible() &&
-      effectiveBathymetryZoom() >= BATHYMETRY_MANIFEST.surfaceMinZoom
-    ) {
-      const requestSeq = ++bathymetrySampleRequestSeq;
-      void inspectBathymetryAt(event.latlng, requestSeq);
+      speciesInteractionModeBeforeZoom != null &&
+      speciesInteractionModeBeforeZoom !== nextMode &&
+      activeClickPopup?._diveAtlasLayerKey === 'species' &&
+      activeClickPopup?._diveAtlasSpeciesRenderMode !== nextMode
+    ) closeManagedPopup();
+    speciesInteractionModeBeforeZoom = null;
+  });
+  map.on('moveend zoomend', () => {
+    // Keep a short guard after Leaflet completes a drag/pinch or zoom gesture;
+    // its synthetic click should not be reinterpreted as a feature tap.
+    if (performance.now() < suppressedMapInteractionUntil) {
+      cancelPendingMapInteraction();
     }
   });
+  mapInteractionContainer.addEventListener('dblclick', cancelPendingMapInteraction, true);
+  map.on('dblclick', cancelPendingMapInteraction);
+
+  function mapFeatureLayerKey(feature) {
+    const popup = feature?.getPopup?.();
+    if (popup?._diveAtlasLayerKey) return popup._diveAtlasLayerKey;
+    const pane = feature?.options?.pane || '';
+    return pane === 'speciesPane' || pane === 'speciesGridPane' ? 'species' :
+      pane === 'fishDensityPane' ? 'fish' :
+      pane === 'diveSitePane' ? 'dive' : null;
+  }
+
+  function isMapFeatureEligible(feature) {
+    const popup = feature?.getPopup?.();
+    const layerKey = mapFeatureLayerKey(feature);
+    if (!popup || !layerKey || !feature._map || !layerVisibility[layerKey]) return false;
+    const ownerLayer = layerKey === 'species' ? speciesLayer :
+      layerKey === 'fish' ? fishDensityLayer : diveSiteLayer;
+    if (!ownerLayer || !map.hasLayer(ownerLayer)) return false;
+
+    const zoom = map.getZoom();
+    if (layerKey === 'species') {
+      const mode = speciesDisplayModeForZoom(zoom);
+      if (mode === 'zoomIn' || mode === 'grid') return false;
+    } else if (pointDisplayModeForZoom(zoom) === 'zoomIn') {
+      return false;
+    }
+
+    const element = feature.getElement?.();
+    if (element) {
+      if (!element.isConnected) return false;
+      const style = window.getComputedStyle(element);
+      if (style.display === 'none' || style.visibility === 'hidden' || style.pointerEvents === 'none') {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function nearbyTouchPopupFeature(containerPoint) {
+    if (!containerPoint) return null;
+    const groups = [
+      { key: 'dive', layer: diveSiteLayer },
+      { key: 'fish', layer: fishDensityLayer },
+      { key: 'species', layer: speciesLayer }
+    ];
+    let nearest = null;
+    let nearestDistance = 20;
+
+    for (const group of groups) {
+      if (!layerVisibility[group.key] || !group.layer || !map.hasLayer(group.layer)) continue;
+      group.layer.eachLayer(feature => {
+        if (!isMapFeatureEligible(feature)) return;
+        const featureLatLng = feature.getLatLng?.();
+        if (!featureLatLng) return;
+        const point = map.latLngToContainerPoint(featureLatLng);
+        const distance = containerPoint.distanceTo(point);
+        if (distance <= nearestDistance) {
+          nearestDistance = distance;
+          nearest = feature;
+        }
+      });
+      if (nearest) return nearest;
+    }
+    return nearest;
+  }
+
+  function resolveMapInteraction(interaction) {
+    const { event, feature, beforeOpen, latlng, containerPoint, pointerType } = interaction;
+    if (performance.now() < suppressedMapInteractionUntil || activeMapPointerGesture) return;
+
+    const requestSeq = ++bathymetrySampleRequestSeq;
+    if (feature) {
+      if (!isMapFeatureEligible(feature)) {
+        closeManagedPopup();
+        return;
+      }
+      const popup = feature.getPopup?.();
+      if (!popup) return;
+      beforeOpen?.();
+      popup._diveAtlasLayerKey = mapFeatureLayerKey(feature);
+      if (popup._diveAtlasLayerKey === 'species') {
+        popup._diveAtlasSpeciesRenderMode = speciesDisplayModeForZoom(map.getZoom());
+      }
+      openManagedPopup(
+        popup._diveAtlasOwnerKey || managedPopupOwner(feature),
+        popup,
+        latlng || feature.getLatLng?.() || null
+      );
+      return;
+    }
+
+    if (isTouchMapPointerType(pointerType)) {
+      const nearbyFeature = nearbyTouchPopupFeature(containerPoint);
+      if (nearbyFeature) {
+        const popup = nearbyFeature.getPopup?.();
+        if (popup) {
+          popup._diveAtlasLayerKey = mapFeatureLayerKey(nearbyFeature);
+          if (popup._diveAtlasLayerKey === 'species') {
+            popup._diveAtlasSpeciesRenderMode = speciesDisplayModeForZoom(map.getZoom());
+          }
+          openManagedPopup(
+            popup._diveAtlasOwnerKey || managedPopupOwner(nearbyFeature),
+            popup,
+            nearbyFeature.getLatLng()
+          );
+          return;
+        }
+      }
+    }
+
+    if (event?._diveAtlasPopupHandled || eventTargetsInteractiveOverlay(event)) return;
+
+    // Batched Coral cells have no individual DOM path. Their lookup is valid
+    // only for the currently rendered grid mode and is reset at every zoom start.
+    const coralCell = batchedSpeciesGridCellAtLatLng(latlng);
+    if (coralCell) {
+      openBatchedSpeciesDensityPopup(coralCell, latlng);
+      return;
+    }
+
+    if (
+      localReefReady &&
+      layerVisibility.reef &&
+      map.hasLayer(coralTileLayer) &&
+      !reefVectorSwapPending &&
+      map.getZoom() >= REEF_VECTOR_MIN_ZOOM
+    ) {
+      const reefFeature = localReefFeatureAtLatLng(
+        Number(latlng?.lat),
+        Number(latlng?.lng)
+      );
+      if (reefFeature) {
+        const popup = createMapInfoPopup({
+          maxWidth: 280,
+          minWidth: 210,
+          closeButton: true,
+          autoPan: true,
+          closeOnClick: false
+        }).setContent(reefPopupHtml());
+        popup._diveAtlasLayerKey = 'reef';
+        const reefOwnerKey = 'reef:' + String(
+          reefFeature.id ??
+          reefFeature.properties?.OBJECTID ??
+          reefFeature.properties?.FID ??
+          L.stamp(reefFeature)
+        );
+        openManagedPopup(reefOwnerKey, popup, latlng);
+        return;
+      }
+    }
+
+    if (
+      containerPoint &&
+      visibleDepthContourLineAt(containerPoint, isTouchMapPointerType(pointerType) ? 12 : 5)
+    ) {
+      void inspectBathymetryAt(latlng, containerPoint, requestSeq);
+      return;
+    }
+
+    closeManagedPopup();
+  }
+
+  function queueMapInteraction(event, feature = null, beforeOpen = null) {
+    if (!event?.latlng || performance.now() < suppressedMapInteractionUntil) return;
+    const pointerType = event.pointerType || (
+      performance.now() - lastMapPointerAt < 1200 ? lastMapPointerType : 'mouse'
+    );
+    const interaction = {
+      event,
+      feature,
+      beforeOpen,
+      latlng: event.latlng,
+      containerPoint: event.containerPoint || map.latLngToContainerPoint(event.latlng),
+      pointerType
+    };
+
+    cancelPendingMapInteraction();
+    pendingMapInteraction = interaction;
+    pendingMapInteractionTimer = window.setTimeout(() => {
+      const current = pendingMapInteraction;
+      pendingMapInteraction = null;
+      pendingMapInteractionTimer = null;
+      if (current) resolveMapInteraction(current);
+    }, MAP_INTERACTION_SINGLE_CLICK_DELAY);
+  }
+
+  map.on('click', event => queueMapInteraction(event));
 
   map.on('popupclose', event => {
     suppressNextPopupAutoPanRefresh = false;
