@@ -98,6 +98,57 @@ python tools/build_bathymetry.py
 
 The current surface is capped at Z7; contours and terrain stop at Z8 because finer display pixels would imply unsupported source detail. Terrain uses a Horn 3×3 slope calculation and is generated offline; the browser only loads the precomputed atlas when the layer is enabled and in range. Generated manifests and tiles belong in Git; source rasters, extracted source data, and intermediate overviews under `data/.build/` do not.
 
+### Environmental views and typical water temperature
+
+Default, Terrain, and Temperature are one mutually exclusive environmental-view choice. Temperature’s renderer and visual manifest load only after activation. Numeric query metadata and spatial chunks remain unloaded until a plain-ocean click. The popup uses the existing managed-popup lifecycle; marker clicks continue through the normal feature interaction path. Turning Temperature off closes its detail popup, aborts pending query fetches, and invalidates late results. Query results follow latest-click-wins and a four-chunk least-recently-used memory cache.
+
+The source is NOAA NCEI’s [World Ocean Atlas 2023](https://www.ncei.noaa.gov/products/world-ocean-atlas). Its values are long-term climatology, not current observations. Development uses the official global 1° `decav` monthly objectively analyzed mean (`t_an`) fields, the 1955–2022 average of seven decadal means. The production view uses the 0.25° `decav91C0` monthly climate normal (1991–2020). Consult NOAA’s [WOA23 product documentation](https://www.ncei.noaa.gov/data/oceans/woa/WOA23/DOCUMENTATION/WOA23_Product_Documentation.pdf) for field and depth semantics.
+
+The reproducible builder `tools/temperature/build.py` accepts WOA23 NetCDF and compact ASCII `.dat`/`.dat.gz` input for visual tiles. Query chunks require validated monthly NetCDF so all required levels can be read together. Automatic acquisition tries NSF NCAR GDEX first (OSDF HTTPS, then the cataloged THREDDS HTTPServer) and NOAA second. The [GDEX d285000 access page](https://gdex.ucar.edu/datasets/d285000/dataaccess/) documents its OSDF and THREDDS routes; its [NetCDF catalog](https://tds.gdex.ucar.edu/thredds/catalog/files/d285000/woa23_netcdf/catalog.html) lists the source files. Explicit providers are available with `--source gdex` or `--source noaa`; `--input` selects the local visual-tile adapter. Validated remote files and provider receipts stay in `data/.build/temperature/` for reuse. The builder validates source identity, coordinates, dimensions, field units/semantics, masks, and standard depth values. The visual raster and numeric query are separate products; browser code never reverse-decodes raster colors.
+
+Install the Python dependencies once, then produce the Phase A eastern Indonesia validation slice from NOAA’s official 1° WOA23 product (GDEX is tried first):
+
+```powershell
+python -m pip install -r tools/temperature/requirements.txt
+python tools/temperature/build.py --profile development-1deg --month 9 --depth 20 --region indonesia-test --source auto
+```
+
+Build a 12-month query dataset after acquiring all monthly NetCDF inputs (existing validated cache files are reused). The checked-in production query uses this command:
+
+```powershell
+python tools/temperature/build.py --build-query --months 1,2,3,4,5,6,7,8,9,10,11,12 --profile production-0.25deg --period decav91C0 --source auto
+```
+
+The generated `data/temperature/query/metadata.json` is small and contains no per-cell values. Query chunks are global 10° latitude/longitude regions with a one-cell border. The binary payload order is month, depth, latitude, longitude; it stores little-endian Int16 hundredths of a degree (`scale_c: 0.01`) and reserves `-32768` for missing cells. Only actual WOA23 standard depths from Surface through 50 m are included in this diver-focused query product: Surface, 5, 10, 15, 20, 25, 30, 35, 40, 45, and 50 m. Browser display rounds to 0.1°C. Lookup selects the nearest valid ocean cell within 0.75 source-grid diagonals and never interpolates across a mask. Chunks are deterministic gzip assets, fetched only after a valid map click; the four most recently used decompressed chunks are kept in memory.
+
+The shipped query metadata describes 648 global 10° spatial chunks at 0.25° resolution. Each chunk contains the supported months and depths; the full gzip payload totals 89,554,729 B (median chunk 166,369 B, maximum 325,476 B; expanded total 300,972,672 B). A valid ocean click requests metadata and only the chunk covering that location. These are total dataset sizes, not the transfer size for one click.
+
+If a source file is already available locally, visual-tile generation works offline:
+
+```powershell
+python tools/temperature/build.py --input D:/data/woa23_decav_t09an01.dat.gz --month 9 --depth 20 --profile development-1deg --source local
+```
+
+The local command above reads the file already on disk and needs no network. Development tiles are written separately under `data/temperature/development-1deg/`; their manifest records source period, objectively analyzed mean field, format, source filename, and validation purpose. The map displays a development-preview note while this manifest is active.
+
+A local static server can serve `data/temperature/metadata.json` and the PNG tile tree:
+
+```powershell
+python -m http.server 8765
+```
+
+Run builder and browser checks with:
+
+```powershell
+python -m unittest discover -s tests/unit -p 'test_temperature_build.py' -v
+npm run test:unit
+npx playwright test tests/e2e/environmental-view.spec.js --project=desktop-chromium
+```
+
+The visual tile template is profile-rooted at `woa23/monthly/<month>/<depth>/<z>/<x>/<y>.png`; month is zero-padded `01`–`12`, and depth is `0`, `10`, `20`, `30`, or `40` metres. Query metadata records source period/resolution, actual latitude order and longitude convention, available months/depths, scaling, missing sentinel, chunk geometry, and format version. Its dimensions are read at runtime, so 1° and 0.25° grids use the same decoder.
+
+**Data release status:** the checked-in Temperature manifest selects the complete 0.25° `decav91C0` WOA23 monthly climatology (1991–2020), with 12 months and 11 standard depths from Surface through 50 m. Its visual tiles are available through native zoom Z3. Numeric query chunks are fetched on demand after an ocean click. The September / 20 m eastern Indonesia 1° fixture remains available for development validation. These products describe long-term climatology, not current conditions, and are not suitable for local dive planning.
+
 ### Reef and coral products
 
 `tools/build_local_data.py` contains the local Reef and coral build pipeline. The coral occurrence and species exporters share the inland QC policy in `tools/coral_qc.py`; `tools/validate_coral_qc.py` checks the generated outputs and regression controls. Build dependencies and cached source inputs vary by target; inspect the selected tool's header and `--help` before rebuilding. Generated snapshots, manifests, and chunks are the browser's static inputs.
