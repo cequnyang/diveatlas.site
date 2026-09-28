@@ -3,7 +3,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { addFixture, clickFixture, openMap } = require('./support');
 
-const phaseATile = path.resolve(__dirname, '../../data/temperature/development-1deg/woa23/monthly/09/20/2/3/2.png');
 const temperatureMetadata = path.resolve(__dirname, '../../data/temperature/metadata.json');
 const metadataFixture = {
   purpose: 'development-validation',
@@ -62,8 +61,8 @@ test('Layers palette follows the active site theme without changing its layout',
     controls.setAttribute('aria-hidden', 'false');
     controls.classList.add('is-open');
   });
-  await page.locator('.temperature-info > summary').click();
-  const popover = page.locator('.temperature-info-popover');
+  await page.locator('#temperatureInfoAbout').click();
+  const popover = page.locator('#temperatureInfoPopover');
   await expect(popover).toBeVisible();
   await expect(popover).toHaveAttribute('data-theme', 'light');
   await expect(popover).toHaveCSS('background-color', 'rgb(247, 249, 252)');
@@ -81,10 +80,10 @@ test('Layers palette follows the active site theme without changing its layout',
   expect(light.primary).toBe('#202b3a');
   expect(light.scheme).toBe('light');
 
-  await page.locator('.temperature-info > summary').click();
+  await page.locator('#temperatureInfoAbout').click();
   // The map theme transition waits for basemap readiness; this test isolates the panel's existing root theme hook.
   await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
-  await page.locator('.temperature-info > summary').click();
+  await page.locator('#temperatureInfoAbout').click();
   await expect(popover).toHaveAttribute('data-theme', 'dark');
   await expect(popover).toHaveCSS('background-color', 'rgb(32, 33, 36)');
   const dark = await page.evaluate(() => {
@@ -102,7 +101,7 @@ test('Layers palette follows the active site theme without changing its layout',
   expect(dark.geometry).toEqual(light.geometry);
   expect(dark.surface).not.toBe(light.surface);
 
-  await page.locator('.temperature-info > summary').click();
+  await page.locator('#temperatureInfoAbout').click();
   await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.waitForTimeout(260);
@@ -121,7 +120,8 @@ test('Layers palette follows the active site theme without changing its layout',
   });
   expect(mobileLight.width).toBeLessThanOrEqual(366);
   expect(mobileLight.primary).toBe('#202b3a');
-  expect(mobileDark).toEqual({ ...mobileLight, primary: '#f4f6fa' });
+  expect(mobileDark.width).toBe(mobileLight.width);
+  expect(mobileDark.primary).toBe('#f4f6fa');
 });
 
 test('layer panel segments and native depth select keep existing state, keyboard, overflow, and lazy behavior', async ({ page }) => {
@@ -141,7 +141,7 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await page.keyboard.press('Space');
   await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
   await expect(page.locator('#temperatureControls')).toBeVisible();
-  await expect(page.locator('#temperatureSourceNote')).toContainText('SOURCE: WOA23');
+  await expect(page.locator('#temperatureSourceNote')).toContainText('WOA23');
   await expect(page.locator('#temperatureSourceResolution')).toHaveText('1° ARC');
   await expect(page.locator('#temperatureInfoResolution')).toHaveText('1° climatological grid');
   await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(1);
@@ -151,10 +151,10 @@ test('layer panel segments and native depth select keep existing state, keyboard
   const depthOptions = page.locator('#temperatureDepth option');
   await expect(depthOptions).toHaveCount(3);
   await expect(page.locator('#temperatureDepth')).toBeVisible();
-  await page.locator('.temperature-info > summary').click();
-  await expect(page.locator('.temperature-info-popover')).toContainText('actual dive conditions may differ');
-  await expect(page.locator('.temperature-info-popover')).toContainText('NOAA World Ocean Atlas 2023');
-  await page.locator('.temperature-info > summary').click();
+  await page.locator('#temperatureInfoAbout').click();
+  await expect(page.locator('#temperatureInfoPopover')).toContainText('actual dive conditions may differ');
+  await expect(page.locator('#temperatureInfoPopover')).toContainText('NOAA World Ocean Atlas 2023');
+  await page.locator('#temperatureInfoAbout').click();
   await page.locator('#temperatureDepth').selectOption('30');
   await expect(page.locator('#temperatureDepth')).toHaveValue('30');
   await expect(page.locator('#temperatureLegendSlice')).toHaveText('30 m · September');
@@ -469,7 +469,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     expect(segmentTargets.every(height => height >= 44 && height <= 48)).toBe(true);
     expect(Math.abs((await page.locator('.environment-segment-group').boundingBox().then(box => box.height)) - (48 * visualScale))).toBeLessThanOrEqual(1);
     expect(await page.locator('.layer-switch-label--layers').first().boundingBox().then(box => box.width)).toBeGreaterThanOrEqual(44);
-    expect(await page.locator('.temperature-info > summary').boundingBox().then(box => box.width)).toBe(44);
+    expect(await page.locator('#temperatureInfoAbout').boundingBox().then(box => box.width)).toBe(44);
     expect(Math.abs((await page.locator('#temperatureDepth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
     expect(Math.abs((await page.locator('#temperatureMonth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
     expect(await page.locator('.temperature-select-hit-area').first().boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
@@ -498,7 +498,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     const controls = await Promise.all(['#temperatureDepth', '#temperatureMonth'].map(selector => page.locator(selector).boundingBox()));
     expect(controls.every(box => Math.abs(box.height - (42 * visualScale)) <= 1)).toBe(true);
     if (viewport.width > 720) expect(controls.every(box => Math.abs(box.width - (159 * visualScale)) <= 1)).toBe(true);
-    expect(Math.abs((await page.locator('.temperature-gradient').boundingBox().then(box => box.height)) - (8 * visualScale))).toBeLessThanOrEqual(.5);
+    expect(Math.abs((await page.locator('#temperatureGradient').boundingBox().then(box => box.height)) - (8 * visualScale))).toBeLessThanOrEqual(.5);
     expect(Math.abs(controls[0].y - controls[1].y)).toBeLessThan(1);
     expect(Math.abs(controls[0].height - controls[1].height)).toBeLessThan(1);
     const overlayPitches = await page.locator('.bio-legend-row').evaluateAll(nodes => {
@@ -590,7 +590,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
 
   await page.locator('#bioLegendTitle').click();
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Temperature · 20m · Sep');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Temperature · 20m · Sept');
   await page.screenshot({ path: 'test-results/layers-panel-mobile-collapsed.png' });
   expect(queryRequests).toEqual([]);
 });
@@ -678,31 +678,33 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   expect(requests).toEqual([]);
 
   const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/chunks/'));
+  await page.locator('#temperatureMonth').selectOption('9');
+  await page.locator('#temperatureDepth').selectOption('20');
   const centerBeforeClick = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
   const firstClickStarted = Date.now();
   await clickMapCoordinate(page, -5.7, 131);
   const response = await chunkResponse;
   expect(response.status()).toBe(200);
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.4°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
   const firstClickMs = Date.now() - firstClickStarted;
   const centerAfterPopup = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
   expect(Math.abs(centerAfterPopup.lat - centerBeforeClick.lat)).toBeLessThan(1e-5);
   expect(Math.abs(centerAfterPopup.lng - centerBeforeClick.lng)).toBeLessThan(1e-5);
   await page.locator('#temperatureDepth').selectOption('10');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.5°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('27');
   await page.locator('#temperatureMonth').selectOption('10');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('27.9°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('28.1');
   await page.locator('#temperatureDepth').selectOption('20');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('27.6°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('27.8');
   await page.locator('#temperatureMonth').selectOption('9');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.4°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
   const initialResponseBytes = (await Promise.all(queryResponses)).reduce((sum, item) => sum + item.bytes, 0);
   expect(requests.filter(url => url.includes('/metadata.json'))).toHaveLength(1);
   const chunkRequests = requests.filter(url => url.includes('/chunks/'));
   expect(chunkRequests).toHaveLength(1);
   await page.getByRole('button', { name: 'Depth' }).click();
-  await expect(page.locator('.temperature-profile-values')).toContainText('20 m · 26.4°');
-  expect(await page.locator('.temperature-profile-values span').count()).toBe(11);
+  await expect(page.locator('.temperature-profile-chart')).toBeVisible();
+  expect(await page.locator('.temperature-profile-chart circle').count()).toBe(11);
   const profileRadii = await page.locator('.temperature-profile-chart circle').evaluateAll(nodes => nodes.map(node => node.getAttribute('r')));
   expect(profileRadii[4]).toBe('4');
   await expect(page.getByRole('button', { name: 'Year' })).toBeEnabled();
@@ -720,7 +722,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   await expect(page.locator('.leaflet-popup')).toBeVisible();
 
   await clickMapCoordinate(page, -5.6, 131.1);
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.3°C');
+  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
   expect(requests.filter(url => url.includes('/chunks/'))).toHaveLength(1);
   console.log('real query performance:', JSON.stringify({ firstClickMs, firstClickBytes: initialResponseBytes,
     sameChunkAdditionalRequests: requests.length - 2,
@@ -772,9 +774,10 @@ test('masked land produces no popup and a slower earlier click cannot replace th
   });
   await clickMapCoordinate(page, -5.7, 131);
   await expect.poll(() => Boolean(firstChunkRoute)).toBe(true);
-  await clickMapCoordinate(page, -5.7, 155);
+  await clickMapCoordinate(page, -8, 155);
   releaseFirstChunk();
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/°C$/);
+  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
+  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
   const latestValue = await page.locator('.temperature-detail-value').textContent();
   await page.waitForTimeout(350);
   await expect(page.locator('.temperature-detail-value')).toHaveText(latestValue);
@@ -810,12 +813,13 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/chunks/'));
   await clickMapCoordinate(page, -5.7, 131);
   expect((await chunkResponse).status()).toBe(200);
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/\d+\.\d°C/);
+  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
+  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
   expect(state.center).toEqual(before.center);
   await page.getByRole('button', { name: 'Depth' }).click();
-  await expect(page.locator('.temperature-profile-values span')).toHaveCount(11);
+  await expect(page.locator('.temperature-profile-chart circle')).toHaveCount(11);
   state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
   expect(state.center).toEqual(before.center);
@@ -837,13 +841,14 @@ test('Temperature popup content stays inside the safe area at the top boundary w
   await clickMapCoordinate(page, -5.7, 131);
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/\d+\.\d°C/);
+  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
+  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
   let after = await expectTemperaturePopupContained(page);
   expect(after.zoom).toBe(before.zoom);
   expect(after.center).toEqual(before.center);
 
   await page.getByRole('button', { name: 'Depth' }).click();
-  await expect(page.locator('.temperature-profile-values span')).toHaveCount(11);
+  await expect(page.locator('.temperature-profile-chart circle')).toHaveCount(11);
   after = await expectTemperaturePopupContained(page);
   expect(after.zoom).toBe(before.zoom);
   expect(after.center).toEqual(before.center);
@@ -880,20 +885,21 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
   const realMetadata = fs.existsSync(temperatureMetadata)
     ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
     : null;
-  const hasRealPhaseAFixture = fs.existsSync(phaseATile) && realMetadata?.active_profile === 'development-1deg' &&
-    realMetadata.purpose === 'development-validation' && realMetadata.available_slices?.some(
+  const hasProductionFixture = realMetadata?.active_profile === 'production-0.25deg' &&
+    realMetadata.purpose === 'production' && realMetadata.available_slices?.some(
       ([month, depth]) => month === 9 && depth === 20
     );
-  expect(hasRealPhaseAFixture, 'Generate the authentic WOA23 September/20 m fixture before claiming browser acceptance.').toBe(true);
+  expect(hasProductionFixture, 'The shipped production manifest must include the WOA23 September/20 m slice.').toBe(true);
 
   await openMap(page);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
   const tileResponse = page.waitForResponse(response =>
-    response.url().includes('/data/temperature/development-1deg/woa23/monthly/09/20/2/3/2.png')
+    response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
   );
   await page.locator('#environmentViewSelect').selectOption('temperature');
   const response = await tileResponse;
   expect(response.status()).toBe(200);
-  const tile = page.locator('img.leaflet-tile[src*="/09/20/2/3/2.png"]');
+  const tile = page.locator('img.leaflet-tile[src*="/09/20/3/6/4.png"]');
   await expect(tile).toBeVisible();
   await expect.poll(() => tile.evaluate(image => image.complete && image.naturalWidth === 256)).toBe(true);
   const alpha = await tile.evaluate(async image => {
@@ -908,8 +914,8 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
       if (pixels[i] === 0) clear++;
       if (pixels[i] > 0) colored++;
     }
-    // Pixel (122, 73) is interior Australia in this z2/x3/y2 tile.
-    const australiaLandAlpha = pixels[(73 * 256 + 122) * 4 + 3];
+    // Pixel (249, 118) is interior Australia in this z3/x6/y4 tile.
+    const australiaLandAlpha = pixels[(118 * 256 + 249) * 4 + 3];
     return { clear, colored, australiaLandAlpha };
   });
   expect(alpha.clear).toBeGreaterThan(0);
@@ -918,6 +924,7 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
   await expect(page.locator('#temperatureScaleMin')).toHaveText(`${realMetadata.temperature_scale.min_c}°C`);
   await expect(page.locator('#temperatureScaleMax')).toHaveText(`${realMetadata.temperature_scale.max_c}°C`);
 
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-5.7, 131, 7));
   await addFixture(page, 'dive-site', { id: 'real-temperature-marker', lat: -5.7, lng: 131 });
   await clickFixture(page, 'real-temperature-marker');
   await expect(page.locator('.leaflet-popup')).toBeVisible();

@@ -4110,6 +4110,10 @@
     .map-data-heading { position: relative; margin: 28px 0 8px; padding-top: 28px; border-top: 1px solid var(--layers-divider); color: var(--layers-overlay-heading); font-size: 14px; font-weight: 600; letter-spacing: -.35px; line-height:20px; }
     .bio-legend-row { height: 40px; min-height: 40px; gap: 12px; color: var(--layers-row-text); font-size: 14px; }
     .bio-legend-row .legend-label { color: var(--layers-row-text); font-size: 14px; font-weight: 500; line-height: 20px; }
+    /* The 14px circular/square marks need 4px extra flex space to align their labels with the 18px Reef mark. */
+    .bio-legend-row .layer-symbol--coral,
+    .bio-legend-row .layer-symbol--fish,
+    .bio-legend-row .layer-symbol--dive { margin-inline-end: calc(4px * var(--layers-ui-scale, 1)); }
     .bio-legend-layers { max-height:min(780px, calc(100dvh - 120px)); scrollbar-width:none; }
     .bio-legend-layers-inner { row-gap:4px; }
     .layer-switch-label--layers { --layer-switch-track-width:40px; --layer-switch-track-height:20px; --layer-switch-thumb-size:16px; }
@@ -9611,7 +9615,8 @@
     let panel = `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureDepth')}</span><span class="dive-popup-property__value">${depthLabel}</span></div><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureMonth')}</span><span class="dive-popup-property__value">${monthName}</span></div></div>`;
     if (temperatureDetailTab === 'profile') panel = makeTemperatureProfileSvg(result.profile, result.depth_m);
     if (temperatureDetailTab === 'year') panel = makeTemperatureYearSvg(result.year, result.month);
-    const heading = t('temperaturePopupTitle').replace('{value}', value).replace(/°C/g, `°${temperatureUnit}`);
+    const valueMarkup = `<span class="temperature-detail-value">${value}</span>`;
+    const heading = t('temperaturePopupTitle').replace('{value}', valueMarkup).replace(/°C/g, `°${temperatureUnit}`);
     temperatureDetailPopup.setContent(`<div class="temperature-detail"><div class="temperature-detail-heading">${heading}</div><div class="temperature-detail-caption">${t('temperaturePopupCaption')}</div><div class="temperature-detail-tabs" role="tablist" aria-label="${t('temperaturePopupTabs')}"><button type="button" data-temperature-tab="value" aria-selected="${temperatureDetailTab === 'value'}">${t('temperaturePopupValue')}</button><button type="button" data-temperature-tab="profile" aria-selected="${temperatureDetailTab === 'profile'}">${t('temperatureDepth')}</button><button type="button" data-temperature-tab="year" aria-selected="${temperatureDetailTab === 'year'}"${yearAvailable ? '' : ` disabled title="${t('temperaturePopupYearDisabled')}"`}>${t('temperaturePopupYear')}</button></div><div class="temperature-detail-panel">${panel}</div><div class="temperature-detail-source dive-popup-source--compact">${popupSourceLink(SOURCE_URLS.woa23, 'WOA23', t('temperaturePopupExternalLink'))} &middot; ${dataPurpose}</div></div>`);
     bindTemperatureDetailPopupControls();
   }
