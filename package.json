@@ -6,6 +6,7 @@
     "test:unit": "node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",
     "test:e2e": "playwright test",
     "test:interactions": "npm run test:unit && npm run check:test-policy && npm run build && npm run test:e2e",
+    "visual:qa": "node tools/visual_qa/measure-layers.cjs",
     "test": "npm run test:unit",
     "check:test-policy": "node tools/check_interaction_test_policy.js",
     "build": "python tools/prepare_pages.py --output _site"

@@ -14,6 +14,18 @@ const {
 
 test.beforeEach(async ({ page }) => openMap(page));
 
+async function expectMapViewUnchanged(page, before, after) {
+  expect(after.zoom).toBe(before.zoom);
+  const displacementPx = await page.evaluate(([start, end]) => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const a = map.project(window.L.latLng(start.lat, start.lng), start.zoom);
+    const b = map.project(window.L.latLng(end.lat, end.lng), end.zoom);
+    return a.distanceTo(b);
+  }, [before.center, after.center]);
+  // Leaflet rounds its pixel origin, which can change getCenter by a fraction of a pixel.
+  expect(displacementPx).toBeLessThanOrEqual(1);
+}
+
 test('aggregate Coral marker zooms and never opens details', async ({ page }) => {
   await addFixture(page, 'aggregate', { id: 'coral-aggregate', lat: -5.7, lng: 131, count: 12 });
   await resetActionCount(page);
@@ -31,7 +43,7 @@ test('individual Coral feature opens details without aggregate zoom', async ({ p
   await clickFixture(page, 'coral-point');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
   const after = await mapState(page);
-  expect(after.zoom).toBe(before.zoom);
+  await expectMapViewUnchanged(page, before, after);
   expect(after.popup.type).toBe('species');
   expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.getActionCount())).toBe(1);
 });
@@ -48,9 +60,12 @@ test('Dive cluster zooms and never opens a single-site popup', async ({ page }) 
 test('individual Dive site opens its details popup', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'dive-single', lat: -5.7, lng: 131 });
+  const before = await mapState(page);
   await clickFixture(page, 'dive-single');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  expect((await mapState(page)).popup.type).toBe('dive');
+  const after = await mapState(page);
+  expect(after.popup.type).toBe('dive');
+  await expectMapViewUnchanged(page, before, after);
 });
 
 test('Fish aggregate zooms instead of opening a details popup', async ({ page }) => {
@@ -67,8 +82,9 @@ test('individual Fish feature opens details without aggregate zoom', async ({ pa
   const before = await mapState(page);
   await clickFixture(page, 'fish-single');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  expect((await mapState(page)).zoom).toBe(before.zoom);
-  expect((await mapState(page)).popup.type).toBe('fish');
+  const after = await mapState(page);
+  await expectMapViewUnchanged(page, before, after);
+  expect(after.popup.type).toBe('fish');
 });
 
 test('hidden Coral grid geometry is not clickable after its layer is turned off', async ({ page }) => {
@@ -90,9 +106,12 @@ test('empty-ocean left click does not open Depth Inspection', async ({ page }) =
 test('desktop right click on ocean opens Depth Inspection', async ({ page }) => {
   const map = page.locator('#map');
   const bounds = await map.boundingBox();
+  const before = await mapState(page);
   await page.mouse.click(bounds.x + bounds.width * 0.52, bounds.y + bounds.height * 0.48, { button: 'right' });
   await expect(page.locator('.leaflet-popup')).toBeVisible({ timeout: 5000 });
-  expect((await mapState(page)).popup.type).toBe('depth');
+  const after = await mapState(page);
+  expect(after.popup.type).toBe('depth');
+  await expectMapViewUnchanged(page, before, after);
 });
 
 test('right click outside the map keeps normal browser context-menu behavior', async ({ page }) => {
@@ -201,9 +220,7 @@ test('popup near the bottom edge stays above its anchor', async ({ page }) => {
   expect(popupBounds.y + popupBounds.height).toBeLessThanOrEqual(mapBounds.y + mapBounds.height + 1);
 });
 
-test('popup remains open after internal boundary auto-pan', async ({ page }) => {
-  await page.setViewportSize({ width: 430, height: 360 });
-  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.invalidateSize({ animate: false }));
+test('opening a boundary popup never moves the map view', async ({ page }) => {
   const map = await page.locator('#map').boundingBox();
   await addDiveSiteAtScreenPoint(page, 'popup-autopan', map.width * 0.86, map.height * 0.50);
   const before = await mapState(page);
@@ -213,7 +230,7 @@ test('popup remains open after internal boundary auto-pan', async ({ page }) => 
   await expect.poll(async () => (await mapState(page)).popup?.type).toBe('dive');
   const after = await mapState(page);
   expect(after.popup).not.toBeNull();
-  expect(after.zoom).toBe(before.zoom);
+  await expectMapViewUnchanged(page, before, after);
 });
 
 test('popup closes when user navigation moves its anchor outside the usable viewport', async ({ page }) => {
@@ -247,9 +264,12 @@ test('turning the owning Coral layer off closes its popup and clears hover state
 
 test('grid popup is invalidated when Coral changes from grid to point representation', async ({ page }) => {
   await addFixture(page, 'coral-grid', { id: 'coral-representation', lat: -5.7, lng: 131 });
+  const before = await mapState(page);
   await clickFixture(page, 'coral-representation');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  expect((await mapState(page)).popup.type).toBe('coral-grid');
+  const afterOpen = await mapState(page);
+  expect(afterOpen.popup.type).toBe('coral-grid');
+  await expectMapViewUnchanged(page, before, afterOpen);
   await setMapView(page, -5.7, 131, 14);
   await expect(page.locator('.leaflet-popup')).toHaveCount(0, { timeout: 4000 });
 });

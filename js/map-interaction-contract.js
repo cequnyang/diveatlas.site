@@ -32,25 +32,26 @@
   function choosePopupVerticalPlacement({
     aboveShift,
     belowShift,
-    aboveAdjustment = { cost: Infinity, shift: 0 },
-    belowAdjustment = { cost: Infinity, shift: 0 }
+    aboveAdjustment = { cost: Infinity },
+    belowAdjustment = { cost: Infinity }
   } = {}) {
     if (aboveShift == null && belowShift == null) {
-      const belowWins = belowAdjustment.cost < aboveAdjustment.cost ||
-        (belowAdjustment.cost === aboveAdjustment.cost &&
-          Math.abs(belowAdjustment.shift) < Math.abs(aboveAdjustment.shift));
-      const adjustment = belowWins ? belowAdjustment : aboveAdjustment;
-      return { side: belowWins ? 'below' : 'above', shift: adjustment.shift, fallback: true };
+      const belowWins = belowAdjustment.cost < aboveAdjustment.cost;
+      return { side: belowWins ? 'below' : 'above', fallback: true };
     }
-    if (aboveShift == null) return { side: 'below', shift: belowShift, fallback: false };
+    if (aboveShift == null) return { side: 'below', fallback: false };
     if (belowShift == null || Math.abs(aboveShift) <= Math.abs(belowShift)) {
-      return { side: 'above', shift: aboveShift, fallback: false };
+      return { side: 'above', fallback: false };
     }
-    return { side: 'below', shift: belowShift, fallback: false };
+    return { side: 'below', fallback: false };
   }
 
   function popupArrowSide(side) {
     return side === 'below' ? 'top' : 'bottom';
+  }
+
+  function disablePopupAutoPan(options = {}) {
+    return { ...options, autoPan: false };
   }
 
   function canFinishPopupClose({ currentEpoch, expectedEpoch, lifecycle } = {}) {
@@ -97,6 +98,7 @@
     isFeatureInteractable,
     choosePopupVerticalPlacement,
     popupArrowSide,
+    disablePopupAutoPan,
     canFinishPopupClose,
     isCurrentPopupOwner,
     shouldDismissPopupAfterMovement,

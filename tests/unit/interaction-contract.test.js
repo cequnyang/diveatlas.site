@@ -29,7 +29,7 @@ test('feature interaction requires visible layer, active representation, feature
 
 test('popup placement prefers above when both directions fit', () => {
   assert.deepEqual(contract.choosePopupVerticalPlacement({ aboveShift: 0, belowShift: 0 }), {
-    side: 'above', shift: 0, fallback: false
+    side: 'above', fallback: false
   });
 });
 
@@ -37,18 +37,29 @@ test('popup placement flips below when above does not fit', () => {
   assert.equal(contract.choosePopupVerticalPlacement({ aboveShift: null, belowShift: 0 }).side, 'below');
 });
 
-test('popup placement uses the least-cost adjustment when neither direction fits', () => {
+test('popup placement chooses the less obstructed side when neither direction fits', () => {
   assert.deepEqual(contract.choosePopupVerticalPlacement({
     aboveShift: null,
     belowShift: null,
-    aboveAdjustment: { cost: 28, shift: -18 },
-    belowAdjustment: { cost: 9, shift: 7 }
-  }), { side: 'below', shift: 7, fallback: true });
+    aboveAdjustment: { cost: 28 },
+    belowAdjustment: { cost: 9 }
+  }), { side: 'below', fallback: true });
 });
 
 test('popup arrow points toward its anchor on either side', () => {
   assert.equal(contract.popupArrowSide('above'), 'bottom');
   assert.equal(contract.popupArrowSide('below'), 'top');
+});
+
+test('shared popup options always disable popup-driven map movement', () => {
+  assert.deepEqual(contract.disablePopupAutoPan({ autoPan: true, maxWidth: 420 }), {
+    autoPan: false,
+    maxWidth: 420
+  });
+  assert.deepEqual(contract.disablePopupAutoPan({ autoPan: false, closeButton: true }), {
+    autoPan: false,
+    closeButton: true
+  });
 });
 
 test('popup close may reset only for the current closing epoch', () => {
@@ -63,7 +74,7 @@ test('a stale popup owner revision cannot operate on a newer popup', () => {
   assert.equal(contract.isCurrentPopupOwner({ popupIsActive: true, ownerRevision: 13, expectedRevision: 12 }), false);
 });
 
-test('popup auto-pan is not mistaken for user navigation', () => {
+test('programmatic map movement is not mistaken for user navigation', () => {
   assert.equal(contract.shouldDismissPopupAfterMovement({
     internalMovement: true,
     userMovementIntent: false,

@@ -1,4 +1,5 @@
 const { defineConfig, devices } = require('@playwright/test');
+const { targetEnvironment } = require('./tools/visual_qa/config.cjs');
 
 module.exports = defineConfig({
   testDir: './tests/e2e',
@@ -21,8 +22,14 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'desktop-chromium',
-      testMatch: 'critical-contracts.spec.js',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 900 } }
+      testMatch: ['critical-contracts.spec.js', 'environmental-view.spec.js'],
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: targetEnvironment.viewport,
+        screen: targetEnvironment.screen,
+        deviceScaleFactor: targetEnvironment.deviceScaleFactor,
+        channel: process.env.VISUAL_QA_CHANNEL || undefined
+      }
     },
     {
       name: 'mobile-touch-chromium',

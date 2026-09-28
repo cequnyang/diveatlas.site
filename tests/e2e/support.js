@@ -25,7 +25,7 @@ async function openMap(page) {
   await page.route('**/*', async route => {
     const url = new URL(route.request().url());
     if (url.hostname === '127.0.0.1' || url.hostname === 'localhost' || url.hostname === 'unpkg.com') {
-      return route.continue();
+      return route.fallback();
     }
     return route.abort();
   });
