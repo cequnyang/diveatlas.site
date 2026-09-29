@@ -1489,6 +1489,7 @@
     }
     .temperature-detail-heading { padding-right: 24px; color: var(--text); font-size: 15px; font-weight: 800; line-height: 1.25; }
     .temperature-detail-caption { margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .water-clarity-detail .temperature-detail-value { white-space: nowrap; }
     .temperature-detail-tabs { display: flex; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line-soft); }
     .temperature-detail-tabs button { flex: 1; min-height: 28px; padding: 3px 6px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--muted); font: inherit; font-size: 10px; cursor: pointer; }
     .temperature-detail-popup .leaflet-popup-close-button { width: 44px !important; height: 44px !important; }
@@ -3803,25 +3804,34 @@
     .panel-section-label { color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 0; line-height: 1.3; }
     .environment-segment-group {
       position: relative;
-      display: grid;
+      display: flex;
+      align-items: center;
       box-sizing: border-box;
       height: 31px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
+      min-width: 0;
+      gap: 4px;
       margin: 0;
-      padding: 0;
+      padding: 3px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scroll-padding-inline: 8px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
       background: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .environment-segment-group::before { content: ''; position: absolute; z-index: 0; top: 2px; bottom: 2px; left: 2px; width: calc((100% - 4px - 2px) / 3); border-radius: 6px; background: color-mix(in srgb, var(--primary) 7%, var(--surface-elevated)); transform: translateX(0); transition: transform var(--motion-medium) var(--ease-ui); }
-    /* The measured percent translation overshoots each tab slot by the track's 2px inner border allowance. */
-    .environment-segment-group:has(input[value="terrain"]:checked)::before { transform: translateX(calc(100% - 2px)); }
-    .environment-segment-group:has(input[value="temperature"]:checked)::before { transform: translateX(calc(200% - 4px)); }
-    .environment-segment { position: relative; display: grid; min-width: 0; min-height: 44px; margin-block: -6.5px; place-items: center; cursor: pointer; }
+    .environment-segment-group::-webkit-scrollbar { display: none; }
+    .environment-segment { position: relative; display: flex; flex: 0 0 auto; width: max-content; min-width: 74px; min-height: 44px; align-items: center; justify-content: center; scroll-snap-align: center; cursor: pointer; user-select: none; -webkit-user-select: none; }
+    /* Keep only enough end inset to clear the selector's blurred edge fade. */
+    .environment-segment:first-of-type { margin-left: max(12px, calc(16px * var(--layers-ui-scale, 1))); }
+    .environment-segment:last-of-type { margin-right: max(12px, calc(16px * var(--layers-ui-scale, 1))); }
     .environment-segment input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
-    .environment-segment span { position: relative; z-index: 1; display: flex; width: 100%; min-height: 29px; align-items: center; justify-content: center; padding: 0 4px; color: var(--text-secondary); font-size: 12px; font-weight: 500; line-height: 1; white-space: nowrap; transition: color var(--motion-fast) var(--ease-ui); }
-    .environment-segment input:checked + span { color: var(--primary); font-weight: 550; }
+    .environment-segment span { position: relative; z-index: 1; display: flex; flex: 1 0 auto; width: auto; min-height: 29px; box-sizing: border-box; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid transparent; border-radius: 6px; color: var(--text-secondary); font-size: 12px; font-weight: 500; line-height: 1; white-space: nowrap; transition: color var(--motion-fast) var(--ease-ui), background-color var(--motion-fast) var(--ease-ui), box-shadow var(--motion-fast) var(--ease-ui); user-select: none; -webkit-user-select: none; }
+    .environment-segment input:checked + span { border-color: var(--layers-segment-border, transparent); background: var(--layers-segment-background, color-mix(in srgb, var(--primary) 10%, var(--surface-elevated))); box-shadow: var(--layers-segment-shadow, none); color: var(--primary); font-weight: 600; }
     .environment-segment:hover span { color: var(--primary); }
     .environment-segment input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 1px; }
     .environment-view-source { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -3858,6 +3868,8 @@
     .temperature-legend { margin-top: 4px; color: var(--text-secondary); font-size: 13px; }
     .temperature-legend-heading { display: flex; min-height: 18px; align-items: center; gap: 8px; color: var(--text-primary); font-size: 14px; font-weight: 550; }
     .temperature-gradient { height: 7px; margin: 6px 0 4px; border-radius: 4px; }
+    .water-clarity-legend-card { gap: 8px; padding: 8px; }
+    .water-clarity-meta { margin-top: 0; }
     .temperature-scale { display: flex; justify-content: space-between; color: var(--text-secondary); font-size: 12px; font-variant-numeric: tabular-nums; }
     .temperature-status { margin-top: 6px; color: var(--text-muted); font-size: 12px; }
     .temperature-status[hidden] { display: none; }
@@ -4010,14 +4022,14 @@
     .bio-legend-overflow-menu { background:var(--layers-menu-background); box-shadow:var(--layers-menu-shadow); }
     .environment-mode { padding-top:1px; }
     .environment-mode-row { margin: 0 0 24px; }
-    .environment-segment-group { height: 48px; padding: 4px; gap: 0; border-radius: var(--layers-control-radius); border-color: var(--layers-view-border); background: var(--layers-view-background); box-shadow: var(--layers-view-shadow); }
-    /* The absolute indicator is positioned from the track's inner border edge. This 1px optical offset aligns its center with the tab labels. */
-    .environment-segment-group::before { top: 5px; bottom: 3px; left: 4px; width: calc((100% - 8px - 0px) / 3); border:1px solid var(--layers-segment-border); border-radius: var(--layers-control-radius); background: var(--layers-segment-background); box-shadow: var(--layers-segment-shadow); }
-    .environment-segment-group:has(input[value="terrain"]:checked)::before { transform: translateX(calc(100% - 2px)); }
-    .environment-segment-group:has(input[value="temperature"]:checked)::before { transform: translateX(calc(200% - 4px)); }
-    .environment-segment { margin-block: -4px; }
+    .environment-segment-shell { position: relative; box-sizing: border-box; height: 48px; min-width: 0; overflow: hidden; border: 1px solid var(--layers-view-border); border-radius: var(--layers-control-radius); background: var(--layers-view-background); box-shadow: var(--layers-view-shadow); }
+    .environment-segment-shell::before,
+    .environment-segment-shell::after { position: absolute; z-index: 2; inset-block: 0; width: 16px; content: ''; pointer-events: none; background: var(--layers-view-background); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+    .environment-segment-shell::before { left: 0; -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.95) 12%, rgba(0,0,0,.82) 28%, rgba(0,0,0,.62) 46%, rgba(0,0,0,.35) 68%, rgba(0,0,0,.13) 86%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.95) 12%, rgba(0,0,0,.82) 28%, rgba(0,0,0,.62) 46%, rgba(0,0,0,.35) 68%, rgba(0,0,0,.13) 86%, transparent 100%); }
+    .environment-segment-shell::after { right: 0; -webkit-mask-image: linear-gradient(270deg, #000 0%, rgba(0,0,0,.95) 12%, rgba(0,0,0,.82) 28%, rgba(0,0,0,.62) 46%, rgba(0,0,0,.35) 68%, rgba(0,0,0,.13) 86%, transparent 100%); mask-image: linear-gradient(270deg, #000 0%, rgba(0,0,0,.95) 12%, rgba(0,0,0,.82) 28%, rgba(0,0,0,.62) 46%, rgba(0,0,0,.35) 68%, rgba(0,0,0,.13) 86%, transparent 100%); }
+    .environment-segment-group { position: absolute; inset: -1px; height: auto; min-inline-size: 0; padding: 1px 5px; gap: 4px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
     .environment-segment span { min-height: 38px; color: var(--layers-segment-text); font-size: 14px; font-weight: 500; }
-    .environment-segment input:checked + span { color: var(--layers-segment-active-text); font-weight: 600; }
+    .environment-segment input:checked + span { border-color: var(--layers-segment-border); background: var(--layers-segment-background); box-shadow: var(--layers-segment-shadow); color: var(--layers-segment-active-text); font-weight: 600; }
     .temperature-controls.is-open { margin-top: 24px; }
     .temperature-heading-title { color: var(--layers-temperature-title); font-size: 18px; font-weight: 500; letter-spacing: -.45px; line-height:28px; }
     .temperature-heading-description { color: var(--layers-temperature-description); font-size: 14px; line-height:20px; margin-top:2px; }
@@ -4078,7 +4090,7 @@
     .temperature-scroll-wheel-list:focus-visible,
     .temperature-scroll-wheel-done:focus-visible { outline:2px solid var(--layers-focus-ring); outline-offset:1px; }
     @media (prefers-reduced-motion: reduce) { .temperature-scroll-wheel-option { transition:none; } }
-    .temperature-legend { margin-top: 15px; padding-top:8px; color: var(--layers-temperature-legend-text); display:flex; flex-direction:column; gap:10px; }
+    .temperature-legend { margin-top: 4px; padding-top:0; color: var(--layers-temperature-legend-text); display:flex; flex-direction:column; gap:10px; }
     /* Both environmental panels use a single compact gap below the view selector. */
     .bio-legend:has(.environment-segment input[value="terrain"]:checked) .environment-mode-row { margin-bottom: 6px; }
     .terrain-info-panel.is-open { margin-top: 0; }
@@ -4086,14 +4098,23 @@
     .bio-legend:has(.environment-segment input[value="temperature"]:checked) .environment-mode-row { margin-bottom: 6px; }
     .bio-legend:has(.environment-segment input[value="temperature"]:checked) .temperature-controls.is-open { margin-top: 0; }
     .temperature-controls:not(.terrain-info-panel) .temperature-configuration { margin-top: 6px; }
+    .bio-legend:has(.environment-segment input[value="water-clarity"]:checked) .environment-mode-row { margin-bottom: 6px; }
+    .bio-legend:has(.environment-segment input[value="water-clarity"]:checked) .water-clarity-controls.is-open { margin-top: 0; }
+    .water-clarity-controls .temperature-configuration { margin-top: 6px; gap: 6px; }
+    .water-clarity-controls .temperature-control-group { gap: 6px; }
+    .water-clarity-controls .temperature-legend { margin-top: 6px; padding-top: 0; gap: 6px; }
+    .water-clarity-controls .water-clarity-meta { margin-top: 0; }
     .bio-legend:has(.environment-segment input[value="terrain"]:checked) .map-data-heading,
     .bio-legend:has(.environment-segment input[value="temperature"]:checked) .map-data-heading { margin-top: calc(12px * var(--layers-ui-scale, 1)); }
+    .bio-legend:has(.environment-segment input[value="water-clarity"]:checked) .map-data-heading { margin-top: calc(8px * var(--layers-ui-scale, 1)); padding-top: calc(8px * var(--layers-ui-scale, 1)); }
     .temperature-legend-card { display:grid; gap:12px; padding:12px; border:1px solid var(--layers-legend-card-border); border-radius:var(--layers-control-radius); background:var(--layers-legend-card-background); }
     .temperature-legend-heading { display:flex; min-width:0; min-height:20px; align-items:center; justify-content:space-between; gap:8px; }
     .temperature-legend-title { color:var(--layers-legend-title); font-family:ui-monospace, SFMono-Regular, Consolas, monospace; font-size:11px; font-weight:500; letter-spacing:.04em; line-height:16px; text-transform:uppercase; }
     .temperature-legend-selection { flex:0 0 auto; padding:3px 7px; border:1px solid var(--layers-legend-selection-border); border-radius:7px; background:var(--layers-legend-selection-background); color:var(--layers-legend-selection-text); font-size:12px; font-weight:600; line-height:16px; white-space:nowrap; }
      .temperature-legend-heading .visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
      .temperature-gradient { height: 8px; margin: 0; border-radius: 999px; background: linear-gradient(90deg, #285be8 0%, #19aab9 40%, #58b899 66%, #e6a21a 100%); }
+     .temperature-gradient.water-clarity-gradient { background: linear-gradient(90deg, #fde725 0%, #35b779 12.5%, #26828e 25%, #31688e 50%, #3e4989 75%, #482878 100%); }
+    #waterClarityStatus[data-state="loading"] { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     /* Match the generated Terrain palette and per-class alpha; its slope bins are discrete. */
     .temperature-gradient.terrain-gradient {
       background: linear-gradient(90deg,
@@ -4281,22 +4302,15 @@
       .bio-legend-bulk-action .layer-filter-icon { width: calc(20px * var(--layers-ui-scale)); height: calc(20px * var(--layers-ui-scale)); flex-basis: calc(20px * var(--layers-ui-scale)); }
       .environment-mode { padding-top: var(--layers-view-padding); }
       .environment-mode-row { margin-bottom: var(--layers-heading-gap); }
-      .environment-segment-group {
-        height: var(--layers-view-height);
-        padding: var(--layers-view-padding);
+      .environment-segment-shell {
+        height: max(46px, var(--layers-view-height));
         border-radius: var(--layers-view-radius);
       }
-      .environment-segment-group::before {
-        top: calc(var(--layers-view-padding) + 1px);
-        bottom: calc(var(--layers-view-padding) - 1px);
-        left: var(--layers-view-padding);
-        width: calc((100% - var(--layers-view-horizontal-inset)) / 3);
-        border-radius: var(--layers-control-radius);
-      }
-      .environment-segment { margin-block: calc(-6.5px * var(--layers-ui-scale)); }
+      .environment-segment-group { height: auto; padding: 0 calc(var(--layers-view-padding) + 1px); }
+      .environment-segment-group { gap: calc(4px * var(--layers-ui-scale)); }
       .environment-segment span {
         min-height: calc(38px * var(--layers-ui-scale));
-        padding-inline: calc(4px * var(--layers-ui-scale));
+        padding-inline: calc(12px * var(--layers-ui-scale));
         font-size: var(--layers-tab-size);
       }
       .temperature-controls.is-open { margin-top: var(--layers-heading-gap); }
@@ -4326,11 +4340,12 @@
         font-size: var(--layers-tab-size);
       }
       .temperature-legend {
-        margin-top: calc(15px * var(--layers-ui-scale));
-        padding-top: calc(8px * var(--layers-ui-scale));
+        margin-top: calc(6px * var(--layers-ui-scale));
+        padding-top: 0;
         gap: calc(10px * var(--layers-ui-scale));
       }
       .temperature-legend-card { gap:calc(12px * var(--layers-ui-scale)); padding:calc(12px * var(--layers-ui-scale)); border-radius:var(--layers-control-radius); }
+      .water-clarity-legend-card { gap:calc(8px * var(--layers-ui-scale)); padding:calc(8px * var(--layers-ui-scale)); }
       .temperature-legend-heading {
         min-height: calc(20px * var(--layers-ui-scale));
         gap: calc(8px * var(--layers-ui-scale));
@@ -4589,14 +4604,17 @@
     <div class="bio-legend-layers-inner">
     <div class="environment-mode">
       <div class="environment-mode-heading">
-      <fieldset class="environment-segment-group" aria-label="Map view">
-        <label class="environment-segment"><input type="radio" name="environmentView" value="default" checked><span id="environmentNoneLabel">None</span></label>
-        <label class="environment-segment"><input type="radio" name="environmentView" value="terrain"><span id="environmentTerrainLabel">Terrain</span></label>
-        <label class="environment-segment"><input type="radio" name="environmentView" value="temperature"><span id="environmentTemperatureLabel">Temperature</span></label>
-      </fieldset>
+      <div class="environment-segment-shell">
+        <fieldset class="environment-segment-group" aria-label="Map view">
+          <label class="environment-segment"><input type="radio" name="environmentView" value="default" checked><span id="environmentNoneLabel">None</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="terrain"><span id="environmentTerrainLabel">Terrain</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="temperature"><span id="environmentTemperatureLabel">Temperature</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="water-clarity"><span id="environmentWaterClarityLabel">Clarity</span></label>
+        </fieldset>
+      </div>
       </div>
       <select id="environmentViewSelect" class="environment-view-source" aria-hidden="true" tabindex="-1">
-        <option value="default" selected>None</option><option value="terrain">Terrain</option><option value="temperature">Temperature</option>
+        <option value="default" selected>None</option><option value="terrain">Terrain</option><option value="temperature">Temperature</option><option value="water-clarity">Clarity</option>
       </select>
       <section class="temperature-controls" id="temperatureControls" aria-label="Temperature controls" aria-hidden="true" inert hidden>
         <div class="temperature-controls-inner">
@@ -4662,6 +4680,54 @@
         </div>
         </div>
       </section>
+      <section class="temperature-controls water-clarity-controls" id="waterClarityControls" aria-label="Water Clarity controls" aria-hidden="true" inert hidden>
+        <div class="temperature-controls-inner">
+        <div class="temperature-heading">
+          <div class="temperature-heading-copy">
+            <h2 class="temperature-heading-title" id="waterClarityTitle">Water Clarity</h2>
+          </div>
+          <details class="temperature-info water-clarity-info" id="waterClarityInfoDetails">
+            <summary id="waterClarityInfoAbout" aria-label="About Water Clarity" aria-controls="waterClarityInfoPopover" title="About Water Clarity"><span aria-hidden="true">i</span></summary>
+            <div class="temperature-info-popover" id="waterClarityInfoPopover" role="note">
+              <p id="waterClarityInfoCopy">Satellite-derived water transparency. Actual dive visibility may differ.</p>
+              <dl>
+                <div><dt id="waterClaritySourceLabel">Source</dt><dd>Copernicus Marine · ZSD</dd></div>
+                <div><dt id="waterClarityResolutionLabel">Resolution</dt><dd>~4 km</dd></div>
+                <div><dt id="waterClarityPeriodLabel">Period</dt><dd>2016–2025</dd></div>
+              </dl>
+            </div>
+          </details>
+        </div>
+        <div class="temperature-configuration water-clarity-configuration">
+          <div class="temperature-control-group">
+            <label class="temperature-control-label" id="waterClarityMonthLabel" for="waterClarityMonth">Month</label>
+            <label class="temperature-select-hit-area" for="waterClarityMonth">
+              <select id="waterClarityMonth">
+                <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+                <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+                <option value="7">July</option><option value="8">August</option><option value="9" selected>September</option>
+                <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="temperature-legend water-clarity-legend">
+          <div class="temperature-legend-card water-clarity-legend-card">
+            <div class="temperature-legend-heading"><span class="temperature-legend-title" id="waterClarityLegendTitle">Typical transparency · m</span></div>
+            <div class="temperature-gradient water-clarity-gradient" role="img" aria-label="Water clarity scale from low to very high"></div>
+            <div class="temperature-scale water-clarity-scale">
+              <span class="temperature-scale-end"><span class="temperature-scale-label" id="waterClarityLowLabel">LOW</span><span id="waterClarityLowThreshold">&lt;5 m</span></span>
+              <span class="temperature-scale-end"><span class="temperature-scale-label" id="waterClarityHighLabel">HIGH</span><span id="waterClarityHighThreshold">30+ m</span></span>
+            </div>
+          </div>
+          <div class="temperature-source-badge water-clarity-meta" id="waterClarityMeta">
+            <span><span id="waterClaritySourceLabel">Source</span>: <span id="waterClaritySourceValue">Copernicus Marine · ZSD · 2016–2025</span></span>
+            <span><span id="waterClarityResolutionLabel">Resolution</span>: <span id="waterClarityResolutionValue">~4 km</span></span>
+          </div>
+          <div id="waterClarityStatus" class="temperature-status" role="status" aria-live="polite" hidden></div>
+        </div>
+        </div>
+      </section>
       <section class="temperature-controls terrain-info-panel" id="terrainInfoPanel" aria-label="Terrain information" aria-hidden="true" inert hidden>
         <div class="temperature-controls-inner">
         <div class="temperature-heading">
@@ -4672,6 +4738,11 @@
             <summary id="terrainInfoAbout" aria-label="About terrain" aria-controls="terrainInfoPopover" title="About terrain"><span aria-hidden="true">i</span></summary>
             <div class="temperature-info-popover" id="terrainInfoPopover" role="note">
               <p id="terrainInfoDescription"></p>
+              <dl>
+                <div><dt id="terrainInfoAboutSourceLabel">Source</dt><dd>GEBCO_2026</dd></div>
+                <div><dt id="terrainInfoAboutZoomLabel">Zoom range</dt><dd>Z6–Z8</dd></div>
+                <div><dt id="terrainInfoAboutResolutionLabel">Resolution</dt><dd id="terrainInfoAboutResolution"></dd></div>
+              </dl>
             </div>
           </details>
         </div>
@@ -6037,6 +6108,7 @@
     reefLayerToggle: document.getElementById('reefLayerToggle'),
     contoursLayerToggle: document.getElementById('contoursLayerToggle'),
     terrainLayerToggle: document.getElementById('terrainLayerToggle'),
+    environmentViewTabList: document.querySelector('.environment-segment-group'),
     environmentViewRadios: [...document.querySelectorAll('input[name="environmentView"]')],
     environmentViewSelect: document.getElementById('environmentViewSelect'),
     terrainInfoPanel: document.getElementById('terrainInfoPanel'),
@@ -6044,6 +6116,10 @@
     terrainInfoAboutDetails: document.getElementById('terrainInfoAboutDetails'),
     terrainInfoAbout: document.getElementById('terrainInfoAbout'),
     terrainInfoDescription: document.getElementById('terrainInfoDescription'),
+    terrainInfoAboutSourceLabel: document.getElementById('terrainInfoAboutSourceLabel'),
+    terrainInfoAboutZoomLabel: document.getElementById('terrainInfoAboutZoomLabel'),
+    terrainInfoAboutResolutionLabel: document.getElementById('terrainInfoAboutResolutionLabel'),
+    terrainInfoAboutResolution: document.getElementById('terrainInfoAboutResolution'),
     terrainInfoScaleLabel: document.getElementById('terrainInfoScaleLabel'),
     terrainInfoGentle: document.getElementById('terrainInfoGentle'),
     terrainInfoSteep: document.getElementById('terrainInfoSteep'),
@@ -6055,6 +6131,7 @@
     environmentNoneLabel: document.getElementById('environmentNoneLabel'),
     environmentTerrainLabel: document.getElementById('environmentTerrainLabel'),
     environmentTemperatureLabel: document.getElementById('environmentTemperatureLabel'),
+    environmentWaterClarityLabel: document.getElementById('environmentWaterClarityLabel'),
     temperatureTitle: document.getElementById('temperatureTitle'),
     temperatureInfoAbout: document.getElementById('temperatureInfoAbout'),
     temperatureInfoCopy: document.getElementById('temperatureInfoCopy'),
@@ -6081,6 +6158,25 @@
     temperatureResolutionLabel: document.getElementById('temperatureResolutionLabel'),
     temperatureSourceResolution: document.getElementById('temperatureSourceResolution'),
     temperatureStatus: document.getElementById('temperatureStatus'),
+    waterClarityControls: document.getElementById('waterClarityControls'),
+    waterClarityTitle: document.getElementById('waterClarityTitle'),
+    waterClarityInfoDetails: document.getElementById('waterClarityInfoDetails'),
+    waterClarityInfoAbout: document.getElementById('waterClarityInfoAbout'),
+    waterClarityInfoCopy: document.getElementById('waterClarityInfoCopy'),
+    waterClaritySourceLabel: document.getElementById('waterClaritySourceLabel'),
+    waterClarityResolutionLabel: document.getElementById('waterClarityResolutionLabel'),
+    waterClarityPeriodLabel: document.getElementById('waterClarityPeriodLabel'),
+    waterClaritySourceValue: document.getElementById('waterClaritySourceValue'),
+    waterClarityResolutionValue: document.getElementById('waterClarityResolutionValue'),
+    waterClarityMonth: document.getElementById('waterClarityMonth'),
+    waterClarityMonthLabel: document.getElementById('waterClarityMonthLabel'),
+    waterClarityLegendTitle: document.getElementById('waterClarityLegendTitle'),
+    waterClarityGradient: document.querySelector('.water-clarity-gradient'),
+    waterClarityLowLabel: document.getElementById('waterClarityLowLabel'),
+    waterClarityHighLabel: document.getElementById('waterClarityHighLabel'),
+    waterClarityLowThreshold: document.getElementById('waterClarityLowThreshold'),
+    waterClarityHighThreshold: document.getElementById('waterClarityHighThreshold'),
+    waterClarityStatus: document.getElementById('waterClarityStatus'),
     speciesLayerToggle: document.getElementById('speciesLayerToggle'),
     fishLayerToggle: document.getElementById('fishLayerToggle'),
     diveLayerToggle: document.getElementById('diveLayerToggle'),
@@ -7279,6 +7375,30 @@
   for (const [lang, values] of Object.entries(TEMPERATURE_PANEL_I18N)) {
     Object.assign(I18N[lang], values);
   }
+
+  const ENVIRONMENT_TEMPERATURE_TAB_LABELS = Object.freeze({
+    zh: '海温', en: 'Temp', ja: '水温', fr: 'Temp.', de: 'Temp.', nl: 'Temp.',
+    it: 'Temp.', ru: 'Темп.', pt: 'Temp.', sv: 'Temp', no: 'Temp', es: 'Temp.',
+    ko: '수온', id: 'Suhu'
+  });
+
+  const WATER_CLARITY_I18N = {
+    en: { environmentWaterClarity: 'Clarity', waterClarityTitle: 'Water Clarity', waterClarityLevel: 'Clarity Level', waterClarityDescription: 'Satellite-estimated water clarity; actual visibility varies with conditions.', waterClarityAbout: 'About Water Clarity', waterClarityCopy: 'Satellite-estimated water clarity; actual visibility varies with conditions.', waterClaritySource: 'Source', waterClarityResolution: 'Resolution', waterClarityPeriod: 'Period', waterClarityMonth: 'Month', waterClarityLegend: 'Typical transparency · m', waterClarityLoading: 'Updating Water Clarity…', waterClarityUnavailable: 'Water Clarity data is unavailable.', waterClarityNoData: 'No data for this location and month.', waterClarityTypical: 'Typical transparency', waterClarityVeryLow: 'Very low', waterClarityLow: 'Low', waterClarityModerate: 'Moderate', waterClarityHigh: 'High', waterClarityVeryHigh: 'Very high', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · ~{resolution} km source resolution', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    zh: { environmentWaterClarity: '清澈度', waterClarityTitle: '海水清澈度', waterClarityLevel: '清澈度等级', waterClarityDescription: '月度典型海水透明度', waterClarityAbout: '关于海水清澈度', waterClarityCopy: '卫星反演的海水透明度。浪、雨、泥沙、浮游生物、潮汐、海流及当地条件都会影响实际潜水能见度。', waterClaritySource: '来源', waterClarityResolution: '分辨率', waterClarityPeriod: '时段', waterClarityMonth: '月份', waterClarityLegend: '典型透明度 · 米', waterClarityLoading: '正在更新海水清澈度…', waterClarityUnavailable: '海水清澈度数据暂不可用。', waterClarityNoData: '此地点和月份暂无数据。', waterClarityTypical: '典型透明度', waterClarityVeryLow: '很低', waterClarityLow: '较低', waterClarityModerate: '中等', waterClarityHigh: '较高', waterClarityVeryHigh: '很高', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · 源数据分辨率约 {resolution} 公里', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    ja: { environmentWaterClarity: '透明度', waterClarityTitle: '水の透明度', waterClarityLevel: '透明度レベル', waterClarityDescription: '月ごとの水の典型的な透明度', waterClarityAbout: '水の透明度について', waterClarityCopy: '衛星由来の水の透明度です。実際の潜水時の視界は波、雨、堆積物、プランクトン、潮汐、海流、現地の状況で異なります。', waterClaritySource: 'データ提供元', waterClarityResolution: '解像度', waterClarityPeriod: '期間', waterClarityMonth: '月', waterClarityLegend: '典型的な透明度 · m', waterClarityLoading: '透明度データを更新中…', waterClarityUnavailable: '透明度データを利用できません。', waterClarityNoData: 'この場所と月のデータはありません。', waterClarityTypical: '典型的な透明度', waterClarityVeryLow: '非常に低い', waterClarityLow: '低い', waterClarityModerate: '中程度', waterClarityHigh: '高い', waterClarityVeryHigh: '非常に高い', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · 元データ解像度 約{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    fr: { environmentWaterClarity: 'Clarté', waterClarityTitle: 'Clarté de l’eau', waterClarityLevel: 'Niveau de clarté', waterClarityDescription: 'Transparence habituelle par mois', waterClarityAbout: 'À propos de la clarté de l’eau', waterClarityCopy: 'Transparence de l’eau estimée par satellite. La visibilité réelle en plongée peut varier selon les vagues, la pluie, les sédiments, le plancton, les marées, les courants et les conditions locales.', waterClaritySource: 'Source', waterClarityResolution: 'Résolution', waterClarityPeriod: 'Période', waterClarityMonth: 'Mois', waterClarityLegend: 'Transparence habituelle · m', waterClarityLoading: 'Mise à jour de la clarté…', waterClarityUnavailable: 'Données de clarté indisponibles.', waterClarityNoData: 'Aucune donnée pour ce lieu et ce mois.', waterClarityTypical: 'Transparence habituelle', waterClarityVeryLow: 'Très faible', waterClarityLow: 'Faible', waterClarityModerate: 'Modérée', waterClarityHigh: 'Élevée', waterClarityVeryHigh: 'Très élevée', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · résolution source ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    de: { environmentWaterClarity: 'Klarheit', waterClarityTitle: 'Wasserklarheit', waterClarityLevel: 'Klarheitsstufe', waterClarityDescription: 'Typische monatliche Wassertransparenz', waterClarityAbout: 'Über die Wasserklarheit', waterClarityCopy: 'Satellitengestützte Wassertransparenz. Die tatsächliche Sicht beim Tauchen kann durch Wellen, Regen, Sedimente, Plankton, Gezeiten, Strömungen und örtliche Bedingungen abweichen.', waterClaritySource: 'Quelle', waterClarityResolution: 'Auflösung', waterClarityPeriod: 'Zeitraum', waterClarityMonth: 'Monat', waterClarityLegend: 'Typische Transparenz · m', waterClarityLoading: 'Wasserklarheit wird aktualisiert…', waterClarityUnavailable: 'Wasserklarheitsdaten sind nicht verfügbar.', waterClarityNoData: 'Keine Daten für Ort und Monat.', waterClarityTypical: 'Typische Transparenz', waterClarityVeryLow: 'Sehr gering', waterClarityLow: 'Gering', waterClarityModerate: 'Mittel', waterClarityHigh: 'Hoch', waterClarityVeryHigh: 'Sehr hoch', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · Quelldatenauflösung ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    nl: { environmentWaterClarity: 'Helderheid', waterClarityTitle: 'Waterhelderheid', waterClarityLevel: 'Helderheidsniveau', waterClarityDescription: 'Gebruikelijke transparantie per maand', waterClarityAbout: 'Over waterhelderheid', waterClarityCopy: 'Satellietafgeleide watertransparantie. Het zicht tijdens een duik kan afwijken door golven, regen, sediment, plankton, getijden, stromingen en lokale omstandigheden.', waterClaritySource: 'Bron', waterClarityResolution: 'Resolutie', waterClarityPeriod: 'Periode', waterClarityMonth: 'Maand', waterClarityLegend: 'Gebruikelijke transparantie · m', waterClarityLoading: 'Waterhelderheid bijwerken…', waterClarityUnavailable: 'Waterhelderheidsgegevens niet beschikbaar.', waterClarityNoData: 'Geen gegevens voor deze locatie en maand.', waterClarityTypical: 'Gebruikelijke transparantie', waterClarityVeryLow: 'Zeer laag', waterClarityLow: 'Laag', waterClarityModerate: 'Gemiddeld', waterClarityHigh: 'Hoog', waterClarityVeryHigh: 'Zeer hoog', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · bronresolutie ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    it: { environmentWaterClarity: 'Chiarezza', waterClarityTitle: 'Chiarezza dell’acqua', waterClarityLevel: 'Livello di limpidezza', waterClarityDescription: 'Trasparenza tipica mensile', waterClarityAbout: 'Informazioni sulla chiarezza dell’acqua', waterClarityCopy: 'Trasparenza dell’acqua stimata da satellite. La visibilità reale in immersione può variare per onde, pioggia, sedimenti, plancton, maree, correnti e condizioni locali.', waterClaritySource: 'Fonte', waterClarityResolution: 'Risoluzione', waterClarityPeriod: 'Periodo', waterClarityMonth: 'Mese', waterClarityLegend: 'Trasparenza tipica · m', waterClarityLoading: 'Aggiornamento della chiarezza…', waterClarityUnavailable: 'Dati sulla chiarezza non disponibili.', waterClarityNoData: 'Nessun dato per questo luogo e mese.', waterClarityTypical: 'Trasparenza tipica', waterClarityVeryLow: 'Molto bassa', waterClarityLow: 'Bassa', waterClarityModerate: 'Moderata', waterClarityHigh: 'Alta', waterClarityVeryHigh: 'Molto alta', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · risoluzione sorgente ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    ru: { environmentWaterClarity: 'Прозрачность', waterClarityTitle: 'Прозрачность воды', waterClarityLevel: 'Уровень прозрачности', waterClarityDescription: 'Типичная прозрачность воды по месяцам', waterClarityAbout: 'О прозрачности воды', waterClarityCopy: 'Спутниковая оценка прозрачности воды. Реальная видимость при погружении зависит от волн, дождя, осадка, планктона, приливов, течений и местных условий.', waterClaritySource: 'Источник', waterClarityResolution: 'Разрешение', waterClarityPeriod: 'Период', waterClarityMonth: 'Месяц', waterClarityLegend: 'Типичная прозрачность · м', waterClarityLoading: 'Обновление прозрачности…', waterClarityUnavailable: 'Данные о прозрачности недоступны.', waterClarityNoData: 'Нет данных для этого места и месяца.', waterClarityTypical: 'Типичная прозрачность', waterClarityVeryLow: 'Очень низкая', waterClarityLow: 'Низкая', waterClarityModerate: 'Умеренная', waterClarityHigh: 'Высокая', waterClarityVeryHigh: 'Очень высокая', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · разрешение источника ~{resolution} км', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    pt: { environmentWaterClarity: 'Clareza', waterClarityTitle: 'Clareza da água', waterClarityLevel: 'Nível de clareza', waterClarityDescription: 'Transparência típica por mês', waterClarityAbout: 'Sobre a clareza da água', waterClarityCopy: 'Transparência da água estimada por satélite. A visibilidade real no mergulho pode variar com ondas, chuva, sedimentos, plâncton, marés, correntes e condições locais.', waterClaritySource: 'Fonte', waterClarityResolution: 'Resolução', waterClarityPeriod: 'Período', waterClarityMonth: 'Mês', waterClarityLegend: 'Transparência típica · m', waterClarityLoading: 'Atualizando clareza da água…', waterClarityUnavailable: 'Dados de clareza da água indisponíveis.', waterClarityNoData: 'Sem dados para este local e mês.', waterClarityTypical: 'Transparência típica', waterClarityVeryLow: 'Muito baixa', waterClarityLow: 'Baixa', waterClarityModerate: 'Moderada', waterClarityHigh: 'Alta', waterClarityVeryHigh: 'Muito alta', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · resolução da fonte ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    sv: { environmentWaterClarity: 'Klarhet', waterClarityTitle: 'Vattenklarhet', waterClarityLevel: 'Klarhetsnivå', waterClarityDescription: 'Typisk vattentransparens per månad', waterClarityAbout: 'Om vattenklarhet', waterClarityCopy: 'Satellitbaserad vattentransparens. Den faktiska sikten vid dykning kan variera med vågor, regn, sediment, plankton, tidvatten, strömmar och lokala förhållanden.', waterClaritySource: 'Källa', waterClarityResolution: 'Upplösning', waterClarityPeriod: 'Period', waterClarityMonth: 'Månad', waterClarityLegend: 'Typisk transparens · m', waterClarityLoading: 'Uppdaterar vattenklarhet…', waterClarityUnavailable: 'Data om vattenklarhet är inte tillgängliga.', waterClarityNoData: 'Inga data för platsen och månaden.', waterClarityTypical: 'Typisk transparens', waterClarityVeryLow: 'Mycket låg', waterClarityLow: 'Låg', waterClarityModerate: 'Måttlig', waterClarityHigh: 'Hög', waterClarityVeryHigh: 'Mycket hög', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · källupplösning ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    no: { environmentWaterClarity: 'Klarhet', waterClarityTitle: 'Vannklarhet', waterClarityLevel: 'Klarhetsnivå', waterClarityDescription: 'Typisk vanngjennomsiktighet per måned', waterClarityAbout: 'Om vannklarhet', waterClarityCopy: 'Satellittbasert vanngjennomsiktighet. Faktisk sikt ved dykking kan variere med bølger, regn, sedimenter, plankton, tidevann, strømmer og lokale forhold.', waterClaritySource: 'Kilde', waterClarityResolution: 'Oppløsning', waterClarityPeriod: 'Periode', waterClarityMonth: 'Måned', waterClarityLegend: 'Typisk gjennomsiktighet · m', waterClarityLoading: 'Oppdaterer vannklarhet…', waterClarityUnavailable: 'Data om vannklarhet er ikke tilgjengelige.', waterClarityNoData: 'Ingen data for stedet og måneden.', waterClarityTypical: 'Typisk gjennomsiktighet', waterClarityVeryLow: 'Svært lav', waterClarityLow: 'Lav', waterClarityModerate: 'Moderat', waterClarityHigh: 'Høy', waterClarityVeryHigh: 'Svært høy', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · kildeoppløsning ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    es: { environmentWaterClarity: 'Claridad', waterClarityTitle: 'Claridad del agua', waterClarityLevel: 'Nivel de claridad', waterClarityDescription: 'Transparencia típica mensual', waterClarityAbout: 'Acerca de la claridad del agua', waterClarityCopy: 'Transparencia del agua estimada por satélite. La visibilidad real al bucear puede variar por olas, lluvia, sedimentos, plancton, mareas, corrientes y condiciones locales.', waterClaritySource: 'Fuente', waterClarityResolution: 'Resolución', waterClarityPeriod: 'Periodo', waterClarityMonth: 'Mes', waterClarityLegend: 'Transparencia típica · m', waterClarityLoading: 'Actualizando claridad del agua…', waterClarityUnavailable: 'Datos de claridad del agua no disponibles.', waterClarityNoData: 'Sin datos para este lugar y mes.', waterClarityTypical: 'Transparencia típica', waterClarityVeryLow: 'Muy baja', waterClarityLow: 'Baja', waterClarityModerate: 'Moderada', waterClarityHigh: 'Alta', waterClarityVeryHigh: 'Muy alta', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · resolución de origen ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    ko: { environmentWaterClarity: '투명도', waterClarityTitle: '해수 투명도', waterClarityLevel: '투명도 수준', waterClarityDescription: '월별 일반적인 수중 투명도', waterClarityAbout: '해수 투명도 안내', waterClarityCopy: '위성으로 추정한 해수 투명도입니다. 실제 잠수 시 시야는 파도, 비, 퇴적물, 플랑크톤, 조석, 해류와 현지 조건에 따라 달라질 수 있습니다.', waterClaritySource: '출처', waterClarityResolution: '해상도', waterClarityPeriod: '기간', waterClarityMonth: '월', waterClarityLegend: '일반적인 투명도 · m', waterClarityLoading: '해수 투명도 업데이트 중…', waterClarityUnavailable: '해수 투명도 데이터를 사용할 수 없습니다.', waterClarityNoData: '이 위치와 월의 데이터가 없습니다.', waterClarityTypical: '일반적인 투명도', waterClarityVeryLow: '매우 낮음', waterClarityLow: '낮음', waterClarityModerate: '보통', waterClarityHigh: '높음', waterClarityVeryHigh: '매우 높음', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · 원본 해상도 약 {resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' },
+    id: { environmentWaterClarity: 'Kejernihan', waterClarityTitle: 'Kejernihan Air', waterClarityLevel: 'Tingkat kejernihan', waterClarityDescription: 'Transparansi air tipikal per bulan', waterClarityAbout: 'Tentang kejernihan air', waterClarityCopy: 'Transparansi air dari satelit. Jarak pandang saat menyelam dapat berbeda karena ombak, hujan, sedimen, plankton, pasang surut, arus, dan kondisi setempat.', waterClaritySource: 'Sumber', waterClarityResolution: 'Resolusi', waterClarityPeriod: 'Periode', waterClarityMonth: 'Bulan', waterClarityLegend: 'Transparansi tipikal · m', waterClarityLoading: 'Memperbarui kejernihan air…', waterClarityUnavailable: 'Data kejernihan air tidak tersedia.', waterClarityNoData: 'Tidak ada data untuk lokasi dan bulan ini.', waterClarityTypical: 'Transparansi tipikal', waterClarityVeryLow: 'Sangat rendah', waterClarityLow: 'Rendah', waterClarityModerate: 'Sedang', waterClarityHigh: 'Tinggi', waterClarityVeryHigh: 'Sangat tinggi', waterClaritySourceNote: 'Copernicus Marine · ZSD · {period} · resolusi sumber ~{resolution} km', waterClarityPopupSource: 'Copernicus Marine · ZSD' }
+  };
+  for (const [lang, values] of Object.entries(WATER_CLARITY_I18N)) Object.assign(I18N[lang], values);
 
   const TEMPERATURE_POPUP_I18N = {
     zh: { temperaturePopupTitle: '海水温度 {value}°C', temperaturePopupCaption: '此位置的典型水温', temperaturePopupValue: '数值', temperaturePopupYear: '全年', temperaturePopupTabs: '温度详情', temperaturePopupYearDisabled: '目前尚无全部 12 个月的数据', temperaturePopupDepthUnavailable: '暂无水深温度剖面。', temperaturePopupYearUnavailable: '尚无完整的 12 个月数据，暂无法显示全年趋势。', temperaturePopupProfileAria: '不同水深的水温', temperaturePopupYearAria: '12 个月的气候平均水温', temperaturePopupExternalLink: '在 NOAA 官方网站查看 WOA23', temperaturePopupClimatology: '气候平均值', temperaturePopupDevelopment: '开发验证数据' },
@@ -8631,7 +8751,23 @@
     els.terrainLayerToggle.setAttribute('aria-label', `${t('terrainLegend')}: ${t('terrainDescription')}`);
     els.environmentNoneLabel.textContent = t('environmentNone');
     els.environmentTerrainLabel.textContent = t('terrainLegend');
-    els.environmentTemperatureLabel.textContent = t('environmentTemperature');
+    els.environmentTemperatureLabel.textContent = ENVIRONMENT_TEMPERATURE_TAB_LABELS[currentLang] || t('environmentTemperature');
+    els.environmentTemperatureLabel.previousElementSibling.setAttribute('aria-label', t('environmentTemperature'));
+    els.environmentWaterClarityLabel.textContent = t('environmentWaterClarity');
+    els.waterClarityTitle.textContent = t('waterClarityTitle');
+    els.waterClarityInfoAbout.setAttribute('aria-label', t('waterClarityAbout'));
+    els.waterClarityInfoAbout.title = t('waterClarityAbout');
+    els.waterClarityInfoCopy.textContent = t('waterClarityCopy');
+    els.waterClaritySourceLabel.textContent = t('waterClaritySource');
+    els.waterClarityResolutionLabel.textContent = t('waterClarityResolution');
+    els.waterClarityPeriodLabel.textContent = t('waterClarityPeriod');
+    els.waterClarityMonthLabel.textContent = t('waterClarityMonth');
+    els.waterClarityGradient.setAttribute('aria-label', t('waterClarityLegend'));
+    els.waterClarityLowLabel.textContent = t('waterClarityLow');
+    els.waterClarityHighLabel.textContent = t('waterClarityHigh');
+    renderWaterClarityLengthLabels();
+    els.waterClaritySourceValue.textContent = `Copernicus Marine·ZSD·${waterClarityMetadataPeriod}`;
+    els.waterClarityResolutionValue.textContent = `~${waterClaritySourceResolutionKm} km`;
     renderTerrainPanelTexts();
     renderTemperaturePanelTexts();
     els.reefLegendLabel.textContent = t('reefLegend');
@@ -8975,7 +9111,8 @@
 
   const environmentalInfoPanels = [
     { element: els.terrainInfoPanel, view: 'terrain' },
-    { element: els.temperatureControls, view: 'temperature' }
+    { element: els.temperatureControls, view: 'temperature' },
+    { element: els.waterClarityControls, view: 'water-clarity' }
   ];
   function syncEnvironmentalInfoPanels(activeView) {
     environmentalInfoPanels.forEach(({ element, view }) => {
@@ -8996,16 +9133,38 @@
     });
   }
 
+  function revealSelectedEnvironmentalTab() {
+    const tabList = els.environmentViewTabList;
+    const selected = els.environmentViewRadios.find(input => input.checked)?.closest('.environment-segment');
+    if (!tabList || !selected) return;
+
+    const viewport = tabList.getBoundingClientRect();
+    const tab = selected.getBoundingClientRect();
+    const left = viewport.left + tabList.clientLeft;
+    const offset = tab.left + tab.width / 2 - (left + tabList.clientWidth / 2);
+    if (Math.abs(offset) < 1) return;
+
+    tabList.scrollTo({
+      left: tabList.scrollLeft + offset,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+  }
+
   const environmentalViewController = window.DiveAtlasEnvironmentalViewController({
     views: {
       terrain: {
         activate: () => { layerVisibility.terrain = true; syncTerrainVisibility(); },
         deactivate: () => { layerVisibility.terrain = false; syncTerrainVisibility(); }
+      },
+      'water-clarity': {
+        activate: activateWaterClarityView,
+        deactivate: deactivateWaterClarityView
       }
     },
     onChange: ({ activeView }) => {
       els.environmentViewSelect.value = activeView;
       els.environmentViewRadios.forEach(input => { input.checked = input.value === activeView; });
+      revealSelectedEnvironmentalTab();
       syncEnvironmentalInfoPanels(activeView);
       updateLegendCollapsedSummary();
     }
@@ -9022,12 +9181,23 @@
   let temperatureQueryService = null;
   let temperatureQueryAbortController = null;
   let temperatureQueryGeneration = 0;
+  let waterClarityView = null;
+  let waterClarityModulePromise = null;
+  let waterClarityQueryModulePromise = null;
+  let waterClarityQueryService = null;
+  let waterClarityQueryGeneration = 0;
+  let waterClarityPopup = null;
+  let waterClarityDetailResult = null;
+  let lastWaterClarityLatLng = null;
+  let waterClarityStatusKey = '';
+  let waterClarityMetadataPeriod = '2016–2025';
+  let waterClaritySourceResolutionKm = 4;
   let lastTemperatureQueryLatLng = null;
   let temperatureDetailPopup = null;
   let temperatureDetailTab = 'value';
   let temperatureDetailResult = null;
   let temperatureDetailPopupElement = null;
-  let selectedTemperatureMonth = 9;
+  let selectedEnvironmentalMonth = 9;
   let temperatureUnit = (() => {
     try { return localStorage.getItem('diveatlas-temperature-unit') === 'F' ? 'F' : 'C'; }
     catch (_) { return 'C'; }
@@ -9056,6 +9226,15 @@
     const locale = HTML_LANG_CODES[currentLang] || currentLang;
     const unit = lengthUnit === 'ft' ? 'ft' : t('meterUnit');
     return `${rounded.toLocaleString(locale, { maximumFractionDigits: digits })}${spacing ? ' ' : ''}${unit}`;
+  }
+
+  function renderWaterClarityLengthLabels() {
+    const locale = HTML_LANG_CODES[currentLang] || currentLang;
+    const unit = lengthUnit === 'ft' ? 'ft' : t('meterUnit');
+    const formatThreshold = meters => Math.round(metersInSelectedLengthUnit(meters)).toLocaleString(locale);
+    els.waterClarityLegendTitle.textContent = t('waterClarityLegend').replace(/(?:m|米)$/u, unit);
+    els.waterClarityLowThreshold.textContent = `<${formatThreshold(5)} ${unit}`;
+    els.waterClarityHighThreshold.textContent = `${formatThreshold(30)}+ ${unit}`;
   }
 
   function formatLongDistanceMeters(meters) {
@@ -9115,12 +9294,16 @@
     lengthUnit = unit;
     try { localStorage.setItem('diveatlas-length-unit', unit); } catch (_) {}
     renderMeasurementUnitSwitch();
+    renderWaterClarityLengthLabels();
     refreshTemperatureDepthOptionLabels();
     activeTemperatureWheelSelector?.renderOptions();
     updateTemperatureSliceLabel();
     refreshOpenLengthReadouts();
     if (temperatureDetailPopup?.isOpen() && temperatureDetailResult) {
       renderTemperatureDetail(temperatureDetailResult);
+    }
+    if (waterClarityPopup?.isOpen() && waterClarityDetailResult) {
+      renderWaterClarityDetail(waterClarityDetailResult);
     }
     renderDiveSearchResults();
   }
@@ -9162,6 +9345,10 @@
     els.terrainInfoAbout.title = t('terrainAbout');
     els.terrainInfoAbout.setAttribute('aria-label', t('terrainAbout'));
     els.terrainInfoDescription.textContent = t('terrainDescription');
+    els.terrainInfoAboutSourceLabel.textContent = t('bathymetrySource');
+    els.terrainInfoAboutZoomLabel.textContent = t('terrainZoomCoverage');
+    els.terrainInfoAboutResolutionLabel.textContent = t('temperatureResolutionLabel');
+    els.terrainInfoAboutResolution.textContent = t('terrainResolutionDetail');
     els.terrainInfoScaleLabel.textContent = t('terrainScale');
     els.terrainInfoGentle.textContent = t('terrainGentle');
     els.terrainInfoSteep.textContent = t('terrainSteep');
@@ -9198,17 +9385,24 @@
     if (!els.temperatureStatus.hidden && temperatureStatusKey) {
       els.temperatureStatus.textContent = t(temperatureStatusKey);
     }
+    if (!els.waterClarityStatus.hidden && waterClarityStatusKey) {
+      els.waterClarityStatus.textContent = t(waterClarityStatusKey);
+    }
 
     const viewLabels = {
       default: t('environmentNone'),
       terrain: t('terrainLegend'),
-      temperature: t('environmentTemperature')
+      temperature: t('environmentTemperature'),
+      'water-clarity': t('environmentWaterClarity')
     };
     Array.from(els.environmentViewSelect.options).forEach(option => {
       option.textContent = viewLabels[option.value] || option.textContent;
     });
 
     Array.from(els.temperatureMonth.options).forEach(option => {
+      option.textContent = localizedTemperatureMonth(Number(option.value));
+    });
+    Array.from(els.waterClarityMonth.options).forEach(option => {
       option.textContent = localizedTemperatureMonth(Number(option.value));
     });
     Array.from(els.temperatureDepth.options).forEach(option => {
@@ -9364,7 +9558,7 @@
       position() {
         if (panel.hidden || !select.isConnected) return;
         const anchor = select.getBoundingClientRect();
-        const width = Math.min(Math.max(anchor.width, 180), window.innerWidth - 16);
+        const width = Math.min(Math.max(anchor.width, 160), window.innerWidth - 16);
         panel.style.width = `${width}px`;
         panel.style.visibility = 'hidden';
         const height = panel.getBoundingClientRect().height;
@@ -9463,7 +9657,7 @@
     return selector;
   }
 
-  [els.temperatureDepth, els.temperatureMonth].forEach(createTemperatureWheelSelector);
+  [els.temperatureDepth, els.temperatureMonth, els.waterClarityMonth].forEach(createTemperatureWheelSelector);
   document.addEventListener('pointerdown', event => {
     const selector = activeTemperatureWheelSelector;
     if (!selector || selector.panel.contains(event.target) || selector.select === event.target) return;
@@ -9484,15 +9678,15 @@
     }
     const depth = els.temperatureDepth.value;
     const depthLabel = localizedTemperatureDepth(depth);
-    const monthLabel = localizedTemperatureMonth(selectedTemperatureMonth, 'short');
+    const monthLabel = localizedTemperatureMonth(selectedEnvironmentalMonth, 'short');
     els.bioLegendCollapsedSummary.textContent = `${t('temperatureTitle')} · ${depthLabel} · ${monthLabel}`;
   }
 
   function updateTemperatureSliceLabel() {
     const depth = els.temperatureDepth.value;
     const legendDepth = localizedTemperatureDepth(depth, { spacing: true });
-    const compactMonth = localizedTemperatureMonth(selectedTemperatureMonth, 'short');
-    const legendMonth = localizedTemperatureMonth(selectedTemperatureMonth);
+    const compactMonth = localizedTemperatureMonth(selectedEnvironmentalMonth, 'short');
+    const legendMonth = localizedTemperatureMonth(selectedEnvironmentalMonth);
     els.temperatureLegendSelection.textContent = `${localizedTemperatureDepth(depth)} · ${compactMonth}`;
     els.temperatureLegendSlice.textContent = `${legendDepth} · ${legendMonth}`;
     updateLegendCollapsedSummary();
@@ -9507,8 +9701,8 @@
 
     els.temperatureMonth.replaceChildren(...months.map(month => new Option(localizedTemperatureMonth(month), String(month))));
     els.temperatureDepth.replaceChildren(...depths.map(depth => new Option(localizedTemperatureDepth(depth, { spacing: depth !== 0 }), String(depth))));
-    if (!months.includes(selectedTemperatureMonth)) selectedTemperatureMonth = months[0];
-    els.temperatureMonth.value = String(selectedTemperatureMonth);
+    if (!months.includes(selectedEnvironmentalMonth)) selectedEnvironmentalMonth = months[0];
+    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
     if (!depths.includes(Number(els.temperatureDepth.value))) els.temperatureDepth.value = String(depths[0]);
     updateTemperatureSliceLabel();
 
@@ -9539,13 +9733,13 @@
     const months = [...new Set(metadata.available_months.map(Number))].filter(month => month >= 1 && month <= 12).sort((a, b) => a - b);
     const depths = [...new Set(metadata.available_depths_m.map(Number))].filter(depth => depth >= 0 && depth <= 50).sort((a, b) => a - b);
     if (!months.length || !depths.length) return;
-    const monthValue = selectedTemperatureMonth;
+    const monthValue = selectedEnvironmentalMonth;
     const depthValue = Number(els.temperatureDepth.value);
     els.temperatureMonth.replaceChildren(...months.map(month => new Option(localizedTemperatureMonth(month), String(month))));
     els.temperatureDepth.replaceChildren(...depths.map(depth => new Option(localizedTemperatureDepth(depth, { spacing: depth !== 0 }), String(depth))));
-    if (months.includes(monthValue)) selectedTemperatureMonth = monthValue;
-    else selectedTemperatureMonth = months[0];
-    els.temperatureMonth.value = String(selectedTemperatureMonth);
+    if (months.includes(monthValue)) selectedEnvironmentalMonth = monthValue;
+    else selectedEnvironmentalMonth = months[0];
+    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
     els.temperatureDepth.value = String(depths.includes(depthValue) ? depthValue : depths[0]);
     updateTemperatureSliceLabel();
   }
@@ -9571,7 +9765,7 @@
           }
         });
       }
-      temperatureView.activate(selectedTemperatureMonth, els.temperatureDepth.value);
+      temperatureView.activate(selectedEnvironmentalMonth, els.temperatureDepth.value);
     } catch (error) {
       if (!isCurrent()) return;
       temperatureStatusKey = 'temperatureUnavailable';
@@ -9580,6 +9774,52 @@
       els.temperatureStatus.dataset.state = 'unavailable';
       console.warn('Temperature view could not be initialized:', error);
     }
+  }
+
+  async function activateWaterClarityView({ isCurrent }) {
+    waterClarityModulePromise ||= import('./js/water-clarity-view.js');
+    try {
+      await waterClarityModulePromise;
+      const { createWaterClarityView } = window.DiveAtlasWaterClarityView;
+      if (!isCurrent()) return;
+      if (!waterClarityView) {
+        waterClarityView = createWaterClarityView({
+          L, map,
+          onStatus: status => {
+            if (environmentalViewController.activeView !== 'water-clarity') return;
+            if (status.state === 'metadata') {
+              waterClarityMetadataPeriod = String(status.metadata.climatology_period || '2016-2025').replace('-', '–');
+              waterClaritySourceResolutionKm = Number(status.metadata.source_resolution_km) || 4;
+              els.waterClaritySourceValue.textContent = `Copernicus Marine·ZSD·${waterClarityMetadataPeriod}`;
+              els.waterClarityResolutionValue.textContent = `~${waterClaritySourceResolutionKm} km`;
+            }
+            const loading = status.state === 'loading' || status.state === 'loading-metadata';
+            const unavailable = status.state === 'unavailable';
+            waterClarityStatusKey = loading ? 'waterClarityLoading' : unavailable ? 'waterClarityUnavailable' : '';
+            els.waterClarityStatus.textContent = waterClarityStatusKey ? t(waterClarityStatusKey) : '';
+            els.waterClarityStatus.hidden = !waterClarityStatusKey;
+            els.waterClarityStatus.dataset.state = loading ? 'loading' : unavailable ? 'unavailable' : 'ready';
+          }
+        });
+      }
+      waterClarityView.activate(selectedEnvironmentalMonth);
+    } catch (error) {
+      if (!isCurrent()) return;
+      waterClarityStatusKey = 'waterClarityUnavailable';
+      els.waterClarityStatus.textContent = t(waterClarityStatusKey);
+      els.waterClarityStatus.hidden = false;
+      els.waterClarityStatus.dataset.state = 'unavailable';
+      console.warn('Water Clarity view could not be initialized:', error);
+    }
+  }
+
+  function deactivateWaterClarityView() {
+    waterClarityQueryGeneration += 1;
+    lastWaterClarityLatLng = null;
+    waterClarityQueryService = null;
+    closeManagedPopupForLayer('water-clarity');
+    waterClarityPopup?.setContent('');
+    waterClarityView?.deactivate();
   }
 
   function makeTemperatureProfileSvg(points, selectedDepth) {
@@ -9664,7 +9904,7 @@
         temperatureQueryService = createTemperatureQuery({ maxChunks: 4 });
       }
       const result = await temperatureQueryService.query(queryLatLng, {
-        month: selectedTemperatureMonth,
+        month: selectedEnvironmentalMonth,
         depth: Number(els.temperatureDepth.value),
         signal: temperatureQueryAbortController.signal
       });
@@ -9696,6 +9936,86 @@
     if (environmentalViewController.activeView !== 'temperature' || !lastTemperatureQueryLatLng ||
         activeClickPopup !== temperatureDetailPopup || !temperatureDetailPopup?.isOpen()) return;
     void showTemperatureQuery(lastTemperatureQueryLatLng, { resetTab: false });
+  }
+
+  function renderWaterClarityDetail(result) {
+    waterClarityDetailResult = result;
+    if (!waterClarityPopup) return;
+    const metadata = result.metadata || waterClarityView?.metadata || {};
+    const period = String(metadata.climatology_period || waterClarityMetadataPeriod).replace('-', '–');
+    const resolution = Number(metadata.source_resolution_km) || waterClaritySourceResolutionKm;
+    const source = `${popupSourceLink(SOURCE_URLS.copernicus, 'Copernicus Marine')} · ${escapeHtml(period)} · ~${escapeHtml(String(resolution))} km`;
+    if (result.unavailable) {
+      waterClarityPopup.setContent(
+        `<div class="temperature-detail water-clarity-detail"><div class="temperature-detail-heading">${t('waterClarityTitle')}</div>` +
+        `<div class="temperature-detail-caption">${t('waterClarityNoData')}</div>` +
+        `<div class="temperature-detail-source dive-popup-source--compact">${source}</div></div>`
+      );
+      return;
+    }
+    const classificationKey = {
+      'Very low clarity': 'waterClarityVeryLow',
+      'Low clarity': 'waterClarityLow',
+      'Moderate clarity': 'waterClarityModerate',
+      'High clarity': 'waterClarityHigh',
+      'Very high clarity': 'waterClarityVeryHigh'
+    }[result.classification] || 'waterClarityModerate';
+    const value = formatLengthMeters(result.value_m, { whole: true });
+    const month = localizedTemperatureMonth(result.month);
+    const heading = `${t('waterClarityTitle')} <span class="temperature-detail-value">${value}</span>`;
+    waterClarityPopup.setContent(
+      `<div class="temperature-detail water-clarity-detail"><div class="temperature-detail-heading">${heading}</div>` +
+      `<div class="temperature-detail-fields">` +
+      `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityLevel')}</span><span class="dive-popup-property__value">${t(classificationKey)}</span></div>` +
+      `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityMonth')}</span><span class="dive-popup-property__value">${month}</span></div></div>` +
+      `<div class="temperature-detail-source dive-popup-source--compact">${source}</div>` +
+      `<div class="temperature-detail-caption">${t('waterClarityDescription')}</div></div>`
+    );
+  }
+
+  async function showWaterClarityQuery(latlng) {
+    if (environmentalViewController.activeView !== 'water-clarity') return;
+    lastWaterClarityLatLng = L.latLng(latlng.lat, latlng.lng);
+    const queryLatLng = lastWaterClarityLatLng;
+    const generation = ++waterClarityQueryGeneration;
+    const popupRevision = activeClickPopupRevision;
+    try {
+      waterClarityQueryModulePromise ||= import('./js/water-clarity-query.js');
+      await waterClarityQueryModulePromise;
+      if (generation !== waterClarityQueryGeneration || environmentalViewController.activeView !== 'water-clarity') return;
+      if (!waterClarityQueryService) {
+        const { createWaterClarityQuery } = window.DiveAtlasWaterClarityQuery;
+        waterClarityQueryService = createWaterClarityQuery({ maxChunks: 4 });
+      }
+      const result = await waterClarityQueryService.query(queryLatLng, { month: selectedEnvironmentalMonth });
+      if (generation !== waterClarityQueryGeneration || environmentalViewController.activeView !== 'water-clarity' ||
+          popupRevision !== activeClickPopupRevision) return;
+      if (result.unavailable) {
+        closeManagedPopupForLayer('water-clarity');
+        return;
+      }
+      if (!waterClarityPopup) {
+        waterClarityPopup = createMapInfoPopup({ maxWidth: 270, minWidth: 200, closeButton: true, closeOnClick: false, className: 'temperature-detail-popup water-clarity-popup' });
+        waterClarityPopup._diveAtlasLayerKey = 'water-clarity';
+      }
+      waterClarityPopup.setLatLng(queryLatLng);
+      renderWaterClarityDetail(result);
+      openManagedPopup('water-clarity:query', waterClarityPopup, queryLatLng);
+      waterClarityPopup.update();
+    } catch (error) {
+      if (generation !== waterClarityQueryGeneration || environmentalViewController.activeView !== 'water-clarity' ||
+          popupRevision !== activeClickPopupRevision) return;
+      console.warn('Water Clarity query could not be loaded:', error);
+      closeManagedPopupForLayer('water-clarity');
+    }
+  }
+
+  function refreshOpenWaterClarityQuery() {
+    if (environmentalViewController.activeView !== 'water-clarity' || !lastWaterClarityLatLng ||
+        activeClickPopup?._diveAtlasLayerKey !== 'water-clarity' || !waterClarityPopup?.isOpen()) return;
+    const location = lastWaterClarityLatLng;
+    closeManagedPopupForLayer('water-clarity');
+    void showWaterClarityQuery(location);
   }
 
   environmentalViewController.register('temperature', {
@@ -11339,6 +11659,7 @@
 
   const SOURCE_URLS = {
     woa23: 'https://www.ncei.noaa.gov/products/world-ocean-atlas',
+    copernicus: 'https://data.marine.copernicus.eu/product/OCEANCOLOUR_GLO_BGC_L4_MY_009_104/services',
     gebco: 'https://www.gebco.net/data-products/gridded-bathymetry-data',
     reef: 'https://data-gis.unep-wcmc.org/portal/home/item.html?id=0613604367334836863f5c0c10e452bf',
     obis: 'https://obis.org/',
@@ -15672,6 +15993,7 @@
   function popupOwnerRepresentationIsValid(popup) {
     const layerKey = popup?._diveAtlasLayerKey;
     if (layerKey === 'temperature') return environmentalViewController.activeView === 'temperature';
+    if (layerKey === 'water-clarity') return environmentalViewController.activeView === 'water-clarity';
     if (layerKey === 'depthInspection') return true;
     if (!layerKey || !(layerKey in layerVisibility)) return false;
     if (!layerVisibility[layerKey]) return false;
@@ -16407,6 +16729,12 @@
       if (input.checked) selectEnvironmentalView(input.value);
     });
   });
+  els.environmentViewTabList.addEventListener('wheel', event => {
+    if (event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX) ||
+        els.environmentViewTabList.scrollWidth <= els.environmentViewTabList.clientWidth) return;
+    event.preventDefault();
+    els.environmentViewTabList.scrollLeft += event.deltaY;
+  }, { passive: false });
   els.environmentViewSelect.addEventListener('change', () => selectEnvironmentalView(els.environmentViewSelect.value));
   els.measurementUnitSwitch.addEventListener('click', event => {
     const button = event.target?.closest?.('[data-length-unit]');
@@ -16418,14 +16746,22 @@
   });
   els.temperatureDepth.addEventListener('change', () => {
     updateTemperatureSliceLabel();
-    temperatureView?.selectSlice(selectedTemperatureMonth, els.temperatureDepth.value);
+    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
     refreshOpenTemperatureQuery();
   });
   els.temperatureMonth.addEventListener('change', () => {
-    selectedTemperatureMonth = Number(els.temperatureMonth.value);
+    selectedEnvironmentalMonth = Number(els.temperatureMonth.value);
+    els.waterClarityMonth.value = String(selectedEnvironmentalMonth);
     updateTemperatureSliceLabel();
-    temperatureView?.selectSlice(selectedTemperatureMonth, els.temperatureDepth.value);
+    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
     refreshOpenTemperatureQuery();
+  });
+  els.waterClarityMonth.addEventListener('change', () => {
+    selectedEnvironmentalMonth = Number(els.waterClarityMonth.value);
+    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
+    waterClarityView?.selectMonth(selectedEnvironmentalMonth);
+    updateTemperatureSliceLabel();
+    refreshOpenWaterClarityQuery();
   });
 
   let customLayerSyncFrame = 0;
@@ -16704,6 +17040,9 @@
     if (environmentalViewController.activeView === 'temperature') {
       temperatureQueryGeneration += 1;
     }
+    if (environmentalViewController.activeView === 'water-clarity') {
+      waterClarityQueryGeneration += 1;
+    }
     closeActiveMapHoverTooltips();
   });
   let speciesInteractionModeBeforeZoom = null;
@@ -16878,6 +17217,10 @@
       void showTemperatureQuery(latlng);
       return 'temperature-query';
     }
+    if (environmentalViewController.activeView === 'water-clarity') {
+      void showWaterClarityQuery(latlng);
+      return 'water-clarity-query';
+    }
     return 'empty';
   }
 
@@ -16891,6 +17234,9 @@
     // the existing single-click arbitration window finishes classifying it.
     if (environmentalViewController.activeView === 'temperature' && lastTemperatureQueryLatLng) {
       temperatureQueryGeneration += 1;
+    }
+    if (environmentalViewController.activeView === 'water-clarity' && lastWaterClarityLatLng) {
+      waterClarityQueryGeneration += 1;
     }
     const pointerType = event.pointerType || (
       performance.now() - lastMapPointerAt < 1200 ? lastMapPointerType : 'mouse'
@@ -17928,6 +18274,7 @@
 
   const infoPopoverControls = [
     { details: els.temperatureInfo, popover: document.getElementById('temperatureInfoPopover') },
+    { details: els.waterClarityInfoDetails, popover: document.getElementById('waterClarityInfoPopover') },
     { details: els.terrainInfoAboutDetails, popover: document.getElementById('terrainInfoPopover') }
   ];
 

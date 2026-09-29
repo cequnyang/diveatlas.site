@@ -1,0 +1,6396 @@
+{
+  "format": "diveatlas-water-clarity",
+  "format_version": 1,
+  "designation": "production",
+  "source": "Copernicus Marine Service Ocean Colour",
+  "product_id": "OCEANCOLOUR_GLO_BGC_L4_MY_009_104",
+  "dataset_id": "cmems_obs-oc_glo_bgc-transp_my_l4-multi-4km_P1M",
+  "source_url": "https://data.marine.copernicus.eu/product/OCEANCOLOUR_GLO_BGC_L4_MY_009_104/services",
+  "variable": "ZSD",
+  "variable_description": "Secchi transparency depth",
+  "unit": "m",
+  "source_resolution_km": 4,
+  "climatology_period": "2016-2025",
+  "aggregation": "cell-wise median by calendar month",
+  "source_time_range": "2016-01 through 2025-12",
+  "source_dimensions": [
+    4320,
+    8640
+  ],
+  "latitude_range": [
+    -89.97917175292969,
+    89.97916412353516
+  ],
+  "longitude_range": [
+    -179.9791717529297,
+    179.9791717529297
+  ],
+  "available_months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "grid": {
+    "latitude_count": 4320,
+    "longitude_count": 8640,
+    "latitude_first_center": -89.97917175292969,
+    "longitude_first_center": -179.9791717529297,
+    "latitude_step_degrees": 0.041666626930236816,
+    "longitude_step_degrees": 0.04166674613952637,
+    "latitude_order": "south_to_north",
+    "longitude_convention": "-180_to_180"
+  },
+  "value_encoding": {
+    "dtype": "uint8",
+    "byte_order": "not_applicable",
+    "scale_m": 0.5,
+    "minimum_m": 0,
+    "maximum_m": 127.0,
+    "missing_sentinel": 255,
+    "lookup": "nearest source cell; no interpolation"
+  },
+  "rendering": {
+    "tile_template": "tiles/{month}/{z}/{x}/{y}.png",
+    "min_native_zoom": 5,
+    "max_native_zoom": 5,
+    "opacity": 0.58,
+    "palette_stops_m": [
+      0.0,
+      5.0,
+      10.0,
+      20.0,
+      30.0,
+      40.0
+    ],
+    "palette_rgb": [
+      [
+        253,
+        231,
+        37
+      ],
+      [
+        53,
+        183,
+        121
+      ],
+      [
+        38,
+        130,
+        142
+      ],
+      [
+        49,
+        104,
+        142
+      ],
+      [
+        62,
+        73,
+        137
+      ],
+      [
+        72,
+        40,
+        120
+      ]
+    ]
+  },
+  "query": {
+    "format": "diveatlas-water-clarity-query",
+    "format_version": 1,
+    "chunk_degrees": 10,
+    "chunk_grid": {
+      "rows": 18,
+      "columns": 36
+    },
+    "chunk_size_summary": {
+      "count": 594,
+      "compressed_total_bytes": 66752126
+    },
+    "chunks": [
+      {
+        "row": 1,
+        "column": 0,
+        "file": "r01_c00.u8.gz",
+        "row_start": 240,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 83958
+      },
+      {
+        "row": 1,
+        "column": 1,
+        "file": "r01_c01.u8.gz",
+        "row_start": 240,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 103669
+      },
+      {
+        "row": 1,
+        "column": 2,
+        "file": "r01_c02.u8.gz",
+        "row_start": 240,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 102164
+      },
+      {
+        "row": 1,
+        "column": 3,
+        "file": "r01_c03.u8.gz",
+        "row_start": 240,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 81771
+      },
+      {
+        "row": 1,
+        "column": 4,
+        "file": "r01_c04.u8.gz",
+        "row_start": 240,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 73814
+      },
+      {
+        "row": 1,
+        "column": 5,
+        "file": "r01_c05.u8.gz",
+        "row_start": 240,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 64184
+      },
+      {
+        "row": 1,
+        "column": 6,
+        "file": "r01_c06.u8.gz",
+        "row_start": 240,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 69053
+      },
+      {
+        "row": 1,
+        "column": 7,
+        "file": "r01_c07.u8.gz",
+        "row_start": 240,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 73348
+      },
+      {
+        "row": 1,
+        "column": 8,
+        "file": "r01_c08.u8.gz",
+        "row_start": 240,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 34812
+      },
+      {
+        "row": 1,
+        "column": 9,
+        "file": "r01_c09.u8.gz",
+        "row_start": 240,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 49602
+      },
+      {
+        "row": 1,
+        "column": 10,
+        "file": "r01_c10.u8.gz",
+        "row_start": 240,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 35908
+      },
+      {
+        "row": 1,
+        "column": 11,
+        "file": "r01_c11.u8.gz",
+        "row_start": 240,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6915
+      },
+      {
+        "row": 1,
+        "column": 12,
+        "file": "r01_c12.u8.gz",
+        "row_start": 240,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 34571
+      },
+      {
+        "row": 1,
+        "column": 13,
+        "file": "r01_c13.u8.gz",
+        "row_start": 240,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 66934
+      },
+      {
+        "row": 1,
+        "column": 14,
+        "file": "r01_c14.u8.gz",
+        "row_start": 240,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 96919
+      },
+      {
+        "row": 1,
+        "column": 15,
+        "file": "r01_c15.u8.gz",
+        "row_start": 240,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 69158
+      },
+      {
+        "row": 1,
+        "column": 16,
+        "file": "r01_c16.u8.gz",
+        "row_start": 240,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 40639
+      },
+      {
+        "row": 1,
+        "column": 17,
+        "file": "r01_c17.u8.gz",
+        "row_start": 240,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 10234
+      },
+      {
+        "row": 1,
+        "column": 18,
+        "file": "r01_c18.u8.gz",
+        "row_start": 240,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3577
+      },
+      {
+        "row": 1,
+        "column": 19,
+        "file": "r01_c19.u8.gz",
+        "row_start": 240,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1049
+      },
+      {
+        "row": 1,
+        "column": 20,
+        "file": "r01_c20.u8.gz",
+        "row_start": 240,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3557
+      },
+      {
+        "row": 1,
+        "column": 34,
+        "file": "r01_c34.u8.gz",
+        "row_start": 240,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 50975
+      },
+      {
+        "row": 1,
+        "column": 35,
+        "file": "r01_c35.u8.gz",
+        "row_start": 240,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 78803
+      },
+      {
+        "row": 2,
+        "column": 0,
+        "file": "r02_c00.u8.gz",
+        "row_start": 480,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145246
+      },
+      {
+        "row": 2,
+        "column": 1,
+        "file": "r02_c01.u8.gz",
+        "row_start": 480,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152989
+      },
+      {
+        "row": 2,
+        "column": 2,
+        "file": "r02_c02.u8.gz",
+        "row_start": 480,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163617
+      },
+      {
+        "row": 2,
+        "column": 3,
+        "file": "r02_c03.u8.gz",
+        "row_start": 480,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166619
+      },
+      {
+        "row": 2,
+        "column": 4,
+        "file": "r02_c04.u8.gz",
+        "row_start": 480,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163342
+      },
+      {
+        "row": 2,
+        "column": 5,
+        "file": "r02_c05.u8.gz",
+        "row_start": 480,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168289
+      },
+      {
+        "row": 2,
+        "column": 6,
+        "file": "r02_c06.u8.gz",
+        "row_start": 480,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164299
+      },
+      {
+        "row": 2,
+        "column": 7,
+        "file": "r02_c07.u8.gz",
+        "row_start": 480,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 155395
+      },
+      {
+        "row": 2,
+        "column": 8,
+        "file": "r02_c08.u8.gz",
+        "row_start": 480,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146447
+      },
+      {
+        "row": 2,
+        "column": 9,
+        "file": "r02_c09.u8.gz",
+        "row_start": 480,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146815
+      },
+      {
+        "row": 2,
+        "column": 10,
+        "file": "r02_c10.u8.gz",
+        "row_start": 480,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146896
+      },
+      {
+        "row": 2,
+        "column": 11,
+        "file": "r02_c11.u8.gz",
+        "row_start": 480,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128833
+      },
+      {
+        "row": 2,
+        "column": 12,
+        "file": "r02_c12.u8.gz",
+        "row_start": 480,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169803
+      },
+      {
+        "row": 2,
+        "column": 13,
+        "file": "r02_c13.u8.gz",
+        "row_start": 480,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 203586
+      },
+      {
+        "row": 2,
+        "column": 14,
+        "file": "r02_c14.u8.gz",
+        "row_start": 480,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 194489
+      },
+      {
+        "row": 2,
+        "column": 15,
+        "file": "r02_c15.u8.gz",
+        "row_start": 480,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164932
+      },
+      {
+        "row": 2,
+        "column": 16,
+        "file": "r02_c16.u8.gz",
+        "row_start": 480,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152200
+      },
+      {
+        "row": 2,
+        "column": 17,
+        "file": "r02_c17.u8.gz",
+        "row_start": 480,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149119
+      },
+      {
+        "row": 2,
+        "column": 18,
+        "file": "r02_c18.u8.gz",
+        "row_start": 480,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158392
+      },
+      {
+        "row": 2,
+        "column": 19,
+        "file": "r02_c19.u8.gz",
+        "row_start": 480,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145243
+      },
+      {
+        "row": 2,
+        "column": 20,
+        "file": "r02_c20.u8.gz",
+        "row_start": 480,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154367
+      },
+      {
+        "row": 2,
+        "column": 21,
+        "file": "r02_c21.u8.gz",
+        "row_start": 480,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141424
+      },
+      {
+        "row": 2,
+        "column": 22,
+        "file": "r02_c22.u8.gz",
+        "row_start": 480,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 129141
+      },
+      {
+        "row": 2,
+        "column": 23,
+        "file": "r02_c23.u8.gz",
+        "row_start": 480,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 116443
+      },
+      {
+        "row": 2,
+        "column": 24,
+        "file": "r02_c24.u8.gz",
+        "row_start": 480,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141747
+      },
+      {
+        "row": 2,
+        "column": 25,
+        "file": "r02_c25.u8.gz",
+        "row_start": 480,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166241
+      },
+      {
+        "row": 2,
+        "column": 26,
+        "file": "r02_c26.u8.gz",
+        "row_start": 480,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144690
+      },
+      {
+        "row": 2,
+        "column": 27,
+        "file": "r02_c27.u8.gz",
+        "row_start": 480,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131183
+      },
+      {
+        "row": 2,
+        "column": 28,
+        "file": "r02_c28.u8.gz",
+        "row_start": 480,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 122194
+      },
+      {
+        "row": 2,
+        "column": 29,
+        "file": "r02_c29.u8.gz",
+        "row_start": 480,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126382
+      },
+      {
+        "row": 2,
+        "column": 30,
+        "file": "r02_c30.u8.gz",
+        "row_start": 480,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 117967
+      },
+      {
+        "row": 2,
+        "column": 31,
+        "file": "r02_c31.u8.gz",
+        "row_start": 480,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 110932
+      },
+      {
+        "row": 2,
+        "column": 32,
+        "file": "r02_c32.u8.gz",
+        "row_start": 480,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 140531
+      },
+      {
+        "row": 2,
+        "column": 33,
+        "file": "r02_c33.u8.gz",
+        "row_start": 480,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 172768
+      },
+      {
+        "row": 2,
+        "column": 34,
+        "file": "r02_c34.u8.gz",
+        "row_start": 480,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 175552
+      },
+      {
+        "row": 2,
+        "column": 35,
+        "file": "r02_c35.u8.gz",
+        "row_start": 480,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150988
+      },
+      {
+        "row": 3,
+        "column": 0,
+        "file": "r03_c00.u8.gz",
+        "row_start": 720,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 162174
+      },
+      {
+        "row": 3,
+        "column": 1,
+        "file": "r03_c01.u8.gz",
+        "row_start": 720,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 165531
+      },
+      {
+        "row": 3,
+        "column": 2,
+        "file": "r03_c02.u8.gz",
+        "row_start": 720,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176678
+      },
+      {
+        "row": 3,
+        "column": 3,
+        "file": "r03_c03.u8.gz",
+        "row_start": 720,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 185251
+      },
+      {
+        "row": 3,
+        "column": 4,
+        "file": "r03_c04.u8.gz",
+        "row_start": 720,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 192058
+      },
+      {
+        "row": 3,
+        "column": 5,
+        "file": "r03_c05.u8.gz",
+        "row_start": 720,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 188045
+      },
+      {
+        "row": 3,
+        "column": 6,
+        "file": "r03_c06.u8.gz",
+        "row_start": 720,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 178989
+      },
+      {
+        "row": 3,
+        "column": 7,
+        "file": "r03_c07.u8.gz",
+        "row_start": 720,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 170107
+      },
+      {
+        "row": 3,
+        "column": 8,
+        "file": "r03_c08.u8.gz",
+        "row_start": 720,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 162391
+      },
+      {
+        "row": 3,
+        "column": 9,
+        "file": "r03_c09.u8.gz",
+        "row_start": 720,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171300
+      },
+      {
+        "row": 3,
+        "column": 10,
+        "file": "r03_c10.u8.gz",
+        "row_start": 720,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 183656
+      },
+      {
+        "row": 3,
+        "column": 11,
+        "file": "r03_c11.u8.gz",
+        "row_start": 720,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 165462
+      },
+      {
+        "row": 3,
+        "column": 12,
+        "file": "r03_c12.u8.gz",
+        "row_start": 720,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 191597
+      },
+      {
+        "row": 3,
+        "column": 13,
+        "file": "r03_c13.u8.gz",
+        "row_start": 720,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 199956
+      },
+      {
+        "row": 3,
+        "column": 14,
+        "file": "r03_c14.u8.gz",
+        "row_start": 720,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 220257
+      },
+      {
+        "row": 3,
+        "column": 15,
+        "file": "r03_c15.u8.gz",
+        "row_start": 720,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 232331
+      },
+      {
+        "row": 3,
+        "column": 16,
+        "file": "r03_c16.u8.gz",
+        "row_start": 720,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 216980
+      },
+      {
+        "row": 3,
+        "column": 17,
+        "file": "r03_c17.u8.gz",
+        "row_start": 720,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 215100
+      },
+      {
+        "row": 3,
+        "column": 18,
+        "file": "r03_c18.u8.gz",
+        "row_start": 720,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 218804
+      },
+      {
+        "row": 3,
+        "column": 19,
+        "file": "r03_c19.u8.gz",
+        "row_start": 720,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 213799
+      },
+      {
+        "row": 3,
+        "column": 20,
+        "file": "r03_c20.u8.gz",
+        "row_start": 720,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 216247
+      },
+      {
+        "row": 3,
+        "column": 21,
+        "file": "r03_c21.u8.gz",
+        "row_start": 720,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 185525
+      },
+      {
+        "row": 3,
+        "column": 22,
+        "file": "r03_c22.u8.gz",
+        "row_start": 720,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164456
+      },
+      {
+        "row": 3,
+        "column": 23,
+        "file": "r03_c23.u8.gz",
+        "row_start": 720,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168421
+      },
+      {
+        "row": 3,
+        "column": 24,
+        "file": "r03_c24.u8.gz",
+        "row_start": 720,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164034
+      },
+      {
+        "row": 3,
+        "column": 25,
+        "file": "r03_c25.u8.gz",
+        "row_start": 720,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 184155
+      },
+      {
+        "row": 3,
+        "column": 26,
+        "file": "r03_c26.u8.gz",
+        "row_start": 720,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 196011
+      },
+      {
+        "row": 3,
+        "column": 27,
+        "file": "r03_c27.u8.gz",
+        "row_start": 720,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166376
+      },
+      {
+        "row": 3,
+        "column": 28,
+        "file": "r03_c28.u8.gz",
+        "row_start": 720,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163521
+      },
+      {
+        "row": 3,
+        "column": 29,
+        "file": "r03_c29.u8.gz",
+        "row_start": 720,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158698
+      },
+      {
+        "row": 3,
+        "column": 30,
+        "file": "r03_c30.u8.gz",
+        "row_start": 720,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152863
+      },
+      {
+        "row": 3,
+        "column": 31,
+        "file": "r03_c31.u8.gz",
+        "row_start": 720,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146433
+      },
+      {
+        "row": 3,
+        "column": 32,
+        "file": "r03_c32.u8.gz",
+        "row_start": 720,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 160451
+      },
+      {
+        "row": 3,
+        "column": 33,
+        "file": "r03_c33.u8.gz",
+        "row_start": 720,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 170947
+      },
+      {
+        "row": 3,
+        "column": 34,
+        "file": "r03_c34.u8.gz",
+        "row_start": 720,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 177386
+      },
+      {
+        "row": 3,
+        "column": 35,
+        "file": "r03_c35.u8.gz",
+        "row_start": 720,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 159407
+      },
+      {
+        "row": 4,
+        "column": 0,
+        "file": "r04_c00.u8.gz",
+        "row_start": 960,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168409
+      },
+      {
+        "row": 4,
+        "column": 1,
+        "file": "r04_c01.u8.gz",
+        "row_start": 960,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152859
+      },
+      {
+        "row": 4,
+        "column": 2,
+        "file": "r04_c02.u8.gz",
+        "row_start": 960,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 153359
+      },
+      {
+        "row": 4,
+        "column": 3,
+        "file": "r04_c03.u8.gz",
+        "row_start": 960,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154387
+      },
+      {
+        "row": 4,
+        "column": 4,
+        "file": "r04_c04.u8.gz",
+        "row_start": 960,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157026
+      },
+      {
+        "row": 4,
+        "column": 5,
+        "file": "r04_c05.u8.gz",
+        "row_start": 960,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 156689
+      },
+      {
+        "row": 4,
+        "column": 6,
+        "file": "r04_c06.u8.gz",
+        "row_start": 960,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154263
+      },
+      {
+        "row": 4,
+        "column": 7,
+        "file": "r04_c07.u8.gz",
+        "row_start": 960,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145828
+      },
+      {
+        "row": 4,
+        "column": 8,
+        "file": "r04_c08.u8.gz",
+        "row_start": 960,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 138865
+      },
+      {
+        "row": 4,
+        "column": 9,
+        "file": "r04_c09.u8.gz",
+        "row_start": 960,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 160330
+      },
+      {
+        "row": 4,
+        "column": 10,
+        "file": "r04_c10.u8.gz",
+        "row_start": 960,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 155457
+      },
+      {
+        "row": 4,
+        "column": 11,
+        "file": "r04_c11.u8.gz",
+        "row_start": 960,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 99190
+      },
+      {
+        "row": 4,
+        "column": 12,
+        "file": "r04_c12.u8.gz",
+        "row_start": 960,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 181776
+      },
+      {
+        "row": 4,
+        "column": 13,
+        "file": "r04_c13.u8.gz",
+        "row_start": 960,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158378
+      },
+      {
+        "row": 4,
+        "column": 14,
+        "file": "r04_c14.u8.gz",
+        "row_start": 960,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 165743
+      },
+      {
+        "row": 4,
+        "column": 15,
+        "file": "r04_c15.u8.gz",
+        "row_start": 960,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 167628
+      },
+      {
+        "row": 4,
+        "column": 16,
+        "file": "r04_c16.u8.gz",
+        "row_start": 960,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 159929
+      },
+      {
+        "row": 4,
+        "column": 17,
+        "file": "r04_c17.u8.gz",
+        "row_start": 960,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166234
+      },
+      {
+        "row": 4,
+        "column": 18,
+        "file": "r04_c18.u8.gz",
+        "row_start": 960,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168153
+      },
+      {
+        "row": 4,
+        "column": 19,
+        "file": "r04_c19.u8.gz",
+        "row_start": 960,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 180701
+      },
+      {
+        "row": 4,
+        "column": 20,
+        "file": "r04_c20.u8.gz",
+        "row_start": 960,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 175746
+      },
+      {
+        "row": 4,
+        "column": 21,
+        "file": "r04_c21.u8.gz",
+        "row_start": 960,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 172583
+      },
+      {
+        "row": 4,
+        "column": 22,
+        "file": "r04_c22.u8.gz",
+        "row_start": 960,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171336
+      },
+      {
+        "row": 4,
+        "column": 23,
+        "file": "r04_c23.u8.gz",
+        "row_start": 960,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 185377
+      },
+      {
+        "row": 4,
+        "column": 24,
+        "file": "r04_c24.u8.gz",
+        "row_start": 960,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 174692
+      },
+      {
+        "row": 4,
+        "column": 25,
+        "file": "r04_c25.u8.gz",
+        "row_start": 960,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176236
+      },
+      {
+        "row": 4,
+        "column": 26,
+        "file": "r04_c26.u8.gz",
+        "row_start": 960,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163675
+      },
+      {
+        "row": 4,
+        "column": 27,
+        "file": "r04_c27.u8.gz",
+        "row_start": 960,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152666
+      },
+      {
+        "row": 4,
+        "column": 28,
+        "file": "r04_c28.u8.gz",
+        "row_start": 960,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 148243
+      },
+      {
+        "row": 4,
+        "column": 29,
+        "file": "r04_c29.u8.gz",
+        "row_start": 960,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 155584
+      },
+      {
+        "row": 4,
+        "column": 30,
+        "file": "r04_c30.u8.gz",
+        "row_start": 960,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150839
+      },
+      {
+        "row": 4,
+        "column": 31,
+        "file": "r04_c31.u8.gz",
+        "row_start": 960,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152893
+      },
+      {
+        "row": 4,
+        "column": 32,
+        "file": "r04_c32.u8.gz",
+        "row_start": 960,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171345
+      },
+      {
+        "row": 4,
+        "column": 33,
+        "file": "r04_c33.u8.gz",
+        "row_start": 960,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150705
+      },
+      {
+        "row": 4,
+        "column": 34,
+        "file": "r04_c34.u8.gz",
+        "row_start": 960,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164876
+      },
+      {
+        "row": 4,
+        "column": 35,
+        "file": "r04_c35.u8.gz",
+        "row_start": 960,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169773
+      },
+      {
+        "row": 5,
+        "column": 0,
+        "file": "r05_c00.u8.gz",
+        "row_start": 1200,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149236
+      },
+      {
+        "row": 5,
+        "column": 1,
+        "file": "r05_c01.u8.gz",
+        "row_start": 1200,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152381
+      },
+      {
+        "row": 5,
+        "column": 2,
+        "file": "r05_c02.u8.gz",
+        "row_start": 1200,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164788
+      },
+      {
+        "row": 5,
+        "column": 3,
+        "file": "r05_c03.u8.gz",
+        "row_start": 1200,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171139
+      },
+      {
+        "row": 5,
+        "column": 4,
+        "file": "r05_c04.u8.gz",
+        "row_start": 1200,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 178050
+      },
+      {
+        "row": 5,
+        "column": 5,
+        "file": "r05_c05.u8.gz",
+        "row_start": 1200,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 183409
+      },
+      {
+        "row": 5,
+        "column": 6,
+        "file": "r05_c06.u8.gz",
+        "row_start": 1200,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 177533
+      },
+      {
+        "row": 5,
+        "column": 7,
+        "file": "r05_c07.u8.gz",
+        "row_start": 1200,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 167108
+      },
+      {
+        "row": 5,
+        "column": 8,
+        "file": "r05_c08.u8.gz",
+        "row_start": 1200,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 155082
+      },
+      {
+        "row": 5,
+        "column": 9,
+        "file": "r05_c09.u8.gz",
+        "row_start": 1200,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157102
+      },
+      {
+        "row": 5,
+        "column": 10,
+        "file": "r05_c10.u8.gz",
+        "row_start": 1200,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150363
+      },
+      {
+        "row": 5,
+        "column": 11,
+        "file": "r05_c11.u8.gz",
+        "row_start": 1200,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12249
+      },
+      {
+        "row": 5,
+        "column": 12,
+        "file": "r05_c12.u8.gz",
+        "row_start": 1200,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 112719
+      },
+      {
+        "row": 5,
+        "column": 13,
+        "file": "r05_c13.u8.gz",
+        "row_start": 1200,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 142579
+      },
+      {
+        "row": 5,
+        "column": 14,
+        "file": "r05_c14.u8.gz",
+        "row_start": 1200,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 136865
+      },
+      {
+        "row": 5,
+        "column": 15,
+        "file": "r05_c15.u8.gz",
+        "row_start": 1200,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143856
+      },
+      {
+        "row": 5,
+        "column": 16,
+        "file": "r05_c16.u8.gz",
+        "row_start": 1200,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 151500
+      },
+      {
+        "row": 5,
+        "column": 17,
+        "file": "r05_c17.u8.gz",
+        "row_start": 1200,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152064
+      },
+      {
+        "row": 5,
+        "column": 18,
+        "file": "r05_c18.u8.gz",
+        "row_start": 1200,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157414
+      },
+      {
+        "row": 5,
+        "column": 19,
+        "file": "r05_c19.u8.gz",
+        "row_start": 1200,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 156220
+      },
+      {
+        "row": 5,
+        "column": 20,
+        "file": "r05_c20.u8.gz",
+        "row_start": 1200,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 121455
+      },
+      {
+        "row": 5,
+        "column": 21,
+        "file": "r05_c21.u8.gz",
+        "row_start": 1200,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 137893
+      },
+      {
+        "row": 5,
+        "column": 22,
+        "file": "r05_c22.u8.gz",
+        "row_start": 1200,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146881
+      },
+      {
+        "row": 5,
+        "column": 23,
+        "file": "r05_c23.u8.gz",
+        "row_start": 1200,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152317
+      },
+      {
+        "row": 5,
+        "column": 24,
+        "file": "r05_c24.u8.gz",
+        "row_start": 1200,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158372
+      },
+      {
+        "row": 5,
+        "column": 25,
+        "file": "r05_c25.u8.gz",
+        "row_start": 1200,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 159164
+      },
+      {
+        "row": 5,
+        "column": 26,
+        "file": "r05_c26.u8.gz",
+        "row_start": 1200,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157071
+      },
+      {
+        "row": 5,
+        "column": 27,
+        "file": "r05_c27.u8.gz",
+        "row_start": 1200,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154190
+      },
+      {
+        "row": 5,
+        "column": 28,
+        "file": "r05_c28.u8.gz",
+        "row_start": 1200,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158530
+      },
+      {
+        "row": 5,
+        "column": 29,
+        "file": "r05_c29.u8.gz",
+        "row_start": 1200,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131873
+      },
+      {
+        "row": 5,
+        "column": 30,
+        "file": "r05_c30.u8.gz",
+        "row_start": 1200,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 116252
+      },
+      {
+        "row": 5,
+        "column": 31,
+        "file": "r05_c31.u8.gz",
+        "row_start": 1200,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131008
+      },
+      {
+        "row": 5,
+        "column": 32,
+        "file": "r05_c32.u8.gz",
+        "row_start": 1200,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 47208
+      },
+      {
+        "row": 5,
+        "column": 33,
+        "file": "r05_c33.u8.gz",
+        "row_start": 1200,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 140435
+      },
+      {
+        "row": 5,
+        "column": 34,
+        "file": "r05_c34.u8.gz",
+        "row_start": 1200,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 124805
+      },
+      {
+        "row": 5,
+        "column": 35,
+        "file": "r05_c35.u8.gz",
+        "row_start": 1200,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158112
+      },
+      {
+        "row": 6,
+        "column": 0,
+        "file": "r06_c00.u8.gz",
+        "row_start": 1440,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154289
+      },
+      {
+        "row": 6,
+        "column": 1,
+        "file": "r06_c01.u8.gz",
+        "row_start": 1440,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169309
+      },
+      {
+        "row": 6,
+        "column": 2,
+        "file": "r06_c02.u8.gz",
+        "row_start": 1440,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168301
+      },
+      {
+        "row": 6,
+        "column": 3,
+        "file": "r06_c03.u8.gz",
+        "row_start": 1440,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173093
+      },
+      {
+        "row": 6,
+        "column": 4,
+        "file": "r06_c04.u8.gz",
+        "row_start": 1440,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 177997
+      },
+      {
+        "row": 6,
+        "column": 5,
+        "file": "r06_c05.u8.gz",
+        "row_start": 1440,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173751
+      },
+      {
+        "row": 6,
+        "column": 6,
+        "file": "r06_c06.u8.gz",
+        "row_start": 1440,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173608
+      },
+      {
+        "row": 6,
+        "column": 7,
+        "file": "r06_c07.u8.gz",
+        "row_start": 1440,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 170903
+      },
+      {
+        "row": 6,
+        "column": 8,
+        "file": "r06_c08.u8.gz",
+        "row_start": 1440,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 178564
+      },
+      {
+        "row": 6,
+        "column": 9,
+        "file": "r06_c09.u8.gz",
+        "row_start": 1440,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173174
+      },
+      {
+        "row": 6,
+        "column": 10,
+        "file": "r06_c10.u8.gz",
+        "row_start": 1440,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 188846
+      },
+      {
+        "row": 6,
+        "column": 11,
+        "file": "r06_c11.u8.gz",
+        "row_start": 1440,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2197
+      },
+      {
+        "row": 6,
+        "column": 12,
+        "file": "r06_c12.u8.gz",
+        "row_start": 1440,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6234
+      },
+      {
+        "row": 6,
+        "column": 13,
+        "file": "r06_c13.u8.gz",
+        "row_start": 1440,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 121726
+      },
+      {
+        "row": 6,
+        "column": 14,
+        "file": "r06_c14.u8.gz",
+        "row_start": 1440,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134720
+      },
+      {
+        "row": 6,
+        "column": 15,
+        "file": "r06_c15.u8.gz",
+        "row_start": 1440,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 136940
+      },
+      {
+        "row": 6,
+        "column": 16,
+        "file": "r06_c16.u8.gz",
+        "row_start": 1440,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128606
+      },
+      {
+        "row": 6,
+        "column": 17,
+        "file": "r06_c17.u8.gz",
+        "row_start": 1440,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144545
+      },
+      {
+        "row": 6,
+        "column": 18,
+        "file": "r06_c18.u8.gz",
+        "row_start": 1440,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 177391
+      },
+      {
+        "row": 6,
+        "column": 19,
+        "file": "r06_c19.u8.gz",
+        "row_start": 1440,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 105102
+      },
+      {
+        "row": 6,
+        "column": 20,
+        "file": "r06_c20.u8.gz",
+        "row_start": 1440,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3701
+      },
+      {
+        "row": 6,
+        "column": 21,
+        "file": "r06_c21.u8.gz",
+        "row_start": 1440,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 99874
+      },
+      {
+        "row": 6,
+        "column": 22,
+        "file": "r06_c22.u8.gz",
+        "row_start": 1440,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134166
+      },
+      {
+        "row": 6,
+        "column": 23,
+        "file": "r06_c23.u8.gz",
+        "row_start": 1440,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126050
+      },
+      {
+        "row": 6,
+        "column": 24,
+        "file": "r06_c24.u8.gz",
+        "row_start": 1440,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 136968
+      },
+      {
+        "row": 6,
+        "column": 25,
+        "file": "r06_c25.u8.gz",
+        "row_start": 1440,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 133202
+      },
+      {
+        "row": 6,
+        "column": 26,
+        "file": "r06_c26.u8.gz",
+        "row_start": 1440,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134151
+      },
+      {
+        "row": 6,
+        "column": 27,
+        "file": "r06_c27.u8.gz",
+        "row_start": 1440,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146668
+      },
+      {
+        "row": 6,
+        "column": 28,
+        "file": "r06_c28.u8.gz",
+        "row_start": 1440,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149282
+      },
+      {
+        "row": 6,
+        "column": 29,
+        "file": "r06_c29.u8.gz",
+        "row_start": 1440,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 99063
+      },
+      {
+        "row": 6,
+        "column": 30,
+        "file": "r06_c30.u8.gz",
+        "row_start": 1440,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6536
+      },
+      {
+        "row": 6,
+        "column": 31,
+        "file": "r06_c31.u8.gz",
+        "row_start": 1440,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4978
+      },
+      {
+        "row": 6,
+        "column": 32,
+        "file": "r06_c32.u8.gz",
+        "row_start": 1440,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 10749
+      },
+      {
+        "row": 6,
+        "column": 33,
+        "file": "r06_c33.u8.gz",
+        "row_start": 1440,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 153580
+      },
+      {
+        "row": 6,
+        "column": 34,
+        "file": "r06_c34.u8.gz",
+        "row_start": 1440,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145041
+      },
+      {
+        "row": 6,
+        "column": 35,
+        "file": "r06_c35.u8.gz",
+        "row_start": 1440,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134361
+      },
+      {
+        "row": 7,
+        "column": 0,
+        "file": "r07_c00.u8.gz",
+        "row_start": 1680,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 196129
+      },
+      {
+        "row": 7,
+        "column": 1,
+        "file": "r07_c01.u8.gz",
+        "row_start": 1680,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171384
+      },
+      {
+        "row": 7,
+        "column": 2,
+        "file": "r07_c02.u8.gz",
+        "row_start": 1680,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 167326
+      },
+      {
+        "row": 7,
+        "column": 3,
+        "file": "r07_c03.u8.gz",
+        "row_start": 1680,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173460
+      },
+      {
+        "row": 7,
+        "column": 4,
+        "file": "r07_c04.u8.gz",
+        "row_start": 1680,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 136291
+      },
+      {
+        "row": 7,
+        "column": 5,
+        "file": "r07_c05.u8.gz",
+        "row_start": 1680,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 118389
+      },
+      {
+        "row": 7,
+        "column": 6,
+        "file": "r07_c06.u8.gz",
+        "row_start": 1680,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 120010
+      },
+      {
+        "row": 7,
+        "column": 7,
+        "file": "r07_c07.u8.gz",
+        "row_start": 1680,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128360
+      },
+      {
+        "row": 7,
+        "column": 8,
+        "file": "r07_c08.u8.gz",
+        "row_start": 1680,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144294
+      },
+      {
+        "row": 7,
+        "column": 9,
+        "file": "r07_c09.u8.gz",
+        "row_start": 1680,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 182072
+      },
+      {
+        "row": 7,
+        "column": 10,
+        "file": "r07_c10.u8.gz",
+        "row_start": 1680,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144732
+      },
+      {
+        "row": 7,
+        "column": 11,
+        "file": "r07_c11.u8.gz",
+        "row_start": 1680,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7391
+      },
+      {
+        "row": 7,
+        "column": 12,
+        "file": "r07_c12.u8.gz",
+        "row_start": 1680,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2704
+      },
+      {
+        "row": 7,
+        "column": 13,
+        "file": "r07_c13.u8.gz",
+        "row_start": 1680,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3086
+      },
+      {
+        "row": 7,
+        "column": 14,
+        "file": "r07_c14.u8.gz",
+        "row_start": 1680,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164663
+      },
+      {
+        "row": 7,
+        "column": 15,
+        "file": "r07_c15.u8.gz",
+        "row_start": 1680,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 127398
+      },
+      {
+        "row": 7,
+        "column": 16,
+        "file": "r07_c16.u8.gz",
+        "row_start": 1680,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144277
+      },
+      {
+        "row": 7,
+        "column": 17,
+        "file": "r07_c17.u8.gz",
+        "row_start": 1680,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169233
+      },
+      {
+        "row": 7,
+        "column": 18,
+        "file": "r07_c18.u8.gz",
+        "row_start": 1680,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 212590
+      },
+      {
+        "row": 7,
+        "column": 19,
+        "file": "r07_c19.u8.gz",
+        "row_start": 1680,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 72689
+      },
+      {
+        "row": 7,
+        "column": 20,
+        "file": "r07_c20.u8.gz",
+        "row_start": 1680,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4084
+      },
+      {
+        "row": 7,
+        "column": 21,
+        "file": "r07_c21.u8.gz",
+        "row_start": 1680,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 40270
+      },
+      {
+        "row": 7,
+        "column": 22,
+        "file": "r07_c22.u8.gz",
+        "row_start": 1680,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144885
+      },
+      {
+        "row": 7,
+        "column": 23,
+        "file": "r07_c23.u8.gz",
+        "row_start": 1680,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152218
+      },
+      {
+        "row": 7,
+        "column": 24,
+        "file": "r07_c24.u8.gz",
+        "row_start": 1680,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158004
+      },
+      {
+        "row": 7,
+        "column": 25,
+        "file": "r07_c25.u8.gz",
+        "row_start": 1680,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143722
+      },
+      {
+        "row": 7,
+        "column": 26,
+        "file": "r07_c26.u8.gz",
+        "row_start": 1680,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145954
+      },
+      {
+        "row": 7,
+        "column": 27,
+        "file": "r07_c27.u8.gz",
+        "row_start": 1680,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141171
+      },
+      {
+        "row": 7,
+        "column": 28,
+        "file": "r07_c28.u8.gz",
+        "row_start": 1680,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131111
+      },
+      {
+        "row": 7,
+        "column": 29,
+        "file": "r07_c29.u8.gz",
+        "row_start": 1680,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126431
+      },
+      {
+        "row": 7,
+        "column": 30,
+        "file": "r07_c30.u8.gz",
+        "row_start": 1680,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 139349
+      },
+      {
+        "row": 7,
+        "column": 31,
+        "file": "r07_c31.u8.gz",
+        "row_start": 1680,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 92259
+      },
+      {
+        "row": 7,
+        "column": 32,
+        "file": "r07_c32.u8.gz",
+        "row_start": 1680,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169024
+      },
+      {
+        "row": 7,
+        "column": 33,
+        "file": "r07_c33.u8.gz",
+        "row_start": 1680,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173954
+      },
+      {
+        "row": 7,
+        "column": 34,
+        "file": "r07_c34.u8.gz",
+        "row_start": 1680,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 197220
+      },
+      {
+        "row": 7,
+        "column": 35,
+        "file": "r07_c35.u8.gz",
+        "row_start": 1680,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 192971
+      },
+      {
+        "row": 8,
+        "column": 0,
+        "file": "r08_c00.u8.gz",
+        "row_start": 1920,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 113238
+      },
+      {
+        "row": 8,
+        "column": 1,
+        "file": "r08_c01.u8.gz",
+        "row_start": 1920,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 94255
+      },
+      {
+        "row": 8,
+        "column": 2,
+        "file": "r08_c02.u8.gz",
+        "row_start": 1920,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 79074
+      },
+      {
+        "row": 8,
+        "column": 3,
+        "file": "r08_c03.u8.gz",
+        "row_start": 1920,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 77389
+      },
+      {
+        "row": 8,
+        "column": 4,
+        "file": "r08_c04.u8.gz",
+        "row_start": 1920,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 72380
+      },
+      {
+        "row": 8,
+        "column": 5,
+        "file": "r08_c05.u8.gz",
+        "row_start": 1920,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 71413
+      },
+      {
+        "row": 8,
+        "column": 6,
+        "file": "r08_c06.u8.gz",
+        "row_start": 1920,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 78152
+      },
+      {
+        "row": 8,
+        "column": 7,
+        "file": "r08_c07.u8.gz",
+        "row_start": 1920,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 89066
+      },
+      {
+        "row": 8,
+        "column": 8,
+        "file": "r08_c08.u8.gz",
+        "row_start": 1920,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 123688
+      },
+      {
+        "row": 8,
+        "column": 9,
+        "file": "r08_c09.u8.gz",
+        "row_start": 1920,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 191285
+      },
+      {
+        "row": 8,
+        "column": 10,
+        "file": "r08_c10.u8.gz",
+        "row_start": 1920,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 13490
+      },
+      {
+        "row": 8,
+        "column": 11,
+        "file": "r08_c11.u8.gz",
+        "row_start": 1920,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 11173
+      },
+      {
+        "row": 8,
+        "column": 12,
+        "file": "r08_c12.u8.gz",
+        "row_start": 1920,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12925
+      },
+      {
+        "row": 8,
+        "column": 13,
+        "file": "r08_c13.u8.gz",
+        "row_start": 1920,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 47743
+      },
+      {
+        "row": 8,
+        "column": 14,
+        "file": "r08_c14.u8.gz",
+        "row_start": 1920,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 120557
+      },
+      {
+        "row": 8,
+        "column": 15,
+        "file": "r08_c15.u8.gz",
+        "row_start": 1920,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 124945
+      },
+      {
+        "row": 8,
+        "column": 16,
+        "file": "r08_c16.u8.gz",
+        "row_start": 1920,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126683
+      },
+      {
+        "row": 8,
+        "column": 17,
+        "file": "r08_c17.u8.gz",
+        "row_start": 1920,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149572
+      },
+      {
+        "row": 8,
+        "column": 18,
+        "file": "r08_c18.u8.gz",
+        "row_start": 1920,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 225190
+      },
+      {
+        "row": 8,
+        "column": 19,
+        "file": "r08_c19.u8.gz",
+        "row_start": 1920,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 60649
+      },
+      {
+        "row": 8,
+        "column": 20,
+        "file": "r08_c20.u8.gz",
+        "row_start": 1920,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12162
+      },
+      {
+        "row": 8,
+        "column": 21,
+        "file": "r08_c21.u8.gz",
+        "row_start": 1920,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 41630
+      },
+      {
+        "row": 8,
+        "column": 22,
+        "file": "r08_c22.u8.gz",
+        "row_start": 1920,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126502
+      },
+      {
+        "row": 8,
+        "column": 23,
+        "file": "r08_c23.u8.gz",
+        "row_start": 1920,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134233
+      },
+      {
+        "row": 8,
+        "column": 24,
+        "file": "r08_c24.u8.gz",
+        "row_start": 1920,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 121928
+      },
+      {
+        "row": 8,
+        "column": 25,
+        "file": "r08_c25.u8.gz",
+        "row_start": 1920,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134783
+      },
+      {
+        "row": 8,
+        "column": 26,
+        "file": "r08_c26.u8.gz",
+        "row_start": 1920,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128360
+      },
+      {
+        "row": 8,
+        "column": 27,
+        "file": "r08_c27.u8.gz",
+        "row_start": 1920,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154906
+      },
+      {
+        "row": 8,
+        "column": 28,
+        "file": "r08_c28.u8.gz",
+        "row_start": 1920,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173877
+      },
+      {
+        "row": 8,
+        "column": 29,
+        "file": "r08_c29.u8.gz",
+        "row_start": 1920,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 167618
+      },
+      {
+        "row": 8,
+        "column": 30,
+        "file": "r08_c30.u8.gz",
+        "row_start": 1920,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 186975
+      },
+      {
+        "row": 8,
+        "column": 31,
+        "file": "r08_c31.u8.gz",
+        "row_start": 1920,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 180633
+      },
+      {
+        "row": 8,
+        "column": 32,
+        "file": "r08_c32.u8.gz",
+        "row_start": 1920,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 154325
+      },
+      {
+        "row": 8,
+        "column": 33,
+        "file": "r08_c33.u8.gz",
+        "row_start": 1920,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 202359
+      },
+      {
+        "row": 8,
+        "column": 34,
+        "file": "r08_c34.u8.gz",
+        "row_start": 1920,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169318
+      },
+      {
+        "row": 8,
+        "column": 35,
+        "file": "r08_c35.u8.gz",
+        "row_start": 1920,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 140090
+      },
+      {
+        "row": 9,
+        "column": 0,
+        "file": "r09_c00.u8.gz",
+        "row_start": 2160,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 142403
+      },
+      {
+        "row": 9,
+        "column": 1,
+        "file": "r09_c01.u8.gz",
+        "row_start": 2160,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 129262
+      },
+      {
+        "row": 9,
+        "column": 2,
+        "file": "r09_c02.u8.gz",
+        "row_start": 2160,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 123548
+      },
+      {
+        "row": 9,
+        "column": 3,
+        "file": "r09_c03.u8.gz",
+        "row_start": 2160,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 116618
+      },
+      {
+        "row": 9,
+        "column": 4,
+        "file": "r09_c04.u8.gz",
+        "row_start": 2160,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 118134
+      },
+      {
+        "row": 9,
+        "column": 5,
+        "file": "r09_c05.u8.gz",
+        "row_start": 2160,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 125319
+      },
+      {
+        "row": 9,
+        "column": 6,
+        "file": "r09_c06.u8.gz",
+        "row_start": 2160,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 133303
+      },
+      {
+        "row": 9,
+        "column": 7,
+        "file": "r09_c07.u8.gz",
+        "row_start": 2160,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144280
+      },
+      {
+        "row": 9,
+        "column": 8,
+        "file": "r09_c08.u8.gz",
+        "row_start": 2160,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163684
+      },
+      {
+        "row": 9,
+        "column": 9,
+        "file": "r09_c09.u8.gz",
+        "row_start": 2160,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 183316
+      },
+      {
+        "row": 9,
+        "column": 10,
+        "file": "r09_c10.u8.gz",
+        "row_start": 2160,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 71216
+      },
+      {
+        "row": 9,
+        "column": 11,
+        "file": "r09_c11.u8.gz",
+        "row_start": 2160,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 10203
+      },
+      {
+        "row": 9,
+        "column": 12,
+        "file": "r09_c12.u8.gz",
+        "row_start": 2160,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 104731
+      },
+      {
+        "row": 9,
+        "column": 13,
+        "file": "r09_c13.u8.gz",
+        "row_start": 2160,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171327
+      },
+      {
+        "row": 9,
+        "column": 14,
+        "file": "r09_c14.u8.gz",
+        "row_start": 2160,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 139147
+      },
+      {
+        "row": 9,
+        "column": 15,
+        "file": "r09_c15.u8.gz",
+        "row_start": 2160,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 133056
+      },
+      {
+        "row": 9,
+        "column": 16,
+        "file": "r09_c16.u8.gz",
+        "row_start": 2160,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157503
+      },
+      {
+        "row": 9,
+        "column": 17,
+        "file": "r09_c17.u8.gz",
+        "row_start": 2160,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 104245
+      },
+      {
+        "row": 9,
+        "column": 18,
+        "file": "r09_c18.u8.gz",
+        "row_start": 2160,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 133124
+      },
+      {
+        "row": 9,
+        "column": 19,
+        "file": "r09_c19.u8.gz",
+        "row_start": 2160,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2635
+      },
+      {
+        "row": 9,
+        "column": 20,
+        "file": "r09_c20.u8.gz",
+        "row_start": 2160,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1394
+      },
+      {
+        "row": 9,
+        "column": 21,
+        "file": "r09_c21.u8.gz",
+        "row_start": 2160,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 8286
+      },
+      {
+        "row": 9,
+        "column": 22,
+        "file": "r09_c22.u8.gz",
+        "row_start": 2160,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 48949
+      },
+      {
+        "row": 9,
+        "column": 23,
+        "file": "r09_c23.u8.gz",
+        "row_start": 2160,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 140088
+      },
+      {
+        "row": 9,
+        "column": 24,
+        "file": "r09_c24.u8.gz",
+        "row_start": 2160,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 123723
+      },
+      {
+        "row": 9,
+        "column": 25,
+        "file": "r09_c25.u8.gz",
+        "row_start": 2160,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 177680
+      },
+      {
+        "row": 9,
+        "column": 26,
+        "file": "r09_c26.u8.gz",
+        "row_start": 2160,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146323
+      },
+      {
+        "row": 9,
+        "column": 27,
+        "file": "r09_c27.u8.gz",
+        "row_start": 2160,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176377
+      },
+      {
+        "row": 9,
+        "column": 28,
+        "file": "r09_c28.u8.gz",
+        "row_start": 2160,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 186053
+      },
+      {
+        "row": 9,
+        "column": 29,
+        "file": "r09_c29.u8.gz",
+        "row_start": 2160,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 160749
+      },
+      {
+        "row": 9,
+        "column": 30,
+        "file": "r09_c30.u8.gz",
+        "row_start": 2160,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 205848
+      },
+      {
+        "row": 9,
+        "column": 31,
+        "file": "r09_c31.u8.gz",
+        "row_start": 2160,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176722
+      },
+      {
+        "row": 9,
+        "column": 32,
+        "file": "r09_c32.u8.gz",
+        "row_start": 2160,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163653
+      },
+      {
+        "row": 9,
+        "column": 33,
+        "file": "r09_c33.u8.gz",
+        "row_start": 2160,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169316
+      },
+      {
+        "row": 9,
+        "column": 34,
+        "file": "r09_c34.u8.gz",
+        "row_start": 2160,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176998
+      },
+      {
+        "row": 9,
+        "column": 35,
+        "file": "r09_c35.u8.gz",
+        "row_start": 2160,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 165015
+      },
+      {
+        "row": 10,
+        "column": 0,
+        "file": "r10_c00.u8.gz",
+        "row_start": 2400,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 129064
+      },
+      {
+        "row": 10,
+        "column": 1,
+        "file": "r10_c01.u8.gz",
+        "row_start": 2400,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134002
+      },
+      {
+        "row": 10,
+        "column": 2,
+        "file": "r10_c02.u8.gz",
+        "row_start": 2400,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143458
+      },
+      {
+        "row": 10,
+        "column": 3,
+        "file": "r10_c03.u8.gz",
+        "row_start": 2400,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 151408
+      },
+      {
+        "row": 10,
+        "column": 4,
+        "file": "r10_c04.u8.gz",
+        "row_start": 2400,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 162730
+      },
+      {
+        "row": 10,
+        "column": 5,
+        "file": "r10_c05.u8.gz",
+        "row_start": 2400,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 160320
+      },
+      {
+        "row": 10,
+        "column": 6,
+        "file": "r10_c06.u8.gz",
+        "row_start": 2400,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134782
+      },
+      {
+        "row": 10,
+        "column": 7,
+        "file": "r10_c07.u8.gz",
+        "row_start": 2400,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 127542
+      },
+      {
+        "row": 10,
+        "column": 8,
+        "file": "r10_c08.u8.gz",
+        "row_start": 2400,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128256
+      },
+      {
+        "row": 10,
+        "column": 9,
+        "file": "r10_c09.u8.gz",
+        "row_start": 2400,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 167140
+      },
+      {
+        "row": 10,
+        "column": 10,
+        "file": "r10_c10.u8.gz",
+        "row_start": 2400,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171324
+      },
+      {
+        "row": 10,
+        "column": 11,
+        "file": "r10_c11.u8.gz",
+        "row_start": 2400,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 196877
+      },
+      {
+        "row": 10,
+        "column": 12,
+        "file": "r10_c12.u8.gz",
+        "row_start": 2400,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169636
+      },
+      {
+        "row": 10,
+        "column": 13,
+        "file": "r10_c13.u8.gz",
+        "row_start": 2400,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141899
+      },
+      {
+        "row": 10,
+        "column": 14,
+        "file": "r10_c14.u8.gz",
+        "row_start": 2400,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158778
+      },
+      {
+        "row": 10,
+        "column": 15,
+        "file": "r10_c15.u8.gz",
+        "row_start": 2400,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 173906
+      },
+      {
+        "row": 10,
+        "column": 16,
+        "file": "r10_c16.u8.gz",
+        "row_start": 2400,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 93903
+      },
+      {
+        "row": 10,
+        "column": 17,
+        "file": "r10_c17.u8.gz",
+        "row_start": 2400,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1597
+      },
+      {
+        "row": 10,
+        "column": 18,
+        "file": "r10_c18.u8.gz",
+        "row_start": 2400,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1738
+      },
+      {
+        "row": 10,
+        "column": 19,
+        "file": "r10_c19.u8.gz",
+        "row_start": 2400,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1860
+      },
+      {
+        "row": 10,
+        "column": 21,
+        "file": "r10_c21.u8.gz",
+        "row_start": 2400,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 25646
+      },
+      {
+        "row": 10,
+        "column": 22,
+        "file": "r10_c22.u8.gz",
+        "row_start": 2400,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 90817
+      },
+      {
+        "row": 10,
+        "column": 23,
+        "file": "r10_c23.u8.gz",
+        "row_start": 2400,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 153108
+      },
+      {
+        "row": 10,
+        "column": 24,
+        "file": "r10_c24.u8.gz",
+        "row_start": 2400,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 180198
+      },
+      {
+        "row": 10,
+        "column": 25,
+        "file": "r10_c25.u8.gz",
+        "row_start": 2400,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 108151
+      },
+      {
+        "row": 10,
+        "column": 26,
+        "file": "r10_c26.u8.gz",
+        "row_start": 2400,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 147111
+      },
+      {
+        "row": 10,
+        "column": 27,
+        "file": "r10_c27.u8.gz",
+        "row_start": 2400,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 139668
+      },
+      {
+        "row": 10,
+        "column": 28,
+        "file": "r10_c28.u8.gz",
+        "row_start": 2400,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 92749
+      },
+      {
+        "row": 10,
+        "column": 29,
+        "file": "r10_c29.u8.gz",
+        "row_start": 2400,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166881
+      },
+      {
+        "row": 10,
+        "column": 30,
+        "file": "r10_c30.u8.gz",
+        "row_start": 2400,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 206715
+      },
+      {
+        "row": 10,
+        "column": 31,
+        "file": "r10_c31.u8.gz",
+        "row_start": 2400,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 138768
+      },
+      {
+        "row": 10,
+        "column": 32,
+        "file": "r10_c32.u8.gz",
+        "row_start": 2400,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141373
+      },
+      {
+        "row": 10,
+        "column": 33,
+        "file": "r10_c33.u8.gz",
+        "row_start": 2400,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 122782
+      },
+      {
+        "row": 10,
+        "column": 34,
+        "file": "r10_c34.u8.gz",
+        "row_start": 2400,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131334
+      },
+      {
+        "row": 10,
+        "column": 35,
+        "file": "r10_c35.u8.gz",
+        "row_start": 2400,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 126703
+      },
+      {
+        "row": 11,
+        "column": 0,
+        "file": "r11_c00.u8.gz",
+        "row_start": 2640,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 125892
+      },
+      {
+        "row": 11,
+        "column": 1,
+        "file": "r11_c01.u8.gz",
+        "row_start": 2640,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 125563
+      },
+      {
+        "row": 11,
+        "column": 2,
+        "file": "r11_c02.u8.gz",
+        "row_start": 2640,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 124036
+      },
+      {
+        "row": 11,
+        "column": 3,
+        "file": "r11_c03.u8.gz",
+        "row_start": 2640,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 128242
+      },
+      {
+        "row": 11,
+        "column": 4,
+        "file": "r11_c04.u8.gz",
+        "row_start": 2640,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 151825
+      },
+      {
+        "row": 11,
+        "column": 5,
+        "file": "r11_c05.u8.gz",
+        "row_start": 2640,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176641
+      },
+      {
+        "row": 11,
+        "column": 6,
+        "file": "r11_c06.u8.gz",
+        "row_start": 2640,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 178475
+      },
+      {
+        "row": 11,
+        "column": 7,
+        "file": "r11_c07.u8.gz",
+        "row_start": 2640,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 53062
+      },
+      {
+        "row": 11,
+        "column": 8,
+        "file": "r11_c08.u8.gz",
+        "row_start": 2640,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146079
+      },
+      {
+        "row": 11,
+        "column": 9,
+        "file": "r11_c09.u8.gz",
+        "row_start": 2640,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 191633
+      },
+      {
+        "row": 11,
+        "column": 10,
+        "file": "r11_c10.u8.gz",
+        "row_start": 2640,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 226597
+      },
+      {
+        "row": 11,
+        "column": 11,
+        "file": "r11_c11.u8.gz",
+        "row_start": 2640,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 134538
+      },
+      {
+        "row": 11,
+        "column": 12,
+        "file": "r11_c12.u8.gz",
+        "row_start": 2640,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 124924
+      },
+      {
+        "row": 11,
+        "column": 13,
+        "file": "r11_c13.u8.gz",
+        "row_start": 2640,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 125836
+      },
+      {
+        "row": 11,
+        "column": 14,
+        "file": "r11_c14.u8.gz",
+        "row_start": 2640,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 142440
+      },
+      {
+        "row": 11,
+        "column": 15,
+        "file": "r11_c15.u8.gz",
+        "row_start": 2640,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164667
+      },
+      {
+        "row": 11,
+        "column": 16,
+        "file": "r11_c16.u8.gz",
+        "row_start": 2640,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 119889
+      },
+      {
+        "row": 11,
+        "column": 17,
+        "file": "r11_c17.u8.gz",
+        "row_start": 2640,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1129
+      },
+      {
+        "row": 11,
+        "column": 20,
+        "file": "r11_c20.u8.gz",
+        "row_start": 2640,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 736
+      },
+      {
+        "row": 11,
+        "column": 21,
+        "file": "r11_c21.u8.gz",
+        "row_start": 2640,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 61763
+      },
+      {
+        "row": 11,
+        "column": 22,
+        "file": "r11_c22.u8.gz",
+        "row_start": 2640,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 13988
+      },
+      {
+        "row": 11,
+        "column": 23,
+        "file": "r11_c23.u8.gz",
+        "row_start": 2640,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 75983
+      },
+      {
+        "row": 11,
+        "column": 24,
+        "file": "r11_c24.u8.gz",
+        "row_start": 2640,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 106723
+      },
+      {
+        "row": 11,
+        "column": 25,
+        "file": "r11_c25.u8.gz",
+        "row_start": 2640,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 16477
+      },
+      {
+        "row": 11,
+        "column": 26,
+        "file": "r11_c26.u8.gz",
+        "row_start": 2640,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 25963
+      },
+      {
+        "row": 11,
+        "column": 27,
+        "file": "r11_c27.u8.gz",
+        "row_start": 2640,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 24606
+      },
+      {
+        "row": 11,
+        "column": 28,
+        "file": "r11_c28.u8.gz",
+        "row_start": 2640,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 15706
+      },
+      {
+        "row": 11,
+        "column": 29,
+        "file": "r11_c29.u8.gz",
+        "row_start": 2640,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 84028
+      },
+      {
+        "row": 11,
+        "column": 30,
+        "file": "r11_c30.u8.gz",
+        "row_start": 2640,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 201975
+      },
+      {
+        "row": 11,
+        "column": 31,
+        "file": "r11_c31.u8.gz",
+        "row_start": 2640,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 145354
+      },
+      {
+        "row": 11,
+        "column": 32,
+        "file": "r11_c32.u8.gz",
+        "row_start": 2640,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 141208
+      },
+      {
+        "row": 11,
+        "column": 33,
+        "file": "r11_c33.u8.gz",
+        "row_start": 2640,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 125882
+      },
+      {
+        "row": 11,
+        "column": 34,
+        "file": "r11_c34.u8.gz",
+        "row_start": 2640,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 118612
+      },
+      {
+        "row": 11,
+        "column": 35,
+        "file": "r11_c35.u8.gz",
+        "row_start": 2640,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 117913
+      },
+      {
+        "row": 12,
+        "column": 0,
+        "file": "r12_c00.u8.gz",
+        "row_start": 2880,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146486
+      },
+      {
+        "row": 12,
+        "column": 1,
+        "file": "r12_c01.u8.gz",
+        "row_start": 2880,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149229
+      },
+      {
+        "row": 12,
+        "column": 2,
+        "file": "r12_c02.u8.gz",
+        "row_start": 2880,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150013
+      },
+      {
+        "row": 12,
+        "column": 3,
+        "file": "r12_c03.u8.gz",
+        "row_start": 2880,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146899
+      },
+      {
+        "row": 12,
+        "column": 4,
+        "file": "r12_c04.u8.gz",
+        "row_start": 2880,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 157837
+      },
+      {
+        "row": 12,
+        "column": 5,
+        "file": "r12_c05.u8.gz",
+        "row_start": 2880,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 180388
+      },
+      {
+        "row": 12,
+        "column": 6,
+        "file": "r12_c06.u8.gz",
+        "row_start": 2880,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 50304
+      },
+      {
+        "row": 12,
+        "column": 7,
+        "file": "r12_c07.u8.gz",
+        "row_start": 2880,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1140
+      },
+      {
+        "row": 12,
+        "column": 8,
+        "file": "r12_c08.u8.gz",
+        "row_start": 2880,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6355
+      },
+      {
+        "row": 12,
+        "column": 9,
+        "file": "r12_c09.u8.gz",
+        "row_start": 2880,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 19712
+      },
+      {
+        "row": 12,
+        "column": 10,
+        "file": "r12_c10.u8.gz",
+        "row_start": 2880,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149697
+      },
+      {
+        "row": 12,
+        "column": 11,
+        "file": "r12_c11.u8.gz",
+        "row_start": 2880,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164240
+      },
+      {
+        "row": 12,
+        "column": 12,
+        "file": "r12_c12.u8.gz",
+        "row_start": 2880,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 146706
+      },
+      {
+        "row": 12,
+        "column": 13,
+        "file": "r12_c13.u8.gz",
+        "row_start": 2880,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143274
+      },
+      {
+        "row": 12,
+        "column": 14,
+        "file": "r12_c14.u8.gz",
+        "row_start": 2880,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 135110
+      },
+      {
+        "row": 12,
+        "column": 15,
+        "file": "r12_c15.u8.gz",
+        "row_start": 2880,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 139638
+      },
+      {
+        "row": 12,
+        "column": 16,
+        "file": "r12_c16.u8.gz",
+        "row_start": 2880,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 149100
+      },
+      {
+        "row": 12,
+        "column": 17,
+        "file": "r12_c17.u8.gz",
+        "row_start": 2880,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 73971
+      },
+      {
+        "row": 12,
+        "column": 18,
+        "file": "r12_c18.u8.gz",
+        "row_start": 2880,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 53263
+      },
+      {
+        "row": 12,
+        "column": 19,
+        "file": "r12_c19.u8.gz",
+        "row_start": 2880,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131749
+      },
+      {
+        "row": 12,
+        "column": 20,
+        "file": "r12_c20.u8.gz",
+        "row_start": 2880,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 119911
+      },
+      {
+        "row": 12,
+        "column": 21,
+        "file": "r12_c21.u8.gz",
+        "row_start": 2880,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 69247
+      },
+      {
+        "row": 12,
+        "column": 22,
+        "file": "r12_c22.u8.gz",
+        "row_start": 2880,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 15723
+      },
+      {
+        "row": 12,
+        "column": 23,
+        "file": "r12_c23.u8.gz",
+        "row_start": 2880,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 23646
+      },
+      {
+        "row": 12,
+        "column": 24,
+        "file": "r12_c24.u8.gz",
+        "row_start": 2880,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2330
+      },
+      {
+        "row": 12,
+        "column": 25,
+        "file": "r12_c25.u8.gz",
+        "row_start": 2880,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3517
+      },
+      {
+        "row": 12,
+        "column": 26,
+        "file": "r12_c26.u8.gz",
+        "row_start": 2880,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 16711
+      },
+      {
+        "row": 12,
+        "column": 27,
+        "file": "r12_c27.u8.gz",
+        "row_start": 2880,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 10378
+      },
+      {
+        "row": 12,
+        "column": 28,
+        "file": "r12_c28.u8.gz",
+        "row_start": 2880,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2624
+      },
+      {
+        "row": 12,
+        "column": 29,
+        "file": "r12_c29.u8.gz",
+        "row_start": 2880,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 18643
+      },
+      {
+        "row": 12,
+        "column": 30,
+        "file": "r12_c30.u8.gz",
+        "row_start": 2880,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152440
+      },
+      {
+        "row": 12,
+        "column": 31,
+        "file": "r12_c31.u8.gz",
+        "row_start": 2880,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 174384
+      },
+      {
+        "row": 12,
+        "column": 32,
+        "file": "r12_c32.u8.gz",
+        "row_start": 2880,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166666
+      },
+      {
+        "row": 12,
+        "column": 33,
+        "file": "r12_c33.u8.gz",
+        "row_start": 2880,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 163812
+      },
+      {
+        "row": 12,
+        "column": 34,
+        "file": "r12_c34.u8.gz",
+        "row_start": 2880,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158362
+      },
+      {
+        "row": 12,
+        "column": 35,
+        "file": "r12_c35.u8.gz",
+        "row_start": 2880,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 153515
+      },
+      {
+        "row": 13,
+        "column": 0,
+        "file": "r13_c00.u8.gz",
+        "row_start": 3120,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 171509
+      },
+      {
+        "row": 13,
+        "column": 1,
+        "file": "r13_c01.u8.gz",
+        "row_start": 3120,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 166763
+      },
+      {
+        "row": 13,
+        "column": 2,
+        "file": "r13_c02.u8.gz",
+        "row_start": 3120,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 170170
+      },
+      {
+        "row": 13,
+        "column": 3,
+        "file": "r13_c03.u8.gz",
+        "row_start": 3120,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 168966
+      },
+      {
+        "row": 13,
+        "column": 4,
+        "file": "r13_c04.u8.gz",
+        "row_start": 3120,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 165752
+      },
+      {
+        "row": 13,
+        "column": 5,
+        "file": "r13_c05.u8.gz",
+        "row_start": 3120,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 130182
+      },
+      {
+        "row": 13,
+        "column": 6,
+        "file": "r13_c06.u8.gz",
+        "row_start": 3120,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 9055
+      },
+      {
+        "row": 13,
+        "column": 7,
+        "file": "r13_c07.u8.gz",
+        "row_start": 3120,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4169
+      },
+      {
+        "row": 13,
+        "column": 8,
+        "file": "r13_c08.u8.gz",
+        "row_start": 3120,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 15849
+      },
+      {
+        "row": 13,
+        "column": 9,
+        "file": "r13_c09.u8.gz",
+        "row_start": 3120,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 78886
+      },
+      {
+        "row": 13,
+        "column": 10,
+        "file": "r13_c10.u8.gz",
+        "row_start": 3120,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 38265
+      },
+      {
+        "row": 13,
+        "column": 11,
+        "file": "r13_c11.u8.gz",
+        "row_start": 3120,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 144706
+      },
+      {
+        "row": 13,
+        "column": 12,
+        "file": "r13_c12.u8.gz",
+        "row_start": 3120,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 180304
+      },
+      {
+        "row": 13,
+        "column": 13,
+        "file": "r13_c13.u8.gz",
+        "row_start": 3120,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 204526
+      },
+      {
+        "row": 13,
+        "column": 14,
+        "file": "r13_c14.u8.gz",
+        "row_start": 3120,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 162759
+      },
+      {
+        "row": 13,
+        "column": 15,
+        "file": "r13_c15.u8.gz",
+        "row_start": 3120,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 152701
+      },
+      {
+        "row": 13,
+        "column": 16,
+        "file": "r13_c16.u8.gz",
+        "row_start": 3120,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158634
+      },
+      {
+        "row": 13,
+        "column": 17,
+        "file": "r13_c17.u8.gz",
+        "row_start": 3120,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 118088
+      },
+      {
+        "row": 13,
+        "column": 18,
+        "file": "r13_c18.u8.gz",
+        "row_start": 3120,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 59772
+      },
+      {
+        "row": 13,
+        "column": 19,
+        "file": "r13_c19.u8.gz",
+        "row_start": 3120,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 69929
+      },
+      {
+        "row": 13,
+        "column": 20,
+        "file": "r13_c20.u8.gz",
+        "row_start": 3120,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 32494
+      },
+      {
+        "row": 13,
+        "column": 21,
+        "file": "r13_c21.u8.gz",
+        "row_start": 3120,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 68557
+      },
+      {
+        "row": 13,
+        "column": 22,
+        "file": "r13_c22.u8.gz",
+        "row_start": 3120,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 34919
+      },
+      {
+        "row": 13,
+        "column": 23,
+        "file": "r13_c23.u8.gz",
+        "row_start": 3120,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 49663
+      },
+      {
+        "row": 13,
+        "column": 24,
+        "file": "r13_c24.u8.gz",
+        "row_start": 3120,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7978
+      },
+      {
+        "row": 13,
+        "column": 25,
+        "file": "r13_c25.u8.gz",
+        "row_start": 3120,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12806
+      },
+      {
+        "row": 13,
+        "column": 26,
+        "file": "r13_c26.u8.gz",
+        "row_start": 3120,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7758
+      },
+      {
+        "row": 13,
+        "column": 27,
+        "file": "r13_c27.u8.gz",
+        "row_start": 3120,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3956
+      },
+      {
+        "row": 13,
+        "column": 28,
+        "file": "r13_c28.u8.gz",
+        "row_start": 3120,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 977
+      },
+      {
+        "row": 13,
+        "column": 29,
+        "file": "r13_c29.u8.gz",
+        "row_start": 3120,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3932
+      },
+      {
+        "row": 13,
+        "column": 30,
+        "file": "r13_c30.u8.gz",
+        "row_start": 3120,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 11927
+      },
+      {
+        "row": 13,
+        "column": 31,
+        "file": "r13_c31.u8.gz",
+        "row_start": 3120,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 88855
+      },
+      {
+        "row": 13,
+        "column": 32,
+        "file": "r13_c32.u8.gz",
+        "row_start": 3120,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 208224
+      },
+      {
+        "row": 13,
+        "column": 33,
+        "file": "r13_c33.u8.gz",
+        "row_start": 3120,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 196679
+      },
+      {
+        "row": 13,
+        "column": 34,
+        "file": "r13_c34.u8.gz",
+        "row_start": 3120,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 183661
+      },
+      {
+        "row": 13,
+        "column": 35,
+        "file": "r13_c35.u8.gz",
+        "row_start": 3120,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 179595
+      },
+      {
+        "row": 14,
+        "column": 0,
+        "file": "r14_c00.u8.gz",
+        "row_start": 3360,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 202622
+      },
+      {
+        "row": 14,
+        "column": 1,
+        "file": "r14_c01.u8.gz",
+        "row_start": 3360,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 187250
+      },
+      {
+        "row": 14,
+        "column": 2,
+        "file": "r14_c02.u8.gz",
+        "row_start": 3360,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 164637
+      },
+      {
+        "row": 14,
+        "column": 3,
+        "file": "r14_c03.u8.gz",
+        "row_start": 3360,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 179747
+      },
+      {
+        "row": 14,
+        "column": 4,
+        "file": "r14_c04.u8.gz",
+        "row_start": 3360,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169936
+      },
+      {
+        "row": 14,
+        "column": 5,
+        "file": "r14_c05.u8.gz",
+        "row_start": 3360,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 30515
+      },
+      {
+        "row": 14,
+        "column": 6,
+        "file": "r14_c06.u8.gz",
+        "row_start": 3360,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7413
+      },
+      {
+        "row": 14,
+        "column": 7,
+        "file": "r14_c07.u8.gz",
+        "row_start": 3360,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 25564
+      },
+      {
+        "row": 14,
+        "column": 8,
+        "file": "r14_c08.u8.gz",
+        "row_start": 3360,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 52244
+      },
+      {
+        "row": 14,
+        "column": 9,
+        "file": "r14_c09.u8.gz",
+        "row_start": 3360,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 90497
+      },
+      {
+        "row": 14,
+        "column": 10,
+        "file": "r14_c10.u8.gz",
+        "row_start": 3360,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 70443
+      },
+      {
+        "row": 14,
+        "column": 11,
+        "file": "r14_c11.u8.gz",
+        "row_start": 3360,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 75254
+      },
+      {
+        "row": 14,
+        "column": 12,
+        "file": "r14_c12.u8.gz",
+        "row_start": 3360,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 206927
+      },
+      {
+        "row": 14,
+        "column": 13,
+        "file": "r14_c13.u8.gz",
+        "row_start": 3360,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 196267
+      },
+      {
+        "row": 14,
+        "column": 14,
+        "file": "r14_c14.u8.gz",
+        "row_start": 3360,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 178099
+      },
+      {
+        "row": 14,
+        "column": 15,
+        "file": "r14_c15.u8.gz",
+        "row_start": 3360,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 169893
+      },
+      {
+        "row": 14,
+        "column": 16,
+        "file": "r14_c16.u8.gz",
+        "row_start": 3360,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 176579
+      },
+      {
+        "row": 14,
+        "column": 17,
+        "file": "r14_c17.u8.gz",
+        "row_start": 3360,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 133831
+      },
+      {
+        "row": 14,
+        "column": 18,
+        "file": "r14_c18.u8.gz",
+        "row_start": 3360,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 112069
+      },
+      {
+        "row": 14,
+        "column": 19,
+        "file": "r14_c19.u8.gz",
+        "row_start": 3360,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 68989
+      },
+      {
+        "row": 14,
+        "column": 20,
+        "file": "r14_c20.u8.gz",
+        "row_start": 3360,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 31863
+      },
+      {
+        "row": 14,
+        "column": 21,
+        "file": "r14_c21.u8.gz",
+        "row_start": 3360,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6526
+      },
+      {
+        "row": 14,
+        "column": 22,
+        "file": "r14_c22.u8.gz",
+        "row_start": 3360,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7913
+      },
+      {
+        "row": 14,
+        "column": 23,
+        "file": "r14_c23.u8.gz",
+        "row_start": 3360,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3203
+      },
+      {
+        "row": 14,
+        "column": 24,
+        "file": "r14_c24.u8.gz",
+        "row_start": 3360,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6469
+      },
+      {
+        "row": 14,
+        "column": 25,
+        "file": "r14_c25.u8.gz",
+        "row_start": 3360,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 6857
+      },
+      {
+        "row": 14,
+        "column": 26,
+        "file": "r14_c26.u8.gz",
+        "row_start": 3360,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2395
+      },
+      {
+        "row": 14,
+        "column": 27,
+        "file": "r14_c27.u8.gz",
+        "row_start": 3360,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4380
+      },
+      {
+        "row": 14,
+        "column": 28,
+        "file": "r14_c28.u8.gz",
+        "row_start": 3360,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 23193
+      },
+      {
+        "row": 14,
+        "column": 29,
+        "file": "r14_c29.u8.gz",
+        "row_start": 3360,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1553
+      },
+      {
+        "row": 14,
+        "column": 30,
+        "file": "r14_c30.u8.gz",
+        "row_start": 3360,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1964
+      },
+      {
+        "row": 14,
+        "column": 31,
+        "file": "r14_c31.u8.gz",
+        "row_start": 3360,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 31604
+      },
+      {
+        "row": 14,
+        "column": 32,
+        "file": "r14_c32.u8.gz",
+        "row_start": 3360,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 235184
+      },
+      {
+        "row": 14,
+        "column": 33,
+        "file": "r14_c33.u8.gz",
+        "row_start": 3360,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 175759
+      },
+      {
+        "row": 14,
+        "column": 34,
+        "file": "r14_c34.u8.gz",
+        "row_start": 3360,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 179959
+      },
+      {
+        "row": 14,
+        "column": 35,
+        "file": "r14_c35.u8.gz",
+        "row_start": 3360,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 193195
+      },
+      {
+        "row": 15,
+        "column": 0,
+        "file": "r15_c00.u8.gz",
+        "row_start": 3600,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 150508
+      },
+      {
+        "row": 15,
+        "column": 1,
+        "file": "r15_c01.u8.gz",
+        "row_start": 3600,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 106519
+      },
+      {
+        "row": 15,
+        "column": 2,
+        "file": "r15_c02.u8.gz",
+        "row_start": 3600,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 5880
+      },
+      {
+        "row": 15,
+        "column": 3,
+        "file": "r15_c03.u8.gz",
+        "row_start": 3600,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12966
+      },
+      {
+        "row": 15,
+        "column": 4,
+        "file": "r15_c04.u8.gz",
+        "row_start": 3600,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 13905
+      },
+      {
+        "row": 15,
+        "column": 5,
+        "file": "r15_c05.u8.gz",
+        "row_start": 3600,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 17741
+      },
+      {
+        "row": 15,
+        "column": 6,
+        "file": "r15_c06.u8.gz",
+        "row_start": 3600,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 32271
+      },
+      {
+        "row": 15,
+        "column": 7,
+        "file": "r15_c07.u8.gz",
+        "row_start": 3600,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 30001
+      },
+      {
+        "row": 15,
+        "column": 8,
+        "file": "r15_c08.u8.gz",
+        "row_start": 3600,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 52179
+      },
+      {
+        "row": 15,
+        "column": 9,
+        "file": "r15_c09.u8.gz",
+        "row_start": 3600,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 111694
+      },
+      {
+        "row": 15,
+        "column": 10,
+        "file": "r15_c10.u8.gz",
+        "row_start": 3600,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 100533
+      },
+      {
+        "row": 15,
+        "column": 11,
+        "file": "r15_c11.u8.gz",
+        "row_start": 3600,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 158315
+      },
+      {
+        "row": 15,
+        "column": 12,
+        "file": "r15_c12.u8.gz",
+        "row_start": 3600,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 183211
+      },
+      {
+        "row": 15,
+        "column": 13,
+        "file": "r15_c13.u8.gz",
+        "row_start": 3600,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 44633
+      },
+      {
+        "row": 15,
+        "column": 14,
+        "file": "r15_c14.u8.gz",
+        "row_start": 3600,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 116732
+      },
+      {
+        "row": 15,
+        "column": 15,
+        "file": "r15_c15.u8.gz",
+        "row_start": 3600,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143698
+      },
+      {
+        "row": 15,
+        "column": 16,
+        "file": "r15_c16.u8.gz",
+        "row_start": 3600,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 131175
+      },
+      {
+        "row": 15,
+        "column": 17,
+        "file": "r15_c17.u8.gz",
+        "row_start": 3600,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 143874
+      },
+      {
+        "row": 15,
+        "column": 18,
+        "file": "r15_c18.u8.gz",
+        "row_start": 3600,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 129536
+      },
+      {
+        "row": 15,
+        "column": 19,
+        "file": "r15_c19.u8.gz",
+        "row_start": 3600,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 66551
+      },
+      {
+        "row": 15,
+        "column": 20,
+        "file": "r15_c20.u8.gz",
+        "row_start": 3600,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 41387
+      },
+      {
+        "row": 15,
+        "column": 21,
+        "file": "r15_c21.u8.gz",
+        "row_start": 3600,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 63914
+      },
+      {
+        "row": 15,
+        "column": 22,
+        "file": "r15_c22.u8.gz",
+        "row_start": 3600,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 46117
+      },
+      {
+        "row": 15,
+        "column": 23,
+        "file": "r15_c23.u8.gz",
+        "row_start": 3600,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 24338
+      },
+      {
+        "row": 15,
+        "column": 24,
+        "file": "r15_c24.u8.gz",
+        "row_start": 3600,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 17639
+      },
+      {
+        "row": 15,
+        "column": 25,
+        "file": "r15_c25.u8.gz",
+        "row_start": 3600,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 9611
+      },
+      {
+        "row": 15,
+        "column": 26,
+        "file": "r15_c26.u8.gz",
+        "row_start": 3600,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 5329
+      },
+      {
+        "row": 15,
+        "column": 27,
+        "file": "r15_c27.u8.gz",
+        "row_start": 3600,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2115
+      },
+      {
+        "row": 15,
+        "column": 28,
+        "file": "r15_c28.u8.gz",
+        "row_start": 3600,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 901
+      },
+      {
+        "row": 15,
+        "column": 29,
+        "file": "r15_c29.u8.gz",
+        "row_start": 3600,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1951
+      },
+      {
+        "row": 15,
+        "column": 30,
+        "file": "r15_c30.u8.gz",
+        "row_start": 3600,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4077
+      },
+      {
+        "row": 15,
+        "column": 31,
+        "file": "r15_c31.u8.gz",
+        "row_start": 3600,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 885
+      },
+      {
+        "row": 15,
+        "column": 32,
+        "file": "r15_c32.u8.gz",
+        "row_start": 3600,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1407
+      },
+      {
+        "row": 15,
+        "column": 33,
+        "file": "r15_c33.u8.gz",
+        "row_start": 3600,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 24873
+      },
+      {
+        "row": 15,
+        "column": 34,
+        "file": "r15_c34.u8.gz",
+        "row_start": 3600,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 24519
+      },
+      {
+        "row": 15,
+        "column": 35,
+        "file": "r15_c35.u8.gz",
+        "row_start": 3600,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 56148
+      },
+      {
+        "row": 16,
+        "column": 0,
+        "file": "r16_c00.u8.gz",
+        "row_start": 3840,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 93572
+      },
+      {
+        "row": 16,
+        "column": 1,
+        "file": "r16_c01.u8.gz",
+        "row_start": 3840,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 99393
+      },
+      {
+        "row": 16,
+        "column": 2,
+        "file": "r16_c02.u8.gz",
+        "row_start": 3840,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 102604
+      },
+      {
+        "row": 16,
+        "column": 3,
+        "file": "r16_c03.u8.gz",
+        "row_start": 3840,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 121935
+      },
+      {
+        "row": 16,
+        "column": 4,
+        "file": "r16_c04.u8.gz",
+        "row_start": 3840,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 137991
+      },
+      {
+        "row": 16,
+        "column": 5,
+        "file": "r16_c05.u8.gz",
+        "row_start": 3840,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 113427
+      },
+      {
+        "row": 16,
+        "column": 6,
+        "file": "r16_c06.u8.gz",
+        "row_start": 3840,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 58982
+      },
+      {
+        "row": 16,
+        "column": 7,
+        "file": "r16_c07.u8.gz",
+        "row_start": 3840,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 65131
+      },
+      {
+        "row": 16,
+        "column": 8,
+        "file": "r16_c08.u8.gz",
+        "row_start": 3840,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 67430
+      },
+      {
+        "row": 16,
+        "column": 9,
+        "file": "r16_c09.u8.gz",
+        "row_start": 3840,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 48318
+      },
+      {
+        "row": 16,
+        "column": 10,
+        "file": "r16_c10.u8.gz",
+        "row_start": 3840,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 83982
+      },
+      {
+        "row": 16,
+        "column": 11,
+        "file": "r16_c11.u8.gz",
+        "row_start": 3840,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 89167
+      },
+      {
+        "row": 16,
+        "column": 12,
+        "file": "r16_c12.u8.gz",
+        "row_start": 3840,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 53292
+      },
+      {
+        "row": 16,
+        "column": 15,
+        "file": "r16_c15.u8.gz",
+        "row_start": 3840,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 38563
+      },
+      {
+        "row": 16,
+        "column": 16,
+        "file": "r16_c16.u8.gz",
+        "row_start": 3840,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 147362
+      },
+      {
+        "row": 16,
+        "column": 17,
+        "file": "r16_c17.u8.gz",
+        "row_start": 3840,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 135499
+      },
+      {
+        "row": 16,
+        "column": 18,
+        "file": "r16_c18.u8.gz",
+        "row_start": 3840,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 110111
+      },
+      {
+        "row": 16,
+        "column": 19,
+        "file": "r16_c19.u8.gz",
+        "row_start": 3840,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 107262
+      },
+      {
+        "row": 16,
+        "column": 20,
+        "file": "r16_c20.u8.gz",
+        "row_start": 3840,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 117830
+      },
+      {
+        "row": 16,
+        "column": 21,
+        "file": "r16_c21.u8.gz",
+        "row_start": 3840,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 114746
+      },
+      {
+        "row": 16,
+        "column": 22,
+        "file": "r16_c22.u8.gz",
+        "row_start": 3840,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 116580
+      },
+      {
+        "row": 16,
+        "column": 23,
+        "file": "r16_c23.u8.gz",
+        "row_start": 3840,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 120820
+      },
+      {
+        "row": 16,
+        "column": 24,
+        "file": "r16_c24.u8.gz",
+        "row_start": 3840,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 122865
+      },
+      {
+        "row": 16,
+        "column": 25,
+        "file": "r16_c25.u8.gz",
+        "row_start": 3840,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 101369
+      },
+      {
+        "row": 16,
+        "column": 26,
+        "file": "r16_c26.u8.gz",
+        "row_start": 3840,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 77800
+      },
+      {
+        "row": 16,
+        "column": 27,
+        "file": "r16_c27.u8.gz",
+        "row_start": 3840,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 43730
+      },
+      {
+        "row": 16,
+        "column": 28,
+        "file": "r16_c28.u8.gz",
+        "row_start": 3840,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 41674
+      },
+      {
+        "row": 16,
+        "column": 29,
+        "file": "r16_c29.u8.gz",
+        "row_start": 3840,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 70041
+      },
+      {
+        "row": 16,
+        "column": 30,
+        "file": "r16_c30.u8.gz",
+        "row_start": 3840,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 74781
+      },
+      {
+        "row": 16,
+        "column": 31,
+        "file": "r16_c31.u8.gz",
+        "row_start": 3840,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 90330
+      },
+      {
+        "row": 16,
+        "column": 32,
+        "file": "r16_c32.u8.gz",
+        "row_start": 3840,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 67355
+      },
+      {
+        "row": 16,
+        "column": 33,
+        "file": "r16_c33.u8.gz",
+        "row_start": 3840,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 104551
+      },
+      {
+        "row": 16,
+        "column": 34,
+        "file": "r16_c34.u8.gz",
+        "row_start": 3840,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 109933
+      },
+      {
+        "row": 16,
+        "column": 35,
+        "file": "r16_c35.u8.gz",
+        "row_start": 3840,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 108603
+      },
+      {
+        "row": 17,
+        "column": 0,
+        "file": "r17_c00.u8.gz",
+        "row_start": 4080,
+        "column_start": 0,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 20400
+      },
+      {
+        "row": 17,
+        "column": 1,
+        "file": "r17_c01.u8.gz",
+        "row_start": 4080,
+        "column_start": 240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 20299
+      },
+      {
+        "row": 17,
+        "column": 2,
+        "file": "r17_c02.u8.gz",
+        "row_start": 4080,
+        "column_start": 480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 20054
+      },
+      {
+        "row": 17,
+        "column": 3,
+        "file": "r17_c03.u8.gz",
+        "row_start": 4080,
+        "column_start": 720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 16855
+      },
+      {
+        "row": 17,
+        "column": 4,
+        "file": "r17_c04.u8.gz",
+        "row_start": 4080,
+        "column_start": 960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 7169
+      },
+      {
+        "row": 17,
+        "column": 5,
+        "file": "r17_c05.u8.gz",
+        "row_start": 4080,
+        "column_start": 1200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 2425
+      },
+      {
+        "row": 17,
+        "column": 6,
+        "file": "r17_c06.u8.gz",
+        "row_start": 4080,
+        "column_start": 1440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 3547
+      },
+      {
+        "row": 17,
+        "column": 7,
+        "file": "r17_c07.u8.gz",
+        "row_start": 4080,
+        "column_start": 1680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 5225
+      },
+      {
+        "row": 17,
+        "column": 8,
+        "file": "r17_c08.u8.gz",
+        "row_start": 4080,
+        "column_start": 1920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 16975
+      },
+      {
+        "row": 17,
+        "column": 9,
+        "file": "r17_c09.u8.gz",
+        "row_start": 4080,
+        "column_start": 2160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12861
+      },
+      {
+        "row": 17,
+        "column": 10,
+        "file": "r17_c10.u8.gz",
+        "row_start": 4080,
+        "column_start": 2400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4356
+      },
+      {
+        "row": 17,
+        "column": 11,
+        "file": "r17_c11.u8.gz",
+        "row_start": 4080,
+        "column_start": 2640,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 17796
+      },
+      {
+        "row": 17,
+        "column": 12,
+        "file": "r17_c12.u8.gz",
+        "row_start": 4080,
+        "column_start": 2880,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 12370
+      },
+      {
+        "row": 17,
+        "column": 13,
+        "file": "r17_c13.u8.gz",
+        "row_start": 4080,
+        "column_start": 3120,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 4904
+      },
+      {
+        "row": 17,
+        "column": 14,
+        "file": "r17_c14.u8.gz",
+        "row_start": 4080,
+        "column_start": 3360,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 1647
+      },
+      {
+        "row": 17,
+        "column": 15,
+        "file": "r17_c15.u8.gz",
+        "row_start": 4080,
+        "column_start": 3600,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 9493
+      },
+      {
+        "row": 17,
+        "column": 16,
+        "file": "r17_c16.u8.gz",
+        "row_start": 4080,
+        "column_start": 3840,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 29611
+      },
+      {
+        "row": 17,
+        "column": 17,
+        "file": "r17_c17.u8.gz",
+        "row_start": 4080,
+        "column_start": 4080,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 37298
+      },
+      {
+        "row": 17,
+        "column": 18,
+        "file": "r17_c18.u8.gz",
+        "row_start": 4080,
+        "column_start": 4320,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 32139
+      },
+      {
+        "row": 17,
+        "column": 19,
+        "file": "r17_c19.u8.gz",
+        "row_start": 4080,
+        "column_start": 4560,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 34436
+      },
+      {
+        "row": 17,
+        "column": 20,
+        "file": "r17_c20.u8.gz",
+        "row_start": 4080,
+        "column_start": 4800,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 32386
+      },
+      {
+        "row": 17,
+        "column": 21,
+        "file": "r17_c21.u8.gz",
+        "row_start": 4080,
+        "column_start": 5040,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 31382
+      },
+      {
+        "row": 17,
+        "column": 22,
+        "file": "r17_c22.u8.gz",
+        "row_start": 4080,
+        "column_start": 5280,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 33260
+      },
+      {
+        "row": 17,
+        "column": 23,
+        "file": "r17_c23.u8.gz",
+        "row_start": 4080,
+        "column_start": 5520,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 32438
+      },
+      {
+        "row": 17,
+        "column": 24,
+        "file": "r17_c24.u8.gz",
+        "row_start": 4080,
+        "column_start": 5760,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 30249
+      },
+      {
+        "row": 17,
+        "column": 25,
+        "file": "r17_c25.u8.gz",
+        "row_start": 4080,
+        "column_start": 6000,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 29455
+      },
+      {
+        "row": 17,
+        "column": 26,
+        "file": "r17_c26.u8.gz",
+        "row_start": 4080,
+        "column_start": 6240,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 29805
+      },
+      {
+        "row": 17,
+        "column": 27,
+        "file": "r17_c27.u8.gz",
+        "row_start": 4080,
+        "column_start": 6480,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 26924
+      },
+      {
+        "row": 17,
+        "column": 28,
+        "file": "r17_c28.u8.gz",
+        "row_start": 4080,
+        "column_start": 6720,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 25273
+      },
+      {
+        "row": 17,
+        "column": 29,
+        "file": "r17_c29.u8.gz",
+        "row_start": 4080,
+        "column_start": 6960,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 21761
+      },
+      {
+        "row": 17,
+        "column": 30,
+        "file": "r17_c30.u8.gz",
+        "row_start": 4080,
+        "column_start": 7200,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 19392
+      },
+      {
+        "row": 17,
+        "column": 31,
+        "file": "r17_c31.u8.gz",
+        "row_start": 4080,
+        "column_start": 7440,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 19088
+      },
+      {
+        "row": 17,
+        "column": 32,
+        "file": "r17_c32.u8.gz",
+        "row_start": 4080,
+        "column_start": 7680,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 21127
+      },
+      {
+        "row": 17,
+        "column": 33,
+        "file": "r17_c33.u8.gz",
+        "row_start": 4080,
+        "column_start": 7920,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 25389
+      },
+      {
+        "row": 17,
+        "column": 34,
+        "file": "r17_c34.u8.gz",
+        "row_start": 4080,
+        "column_start": 8160,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 24004
+      },
+      {
+        "row": 17,
+        "column": 35,
+        "file": "r17_c35.u8.gz",
+        "row_start": 4080,
+        "column_start": 8400,
+        "rows": 240,
+        "columns": 240,
+        "bytes": 22110
+      }
+    ]
+  },
+  "statistics_by_month": {
+    "1": {
+      "observations": 10,
+      "valid_cells": 20561055,
+      "total_cells": 37324800,
+      "valid_cell_percent": 55.086845743312765,
+      "no_data_percent": 44.91315425668724,
+      "min_m": 1.3238341808319092,
+      "median_m": 25.23702049255371,
+      "max_m": 74.58000183105469,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-01.nc",
+        "2017-01.nc",
+        "2018-01.nc",
+        "2019-01.nc",
+        "2020-01.nc",
+        "2021-01.nc",
+        "2022-01.nc",
+        "2023-01.nc",
+        "2024-01.nc",
+        "2025-01.nc"
+      ]
+    },
+    "2": {
+      "observations": 10,
+      "valid_cells": 21002870,
+      "total_cells": 37324800,
+      "valid_cell_percent": 56.270549339849104,
+      "no_data_percent": 43.729450660150896,
+      "min_m": 1.3238314390182495,
+      "median_m": 26.046688079833984,
+      "max_m": 74.58000183105469,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-02.nc",
+        "2017-02.nc",
+        "2018-02.nc",
+        "2019-02.nc",
+        "2020-02.nc",
+        "2021-02.nc",
+        "2022-02.nc",
+        "2023-02.nc",
+        "2024-02.nc",
+        "2025-02.nc"
+      ]
+    },
+    "3": {
+      "observations": 10,
+      "valid_cells": 21501612,
+      "total_cells": 37324800,
+      "valid_cell_percent": 57.60677083333333,
+      "no_data_percent": 42.39322916666667,
+      "min_m": 1.3239275217056274,
+      "median_m": 26.44396209716797,
+      "max_m": 74.32524871826172,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-03.nc",
+        "2017-03.nc",
+        "2018-03.nc",
+        "2019-03.nc",
+        "2020-03.nc",
+        "2021-03.nc",
+        "2022-03.nc",
+        "2023-03.nc",
+        "2024-03.nc",
+        "2025-03.nc"
+      ]
+    },
+    "4": {
+      "observations": 10,
+      "valid_cells": 21238604,
+      "total_cells": 37324800,
+      "valid_cell_percent": 56.90212405692729,
+      "no_data_percent": 43.0978759430727,
+      "min_m": 1.3238043785095215,
+      "median_m": 26.79962921142578,
+      "max_m": 74.54559326171875,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-04.nc",
+        "2017-04.nc",
+        "2018-04.nc",
+        "2019-04.nc",
+        "2020-04.nc",
+        "2021-04.nc",
+        "2022-04.nc",
+        "2023-04.nc",
+        "2024-04.nc",
+        "2025-04.nc"
+      ]
+    },
+    "5": {
+      "observations": 10,
+      "valid_cells": 19784114,
+      "total_cells": 37324800,
+      "valid_cell_percent": 53.00527799211249,
+      "no_data_percent": 46.99472200788752,
+      "min_m": 1.3239253759384155,
+      "median_m": 27.110286712646484,
+      "max_m": 74.1053695678711,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-05.nc",
+        "2017-05.nc",
+        "2018-05.nc",
+        "2019-05.nc",
+        "2020-05.nc",
+        "2021-05.nc",
+        "2022-05.nc",
+        "2023-05.nc",
+        "2024-05.nc",
+        "2025-05.nc"
+      ]
+    },
+    "6": {
+      "observations": 10,
+      "valid_cells": 18959951,
+      "total_cells": 37324800,
+      "valid_cell_percent": 50.7971938228738,
+      "no_data_percent": 49.2028061771262,
+      "min_m": 1.3239940404891968,
+      "median_m": 26.71731948852539,
+      "max_m": 74.58000183105469,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-06.nc",
+        "2017-06.nc",
+        "2018-06.nc",
+        "2019-06.nc",
+        "2020-06.nc",
+        "2021-06.nc",
+        "2022-06.nc",
+        "2023-06.nc",
+        "2024-06.nc",
+        "2025-06.nc"
+      ]
+    },
+    "7": {
+      "observations": 10,
+      "valid_cells": 20091923,
+      "total_cells": 37324800,
+      "valid_cell_percent": 53.829954882544584,
+      "no_data_percent": 46.170045117455416,
+      "min_m": 1.3238083124160767,
+      "median_m": 26.22735595703125,
+      "max_m": 73.17792510986328,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-07.nc",
+        "2017-07.nc",
+        "2018-07.nc",
+        "2019-07.nc",
+        "2020-07.nc",
+        "2021-07.nc",
+        "2022-07.nc",
+        "2023-07.nc",
+        "2024-07.nc",
+        "2025-07.nc"
+      ]
+    },
+    "8": {
+      "observations": 10,
+      "valid_cells": 21334397,
+      "total_cells": 37324800,
+      "valid_cell_percent": 57.158771111968456,
+      "no_data_percent": 42.84122888803155,
+      "min_m": 1.3238039016723633,
+      "median_m": 25.883399963378906,
+      "max_m": 74.58000183105469,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-08.nc",
+        "2017-08.nc",
+        "2018-08.nc",
+        "2019-08.nc",
+        "2020-08.nc",
+        "2021-08.nc",
+        "2022-08.nc",
+        "2023-08.nc",
+        "2024-08.nc",
+        "2025-08.nc"
+      ]
+    },
+    "9": {
+      "observations": 10,
+      "valid_cells": 21845835,
+      "total_cells": 37324800,
+      "valid_cell_percent": 58.529007523148145,
+      "no_data_percent": 41.470992476851855,
+      "min_m": 1.3238146305084229,
+      "median_m": 25.830556869506836,
+      "max_m": 74.58000183105469,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-09.nc",
+        "2017-09.nc",
+        "2018-09.nc",
+        "2019-09.nc",
+        "2020-09.nc",
+        "2021-09.nc",
+        "2022-09.nc",
+        "2023-09.nc",
+        "2024-09.nc",
+        "2025-09.nc"
+      ]
+    },
+    "10": {
+      "observations": 10,
+      "valid_cells": 21049446,
+      "total_cells": 37324800,
+      "valid_cell_percent": 56.395335005144034,
+      "no_data_percent": 43.604664994855966,
+      "min_m": 1.3238028287887573,
+      "median_m": 25.953744888305664,
+      "max_m": 72.4598617553711,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-10.nc",
+        "2017-10.nc",
+        "2018-10.nc",
+        "2019-10.nc",
+        "2020-10.nc",
+        "2021-10.nc",
+        "2022-10.nc",
+        "2023-10.nc",
+        "2024-10.nc",
+        "2025-10.nc"
+      ]
+    },
+    "11": {
+      "observations": 10,
+      "valid_cells": 20665102,
+      "total_cells": 37324800,
+      "valid_cell_percent": 55.36560678155007,
+      "no_data_percent": 44.63439321844993,
+      "min_m": 1.3238017559051514,
+      "median_m": 26.031230926513672,
+      "max_m": 71.19000244140625,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-11.nc",
+        "2017-11.nc",
+        "2018-11.nc",
+        "2019-11.nc",
+        "2020-11.nc",
+        "2021-11.nc",
+        "2022-11.nc",
+        "2023-11.nc",
+        "2024-11.nc",
+        "2025-11.nc"
+      ]
+    },
+    "12": {
+      "observations": 10,
+      "valid_cells": 20192103,
+      "total_cells": 37324800,
+      "valid_cell_percent": 54.0983555169753,
+      "no_data_percent": 45.90164448302469,
+      "min_m": 1.3238022327423096,
+      "median_m": 25.15853500366211,
+      "max_m": 69.03288269042969,
+      "clipped_cells": 0,
+      "loaded_month_files": [
+        "2016-12.nc",
+        "2017-12.nc",
+        "2018-12.nc",
+        "2019-12.nc",
+        "2020-12.nc",
+        "2021-12.nc",
+        "2022-12.nc",
+        "2023-12.nc",
+        "2024-12.nc",
+        "2025-12.nc"
+      ]
+    }
+  },
+  "render_tiles_by_month": {
+    "1": {
+      "tile_count": 1024,
+      "bytes": 9127505
+    },
+    "2": {
+      "tile_count": 1024,
+      "bytes": 9180163
+    },
+    "3": {
+      "tile_count": 1024,
+      "bytes": 9354567
+    },
+    "4": {
+      "tile_count": 1024,
+      "bytes": 9446506
+    },
+    "5": {
+      "tile_count": 1024,
+      "bytes": 9314790
+    },
+    "6": {
+      "tile_count": 1024,
+      "bytes": 9034176
+    },
+    "7": {
+      "tile_count": 1024,
+      "bytes": 9556441
+    },
+    "8": {
+      "tile_count": 1024,
+      "bytes": 9722136
+    },
+    "9": {
+      "tile_count": 1024,
+      "bytes": 9957322
+    },
+    "10": {
+      "tile_count": 1024,
+      "bytes": 9581270
+    },
+    "11": {
+      "tile_count": 1024,
+      "bytes": 9620383
+    },
+    "12": {
+      "tile_count": 1024,
+      "bytes": 9216899
+    }
+  },
+  "output_bytes": 180009201,
+  "generated_at_utc": "2026-09-29T06:40:28+00:00",
+  "limitations": [
+    "Satellite-derived regional water transparency; actual dive visibility may differ.",
+    "Approximately 4 km source resolution; no interpolation or finer-scale inference."
+  ]
+}

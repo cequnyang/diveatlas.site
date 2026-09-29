@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
+const { gzipSync } = require('node:zlib');
 const { addFixture, clickFixture, openMap } = require('./support');
 
 const temperatureMetadata = path.resolve(__dirname, '../../data/temperature/metadata.json');
@@ -55,6 +56,88 @@ test('temperature has zero startup requests and loads only after activation', as
   await expect.poll(() => page.locator('.temperature-tiles').count()).toBe(0);
   await page.locator('#environmentViewSelect').selectOption('terrain');
   await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
+});
+
+test('Water Clarity loads on demand, synchronizes month selection, and reports missing assets', async ({ page }) => {
+  const clarityRequests = [];
+  page.on('request', request => {
+    if (request.url().includes('water-clarity-view.js') || request.url().includes('/data/water_clarity/')) {
+      clarityRequests.push(request.url());
+    }
+  });
+  await page.route('**/data/water_clarity/metadata.json', route => route.fulfill({
+    status: 404,
+    contentType: 'application/json',
+    body: JSON.stringify({ error: 'development fixture: production data not generated' })
+  }));
+
+  await openMap(page);
+  expect(clarityRequests).toEqual([]);
+  await expect(page.locator('#waterClarityControls')).toBeHidden();
+
+  const before = await page.evaluate(() => {
+    const center = window.__DIVEATLAS_TEST__.map.getCenter();
+    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom() };
+  });
+  await page.locator('#environmentViewSelect').selectOption('water-clarity');
+  await expect(page.locator('#waterClarityControls')).toBeVisible();
+  await expect(page.locator('#waterClarityStatus')).toHaveAttribute('data-state', 'unavailable');
+  expect(clarityRequests.filter(url => url.includes('water-clarity-view.js'))).toHaveLength(1);
+  expect(clarityRequests.filter(url => url.includes('/data/water_clarity/metadata.json'))).toHaveLength(1);
+
+  await page.locator('#waterClarityMonth').selectOption('10');
+  await expect(page.locator('#temperatureMonth')).toHaveValue('10');
+  const after = await page.evaluate(() => {
+    const center = window.__DIVEATLAS_TEST__.map.getCenter();
+    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom() };
+  });
+  expect(after).toEqual(before);
+
+  await page.locator('#environmentViewSelect').selectOption('default');
+  await expect(page.locator('#waterClarityControls')).toBeHidden();
+  await expect(page.locator('.water-clarity-tiles')).toHaveCount(0);
+});
+
+test('Water Clarity click popup uses a local numeric chunk and calls the value typical transparency', async ({ page }) => {
+  const values = Buffer.alloc(12, 255);
+  values[8] = 30;
+  const metadata = {
+    format: 'diveatlas-water-clarity', format_version: 1, designation: 'development-validation',
+    generated_at_utc: 'fixture', climatology_period: '2016-2025', source_resolution_km: 4,
+    available_months: Array.from({ length: 12 }, (_, index) => index + 1),
+    grid: { latitude_count: 1, longitude_count: 1, latitude_first_center: 0.5,
+      longitude_first_center: 0.5, latitude_step_degrees: 1, longitude_step_degrees: 1 },
+    value_encoding: { scale_m: 0.5, missing_sentinel: 255 },
+    query: { chunk_degrees: 10, chunks: [{ row: 0, column: 0, file: 'r00_c00.u8.gz',
+      row_start: 0, column_start: 0, rows: 1, columns: 1 }] },
+    rendering: { tile_template: 'tiles/{month}/{z}/{x}/{y}.png', min_native_zoom: 5,
+      max_native_zoom: 5, opacity: 0.58 }
+  };
+  const tile = fs.readFileSync(path.resolve(__dirname, '../../data/terrain_tiles/6/0/0.png'));
+  await page.route('**/data/water_clarity/metadata.json', route => route.fulfill({ json: metadata }));
+  await page.route('**/data/water_clarity/query/chunks/r00_c00.u8.gz**', route => route.fulfill({
+    status: 200, contentType: 'application/gzip', body: gzipSync(values)
+  }));
+  await page.route('**/data/water_clarity/tiles/**', route => route.fulfill({
+    status: 200, contentType: 'image/png', body: tile
+  }));
+
+  await openMap(page);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(0.5, 0.5, 5));
+  await page.locator('#environmentViewSelect').selectOption('water-clarity');
+  await expect(page.locator('#waterClarityStatus')).toBeHidden();
+  const clickPoint = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const point = map.latLngToContainerPoint([0.5, 0.5]);
+    const bounds = document.querySelector('#map').getBoundingClientRect();
+    return { x: bounds.left + point.x, y: bounds.top + point.y };
+  });
+  await page.mouse.click(clickPoint.x, clickPoint.y);
+  const popup = page.locator('.water-clarity-popup');
+  await expect(popup).toBeVisible();
+  await expect(popup).toContainText('Typical transparency');
+  await expect(popup).toContainText('15 m');
+  await expect(popup).toContainText('Copernicus Marine');
 });
 
 test('Layers palette follows the active site theme without changing its layout', async ({ page }) => {
@@ -226,12 +309,13 @@ test('header filter control retains the Show all layers action without a duplica
   const headerCenterY = headerGeometry.header.centerY;
   await expect(page.locator('#bioLegendTitle .bio-legend-title-chevron')).toHaveCount(1);
   await expect(page.locator('#bioLegendCollapseToggle')).toHaveCount(0);
-  const selectorAlignment = await page.evaluate(() => {
+  const selectorLayout = await page.evaluate(() => {
     const rect = box => {
       const { x, y, width, height } = box;
       return { x, y, width, height, centerX: x + width / 2, centerY: y + height / 2 };
     };
-    const group = rect(document.querySelector('.environment-segment-group').getBoundingClientRect());
+    const track = document.querySelector('.environment-segment-group');
+    const group = rect(track.getBoundingClientRect());
     const tabs = [...document.querySelectorAll('.environment-segment')].map(tab => {
       const label = tab.querySelector('span');
       const range = document.createRange();
@@ -242,57 +326,26 @@ test('header filter control retains the Show all layers action without a duplica
         text: rect(range.getBoundingClientRect())
       };
     });
-    const track = document.querySelector('.environment-segment-group');
-    const trackStyle = getComputedStyle(track);
-    const indicatorStyle = getComputedStyle(track, '::before');
-    const transform = new DOMMatrixReadOnly(indicatorStyle.transform);
-    const indicator = {
-      x: track.getBoundingClientRect().x + parseFloat(trackStyle.borderLeftWidth) + parseFloat(indicatorStyle.left) + transform.m41,
-      y: track.getBoundingClientRect().y + parseFloat(trackStyle.borderTopWidth) + parseFloat(indicatorStyle.top),
-      width: parseFloat(indicatorStyle.width),
-      height: parseFloat(indicatorStyle.height),
-      transformX: transform.m41
+    return {
+      group, tabs, scrollWidth: track.scrollWidth, clientWidth: track.clientWidth,
+      overflowX: getComputedStyle(track).overflowX, userSelect: getComputedStyle(track).userSelect
     };
-    return { group, tabs, indicator };
   });
-  expect(selectorAlignment.tabs).toHaveLength(3);
-  for (const tab of selectorAlignment.tabs) {
-    expect(Math.abs(tab.text.centerX - tab.tab.centerX)).toBeLessThanOrEqual(1);
-    expect(Math.abs(tab.text.centerY - selectorAlignment.group.centerY)).toBeLessThanOrEqual(1.5);
+  expect(selectorLayout.tabs).toHaveLength(4);
+  expect(selectorLayout.overflowX).toBe('auto');
+  expect(selectorLayout.scrollWidth).toBeGreaterThan(selectorLayout.clientWidth);
+  expect(selectorLayout.userSelect).toBe('none');
+  for (const tab of selectorLayout.tabs) {
+    expect(Math.abs(tab.text.centerX - tab.tab.centerX), `${tab.value} label should be horizontally centered`).toBeLessThanOrEqual(1);
+    expect(Math.abs(tab.text.centerY - selectorLayout.group.centerY)).toBeLessThanOrEqual(1.5);
   }
-  expect(Math.abs(
-    (selectorAlignment.tabs[0].text.centerX + selectorAlignment.tabs[2].text.centerX) / 2
-      - selectorAlignment.group.centerX
-  )).toBeLessThanOrEqual(1);
-  await page.addStyleTag({ content: '.environment-segment-group::before { transition: none !important; }' });
-  for (const value of ['default', 'terrain', 'temperature']) {
-    const indicatorAlignment = await page.evaluate(selectedValue => {
+  for (const value of ['default', 'terrain', 'temperature', 'water-clarity']) {
+    const selectedStyle = await page.evaluate(selectedValue => {
       const group = document.querySelector('.environment-segment-group');
       group.querySelector(`input[value="${selectedValue}"]`).checked = true;
-      const groupRect = group.getBoundingClientRect();
-      const groupStyle = getComputedStyle(group);
-      const indicatorStyle = getComputedStyle(group, '::before');
-      const transform = new DOMMatrixReadOnly(indicatorStyle.transform);
-      const tab = group.querySelector(`input[value="${selectedValue}"]`).closest('.environment-segment').getBoundingClientRect();
-      const labelRange = document.createRange();
-      labelRange.selectNodeContents(group.querySelector(`input[value="${selectedValue}"] + span`));
-      const label = labelRange.getBoundingClientRect();
-      const indicator = {
-        x: groupRect.x + parseFloat(groupStyle.borderLeftWidth) + parseFloat(indicatorStyle.left) + transform.m41,
-        y: groupRect.y + parseFloat(groupStyle.borderTopWidth) + parseFloat(indicatorStyle.top),
-        width: parseFloat(indicatorStyle.width),
-        height: parseFloat(indicatorStyle.height)
-      };
-      return {
-        tab: { x: tab.x, y: tab.y, width: tab.width, height: tab.height },
-        label: { centerX: label.x + label.width / 2, centerY: label.y + label.height / 2 },
-        indicator: { ...indicator, centerX: indicator.x + indicator.width / 2, centerY: indicator.y + indicator.height / 2 },
-        groupCenterY: groupRect.y + groupRect.height / 2
-      };
+      return getComputedStyle(group.querySelector(`input[value="${selectedValue}"] + span`)).fontWeight;
     }, value);
-    expect(Math.abs(indicatorAlignment.indicator.centerX - (indicatorAlignment.tab.x + indicatorAlignment.tab.width / 2)), `${value} active pill should center on its tab`).toBeLessThanOrEqual(1);
-    expect(Math.abs(indicatorAlignment.indicator.centerY - indicatorAlignment.groupCenterY), `${value} active pill should center on the track`).toBeLessThanOrEqual(0.5);
-    expect(Math.abs(indicatorAlignment.indicator.centerY - indicatorAlignment.label.centerY), `${value} label should be optically centered in its pill`).toBeLessThanOrEqual(1.5);
+    expect(selectedStyle, `${value} should receive the active-pill treatment`).toBe('600');
   }
   await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="default"]').checked = true; });
   for (const item of ['titleIcon', 'titleText', 'collapseIcon', 'filterIcon', 'bulkText', 'overflow']) {
@@ -473,13 +526,13 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     expect(Math.abs(Math.min(...tabHeights) - (38 * visualScale))).toBeLessThanOrEqual(1);
     const segmentTargets = await page.locator('.environment-segment').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().height));
     expect(segmentTargets.every(height => height >= 44 && height <= 48)).toBe(true);
-    expect(Math.abs((await page.locator('.environment-segment-group').boundingBox().then(box => box.height)) - (48 * visualScale))).toBeLessThanOrEqual(1);
+    expect(Math.abs((await page.locator('.environment-segment-group').boundingBox().then(box => box.height)) - Math.max(46, 48 * visualScale))).toBeLessThanOrEqual(1);
     expect(await page.locator('.layer-switch-label--layers').first().boundingBox().then(box => box.width)).toBeGreaterThanOrEqual(44);
     expect(await page.locator('#temperatureInfoAbout').boundingBox().then(box => box.width)).toBe(44);
     expect(Math.abs((await page.locator('#temperatureDepth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
     expect(Math.abs((await page.locator('#temperatureMonth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
-    expect(await page.locator('.temperature-select-hit-area').first().boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
-    expect(await page.locator('.temperature-select-hit-area').last().boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
+    expect(await page.locator('#temperatureControls .temperature-select-hit-area').first().boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
+    expect(await page.locator('#temperatureControls .temperature-select-hit-area').last().boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
     const rows = await page.locator('.bio-legend-row').evaluateAll(nodes => {
       const boxes = nodes.map(node => node.getBoundingClientRect());
       return {
@@ -564,12 +617,12 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       console.log('PROPORTIONAL_VIEWPORT_PANEL_METRICS', JSON.stringify(referenceMetrics));
       expect(bounds.height / 756).toBeGreaterThanOrEqual(0.78);
       expect(bounds.height / 756).toBeLessThanOrEqual(0.86);
-      const selectorStyle = await page.locator('.environment-segment-group').evaluate(node => ({
+      const selectorStyle = await page.locator('.environment-segment-shell').evaluate(node => ({
         radius: getComputedStyle(node).borderRadius,
-        activeRadius: getComputedStyle(node, '::before').borderRadius
+        activeRadius: getComputedStyle(node.querySelector('.environment-segment input:checked + span')).borderRadius
       }));
       expect(Math.abs(parseFloat(selectorStyle.radius) - 9)).toBeLessThanOrEqual(0.5);
-      expect(Math.abs(parseFloat(selectorStyle.activeRadius) - 9)).toBeLessThanOrEqual(0.5);
+      expect(Math.abs(parseFloat(selectorStyle.activeRadius) - 6)).toBeLessThanOrEqual(0.5);
       const panelBox = await page.locator('#bioLegend').boundingBox();
       await page.screenshot({ path: 'test-results/layers-panel-reference-viewport.png', clip: { x: panelBox.x, y: panelBox.y, width: panelBox.width, height: panelBox.height } });
       await page.screenshot({ path: 'test-results/layers-panel-proportional-after-crop.png', clip: { x: panelBox.x, y: panelBox.y, width: panelBox.width, height: panelBox.height } });
