@@ -24,6 +24,12 @@ async function installMetadataFixture(page) {
   await page.route('**/data/temperature/metadata.json', route => route.fulfill({ json: metadataFixture }));
 }
 
+async function activateTemperatureView(page) {
+  await page.locator('.environment-segment').filter({
+    has: page.locator('input[name="environmentView"][value="temperature"]')
+  }).click();
+}
+
 test('temperature has zero startup requests and loads only after activation', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
@@ -160,7 +166,7 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await expect(page.locator('#temperatureLegendSlice')).toHaveText('30 m · September');
   await page.locator('#temperatureMonth').selectOption('10');
   await expect(page.locator('#temperatureLegendSlice')).toHaveText('30 m · October');
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Temperature · 30m · Oct');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Water TEMP · 30m · Oct');
   await page.locator('#temperatureMonth').selectOption('11');
   await expect(page.locator('#temperatureStatus')).toHaveText('No shading available');
   await page.locator('#temperatureMonth').selectOption('10');
@@ -389,14 +395,14 @@ test('temperature panel motion follows the latest view, stays inert while closin
   await expect(controls).toHaveJSProperty('inert', true);
   expect(await page.evaluate(() => window.__temperatureTransitionListenerCount)).toBe(1);
 
-  await page.locator('.environment-segment').filter({ hasText: 'Temperature' }).click();
+  await activateTemperatureView(page);
   await expect(controls).toBeVisible();
   await expect(controls).toHaveAttribute('aria-hidden', 'false');
   await expect(controls).toHaveJSProperty('inert', false);
   await page.screenshot({ path: 'test-results/layers-panel-temperature-opening.png', animations: 'allow' });
   await page.locator('.environment-segment').filter({ hasText: 'Terrain' }).click();
   await page.screenshot({ path: 'test-results/layers-panel-temperature-closing.png', animations: 'allow' });
-  await page.locator('.environment-segment').filter({ hasText: 'Temperature' }).click();
+  await activateTemperatureView(page);
   await page.locator('.environment-segment').filter({ hasText: 'None' }).click();
   await expect(page.locator('input[name="environmentView"]:checked')).toHaveValue('default');
   await expect(controls).toHaveAttribute('aria-hidden', 'true');
@@ -407,7 +413,7 @@ test('temperature panel motion follows the latest view, stays inert while closin
   expect(temperatureRequests.filter(url => url.includes('/query/'))).toEqual([]);
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.locator('.environment-segment').filter({ hasText: 'Temperature' }).click();
+  await activateTemperatureView(page);
   await expect(controls).toBeVisible();
   await page.locator('.environment-segment').filter({ hasText: 'None' }).click();
   await expect(controls).toBeHidden();
@@ -590,7 +596,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
 
   await page.locator('#bioLegendTitle').click();
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Temperature · 20m · Sept');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Water TEMP · 20m · Sept');
   await page.screenshot({ path: 'test-results/layers-panel-mobile-collapsed.png' });
   expect(queryRequests).toEqual([]);
 });
@@ -806,7 +812,7 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page);
   await page.locator('#bioLegendTitle').click();
-  await page.locator('.environment-segment').filter({ hasText: 'Temperature' }).click();
+  await activateTemperatureView(page);
   await page.locator('#bioLegendTitle').click();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
@@ -833,7 +839,7 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
 
 test('Temperature popup content stays inside the safe area at the top boundary without moving the map', async ({ page }) => {
   await openMap(page);
-  await page.locator('.environment-segment').filter({ hasText: 'Temperature' }).click();
+  await activateTemperatureView(page);
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
