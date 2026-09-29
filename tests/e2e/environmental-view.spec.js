@@ -98,7 +98,7 @@ test('Water Clarity loads on demand, synchronizes month selection, and reports m
   await expect(page.locator('.water-clarity-tiles')).toHaveCount(0);
 });
 
-test('Water Clarity click popup uses a local numeric chunk and calls the value typical transparency', async ({ page }) => {
+test('Water Clarity click popup renders a local numeric chunk with the current labels', async ({ page }) => {
   const values = Buffer.alloc(12, 255);
   values[8] = 30;
   const metadata = {
@@ -135,8 +135,10 @@ test('Water Clarity click popup uses a local numeric chunk and calls the value t
   await page.mouse.click(clickPoint.x, clickPoint.y);
   const popup = page.locator('.water-clarity-popup');
   await expect(popup).toBeVisible();
-  await expect(popup).toContainText('Typical transparency');
+  await expect(popup).toContainText('Water Clarity');
   await expect(popup).toContainText('15 m');
+  await expect(popup).toContainText('Clarity Level');
+  await expect(popup).toContainText('Moderate');
   await expect(popup).toContainText('Copernicus Marine');
 });
 
