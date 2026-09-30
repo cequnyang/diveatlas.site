@@ -2,7 +2,7 @@ const { expect } = require('@playwright/test');
 
 const MAP_URL = '/?__diveatlas_test=1&lat=-5.7&lng=131&z=7';
 
-async function openMap(page) {
+async function openMap(page, { url = MAP_URL } = {}) {
   await page.addInitScript(() => {
     try {
       localStorage.clear();
@@ -29,7 +29,7 @@ async function openMap(page) {
     }
     return route.abort();
   });
-  await page.goto(MAP_URL);
+  await page.goto(url);
   await expect.poll(() => page.evaluate(() => Boolean(window.__DIVEATLAS_TEST__?.map))).toBe(true);
   await page.evaluate(() => new Promise(resolve => {
     window.__DIVEATLAS_TEST__.map.whenReady(resolve);

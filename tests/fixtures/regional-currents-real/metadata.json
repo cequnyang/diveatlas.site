@@ -1,0 +1,332 @@
+{
+  "asset_base": "data/currents",
+  "attribution": "Generated using E.U. Copernicus Marine Service Information; DOI: 10.48670/moi-00021. Dataset: GLOBAL_MULTIYEAR_PHY_001_030 / cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m.",
+  "available_slices": [
+    {
+      "depth_label": "surface",
+      "depth_target_m": 0.0,
+      "month": 1,
+      "source_depth_m": 0.49402499198913574,
+      "source_file": "01.nc",
+      "source_time": "2004-01-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006549255652310085,
+        "mean_component_absolute_error_m_s": 0.00025102368406662145,
+        "missing_cell_count": 83,
+        "source_u_max_m_s": 0.3405865654349327,
+        "source_u_min_m_s": -0.1269569993019104,
+        "source_v_max_m_s": 0.11597033590078354,
+        "source_v_min_m_s": -0.10071108117699623,
+        "valid_cell_count": 2318
+      }
+    },
+    {
+      "depth_label": "10m",
+      "depth_target_m": 10.0,
+      "month": 1,
+      "source_depth_m": 9.572997093200684,
+      "source_file": "01.nc",
+      "source_time": "2004-01-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004991910457610993,
+        "maximum_speed_absolute_error_m_s": 0.000701906155108234,
+        "mean_component_absolute_error_m_s": 0.0002519567689612611,
+        "missing_cell_count": 97,
+        "source_u_max_m_s": 0.29114658012986183,
+        "source_u_min_m_s": -0.1660206913948059,
+        "source_v_max_m_s": 0.119022186845541,
+        "source_v_min_m_s": -0.036011841148138046,
+        "valid_cell_count": 2304
+      }
+    },
+    {
+      "depth_label": "20m",
+      "depth_target_m": 20.0,
+      "month": 1,
+      "source_depth_m": 18.495559692382812,
+      "source_file": "01.nc",
+      "source_time": "2004-01-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006955614949739619,
+        "mean_component_absolute_error_m_s": 0.0002535005853621199,
+        "missing_cell_count": 111,
+        "source_u_max_m_s": 0.2520828880369663,
+        "source_u_min_m_s": -0.18555253744125366,
+        "source_v_max_m_s": 0.10498367249965668,
+        "source_v_min_m_s": -0.039674062281847,
+        "valid_cell_count": 2290
+      }
+    },
+    {
+      "depth_label": "30m",
+      "depth_target_m": 30.0,
+      "month": 1,
+      "source_depth_m": 29.444730758666992,
+      "source_file": "01.nc",
+      "source_time": "2004-01-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006581519835734059,
+        "mean_component_absolute_error_m_s": 0.0002479736723313753,
+        "missing_cell_count": 127,
+        "source_u_max_m_s": 0.20752586424350739,
+        "source_u_min_m_s": -0.198370311409235,
+        "source_v_max_m_s": 0.08178960531949997,
+        "source_v_min_m_s": -0.09338663890957832,
+        "valid_cell_count": 2274
+      }
+    },
+    {
+      "depth_label": "surface",
+      "depth_target_m": 0.0,
+      "month": 9,
+      "source_depth_m": 0.49402499198913574,
+      "source_file": "09.nc",
+      "source_time": "2004-09-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006232491845443167,
+        "mean_component_absolute_error_m_s": 0.00025103174280487737,
+        "missing_cell_count": 83,
+        "source_u_max_m_s": 0.1672414317727089,
+        "source_u_min_m_s": -0.4107791371643543,
+        "source_v_max_m_s": 0.1898251287639141,
+        "source_v_min_m_s": -0.3247169405221939,
+        "valid_cell_count": 2318
+      }
+    },
+    {
+      "depth_label": "10m",
+      "depth_target_m": 10.0,
+      "month": 9,
+      "source_depth_m": 9.572997093200684,
+      "source_file": "09.nc",
+      "source_time": "2004-09-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006855415641534579,
+        "mean_component_absolute_error_m_s": 0.00024758018530620675,
+        "missing_cell_count": 97,
+        "source_u_max_m_s": 0.21912289783358574,
+        "source_u_min_m_s": -0.357066560536623,
+        "source_v_max_m_s": 0.15625476837158203,
+        "source_v_min_m_s": -0.3418073058128357,
+        "valid_cell_count": 2304
+      }
+    },
+    {
+      "depth_label": "20m",
+      "depth_target_m": 20.0,
+      "month": 9,
+      "source_depth_m": 18.495559692382812,
+      "source_file": "09.nc",
+      "source_time": "2004-09-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006798395347599739,
+        "mean_component_absolute_error_m_s": 0.0002468709948997309,
+        "missing_cell_count": 111,
+        "source_u_max_m_s": 0.24475844576954842,
+        "source_u_min_m_s": -0.3094576857984066,
+        "source_v_max_m_s": 0.1422162540256977,
+        "source_v_min_m_s": -0.3418073058128357,
+        "valid_cell_count": 2290
+      }
+    },
+    {
+      "depth_label": "30m",
+      "depth_target_m": 30.0,
+      "month": 9,
+      "source_depth_m": 29.444730758666992,
+      "source_file": "09.nc",
+      "source_time": "2004-09-01T00:00:00+00:00",
+      "validation": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.000676761594678027,
+        "mean_component_absolute_error_m_s": 0.00025078575685292664,
+        "missing_cell_count": 127,
+        "source_u_max_m_s": 0.2636799216270447,
+        "source_u_min_m_s": -0.2850428782403469,
+        "source_v_max_m_s": 0.13916440308094025,
+        "source_v_min_m_s": -0.33570360392332077,
+        "valid_cell_count": 2274
+      }
+    }
+  ],
+  "climatology_period": "1993-2016",
+  "climatology_period_source": {
+    "document": "Copernicus Marine Product User Manual, CMEMS-GLO-PUM-001-030, issue 1.7 (November 2025)",
+    "evidence": "The climatology dataset description says the month-of-year fields are the 1993-2016 average.",
+    "url": "https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf"
+  },
+  "data_format_version": 1,
+  "dataset_id": "cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m",
+  "dataset_name": "Monthly climatology fields for product GLOBAL_REANALYSIS_PHY_001_030",
+  "dataset_part": "default",
+  "depth_mapping": {
+    "10m": {
+      "source_m": 9.572997093200684,
+      "target_m": 10.0
+    },
+    "20m": {
+      "source_m": 18.495559692382812,
+      "target_m": 20.0
+    },
+    "30m": {
+      "source_m": 29.444730758666992,
+      "target_m": 30.0
+    },
+    "surface": {
+      "source_m": 0.49402499198913574,
+      "target_m": 0.0
+    }
+  },
+  "disclaimer": "Typical monthly regional ocean currents. Not real-time, tide-specific, site-specific, navigational, or dive-safety information.",
+  "grid": {
+    "height": 49,
+    "latitude_max": -6.0,
+    "latitude_min": -10.0,
+    "latitude_order": "north_to_south",
+    "latitude_step": 0.08333325386047363,
+    "longitude_max": 132.0,
+    "longitude_min": 128.0,
+    "longitude_step": 0.0833282470703125,
+    "width": 49
+  },
+  "grid_resolution_degrees": {
+    "latitude": 0.08333325386047363,
+    "longitude": 0.0833282470703125
+  },
+  "month_mapping": {
+    "1": "2004-01-01T00:00:00+00:00",
+    "9": "2004-09-01T00:00:00+00:00"
+  },
+  "product_doi": "10.48670/moi-00021",
+  "product_id": "GLOBAL_MULTIYEAR_PHY_001_030",
+  "quantization": {
+    "encoding": "signed Int16, interleaved u then v",
+    "missing_value": -32768,
+    "scale_m_s": 0.001,
+    "theoretical_maximum_absolute_error_m_s": 0.0005
+  },
+  "schema_version": 1,
+  "source": "Copernicus Marine Service",
+  "source_catalogue": "source_catalogue.json",
+  "source_catalogue_url": "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/services",
+  "source_depth_values_m": [
+    5727.9169921875,
+    5274.7841796875,
+    4833.291015625,
+    4405.22412109375,
+    3992.48388671875,
+    3597.031982421875,
+    3220.820068359375,
+    2865.702880859375,
+    2533.3359375,
+    2225.077880859375,
+    1941.8929443359375,
+    1684.2840576171875,
+    1452.2509765625,
+    1245.291015625,
+    1062.43994140625,
+    902.3392944335938,
+    763.3331298828125,
+    643.5667724609375,
+    541.0889282226562,
+    453.9377136230469,
+    380.2130126953125,
+    318.1274108886719,
+    266.0403137207031,
+    222.47520446777344,
+    186.12559509277344,
+    155.85069274902344,
+    130.66600036621094,
+    109.72930145263672,
+    92.3260726928711,
+    77.85385131835938,
+    65.80726623535156,
+    55.76428985595703,
+    47.37369155883789,
+    40.344051361083984,
+    34.43415069580078,
+    29.444730758666992,
+    25.211410522460938,
+    21.598819732666016,
+    18.495559692382812,
+    15.810070037841797,
+    13.467140197753906,
+    11.404999732971191,
+    9.572997093200684,
+    7.92956018447876,
+    6.440614223480225,
+    5.078224182128906,
+    3.8194949626922607,
+    2.6456689834594727,
+    1.5413750410079956,
+    0.49402499198913574
+  ],
+  "supported_depths_m": [
+    0.0,
+    10.0,
+    20.0,
+    30.0
+  ],
+  "supported_months": [
+    1,
+    9
+  ],
+  "tile_size": 128,
+  "tile_template": "v{format_version}/{month}/{depth}/s{step}/{column}_{row}.bin.gz",
+  "toolbox_version": "2.5.0",
+  "units": "m s-1",
+  "validation": {
+    "coordinates_and_grid_order_checked": true,
+    "depth_units_and_positive_direction_checked": true,
+    "missing_and_non_finite_values_preserved": true,
+    "month_coordinates_checked_against_catalogue": true,
+    "product_and_dataset_checked_against_catalogue": true,
+    "quantization_measured_from_source_values": true,
+    "tile_gzip_roundtrip_checked": true,
+    "uo_vo_semantics_and_units_checked": true
+  },
+  "validation_summary": {
+    "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+    "maximum_speed_absolute_error_m_s": 0.000701906155108234,
+    "mean_component_absolute_error_m_s": 0.0002500904238231399,
+    "missing_cells": 836,
+    "real_source_measurement": true,
+    "valid_cells": 18372
+  },
+  "variables": {
+    "u": {
+      "source_name": "uo",
+      "standard_name": "eastward_sea_water_velocity",
+      "units": "m s-1"
+    },
+    "v": {
+      "source_name": "vo",
+      "standard_name": "northward_sea_water_velocity",
+      "units": "m s-1"
+    }
+  },
+  "version": "202311",
+  "zooms": [
+    {
+      "max_zoom": 4,
+      "min_zoom": 2,
+      "step": 32
+    },
+    {
+      "max_zoom": 7,
+      "min_zoom": 5,
+      "step": 8
+    },
+    {
+      "max_zoom": 22,
+      "min_zoom": 8,
+      "step": 4
+    }
+  ]
+}

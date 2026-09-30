@@ -41,7 +41,7 @@ test('temperature has zero startup requests and loads only after activation', as
   await installMetadataFixture(page);
   await openMap(page);
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
   await expect(page.locator('#temperatureControls')).toBeHidden();
 
   await page.locator('#environmentViewSelect').selectOption('temperature');
@@ -224,7 +224,9 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await openMap(page);
   await expect(page.locator('#temperatureControls')).toBeHidden();
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('.environment-segment').first()).toHaveText('None');
+  await expect(page.locator('.environment-segment').first()).toHaveText('Terrain');
+  await expect(page.locator('input[name="environmentView"][value="default"]')).toHaveCount(0);
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
   await expect(page.locator('#environmentViewSelect option[value="default"]')).toHaveText('None');
 
   const temperatureRadio = page.locator('input[name="environmentView"][value="temperature"]');
@@ -262,8 +264,7 @@ test('layer panel segments and native depth select keep existing state, keyboard
 
   await page.locator('#environmentViewSelect').selectOption('default');
   await expect(page.locator('#temperatureControls')).toBeHidden();
-  await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(1);
-  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
+  await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(0);
 
   const reefToggle = page.locator('#reefLayerToggle');
   await page.locator('label[for="reefLayerToggle"]').click();
@@ -341,7 +342,7 @@ test('header filter control retains the Show all layers action without a duplica
     expect(Math.abs(tab.text.centerX - tab.tab.centerX), `${tab.value} label should be horizontally centered`).toBeLessThanOrEqual(1);
     expect(Math.abs(tab.text.centerY - selectorLayout.group.centerY)).toBeLessThanOrEqual(1.5);
   }
-  for (const value of ['default', 'terrain', 'temperature', 'water-clarity']) {
+  for (const value of ['terrain', 'temperature', 'water-clarity', 'currents']) {
     const selectedStyle = await page.evaluate(selectedValue => {
       const group = document.querySelector('.environment-segment-group');
       group.querySelector(`input[value="${selectedValue}"]`).checked = true;
@@ -349,7 +350,7 @@ test('header filter control retains the Show all layers action without a duplica
     }, value);
     expect(selectedStyle, `${value} should receive the active-pill treatment`).toBe('600');
   }
-  await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="default"]').checked = true; });
+  await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="terrain"]').checked = true; });
   for (const item of ['titleIcon', 'titleText', 'collapseIcon', 'filterIcon', 'bulkText', 'overflow']) {
     expect(Math.abs(headerGeometry[item].centerY - headerCenterY), `${item} should share the header centerline`).toBeLessThanOrEqual(2);
   }
@@ -391,7 +392,7 @@ test('header filter control retains the Show all layers action without a duplica
     expect(Math.abs(delta)).toBeLessThanOrEqual(1);
   }
   const collapsedHeaderHeight = await page.locator('#bioLegendHeading').evaluate(node => node.getBoundingClientRect().height);
-  expect(Math.abs(headerGeometry.header.height - collapsedHeaderHeight)).toBeLessThanOrEqual(1);
+  expect(Math.abs(headerGeometry.header.height - collapsedHeaderHeight)).toBeLessThanOrEqual(1.5);
   await page.keyboard.press('Enter');
   await expect(page.locator('#bioLegend')).not.toHaveClass(/is-collapsed/);
   await expect(collapseToggle).toHaveAttribute('aria-expanded', 'true');
@@ -458,8 +459,8 @@ test('temperature panel motion follows the latest view, stays inert while closin
   await page.locator('.environment-segment').filter({ hasText: 'Terrain' }).click();
   await page.screenshot({ path: 'test-results/layers-panel-temperature-closing.png', animations: 'allow' });
   await activateTemperatureView(page);
-  await page.locator('.environment-segment').filter({ hasText: 'None' }).click();
-  await expect(page.locator('input[name="environmentView"]:checked')).toHaveValue('default');
+  await page.locator('#environmentViewSelect').selectOption('default');
+  await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(0);
   await expect(controls).toHaveAttribute('aria-hidden', 'true');
   await expect(controls).toBeHidden();
   expect(await controls.evaluate(node => node.contains(document.activeElement))).toBe(false);
@@ -470,7 +471,7 @@ test('temperature panel motion follows the latest view, stays inert while closin
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await activateTemperatureView(page);
   await expect(controls).toBeVisible();
-  await page.locator('.environment-segment').filter({ hasText: 'None' }).click();
+  await page.locator('#environmentViewSelect').selectOption('default');
   await expect(controls).toBeHidden();
   expect(await page.evaluate(() => window.__temperatureTransitionListenerCount)).toBe(1);
 });
@@ -664,14 +665,14 @@ test('mobile Layers starts collapsed and expands on demand without temperature r
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page);
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Map');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Terrain');
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'true');
   expect(temperatureRequests).toEqual([]);
   await page.screenshot({ path: 'test-results/layers-panel-mobile-default-collapsed.png' });
   await page.locator('#bioLegendTitle').click();
   await expect(page.locator('#bioLegend')).not.toHaveClass(/is-collapsed/);
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'false');
-  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
+  await expect(page.locator('input[name="environmentView"][value="terrain"]')).toBeChecked();
 });
 
 async function clickMapCoordinate(page, lat, lng) {

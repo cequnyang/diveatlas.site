@@ -1,0 +1,60 @@
+{
+  "source": "Copernicus Marine GLORYS12 monthly climatology, release 202311",
+  "product_id": "GLOBAL_MULTIYEAR_PHY_001_030",
+  "dataset_id": "cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m",
+  "month": 9,
+  "requested_depth_m": 20,
+  "source_depth_m": 18.495559692382812,
+  "browser_tier_step": 8,
+  "scale_m_s": 0.001,
+  "samples": [
+    {
+      "latitude": -9.333333015441895,
+      "longitude": 128.6666717529297,
+      "source_u_m_s": -0.21668141707777977,
+      "source_v_m_s": -0.10254219174385071,
+      "encoded_u": -217,
+      "encoded_v": -103,
+      "decoded_u_m_s": -0.217,
+      "decoded_v_m_s": -0.103,
+      "expected_speed_m_s": 0.23972012346581878,
+      "browser_speed_m_s": 0.24020407989873943,
+      "popup_speed": "0.24 m/s",
+      "expected_direction_toward": "SW",
+      "browser_bearing_degrees": 244.60844127189029,
+      "speed_error_m_s": 0.00048395643292065085
+    },
+    {
+      "latitude": -8.0,
+      "longitude": 128.6666717529297,
+      "source_u_m_s": 0.2136295661330223,
+      "source_v_m_s": -0.17090365290641785,
+      "encoded_u": 214,
+      "encoded_v": -171,
+      "decoded_u_m_s": 0.214,
+      "decoded_v_m_s": -0.171,
+      "expected_speed_m_s": 0.27357933054772376,
+      "browser_speed_m_s": 0.2739288228719278,
+      "popup_speed": "0.27 m/s",
+      "expected_direction_toward": "SE",
+      "browser_bearing_degrees": 128.62714247683516,
+      "speed_error_m_s": 0.0003494923242040455
+    },
+    {
+      "latitude": -6.666666507720947,
+      "longitude": 131.3333282470703,
+      "source_u_m_s": -0.10010071098804474,
+      "source_v_m_s": -0.01037629321217537,
+      "encoded_u": -100,
+      "encoded_v": -10,
+      "decoded_u_m_s": -0.1,
+      "decoded_v_m_s": -0.01,
+      "expected_speed_m_s": 0.10063706971656665,
+      "browser_speed_m_s": 0.1004987562112089,
+      "popup_speed": "0.10 m/s",
+      "expected_direction_toward": "W",
+      "browser_bearing_degrees": 264.28940686250036,
+      "speed_error_m_s": 0.00013831350567774502
+    }
+  ]
+}

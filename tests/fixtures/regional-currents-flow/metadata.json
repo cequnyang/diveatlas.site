@@ -1,0 +1,232 @@
+{
+  "attribution": "Generated using E.U. Copernicus Marine Service Information; DOI: 10.48670/moi-00021.",
+  "climatology_period": "1993-2016",
+  "dataset_id": "cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m",
+  "depth_label": "Surface",
+  "encoding": {
+    "byte_order": "little-endian",
+    "field_header_bytes": 41,
+    "field_magic": "DAFV",
+    "missing_value": -32768,
+    "scale_m_s": 0.001,
+    "type": "signed Int16 u/v pairs"
+  },
+  "experiment": "regional-currents-flow-resolution-v1",
+  "interpolation_policy": "Bilinear u and v independently; require every corner with non-zero weight to be valid; return no sample across any masked corner. Derive speed and direction after interpolation.",
+  "month": 9,
+  "month_label": "September",
+  "netcdf_source_grid": {
+    "crop": "drop the final east and south boundary nodes to form 48x48 aligned groups for all three variants",
+    "east": 132.0,
+    "height": 49,
+    "north": -6.0,
+    "south": -10.000000238418579,
+    "west": 128.0,
+    "width": 49
+  },
+  "product_id": "GLOBAL_MULTIYEAR_PHY_001_030",
+  "release": "202311",
+  "requested_depth_m": 0.0,
+  "schema_version": 1,
+  "source": "Copernicus Marine GLORYS12 monthly climatology",
+  "source_attributes": {
+    "copernicusmarine_version": "2.5.0",
+    "credit": "E.U. Copernicus Marine Service Information (CMEMS)",
+    "dataset": "global-reanalysis-phy-001-030-monthly-climatology",
+    "field_type": "monthly_climatology",
+    "source": "MERCATOR GLORYS12V1",
+    "title": "Monthly climatology fields for product GLOBAL_REANALYSIS_PHY_001_030"
+  },
+  "source_depth_m": 0.49402499198913574,
+  "source_grid": {
+    "height": 48,
+    "latitude_order": "north_to_south",
+    "latitude_step_degrees": 0.08333325386047363,
+    "longitude_step_degrees": 0.0833282470703125,
+    "width": 48
+  },
+  "source_quantization": {
+    "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+    "maximum_speed_absolute_error_m_s": 0.0006232491845443167,
+    "mean_component_absolute_error_m_s": 0.00025097989893775423,
+    "missing_cell_count": 83,
+    "source_u_max_m_s": 0.1672414317727089,
+    "source_u_min_m_s": -0.4107791371643543,
+    "source_v_max_m_s": 0.1898251287639141,
+    "source_v_min_m_s": -0.3247169405221939,
+    "valid_cell_count": 2221
+  },
+  "source_region": {
+    "east": 131.9166717529297,
+    "north": -6.0,
+    "south": -9.916666984558105,
+    "west": 128.0
+  },
+  "source_time": "2004-09-01T00:00:00+00:00",
+  "variants": {
+    "0.083": {
+      "field_file": "field-0.083.bin.gz",
+      "height": 48,
+      "missing_cells": 83,
+      "packaging": {
+        "current_128_cell_tiles": {
+          "brotli_bytes": 5408,
+          "files": 1,
+          "gzip_bytes": 6776,
+          "raw_bytes": 65552
+        },
+        "regional_chunk": {
+          "brotli_bytes": 5220,
+          "files": 1,
+          "gzip_bytes": 6210,
+          "raw_bytes": 9257
+        }
+      },
+      "quantization": {
+        "maximum_component_absolute_error_m_s": 0.0004993135035037954,
+        "maximum_speed_absolute_error_m_s": 0.0006232491845443167,
+        "mean_component_absolute_error_m_s": 0.00025097989893775423,
+        "missing_cell_count": 83,
+        "source_u_max_m_s": 0.1672414317727089,
+        "source_u_min_m_s": -0.4107791371643543,
+        "source_v_max_m_s": 0.1898251287639141,
+        "source_v_min_m_s": -0.3247169405221939,
+        "valid_cell_count": 2221
+      },
+      "resampling": {
+        "factor": 1,
+        "method": "native GLORYS12 samples"
+      },
+      "resolution_degrees": 0.0833282470703125,
+      "u_max_m_s": 0.1672414317727089,
+      "u_min_m_s": -0.4107791371643543,
+      "v_max_m_s": 0.1898251287639141,
+      "v_min_m_s": -0.3247169405221939,
+      "valid_cells": 2221,
+      "vs_native_source": {
+        "comparison_samples": 2058,
+        "direction_comparison_samples": 2055,
+        "interpolation_coverage_percent": 92.66096352994147,
+        "mean_abs_speed_error_m_s": 0.000253931493280616,
+        "mean_abs_u_error_m_s": 0.00025593552324285605,
+        "mean_abs_v_error_m_s": 0.0002507487127778323,
+        "mean_direction_error_degrees_speed_ge_0_02": 0.09113441402927655,
+        "p95_abs_speed_error_m_s": 0.0005129350445082267,
+        "source_valid_cells": 2221
+      },
+      "width": 48
+    },
+    "0.25": {
+      "field_file": "field-0.25.bin.gz",
+      "height": 16,
+      "missing_cells": 9,
+      "packaging": {
+        "current_128_cell_tiles": {
+          "brotli_bytes": 719,
+          "files": 1,
+          "gzip_bytes": 1022,
+          "raw_bytes": 65552
+        },
+        "regional_chunk": {
+          "brotli_bytes": 671,
+          "files": 1,
+          "gzip_bytes": 825,
+          "raw_bytes": 1065
+        }
+      },
+      "quantization": {
+        "maximum_component_absolute_error_m_s": 0.0004989539682865168,
+        "maximum_speed_absolute_error_m_s": 0.0005562773656309916,
+        "mean_component_absolute_error_m_s": 0.0002500506141435783,
+        "missing_cell_count": 9,
+        "source_u_max_m_s": 0.11685198172926903,
+        "source_u_min_m_s": -0.4063709080219269,
+        "source_v_max_m_s": 0.10532276704907417,
+        "source_v_min_m_s": -0.2453009970486164,
+        "valid_cell_count": 247
+      },
+      "resampling": {
+        "average_only_center_connected_water_component": true,
+        "coarse_center_must_be_valid": true,
+        "dropped_east_edge_cells": 0,
+        "dropped_south_edge_cells": 0,
+        "method": "paired valid-cell component means",
+        "source_cells_per_bin": 9
+      },
+      "resolution_degrees": 0.2499847412109375,
+      "u_max_m_s": 0.11685198172926903,
+      "u_min_m_s": -0.4063709080219269,
+      "v_max_m_s": 0.10532276704907417,
+      "v_min_m_s": -0.2453009970486164,
+      "valid_cells": 247,
+      "vs_native_source": {
+        "comparison_samples": 1717,
+        "direction_comparison_samples": 1711,
+        "interpolation_coverage_percent": 77.30751913552454,
+        "mean_abs_speed_error_m_s": 0.011792692559514375,
+        "mean_abs_u_error_m_s": 0.010962341061219403,
+        "mean_abs_v_error_m_s": 0.007977139910973274,
+        "mean_direction_error_degrees_speed_ge_0_02": 2.7166738199148392,
+        "p95_abs_speed_error_m_s": 0.0393375638272184,
+        "source_valid_cells": 2221
+      },
+      "width": 16
+    },
+    "0.5": {
+      "field_file": "field-0.5.bin.gz",
+      "height": 8,
+      "missing_cells": 4,
+      "packaging": {
+        "current_128_cell_tiles": {
+          "brotli_bytes": 251,
+          "files": 1,
+          "gzip_bytes": 377,
+          "raw_bytes": 65552
+        },
+        "regional_chunk": {
+          "brotli_bytes": 234,
+          "files": 1,
+          "gzip_bytes": 274,
+          "raw_bytes": 297
+        }
+      },
+      "quantization": {
+        "maximum_component_absolute_error_m_s": 0.0004999524144565348,
+        "maximum_speed_absolute_error_m_s": 0.0005386288593397515,
+        "mean_component_absolute_error_m_s": 0.00024537691227073547,
+        "missing_cell_count": 4,
+        "source_u_max_m_s": 0.018650200217962265,
+        "source_u_min_m_s": -0.3927901713177562,
+        "source_v_max_m_s": 0.0699771469568505,
+        "source_v_min_m_s": -0.17179304946746146,
+        "valid_cell_count": 60
+      },
+      "resampling": {
+        "average_only_center_connected_water_component": true,
+        "coarse_center_must_be_valid": true,
+        "dropped_east_edge_cells": 0,
+        "dropped_south_edge_cells": 0,
+        "method": "paired valid-cell component means",
+        "source_cells_per_bin": 36
+      },
+      "resolution_degrees": 0.499969482421875,
+      "u_max_m_s": 0.018650200217962265,
+      "u_min_m_s": -0.3927901713177562,
+      "v_max_m_s": 0.0699771469568505,
+      "v_min_m_s": -0.17179304946746146,
+      "valid_cells": 60,
+      "vs_native_source": {
+        "comparison_samples": 1351,
+        "direction_comparison_samples": 1348,
+        "interpolation_coverage_percent": 60.828455650607836,
+        "mean_abs_speed_error_m_s": 0.032069833814998706,
+        "mean_abs_u_error_m_s": 0.031597430540098684,
+        "mean_abs_v_error_m_s": 0.018334098656542248,
+        "mean_direction_error_degrees_speed_ge_0_02": 6.3047505428129424,
+        "p95_abs_speed_error_m_s": 0.07809465307260083,
+        "source_valid_cells": 2221
+      },
+      "width": 8
+    }
+  }
+}

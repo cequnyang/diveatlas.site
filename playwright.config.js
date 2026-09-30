@@ -5,7 +5,8 @@ module.exports = defineConfig({
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 2 : undefined,
+  // These map-heavy checks and renderer benchmarks become flaky when many pages compete for the browser process.
+  workers: 2,
   reporter: [['list']],
   timeout: 30_000,
   expect: { timeout: 5_000 },
@@ -21,7 +22,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'desktop-chromium',
-      testMatch: ['critical-contracts.spec.js', 'environmental-view.spec.js'],
+      testMatch: ['critical-contracts.spec.js', 'environmental-view.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1280, height: 900 }
@@ -29,7 +30,7 @@ module.exports = defineConfig({
     },
     {
       name: 'mobile-touch-chromium',
-      testMatch: 'mobile-interactions.spec.js',
+      testMatch: ['mobile-interactions.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
       use: { ...devices['Pixel 7'], browserName: 'chromium' }
     }
   ],

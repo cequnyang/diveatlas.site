@@ -1,0 +1,190 @@
+{
+  "catalogue_url": "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/services",
+  "climatology_period": "1993-2016",
+  "climatology_period_source": {
+    "document": "Copernicus Marine Product User Manual, CMEMS-GLO-PUM-001-030, issue 1.7 (November 2025)",
+    "evidence": "The climatology dataset description says the month-of-year fields are the 1993-2016 average.",
+    "url": "https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf"
+  },
+  "coordinates": {
+    "depth_axis": "z",
+    "depth_units": "m",
+    "depth_values_m": [
+      5727.9169921875,
+      5274.7841796875,
+      4833.291015625,
+      4405.22412109375,
+      3992.48388671875,
+      3597.031982421875,
+      3220.820068359375,
+      2865.702880859375,
+      2533.3359375,
+      2225.077880859375,
+      1941.8929443359375,
+      1684.2840576171875,
+      1452.2509765625,
+      1245.291015625,
+      1062.43994140625,
+      902.3392944335938,
+      763.3331298828125,
+      643.5667724609375,
+      541.0889282226562,
+      453.9377136230469,
+      380.2130126953125,
+      318.1274108886719,
+      266.0403137207031,
+      222.47520446777344,
+      186.12559509277344,
+      155.85069274902344,
+      130.66600036621094,
+      109.72930145263672,
+      92.3260726928711,
+      77.85385131835938,
+      65.80726623535156,
+      55.76428985595703,
+      47.37369155883789,
+      40.344051361083984,
+      34.43415069580078,
+      29.444730758666992,
+      25.211410522460938,
+      21.598819732666016,
+      18.495559692382812,
+      15.810070037841797,
+      13.467140197753906,
+      11.404999732971191,
+      9.572997093200684,
+      7.92956018447876,
+      6.440614223480225,
+      5.078224182128906,
+      3.8194949626922607,
+      2.6456689834594727,
+      1.5413750410079956,
+      0.49402499198913574
+    ],
+    "latitude": {
+      "maximum": 90.0,
+      "minimum": -80.0,
+      "step": 0.08333333333333333,
+      "units": "degrees_north"
+    },
+    "longitude": {
+      "maximum": 179.9166717529297,
+      "minimum": -180.0,
+      "step": 0.08333333804392655,
+      "units": "degrees_east"
+    },
+    "time_units": "milliseconds since 1970-01-01 00:00:00Z (no leap seconds)",
+    "time_values_unix_ms": [
+      1072915200000,
+      1075593600000,
+      1078099200000,
+      1080777600000,
+      1083369600000,
+      1086048000000,
+      1088640000000,
+      1091318400000,
+      1093996800000,
+      1096588800000,
+      1099267200000,
+      1101859200000
+    ]
+  },
+  "dataset_id": "cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m",
+  "dataset_name": "Monthly climatology fields for product GLOBAL_REANALYSIS_PHY_001_030",
+  "depth_mapping": {
+    "10m": {
+      "source_m": 9.572997093200684,
+      "target_m": 10.0
+    },
+    "20m": {
+      "source_m": 18.495559692382812,
+      "target_m": 20.0
+    },
+    "30m": {
+      "source_m": 29.444730758666992,
+      "target_m": 30.0
+    },
+    "surface": {
+      "source_m": 0.49402499198913574,
+      "target_m": 0.0
+    }
+  },
+  "month_mapping": [
+    {
+      "month": 1,
+      "source_index": 0,
+      "timestamp": "2004-01-01T00:00:00+00:00"
+    },
+    {
+      "month": 2,
+      "source_index": 1,
+      "timestamp": "2004-02-01T00:00:00+00:00"
+    },
+    {
+      "month": 3,
+      "source_index": 2,
+      "timestamp": "2004-03-01T00:00:00+00:00"
+    },
+    {
+      "month": 4,
+      "source_index": 3,
+      "timestamp": "2004-04-01T00:00:00+00:00"
+    },
+    {
+      "month": 5,
+      "source_index": 4,
+      "timestamp": "2004-05-01T00:00:00+00:00"
+    },
+    {
+      "month": 6,
+      "source_index": 5,
+      "timestamp": "2004-06-01T00:00:00+00:00"
+    },
+    {
+      "month": 7,
+      "source_index": 6,
+      "timestamp": "2004-07-01T00:00:00+00:00"
+    },
+    {
+      "month": 8,
+      "source_index": 7,
+      "timestamp": "2004-08-01T00:00:00+00:00"
+    },
+    {
+      "month": 9,
+      "source_index": 8,
+      "timestamp": "2004-09-01T00:00:00+00:00"
+    },
+    {
+      "month": 10,
+      "source_index": 9,
+      "timestamp": "2004-10-01T00:00:00+00:00"
+    },
+    {
+      "month": 11,
+      "source_index": 10,
+      "timestamp": "2004-11-01T00:00:00+00:00"
+    },
+    {
+      "month": 12,
+      "source_index": 11,
+      "timestamp": "2004-12-01T00:00:00+00:00"
+    }
+  ],
+  "part": "default",
+  "product_doi": "10.48670/moi-00021",
+  "product_id": "GLOBAL_MULTIYEAR_PHY_001_030",
+  "release": "202311",
+  "schema_version": 1,
+  "toolbox_version": "2.5.0",
+  "variables": {
+    "uo": {
+      "standard_name": "eastward_sea_water_velocity",
+      "units": "m s-1"
+    },
+    "vo": {
+      "standard_name": "northward_sea_water_velocity",
+      "units": "m s-1"
+    }
+  }
+}

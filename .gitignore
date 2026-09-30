@@ -7,3 +7,22 @@ node_modules/
 _site/
 test-results/
 playwright-report/
+
+# Authoring notes and data builders stay local; Pages publishes generated site assets.
+/docs/
+/tools/SEO_GENERATION.md
+/tools/audit_coral_inland.py
+/tools/build_bathymetry.py
+/tools/build_coral_occurrence_chunks.py
+/tools/build_coral_species_local.py
+/tools/build_local_data.py
+/tools/coral_qc.py
+/tools/generate_seo_pages.py
+/tools/optimize_tutorial_images.py
+/tools/test_validate_coral_qc.py
+/tools/validate_coral_qc.py
+/tools/currents/
+/tools/temperature/
+/tools/water_clarity/
+/tests/unit/*.py
+/tools/visual_qa/
