@@ -2,10 +2,13 @@ const { expect } = require('@playwright/test');
 
 const MAP_URL = '/?__diveatlas_test=1&lat=-5.7&lng=131&z=7';
 
-async function openMap(page, { url = MAP_URL } = {}) {
-  await page.addInitScript(() => {
+async function openMap(page, { url = MAP_URL, localStorage = {} } = {}) {
+  await page.addInitScript(initialStorage => {
     try {
       localStorage.clear();
+      for (const [key, value] of Object.entries(initialStorage)) {
+        localStorage.setItem(key, String(value));
+      }
       localStorage.setItem('global-coral-map-theme', 'light');
     } catch (_) {}
     window.__firstVisiblePopup = null;
@@ -21,7 +24,7 @@ async function openMap(page, { url = MAP_URL } = {}) {
         top: rect.top
       };
     }).observe(document, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'style', 'data-arrow-side'] });
-  });
+  }, localStorage);
   await page.route('**/*', async route => {
     const url = new URL(route.request().url());
     if (url.hostname === '127.0.0.1' || url.hostname === 'localhost' || url.hostname === 'unpkg.com') {

@@ -627,5 +627,1205 @@
     "depth_m": 50,
     "zoom": 3,
     "tiles": 64
-  }
+  },
+  "estimated_tile_template": "estimated-nearest-25km/woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png",
+  "estimated_tile_layer": {
+    "method": "Nearest valid WOA23 cell at the same month and depth; no temporal/depth mixing or interpolation.",
+    "maximum_distance_km": 25.0,
+    "oceanMask": "data/dive_conditions_score/ocean-mask.bin.gz; GEBCO-derived wet subcells only.",
+    "visualEncoding": "Estimated pixels use the same temperature palette at 100/255 source alpha; direct WOA23 pixels remain opaque in the original tile layer.",
+    "sourceResolutionDegrees": 0.25,
+    "validation": "Uses the existing 25 km supported sampling limit; no greater-radius extrapolation is published."
+  },
+  "estimated_tile_generation_version": "woa23-nearest-ocean-25km-v1",
+  "estimated_tile_coverage": [
+    {
+      "month": 1,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 1,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 1,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 1,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 1,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 1,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 1,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 1,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 1,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 1,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 1,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 2,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 2,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 2,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 2,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 2,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 2,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 2,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 2,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 2,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 2,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 2,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 3,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 3,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 3,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 3,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 3,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 3,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 3,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 3,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 3,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 3,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 3,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 4,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 4,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 4,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 4,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 4,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 4,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 4,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 4,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 4,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 4,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 4,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 5,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 5,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 5,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 5,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 5,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 5,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 5,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 5,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 5,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 5,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 5,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 6,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 6,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 6,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 6,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 6,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 6,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 6,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 6,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 6,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 6,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 6,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 7,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 7,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 7,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 7,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 7,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 7,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 7,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 7,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 7,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 7,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 7,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 8,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 8,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 8,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 8,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 8,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 8,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 8,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 8,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 8,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 8,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 8,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 9,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 9,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 9,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 9,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 9,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 9,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 9,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 9,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 9,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 9,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 9,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 10,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 10,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 10,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 10,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 10,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 10,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 10,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 10,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 10,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 10,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 10,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 11,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 11,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 11,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 11,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 11,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 11,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 11,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 11,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 11,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 11,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 11,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    },
+    {
+      "month": 12,
+      "depth_m": 0,
+      "directOceanPixels": 1862782,
+      "estimatedOceanPixels": 47934,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.49,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677824
+    },
+    {
+      "month": 12,
+      "depth_m": 5,
+      "directOceanPixels": 1861284,
+      "estimatedOceanPixels": 48007,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.499,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 677132
+    },
+    {
+      "month": 12,
+      "depth_m": 10,
+      "directOceanPixels": 1856543,
+      "estimatedOceanPixels": 46965,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.469,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 675600
+    },
+    {
+      "month": 12,
+      "depth_m": 15,
+      "directOceanPixels": 1850450,
+      "estimatedOceanPixels": 47148,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.473,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 673846
+    },
+    {
+      "month": 12,
+      "depth_m": 20,
+      "directOceanPixels": 1842415,
+      "estimatedOceanPixels": 47297,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.478,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 671722
+    },
+    {
+      "month": 12,
+      "depth_m": 25,
+      "directOceanPixels": 1832801,
+      "estimatedOceanPixels": 47221,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.475,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 669092
+    },
+    {
+      "month": 12,
+      "depth_m": 30,
+      "directOceanPixels": 1825342,
+      "estimatedOceanPixels": 46984,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.471,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 666952
+    },
+    {
+      "month": 12,
+      "depth_m": 35,
+      "directOceanPixels": 1818135,
+      "estimatedOceanPixels": 47368,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.48,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 664775
+    },
+    {
+      "month": 12,
+      "depth_m": 40,
+      "directOceanPixels": 1809635,
+      "estimatedOceanPixels": 48024,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.496,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 662488
+    },
+    {
+      "month": 12,
+      "depth_m": 45,
+      "directOceanPixels": 1800099,
+      "estimatedOceanPixels": 48442,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.508,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 660228
+    },
+    {
+      "month": 12,
+      "depth_m": 50,
+      "directOceanPixels": 1789759,
+      "estimatedOceanPixels": 49097,
+      "estimatedShareOfRenderedOceanPixelsPct": 1.525,
+      "maximumEstimateDistanceKm": 25.0,
+      "sourceCells": 657786
+    }
+  ]
 }

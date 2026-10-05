@@ -60,7 +60,7 @@
         minNativeZoom: Number(metadata.rendering.min_native_zoom),
         maxNativeZoom: Number(metadata.rendering.max_native_zoom),
         tileSize: 256,
-        opacity: Number(metadata.rendering.opacity) || 0.58,
+        opacity: Number(metadata.rendering.opacity) || 0.82,
         updateWhenZooming: false,
         keepBuffer: 1,
         className: 'water-clarity-tiles',

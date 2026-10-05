@@ -75,7 +75,7 @@
       return wrap ? ((index % count) + count) % count : index;
     }
 
-    async function query(latlng, { month, depth, signal } = {}) {
+    async function query(latlng, { month, depth, signal, maxDistanceKm = 25 } = {}) {
       const metadata = await loadMetadata(signal);
       const grid = metadata.grid;
       const encoding = metadata.value_encoding;
@@ -119,38 +119,77 @@
       };
       const { values, descriptor: chunk } = await loadChunk(metadata, descriptor, signal);
 
-      const maxDistanceDegrees = 0.75 * Math.SQRT2 * Math.max(latStep, lonStep);
-      let best = null;
-      for (let dr = -1; dr <= 1; dr += 1) {
-        const row = latitudeIndex + dr;
-        if (row < 0 || row >= grid.latitude_count) continue;
-        const localRow = row - chunk.data_row_start;
-        if (localRow < 0 || localRow >= chunk.rows) continue;
-          const candidateLat = Number(grid.latitude_first_center) + row * latitudeDirection * latStep;
-        for (let dc = -1; dc <= 1; dc += 1) {
-          const column = (longitudeIndex + dc + grid.longitude_count) % grid.longitude_count;
-          const localColumn = (column - chunk.data_column_start + grid.longitude_count) % grid.longitude_count;
-          if (localColumn < 0 || localColumn >= chunk.columns) continue;
-          const dLat = lat - candidateLat;
-          let dLon = longitude - (Number(grid.longitude_first_center) + column * lonStep);
-          dLon = ((dLon + 540) % 360) - 180;
-          const distance = Math.hypot(dLat, dLon * Math.cos(lat * Math.PI / 180));
-          // Equal-distance ties retain the first scan candidate so a click on
-          // a source-cell boundary remains deterministic across browsers.
-          if (distance > maxDistanceDegrees || (best && distance >= best.distance)) continue;
-          best = { distance, row, column, localRow, localColumn };
-        }
-      }
-      if (!best) return { unavailable: true, metadata };
-
       const monthIndex = metadata.available_months.indexOf(Number(month));
       const depthIndex = metadata.available_depths_m.findIndex(value => Number(value) === Number(depth));
       const sentinel = Number(encoding.missing_sentinel);
       const scale = Number(encoding.scale_c);
+      const loadedChunks = new Map([[descriptor.key, Promise.resolve({ values, descriptor })]]);
+      async function readCandidate(row, column, mIndex, dIndex) {
+        const rowChunk = Math.floor(row / coreRows);
+        const columnChunk = Math.floor(column / coreColumns);
+        const key = `${rowChunk}:${columnChunk}`;
+        if (!loadedChunks.has(key)) {
+          const chunkRowStart = rowChunk * coreRows;
+          const chunkColumnStart = columnChunk * coreColumns;
+          const chunkRowEnd = Math.min(grid.latitude_count, chunkRowStart + coreRows);
+          const chunkColumnEnd = Math.min(grid.longitude_count, chunkColumnStart + coreColumns);
+          const chunkDataRowStart = Math.max(0, chunkRowStart - chunkHalo);
+          const chunkDescriptor = {
+            key, file:`r${String(rowChunk).padStart(2, '0')}_c${String(columnChunk).padStart(2, '0')}.i16.gz`,
+            data_row_start:chunkDataRowStart,
+            data_column_start:((chunkColumnStart - chunkHalo) % grid.longitude_count + grid.longitude_count) % grid.longitude_count,
+            rows:Math.min(grid.latitude_count, chunkRowEnd + chunkHalo) - chunkDataRowStart,
+            columns:Math.min(grid.longitude_count, chunkColumnEnd - chunkColumnStart + chunkHalo * 2)
+          };
+          loadedChunks.set(key, loadChunk(metadata, chunkDescriptor, signal));
+        }
+        const loaded = await loadedChunks.get(key);
+        const localRow = row - loaded.descriptor.data_row_start;
+        const localColumn = (column - loaded.descriptor.data_column_start + grid.longitude_count) % grid.longitude_count;
+        if (localRow < 0 || localRow >= loaded.descriptor.rows || localColumn >= loaded.descriptor.columns) return null;
+        const offset = (((mIndex * metadata.available_depths_m.length + dIndex) * loaded.descriptor.rows + localRow) * loaded.descriptor.columns) + localColumn;
+        const stored = loaded.values[offset];
+        return stored === sentinel ? null : stored * scale;
+      }
+      async function findNearestValid(maxDistanceKm) {
+        const rowRadius = Math.ceil(maxDistanceKm / (110.5 * latStep));
+        const columnRadius = Math.ceil(maxDistanceKm / (111.32 * Math.max(0.05, Math.cos(lat * Math.PI / 180)) * lonStep));
+        const candidates = [];
+        for (let dr = -rowRadius; dr <= rowRadius; dr += 1) {
+          const row = latitudeIndex + dr;
+          if (row < 0 || row >= grid.latitude_count) continue;
+          const candidateLat = Number(grid.latitude_first_center) + row * latitudeDirection * latStep;
+          for (let dc = -columnRadius; dc <= columnRadius; dc += 1) {
+            const column = (longitudeIndex + dc + grid.longitude_count) % grid.longitude_count;
+            const candidateLongitude = Number(grid.longitude_first_center) + column * lonStep;
+            const dLat = (candidateLat - lat) * Math.PI / 180;
+            const dLon = ((candidateLongitude - longitude + 540) % 360 - 180) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat * Math.PI / 180) *
+              Math.cos(candidateLat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+            const distance = 6371.0088 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            if (distance > maxDistanceKm) continue;
+            candidates.push({ distance, row, column, latitude:candidateLat, longitude:candidateLongitude });
+          }
+        }
+        candidates.sort((a, b) => a.distance - b.distance);
+        for (const candidate of candidates) {
+            const value = await readCandidate(candidate.row, candidate.column, monthIndex, depthIndex);
+            if (value == null) continue;
+            return { ...candidate, value_c:value };
+        }
+        return null;
+      }
+      if (monthIndex < 0 || depthIndex < 0) return { unavailable:true, metadata };
+      const best = await findNearestValid(maxDistanceKm);
+      if (!best) return { unavailable:true, metadata };
+      const sourceChunk = await loadedChunks.get(`${Math.floor(best.row / coreRows)}:${Math.floor(best.column / coreColumns)}`);
+      const sourceDescriptor = sourceChunk.descriptor;
+      const localRow = best.row - sourceDescriptor.data_row_start;
+      const localColumn = (best.column - sourceDescriptor.data_column_start + grid.longitude_count) % grid.longitude_count;
       const read = (mIndex, dIndex) => {
         if (mIndex < 0 || dIndex < 0) return null;
-        const offset = (((mIndex * metadata.available_depths_m.length + dIndex) * chunk.rows + best.localRow) * chunk.columns) + best.localColumn;
-        const stored = values[offset];
+        const offset = (((mIndex * metadata.available_depths_m.length + dIndex) * sourceDescriptor.rows + localRow) * sourceDescriptor.columns) + localColumn;
+        const stored = sourceChunk.values[offset];
         if (stored === sentinel) return null;
         const decoded = stored * scale;
         return Number.isFinite(decoded) ? decoded : null;
@@ -163,7 +202,9 @@
       const year = metadata.available_months.map((monthNumber, index) => ({
         month: Number(monthNumber), value_c: read(index, depthIndex)
       })).filter(point => point.value_c != null);
-      return { value_c: current, month: Number(month), depth_m: Number(depth), profile, year, metadata };
+      return { value_c: current, month: Number(month), depth_m: Number(depth), profile, year, metadata,
+        source_latitude:best.latitude, source_longitude:best.longitude, sample_distance_km:best.distance,
+        nearby_estimate:false };
     }
 
     return Object.freeze({ query, get cachedChunkCount() { return chunks.size; } });

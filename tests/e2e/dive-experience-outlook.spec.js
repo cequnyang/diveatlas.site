@@ -1,0 +1,278 @@
+'use strict';
+
+const { test, expect } = require('@playwright/test');
+const { openMap, setMapView } = require('./support');
+
+async function setLegendCollapsed(page, collapsed) {
+  const isCollapsed = await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'));
+  if (isCollapsed !== collapsed) await page.locator('#bioLegendTitle').click();
+}
+
+async function waitForMapInteractionWindow(page) {
+  await expect.poll(() => page.evaluate(() => {
+    const state = window.__DIVEATLAS_TEST__.getState();
+    return !state.pendingInteraction && !state.activePointerGesture && performance.now() >= state.suppressedUntil;
+  })).toBe(true);
+}
+
+test('Dive Experience Outlook loads the selected month on demand and explains a selected cell', async ({ page }) => {
+  const outlookRequests = [];
+  page.on('request', request => {
+    if (request.url().includes('/js/dive-experience-outlook-map.js') ||
+        request.url().includes('/data/dive-experience-outlook/')) outlookRequests.push(request.url());
+  });
+
+  await openMap(page);
+  expect(outlookRequests).toEqual([]);
+  const month = await page.locator('#diveExperienceMonth').inputValue();
+  const monthAsset = `month-${String(month).padStart(2, '0')}.bin.gz`;
+  await setMapView(page, -5.7, 131, 7);
+  await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
+  const activationStarted = Date.now();
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
+  await expect(page.locator('#diveExperienceOutlookPanel')).toBeVisible();
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
+  if (test.info().project.name === 'mobile-touch-chromium') {
+    const panelLayout = await page.evaluate(() => {
+      const panel = document.querySelector('#diveExperienceOutlookPanel');
+      const month = document.querySelector('#diveExperienceMonth');
+      const panelRect = panel.getBoundingClientRect();
+      const monthRect = month.getBoundingClientRect();
+      return {
+        panelHasHorizontalOverflow:panel.scrollWidth > panel.clientWidth,
+        monthVisible:getComputedStyle(month).visibility !== 'hidden' && monthRect.width > 0,
+        monthFitsPanel:monthRect.left >= panelRect.left && monthRect.right <= panelRect.right
+      };
+    });
+    expect(panelLayout.panelHasHorizontalOverflow).toBe(false);
+    expect(panelLayout.monthVisible).toBe(true);
+    expect(panelLayout.monthFitsPanel).toBe(true);
+  }
+  await expect.poll(() => outlookRequests.some(url => url.endsWith('/manifest.json'))).toBe(true);
+  await expect.poll(() => outlookRequests.some(url => url.endsWith(`/${monthAsset}`))).toBe(true);
+  expect(outlookRequests.filter(url => /month-\d{2}\.bin\.gz$/.test(url))).toEqual(
+    expect.arrayContaining([expect.stringContaining(`/${monthAsset}`)])
+  );
+  expect(outlookRequests.filter(url => /month-\d{2}\.bin\.gz$/.test(url))).toHaveLength(1);
+  await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
+  const activationMs = Date.now() - activationStarted;
+  await expect(page.locator('.dive-experience-outlook-scale-labels')).toContainText('ChallengingFairGoodExcellent');
+  await expect(page.locator('#diveExperienceOutlookPanel')).toContainText('not a dive-safety rating');
+  await setLegendCollapsed(page, true);
+
+  const popupStarted = Date.now();
+  if (test.info().project.name === 'mobile-touch-chromium') {
+    const tapPoint = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const container = map.getContainer();
+      const bounds = container.getBoundingClientRect();
+      const size = map.getSize();
+      const center = { x:size.x / 2, y:size.y / 2 };
+      const offsets = [];
+      for (let radius = 8; radius <= 48; radius += 8) {
+        for (const [dx, dy] of [[radius,0],[-radius,0],[0,radius],[0,-radius],
+          [radius,radius],[-radius,radius],[radius,-radius],[-radius,-radius]]) offsets.push([dx,dy]);
+      }
+      offsets.sort((a,b) => a[0] ** 2 + a[1] ** 2 - b[0] ** 2 - b[1] ** 2);
+      for (const [dx,dy] of offsets) {
+        const x = center.x + dx;
+        const y = center.y + dy;
+        const screenX = bounds.left + x;
+        const screenY = bounds.top + y;
+        if (screenX < 0 || screenX >= innerWidth || screenY < 0 || screenY >= innerHeight) continue;
+        const element = document.elementFromPoint(screenX, screenY);
+        if (element?.closest('.leaflet-marker-pane .leaflet-interactive, .leaflet-marker-icon, .map-count-cluster, .leaflet-popup, button, a, input')) continue;
+        const location = map.containerPointToLatLng([x,y]);
+        return { x:screenX, y:screenY, lat:location.lat, lng:location.lng };
+      }
+      return null;
+    });
+    expect(tapPoint).not.toBeNull();
+    await page.touchscreen.tap(tapPoint.x, tapPoint.y);
+  } else {
+    await waitForMapInteractionWindow(page);
+    const interaction = await page.evaluate(() => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 }));
+    expect(interaction).toBe('dive-experience-outlook-location-selected');
+    await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook', { timeout:10000 });
+  }
+  const popup = page.locator('.dive-experience-popup-content');
+  await expect(popup).toBeVisible();
+  const popupLatencyMs = Date.now() - popupStarted;
+  await expect(popup).toContainText('Dive Experience Outlook');
+  const lightHeadingColor = await popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color);
+  await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
+  await expect.poll(() => popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color))
+    .not.toBe(lightHeadingColor);
+  const darkHeadingColor = await popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color);
+  await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
+  await expect.poll(() => popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color))
+    .toBe(lightHeadingColor);
+  expect(darkHeadingColor).not.toBe(lightHeadingColor);
+  await expect(popup).toContainText('Confidence:');
+  await expect(popup).toContainText(/\d+ of 9 dimensions available/);
+  await expect(popup).toContainText('Dive Conditions');
+  await expect(popup).toContainText('Reef / ecological experience');
+  const scoreBefore = await popup.locator('.dive-experience-main-score').innerText();
+  await popup.locator('.dive-experience-dimension-details summary').click();
+  const fishBefore = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
+  const thermalBefore = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
+  await expect(popup).toContainText('positive recorded survey units');
+  await expect(popup).toContainText('Unavailable');
+  expect(await page.locator('.dive-experience-dimension-list').innerText()).not.toMatch(/fish\s*\/\s*100\s*m/i);
+  if (test.info().project.name === 'mobile-touch-chromium') {
+    await page.setViewportSize({ width:320, height:640 });
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.invalidateSize({ animate:false }));
+    const popupLayout = await page.evaluate(() => {
+      const popup = document.querySelector('.leaflet-popup.dive-conditions-popup');
+      const content = popup.querySelector('.leaflet-popup-content');
+      const close = popup.querySelector('.leaflet-popup-close-button');
+      const popupRect = popup.getBoundingClientRect();
+      const closeRect = close.getBoundingClientRect();
+      const evidence = popup.querySelector('.dive-experience-evidence-line');
+      return {
+        popupInsideViewport:popupRect.left >= 0 && popupRect.right <= innerWidth && popupRect.top >= 0 && popupRect.bottom <= innerHeight,
+        popupHeightRatio:popupRect.height / innerHeight,
+        closeReachable:closeRect.top >= 0 && closeRect.bottom <= innerHeight && closeRect.left >= 0 && closeRect.right <= innerWidth,
+        horizontalOverflow:content.scrollWidth > content.clientWidth,
+        contentScrolls:content.scrollHeight > content.clientHeight && ['auto', 'scroll'].includes(getComputedStyle(content).overflowY),
+        evidenceHeight:evidence.getBoundingClientRect().height
+      };
+    });
+    expect(popupLayout.popupInsideViewport).toBe(true);
+    expect(popupLayout.popupHeightRatio).toBeLessThan(0.85);
+    expect(popupLayout.closeReachable).toBe(true);
+    expect(popupLayout.horizontalOverflow).toBe(false);
+    expect(popupLayout.contentScrolls).toBe(true);
+    expect(popupLayout.evidenceHeight).toBeLessThanOrEqual(40);
+  }
+
+  await setLegendCollapsed(page, false);
+  const centerBefore = await page.evaluate(() => {
+    const center = window.__DIVEATLAS_TEST__.map.getCenter();
+    return { lat:center.lat, lng:center.lng, zoom:window.__DIVEATLAS_TEST__.map.getZoom() };
+  });
+  const monthSwitchStarted = Date.now();
+  await page.locator('#diveExperienceMonth').selectOption('7');
+  await expect(page.locator('#diveExperienceMonth')).toHaveValue('7');
+  await expect(page.locator('#diveConditionsMonth')).toHaveValue('7');
+  await expect.poll(() => outlookRequests.some(url => url.endsWith('/month-07.bin.gz'))).toBe(true);
+  await expect(popup).toContainText('July');
+  const monthSwitchMs = Date.now() - monthSwitchStarted;
+  await expect(popup.locator('.dive-experience-main-score')).toBeVisible();
+  const scoreAfter = await popup.locator('.dive-experience-main-score').innerText();
+  expect(scoreAfter).not.toBe(scoreBefore);
+  await setLegendCollapsed(page, true);
+  await popup.locator('.dive-experience-dimension-details summary').click();
+  const fishAfter = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
+  const thermalAfter = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
+  expect(fishAfter).toBe(fishBefore);
+  expect(thermalAfter).toBe(thermalBefore);
+  await setLegendCollapsed(page, false);
+  for (const allMonth of Array.from({ length:12 }, (_, index) => index + 1).filter(value => ![7, Number(month)].includes(value))) {
+    const asset = `month-${String(allMonth).padStart(2, '0')}.bin.gz`;
+    await page.locator('#diveExperienceMonth').selectOption(String(allMonth));
+    await expect(page.locator('#diveExperienceMonth')).toHaveValue(String(allMonth));
+    await expect.poll(() => outlookRequests.some(url => url.endsWith(`/${asset}`))).toBe(true);
+    await expect(popup.locator('.dive-experience-main-score')).toBeVisible();
+  }
+  const loadedMonths = [...new Set(outlookRequests.map(url => url.match(/month-(\d{2})\.bin\.gz$/)?.[1]).filter(Boolean))].sort();
+  expect(loadedMonths).toEqual(Array.from({ length:12 }, (_, index) => String(index + 1).padStart(2, '0')));
+  const centerAfter = await page.evaluate(() => {
+    const center = window.__DIVEATLAS_TEST__.map.getCenter();
+    return { lat:center.lat, lng:center.lng, zoom:window.__DIVEATLAS_TEST__.map.getZoom() };
+  });
+  expect(centerAfter.lat).toBeCloseTo(centerBefore.lat, 7);
+  expect(centerAfter.lng).toBeCloseTo(centerBefore.lng, 7);
+  expect(centerAfter.zoom).toBe(centerBefore.zoom);
+  const diagnostics = await page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics() || null);
+  expect(diagnostics?.tileCount).toBeGreaterThan(0);
+  expect(diagnostics?.maxTileRenderMs).toBeGreaterThanOrEqual(0);
+  const runtimeAssetBytes = await page.evaluate(() => performance.getEntriesByType('resource')
+    .filter(entry => entry.name.includes('/data/dive-experience-outlook/'))
+    .reduce((total, entry) => total + (entry.transferSize || 0), 0));
+  console.log('Dive Experience Outlook browser measurements:', JSON.stringify({
+    initialOutlookRequests:0, firstActivationMs:activationMs, popupLatencyMs, monthSwitchMs,
+    fetchedMonthAssets:outlookRequests.filter(url => /month-\d{2}\.bin\.gz$/.test(url)).length,
+    runtimeAssetTransferBytes:runtimeAssetBytes, tileRender:diagnostics
+  }));
+});
+
+test('Dive Experience Outlook can be disabled for a staged rollout', async ({ page }) => {
+  await openMap(page, { url:'/?__diveatlas_test=1&lat=-5.7&lng=131&z=7&diveExperienceOutlook=0' });
+  await expect(page.locator('[data-dive-experience-outlook]')).toBeHidden();
+  await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveCount(0);
+  expect(page.url()).toContain('diveExperienceOutlook=0');
+});
+
+test('Dive Experience panel, popup, and info tooltip follow every supported language', async ({ page }, testInfo) => {
+  await openMap(page);
+  await setLegendCollapsed(page, false);
+  const titles = {
+    en:'Dive Experience Outlook', zh:'潜水体验展望', ja:'ダイビング体験の見通し', fr:'Perspectives de plongée',
+    de:'Ausblick auf das Taucherlebnis', nl:'Duikervaring in beeld', it:'Prospettiva sull’esperienza subacquea',
+    ru:'Оценка условий для дайвинга', pt:'Perspectiva de mergulho', sv:'Utsikter för dykupplevelsen',
+    no:'Utsikter for dykkeopplevelsen', es:'Perspectiva de buceo', ko:'다이빙 경험 전망', id:'Prospek pengalaman menyelam'
+  };
+  const tabLabels = {
+    en:'Dive Experience', zh:'潜水体验', ja:'ダイビング体験', fr:'Plongée', de:'Taucherlebnis',
+    nl:'Duikervaring', it:'Esperienza subacquea', ru:'Дайвинг', pt:'Mergulho', sv:'Dykning',
+    no:'Dykking', es:'Buceo', ko:'다이빙 경험', id:'Pengalaman menyelam'
+  };
+  await expect(page.locator('#diveExperienceOutlookPanel')).toBeVisible();
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
+  await waitForMapInteractionWindow(page);
+  const interaction = await page.evaluate(() => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 }));
+  expect(interaction).toBe('dive-experience-outlook-location-selected');
+  const popup = page.locator('.dive-experience-popup-content');
+  await expect(popup).toBeVisible();
+
+  for (const [language, title] of Object.entries(titles)) {
+    if (language !== 'en') {
+      await page.locator('#languageMenuButton').click();
+      await page.locator(`#languageDropdown [data-language="${language}"]`).click();
+    }
+    await expect(page.locator('#diveExperienceOutlookPanel h2')).toHaveText(title);
+    await expect(popup.locator('.dive-conditions-popup-title')).toHaveText(title);
+    await expect(page.locator('#environmentDiveExperienceLabel')).toHaveText(tabLabels[language]);
+    await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveText(tabLabels[language]);
+    const layout = await page.evaluate(() => {
+      const panel = document.querySelector('#diveExperienceOutlookPanel');
+      const popup = document.querySelector('.leaflet-popup');
+      const popupContent = document.querySelector('.leaflet-popup-content');
+      return { panelOverflow:panel.scrollWidth > panel.clientWidth, popupOverflow:popupContent.scrollWidth > popupContent.clientWidth, popupWidth:popup.getBoundingClientRect().width };
+    });
+    expect(layout).toMatchObject({ panelOverflow:false, popupOverflow:false, popupWidth:testInfo.project.name.includes('mobile') ? 320 : 360 });
+    await setLegendCollapsed(page, true);
+    await expect(page.locator('#bioLegendCollapsedSummary')).toContainText(`${tabLabels[language]} ·`);
+    await setLegendCollapsed(page, false);
+  }
+  if (page.viewportSize().width <= 720) await setLegendCollapsed(page, true);
+  await page.locator('.dive-experience-score-info > summary').click();
+  await expect(page.locator('.dive-experience-popup-info-popover')).toBeVisible();
+  await expect(page.locator('.dive-experience-popup-info-popover')).toContainText('Prospek historis bulanan');
+});
+
+test('physical-only cells show Dive Conditions separately while the combined outlook remains unavailable', async ({ page }) => {
+  await openMap(page, { url:'/?__diveatlas_test=1&lat=69.53125&lng=-23.46875&z=7' });
+  await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
+  await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
+  await setLegendCollapsed(page, true);
+  await waitForMapInteractionWindow(page);
+  const interaction = await page.evaluate(() => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:69.53125, lng:-23.46875 }));
+  expect(interaction).toBe('dive-experience-outlook-location-selected');
+  const popup = page.locator('.dive-experience-popup-content');
+  await expect(popup).toBeVisible();
+  await expect(popup.locator('.dive-experience-main-score')).toHaveText('Insufficient reef data');
+  await expect(popup.locator('.dive-experience-evidence-line')).toContainText('Overall confidence: Unavailable');
+  await expect(popup.locator('.dive-experience-evidence-line')).toContainText('3 of 9 dimensions available');
+  await expect(popup.locator('.dive-experience-subscore').first()).toContainText(/\d+ · (Comfortable|Favorable|Mixed|Demanding)/);
+  await expect(popup.locator('.dive-experience-subscore').last()).toContainText('Insufficient data');
+});

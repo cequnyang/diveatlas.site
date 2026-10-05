@@ -53,7 +53,7 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
   for (let index = 0; index < samples.length; index += 2) { samples[index] = 321; samples[index + 1] = 234; }
   const compressedTile = gzipSync(Buffer.from(raw));
 
-  await openMap(page);
+  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await openLayersPanel(page);
   await page.route('**/data/currents/metadata.json', async route => {
     metadataRequests.push(route.request().url());
@@ -79,6 +79,8 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
   await expect(page.locator('.regional-currents-popup')).toContainText('0.40 m/s');
   await expect(page.locator('.regional-currents-popup')).toContainText('September');
   await expect(page.locator('.regional-currents-popup')).toContainText('Copernicus Marine');
+  const regionalPopupWidth = await page.locator('.regional-currents-popup').evaluate(element => element.getBoundingClientRect().width);
+  expect(regionalPopupWidth).toBeCloseTo(testInfo.project.name.includes('mobile') ? 320 : 360, 0);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getState().popup?.lifecycle)).toBe('open');
   if (testInfo.project.name === 'mobile-touch-chromium') {
     await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
@@ -91,6 +93,11 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
 
   const screenshotName = testInfo.project.name === 'mobile-touch-chromium' ? 'mobile' : 'desktop';
   await page.screenshot({ path: `test-results/regional-currents-${screenshotName}-light.png` });
+  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
+  await expect(page.locator('#currentsInfoResolutionValue')).toHaveText('~5 mi');
+  await expect(page.locator('#currentsMetaResolutionValue')).toHaveText('~5 mi');
+  await expect(page.locator('.regional-currents-popup')).toContainText('1.30 ft/s');
+  await expect(page.locator('.regional-currents-popup')).toContainText('~5 mi');
   await page.locator('#themeBtn').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.screenshot({ path: `test-results/regional-currents-${screenshotName}-dark.png` });

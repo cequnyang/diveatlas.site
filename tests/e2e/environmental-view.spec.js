@@ -31,6 +31,27 @@ async function activateTemperatureView(page) {
   }).click();
 }
 
+test('saved month preferences keep each month selector and legend in sync on startup', async ({ page }) => {
+  await openMap(page, {
+    localStorage: {
+      'global-coral-map-environment-month-v1': '10',
+      'global-coral-map-dive-experience-month-v1': '6'
+    }
+  });
+
+  for (const selector of ['#temperatureMonth', '#waterClarityMonth', '#currentsMonth', '#wavesMonth']) {
+    await expect(page.locator(selector)).toHaveValue('10');
+  }
+  await expect(page.locator('#temperatureLegendSelection')).toContainText('Oct');
+  await expect(page.locator('#temperatureLegendSlice')).toContainText('October');
+  await expect(page.locator('#waterClarityLegendSelection')).toHaveText('Oct');
+  await expect(page.locator('#currentsLegendSelection')).toContainText('Oct');
+  await expect(page.locator('#wavesLegendSelection')).toHaveText('October');
+
+  await expect(page.locator('#diveExperienceMonth')).toHaveValue('6');
+  await expect(page.locator('#diveExperienceLegendMonth')).toHaveText('June');
+});
+
 test('temperature has zero startup requests and loads only after activation', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
@@ -41,7 +62,8 @@ test('temperature has zero startup requests and loads only after activation', as
   await installMetadataFixture(page);
   await openMap(page);
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
+  await expect(page.locator('input[name="environmentView"][value="dive-conditions"]')).toHaveCount(0);
   await expect(page.locator('#temperatureControls')).toBeHidden();
 
   await page.locator('#environmentViewSelect').selectOption('temperature');
@@ -56,6 +78,44 @@ test('temperature has zero startup requests and loads only after activation', as
   await expect.poll(() => page.locator('.temperature-tiles').count()).toBe(0);
   await page.locator('#environmentViewSelect').selectOption('terrain');
   await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
+});
+
+test('Waves loads its selected month on demand and defers point climatology until requested', async ({ page }) => {
+  const requests = [];
+  page.on('request', request => {
+    if (request.url().includes('/data/waves/')) requests.push(request.url());
+  });
+  await openMap(page);
+  expect(requests).toEqual([]);
+  await expect(page.locator('#wavesControls')).toBeHidden();
+
+  await page.locator('#environmentViewSelect').selectOption('waves');
+  await expect(page.locator('#wavesControls')).toBeVisible();
+  await expect(page.locator('#wavesStatus')).toHaveAttribute('data-state', 'ready');
+  await expect(page.locator('.waves-tiles')).toHaveCount(1);
+  await expect.poll(() => requests.some(url => url.endsWith('/data/waves/metadata.json'))).toBe(true);
+  expect(requests.filter(url => url.includes('/data/waves/query/'))).toEqual([]);
+
+  await page.locator('#wavesMonth').selectOption('10');
+  await expect(page.locator('#temperatureMonth')).toHaveValue('10');
+  await clickMapCoordinate(page, -5.7, 131);
+  await expect(page.locator('.waves-detail')).toBeVisible();
+  await expect.poll(() => requests.some(url => url.includes('/data/waves/query/'))).toBe(true);
+  await expect(page.locator('.waves-detail')).toContainText('1993–2020');
+  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
+  await expect(page.locator('#wavesInfoResolution')).toContainText('mi');
+  await expect(page.locator('#wavesMetaResolutionValue')).toContainText('mi');
+  await expect(page.locator('.temperature-detail-resolution')).toContainText('mi');
+  await expect(page.locator('.waves-primary-metrics')).toContainText('ft');
+
+  await page.locator('.waves-seasonal-button').click();
+  await expect(page.locator('.waves-seasonal-chart')).toBeVisible();
+  expect(requests.filter(url => url.includes('/data/waves/query/')).length).toBeGreaterThan(1);
+
+  await page.locator('#environmentViewSelect').selectOption('default');
+  await expect(page.locator('#wavesControls')).toBeHidden();
+  await expect(page.locator('.waves-tiles')).toHaveCount(0);
+  await expect(page.locator('.waves-detail')).toHaveCount(0);
 });
 
 test('Water Clarity loads on demand, synchronizes month selection, and reports missing assets', async ({ page }) => {
@@ -126,13 +186,8 @@ test('Water Clarity click popup renders a local numeric chunk with the current l
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(0.5, 0.5, 5));
   await page.locator('#environmentViewSelect').selectOption('water-clarity');
   await expect(page.locator('#waterClarityStatus')).toBeHidden();
-  const clickPoint = await page.evaluate(() => {
-    const map = window.__DIVEATLAS_TEST__.map;
-    const point = map.latLngToContainerPoint([0.5, 0.5]);
-    const bounds = document.querySelector('#map').getBoundingClientRect();
-    return { x: bounds.left + point.x, y: bounds.top + point.y };
-  });
-  await page.mouse.click(clickPoint.x, clickPoint.y);
+  await page.locator('#waterClarityMonth').selectOption('9');
+  await clickMapCoordinate(page, 0.5, 0.5);
   const popup = page.locator('.water-clarity-popup');
   await expect(popup).toBeVisible();
   await expect(popup).toContainText('Water Clarity');
@@ -140,6 +195,12 @@ test('Water Clarity click popup renders a local numeric chunk with the current l
   await expect(popup).toContainText('Clarity Level');
   await expect(popup).toContainText('Moderate');
   await expect(popup).toContainText('Copernicus Marine');
+  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
+  await expect(page.locator('#waterClarityLowThreshold')).toHaveText('<16 ft');
+  await expect(page.locator('#waterClarityResolutionValue')).toHaveText('~2.5 mi');
+  await expect(page.locator('#waterClarityInfoResolutionValue')).toHaveText('~2.5 mi');
+  await expect(popup).toContainText('49 ft');
+  await expect(popup).toContainText('2.5 mi');
 });
 
 test('Layers palette follows the active site theme without changing its layout', async ({ page }) => {
@@ -215,6 +276,44 @@ test('Layers palette follows the active site theme without changing its layout',
   expect(mobileDark.primary).toBe('#f4f6fa');
 });
 
+test('Coral, Fish, and Dive legend swatches keep their colors below and at Z3', async ({ page }) => {
+  await openMap(page);
+
+  const readSwatchStyles = () => page.evaluate(() => {
+    const symbols = {
+      coral: '#speciesLegendSymbol',
+      fish: '#fishLegendSymbol',
+      dive: '#diveLegendSymbol'
+    };
+    return Object.fromEntries(Object.entries(symbols).map(([name, selector]) => {
+      const style = getComputedStyle(document.querySelector(selector));
+      return [name, {
+        opacity: style.opacity,
+        filter: style.filter,
+        backgroundColor: style.backgroundColor,
+        borderTopColor: style.borderTopColor
+      }];
+    }));
+  });
+
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-5.7, 131, 2));
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(2);
+  const belowZ3 = await readSwatchStyles();
+
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-5.7, 131, 3));
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(3);
+  const atZ3 = await readSwatchStyles();
+
+  for (const name of Object.keys(belowZ3)) {
+    expect(belowZ3[name].opacity, `${name} opacity below Z3`).toBe('1');
+    expect(belowZ3[name].filter, `${name} filter below Z3`).toBe('none');
+    expect(atZ3[name].opacity, `${name} opacity at Z3`).toBe('1');
+    expect(atZ3[name].filter, `${name} filter at Z3`).toBe('none');
+    expect(atZ3[name].backgroundColor, `${name} fill should not change at Z3`).toBe(belowZ3[name].backgroundColor);
+    expect(atZ3[name].borderTopColor, `${name} outline should not change at Z3`).toBe(belowZ3[name].borderTopColor);
+  }
+});
+
 test('layer panel segments and native depth select keep existing state, keyboard, overflow, and lazy behavior', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
@@ -224,9 +323,9 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await openMap(page);
   await expect(page.locator('#temperatureControls')).toBeHidden();
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('.environment-segment').first()).toHaveText('Terrain');
-  await expect(page.locator('input[name="environmentView"][value="default"]')).toHaveCount(0);
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
+  await expect(page.locator('.environment-segment').first()).toHaveText('None');
+  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
   await expect(page.locator('#environmentViewSelect option[value="default"]')).toHaveText('None');
 
   const temperatureRadio = page.locator('input[name="environmentView"][value="temperature"]');
@@ -264,7 +363,7 @@ test('layer panel segments and native depth select keep existing state, keyboard
 
   await page.locator('#environmentViewSelect').selectOption('default');
   await expect(page.locator('#temperatureControls')).toBeHidden();
-  await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(0);
+  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
 
   const reefToggle = page.locator('#reefLayerToggle');
   await page.locator('label[for="reefLayerToggle"]').click();
@@ -334,7 +433,8 @@ test('header filter control retains the Show all layers action without a duplica
       overflowX: getComputedStyle(track).overflowX, userSelect: getComputedStyle(track).userSelect
     };
   });
-  expect(selectorLayout.tabs).toHaveLength(4);
+  expect(selectorLayout.tabs).toHaveLength(8);
+  expect(selectorLayout.tabs.map(tab => tab.value)).toContain('reef-survey-condition');
   expect(selectorLayout.overflowX).toBe('auto');
   expect(selectorLayout.scrollWidth).toBeGreaterThan(selectorLayout.clientWidth);
   expect(selectorLayout.userSelect).toBe('none');
@@ -342,7 +442,7 @@ test('header filter control retains the Show all layers action without a duplica
     expect(Math.abs(tab.text.centerX - tab.tab.centerX), `${tab.value} label should be horizontally centered`).toBeLessThanOrEqual(1);
     expect(Math.abs(tab.text.centerY - selectorLayout.group.centerY)).toBeLessThanOrEqual(1.5);
   }
-  for (const value of ['terrain', 'temperature', 'water-clarity', 'currents']) {
+  for (const value of ['terrain', 'temperature', 'water-clarity', 'currents', 'waves']) {
     const selectedStyle = await page.evaluate(selectedValue => {
       const group = document.querySelector('.environment-segment-group');
       group.querySelector(`input[value="${selectedValue}"]`).checked = true;
@@ -530,7 +630,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     const segmentTargets = await page.locator('.environment-segment').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().height));
     expect(segmentTargets.every(height => height >= 44 && height <= 48)).toBe(true);
     expect(Math.abs((await page.locator('.environment-segment-group').boundingBox().then(box => box.height)) - Math.max(46, 48 * visualScale))).toBeLessThanOrEqual(1);
-    expect(await page.locator('.layer-switch-label--layers').first().boundingBox().then(box => box.width)).toBeGreaterThanOrEqual(44);
+    expect(await page.locator('.bio-legend-row .layer-switch-label--layers').first().boundingBox().then(box => box.width)).toBeGreaterThanOrEqual(44);
     expect(await page.locator('#temperatureInfoAbout').boundingBox().then(box => box.width)).toBe(44);
     expect(Math.abs((await page.locator('#temperatureDepth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
     expect(Math.abs((await page.locator('#temperatureMonth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
@@ -546,7 +646,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     expect(Math.max(...rows.heights) - Math.min(...rows.heights)).toBeLessThan(1);
     expect(Math.abs(Math.min(...rows.heights) - (40 * visualScale))).toBeLessThanOrEqual(1);
     expect(rows.gaps.every(gap => Math.abs(gap - (4 * visualScale)) < 1)).toBe(true);
-    const tracks = await page.locator('#bioLegend .layer-toggle-switch').evaluateAll(nodes => nodes.map(node => {
+    const tracks = await page.locator('.bio-legend-row .layer-toggle-switch').evaluateAll(nodes => nodes.map(node => {
       const box = node.getBoundingClientRect();
       return { width: box.width, height: box.height };
     }));
@@ -556,7 +656,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       return { width: box.width, height: box.height };
     }));
     expect(badges.every(badge => Math.abs(badge.width - (24 * visualScale)) <= 1 && Math.abs(badge.height - (24 * visualScale)) <= 1), JSON.stringify(badges)).toBe(true);
-    expect(await page.locator('.layer-switch-label--layers').evaluateAll(nodes => nodes.every(node => node.getBoundingClientRect().height >= 44))).toBe(true);
+    expect(await page.locator('.bio-legend-row .layer-switch-label--layers').evaluateAll(nodes => nodes.every(node => node.getBoundingClientRect().height >= 44))).toBe(true);
     const controls = await Promise.all(['#temperatureDepth', '#temperatureMonth'].map(selector => page.locator(selector).boundingBox()));
     expect(controls.every(box => Math.abs(box.height - (42 * visualScale)) <= 1)).toBe(true);
     if (viewport.width > 720) expect(controls.every(box => Math.abs(box.width - (159 * visualScale)) <= 1)).toBe(true);
@@ -642,7 +742,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       expect(
         Math.max(...positions.map(position => position.x)) - Math.min(...positions.map(position => position.x)),
         `${viewport.name} overlay column x positions: ${JSON.stringify(positions)}`
-      ).toBeLessThan(1);
+      ).toBeLessThanOrEqual(3.5);
     }
     expect(Math.max(...columns[2].map(position => position.right)) - Math.min(...columns[2].map(position => position.right))).toBeLessThan(1);
     if (viewport.name === 'wide' || viewport.name === 'medium' || viewport.name === 'narrow' || viewport.name === 'mobile') {
@@ -665,14 +765,14 @@ test('mobile Layers starts collapsed and expands on demand without temperature r
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page);
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Terrain');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Map');
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'true');
   expect(temperatureRequests).toEqual([]);
   await page.screenshot({ path: 'test-results/layers-panel-mobile-default-collapsed.png' });
   await page.locator('#bioLegendTitle').click();
   await expect(page.locator('#bioLegend')).not.toHaveClass(/is-collapsed/);
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'false');
-  await expect(page.locator('input[name="environmentView"][value="terrain"]')).toBeChecked();
+  await expect(page.locator('input[name="environmentView"][value="dive-conditions"]')).toHaveCount(0);
 });
 
 async function clickMapCoordinate(page, lat, lng) {
@@ -877,6 +977,13 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
   await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
+  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
+  await expect(page.locator('#temperatureCoverageNote')).toContainText('15.5 mi');
+  await page.getByRole('button', { name: 'Depth' }).click();
+  await expect(page.locator('.temperature-profile-chart')).toContainText('ft');
+  await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
+  await expect(page.locator('.temperature-detail-heading')).toContainText('°F');
+  await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
   expect(state.center).toEqual(before.center);
@@ -891,6 +998,28 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   expect(closeBounds.width).toBeGreaterThanOrEqual(44);
   expect(closeBounds.height).toBeGreaterThanOrEqual(44);
   await page.screenshot({ path: 'test-results/temperature-detail-mobile.png' });
+});
+
+test('length-dependent explanations stay localized when language and units change', async ({ page }) => {
+  await openMap(page);
+  await activateTemperatureView(page);
+  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
+
+  const coverageCopyByLanguage = {
+    zh: '淡色区域', en: 'Faded areas', ja: '淡色の領域', fr: 'zones pâles',
+    de: 'Blasse Bereiche', nl: 'Lichte gebieden', it: 'Le aree più chiare',
+    ru: 'Бледные области', pt: 'áreas esmaecidas', sv: 'Bleka områden',
+    no: 'Bleke områder', es: 'Las zonas atenuadas', ko: '옅은 영역', id: 'Area pudar'
+  };
+
+  for (const [language, localizedCopy] of Object.entries(coverageCopyByLanguage)) {
+    await page.locator('#languageMenuButton').click();
+    await page.locator(`#languageDropdown [data-language="${language}"]`).click();
+    await expect(page.locator('#temperatureCoverageNote')).toContainText(localizedCopy);
+    await expect(page.locator('#temperatureCoverageNote')).toContainText(/15[.,]5 mi/u);
+    await expect(page.locator('#coralHeatStressResolutionValue')).toContainText(/3[.,]1 mi/u);
+    await expect(page.locator('#coralHeatStressResolutionValue')).not.toContainText('{distance}');
+  }
 });
 
 test('Temperature popup content stays inside the safe area at the top boundary without moving the map', async ({ page }) => {

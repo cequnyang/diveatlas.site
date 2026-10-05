@@ -56,3 +56,25 @@ test('missing query sentinel stays unavailable instead of becoming zero degrees'
   assert.equal(result.unavailable, true);
   assert.equal(result.value_c, undefined);
 });
+
+test('falls back to the nearest valid same-month cell within 100 km and marks the estimate', async () => {
+  const metadata = makeMetadata();
+  // At the equator, a valid cell 0.5 degrees away is outside 25 km but inside 100 km.
+  metadata.grid.longitude_count = 12;
+  metadata.grid.longitude_first_center = 0.5;
+  metadata.chunk_degrees = 4;
+  metadata.chunk_halo_cells = 1;
+  metadata.chunk_grid = { rows:1, columns:3 };
+  const fetchImpl = async url => {
+    if (String(url) === 'metadata.json') return new Response(JSON.stringify(metadata), { status:200 });
+    const columnChunk = Number(/c(\d+)/.exec(String(url))[1]);
+    const raw = Buffer.alloc(6 * 2);
+    for (let index = 0; index < 6; index += 1) raw.writeInt16LE(columnChunk === 0 && index === 2 ? 2450 : -32768, index * 2);
+    return new Response(gzipSync(raw), { status:200 });
+  };
+  const query = createTemperatureQuery({ metadataUrl:'metadata.json', fetchImpl });
+  const result = await query.query({ lat:0, lng:1 }, { month:9, depth:20, maxDistanceKm:25 });
+  assert.equal(result.value_c, 24.5);
+  assert.equal(result.nearby_estimate, true);
+  assert.ok(result.sample_distance_km > 25 && result.sample_distance_km <= 100);
+});

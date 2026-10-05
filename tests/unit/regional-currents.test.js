@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const { currentSpeed, currentBearing, currentDirection } = require('../../js/current-math.js');
 const { decodeTile, LruTileCache, tileCacheKey, HEADER_BYTES, MISSING_VALUE } = require('../../js/current-tile-cache.js');
 const { visibleTileAddresses, viewportTileAddresses, tierForZoom } = require('../../js/regional-currents.js');
+const { createCurrentView } = require('../../js/regional-currents.js');
+const { gzipSync } = require('node:zlib');
 
 test('current speed and direction use components toward which the water flows', () => {
   assert.equal(currentSpeed(0.3, 0.4), 0.5);
@@ -15,6 +17,40 @@ test('current speed and direction use components toward which the water flows', 
   assert.equal(currentDirection(-1, -1), 'SW');
   assert.equal(currentDirection(1, -1), 'SE');
   assert.equal(currentDirection(0, 0), null);
+});
+
+test('query-only current sampling uses the finest shipped tile and preserves masked cells', async () => {
+  const metadata = {
+    data_format_version: 1, grid: { width: 4320, height: 2041, longitude_min: -180, longitude_step: 1 / 12, latitude_max: 90, latitude_step: 1 / 12 },
+    zooms: [{ min_zoom: 2, max_zoom: 4, step: 32 }, { min_zoom: 5, max_zoom: 7, step: 8 }, { min_zoom: 8, max_zoom: 22, step: 4 }],
+    tile_size: 128, asset_base: 'data/currents', tile_template: 'v1/{month}/{depth}/s{step}/{column}_{row}.bin.gz',
+    available_slices: [{ month: 9, depth_label: '10m' }], quantization: { scale_m_s: 1 }, version: 'fixture'
+  };
+  const makeTile = stored => {
+    const bytes = Buffer.alloc(16 + 128 * 128 * 4);
+    bytes.write('DATC', 0); bytes.writeUInt8(1, 4); bytes.writeUInt8(7, 5); bytes.writeUInt8(4, 6);
+    bytes.writeUInt16LE(1, 8); bytes.writeUInt16LE(128, 10); bytes.writeUInt16LE(0, 12); bytes.writeUInt16LE(0, 14);
+    bytes.writeInt16LE(stored, 16); bytes.writeInt16LE(0, 18);
+    return gzipSync(bytes);
+  };
+  const requested = [];
+  let storedValue = 100;
+  const fetchImpl = async url => {
+    requested.push(String(url));
+    return requested.length === 1
+      ? new Response(JSON.stringify(metadata), { status: 200 })
+      : new Response(makeTile(storedValue), { status: 200 });
+  };
+  const view = createCurrentView({ L: {}, map: {}, fetchImpl });
+  const result = await view.sample(90, -180, 9, '10');
+  assert.equal(result.speed, 0.1);
+  assert.match(requested[1], /\/s4\/0_0\.bin\.gz/);
+  storedValue = MISSING_VALUE;
+  const maskedView = createCurrentView({ L: {}, map: {}, fetchImpl: async url => {
+    if (String(url).endsWith('metadata.json')) return new Response(JSON.stringify(metadata), { status: 200 });
+    return new Response(makeTile(storedValue), { status: 200 });
+  } });
+  assert.equal(await maskedView.sample(90, -180, 9, '10'), null);
 });
 
 test('direction rounds into all eight compass sectors, including negative components', () => {

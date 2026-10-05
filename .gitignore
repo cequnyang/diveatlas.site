@@ -10,6 +10,9 @@ playwright-report/
 
 # Authoring notes and data builders stay local; Pages publishes generated site assets.
 /docs/
+!/docs/dive-experience-outlook.md
+!/docs/dive-experience-score-guide.md
+!/docs/dive-experience-confidence-guide.md
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py
@@ -24,5 +27,36 @@ playwright-report/
 /tools/currents/
 /tools/temperature/
 /tools/water_clarity/
+/tools/coral_heat_stress/__pycache__/
 /tests/unit/*.py
+!/tests/unit/test_coral_heat_stress_build.py
+!/tests/unit/test_coral_heat_history_build.py
+!/tests/unit/test_reef_condition_mermaid_adapter.py
+!/tests/unit/test_seaview_adapter.py
+!/tests/unit/test_gcbd_adapter.py
+!/tests/unit/test_gcbd_pages.py
+!/tests/unit/test_ocean_heat_history_publish.py
+!/tests/unit/test_reef_condition_phase4_6_adapter.py
+!/tests/unit/test_tide_release.py
 /tools/visual_qa/
+
+# Production browser datasets are published as immutable Cloudflare R2 releases.
+/data/bathymetry_tiles/
+/data/coral_occurrence_chunks/
+/data/coral_records_snapshot.js
+/data/currents/
+/data/depth_contour_tiles/
+/data/depth_samples/
+/data/dive-experience-outlook/v3/
+/data/dive-sites.js
+/data/fish_map_units.json.gz
+/data/reef_tiles/
+/data/reef_vector_chunks/
+/data/temperature/production-0.25deg/
+/data/temperature/query/
+/data/terrain_tiles/
+/data/tides/
+/data/water_clarity/
+/data/waves/
+/data/reef-condition/thermal-stress-history/
+/data/reef-condition/ocean-heat-history/

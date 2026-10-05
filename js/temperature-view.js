@@ -13,6 +13,7 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
   let depth = '20';
   let requestGeneration = 0;
   let layer = null;
+  let estimatedLayer = null;
   let enabled = false;
   let metadata = null;
   let metadataPromise = null;
@@ -37,7 +38,9 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
 
   function removeVisibleLayer() {
     if (layer && map.hasLayer(layer)) map.removeLayer(layer);
+    if (estimatedLayer && map.hasLayer(estimatedLayer)) map.removeLayer(estimatedLayer);
     layer = null;
+    estimatedLayer = null;
   }
 
   function loadMetadata() {
@@ -62,6 +65,15 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
       .replaceAll('{month}', String(selectedMonth).padStart(2, '0'))
       .replaceAll('{depth}', selectedDepth);
     const version = encodeURIComponent(metadata.generated_at_utc || metadata.generation_version || 'dataset');
+    return `${metadata.asset_base.replace(/\/$/, '')}/${path}?v=${version}`;
+  }
+
+  function estimatedTileUrl(selectedMonth, selectedDepth) {
+    if (!metadata.estimated_tile_template) return null;
+    const path = metadata.estimated_tile_template
+      .replaceAll('{month}', String(selectedMonth).padStart(2, '0'))
+      .replaceAll('{depth}', selectedDepth);
+    const version = encodeURIComponent(metadata.estimated_tile_generation_version || 'estimated-dataset');
     return `${metadata.asset_base.replace(/\/$/, '')}/${path}?v=${version}`;
   }
 
@@ -97,7 +109,7 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
         minNativeZoom: metadata.min_native_zoom ?? metadata.max_native_zoom,
         maxNativeZoom: metadata.max_native_zoom,
         tileSize: 256,
-        opacity: 0.72,
+        opacity: 0.88,
         updateWhenZooming: false,
         keepBuffer: 1,
         className: 'temperature-tiles',
@@ -120,6 +132,25 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
     });
     layer = nextLayer;
     nextLayer.addTo(map);
+    const estimateUrl = estimatedTileUrl(month, depth);
+    if (estimateUrl) {
+      const nextEstimatedLayer = L.tileLayer(estimateUrl, {
+        pane: 'temperaturePane', minZoom: 2, maxZoom: 19,
+        minNativeZoom: metadata.min_native_zoom ?? metadata.max_native_zoom,
+        maxNativeZoom: metadata.max_native_zoom, tileSize: 256,
+        opacity: 0.72, updateWhenZooming: false, keepBuffer: 1,
+        className: 'temperature-estimated-tiles', crossOrigin: true
+      });
+      estimatedLayer = nextEstimatedLayer;
+      nextEstimatedLayer.on('tileerror', event => {
+        debug('estimated-tile-error', nextEstimatedLayer, generation, {
+          failedTileUrl: event?.tile?.src || null,
+          tileCoordinates: event?.coords || null
+        });
+      });
+      nextEstimatedLayer.addTo(map);
+      debug('estimated-layer-added', nextEstimatedLayer, generation);
+    }
     debug('added-to-map', nextLayer, generation);
     return true;
   }

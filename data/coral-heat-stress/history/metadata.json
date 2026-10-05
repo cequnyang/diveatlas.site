@@ -1,0 +1,1299 @@
+{
+  "asset_base": "data/coral-heat-stress/history/releases/v3.7.0-r20260930T112126",
+  "assets": {
+    "mapBytes": 17411462,
+    "mapBytesByYear": {
+      "1985": 396352,
+      "1986": 406299,
+      "1987": 430068,
+      "1988": 430363,
+      "1989": 401487,
+      "1990": 416311,
+      "1991": 415953,
+      "1992": 412258,
+      "1993": 397410,
+      "1994": 410403,
+      "1995": 417619,
+      "1996": 408620,
+      "1997": 390358,
+      "1998": 436400,
+      "1999": 400879,
+      "2000": 389184,
+      "2001": 410317,
+      "2002": 408615,
+      "2003": 420710,
+      "2004": 419199,
+      "2005": 430157,
+      "2006": 416107,
+      "2007": 417150,
+      "2008": 402924,
+      "2009": 424590,
+      "2010": 449275,
+      "2011": 410681,
+      "2012": 417879,
+      "2013": 431246,
+      "2014": 431978,
+      "2015": 439441,
+      "2016": 465618,
+      "2017": 446371,
+      "2018": 428437,
+      "2019": 448260,
+      "2020": 459780,
+      "2021": 436132,
+      "2022": 442374,
+      "2023": 454924,
+      "2024": 479013,
+      "2025": 460320
+    },
+    "mapBytesPerYearMean": 424670,
+    "mapTileCount": 41984,
+    "pointBytes": 15223237,
+    "pointBytesByTile": {
+      "0_0.bin.gz": {
+        "bytes": 5081,
+        "records": 43
+      },
+      "0_1.bin.gz": {
+        "bytes": 388205,
+        "records": 3660
+      },
+      "0_2.bin.gz": {
+        "bytes": 39583,
+        "records": 407
+      },
+      "0_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "0_4.bin.gz": {
+        "bytes": 57891,
+        "records": 712
+      },
+      "0_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "10_0.bin.gz": {
+        "bytes": 1309,
+        "records": 13
+      },
+      "10_1.bin.gz": {
+        "bytes": 4905,
+        "records": 39
+      },
+      "10_2.bin.gz": {
+        "bytes": 7554,
+        "records": 76
+      },
+      "10_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "10_4.bin.gz": {
+        "bytes": 1044,
+        "records": 13
+      },
+      "10_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "11_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "11_1.bin.gz": {
+        "bytes": 51288,
+        "records": 565
+      },
+      "11_2.bin.gz": {
+        "bytes": 28769,
+        "records": 340
+      },
+      "11_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "11_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "11_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "12_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "12_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "12_2.bin.gz": {
+        "bytes": 733,
+        "records": 13
+      },
+      "12_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "12_4.bin.gz": {
+        "bytes": 1873,
+        "records": 13
+      },
+      "12_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "13_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "13_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "13_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "13_3.bin.gz": {
+        "bytes": 1330,
+        "records": 13
+      },
+      "13_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "13_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "14_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "14_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "14_2.bin.gz": {
+        "bytes": 3530,
+        "records": 38
+      },
+      "14_3.bin.gz": {
+        "bytes": 3052,
+        "records": 24
+      },
+      "14_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "14_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "15_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "15_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "15_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "15_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "15_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "15_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "16_0.bin.gz": {
+        "bytes": 34625,
+        "records": 334
+      },
+      "16_1.bin.gz": {
+        "bytes": 14041,
+        "records": 128
+      },
+      "16_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "16_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "16_4.bin.gz": {
+        "bytes": 241884,
+        "records": 2160
+      },
+      "16_5.bin.gz": {
+        "bytes": 23402,
+        "records": 244
+      },
+      "17_0.bin.gz": {
+        "bytes": 41442,
+        "records": 342
+      },
+      "17_1.bin.gz": {
+        "bytes": 385388,
+        "records": 3845
+      },
+      "17_2.bin.gz": {
+        "bytes": 160065,
+        "records": 1683
+      },
+      "17_3.bin.gz": {
+        "bytes": 134085,
+        "records": 1485
+      },
+      "17_4.bin.gz": {
+        "bytes": 283954,
+        "records": 2695
+      },
+      "17_5.bin.gz": {
+        "bytes": 24102,
+        "records": 191
+      },
+      "18_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "18_1.bin.gz": {
+        "bytes": 69042,
+        "records": 623
+      },
+      "18_2.bin.gz": {
+        "bytes": 74109,
+        "records": 814
+      },
+      "18_3.bin.gz": {
+        "bytes": 4281,
+        "records": 63
+      },
+      "18_4.bin.gz": {
+        "bytes": 243060,
+        "records": 2540
+      },
+      "18_5.bin.gz": {
+        "bytes": 3969,
+        "records": 33
+      },
+      "19_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "19_1.bin.gz": {
+        "bytes": 7314,
+        "records": 62
+      },
+      "19_2.bin.gz": {
+        "bytes": 170360,
+        "records": 1907
+      },
+      "19_3.bin.gz": {
+        "bytes": 144869,
+        "records": 2144
+      },
+      "19_4.bin.gz": {
+        "bytes": 59572,
+        "records": 526
+      },
+      "19_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "1_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "1_1.bin.gz": {
+        "bytes": 53978,
+        "records": 591
+      },
+      "1_2.bin.gz": {
+        "bytes": 19213,
+        "records": 237
+      },
+      "1_3.bin.gz": {
+        "bytes": 16379,
+        "records": 215
+      },
+      "1_4.bin.gz": {
+        "bytes": 41978,
+        "records": 1164
+      },
+      "1_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "20_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "20_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "20_2.bin.gz": {
+        "bytes": 3362,
+        "records": 30
+      },
+      "20_3.bin.gz": {
+        "bytes": 75098,
+        "records": 1057
+      },
+      "20_4.bin.gz": {
+        "bytes": 3225,
+        "records": 27
+      },
+      "20_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "21_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "21_1.bin.gz": {
+        "bytes": 10991,
+        "records": 104
+      },
+      "21_2.bin.gz": {
+        "bytes": 195600,
+        "records": 2556
+      },
+      "21_3.bin.gz": {
+        "bytes": 375428,
+        "records": 3964
+      },
+      "21_4.bin.gz": {
+        "bytes": 66729,
+        "records": 552
+      },
+      "21_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "22_0.bin.gz": {
+        "bytes": 71012,
+        "records": 580
+      },
+      "22_1.bin.gz": {
+        "bytes": 22946,
+        "records": 199
+      },
+      "22_2.bin.gz": {
+        "bytes": 403185,
+        "records": 4856
+      },
+      "22_3.bin.gz": {
+        "bytes": 278345,
+        "records": 3101
+      },
+      "22_4.bin.gz": {
+        "bytes": 123203,
+        "records": 1010
+      },
+      "22_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "23_0.bin.gz": {
+        "bytes": 5884,
+        "records": 43
+      },
+      "23_1.bin.gz": {
+        "bytes": 331962,
+        "records": 2725
+      },
+      "23_2.bin.gz": {
+        "bytes": 1280063,
+        "records": 12139
+      },
+      "23_3.bin.gz": {
+        "bytes": 1378962,
+        "records": 14909
+      },
+      "23_4.bin.gz": {
+        "bytes": 242080,
+        "records": 2217
+      },
+      "23_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "24_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "24_1.bin.gz": {
+        "bytes": 160610,
+        "records": 1508
+      },
+      "24_2.bin.gz": {
+        "bytes": 762840,
+        "records": 7916
+      },
+      "24_3.bin.gz": {
+        "bytes": 63183,
+        "records": 615
+      },
+      "24_4.bin.gz": {
+        "bytes": 87041,
+        "records": 773
+      },
+      "24_5.bin.gz": {
+        "bytes": 42617,
+        "records": 404
+      },
+      "25_0.bin.gz": {
+        "bytes": 70163,
+        "records": 710
+      },
+      "25_1.bin.gz": {
+        "bytes": 1222469,
+        "records": 10658
+      },
+      "25_2.bin.gz": {
+        "bytes": 691308,
+        "records": 5650
+      },
+      "25_3.bin.gz": {
+        "bytes": 272906,
+        "records": 2577
+      },
+      "25_4.bin.gz": {
+        "bytes": 27537,
+        "records": 251
+      },
+      "25_5.bin.gz": {
+        "bytes": 183,
+        "records": 1
+      },
+      "26_0.bin.gz": {
+        "bytes": 63786,
+        "records": 610
+      },
+      "26_1.bin.gz": {
+        "bytes": 418263,
+        "records": 3578
+      },
+      "26_2.bin.gz": {
+        "bytes": 343206,
+        "records": 3506
+      },
+      "26_3.bin.gz": {
+        "bytes": 76845,
+        "records": 788
+      },
+      "26_4.bin.gz": {
+        "bytes": 1738,
+        "records": 13
+      },
+      "26_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "27_0.bin.gz": {
+        "bytes": 29699,
+        "records": 261
+      },
+      "27_1.bin.gz": {
+        "bytes": 468054,
+        "records": 4038
+      },
+      "27_2.bin.gz": {
+        "bytes": 96803,
+        "records": 902
+      },
+      "27_3.bin.gz": {
+        "bytes": 155464,
+        "records": 2044
+      },
+      "27_4.bin.gz": {
+        "bytes": 3992,
+        "records": 43
+      },
+      "27_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "28_0.bin.gz": {
+        "bytes": 835,
+        "records": 6
+      },
+      "28_1.bin.gz": {
+        "bytes": 122608,
+        "records": 1187
+      },
+      "28_2.bin.gz": {
+        "bytes": 10472,
+        "records": 132
+      },
+      "28_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "28_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "28_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "2_0.bin.gz": {
+        "bytes": 21991,
+        "records": 201
+      },
+      "2_1.bin.gz": {
+        "bytes": 157936,
+        "records": 3026
+      },
+      "2_2.bin.gz": {
+        "bytes": 33,
+        "records": 0
+      },
+      "2_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "2_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "2_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "3_0.bin.gz": {
+        "bytes": 17046,
+        "records": 232
+      },
+      "3_1.bin.gz": {
+        "bytes": 54589,
+        "records": 1105
+      },
+      "3_2.bin.gz": {
+        "bytes": 2898,
+        "records": 65
+      },
+      "3_3.bin.gz": {
+        "bytes": 33,
+        "records": 0
+      },
+      "3_4.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "3_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "4_0.bin.gz": {
+        "bytes": 4212,
+        "records": 59
+      },
+      "4_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "4_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "4_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "4_4.bin.gz": {
+        "bytes": 33,
+        "records": 0
+      },
+      "4_5.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "5_0.bin.gz": {
+        "bytes": 1083,
+        "records": 11
+      },
+      "5_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "5_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "5_3.bin.gz": {
+        "bytes": 1833,
+        "records": 24
+      },
+      "5_4.bin.gz": {
+        "bytes": 21914,
+        "records": 167
+      },
+      "5_5.bin.gz": {
+        "bytes": 33,
+        "records": 0
+      },
+      "6_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "6_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "6_2.bin.gz": {
+        "bytes": 25138,
+        "records": 193
+      },
+      "6_3.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "6_4.bin.gz": {
+        "bytes": 53356,
+        "records": 476
+      },
+      "6_5.bin.gz": {
+        "bytes": 548,
+        "records": 4
+      },
+      "7_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "7_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "7_2.bin.gz": {
+        "bytes": 29511,
+        "records": 230
+      },
+      "7_3.bin.gz": {
+        "bytes": 280017,
+        "records": 2526
+      },
+      "7_4.bin.gz": {
+        "bytes": 709810,
+        "records": 6957
+      },
+      "7_5.bin.gz": {
+        "bytes": 4793,
+        "records": 44
+      },
+      "8_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "8_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "8_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "8_3.bin.gz": {
+        "bytes": 135246,
+        "records": 1132
+      },
+      "8_4.bin.gz": {
+        "bytes": 566629,
+        "records": 6377
+      },
+      "8_5.bin.gz": {
+        "bytes": 8898,
+        "records": 73
+      },
+      "9_0.bin.gz": {
+        "bytes": 32,
+        "records": 0
+      },
+      "9_1.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "9_2.bin.gz": {
+        "bytes": 34,
+        "records": 0
+      },
+      "9_3.bin.gz": {
+        "bytes": 112805,
+        "records": 948
+      },
+      "9_4.bin.gz": {
+        "bytes": 92941,
+        "records": 868
+      },
+      "9_5.bin.gz": {
+        "bytes": 9639,
+        "records": 83
+      }
+    },
+    "pointTileCount": 174,
+    "totalBytes": 32634699
+  },
+  "coverageWarnings": [],
+  "crossChecks": {
+    "Caribbean": {
+      "distanceDegrees": 0.03449255965889042,
+      "distributionSample": {
+        "mean": 2.106445789337158,
+        "median": 0.1557142585515976,
+        "validYears": 41,
+        "yearsAtOrAbove8": 3,
+        "zeroYears": 16
+      },
+      "gridCell": {
+        "column": 2280,
+        "latitude": 17.975006103515625,
+        "longitude": -65.97500610351562,
+        "row": 1065
+      },
+      "mask": "NOAA analyzed and reef masks",
+      "pointAssetMatchesSourceFloat32Exactly": true,
+      "requested": {
+        "latitude": 18.0,
+        "longitude": -66.0
+      },
+      "sourceValues": [
+        0.0,
+        0.0,
+        5.957142353057861,
+        0.9828569889068604,
+        17.21999740600586,
+        11.037141799926758
+      ],
+      "years": [
+        1985,
+        1998,
+        2010,
+        2016,
+        2023,
+        2025
+      ]
+    },
+    "Coral Triangle": {
+      "distanceDegrees": 0.7546218604665291,
+      "distributionSample": {
+        "mean": 3.6658895015716553,
+        "median": 3.384286642074585,
+        "validYears": 41,
+        "yearsAtOrAbove8": 3,
+        "zeroYears": 0
+      },
+      "gridCell": {
+        "column": 6211,
+        "latitude": -6.3249969482421875,
+        "longitude": 130.57501220703125,
+        "row": 579
+      },
+      "mask": "NOAA analyzed and reef masks",
+      "pointAssetMatchesSourceFloat32Exactly": true,
+      "requested": {
+        "latitude": -5.7,
+        "longitude": 131.0
+      },
+      "sourceValues": [
+        3.384286642074585,
+        1.197143316268921,
+        5.954287528991699,
+        6.0228590965271,
+        9.165717124938965,
+        5.588573455810547
+      ],
+      "years": [
+        1985,
+        1998,
+        2010,
+        2016,
+        2023,
+        2025
+      ]
+    },
+    "Great Barrier Reef": {
+      "distanceDegrees": 0.25440306397795964,
+      "distributionSample": {
+        "mean": 2.043797016143799,
+        "median": 1.1742851734161377,
+        "validYears": 41,
+        "yearsAtOrAbove8": 0,
+        "zeroYears": 7
+      },
+      "gridCell": {
+        "column": 6551,
+        "latitude": -18.42499542236328,
+        "longitude": 147.57501220703125,
+        "row": 337
+      },
+      "mask": "NOAA analyzed and reef masks",
+      "pointAssetMatchesSourceFloat32Exactly": true,
+      "requested": {
+        "latitude": -18.2,
+        "longitude": 147.7
+      },
+      "sourceValues": [
+        1.1442852020263672,
+        0.5099997520446777,
+        1.0085710287094116,
+        6.308568954467773,
+        1.4457136392593384,
+        7.201425552368164
+      ],
+      "years": [
+        1985,
+        1998,
+        2010,
+        2016,
+        2023,
+        2025
+      ]
+    },
+    "Hawaii": {
+      "distanceDegrees": 0.03416221245438829,
+      "distributionSample": {
+        "mean": 0.1435191035270691,
+        "median": 0.0,
+        "validYears": 41,
+        "yearsAtOrAbove8": 0,
+        "zeroYears": 38
+      },
+      "gridCell": {
+        "column": 444,
+        "latitude": 21.275001525878906,
+        "longitude": -157.77500915527344,
+        "row": 1131
+      },
+      "mask": "NOAA analyzed and reef masks",
+      "pointAssetMatchesSourceFloat32Exactly": true,
+      "requested": {
+        "latitude": 21.3,
+        "longitude": -157.8
+      },
+      "sourceValues": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "years": [
+        1985,
+        1998,
+        2010,
+        2016,
+        2023,
+        2025
+      ]
+    }
+  },
+  "displayStyle": {
+    "alpha": [
+      0,
+      46,
+      61,
+      72,
+      87,
+      102,
+      128
+    ],
+    "colors": [
+      "#ffeb91",
+      "#f6b134",
+      "#f06f1f",
+      "#e03135",
+      "#b21835",
+      "#692384"
+    ],
+    "zoomOpacity": {
+      "fadedFrom": 12,
+      "floor": 0.48,
+      "fullThrough": 8,
+      "reducedFrom": 9
+    }
+  },
+  "encoding": {
+    "mapColors": [
+      "transparent",
+      "#ffeb91",
+      "#f6b134",
+      "#f06f1f",
+      "#e03135",
+      "#b21835",
+      "#692384"
+    ],
+    "mapLegendBins": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20
+    ],
+    "mapTileTemplate": "maps/{year}/{z}/{x}/{y}.png",
+    "mapZoom": 5,
+    "maxNativeZoom": 5,
+    "pointFormat": "gzip DCHH v1; sorted uint16 local cell index followed by source float32 DHW values for all years; NaN denotes missing",
+    "pointHeaderBytes": 17,
+    "pointRecordBytes": 166,
+    "pointTileSizeCells": 256
+  },
+  "generatedAt": "2026-09-30T11:23:31.614152+00:00",
+  "grid": {
+    "height": 1390,
+    "latitude_max": 34.17500305175781,
+    "latitude_min": -35.27499771118164,
+    "latitude_step": 0.05,
+    "longitude_max": 179.97500610351562,
+    "longitude_min": -179.97500610351562,
+    "longitude_step": 0.05,
+    "row_order": "south-to-north",
+    "width": 7200
+  },
+  "inspectedRelatedFields": {
+    "ann_max_anom": {
+      "exposedInV2": false,
+      "longName": "Annual-maximum SST anomaly values",
+      "units": "degrees_Celsius",
+      "validMax": 7.363104820251465,
+      "validMin": -0.6827596426010132
+    },
+    "ann_max_sst": {
+      "exposedInV2": false,
+      "longName": "Annual-maximum SST values",
+      "units": "degrees_Celsius",
+      "validMax": 38.2599983215332,
+      "validMin": 20.110000610351562
+    },
+    "withinyear_mean": {
+      "exposedInV2": false,
+      "longName": "Annual average SST values",
+      "units": "degrees_Celsius",
+      "validMax": 31.26024627685547,
+      "validMin": 16.282649993896484
+    },
+    "withinyear_sd": {
+      "exposedInV2": false,
+      "longName": "Annual SST variability",
+      "units": "degrees_Celsius",
+      "validMax": 7.493102073669434,
+      "validMin": 0.17395123839378357
+    }
+  },
+  "maskDefinitions": {
+    "analyzed": "An array in the same dimension as the data array classifying which pixels are included in the analysis (i.e., contain data). These were determined as reef-containing pixels plus an ~11-km buffer around those pixels.",
+    "reef": "An array in the same dimension as the data array classifying which pixels contain reefs, as determined using the ReefBase, Millennium Maps, and Reefs at Risk\u2013Revisited datasets, augmented with other documented coral reef locations from collaborative reef studies."
+  },
+  "masks": {
+    "analyzed": "NOAA mask: reef-containing pixels plus approximately 11 km buffer",
+    "analyzedCells": 153036,
+    "currentDisplayMask": "This analyzed mask is also applied to Current BAA map tile rendering only; Current global source and query data remain available.",
+    "reef": "NOAA reef_mask; retained for validation and regional source checks, not applied as an additional display mask",
+    "reefCells": 57504
+  },
+  "metric": "Annual Maximum Degree Heating Week",
+  "missing": {
+    "map": "transparent",
+    "pointEncoding": "IEEE-754 float32 NaN; omitted cells mean no NOAA analyzed pixel",
+    "sourceFill": 9.969209968386869e+36
+  },
+  "pointTileTemplate": "points/{column}_{row}.bin.gz",
+  "product": "Thermal History Annual History",
+  "productVersion": "3.7.0",
+  "quantization": "None; point history retains source float32 values without quantization.",
+  "rangesByYear": {
+    "1985": {
+      "max": 11.130006790161133,
+      "min": 0.0
+    },
+    "1986": {
+      "max": 15.37142562866211,
+      "min": 0.0
+    },
+    "1987": {
+      "max": 22.478574752807617,
+      "min": 0.0
+    },
+    "1988": {
+      "max": 11.862860679626465,
+      "min": 0.0
+    },
+    "1989": {
+      "max": 19.641435623168945,
+      "min": 0.0
+    },
+    "1990": {
+      "max": 12.072863578796387,
+      "min": 0.0
+    },
+    "1991": {
+      "max": 12.274280548095703,
+      "min": 0.0
+    },
+    "1992": {
+      "max": 22.911420822143555,
+      "min": 0.0
+    },
+    "1993": {
+      "max": 10.632850646972656,
+      "min": 0.0
+    },
+    "1994": {
+      "max": 17.065717697143555,
+      "min": 0.0
+    },
+    "1995": {
+      "max": 13.29857063293457,
+      "min": 0.0
+    },
+    "1996": {
+      "max": 12.625720024108887,
+      "min": 0.0
+    },
+    "1997": {
+      "max": 20.12856674194336,
+      "min": 0.0
+    },
+    "1998": {
+      "max": 38.257137298583984,
+      "min": 0.0
+    },
+    "1999": {
+      "max": 18.705713272094727,
+      "min": 0.0
+    },
+    "2000": {
+      "max": 16.19143295288086,
+      "min": 0.0
+    },
+    "2001": {
+      "max": 11.822861671447754,
+      "min": 0.0
+    },
+    "2002": {
+      "max": 18.924278259277344,
+      "min": 0.0
+    },
+    "2003": {
+      "max": 17.434280395507812,
+      "min": 0.0
+    },
+    "2004": {
+      "max": 15.447136878967285,
+      "min": 0.0
+    },
+    "2005": {
+      "max": 19.45714569091797,
+      "min": 0.0
+    },
+    "2006": {
+      "max": 17.67427635192871,
+      "min": 0.0
+    },
+    "2007": {
+      "max": 12.251434326171875,
+      "min": 0.0
+    },
+    "2008": {
+      "max": 21.12428092956543,
+      "min": 0.0
+    },
+    "2009": {
+      "max": 22.577144622802734,
+      "min": 0.0
+    },
+    "2010": {
+      "max": 25.72428321838379,
+      "min": 0.0
+    },
+    "2011": {
+      "max": 33.072845458984375,
+      "min": 0.0
+    },
+    "2012": {
+      "max": 18.951438903808594,
+      "min": 0.0
+    },
+    "2013": {
+      "max": 21.929990768432617,
+      "min": 0.0
+    },
+    "2014": {
+      "max": 20.62285614013672,
+      "min": 0.0
+    },
+    "2015": {
+      "max": 30.218563079833984,
+      "min": 0.0
+    },
+    "2016": {
+      "max": 30.5042781829834,
+      "min": 0.0
+    },
+    "2017": {
+      "max": 21.501436233520508,
+      "min": 0.0
+    },
+    "2018": {
+      "max": 20.317138671875,
+      "min": 0.0
+    },
+    "2019": {
+      "max": 23.934293746948242,
+      "min": 0.0
+    },
+    "2020": {
+      "max": 27.66000747680664,
+      "min": 0.0
+    },
+    "2021": {
+      "max": 27.53143882751465,
+      "min": 0.0
+    },
+    "2022": {
+      "max": 26.567142486572266,
+      "min": 0.0
+    },
+    "2023": {
+      "max": 34.7700080871582,
+      "min": 0.0
+    },
+    "2024": {
+      "max": 33.711421966552734,
+      "min": 0.0
+    },
+    "2025": {
+      "max": 30.252864837646484,
+      "min": 0.0
+    }
+  },
+  "release": "v3.7.0-r20260930T112126",
+  "released": "2026-01-09",
+  "resolution": "0.05 degree (~5 km at the equator)",
+  "schema_version": 1,
+  "source": "NOAA Coral Reef Watch",
+  "sourceFile": "noaa_crw_thermal_history_annual_history_v3.7.0_1985-2025.nc",
+  "sourceRange": {
+    "max": 38.257137298583984,
+    "min": 0.0,
+    "validMaxAttribute": 38.257137298583984,
+    "validMinAttribute": 0.0
+  },
+  "sourceSizeBytes": 8226693376,
+  "sourceUrl": "https://www.star.nesdis.noaa.gov/pub/socd/mecb/crw/data/thermal_history/v3.7/annual_history/noaa_crw_thermal_history_annual_history_v3.7.0_1985%E2%80%932025.nc",
+  "summaryStatistic": "Median over finite annual values; the sampled regional series contain rare high years and many low or zero years, so median is more robust to event outliers than mean.",
+  "summaryYears": {
+    "fullEnd": 2025,
+    "fullStart": 1985,
+    "recentEnd": 2025,
+    "recentStart": 2016
+  },
+  "units": "degrees_Celsius-weeks",
+  "validCellsByYear": {
+    "1985": 153036,
+    "1986": 153036,
+    "1987": 153036,
+    "1988": 153036,
+    "1989": 153036,
+    "1990": 153036,
+    "1991": 153036,
+    "1992": 153036,
+    "1993": 153036,
+    "1994": 153036,
+    "1995": 153036,
+    "1996": 153036,
+    "1997": 153036,
+    "1998": 153036,
+    "1999": 153036,
+    "2000": 153036,
+    "2001": 153036,
+    "2002": 153036,
+    "2003": 153036,
+    "2004": 153036,
+    "2005": 153036,
+    "2006": 153036,
+    "2007": 153036,
+    "2008": 153036,
+    "2009": 153036,
+    "2010": 153036,
+    "2011": 153036,
+    "2012": 153036,
+    "2013": 153036,
+    "2014": 153036,
+    "2015": 153036,
+    "2016": 153036,
+    "2017": 153036,
+    "2018": 153036,
+    "2019": 153036,
+    "2020": 153036,
+    "2021": 153036,
+    "2022": 153036,
+    "2023": 153036,
+    "2024": 153036,
+    "2025": 153036
+  },
+  "variable": "ann_max_dhw",
+  "version": "3.7.0",
+  "yearEnd": 2025,
+  "yearStart": 1985,
+  "years": [
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}

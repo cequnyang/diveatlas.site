@@ -195,6 +195,15 @@
       if (context && canvas) context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
+    function syncCanvasPosition() {
+      if (!canvas || !map.getPane?.('currentFlowPane') || canvas.parentElement !== map.getPane('currentFlowPane')) return;
+      // A pane child inherits Leaflet's map transform. Offset it back to the map
+      // container origin so its existing container-pixel particle coordinates stay valid.
+      const layerOrigin = map.containerPointToLayerPoint([0, 0]);
+      canvas.style.left = `${layerOrigin.x}px`;
+      canvas.style.top = `${layerOrigin.y}px`;
+    }
+
     function clearOverlayFootprints() {
       if (!context || !canvas) return;
       const containerRect = map.getContainer().getBoundingClientRect();
@@ -219,6 +228,7 @@
       canvas.style.width = `${size.x}px`;
       canvas.style.height = `${size.y}px`;
       context?.setTransform(ratio, 0, 0, ratio, 0, 0);
+      syncCanvasPosition();
       clearTrails();
       rebuildCandidates(true);
     }
@@ -226,7 +236,14 @@
     function ensureCanvas() {
       if (canvas) return;
       const container = map.getContainer();
-      let pane = container.querySelector(':scope > .current-flow-screen-pane');
+      let pane = map.getPane?.('currentFlowPane');
+      if (pane) {
+        pane.classList.add('current-flow-screen-pane');
+        pane.style.pointerEvents = 'none';
+        // Leaflet panes do not have viewport dimensions; clipping to the pane box
+        // would hide this viewport-sized canvas entirely.
+        pane.style.overflow = 'visible';
+      } else pane = container.querySelector(':scope > .current-flow-screen-pane');
       if (!pane) {
         pane = document.createElement('div');
         pane.className = 'current-flow-screen-pane';
@@ -297,6 +314,7 @@
 
     function handleMapViewChange() {
       mapGestureActive = false;
+      syncCanvasPosition();
       clearTrails();
       rebuildCandidates(true);
       scheduleFrame();

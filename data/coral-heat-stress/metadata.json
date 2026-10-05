@@ -1,0 +1,182 @@
+{
+  "actualOfficialBaaValues": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "asset_base": "data/coral-heat-stress/releases/20260928-p2-r134002",
+  "assets": {
+    "mapBytes": 1267856,
+    "mapTileCount": 1024,
+    "queryBytes": 24077526,
+    "queryTileCount": 435
+  },
+  "attribution": "NOAA Coral Reef Watch",
+  "categories": [
+    "No Stress",
+    "Watch",
+    "Warning",
+    "Alert Level 1",
+    "Alert Level 2",
+    "Alert Level 3",
+    "Alert Level 4",
+    "Alert Level 5"
+  ],
+  "classification": {
+    "effectiveSince": "2023-12-15",
+    "max": 7,
+    "min": 0,
+    "scheme": "NOAA CRW revised BAA classification"
+  },
+  "comparison": {
+    "identicalCells": 13473577,
+    "mismatchPercent": 0.0,
+    "mismatchedCells": 0,
+    "mismatchesByTransition": {
+      "0->0": 7967998,
+      "1->1": 2544816,
+      "2->2": 561006,
+      "3->3": 491699,
+      "4->4": 506703,
+      "5->5": 365785,
+      "6->6": 300464,
+      "7->7": 735106
+    },
+    "sampleMismatchLocations": [],
+    "validCells": 13473577
+  },
+  "dataDate": "2026-09-28",
+  "displayFootprint": {
+    "maskCells": 153036,
+    "maskSource": "data/.build/coral_heat_stress/history_source/noaa_crw_thermal_history_annual_history_v3.7.0_1985-2025.nc:mask,reef_mask",
+    "reefCells": 57504,
+    "strategy": "All valid NOAA global BAA ocean cells are rendered; NOAA reef-plus-buffer and reef footprints increase opacity for nearby context and reef cells; missing and land-fill cells remain transparent"
+  },
+  "encoding": {
+    "displayStyle": {
+      "adjacentAlpha": [
+        26,
+        56,
+        90,
+        126,
+        162,
+        194,
+        220,
+        240
+      ],
+      "colors": [
+        "#f8edc6",
+        "#ffeb91",
+        "#f6b134",
+        "#f06f1f",
+        "#e03135",
+        "#b21835",
+        "#c62077",
+        "#692384"
+      ],
+      "contextAlpha": [
+        14,
+        34,
+        60,
+        88,
+        118,
+        148,
+        178,
+        202
+      ],
+      "reefAlpha": [
+        38,
+        78,
+        116,
+        154,
+        190,
+        218,
+        238,
+        250
+      ],
+      "zoomOpacity": {
+        "fadedFrom": 12,
+        "floor": 0.48,
+        "fullThrough": 8,
+        "reducedFrom": 9
+      }
+    },
+    "map_format": "transparent RGBA PNG XYZ tiles, nearest-cell sampling",
+    "map_zoom": 5,
+    "max_native_zoom": 5,
+    "missing": 255,
+    "query_bytes_per_cell": 5,
+    "query_format": "gzip DCHS v1; uint8 category + int16 HotSpot/DHW hundredths",
+    "query_missing": -32768,
+    "query_tile_size_cells": 256
+  },
+  "generatedAt": "2026-09-30T13:40:02.707215+00:00",
+  "grid": {
+    "height": 3600,
+    "latitude_min": -89.9749984741211,
+    "latitude_step": 0.049999237060546875,
+    "longitude_min": -179.97500610351562,
+    "longitude_step": 0.05000114440917969,
+    "row_order": "south-to-north",
+    "width": 7200
+  },
+  "map_tile_template": "tiles/{z}/{x}/{y}.png",
+  "metric": "Bleaching Alert Area 7-day maximum",
+  "preprocessingVersion": "2",
+  "product": "Daily Global 5 km Satellite Coral Bleaching Heat Stress Monitoring Product Suite",
+  "productVersion": "3.1",
+  "provider": "NOAA Coral Reef Watch",
+  "units": "NOAA BAA classification category (unitless)",
+  "sourceMetadata": "Daily Global 5 km Satellite Coral Bleaching Heat Stress Monitoring Product Suite, version 3.1; seven-day maximum BAA classification compared with NOAA's official BAA product.",
+  "query_tile_template": "query/{column}_{row}.bin.gz",
+  "resolution": "0.05 degree (~5 km at the equator)",
+  "schema_version": 1,
+  "source": "NOAA Coral Reef Watch",
+  "sourceFiles": {
+    "baa": "ct5km_baa5-max-7d_v3.1_20260928.nc",
+    "dhw": [
+      "ct5km_dhw_v3.1_20260922.nc",
+      "ct5km_dhw_v3.1_20260923.nc",
+      "ct5km_dhw_v3.1_20260924.nc",
+      "ct5km_dhw_v3.1_20260925.nc",
+      "ct5km_dhw_v3.1_20260926.nc",
+      "ct5km_dhw_v3.1_20260927.nc",
+      "ct5km_dhw_v3.1_20260928.nc"
+    ],
+    "hotspot": [
+      "ct5km_hs_v3.1_20260922.nc",
+      "ct5km_hs_v3.1_20260923.nc",
+      "ct5km_hs_v3.1_20260924.nc",
+      "ct5km_hs_v3.1_20260925.nc",
+      "ct5km_hs_v3.1_20260926.nc",
+      "ct5km_hs_v3.1_20260927.nc",
+      "ct5km_hs_v3.1_20260928.nc"
+    ],
+    "timestamps": [
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28"
+    ]
+  },
+  "sourceUrls": {
+    "baa": "https://www.star.nesdis.noaa.gov/pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/baa5-max-7d/",
+    "dhw": "https://www.star.nesdis.noaa.gov/pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/dhw/",
+    "hotspot": "https://www.star.nesdis.noaa.gov/pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/hs/",
+    "methodology": "https://coralreefwatch.noaa.gov/product/5km/methodology.php"
+  },
+  "variables": {
+    "baa": "bleaching_alert_area (independent 7-day maximum validation)",
+    "dhw": "degree_heating_week",
+    "hotspot": "hotspot"
+  },
+  "version": "20260928-p2-r134002"
+}

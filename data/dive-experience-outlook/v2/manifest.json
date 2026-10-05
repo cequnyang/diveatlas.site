@@ -1,0 +1,861 @@
+{
+  "format": "diveatlas-dive-experience-outlook",
+  "schemaVersion": 1,
+  "scoringVersion": "dive-experience-v5",
+  "thresholdVersion": "experience-labels-provisional-2026-10",
+  "dataVersion": "sha256-cc5522f8123d3736fd92",
+  "generatedAt": "2026-10-03T17:22:59.759Z",
+  "grid": {
+    "step": 0.5,
+    "west": -180,
+    "south": -85,
+    "width": 720,
+    "height": 340,
+    "cellCenterOffset": 0.25,
+    "missingValue": 255
+  },
+  "oceanMask": {
+    "file": "ocean-mask.bin.gz",
+    "samplesPerAxis": 8,
+    "minimumOceanFraction": 0.25,
+    "classification": "Scores are rendered only inside ocean subcells from the bathymetry-derived mask."
+  },
+  "scoring": {
+    "overallThresholds": {
+      "excellent": 85,
+      "good": 70,
+      "fair": 55
+    },
+    "physicalConditionThresholds": {
+      "comfortable": 85,
+      "favorable": 70,
+      "mixed": 55
+    },
+    "confidenceThresholds": {
+      "high": 0.75,
+      "moderate": 0.4,
+      "limited": 0.2
+    },
+    "minimumRequirements": {
+      "minimumActiveDimensions": 3,
+      "minimumCompletenessPercentage": 40,
+      "physicalFallback": {
+        "minimumGroupCompleteness": 0.6153846153846154,
+        "minimumAvailableDimensions": 3,
+        "label": "Dive Conditions Score",
+        "whenEcologyUnavailable": "Keep overall outlook unavailable; expose this physical-only result separately."
+      }
+    },
+    "groups": [
+      {
+        "id": "physicalExperience",
+        "label": "Dive conditions / physical experience",
+        "weight": 65,
+        "configuredDimensionWeight": 65,
+        "relativeInfluencePercentage": 65,
+        "dimensions": [
+          {
+            "id": "waterClarity",
+            "weight": 20,
+            "enabled": true,
+            "status": "active"
+          },
+          {
+            "id": "current",
+            "weight": 15,
+            "enabled": true,
+            "status": "active"
+          },
+          {
+            "id": "waveHeight",
+            "weight": 15,
+            "enabled": true,
+            "status": "active"
+          },
+          {
+            "id": "waterTemperature",
+            "weight": 15,
+            "enabled": true,
+            "status": "active"
+          }
+        ]
+      },
+      {
+        "id": "reefEcologicalExperience",
+        "label": "Reef / ecological experience",
+        "weight": 35,
+        "configuredDimensionWeight": 35,
+        "relativeInfluencePercentage": 35,
+        "dimensions": [
+          {
+            "id": "reefHabitatCoralEvidence",
+            "weight": 15,
+            "enabled": true,
+            "status": "active",
+            "availabilityReason": "The score requires both reef-footprint share and Coral Records relative rank; missing inputs remain unavailable.",
+            "supportingEvidenceSources": [
+              {
+                "id": "reefExtent",
+                "role": "mapped_habitat_footprint"
+              },
+              {
+                "id": "coralRecords",
+                "role": "relative_occurrence_evidence"
+              }
+            ],
+            "supportSemantics": "A descriptive evidence index, not live-coral percentage, reef condition, coral abundance, or dive safety. Reef footprint and occurrence records measure different evidence properties."
+          },
+          {
+            "id": "fishDensity",
+            "weight": 10,
+            "enabled": true,
+            "status": "active"
+          },
+          {
+            "id": "thermalStressHistory",
+            "weight": 10,
+            "enabled": true,
+            "status": "active"
+          }
+        ]
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "waterClarity",
+        "displayName": "Water clarity",
+        "weight": 20,
+        "groupId": "physicalExperience",
+        "enabled": true,
+        "isMonthSensitive": true,
+        "isScoreDimension": true,
+        "unit": "m",
+        "status": "active"
+      },
+      {
+        "id": "current",
+        "displayName": "Current",
+        "weight": 15,
+        "groupId": "physicalExperience",
+        "enabled": true,
+        "isMonthSensitive": true,
+        "isScoreDimension": true,
+        "unit": "m/s",
+        "status": "active"
+      },
+      {
+        "id": "waveHeight",
+        "displayName": "Wave height",
+        "weight": 15,
+        "groupId": "physicalExperience",
+        "enabled": true,
+        "isMonthSensitive": true,
+        "isScoreDimension": true,
+        "unit": "m",
+        "status": "active"
+      },
+      {
+        "id": "waterTemperature",
+        "displayName": "Water temperature",
+        "weight": 15,
+        "groupId": "physicalExperience",
+        "enabled": true,
+        "isMonthSensitive": true,
+        "isScoreDimension": true,
+        "unit": "°C",
+        "status": "active"
+      },
+      {
+        "id": "reefHabitatCoralEvidence",
+        "displayName": "Reef habitat & coral evidence",
+        "weight": 15,
+        "groupId": "reefEcologicalExperience",
+        "enabled": true,
+        "isMonthSensitive": false,
+        "isScoreDimension": true,
+        "unit": "evidence index",
+        "status": "active"
+      },
+      {
+        "id": "fishDensity",
+        "displayName": "Fish abundance outlook",
+        "weight": 10,
+        "groupId": "reefEcologicalExperience",
+        "enabled": true,
+        "isMonthSensitive": false,
+        "isScoreDimension": true,
+        "unit": null,
+        "status": "active"
+      },
+      {
+        "id": "thermalStressHistory",
+        "displayName": "Thermal stress history",
+        "weight": 10,
+        "groupId": "reefEcologicalExperience",
+        "enabled": true,
+        "isMonthSensitive": false,
+        "isScoreDimension": true,
+        "unit": "°C-weeks",
+        "status": "active"
+      },
+      {
+        "id": "coralRecords",
+        "displayName": "Coral records",
+        "weight": 0,
+        "groupId": null,
+        "enabled": true,
+        "isMonthSensitive": false,
+        "isScoreDimension": false,
+        "unit": "records",
+        "status": "support_only"
+      }
+    ],
+    "physicalDimensionScoreBands": {
+      "temperature": [
+        {
+          "maximumInclusive": 18,
+          "category": "Very cool",
+          "score": 0
+        },
+        {
+          "maximumInclusive": 20,
+          "category": "Cool",
+          "score": 20
+        },
+        {
+          "maximumInclusive": 23,
+          "category": "Mild",
+          "score": 40
+        },
+        {
+          "maximumInclusive": 24,
+          "category": "Comfortably mild",
+          "score": 70
+        },
+        {
+          "maximumInclusive": 25,
+          "category": "Comfortably warm",
+          "score": 80
+        },
+        {
+          "maximumInclusive": 30,
+          "category": "Warm",
+          "score": 100
+        },
+        {
+          "maximumInclusive": null,
+          "category": "Very warm",
+          "score": 60
+        }
+      ],
+      "clarity": [
+        {
+          "maximumExclusive": 2,
+          "category": "Very low",
+          "score": 0
+        },
+        {
+          "maximumExclusive": 5,
+          "category": "Low",
+          "score": 20
+        },
+        {
+          "maximumExclusive": 8,
+          "category": "Fair",
+          "score": 40
+        },
+        {
+          "maximumExclusive": 12,
+          "category": "Moderate",
+          "score": 60
+        },
+        {
+          "maximumExclusive": 15,
+          "category": "Good",
+          "score": 80
+        },
+        {
+          "maximumExclusive": 20,
+          "category": "Very good",
+          "score": 90
+        },
+        {
+          "maximumExclusive": null,
+          "category": "High",
+          "score": 100
+        }
+      ],
+      "current": [
+        {
+          "maximumExclusive": 0.1,
+          "category": "Very light",
+          "score": 100
+        },
+        {
+          "maximumExclusive": 0.3,
+          "category": "Light",
+          "score": 80
+        },
+        {
+          "maximumExclusive": 0.45,
+          "category": "Moderate",
+          "score": 60
+        },
+        {
+          "maximumExclusive": 0.6,
+          "category": "Moderately strong",
+          "score": 40
+        },
+        {
+          "maximumExclusive": 0.9,
+          "category": "Strong",
+          "score": 30
+        },
+        {
+          "maximumInclusive": 1.2,
+          "category": "Very strong",
+          "score": 20
+        },
+        {
+          "maximumInclusive": null,
+          "category": "Extreme",
+          "score": 0
+        }
+      ],
+      "waves": [
+        {
+          "maximumExclusive": 0.25,
+          "category": "Calm wave height",
+          "score": 100
+        },
+        {
+          "maximumExclusive": 0.5,
+          "category": "Very low wave height",
+          "score": 80
+        },
+        {
+          "maximumExclusive": 0.75,
+          "category": "Low wave height",
+          "score": 60
+        },
+        {
+          "maximumExclusive": 1.25,
+          "category": "Moderate wave height",
+          "score": 40
+        },
+        {
+          "maximumExclusive": 1.6,
+          "category": "Elevated wave height",
+          "score": 30
+        },
+        {
+          "maximumExclusive": 2,
+          "category": "High wave height",
+          "score": 20
+        },
+        {
+          "maximumInclusive": null,
+          "category": "Very high wave height",
+          "score": 0
+        }
+      ]
+    },
+    "thermalHistoryExperienceHeuristic": [
+      {
+        "maximumExclusive": 2,
+        "score": 100,
+        "category": "Very low annual heat stress"
+      },
+      {
+        "maximumExclusive": 4,
+        "score": 90,
+        "category": "Low annual heat stress"
+      },
+      {
+        "maximumExclusive": 8,
+        "score": 80,
+        "category": "Elevated annual heat stress"
+      },
+      {
+        "maximumExclusive": 12,
+        "score": 60,
+        "category": "High annual heat stress"
+      },
+      {
+        "maximumExclusive": 16,
+        "score": 40,
+        "category": "Very high annual heat stress"
+      },
+      {
+        "maximumExclusive": 20,
+        "score": 20,
+        "category": "Extreme annual heat stress"
+      },
+      {
+        "maximumExclusive": null,
+        "score": 0,
+        "category": "Exceptional annual heat stress"
+      }
+    ],
+    "fishOutlookBands": [
+      {
+        "maximumInclusive": 14,
+        "score": 0,
+        "category": "Very low"
+      },
+      {
+        "maximumInclusive": 28,
+        "score": 17,
+        "category": "Low"
+      },
+      {
+        "maximumInclusive": 42,
+        "score": 33,
+        "category": "Lower typical"
+      },
+      {
+        "maximumInclusive": 57,
+        "score": 50,
+        "category": "Typical"
+      },
+      {
+        "maximumInclusive": 71,
+        "score": 67,
+        "category": "Upper typical"
+      },
+      {
+        "maximumInclusive": 85,
+        "score": 83,
+        "category": "High"
+      },
+      {
+        "maximumInclusive": 100,
+        "score": 100,
+        "category": "Very high"
+      }
+    ],
+    "coralRecords": "No independent dimension weight; its relative rank is one equally weighted input to Reef habitat & coral evidence."
+  },
+  "encoding": {
+    "month": {
+      "filePattern": "month-{month}.bin.gz",
+      "magic": "DAEO",
+      "version": 3,
+      "headerBytes": 16,
+      "bytesPerCell": 10,
+      "fields": [
+        {
+          "id": "overallExperienceScore",
+          "type": "uint8",
+          "missing": 255
+        },
+        {
+          "id": "diveConditionsScore",
+          "type": "uint8",
+          "missing": 255
+        },
+        {
+          "id": "overallConfidenceValue",
+          "type": "uint8",
+          "scale": "0-255 maps to 0-1 evidence quality"
+        },
+        {
+          "id": "physicalConfidenceValue",
+          "type": "uint8",
+          "scale": "0-255 maps to 0-1 evidence quality"
+        },
+        {
+          "id": "ecologicalConfidenceValue",
+          "type": "uint8",
+          "scale": "0-255 maps to 0-1 evidence quality"
+        },
+        {
+          "id": "scoreCompletenessPercentage",
+          "type": "uint8",
+          "range": [
+            0,
+            100
+          ]
+        },
+        {
+          "id": "physicalGroupCompletenessPercentage",
+          "type": "uint8",
+          "range": [
+            0,
+            100
+          ]
+        },
+        {
+          "id": "ecologicalGroupCompletenessPercentage",
+          "type": "uint8",
+          "range": [
+            0,
+            100
+          ]
+        },
+        {
+          "id": "activeDimensionMask",
+          "type": "uint16le",
+          "bitOrder": [
+            "waterClarity",
+            "current",
+            "waveHeight",
+            "waterTemperature",
+            "reefHabitatCoralEvidence",
+            "fishDensity",
+            "thermalStressHistory"
+          ]
+        }
+      ]
+    },
+    "staticSupport": {
+      "file": "static-support.bin.gz",
+      "magic": "DAES",
+      "version": 1,
+      "headerBytes": 16,
+      "bytesPerCell": 20,
+      "fields": [
+        {
+          "id": "fishExperienceScore",
+          "type": "uint8",
+          "missing": 255
+        },
+        {
+          "id": "fishTier",
+          "type": "uint8",
+          "codes": {
+            "0": "unavailable",
+            "1": "A",
+            "2": "B",
+            "3": "C"
+          }
+        },
+        {
+          "id": "fishCategory",
+          "type": "uint8",
+          "codes": {
+            "0": "unavailable",
+            "1": "Very low",
+            "2": "Low",
+            "3": "Lower typical",
+            "4": "Typical",
+            "5": "Upper typical",
+            "6": "High",
+            "7": "Very high"
+          }
+        },
+        {
+          "id": "fishEvidenceLevel",
+          "type": "uint8",
+          "codes": {
+            "0": "none",
+            "1": "high",
+            "2": "moderate",
+            "3": "limited"
+          }
+        },
+        {
+          "id": "fishSupportStatus",
+          "type": "uint8",
+          "codes": {
+            "0": "unsupported",
+            "1": "supported",
+            "2": "limited"
+          }
+        },
+        {
+          "id": "fishNearestObservationDistance",
+          "type": "uint16le",
+          "scale": "0.1 km",
+          "missing": 65535
+        },
+        {
+          "id": "fishSupportingSiteCount",
+          "type": "uint16le",
+          "missing": 65535
+        },
+        {
+          "id": "fishEffectiveSupport",
+          "type": "uint16le",
+          "scale": "0.1 effective sites",
+          "missing": 65535
+        },
+        {
+          "id": "fishEnvironmentalSupportDistance",
+          "type": "uint16le",
+          "scale": "0.1 standardized distance",
+          "missing": 65535
+        },
+        {
+          "id": "fishOceanSampleFraction",
+          "type": "uint8",
+          "scale": "0-255 maps to 0-1 ocean fraction"
+        },
+        {
+          "id": "thermalStressScore",
+          "type": "uint8",
+          "missing": 255
+        },
+        {
+          "id": "thermalHistoryValidYears",
+          "type": "uint8"
+        },
+        {
+          "id": "meanAnnualMaximumDhw",
+          "type": "uint16le",
+          "scale": "0.01 °C-weeks",
+          "missing": 65535
+        },
+        {
+          "id": "thermalSampleDistance",
+          "type": "uint16le",
+          "scale": "0.1 km from output cell center to nearest source grid point",
+          "missing": 65535
+        }
+      ]
+    },
+    "opacity": {
+      "formula": "(0.62 + 0.38 * evidenceQuality) * (0.90 + 0.10 * completeness)",
+      "evidenceQuality": "overallConfidenceValue / 255",
+      "completeness": "scoreCompletenessPercentage / 100"
+    },
+    "palette": "Reversed Viridis: low/less-favorable yellow #fde725 through teal to high/more-favorable dark purple #440154.",
+    "unknownCells": "Transparent. Land remains uncolored through the ocean-subcell mask."
+  },
+  "sources": {
+    "physical": "WOA23 water temperature, Copernicus Marine clarity/current/wave products; existing DiveAtlas samplers and monthly climatologies.",
+    "fish": "AODN/NRMN survey-derived Fish Abundance Outlook. The observation target contains positive recorded survey units; complete zero-count blocks were not recoverable. Public values are relative categories, not fish/100 m².",
+    "thermal": "NOAA Coral Reef Watch CoralTemp annual maximum DHW history. Thermal stress is not a claim of observed bleaching or mortality.",
+    "thermalNativeResolution": "0.05° source grid (about 5.6 km north-south); annual history is sampled at native-grid points and summarized to the 0.5° analysis grid.",
+    "thermalFallbackBehavior": "Nearest native grid point only. Missing source data or fewer than six valid annual values leaves the dimension unavailable.",
+    "fishTierProvenance": {
+      "A": "Survey-supported existing map estimate",
+      "B": "Regional NRMN distance-weighted estimate",
+      "C": "Environmentally screened ecological outlook"
+    },
+    "fishConnectivity": "Water-component identifiers are not retained by the source table; no ocean-connectivity claim is made.",
+    "coralRecords": "Relative-rank evidence contributes only through the Reef habitat & coral evidence dimension; there is no separate Coral Records score weight.",
+    "excludedDimensions": "Observed bleaching and macroalgae cover are not score dimensions; no synthetic values are emitted."
+  },
+  "spatialSupport": {
+    "physical": "The popup retains the existing Dive Conditions sampler provenance, temporal period, native resolution, selected-point sample distance, and any source fallback behavior.",
+    "fish": {
+      "distanceReference": "0.5° output-cell center to nearest NRMN support observation",
+      "tierProvenance": {
+        "A": "Survey-supported existing map estimate",
+        "B": "Regional NRMN distance-weighted estimate",
+        "C": "Environmentally screened ecological outlook"
+      },
+      "distanceKernel": "1 / (1 + (distance / 250 km)^3) affects evidence confidence only; it does not reduce the fish score.",
+      "connectivity": "Water-component identifiers are not retained by the source table; no ocean-connectivity claim is made."
+    },
+    "thermal": {
+      "nativeResolution": "0.05° source grid, about 5.6 km north-south",
+      "analysisResolution": "0.5° score grid",
+      "distanceReference": "0.5° output-cell center to nearest native NOAA source-grid point",
+      "fallbackBehavior": "Nearest native grid point only; missing source data or fewer than six valid annual values leaves the dimension unavailable."
+    }
+  },
+  "months": [
+    {
+      "month": 1,
+      "asset": "month-01.bin.gz",
+      "compressedBytes": 213031,
+      "sha256": "d0a2ce53043e7ed8500dbab3860c275bd2285db28ff06fa37ca2c8751ef423b9",
+      "scoredCells": 166102,
+      "physicalConditionCells": 149968,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 92.8,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 92.8,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 2,
+      "asset": "month-02.bin.gz",
+      "compressedBytes": 212455,
+      "sha256": "2dfc0662a8cc9a739111ed3d637d802425aed78fbd9e5a64c1346abfadc2443a",
+      "scoredCells": 166179,
+      "physicalConditionCells": 150307,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93.2,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 93.4,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 3,
+      "asset": "month-03.bin.gz",
+      "compressedBytes": 217571,
+      "sha256": "3325d4215f9435baf680d5785c57e62c4c5ac9fceabf83284af47ab1b4f00f54",
+      "scoredCells": 166264,
+      "physicalConditionCells": 152310,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93.8,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 94.4,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 4,
+      "asset": "month-04.bin.gz",
+      "compressedBytes": 222061,
+      "sha256": "0933bbcb49376bab71d20bbb10b8adf7a7b9d85c4a3e3a95229a2482e3a34b68",
+      "scoredCells": 166129,
+      "physicalConditionCells": 153557,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93.7,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 94.1,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 5,
+      "asset": "month-05.bin.gz",
+      "compressedBytes": 224989,
+      "sha256": "832d820742321c4395673837760d39ee557c29996c004a03f2a82bcc5e7a2a30",
+      "scoredCells": 166166,
+      "physicalConditionCells": 153047,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 92.5,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 92.2,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 6,
+      "asset": "month-06.bin.gz",
+      "compressedBytes": 221420,
+      "sha256": "f63bf20f5d499612ee9b3b8554c62d23e63f932f4f492d1eaeeaf29409876650",
+      "scoredCells": 166244,
+      "physicalConditionCells": 153999,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 91.7,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 91.2,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 7,
+      "asset": "month-07.bin.gz",
+      "compressedBytes": 217722,
+      "sha256": "67eb18a24c1cd8c8e79d916778d41b78a5e0cefcbb75c615484a6df7346f4185",
+      "scoredCells": 166253,
+      "physicalConditionCells": 152598,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 92.5,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 92.3,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 8,
+      "asset": "month-08.bin.gz",
+      "compressedBytes": 215876,
+      "sha256": "f7450dcee80d6360a5654f02416bb968f633aff611144ce867ccfa5c6c2ddf76",
+      "scoredCells": 166262,
+      "physicalConditionCells": 151766,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93.5,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 93.9,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 9,
+      "asset": "month-09.bin.gz",
+      "compressedBytes": 224594,
+      "sha256": "7fcf341042b0b7a5383918956374e32c1786022058c10d642b65a9794d6d7e9e",
+      "scoredCells": 166347,
+      "physicalConditionCells": 155696,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 94.1,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 94.9,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 10,
+      "asset": "month-10.bin.gz",
+      "compressedBytes": 223983,
+      "sha256": "e2b6f28d94da6e4324843e5aacc3031dcc4bf7183a49f7475d457820c52e5de1",
+      "scoredCells": 166372,
+      "physicalConditionCells": 156386,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93.5,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 94,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 11,
+      "asset": "month-11.bin.gz",
+      "compressedBytes": 217102,
+      "sha256": "b91f171d1e466cca8187ac2d715fc8548248a6f01cc35e6b8b2fda1ea72a7188",
+      "scoredCells": 166160,
+      "physicalConditionCells": 154698,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 93,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 93.1,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    },
+    {
+      "month": 12,
+      "asset": "month-12.bin.gz",
+      "compressedBytes": 213769,
+      "sha256": "30e42d7227f738133280253754cad7b2cd1ce7b1a0e5d4d4e0b92a790afc613a",
+      "scoredCells": 166121,
+      "physicalConditionCells": 151442,
+      "physicalFallbackOnlyCells": 0,
+      "meanCompletenessPercentage": 92.6,
+      "processedOceanCells": 166560,
+      "meanPhysicalGroupCompletenessPercentage": 92.4,
+      "meanEcologicalGroupCompletenessPercentage": 92.4
+    }
+  ],
+  "files": {
+    "month-01.bin.gz": {
+      "sha256": "d0a2ce53043e7ed8500dbab3860c275bd2285db28ff06fa37ca2c8751ef423b9"
+    },
+    "month-02.bin.gz": {
+      "sha256": "2dfc0662a8cc9a739111ed3d637d802425aed78fbd9e5a64c1346abfadc2443a"
+    },
+    "month-03.bin.gz": {
+      "sha256": "3325d4215f9435baf680d5785c57e62c4c5ac9fceabf83284af47ab1b4f00f54"
+    },
+    "month-04.bin.gz": {
+      "sha256": "0933bbcb49376bab71d20bbb10b8adf7a7b9d85c4a3e3a95229a2482e3a34b68"
+    },
+    "month-05.bin.gz": {
+      "sha256": "832d820742321c4395673837760d39ee557c29996c004a03f2a82bcc5e7a2a30"
+    },
+    "month-06.bin.gz": {
+      "sha256": "f63bf20f5d499612ee9b3b8554c62d23e63f932f4f492d1eaeeaf29409876650"
+    },
+    "month-07.bin.gz": {
+      "sha256": "67eb18a24c1cd8c8e79d916778d41b78a5e0cefcbb75c615484a6df7346f4185"
+    },
+    "month-08.bin.gz": {
+      "sha256": "f7450dcee80d6360a5654f02416bb968f633aff611144ce867ccfa5c6c2ddf76"
+    },
+    "month-09.bin.gz": {
+      "sha256": "7fcf341042b0b7a5383918956374e32c1786022058c10d642b65a9794d6d7e9e"
+    },
+    "month-10.bin.gz": {
+      "sha256": "e2b6f28d94da6e4324843e5aacc3031dcc4bf7183a49f7475d457820c52e5de1"
+    },
+    "month-11.bin.gz": {
+      "sha256": "b91f171d1e466cca8187ac2d715fc8548248a6f01cc35e6b8b2fda1ea72a7188"
+    },
+    "month-12.bin.gz": {
+      "sha256": "30e42d7227f738133280253754cad7b2cd1ce7b1a0e5d4d4e0b92a790afc613a"
+    },
+    "static-support.bin.gz": {
+      "sha256": "d26ec85ec3632b26c97b7254112331e50d024a596c739ea644d8fb3c7b4e454f"
+    },
+    "ocean-mask.bin.gz": {
+      "sha256": "025e43a79c4aee93cfacdd9a150ed7de61159c4c345c7a43acdf79a8900c64c4"
+    }
+  }
+}

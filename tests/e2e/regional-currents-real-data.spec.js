@@ -15,6 +15,10 @@ async function openLayersPanel(page) {
 }
 
 async function clickCurrentSample(page, sample) {
+  await page.waitForFunction(() => {
+    const state = window.__DIVEATLAS_TEST__?.getState();
+    return state && !state.pendingInteraction && performance.now() >= state.suppressedUntil;
+  });
   await page.evaluate(({ latitude, longitude }) => {
     const map = window.__DIVEATLAS_TEST__.map;
     const latlng = L.latLng(latitude, longitude);
@@ -59,6 +63,20 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
   await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
   await metadataRequest;
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').first().evaluate(canvas =>
+    getComputedStyle(canvas).visibility)).toBe('visible');
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases =>
+    canvases.some(canvas => {
+      const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+      for (let offset = 3; offset < data.length; offset += 4) if (data[offset]) return true;
+      return false;
+    }))).toBe(true);
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases =>
+    canvases.some(canvas => canvas.dataset.coastMask === 'gebco'))).toBe(true);
+  expect(await page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases =>
+    canvases.every(canvas => canvas.width === 128 && canvas.height === 128))).toBe(true);
+  expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getPane('currentSpeedTintPane').style.zIndex)).toBe('375');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
   await page.locator('#currentsDepth').selectOption('20');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
@@ -79,8 +97,18 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
 
   const screenshotSuffix = testInfo.project.name === 'mobile-touch-chromium' ? 'mobile' : 'desktop';
   await page.screenshot({ path: `test-results/regional-currents-real-${screenshotSuffix}-light.png` });
+  const lightTint = await page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases => canvases.reduce((sum, canvas) => {
+    const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+    for (let offset = 0; offset < data.length; offset += 4) if (data[offset + 3]) sum += data[offset] + data[offset + 1] + data[offset + 2];
+    return sum;
+  }, 0));
   await page.locator('#themeBtn').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases => canvases.reduce((sum, canvas) => {
+    const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+    for (let offset = 0; offset < data.length; offset += 4) if (data[offset + 3]) sum += data[offset] + data[offset + 1] + data[offset + 2];
+    return sum;
+  }, 0))).not.toBe(lightTint);
   await page.screenshot({ path: `test-results/regional-currents-real-${screenshotSuffix}-dark.png` });
 
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setZoom(8));
@@ -110,4 +138,74 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   expect(requests.filter(url => /\.bin\.gz/.test(url))).toHaveLength(requestCountAfterLoadingBothPairs);
   expect(await page.locator('.regional-currents-canvas').count()).toBe(0);
+
+  const panel = page.locator('#bioLegend');
+  if (!(await panel.evaluate(node => node.classList.contains('is-collapsed')))) {
+    await page.locator('#bioLegendTitle').click();
+  }
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-8, 129], 7, { animate: false }));
+  await page.waitForTimeout(400);
+  const zoomBeforeDoubleClick = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom());
+  const mapCenter = await page.locator('#map').boundingBox();
+  await page.mouse.dblclick(mapCenter.x + mapCenter.width / 2, mapCenter.y + mapCenter.height / 2);
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(zoomBeforeDoubleClick + 1);
+  await page.waitForTimeout(400);
+  await expect(page.locator('.regional-currents-popup')).toHaveCount(0);
+
+  await openLayersPanel(page);
+  await page.locator('label.environment-segment:has(#environmentTerrainLabel)').click();
+  await expect(page.locator('.regional-current-speed-tint-tile')).toHaveCount(0);
+  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+});
+
+test('monthly current comparison leaves loading state when one tile request stalls', async ({ page }) => {
+  const metadataPath = path.join(fixtureRoot, 'metadata.json');
+  const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf8'));
+  await page.route('**/data/currents/metadata.json', route => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify(metadata)
+  }));
+  await page.route('**/data/currents/**', async route => {
+    const url = new URL(route.request().url());
+    const relative = decodeURIComponent(url.pathname.slice('/data/currents/'.length));
+    const assetPath = path.resolve(fixtureRoot, relative);
+    if (!assetPath.startsWith(fixtureRoot + path.sep)) {
+      await route.fulfill({ status: 400, body: 'invalid fixture path' });
+      return;
+    }
+    await route.fulfill({ path: assetPath, headers: { 'content-type': 'application/gzip' } });
+  });
+
+  await openMap(page);
+  await openLayersPanel(page);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-8, 130], 8, { animate: false }));
+  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
+  await page.locator('#currentsMonth').selectOption('9');
+  await page.locator('#currentsDepth').selectOption('20');
+  await clickCurrentSample(page, samples.samples[1]);
+
+  const popup = page.locator('.regional-currents-popup');
+  await expect(popup).toBeVisible();
+  await page.evaluate(() => {
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = (resource, options) => {
+      if (/\/jan\/20m\/s4\//.test(String(resource))) {
+        window.__stalledCurrentMonthRequested = true;
+        return new Promise(() => {});
+      }
+      return originalFetch(resource, options);
+    };
+  });
+  await popup.locator('.waves-seasonal-button').click();
+  await expect(popup).toContainText('Loading monthly climatology');
+  await expect.poll(() => page.evaluate(() => window.__stalledCurrentMonthRequested)).toBe(true);
+  await expect(popup.locator('.regional-currents-month-chart')).toBeVisible({ timeout: 14000 });
+  await expect(popup).not.toContainText(/Loading monthly climatology/);
+  await expect(popup.locator('.regional-currents-month-chart').locator('g title')).toHaveCount(12);
 });

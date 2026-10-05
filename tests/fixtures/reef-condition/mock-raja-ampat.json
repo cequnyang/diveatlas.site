@@ -1,0 +1,1821 @@
+{
+  "dataset": "DiveAtlas Reef Condition field-survey UI prototype",
+  "status": "synthetic mock data; not field observations",
+  "records": [
+    {
+      "schemaVersion": 2,
+      "id": "ra-001",
+      "location": {
+        "lat": -0.558,
+        "lon": 130.679,
+        "siteName": "Kri Reef",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2024-08-14",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 48,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 8,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 0,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-002",
+      "location": {
+        "lat": -0.554,
+        "lon": 130.686,
+        "siteName": "Cape Kri",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2023-05-22",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 62,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 5,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 3,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-003",
+      "location": {
+        "lat": -0.493,
+        "lon": 130.674,
+        "siteName": "Sardine Reef",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2021-11-03",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 71,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 4,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 2,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-004",
+      "location": {
+        "lat": -0.478,
+        "lon": 130.702,
+        "siteName": "Blue Magic",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2019-09-17",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 55,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 12,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": null,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-005",
+      "location": {
+        "lat": -0.421,
+        "lon": 130.69,
+        "siteName": "Mioskon",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2016-06-09",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 68,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 7,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 4,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-006",
+      "location": {
+        "lat": -0.61,
+        "lon": 130.69,
+        "siteName": "Chicken Reef",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2025-02-11",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 43,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 17,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 12,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-007",
+      "location": {
+        "lat": -0.862,
+        "lon": 130.905,
+        "siteName": "Arborek Jetty",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2022-07-30",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 36,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 21,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 5,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-008",
+      "location": {
+        "lat": -0.785,
+        "lon": 130.706,
+        "siteName": "Manta Sandy",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2018-04-12",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 29,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 18,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": null,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-009",
+      "location": {
+        "lat": -0.6,
+        "lon": 130.567,
+        "siteName": "Yenbuba Jetty",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2020-01-24",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 52,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 10,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 7,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-010",
+      "location": {
+        "lat": -0.493,
+        "lon": 130.59,
+        "siteName": "Friwen Wall",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2015-10-08",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 64,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 0,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 1,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-011",
+      "location": {
+        "lat": -0.58,
+        "lon": 130.62,
+        "siteName": "Mansuar North",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2024-03-19",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 47,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 14,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 9,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-012",
+      "location": {
+        "lat": -0.688,
+        "lon": 130.622,
+        "siteName": "Mansuar South",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2023-12-01",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 58,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 9,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 4,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-013",
+      "location": {
+        "lat": -0.612,
+        "lon": 130.535,
+        "siteName": "Sawandarek",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2017-08-27",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 41,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 19,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 8,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-014",
+      "location": {
+        "lat": -0.626,
+        "lon": 130.575,
+        "siteName": "Yenbuba South",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2021-02-16",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 73,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 3,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 2,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-015",
+      "location": {
+        "lat": -0.49,
+        "lon": 130.41,
+        "siteName": "Fam Wall",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2014-05-05",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 33,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 27,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": null,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-016",
+      "location": {
+        "lat": -0.447,
+        "lon": 130.39,
+        "siteName": "Penemu Garden",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2025-05-14",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 81,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 2,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 5,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-017",
+      "location": {
+        "lat": -0.44,
+        "lon": 130.37,
+        "siteName": "Melissa's Garden",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2020-08-20",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 76,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 5,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 3,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-018",
+      "location": {
+        "lat": 0.162,
+        "lon": 130.05,
+        "siteName": "Wayag Lagoon",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2019-03-11",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": null,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 13,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 7,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-019",
+      "location": {
+        "lat": 0.198,
+        "lon": 130.092,
+        "siteName": "Wayag Ridge",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2022-10-04",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 67,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 6,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 2,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-020",
+      "location": {
+        "lat": -0.432,
+        "lon": 130.51,
+        "siteName": "Pianemo East",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2016-12-18",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 59,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 11,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 6,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-021",
+      "location": {
+        "lat": -0.472,
+        "lon": 130.438,
+        "siteName": "Fam Island Pass",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2024-11-09",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 44,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 24,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 10,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-022",
+      "location": {
+        "lat": -0.52,
+        "lon": 130.53,
+        "siteName": "Dampier Strait West",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2013-07-02",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 38,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 16,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 9,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-023",
+      "location": {
+        "lat": -0.54,
+        "lon": 130.74,
+        "siteName": "Dampier Strait East",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2018-12-30",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 63,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 8,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 2,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-024",
+      "location": {
+        "lat": -0.36,
+        "lon": 130.79,
+        "siteName": "Waigeo Reef",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2021-06-21",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 49,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 15,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": null,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-025",
+      "location": {
+        "lat": -0.43,
+        "lon": 130.81,
+        "siteName": "Gam Island South",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2017-01-13",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 72,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 4,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 1,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-026",
+      "location": {
+        "lat": -0.87,
+        "lon": 130.72,
+        "siteName": "Batanta North",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2023-04-07",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 31,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 32,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 14,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-027",
+      "location": {
+        "lat": -0.94,
+        "lon": 130.8,
+        "siteName": "Batanta Channel",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2015-02-28",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 56,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 10,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 3,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-028",
+      "location": {
+        "lat": -1.85,
+        "lon": 130.02,
+        "siteName": "Misool North",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2020-09-06",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 85,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 1,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 2,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-029",
+      "location": {
+        "lat": -1.91,
+        "lon": 130.14,
+        "siteName": "Misool East",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": null,
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 46,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 22,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 11,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 2,
+      "id": "ra-030",
+      "location": {
+        "lat": -2.02,
+        "lon": 130.12,
+        "siteName": "Misool Lagoon",
+        "region": "Raja Ampat",
+        "country": "Indonesia",
+        "sourceSiteId": null
+      },
+      "survey": {
+        "date": "2025-07-03",
+        "managementRegime": null
+      },
+      "quality": {
+        "confidenceLevel": null
+      },
+      "provenance": {
+        "provider": "DiveAtlas synthetic fixture",
+        "projectId": null,
+        "sourceRecordId": null,
+        "license": null,
+        "sourceUrl": null,
+        "projectName": null,
+        "suggestedCitation": null
+      },
+      "protocols": [
+        {
+          "method": "synthetic-observation-summary",
+          "sourceMethod": null,
+          "sampleUnitCount": null,
+          "depth": {
+            "meanM": null,
+            "sdM": null
+          },
+          "metrics": {
+            "liveCoralCover": {
+              "valuePct": 69,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "macroalgaeCover": {
+              "valuePct": 7,
+              "sdPct": null,
+              "basis": "benthic-cover"
+            },
+            "bleaching": {
+              "bleachedColoniesPct": 4,
+              "paleColoniesPct": null,
+              "normalColoniesPct": null,
+              "recentlyDeadColoniesPct": null,
+              "colonyCount": null,
+              "basis": "coral-colonies"
+            }
+          },
+          "dataPolicy": null
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "metadata": {
+    "provider": "DiveAtlas synthetic fixture",
+    "datasetType": "synthetic",
+    "generatedAt": "2026-10-01T16:18:25.305230Z",
+    "eventCount": 30,
+    "sourceSiteCount": null,
+    "sourceSiteIdCoverage": "none",
+    "dateRange": {
+      "from": "2013-07-02",
+      "to": "2025-07-03"
+    },
+    "redistributionApproved": null,
+    "redistributionStatus": "not-applicable"
+  }
+}

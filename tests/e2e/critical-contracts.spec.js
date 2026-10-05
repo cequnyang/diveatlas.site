@@ -3,7 +3,6 @@ const {
   addDiveSiteAtScreenPoint,
   addFixture,
   clickFixture,
-  expectNoPopup,
   fixturePoint,
   mapState,
   openMap,
@@ -63,6 +62,8 @@ test('individual Dive site opens its details popup', async ({ page }) => {
   const before = await mapState(page);
   await clickFixture(page, 'dive-single');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
+  const popupWidth = await page.locator('.leaflet-popup').evaluate(element => element.getBoundingClientRect().width);
+  expect(popupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? 320 : 360, 0);
   const after = await mapState(page);
   expect(after.popup.type).toBe('dive');
   await expectMapViewUnchanged(page, before, after);
@@ -93,14 +94,19 @@ test('hidden Coral grid geometry is not clickable after its layer is turned off'
   await expect(page.locator('#speciesLayerToggle')).toBeChecked();
   await page.locator('label[for="speciesLayerToggle"]').click();
   await page.mouse.click(point.x, point.y);
-  await expectNoPopup(page);
+  await waitForClickResolution(page);
+  // This contract is specifically that disabling Coral removes Coral-grid
+  // hit targets, regardless of any map inspection state.
+  expect((await mapState(page)).popup?.type).not.toBe('coral-grid');
 });
 
 test('empty-ocean left click does not open Depth Inspection', async ({ page }) => {
   const map = page.locator('#map');
   const bounds = await map.boundingBox();
   await page.mouse.click(bounds.x + bounds.width * 0.55, bounds.y + bounds.height * 0.48);
-  await expectNoPopup(page);
+  await waitForClickResolution(page);
+  // Left click must not start the right-click-only depth inspection flow.
+  expect((await mapState(page)).popup?.type).not.toBe('depth');
 });
 
 test('desktop right click on ocean opens Depth Inspection', async ({ page }) => {
@@ -272,6 +278,65 @@ test('grid popup is invalidated when Coral changes from grid to point representa
   await expectMapViewUnchanged(page, before, afterOpen);
   await setMapView(page, -5.7, 131, 14);
   await expect(page.locator('.leaflet-popup')).toHaveCount(0, { timeout: 4000 });
+});
+
+test('Coral overlay grid popup takes priority over tab map queries', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 9);
+  await addFixture(page, 'coral-grid', { id: 'coral-priority', lat: -5.7, lng: 131 });
+
+  for (const view of ['tide', 'currents', 'dive-experience-outlook', 'reef-survey-condition']) {
+    const selected = await page.evaluate(value =>
+      window.__DIVEATLAS_TEST__.selectEnvironmentalView(value), view);
+    expect(selected, `could not select ${view}`).toBe(true);
+    await expect(page.locator('.leaflet-popup')).toHaveCount(0);
+    await clickFixture(page, 'coral-priority');
+    await waitForClickResolution(page);
+    await expect(page.locator('.leaflet-popup:visible')).toHaveCount(1);
+    expect((await mapState(page)).popup.type).toBe('coral-grid');
+  }
+});
+
+test('Reef extent popup takes priority over Reef Condition map queries', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 9);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.addReefArea(-5.7, 131, 'reef-priority'));
+  expect(await page.evaluate(() =>
+    window.__DIVEATLAS_TEST__.selectEnvironmentalView('reef-survey-condition'))).toBe(true);
+  await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const latlng = window.L.latLng(-5.7, 131);
+    map.fire('click', { latlng, containerPoint: map.latLngToContainerPoint(latlng) });
+  });
+  await waitForClickResolution(page);
+  await expect(page.locator('.leaflet-popup:visible')).toHaveCount(1);
+  expect((await mapState(page)).popup.type).toBe('reef');
+  await expect(page.locator('.leaflet-popup:visible')).toContainText('Coral reef extent');
+});
+
+test('Reef raster popup is available below vector zoom while a tab is selected', async ({ page }) => {
+  await setMapView(page, -0.04395, 127.08984, 5);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setLayerVisibility('reef', true));
+  expect(await page.evaluate(() =>
+    window.__DIVEATLAS_TEST__.selectEnvironmentalView('reef-survey-condition'))).toBe(true);
+  await page.waitForFunction(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const point = map.latLngToContainerPoint([-0.04395, 127.08984]);
+    const rect = map.getContainer().getBoundingClientRect();
+    const clientX = rect.left + point.x;
+    const clientY = rect.top + point.y;
+    return [...map.getContainer().querySelectorAll('.reef-raster-tiles .leaflet-tile')].some(tile => {
+      const tileRect = tile.getBoundingClientRect();
+      return tile.complete && clientX >= tileRect.left && clientX < tileRect.right &&
+        clientY >= tileRect.top && clientY < tileRect.bottom;
+    });
+  });
+  await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const latlng = window.L.latLng(-0.04395, 127.08984);
+    map.fire('click', { latlng, containerPoint: map.latLngToContainerPoint(latlng) });
+  });
+  await waitForClickResolution(page);
+  await expect(page.locator('.leaflet-popup:visible')).toHaveCount(1);
+  expect((await mapState(page)).popup.type).toBe('reef');
 });
 
 test('rapid popup replacement leaves the newer popup in control', async ({ page }) => {

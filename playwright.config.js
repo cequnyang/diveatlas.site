@@ -22,7 +22,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'desktop-chromium',
-      testMatch: ['critical-contracts.spec.js', 'environmental-view.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
+      testMatch: ['critical-contracts.spec.js', 'environmental-view.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'tide-feature.spec.js', 'tide-visual-qa.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1280, height: 900 }
@@ -30,7 +30,7 @@ module.exports = defineConfig({
     },
     {
       name: 'mobile-touch-chromium',
-      testMatch: ['mobile-interactions.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
+      testMatch: ['mobile-interactions.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-production-perf.spec.js', 'regional-currents-flow.spec.js'],
       use: { ...devices['Pixel 7'], browserName: 'chromium' }
     }
   ],

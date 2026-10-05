@@ -1,0 +1,13 @@
+{
+  "colors": ["#f8edc6", "#ffeb91", "#f6b134", "#f06f1f", "#e03135", "#b21835", "#c62077", "#692384"],
+  "alpha": [0, 46, 61, 72, 87, 102, 115, 128],
+  "currentContextAlpha": [14, 34, 60, 88, 118, 148, 178, 202],
+  "currentAdjacentAlpha": [26, 56, 90, 126, 162, 194, 220, 240],
+  "currentReefAlpha": [38, 78, 116, 154, 190, 218, 238, 250],
+  "historyContextAlpha": [0, 42, 74, 104, 136, 166, 194],
+  "historyReefAlpha": [0, 88, 124, 160, 196, 226, 250],
+  "historyColorCategories": [1, 2, 3, 4, 5, 7],
+  "historyAlphaCategories": [1, 2, 3, 4, 5, 7],
+  "zoomOpacity": { "fullThrough": 8, "reducedFrom": 9, "fadedFrom": 12, "floor": 0.48 },
+  "transitionDurationMs": 150
+}

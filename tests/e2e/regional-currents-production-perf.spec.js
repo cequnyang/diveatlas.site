@@ -31,6 +31,36 @@ async function visibleFlowPixels(page) {
   });
 }
 
+async function measureFlowRenderer(page, windowCount = 2, afterFrameCount = -1) {
+  const samples = [];
+  let previousFrameCount = afterFrameCount;
+  while (samples.length < windowCount) {
+    await page.waitForFunction(previous => {
+      const diagnostics = window.__DIVEATLAS_CURRENT_FLOW__?.diagnostics;
+      return diagnostics?.status === 'animating' && Number.isFinite(diagnostics.fps) &&
+        Number.isFinite(diagnostics.frameCount) && diagnostics.frameCount !== previous;
+    }, previousFrameCount);
+    const sample = await page.evaluate(() => {
+      const { fps, meanFrameMs, p99FrameMs, worstFrameMs, frameCount } = window.__DIVEATLAS_CURRENT_FLOW__.diagnostics;
+      return { fps, meanFrameMs, p99FrameMs, worstFrameMs, frameCount };
+    });
+    samples.push(sample);
+    previousFrameCount = sample.frameCount;
+  }
+  const average = key => samples.reduce((sum, sample) => sum + sample[key], 0) / samples.length;
+  return {
+    samples,
+    fps: average('fps'),
+    meanFrameMs: average('meanFrameMs'),
+    p99FrameMs: Math.max(...samples.map(sample => sample.p99FrameMs)),
+    worstFrameMs: Math.max(...samples.map(sample => sample.worstFrameMs))
+  };
+}
+
+async function canvasMemoryBytes(page, selector) {
+  return page.locator(selector).evaluateAll(canvases => canvases.reduce((sum, canvas) => sum + canvas.width * canvas.height * 4, 0));
+}
+
 test('measures disabled startup and real global current tile loading, redraw, and cache behavior', async ({ page }, testInfo) => {
   const currentRequests = [];
   const tileResponses = [];
@@ -109,6 +139,42 @@ test('measures disabled startup and real global current tile loading, redraw, an
   await page.waitForFunction(() => document.querySelector('#currentsStatus')?.dataset.state === 'ready');
   const globalCompleteMs = Date.now() - globalStart;
   const global = tileResponses.length;
+
+  await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.setSpeedTintEnabled(false));
+  await page.waitForTimeout(200);
+  await page.screenshot({ path: `test-results/regional-currents-flow-only-${testInfo.project.name}.png` });
+  const flowOnlyBaselineFrame = await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.frameCount ?? -1);
+  const flowOnly = await measureFlowRenderer(page, 2, flowOnlyBaselineFrame);
+  const flowOnlyMemory = await page.evaluate(() => performance.memory?.usedJSHeapSize ?? null);
+
+  const tileCountBeforeTint = tileResponses.length;
+  const tintStarted = Date.now();
+  const renderCountBeforeTint = await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.speedTintMetrics?.renderCount || 0);
+  const flowWithTintBaselineFrame = flowOnly.samples.at(-1)?.frameCount ?? -1;
+  await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.setSpeedTintEnabled(true));
+  await page.waitForFunction(() => {
+    const canvases = document.querySelectorAll('.regional-current-speed-tint-tile');
+    return [...canvases].some(canvas => {
+      const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+      for (let offset = 3; offset < pixels.length; offset += 4) if (pixels[offset]) return true;
+      return false;
+    });
+  });
+  const firstTintVisibleMs = Date.now() - tintStarted;
+  await page.screenshot({ path: `test-results/regional-currents-flow-tint-${testInfo.project.name}.png` });
+  const renderCountAtSteadyState = await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.speedTintMetrics?.renderCount || 0);
+  const flowWithTint = await measureFlowRenderer(page, 2, flowWithTintBaselineFrame);
+  const tintMetrics = await page.evaluate(() => ({
+    ...window.__DIVEATLAS_CURRENT_FLOW__.speedTintMetrics,
+    currentBatch: window.__DIVEATLAS_CURRENT_FLOW__.currentsState
+  }));
+  const tintCanvasBytes = await canvasMemoryBytes(page, '.regional-current-speed-tint-tile');
+  const flowWithTintMemory = await page.evaluate(() => performance.memory?.usedJSHeapSize ?? null);
+  const tileCountAfterTint = tileResponses.length;
+  const tintOnlyRenders = tintMetrics.renderCount - renderCountBeforeTint;
+  const tintRenderCountDuringAnimation = tintMetrics.renderCount - renderCountAtSteadyState;
+  expect(tintRenderCountDuringAnimation).toBe(0);
+
   await page.screenshot({ path: `test-results/regional-currents-production-${testInfo.project.name}-global.png` });
 
   const regionalTileStart = tileResponses.length;
@@ -145,6 +211,10 @@ test('measures disabled startup and real global current tile loading, redraw, an
   const allTileUrls = tileResponses.map(response => response.url);
   expect(allTileUrls.some(url => /\/s4\/8_2\.bin\.gz/.test(url))).toBe(true);
   for (const longitude of [-180, 180]) {
+    await page.waitForFunction(() => {
+      const state = window.__DIVEATLAS_TEST__?.getState();
+      return state && !state.pendingInteraction && performance.now() >= state.suppressedUntil;
+    });
     await page.evaluate(lng => {
       const map = window.__DIVEATLAS_TEST__.map;
       const latlng = L.latLng(0, lng);
@@ -173,7 +243,16 @@ test('measures disabled startup and real global current tile loading, redraw, an
     mapUsableMs,
     disabledCurrentRequests: disabledRequests,
     startup,
-    global: { firstFlowMs: globalFirstFlowMs, completeMs: globalCompleteMs, requests: global },
+    global: {
+      firstFlowMs: globalFirstFlowMs, completeMs: globalCompleteMs, requests: global,
+      flowOnly, flowOnlyMemory, flowWithTint, flowWithTintMemory,
+      firstTintVisibleMs, tintRenderCount: tintOnlyRenders,
+      tintRenderCountDuringAnimation,
+      tintRenderCostMs: tintMetrics.renderDurationMs, tintLastRenderMs: tintMetrics.lastRenderMs,
+      tintCanvasBytes,
+      duplicateCurrentTileRequestsForTint: tileCountAfterTint - tileCountBeforeTint,
+      currentBatch: tintMetrics.currentBatch
+    },
     regional: { completeMs: regionalCompleteMs, requests: regionalTileCount },
     highZoom: { completeMs: highZoomCompleteMs, requests: highZoomTileCount },
     adjacentViewportPanRequests,

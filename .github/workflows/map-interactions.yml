@@ -42,6 +42,8 @@ jobs:
         run: npm run check:test-policy
 
       - name: Validate and assemble static site
+        env:
+          DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL }}
         run: npm run build
 
       - name: Install Chromium and system dependencies

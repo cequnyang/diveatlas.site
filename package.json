@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "test:unit": "node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",
+    "test:coral-heat-stress": "python -m unittest tests.unit.test_coral_heat_stress_build tests.unit.test_coral_heat_history_build tests.unit.test_coral_heat_history_summary tests.unit.test_ocean_heat_history_publish -v && node --test tests/unit/coral-heat-stress-view.test.js tests/unit/coral-heat-history-view.test.js",
     "test:e2e": "playwright test",
     "test:interactions": "npm run test:unit && npm run check:test-policy && npm run build && npm run test:e2e",
     "test": "npm run test:unit",
     "check:test-policy": "node tools/check_interaction_test_policy.js",
-    "build": "python tools/prepare_pages.py --output _site"
+    "build": "python tools/prepare_pages.py --output _site && python tools/verify_pages_build.py --output _site"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

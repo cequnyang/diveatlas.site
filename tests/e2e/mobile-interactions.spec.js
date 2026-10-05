@@ -1,14 +1,53 @@
 const { test, expect } = require('@playwright/test');
 const {
   addFixture,
-  expectNoPopup,
   mapState,
   openMap,
   resetActionCount,
-  setMapView
+  setMapView,
+  waitForClickResolution
 } = require('./support');
 
 test.beforeEach(async ({ page }) => openMap(page));
+
+test('Waves remains reachable on mobile, fits the panel, and follows the map theme', async ({ page }) => {
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
+  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = track.scrollWidth; });
+  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="waves"]') }).click();
+  await expect(page.locator('#wavesControls')).toBeVisible();
+  await expect(page.locator('#wavesStatus')).toHaveAttribute('data-state', 'ready');
+  const light = await page.evaluate(() => {
+    const panel = document.querySelector('#bioLegend').getBoundingClientRect();
+    const track = document.querySelector('.environment-segment-group');
+    const tileLayer = document.querySelector('.waves-tiles');
+    return {
+      panelWidth: panel.width,
+      viewportWidth: document.documentElement.clientWidth,
+      scrollWidth: track.scrollWidth,
+      visibleWidth: track.clientWidth,
+      selectedWaves: document.querySelector('input[name="environmentView"][value="waves"]').checked,
+      mapFilter: getComputedStyle(tileLayer).filter,
+      mapOpacity: getComputedStyle(tileLayer).opacity
+    };
+  });
+  expect(light.panelWidth).toBeLessThanOrEqual(light.viewportWidth - 16);
+  expect(light.scrollWidth).toBeGreaterThan(light.visibleWidth);
+  expect(light.selectedWaves).toBe(true);
+
+  await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
+  const dark = await page.locator('.waves-tiles').evaluate(node => ({
+    mapFilter: getComputedStyle(node).filter,
+    mapOpacity: getComputedStyle(node).opacity
+  }));
+  expect(dark.mapFilter).not.toBe(light.mapFilter);
+  expect(dark.mapOpacity).not.toBe(light.mapOpacity);
+
+  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="terrain"]') }).click();
+  await expect(page.locator('.waves-tiles')).toHaveCount(0);
+  await expect(page.locator('#wavesControls')).toBeHidden();
+});
 
 async function mapCenterScreenPoint(page) {
   const bounds = await page.locator('#map').boundingBox();
@@ -54,10 +93,21 @@ test('mobile aggregate Coral tap zooms once and does not open details', async ({
 test('mobile short tap on empty ocean does not open Depth Inspection', async ({ page }) => {
   const map = await page.locator('#map').boundingBox();
   await page.touchscreen.tap(map.x + map.width * 0.58, map.y + map.height * 0.5);
-  await expectNoPopup(page);
+  await waitForClickResolution(page);
+  // The neutral startup map must not turn a short tap into a depth inspection.
+  expect((await mapState(page)).popup?.type).not.toBe('depth');
 });
 
 test('mobile long press on empty ocean opens Depth Inspection', async ({ page }) => {
+  // Use the neutral terrain view so this hold exercises the empty-map
+  // Depth Inspection fallback.
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
+  const terrainSegment = page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="terrain"]') });
+  await terrainSegment.scrollIntoViewIfNeeded();
+  await terrainSegment.click();
+  await expect(page.locator('input[name="environmentView"][value="terrain"]')).toBeChecked();
   await dispatchTouchSequence(page, { duration: 720 });
   await expect(page.locator('.leaflet-popup')).toBeVisible({ timeout: 5000 });
   expect((await mapState(page)).popup.type).toBe('depth');

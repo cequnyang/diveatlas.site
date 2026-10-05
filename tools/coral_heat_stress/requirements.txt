@@ -1,0 +1,3 @@
+netCDF4>=1.6
+numpy>=1.24
+Pillow>=10
