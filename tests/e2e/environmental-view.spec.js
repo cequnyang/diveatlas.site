@@ -726,7 +726,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     if (viewport.name === 'wide') {
       const expandedHeight = bounds.height;
       expect(expandedHeight / 756).toBeGreaterThanOrEqual(0.78);
-      expect(expandedHeight / 756).toBeLessThanOrEqual(0.86);
+      expect(expandedHeight).toBeLessThanOrEqual(Math.min(760, viewport.height - 84));
       await page.screenshot({ path: 'test-results/layers-panel-premium-after.png' });
       await page.screenshot({ path: 'test-results/layers-panel-proportional-after.png' });
       for (const id of ['contoursLayerToggle', 'reefLayerToggle', 'speciesLayerToggle', 'fishLayerToggle', 'diveLayerToggle']) {
@@ -757,7 +757,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       });
       console.log('PROPORTIONAL_VIEWPORT_PANEL_METRICS', JSON.stringify(referenceMetrics));
       expect(bounds.height / 756).toBeGreaterThanOrEqual(0.78);
-      expect(bounds.height / 756).toBeLessThanOrEqual(0.86);
+      expect(bounds.height).toBeLessThanOrEqual(Math.min(760, viewport.height - 84));
       const selectorStyle = await page.locator('.environment-segment-shell').evaluate(node => ({
         radius: getComputedStyle(node).borderRadius,
         activeRadius: getComputedStyle(node.querySelector('.environment-segment input:checked + span')).borderRadius

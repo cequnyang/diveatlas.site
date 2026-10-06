@@ -2705,56 +2705,6 @@
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
-    .share-popover[hidden] { display: none; }
-    .share-popover {
-      position: absolute;
-      z-index: 2400;
-      top: calc(100% + 8px);
-      right: 0;
-      width: 214px;
-      max-width: min(238px, calc(100vw - 24px));
-      box-sizing: border-box;
-      padding: 6px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background: var(--panel-solid);
-      color: var(--text);
-      box-shadow: var(--shadow-soft);
-    }
-    /* The header can sit flush with the viewport edge on narrow screens.
-       Keep the action reachable without changing its anchor or reading order. */
-    .share-popover[data-edge="left"] { right: auto; left: 0; }
-    .share-popover[data-edge="right"] { right: 0; left: auto; }
-    .share-popover[data-placement="above"] { top: auto; bottom: calc(100% + 8px); }
-    .share-popover[data-context="site"] { width: 238px; }
-    .share-copy-button {
-      width: 100%;
-      min-height: 34px;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 10px;
-      border: 0;
-      border-radius: 4px;
-      background: transparent;
-      color: var(--text);
-      font: inherit;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.35;
-      text-align: left;
-      cursor: pointer;
-    }
-    .share-copy-button:hover { background: var(--gh-neutral-muted); }
-    .share-copy-button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-    .share-copy-button:disabled { cursor: default; }
-    .share-copy-button[data-state="success"] { color: var(--success, #1a7f37); }
-    [data-theme="dark"] .share-copy-button[data-state="success"] { color: #3fb950; }
-    .share-copy-button[data-state="error"] { color: var(--danger, #cf222e); }
-    [data-theme="dark"] .share-copy-button[data-state="error"] { color: #ff7b72; }
-    .share-copy-icon { width: 16px; height: 16px; flex: 0 0 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .share-copy-label { min-width: 0; }
     @media (max-width: 480px) {
       .top-menu-share { width: 40px; height: 40px; flex-basis: 40px; }
       .top-menu-share-wrap { flex-basis: 40px; width: 40px; height: 40px; }
@@ -5118,10 +5068,20 @@
     .bio-legend { --layers-ui-scale: .82; }
     @media (min-width: 721px) {
       /* The environmental controls and full overlay list need more than the
-         old 650px ceiling on tall screens; keep the panel within the viewport
-         and let its layer list scroll only when the available height is used. */
-      .bio-legend { max-height: calc(100dvh - 84px); }
-      .bio-legend-layers { max-height: calc(100dvh - 164px); }
+         old 650px ceiling; use available room without letting the panel cover
+         most of a tall map, and keep the heading fixed while contents scroll. */
+      .bio-legend {
+        display: flex;
+        flex-direction: column;
+        max-height: min(760px, calc(100dvh - 84px));
+      }
+      .bio-legend-heading { flex: 0 0 auto; }
+      .bio-legend-layers {
+        flex: 0 1 auto;
+        min-height: 0;
+        max-height: min(680px, calc(100dvh - 164px));
+        overflow-y: auto;
+      }
     }
     @media (max-width: 720px) {
       .bio-legend { --layers-ui-scale: 1; }
@@ -5345,15 +5305,9 @@
 
     <div class="top-menu-controls" aria-label="Page settings">
       <div class="top-menu-share-wrap">
-        <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map" title="Share map" aria-expanded="false" aria-controls="sharePopover">
+        <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map info" title="Share map info">
           <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="12.5" cy="3.5" r="2"/><circle cx="3.5" cy="8" r="2"/><circle cx="12.5" cy="12.5" r="2"/><path d="m5.3 7.1 5.4-2.7M5.3 8.9l5.4 2.7"/></svg>
         </button>
-        <div class="share-popover" id="sharePopover" role="group" aria-label="Share" hidden>
-          <button class="share-copy-button" id="shareCopyButton" type="button" data-state="idle">
-            <svg class="share-copy-icon" id="shareCopyIcon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6.2 9.8 9.8 6.2M5.3 6.7l-1.1 1.1a2.55 2.55 0 0 0 3.6 3.6l1.1-1.1M10.7 9.3l1.1-1.1a2.55 2.55 0 0 0-3.6-3.6L7.1 5.7"/></svg>
-            <span class="share-copy-label" id="shareCopyLabel" aria-live="polite" aria-atomic="true">Share map info</span>
-          </button>
-        </div>
       </div>
       <button class="top-menu-theme" id="themeBtn" type="button" title="Toggle map style" aria-label="Toggle map style" aria-pressed="false">
         <span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.7"/><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M12.6 3.4l-.9.9M4.3 11.7l-.9.9"/></svg></span>
@@ -6137,6 +6091,17 @@ ZSD·2016–2025</span></span>
     waves: 'wavesTitle', 'coral-heat-stress': 'coralHeatStressTitle',
     'reef-survey-condition': 'reefFieldMetricTitle', depthInspection: 'bathymetryLegend'
   };
+  const SHARE_SELECTION_KEYS_BY_CONTEXT = {
+    temperature: ['month', 'temperatureDepth'],
+    'water-clarity': ['month'],
+    currents: ['month', 'currentDepth'],
+    tide: ['tideTime'],
+    waves: ['month'],
+    'dive-experience-outlook': ['experienceMonth'],
+    'dive-conditions': ['experienceMonth'],
+    'reef-survey-condition': ['reefMetric'],
+    'coral-heat-stress': ['heatMode', 'heatYear']
+  };
   // Data-backed feature layers load asynchronously after the shared map view is applied.
   const SHARED_POPUP_RESTORE_RETRY_MS = 500;
   const SHARED_POPUP_RESTORE_MAX_ATTEMPTS = 40;
@@ -6235,6 +6200,31 @@ ZSD·2016–2025</span></span>
 
   const sharedMapState = parseMapState(window.location.href);
   let sharedUrlUserNavigated = false;
+  let sharedUrlMapStateReady = false;
+  let suppressPanelPreferenceWrites = false;
+
+  function withSuppressedPanelPreferenceWrites(action) {
+    const wasSuppressed = suppressPanelPreferenceWrites;
+    suppressPanelPreferenceWrites = true;
+    try {
+      return action();
+    } finally {
+      suppressPanelPreferenceWrites = wasSuppressed;
+    }
+  }
+
+  function cleanRestoredSharedUrl() {
+    if (!sharedUrlMapStateReady || !sharedMapState.hasValidState || sharedMapState.urlCleaned) return;
+    if (sharedMapState.popup && !sharedMapState.sharedPopupRestored) return;
+    if (sharedMapState.requestedSiteId && !sharedMapState.sharedSitePopupRestored) return;
+
+    // Shared query parameters are an initial-state transport, not ongoing app state.
+    // Replace the current history entry so Back does not reopen the same shared view.
+    const cleanUrl = `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState(window.history.state, document.title, cleanUrl);
+    sharedMapState.urlCleaned = true;
+  }
+
   const IP_GEOLOCATION_ZOOM = 7;
   const IP_GEOLOCATION_TIMEOUT_MS = 2200;
   const IP_GEOLOCATION_PROVIDERS = [
@@ -7321,10 +7311,6 @@ ZSD·2016–2025</span></span>
     sidebar: document.getElementById('sidebar'),
     topMenuBar: document.getElementById('topMenuBar'),
     shareMapButton: document.getElementById('shareMapButton'),
-    sharePopover: document.getElementById('sharePopover'),
-    shareCopyButton: document.getElementById('shareCopyButton'),
-    shareCopyLabel: document.getElementById('shareCopyLabel'),
-    shareCopyIcon: document.getElementById('shareCopyIcon'),
     themeBtn: document.getElementById('themeBtn'),
     measurementUnitSwitch: document.getElementById('measurementUnitSwitch'),
     brandIcon: document.getElementById('brandIcon'),
@@ -7636,7 +7622,7 @@ ZSD·2016–2025</span></span>
     } catch (_) { return new Date().getMonth() + 1; }
   }
   function saveMonthSelection(key, month) {
-    if (!Number.isInteger(month) || month < 1 || month > 12) return;
+    if (suppressPanelPreferenceWrites || !Number.isInteger(month) || month < 1 || month > 12) return;
     try { localStorage.setItem(key, String(month)); } catch (_) {}
   }
   const DIVE_EXPERIENCE_OUTLOOK_ENABLED = window.DIVEATLAS_FEATURE_FLAGS?.diveExperienceOutlook !== false;
@@ -10635,7 +10621,7 @@ ZSD·2016–2025</span></span>
 
   function renderStaticTexts() {
     document.title = t('pageTitle');
-    renderSharePopoverTexts();
+    updateShareButtonDescription();
     els.brandTitle.textContent = t('brandTitle');
     els.brandSubtitle.textContent = t('brandSubtitle');
     els.themeBtn.title = t('themeTitle');
@@ -15144,26 +15130,35 @@ ZSD·2016–2025</span></span>
     }
   });
 
-  function selectEnvironmentalView(view) {
-    if (view === 'dive-conditions') view = DIVE_EXPERIENCE_OUTLOOK_ENABLED ? 'dive-experience-outlook' : 'default';
-    if (view === 'dive-experience-outlook') {
-      if (view === 'dive-experience-outlook' && !DIVE_EXPERIENCE_OUTLOOK_ENABLED) return false;
-      const current = els.environmentViewRadios.find(input => input.checked)?.value || 'default';
-      if (current !== 'default' && current !== 'currents') environmentalViewController.select('default');
-    }
-    if (view === 'dive-experience-outlook') {
-      if (!diveExperienceOutlookViewRegistered) {
-        environmentalViewController.register('dive-experience-outlook', { activate:activateDiveExperienceOutlook, deactivate:deactivateDiveExperienceOutlook });
-        diveExperienceOutlookViewRegistered = true;
+  function selectEnvironmentalView(view, { persist = true } = {}) {
+    const wasSuppressed = suppressPanelPreferenceWrites;
+    const shouldPersist = persist && !wasSuppressed;
+    if (!shouldPersist) suppressPanelPreferenceWrites = true;
+    try {
+      if (view === 'dive-conditions') view = DIVE_EXPERIENCE_OUTLOOK_ENABLED ? 'dive-experience-outlook' : 'default';
+      if (view === 'dive-experience-outlook') {
+        if (!DIVE_EXPERIENCE_OUTLOOK_ENABLED) return false;
+        const current = els.environmentViewRadios.find(input => input.checked)?.value || 'default';
+        if (current !== 'default' && current !== 'currents') environmentalViewController.select('default');
       }
+      if (view === 'dive-experience-outlook') {
+        if (!diveExperienceOutlookViewRegistered) {
+          environmentalViewController.register('dive-experience-outlook', { activate:activateDiveExperienceOutlook, deactivate:deactivateDiveExperienceOutlook });
+          diveExperienceOutlookViewRegistered = true;
+        }
+      }
+      if (!environmentalViewController.select(view)) return false;
+      els.environmentViewSelect.value = view;
+      els.environmentViewRadios.forEach(input => { input.checked = input.value === view; });
+      if (shouldPersist) {
+        try { localStorage.setItem(ENVIRONMENT_VIEW_STORAGE_KEY, view); } catch (_) {}
+        persistLayerVisibility();
+      }
+      syncLayerToggleUI();
+      return true;
+    } finally {
+      suppressPanelPreferenceWrites = wasSuppressed;
     }
-    if (!environmentalViewController.select(view)) return false;
-    els.environmentViewSelect.value = view;
-    els.environmentViewRadios.forEach(input => { input.checked = input.value === view; });
-    try { localStorage.setItem(ENVIRONMENT_VIEW_STORAGE_KEY, view); } catch (_) {}
-    persistLayerVisibility();
-    syncLayerToggleUI();
-    return true;
   }
 
   function syncAnalyticalSurfaceLayers() {
@@ -15606,6 +15601,7 @@ ZSD·2016–2025</span></span>
             sharedMapState.hasValidState = Boolean(
               sharedMapState.center || Number.isFinite(sharedMapState.zoom) || sharedMapState.layers
             );
+            cleanRestoredSharedUrl();
           }
         }
 
@@ -16448,6 +16444,7 @@ ZSD·2016–2025</span></span>
   }
 
   function persistLayerVisibility() {
+    if (suppressPanelPreferenceWrites) return;
     try {
       localStorage.setItem(
         LAYER_VISIBILITY_STORAGE_KEY,
@@ -16461,7 +16458,7 @@ ZSD·2016–2025</span></span>
 
     layerVisibility[key] = Boolean(visible);
     if (!layerVisibility[key]) closeManagedPopupForLayer(key);
-    if (persist) persistLayerVisibility();
+    if (persist && !suppressPanelPreferenceWrites) persistLayerVisibility();
     if (sync) {
       syncLayerToggleUI();
       syncMapDataLoadingUi();
@@ -16609,45 +16606,47 @@ ZSD·2016–2025</span></span>
     const selections = sharedMapState.selections;
     if (!selections) return;
 
-    if (selections.month) {
-      selectedEnvironmentalMonth = selections.month;
-      [els.temperatureMonth, els.waterClarityMonth, els.currentsMonth, els.wavesMonth]
-        .forEach(select => { select.value = String(selections.month); });
-    }
-    if (Number.isFinite(selections.temperatureDepth)) {
-      const value = String(selections.temperatureDepth);
-      if (!Array.from(els.temperatureDepth.options).some(option => option.value === value)) {
-        // Temperature metadata replaces this temporary option with the supported source depths.
-        els.temperatureDepth.add(new Option(localizedTemperatureDepth(value, { spacing: value !== '0' }), value));
+    withSuppressedPanelPreferenceWrites(() => {
+      if (selections.month) {
+        selectedEnvironmentalMonth = selections.month;
+        [els.temperatureMonth, els.waterClarityMonth, els.currentsMonth, els.wavesMonth]
+          .forEach(select => { select.value = String(selections.month); });
       }
-      els.temperatureDepth.value = value;
-    }
-    if (selections.currentDepth) {
-      regionalCurrentsDepth = selections.currentDepth;
-      els.currentsDepth.value = selections.currentDepth;
-    }
-    if (selections.tideTime) {
-      els.tideTime.value = selections.tideTime;
-      els.tideTime.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    if (selections.experienceMonth) {
-      diveConditionsMonth = selections.experienceMonth;
-      diveExperienceMonthSelect.value = String(selections.experienceMonth);
-      document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(selections.experienceMonth);
-    }
-    if (selections.reefMetric) {
-      const metricSelect = document.getElementById('reefSurveyMetric');
-      if (metricSelect && Array.from(metricSelect.options).some(option => option.value === selections.reefMetric)) {
-        metricSelect.value = selections.reefMetric;
+      if (Number.isFinite(selections.temperatureDepth)) {
+        const value = String(selections.temperatureDepth);
+        if (!Array.from(els.temperatureDepth.options).some(option => option.value === value)) {
+          // Temperature metadata replaces this temporary option with the supported source depths.
+          els.temperatureDepth.add(new Option(localizedTemperatureDepth(value, { spacing: value !== '0' }), value));
+        }
+        els.temperatureDepth.value = value;
       }
-    }
-    if (selections.heatMode) coralHeatStressMode = selections.heatMode;
-    if (selections.heatMode) updateCoralHeatStressModeUI();
-    if (selections.heatYear) {
-      coralHeatStressHistorySelectedYear = selections.heatYear;
-      updateCoralHeatStressHistoryYearUI();
-    }
-    updateTemperatureSliceLabel();
+      if (selections.currentDepth) {
+        regionalCurrentsDepth = selections.currentDepth;
+        els.currentsDepth.value = selections.currentDepth;
+      }
+      if (selections.tideTime) {
+        els.tideTime.value = selections.tideTime;
+        els.tideTime.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (selections.experienceMonth) {
+        diveConditionsMonth = selections.experienceMonth;
+        diveExperienceMonthSelect.value = String(selections.experienceMonth);
+        document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(selections.experienceMonth);
+      }
+      if (selections.reefMetric) {
+        const metricSelect = document.getElementById('reefSurveyMetric');
+        if (metricSelect && Array.from(metricSelect.options).some(option => option.value === selections.reefMetric)) {
+          metricSelect.value = selections.reefMetric;
+        }
+      }
+      if (selections.heatMode) coralHeatStressMode = selections.heatMode;
+      if (selections.heatMode) updateCoralHeatStressModeUI();
+      if (selections.heatYear) {
+        coralHeatStressHistorySelectedYear = selections.heatYear;
+        updateCoralHeatStressHistoryYearUI();
+      }
+      updateTemperatureSliceLabel();
+    });
   }
 
   function captureMapState() {
@@ -16703,14 +16702,20 @@ ZSD·2016–2025</span></span>
       params.set('plng', Number(state.popup.lng).toFixed(6));
     }
     const selections = state?.selections || {};
-    if (Number.isInteger(selections.month) && selections.month >= 1 && selections.month <= 12) params.set('month', selections.month);
-    if (Number.isFinite(Number(selections.temperatureDepth))) params.set('temperatureDepth', Number(selections.temperatureDepth));
-    if (['0', '10', '20', '30'].includes(String(selections.currentDepth))) params.set('currentDepth', String(selections.currentDepth));
-    if (['0', '3', '6', '9', '12', '18', '24'].includes(String(selections.tideTime))) params.set('tideTime', String(selections.tideTime));
-    if (Number.isInteger(selections.experienceMonth) && selections.experienceMonth >= 1 && selections.experienceMonth <= 12) params.set('experienceMonth', selections.experienceMonth);
-    if (['oceanHeatHistory', 'thermalStressHistory'].includes(selections.reefMetric)) params.set('reefMetric', selections.reefMetric);
-    if (['current', 'history'].includes(selections.heatMode)) params.set('heatMode', selections.heatMode);
-    if (Number.isInteger(selections.heatYear) && selections.heatYear >= 1980 && selections.heatYear <= 2100) params.set('heatYear', selections.heatYear);
+    // A shared link needs settings for the active environmental view and popup,
+    // not stale selections retained by unrelated panels.
+    const relevantSelectionKeys = new Set([
+      ...(SHARE_SELECTION_KEYS_BY_CONTEXT[state?.view] || []),
+      ...(SHARE_SELECTION_KEYS_BY_CONTEXT[state?.popup?.layer] || [])
+    ]);
+    if (relevantSelectionKeys.has('month') && Number.isInteger(selections.month) && selections.month >= 1 && selections.month <= 12) params.set('month', selections.month);
+    if (relevantSelectionKeys.has('temperatureDepth') && Number.isFinite(Number(selections.temperatureDepth))) params.set('temperatureDepth', Number(selections.temperatureDepth));
+    if (relevantSelectionKeys.has('currentDepth') && ['0', '10', '20', '30'].includes(String(selections.currentDepth))) params.set('currentDepth', String(selections.currentDepth));
+    if (relevantSelectionKeys.has('tideTime') && ['0', '3', '6', '9', '12', '18', '24'].includes(String(selections.tideTime))) params.set('tideTime', String(selections.tideTime));
+    if (relevantSelectionKeys.has('experienceMonth') && Number.isInteger(selections.experienceMonth) && selections.experienceMonth >= 1 && selections.experienceMonth <= 12) params.set('experienceMonth', selections.experienceMonth);
+    if (relevantSelectionKeys.has('reefMetric') && ['oceanHeatHistory', 'thermalStressHistory'].includes(selections.reefMetric)) params.set('reefMetric', selections.reefMetric);
+    if (relevantSelectionKeys.has('heatMode') && ['current', 'history'].includes(selections.heatMode)) params.set('heatMode', selections.heatMode);
+    if (relevantSelectionKeys.has('heatYear') && Number.isInteger(selections.heatYear) && selections.heatYear >= 1980 && selections.heatYear <= 2100) params.set('heatYear', selections.heatYear);
     return params.toString().replace(/%2C/gi, ',');
   }
 
@@ -16721,18 +16726,13 @@ ZSD·2016–2025</span></span>
     return url.href;
   }
 
-  function renderSharePopoverTexts() {
+  function renderShareButtonDescription() {
     if (!els.shareMapButton) return;
-    els.shareMapButton.title = t('shareMap');
-    els.shareMapButton.setAttribute('aria-label', t('shareMap'));
-    els.sharePopover.setAttribute('aria-label', t('shareMap'));
-
     const hasSelectedSite = Boolean(
       shareSnapshot?.selectedSiteId &&
       SHARE_SITE_BY_ID.has(String(shareSnapshot.selectedSiteId).toLowerCase())
     );
     const hasPopup = Boolean(shareSnapshot?.popup && SHARE_POPUP_LAYER_IDS.includes(shareSnapshot.popup.layer));
-    els.sharePopover.dataset.context = hasSelectedSite && shareUiState === 'idle' ? 'site' : 'map';
     const copyLabelKey = hasSelectedSite
       ? 'shareCopySite'
       : hasPopup
@@ -16748,60 +16748,15 @@ ZSD·2016–2025</span></span>
       ? t(labelKey).replace('{name}', t(popupDescriptionKey))
       : t(labelKey);
 
-    els.shareCopyLabel.textContent = copyLabel;
-    els.shareCopyButton.dataset.state = shareUiState;
-    els.shareCopyButton.disabled = shareUiState === 'success';
-    els.shareCopyButton.setAttribute('aria-label', copyLabel);
-    const iconPath = shareUiState === 'success'
-      ? '<path d="m3.2 8.2 3.1 3.1 6.5-6.6"/>'
-      : shareUiState === 'error'
-        ? '<path d="m4 4 8 8m0-8-8 8"/>'
-        : '<path d="M6.2 9.8 9.8 6.2M5.3 6.7l-1.1 1.1a2.55 2.55 0 0 0 3.6 3.6l1.1-1.1M10.7 9.3l1.1-1.1a2.55 2.55 0 0 0-3.6-3.6L7.1 5.7"/>';
-    els.shareCopyIcon.innerHTML = iconPath;
-  }
-
-  function closeSharePopover({ restoreFocus = false } = {}) {
-    if (els.sharePopover.hidden) return;
-    window.clearTimeout(shareFeedbackTimer);
-    shareFeedbackTimer = 0;
-    els.sharePopover.hidden = true;
-    els.shareMapButton.setAttribute('aria-expanded', 'false');
-    shareSnapshot = null;
-    shareUrl = '';
-    shareUiState = 'idle';
-    renderSharePopoverTexts();
-    if (restoreFocus) els.shareMapButton.focus();
-  }
-
-  function openSharePopover() {
-    shareSnapshot = captureMapState();
-    shareUrl = buildShareUrl(shareSnapshot);
-    shareUiState = 'idle';
-    window.clearTimeout(shareFeedbackTimer);
-    renderSharePopoverTexts();
-    els.sharePopover.hidden = false;
-    els.sharePopover.removeAttribute('data-edge');
-    const anchorRect = els.shareMapButton.getBoundingClientRect();
-    const popoverWidth = els.sharePopover.getBoundingClientRect().width;
-    const popoverHeight = els.sharePopover.getBoundingClientRect().height;
-    const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-    const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
-    const edgePadding = 12;
-    els.sharePopover.removeAttribute('data-placement');
-    if (anchorRect.right - popoverWidth < edgePadding) {
-      els.sharePopover.dataset.edge = 'left';
-    } else if (anchorRect.left + popoverWidth > viewportWidth - edgePadding) {
-      els.sharePopover.dataset.edge = 'right';
-    }
-    if (anchorRect.bottom + popoverHeight + edgePadding > viewportHeight && anchorRect.top > popoverHeight + edgePadding) {
-      els.sharePopover.dataset.placement = 'above';
-    }
-    els.shareMapButton.setAttribute('aria-expanded', 'true');
-    els.shareCopyButton.focus({ preventScroll: true });
+    els.shareMapButton.title = copyLabel;
+    els.shareMapButton.setAttribute('aria-label', copyLabel);
   }
 
   async function copyShareLink() {
-    if (!shareUrl || els.sharePopover.hidden) return;
+    shareSnapshot = captureMapState();
+    shareUrl = buildShareUrl(shareSnapshot);
+    shareUiState = 'idle';
+    renderShareButtonDescription();
     window.clearTimeout(shareFeedbackTimer);
 
     const urlToCopy = shareUrl;
@@ -16825,39 +16780,25 @@ ZSD·2016–2025</span></span>
       fallbackInput.remove();
     }
 
-    if (els.sharePopover.hidden || shareUrl !== urlToCopy) return;
     shareUiState = copied ? 'success' : 'error';
-    renderSharePopoverTexts();
-    if (copied) {
-      shareFeedbackTimer = window.setTimeout(() => closeSharePopover({ restoreFocus: true }), 900);
-    } else {
-      els.shareCopyButton.focus({ preventScroll: true });
-      shareFeedbackTimer = window.setTimeout(() => {
-        if (els.sharePopover.hidden || shareUiState !== 'error') return;
-        shareUiState = 'idle';
-        renderSharePopoverTexts();
-      }, 2100);
-    }
+    renderShareButtonDescription();
+    showToast(t(copied ? 'shareCopied' : 'shareCopyFailed'));
+    shareFeedbackTimer = window.setTimeout(() => {
+      shareUiState = 'idle';
+      renderShareButtonDescription();
+    }, 1800);
   }
 
-  els.shareMapButton.addEventListener('click', () => {
-    if (els.sharePopover.hidden) openSharePopover();
-    else closeSharePopover();
-  });
-  els.shareCopyButton.addEventListener('click', copyShareLink);
-  document.addEventListener('pointerdown', event => {
-    const target = event.target;
-    if (!els.sharePopover.hidden && !(target instanceof Element && target.closest('.top-menu-share-wrap'))) {
-      closeSharePopover();
-    }
-  }, true);
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !els.sharePopover.hidden) {
-      event.preventDefault();
-      event.stopPropagation();
-      closeSharePopover({ restoreFocus: true });
-    }
-  }, true);
+  function updateShareButtonDescription() {
+    shareSnapshot = captureMapState();
+    shareUiState = 'idle';
+    renderShareButtonDescription();
+  }
+
+  els.shareMapButton.addEventListener('pointerenter', updateShareButtonDescription);
+  els.shareMapButton.addEventListener('focus', updateShareButtonDescription);
+  updateShareButtonDescription();
+  els.shareMapButton.addEventListener('click', copyShareLink);
 
   function persistPanelState() {
     try {
@@ -17435,6 +17376,7 @@ ZSD·2016–2025</span></span>
     if (popup) {
       openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
       sharedMapState.sharedSitePopupRestored = true;
+      cleanRestoredSharedUrl();
     }
   }
 
@@ -22293,6 +22235,22 @@ ZSD·2016–2025</span></span>
     activeClickPopup = popup;
     activeClickPopupOwner =
       popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
+    const sharedPopup = sharedMapState.popup;
+    const popupLatLng = popup.getLatLng?.();
+    if (
+      sharedPopup && popup._diveAtlasLayerKey === sharedPopup.layer && popupLatLng &&
+      Math.abs(popupLatLng.lat - sharedPopup.lat) <= 0.00002 &&
+      Math.abs(popupLatLng.lng - sharedPopup.lng) <= 0.00002
+    ) {
+      sharedMapState.sharedPopupRestored = true;
+    }
+    if (
+      sharedMapState.requestedSiteId &&
+      String(popup._diveAtlasSiteId || '').trim().toLowerCase() === sharedMapState.requestedSiteId
+    ) {
+      sharedMapState.sharedSitePopupRestored = true;
+    }
+    cleanRestoredSharedUrl();
     if (popup._diveAtlasSafeArea) {
       // Apply vertical flip and body shifts before the browser can paint the
       // popup at its default position. Popup placement never moves the map.
@@ -22906,7 +22864,9 @@ ZSD·2016–2025</span></span>
   function persistAllUiState() {
     try {
       persistMapView();
-      persistLayerVisibility();
+      // Shared-link visibility is temporary until the visitor changes a layer;
+      // persist explicit layer changes at their control handlers instead.
+      if (!sharedMapState.hasValidState) persistLayerVisibility();
       localStorage.setItem(
         'global-coral-map-theme',
         appEl.dataset.theme === 'dark' ? 'dark' : 'light'
@@ -24253,10 +24213,10 @@ ZSD·2016–2025</span></span>
   const initialEnvironmentalView = sharedMapState.view || savedEnvironmentalView;
   if (initialEnvironmentalView) {
     layerVisibility.currents = initialEnvironmentalView === 'currents';
-    selectEnvironmentalView(initialEnvironmentalView);
+    selectEnvironmentalView(initialEnvironmentalView, { persist: !sharedMapState.hasValidState });
   } else {
     // Keep data-backed map layers lazy on first load; users can select Dive Experience when they need it.
-    selectEnvironmentalView('default');
+    selectEnvironmentalView('default', { persist: !sharedMapState.hasValidState });
   }
 
   if (layerVisibility.reef && !map.hasLayer(coralTileLayer)) {
@@ -24556,6 +24516,15 @@ ZSD·2016–2025</span></span>
       window.setTimeout(() => restoreSharedPopup(), 1200);
     }
   }
+  }
+
+  if (sharedMapState.hasValidState) {
+    map.whenReady(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        sharedUrlMapStateReady = true;
+        cleanRestoredSharedUrl();
+      }));
+    });
   }
 })();
 </script>
