@@ -5117,7 +5117,11 @@
     /* Scale visible desktop geometry from one token; keep touch targets and 1px strokes crisp. */
     .bio-legend { --layers-ui-scale: .82; }
     @media (min-width: 721px) {
-      .bio-legend { max-height: min(650px, calc(100dvh - 144px)); }
+      /* The environmental controls and full overlay list need more than the
+         old 650px ceiling on tall screens; keep the panel within the viewport
+         and let its layer list scroll only when the available height is used. */
+      .bio-legend { max-height: calc(100dvh - 84px); }
+      .bio-legend-layers { max-height: calc(100dvh - 164px); }
     }
     @media (max-width: 720px) {
       .bio-legend { --layers-ui-scale: 1; }
