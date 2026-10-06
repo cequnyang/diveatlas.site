@@ -11815,7 +11815,10 @@ ZSD·2016–2025</span></span>
       : diveExperienceMonthComparison.open ? t('wavesSeasonalClose') : t('diveExperienceCompareMonths');
     button.setAttribute('aria-expanded', String(diveExperienceMonthComparison.open));
     panel.hidden = !diveExperienceMonthComparison.open;
-    if (!diveExperienceMonthComparison.open) return;
+    if (!diveExperienceMonthComparison.open) {
+      if (diveConditionsPopup?.isOpen()) correctMapPopupSafeArea(diveConditionsPopup, true);
+      return;
+    }
     status.hidden = !diveExperienceMonthComparison.loading && !diveExperienceMonthComparison.error;
     status.textContent = diveExperienceMonthComparison.error
         ? localizedDiveExperienceText('diveExperienceComparisonFailed')
@@ -11832,6 +11835,9 @@ ZSD·2016–2025</span></span>
         ? captionCopy.replace('{month}', localizedTemperatureMonth(diveConditionsMonth))
         : `${captionCopy} · ${localizedTemperatureMonth(diveConditionsMonth)}`
       : '';
+    // The chart changes popup height without calling Leaflet's update().
+    // Re-run the managed placement so expanded content stays within map bounds.
+    if (diveConditionsPopup?.isOpen()) correctMapPopupSafeArea(diveConditionsPopup, true);
   }
   async function loadDiveExperienceMonthComparison(location, locationKey, generation, selectedMonth, selectedSample) {
     try {

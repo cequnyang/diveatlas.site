@@ -258,6 +258,11 @@ def main() -> None:
         default=os.environ.get("DATA_ASSET_BASE_URL"),
         help="deployment-owned HTTPS root for all versioned browser data; omit to bundle app-relative data",
     )
+    parser.add_argument(
+        "--skip-external-data",
+        action="store_true",
+        help="omit the large local data payloads for a lightweight, local-only preview (not a deployable build)",
+    )
     args = parser.parse_args()
 
     try:
@@ -280,8 +285,8 @@ def main() -> None:
     output.mkdir(parents=True)
     selection_started = time.perf_counter()
     paths = tracked_and_untracked_site_files(
-        externalize_tides=tide_asset_base_url is not None or data_asset_base_url is not None,
-        externalize_data=data_asset_base_url is not None,
+        externalize_tides=args.skip_external_data or tide_asset_base_url is not None or data_asset_base_url is not None,
+        externalize_data=args.skip_external_data or data_asset_base_url is not None,
     )
     selection_seconds = time.perf_counter() - selection_started
     copy_started = time.perf_counter()
@@ -320,8 +325,8 @@ def main() -> None:
         f"({total_bytes / 1_000_000:.1f} MB) at {output}; "
         f"selection {selection_seconds:.1f}s, copy {copy_seconds:.1f}s, "
         f"validation {validation_seconds:.1f}s, total {time.perf_counter() - started_at:.1f}s; "
-        f"Tide mode {'external' if tide_asset_base_url else 'bundled'}; "
-        f"data mode {'external' if data_asset_base_url else 'bundled'}"
+        f"Tide mode {'omitted (local preview)' if args.skip_external_data else 'external' if tide_asset_base_url else 'bundled'}; "
+        f"data mode {'omitted (local preview)' if args.skip_external_data else 'external' if data_asset_base_url else 'bundled'}"
     )
 
 

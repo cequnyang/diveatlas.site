@@ -301,3 +301,33 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   await expect(popup.locator('.dive-experience-evidence-line')).toContainText(`${selectedCell.activeDimensionCount} of 7 dimensions available`);
   await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
 });
+
+test('expanded Dive Experience month chart stays inside the popup safe area', async ({ page }) => {
+  await page.setViewportSize({ width:390, height:640 });
+  await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
+  await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
+  await setLegendCollapsed(page, true);
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
+  await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
+  const location = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const target = map.latLngToContainerPoint([ -5.7, 131 ]);
+    return { lat:-5.7, lng:131, screenY:target.y, height:map.getSize().y };
+  });
+  expect(location.screenY).toBeGreaterThan(location.height * 0.65);
+  await waitForMapInteractionWindow(page);
+  expect(await page.evaluate(({ lat, lng }) => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat, lng }), location))
+    .toBe('dive-experience-outlook-location-selected');
+  const popup = page.locator('.dive-experience-popup-content');
+  await expect(popup).toBeVisible();
+  await popup.locator('.dive-experience-compare-button').click();
+  await expect(popup.locator('.dive-experience-month-chart')).toBeVisible({ timeout:30000 });
+  await expect.poll(() => page.evaluate(() => {
+    const bounds = window.__DIVEATLAS_TEST__.getState().popup;
+    return Boolean(bounds && bounds.bounds.top >= bounds.safeBounds.top - 1 &&
+      bounds.bounds.bottom <= bounds.safeBounds.bottom + 1);
+  })).toBe(true);
+});
