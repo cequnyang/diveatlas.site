@@ -40,6 +40,10 @@ playwright-report/
 !/tests/unit/test_tide_release.py
 /tools/visual_qa/
 
+# Local OAuth credentials for the standalone authentication Worker.
+/workers/auth/.dev.vars
+/workers/auth/.wrangler/
+
 # Production browser datasets are published as immutable Cloudflare R2 releases.
 /data/bathymetry_tiles/
 /data/coral_occurrence_chunks/

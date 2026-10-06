@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "name": "diveatlas-auth-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-06",
+  "workers_dev": true,
+  "vars": {
+    "APP_ORIGIN": "https://diveatlas.site",
+    "GOOGLE_REDIRECT_URI": "https://diveatlas.site/api/auth/google/callback"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "diveatlas-auth",
+      "database_id": "07cd6cae-a714-4f22-a4a9-684a3e32fb32",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

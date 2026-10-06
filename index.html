@@ -3214,6 +3214,29 @@
       cursor: pointer;
       transition: background-color 120ms ease, box-shadow 120ms ease;
     }
+    .top-menu-dropdown-item[hidden] {
+      display: none !important;
+    }
+
+    .auth-menu-section {
+      padding: 7px 9px 6px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .auth-menu-status {
+      padding: 3px 9px 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 18px;
+      overflow-wrap: anywhere;
+    }
+    .auth-menu-identity-name {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .auth-menu-identity-email {
+      color: var(--muted);
+      font-size: 11px;
+    }
 
     .top-menu-dropdown-item:hover,
     .top-menu-dropdown-item:focus-visible {
@@ -5370,6 +5393,11 @@
         ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
         <div class="top-menu-dropdown" id="topMenuDropdown" hidden>
           <div id="topMenuMobileSettings"></div>
+          <section class="auth-menu-section" id="authMenuSection" aria-label="Account">
+            <div class="auth-menu-status" id="authMenuStatus" role="status" aria-live="polite">Checking account…</div>
+            <a class="top-menu-dropdown-item" id="googleSignInLink" hidden>Sign in with Google</a>
+            <button class="top-menu-dropdown-item" id="authSignOutButton" type="button" hidden>Sign out</button>
+          </section>
           <nav class="seo-menu-summary" aria-label="Explore DiveAtlas">
             <a class="top-menu-dropdown-item" href="/dive-sites/">Browse dive sites</a>
             <a class="top-menu-dropdown-item" href="/regions/">Browse regions</a>
@@ -5928,7 +5956,7 @@ ZSD·2016–2025</span></span>
     </div>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <div class="tutorial-backdrop" id="tutorialBackdrop" hidden>
     <section class="tutorial-dialog" id="tutorialDialog" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle" aria-describedby="tutorialIntro">
@@ -6042,6 +6070,7 @@ ZSD·2016–2025</span></span>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 <script src="js/map-interaction-contract.js"></script>
 <script src="js/environmental-view-controller.js"></script>
+<script src="js/auth-ui.js" defer></script>
 <script>
   // Embedders can set this before loading the page; a query override supports controlled local/staging checks.
   window.DIVEATLAS_FEATURE_FLAGS = { ...(window.DIVEATLAS_FEATURE_FLAGS || {}),

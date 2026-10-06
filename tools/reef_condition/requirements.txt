@@ -1,2 +1,0 @@
-# Inspected SDK revision 0.2.1; pin the exact upstream commit for repeatable local runs.
-datamermaid @ git+https://github.com/data-mermaid/py-datamermaid.git@c70c8004062f9ebdca12b8ce776f82194403ad87
