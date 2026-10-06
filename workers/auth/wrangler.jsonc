@@ -31,6 +31,13 @@
       "database_name": "diveatlas-auth",
       "database_id": "07cd6cae-a714-4f22-a4a9-684a3e32fb32",
       "migrations_dir": "migrations"
+    },
+    {
+      "binding": "SITE_SUGGESTIONS_DB",
+      "database_name": "diveatlas-site-suggestions",
+      // Create this separate review queue before deploying the suggestion endpoint.
+      "database_id": "fb39dcbf-0753-4bfe-9daa-f512601ff2de",
+      "migrations_dir": "../site-suggestions/migrations"
     }
   ]
 }

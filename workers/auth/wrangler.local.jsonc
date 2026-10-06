@@ -20,6 +20,12 @@
       // Keep accidental --remote use from ever targeting the production D1 database.
       "database_id": "00000000-0000-0000-0000-000000000000",
       "migrations_dir": "migrations"
+    },
+    {
+      "binding": "SITE_SUGGESTIONS_DB",
+      "database_name": "diveatlas-site-suggestions-local",
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "../site-suggestions/migrations"
     }
   ]
 }

@@ -2349,6 +2349,103 @@
       text-align: center;
     }
 
+    .dive-search-suggestion[hidden] { display: none; }
+    .dive-search-suggestion {
+      padding: 8px 10px 10px;
+      border-top: 1px solid var(--line);
+    }
+    .dive-search-suggestion-button {
+      width: 100%;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--line));
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 8%, var(--panel-solid));
+      color: var(--primary);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      text-align: left;
+      cursor: pointer;
+    }
+    .dive-search-suggestion-button:hover,
+    .dive-search-suggestion-button:focus-visible {
+      background: color-mix(in srgb, var(--primary) 14%, var(--panel-solid));
+      outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
+      outline-offset: 1px;
+    }
+
+    .site-suggestion-modal[hidden] { display: none; }
+    .site-suggestion-modal {
+      position: fixed;
+      z-index: 2201;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .site-suggestion-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(31, 35, 40, .46);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    [data-theme="dark"] .site-suggestion-backdrop { background: rgba(1, 4, 9, .66); }
+    .site-suggestion-dialog {
+      position: relative;
+      width: min(460px, calc(100vw - 28px));
+      max-height: min(680px, calc(100vh - 36px));
+      overflow: auto;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 16px 48px rgba(31, 35, 40, .22);
+    }
+    .site-suggestion-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .site-suggestion-title { margin: 0; font-size: 18px; line-height: 24px; font-weight: 650; }
+    .site-suggestion-copy { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-suggestion-form { display: grid; gap: 13px; padding: 16px 20px 20px; }
+    .site-suggestion-field { display: grid; gap: 6px; }
+    .site-suggestion-field > span { font-size: 12px; line-height: 18px; font-weight: 600; }
+    .site-suggestion-field small { color: var(--muted); font-weight: 400; }
+    .site-suggestion-input {
+      width: 100%;
+      height: 36px;
+      box-sizing: border-box;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel-solid);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+    }
+    .site-suggestion-input:focus { border-color: #0969da; outline: 2px solid rgba(9, 105, 218, .2); }
+    .site-suggestion-honeypot { position: fixed !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+    .site-suggestion-turnstile { min-height: 65px; }
+    .site-suggestion-status { min-height: 18px; margin: -2px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-suggestion-status.is-error { color: #cf222e; }
+    .site-suggestion-status.is-success { color: #1a7f37; }
+    [data-theme="dark"] .site-suggestion-status.is-error { color: #ff7b72; }
+    [data-theme="dark"] .site-suggestion-status.is-success { color: #3fb950; }
+    .site-suggestion-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 2px; }
+    .site-suggestion-actions .contact-button { min-height: 38px; }
+    @media (max-width: 520px) {
+      .site-suggestion-modal { align-items: end; padding: 8px; }
+      .site-suggestion-dialog { width: 100%; max-height: calc(100vh - 16px); border-radius: 12px; }
+      .site-suggestion-header, .site-suggestion-form { padding-left: 16px; padding-right: 16px; }
+    }
+
     .panel-launcher {
       width: 52px;
       height: 52px;
@@ -3242,6 +3339,7 @@
     body.contact-modal-open {
       overflow: hidden;
     }
+    body.site-suggestion-open { overflow: hidden; }
 
     .contact-modal[hidden] {
       display: none;
@@ -5298,6 +5396,9 @@
           </div>
           <div class="dive-search-results" id="diveSearchResults">
             <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
+            <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
+              <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
+            </div>
           </div>
     </div>
   </div>
@@ -5435,6 +5536,40 @@
         <div class="contact-actions">
           <button class="contact-button contact-button-secondary" id="contactCancelButton" type="button" data-contact-close>Cancel</button>
           <button class="contact-button contact-button-primary" id="contactSubmitButton" type="submit">Send message</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="site-suggestion-modal" id="siteSuggestionModal" hidden>
+    <div class="site-suggestion-backdrop" data-site-suggestion-close></div>
+    <section class="site-suggestion-dialog" id="siteSuggestionDialog" role="dialog" aria-modal="true" aria-labelledby="siteSuggestionTitle" aria-describedby="siteSuggestionCopy">
+      <div class="site-suggestion-header">
+        <div>
+          <h2 class="site-suggestion-title" id="siteSuggestionTitle">Suggest a dive site</h2>
+          <p class="site-suggestion-copy" id="siteSuggestionCopy">Your suggestion goes to DiveAtlas for review. It won’t be added automatically.</p>
+        </div>
+        <button class="contact-dialog-close" id="siteSuggestionCloseButton" type="button" aria-label="Close" title="Close" data-site-suggestion-close><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+      </div>
+      <form class="site-suggestion-form" id="siteSuggestionForm" novalidate>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionNameLabel">Dive-site name</span>
+          <input class="site-suggestion-input" id="siteSuggestionName" name="siteName" type="text" maxlength="120" autocomplete="off" required>
+        </label>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionRegionLabel">Region <small>(optional)</small></span>
+          <input class="site-suggestion-input" id="siteSuggestionRegion" name="region" type="text" maxlength="120" autocomplete="off">
+        </label>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionSourceLabel">Source link <small>(optional)</small></span>
+          <input class="site-suggestion-input" id="siteSuggestionSource" name="sourceUrl" type="url" maxlength="500" autocomplete="url" inputmode="url">
+        </label>
+        <label class="site-suggestion-honeypot" aria-hidden="true">Website<input id="siteSuggestionWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <div class="site-suggestion-turnstile" id="siteSuggestionTurnstile"></div>
+        <p class="site-suggestion-status" id="siteSuggestionStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-secondary" id="siteSuggestionCancelButton" type="button" data-site-suggestion-close>Cancel</button>
+          <button class="contact-button contact-button-primary" id="siteSuggestionSubmitButton" type="submit">Send suggestion</button>
         </div>
       </form>
     </section>
@@ -7315,6 +7450,25 @@ ZSD·2016–2025</span></span>
     sidebar: document.getElementById('sidebar'),
     topMenuBar: document.getElementById('topMenuBar'),
     shareMapButton: document.getElementById('shareMapButton'),
+    diveSearchSuggestion: document.getElementById('diveSearchSuggestion'),
+    diveSearchSuggestButton: document.getElementById('diveSearchSuggestButton'),
+    siteSuggestionModal: document.getElementById('siteSuggestionModal'),
+    siteSuggestionDialog: document.getElementById('siteSuggestionDialog'),
+    siteSuggestionTitle: document.getElementById('siteSuggestionTitle'),
+    siteSuggestionCopy: document.getElementById('siteSuggestionCopy'),
+    siteSuggestionCloseButton: document.getElementById('siteSuggestionCloseButton'),
+    siteSuggestionForm: document.getElementById('siteSuggestionForm'),
+    siteSuggestionNameLabel: document.getElementById('siteSuggestionNameLabel'),
+    siteSuggestionName: document.getElementById('siteSuggestionName'),
+    siteSuggestionRegionLabel: document.getElementById('siteSuggestionRegionLabel'),
+    siteSuggestionRegion: document.getElementById('siteSuggestionRegion'),
+    siteSuggestionSourceLabel: document.getElementById('siteSuggestionSourceLabel'),
+    siteSuggestionSource: document.getElementById('siteSuggestionSource'),
+    siteSuggestionWebsite: document.getElementById('siteSuggestionWebsite'),
+    siteSuggestionTurnstile: document.getElementById('siteSuggestionTurnstile'),
+    siteSuggestionStatus: document.getElementById('siteSuggestionStatus'),
+    siteSuggestionCancelButton: document.getElementById('siteSuggestionCancelButton'),
+    siteSuggestionSubmitButton: document.getElementById('siteSuggestionSubmitButton'),
     themeBtn: document.getElementById('themeBtn'),
     measurementUnitSwitch: document.getElementById('measurementUnitSwitch'),
     brandIcon: document.getElementById('brandIcon'),
@@ -7611,6 +7765,7 @@ ZSD·2016–2025</span></span>
 
   const PANEL_STATE_STORAGE_KEY = 'global-coral-map-panel-collapsed-v1';
   const CONTACT_ENDPOINT = '/api/contact';
+  const SITE_SUGGESTION_ENDPOINT = '/api/site-suggestions';
   const TURNSTILE_SITE_KEY = '0x4AAAAAAFCEklFmZKeIgpIp';
   const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
@@ -7658,6 +7813,14 @@ ZSD·2016–2025</span></span>
   let contactSuccessCloseTimer = null;
   let contactStatusKey = '';
   let contactStatusTone = '';
+  let siteSuggestionTurnstileWidgetId = null;
+  let siteSuggestionTurnstileToken = '';
+  let siteSuggestionTurnstileLanguage = '';
+  let siteSuggestionPreviousFocus = null;
+  let siteSuggestionStatusKey = '';
+  let siteSuggestionStatusTone = '';
+  let siteSuggestionSubmitting = false;
+  let siteSuggestionSent = false;
 
   let panelCollapsed = false;
   try {
@@ -9397,6 +9560,28 @@ ZSD·2016–2025</span></span>
     id: { shareMap: 'Bagikan peta', shareCopyMap: 'Bagikan info peta', shareCopySite: 'Bagikan info lokasi selam', shareCopyPopupNamed: 'Bagikan info {name}', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin' }
   };
 
+  const SITE_SUGGESTION_I18N = {
+    en: { siteSuggestionCta: 'Suggest a missing dive site', siteSuggestionTitle: 'Suggest a dive site', siteSuggestionCopy: 'Your suggestion goes to DiveAtlas for review. It won’t be added automatically.', siteSuggestionName: 'Dive-site name', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Source link', siteSuggestionSend: 'Send suggestion', siteSuggestionCancel: 'Cancel', siteSuggestionSending: 'Sending suggestion…', siteSuggestionSent: 'Thanks—your suggestion was sent for review.', siteSuggestionError: 'Couldn’t send the suggestion. Please try again.', siteSuggestionNameRequired: 'Enter a dive-site name.', siteSuggestionSourceInvalid: 'Enter a valid http or https link.', siteSuggestionVerify: 'Complete the security check, then try again.', siteSuggestionVerifyUnavailable: 'The security check is unavailable. Please try again later.' },
+    zh: { siteSuggestionCta: '补充缺失的潜点', siteSuggestionTitle: '推荐潜点', siteSuggestionCopy: '建议将提交给 DiveAtlas 审核，不会自动添加到地图。', siteSuggestionName: '潜点名称', siteSuggestionRegion: '所在区域', siteSuggestionSource: '来源链接', siteSuggestionSend: '提交建议', siteSuggestionCancel: '取消', siteSuggestionSending: '正在提交…', siteSuggestionSent: '感谢提交，潜点建议已发送审核。', siteSuggestionError: '提交失败，请重试。', siteSuggestionNameRequired: '请输入潜点名称。', siteSuggestionSourceInvalid: '请输入有效的 HTTP 或 HTTPS 链接。', siteSuggestionVerify: '请完成安全验证后重试。', siteSuggestionVerifyUnavailable: '安全验证暂不可用，请稍后重试。' },
+    ja: { siteSuggestionCta: '未掲載のダイブスポットを提案', siteSuggestionTitle: 'ダイブスポットを提案', siteSuggestionCopy: '提案はDiveAtlasで確認します。自動的に地図へ追加されることはありません。', siteSuggestionName: 'ダイブスポット名', siteSuggestionRegion: '地域', siteSuggestionSource: '参考リンク', siteSuggestionSend: '提案を送信', siteSuggestionCancel: 'キャンセル', siteSuggestionSending: '送信中…', siteSuggestionSent: 'ありがとうございます。提案を確認用に送信しました。', siteSuggestionError: '送信できませんでした。もう一度お試しください。', siteSuggestionNameRequired: 'ダイブスポット名を入力してください。', siteSuggestionSourceInvalid: '有効なHTTPまたはHTTPSリンクを入力してください。', siteSuggestionVerify: '認証を完了してから、もう一度お試しください。', siteSuggestionVerifyUnavailable: '認証を利用できません。後でもう一度お試しください。' },
+    fr: { siteSuggestionCta: 'Signaler un site manquant', siteSuggestionTitle: 'Suggérer un site de plongée', siteSuggestionCopy: 'Votre suggestion sera examinée par DiveAtlas. Elle ne sera pas ajoutée automatiquement.', siteSuggestionName: 'Nom du site', siteSuggestionRegion: 'Région', siteSuggestionSource: 'Lien source', siteSuggestionSend: 'Envoyer la suggestion', siteSuggestionCancel: 'Annuler', siteSuggestionSending: 'Envoi…', siteSuggestionSent: 'Merci, votre suggestion a été envoyée pour examen.', siteSuggestionError: 'Échec de l’envoi. Veuillez réessayer.', siteSuggestionNameRequired: 'Saisissez le nom du site.', siteSuggestionSourceInvalid: 'Saisissez un lien HTTP ou HTTPS valide.', siteSuggestionVerify: 'Terminez la vérification puis réessayez.', siteSuggestionVerifyUnavailable: 'Vérification indisponible. Réessayez plus tard.' },
+    de: { siteSuggestionCta: 'Fehlenden Tauchplatz vorschlagen', siteSuggestionTitle: 'Tauchplatz vorschlagen', siteSuggestionCopy: 'Dein Vorschlag wird von DiveAtlas geprüft und nicht automatisch zur Karte hinzugefügt.', siteSuggestionName: 'Name des Tauchplatzes', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Quelllink', siteSuggestionSend: 'Vorschlag senden', siteSuggestionCancel: 'Abbrechen', siteSuggestionSending: 'Wird gesendet…', siteSuggestionSent: 'Danke, dein Vorschlag wurde zur Prüfung gesendet.', siteSuggestionError: 'Senden fehlgeschlagen. Bitte versuche es erneut.', siteSuggestionNameRequired: 'Gib einen Namen für den Tauchplatz ein.', siteSuggestionSourceInvalid: 'Gib einen gültigen HTTP- oder HTTPS-Link ein.', siteSuggestionVerify: 'Schließe die Sicherheitsprüfung ab und versuche es erneut.', siteSuggestionVerifyUnavailable: 'Sicherheitsprüfung nicht verfügbar. Bitte später erneut versuchen.' },
+    nl: { siteSuggestionCta: 'Ontbrekende duikplek voorstellen', siteSuggestionTitle: 'Duikplek voorstellen', siteSuggestionCopy: 'DiveAtlas beoordeelt je suggestie. De plek wordt niet automatisch aan de kaart toegevoegd.', siteSuggestionName: 'Naam van de duikplek', siteSuggestionRegion: 'Regio', siteSuggestionSource: 'Bronlink', siteSuggestionSend: 'Suggestie verzenden', siteSuggestionCancel: 'Annuleren', siteSuggestionSending: 'Verzenden…', siteSuggestionSent: 'Bedankt, je suggestie is verzonden ter beoordeling.', siteSuggestionError: 'Verzenden mislukt. Probeer het opnieuw.', siteSuggestionNameRequired: 'Vul een naam voor de duikplek in.', siteSuggestionSourceInvalid: 'Vul een geldige HTTP- of HTTPS-link in.', siteSuggestionVerify: 'Voltooi de beveiligingscontrole en probeer het opnieuw.', siteSuggestionVerifyUnavailable: 'Beveiligingscontrole niet beschikbaar. Probeer het later opnieuw.' },
+    it: { siteSuggestionCta: 'Segnala un sito mancante', siteSuggestionTitle: 'Suggerisci un sito d’immersione', siteSuggestionCopy: 'DiveAtlas esaminerà il suggerimento. Il sito non verrà aggiunto automaticamente alla mappa.', siteSuggestionName: 'Nome del sito', siteSuggestionRegion: 'Regione', siteSuggestionSource: 'Link della fonte', siteSuggestionSend: 'Invia suggerimento', siteSuggestionCancel: 'Annulla', siteSuggestionSending: 'Invio…', siteSuggestionSent: 'Grazie, il suggerimento è stato inviato per la revisione.', siteSuggestionError: 'Invio non riuscito. Riprova.', siteSuggestionNameRequired: 'Inserisci il nome del sito d’immersione.', siteSuggestionSourceInvalid: 'Inserisci un link HTTP o HTTPS valido.', siteSuggestionVerify: 'Completa il controllo di sicurezza e riprova.', siteSuggestionVerifyUnavailable: 'Controllo di sicurezza non disponibile. Riprova più tardi.' },
+    ru: { siteSuggestionCta: 'Предложить отсутствующее место для дайвинга', siteSuggestionTitle: 'Предложить место для дайвинга', siteSuggestionCopy: 'Мы проверим предложение. Место не добавится на карту автоматически.', siteSuggestionName: 'Название места', siteSuggestionRegion: 'Регион', siteSuggestionSource: 'Ссылка на источник', siteSuggestionSend: 'Отправить предложение', siteSuggestionCancel: 'Отмена', siteSuggestionSending: 'Отправка…', siteSuggestionSent: 'Спасибо! Предложение отправлено на проверку.', siteSuggestionError: 'Не удалось отправить. Попробуйте ещё раз.', siteSuggestionNameRequired: 'Введите название места для дайвинга.', siteSuggestionSourceInvalid: 'Введите корректную ссылку HTTP или HTTPS.', siteSuggestionVerify: 'Пройдите проверку безопасности и повторите попытку.', siteSuggestionVerifyUnavailable: 'Проверка безопасности недоступна. Попробуйте позже.' },
+    pt: { siteSuggestionCta: 'Sugerir local de mergulho ausente', siteSuggestionTitle: 'Sugerir local de mergulho', siteSuggestionCopy: 'A DiveAtlas analisará a sugestão. O local não será adicionado automaticamente ao mapa.', siteSuggestionName: 'Nome do local', siteSuggestionRegion: 'Região', siteSuggestionSource: 'Link da fonte', siteSuggestionSend: 'Enviar sugestão', siteSuggestionCancel: 'Cancelar', siteSuggestionSending: 'Enviando…', siteSuggestionSent: 'Obrigado. Sua sugestão foi enviada para análise.', siteSuggestionError: 'Não foi possível enviar. Tente novamente.', siteSuggestionNameRequired: 'Digite o nome do local de mergulho.', siteSuggestionSourceInvalid: 'Digite um link HTTP ou HTTPS válido.', siteSuggestionVerify: 'Conclua a verificação de segurança e tente novamente.', siteSuggestionVerifyUnavailable: 'Verificação de segurança indisponível. Tente novamente mais tarde.' },
+    sv: { siteSuggestionCta: 'Föreslå en saknad dykplats', siteSuggestionTitle: 'Föreslå en dykplats', siteSuggestionCopy: 'DiveAtlas granskar förslaget. Platsen läggs inte automatiskt till på kartan.', siteSuggestionName: 'Dykplatsens namn', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Källänk', siteSuggestionSend: 'Skicka förslag', siteSuggestionCancel: 'Avbryt', siteSuggestionSending: 'Skickar…', siteSuggestionSent: 'Tack, ditt förslag har skickats för granskning.', siteSuggestionError: 'Det gick inte att skicka. Försök igen.', siteSuggestionNameRequired: 'Ange dykplatsens namn.', siteSuggestionSourceInvalid: 'Ange en giltig HTTP- eller HTTPS-länk.', siteSuggestionVerify: 'Slutför säkerhetskontrollen och försök igen.', siteSuggestionVerifyUnavailable: 'Säkerhetskontrollen är inte tillgänglig. Försök senare.' },
+    no: { siteSuggestionCta: 'Foreslå et manglende dykkested', siteSuggestionTitle: 'Foreslå et dykkested', siteSuggestionCopy: 'DiveAtlas vurderer forslaget. Stedet legges ikke automatisk til på kartet.', siteSuggestionName: 'Navn på dykkested', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Kildelenke', siteSuggestionSend: 'Send forslag', siteSuggestionCancel: 'Avbryt', siteSuggestionSending: 'Sender…', siteSuggestionSent: 'Takk, forslaget er sendt til vurdering.', siteSuggestionError: 'Kunne ikke sende. Prøv igjen.', siteSuggestionNameRequired: 'Skriv inn navnet på dykkestedet.', siteSuggestionSourceInvalid: 'Skriv inn en gyldig HTTP- eller HTTPS-lenke.', siteSuggestionVerify: 'Fullfør sikkerhetskontrollen og prøv igjen.', siteSuggestionVerifyUnavailable: 'Sikkerhetskontrollen er utilgjengelig. Prøv igjen senere.' },
+    es: { siteSuggestionCta: 'Sugerir un sitio de buceo que falta', siteSuggestionTitle: 'Sugerir un sitio de buceo', siteSuggestionCopy: 'DiveAtlas revisará la sugerencia. El sitio no se añadirá al mapa automáticamente.', siteSuggestionName: 'Nombre del sitio', siteSuggestionRegion: 'Región', siteSuggestionSource: 'Enlace de la fuente', siteSuggestionSend: 'Enviar sugerencia', siteSuggestionCancel: 'Cancelar', siteSuggestionSending: 'Enviando…', siteSuggestionSent: 'Gracias, se envió tu sugerencia para revisión.', siteSuggestionError: 'No se pudo enviar. Inténtalo de nuevo.', siteSuggestionNameRequired: 'Escribe el nombre del sitio de buceo.', siteSuggestionSourceInvalid: 'Escribe un enlace HTTP o HTTPS válido.', siteSuggestionVerify: 'Completa la verificación de seguridad e inténtalo de nuevo.', siteSuggestionVerifyUnavailable: 'La verificación no está disponible. Inténtalo más tarde.' },
+    ko: { siteSuggestionCta: '누락된 다이빙 포인트 제안', siteSuggestionTitle: '다이빙 포인트 제안', siteSuggestionCopy: '제안은 DiveAtlas에서 검토하며 지도에 자동으로 추가되지 않습니다.', siteSuggestionName: '다이빙 포인트 이름', siteSuggestionRegion: '지역', siteSuggestionSource: '출처 링크', siteSuggestionSend: '제안 보내기', siteSuggestionCancel: '취소', siteSuggestionSending: '보내는 중…', siteSuggestionSent: '감사합니다. 제안이 검토를 위해 전송되었습니다.', siteSuggestionError: '전송하지 못했습니다. 다시 시도해 주세요.', siteSuggestionNameRequired: '다이빙 포인트 이름을 입력하세요.', siteSuggestionSourceInvalid: '올바른 HTTP 또는 HTTPS 링크를 입력하세요.', siteSuggestionVerify: '보안 확인을 완료한 뒤 다시 시도하세요.', siteSuggestionVerifyUnavailable: '보안 확인을 사용할 수 없습니다. 나중에 다시 시도하세요.' },
+    id: { siteSuggestionCta: 'Sarankan lokasi selam yang belum ada', siteSuggestionTitle: 'Sarankan lokasi selam', siteSuggestionCopy: 'Saran akan ditinjau DiveAtlas dan tidak otomatis ditambahkan ke peta.', siteSuggestionName: 'Nama lokasi selam', siteSuggestionRegion: 'Wilayah', siteSuggestionSource: 'Tautan sumber', siteSuggestionSend: 'Kirim saran', siteSuggestionCancel: 'Batal', siteSuggestionSending: 'Mengirim…', siteSuggestionSent: 'Terima kasih, saran Anda telah dikirim untuk ditinjau.', siteSuggestionError: 'Saran gagal dikirim. Coba lagi.', siteSuggestionNameRequired: 'Masukkan nama lokasi selam.', siteSuggestionSourceInvalid: 'Masukkan tautan HTTP atau HTTPS yang valid.', siteSuggestionVerify: 'Selesaikan pemeriksaan keamanan lalu coba lagi.', siteSuggestionVerifyUnavailable: 'Pemeriksaan keamanan tidak tersedia. Coba lagi nanti.' }
+  };
+  const SITE_SUGGESTION_OPTIONAL_I18N = {
+    en: 'optional', zh: '可选', ja: '任意', fr: 'facultatif', de: 'optional', nl: 'optioneel',
+    it: 'facoltativo', ru: 'необязательно', pt: 'opcional', sv: 'valfritt', no: 'valgfritt',
+    es: 'opcional', ko: '선택 사항', id: 'opsional'
+  };
+
   const TURNSTILE_LANG_CODES = {
     zh: 'zh-cn',
     en: 'en',
@@ -9422,7 +9607,7 @@ ZSD·2016–2025</span></span>
   }
 
   function t(key) {
-    return I18N[currentLang]?.[key] ?? SHARE_I18N[currentLang]?.[key] ?? WAVES_I18N[currentLang]?.[key] ?? I18N.en[key] ?? SHARE_I18N.en[key] ?? key;
+    return I18N[currentLang]?.[key] ?? SHARE_I18N[currentLang]?.[key] ?? SITE_SUGGESTION_I18N[currentLang]?.[key] ?? WAVES_I18N[currentLang]?.[key] ?? I18N.en[key] ?? SHARE_I18N.en[key] ?? SITE_SUGGESTION_I18N.en[key] ?? key;
   }
 
   Object.assign(I18N.en, {
@@ -10650,6 +10835,7 @@ ZSD·2016–2025</span></span>
         ? t('contactSending')
         : t('contactSend');
     renderContactStatus();
+    renderSiteSuggestionTexts();
     els.collapseBtn.title = t('collapseTitle');
     els.panelLauncher.title = t('launcherTitle');
     els.diveSearchInput.placeholder = t('diveSearchPlaceholder');
@@ -17231,11 +17417,13 @@ ZSD·2016–2025</span></span>
     diveSearchActiveIndex = -1;
     els.diveSearchResults.classList.remove('visible');
     els.diveSearchResultsScroll.innerHTML = '';
+    els.diveSearchSuggestion.hidden = true;
   }
 
   function renderDiveSearchResults() {
     if (!els.diveSearchInput) return;
     const renderRequest = ++diveSearchRenderRequest;
+    els.diveSearchSuggestion.hidden = true;
 
     const query =
       els.diveSearchInput.value.trim();
@@ -17296,6 +17484,9 @@ ZSD·2016–2025</span></span>
         `</div>`;
 
       els.diveSearchResults.classList.add('visible');
+      els.diveSearchSuggestion.hidden = false;
+      els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
+      els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
       return;
     }
 
@@ -23424,6 +23615,48 @@ ZSD·2016–2025</span></span>
     }
   });
 
+  function renderSiteSuggestionStatus() {
+    els.siteSuggestionStatus.textContent = siteSuggestionStatusKey ? t(siteSuggestionStatusKey) : '';
+    els.siteSuggestionStatus.classList.toggle('is-error', siteSuggestionStatusTone === 'error');
+    els.siteSuggestionStatus.classList.toggle('is-success', siteSuggestionStatusTone === 'success');
+  }
+
+  function renderSiteSuggestionTexts() {
+    if (!els.siteSuggestionForm) return;
+    els.siteSuggestionTitle.textContent = t('siteSuggestionTitle');
+    els.siteSuggestionCopy.textContent = t('siteSuggestionCopy');
+    els.siteSuggestionNameLabel.textContent = t('siteSuggestionName');
+    for (const [label, key] of [
+      [els.siteSuggestionRegionLabel, 'siteSuggestionRegion'],
+      [els.siteSuggestionSourceLabel, 'siteSuggestionSource']
+    ]) {
+      const optional = document.createElement('small');
+      optional.textContent = `(${SITE_SUGGESTION_OPTIONAL_I18N[currentLang] || SITE_SUGGESTION_OPTIONAL_I18N.en})`;
+      label.replaceChildren(document.createTextNode(`${t(key)} `), optional);
+    }
+    els.siteSuggestionCloseButton.title = t('contactClose');
+    els.siteSuggestionCloseButton.setAttribute('aria-label', t('contactClose'));
+    els.siteSuggestionCancelButton.textContent = t('siteSuggestionCancel');
+    els.siteSuggestionSubmitButton.textContent = t('siteSuggestionSend');
+    els.siteSuggestionSubmitButton.disabled = siteSuggestionSubmitting || siteSuggestionSent;
+    els.siteSuggestionCloseButton.disabled = siteSuggestionSubmitting;
+    els.siteSuggestionCancelButton.disabled = siteSuggestionSubmitting;
+    if (siteSuggestionSubmitting) els.siteSuggestionSubmitButton.textContent = t('siteSuggestionSending');
+    els.siteSuggestionForm.setAttribute('aria-busy', siteSuggestionSubmitting ? 'true' : 'false');
+    renderSiteSuggestionStatus();
+  }
+
+  function setSiteSuggestionStatus(key = '', tone = '') {
+    siteSuggestionStatusKey = key;
+    siteSuggestionStatusTone = tone;
+    renderSiteSuggestionStatus();
+  }
+
+  function setSiteSuggestionSubmitting(submitting) {
+    siteSuggestionSubmitting = Boolean(submitting);
+    renderSiteSuggestionTexts();
+  }
+
   function renderContactStatus() {
     els.contactStatus.textContent =
       contactStatusKey ? t(contactStatusKey) : '';
@@ -23580,6 +23813,145 @@ ZSD·2016–2025</span></span>
     }
   }
 
+  function resetSiteSuggestionTurnstile() {
+    siteSuggestionTurnstileToken = '';
+    if (window.turnstile && siteSuggestionTurnstileWidgetId !== null) {
+      try { window.turnstile.reset(siteSuggestionTurnstileWidgetId); } catch (_) {}
+    }
+  }
+
+  async function ensureSiteSuggestionTurnstile() {
+    if (!TURNSTILE_SITE_KEY) {
+      setSiteSuggestionStatus('siteSuggestionVerifyUnavailable', 'error');
+      return;
+    }
+    try {
+      const turnstile = await loadTurnstileScript();
+      if (els.siteSuggestionModal.hidden) return;
+      const language = currentContactTurnstileLanguage();
+      if (siteSuggestionTurnstileWidgetId !== null && siteSuggestionTurnstileLanguage !== language) {
+        try { turnstile.remove(siteSuggestionTurnstileWidgetId); } catch (_) {}
+        siteSuggestionTurnstileWidgetId = null;
+        els.siteSuggestionTurnstile.replaceChildren();
+      }
+      if (siteSuggestionTurnstileWidgetId !== null) {
+        turnstile.reset(siteSuggestionTurnstileWidgetId);
+        siteSuggestionTurnstileToken = '';
+        return;
+      }
+      siteSuggestionTurnstileWidgetId = turnstile.render(els.siteSuggestionTurnstile, {
+        sitekey: TURNSTILE_SITE_KEY,
+        action: 'site_suggestion',
+        theme: 'auto',
+        language,
+        callback(token) {
+          siteSuggestionTurnstileToken = token || '';
+          if (siteSuggestionTurnstileToken && siteSuggestionStatusTone === 'error') setSiteSuggestionStatus('');
+        },
+        'expired-callback'() {
+          siteSuggestionTurnstileToken = '';
+          setSiteSuggestionStatus('siteSuggestionVerify', 'error');
+        },
+        'error-callback'() {
+          siteSuggestionTurnstileToken = '';
+          setSiteSuggestionStatus('siteSuggestionVerifyUnavailable', 'error');
+        }
+      });
+      siteSuggestionTurnstileLanguage = language;
+    } catch (_) {
+      setSiteSuggestionStatus('siteSuggestionVerifyUnavailable', 'error');
+    }
+  }
+
+  function openSiteSuggestionModal() {
+    if (!els.siteSuggestionModal.hidden) return;
+    siteSuggestionPreviousFocus = els.diveSearchInput;
+    setTopMenuOpen(false);
+    hideDiveSearchResults();
+    els.siteSuggestionName.value = els.diveSearchInput.value.trim().slice(0, 120);
+    els.siteSuggestionRegion.value = '';
+    els.siteSuggestionSource.value = '';
+    els.siteSuggestionWebsite.value = '';
+    siteSuggestionSent = false;
+    siteSuggestionSubmitting = false;
+    setSiteSuggestionStatus('');
+    renderSiteSuggestionTexts();
+    els.siteSuggestionModal.hidden = false;
+    document.body.classList.add('site-suggestion-open');
+    requestAnimationFrame(() => els.siteSuggestionName.focus());
+    void ensureSiteSuggestionTurnstile();
+  }
+
+  function closeSiteSuggestionModal() {
+    if (siteSuggestionSubmitting || els.siteSuggestionModal.hidden) return;
+    els.siteSuggestionModal.hidden = true;
+    document.body.classList.remove('site-suggestion-open');
+    resetSiteSuggestionTurnstile();
+    els.siteSuggestionForm.reset();
+    els.siteSuggestionName.readOnly = false;
+    els.siteSuggestionRegion.readOnly = false;
+    els.siteSuggestionSource.readOnly = false;
+    siteSuggestionSent = false;
+    setSiteSuggestionStatus('');
+    renderSiteSuggestionTexts();
+    if (siteSuggestionPreviousFocus && typeof siteSuggestionPreviousFocus.focus === 'function') {
+      siteSuggestionPreviousFocus.focus({ preventScroll: true });
+    }
+  }
+
+  async function submitSiteSuggestion(event) {
+    event.preventDefault();
+    if (siteSuggestionSubmitting || siteSuggestionSent) return;
+    const siteName = els.siteSuggestionName.value.trim().replace(/\s+/g, ' ');
+    const region = els.siteSuggestionRegion.value.trim().replace(/\s+/g, ' ');
+    const sourceUrl = els.siteSuggestionSource.value.trim();
+    if (siteName.length < 2 || siteName.length > 120) {
+      setSiteSuggestionStatus('siteSuggestionNameRequired', 'error');
+      els.siteSuggestionName.focus();
+      return;
+    }
+    if (sourceUrl && !els.siteSuggestionSource.validity.valid) {
+      setSiteSuggestionStatus('siteSuggestionSourceInvalid', 'error');
+      els.siteSuggestionSource.focus();
+      return;
+    }
+    if (!siteSuggestionTurnstileToken) {
+      setSiteSuggestionStatus('siteSuggestionVerify', 'error');
+      return;
+    }
+
+    setSiteSuggestionStatus('');
+    setSiteSuggestionSubmitting(true);
+    try {
+      const response = await fetch(SITE_SUGGESTION_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({
+          siteName,
+          region,
+          sourceUrl,
+          website: els.siteSuggestionWebsite.value,
+          turnstileToken: siteSuggestionTurnstileToken
+        })
+      });
+      let result = null;
+      try { result = await response.json(); } catch (_) {}
+      if (!response.ok || result?.success !== true) throw new Error('Suggestion request failed');
+
+      siteSuggestionSent = true;
+      els.siteSuggestionName.readOnly = true;
+      els.siteSuggestionRegion.readOnly = true;
+      els.siteSuggestionSource.readOnly = true;
+      setSiteSuggestionStatus('siteSuggestionSent', 'success');
+    } catch (_) {
+      setSiteSuggestionStatus('siteSuggestionError', 'error');
+    } finally {
+      setSiteSuggestionSubmitting(false);
+      resetSiteSuggestionTurnstile();
+    }
+  }
+
   function openContactModal() {
     clearTimeout(contactSuccessCloseTimer);
     contactPreviousFocus = document.activeElement;
@@ -23698,6 +24070,12 @@ ZSD·2016–2025</span></span>
     }
   });
 
+  els.diveSearchSuggestButton.addEventListener('click', openSiteSuggestionModal);
+  els.siteSuggestionModal.addEventListener('click', event => {
+    if (event.target.closest('[data-site-suggestion-close]')) closeSiteSuggestionModal();
+  });
+  els.siteSuggestionForm.addEventListener('submit', submitSiteSuggestion);
+
   els.contactForm.addEventListener('submit', async event => {
     event.preventDefault();
 
@@ -23794,16 +24172,22 @@ ZSD·2016–2025</span></span>
   });
 
   document.addEventListener('keydown', event => {
-    if (!els.contactModal.hidden) {
+    const activeModal = !els.contactModal.hidden
+      ? { dialog: els.contactDialog, close: closeContactModal }
+      : !els.siteSuggestionModal.hidden
+        ? { dialog: els.siteSuggestionDialog, close: closeSiteSuggestionModal }
+        : null;
+
+    if (activeModal) {
       if (event.key === 'Escape') {
         event.preventDefault();
-        closeContactModal();
+        activeModal.close();
         return;
       }
 
       if (event.key === 'Tab') {
         const focusable = Array.from(
-          els.contactDialog.querySelectorAll(
+          activeModal.dialog.querySelectorAll(
             'button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]), [href], select:not([disabled])'
           )
         ).filter(element => element.offsetParent !== null);
@@ -23866,6 +24250,11 @@ ZSD·2016–2025</span></span>
             .contains('visible')
         ) {
           renderDiveSearchResults();
+        }
+
+        if (!els.diveSearchSuggestion.hidden) {
+          els.diveSearchSuggestButton.focus();
+          return;
         }
 
         setDiveSearchActive(

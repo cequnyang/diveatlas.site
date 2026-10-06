@@ -1,3 +1,5 @@
+import { handleSiteSuggestion } from './site-suggestions.js';
+
 const GOOGLE_AUTHORIZATION_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth';
 const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
 const GOOGLE_JWKS_ENDPOINT = 'https://www.googleapis.com/oauth2/v3/certs';
@@ -30,6 +32,9 @@ export default {
       }
       if (url.pathname === '/api/auth/logout' && request.method === 'POST') {
         return await logOut(request, env);
+      }
+      if (url.pathname === '/api/site-suggestions') {
+        return await handleSiteSuggestion(request, env);
       }
 
       if (url.pathname.startsWith('/api/')) return textResponse('Not found', 404);
