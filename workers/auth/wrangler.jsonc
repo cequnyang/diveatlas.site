@@ -4,6 +4,23 @@
   "main": "src/index.js",
   "compatibility_date": "2026-10-06",
   "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "diveatlas.site/api/*",
+      "zone_name": "diveatlas.site"
+    },
+    {
+      "pattern": "www.diveatlas.site/api/*",
+      "zone_name": "diveatlas.site"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true
+    }
+  },
   "vars": {
     "APP_ORIGIN": "https://diveatlas.site",
     "GOOGLE_REDIRECT_URI": "https://diveatlas.site/api/auth/google/callback"
