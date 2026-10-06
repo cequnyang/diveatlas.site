@@ -43,7 +43,7 @@ jobs:
 
       - name: Validate and assemble static site
         env:
-          DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL }}
+          DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL || 'https://assets.diveatlas.site/releases/2026-10-05-v2/' }}
         run: npm run build
 
       - name: Install Chromium and system dependencies
