@@ -68,3 +68,8 @@ playwright-report/
 # Retired Dive Experience data generations are kept out of future commits.
 /data/dive-experience-outlook/v1/
 /data/dive-experience-outlook/v2/
+
+# Retired or development-only datasets stay local; production data is served from R2.
+/data/coral-heat-stress/
+/data/dive_conditions_score/
+/data/temperature/development-1deg/
