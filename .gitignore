@@ -64,3 +64,7 @@ playwright-report/
 /data/waves/
 /data/reef-condition/thermal-stress-history/
 /data/reef-condition/ocean-heat-history/
+
+# Retired Dive Experience data generations are kept out of future commits.
+/data/dive-experience-outlook/v1/
+/data/dive-experience-outlook/v2/
