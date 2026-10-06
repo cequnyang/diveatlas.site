@@ -2721,6 +2721,11 @@
       color: var(--text);
       box-shadow: var(--shadow-soft);
     }
+    /* The header can sit flush with the viewport edge on narrow screens.
+       Keep the action reachable without changing its anchor or reading order. */
+    .share-popover[data-edge="left"] { right: auto; left: 0; }
+    .share-popover[data-edge="right"] { right: 0; left: auto; }
+    .share-popover[data-placement="above"] { top: auto; bottom: calc(100% + 8px); }
     .share-popover[data-context="site"] { width: 238px; }
     .share-copy-button {
       width: 100%;
@@ -5342,7 +5347,7 @@
         <div class="share-popover" id="sharePopover" role="group" aria-label="Share" hidden>
           <button class="share-copy-button" id="shareCopyButton" type="button" data-state="idle">
             <svg class="share-copy-icon" id="shareCopyIcon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6.2 9.8 9.8 6.2M5.3 6.7l-1.1 1.1a2.55 2.55 0 0 0 3.6 3.6l1.1-1.1M10.7 9.3l1.1-1.1a2.55 2.55 0 0 0-3.6-3.6L7.1 5.7"/></svg>
-            <span class="share-copy-label" id="shareCopyLabel" aria-live="polite" aria-atomic="true">Copy map link</span>
+            <span class="share-copy-label" id="shareCopyLabel" aria-live="polite" aria-atomic="true">Share map info</span>
           </button>
         </div>
       </div>
@@ -6118,7 +6123,19 @@ ZSD·2016–2025</span></span>
   ];
   const MAP_VIEW_STORAGE_KEY = 'global-coral-map-view-v1';
   // Parse once before constructing Leaflet so shared coordinates win before the first map paint.
-  const SHARE_LAYER_IDS = ['reef', 'coral', 'fish', 'dive'];
+  const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
+  const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
+  const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
+  const SHARE_POPUP_DESCRIPTION_KEYS = {
+    reef: 'reefLegend', species: 'speciesLegend', fish: 'fishLegend', dive: 'diveLegend',
+    'dive-conditions': 'diveExperienceDiveConditions', temperature: 'temperatureTitle',
+    'water-clarity': 'waterClarityTitle', currents: 'currentsTitle', tide: 'tideTitle',
+    waves: 'wavesTitle', 'coral-heat-stress': 'coralHeatStressTitle',
+    'reef-survey-condition': 'reefFieldMetricTitle', depthInspection: 'bathymetryLegend'
+  };
+  // Data-backed feature layers load asynchronously after the shared map view is applied.
+  const SHARED_POPUP_RESTORE_RETRY_MS = 500;
+  const SHARED_POPUP_RESTORE_MAX_ATTEMPTS = 40;
   let SHARE_SITE_BY_ID = new Map();
 
   function parseMapState(url) {
@@ -6152,12 +6169,55 @@ ZSD·2016–2025</span></span>
     if (params.has('layers')) {
       const rawLayers = params.get('layers').trim();
       const recognized = rawLayers
-        ? rawLayers.split(',').map(value => value.trim().toLowerCase()).filter(id => SHARE_LAYER_IDS.includes(id))
+        ? rawLayers.split(',').map(value => value.trim().toLowerCase()).filter(id => SHARE_LAYER_IDS.includes(id) || id === 'coral')
         : [];
       if (recognized.length || rawLayers === '') {
-        state.layers = Object.fromEntries(SHARE_LAYER_IDS.map(id => [id, recognized.includes(id)]));
+        state.layers = Object.fromEntries(SHARE_LAYER_IDS.map(id => [
+          id,
+          recognized.includes(id) || (id === 'species' && recognized.includes('coral'))
+        ]));
         state.hasValidState = true;
       }
+    }
+
+    const rawView = String(params.get('view') || '').trim().toLowerCase();
+    if (SHARE_VIEW_IDS.includes(rawView)) {
+      state.view = rawView;
+      state.hasValidState = true;
+    }
+
+    const popupLayer = String(params.get('popup') || '').trim();
+    const popupLat = Number(params.get('plat'));
+    const popupLng = Number(params.get('plng'));
+    if (
+      SHARE_POPUP_LAYER_IDS.includes(popupLayer) &&
+      Number.isFinite(popupLat) && popupLat >= -90 && popupLat <= 90 &&
+      Number.isFinite(popupLng) && popupLng >= -180 && popupLng <= 180
+    ) {
+      state.popup = { layer: popupLayer, lat: popupLat, lng: popupLng };
+      state.hasValidState = true;
+    }
+
+    const selections = {};
+    const month = Number(params.get('month'));
+    const temperatureDepth = Number(params.get('temperatureDepth'));
+    const currentDepth = String(params.get('currentDepth') || '');
+    const tideTime = String(params.get('tideTime') || '');
+    const experienceMonth = Number(params.get('experienceMonth'));
+    const reefMetric = String(params.get('reefMetric') || '');
+    const heatMode = String(params.get('heatMode') || '');
+    const heatYear = Number(params.get('heatYear'));
+    if (Number.isInteger(month) && month >= 1 && month <= 12) selections.month = month;
+    if (params.has('temperatureDepth') && Number.isFinite(temperatureDepth) && temperatureDepth >= 0 && temperatureDepth <= 200) selections.temperatureDepth = temperatureDepth;
+    if (['0', '10', '20', '30'].includes(currentDepth)) selections.currentDepth = currentDepth;
+    if (['0', '3', '6', '9', '12', '18', '24'].includes(tideTime)) selections.tideTime = tideTime;
+    if (Number.isInteger(experienceMonth) && experienceMonth >= 1 && experienceMonth <= 12) selections.experienceMonth = experienceMonth;
+    if (['oceanHeatHistory', 'thermalStressHistory'].includes(reefMetric)) selections.reefMetric = reefMetric;
+    if (['current', 'history'].includes(heatMode)) selections.heatMode = heatMode;
+    if (Number.isInteger(heatYear) && heatYear >= 1980 && heatYear <= 2100) selections.heatYear = heatYear;
+    if (Object.keys(selections).length) {
+      state.selections = selections;
+      state.hasValidState = true;
     }
 
     const rawSiteId = String(params.get('site') || '').trim().toLowerCase();
@@ -8266,12 +8326,10 @@ ZSD·2016–2025</span></span>
   } catch (_) {}
 
   if (sharedMapState.hasValidState && sharedMapState.layers) {
-    layerVisibility.reef = sharedMapState.layers.reef;
-    layerVisibility.species = sharedMapState.layers.coral;
-    layerVisibility.fish = sharedMapState.layers.fish;
-    layerVisibility.dive = (sharedMapState.selectedSiteId || sharedMapState.requestedSiteId)
-      ? true
-      : sharedMapState.layers.dive;
+    for (const key of SHARE_LAYER_IDS) {
+      if (typeof sharedMapState.layers[key] === 'boolean') layerVisibility[key] = sharedMapState.layers[key];
+    }
+    if (sharedMapState.selectedSiteId || sharedMapState.requestedSiteId) layerVisibility.dive = true;
   }
   // A shared URL overrides this view only; these assignments never persist to the visitor's defaults.
   // Showing a specifically shared site needs its layer for this view, not as a saved preference.
@@ -9329,20 +9387,20 @@ ZSD·2016–2025</span></span>
   };
 
   const SHARE_I18N = {
-    en: { shareMap: 'Share map', shareCopyMap: 'Copy map link', shareCopySite: 'Copy dive site link', shareCopied: 'Copied', shareCopyFailed: 'Copy failed' },
-    zh: { shareMap: '分享地图', shareCopyMap: '复制地图链接', shareCopySite: '复制潜点链接', shareCopied: '已复制', shareCopyFailed: '复制失败' },
-    ja: { shareMap: '地図を共有', shareCopyMap: '地図リンクをコピー', shareCopySite: 'ダイブサイトのリンクをコピー', shareCopied: 'コピーしました', shareCopyFailed: 'コピーできませんでした' },
-    fr: { shareMap: 'Partager la carte', shareCopyMap: 'Copier le lien de la carte', shareCopySite: 'Copier le lien du site de plongée', shareCopied: 'Copié', shareCopyFailed: 'Échec de la copie' },
-    de: { shareMap: 'Karte teilen', shareCopyMap: 'Kartenlink kopieren', shareCopySite: 'Tauchplatz-Link kopieren', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieren fehlgeschlagen' },
-    nl: { shareMap: 'Kaart delen', shareCopyMap: 'Kaartlink kopiëren', shareCopySite: 'Duiksteklink kopiëren', shareCopied: 'Gekopieerd', shareCopyFailed: 'Kopiëren mislukt' },
-    it: { shareMap: 'Condividi mappa', shareCopyMap: 'Copia link mappa', shareCopySite: 'Copia link sito di immersione', shareCopied: 'Copiato', shareCopyFailed: 'Copia non riuscita' },
-    ru: { shareMap: 'Поделиться картой', shareCopyMap: 'Копировать ссылку на карту', shareCopySite: 'Копировать ссылку на дайв-сайт', shareCopied: 'Скопировано', shareCopyFailed: 'Не удалось скопировать' },
-    pt: { shareMap: 'Compartilhar mapa', shareCopyMap: 'Copiar link do mapa', shareCopySite: 'Copiar link do ponto de mergulho', shareCopied: 'Copiado', shareCopyFailed: 'Falha ao copiar' },
-    sv: { shareMap: 'Dela karta', shareCopyMap: 'Kopiera kartlänk', shareCopySite: 'Kopiera dykplatslänk', shareCopied: 'Kopierad', shareCopyFailed: 'Kopieringen misslyckades' },
-    no: { shareMap: 'Del kart', shareCopyMap: 'Kopier kartlenke', shareCopySite: 'Kopier dykkestedslenke', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieringen mislyktes' },
-    es: { shareMap: 'Compartir mapa', shareCopyMap: 'Copiar enlace del mapa', shareCopySite: 'Copiar enlace del sitio de buceo', shareCopied: 'Copiado', shareCopyFailed: 'Error al copiar' },
-    ko: { shareMap: '지도 공유', shareCopyMap: '지도 링크 복사', shareCopySite: '다이빙 사이트 링크 복사', shareCopied: '복사됨', shareCopyFailed: '복사 실패' },
-    id: { shareMap: 'Bagikan peta', shareCopyMap: 'Salin tautan peta', shareCopySite: 'Salin tautan lokasi selam', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin' }
+    en: { shareMap: 'Share map', shareCopyMap: 'Share map info', shareCopySite: 'Share dive site info', shareCopyPopupNamed: 'Share {name} info', shareCopied: 'Copied', shareCopyFailed: 'Copy failed' },
+    zh: { shareMap: '分享地图', shareCopyMap: '分享地图信息', shareCopySite: '分享潜点信息', shareCopyPopupNamed: '分享{name}信息', shareCopied: '已复制', shareCopyFailed: '复制失败' },
+    ja: { shareMap: '地図を共有', shareCopyMap: '地図情報を共有', shareCopySite: 'ダイブサイト情報を共有', shareCopyPopupNamed: '{name}の情報を共有', shareCopied: 'コピーしました', shareCopyFailed: 'コピーできませんでした' },
+    fr: { shareMap: 'Partager la carte', shareCopyMap: 'Partager les infos de la carte', shareCopySite: 'Partager les infos du site de plongée', shareCopyPopupNamed: 'Partager les infos de « {name} »', shareCopied: 'Copié', shareCopyFailed: 'Échec de la copie' },
+    de: { shareMap: 'Karte teilen', shareCopyMap: 'Karteninfos teilen', shareCopySite: 'Tauchplatzinfos teilen', shareCopyPopupNamed: 'Infos zu „{name}“ teilen', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieren fehlgeschlagen' },
+    nl: { shareMap: 'Kaart delen', shareCopyMap: 'Kaartinfo delen', shareCopySite: 'Duikstekinfo delen', shareCopyPopupNamed: 'Info over {name} delen', shareCopied: 'Gekopieerd', shareCopyFailed: 'Kopiëren mislukt' },
+    it: { shareMap: 'Condividi mappa', shareCopyMap: 'Condividi info mappa', shareCopySite: 'Condividi info sito di immersione', shareCopyPopupNamed: 'Condividi info {name}', shareCopied: 'Copiato', shareCopyFailed: 'Copia non riuscita' },
+    ru: { shareMap: 'Поделиться картой', shareCopyMap: 'Поделиться данными карты', shareCopySite: 'Поделиться данными дайв-сайта', shareCopyPopupNamed: 'Поделиться данными: {name}', shareCopied: 'Скопировано', shareCopyFailed: 'Не удалось скопировать' },
+    pt: { shareMap: 'Compartilhar mapa', shareCopyMap: 'Compartilhar informações do mapa', shareCopySite: 'Compartilhar informações do ponto de mergulho', shareCopyPopupNamed: 'Compartilhar informações de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Falha ao copiar' },
+    sv: { shareMap: 'Dela karta', shareCopyMap: 'Dela kartinformation', shareCopySite: 'Dela information om dykplatsen', shareCopyPopupNamed: 'Dela information om {name}', shareCopied: 'Kopierad', shareCopyFailed: 'Kopieringen misslyckades' },
+    no: { shareMap: 'Del kart', shareCopyMap: 'Del kartinformasjon', shareCopySite: 'Del informasjon om dykkestedet', shareCopyPopupNamed: 'Del informasjon om {name}', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieringen mislyktes' },
+    es: { shareMap: 'Compartir mapa', shareCopyMap: 'Compartir información del mapa', shareCopySite: 'Compartir información del sitio de buceo', shareCopyPopupNamed: 'Compartir información de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Error al copiar' },
+    ko: { shareMap: '지도 공유', shareCopyMap: '지도 정보 공유', shareCopySite: '다이빙 사이트 정보 공유', shareCopyPopupNamed: '{name} 정보 공유', shareCopied: '복사됨', shareCopyFailed: '복사 실패' },
+    id: { shareMap: 'Bagikan peta', shareCopyMap: 'Bagikan info peta', shareCopySite: 'Bagikan info lokasi selam', shareCopyPopupNamed: 'Bagikan info {name}', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin' }
   };
 
   const TURNSTILE_LANG_CODES = {
@@ -15539,7 +15597,6 @@ ZSD·2016–2025</span></span>
             sharedMapState.selectedSiteId = requestedSiteId;
             layerVisibility.dive = true;
             setLayerVisibility('dive', true, { persist: false });
-            restoreSharedSiteDetail(requestedSiteId);
           } else {
             delete sharedMapState.requestedSiteId;
             sharedMapState.hasValidState = Boolean(
@@ -16497,13 +16554,10 @@ ZSD·2016–2025</span></span>
     }
 
     if (state.layers) {
-      const targets = {
-        reef: state.layers.reef,
-        species: state.layers.coral,
-        fish: state.layers.fish,
-        dive: (state.selectedSiteId || state.requestedSiteId) ? true : state.layers.dive
-      };
-      for (const [key, visible] of Object.entries(targets)) {
+      for (const key of SHARE_LAYER_IDS) {
+        const visible = key === 'dive' && (state.selectedSiteId || state.requestedSiteId)
+          ? true
+          : state.layers[key];
         if (typeof visible === 'boolean' && layerVisibility[key] !== visible) {
           setLayerVisibility(key, visible, { persist: false });
         }
@@ -16547,18 +16601,76 @@ ZSD·2016–2025</span></span>
     toastTimer = setTimeout(() => els.toast.classList.remove('show'), 1700);
   }
 
+  function applySharedSelections() {
+    const selections = sharedMapState.selections;
+    if (!selections) return;
+
+    if (selections.month) {
+      selectedEnvironmentalMonth = selections.month;
+      [els.temperatureMonth, els.waterClarityMonth, els.currentsMonth, els.wavesMonth]
+        .forEach(select => { select.value = String(selections.month); });
+    }
+    if (Number.isFinite(selections.temperatureDepth)) {
+      const value = String(selections.temperatureDepth);
+      if (!Array.from(els.temperatureDepth.options).some(option => option.value === value)) {
+        // Temperature metadata replaces this temporary option with the supported source depths.
+        els.temperatureDepth.add(new Option(localizedTemperatureDepth(value, { spacing: value !== '0' }), value));
+      }
+      els.temperatureDepth.value = value;
+    }
+    if (selections.currentDepth) {
+      regionalCurrentsDepth = selections.currentDepth;
+      els.currentsDepth.value = selections.currentDepth;
+    }
+    if (selections.tideTime) {
+      els.tideTime.value = selections.tideTime;
+      els.tideTime.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    if (selections.experienceMonth) {
+      diveConditionsMonth = selections.experienceMonth;
+      diveExperienceMonthSelect.value = String(selections.experienceMonth);
+      document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(selections.experienceMonth);
+    }
+    if (selections.reefMetric) {
+      const metricSelect = document.getElementById('reefSurveyMetric');
+      if (metricSelect && Array.from(metricSelect.options).some(option => option.value === selections.reefMetric)) {
+        metricSelect.value = selections.reefMetric;
+      }
+    }
+    if (selections.heatMode) coralHeatStressMode = selections.heatMode;
+    if (selections.heatMode) updateCoralHeatStressModeUI();
+    if (selections.heatYear) {
+      coralHeatStressHistorySelectedYear = selections.heatYear;
+      updateCoralHeatStressHistoryYearUI();
+    }
+    updateTemperatureSliceLabel();
+  }
+
   function captureMapState() {
     const center = map.getCenter();
     return {
       center: { lat: center.lat, lng: center.lng },
       zoom: map.getZoom(),
-      layers: {
-        reef: Boolean(layerVisibility.reef),
-        coral: Boolean(layerVisibility.species),
-        fish: Boolean(layerVisibility.fish),
-        dive: Boolean(layerVisibility.dive)
-      },
+      layers: Object.fromEntries(SHARE_LAYER_IDS.map(id => [id, Boolean(layerVisibility[id])])),
+      view: els.environmentViewRadios.find(input => input.checked)?.value || 'default',
       selectedSiteId: activeClickPopup?._diveAtlasSiteId || null,
+      popup: activeClickPopup?.isOpen?.() && activeClickPopup.getLatLng?.()
+        ? {
+            layer: activeClickPopup._diveAtlasLayerKey,
+            lat: activeClickPopup.getLatLng().lat,
+            lng: activeClickPopup.getLatLng().lng
+          }
+        : null,
+      selections: {
+        month: selectedEnvironmentalMonth,
+        temperatureDepth: Number(els.temperatureDepth.value),
+        currentDepth: String(els.currentsDepth.value),
+        tideTime: String(els.tideTime.value),
+        experienceMonth: diveConditionsMonth,
+        reefMetric: document.getElementById('reefSurveyMetric')?.value || null,
+        heatMode: coralHeatStressMode,
+        heatYear: coralHeatStressHistorySelectedYear
+      },
       // The current light/dark selector also switches basemap, so this stays a local preference.
       basemap: null
     };
@@ -16574,9 +16686,27 @@ ZSD·2016–2025</span></span>
     if (Number.isFinite(zoom)) params.set('z', zoom.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1'));
     const activeLayers = SHARE_LAYER_IDS.filter(id => state?.layers?.[id]);
     params.set('layers', activeLayers.join(','));
+    if (SHARE_VIEW_IDS.includes(state?.view)) params.set('view', state.view);
     if (state?.selectedSiteId && SHARE_SITE_BY_ID.has(String(state.selectedSiteId).toLowerCase())) {
       params.set('site', String(state.selectedSiteId).toLowerCase());
     }
+    if (
+      state?.popup && SHARE_POPUP_LAYER_IDS.includes(state.popup.layer) &&
+      Number.isFinite(Number(state.popup.lat)) && Number.isFinite(Number(state.popup.lng))
+    ) {
+      params.set('popup', state.popup.layer);
+      params.set('plat', Number(state.popup.lat).toFixed(6));
+      params.set('plng', Number(state.popup.lng).toFixed(6));
+    }
+    const selections = state?.selections || {};
+    if (Number.isInteger(selections.month) && selections.month >= 1 && selections.month <= 12) params.set('month', selections.month);
+    if (Number.isFinite(Number(selections.temperatureDepth))) params.set('temperatureDepth', Number(selections.temperatureDepth));
+    if (['0', '10', '20', '30'].includes(String(selections.currentDepth))) params.set('currentDepth', String(selections.currentDepth));
+    if (['0', '3', '6', '9', '12', '18', '24'].includes(String(selections.tideTime))) params.set('tideTime', String(selections.tideTime));
+    if (Number.isInteger(selections.experienceMonth) && selections.experienceMonth >= 1 && selections.experienceMonth <= 12) params.set('experienceMonth', selections.experienceMonth);
+    if (['oceanHeatHistory', 'thermalStressHistory'].includes(selections.reefMetric)) params.set('reefMetric', selections.reefMetric);
+    if (['current', 'history'].includes(selections.heatMode)) params.set('heatMode', selections.heatMode);
+    if (Number.isInteger(selections.heatYear) && selections.heatYear >= 1980 && selections.heatYear <= 2100) params.set('heatYear', selections.heatYear);
     return params.toString().replace(/%2C/gi, ',');
   }
 
@@ -16597,18 +16727,27 @@ ZSD·2016–2025</span></span>
       shareSnapshot?.selectedSiteId &&
       SHARE_SITE_BY_ID.has(String(shareSnapshot.selectedSiteId).toLowerCase())
     );
+    const hasPopup = Boolean(shareSnapshot?.popup && SHARE_POPUP_LAYER_IDS.includes(shareSnapshot.popup.layer));
     els.sharePopover.dataset.context = hasSelectedSite && shareUiState === 'idle' ? 'site' : 'map';
-    const copyLabelKey = hasSelectedSite ? 'shareCopySite' : 'shareCopyMap';
+    const copyLabelKey = hasSelectedSite
+      ? 'shareCopySite'
+      : hasPopup
+        ? 'shareCopyPopupNamed'
+        : 'shareCopyMap';
     const labelKey = shareUiState === 'success'
       ? 'shareCopied'
       : shareUiState === 'error'
         ? 'shareCopyFailed'
         : copyLabelKey;
+    const popupDescriptionKey = SHARE_POPUP_DESCRIPTION_KEYS[shareSnapshot?.popup?.layer];
+    const copyLabel = labelKey === 'shareCopyPopupNamed' && popupDescriptionKey
+      ? t(labelKey).replace('{name}', t(popupDescriptionKey))
+      : t(labelKey);
 
-    els.shareCopyLabel.textContent = t(labelKey);
+    els.shareCopyLabel.textContent = copyLabel;
     els.shareCopyButton.dataset.state = shareUiState;
     els.shareCopyButton.disabled = shareUiState === 'success';
-    els.shareCopyButton.setAttribute('aria-label', t(labelKey));
+    els.shareCopyButton.setAttribute('aria-label', copyLabel);
     const iconPath = shareUiState === 'success'
       ? '<path d="m3.2 8.2 3.1 3.1 6.5-6.6"/>'
       : shareUiState === 'error'
@@ -16637,6 +16776,22 @@ ZSD·2016–2025</span></span>
     window.clearTimeout(shareFeedbackTimer);
     renderSharePopoverTexts();
     els.sharePopover.hidden = false;
+    els.sharePopover.removeAttribute('data-edge');
+    const anchorRect = els.shareMapButton.getBoundingClientRect();
+    const popoverWidth = els.sharePopover.getBoundingClientRect().width;
+    const popoverHeight = els.sharePopover.getBoundingClientRect().height;
+    const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+    const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+    const edgePadding = 12;
+    els.sharePopover.removeAttribute('data-placement');
+    if (anchorRect.right - popoverWidth < edgePadding) {
+      els.sharePopover.dataset.edge = 'left';
+    } else if (anchorRect.left + popoverWidth > viewportWidth - edgePadding) {
+      els.sharePopover.dataset.edge = 'right';
+    }
+    if (anchorRect.bottom + popoverHeight + edgePadding > viewportHeight && anchorRect.top > popoverHeight + edgePadding) {
+      els.sharePopover.dataset.placement = 'above';
+    }
     els.shareMapButton.setAttribute('aria-expanded', 'true');
     els.shareCopyButton.focus({ preventScroll: true });
   }
@@ -17271,10 +17426,12 @@ ZSD·2016–2025</span></span>
       ], map.getZoom(), { animate: false }));
     }
 
-    refreshDiveLayer();
     const marker = ensureDiveMarker(siteIndex);
     const popup = marker?.getPopup?.();
-    if (popup) openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
+    if (popup) {
+      openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
+      sharedMapState.sharedSitePopupRestored = true;
+    }
   }
 
   function focusDiveSearchResult(siteIndex) {
@@ -21856,6 +22013,9 @@ ZSD·2016–2025</span></span>
         refreshDiveLayer();
       } finally {
         setMapDataLoading('dive', false);
+        if (sharedMapState.requestedSiteId && !sharedMapState.sharedSitePopupRestored) {
+          restoreSharedSiteDetail(sharedMapState.requestedSiteId);
+        }
       }
     }, delay);
   }
@@ -22434,6 +22594,78 @@ ZSD·2016–2025</span></span>
       if (nearest) return nearest;
     }
     return nearest;
+  }
+
+  function restoreSharedPopup(attempt = 0) {
+    const descriptor = sharedMapState.popup;
+    if (!descriptor || activeClickPopup?.isOpen?.()) return;
+
+    const latlng = L.latLng(descriptor.lat, descriptor.lng);
+    const containerPoint = map.latLngToContainerPoint(latlng);
+    const featureGroups = {
+      dive: diveSiteLayer,
+      fish: fishDensityLayer,
+      species: speciesLayer
+    };
+    const featureLayer = featureGroups[descriptor.layer];
+    if (featureLayer) {
+      if (!layerVisibility[descriptor.layer]) return;
+      if (!map.hasLayer(featureLayer)) {
+        if (attempt < SHARED_POPUP_RESTORE_MAX_ATTEMPTS) {
+          window.setTimeout(() => restoreSharedPopup(attempt + 1), SHARED_POPUP_RESTORE_RETRY_MS);
+        }
+        return;
+      }
+      let nearest = null;
+      let nearestDistance = 20;
+      featureLayer.eachLayer(feature => {
+        if (!isMapFeatureEligible(feature)) return;
+        const point = feature.getLatLng?.();
+        if (!point) return;
+        const distance = containerPoint.distanceTo(map.latLngToContainerPoint(point));
+        if (distance <= nearestDistance) {
+          nearest = feature;
+          nearestDistance = distance;
+        }
+      });
+      if (nearest) {
+        resolveMapInteraction({
+          event: { originalEvent: {} }, feature: nearest, beforeOpen: null,
+          latlng, containerPoint, pointerType: 'mouse'
+        });
+        return;
+      }
+      if (attempt < SHARED_POPUP_RESTORE_MAX_ATTEMPTS) {
+        window.setTimeout(() => restoreSharedPopup(attempt + 1), SHARED_POPUP_RESTORE_RETRY_MS);
+      }
+      return;
+    }
+
+    if (descriptor.layer === 'depthInspection') {
+      void requestDepthInspection(latlng);
+      return;
+    }
+
+    if (descriptor.layer === 'reef' && !findOverlayAreaHit(latlng)) {
+      if (attempt < SHARED_POPUP_RESTORE_MAX_ATTEMPTS) {
+        window.setTimeout(() => restoreSharedPopup(attempt + 1), SHARED_POPUP_RESTORE_RETRY_MS);
+      }
+      return;
+    }
+
+    if (descriptor.layer === 'reef-survey-condition') {
+      map.fire('click', {
+        latlng,
+        containerPoint,
+        originalEvent: {}
+      });
+      return;
+    }
+
+    resolveMapInteraction({
+      event: { originalEvent: {} }, feature: null, beforeOpen: null,
+      latlng, containerPoint, pointerType: 'mouse'
+    });
   }
 
   function resolveMapInteraction(interaction) {
@@ -24012,10 +24244,12 @@ ZSD·2016–2025</span></span>
     })();
   }
 
+  applySharedSelections();
   const savedEnvironmentalView = readSavedEnvironmentalView();
-  if (savedEnvironmentalView) {
-    layerVisibility.currents = savedEnvironmentalView === 'currents';
-    selectEnvironmentalView(savedEnvironmentalView);
+  const initialEnvironmentalView = sharedMapState.view || savedEnvironmentalView;
+  if (initialEnvironmentalView) {
+    layerVisibility.currents = initialEnvironmentalView === 'currents';
+    selectEnvironmentalView(initialEnvironmentalView);
   } else {
     // Keep data-backed map layers lazy on first load; users can select Dive Experience when they need it.
     selectEnvironmentalView('default');
@@ -24312,7 +24546,12 @@ ZSD·2016–2025</span></span>
       }
     });
   } else {
-  if (!DIVEATLAS_INTERACTION_TEST_MODE) initializeDataSources();
+  if (!DIVEATLAS_INTERACTION_TEST_MODE) {
+    initializeDataSources();
+    if (sharedMapState.popup && !sharedMapState.requestedSiteId) {
+      window.setTimeout(() => restoreSharedPopup(), 1200);
+    }
+  }
   }
 })();
 </script>
