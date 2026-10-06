@@ -6220,7 +6220,11 @@ ZSD·2016–2025</span></span>
 
     // Shared query parameters are an initial-state transport, not ongoing app state.
     // Replace the current history entry so Back does not reopen the same shared view.
-    const cleanUrl = `${window.location.pathname}${window.location.hash}`;
+    const params = new URLSearchParams();
+    const rolloutFlag = new URL(window.location.href).searchParams.get('diveExperienceOutlook');
+    if (rolloutFlag !== null) params.set('diveExperienceOutlook', rolloutFlag);
+    const query = params.size ? `?${params}` : '';
+    const cleanUrl = `${window.location.pathname}${query}${window.location.hash}`;
     window.history.replaceState(window.history.state, document.title, cleanUrl);
     sharedMapState.urlCleaned = true;
   }
