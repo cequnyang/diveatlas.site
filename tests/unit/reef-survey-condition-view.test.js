@@ -297,7 +297,7 @@ test('Ocean Heat History decodes packed category and daily summary fields from M
 });
 
 test('Ocean Heat History popup uses metadata period/category labels and factual NOAA source wording', () => {
-  const metadata = require('../../data/reef-condition/ocean-heat-history/metadata.json');
+  const metadata = require('../fixtures/reef-condition/noaa-mhw-history-metadata.json');
   const html = oceanHeatHistoryPopupMarkup({
     category: 3, date: '2025-12-31', marineHeatwaveDays: 1713,
     strongOrWorseDays: 294, severeOrWorseDays: 22, extremeOrWorseDays: 3,

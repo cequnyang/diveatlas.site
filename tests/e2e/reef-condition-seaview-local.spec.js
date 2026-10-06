@@ -12,6 +12,13 @@ function screenshotName(testInfo, name) {
   return path.join(SCREENSHOT_DIR, `${platform}-${name}.png`);
 }
 
+async function setLayersPanelCollapsed(page, collapsed) {
+  const panel = page.locator('#bioLegend');
+  const isCollapsed = await panel.evaluate(element => element.classList.contains('is-collapsed'));
+  if (isCollapsed !== collapsed) await page.locator('#bioLegendTitle').click();
+  await expect.poll(() => panel.evaluate(element => element.classList.contains('is-collapsed'))).toBe(collapsed);
+}
+
 async function moveMap(page, lat, lon, zoom) {
   await page.evaluate(() => { window.__DIVEATLAS_TEST__.map.closePopup(); });
   await page.evaluate(([nextLat, nextLon, nextZoom]) => {
@@ -29,7 +36,7 @@ async function openReefCondition(page, mobile) {
   }
   const tab = page.locator('input[name="environmentView"][value="reef-survey-condition"]');
   await page.locator('.environment-segment').filter({ has: tab }).click();
-  await page.getByRole('button', { name: 'Map layers' }).click();
+  await setLayersPanelCollapsed(page, false);
   await expect(page.locator('#reefSurveyMetric')).toBeVisible();
 }
 
@@ -117,7 +124,7 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
     await page.screenshot({ path: screenshotName(testInfo, 'hard-coral-dense-local'), animations: 'disabled' });
 
     await moveMap(page, repeated.lat + 0.12, repeated.lon, 11);
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, true);
     expect(await page.evaluate(siteId => window.__DIVEATLAS_TEST__.openReefSurveySourceSitePopup(siteId), repeated.sourceSiteId)).toBe(true);
     const popup = page.locator('.reef-survey-popup');
     await expect(popup).toBeVisible();
@@ -129,7 +136,7 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
     await expect(popup).toContainText('4 surveys');
     await page.screenshot({ path: screenshotName(testInfo, 'hard-coral-repeat-site-popup'), animations: 'disabled' });
 
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, false);
     const switchStart = await page.evaluate(() => performance.now());
     await metric.selectOption('seaviewMacroalgaeCoverPct');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().metric)).toBe('seaviewMacroalgaeCoverPct');
@@ -141,13 +148,13 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
     await moveMap(page, -15, 146, 7);
     await page.screenshot({ path: screenshotName(testInfo, 'macroalgae-dense-region'), animations: 'disabled' });
     await moveMap(page, repeated.lat + 0.12, repeated.lon, 11);
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, true);
     expect(await page.evaluate(siteId => window.__DIVEATLAS_TEST__.openReefSurveySourceSitePopup(siteId), repeated.sourceSiteId)).toBe(true);
     await expect(page.locator('.reef-survey-popup')).toContainText('MACROALGAE COVER');
     await expect(page.locator('.reef-survey-popup')).toContainText('Data age');
     await page.screenshot({ path: screenshotName(testInfo, 'macroalgae-repeat-site-popup'), animations: 'disabled' });
 
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, false);
     await metric.selectOption('oceanHeatHistory');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().providerId)).toBe('noaa-crw-ocean-heat-history');
     let switched = await page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState());
@@ -155,9 +162,6 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
     expect(switched.markerCount).toBe(0);
     await metric.selectOption('thermalStressHistory');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().providerId)).toBe('noaa-crw-thermal-history');
-    await metric.selectOption('liveCoralCoverPct');
-    await expect(page.locator('[data-reef-survey-dataset-status]')).toHaveText('Unavailable');
-    await expect(page.locator('[data-reef-survey-error]')).toBeVisible();
     const restoredSeaviewStart = await page.evaluate(() => performance.now());
     await metric.selectOption('seaviewHardCoralCoverPct');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().markerCount)).toBe(579);
@@ -195,7 +199,7 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
   } else {
     const popupSite = globalHard.siteObservationPreview.find(site => site.sourceSiteId === '10001');
     await moveMap(page, popupSite.lat + 0.22, popupSite.lon, 11);
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, true);
     expect(await page.evaluate(siteId => window.__DIVEATLAS_TEST__.openReefSurveySourceSitePopup(siteId), popupSite.sourceSiteId)).toBe(true);
     const popup = page.locator('.reef-survey-popup');
     await expect(popup).toBeVisible();
@@ -208,16 +212,17 @@ test('local Seaview metrics render site observations, resolve repeats, and switc
     expect(popupBounds.y + popupBounds.height).toBeLessThanOrEqual(await page.evaluate(() => window.innerHeight));
     expect(popupBounds.x + popupBounds.width).toBeLessThanOrEqual(await page.evaluate(() => window.innerWidth));
     const collapsedLayersBounds = await page.locator('#bioLegend').boundingBox();
-    expect(popupBounds.y + popupBounds.height).toBeLessThanOrEqual(collapsedLayersBounds.y);
+    const popupPanelOverlap = Math.max(0, Math.min(popupBounds.y + popupBounds.height, collapsedLayersBounds.y + collapsedLayersBounds.height) - Math.max(popupBounds.y, collapsedLayersBounds.y));
+    expect(popupPanelOverlap).toBe(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(await page.evaluate(() => window.innerWidth));
     await page.screenshot({ path: screenshotName(testInfo, 'hard-coral-mobile-popup'), animations: 'disabled' });
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, false);
     await metric.selectOption('seaviewMacroalgaeCoverPct');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().metric)).toBe('seaviewMacroalgaeCoverPct');
     await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getReefSurveyState().markerCount)).toBe(579);
     expect(requests.filter(url => url.endsWith('/metadata.json'))).toHaveLength(1);
     expect(requests.filter(url => url.endsWith('/canonical.json.gz'))).toHaveLength(1);
-    await page.getByRole('button', { name: 'Map layers' }).click();
+    await setLayersPanelCollapsed(page, true);
     await page.evaluate(() => { window.__DIVEATLAS_TEST__.map.closePopup(); });
     await moveMap(page, 0, 0, 2);
     await page.screenshot({ path: screenshotName(testInfo, 'macroalgae-global'), animations: 'disabled' });

@@ -15,6 +15,13 @@ async function enableCurrents(page) {
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
 }
 
+async function expectCurrentFieldReady(page) {
+  // `field-ready` is intentionally brief: the renderer reports `animating`
+  // after it has decoded the field and begun drawing particles.
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status))
+    .toMatch(/^(field-ready|animating)$/);
+}
+
 async function measureAnimationFrameRate(page) {
   return page.evaluate(() => new Promise(resolve => {
     let firstFrame;
@@ -57,11 +64,12 @@ test('the animated flow renderer benchmarks at matched particle counts without a
   await openMap(page, { url: EXPERIMENT_URL });
   await setMapView(page, -8, 130, 8);
   await enableCurrents(page);
+  await page.locator('#currentsMonth').selectOption('9');
   const noFlowRafFps = await measureAnimationFrameRate(page);
   const noFlowHeapBytes = await page.evaluate(() => performance.memory?.usedJSHeapSize ?? null);
   await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.activate());
   await expect(page.locator('.regional-current-flow-canvas')).toBeAttached();
-  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('field-ready');
+  await expectCurrentFieldReady(page);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.firstFlowVisibleMs)).toBeGreaterThan(0);
   const loadMeasurements = [];
   loadMeasurements.push(await page.evaluate(() => ({ ...window.__DIVEATLAS_CURRENT_FLOW__.diagnostics })));
@@ -73,7 +81,7 @@ test('the animated flow renderer benchmarks at matched particle counts without a
   for (const resolution of variants) {
     if (resolution !== '0.083') {
       await page.evaluate(value => window.__DIVEATLAS_CURRENT_FLOW__.setResolution(value), resolution);
-      await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('field-ready');
+      await expectCurrentFieldReady(page);
       await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.firstFlowVisibleMs)).toBeGreaterThan(0);
       loadMeasurements.push(await page.evaluate(() => ({ ...window.__DIVEATLAS_CURRENT_FLOW__.diagnostics })));
     }
@@ -126,9 +134,10 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   page.on('request', request => { if (/regional-currents-flow\/field-/.test(request.url())) flowRequests.push(request.url()); });
   await openMap(page, { url: EXPERIMENT_URL });
   await enableCurrents(page);
+  await page.locator('#currentsMonth').selectOption('9');
   await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.activate());
   await expect(page.locator('.regional-current-flow-canvas')).toBeAttached();
-  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('field-ready');
+  await expectCurrentFieldReady(page);
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
 
   const centerBefore = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter().lng);
@@ -154,14 +163,14 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('slice-unavailable');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
   await page.locator('#currentsMonth').selectOption('9');
-  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('field-ready');
+  await expectCurrentFieldReady(page);
   await page.locator('#currentsDepth').selectOption('10');
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('slice-unavailable');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
   await page.locator('#currentsDepth').selectOption('0');
-  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('field-ready');
+  await expectCurrentFieldReady(page);
 
-  await page.locator('label.environment-segment:has(input[name="environmentView"][value="terrain"])').click();
+  await page.locator('label.environment-segment:has(input[name="environmentView"][value="default"])').click();
   await expect(page.locator('.regional-current-flow-canvas')).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.state?.rafActive)).toBe(false);
   const requestCountWhenOff = flowRequests.length;

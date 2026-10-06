@@ -204,7 +204,7 @@
       })).filter(point => point.value_c != null);
       return { value_c: current, month: Number(month), depth_m: Number(depth), profile, year, metadata,
         source_latitude:best.latitude, source_longitude:best.longitude, sample_distance_km:best.distance,
-        nearby_estimate:false };
+        nearby_estimate:best.distance > 0 };
     }
 
     return Object.freeze({ query, get cachedChunkCount() { return chunks.size; } });

@@ -107,7 +107,7 @@ test('ocean-cell sampling returns block-preserving score, support, and categoric
   assert.deepEqual(sample.reefExperience, { status:'supported', activeDimensionCount:2,
     totalDimensionCount:3, activeDimensionIds:['fishDensity', 'thermalStressHistory'] });
   assert.deepEqual(sample.fish, {
-    score:80, tier:'B', category:'High', evidenceLevel:'moderate', spatialSupportStatus:'limited',
+    score:80, tier:'B', category:'Upper typical', evidenceLevel:'moderate', spatialSupportStatus:'limited',
     nearestObservationDistanceKm:123.4, supportingSiteCount:4, effectiveSupport:2.7, environmentalSupportDistance:1.2
   });
   assert.equal(sample.thermalStress.meanAnnualMaximumDhw, 2.5);

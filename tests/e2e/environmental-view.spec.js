@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
 const { gzipSync } = require('node:zlib');
-const { addFixture, clickFixture, openMap } = require('./support');
+const { addFixture, clickFixture, closeTopMenu, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView } = require('./support');
 
 const temperatureMetadata = path.resolve(__dirname, '../../data/temperature/metadata.json');
 const metadataFixture = {
@@ -30,6 +30,29 @@ async function activateTemperatureView(page) {
     has: page.locator('input[name="environmentView"][value="temperature"]')
   }).click();
 }
+
+test('production temperature metadata stays on Pages and supplies the supported depth choices', async ({ page }) => {
+  await openMap(page);
+  await setMapView(page, -5.7, 131, 4);
+  const temperatureTileResponses = [];
+  page.on('response', response => {
+    if (response.url().includes('/woa23/monthly/') && new URL(response.url()).pathname.endsWith('.png')) {
+      temperatureTileResponses.push({ url: response.url(), status: response.status() });
+    }
+  });
+  await activateTemperatureView(page);
+  await expect(page.locator('#temperatureDepth option')).toHaveCount(11);
+  await page.locator('#temperatureDepth').selectOption('20');
+  await expect.poll(() => temperatureTileResponses.some(({ status }) => status === 200), { timeout: 20_000 })
+    .toBe(true);
+
+  const metadataUrl = await page.evaluate(() => performance.getEntriesByType('resource')
+    .map(entry => entry.name)
+    .find(url => new URL(url).pathname.endsWith('/data/temperature/metadata.json')));
+  expect(metadataUrl, 'the temperature metadata request should complete').toBeTruthy();
+  expect(new URL(metadataUrl).origin, 'small temperature metadata stays on the Pages origin')
+    .toBe(new URL(page.url()).origin);
+});
 
 test('saved month preferences keep each month selector and legend in sync on startup', async ({ page }) => {
   await openMap(page, {
@@ -61,6 +84,9 @@ test('temperature has zero startup requests and loads only after activation', as
   });
   await installMetadataFixture(page);
   await openMap(page);
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
   expect(temperatureRequests).toEqual([]);
   await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
   await expect(page.locator('input[name="environmentView"][value="dive-conditions"]')).toHaveCount(0);
@@ -76,8 +102,8 @@ test('temperature has zero startup requests and loads only after activation', as
   await page.locator('#environmentViewSelect').selectOption('default');
   await expect(page.locator('#temperatureControls')).toBeHidden();
   await expect.poll(() => page.locator('.temperature-tiles').count()).toBe(0);
-  await page.locator('#environmentViewSelect').selectOption('terrain');
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('terrain');
+  await page.locator('#environmentViewSelect').selectOption('default');
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
 });
 
 test('Waves loads its selected month on demand and defers point climatology until requested', async ({ page }) => {
@@ -173,7 +199,9 @@ test('Water Clarity click popup renders a local numeric chunk with the current l
     rendering: { tile_template: 'tiles/{month}/{z}/{x}/{y}.png', min_native_zoom: 5,
       max_native_zoom: 5, opacity: 0.58 }
   };
-  const tile = fs.readFileSync(path.resolve(__dirname, '../../data/terrain_tiles/6/0/0.png'));
+  // This test uses synthetic water-clarity data; its tile bytes must not depend
+  // on a large terrain tile that is intentionally absent from Git.
+  const tile = fs.readFileSync(path.resolve(__dirname, '../../assets/favicon-light.png'));
   await page.route('**/data/water_clarity/metadata.json', route => route.fulfill({ json: metadata }));
   await page.route('**/data/water_clarity/query/chunks/r00_c00.u8.gz**', route => route.fulfill({
     status: 200, contentType: 'application/gzip', body: gzipSync(values)
@@ -349,7 +377,9 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await page.locator('#temperatureInfoAbout').click();
   await page.locator('#temperatureDepth').selectOption('30');
   await expect(page.locator('#temperatureDepth')).toHaveValue('30');
-  await expect(page.locator('#temperatureLegendSlice')).toHaveText('30 m · September');
+  const initialTemperatureMonth = await page.locator('#temperatureMonth').inputValue();
+  const monthNames = { '9':'September', '10':'October', '11':'November' };
+  await expect(page.locator('#temperatureLegendSlice')).toHaveText(`30 m · ${monthNames[initialTemperatureMonth]}`);
   await page.locator('#temperatureMonth').selectOption('10');
   await expect(page.locator('#temperatureLegendSlice')).toHaveText('30 m · October');
   await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Water TEMP · 30m · Oct');
@@ -384,6 +414,12 @@ test('layer panel segments and native depth select keep existing state, keyboard
 
 test('header filter control retains the Show all layers action without a duplicate menu', async ({ page }) => {
   await openMap(page);
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
   const bulkAction = page.locator('#bioLegendBulkAction');
   await expect(page.locator('#bioLegendFilter')).toHaveCount(0);
   await expect(bulkAction).toBeVisible();
@@ -442,7 +478,7 @@ test('header filter control retains the Show all layers action without a duplica
     expect(Math.abs(tab.text.centerX - tab.tab.centerX), `${tab.value} label should be horizontally centered`).toBeLessThanOrEqual(1);
     expect(Math.abs(tab.text.centerY - selectorLayout.group.centerY)).toBeLessThanOrEqual(1.5);
   }
-  for (const value of ['terrain', 'temperature', 'water-clarity', 'currents', 'waves']) {
+  for (const value of ['dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'waves']) {
     const selectedStyle = await page.evaluate(selectedValue => {
       const group = document.querySelector('.environment-segment-group');
       group.querySelector(`input[value="${selectedValue}"]`).checked = true;
@@ -450,7 +486,8 @@ test('header filter control retains the Show all layers action without a duplica
     }, value);
     expect(selectedStyle, `${value} should receive the active-pill treatment`).toBe('600');
   }
-  await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="terrain"]').checked = true; });
+  await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="default"]').checked = true; });
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.setLegendCollapsed(false));
   for (const item of ['titleIcon', 'titleText', 'collapseIcon', 'filterIcon', 'bulkText', 'overflow']) {
     expect(Math.abs(headerGeometry[item].centerY - headerCenterY), `${item} should share the header centerline`).toBeLessThanOrEqual(2);
   }
@@ -464,14 +501,14 @@ test('header filter control retains the Show all layers action without a duplica
   expect(titleToChevronGap).toBeGreaterThan(layersControlToFilterGap);
   const collapseToggle = page.locator('#bioLegendTitle');
   const collapseChevron = page.locator('.bio-legend-title-chevron');
-  await expect(collapseChevron).toHaveCSS('transform', 'none');
+  await expect(collapseChevron).toHaveCSS('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
   await collapseToggle.focus();
   await expect(collapseToggle).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
   await expect(collapseToggle).toHaveAttribute('aria-expanded', 'false');
   await page.waitForTimeout(260);
-  await expect(collapseChevron).toHaveCSS('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+  await expect(collapseChevron).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
   const collapsedCenterDeltas = await page.evaluate(() => {
     const centerY = selector => {
       const { top, height } = document.querySelector(selector).getBoundingClientRect();
@@ -496,7 +533,7 @@ test('header filter control retains the Show all layers action without a duplica
   await page.keyboard.press('Enter');
   await expect(page.locator('#bioLegend')).not.toHaveClass(/is-collapsed/);
   await expect(collapseToggle).toHaveAttribute('aria-expanded', 'true');
-  await expect(collapseChevron).toHaveCSS('transform', 'none');
+  await expect(collapseChevron).toHaveCSS('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
   for (const viewport of [{ width: 624, height: 1268 }, { width: 360, height: 780 }]) {
     await page.setViewportSize(viewport);
     const layout = await page.evaluate(() => {
@@ -556,11 +593,11 @@ test('temperature panel motion follows the latest view, stays inert while closin
   await expect(controls).toHaveAttribute('aria-hidden', 'false');
   await expect(controls).toHaveJSProperty('inert', false);
   await page.screenshot({ path: 'test-results/layers-panel-temperature-opening.png', animations: 'allow' });
-  await page.locator('.environment-segment').filter({ hasText: 'Terrain' }).click();
+  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') }).click();
   await page.screenshot({ path: 'test-results/layers-panel-temperature-closing.png', animations: 'allow' });
   await activateTemperatureView(page);
   await page.locator('#environmentViewSelect').selectOption('default');
-  await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(0);
+  await expect(page.locator('input[name="environmentView"]:checked')).toHaveValue('default');
   await expect(controls).toHaveAttribute('aria-hidden', 'true');
   await expect(controls).toBeHidden();
   expect(await controls.evaluate(node => node.contains(document.activeElement))).toBe(false);
@@ -582,7 +619,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     if (request.url().includes('/data/temperature/query/')) queryRequests.push(request.url());
   });
   await installMetadataFixture(page);
-  await openMap(page);
+  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await page.locator('input[name="environmentView"][value="temperature"]').focus();
   await page.keyboard.press('Space');
   await expect(page.locator('#temperatureControls')).toBeVisible();
@@ -696,6 +733,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
         const toggle = page.locator(`#${id}`);
         const wasChecked = await toggle.isChecked();
         const track = page.locator(`label[for="${id}"] .layer-toggle-switch`);
+        await track.scrollIntoViewIfNeeded();
         const trackBounds = await track.boundingBox();
         await page.mouse.click(trackBounds.x + trackBounds.width / 2, trackBounds.y + trackBounds.height / 2);
         await expect(toggle).toHaveJSProperty('checked', !wasChecked);
@@ -832,8 +870,9 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
       queryResponses.push(response.body().then(body => ({ url: response.url(), bytes: body.byteLength })));
     }
   });
+  const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/metadata.json')).toString('utf8'));
+  expect(queryMetadata.format).toBe('diveatlas-temperature-query');
   await openMap(page);
-  await expect.poll(() => fs.existsSync(path.resolve(__dirname, '../../data/temperature/query/metadata.json'))).toBe(true);
   expect(requests).toEqual([]);
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect(page.locator('.temperature-tiles')).toHaveCount(1);
@@ -869,8 +908,8 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   expect(await page.locator('.temperature-profile-chart circle').count()).toBe(11);
   const profileRadii = await page.locator('.temperature-profile-chart circle').evaluateAll(nodes => nodes.map(node => node.getAttribute('r')));
   expect(profileRadii[4]).toBe('4');
-  await expect(page.getByRole('button', { name: 'Year' })).toBeEnabled();
-  await page.getByRole('button', { name: 'Year' }).click();
+  await expect(page.locator('[data-temperature-tab="year"]')).toBeEnabled();
+  await page.locator('[data-temperature-tab="year"]').click();
   await expect(page.locator('.temperature-year-chart circle')).toHaveCount(12);
   await expect(page.locator('.temperature-year-values span')).toHaveCount(12);
   expect(await page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill')).toBe('var(--accent)');
@@ -966,7 +1005,7 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
 
 test('temperature detail stays compact and tappable at a mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await openMap(page);
+  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await page.locator('#bioLegendTitle').click();
   await activateTemperatureView(page);
   await page.locator('#bioLegendTitle').click();
@@ -977,11 +1016,15 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
   await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
+  await openMobileSettings(page);
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
   await expect(page.locator('#temperatureCoverageNote')).toContainText('15.5 mi');
+  await closeTopMenu(page);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart')).toContainText('ft');
+  await openTopMenu(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
+  await closeTopMenu(page);
   await expect(page.locator('.temperature-detail-heading')).toContainText('°F');
   await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
@@ -1082,7 +1125,7 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
     );
   expect(hasProductionFixture, 'The shipped production manifest must include the WOA23 September/20 m slice.').toBe(true);
 
-  await openMap(page);
+  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
   const tileResponse = page.waitForResponse(response =>
     response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
@@ -1090,7 +1133,7 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
   await page.locator('#environmentViewSelect').selectOption('temperature');
   const response = await tileResponse;
   expect(response.status()).toBe(200);
-  const tile = page.locator('img.leaflet-tile[src*="/09/20/3/6/4.png"]');
+  const tile = page.locator('img.leaflet-tile-loaded[src*="/production-0.25deg/woa23/monthly/09/20/3/6/4.png"]');
   await expect(tile).toBeVisible();
   await expect.poll(() => tile.evaluate(image => image.complete && image.naturalWidth === 256)).toBe(true);
   const alpha = await tile.evaluate(async image => {

@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { gzipSync } = require('node:zlib');
-const { openMap } = require('./support');
+const { closeTopMenu, openMap, openMobileSettings, openTopMenu } = require('./support');
 
 async function openLayersPanel(page) {
   const panel = page.locator('#bioLegend');
@@ -55,6 +55,9 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
 
   await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await openLayersPanel(page);
+  if (testInfo.project.name.includes('mobile')) {
+    await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = track.scrollWidth; });
+  }
   await page.route('**/data/currents/metadata.json', async route => {
     metadataRequests.push(route.request().url());
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify(metadata) });
@@ -93,12 +96,15 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
 
   const screenshotName = testInfo.project.name === 'mobile-touch-chromium' ? 'mobile' : 'desktop';
   await page.screenshot({ path: `test-results/regional-currents-${screenshotName}-light.png` });
+  await openMobileSettings(page);
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
   await expect(page.locator('#currentsInfoResolutionValue')).toHaveText('~5 mi');
   await expect(page.locator('#currentsMetaResolutionValue')).toHaveText('~5 mi');
   await expect(page.locator('.regional-currents-popup')).toContainText('1.30 ft/s');
   await expect(page.locator('.regional-currents-popup')).toContainText('~5 mi');
+  await openTopMenu(page);
   await page.locator('#themeBtn').click();
+  await closeTopMenu(page);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.screenshot({ path: `test-results/regional-currents-${screenshotName}-dark.png` });
 
@@ -195,7 +201,9 @@ test('Regional Currents explanation card stays readable across themes and mobile
   expect(desktopLight.scale).not.toBe('none');
   expect(await card.locator('.regional-currents-speed-labels').innerText()).toContain('Moderate');
   await page.screenshot({ path: 'test-results/regional-currents-card-desktop-light.png' });
+  await openTopMenu(page);
   await page.locator('#themeBtn').click();
+  await closeTopMenu(page);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   const desktopDark = await card.evaluate(node => ({
     borderColor: getComputedStyle(node).borderColor,
@@ -223,7 +231,9 @@ test('Regional Currents explanation card stays readable across themes and mobile
   expect(mobileDark.documentWidth).toBeLessThanOrEqual(mobileDark.viewportWidth);
   expect(mobileDark.scale).not.toBe('none');
   await page.screenshot({ path: 'test-results/regional-currents-card-mobile-dark.png' });
+  await openTopMenu(page);
   await page.locator('#themeBtn').click();
+  await closeTopMenu(page);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.screenshot({ path: 'test-results/regional-currents-card-mobile-light.png' });
 });

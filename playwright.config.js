@@ -1,4 +1,5 @@
 const { defineConfig, devices } = require('@playwright/test');
+const port = process.env.PLAYWRIGHT_PORT || '8766';
 
 module.exports = defineConfig({
   testDir: './tests/e2e',
@@ -13,7 +14,7 @@ module.exports = defineConfig({
   snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}.png',
   outputDir: 'test-results',
   use: {
-    baseURL: 'http://127.0.0.1:8765',
+    baseURL: `http://127.0.0.1:${port}`,
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
@@ -35,8 +36,8 @@ module.exports = defineConfig({
     }
   ],
   webServer: {
-    command: 'python -m http.server 8765 --bind 127.0.0.1',
-    url: 'http://127.0.0.1:8765/',
+    command: `node tools/serve_test_site.js --port=${port}`,
+    url: `http://127.0.0.1:${port}/`,
     reuseExistingServer: !process.env.CI,
     timeout: 30_000
   }

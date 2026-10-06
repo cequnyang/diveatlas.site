@@ -1,8 +1,14 @@
 const { test, expect } = require('@playwright/test');
 const { execFileSync } = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
 const { openMap } = require('./support');
 
-const baselineHtml = execFileSync('git', ['show', 'HEAD:index.html'], { encoding: 'utf8' });
+const sourceRoot = path.resolve(__dirname, '../..');
+const baselineHtml = execFileSync('git', ['show', 'HEAD:index.html'], {
+  encoding: 'utf8',
+  maxBuffer: 16 * 1024 * 1024
+});
 const FLOW_URL = '/?__diveatlas_test=1&__currents_flow=1&lat=-5.7&lng=131&z=7';
 
 async function openLayersPanel(page) {
@@ -19,6 +25,7 @@ async function refreshAndWait(page, action) {
   // Cached viewport tiles can take the status directly back to ready between browser polls.
   await page.waitForTimeout(100);
   await page.waitForFunction(() => document.querySelector('#currentsStatus')?.dataset.state === 'ready');
+  await page.waitForFunction(() => window.__DIVEATLAS_CURRENT_FLOW__?.currentsState?.pendingTiles === 0);
   return Date.now() - started;
 }
 
@@ -62,6 +69,7 @@ async function canvasMemoryBytes(page, selector) {
 }
 
 test('measures disabled startup and real global current tile loading, redraw, and cache behavior', async ({ page }, testInfo) => {
+  test.setTimeout(180_000);
   const currentRequests = [];
   const tileResponses = [];
   const longTasks = [];
@@ -72,12 +80,14 @@ test('measures disabled startup and real global current tile loading, redraw, an
   });
   page.on('response', response => {
     if (/\.bin\.gz(?:\?|$)/.test(response.url())) {
-      tileResponses.push({
+      const measurement = {
         url: response.url(),
-        bytes: Number(response.headers()['content-length'] || 0),
+        bytes: 0,
         status: response.status(),
         at: Date.now()
-      });
+      };
+      tileResponses.push(measurement);
+      void response.body().then(body => { measurement.bytes = body.byteLength; }).catch(() => {});
     }
   });
 
@@ -97,7 +107,7 @@ test('measures disabled startup and real global current tile loading, redraw, an
   });
 
   const mapStart = Date.now();
-  await openMap(page, { url: FLOW_URL });
+  await openMap(page, { url: FLOW_URL, externalAssets: true });
   const mapUsableMs = Date.now() - mapStart;
   await page.waitForTimeout(750);
   const disabledRequests = currentRequests.length;
@@ -117,6 +127,16 @@ test('measures disabled startup and real global current tile loading, redraw, an
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([0, 0], 2, { animate: false }));
   await openLayersPanel(page);
   const globalStart = Date.now();
+  const metadataResponse = page.waitForResponse(response => /\/data\/currents\/metadata\.json/.test(response.url()));
+  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await metadataResponse;
+  await page.locator('#currentsDepth').selectOption('0');
+  // The experimental particle field contains September surface data only.
+  await page.locator('#currentsMonth').selectOption('9');
+  await page.waitForFunction(() => document.querySelector('#currentsStatus')?.dataset.state === 'ready');
+  // The mobile viewport at z2 does not intersect the Raja Ampat fixture crop.
+  // Center on the crop before measuring real-data flow activation.
+  await refreshAndWait(page, () => page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-5.7, 131], 7, { animate: false })));
   const firstFlow = page.waitForFunction(() => {
     const canvas = document.querySelector('.regional-current-flow-canvas');
     if (!canvas) return false;
@@ -124,14 +144,6 @@ test('measures disabled startup and real global current tile loading, redraw, an
     for (let offset = 3; offset < pixels.length; offset += 4) if (pixels[offset]) return true;
     return false;
   });
-  const metadataResponse = page.waitForResponse(response => /\/data\/currents\/metadata\.json/.test(response.url()));
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
-  await metadataResponse;
-  await page.locator('#currentsDepth').selectOption('0');
-  await page.waitForFunction(() => document.querySelector('#currentsStatus')?.dataset.state === 'ready');
-  // The mobile viewport at z2 does not intersect the Raja Ampat fixture crop.
-  // Center on the crop before measuring real-data flow activation.
-  await refreshAndWait(page, () => page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-5.7, 131], 7, { animate: false })));
   await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.activate());
   await firstFlow;
   expect(await visibleFlowPixels(page)).toBeGreaterThan(0);
@@ -207,7 +219,7 @@ test('measures disabled startup and real global current tile loading, redraw, an
   const antimeridianRequestStart = tileResponses.length;
   await refreshAndWait(page, () => page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([0, 179.8], 9, { animate: false })));
   const edgeTileUrls = tileResponses.slice(antimeridianRequestStart).map(response => response.url);
-  expect(edgeTileUrls.some(url => /\/s4\/0_2\.bin\.gz/.test(url))).toBe(true);
+  expect(edgeTileUrls.some(url => /\/s4\/0_2\.bin\.gz/.test(url)), JSON.stringify(edgeTileUrls)).toBe(true);
   const allTileUrls = tileResponses.map(response => response.url);
   expect(allTileUrls.some(url => /\/s4\/8_2\.bin\.gz/.test(url))).toBe(true);
   for (const longitude of [-180, 180]) {
@@ -234,6 +246,7 @@ test('measures disabled startup and real global current tile loading, redraw, an
     memory: performance.memory?.usedJSHeapSize ?? null
   }));
   expect(tileResponses.every(response => response.status === 200)).toBe(true);
+  await expect.poll(() => tileResponses.every(response => response.bytes > 0), { timeout: 10_000 }).toBe(true);
   expect(tileResponses.every(response => response.bytes > 0)).toBe(true);
 
   console.log('REAL_CURRENTS_PERF', JSON.stringify({
@@ -292,6 +305,12 @@ test('measures pre-currents startup from the checked-out base revision for compa
     if (url.hostname !== '127.0.0.1' && url.hostname !== 'localhost' && url.hostname !== 'unpkg.com') return route.abort();
     if (url.hostname === '127.0.0.1' && url.pathname === '/') {
       return route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: baselineHtml });
+    }
+    if (url.hostname === '127.0.0.1') {
+      const sourcePath = path.resolve(sourceRoot, decodeURIComponent(url.pathname.slice(1)));
+      if (sourcePath.startsWith(`${sourceRoot}${path.sep}`) && fs.existsSync(sourcePath) && fs.statSync(sourcePath).isFile()) {
+        return route.fulfill({ path: sourcePath });
+      }
     }
     return route.fallback();
   });

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "provider": "NOAA Coral Reef Watch",
+  "product": "Marine Heatwave Watch",
+  "productVersion": "1.0.1",
+  "sourceVariable": "heatwave_category",
+  "metric": "Worst marine heatwave category",
+  "sourceUrl": "https://www.coralreefwatch.noaa.gov/product/marine_heatwave/",
+  "attribution": "NOAA Coral Reef Watch",
+  "sourcePeriod": {
+    "start": "2016-01-01",
+    "end": "2025-12-31",
+    "startYear": 2016,
+    "endYear": 2025,
+    "completeYears": 10
+  },
+  "displayGrid": {
+    "width": 1440,
+    "height": 720,
+    "longitudeMin": -179.875,
+    "latitudeMin": -89.875,
+    "stepDegrees": 0.25,
+    "rowOrder": "south-to-north"
+  },
+  "semantics": "Broad marine heat environment; not coral bleaching, reef damage, or direct reef condition.",
+  "temporalSpatialSemantics": "Daily display-cell category is the maximum valid 5km source category in the 5x5 block.",
+  "categories": [
+    { "code": 0, "label": "No marine heatwave", "color": "#5697ac" },
+    { "code": 1, "label": "Moderate", "color": "#f4d664" },
+    { "code": 2, "label": "Strong", "color": "#f4a34c" },
+    { "code": 3, "label": "Severe", "color": "#e16342" },
+    { "code": 4, "label": "Extreme", "color": "#b43c4b" },
+    { "code": 5, "label": "Beyond extreme", "color": "#70367c" }
+  ],
+  "assetBase": "./data/reef-condition/ocean-heat-history",
+  "tileTemplate": "tiles/{z}/{x}/{y}.png",
+  "tileMinZoom": 0,
+  "tileMaxNativeZoom": 5,
+  "queryTileTemplate": "query/{column}_{row}.bin.gz",
+  "query": {
+    "format": "MHW1",
+    "headerBytes": 8,
+    "tileSizeCells": 128,
+    "bytesPerCell": 15,
+    "fields": [
+      "worstCategory",
+      "worstDayIndex",
+      "marineHeatwaveDays",
+      "strongOrWorseDays",
+      "severeOrWorseDays",
+      "extremeOrWorseDays",
+      "longestEpisodeDays",
+      "validDays"
+    ],
+    "missingValue": 255
+  },
+  "version": "crw-mhw-1.0.1-2016-2025-worst-category"
+}

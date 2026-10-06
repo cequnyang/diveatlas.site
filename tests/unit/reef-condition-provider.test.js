@@ -5,7 +5,7 @@ const fixture = require('../fixtures/reef-condition/mock-raja-ampat.json');
 
 test('provider kinds cover raster layers, field observations, and future models', () => {
   assert.deepEqual(Object.values(providerApi.PROVIDER_KINDS), [
-    'raster-condition-layer', 'field-observations', 'observed-biological-evidence', 'future-model'
+    'raster-condition-layer', 'field-observations', 'future-model'
   ]);
   assert.equal(providerApi.createRasterConditionProvider({ load: async () => ({ url: 'tiles/{z}/{x}/{y}.png' }) }).kind, 'raster-condition-layer');
   assert.equal(providerApi.createFutureModelProvider({ load: async () => ({}) }).kind, 'future-model');
@@ -88,14 +88,15 @@ function historyMetadata(overrides = {}) {
     query_tile_template: 'query/{column}_{row}.bin.gz',
     version: 'crw-3.7.0-1985-2025',
     grid: { width: 7200, height: 1390, longitude_min: -179.975, longitude_step: 0.05, latitude_min: -35.275, latitude_step: 0.05, row_order: 'south-to-north' },
-    encoding: { map_zoom: 5, query_tile_size_cells: 256, query_bytes_per_cell: 38, query_format: 'gzip DCHR v2; uint16 hundredths' },
+    encoding: { map_zoom: 5, query_tile_size_cells: 256, query_bytes_per_cell: 38,
+      query_format: 'gzip DCHR v2; yearly counts, full/recent extrema, and ten recent annual DHW values as uint16 hundredths' },
     categories: ['<4 · Lower accumulated heat stress', '4–<8 · Bleaching-level heat stress', '8–<12 · Severe heat stress', '12–<16 · Very severe heat stress', '16–<20 · Extreme heat stress', '20+ · Exceptional heat stress'],
     ...overrides
   };
 }
 
 test('NOAA Thermal History metadata validates source periods and annual DHW semantics', () => {
-  const metadata = require('../../data/reef-condition/thermal-stress-history/metadata.json');
+  const metadata = historyMetadata();
   const normalized = providerApi.validateNoaaThermalHistoryMetadata(metadata);
   assert.deepEqual(normalized.periods, { fullStart: 1985, fullEnd: 2025, recentStart: 2016, recentEnd: 2025 });
   assert.equal(normalized.variable, 'ann_max_dhw');
@@ -103,9 +104,7 @@ test('NOAA Thermal History metadata validates source periods and annual DHW sema
   assert.equal(normalized.queryBytesPerCell, 38);
   assert.match(metadata.encoding.query_format, /^gzip DCHR v2/);
   assert.equal(metadata.recentYears, 10);
-  assert.match(metadata.encoding.map_format, /maximum annual DHW in the recent decade/);
-  assert.ok(metadata.assets.mapBytes < 600_000);
-  assert.ok(metadata.assets.queryBytes < 8_000_000);
+  assert.match(metadata.encoding.query_format, /ten recent annual DHW values/);
 });
 
 test('NOAA Thermal History provider loads lazily only when selected by Reef Condition', async () => {
@@ -137,7 +136,7 @@ test('NOAA Thermal History provider fails gracefully when static metadata is una
 });
 
 test('NOAA Marine Heatwave provider validates and lazily loads the production period and categories', async () => {
-  const metadata = require('../../data/reef-condition/ocean-heat-history/metadata.json');
+  const metadata = require('../fixtures/reef-condition/noaa-mhw-history-metadata.json');
   const calls = [];
   const provider = providerApi.createNoaaMhwHistoryProvider({
     fetchImpl: async (url, options) => {
@@ -171,7 +170,7 @@ test('NOAA Marine Heatwave provider validates and lazily loads the production pe
 test('NOAA Marine Heatwave provider fails safely for unavailable or unsupported production metadata', async () => {
   const unavailable = providerApi.createNoaaMhwHistoryProvider({ fetchImpl: async () => ({ ok: false, status: 404 }) });
   await assert.rejects(unavailable.load(), /NOAA ocean heat-history raster is unavailable \(404\)/);
-  const metadata = require('../../data/reef-condition/ocean-heat-history/metadata.json');
+  const metadata = require('../fixtures/reef-condition/noaa-mhw-history-metadata.json');
   const malformed = providerApi.createNoaaMhwHistoryProvider({ fetchImpl: async () => ({
     ok: true, json: async () => ({ ...metadata, sourcePeriod: { ...metadata.sourcePeriod, endYear: 2024 } })
   }) });

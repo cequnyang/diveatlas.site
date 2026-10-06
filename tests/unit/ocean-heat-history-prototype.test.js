@@ -4,9 +4,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const prototypePath = path.join(__dirname, '../../data/.build/reef_condition/ocean-heat-history-prototype/index.html');
-const html = fs.readFileSync(prototypePath, 'utf8');
+const prototypeIsBuilt = fs.existsSync(prototypePath);
+const html = prototypeIsBuilt ? fs.readFileSync(prototypePath, 'utf8') : '';
 
-test('ocean heat prototype is lazy and has mutually exclusive candidates', () => {
+test('ocean heat prototype is lazy and has mutually exclusive candidates', { skip: !prototypeIsBuilt && 'Local prototype artifact has not been generated.' }, () => {
   assert.match(html, /fetch\('\.\/metadata\.json'\)/);
   assert.match(html, /async function selectMode\(next\)/);
   assert.match(html, /map\.removeLayer\(oceanLayer\)/);
@@ -16,7 +17,7 @@ test('ocean heat prototype is lazy and has mutually exclusive candidates', () =>
   assert.match(html, /candidate === 'candidate-a' \? metadata\.candidateA : metadata\.candidateB/);
 });
 
-test('ocean heat prototype popup reports history fields and missing data', () => {
+test('ocean heat prototype popup reports history fields and missing data', { skip: !prototypeIsBuilt && 'Local prototype artifact has not been generated.' }, () => {
   for (const field of [
     'Recent period:', 'Worst marine heatwave:', 'Worst occurrence:', 'Marine heatwave days:',
     'Strong-or-worse days:', 'Severe-or-worse days:', 'Longest episode:', 'Source: NOAA Coral Reef Watch',
@@ -24,12 +25,12 @@ test('ocean heat prototype popup reports history fields and missing data', () =>
   assert.match(html, /No valid source value for this display cell/);
 });
 
-test('packed query reader accounts for the one-byte category before uint16 fields', () => {
+test('packed query reader accounts for the one-byte category before uint16 fields', { skip: !prototypeIsBuilt && 'Local prototype artifact has not been generated.' }, () => {
   assert.match(html, /validDays = read\(13\)/);
   assert.match(html, /dayIndex:read\(1\), mhwDays:read\(3\), strongDays:read\(5\), severeDays:read\(7\), extremeDays:read\(9\), longestRun:read\(11\)/);
 });
 
-test('ocean heat prototype has no NOAA runtime data request', () => {
+test('ocean heat prototype has no NOAA runtime data request', { skip: !prototypeIsBuilt && 'Local prototype artifact has not been generated.' }, () => {
   assert.doesNotMatch(html, /fetch\([^)]*noaa\.gov/i);
   assert.doesNotMatch(html, /fetch\([^)]*coralreefwatch\.noaa\.gov/i);
   assert.match(html, /\.\/query\/\$\{key\}\.bin\.gz/);

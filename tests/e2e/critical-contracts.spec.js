@@ -57,6 +57,10 @@ test('Dive cluster zooms and never opens a single-site popup', async ({ page }) 
 });
 
 test('individual Dive site opens its details popup', async ({ page }) => {
+  const photosScriptUrl = await page.evaluate(() => performance.getEntriesByType('resource')
+    .map(entry => entry.name).find(url => url.includes('/data/dive-site-photos.js')));
+  expect(photosScriptUrl, 'the app-owned dive-site photo metadata should load').toBeTruthy();
+  expect(new URL(photosScriptUrl).origin, 'photo metadata stays on the Pages origin').toBe(new URL(page.url()).origin);
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'dive-single', lat: -5.7, lng: 131 });
   const before = await mapState(page);
@@ -361,8 +365,11 @@ test('popup below its anchor keeps its arrow above during dismissal', async ({ p
   await expect(popup).toBeVisible();
   await expect(popup).toHaveClass(/diveatlas-popup-below/);
   await page.locator('.leaflet-popup-close-button').click();
-  await expect.poll(async () => (await mapState(page)).popup?.lifecycle).toBe('closing');
-  const closing = await mapState(page);
+  let closing;
+  await expect.poll(async () => {
+    closing = await mapState(page);
+    return closing.popup?.lifecycle;
+  }).toBe('closing');
   expect(closing.popup.below).toBe(true);
   expect(closing.popup.arrowSide).toBe('top');
 });

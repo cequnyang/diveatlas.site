@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const { openMap } = require('./support');
+const { closeTopMenu, openMap, openTopMenu } = require('./support');
 
 const fixtureRoot = path.resolve(__dirname, '..', 'fixtures', 'regional-currents-real');
 const samples = require('../fixtures/regional-currents-real/samples.json');
@@ -36,7 +36,7 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
     if (/currents|current-math|current-tile-cache|regional-currents/.test(url.pathname)) requests.push(request.url());
   });
 
-  await openMap(page);
+  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await page.waitForTimeout(200);
   expect(requests).toEqual([]);
   await page.route('**/data/currents/metadata.json', route => route.fulfill({
@@ -102,7 +102,9 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
     for (let offset = 0; offset < data.length; offset += 4) if (data[offset + 3]) sum += data[offset] + data[offset + 1] + data[offset + 2];
     return sum;
   }, 0));
+  await openTopMenu(page);
   await page.locator('#themeBtn').click();
+  await closeTopMenu(page);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect.poll(() => page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases => canvases.reduce((sum, canvas) => {
     const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
@@ -153,7 +155,9 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
   await expect(page.locator('.regional-currents-popup')).toHaveCount(0);
 
   await openLayersPanel(page);
-  await page.locator('label.environment-segment:has(#environmentTerrainLabel)').click();
+  await page.locator('label.layer-switch-label:has(#terrainLayerToggle) .layer-toggle-switch').click();
+  await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
+  await page.locator('label.environment-segment:has(input[name="environmentView"][value="default"])').click();
   await expect(page.locator('.regional-current-speed-tint-tile')).toHaveCount(0);
   await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');

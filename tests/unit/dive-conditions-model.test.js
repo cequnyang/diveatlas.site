@@ -20,7 +20,8 @@ test('condition interpretation stays metric-specific and transparent', () => {
   assert.equal(classify('current', 0.6), 'Strong');
   assert.equal(classify('waves', 0.25), 'Very low wave height');
   assert.equal(classify('waves', 0.5), 'Low wave height');
-  assert.equal(classify('waves', 1.25), 'High wave height');
+  assert.equal(classify('waves', 1.25), 'Elevated wave height');
+  assert.equal(classify('waves', 1.6), 'High wave height');
   assert.equal(confidence(4), 'High');
   assert.equal(confidence(2), 'Moderate');
   assert.equal(confidence(0), 'Unavailable');

@@ -73,7 +73,7 @@ test('falls back to the nearest valid same-month cell within 100 km and marks th
     return new Response(gzipSync(raw), { status:200 });
   };
   const query = createTemperatureQuery({ metadataUrl:'metadata.json', fetchImpl });
-  const result = await query.query({ lat:0, lng:1 }, { month:9, depth:20, maxDistanceKm:25 });
+  const result = await query.query({ lat:0, lng:1 }, { month:9, depth:20, maxDistanceKm:100 });
   assert.equal(result.value_c, 24.5);
   assert.equal(result.nearby_estimate, true);
   assert.ok(result.sample_distance_km > 25 && result.sample_distance_km <= 100);

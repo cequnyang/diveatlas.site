@@ -65,16 +65,16 @@ test('overall and physical labels use separate centrally configured thresholds',
 
 test('available dimensions renormalize inside stable scoring groups and preserve the macro weights', () => {
   const result = model.calculate({ month:10, dimensions:completeCurrentInputs() });
-  assert.equal(result.score, 70);
+  assert.equal(result.score, 74);
   assert.equal(result.label, 'Good');
   assert.equal(result.activeScoringDimensionCount, 6);
   assert.equal(result.inactiveScoringDimensionCount, 1);
   assert.equal(result.scoreCompletenessPercentage, 85);
   assert.equal(result.activeWeightPercentage, 85);
   assert.equal(result.missingWeightPercentage, 15);
-  assert.equal(result.activeConfiguredWeightPercentage, 100);
-  assert.equal(result.rawWeightedSum, 5820);
-  assert.equal(result.legacyGlobalNormalizedScore, 68);
+  assert.equal(result.activeConfiguredWeightPercentage, 85);
+  assert.equal(result.rawWeightedSum, 6220);
+  assert.equal(result.legacyGlobalNormalizedScore, 73);
   assert.deepEqual(result.groups.map(group => [group.id, group.configuredWeight]), [
     ['physicalExperience', 65], ['reefEcologicalExperience', 35]
   ]);
@@ -150,7 +150,8 @@ test('map opacity encodes confidence independently of score color', () => {
 });
 
 test('thermal-history scoring follows the configured NOAA DHW bands without claiming observed bleaching', () => {
-  assert.deepEqual(model.scoreThermalHistory(3.99), { score:100, category:'Lower annual heat stress' });
+  assert.deepEqual(model.scoreThermalHistory(1.99), { score:100, category:'Very low annual heat stress' });
+  assert.deepEqual(model.scoreThermalHistory(3.99), { score:90, category:'Low annual heat stress' });
   assert.deepEqual(model.scoreThermalHistory(4), { score:80, category:'Elevated annual heat stress' });
   assert.deepEqual(model.scoreThermalHistory(8), { score:60, category:'High annual heat stress' });
   assert.equal(model.scoreThermalHistory(null), null);

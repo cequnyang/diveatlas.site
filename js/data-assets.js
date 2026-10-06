@@ -1,4 +1,7 @@
 (function exposeDataAssets(root) {
+  // Small app-owned metadata stays with Pages; only the published data release
+  // is available from the configured R2 prefix.
+  const pagesHostedDataFiles = new Set(['dive-site-photos.js', 'temperature/metadata.json']);
   const configuredBase = root.DIVEATLAS_DATA_ASSET_BASE_URL;
   let externalBase = null;
   if (configuredBase !== null && configuredBase !== undefined && configuredBase !== '') {
@@ -24,6 +27,12 @@
     return new URL(segments.map(encodeURIComponent).join('/') + suffix, base).href;
   }
 
+  function shouldRewriteDataPath(pathname, appPath) {
+    if (!pathname.startsWith(`${appPath}data/`)) return false;
+    const relativePath = pathname.slice(appPath.length + 'data/'.length).split(/[?#]/, 1)[0];
+    return !pagesHostedDataFiles.has(relativePath);
+  }
+
   root.DiveAtlasDataAssets = Object.freeze({
     external: externalBase !== null,
     url: dataAssetUrl,
@@ -38,15 +47,16 @@
   root.fetch = (input, init) => {
     if (typeof input === 'string' || input instanceof URL) {
       const url = new URL(input, document.baseURI);
-      if (url.origin === location.origin && url.pathname.startsWith(`${new URL('./', document.baseURI).pathname}data/`)) {
-        const relative = url.pathname.slice(new URL('./', document.baseURI).pathname.length) + url.search + url.hash;
+      const appPath = new URL('./', document.baseURI).pathname;
+      if (url.origin === location.origin && shouldRewriteDataPath(url.pathname, appPath)) {
+        const relative = url.pathname.slice(appPath.length) + url.search + url.hash;
         return originalFetch(dataAssetUrl(relative), init);
       }
     }
     if (input instanceof Request) {
       const url = new URL(input.url);
       const appPath = new URL('./', document.baseURI).pathname;
-      if (url.origin === location.origin && url.pathname.startsWith(`${appPath}data/`)) {
+      if (url.origin === location.origin && shouldRewriteDataPath(url.pathname, appPath)) {
         const relative = url.pathname.slice(appPath.length) + url.search + url.hash;
         return originalFetch(new Request(dataAssetUrl(relative), input), init);
       }
@@ -77,7 +87,7 @@
   function rewriteDataUrl(value) {
     const url = new URL(value, document.baseURI);
     const appPath = new URL('./', document.baseURI).pathname;
-    if (url.origin !== location.origin || !url.pathname.startsWith(`${appPath}data/`)) return value;
+    if (url.origin !== location.origin || !shouldRewriteDataPath(url.pathname, appPath)) return value;
     return dataAssetUrl(url.pathname.slice(appPath.length) + url.search + url.hash);
   }
 })(typeof window === 'undefined' ? globalThis : window);

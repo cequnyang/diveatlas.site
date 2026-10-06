@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { openMap, setMapView } = require('./support');
+const { openMap, openMobileSettings, setMapView } = require('./support');
 
 test('standalone Dive Conditions tab is removed while Dive Experience retains monthly conditions', async ({ page }) => {
   await openMap(page);
@@ -27,6 +27,7 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await expect(popup).toBeVisible();
   await expect(popup).toContainText('Dive Conditions');
   await expect(popup).toContainText('Water temp.');
+  await openMobileSettings(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await expect(popup.locator('.dive-conditions-grid')).toContainText('°F');
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();

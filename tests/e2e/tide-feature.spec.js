@@ -54,11 +54,22 @@ test('Tide is a peer environmental tab with a lazy blue surface and numeric lege
   await expect(timeWheel).toBeHidden();
   await page.locator('#tideTime').selectOption('0');
   await expect(page.locator('.tide-controls .temperature-scale')).toContainText('−2 m');
-  await expect.poll(() => page.locator('#tideStatus').textContent()).toContain('Tide surface ready');
+  await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
   await expect.poll(() => page.locator('.tide-surface-tile').count()).toBeGreaterThan(0);
+  const tideReleaseSmoke = await page.evaluate(async () => {
+    const { tideAssetUrl } = await import('./js/tides/asset-config.js');
+    const manifestResponse = await fetch(tideAssetUrl('eot20-viz-v1/manifest.json'));
+    if (!manifestResponse.ok) return { manifestStatus: manifestResponse.status, chunkStatus: null };
+    const manifest = await manifestResponse.json();
+    const tile = Object.values(manifest.tiles || {}).find(candidate => candidate.validNodes > 0);
+    if (!tile) return { manifestStatus: manifestResponse.status, chunkStatus: null };
+    const chunkResponse = await fetch(tideAssetUrl(`eot20-viz-v1/${tile.path}`));
+    return { manifestStatus: manifestResponse.status, chunkStatus: chunkResponse.status };
+  });
+  expect(tideReleaseSmoke).toEqual({ manifestStatus: 200, chunkStatus: 200 });
 });
 
-test('Tide map taps open a location popup directly and reuse nearby model data', async ({ page }) => {
+test('Tide map taps open a location popup directly and reuse nearby model data', async ({ page }, testInfo) => {
   const tideAssetRequests = [];
   const tideAssetResponses = [];
   await page.addInitScript(() => {
@@ -79,12 +90,18 @@ test('Tide map taps open a location popup directly and reuse nearby model data',
   await page.route('**/data/tides/eot20-v1/coeff/26_11.bin.gz', route => route.continue());
   await page.route('**/data/tides/timezones-2026d/manifest.json', route => route.continue());
   await openMap(page);
-  await setMapView(page, 35, -125, 5);
+  await setMapView(page, 44.9, -124.95, 5);
   await expandLayers(page);
   await page.locator('.environment-segment').filter({
     has: page.locator('input[name="environmentView"][value="tide"]')
   }).click();
-  await expect.poll(() => page.locator('#tideStatus').textContent()).toContain('Tide surface ready');
+  await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
+  if (testInfo.project.name === 'mobile-touch-chromium') {
+    const layers = page.locator('#bioLegend');
+    if (!(await layers.evaluate(node => node.classList.contains('is-collapsed')))) {
+      await page.locator('#bioLegendTitle').click();
+    }
+  }
   const point = await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;
     const pixel = map.latLngToContainerPoint([44.9, -124.95]);
@@ -93,7 +110,8 @@ test('Tide map taps open a location popup directly and reuse nearby model data',
   });
   const longTaskStartIndex = await page.evaluate(() => window.__tideLongTasks.length);
   const firstSelectionStarted = Date.now();
-  await page.mouse.click(point.x, point.y);
+  if (testInfo.project.name === 'mobile-touch-chromium') await page.touchscreen.tap(point.x, point.y);
+  else await page.mouse.click(point.x, point.y);
   await expect(page.locator('.tide-map-popup')).toBeVisible();
   const tidePopupWidth = await page.locator('.tide-map-popup').evaluate(element => element.getBoundingClientRect().width);
   expect(tidePopupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? 320 : 360, 0);

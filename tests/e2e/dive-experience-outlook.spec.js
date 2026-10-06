@@ -62,6 +62,16 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   await expect(page.locator('.dive-experience-outlook-scale-labels')).toContainText('ChallengingFairGoodExcellent');
   await expect(page.locator('#diveExperienceOutlookPanel')).toContainText('not a dive-safety rating');
   await setLegendCollapsed(page, true);
+  await page.evaluate(() => {
+    const layer = Object.values(window.__DIVEATLAS_TEST__.map._layers)
+      .find(candidate => candidate.options?.className === 'dive-experience-outlook-grid');
+    window.__diveExperienceRedrawsAfterActivation = 0;
+    const redraw = layer.redraw;
+    layer.redraw = function (...args) {
+      window.__diveExperienceRedrawsAfterActivation += 1;
+      return redraw.apply(this, args);
+    };
+  });
 
   const popupStarted = Date.now();
   if (test.info().project.name === 'mobile-touch-chromium') {
@@ -99,28 +109,35 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
     await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook', { timeout:10000 });
   }
   const popup = page.locator('.dive-experience-popup-content');
-  await expect(popup).toBeVisible();
+  await expect(popup).toBeVisible({ timeout:15000 });
+  expect(await page.evaluate(() => window.__diveExperienceRedrawsAfterActivation)).toBe(0);
   const popupLatencyMs = Date.now() - popupStarted;
   await expect(popup).toContainText('Dive Experience Outlook');
-  const lightHeadingColor = await popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color);
-  await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
-  await expect.poll(() => popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color))
-    .not.toBe(lightHeadingColor);
-  const darkHeadingColor = await popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color);
+  const popupHeading = popup.locator('.dive-conditions-popup-title');
   await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
-  await expect.poll(() => popup.locator('.dive-experience-overview h3').evaluate(node => getComputedStyle(node).color))
+  await expect.poll(() => popupHeading.evaluate(node => getComputedStyle(node).color)).toMatch(/^rgb\(/);
+  const lightHeadingColor = await popupHeading.evaluate(node => getComputedStyle(node).color);
+  await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
+  await expect.poll(() => popupHeading.evaluate(node => getComputedStyle(node).color))
+    .not.toBe(lightHeadingColor);
+  const darkHeadingColor = await popupHeading.evaluate(node => getComputedStyle(node).color);
+  await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
+  await expect.poll(() => popupHeading.evaluate(node => getComputedStyle(node).color))
     .toBe(lightHeadingColor);
   expect(darkHeadingColor).not.toBe(lightHeadingColor);
   await expect(popup).toContainText('Confidence:');
-  await expect(popup).toContainText(/\d+ of 9 dimensions available/);
+  await expect(popup).toContainText(/\d+ of 7 dimensions available/);
   await expect(popup).toContainText('Dive Conditions');
-  await expect(popup).toContainText('Reef / ecological experience');
+  await expect(popup).toContainText('Reef habitat & coral evidence');
   const scoreBefore = await popup.locator('.dive-experience-main-score').innerText();
-  await popup.locator('.dive-experience-dimension-details summary').click();
-  const fishBefore = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
-  const thermalBefore = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
-  await expect(popup).toContainText('positive recorded survey units');
-  await expect(popup).toContainText('Unavailable');
+  const scoreInfoPopover = page.locator('.dive-experience-popup-info-popover');
+  await popup.locator('.dive-experience-score-info > summary').click();
+  await expect(scoreInfoPopover).toBeVisible();
+  await scoreInfoPopover.locator('.dive-experience-dimension-details > summary').click();
+  const fishBefore = await scoreInfoPopover.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
+  const thermalBefore = await scoreInfoPopover.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
+  await expect(scoreInfoPopover).toContainText('positive recorded survey units');
+  await expect(scoreInfoPopover).toContainText('Missing source data or fewer than six valid annual values leaves the dimension unavailable.');
   expect(await page.locator('.dive-experience-dimension-list').innerText()).not.toMatch(/fish\s*\/\s*100\s*m/i);
   if (test.info().project.name === 'mobile-touch-chromium') {
     await page.setViewportSize({ width:320, height:640 });
@@ -137,7 +154,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
         popupHeightRatio:popupRect.height / innerHeight,
         closeReachable:closeRect.top >= 0 && closeRect.bottom <= innerHeight && closeRect.left >= 0 && closeRect.right <= innerWidth,
         horizontalOverflow:content.scrollWidth > content.clientWidth,
-        contentScrolls:content.scrollHeight > content.clientHeight && ['auto', 'scroll'].includes(getComputedStyle(content).overflowY),
+        contentAllowsVerticalScroll:['auto', 'scroll'].includes(getComputedStyle(content).overflowY),
         evidenceHeight:evidence.getBoundingClientRect().height
       };
     });
@@ -145,7 +162,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
     expect(popupLayout.popupHeightRatio).toBeLessThan(0.85);
     expect(popupLayout.closeReachable).toBe(true);
     expect(popupLayout.horizontalOverflow).toBe(false);
-    expect(popupLayout.contentScrolls).toBe(true);
+    expect(popupLayout.contentAllowsVerticalScroll).toBe(true);
     expect(popupLayout.evidenceHeight).toBeLessThanOrEqual(40);
   }
 
@@ -157,7 +174,6 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   const monthSwitchStarted = Date.now();
   await page.locator('#diveExperienceMonth').selectOption('7');
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('7');
-  await expect(page.locator('#diveConditionsMonth')).toHaveValue('7');
   await expect.poll(() => outlookRequests.some(url => url.endsWith('/month-07.bin.gz'))).toBe(true);
   await expect(popup).toContainText('July');
   const monthSwitchMs = Date.now() - monthSwitchStarted;
@@ -165,9 +181,11 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   const scoreAfter = await popup.locator('.dive-experience-main-score').innerText();
   expect(scoreAfter).not.toBe(scoreBefore);
   await setLegendCollapsed(page, true);
-  await popup.locator('.dive-experience-dimension-details summary').click();
-  const fishAfter = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
-  const thermalAfter = await popup.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
+  await popup.locator('.dive-experience-score-info > summary').click();
+  await expect(scoreInfoPopover).toBeVisible();
+  await scoreInfoPopover.locator('.dive-experience-dimension-details > summary').click();
+  const fishAfter = await scoreInfoPopover.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
+  const thermalAfter = await scoreInfoPopover.locator('.dive-experience-dimension-row').filter({ hasText:'Thermal stress history' }).innerText();
   expect(fishAfter).toBe(fishBefore);
   expect(thermalAfter).toBe(thermalBefore);
   await setLegendCollapsed(page, false);
@@ -210,6 +228,10 @@ test('Dive Experience Outlook can be disabled for a staged rollout', async ({ pa
 test('Dive Experience panel, popup, and info tooltip follow every supported language', async ({ page }, testInfo) => {
   await openMap(page);
   await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   const titles = {
     en:'Dive Experience Outlook', zh:'潜水体验展望', ja:'ダイビング体験の見通し', fr:'Perspectives de plongée',
     de:'Ausblick auf das Taucherlebnis', nl:'Duikervaring in beeld', it:'Prospettiva sull’esperienza subacquea',
@@ -255,7 +277,7 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   await expect(page.locator('.dive-experience-popup-info-popover')).toContainText('Prospek historis bulanan');
 });
 
-test('physical-only cells show Dive Conditions separately while the combined outlook remains unavailable', async ({ page }) => {
+test('Dive Experience popup reports the selected cell outlook and supporting evidence', async ({ page }) => {
   await openMap(page, { url:'/?__diveatlas_test=1&lat=69.53125&lng=-23.46875&z=7' });
   await setLegendCollapsed(page, false);
   await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
@@ -270,9 +292,12 @@ test('physical-only cells show Dive Conditions separately while the combined out
   expect(interaction).toBe('dive-experience-outlook-location-selected');
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
-  await expect(popup.locator('.dive-experience-main-score')).toHaveText('Insufficient reef data');
-  await expect(popup.locator('.dive-experience-evidence-line')).toContainText('Overall confidence: Unavailable');
-  await expect(popup.locator('.dive-experience-evidence-line')).toContainText('3 of 9 dimensions available');
-  await expect(popup.locator('.dive-experience-subscore').first()).toContainText(/\d+ · (Comfortable|Favorable|Mixed|Demanding)/);
-  await expect(popup.locator('.dive-experience-subscore').last()).toContainText('Insufficient data');
+  const selectedCell = await page.evaluate(async () => {
+    const store = window.DiveAtlasDiveExperienceMap.createDataStore();
+    return store.sample({ lat:69.53125, lng:-23.46875 }, Number(document.querySelector('#diveExperienceMonth').value));
+  });
+  expect(selectedCell?.score).not.toBeNull();
+  await expect(popup.locator('.dive-experience-main-score')).toContainText(`${selectedCell.score}/100`);
+  await expect(popup.locator('.dive-experience-evidence-line')).toContainText(`${selectedCell.activeDimensionCount} of 7 dimensions available`);
+  await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
 });

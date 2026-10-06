@@ -5088,6 +5088,9 @@
 
     /* Scale visible desktop geometry from one token; keep touch targets and 1px strokes crisp. */
     .bio-legend { --layers-ui-scale: .82; }
+    @media (min-width: 721px) {
+      .bio-legend { max-height: min(650px, calc(100dvh - 144px)); }
+    }
     @media (max-width: 720px) {
       .bio-legend { --layers-ui-scale: 1; }
       .coral-heat-stress-popup { --layers-ui-scale:1; }
@@ -11612,8 +11615,12 @@ ZSD·2016–2025</span></span>
           getMonthData:() => diveExperienceOutlookMonthData
         });
       }
+      // Sampling a clicked cell calls this loader too. Redrawing on every call
+      // clears the GridLayer tiles before their canvases are rebuilt, producing
+      // a visible white flash over the otherwise stable base map.
       if (!map.hasLayer(diveExperienceOutlookMapLayer)) diveExperienceOutlookMapLayer.addTo(map);
-      diveExperienceOutlookMapLayer.redraw();
+      else if (diveExperienceOutlookMapLayer._diveAtlasRenderedMonth !== month) diveExperienceOutlookMapLayer.redraw();
+      diveExperienceOutlookMapLayer._diveAtlasRenderedMonth = month;
     }
     return Object.freeze({ manifest, oceanMask, support, monthData, elapsedMs:performance.now() - startedAt });
   }
@@ -23975,7 +23982,8 @@ ZSD·2016–2025</span></span>
     layerVisibility.currents = savedEnvironmentalView === 'currents';
     selectEnvironmentalView(savedEnvironmentalView);
   } else {
-    selectEnvironmentalView(DIVE_EXPERIENCE_OUTLOOK_ENABLED ? 'dive-experience-outlook' : 'default');
+    // Keep data-backed map layers lazy on first load; users can select Dive Experience when they need it.
+    selectEnvironmentalView('default');
   }
 
   if (layerVisibility.reef && !map.hasLayer(coralTileLayer)) {

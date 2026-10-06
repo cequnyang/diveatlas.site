@@ -44,7 +44,7 @@ test('Waves remains reachable on mobile, fits the panel, and follows the map the
   expect(dark.mapFilter).not.toBe(light.mapFilter);
   expect(dark.mapOpacity).not.toBe(light.mapOpacity);
 
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="terrain"]') }).click();
+  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') }).click();
   await expect(page.locator('.waves-tiles')).toHaveCount(0);
   await expect(page.locator('#wavesControls')).toBeHidden();
 });
@@ -104,10 +104,10 @@ test('mobile long press on empty ocean opens Depth Inspection', async ({ page })
   if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
   }
-  const terrainSegment = page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="terrain"]') });
+  const terrainSegment = page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') });
   await terrainSegment.scrollIntoViewIfNeeded();
   await terrainSegment.click();
-  await expect(page.locator('input[name="environmentView"][value="terrain"]')).toBeChecked();
+  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
   await dispatchTouchSequence(page, { duration: 720 });
   await expect(page.locator('.leaflet-popup')).toBeVisible({ timeout: 5000 });
   expect((await mapState(page)).popup.type).toBe('depth');

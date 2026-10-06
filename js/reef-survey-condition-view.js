@@ -23,6 +23,7 @@
   const SCHEMA_METRIC_KEYS = Object.freeze({
     liveCoralCoverPct: 'liveCoralCover',
     macroalgaeCoverPct: 'macroalgaeCover',
+    bleaching: 'bleaching',
   });
   const NULL_METRICS = new Set(['diseasePct', 'mortalityPct']);
   const DEFAULT_REEF_COPY = Object.freeze({
@@ -250,6 +251,7 @@
     const selected = metricDefinitions[metric] || metricDefinitions[DEFAULT_METRIC];
     const fields = [
       ['Live coral cover', recordMetric(record, 'liveCoralCoverPct', metricDefinitions)], ['Macroalgae', recordMetric(record, 'macroalgaeCoverPct', metricDefinitions)],
+      ['Bleaching', recordMetric(record, 'bleaching', metricDefinitions)],
       ['Disease', null], ['Mortality', null]
     ];
     const sampleUnitCount = record.protocols.length === 1 ? record.protocols[0].sampleUnitCount : null;
@@ -677,8 +679,9 @@
           : Promise.reject(new Error('NOAA raster provider is not registered.'));
       }
       await state.promise;
-      // A provider may be revisited after its metadata promise has resolved; refresh its legend on every activation.
-      updateRasterLegend(state);
+      // A previously selected provider can finish loading after a newer metric;
+      // only the current provider is allowed to replace the shared legend.
+      if (activeProviderId === state.id) updateRasterLegend(state);
       if (active && activeProviderId === state.id) createRasterLayer(state)?.addTo(map);
     }
 

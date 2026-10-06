@@ -20,15 +20,14 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
     has: page.locator(`input[name="environmentView"][value="${view}"]`)
   });
   await tab('tide').click();
-  await expect.poll(() => page.locator('#tideStatus').textContent()).toContain('Tide surface ready');
+  await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
 
   async function center(lat, lon, zoom, theme = 'light') {
     const isDark = await page.locator('html').getAttribute('data-theme') === 'dark';
     if ((theme === 'dark') !== isDark) await page.locator('#themeBtn').click();
     await page.evaluate(([a, b, z]) => window.__DIVEATLAS_TEST__.setView(a, b, z), [lat, lon, zoom]);
-  await page.waitForTimeout(2200);
-    await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getPane('tidePane').style.opacity))
-      .toBe(theme === 'dark' ? '0.42' : '0.43');
+    await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getPane('tidePane').style.opacity), { timeout: 30_000 })
+      .toBe(theme === 'dark' ? '0.64' : '0.68');
     await page.evaluate(() => window.__DIVEATLAS_TEST__.setLegendCollapsed(false));
   }
 
@@ -100,8 +99,8 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
   await expect.poll(() => mobile.evaluate(() => Boolean(window.__DIVEATLAS_TEST__?.map))).toBe(true);
   await mobile.evaluate(() => new Promise(resolve => window.__DIVEATLAS_TEST__.map.whenReady(resolve)));
   await mobile.evaluate(() => window.__DIVEATLAS_TEST__.selectEnvironmentalView('tide'));
-  await expect.poll(() => mobile.locator('#tideStatus').textContent()).toContain('Tide surface ready');
-  await expect.poll(() => mobile.evaluate(() => window.__DIVEATLAS_TEST__.map.getPane('tidePane').style.opacity)).toBe('0.43');
+  await expect.poll(() => mobile.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
+  await expect.poll(() => mobile.evaluate(() => window.__DIVEATLAS_TEST__.map.getPane('tidePane').style.opacity), { timeout: 30_000 }).toBe('0.68');
   await mobile.screenshot({ path: path.join(output, '06-mobile-tide.png'), animations: 'disabled' });
   await mobile.locator('#bioLegendTitle').click();
   await mobile.screenshot({ path: path.join(output, '06-mobile-tide-panel.png'), animations: 'disabled' });
