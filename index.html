@@ -11844,8 +11844,12 @@ ZSD·2016–2025</span></span>
     closeManagedPopupForLayer('dive-conditions');
     showMapClickLocationPin(diveConditionsPopupLocation);
     diveConditionsLastResult = null;
+    diveExperienceOutlookCurrentSample = null;
     diveConditionsPopupMessageKey = null;
-    if (environmentalViewController.activeView === 'dive-experience-outlook') void refreshDiveExperienceOutlook();
+    if (environmentalViewController.activeView === 'dive-experience-outlook') {
+      setDiveConditionsPopupMessage('diveConditionsLoading');
+      void refreshDiveExperienceOutlook();
+    }
   }
   function formatDiveConditionsLength(meters, fractionDigits) {
     const value = metersInSelectedLengthUnit(meters);
@@ -12356,7 +12360,7 @@ ZSD·2016–2025</span></span>
       if (!controller.signal.aborted && generation === diveExperienceOutlookGeneration) {
         console.warn('The Dive Experience Outlook could not be loaded:', error);
         setDiveExperienceStatusCopy(t('diveExperienceTemporarilyUnavailable'));
-        if (diveConditionsPopup?.isOpen()) setDiveConditionsPopupMessage('diveConditionsError');
+        setDiveConditionsPopupMessage('diveConditionsError');
       }
     }
   }
