@@ -317,6 +317,18 @@ test('Reef extent popup takes priority over Reef Condition map queries', async (
 });
 
 test('Reef raster popup is available below vector zoom while a tab is selected', async ({ page }) => {
+  // This contract checks raster hit testing and popup priority, not public R2
+  // availability; keep the fixture deterministic so network latency cannot
+  // prevent the interaction from being exercised.
+  const opaqueTile = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l1sAAAAASUVORK5CYII=',
+    'base64'
+  );
+  await page.route('**/data/reef_tiles/**', route => route.fulfill({
+    status: 200,
+    contentType: 'image/png',
+    body: opaqueTile
+  }));
   await setMapView(page, -0.04395, 127.08984, 5);
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setLayerVisibility('reef', true));
   expect(await page.evaluate(() =>
