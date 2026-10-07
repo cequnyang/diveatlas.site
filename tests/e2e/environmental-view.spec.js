@@ -8,7 +8,7 @@ const temperatureMetadata = path.resolve(__dirname, '../../datasets/temperature/
 const metadataFixture = {
   purpose: 'development-validation',
   native_resolution: 1,
-  asset_base: 'data/temperature/development-1deg',
+  asset_base: 'datasets/temperature/development-1deg',
   tile_template: 'woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png',
   max_native_zoom: 2,
   min_native_zoom: 2,
@@ -78,7 +78,7 @@ test('saved month preferences keep each month selector and legend in sync on sta
 test('temperature has zero startup requests and loads only after activation', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
-    if (request.url().includes('temperature-view.js') || request.url().includes('/data/temperature/')) {
+    if (request.url().includes('temperature-view.js') || request.url().includes('/datasets/temperature/')) {
       temperatureRequests.push(request.url());
     }
   });
@@ -94,8 +94,8 @@ test('temperature has zero startup requests and loads only after activation', as
 
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect(page.locator('#temperatureControls')).toBeVisible();
-  await expect.poll(() => temperatureRequests.some(url => url.includes('/data/temperature/'))).toBe(true);
-  expect(temperatureRequests.filter(url => url.includes('/data/temperature/query/'))).toEqual([]);
+  await expect.poll(() => temperatureRequests.some(url => url.includes('/datasets/temperature/'))).toBe(true);
+  expect(temperatureRequests.filter(url => url.includes('/datasets/temperature/query/'))).toEqual([]);
   expect(temperatureRequests.filter(url => url.includes('temperature-view.js'))).toHaveLength(1);
   await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
 
@@ -345,7 +345,7 @@ test('Coral, Fish, and Dive legend swatches keep their colors below and at Z3', 
 test('layer panel segments and native depth select keep existing state, keyboard, overflow, and lazy behavior', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
-    if (request.url().includes('/data/temperature/')) temperatureRequests.push(request.url());
+    if (request.url().includes('/datasets/temperature/')) temperatureRequests.push(request.url());
   });
   await installMetadataFixture(page);
   await openMap(page);
@@ -366,7 +366,7 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await expect(page.locator('#temperatureInfoResolution')).toHaveText('1° climatological grid');
   await expect(page.locator('input[name="environmentView"]:checked')).toHaveCount(1);
   await expect.poll(() => temperatureRequests.length).toBeGreaterThan(0);
-  expect(temperatureRequests.some(url => url.includes('/data/temperature/query/'))).toBe(false);
+  expect(temperatureRequests.some(url => url.includes('/datasets/temperature/query/'))).toBe(false);
 
   const depthOptions = page.locator('#temperatureDepth option');
   await expect(depthOptions).toHaveCount(3);
@@ -1091,7 +1091,7 @@ test('Temperature popup content stays inside the safe area at the top boundary w
 test('changing month and depth requests only the newest slice and leaves markers clickable', async ({ page }) => {
   const requests = [];
   page.on('request', request => {
-    if (request.url().includes('/data/temperature/')) requests.push(request.url());
+    if (request.url().includes('/datasets/temperature/')) requests.push(request.url());
   });
   await installMetadataFixture(page);
   await openMap(page);
@@ -1128,7 +1128,7 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
   await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
   const tileResponse = page.waitForResponse(response =>
-    response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
+    response.url().includes('/datasets/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
   );
   await page.locator('#environmentViewSelect').selectOption('temperature');
   const response = await tileResponse;
