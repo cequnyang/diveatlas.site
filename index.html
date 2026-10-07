@@ -23960,6 +23960,7 @@ ZSD·2016–2025</span></span>
     setContactSubmitting(false);
     els.contactModal.hidden = false;
     document.body.classList.add('contact-modal-open');
+    prefillContactFromSignedInUser();
 
     requestAnimationFrame(() => {
       els.contactName.focus();
@@ -24611,6 +24612,15 @@ ZSD·2016–2025</span></span>
     // Keep data-backed map layers lazy on first load; users can select Dive Experience when they need it.
     selectEnvironmentalView('default', { persist: !sharedMapState.hasValidState });
   }
+
+  function prefillContactFromSignedInUser() {
+    const user = window.DiveAtlasCurrentUser;
+    if (!user) return;
+    if (!els.contactEmail.value && typeof user.email === 'string') els.contactEmail.value = user.email;
+    if (!els.contactName.value && typeof user.name === 'string') els.contactName.value = user.name;
+  }
+
+  window.addEventListener('diveatlas:auth-change', prefillContactFromSignedInUser);
 
   if (layerVisibility.reef && !map.hasLayer(coralTileLayer)) {
     coralTileLayer.addTo(map);

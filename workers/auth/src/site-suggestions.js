@@ -4,7 +4,7 @@ const MAX_REGION_LENGTH = 120;
 const MAX_SOURCE_URL_LENGTH = 500;
 const MAX_TURNSTILE_TOKEN_LENGTH = 2048;
 
-export async function handleSiteSuggestion(request, env) {
+export async function handleSiteSuggestion(request, env, getSubmitter = async () => null) {
   const origin = request.headers.get('Origin');
   if (!allowedAppOrigins(env).includes(origin)) {
     return jsonResponse({ success: false, error: 'origin_not_allowed' }, 403);
@@ -44,19 +44,22 @@ export async function handleSiteSuggestion(request, env) {
     return jsonResponse({ success: false, error: 'verification_failed' }, 400);
   }
 
+  const submitter = await getSubmitter();
+  const submitterEmail = typeof submitter?.email === 'string' ? submitter.email : null;
   const now = new Date().toISOString();
   await env.SITE_SUGGESTIONS_DB.prepare(`
     INSERT INTO site_suggestions (
-      id, site_name, normalized_name, region, normalized_region, source_url,
+      id, site_name, normalized_name, region, normalized_region, source_url, submitter_email,
       status, submission_count, first_submitted_at, last_submitted_at
-    ) VALUES (?, ?, ?, ?, ?, ?, 'pending', 1, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', 1, ?, ?)
     ON CONFLICT(normalized_name, normalized_region) DO UPDATE SET
       submission_count = site_suggestions.submission_count + 1,
       source_url = COALESCE(site_suggestions.source_url, excluded.source_url),
+      submitter_email = COALESCE(excluded.submitter_email, site_suggestions.submitter_email),
       last_submitted_at = excluded.last_submitted_at
   `).bind(
     crypto.randomUUID(), siteName, normalizeName(siteName), region, normalizeName(region),
-    sourceUrl.value, now, now
+    sourceUrl.value, submitterEmail, now, now
   ).run();
 
   return jsonResponse({ success: true });

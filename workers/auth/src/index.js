@@ -34,7 +34,7 @@ export default {
         return await logOut(request, env);
       }
       if (url.pathname === '/api/site-suggestions') {
-        return await handleSiteSuggestion(request, env);
+        return await handleSiteSuggestion(request, env, () => getAuthenticatedUser(request, env));
       }
 
       if (url.pathname.startsWith('/api/')) return textResponse('Not found', 404);
@@ -243,8 +243,12 @@ async function refreshGoogleKeys(force) {
 }
 
 async function getCurrentUser(request, env) {
+  return jsonResponse({ user: await getAuthenticatedUser(request, env) }, 200);
+}
+
+async function getAuthenticatedUser(request, env) {
   const token = parseCookies(request.headers.get('Cookie'))[SESSION_COOKIE];
-  if (!token) return jsonResponse({ user: null }, 200);
+  if (!token) return null;
 
   const now = Math.floor(Date.now() / 1000);
   const sessionHash = await sha256Hex(token);
@@ -256,7 +260,7 @@ async function getCurrentUser(request, env) {
     LIMIT 1
   `).bind(sessionHash, now).first();
 
-  return jsonResponse({ user: user || null }, 200);
+  return user || null;
 }
 
 async function logOut(request, env) {

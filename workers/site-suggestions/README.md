@@ -1,6 +1,6 @@
 # Dive-site suggestions
 
-When search has no matching dive site, the visitor can submit the prefilled name with an optional region and source link. Suggestions enter a private review queue; they are not added to the public map automatically. The form does not ask for an email address, and the queue does not store visitor IP addresses.
+When search has no matching dive site, the visitor can submit the prefilled name with an optional region and source link. Suggestions enter a private review queue; they are not added to the public map automatically. The form never asks for an email address. For a signed-in visitor, the API associates the verified Google account email from the server-side session; anonymous submissions store `NULL`. The queue does not store visitor IP addresses.
 
 The endpoint is part of the existing `workers/auth` API Worker because that Worker already owns both `/api/*` hostname routes. Keeping one API owner avoids route precedence conflicts with sign-in, callback, profile, and logout endpoints. Suggestion records remain isolated in a separate D1 database.
 
@@ -49,7 +49,7 @@ Local submissions also need `TURNSTILE_SECRET` in `workers/auth/.dev.vars` and a
 In the Cloudflare D1 console, select `diveatlas-site-suggestions` and run:
 
 ```sql
-SELECT site_name, region, source_url, submission_count, first_submitted_at, last_submitted_at
+SELECT site_name, region, source_url, submitter_email, submission_count, first_submitted_at, last_submitted_at
 FROM site_suggestions
 WHERE status = 'pending'
 ORDER BY submission_count DESC, first_submitted_at ASC;

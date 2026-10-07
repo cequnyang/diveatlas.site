@@ -22,6 +22,8 @@
   }
 
   function showSignedOut() {
+    window.DiveAtlasCurrentUser = null;
+    window.dispatchEvent(new CustomEvent('diveatlas:auth-change', { detail: { user: null } }));
     status.textContent = 'Not signed in';
     signInLink.href = '/api/auth/google';
     signInLink.hidden = false;
@@ -31,6 +33,10 @@
   function showSignedIn(user) {
     const name = typeof user.name === 'string' ? user.name.trim() : '';
     const email = typeof user.email === 'string' ? user.email.trim() : '';
+    window.DiveAtlasCurrentUser = { name, email };
+    window.dispatchEvent(new CustomEvent('diveatlas:auth-change', {
+      detail: { user: window.DiveAtlasCurrentUser }
+    }));
     status.replaceChildren();
 
     const nameLine = document.createElement('div');
