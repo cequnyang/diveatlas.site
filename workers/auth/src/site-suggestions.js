@@ -146,3 +146,12 @@ function jsonResponse(body, status = 200) {
   headers.set('Content-Type', 'application/json; charset=utf-8');
   return new Response(JSON.stringify(body), { status, headers });
 }
+
+function securityHeaders() {
+  return new Headers({
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'no-referrer',
+    'Content-Security-Policy': "default-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+  });
+}
