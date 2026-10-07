@@ -23961,6 +23961,7 @@ ZSD·2016–2025</span></span>
 
     setSiteSuggestionStatus('');
     setSiteSuggestionSubmitting(true);
+    let submitted = false;
     try {
       const response = await fetch(SITE_SUGGESTION_ENDPOINT, {
         method: 'POST',
@@ -23979,16 +23980,18 @@ ZSD·2016–2025</span></span>
       if (!response.ok || result?.success !== true) throw new Error('Suggestion request failed');
 
       siteSuggestionSent = true;
-      els.siteSuggestionName.readOnly = true;
-      els.siteSuggestionRegion.readOnly = true;
-      els.siteSuggestionSource.readOnly = true;
       clearDiveSearch();
-      setSiteSuggestionStatus('siteSuggestionSent', 'success');
+      submitted = true;
     } catch (_) {
       setSiteSuggestionStatus('siteSuggestionError', 'error');
     } finally {
       setSiteSuggestionSubmitting(false);
-      resetSiteSuggestionTurnstile();
+      if (submitted) {
+        showToast(t('siteSuggestionSent'));
+        closeSiteSuggestionModal();
+      } else {
+        resetSiteSuggestionTurnstile();
+      }
     }
   }
 
