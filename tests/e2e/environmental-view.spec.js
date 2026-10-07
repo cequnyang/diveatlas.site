@@ -1148,7 +1148,10 @@ test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels
     );
   expect(hasProductionFixture, 'The shipped production manifest must include the WOA23 September/20 m slice.').toBe(true);
 
-  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
+  await openMap(page, {
+    localStorage: { 'global-coral-map-environment-month-v1': '9' },
+    externalAssets: Boolean(dataAssetBaseUrl)
+  });
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
   const tileResponse = page.waitForResponse(response =>
     response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
