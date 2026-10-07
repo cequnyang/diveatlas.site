@@ -63,14 +63,16 @@ TIDE_DATA_ROOT = Path("data/tides")
 TIDE_DEPLOYMENT_CONFIG = Path("js/tides/deployment-config.js")
 EXTERNAL_DATA_ROOTS = {
     Path("data/bathymetry_tiles"),
+    # Local builds bundle these ignored working copies; production builds omit
+    # them because DATA_ASSET_BASE_URL routes requests to the R2 release.
+    Path("data/coral_records_snapshot.js"),
     Path("data/coral_occurrence_chunks"),
-    Path("datasets/coral_records_snapshot.js"),
     Path("data/currents"),
     Path("data/depth_contour_tiles"),
     Path("data/depth_samples"),
     Path("data/dive-experience-outlook/v3"),
     Path("datasets/dive-sites.js"),
-    Path("datasets/fish_map_units.json.gz"),
+    Path("data/fish_map_units.json.gz"),
     Path("data/reef_tiles"),
     Path("data/reef_vector_chunks"),
     Path("data/temperature/production-0.25deg"),

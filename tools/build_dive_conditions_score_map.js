@@ -4,6 +4,7 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const zlib = require('node:zlib');
+const crypto = require('node:crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'data', 'dive_conditions_score');
@@ -140,7 +141,7 @@ function percentileFromSorted(sorted, value) {
 
 function parseCoralSnapshot(source) {
   const match = source.match(/DIVEATLAS_CORAL_SNAPSHOT\s*=\s*"([^"]+)"/);
-  if (!match) throw new Error('The bundled coral records snapshot is missing.');
+  if (!match) throw new Error('The R2 coral records snapshot has an unsupported format.');
   const snapshot = JSON.parse(zlib.gunzipSync(Buffer.from(match[1], 'base64')).toString('utf8'));
   const step = Number(snapshot.step) || 0.015625;
   return (snapshot.cells || []).map(row => ({
@@ -151,10 +152,27 @@ function parseCoralSnapshot(source) {
 }
 
 async function loadSnapshots() {
-  const [coralSource, fishBytes] = await Promise.all([
-    fs.readFile(path.join(ROOT, 'datasets', 'coral_records_snapshot.js'), 'utf8'),
-    fs.readFile(path.join(ROOT, 'datasets', 'fish_map_units.json.gz'))
-  ]);
+  const baseUrl = await resolveDataAssetBaseUrl();
+  const manifestResponse = await fetch(new URL('release-manifest.json', baseUrl));
+  if (!manifestResponse.ok) throw new Error(`R2 source manifest returned HTTP ${manifestResponse.status}.`);
+  const manifest = await manifestResponse.json();
+  if (manifest.format !== 'diveatlas-browser-data-release' || manifest.schemaVersion !== 1) {
+    throw new Error('The configured R2 source does not contain a supported release manifest.');
+  }
+  const paths = ['data/coral_records_snapshot.js', 'data/fish_map_units.json.gz'];
+  const entries = new Map(manifest.files.filter(item => paths.includes(item.path)).map(item => [item.path, item]));
+  const snapshots = await Promise.all(paths.map(async assetPath => {
+    const entry = entries.get(assetPath);
+    if (!entry) throw new Error(`R2 release ${manifest.release} does not contain ${assetPath}.`);
+    const response = await fetch(new URL(assetPath, baseUrl));
+    if (!response.ok) throw new Error(`R2 snapshot returned HTTP ${response.status}: ${assetPath}`);
+    const bytes = Buffer.from(await response.arrayBuffer());
+    const digest = crypto.createHash('sha256').update(bytes).digest('hex');
+    if (bytes.length !== entry.bytes || digest !== entry.sha256) throw new Error(`R2 snapshot checksum mismatch: ${assetPath}`);
+    return bytes;
+  }));
+  const [coralBytes, fishBytes] = snapshots;
+  const coralSource = coralBytes.toString('utf8');
   const coral = parseCoralSnapshot(coralSource);
   const fishSnapshot = JSON.parse(zlib.gunzipSync(fishBytes).toString('utf8'));
   const fish = (fishSnapshot.rows || []).map(row => ({ lat:Number(row[0]), lng:Number(row[1]), value:Number(row[2]) }))
@@ -172,6 +190,29 @@ async function loadSnapshots() {
     fish:{ points:fish, estimatePoints:[...fishByLocation.values()].map(point => ({ lat:point.lat, lng:point.lng, value:point.valueTotal / point.count })),
       values:fish.map(point => point.value).sort((a,b) => a-b) }
   };
+}
+
+async function resolveDataAssetBaseUrl() {
+  let configured = process.env.SOURCE_DATA_ASSET_BASE_URL || process.env.DATA_ASSET_BASE_URL;
+  if (!configured) {
+    try {
+      const localConfig = await fs.readFile(path.join(ROOT, '_site', 'js', 'data-assets-config.js'), 'utf8');
+      configured = localConfig.match(/^window\.DIVEATLAS_DATA_ASSET_BASE_URL = "([^"\r\n]+)";$/m)?.[1];
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  }
+  if (!configured) {
+    const response = await fetch('https://diveatlas.site/js/data-assets-config.js');
+    if (!response.ok) throw new Error(`Could not read deployed R2 configuration (HTTP ${response.status}).`);
+    configured = (await response.text()).match(/^window\.DIVEATLAS_DATA_ASSET_BASE_URL = "([^"\r\n]+)";$/m)?.[1];
+  }
+  if (!configured) throw new Error('Could not find the current R2 release URL.');
+  const base = new URL(configured);
+  if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash || !base.pathname.endsWith('/')) {
+    throw new Error('The R2 source URL must be an HTTPS release URL ending in /.');
+  }
+  return base;
 }
 
 function localSnapshotMetric(source, estimateSource, sortedValues, location) {
@@ -542,7 +583,7 @@ async function main() {
       score:'rounded arithmetic mean; emitted only when all seven dimension scores are available',
       estimates:{radiusKm:ESTIMATE_RADIUS_KM,decayKm:ESTIMATE_DECAY_KM,minDistinctSources:MIN_ESTIMATE_SOURCES,minEffectiveSources:MIN_EFFECTIVE_SOURCES},
       heatStress:'current NOAA DHW product, shared across historical months, consistent with the popup score'},
-    sourceSnapshots:{coral:'datasets/coral_records_snapshot.js',fish:'datasets/fish_map_units.json.gz',
+    sourceSnapshots:{coral:'R2:data/coral_records_snapshot.js',fish:'R2:data/fish_map_units.json.gz',
       temperature:'data/temperature/query',clarity:'data/water_clarity/query',currents:'data/currents',waves:'data/waves',
       heatStress:'data/coral-heat-stress',bathymetry:'data/depth_samples'}
   };

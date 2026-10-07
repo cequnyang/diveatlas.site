@@ -82,7 +82,7 @@ async function handle(req, res) {
     if (error.code !== 'ENOENT' && error.code !== 'ENOTDIR') return send(res, 500, 'Read error');
   }
 
-  if ((segments[0] === 'data' || segments[0] === 'datasets') && dataAssetBase) {
+  if (segments[0] === 'data' && dataAssetBase) {
     const clientAbort = new AbortController();
     const timeout = AbortSignal.timeout(60_000);
     const signal = AbortSignal.any([clientAbort.signal, timeout]);
@@ -91,14 +91,8 @@ async function handle(req, res) {
     };
     res.once('close', abortWhenClientDisconnects);
     try {
-      // Browser code uses the repository's datasets/ namespace. The immutable
-      // R2 release still stores those same payloads under data/, so translate
-      // only at this test-server proxy boundary while preserving same-origin
-      // request URLs for Playwright interception.
-      const releaseSegments = segments[0] === 'datasets'
-        ? ['data', ...segments.slice(1)]
-        : segments;
-      const remotePath = releaseSegments.map(encodeURIComponent).join('/');
+      // Keep the browser request path identical to the immutable R2 object path.
+      const remotePath = segments.map(encodeURIComponent).join('/');
       const remoteUrl = new URL(`${remotePath}${requestUrl.search}`, dataAssetBase);
       const response = await fetch(remoteUrl, { signal });
       const headers = {};
