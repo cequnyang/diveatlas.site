@@ -324,7 +324,7 @@ test('Reef raster popup is available below vector zoom while a tab is selected',
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l1sAAAAASUVORK5CYII=',
     'base64'
   );
-  await page.route('**/data/reef_tiles/**', route => route.fulfill({
+  await page.route('**/reef_tiles/**', route => route.fulfill({
     status: 200,
     contentType: 'image/png',
     body: opaqueTile
