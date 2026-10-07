@@ -879,7 +879,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   });
   const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/metadata.json')).toString('utf8'));
   expect(queryMetadata.format).toBe('diveatlas-temperature-query');
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   expect(requests).toEqual([]);
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect(page.locator('.temperature-tiles')).toHaveCount(1);
@@ -992,7 +992,7 @@ test('masked land produces no popup and a slower earlier click cannot replace th
 });
 
 test('turning Temperature off while a query chunk is pending prevents the popup reopening', async ({ page }) => {
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   await page.locator('#environmentViewSelect').selectOption('temperature');
   let pendingRoute;
   let releasePending;
@@ -1012,7 +1012,10 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
 
 test('temperature detail stays compact and tappable at a mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
+  await openMap(page, {
+    localStorage: { 'global-coral-map-environment-month-v1': '9' },
+    externalAssets: Boolean(dataAssetBaseUrl)
+  });
   await page.locator('#bioLegendTitle').click();
   await activateTemperatureView(page);
   await page.locator('#bioLegendTitle').click();
@@ -1073,7 +1076,7 @@ test('length-dependent explanations stay localized when language and units chang
 });
 
 test('Temperature popup content stays inside the safe area at the top boundary without moving the map', async ({ page }) => {
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   await activateTemperatureView(page);
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
@@ -1102,6 +1105,17 @@ test('changing month and depth requests only the newest slice and leaves markers
   });
   await installMetadataFixture(page);
   await openMap(page);
+  // This test supplies synthetic metadata, so keep its tile requests local
+  // instead of proxying development-only paths to the production R2 release.
+  const transparentTile = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
+    'base64'
+  );
+  await page.route('**/data/temperature/**', route => route.fulfill({
+    status: 200,
+    contentType: 'image/png',
+    body: transparentTile
+  }));
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect.poll(() => requests.length).toBeGreaterThan(0);
   await page.locator('#temperatureDepth').selectOption('30');
