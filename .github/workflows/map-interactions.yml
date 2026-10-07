@@ -131,6 +131,10 @@ jobs:
             echo "Repository variable DATA_ASSET_BASE_URL is required for deployment." >&2
             exit 1
           fi
+          python tools/verify_r2_data_release.py \
+            --asset-base-url "$DATA_ASSET_BASE_URL" \
+            --app-origin https://diveatlas.site \
+            --startup-assets-only
           npm run build
 
       - name: Install Chromium and system dependencies

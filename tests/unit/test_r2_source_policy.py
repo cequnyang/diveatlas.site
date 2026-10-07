@@ -20,6 +20,7 @@ class R2SourcePolicyTests(unittest.TestCase):
         local_paths = {
             Path("data/coral_records_snapshot.js"),
             Path("data/fish_map_units.json.gz"),
+            Path("datasets/temperature/metadata.json"),
         }
 
         self.assertTrue(local_paths.issubset(prepare_pages.EXTERNAL_DATA_ROOTS))
@@ -50,10 +51,10 @@ class R2SourcePolicyTests(unittest.TestCase):
             Path("data/temperature/query/example.bin"),
         ]
 
-        self.assertEqual(
-            stage_data_release.selected_files(former_paths),
-            [Path("data/temperature/query/example.bin")],
-        )
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            with patch.object(stage_data_release, "ROOT", Path(temporary_directory)):
+                selected = stage_data_release.selected_files(former_paths)
+        self.assertEqual(selected, [Path("data/temperature/query/example.bin")])
         self.assertEqual(
             set(stage_data_release.R2_SOURCE_DATA_PATHS),
             {

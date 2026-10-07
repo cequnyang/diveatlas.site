@@ -175,6 +175,7 @@ async function addDiveSiteAtScreenPoint(page, id, x, y) {
 
 module.exports = {
   MAP_URL,
+  dataAssetBaseUrl,
   addDiveSiteAtScreenPoint,
   addFixture,
   clickFixture,

@@ -20,7 +20,9 @@ function collectTextFiles(directory) {
   });
 }
 
-const trackedData = spawnSync('git', ['ls-files', '--', 'data', 'datasets/coral_records_snapshot.js', 'datasets/fish_map_units.json.gz'], {
+const trackedData = spawnSync('git', ['ls-files', '--', 'data', 'datasets/coral_records_snapshot.js', 'datasets/fish_map_units.json.gz',
+  'datasets/bathymetry_manifest.js', 'datasets/coral_occurrence_manifest.js', 'datasets/reef_raster_manifest.js',
+  'datasets/reef_vector_manifest.js', 'datasets/terrain_manifest.js', 'datasets/temperature/metadata.json'], {
   cwd: ROOT,
   encoding: 'utf8'
 });
@@ -48,10 +50,10 @@ for (const root of DATA_ROOTS) {
 }
 
 if (violations.length) {
-  console.error('Dataset path policy failed: assets/ and datasets/ must not point into data/, data/ must not be tracked, and R2 source snapshots must stay in R2.');
+  console.error('Dataset path policy failed: assets/ and datasets/ must not point into data/, data/ must not be tracked, and R2 source snapshots/startup assets must stay in R2.');
   for (const violation of violations.slice(0, 50)) console.error(`- ${violation}`);
   if (violations.length > 50) console.error(`- ...and ${violations.length - 50} more`);
   process.exit(1);
 }
 
-console.log('Dataset path policy passed: no asset references into data/, no tracked data/, and no tracked R2 source snapshots.');
+console.log('Dataset path policy passed: no asset references into data/, no tracked data/, and no tracked R2 source snapshots or startup assets.');

@@ -45,7 +45,7 @@ test('temperature slice changes replace the layer and ignore stale completions',
     }
   };
   const metadata = {
-    asset_base: 'data/temperature/development-1deg',
+    asset_base: 'temperature/development-1deg',
     tile_template: 'woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png',
     generated_at_utc: '2026-09-27T00:00:00+00:00',
     max_native_zoom: 2,
@@ -62,6 +62,7 @@ test('temperature slice changes replace the layer and ignore stale completions',
   view.selectSlice(9, '30');
   view.selectSlice(10, '30');
   assert.equal(layers.length, 3);
+  assert.match(layers[0].url, /^data\/temperature\/development-1deg\//);
   assert.match(layers[0].url, /development-1deg\/woa23\/monthly\/09\/20\/\{z\}\/\{x\}\/\{y\}\.png/);
   assert.match(layers[1].url, /\/09\/30\//);
   assert.match(layers[2].url, /\/10\/30\//);
@@ -128,7 +129,7 @@ test('selection made while metadata is loading wins over the activation defaults
   view.selectSlice(9, '30');
   view.selectSlice(10, '30');
   resolveMetadata({
-    asset_base: 'data/temperature/development-1deg',
+    asset_base: 'temperature/development-1deg',
     tile_template: 'woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png',
     max_native_zoom: 2,
     available_slices: [[9, 20], [9, 30], [10, 30]],

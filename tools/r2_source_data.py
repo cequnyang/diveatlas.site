@@ -1,4 +1,4 @@
-"""Fetch the canonical coral and fish snapshots from the published R2 release."""
+"""Fetch checksum-verified source assets from the published R2 release."""
 
 from __future__ import annotations
 
@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -17,6 +18,12 @@ PRODUCTION_CONFIG_URL = "https://diveatlas.site/js/data-assets-config.js"
 SOURCE_PATHS = {
     "data/coral_records_snapshot.js",
     "data/fish_map_units.json.gz",
+    "data/bathymetry_manifest.js",
+    "data/coral_occurrence_manifest.js",
+    "data/reef_raster_manifest.js",
+    "data/reef_vector_manifest.js",
+    "data/terrain_manifest.js",
+    "data/temperature/metadata.json",
 }
 CONFIG_PATTERN = re.compile(r'^window\.DIVEATLAS_DATA_ASSET_BASE_URL = "([^"\r\n]+)";$', re.MULTILINE)
 
@@ -53,19 +60,18 @@ def _asset_base_url(override: str | None = None) -> str:
 def resolve_r2_source_file(path: str, base_url: str | None = None) -> Path:
     """Return a checksum-verified local cache copy of a canonical R2 snapshot."""
     if path not in SOURCE_PATHS:
-        raise ValueError(f"Unsupported R2 source data path: {path}")
+        raise ValueError(f"Unsupported R2 source asset path: {path}")
     base_url = _asset_base_url(base_url)
     release_id = urlsplit(base_url).path.rstrip("/").rsplit("/", 1)[-1]
     cache_root = ROOT / "data/.build/r2/source-cache" / release_id
     manifest_cache = cache_root / "release-manifest.json"
-    try:
-        manifest_bytes = manifest_cache.read_bytes()
-    except FileNotFoundError:
-        manifest_bytes = _read_url(base_url + "release-manifest.json")
-        cache_root.mkdir(parents=True, exist_ok=True)
-        temporary_manifest = manifest_cache.with_suffix(".json.tmp")
-        temporary_manifest.write_bytes(manifest_bytes)
-        temporary_manifest.replace(manifest_cache)
+    # Release inventories may be appended in place; fetch a fresh copy instead
+    # of trusting the old local cache or a CDN response cached as immutable.
+    manifest_bytes = _read_url(base_url + f"release-manifest.json?cacheBust={time.time_ns()}")
+    cache_root.mkdir(parents=True, exist_ok=True)
+    temporary_manifest = manifest_cache.with_suffix(".json.tmp")
+    temporary_manifest.write_bytes(manifest_bytes)
+    temporary_manifest.replace(manifest_cache)
     manifest = json.loads(manifest_bytes)
     if manifest.get("format") != "diveatlas-browser-data-release" or manifest.get("schemaVersion") != 1:
         raise ValueError("The configured R2 source does not contain a supported release manifest.")

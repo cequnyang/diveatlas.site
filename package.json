@@ -6,6 +6,7 @@
     "test:unit": "node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",
     "test:coral-heat-stress": "python -m unittest tests.unit.test_coral_heat_stress_build tests.unit.test_coral_heat_history_build tests.unit.test_coral_heat_history_summary tests.unit.test_ocean_heat_history_publish -v && node --test tests/unit/coral-heat-stress-view.test.js tests/unit/coral-heat-history-view.test.js",
     "build:auth-preview": "python tools/prepare_pages.py --output _site --skip-external-data",
+    "prepare:local-manifests": "python tools/fetch_local_startup_manifests.py",
     "test:e2e": "playwright test",
     "check:dataset-paths": "node tools/check_dataset_paths.js && python -m unittest tests.unit.test_r2_source_policy -v",
     "test:interactions": "npm run test:unit && npm run check:test-policy && npm run build && npm run test:e2e",

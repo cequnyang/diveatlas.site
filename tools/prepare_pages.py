@@ -61,6 +61,17 @@ EXCLUDED_PATH_PREFIXES = {
 MHW_PRODUCTION_ROOT = Path("data/reef-condition/ocean-heat-history")
 TIDE_DATA_ROOT = Path("data/tides")
 TIDE_DEPLOYMENT_CONFIG = Path("js/tides/deployment-config.js")
+R2_STARTUP_MANIFESTS = (
+    Path("datasets/bathymetry_manifest.js"),
+    Path("datasets/coral_occurrence_manifest.js"),
+    Path("datasets/reef_raster_manifest.js"),
+    Path("datasets/reef_vector_manifest.js"),
+    Path("datasets/terrain_manifest.js"),
+)
+R2_STARTUP_DATA_FILES = (
+    Path("datasets/temperature/metadata.json"),
+)
+R2_STARTUP_DATA_ASSETS = R2_STARTUP_MANIFESTS + R2_STARTUP_DATA_FILES
 EXTERNAL_DATA_ROOTS = {
     Path("data/bathymetry_tiles"),
     # Local builds bundle these ignored working copies; production builds omit
@@ -76,6 +87,9 @@ EXTERNAL_DATA_ROOTS = {
     Path("data/reef_tiles"),
     Path("data/reef_vector_chunks"),
     Path("data/temperature/production-0.25deg"),
+    # This small metadata file is hosted with its temperature tiles in R2;
+    # local builds still include the ignored working copy from datasets/.
+    *R2_STARTUP_DATA_FILES,
     Path("data/temperature/query"),
     Path("data/terrain_tiles"),
     Path("data/tides"),
@@ -83,6 +97,9 @@ EXTERNAL_DATA_ROOTS = {
     Path("data/waves"),
     Path("data/reef-condition/thermal-stress-history"),
     Path("data/reef-condition/ocean-heat-history"),
+    # Keep local development self-contained; production publishes these
+    # startup manifests beside their corresponding R2 data assets.
+    *R2_STARTUP_MANIFESTS,
 }
 
 
@@ -285,6 +302,23 @@ def render_app_version(index_path: Path, version: str) -> None:
     index_path.write_text(rendered, encoding="utf-8")
 
 
+def render_r2_startup_manifests(index_path: Path, data_asset_base_url: str | None) -> None:
+    """Point only selected production startup manifests at the matching R2 release."""
+    if data_asset_base_url is None:
+        return
+    index = index_path.read_text(encoding="utf-8")
+    for source in R2_STARTUP_MANIFESTS:
+        pattern = re.compile(
+            rf'(<script\b[^>]*\bsrc=["\']){re.escape(source.as_posix())}'
+            rf'(?P<suffix>\?[^"\']*)?(["\'])'
+        )
+        replacement = rf'\g<1>{data_asset_base_url}data/{source.name}\g<suffix>\3'
+        index, replacements = pattern.subn(replacement, index)
+        if replacements != 1:
+            raise SystemExit(f"Expected exactly one startup script reference for {source.as_posix()}")
+    index_path.write_text(index, encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", default="_site", help="artifact folder (default: _site)")
@@ -344,6 +378,7 @@ def main() -> None:
         total_bytes += destination.stat().st_size
 
     render_app_version(output / "index.html", app_version)
+    render_r2_startup_manifests(output / "index.html", data_asset_base_url)
     copy_seconds = time.perf_counter() - copy_started
 
     deployment_config = output / TIDE_DEPLOYMENT_CONFIG

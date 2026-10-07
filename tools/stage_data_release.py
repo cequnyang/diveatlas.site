@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage the browser-served datasets as a verified, immutable R2 release."""
+"""Stage browser data releases and checksum-verified manifest-only extensions."""
 
 from __future__ import annotations
 
@@ -11,8 +11,12 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-from prepare_pages import ROOT, local_external_data_files
-from r2_source_data import resolve_r2_source_file
+if __package__:
+    from .prepare_pages import ROOT, R2_STARTUP_DATA_ASSETS, local_external_data_files
+    from .r2_source_data import resolve_r2_source_file
+else:
+    from prepare_pages import ROOT, R2_STARTUP_DATA_ASSETS, local_external_data_files
+    from r2_source_data import resolve_r2_source_file
 
 
 RELEASES = ROOT / "data/.build/r2/releases"
@@ -52,27 +56,50 @@ def copy_and_hash(source: Path, target: Path) -> tuple[int, str]:
     return byte_count, digest.hexdigest()
 
 
-def selected_files(candidates: list[Path] | None = None) -> list[Path]:
+def selected_files(
+    candidates: list[Path] | None = None,
+    *,
+    manifests_only: bool = False,
+    temperature_metadata_only: bool = False,
+) -> list[Path]:
+    if temperature_metadata_only:
+        metadata = Path("datasets/temperature/metadata.json")
+        return [metadata] if (ROOT / metadata).is_file() else []
+    if manifests_only:
+        return [path for path in R2_STARTUP_DATA_ASSETS if (ROOT / path).is_file()]
     # These two snapshots are sourced from the current R2 release, never from
     # local development copies or their former checked-in paths. Other data
     # remains sourced locally.
-    return [
+    selected = {
         relative for relative in (local_external_data_files() if candidates is None else candidates)
         if relative.as_posix() not in {
             "datasets/coral_records_snapshot.js",
             "datasets/fish_map_units.json.gz",
             *R2_SOURCE_DATA_PATHS,
         }
-    ]
+    }
+    # Preserve the repository copies for development, but put release copies
+    # alongside data payloads in R2.
+    selected.update(path for path in R2_STARTUP_DATA_ASSETS if (ROOT / path).is_file())
+    return sorted(selected)
 
 
-def stage(release_id: str, destination_root: Path = RELEASES, source_data_asset_base_url: str | None = None) -> dict:
+def stage(
+    release_id: str,
+    destination_root: Path = RELEASES,
+    source_data_asset_base_url: str | None = None,
+    *,
+    manifests_only: bool = False,
+    temperature_metadata_only: bool = False,
+) -> dict:
     if not RELEASE_ID_RE.fullmatch(release_id):
         raise ValueError("Release ID must be 1-64 letters, digits, dots, underscores, or hyphens and start with a letter or digit.")
     destination = (destination_root / release_id).resolve()
     if destination.exists():
         raise FileExistsError(f"Refusing to overwrite immutable data release: {destination}")
-    files = selected_files()
+    if manifests_only and temperature_metadata_only:
+        raise ValueError("Choose either all startup assets or only Temperature metadata, not both.")
+    files = selected_files(manifests_only=manifests_only, temperature_metadata_only=temperature_metadata_only)
     if not files:
         raise ValueError("No external production data files were found to stage.")
 
@@ -80,10 +107,11 @@ def stage(release_id: str, destination_root: Path = RELEASES, source_data_asset_
     entries = []
     try:
         sources = [(relative, ROOT / relative) for relative in files]
-        sources.extend(
-            (Path(relative), resolve_r2_source_file(relative, source_data_asset_base_url))
-            for relative in R2_SOURCE_DATA_PATHS
-        )
+        if not manifests_only and not temperature_metadata_only:
+            sources.extend(
+                (Path(relative), resolve_r2_source_file(relative, source_data_asset_base_url))
+                for relative in R2_SOURCE_DATA_PATHS
+            )
         for relative, source in sources:
             release_relative = release_path_for_source(relative)
             target = destination / release_relative
@@ -148,15 +176,29 @@ def verify_release(release_root: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--release", required=True, help="immutable release ID, for example 2026-10-05")
+    parser.add_argument("--release", required=True, help="release ID, for example 2026-10-05-v2")
     parser.add_argument("--releases-directory", type=Path, default=RELEASES)
     parser.add_argument(
         "--source-data-asset-base-url",
         default=None,
         help="existing immutable R2 release to copy the coral and fish snapshots from; defaults to SOURCE_DATA_ASSET_BASE_URL or DATA_ASSET_BASE_URL",
     )
+    parser.add_argument(
+        "--startup-data-only",
+        "--manifests-only",
+        dest="manifests_only",
+        action="store_true",
+        help="stage only the selected startup data assets for safe append to an existing release",
+    )
+    parser.add_argument(
+        "--temperature-metadata-only",
+        action="store_true",
+        help="stage only the Temperature metadata for a safe additive update to an existing release",
+    )
     args = parser.parse_args()
-    print(json.dumps(stage(args.release, args.releases_directory, args.source_data_asset_base_url), indent=2))
+    print(json.dumps(stage(args.release, args.releases_directory, args.source_data_asset_base_url,
+                           manifests_only=args.manifests_only,
+                           temperature_metadata_only=args.temperature_metadata_only), indent=2))
 
 
 if __name__ == "__main__":

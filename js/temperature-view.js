@@ -45,7 +45,10 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
 
   function loadMetadata() {
     if (!metadataPromise) {
-      const loader = metadataLoader || (() => fetch('datasets/temperature/metadata.json').then(response => {
+      const metadataUrl = browserRoot.DiveAtlasDataAssets?.external
+        ? 'data/temperature/metadata.json'
+        : 'datasets/temperature/metadata.json';
+      const loader = metadataLoader || (() => fetch(metadataUrl).then(response => {
         if (!response.ok) throw new Error(`Temperature metadata returned HTTP ${response.status}`);
         return response.json();
       }));
@@ -65,7 +68,14 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
       .replaceAll('{month}', String(selectedMonth).padStart(2, '0'))
       .replaceAll('{depth}', selectedDepth);
     const version = encodeURIComponent(metadata.generated_at_utc || metadata.generation_version || 'dataset');
-    return `${metadata.asset_base.replace(/\/$/, '')}/${path}?v=${version}`;
+    return `${temperatureAssetBase()}/${path}?v=${version}`;
+  }
+
+  function temperatureAssetBase() {
+    // Metadata stores paths relative to the R2 release's data/ prefix. Add that
+    // prefix at runtime so the same local metadata works with local data/ files.
+    const relativeBase = metadata.asset_base.replace(/^(?:data|datasets)\//, '').replace(/^\/+|\/+$/g, '');
+    return `data/${relativeBase}`;
   }
 
   function estimatedTileUrl(selectedMonth, selectedDepth) {
@@ -74,7 +84,7 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
       .replaceAll('{month}', String(selectedMonth).padStart(2, '0'))
       .replaceAll('{depth}', selectedDepth);
     const version = encodeURIComponent(metadata.estimated_tile_generation_version || 'estimated-dataset');
-    return `${metadata.asset_base.replace(/\/$/, '')}/${path}?v=${version}`;
+    return `${temperatureAssetBase()}/${path}?v=${version}`;
   }
 
   function selectSlice(nextMonth, nextDepth) {

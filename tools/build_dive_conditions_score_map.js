@@ -153,7 +153,7 @@ function parseCoralSnapshot(source) {
 
 async function loadSnapshots() {
   const baseUrl = await resolveDataAssetBaseUrl();
-  const manifestResponse = await fetch(new URL('release-manifest.json', baseUrl));
+  const manifestResponse = await fetch(new URL(`release-manifest.json?cacheBust=${Date.now()}`, baseUrl));
   if (!manifestResponse.ok) throw new Error(`R2 source manifest returned HTTP ${manifestResponse.status}.`);
   const manifest = await manifestResponse.json();
   if (manifest.format !== 'diveatlas-browser-data-release' || manifest.schemaVersion !== 1) {
