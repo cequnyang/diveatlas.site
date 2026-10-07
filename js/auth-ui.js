@@ -34,6 +34,10 @@
     const name = typeof user.name === 'string' ? user.name.trim() : '';
     const email = typeof user.email === 'string' ? user.email.trim() : '';
     window.DiveAtlasCurrentUser = { name, email };
+    const contactName = document.getElementById('contactName');
+    const contactEmail = document.getElementById('contactEmail');
+    if (contactName && !contactName.value.trim()) contactName.value = name;
+    if (contactEmail && !contactEmail.value.trim()) contactEmail.value = email;
     window.dispatchEvent(new CustomEvent('diveatlas:auth-change', {
       detail: { user: window.DiveAtlasCurrentUser }
     }));
