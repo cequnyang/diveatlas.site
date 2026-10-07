@@ -17,9 +17,87 @@ jobs:
   interaction-tests:
     name: Required map interaction suite
     runs-on: ubuntu-latest
+    outputs:
+      app_version: ${{ steps.app_version.outputs.version }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Choose the site version
+        id: app_version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_REF" != "refs/heads/main" ]]; then
+            version="$(node -p "require('./package.json').version")"
+          else
+            latest_tag="$(git tag --list 'v[0-9]*' --sort=-version:refname | sed -n '1p')"
+            package_version="$(node -p "require('./package.json').version")"
+            if [[ -z "$latest_tag" ]]; then
+              # The package version is the first release; later releases are tracked by tags.
+              version="$package_version"
+            else
+              current="${latest_tag#v}"
+              if [[ ! "$current" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ || ! "$package_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+                echo "Release tags and package.json must use major.minor.patch versions." >&2
+                exit 1
+              fi
+
+              # A higher package version is an explicit developer-requested release bump.
+              if [[ "$package_version" != "$current" ]] && [[ "$(printf '%s\n' "$current" "$package_version" | sort -V | tail -n1)" == "$package_version" ]]; then
+                if [[ "$current" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+                  current_major="${BASH_REMATCH[1]}"
+                  current_minor="${BASH_REMATCH[2]}"
+                  current_patch="${BASH_REMATCH[3]}"
+                fi
+                if [[ "$package_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+                  requested_major="${BASH_REMATCH[1]}"
+                  requested_minor="${BASH_REMATCH[2]}"
+                  requested_patch="${BASH_REMATCH[3]}"
+                fi
+                if (( requested_major > current_major )); then
+                  if (( requested_major != current_major + 1 || requested_minor != 0 || requested_patch != 0 )); then
+                    echo "A major bump must add one to the major number and reset minor and patch to 0 (for example, 0.4.12 to 1.0.0)." >&2
+                    exit 1
+                  fi
+                elif (( requested_minor > current_minor )); then
+                  if (( requested_major != current_major || requested_minor != current_minor + 1 || requested_patch != 0 )); then
+                    echo "A minor bump must add one to the minor number and reset patch to 0 (for example, 0.4.12 to 0.5.0)." >&2
+                    exit 1
+                  fi
+                elif (( requested_major != current_major || requested_minor != current_minor || requested_patch != current_patch + 1 )); then
+                  echo "A patch bump must add one to the patch number." >&2
+                  exit 1
+                fi
+                version="$package_version"
+              else
+                if [[ ! "$current" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+                  echo "Latest release tag '$latest_tag' is not a supported semantic version." >&2
+                  exit 1
+                fi
+                major="${BASH_REMATCH[1]}"
+                minor="${BASH_REMATCH[2]}"
+                patch="${BASH_REMATCH[3]}"
+                if (( patch >= 999 )); then
+                  echo "Patch versions stop at 999. Raise the minor version in package.json (and package-lock.json) to request the next series." >&2
+                  exit 1
+                fi
+                version="$major.$minor.$((patch + 1))"
+              fi
+            fi
+
+            if [[ ! "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "Could not determine a semantic version from '$version'." >&2
+              exit 1
+            fi
+            if (( BASH_REMATCH[3] > 999 )); then
+              echo "The patch version cannot exceed 999." >&2
+              exit 1
+            fi
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -43,6 +121,7 @@ jobs:
 
       - name: Validate and assemble static site
         env:
+          APP_VERSION: ${{ steps.app_version.outputs.version }}
           DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL || 'https://assets.diveatlas.site/releases/2026-10-05-v2/' }}
         run: npm run build
 
@@ -62,12 +141,28 @@ jobs:
     needs: interaction-tests
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Check out source for release tagging
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Publish tested static site
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Tag only after Pages succeeds, so failed deployments reuse the same next patch version.
+      - name: Record the deployed version
+        env:
+          APP_VERSION: ${{ needs.interaction-tests.outputs.app_version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "v$APP_VERSION" -m "DiveAtlas $APP_VERSION"
+          git push origin "v$APP_VERSION"

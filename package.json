@@ -1,6 +1,6 @@
 {
   "name": "diveatlas.site",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "test:unit": "node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",

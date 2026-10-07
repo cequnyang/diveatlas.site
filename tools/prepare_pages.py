@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import time
@@ -245,6 +246,43 @@ def validate_index(output: Path) -> None:
         raise SystemExit("Static artifact has missing local references: " + ", ".join(missing[:20]))
 
 
+def normalize_app_version(value: str | None) -> str:
+    if value is None:
+        # Local builds follow the latest deployed tag; package.json is the initial version baseline.
+        tags = subprocess.run(
+            ["git", "tag", "--list", "v[0-9]*", "--sort=-version:refname"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.splitlines()
+        if tags:
+            value = tags[0].removeprefix("v")
+        else:
+            package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+            value = str(package.get("version", ""))
+    version = value.strip().removeprefix("v")
+    if not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        raise ValueError("APP_VERSION must be a semantic version in major.minor.patch form.")
+    return version
+
+
+def render_app_version(index_path: Path, version: str) -> None:
+    """Write the release version into the menu label in the deployable copy."""
+    index = index_path.read_text(encoding="utf-8")
+    pattern = re.compile(
+        r'(<div class="top-menu-version" data-version=")[^"]+'
+        r'(" aria-label="DiveAtlas version )[^"]+(">)v[^<]*(</div>)'
+    )
+    rendered, replacements = pattern.subn(
+        rf'\g<1>{version}\g<2>{version}\g<3>v{version}\g<4>',
+        index,
+    )
+    if replacements != 1:
+        raise SystemExit("Expected exactly one top-menu version label in index.html")
+    index_path.write_text(rendered, encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", default="_site", help="artifact folder (default: _site)")
@@ -259,6 +297,11 @@ def main() -> None:
         help="deployment-owned HTTPS root for all versioned browser data; omit to bundle app-relative data",
     )
     parser.add_argument(
+        "--app-version",
+        default=os.environ.get("APP_VERSION"),
+        help="version displayed in the top menu (defaults to package.json)",
+    )
+    parser.add_argument(
         "--skip-external-data",
         action="store_true",
         help="omit the large local data payloads for a lightweight, local-only preview (not a deployable build)",
@@ -268,6 +311,7 @@ def main() -> None:
     try:
         tide_asset_base_url = normalize_tide_asset_base_url(args.tide_asset_base_url)
         data_asset_base_url = normalize_data_asset_base_url(args.data_asset_base_url)
+        app_version = normalize_app_version(args.app_version)
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
     if data_asset_base_url and not tide_asset_base_url:
@@ -296,6 +340,8 @@ def main() -> None:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / relative, destination)
         total_bytes += destination.stat().st_size
+
+    render_app_version(output / "index.html", app_version)
     copy_seconds = time.perf_counter() - copy_started
 
     deployment_config = output / TIDE_DEPLOYMENT_CONFIG
