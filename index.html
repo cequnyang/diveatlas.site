@@ -2274,7 +2274,9 @@
     }
 
     .dive-search-results-scroll {
-      max-height: inherit;
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
       margin-right: 6px;
       overflow-x: hidden;
       overflow-y: auto;
@@ -2301,7 +2303,8 @@
     }
 
     .dive-search-results.visible {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
 
     .dive-search-result {
@@ -2351,28 +2354,30 @@
 
     .dive-search-suggestion[hidden] { display: none; }
     .dive-search-suggestion {
-      padding: 8px 10px 10px;
+      padding: 2px 10px 3px;
       border-top: 1px solid var(--line);
     }
     .dive-search-suggestion-button {
       width: 100%;
-      min-height: 34px;
-      padding: 7px 10px;
-      border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--line));
-      border-radius: 8px;
-      background: color-mix(in srgb, var(--primary) 8%, var(--panel-solid));
-      color: var(--primary);
+      min-height: 19px;
+      padding: 2px 8px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--muted);
       font: inherit;
-      font-size: 12px;
-      font-weight: 650;
+      font-size: 11px;
+      font-weight: 600;
       text-align: left;
       cursor: pointer;
     }
-    .dive-search-suggestion-button:hover,
+    .dive-search-suggestion-button:hover {
+      background: var(--panel-soft);
+      color: var(--primary);
+    }
     .dive-search-suggestion-button:focus-visible {
-      background: color-mix(in srgb, var(--primary) 14%, var(--panel-solid));
       outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
-      outline-offset: 1px;
+      outline-offset: -2px;
     }
 
     .site-suggestion-modal[hidden] { display: none; }
@@ -9561,7 +9566,7 @@ ZSD·2016–2025</span></span>
   };
 
   const SITE_SUGGESTION_I18N = {
-    en: { siteSuggestionCta: 'Suggest a missing dive site', siteSuggestionTitle: 'Suggest a dive site', siteSuggestionCopy: 'Your suggestion goes to DiveAtlas for review. It won’t be added automatically.', siteSuggestionName: 'Dive-site name', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Source link', siteSuggestionSend: 'Send suggestion', siteSuggestionCancel: 'Cancel', siteSuggestionSending: 'Sending suggestion…', siteSuggestionSent: 'Thanks—your suggestion was sent for review.', siteSuggestionError: 'Couldn’t send the suggestion. Please try again.', siteSuggestionNameRequired: 'Enter a dive-site name.', siteSuggestionSourceInvalid: 'Enter a valid http or https link.', siteSuggestionVerify: 'Complete the security check, then try again.', siteSuggestionVerifyUnavailable: 'The security check is unavailable. Please try again later.' },
+    en: { siteSuggestionCta: 'Suggest a missing Dive site', siteSuggestionTitle: 'Suggest a dive site', siteSuggestionCopy: 'Your suggestion goes to DiveAtlas for review. It won’t be added automatically.', siteSuggestionName: 'Dive-site name', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Source link', siteSuggestionSend: 'Send suggestion', siteSuggestionCancel: 'Cancel', siteSuggestionSending: 'Sending suggestion…', siteSuggestionSent: 'Thanks—your suggestion was sent for review.', siteSuggestionError: 'Couldn’t send the suggestion. Please try again.', siteSuggestionNameRequired: 'Enter a dive-site name.', siteSuggestionSourceInvalid: 'Enter a valid http or https link.', siteSuggestionVerify: 'Complete the security check, then try again.', siteSuggestionVerifyUnavailable: 'The security check is unavailable. Please try again later.' },
     zh: { siteSuggestionCta: '补充缺失的潜点', siteSuggestionTitle: '推荐潜点', siteSuggestionCopy: '建议将提交给 DiveAtlas 审核，不会自动添加到地图。', siteSuggestionName: '潜点名称', siteSuggestionRegion: '所在区域', siteSuggestionSource: '来源链接', siteSuggestionSend: '提交建议', siteSuggestionCancel: '取消', siteSuggestionSending: '正在提交…', siteSuggestionSent: '感谢提交，潜点建议已发送审核。', siteSuggestionError: '提交失败，请重试。', siteSuggestionNameRequired: '请输入潜点名称。', siteSuggestionSourceInvalid: '请输入有效的 HTTP 或 HTTPS 链接。', siteSuggestionVerify: '请完成安全验证后重试。', siteSuggestionVerifyUnavailable: '安全验证暂不可用，请稍后重试。' },
     ja: { siteSuggestionCta: '未掲載のダイブスポットを提案', siteSuggestionTitle: 'ダイブスポットを提案', siteSuggestionCopy: '提案はDiveAtlasで確認します。自動的に地図へ追加されることはありません。', siteSuggestionName: 'ダイブスポット名', siteSuggestionRegion: '地域', siteSuggestionSource: '参考リンク', siteSuggestionSend: '提案を送信', siteSuggestionCancel: 'キャンセル', siteSuggestionSending: '送信中…', siteSuggestionSent: 'ありがとうございます。提案を確認用に送信しました。', siteSuggestionError: '送信できませんでした。もう一度お試しください。', siteSuggestionNameRequired: 'ダイブスポット名を入力してください。', siteSuggestionSourceInvalid: '有効なHTTPまたはHTTPSリンクを入力してください。', siteSuggestionVerify: '認証を完了してから、もう一度お試しください。', siteSuggestionVerifyUnavailable: '認証を利用できません。後でもう一度お試しください。' },
     fr: { siteSuggestionCta: 'Signaler un site manquant', siteSuggestionTitle: 'Suggérer un site de plongée', siteSuggestionCopy: 'Votre suggestion sera examinée par DiveAtlas. Elle ne sera pas ajoutée automatiquement.', siteSuggestionName: 'Nom du site', siteSuggestionRegion: 'Région', siteSuggestionSource: 'Lien source', siteSuggestionSend: 'Envoyer la suggestion', siteSuggestionCancel: 'Annuler', siteSuggestionSending: 'Envoi…', siteSuggestionSent: 'Merci, votre suggestion a été envoyée pour examen.', siteSuggestionError: 'Échec de l’envoi. Veuillez réessayer.', siteSuggestionNameRequired: 'Saisissez le nom du site.', siteSuggestionSourceInvalid: 'Saisissez un lien HTTP ou HTTPS valide.', siteSuggestionVerify: 'Terminez la vérification puis réessayez.', siteSuggestionVerifyUnavailable: 'Vérification indisponible. Réessayez plus tard.' },
@@ -17416,6 +17421,9 @@ ZSD·2016–2025</span></span>
     diveSearchMatches = [];
     diveSearchActiveIndex = -1;
     els.diveSearchResults.classList.remove('visible');
+    if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
+      els.diveSearchResults.append(els.diveSearchSuggestion);
+    }
     els.diveSearchResultsScroll.innerHTML = '';
     els.diveSearchSuggestion.hidden = true;
   }
@@ -17423,6 +17431,9 @@ ZSD·2016–2025</span></span>
   function renderDiveSearchResults() {
     if (!els.diveSearchInput) return;
     const renderRequest = ++diveSearchRenderRequest;
+    if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
+      els.diveSearchResults.append(els.diveSearchSuggestion);
+    }
     els.diveSearchSuggestion.hidden = true;
 
     const query =
@@ -17484,6 +17495,7 @@ ZSD·2016–2025</span></span>
         `</div>`;
 
       els.diveSearchResults.classList.add('visible');
+      els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
       els.diveSearchSuggestion.hidden = false;
       els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
       els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
@@ -17512,9 +17524,13 @@ ZSD·2016–2025</span></span>
               : '') +
           `</button>`
         );
-      }).join('');
+    }).join('');
 
     els.diveSearchResults.classList.add('visible');
+    els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
+    els.diveSearchSuggestion.hidden = false;
+    els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
+    els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
   }
 
   function scheduleDiveSearch() {
