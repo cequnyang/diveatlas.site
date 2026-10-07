@@ -4,6 +4,12 @@ __pycache__/
 *.pyc
 data/.build/
 /data/
+/datasets/bathymetry_manifest.js
+/datasets/coral_occurrence_manifest.js
+/datasets/reef_raster_manifest.js
+/datasets/reef_vector_manifest.js
+/datasets/terrain_manifest.js
+/datasets/temperature/metadata.json
 node_modules/
 _site/
 test-results/

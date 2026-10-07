@@ -13,6 +13,15 @@ const configPath = path.join(root, '_site', 'js', 'data-assets-config.js');
 const configText = fs.existsSync(configPath) ? fs.readFileSync(configPath, 'utf8') : '';
 const configValue = configText.match(/^window\.DIVEATLAS_DATA_ASSET_BASE_URL = (null|"[^"\r\n]*");$/m)?.[1];
 const dataAssetBase = configValue && configValue !== 'null' ? new URL(JSON.parse(configValue)) : null;
+const forceR2StartupAssets = process.env.DIVEATLAS_TEST_FORCE_R2_STARTUP_ASSETS === '1';
+const R2_DATASET_ASSETS = new Set([
+  'bathymetry_manifest.js',
+  'coral_occurrence_manifest.js',
+  'reef_raster_manifest.js',
+  'reef_vector_manifest.js',
+  'terrain_manifest.js',
+  'temperature/metadata.json'
+]);
 const contentTypes = new Map([
   ['.bin', 'application/octet-stream'],
   ['.css', 'text/css; charset=utf-8'],
@@ -57,19 +66,21 @@ async function handle(req, res) {
   const relativePath = segments.length ? path.join(...segments) : 'index.html';
   const localPath = path.resolve(root, relativePath);
   if (!localPath.startsWith(`${root}${path.sep}`)) return send(res, 404, 'Not found');
+  const datasetRelativePath = segments[0] === 'datasets' ? segments.slice(1).join('/') : '';
+  const isR2DatasetAsset = segments[0] === 'datasets' && R2_DATASET_ASSETS.has(datasetRelativePath);
 
-  // Browser tests should keep data requests same-origin so Playwright mocks
-  // can intercept them. The server still reads the built release root below
-  // and proxies only data files absent from this checkout to R2.
+  // Browser tests keep asset requests same-origin so Playwright mocks can
+  // intercept them. Local copies win; missing data and published startup
+  // manifests fall back to the matching R2 release in clean CI checkouts.
   if (requestUrl.pathname === '/js/data-assets-config.js') {
     return send(res, 200,
-      '// Test site keeps asset requests same-origin; missing /data files are proxied by this server.\n' +
+      '// Test site keeps asset requests same-origin; missing published assets are proxied by this server.\n' +
       'window.DIVEATLAS_DATA_ASSET_BASE_URL = null;\n',
       { 'content-type': 'text/javascript; charset=utf-8' });
   }
 
   try {
-    if (fs.statSync(localPath).isFile()) {
+    if ((!forceR2StartupAssets || !isR2DatasetAsset) && fs.statSync(localPath).isFile()) {
       const headers = { 'content-type': contentTypes.get(path.extname(localPath).toLowerCase()) || 'application/octet-stream' };
       res.writeHead(200, headers);
       return fs.createReadStream(localPath).on('error', error => {
@@ -82,7 +93,12 @@ async function handle(req, res) {
     if (error.code !== 'ENOENT' && error.code !== 'ENOTDIR') return send(res, 500, 'Read error');
   }
 
-  if ((segments[0] === 'data' || segments[0] === 'datasets') && dataAssetBase) {
+  const remoteAssetPath = segments[0] === 'data'
+    ? segments.join('/')
+    : isR2DatasetAsset
+      ? `data/${datasetRelativePath}`
+      : null;
+  if (remoteAssetPath && dataAssetBase) {
     const clientAbort = new AbortController();
     const timeout = AbortSignal.timeout(60_000);
     const signal = AbortSignal.any([clientAbort.signal, timeout]);
@@ -91,14 +107,9 @@ async function handle(req, res) {
     };
     res.once('close', abortWhenClientDisconnects);
     try {
-      // Browser code uses the repository's datasets/ namespace. The immutable
-      // R2 release still stores those same payloads under data/, so translate
-      // only at this test-server proxy boundary while preserving same-origin
-      // request URLs for Playwright interception.
-      const releaseSegments = segments[0] === 'datasets'
-        ? ['data', ...segments.slice(1)]
-        : segments;
-      const remotePath = releaseSegments.map(encodeURIComponent).join('/');
+      // Dataset manifests keep their local development URL, while R2 stores
+      // the production copy under data/ beside its tiles and chunks.
+      const remotePath = remoteAssetPath.split('/').map(encodeURIComponent).join('/');
       const remoteUrl = new URL(`${remotePath}${requestUrl.search}`, dataAssetBase);
       const response = await fetch(remoteUrl, { signal });
       const headers = {};

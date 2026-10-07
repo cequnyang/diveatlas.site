@@ -132,7 +132,16 @@ def verify_data_assets(output: Path) -> dict:
     runtime = output / "js/data-assets.js"
     if not runtime.is_file():
         raise ValueError("Data asset URL resolver is missing from the Pages artifact")
+    try:
+        from prepare_pages import R2_STARTUP_DATA_ASSETS, R2_STARTUP_MANIFESTS
+    except ImportError:
+        import sys
+        sys.path.insert(0, str(ROOT / "tools"))
+        from prepare_pages import R2_STARTUP_DATA_ASSETS, R2_STARTUP_MANIFESTS
     if base_url is None:
+        for asset_path in R2_STARTUP_DATA_ASSETS:
+            if not (output / asset_path).is_file():
+                raise ValueError(f"Local data mode is missing its bundled startup asset: {asset_path.as_posix()}")
         return {"mode": "bundled", "baseUrl": None}
     parsed = urlsplit(base_url)
     if (parsed.scheme != "https" or not parsed.netloc or parsed.username or parsed.password or parsed.query or
@@ -147,9 +156,14 @@ def verify_data_assets(output: Path) -> dict:
     bundled = [path.as_posix() for path in EXTERNAL_DATA_ROOTS if (output / path).exists()]
     if bundled:
         raise ValueError(f"External data mode still bundles large runtime assets: {bundled[:10]}")
-    for manifest in ("bathymetry_manifest.js", "terrain_manifest.js", "reef_vector_manifest.js", "reef_raster_manifest.js", "coral_occurrence_manifest.js"):
-        if not (output / "datasets" / manifest).is_file():
-            raise ValueError(f"Startup manifest is missing from Pages artifact: datasets/{manifest}")
+    index_text = (output / "index.html").read_text(encoding="utf-8")
+    for asset_path in R2_STARTUP_DATA_ASSETS:
+        if (output / asset_path).exists():
+            raise ValueError(f"External data mode must omit startup data from Pages: {asset_path.as_posix()}")
+    for manifest_path in R2_STARTUP_MANIFESTS:
+        expected_url = f'{base_url}data/{manifest_path.name}'
+        if index_text.count(expected_url) != 1:
+            raise ValueError(f"External data mode must load exactly one R2 startup manifest: {expected_url}")
     return {"mode": "external", "baseUrl": base_url, "bundledLargeDataRoots": []}
 
 

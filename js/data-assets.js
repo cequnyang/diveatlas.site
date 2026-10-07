@@ -1,15 +1,4 @@
 (function exposeDataAssets(root) {
-  // Small app-owned metadata stays with Pages; only the published data release
-  // is available from the configured R2 prefix.
-  const pagesHostedDataFiles = new Set([
-    'datasets/bathymetry_manifest.js',
-    'datasets/coral_occurrence_manifest.js',
-    'datasets/dive-site-photos.js',
-    'datasets/reef_raster_manifest.js',
-    'datasets/reef_vector_manifest.js',
-    'datasets/temperature/metadata.json',
-    'datasets/terrain_manifest.js'
-  ]);
   const configuredBase = root.DIVEATLAS_DATA_ASSET_BASE_URL;
   let externalBase = null;
   if (configuredBase !== null && configuredBase !== undefined && configuredBase !== '') {
@@ -31,19 +20,13 @@
     if (segments.some(segment => !segment || segment === '.' || segment === '..')) {
       throw new TypeError('Data asset paths cannot contain empty or traversal segments.');
     }
-    // The current immutable R2 release keeps large payloads under data/ even
-    // though the source repository organizes these files under datasets/.
-    const releasePath = externalBase && assetPath.startsWith('datasets/')
-      ? `data/${assetPath.slice('datasets/'.length)}`
-      : assetPath;
     const base = externalBase || new URL('./', document.baseURI);
-    return new URL(releasePath.split('/').map(encodeURIComponent).join('/') + suffix, base).href;
+    return new URL(assetPath.split('/').map(encodeURIComponent).join('/') + suffix, base).href;
   }
 
   function shouldRewriteDataPath(pathname, appPath) {
     const appRelativePath = pathname.slice(appPath.length).split(/[?#]/, 1)[0];
-    if (!appRelativePath.startsWith('data/') && !appRelativePath.startsWith('datasets/')) return false;
-    return !pagesHostedDataFiles.has(appRelativePath);
+    return appRelativePath.startsWith('data/');
   }
 
   root.DiveAtlasDataAssets = Object.freeze({

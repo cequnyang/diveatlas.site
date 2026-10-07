@@ -131,12 +131,18 @@ jobs:
             echo "Repository variable DATA_ASSET_BASE_URL is required for deployment." >&2
             exit 1
           fi
+          python tools/verify_r2_data_release.py \
+            --asset-base-url "$DATA_ASSET_BASE_URL" \
+            --app-origin https://diveatlas.site \
+            --startup-assets-only
           npm run build
 
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium
 
       - name: Run desktop and touch browser regressions
+        env:
+          DIVEATLAS_TEST_FORCE_R2_STARTUP_ASSETS: '1'
         run: npm run test:e2e
 
       # Playwright already captures screenshots, videos, and traces for failures;

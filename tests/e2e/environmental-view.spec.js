@@ -2,13 +2,13 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
 const { gzipSync } = require('node:zlib');
-const { addFixture, clickFixture, closeTopMenu, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView } = require('./support');
+const { addFixture, clickFixture, closeTopMenu, dataAssetBaseUrl, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView } = require('./support');
 
 const temperatureMetadata = path.resolve(__dirname, '../../datasets/temperature/metadata.json');
 const metadataFixture = {
   purpose: 'development-validation',
   native_resolution: 1,
-  asset_base: 'datasets/temperature/development-1deg',
+  asset_base: 'temperature/development-1deg',
   tile_template: 'woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png',
   max_native_zoom: 2,
   min_native_zoom: 2,
@@ -31,8 +31,8 @@ async function activateTemperatureView(page) {
   }).click();
 }
 
-test('production temperature metadata stays on Pages and supplies the supported depth choices', async ({ page }) => {
-  await openMap(page);
+test('temperature metadata uses R2 in external builds and local files in development', async ({ page }) => {
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   await setMapView(page, -5.7, 131, 4);
   const temperatureTileResponses = [];
   page.on('response', response => {
@@ -48,10 +48,17 @@ test('production temperature metadata stays on Pages and supplies the supported 
 
   const metadataUrl = await page.evaluate(() => performance.getEntriesByType('resource')
     .map(entry => entry.name)
-    .find(url => new URL(url).pathname.endsWith('/datasets/temperature/metadata.json')));
+    .find(url => new URL(url).pathname.endsWith('/temperature/metadata.json')));
   expect(metadataUrl, 'the temperature metadata request should complete').toBeTruthy();
-  expect(new URL(metadataUrl).origin, 'small temperature metadata stays on the Pages origin')
-    .toBe(new URL(page.url()).origin);
+  const metadataRequest = new URL(metadataUrl);
+  if (dataAssetBaseUrl) {
+    const releaseBase = new URL(dataAssetBaseUrl);
+    expect(metadataRequest.origin).toBe(releaseBase.origin);
+    expect(metadataRequest.pathname).toBe(`${releaseBase.pathname}data/temperature/metadata.json`);
+  } else {
+    expect(metadataRequest.origin).toBe(new URL(page.url()).origin);
+    expect(metadataRequest.pathname).toBe('/datasets/temperature/metadata.json');
+  }
 });
 
 test('saved month preferences keep each month selector and legend in sync on startup', async ({ page }) => {
@@ -95,7 +102,7 @@ test('temperature has zero startup requests and loads only after activation', as
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await expect.poll(() => temperatureRequests.some(url => url.includes('/datasets/temperature/'))).toBe(true);
-  expect(temperatureRequests.filter(url => url.includes('/datasets/temperature/query/'))).toEqual([]);
+  expect(temperatureRequests.filter(url => url.includes('/datasets/temperature/query/') || url.includes('/data/temperature/query/'))).toEqual([]);
   expect(temperatureRequests.filter(url => url.includes('temperature-view.js'))).toHaveLength(1);
   await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
 
@@ -345,7 +352,7 @@ test('Coral, Fish, and Dive legend swatches keep their colors below and at Z3', 
 test('layer panel segments and native depth select keep existing state, keyboard, overflow, and lazy behavior', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
-    if (request.url().includes('/datasets/temperature/')) temperatureRequests.push(request.url());
+    if (request.url().includes('/datasets/temperature/') || request.url().includes('/data/temperature/')) temperatureRequests.push(request.url());
   });
   await installMetadataFixture(page);
   await openMap(page);
@@ -872,7 +879,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   });
   const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/metadata.json')).toString('utf8'));
   expect(queryMetadata.format).toBe('diveatlas-temperature-query');
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   expect(requests).toEqual([]);
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect(page.locator('.temperature-tiles')).toHaveCount(1);
@@ -985,7 +992,7 @@ test('masked land produces no popup and a slower earlier click cannot replace th
 });
 
 test('turning Temperature off while a query chunk is pending prevents the popup reopening', async ({ page }) => {
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   await page.locator('#environmentViewSelect').selectOption('temperature');
   let pendingRoute;
   let releasePending;
@@ -1005,7 +1012,10 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
 
 test('temperature detail stays compact and tappable at a mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
+  await openMap(page, {
+    localStorage: { 'global-coral-map-environment-month-v1': '9' },
+    externalAssets: Boolean(dataAssetBaseUrl)
+  });
   await page.locator('#bioLegendTitle').click();
   await activateTemperatureView(page);
   await page.locator('#bioLegendTitle').click();
@@ -1066,7 +1076,7 @@ test('length-dependent explanations stay localized when language and units chang
 });
 
 test('Temperature popup content stays inside the safe area at the top boundary without moving the map', async ({ page }) => {
-  await openMap(page);
+  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   await activateTemperatureView(page);
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
@@ -1091,10 +1101,21 @@ test('Temperature popup content stays inside the safe area at the top boundary w
 test('changing month and depth requests only the newest slice and leaves markers clickable', async ({ page }) => {
   const requests = [];
   page.on('request', request => {
-    if (request.url().includes('/datasets/temperature/')) requests.push(request.url());
+    if (/\/(?:data|datasets)\/temperature\//.test(request.url())) requests.push(request.url());
   });
   await installMetadataFixture(page);
   await openMap(page);
+  // This test supplies synthetic metadata, so keep its tile requests local
+  // instead of proxying development-only paths to the production R2 release.
+  const transparentTile = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=',
+    'base64'
+  );
+  await page.route('**/data/temperature/**', route => route.fulfill({
+    status: 200,
+    contentType: 'image/png',
+    body: transparentTile
+  }));
   await page.locator('#environmentViewSelect').selectOption('temperature');
   await expect.poll(() => requests.length).toBeGreaterThan(0);
   await page.locator('#temperatureDepth').selectOption('30');
@@ -1116,19 +1137,24 @@ test('changing month and depth requests only the newest slice and leaves markers
 });
 
 test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels', async ({ page }) => {
-  const realMetadata = fs.existsSync(temperatureMetadata)
-    ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
-    : null;
+  const realMetadata = dataAssetBaseUrl
+    ? JSON.parse((await readTestDataAsset('data/temperature/metadata.json')).toString('utf8'))
+    : fs.existsSync(temperatureMetadata)
+      ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
+      : null;
   const hasProductionFixture = realMetadata?.active_profile === 'production-0.25deg' &&
     realMetadata.purpose === 'production' && realMetadata.available_slices?.some(
       ([month, depth]) => month === 9 && depth === 20
     );
   expect(hasProductionFixture, 'The shipped production manifest must include the WOA23 September/20 m slice.').toBe(true);
 
-  await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
+  await openMap(page, {
+    localStorage: { 'global-coral-map-environment-month-v1': '9' },
+    externalAssets: Boolean(dataAssetBaseUrl)
+  });
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
   const tileResponse = page.waitForResponse(response =>
-    response.url().includes('/datasets/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
+    response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
   );
   await page.locator('#environmentViewSelect').selectOption('temperature');
   const response = await tileResponse;

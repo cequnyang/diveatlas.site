@@ -6170,15 +6170,15 @@ ZSD·2016–2025</span></span>
 </div>
 
 <!-- V34 embedded biodiversity payloads. The Builder fills these with gzip+base64 JSON. -->
-<meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"datasets/fish_map_units.json.gz?v=1"}'>
+<meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
-    <script src="datasets/bathymetry_manifest.js?v=6"></script>
-    <script src="datasets/terrain_manifest.js?v=5"></script>
-<script src="datasets/reef_vector_manifest.js?v=77"></script>
-<script src="datasets/reef_raster_manifest.js?v=1"></script>
-<script src="datasets/coral_occurrence_manifest.js?v=83"></script>
+    <script src="datasets/bathymetry_manifest.js?v=7"></script>
+    <script src="datasets/terrain_manifest.js?v=6"></script>
+<script src="datasets/reef_vector_manifest.js?v=78"></script>
+<script src="datasets/reef_raster_manifest.js?v=2"></script>
+<script src="datasets/coral_occurrence_manifest.js?v=84"></script>
 <script id="embeddedFishData" type="application/octet-stream" data-encoding="gzip-base64"></script>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -15771,7 +15771,7 @@ ZSD·2016–2025</span></span>
     if (diveSiteDataPromise) return diveSiteDataPromise;
 
     diveSiteDataPromise = Promise.all([
-      loadLocalScript('datasets/dive-sites.js?v=1'),
+      loadLocalScript('data/dive-sites.js?v=1'),
       loadLocalScript('datasets/dive-site-photos.js?v=2')
     ])
       .then(() => {
@@ -15870,7 +15870,7 @@ ZSD·2016–2025</span></span>
     if (embeddedBiodiversityLoadPromise) return embeddedBiodiversityLoadPromise;
 
     embeddedBiodiversityLoadPromise = loadLocalScript(
-      'datasets/coral_records_snapshot.js?v=83'
+      'data/coral_records_snapshot.js?v=83'
     )
       .then(() => loadEmbeddedBiodiversityData())
       .then(() => {
@@ -19135,7 +19135,7 @@ ZSD·2016–2025</span></span>
       return embedded;
     }
 
-    let assetUrl = 'datasets/fish_map_units.json.gz?v=1';
+    let assetUrl = 'data/fish_map_units.json.gz?v=1';
     try {
       const snapshotMeta = JSON.parse(els.embeddedSnapshotMeta?.content || 'null');
       if (typeof snapshotMeta?.fishAsset === 'string' && snapshotMeta.fishAsset) {
