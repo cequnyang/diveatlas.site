@@ -3,16 +3,20 @@ Thumbs.db
 __pycache__/
 *.pyc
 data/.build/
+/data/
 node_modules/
 _site/
 test-results/
 playwright-report/
 
 # Authoring notes and data builders stay local; Pages publishes generated site assets.
-/docs/
+!/docs/
+/docs/*
 !/docs/dive-experience-outlook.md
 !/docs/dive-experience-score-guide.md
 !/docs/dive-experience-confidence-guide.md
+!/docs/dive-site-category-contract.md
+!/docs/export_dive_site_category_review.py
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py
@@ -44,32 +48,4 @@ playwright-report/
 /workers/auth/.dev.vars
 /workers/auth/.wrangler/
 
-# Production browser datasets are published as immutable Cloudflare R2 releases.
-/data/bathymetry_tiles/
-/data/coral_occurrence_chunks/
-/data/coral_records_snapshot.js
-/data/currents/
-/data/depth_contour_tiles/
-/data/depth_samples/
-/data/dive-experience-outlook/v3/
-/data/dive-sites.js
-/data/fish_map_units.json.gz
-/data/reef_tiles/
-/data/reef_vector_chunks/
-/data/temperature/production-0.25deg/
-/data/temperature/query/
-/data/terrain_tiles/
-/data/tides/
-/data/water_clarity/
-/data/waves/
-/data/reef-condition/thermal-stress-history/
-/data/reef-condition/ocean-heat-history/
-
-# Retired Dive Experience data generations are kept out of future commits.
-/data/dive-experience-outlook/v1/
-/data/dive-experience-outlook/v2/
-
-# Retired or development-only datasets stay local; production data is served from R2.
-/data/coral-heat-stress/
-/data/dive_conditions_score/
-/data/temperature/development-1deg/
+# Runtime, generated, and research data stay local; published browser datasets live under datasets/ or the external release.

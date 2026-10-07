@@ -58,7 +58,7 @@ test('Dive cluster zooms and never opens a single-site popup', async ({ page }) 
 
 test('individual Dive site opens its details popup', async ({ page }) => {
   const photosScriptUrl = await page.evaluate(() => performance.getEntriesByType('resource')
-    .map(entry => entry.name).find(url => url.includes('/data/dive-site-photos.js')));
+    .map(entry => entry.name).find(url => url.includes('/datasets/dive-site-photos.js')));
   expect(photosScriptUrl, 'the app-owned dive-site photo metadata should load').toBeTruthy();
   expect(new URL(photosScriptUrl).origin, 'photo metadata stays on the Pages origin').toBe(new URL(page.url()).origin);
   await setMapView(page, -5.7, 131, 14);

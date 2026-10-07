@@ -192,7 +192,7 @@ async function loadReefExtentPercentByCell(oceanMask, cells) {
     const output = new Uint8Array(CELL_COUNT).fill(255);
     const tileCache = new Map();
     if (!reefTileIndexPromise) reefTileIndexPromise = (async () => {
-      const source = await fs.readFile(path.join(ROOT, 'data', 'reef_raster_manifest.js'), 'utf8');
+      const source = await fs.readFile(path.join(ROOT, 'datasets', 'reef_raster_manifest.js'), 'utf8');
       const match = source.match(/window\.DIVEATLAS_REEF_RASTER_MANIFEST\s*=\s*(\{.*\})\s*;/);
       if (!match) throw new Error('The Reef extent tile manifest is missing or invalid.');
       const manifest = JSON.parse(match[1]);

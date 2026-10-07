@@ -148,8 +148,8 @@ def verify_data_assets(output: Path) -> dict:
     if bundled:
         raise ValueError(f"External data mode still bundles large runtime assets: {bundled[:10]}")
     for manifest in ("bathymetry_manifest.js", "terrain_manifest.js", "reef_vector_manifest.js", "reef_raster_manifest.js", "coral_occurrence_manifest.js"):
-        if not (output / "data" / manifest).is_file():
-            raise ValueError(f"Startup manifest is missing from Pages artifact: data/{manifest}")
+        if not (output / "datasets" / manifest).is_file():
+            raise ValueError(f"Startup manifest is missing from Pages artifact: datasets/{manifest}")
     return {"mode": "external", "baseUrl": base_url, "bundledLargeDataRoots": []}
 
 

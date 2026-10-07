@@ -119,11 +119,19 @@ jobs:
       - name: Reject skipped or missing critical tests
         run: npm run check:test-policy
 
+      - name: Enforce dataset folder boundaries
+        run: npm run check:dataset-paths
+
       - name: Validate and assemble static site
         env:
           APP_VERSION: ${{ steps.app_version.outputs.version }}
-          DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL || 'https://assets.diveatlas.site/releases/2026-10-05-v2/' }}
-        run: npm run build
+          DATA_ASSET_BASE_URL: ${{ vars.DATA_ASSET_BASE_URL }}
+        run: |
+          if [[ -z "$DATA_ASSET_BASE_URL" ]]; then
+            echo "Repository variable DATA_ASSET_BASE_URL is required for deployment." >&2
+            exit 1
+          fi
+          npm run build
 
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium

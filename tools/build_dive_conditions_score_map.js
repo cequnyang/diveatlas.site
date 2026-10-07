@@ -152,8 +152,8 @@ function parseCoralSnapshot(source) {
 
 async function loadSnapshots() {
   const [coralSource, fishBytes] = await Promise.all([
-    fs.readFile(path.join(ROOT, 'data', 'coral_records_snapshot.js'), 'utf8'),
-    fs.readFile(path.join(ROOT, 'data', 'fish_map_units.json.gz'))
+    fs.readFile(path.join(ROOT, 'datasets', 'coral_records_snapshot.js'), 'utf8'),
+    fs.readFile(path.join(ROOT, 'datasets', 'fish_map_units.json.gz'))
   ]);
   const coral = parseCoralSnapshot(coralSource);
   const fishSnapshot = JSON.parse(zlib.gunzipSync(fishBytes).toString('utf8'));
@@ -542,7 +542,7 @@ async function main() {
       score:'rounded arithmetic mean; emitted only when all seven dimension scores are available',
       estimates:{radiusKm:ESTIMATE_RADIUS_KM,decayKm:ESTIMATE_DECAY_KM,minDistinctSources:MIN_ESTIMATE_SOURCES,minEffectiveSources:MIN_EFFECTIVE_SOURCES},
       heatStress:'current NOAA DHW product, shared across historical months, consistent with the popup score'},
-    sourceSnapshots:{coral:'data/coral_records_snapshot.js',fish:'data/fish_map_units.json.gz',
+    sourceSnapshots:{coral:'datasets/coral_records_snapshot.js',fish:'datasets/fish_map_units.json.gz',
       temperature:'data/temperature/query',clarity:'data/water_clarity/query',currents:'data/currents',waves:'data/waves',
       heatStress:'data/coral-heat-stress',bathymetry:'data/depth_samples'}
   };

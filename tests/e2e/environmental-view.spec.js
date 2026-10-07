@@ -4,7 +4,7 @@ const path = require('node:path');
 const { gzipSync } = require('node:zlib');
 const { addFixture, clickFixture, closeTopMenu, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView } = require('./support');
 
-const temperatureMetadata = path.resolve(__dirname, '../../data/temperature/metadata.json');
+const temperatureMetadata = path.resolve(__dirname, '../../datasets/temperature/metadata.json');
 const metadataFixture = {
   purpose: 'development-validation',
   native_resolution: 1,
@@ -22,7 +22,7 @@ const metadataFixture = {
 };
 
 async function installMetadataFixture(page) {
-  await page.route('**/data/temperature/metadata.json', route => route.fulfill({ json: metadataFixture }));
+  await page.route('**/datasets/temperature/metadata.json', route => route.fulfill({ json: metadataFixture }));
 }
 
 async function activateTemperatureView(page) {
@@ -48,7 +48,7 @@ test('production temperature metadata stays on Pages and supplies the supported 
 
   const metadataUrl = await page.evaluate(() => performance.getEntriesByType('resource')
     .map(entry => entry.name)
-    .find(url => new URL(url).pathname.endsWith('/data/temperature/metadata.json')));
+    .find(url => new URL(url).pathname.endsWith('/datasets/temperature/metadata.json')));
   expect(metadataUrl, 'the temperature metadata request should complete').toBeTruthy();
   expect(new URL(metadataUrl).origin, 'small temperature metadata stays on the Pages origin')
     .toBe(new URL(page.url()).origin);

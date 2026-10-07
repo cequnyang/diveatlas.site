@@ -1,7 +1,15 @@
 (function exposeDataAssets(root) {
   // Small app-owned metadata stays with Pages; only the published data release
   // is available from the configured R2 prefix.
-  const pagesHostedDataFiles = new Set(['dive-site-photos.js', 'temperature/metadata.json']);
+  const pagesHostedDataFiles = new Set([
+    'datasets/bathymetry_manifest.js',
+    'datasets/coral_occurrence_manifest.js',
+    'datasets/dive-site-photos.js',
+    'datasets/reef_raster_manifest.js',
+    'datasets/reef_vector_manifest.js',
+    'datasets/temperature/metadata.json',
+    'datasets/terrain_manifest.js'
+  ]);
   const configuredBase = root.DIVEATLAS_DATA_ASSET_BASE_URL;
   let externalBase = null;
   if (configuredBase !== null && configuredBase !== undefined && configuredBase !== '') {
@@ -23,14 +31,19 @@
     if (segments.some(segment => !segment || segment === '.' || segment === '..')) {
       throw new TypeError('Data asset paths cannot contain empty or traversal segments.');
     }
+    // The current immutable R2 release keeps large payloads under data/ even
+    // though the source repository organizes these files under datasets/.
+    const releasePath = externalBase && assetPath.startsWith('datasets/')
+      ? `data/${assetPath.slice('datasets/'.length)}`
+      : assetPath;
     const base = externalBase || new URL('./', document.baseURI);
-    return new URL(segments.map(encodeURIComponent).join('/') + suffix, base).href;
+    return new URL(releasePath.split('/').map(encodeURIComponent).join('/') + suffix, base).href;
   }
 
   function shouldRewriteDataPath(pathname, appPath) {
-    if (!pathname.startsWith(`${appPath}data/`)) return false;
-    const relativePath = pathname.slice(appPath.length + 'data/'.length).split(/[?#]/, 1)[0];
-    return !pagesHostedDataFiles.has(relativePath);
+    const appRelativePath = pathname.slice(appPath.length).split(/[?#]/, 1)[0];
+    if (!appRelativePath.startsWith('data/') && !appRelativePath.startsWith('datasets/')) return false;
+    return !pagesHostedDataFiles.has(appRelativePath);
   }
 
   root.DiveAtlasDataAssets = Object.freeze({
@@ -42,7 +55,7 @@
   if (!externalBase) return;
 
   // Data URLs are authored as same-origin paths throughout this classic-script app.
-  // Rewrite only paths rooted at data/ so application code and third-party requests stay local.
+  // Rewrite only app-owned data paths so application code and third-party requests stay local.
   const originalFetch = root.fetch.bind(root);
   root.fetch = (input, init) => {
     if (typeof input === 'string' || input instanceof URL) {
@@ -53,12 +66,12 @@
         return originalFetch(dataAssetUrl(relative), init);
       }
     }
-    if (input instanceof Request) {
+    if (input instanceof root.Request) {
       const url = new URL(input.url);
       const appPath = new URL('./', document.baseURI).pathname;
       if (url.origin === location.origin && shouldRewriteDataPath(url.pathname, appPath)) {
         const relative = url.pathname.slice(appPath.length) + url.search + url.hash;
-        return originalFetch(new Request(dataAssetUrl(relative), input), init);
+        return originalFetch(new root.Request(dataAssetUrl(relative), input), init);
       }
     }
     return originalFetch(input, init);

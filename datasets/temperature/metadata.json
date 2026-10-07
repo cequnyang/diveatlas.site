@@ -24,7 +24,7 @@
     "latitude_points": 720,
     "longitude_points": 1440
   },
-  "asset_base": "data/temperature/production-0.25deg",
+  "asset_base": "datasets/temperature/production-0.25deg",
   "tile_template": "woa23/monthly/{month}/{depth}/{z}/{x}/{y}.png",
   "supported_months": [
     1,
@@ -632,7 +632,7 @@
   "estimated_tile_layer": {
     "method": "Nearest valid WOA23 cell at the same month and depth; no temporal/depth mixing or interpolation.",
     "maximum_distance_km": 25.0,
-    "oceanMask": "data/dive_conditions_score/ocean-mask.bin.gz; GEBCO-derived wet subcells only.",
+    "oceanMask": "GEBCO-derived wet subcells only.",
     "visualEncoding": "Estimated pixels use the same temperature palette at 100/255 source alpha; direct WOA23 pixels remain opaque in the original tile layer.",
     "sourceResolutionDegrees": 0.25,
     "validation": "Uses the existing 25 km supported sampling limit; no greater-radius extrapolation is published."

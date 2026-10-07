@@ -45,7 +45,7 @@ function createTemperatureView({ L, map, onStatus = () => {}, metadataLoader }) 
 
   function loadMetadata() {
     if (!metadataPromise) {
-      const loader = metadataLoader || (() => fetch('data/temperature/metadata.json').then(response => {
+      const loader = metadataLoader || (() => fetch('datasets/temperature/metadata.json').then(response => {
         if (!response.ok) throw new Error(`Temperature metadata returned HTTP ${response.status}`);
         return response.json();
       }));
