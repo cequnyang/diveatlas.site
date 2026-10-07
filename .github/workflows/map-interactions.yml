@@ -141,6 +141,8 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run desktop and touch browser regressions
+        env:
+          DIVEATLAS_TEST_FORCE_R2_STARTUP_ASSETS: '1'
         run: npm run test:e2e
 
       # Playwright already captures screenshots, videos, and traces for failures;
