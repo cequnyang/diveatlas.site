@@ -1098,7 +1098,7 @@ test('Temperature popup content stays inside the safe area at the top boundary w
 test('changing month and depth requests only the newest slice and leaves markers clickable', async ({ page }) => {
   const requests = [];
   page.on('request', request => {
-    if (request.url().includes('/data/temperature/')) requests.push(request.url());
+    if (/\/(?:data|datasets)\/temperature\//.test(request.url())) requests.push(request.url());
   });
   await installMetadataFixture(page);
   await openMap(page);
@@ -1123,9 +1123,11 @@ test('changing month and depth requests only the newest slice and leaves markers
 });
 
 test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels', async ({ page }) => {
-  const realMetadata = fs.existsSync(temperatureMetadata)
-    ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
-    : null;
+  const realMetadata = dataAssetBaseUrl
+    ? JSON.parse((await readTestDataAsset('data/temperature/metadata.json')).toString('utf8'))
+    : fs.existsSync(temperatureMetadata)
+      ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
+      : null;
   const hasProductionFixture = realMetadata?.active_profile === 'production-0.25deg' &&
     realMetadata.purpose === 'production' && realMetadata.available_slices?.some(
       ([month, depth]) => month === 9 && depth === 20
