@@ -17441,6 +17441,16 @@ ZSD·2016–2025</span></span>
     els.diveSearchSuggestion.hidden = true;
   }
 
+  function clearDiveSearch({ focus = false } = {}) {
+    clearTimeout(diveSearchTimer);
+    els.diveSearchInput.value = '';
+    syncDiveSearchWidth();
+    try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
+    hideDiveSearchResults();
+    els.diveSearchClear.classList.remove('visible');
+    if (focus) els.diveSearchInput.focus();
+  }
+
   function renderDiveSearchResults() {
     if (!els.diveSearchInput) return;
     const renderRequest = ++diveSearchRenderRequest;
@@ -23972,6 +23982,7 @@ ZSD·2016–2025</span></span>
       els.siteSuggestionName.readOnly = true;
       els.siteSuggestionRegion.readOnly = true;
       els.siteSuggestionSource.readOnly = true;
+      clearDiveSearch();
       setSiteSuggestionStatus('siteSuggestionSent', 'success');
     } catch (_) {
       setSiteSuggestionStatus('siteSuggestionError', 'error');
@@ -24334,16 +24345,7 @@ ZSD·2016–2025</span></span>
 
   els.diveSearchClear.addEventListener(
     'click',
-    () => {
-      clearTimeout(diveSearchTimer);
-      els.diveSearchInput.value = '';
-      syncDiveSearchWidth();
-      try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
-      hideDiveSearchResults();
-      els.diveSearchClear.classList
-        .remove('visible');
-      els.diveSearchInput.focus();
-    }
+    () => clearDiveSearch({ focus: true })
   );
 
   els.bioLegend.addEventListener('pointerdown', () => {
