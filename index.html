@@ -12313,12 +12313,20 @@ ZSD·2016–2025</span></span>
     status.textContent = t(diveExperienceOutlookStatusKey);
     if (diveConditionsPopup?.isOpen()) setDiveConditionsPopupMessage('diveConditionsLoading');
     try {
-      const servicePromise = ensureDiveConditionsService();
-      const [service] = await Promise.all([servicePromise, ensureDiveExperienceOutlookMonth(diveConditionsMonth)]);
+      // The outlook grid is self-contained; a failure to initialize the
+      // supplemental physical-conditions service must not hide a valid score.
+      const servicePromise = ensureDiveConditionsService()
+        .then(service => ({ service, error:null }), error => ({ service:null, error }));
+      const [serviceLoad] = await Promise.all([
+        servicePromise,
+        ensureDiveExperienceOutlookMonth(diveConditionsMonth)
+      ]);
       if (controller.signal.aborted || generation !== diveExperienceOutlookGeneration ||
           environmentalViewController.activeView !== 'dive-experience-outlook') return;
-      const conditionsPromise = service.query(diveConditionsLocation, diveConditionsMonth, { signal:controller.signal })
-        .then(result => ({ result, error:null }), error => ({ result:null, error }));
+      const conditionsPromise = serviceLoad.service
+        ? serviceLoad.service.query(diveConditionsLocation, diveConditionsMonth, { signal:controller.signal })
+          .then(result => ({ result, error:null }), error => ({ result:null, error }))
+        : Promise.resolve({ result:null, error:serviceLoad.error });
       const sample = await sampleDiveExperienceOutlook(diveConditionsPopupLocation || diveConditionsLocation, diveConditionsMonth);
       if (controller.signal.aborted || generation !== diveExperienceOutlookGeneration ||
           environmentalViewController.activeView !== 'dive-experience-outlook') return;

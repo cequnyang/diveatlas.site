@@ -302,6 +302,25 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
 });
 
+test('Dive Experience still shows a local outlook when the physical-conditions service fails to load', async ({ page }) => {
+  await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({ status:503, body:'Unavailable' }));
+  await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
+  await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
+  await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
+  await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
+  await setLegendCollapsed(page, true);
+  await waitForMapInteractionWindow(page);
+  expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 })))
+    .toBe('dive-experience-outlook-location-selected');
+  const popup = page.locator('.dive-experience-popup-content');
+  await expect(popup).toBeVisible();
+  await expect(popup.locator('.dive-experience-main-score')).toContainText(/\d+\/100/);
+  await expect(popup).not.toContainText('Some local data could not be loaded at this location.');
+});
+
 test('expanded Dive Experience month chart stays inside the popup safe area', async ({ page }) => {
   await page.setViewportSize({ width:390, height:640 });
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
