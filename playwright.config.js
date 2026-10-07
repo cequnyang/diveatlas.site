@@ -6,8 +6,9 @@ module.exports = defineConfig({
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  // These map-heavy checks and renderer benchmarks become flaky when many pages compete for the browser process.
-  workers: 2,
+  // Map rendering is CPU-heavy in GitHub's mobile Chromium; serialize CI runs
+  // so popup placement is not competing with another browser context.
+  workers: process.env.CI ? 1 : 2,
   reporter: [['list']],
   timeout: 30_000,
   expect: { timeout: 5_000 },

@@ -139,6 +139,18 @@ jobs:
       - name: Run desktop and touch browser regressions
         run: npm run test:e2e
 
+      # Playwright already captures screenshots, videos, and traces for failures;
+      # retain them even when this step fails so mobile-only regressions can be
+      # diagnosed from the workflow run instead of reproduced from scratch.
+      - name: Upload browser failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-interaction-test-results
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Upload static Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
