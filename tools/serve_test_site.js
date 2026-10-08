@@ -20,6 +20,7 @@ const R2_DATASET_ASSETS = new Set([
   'reef_raster_manifest.js',
   'reef_vector_manifest.js',
   'terrain_manifest.js',
+  'dive-sites.js',
   'temperature/metadata.json'
 ]);
 const contentTypes = new Map([

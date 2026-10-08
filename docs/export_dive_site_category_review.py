@@ -34,10 +34,10 @@ FIELDS = [
 
 def load_sites(path: Path) -> list[list[object]]:
     text = path.read_text(encoding="utf-8-sig")
-    match = re.search(r"window\.DIVE_SITES_DATA\s*=\s*(\[.*?\])\s*;", text, re.S)
+    match = re.search(r"window\.DIVE_SITES_DATA\s*=\s*", text)
     if not match:
         raise ValueError(f"Could not find DIVE_SITES_DATA array in {path}")
-    rows = json.loads(match.group(1))
+    rows, _ = json.JSONDecoder().raw_decode(text, match.end())
     if not isinstance(rows, list):
         raise ValueError("DIVE_SITES_DATA must be an array")
     return rows
@@ -49,6 +49,9 @@ def review_rows(sites: list[list[object]]) -> list[dict[str, str]]:
         if len(row) < 13:
             raise ValueError(f"Site row has {len(row)} fields; expected at least 13")
         if str(row[7] or "").strip():
+            continue
+        category_metadata = row[17] if len(row) > 17 and isinstance(row[17], dict) else {}
+        if category_metadata.get("status") == "reviewed":
             continue
         result.append(
             {

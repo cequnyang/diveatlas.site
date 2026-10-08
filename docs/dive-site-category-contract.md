@@ -74,9 +74,16 @@ Describes underwater structure or a notable dive condition. Features are multi-v
 
 ## Applying this contract to the current data
 
-The current `datasets/dive-sites.js` layout stores its pipe-separated legacy type string in field `[7]`; the map currently displays those terms as one flat list. Keep that field intact until a deliberate migration is implemented.
+The current `datasets/dive-sites.js` layout stores its pipe-separated legacy type string in field `[7]`; the map currently displays those terms as one flat list. Keep that field intact during category migration. The appended fields are:
 
-Generate a review queue for records whose field `[7]` is blank:
+- `[14]` normalized setting, or `null` when unsupported
+- `[15]` normalized access, or `null` when unsupported
+- `[16]` normalized features as an array of contract values
+- `[17]` provenance and review metadata, including source, evidence URL/ID, and review status
+
+The persistent DiveAtlas ID remains in `[12]`; retired IDs remain in `[13]`. The appended fields must not shift or overwrite either identity field. The app may continue displaying the legacy field until its category UI is deliberately migrated.
+
+Generate a review queue for records whose field `[7]` and reviewed metadata are blank:
 
 ```powershell
 python docs/export_dive_site_category_review.py
@@ -84,5 +91,12 @@ python docs/export_dive_site_category_review.py
 
 The default output is `artifacts/dive-site-category-review.csv`. Each row includes the stable DiveAtlas ID, site name/location, listed source names, empty normalized fields, and columns for evidence and review status. Fill categories only after checking a source record; record the source and URL or source ID. Use semicolons to separate multiple `features`. Allowed settings are `marine`, `lake`, `river`, `spring`, `pool`, and `quarry`; allowed access values are `shore`, `boat`, and `both`. Leave unsupported fields blank and keep records with unresolved evidence marked `unreviewed` or `needs-source-review`.
 
-The CSV is a working review queue, not application data. Do not import it wholesale: after review, reconcile accepted changes into the canonical dataset through a deliberate migration that retains the raw type labels and stable IDs. The current source list alone (`osm | padi | ssi`) is not enough to verify a particular category value.
+The CSV is a working review queue. Reconcile reviewed values by stable ID, preserve field `[7]`, and retain per-record source provenance in field `[17]`. The current source list alone (`osm | padi | ssi`) is not enough to verify a particular category value. For the reviewed category import, the owner defines upstream `review_status=needs-source-review` as reviewed; preserve that literal upstream value in provenance while storing `status=reviewed`. Rows marked `unreviewed` remain untouched.
 
+The reviewed import can be reproduced with:
+
+```powershell
+python maintenance/migrate_dive_site_reviewed_categories.py --apply
+```
+
+Run without `--apply` to preview counts without changing the dataset.
