@@ -100,3 +100,15 @@ python maintenance/migrate_dive_site_reviewed_categories.py --apply
 ```
 
 Run without `--apply` to preview counts without changing the dataset.
+
+Evidence URLs and source-record IDs in field `[17].evidenceUrlOrId` should be
+unique within each site record. Keep the first spelling of a repeated
+reference and preserve the complete `evidenceSource` provenance. The same
+reference may appear on different sites when it supports each site's record.
+Audit and clean existing rows with:
+
+```powershell
+python maintenance/dedupe_dive_site_references.py --apply
+```
+
+Run without `--apply` to review the affected site count first.

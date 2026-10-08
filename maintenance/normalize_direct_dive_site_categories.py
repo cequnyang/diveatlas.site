@@ -15,6 +15,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from dive_site_references import dedupe_reference_string
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "datasets/dive-sites.js"
 REVIEW_PATH = ROOT / "artifacts/dive-site-category-normalization-audit-v154.csv"
@@ -93,7 +95,9 @@ def apply(rows: list[list[Any]], audit: list[dict[str, str]]) -> dict[str, int]:
             "status": "reviewed",
             "sourceReviewStatus": item.get("review_status", "").strip(),
             "evidenceSource": item.get("evidence_source", "").strip(),
-            "evidenceUrlOrId": item.get("evidence_url_or_id", "").strip(),
+            "evidenceUrlOrId": dedupe_reference_string(
+                item.get("evidence_url_or_id", "")
+            )[0],
             "outOfContractFeatures": outside,
         }
         stats["direct_mappings_added"] += 1

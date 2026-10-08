@@ -23,6 +23,8 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from dive_site_references import dedupe_reference_string
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "datasets/dive-sites.js"
 SCHEMA = "dive-site-category-v1"
@@ -172,7 +174,9 @@ def source_refs(record: dict[str, str]) -> tuple[str, str]:
     refs = first(record, "evidence_url_or_id", "source_url", "profile_url")
     extra = first(record, "additional_evidence_urls")
     source_id = first(record, "source_id", "api_id", "candidate_source_id")
-    refs = "; ".join(dict.fromkeys(v for v in [*split_values(refs), *split_values(extra), source_id] if v))
+    refs, _ = dedupe_reference_string(
+        "; ".join(v for v in [*split_values(refs), *split_values(extra), source_id] if v)
+    )
     return evidence_source, refs
 
 
@@ -251,7 +255,9 @@ def merge_candidate(target: list[Any], candidate: list[Any]) -> None:
     }
     incoming = candidate[17]
     metadata["evidenceSource"] = merge_text(metadata.get("evidenceSource"), incoming.get("evidenceSource", ""), "; ")
-    metadata["evidenceUrlOrId"] = merge_text(metadata.get("evidenceUrlOrId"), incoming.get("evidenceUrlOrId", ""), "; ")
+    metadata["evidenceUrlOrId"], _ = dedupe_reference_string(
+        merge_text(metadata.get("evidenceUrlOrId"), incoming.get("evidenceUrlOrId", ""), "; ")
+    )
     metadata.setdefault("mergedCandidateRecords", []).append({
         "siteId": candidate[12], "sourceRecordId": incoming.get("sourceRecordId"),
         "sourceFile": incoming.get("sourceFile"), "reviewNotes": incoming.get("reviewNotes"),

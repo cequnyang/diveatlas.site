@@ -17,6 +17,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from dive_site_references import dedupe_reference_string
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "datasets/dive-sites.js"
@@ -132,7 +134,9 @@ def apply_review(rows: list[list[Any]], review: list[dict[str, str]]) -> dict[st
             "status": "reviewed",
             "sourceReviewStatus": source_status,
             "evidenceSource": item.get("evidence_source", "").strip(),
-            "evidenceUrlOrId": item.get("evidence_url_or_id", "").strip(),
+            "evidenceUrlOrId": dedupe_reference_string(
+                item.get("evidence_url_or_id", "")
+            )[0],
             "outOfContractFeatures": outside_features,
         }
         counts["reviewed_rows"] += 1
