@@ -8728,6 +8728,8 @@ ZSD·2016–2025</span></span>
   let diveSiteSummariesPromise = null;
   let DIVE_SEARCH_INDEX = null;
   let diveSearchIndexPromise = null;
+  let DIVE_SITE_SEARCH_LOCATIONS = window.DIVE_SITE_SEARCH_LOCATIONS || { bySiteId: {} };
+  let diveSiteSearchLocationsPromise = null;
 
   function getDiveSiteStableId(site) {
     if (Array.isArray(site)) return String(site[12] || '').trim();
@@ -16215,6 +16217,40 @@ ZSD·2016–2025</span></span>
     return diveSiteSummariesPromise;
   }
 
+  function ensureDiveSiteSearchLocations() {
+    if (window.DIVE_SITE_SEARCH_LOCATIONS?.bySiteId) {
+      DIVE_SITE_SEARCH_LOCATIONS = window.DIVE_SITE_SEARCH_LOCATIONS;
+      return Promise.resolve();
+    }
+    if (diveSiteSearchLocationsPromise) return diveSiteSearchLocationsPromise;
+
+    diveSiteSearchLocationsPromise = (async () => {
+      if (typeof DecompressionStream !== 'function') {
+        throw new Error('This browser does not support gzip decompression for dive-site search locations.');
+      }
+      const locationUrl = window.DiveAtlasDataAssets?.external
+        ? window.DiveAtlasDataAssets.url('datasets/dive-site-search-locations.json.gz?v=2')
+        : 'datasets/dive-site-search-locations.json.gz?v=2';
+      const response = await fetch(locationUrl);
+      if (!response.ok || !response.body) {
+        throw new Error(`Failed to load dive-site search locations (${response.status}).`);
+      }
+      const locations = await new Response(
+        response.body.pipeThrough(new DecompressionStream('gzip'))
+      ).json();
+      if (!locations?.bySiteId) {
+        throw new Error('Dive-site search locations did not expose their site index.');
+      }
+      window.DIVE_SITE_SEARCH_LOCATIONS = locations;
+      DIVE_SITE_SEARCH_LOCATIONS = locations;
+    })()
+      .catch(error => {
+        diveSiteSearchLocationsPromise = null;
+        throw error;
+      });
+    return diveSiteSearchLocationsPromise;
+  }
+
   function ensureDiveSiteData() {
     if (diveSiteDataReady) return Promise.resolve();
     if (diveSiteDataPromise) return diveSiteDataPromise;
@@ -17713,21 +17749,31 @@ ZSD·2016–2025</span></span>
           const end = Math.min(cursor + batchSize, DIVE_SITES.length);
           for (; cursor < end; cursor += 1) {
             const site = DIVE_SITES[cursor];
+            const location = DIVE_SITE_SEARCH_LOCATIONS?.bySiteId?.[String(site[12] || '')] || {};
             const nameKey = normalizeDiveSearchText(site[0] || '');
-            const aliasKey = normalizeDiveSearchText(site[11] || '');
-            const metaKey = normalizeDiveSearchText(
-              `${site[9] || ''} ${site[10] || ''}`
-            );
+            const fields = [
+              normalizeDiveSearchText(site[9] || ''),
+              normalizeDiveSearchText((location.oceanArea || []).join(' ')),
+              nameKey,
+              normalizeDiveSearchText((location.positionName || []).join(' ') || site[11] || ''),
+              normalizeDiveSearchText((location.stateProvince || []).join(' ')),
+              normalizeDiveSearchText((location.commonArea || []).join(' ') || site[10] || '')
+            ];
+            const fieldTokens = fields.map(value => value.split(' ').filter(Boolean));
+            const aliasKey = fields[3];
+            const metaKey = [fields[0], fields[1], fields[4], fields[5]].filter(Boolean).join(' ');
 
             index.push({
               index: cursor,
               nameKey,
               aliasKey,
               metaKey,
-              nameTokens: nameKey.split(' ').filter(Boolean),
-              aliasTokens: aliasKey.split(' ').filter(Boolean),
+              fields,
+              fieldTokens,
+              nameTokens: fieldTokens[2],
+              aliasTokens: fieldTokens[3],
               metaTokens: metaKey.split(' ').filter(Boolean),
-              allTokens: `${nameKey} ${aliasKey} ${metaKey}`.split(' ').filter(Boolean)
+              allTokens: fields.join(' ').split(' ').filter(Boolean)
             });
           }
 
@@ -17754,11 +17800,28 @@ ZSD·2016–2025</span></span>
 
   function diveSearchMeta(site) {
     const country = String(site[9] || '').trim();
-    const region = String(site[10] || '').trim();
+    const location = DIVE_SITE_SEARCH_LOCATIONS?.bySiteId?.[String(site[12] || '')] || {};
     const parts = [];
 
     if (country) parts.push(country);
-    if (region && region !== country) parts.push(region);
+    const locationLabels = [
+      location.oceanArea?.[0],
+      location.stateProvince?.[0],
+      location.commonArea?.[0]
+    ].filter(Boolean);
+    const seenLocationLabels = new Set();
+    for (const label of locationLabels) {
+      const cleanLabel = String(label || '').trim();
+      const normalizedLabel = normalizeDiveSearchText(cleanLabel);
+      if (cleanLabel && normalizedLabel !== normalizeDiveSearchText(country) && !seenLocationLabels.has(normalizedLabel)) {
+        parts.push(cleanLabel);
+        seenLocationLabels.add(normalizedLabel);
+      }
+    }
+    if (!locationLabels.length) {
+      const region = String(site[10] || '').trim();
+      if (region && normalizeDiveSearchText(region) !== normalizeDiveSearchText(country)) parts.push(region);
+    }
 
     const depthMin =
       site[3] == null ? null : Number(site[3]);
@@ -17844,58 +17907,30 @@ ZSD·2016–2025</span></span>
 
     for (const item of DIVE_SEARCH_INDEX) {
       let score = Infinity;
+      const tokenScores = qTokens.map(queryToken => {
+        let best = Infinity;
+        item.fieldTokens.forEach((tokens, fieldIndex) => {
+          let matchQuality = diveSearchTokenMatchScore(queryToken, tokens, 0);
+          const fieldText = item.fields[fieldIndex];
+          if (fieldText === queryToken) matchQuality = Math.min(matchQuality, 0);
+          else if (fieldText.startsWith(queryToken)) matchQuality = Math.min(matchQuality, 1);
+          else if (fieldText.includes(queryToken)) matchQuality = Math.min(matchQuality, 2);
+          if (!Number.isFinite(matchQuality)) {
+            const distance = diveSearchFuzzyDistance(queryToken, tokens);
+            if (Number.isFinite(distance)) matchQuality = 20 + distance;
+          }
+          if (Number.isFinite(matchQuality)) {
+            // Category priority is intentional: even a fuzzy country match outranks a site-name match.
+            best = Math.min(best, fieldIndex * 100 + matchQuality);
+          }
+        });
+        return best;
+      });
+      if (tokenScores.every(Number.isFinite)) score = tokenScores.reduce((total, value) => total + value, 0);
 
-      if (item.nameKey === q) {
-        score = 0;
-      } else if (item.aliasKey === q) {
-        score = 1;
-      } else if (item.nameTokens.some(token => token === q)) {
-        score = 2;
-      } else if (item.aliasTokens.some(token => token === q)) {
-        score = 3;
-      } else if (item.nameKey.startsWith(q)) {
-        score = 5;
-      } else if (item.aliasKey.startsWith(q)) {
-        score = 6;
-      } else if (item.nameTokens.some(token => token.startsWith(q))) {
-        score = 8;
-      } else if (item.aliasTokens.some(token => token.startsWith(q))) {
-        score = 9;
-      } else if (item.nameKey.includes(q)) {
-        score = 12;
-      } else if (item.aliasKey.includes(q)) {
-        score = 13;
-      } else if (qTokens.length > 1) {
-        const tokenScores = qTokens.map(token => Math.min(
-          diveSearchTokenMatchScore(token, item.nameTokens, 0),
-          diveSearchTokenMatchScore(token, item.aliasTokens, 3),
-          diveSearchTokenMatchScore(token, item.metaTokens, 6)
-        ));
-        const fuzzyTokenScores = tokenScores.map((tokenScore, index) =>
-          Number.isFinite(tokenScore)
-            ? tokenScore
-            : (() => {
-                const distance = diveSearchFuzzyDistance(qTokens[index], item.allTokens);
-                return Number.isFinite(distance) ? 9 + distance : Infinity;
-              })()
-        );
-        if (fuzzyTokenScores.every(Number.isFinite)) {
-          score = 16 + fuzzyTokenScores.reduce((total, value) => total + value, 0);
-        }
-      } else {
-        const fuzzyName = diveSearchFuzzyDistance(q, item.nameTokens);
-        const fuzzyAlias = diveSearchFuzzyDistance(q, item.aliasTokens);
-        const fuzzyMeta = diveSearchFuzzyDistance(q, item.metaTokens);
-
-        if (Number.isFinite(fuzzyName)) {
-          score = 20 + fuzzyName;
-        } else if (Number.isFinite(fuzzyAlias)) {
-          score = 22 + fuzzyAlias;
-        } else if (q.length >= 2 && item.metaKey.includes(q)) {
-          score = 32;
-        } else if (Number.isFinite(fuzzyMeta)) {
-          score = 40 + fuzzyMeta;
-        }
+      if (Number.isFinite(score)) {
+        const exactFieldIndex = item.fields.findIndex(field => field === q);
+        if (exactFieldIndex >= 0) score = Math.min(score, exactFieldIndex * 100 - 1);
       }
 
       if (Number.isFinite(score)) {
@@ -17977,6 +18012,16 @@ ZSD·2016–2025</span></span>
     if (!diveSiteDataReady) {
       showLoading();
       void ensureDiveSiteData()
+        .then(() => {
+          if (renderRequest === diveSearchRenderRequest) renderDiveSearchResults();
+        })
+        .catch(showUnavailable);
+      return;
+    }
+
+    if (!DIVE_SITE_SEARCH_LOCATIONS?.bySiteId || !Object.keys(DIVE_SITE_SEARCH_LOCATIONS.bySiteId).length) {
+      showLoading();
+      void ensureDiveSiteSearchLocations()
         .then(() => {
           if (renderRequest === diveSearchRenderRequest) renderDiveSearchResults();
         })
