@@ -26,9 +26,9 @@ async function installMetadataFixture(page) {
 }
 
 async function activateTemperatureView(page) {
-  await page.locator('.environment-segment').filter({
-    has: page.locator('input[name="environmentView"][value="temperature"]')
-  }).click();
+  const oceanGroup = page.locator('#environmentOceanViewsGroup');
+  if (!(await oceanGroup.evaluate(node => node.open))) await oceanGroup.locator('summary').click();
+  await page.locator('#environmentTemperatureLabelVisible').click();
 }
 
 test('temperature metadata uses R2 in external builds and local files in development', async ({ page }) => {
@@ -255,7 +255,7 @@ test('Layers palette follows the active site theme without changing its layout',
   await expect(popover).toHaveCSS('background-color', 'rgb(247, 249, 252)');
 
   const light = await page.evaluate(() => {
-    const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
+    const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-view-groups', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
     const geometry = selectors.map(selector => {
       const { x, y, width, height } = document.querySelector(selector).getBoundingClientRect();
       return { selector, x, y, width, height };
@@ -274,7 +274,7 @@ test('Layers palette follows the active site theme without changing its layout',
   await expect(popover).toHaveAttribute('data-theme', 'dark');
   await expect(popover).toHaveCSS('background-color', 'rgb(32, 33, 36)');
   const dark = await page.evaluate(() => {
-    const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
+    const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-view-groups', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
     const geometry = selectors.map(selector => {
       const { x, y, width, height } = document.querySelector(selector).getBoundingClientRect();
       return { selector, x, y, width, height };
@@ -349,7 +349,7 @@ test('Coral, Fish, and Dive legend swatches keep their colors below and at Z3', 
   }
 });
 
-test('layer panel segments and native depth select keep existing state, keyboard, overflow, and lazy behavior', async ({ page }) => {
+test('grouped layer views and native depth select keep state, keyboard, overflow, and lazy behavior', async ({ page }) => {
   const temperatureRequests = [];
   page.on('request', request => {
     if (request.url().includes('/datasets/temperature/') || request.url().includes('/data/temperature/')) temperatureRequests.push(request.url());
@@ -358,15 +358,17 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await openMap(page);
   await expect(page.locator('#temperatureControls')).toBeHidden();
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('.environment-segment').first()).toHaveText('None');
+  await expect(page.locator('.environment-view-group summary').first()).toContainText('Ocean conditions');
   await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
   await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
   await expect(page.locator('#environmentViewSelect option[value="default"]')).toHaveText('None');
 
-  const temperatureRadio = page.locator('input[name="environmentView"][value="temperature"]');
-  await temperatureRadio.focus();
-  await page.keyboard.press('Space');
+  const temperatureChoice = page.locator('#environmentTemperatureLabelVisible');
+  await page.locator('#environmentOceanViewsGroup > summary').click();
+  await temperatureChoice.focus();
+  await page.keyboard.press('Enter');
   await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
+  await expect(temperatureChoice).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await expect(page.locator('#temperatureSourceNote')).toContainText('WOA23');
   await expect(page.locator('#temperatureSourceResolution')).toHaveText('1° ARC');
@@ -454,44 +456,16 @@ test('header filter control retains the Show all layers action without a duplica
   const headerCenterY = headerGeometry.header.centerY;
   await expect(page.locator('#bioLegendTitle .bio-legend-title-chevron')).toHaveCount(1);
   await expect(page.locator('#bioLegendCollapseToggle')).toHaveCount(0);
-  const selectorLayout = await page.evaluate(() => {
-    const rect = box => {
-      const { x, y, width, height } = box;
-      return { x, y, width, height, centerX: x + width / 2, centerY: y + height / 2 };
-    };
-    const track = document.querySelector('.environment-segment-group');
-    const group = rect(track.getBoundingClientRect());
-    const tabs = [...document.querySelectorAll('.environment-segment')].map(tab => {
-      const label = tab.querySelector('span');
-      const range = document.createRange();
-      range.selectNodeContents(label);
-      return {
-        value: tab.querySelector('input').value,
-        tab: rect(tab.getBoundingClientRect()),
-        text: rect(range.getBoundingClientRect())
-      };
-    });
-    return {
-      group, tabs, scrollWidth: track.scrollWidth, clientWidth: track.clientWidth,
-      overflowX: getComputedStyle(track).overflowX, userSelect: getComputedStyle(track).userSelect
-    };
-  });
-  expect(selectorLayout.tabs).toHaveLength(8);
-  expect(selectorLayout.tabs.map(tab => tab.value)).toContain('reef-survey-condition');
-  expect(selectorLayout.overflowX).toBe('auto');
-  expect(selectorLayout.scrollWidth).toBeGreaterThan(selectorLayout.clientWidth);
-  expect(selectorLayout.userSelect).toBe('none');
-  for (const tab of selectorLayout.tabs) {
-    expect(Math.abs(tab.text.centerX - tab.tab.centerX), `${tab.value} label should be horizontally centered`).toBeLessThanOrEqual(1);
-    expect(Math.abs(tab.text.centerY - selectorLayout.group.centerY)).toBeLessThanOrEqual(1.5);
-  }
+  await expect(page.locator('.environment-featured-view')).toContainText('Dive Experience');
+  await expect(page.locator('.environment-view-group summary').first()).toContainText('Ocean conditions');
+  await expect(page.locator('#environmentReefConditionLabelVisible')).toContainText('Reef Condition');
+  await expect(page.locator('#environmentTemperatureLabelVisible')).toBeAttached();
   for (const value of ['dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'waves']) {
     const selectedStyle = await page.evaluate(selectedValue => {
-      const group = document.querySelector('.environment-segment-group');
-      group.querySelector(`input[value="${selectedValue}"]`).checked = true;
-      return getComputedStyle(group.querySelector(`input[value="${selectedValue}"] + span`)).fontWeight;
+      const choice = document.querySelector(`[data-environment-view="${selectedValue}"]`);
+      return getComputedStyle(choice).fontWeight;
     }, value);
-    expect(selectedStyle, `${value} should receive the active-pill treatment`).toBe('600');
+    expect(selectedStyle, `${value} should remain a clearly legible view choice`).toBe('400');
   }
   await page.evaluate(() => { document.querySelector('input[name="environmentView"][value="default"]').checked = true; });
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setLegendCollapsed(false));
@@ -553,7 +527,7 @@ test('header filter control retains the Show all layers action without a duplica
         action: bounds('#bioLegendBulkAction'),
         overflow: bounds('#bioLegendOverflow > summary'),
         heading: bounds('#bioLegendHeading'),
-        view: bounds('.environment-segment-group')
+        view: bounds('.environment-view-groups')
       };
     });
     expect(layout.title.right).toBeLessThanOrEqual(layout.action.x);
@@ -600,7 +574,7 @@ test('temperature panel motion follows the latest view, stays inert while closin
   await expect(controls).toHaveAttribute('aria-hidden', 'false');
   await expect(controls).toHaveJSProperty('inert', false);
   await page.screenshot({ path: 'test-results/layers-panel-temperature-opening.png', animations: 'allow' });
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') }).click();
+  await page.locator('#environmentNoneLabel').click();
   await page.screenshot({ path: 'test-results/layers-panel-temperature-closing.png', animations: 'allow' });
   await activateTemperatureView(page);
   await page.locator('#environmentViewSelect').selectOption('default');
@@ -627,8 +601,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
   });
   await installMetadataFixture(page);
   await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
-  await page.locator('input[name="environmentView"][value="temperature"]').focus();
-  await page.keyboard.press('Space');
+  await activateTemperatureView(page);
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await page.evaluate(() => document.activeElement?.blur());
 
@@ -668,12 +641,10 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     const searchBounds = await page.locator('#diveSearchSection').boundingBox();
     expect(bounds.y).toBeGreaterThanOrEqual(searchBounds.y + searchBounds.height + 8);
     expect(await page.locator('.bio-legend-layers-inner').evaluate(node => getComputedStyle(node).gridTemplateColumns.split(' ').length)).toBe(1);
-    const tabHeights = await page.locator('.environment-segment span').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().height));
-    expect(Math.max(...tabHeights) - Math.min(...tabHeights)).toBeLessThan(1);
-    expect(Math.abs(Math.min(...tabHeights) - (38 * visualScale))).toBeLessThanOrEqual(1);
-    const segmentTargets = await page.locator('.environment-segment').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().height));
-    expect(segmentTargets.every(height => height >= 44 && height <= 48)).toBe(true);
-    expect(Math.abs((await page.locator('.environment-segment-group').boundingBox().then(box => box.height)) - Math.max(46, 48 * visualScale))).toBeLessThanOrEqual(1);
+    await expect(page.locator('.environment-featured-view')).toBeVisible();
+    await expect(page.locator('.environment-view-group').first()).toBeVisible();
+    expect(await page.locator('.environment-featured-view').boundingBox().then(box => box.height)).toBeGreaterThanOrEqual(44);
+    expect(await page.locator('.environment-view-group summary').evaluateAll(nodes => nodes.every(node => node.getBoundingClientRect().height >= 44))).toBe(true);
     expect(await page.locator('.bio-legend-row .layer-switch-label--layers').first().boundingBox().then(box => box.width)).toBeGreaterThanOrEqual(44);
     expect(await page.locator('#temperatureInfoAbout').boundingBox().then(box => box.width)).toBe(44);
     expect(Math.abs((await page.locator('#temperatureDepth').boundingBox().then(box => box.height)) - (42 * visualScale))).toBeLessThanOrEqual(1);
@@ -750,7 +721,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
     }
     if (viewport.name === 'reference') {
       const referenceMetrics = await page.evaluate(() => {
-        const selectors = ['#bioLegend', '#bioLegendHeading', '.bio-legend-title', '.environment-segment-group', '.temperature-heading-title', '.temperature-heading-description', '.temperature-control-label', '#temperatureDepth', '.temperature-gradient', '.bio-legend-row', '.layer-symbol-column', '.layer-toggle-switch'];
+        const selectors = ['#bioLegend', '#bioLegendHeading', '.bio-legend-title', '.environment-view-groups', '.temperature-heading-title', '.temperature-heading-description', '.temperature-control-label', '#temperatureDepth', '.temperature-gradient', '.bio-legend-row', '.layer-symbol-column', '.layer-toggle-switch'];
         return {
           fontLoaded: document.fonts.check('14px Outfit'),
           metrics: selectors.map(selector => {
@@ -765,12 +736,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       console.log('PROPORTIONAL_VIEWPORT_PANEL_METRICS', JSON.stringify(referenceMetrics));
       expect(bounds.height / 756).toBeGreaterThanOrEqual(0.78);
       expect(bounds.height).toBeLessThanOrEqual(Math.min(760, viewport.height - 84));
-      const selectorStyle = await page.locator('.environment-segment-shell').evaluate(node => ({
-        radius: getComputedStyle(node).borderRadius,
-        activeRadius: getComputedStyle(node.querySelector('.environment-segment input:checked + span')).borderRadius
-      }));
-      expect(Math.abs(parseFloat(selectorStyle.radius) - 9)).toBeLessThanOrEqual(0.5);
-      expect(Math.abs(parseFloat(selectorStyle.activeRadius) - 6)).toBeLessThanOrEqual(0.5);
+      await expect(page.locator('.environment-featured-view')).toHaveCSS('border-radius', '10px');
       const panelBox = await page.locator('#bioLegend').boundingBox();
       await page.screenshot({ path: 'test-results/layers-panel-reference-viewport.png', clip: { x: panelBox.x, y: panelBox.y, width: panelBox.width, height: panelBox.height } });
       await page.screenshot({ path: 'test-results/layers-panel-proportional-after-crop.png', clip: { x: panelBox.x, y: panelBox.y, width: panelBox.width, height: panelBox.height } });

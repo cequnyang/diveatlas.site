@@ -1082,7 +1082,7 @@
       border: 1.5px solid rgba(255,255,255,.85);
       border-radius: 999px;
       color: #fff;
-      font-weight: 600;
+      font-weight: 450;
       font-size: 13px;
       line-height: 1;
       letter-spacing: -.2px;
@@ -2527,6 +2527,36 @@
 
     .dive-search-result:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
 
+    .dive-search-show-more {
+      flex: 0 0 auto;
+      width: 100%;
+      margin: 0;
+      padding: 5px 18px;
+      border: 0;
+      border-top: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 10.5px;
+      font-weight: 650;
+      letter-spacing: .01em;
+      text-align: center;
+      cursor: pointer;
+    }
+    .dive-search-show-more::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin: 0 8px 3px 0;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+    }
+    .dive-search-show-more:hover { color: var(--primary); }
+    .dive-search-show-more:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+
     .dive-search-result-name {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2568,7 +2598,8 @@
       color: var(--muted);
       font: inherit;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 450;
+      font-style: italic;
       text-align: left;
       cursor: pointer;
     }
@@ -5615,6 +5646,7 @@
           </div>
           <div class="dive-search-results" id="diveSearchResults">
             <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
+            <button class="dive-search-show-more" id="diveSearchShowMore" type="button" hidden></button>
             <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
               <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
             </div>
@@ -7791,6 +7823,7 @@ ZSD·2016–2025</span></span>
     diveSearchClear: document.getElementById('diveSearchClear'),
     diveSearchResults: document.getElementById('diveSearchResults'),
     diveSearchResultsScroll: document.getElementById('diveSearchResultsScroll'),
+    diveSearchShowMore: document.getElementById('diveSearchShowMore'),
 
     bioLegend: document.getElementById('bioLegend'),
     bioLegendHeading: document.getElementById('bioLegendHeading'),
@@ -8010,7 +8043,6 @@ ZSD·2016–2025</span></span>
   const CONTACT_ENDPOINT = '/api/contact';
   const SITE_SUGGESTION_ENDPOINT = '/api/site-suggestions';
   const TURNSTILE_SITE_KEY = '0x4AAAAAAFCEklFmZKeIgpIp';
-  const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
   const TUTORIAL_SEEN_STORAGE_KEY = 'diveatlas-tutorial-seen-v1';
   const TUTORIAL_SUPPRESSED_STORAGE_KEY = 'global-coral-map-tutorial-suppressed-v1';
@@ -8075,13 +8107,7 @@ ZSD·2016–2025</span></span>
     els.panelLauncher.classList.add('visible');
   }
 
-  try {
-    const savedSearchQuery = localStorage.getItem(SEARCH_QUERY_STORAGE_KEY) || '';
-    if (savedSearchQuery) {
-      els.diveSearchInput.value = savedSearchQuery;
-      els.diveSearchClear.classList.add('visible');
-    }
-  } catch (_) {}
+  try { localStorage.removeItem('global-coral-map-dive-search-v1'); } catch (_) {}
 
   let legendCollapseTimer = null;
   let legendCollapsed = false;
@@ -8764,6 +8790,8 @@ ZSD·2016–2025</span></span>
   let diveSearchTimer = null;
   let diveSearchActiveIndex = -1;
   let diveSearchMatches = [];
+  const DIVE_SEARCH_PAGE_SIZE = 20;
+  let diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
   let diveSearchRenderRequest = 0;
 
   let currentLang = 'en';
@@ -9047,6 +9075,7 @@ ZSD·2016–2025</span></span>
       diveSearchClear: '清除搜索',
       diveSearchResults: '潜点搜索结果',
       diveSearchEmpty: '没有找到匹配的潜点',
+      diveSearchShowMore: '显示更多结果',
       sources: '数据来源',
       sourceDescription: '地图叠加全球珊瑚礁范围、OBIS 珊瑚记录、IMOS/AODN 标准化鱼类密度调查，以及本地潜点数据；观测数据会按区域持久缓存在浏览器中。',
       diveLegend: '潜点分布',
@@ -9124,6 +9153,7 @@ ZSD·2016–2025</span></span>
       diveSearchClear: 'Clear search',
       diveSearchResults: 'Dive-site search results',
       diveSearchEmpty: 'No matching dive sites',
+      diveSearchShowMore: 'Show more results',
       sources: 'Data source',
       sourceDescription: 'The map overlays global reef extent, OBIS coral records, standardized IMOS/AODN reef-fish density surveys, and local dive-site data; observation responses are persistently cached by area in the browser.',
       diveLegend: 'Dive sites',
@@ -9201,6 +9231,7 @@ ZSD·2016–2025</span></span>
       diveSearchClear: '検索をクリア',
       diveSearchResults: 'ダイブスポット検索結果',
       diveSearchEmpty: '一致するダイブスポットがありません',
+      diveSearchShowMore: '検索結果をさらに表示',
       sources: 'データソース',
       sourceDescription: '世界のサンゴ礁範囲、OBIS のサンゴ記録、IMOS/AODN の標準化魚類密度調査、ローカルのダイブスポットを表示し、観測データは範囲ごとにブラウザへ永続キャッシュします。',
       diveLegend: 'ダイブスポット',
@@ -17621,14 +17652,20 @@ ZSD·2016–2025</span></span>
             const site = DIVE_SITES[cursor];
             const nameKey = normalizeDiveSearchText(site[0] || '');
             const aliasKey = normalizeDiveSearchText(site[11] || '');
-            const metaKey = normalizeDiveSearchText(
+            // The imported region field covers whichever local geography is
+            // available (area, province/state, island group, gulf, or sea).
+            const locationKey = normalizeDiveSearchText(
               `${site[9] || ''} ${site[10] || ''}`
+            );
+            const metaKey = normalizeDiveSearchText(
+              `${locationKey} ${site[7] || ''} ${site[14] || ''} ${site[15] || ''} ${(Array.isArray(site[16]) ? site[16] : []).join(' ')}`
             );
 
             index.push({
               index: cursor,
               nameKey,
               aliasKey,
+              locationTokens: locationKey.split(' ').filter(Boolean),
               metaKey,
               nameTokens: nameKey.split(' ').filter(Boolean),
               aliasTokens: aliasKey.split(' ').filter(Boolean),
@@ -17760,6 +17797,17 @@ ZSD·2016–2025</span></span>
         score = 12;
       } else if (item.aliasKey.includes(q)) {
         score = 13;
+      } else if (item.locationTokens.some(token => token === q)) {
+        score = 14;
+      } else if (
+        qTokens.length > 1 &&
+        qTokens.every(token => item.locationTokens.some(candidate =>
+          candidate === token ||
+          candidate.startsWith(token) ||
+          candidate.includes(token)
+        ))
+      ) {
+        score = 15;
       } else if (
         qTokens.length > 1 &&
         qTokens.every(token =>
@@ -17802,12 +17850,14 @@ ZSD·2016–2025</span></span>
       a.index - b.index
     );
 
-    return scored.slice(0, 10).map(item => item.index);
+    return scored.map(item => item.index);
   }
 
   function hideDiveSearchResults() {
     diveSearchMatches = [];
     diveSearchActiveIndex = -1;
+    diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+    els.diveSearchShowMore.hidden = true;
     els.diveSearchResults.classList.remove('visible');
     if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
       els.diveSearchResults.append(els.diveSearchSuggestion);
@@ -17820,19 +17870,21 @@ ZSD·2016–2025</span></span>
     clearTimeout(diveSearchTimer);
     els.diveSearchInput.value = '';
     syncDiveSearchWidth();
-    try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
     hideDiveSearchResults();
     els.diveSearchClear.classList.remove('visible');
     if (focus) els.diveSearchInput.focus();
   }
 
-  function renderDiveSearchResults() {
+  function renderDiveSearchResults({ preserveActive = false, preserveScroll = false } = {}) {
     if (!els.diveSearchInput) return;
+    const previousActiveIndex = diveSearchActiveIndex;
+    const previousScrollTop = els.diveSearchResultsScroll.scrollTop;
     const renderRequest = ++diveSearchRenderRequest;
     if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
       els.diveSearchResults.append(els.diveSearchSuggestion);
     }
     els.diveSearchSuggestion.hidden = true;
+    els.diveSearchShowMore.hidden = true;
 
     const query =
       els.diveSearchInput.value.trim();
@@ -17883,7 +17935,10 @@ ZSD·2016–2025</span></span>
     }
 
     diveSearchMatches = findDiveSites(query);
-    diveSearchActiveIndex = -1;
+    diveSearchActiveIndex = preserveActive ? previousActiveIndex : -1;
+    diveSearchVisibleCount = preserveActive
+      ? Math.min(Math.max(diveSearchVisibleCount, DIVE_SEARCH_PAGE_SIZE), diveSearchMatches.length)
+      : Math.min(DIVE_SEARCH_PAGE_SIZE, diveSearchMatches.length);
     els.diveSearchResults.setAttribute('aria-busy', 'false');
 
     if (!diveSearchMatches.length) {
@@ -17893,7 +17948,6 @@ ZSD·2016–2025</span></span>
         `</div>`;
 
       els.diveSearchResults.classList.add('visible');
-      els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
       els.diveSearchSuggestion.hidden = false;
       els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
       els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
@@ -17901,7 +17955,7 @@ ZSD·2016–2025</span></span>
     }
 
     els.diveSearchResultsScroll.innerHTML =
-      diveSearchMatches.map((siteIndex, resultIndex) => {
+      diveSearchMatches.slice(0, diveSearchVisibleCount).map((siteIndex, resultIndex) => {
         const site = DIVE_SITES[siteIndex];
         const name = String(site[0] || '');
         const meta = diveSearchMeta(site);
@@ -17924,11 +17978,17 @@ ZSD·2016–2025</span></span>
         );
     }).join('');
 
+    els.diveSearchShowMore.hidden = diveSearchVisibleCount >= diveSearchMatches.length;
+    els.diveSearchShowMore.textContent = t('diveSearchShowMore');
+
     els.diveSearchResults.classList.add('visible');
+    els.diveSearchResultsScroll.append(els.diveSearchShowMore);
+    els.diveSearchShowMore.hidden = diveSearchVisibleCount >= diveSearchMatches.length;
     els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
     els.diveSearchSuggestion.hidden = false;
     els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
     els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
+    if (preserveScroll) els.diveSearchResultsScroll.scrollTop = previousScrollTop;
   }
 
   function scheduleDiveSearch() {
@@ -18051,6 +18111,14 @@ ZSD·2016–2025</span></span>
     diveSearchActiveIndex =
       (next + diveSearchMatches.length) %
       diveSearchMatches.length;
+
+    if (diveSearchActiveIndex >= diveSearchVisibleCount) {
+      diveSearchVisibleCount = Math.min(
+        Math.ceil((diveSearchActiveIndex + 1) / DIVE_SEARCH_PAGE_SIZE) * DIVE_SEARCH_PAGE_SIZE,
+        diveSearchMatches.length
+      );
+      renderDiveSearchResults({ preserveActive: true });
+    }
 
     const buttons =
       els.diveSearchResults
@@ -21581,6 +21649,32 @@ ZSD·2016–2025</span></span>
       .trim();
   }
 
+  function normalizeDiveReferenceUrl(value) {
+    try {
+      const url = new URL(String(value || ''));
+      if (url.protocol !== 'https:' && url.protocol !== 'http:') return '';
+      if (url.pathname !== '/') url.pathname = url.pathname.replace(/\/+$/, '');
+      return `${url.protocol}//${url.host}${url.pathname}${url.search}${url.hash}`;
+    } catch {
+      return '';
+    }
+  }
+
+  function normalizeDiveReferenceLabel(value) {
+    const label = diveSourceDisplayLabel(value)
+      .normalize('NFKC')
+      .toLocaleLowerCase()
+      .replace(/[^\p{L}\p{N}]+/gu, ' ')
+      .trim();
+    if (label === 'osm' || label === 'open street map') return 'openstreetmap';
+    if (label === 'ssi') return 'ssi mydiveguide';
+    return label;
+  }
+
+  function diveReferenceIdentity(label, referenceId = '') {
+    return `${normalizeDiveReferenceLabel(label)}|${normalizeDiveReferenceLabel(referenceId)}`;
+  }
+
   function getPublishedDiveSiteSummary(site) {
     const siteId = getDiveSiteStableId(site).toLowerCase();
     const rawSummary = DIVE_SITE_SUMMARIES?.bySiteId?.[siteId];
@@ -21636,10 +21730,17 @@ ZSD·2016–2025</span></span>
     const sourceLabel = sourceNames.length === references.length
       ? null
       : sourceNames.join(' · ');
-    return references.map((url, index) => ({
-      url,
-      label: sourceLabel || sourceNames[index] || `${t('diveEvidence')} ${index + 1}`
-    }));
+    const seenUrls = new Set();
+    return references.reduce((unique, url, index) => {
+      const key = normalizeDiveReferenceUrl(url);
+      if (!key || seenUrls.has(key)) return unique;
+      seenUrls.add(key);
+      unique.push({
+        url,
+        label: sourceLabel || sourceNames[index] || `${t('diveEvidence')} ${index + 1}`
+      });
+      return unique;
+    }, []);
   }
 
   function hydrateDiveSiteSummaryPopup(popup) {
@@ -21673,15 +21774,32 @@ ZSD·2016–2025</span></span>
       const sourceTooltip = popupElement.querySelector('.dive-popup-sources__tooltip');
       const knownReferenceUrls = new Set(
         Array.from(popupElement.querySelectorAll('.dive-popup-sources__tooltip a[href]'))
-          .map(link => link.href.replace(/\/+$/, '').toLowerCase())
+          .map(link => normalizeDiveReferenceUrl(link.href))
       );
+      const knownSourceLabels = new Set();
+      const knownSourceIdentities = new Set();
+      Array.from(popupElement.querySelectorAll('.dive-popup-sources__tooltip a, .dive-popup-sources__tooltip span'))
+        .filter(node => !node.classList.contains('dive-popup-dataset-sources'))
+        .forEach(node => {
+          const parts = node.textContent.split(/\s*·\s*/).map(normalizeDiveReferenceLabel).filter(Boolean);
+          if (!parts.length) return;
+          if (parts.length === 1) knownSourceLabels.add(parts[0]);
+          knownSourceIdentities.add(`${parts[0]}|${parts[1] || ''}`);
+        });
       const summaryReferences = (summary?.sources || [])
         .filter(source => {
           const url = String(source.url || '');
-          if (!/^https?:\/\//i.test(url)) return true;
-          const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
-          if (knownReferenceUrls.has(normalizedUrl)) return false;
-          knownReferenceUrls.add(normalizedUrl);
+          const normalizedUrl = normalizeDiveReferenceUrl(url);
+          if (normalizedUrl) {
+            if (knownReferenceUrls.has(normalizedUrl)) return false;
+            knownReferenceUrls.add(normalizedUrl);
+            return true;
+          }
+          const labelKey = normalizeDiveReferenceLabel(source.label);
+          const identity = diveReferenceIdentity(source.label, source.referenceId);
+          if (!labelKey || knownSourceIdentities.has(identity) || knownSourceLabels.has(labelKey)) return false;
+          knownSourceLabels.add(labelKey);
+          knownSourceIdentities.add(identity);
           return true;
         })
         .map(source => {
@@ -22387,19 +22505,28 @@ ZSD·2016–2025</span></span>
     if (properties.length) rows.push(`<div class="dive-popup-properties">${properties.join('')}</div>`);
 
     const evidenceLinks = getDiveSiteEvidenceLinks(site);
-    const evidenceUrlSet = new Set(
-      evidenceLinks
-        .map(({ url }) => String(url || '').replace(/\/+$/, '').toLowerCase())
+    const evidenceUrlSet = new Set(evidenceLinks.map(({ url }) => normalizeDiveReferenceUrl(url)).filter(Boolean));
+    const summaryUrlSet = new Set();
+    const summarySourceKeys = new Set();
+    const datasetSourceKeys = new Set(
+      String(sources || '')
+        .split(/\s*\|\s*|\s*,\s*/)
+        .map(normalizeDiveReferenceLabel)
         .filter(Boolean)
     );
-    const summaryUrlSet = new Set();
     const summaryLinks = (siteSummary?.sources || [])
       .filter(source => {
         const url = String(source.url || '');
-        if (!/^https?:\/\//i.test(url)) return true;
-        const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
-        if (evidenceUrlSet.has(normalizedUrl) || summaryUrlSet.has(normalizedUrl)) return false;
-        summaryUrlSet.add(normalizedUrl);
+        const normalizedUrl = normalizeDiveReferenceUrl(url);
+        if (normalizedUrl) {
+          if (evidenceUrlSet.has(normalizedUrl) || summaryUrlSet.has(normalizedUrl)) return false;
+          summaryUrlSet.add(normalizedUrl);
+          return true;
+        }
+        const labelKey = normalizeDiveReferenceLabel(source.label);
+        const identity = diveReferenceIdentity(source.label, source.referenceId);
+        if (!labelKey || datasetSourceKeys.has(labelKey) || summarySourceKeys.has(identity)) return false;
+        summarySourceKeys.add(identity);
         return true;
       })
       .map(source => {
@@ -23788,10 +23915,6 @@ ZSD·2016–2025</span></span>
         appEl.dataset.theme === 'dark' ? 'dark' : 'light'
       );
       localStorage.setItem(
-        SEARCH_QUERY_STORAGE_KEY,
-        els.diveSearchInput?.value || ''
-      );
-      localStorage.setItem(
         LEGEND_COLLAPSED_STORAGE_KEY,
         legendCollapsed ? '1' : '0'
       );
@@ -24948,9 +25071,6 @@ ZSD·2016–2025</span></span>
   els.diveSearchInput.addEventListener(
     'input',
     () => {
-      try {
-        localStorage.setItem(SEARCH_QUERY_STORAGE_KEY, els.diveSearchInput.value);
-      } catch (_) {}
       syncDiveSearchWidth();
       scheduleDiveSearch();
     }
@@ -24959,11 +25079,31 @@ ZSD·2016–2025</span></span>
   els.diveSearchInput.addEventListener(
     'focus',
     () => {
-      if (els.diveSearchInput.value.trim()) {
+      if (
+        els.diveSearchInput.value.trim() &&
+        !els.diveSearchResults.classList.contains('visible')
+      ) {
         renderDiveSearchResults();
       }
     }
   );
+
+  els.diveSearchShowMore.addEventListener('click', () => {
+    if (diveSearchVisibleCount >= diveSearchMatches.length) return;
+    diveSearchVisibleCount = Math.min(
+      diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,
+      diveSearchMatches.length
+    );
+    renderDiveSearchResults({ preserveActive: true, preserveScroll: true });
+    els.diveSearchInput.focus({ preventScroll: true });
+  });
+
+  els.diveSearchShowMore.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowUp' || !diveSearchMatches.length) return;
+    event.preventDefault();
+    els.diveSearchInput.focus({ preventScroll: true });
+    setDiveSearchActive(Math.min(diveSearchVisibleCount, diveSearchMatches.length) - 1);
+  });
 
   els.diveSearchInput.addEventListener(
     'keydown',
@@ -24978,16 +25118,20 @@ ZSD·2016–2025</span></span>
           renderDiveSearchResults();
         }
 
-        if (!els.diveSearchSuggestion.hidden) {
-          els.diveSearchSuggestButton.focus();
-          return;
-        }
-
         setDiveSearchActive(
           diveSearchActiveIndex + 1
         );
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
+
+        if (diveSearchActiveIndex <= 0 && !els.diveSearchShowMore.hidden) {
+          diveSearchActiveIndex = -1;
+          els.diveSearchResults
+            .querySelectorAll('.dive-search-result.active')
+            .forEach(button => button.classList.remove('active'));
+          els.diveSearchShowMore.focus();
+          return;
+        }
 
         setDiveSearchActive(
           diveSearchActiveIndex - 1
