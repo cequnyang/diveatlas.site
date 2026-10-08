@@ -9,7 +9,10 @@ const DATA_ROOTS = ['assets', 'datasets'];
 const TEXT_EXTENSIONS = new Set([
   '.cjs', '.css', '.csv', '.html', '.js', '.json', '.md', '.mjs', '.svg', '.txt', '.xml', '.yaml', '.yml'
 ]);
-const DATA_DIRECTORY_REFERENCE = /(?:^|[^A-Za-z0-9_.-])(?:\.\/|\/)?data\/[A-Za-z0-9_.-]/i;
+// A slash inside an external URL (for example, `https://host/data/file.csv`)
+// is not a local path reference. Keep URL path separators out of the prefix
+// delimiter while still matching quoted/root-relative local `data/` paths.
+const DATA_DIRECTORY_REFERENCE = /(?:^|[^A-Za-z0-9_.:/-])(?:\.\/|\/)?data\/[A-Za-z0-9_.-]/i;
 
 function collectTextFiles(directory) {
   if (!fs.existsSync(directory)) return [];
