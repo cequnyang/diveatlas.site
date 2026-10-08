@@ -3006,6 +3006,20 @@
     }
     .top-menu-share:hover { background: var(--gh-neutral-muted); }
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .top-menu-wordmark {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .top-menu-lighthouse {
+      width: 1.18em;
+      height: 1.42em;
+      margin: 0 .01em;
+      flex: 0 0 auto;
+      transform: translateY(calc(-.20em + .5px));
+    }
+
     .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
     @media (max-width: 480px) {
@@ -5586,7 +5600,16 @@
     <div class="top-menu-brand">
       <a class="top-menu-home" href="./index.html" aria-label="DiveAtlas home">
         <span class="top-menu-mark" aria-hidden="true"><img id="brandIcon" src="assets/favicon-light.png?v=5" alt="" /></span>
-        <h1 class="top-menu-title" id="brandTitle">DiveAtlas</h1>
+        <h1 class="top-menu-title" id="brandTitle" aria-label="diveAtlas">
+          <span class="top-menu-wordmark" aria-hidden="true">
+            <span>dive</span>
+            <svg class="top-menu-lighthouse" viewBox="0 0 22 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              <path d="M7 6 11 2l4 4H7M8 6h6v5H8zM8 11 4 24M14 11l4 13M6 18h10M3 24h16M1.5 5 5.5 7M1.5 11.5 5.5 9.5M20.5 5 16.5 7M20.5 11.5 16.5 9.5"/>
+              <path d="m7.1 14.5 8 1.5"/>
+            </svg>
+            <span>tlas</span>
+          </span><span class="top-menu-brand-suffix"></span>
+        </h1>
       </a>
       <span class="top-menu-subtitle" id="brandSubtitle">Coral reef distribution</span>
     </div>
@@ -11063,7 +11086,7 @@ ZSD·2016–2025</span></span>
   function syncCompactMobileHeaderCopy() {
     const compact = window.matchMedia('(max-width: 720px)').matches;
     const compactCopy = COMPACT_MOBILE_HEADER_COPY[currentLang] || COMPACT_MOBILE_HEADER_COPY.en;
-    els.brandTitle.textContent = compact ? 'DiveAtlas' : t('brandTitle');
+    renderBrandTitle(compact ? 'DiveAtlas' : t('brandTitle'));
     els.bioLegendTitle.querySelector('.bio-legend-title-label').textContent = compact
       ? compactCopy.layers
       : currentLang === 'en' ? 'Layers' : t('legendTitle');
@@ -11104,6 +11127,13 @@ ZSD·2016–2025</span></span>
       cssPixelValue(inputStyle.paddingLeft) +
       cssPixelValue(inputStyle.paddingRight) +
       cssPixelValue(sectionStyle.paddingLeft) +
+  function renderBrandTitle(title) {
+    // Keep the drawn A while preserving the language-specific text after the brand name.
+    const suffix = title.startsWith('DiveAtlas') ? title.slice('DiveAtlas'.length) : '';
+    els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = suffix;
+    els.brandTitle.setAttribute('aria-label', `diveAtlas${suffix}`);
+  }
+
       cssPixelValue(sectionStyle.paddingRight) +
       cssPixelValue(boxStyle.borderLeftWidth) +
       cssPixelValue(boxStyle.borderRightWidth) +
@@ -11151,7 +11181,7 @@ ZSD·2016–2025</span></span>
   function renderStaticTexts() {
     document.title = t('pageTitle');
     updateShareButtonDescription();
-    els.brandTitle.textContent = t('brandTitle');
+    renderBrandTitle(t('brandTitle'));
     els.brandSubtitle.textContent = t('brandSubtitle');
     els.themeBtn.title = t('themeTitle');
     els.topMenuButton.title = t('menuTitle');
