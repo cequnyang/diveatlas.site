@@ -4811,6 +4811,37 @@
     .environment-mode { padding-top: 4px; }
     .environment-mode-heading { display: block; }
     .panel-section-label { color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 0; line-height: 1.3; }
+    .environment-view-groups { display: grid; gap: 0; margin: 0 0 8px; }
+    .environment-featured-row { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:5px; }
+    .environment-featured-view { display:flex; width:100%; min-height:48px; align-items:center; justify-content:space-between; gap:10px; box-sizing:border-box; padding:8px 11px; border:1px solid var(--border-subtle); border-radius:10px; background:var(--surface-elevated); color:var(--text-primary); text-align:left; cursor:pointer; }
+    .environment-featured-view:hover,
+    .environment-view-choice:hover,
+    .environment-none-choice:hover { background:color-mix(in srgb, var(--primary) 7%, var(--surface-elevated)); }
+    .environment-featured-view[aria-pressed="true"] { border-color:color-mix(in srgb, var(--primary) 58%, var(--border-subtle)); background:color-mix(in srgb, var(--primary) 8%, var(--surface-elevated)); }
+    .environment-featured-view-copy { display:grid; gap:2px; min-width:0; }
+    .environment-featured-view-title { font-size:13px; font-weight:500; line-height:1.25; }
+    .environment-featured-view-description { color:var(--text-muted); font-size:11px; line-height:1.3; }
+    .environment-featured-view-check { color:var(--primary); font-size:16px; }
+    .environment-view-group { border-bottom:1px solid color-mix(in srgb, var(--border-subtle) 65%, transparent); }
+    .environment-view-group[hidden],
+    .environment-featured-view[hidden] { display:none !important; }
+    .environment-view-group > summary { display:flex; min-height:44px; align-items:center; justify-content:space-between; gap:8px; color:var(--text-secondary); font-size:12px; font-weight:550; cursor:pointer; list-style:none; }
+    .environment-view-group-active { margin-left:auto; color:var(--primary); font-size:11px; font-weight:400; }
+    .environment-view-group-active[hidden] { display:none; }
+    .environment-view-group > summary::-webkit-details-marker { display:none; }
+    .environment-view-group > summary::after { content:'›'; color:var(--text-muted); font-size:18px; transform:rotate(90deg); transition:transform var(--motion-fast) var(--ease-ui); }
+    .environment-view-group:not([open]) > summary::after { transform:rotate(0); }
+    .environment-view-group > summary:focus-visible,
+    .environment-view-choice:focus-visible,
+    .environment-none-choice:focus-visible,
+    .environment-featured-view:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+    .environment-view-group-content { display:flex; flex-wrap:wrap; gap:2px 5px; padding:0 0 6px 8px; }
+    .environment-view-choice,
+    .environment-none-choice { display:inline-flex; min-height:36px; align-items:center; box-sizing:border-box; padding:4px 7px; border:0; border-radius:7px; background:transparent; color:var(--text-secondary); font:inherit; font-size:12px; font-weight:400; line-height:1.25; text-align:left; cursor:pointer; }
+    .environment-view-choice[aria-pressed="true"],
+    .environment-none-choice[aria-pressed="true"] { color:var(--primary); font-weight:400; }
+    .environment-none-choice { min-width:48px; min-height:40px; justify-content:center; padding-inline:6px; }
+    .environment-segment-shell[hidden] { display:none !important; }
     .environment-segment-group {
       position: relative;
       display: flex;
@@ -5865,10 +5896,35 @@
     <div class="bio-legend-layers-inner">
     <div class="environment-mode">
       <div class="environment-mode-heading">
-      <div class="environment-segment-shell">
+      <div class="environment-view-groups" aria-label="Map view">
+        <div class="environment-featured-row">
+          <button class="environment-featured-view" type="button" data-environment-view="dive-experience-outlook" data-dive-experience-outlook aria-pressed="false">
+            <span class="environment-featured-view-copy"><span class="environment-featured-view-title" id="environmentDiveExperienceLabelVisible">Dive Experience</span><span class="environment-featured-view-description">Monthly diving conditions</span></span>
+            <span class="environment-featured-view-check" aria-hidden="true">✓</span>
+          </button>
+          <button class="environment-none-choice" type="button" id="environmentNoneLabel" data-environment-view="default" aria-pressed="true">None</button>
+        </div>
+        <details class="environment-view-group" id="environmentOceanViewsGroup">
+          <summary><span>Ocean conditions</span><span class="environment-view-group-active" id="environmentOceanViewsActiveLabel" hidden></span></summary>
+          <div class="environment-view-group-content">
+            <button class="environment-view-choice" type="button" id="environmentTemperatureLabelVisible" data-environment-view="temperature" aria-pressed="false">Temperature</button>
+            <button class="environment-view-choice" type="button" id="environmentWaterClarityLabelVisible" data-environment-view="water-clarity" aria-pressed="false">Water Clarity</button>
+            <button class="environment-view-choice" type="button" id="environmentCurrentsLabelVisible" data-environment-view="currents" aria-pressed="false">Currents</button>
+            <button class="environment-view-choice" type="button" id="environmentWavesLabelVisible" data-environment-view="waves" aria-pressed="false">Waves</button>
+            <button class="environment-view-choice" type="button" id="environmentTideLabelVisible" data-environment-view="tide" aria-pressed="false">Tide</button>
+          </div>
+        </details>
+        <details class="environment-view-group">
+          <summary><span>Reef health</span><span class="environment-view-group-active" id="environmentReefViewsActiveLabel" hidden></span></summary>
+          <div class="environment-view-group-content">
+            <button class="environment-view-choice" type="button" id="environmentReefConditionLabelVisible" data-environment-view="reef-survey-condition" aria-pressed="false">Reef Condition</button>
+          </div>
+        </details>
+      </div>
+      <div class="environment-segment-shell" hidden>
         <span class="environment-segment-indicator" aria-hidden="true"></span>
         <fieldset class="environment-segment-group" aria-label="Functions">
-          <label class="environment-segment"><input type="radio" name="environmentView" value="default"><span id="environmentNoneLabel">None</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="default"><span id="environmentNoneRadioLabel">None</span></label>
           <label class="environment-segment" data-dive-experience-outlook><input type="radio" name="environmentView" value="dive-experience-outlook"><span id="environmentDiveExperienceLabel">Dive Experience</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="temperature"><span id="environmentTemperatureLabel">Temperature</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="water-clarity"><span id="environmentWaterClarityLabel">Water Clarity</span></label>
@@ -7849,6 +7905,11 @@ ZSD·2016–2025</span></span>
     terrainLayerToggle: document.getElementById('terrainLayerToggle'),
     environmentViewTabList: document.querySelector('.environment-segment-group'),
     environmentViewRadios: [...document.querySelectorAll('input[name="environmentView"]')],
+    environmentViewChoices: [...document.querySelectorAll('[data-environment-view]')],
+    environmentOceanViewsGroup: document.getElementById('environmentOceanViewsGroup'),
+    environmentOceanViewsActiveLabel: document.getElementById('environmentOceanViewsActiveLabel'),
+    environmentReefViewsGroup: document.querySelector('.environment-view-group:not(#environmentOceanViewsGroup)'),
+    environmentReefViewsActiveLabel: document.getElementById('environmentReefViewsActiveLabel'),
     environmentViewSelect: document.getElementById('environmentViewSelect'),
     diveExperienceMonth: document.getElementById('diveExperienceMonth'),
     diveExperienceOutlookStatus: document.getElementById('diveExperienceOutlookStatus'),
@@ -7862,6 +7923,13 @@ ZSD·2016–2025</span></span>
     environmentWaterClarityLabel: document.getElementById('environmentWaterClarityLabel'),
     environmentCurrentsLabel: document.getElementById('environmentCurrentsLabel'),
     environmentTideLabel: document.getElementById('environmentTideLabel'),
+    environmentDiveExperienceLabelVisible: document.getElementById('environmentDiveExperienceLabelVisible'),
+    environmentTemperatureLabelVisible: document.getElementById('environmentTemperatureLabelVisible'),
+    environmentWaterClarityLabelVisible: document.getElementById('environmentWaterClarityLabelVisible'),
+    environmentCurrentsLabelVisible: document.getElementById('environmentCurrentsLabelVisible'),
+    environmentWavesLabelVisible: document.getElementById('environmentWavesLabelVisible'),
+    environmentReefConditionLabelVisible: document.getElementById('environmentReefConditionLabelVisible'),
+    environmentTideLabelVisible: document.getElementById('environmentTideLabelVisible'),
     tideControls: document.getElementById('tideControls'),
     tideTitle: document.getElementById('tideTitle'),
     tideInfoAbout: document.getElementById('tideInfoAbout'),
@@ -11236,6 +11304,13 @@ ZSD·2016–2025</span></span>
     els.environmentCurrentsLabel.textContent = ENVIRONMENT_CURRENTS_TAB_LABELS[currentLang] || t('currentsTitle');
     els.environmentTideLabel.textContent = t('environmentTide');
     els.environmentTideLabel.previousElementSibling.setAttribute('aria-label', t('environmentTide'));
+    els.environmentDiveExperienceLabelVisible.textContent = t('diveExperienceTab');
+    els.environmentTemperatureLabelVisible.textContent = ENVIRONMENT_TEMPERATURE_TAB_LABELS[currentLang] || t('environmentTemperature');
+    els.environmentWaterClarityLabelVisible.textContent = t('environmentWaterClarity');
+    els.environmentCurrentsLabelVisible.textContent = ENVIRONMENT_CURRENTS_TAB_LABELS[currentLang] || t('currentsTitle');
+    els.environmentWavesLabelVisible.textContent = t('environmentWaves');
+    els.environmentReefConditionLabelVisible.textContent = t('reefFieldMetricTitle');
+    els.environmentTideLabelVisible.textContent = t('environmentTide');
     els.tideControls.setAttribute('aria-label', t('tideTitle'));
     els.tideTitle.textContent = t('tideTitle');
     els.tideInfoAbout.setAttribute('aria-label', t('tideAbout'));
@@ -13147,6 +13222,7 @@ ZSD·2016–2025</span></span>
       clearMapClickLocationPin();
       els.environmentViewSelect.value = activeView;
       els.environmentViewRadios.forEach(input => { input.checked = input.value === activeView; });
+      syncEnvironmentalViewChoices(activeView);
       revealSelectedEnvironmentalTab();
       scheduleEnvironmentalTabIndicatorSync();
       syncEnvironmentalInfoPanels(activeView);
@@ -15723,6 +15799,7 @@ ZSD·2016–2025</span></span>
       if (!environmentalViewController.select(view)) return false;
       els.environmentViewSelect.value = view;
       els.environmentViewRadios.forEach(input => { input.checked = input.value === view; });
+      syncEnvironmentalViewChoices(view);
       if (shouldPersist) {
         try { localStorage.setItem(ENVIRONMENT_VIEW_STORAGE_KEY, view); } catch (_) {}
         persistLayerVisibility();
@@ -15732,6 +15809,25 @@ ZSD·2016–2025</span></span>
     } finally {
       suppressPanelPreferenceWrites = wasSuppressed;
     }
+  }
+
+  function syncEnvironmentalViewChoices(activeView) {
+    els.environmentViewChoices.forEach(choice => {
+      choice.setAttribute('aria-pressed', String(choice.dataset.environmentView === activeView));
+    });
+    const oceanChoice = els.environmentViewChoices.find(choice =>
+      ['temperature', 'water-clarity', 'currents', 'waves', 'tide'].includes(choice.dataset.environmentView) &&
+      choice.dataset.environmentView === activeView
+    );
+    const reefChoice = activeView === 'reef-survey-condition'
+      ? els.environmentViewChoices.find(choice => choice.dataset.environmentView === activeView)
+      : null;
+    els.environmentOceanViewsActiveLabel.textContent = oceanChoice?.textContent.trim() || '';
+    els.environmentOceanViewsActiveLabel.hidden = !oceanChoice;
+    els.environmentReefViewsActiveLabel.textContent = reefChoice?.textContent.trim() || '';
+    els.environmentReefViewsActiveLabel.hidden = !reefChoice;
+    els.environmentOceanViewsGroup.open = false;
+    els.environmentReefViewsGroup.open = false;
   }
 
   function syncAnalyticalSurfaceLayers() {
@@ -23042,6 +23138,9 @@ ZSD·2016–2025</span></span>
     input.addEventListener('change', () => {
       if (input.checked) selectEnvironmentalView(input.value);
     });
+  });
+  els.environmentViewChoices.forEach(choice => {
+    choice.addEventListener('click', () => selectEnvironmentalView(choice.dataset.environmentView));
   });
   els.environmentViewTabList.addEventListener('wheel', event => {
     if (event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX) ||
