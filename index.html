@@ -2511,7 +2511,7 @@
     .dive-search-result {
       width: 100%;
       display: block;
-      padding: 9px 10px;
+      padding: 6px 10px;
       border: 0;
       border-radius: 10px;
       background: transparent;
@@ -2526,6 +2526,30 @@
     }
 
     .dive-search-result:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+
+    .dive-search-load-more {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px 12px 9px;
+      border: 0;
+      border-top: 1px solid var(--line);
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .dive-search-load-more:hover,
+    .dive-search-load-more:focus-visible {
+      background: var(--hover);
+      color: var(--primary);
+    }
+    .dive-search-load-more:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
 
     .dive-search-result-name {
       overflow: hidden;
@@ -2571,6 +2595,11 @@
       font-weight: 600;
       text-align: left;
       cursor: pointer;
+    }
+
+    .dive-search-suggestion-button {
+      font-weight: 300;
+      font-style: italic;
     }
     .dive-search-suggestion-button:hover {
       background: var(--panel-soft);
@@ -2978,6 +3007,20 @@
       letter-spacing: .01em;
     }
 
+    .top-menu-wordmark {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .top-menu-lighthouse {
+      width: 1.18em;
+      height: 1.42em;
+      margin: 0 .01em;
+      flex: 0 0 auto;
+      transform: translateY(calc(-.20em + .5px));
+    }
+
     .top-menu-subtitle {
       display: none;
     }
@@ -3006,20 +3049,6 @@
     }
     .top-menu-share:hover { background: var(--gh-neutral-muted); }
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .top-menu-wordmark {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .top-menu-lighthouse {
-      width: 1.18em;
-      height: 1.42em;
-      margin: 0 .01em;
-      flex: 0 0 auto;
-      transform: translateY(calc(-.20em + .5px));
-    }
-
     .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
     @media (max-width: 480px) {
@@ -4107,7 +4136,10 @@
       -webkit-backdrop-filter: none;
       transition: width 180ms cubic-bezier(.22, 1, .36, 1);
     }
-    .search-float:focus-within { width: var(--search-content-width, 210px); }
+    .search-float:focus-within { width: min(calc(var(--search-content-width, 210px) * 1.5), calc(100vw - 24px)); }
+    .top-menu-search-slot:focus-within {
+      flex-basis: min(calc(var(--search-content-width, 210px) * 1.5), calc(100vw - 320px));
+    }
     .search-float .dive-search-box {
       height: 40px;
       border: 1px solid color-mix(in srgb, var(--border-subtle) 75%, transparent);
@@ -4136,11 +4168,11 @@
     @media (max-width: 720px) {
       .top-menu-bar { height: 42px; min-height: 42px; max-height: 42px; padding-left: 8px; padding-right: 8px; }
       .search-float { top: 48px; left: 8px; width: var(--search-content-width, 210px); min-width: min(210px, calc(100vw - 16px)); max-width: min(380px, calc(100vw - 16px)); }
-      .search-float:focus-within { width: var(--search-content-width, 210px); }
+      .search-float:focus-within { width: min(calc(var(--search-content-width, 210px) * 1.5), calc(100vw - 16px)); }
     }
     @media (max-width: 480px) {
       .search-float { width: var(--search-content-width, 210px); min-width: min(210px, calc(100vw - 16px)); max-width: min(360px, calc(100vw - 16px)); }
-      .search-float:focus-within { width: var(--search-content-width, 210px); }
+      .search-float:focus-within { width: min(calc(var(--search-content-width, 210px) * 1.5), calc(100vw - 16px)); }
     }
 
     .top-menu-search-slot {
@@ -4177,6 +4209,12 @@
       max-width: 100%;
       padding: 0;
       margin: 0;
+    }
+
+    @media (min-width: 721px) {
+      #topMenuSearchSlot:focus-within #diveSearchSection {
+        width: min(calc(var(--search-content-width, 210px) * 1.5), 100%);
+      }
     }
 
     #topMenuSearchSlot .dive-search-box {
@@ -4223,15 +4261,15 @@
       .top-menu-bar { justify-content: flex-start; }
       #topMenuSearchSlot .dive-search-input { font-size: 12px; }
       #topMenuSearchSlot {
-        transition: width 180ms cubic-bezier(.22, 1, .36, 1);
+        transition: width 400ms cubic-bezier(.4, 0, .2, 1), flex-basis 400ms cubic-bezier(.4, 0, .2, 1), flex-grow 400ms cubic-bezier(.4, 0, .2, 1);
       }
 
       #topMenuSearchSlot #diveSearchSection {
-        transition: width 180ms cubic-bezier(.22, 1, .36, 1);
+        transition: width 400ms cubic-bezier(.4, 0, .2, 1), min-width 400ms cubic-bezier(.4, 0, .2, 1), max-width 400ms cubic-bezier(.4, 0, .2, 1);
       }
 
       #topMenuSearchSlot .dive-search-box {
-        transition: width 180ms cubic-bezier(.22, 1, .36, 1), border-radius 180ms ease, background-color 180ms ease, border-color .16s ease, box-shadow .16s ease;
+        transition: width 400ms cubic-bezier(.4, 0, .2, 1), border-radius 400ms cubic-bezier(.4, 0, .2, 1), background-color 400ms cubic-bezier(.4, 0, .2, 1), border-color .16s ease, box-shadow .16s ease;
       }
 
       #topMenuSearchSlot .dive-search-input,
@@ -4243,6 +4281,10 @@
         width: 32px;
         min-width: 32px;
         max-width: 32px;
+      }
+
+      #topMenuSearchSlot:not(.is-mobile-expanded) {
+        flex: 0 0 32px;
       }
 
       #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box {
@@ -4266,7 +4308,20 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity 120ms ease, visibility 0s linear 120ms;
+        /* Let the width begin closing before the field fades away. */
+        transition: opacity 300ms ease 180ms, visibility 0s linear 480ms;
+      }
+
+      #topMenuSearchSlot.is-mobile-expanded,
+      #topMenuSearchSlot.is-mobile-expanded #diveSearchSection,
+      #topMenuSearchSlot.is-mobile-expanded .dive-search-box {
+        transition-duration: 400ms;
+      }
+
+      #topMenuSearchSlot:not(.is-mobile-expanded),
+      #topMenuSearchSlot:not(.is-mobile-expanded) #diveSearchSection,
+      #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box {
+        transition-duration: 850ms;
       }
 
       #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-results { display: none; }
@@ -6721,6 +6776,8 @@ ZSD·2016–2025</span></span>
   const diveSearchSection = document.getElementById('diveSearchSection');
   const diveSearchToggle = document.getElementById('diveSearchToggle');
   const diveSearchInput = document.getElementById('diveSearchInput');
+  const diveSearchResultsPanel = document.getElementById('diveSearchResults');
+  const diveSearchSuggestionModal = document.getElementById('siteSuggestionModal');
   const mobileSearchQuery = window.matchMedia('(max-width: 720px)');
 
   function setMobileSearchExpanded(expanded) {
@@ -6758,21 +6815,32 @@ ZSD·2016–2025</span></span>
     if (
       mobileSearchQuery.matches &&
       topMenuSearchSlot?.classList.contains('is-mobile-expanded') &&
-      !topMenuSearchSlot.contains(event.target)
+      diveSearchSuggestionModal?.hidden !== false &&
+      !topMenuSearchSlot.contains(event.target) &&
+      !diveSearchResultsPanel?.contains(event.target)
     ) {
       setMobileSearchExpanded(false);
     }
   });
-  topMenuSearchSlot?.addEventListener('focusout', () => {
+  topMenuSearchSlot?.addEventListener('focusout', event => {
+    if (diveSearchResultsPanel?.contains(event.relatedTarget)) {
+      setMobileSearchExpanded(true);
+      return;
+    }
     requestAnimationFrame(() => {
       if (
         mobileSearchQuery.matches &&
         topMenuSearchSlot.classList.contains('is-mobile-expanded') &&
-        !topMenuSearchSlot.contains(document.activeElement)
+        diveSearchSuggestionModal?.hidden !== false &&
+        !topMenuSearchSlot.contains(document.activeElement) &&
+        !diveSearchResultsPanel?.contains(document.activeElement)
       ) {
         setMobileSearchExpanded(false);
       }
     });
+  });
+  diveSearchResultsPanel?.addEventListener('focusin', () => {
+    if (mobileSearchQuery.matches) setMobileSearchExpanded(true);
   });
 
   const map = L.map('map', {
@@ -8098,13 +8166,8 @@ ZSD·2016–2025</span></span>
     els.panelLauncher.classList.add('visible');
   }
 
-  try {
-    const savedSearchQuery = localStorage.getItem(SEARCH_QUERY_STORAGE_KEY) || '';
-    if (savedSearchQuery) {
-      els.diveSearchInput.value = savedSearchQuery;
-      els.diveSearchClear.classList.add('visible');
-    }
-  } catch (_) {}
+  // Search is transient UI state: a reload should start with an empty field.
+  try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
 
   let legendCollapseTimer = null;
   let legendCollapsed = false;
@@ -8787,6 +8850,8 @@ ZSD·2016–2025</span></span>
   let diveSearchTimer = null;
   let diveSearchActiveIndex = -1;
   let diveSearchMatches = [];
+  let diveSearchVisibleCount = 20;
+  const DIVE_SEARCH_PAGE_SIZE = 20;
   let diveSearchRenderRequest = 0;
 
   let currentLang = 'en';
@@ -11083,6 +11148,13 @@ ZSD·2016–2025</span></span>
     id: { layers: 'Lapisan', all: 'Semua', defaults: 'Bawaan' }
   });
 
+  function renderBrandTitle(title) {
+    // Keep the drawn A while preserving the language-specific text after the brand name.
+    const suffix = title.startsWith('DiveAtlas') ? title.slice('DiveAtlas'.length) : '';
+    els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = suffix;
+    els.brandTitle.setAttribute('aria-label', `diveAtlas${suffix}`);
+  }
+
   function syncCompactMobileHeaderCopy() {
     const compact = window.matchMedia('(max-width: 720px)').matches;
     const compactCopy = COMPACT_MOBILE_HEADER_COPY[currentLang] || COMPACT_MOBILE_HEADER_COPY.en;
@@ -11127,13 +11199,6 @@ ZSD·2016–2025</span></span>
       cssPixelValue(inputStyle.paddingLeft) +
       cssPixelValue(inputStyle.paddingRight) +
       cssPixelValue(sectionStyle.paddingLeft) +
-  function renderBrandTitle(title) {
-    // Keep the drawn A while preserving the language-specific text after the brand name.
-    const suffix = title.startsWith('DiveAtlas') ? title.slice('DiveAtlas'.length) : '';
-    els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = suffix;
-    els.brandTitle.setAttribute('aria-label', `diveAtlas${suffix}`);
-  }
-
       cssPixelValue(sectionStyle.paddingRight) +
       cssPixelValue(boxStyle.borderLeftWidth) +
       cssPixelValue(boxStyle.borderRightWidth) +
@@ -17662,7 +17727,8 @@ ZSD·2016–2025</span></span>
               metaKey,
               nameTokens: nameKey.split(' ').filter(Boolean),
               aliasTokens: aliasKey.split(' ').filter(Boolean),
-              metaTokens: metaKey.split(' ').filter(Boolean)
+              metaTokens: metaKey.split(' ').filter(Boolean),
+              allTokens: `${nameKey} ${aliasKey} ${metaKey}`.split(' ').filter(Boolean)
             });
           }
 
@@ -17760,6 +17826,16 @@ ZSD·2016–2025</span></span>
     return best <= maxDistance ? best : Infinity;
   }
 
+  function diveSearchTokenMatchScore(queryToken, tokens, fieldWeight) {
+    let best = Infinity;
+    for (const token of tokens) {
+      if (token === queryToken) best = Math.min(best, fieldWeight);
+      else if (token.startsWith(queryToken)) best = Math.min(best, fieldWeight + 1);
+      else if (token.includes(queryToken)) best = Math.min(best, fieldWeight + 2);
+    }
+    return best;
+  }
+
   function findDiveSites(query) {
     const q = normalizeDiveSearchText(query);
     if (!q) return [];
@@ -17790,17 +17866,23 @@ ZSD·2016–2025</span></span>
         score = 12;
       } else if (item.aliasKey.includes(q)) {
         score = 13;
-      } else if (
-        qTokens.length > 1 &&
-        qTokens.every(token =>
-          [...item.nameTokens, ...item.aliasTokens].some(candidate =>
-            candidate === token ||
-            candidate.startsWith(token) ||
-            candidate.includes(token)
-          )
-        )
-      ) {
-        score = 16;
+      } else if (qTokens.length > 1) {
+        const tokenScores = qTokens.map(token => Math.min(
+          diveSearchTokenMatchScore(token, item.nameTokens, 0),
+          diveSearchTokenMatchScore(token, item.aliasTokens, 3),
+          diveSearchTokenMatchScore(token, item.metaTokens, 6)
+        ));
+        const fuzzyTokenScores = tokenScores.map((tokenScore, index) =>
+          Number.isFinite(tokenScore)
+            ? tokenScore
+            : (() => {
+                const distance = diveSearchFuzzyDistance(qTokens[index], item.allTokens);
+                return Number.isFinite(distance) ? 9 + distance : Infinity;
+              })()
+        );
+        if (fuzzyTokenScores.every(Number.isFinite)) {
+          score = 16 + fuzzyTokenScores.reduce((total, value) => total + value, 0);
+        }
       } else {
         const fuzzyName = diveSearchFuzzyDistance(q, item.nameTokens);
         const fuzzyAlias = diveSearchFuzzyDistance(q, item.aliasTokens);
@@ -17832,12 +17914,13 @@ ZSD·2016–2025</span></span>
       a.index - b.index
     );
 
-    return scored.slice(0, 10).map(item => item.index);
+    return scored.map(item => item.index);
   }
 
   function hideDiveSearchResults() {
     diveSearchMatches = [];
     diveSearchActiveIndex = -1;
+    diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
     els.diveSearchResults.classList.remove('visible');
     if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
       els.diveSearchResults.append(els.diveSearchSuggestion);
@@ -17912,8 +17995,10 @@ ZSD·2016–2025</span></span>
       return;
     }
 
-    diveSearchMatches = findDiveSites(query);
-    diveSearchActiveIndex = -1;
+    const nextMatches = findDiveSites(query);
+    if (query !== diveSearchQuery) diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+    diveSearchQuery = query;
+    diveSearchMatches = nextMatches;
     els.diveSearchResults.setAttribute('aria-busy', 'false');
 
     if (!diveSearchMatches.length) {
@@ -17930,8 +18015,9 @@ ZSD·2016–2025</span></span>
       return;
     }
 
+    const visibleMatches = diveSearchMatches.slice(0, diveSearchVisibleCount);
     els.diveSearchResultsScroll.innerHTML =
-      diveSearchMatches.map((siteIndex, resultIndex) => {
+      visibleMatches.map((siteIndex, resultIndex) => {
         const site = DIVE_SITES[siteIndex];
         const name = String(site[0] || '');
         const meta = diveSearchMeta(site);
@@ -17952,7 +18038,9 @@ ZSD·2016–2025</span></span>
               : '') +
           `</button>`
         );
-    }).join('');
+    }).join('') + (diveSearchMatches.length > diveSearchVisibleCount
+      ? `<button class="dive-search-load-more" type="button" data-search-load-more>Load More . . .</button>`
+      : '');
 
     els.diveSearchResults.classList.add('visible');
     els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
@@ -18078,9 +18166,10 @@ ZSD·2016–2025</span></span>
   function setDiveSearchActive(next) {
     if (!diveSearchMatches.length) return;
 
-    diveSearchActiveIndex =
-      (next + diveSearchMatches.length) %
-      diveSearchMatches.length;
+    diveSearchActiveIndex = Math.max(
+      0,
+      Math.min(next, diveSearchVisibleCount - 1)
+    );
 
     const buttons =
       els.diveSearchResults
@@ -18089,12 +18178,41 @@ ZSD·2016–2025</span></span>
     buttons.forEach((button, index) => {
       button.classList.toggle(
         'active',
-        index === diveSearchActiveIndex
+        Number(button.dataset.resultIndex) === diveSearchActiveIndex
       );
     });
 
-    buttons[diveSearchActiveIndex]
+    els.diveSearchResults.querySelector(
+      `[data-result-index="${diveSearchActiveIndex}"]`
+    )
       ?.scrollIntoView({ block: 'nearest' });
+  }
+
+  let diveSearchQuery = '';
+
+  function loadMoreDiveSearchResults() {
+    if (diveSearchVisibleCount >= diveSearchMatches.length) return;
+    const preserveLoadMoreFocus =
+      document.activeElement ===
+      els.diveSearchResults.querySelector('[data-search-load-more]');
+    diveSearchVisibleCount = Math.min(
+      diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,
+      diveSearchMatches.length
+    );
+    renderDiveSearchResults();
+    if (preserveLoadMoreFocus) {
+      const nextFocusTarget =
+        els.diveSearchResults.querySelector('[data-search-load-more]') ||
+        els.diveSearchResults.querySelector(
+          `[data-result-index="${diveSearchVisibleCount - 1}"]`
+        );
+      nextFocusTarget?.focus({ preventScroll: true });
+    }
+    if (diveSearchActiveIndex >= 0) {
+      els.diveSearchResults.querySelector(
+        `[data-result-index="${diveSearchActiveIndex}"]`
+      )?.classList.add('active');
+    }
   }
 
   /* ---------- place selection ---------- */
@@ -23817,10 +23935,7 @@ ZSD·2016–2025</span></span>
         'global-coral-map-theme',
         appEl.dataset.theme === 'dark' ? 'dark' : 'light'
       );
-      localStorage.setItem(
-        SEARCH_QUERY_STORAGE_KEY,
-        els.diveSearchInput?.value || ''
-      );
+      localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY);
       localStorage.setItem(
         LEGEND_COLLAPSED_STORAGE_KEY,
         legendCollapsed ? '1' : '0'
@@ -24978,8 +25093,10 @@ ZSD·2016–2025</span></span>
   els.diveSearchInput.addEventListener(
     'input',
     () => {
+      diveSearchQuery = els.diveSearchInput.value.trim();
+      diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
       try {
-        localStorage.setItem(SEARCH_QUERY_STORAGE_KEY, els.diveSearchInput.value);
+        localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY);
       } catch (_) {}
       syncDiveSearchWidth();
       scheduleDiveSearch();
@@ -25008,20 +25125,20 @@ ZSD·2016–2025</span></span>
           renderDiveSearchResults();
         }
 
-        if (!els.diveSearchSuggestion.hidden) {
-          els.diveSearchSuggestButton.focus();
+        if (!diveSearchMatches.length) {
+          if (!els.diveSearchSuggestion.hidden) els.diveSearchSuggestButton.focus();
           return;
         }
-
-        setDiveSearchActive(
-          diveSearchActiveIndex + 1
-        );
+        if (diveSearchActiveIndex < diveSearchVisibleCount - 1) {
+          setDiveSearchActive(diveSearchActiveIndex + 1);
+        } else if (diveSearchVisibleCount < diveSearchMatches.length) {
+          const previousActive = diveSearchActiveIndex;
+          loadMoreDiveSearchResults();
+          setDiveSearchActive(previousActive + 1);
+        }
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
-
-        setDiveSearchActive(
-          diveSearchActiveIndex - 1
-        );
+        if (diveSearchActiveIndex > 0) setDiveSearchActive(diveSearchActiveIndex - 1);
       } else if (
         event.key === 'Enter' &&
         diveSearchActiveIndex >= 0
@@ -25044,6 +25161,10 @@ ZSD·2016–2025</span></span>
   els.diveSearchResults.addEventListener(
     'click',
     event => {
+      if (event.target.closest('[data-search-load-more]')) {
+        loadMoreDiveSearchResults();
+        return;
+      }
       const button =
         event.target.closest('.dive-search-result');
 
