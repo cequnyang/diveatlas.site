@@ -1301,7 +1301,7 @@
       display: grid;
       gap: 5px;
       margin-top: 9px;
-      padding: 8px 0;
+      padding: 8px 0 4px;
       border-top: 1px solid var(--line-soft);
     }
 
@@ -1329,9 +1329,31 @@
       overflow-wrap: anywhere;
     }
 
-    .dive-popup-types { margin-top: 8px; line-height: 1.4; }
-    .dive-popup-types__label { color: var(--muted); font-size: 11px; }
-    .dive-popup-types__values { margin-top: 2px; color: var(--text); font-size: 11px; overflow-wrap: anywhere; }
+    .dive-popup-summary {
+      margin: 9px 0 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--text);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .dive-site-popup .bio-popup-meta + .dive-popup-summary {
+      padding-top: 8px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .dive-popup-summary__heading {
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 650;
+    }
+    .dive-popup-summary p { margin: 0; }
+    .dive-popup-summary .dive-popup-summary__note {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
     .bio-popup-source,
     .dive-popup-source--compact {
       margin-top: 8px;
@@ -1340,12 +1362,108 @@
       color: var(--faint);
       font-size: 9px;
     }
-    .dive-site-popup--with-photo .leaflet-popup-content-wrapper { overflow: hidden; padding: 0; }
-    .dive-site-popup--with-photo .leaflet-popup-content { margin: 0; }
+    .dive-popup-summary + .dive-popup-properties {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .dive-popup-footer {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 2px;
+      padding-top: 2px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .dive-popup-sources { position: relative; flex: 0 0 auto; width: auto; }
+    .dive-popup-sources > summary {
+      display: inline-flex;
+      min-height: 22px;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 500;
+      list-style: none;
+    }
+    .dive-popup-sources > summary::-webkit-details-marker { display: none; }
+    .dive-popup-sources > summary::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-bottom: 4px solid currentColor;
+      border-right: 3.5px solid transparent;
+      border-left: 3.5px solid transparent;
+      color: var(--faint);
+      flex: 0 0 auto;
+      transition: transform .15s ease;
+    }
+    .dive-popup-sources[open] > summary::after { transform: rotate(180deg); }
+    .dive-popup-sources > summary:hover { color: var(--muted); }
+    .dive-popup-sources > summary:focus-visible {
+      border-radius: 3px;
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    .dive-popup-sources__tooltip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 7px);
+      z-index: 1200;
+      box-sizing: border-box;
+      width: min(220px, calc(100vw - 64px));
+      max-height: 140px;
+      overflow: auto;
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-solid);
+      box-shadow: 0 8px 24px rgba(16, 24, 40, .24);
+      color: var(--text);
+      font-size: 10px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    .dive-popup-sources__tooltip .bio-popup-source-link { white-space: normal; }
+    .dive-popup-footer .dive-popup-sources {
+      margin: 0 0 0 auto;
+      padding: 0;
+      border: 0;
+    }
+    .dive-popup-footer .dive-popup-sources > summary,
+    .dive-popup-footer .dive-popup-sources > summary:hover { color: var(--faint); }
+    .dive-popup-footer .dive-popup-photo-credit {
+      flex: 0 1 auto;
+      min-width: 0;
+      margin: 0;
+      text-align: right;
+    }
+    .dive-site-popup .bio-popup { box-sizing: border-box; width: 100%; }
+    .dive-site-popup .bio-popup-title { padding-right: 0; }
+    .dive-site-popup--with-photo .leaflet-popup-close-button {
+      z-index: 3;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--panel-solid);
+      box-shadow: 0 1px 5px rgba(0, 0, 0, .22);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .dive-site-popup--with-photo .leaflet-popup-content-wrapper { overflow: visible; padding: 0; }
+    .dive-site-popup--with-photo .leaflet-popup-content { margin: 0 0 13px; }
     .dive-site-popup--with-photo .dive-popup-photo-frame {
       position: relative;
       width: 100%;
-      max-width: 280px;
       aspect-ratio: 16 / 9;
       overflow: hidden;
       isolation: isolate;
@@ -1383,11 +1501,94 @@
       object-position: center;
       pointer-events: none;
     }
+    .dive-site-popup--with-photo .dive-popup-photo-trigger {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+    .dive-site-popup--with-photo .dive-popup-photo-trigger:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: -3px;
+    }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-backdrop,
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-shade { visibility: visible; }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-landscape .dive-popup-photo { object-fit: cover; }
-    .dive-site-popup--with-photo .dive-popup-body { padding: 12px 14px 14px; }
-    .dive-popup-photo-credit { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
+    .dive-site-popup--with-photo .dive-popup-body { box-sizing: border-box; width: 100%; padding: 12px 0 0; }
+    .dive-popup-photo-credit { margin-top: 8px; color: var(--faint); font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
+
+    .dive-photo-preview {
+      position: fixed;
+      inset: 0;
+      box-sizing: border-box;
+      width: 100vw;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 48px 16px 14px;
+      border: 0;
+      border-radius: 0;
+      background: rgba(8, 15, 25, .82);
+      backdrop-filter: blur(3px);
+      color: #fff;
+      box-shadow: none;
+      outline: none;
+    }
+    .dive-photo-preview::backdrop { background: transparent; }
+    .dive-site-popup.dive-site-popup--photo-previewing { visibility: hidden !important; }
+    .dive-photo-preview__layout {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      padding-bottom: 24px;
+      box-sizing: border-box;
+      grid-template-rows: minmax(0, 1fr);
+    }
+    .dive-photo-preview__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+    }
+    .dive-photo-preview__credit {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      max-width: min(50vw, 420px);
+      color: rgba(255, 255, 255, .82);
+      font-size: 11px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
+    }
+    .dive-photo-preview__close {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 50%;
+      background: rgba(17, 24, 39, .58);
+      color: #fff;
+      font: inherit;
+      font-size: 21px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .dive-photo-preview__close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .dive-photo-preview__close svg { display: block; width: 16px; height: 16px; }
 
     .bio-popup-list {
       margin-top: 8px;
@@ -5355,6 +5556,7 @@
     /* Keep all layer popups on the same content box so their boards share a
        fixed width; JS narrows that width only when the safe viewport requires it. */
     .leaflet-popup-content { margin:13px 14px !important; }
+    .dive-site-popup .leaflet-popup-content { margin-bottom:0 !important; }
     .leaflet-popup-content > :first-child {
       box-sizing:border-box;
       width:100% !important;
@@ -7038,6 +7240,29 @@ ZSD·2016–2025</span></span>
     return markMapInfoPopup(layer.getPopup(), { uniformWidth: options.uniformWidth !== false, options });
   }
 
+  function closeOpenDiveSourceTooltips() {
+    document.querySelectorAll('.dive-popup-sources[open]').forEach(details => {
+      details.open = false;
+    });
+  }
+
+  document.addEventListener('pointerdown', event => {
+    document.querySelectorAll('.dive-popup-sources[open]').forEach(details => {
+      if (!details.contains(event.target)) details.open = false;
+    });
+  }, true);
+  document.addEventListener('focusout', event => {
+    const details = event.target.closest?.('.dive-popup-sources[open]');
+    if (details && !details.contains(event.relatedTarget)) details.open = false;
+  }, true);
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !document.querySelector('.dive-popup-sources[open]')) return;
+    closeOpenDiveSourceTooltips();
+    event.preventDefault();
+    event.stopPropagation();
+  }, true);
+  window.addEventListener('blur', closeOpenDiveSourceTooltips);
+
   function createMapInfoPopup(options = {}) {
     return markMapInfoPopup(L.popup(mapInfoPopupOptions(options)), { uniformWidth: options.uniformWidth !== false, options });
   }
@@ -8411,9 +8636,11 @@ ZSD·2016–2025</span></span>
   let DIVE_SITES = Array.isArray(window.DIVE_SITES_DATA)
     ? window.DIVE_SITES_DATA
     : [];
+  let DIVE_SITE_SUMMARIES = window.DIVE_SITE_SUMMARIES || { bySiteId: {} };
   let DIVE_SITE_ITEMS = [];
   let diveSiteDataReady = false;
   let diveSiteDataPromise = null;
+  let diveSiteSummariesPromise = null;
   let DIVE_SEARCH_INDEX = null;
   let diveSearchIndexPromise = null;
 
@@ -8451,6 +8678,80 @@ ZSD·2016–2025</span></span>
     ) return null;
 
     return photo;
+  }
+
+  let divePhotoPreviewDialog = null;
+
+  function getDivePhotoPreviewDialog() {
+    if (divePhotoPreviewDialog?.isConnected) return divePhotoPreviewDialog;
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'dive-photo-preview';
+    dialog.setAttribute('aria-label', t('divePhotoPreview'));
+    const closeButton = document.createElement('button');
+    closeButton.className = 'dive-photo-preview__close';
+    closeButton.type = 'button';
+    closeButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>';
+    closeButton.setAttribute('aria-label', t('divePhotoPreviewClose'));
+    const layout = document.createElement('div');
+    layout.className = 'dive-photo-preview__layout';
+    const image = document.createElement('img');
+    image.className = 'dive-photo-preview__image';
+    const credit = document.createElement('div');
+    credit.className = 'dive-photo-preview__credit';
+    layout.append(image, credit);
+    dialog.append(closeButton, layout);
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (!dialog.open) return;
+      const bounds = image.getBoundingClientRect();
+      const scale = image.naturalWidth && image.naturalHeight
+        ? Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight)
+        : 0;
+      const photoWidth = image.naturalWidth * scale;
+      const photoHeight = image.naturalHeight * scale;
+      const photoLeft = bounds.left + (bounds.width - photoWidth) / 2;
+      const photoTop = bounds.top + (bounds.height - photoHeight) / 2;
+      const clickedPhoto = scale > 0 &&
+        event.clientX >= photoLeft && event.clientX <= photoLeft + photoWidth &&
+        event.clientY >= photoTop && event.clientY <= photoTop + photoHeight;
+      if (!clickedPhoto) dialog.close();
+    });
+    const alignCreditWithPhoto = () => {
+      if (!dialog.open || !image.naturalWidth || !image.naturalHeight) return;
+      const bounds = image.getBoundingClientRect();
+      const scale = Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight);
+      const photoLeft = bounds.left + (bounds.width - image.naturalWidth * scale) / 2;
+      credit.style.left = `${Math.round(photoLeft)}px`;
+      credit.style.maxWidth = `min(50vw, ${Math.max(0, window.innerWidth - photoLeft - 16)}px)`;
+    };
+    image.addEventListener('load', alignCreditWithPhoto);
+    window.addEventListener('resize', alignCreditWithPhoto);
+    dialog.addEventListener('close', () => {
+      image.removeAttribute('src');
+      dialog._diveAtlasBackgroundPopup?.classList.remove('dive-site-popup--photo-previewing');
+      dialog._diveAtlasBackgroundPopup = null;
+    });
+    document.body.append(dialog);
+    divePhotoPreviewDialog = dialog;
+    return dialog;
+  }
+
+  function openDivePhotoPreview(photo, siteName, popup) {
+    const dialog = getDivePhotoPreviewDialog();
+    const image = dialog.querySelector('.dive-photo-preview__image');
+    const credit = dialog.querySelector('.dive-photo-preview__credit');
+    image.src = photo.src;
+    image.alt = photo.alt || siteName;
+    credit.textContent = `${t('divePhotoCredit')}: ${photo.credit}`;
+    if (!dialog.open) {
+      dialog.showModal();
+      const backgroundPopup = popup?.getElement?.();
+      if (backgroundPopup?.classList.contains('dive-site-popup')) {
+        backgroundPopup.classList.add('dive-site-popup--photo-previewing');
+        dialog._diveAtlasBackgroundPopup = backgroundPopup;
+      }
+    }
   }
 
   const OBIS_CORAL_TAXA = [
@@ -8760,7 +9061,14 @@ ZSD·2016–2025</span></span>
       diveMaxDepth: '最深深度',
       diveLevel: '难度等级',
       diveType: '潜点类型',
+      diveReviewedCategories: '已审核分类',
+      diveOriginalType: '原始类型',
+      diveSetting: '环境',
+      diveAccess: '入水方式',
+      diveFeatures: '水下特征',
       diveSource: '数据来源',
+      diveSummary: '潜点简介',
+      diveEvidence: '审核参考',
       legendTitle: '地图数据',
       layerToggleHint: '显示或隐藏图层',
       reefLegend: '珊瑚礁范围',
@@ -8830,7 +9138,14 @@ ZSD·2016–2025</span></span>
       diveMaxDepth: 'Maximum depth',
       diveLevel: 'Level',
       diveType: 'Site type',
+      diveReviewedCategories: 'Reviewed categories',
+      diveOriginalType: 'Original type',
+      diveSetting: 'Setting',
+      diveAccess: 'Access',
+      diveFeatures: 'Features',
       diveSource: 'Source',
+      diveSummary: 'Summary',
+      diveEvidence: 'Reviewed reference',
       legendTitle: 'Map data',
       layerToggleHint: 'Show or hide layer',
       reefLegend: 'Reef extent',
@@ -8900,7 +9215,14 @@ ZSD·2016–2025</span></span>
       diveMaxDepth: '最大深度',
       diveLevel: '難易度',
       diveType: 'スポットタイプ',
+      diveReviewedCategories: '確認済みカテゴリ',
+      diveOriginalType: '元のタイプ',
+      diveSetting: '環境',
+      diveAccess: 'エントリー方法',
+      diveFeatures: '水中の特徴',
       diveSource: 'データソース',
+      diveSummary: 'スポット概要',
+      diveEvidence: '確認元',
       legendTitle: '地図データ',
       layerToggleHint: 'レイヤーの表示・非表示',
       reefLegend: 'サンゴ礁範囲',
@@ -9113,20 +9435,20 @@ ZSD·2016–2025</span></span>
   }
 
   const DIVE_SITE_PHOTO_I18N = {
-    zh: { divePhotoCredit: '照片' },
-    en: { divePhotoCredit: 'Photo' },
-    ja: { divePhotoCredit: '写真' },
-    fr: { divePhotoCredit: 'Photo' },
-    de: { divePhotoCredit: 'Foto' },
-    nl: { divePhotoCredit: 'Foto' },
-    it: { divePhotoCredit: 'Foto' },
-    ru: { divePhotoCredit: 'Фото' },
-    pt: { divePhotoCredit: 'Foto' },
-    sv: { divePhotoCredit: 'Foto' },
-    no: { divePhotoCredit: 'Foto' },
-    es: { divePhotoCredit: 'Foto' },
-    ko: { divePhotoCredit: '사진' },
-    id: { divePhotoCredit: 'Foto' }
+    zh: { divePhotoCredit: '照片', divePhotoPreview: '打开照片预览', divePhotoPreviewClose: '关闭照片预览' },
+    en: { divePhotoCredit: 'Photo', divePhotoPreview: 'Open photo preview', divePhotoPreviewClose: 'Close photo preview' },
+    ja: { divePhotoCredit: '写真', divePhotoPreview: '写真をプレビュー', divePhotoPreviewClose: '写真プレビューを閉じる' },
+    fr: { divePhotoCredit: 'Photo', divePhotoPreview: 'Ouvrir l’aperçu de la photo', divePhotoPreviewClose: 'Fermer l’aperçu de la photo' },
+    de: { divePhotoCredit: 'Foto', divePhotoPreview: 'Fotovorschau öffnen', divePhotoPreviewClose: 'Fotovorschau schließen' },
+    nl: { divePhotoCredit: 'Foto', divePhotoPreview: 'Fotovoorbeeld openen', divePhotoPreviewClose: 'Fotovoorbeeld sluiten' },
+    it: { divePhotoCredit: 'Foto', divePhotoPreview: 'Apri anteprima foto', divePhotoPreviewClose: 'Chiudi anteprima foto' },
+    ru: { divePhotoCredit: 'Фото', divePhotoPreview: 'Открыть предварительный просмотр фото', divePhotoPreviewClose: 'Закрыть предварительный просмотр фото' },
+    pt: { divePhotoCredit: 'Foto', divePhotoPreview: 'Abrir pré-visualização da foto', divePhotoPreviewClose: 'Fechar pré-visualização da foto' },
+    sv: { divePhotoCredit: 'Foto', divePhotoPreview: 'Öppna fotoförhandsvisning', divePhotoPreviewClose: 'Stäng fotoförhandsvisning' },
+    no: { divePhotoCredit: 'Foto', divePhotoPreview: 'Åpne bildeforhåndsvisning', divePhotoPreviewClose: 'Lukk bildeforhåndsvisning' },
+    es: { divePhotoCredit: 'Foto', divePhotoPreview: 'Abrir vista previa de la foto', divePhotoPreviewClose: 'Cerrar vista previa de la foto' },
+    ko: { divePhotoCredit: '사진', divePhotoPreview: '사진 미리보기 열기', divePhotoPreviewClose: '사진 미리보기 닫기' },
+    id: { divePhotoCredit: 'Foto', divePhotoPreview: 'Buka pratinjau foto', divePhotoPreviewClose: 'Tutup pratinjau foto' }
   };
   for (const [lang, values] of Object.entries(DIVE_SITE_PHOTO_I18N)) {
     Object.assign(I18N[lang], values);
@@ -15766,12 +16088,48 @@ ZSD·2016–2025</span></span>
     });
   }
 
+  function ensureDiveSiteSummaries() {
+    if (window.DIVE_SITE_SUMMARIES?.bySiteId) {
+      DIVE_SITE_SUMMARIES = window.DIVE_SITE_SUMMARIES;
+      return Promise.resolve();
+    }
+    if (diveSiteSummariesPromise) return diveSiteSummariesPromise;
+
+    // Keep the gzip-compressed summary sidecar out of the initial map-data
+    // request; the first opened site triggers one cached load for later popups.
+    diveSiteSummariesPromise = (async () => {
+      if (typeof DecompressionStream !== 'function') {
+        throw new Error('This browser does not support gzip decompression for dive-site summaries.');
+      }
+      const response = await fetch('datasets/dive-site-summaries.json.gz?v=2');
+      if (!response.ok || !response.body) {
+        throw new Error(`Failed to load dive-site summaries (${response.status}).`);
+      }
+      const summaries = await new Response(
+        response.body.pipeThrough(new DecompressionStream('gzip'))
+      ).json();
+      if (!summaries?.bySiteId) {
+        throw new Error('Dive-site summary dataset did not expose its site index.');
+      }
+      window.DIVE_SITE_SUMMARIES = summaries;
+      DIVE_SITE_SUMMARIES = summaries;
+    })()
+      .catch(error => {
+        diveSiteSummariesPromise = null;
+        throw error;
+      });
+    return diveSiteSummariesPromise;
+  }
+
   function ensureDiveSiteData() {
     if (diveSiteDataReady) return Promise.resolve();
     if (diveSiteDataPromise) return diveSiteDataPromise;
 
+    const diveSitesScriptUrl = window.DiveAtlasDataAssets?.external
+      ? window.DiveAtlasDataAssets.url('data/dive-sites.js?v=2')
+      : 'datasets/dive-sites.js?v=2';
     diveSiteDataPromise = Promise.all([
-      loadLocalScript('data/dive-sites.js?v=1'),
+      loadLocalScript(diveSitesScriptUrl),
       loadLocalScript('datasets/dive-site-photos.js?v=2')
     ])
       .then(() => {
@@ -15781,6 +16139,7 @@ ZSD·2016–2025</span></span>
         }
 
         DIVE_SITES = sites;
+        DIVE_SITE_SUMMARIES = window.DIVE_SITE_SUMMARIES || { bySiteId: {} };
         DIVE_SITE_ITEMS = DIVE_SITES.map((site, index) => ({ site, index }));
         SHARE_SITE_BY_ID = new Map(
           DIVE_SITES
@@ -17216,13 +17575,17 @@ ZSD·2016–2025</span></span>
     }
   }
 
-  function renderDiveSourceLinks(sources = '') {
-    const tokens = String(sources || '')
+  function renderDiveSourceLinks(sources = '', hideDefaultSources = false) {
+    let tokens = String(sources || '')
       .split(/\s*\|\s*|\s*,\s*/)
       .map(value => value.trim())
       .filter(Boolean);
 
-    if (!tokens.length) return escapeHtml('Third-party dataset');
+    if (!tokens.length) return hideDefaultSources ? '' : escapeHtml('Third-party dataset');
+    if (hideDefaultSources) {
+      tokens = tokens.filter(token => !['osm', 'padi', 'ssi'].includes(token.toLowerCase()));
+      if (!tokens.length) return '';
+    }
 
     return tokens.map(token => {
       const key = token.toLowerCase();
@@ -21134,7 +21497,35 @@ ZSD·2016–2025</span></span>
     return '';
   }
 
+  const DIVE_CATEGORY_COPY = {
+    zh: { diveLevel:'难度等级', diveSetting:'环境', diveAccess:'入水方式', diveFeatures:'水下特征' },
+    en: { diveLevel:'Difficulty', diveSetting:'Setting', diveAccess:'Access', diveFeatures:'Features' },
+    ja: { diveLevel:'難易度', diveSetting:'環境', diveAccess:'エントリー方法', diveFeatures:'水中の特徴' },
+    fr: { diveLevel:'Difficulté', diveSetting:'Milieu', diveAccess:'Accès', diveFeatures:'Caractéristiques' },
+    de: { diveLevel:'Schwierigkeitsgrad', diveSetting:'Umgebung', diveAccess:'Zugang', diveFeatures:'Merkmale' },
+    nl: { diveLevel:'Niveau', diveSetting:'Omgeving', diveAccess:'Toegang', diveFeatures:'Kenmerken' },
+    it: { diveLevel:'Difficoltà', diveSetting:'Ambiente', diveAccess:'Accesso', diveFeatures:'Caratteristiche' },
+    ru: { diveLevel:'Сложность', diveSetting:'Среда', diveAccess:'Доступ', diveFeatures:'Особенности' },
+    pt: { diveLevel:'Dificuldade', diveSetting:'Ambiente', diveAccess:'Acesso', diveFeatures:'Características' },
+    sv: { diveLevel:'Svårighetsgrad', diveSetting:'Miljö', diveAccess:'Tillträde', diveFeatures:'Egenskaper' },
+    no: { diveLevel:'Vanskelighetsgrad', diveSetting:'Miljø', diveAccess:'Adkomst', diveFeatures:'Kjennetegn' },
+    es: { diveLevel:'Dificultad', diveSetting:'Entorno', diveAccess:'Acceso', diveFeatures:'Características' },
+    ko: { diveLevel:'난이도', diveSetting:'환경', diveAccess:'진입 방식', diveFeatures:'수중 특징' },
+    id: { diveLevel:'Tingkat kesulitan', diveSetting:'Lingkungan', diveAccess:'Akses', diveFeatures:'Ciri bawah air' }
+  };
+  for (const [lang, copy] of Object.entries(DIVE_CATEGORY_COPY)) {
+    Object.assign(I18N[lang], copy);
+  }
+
   const DIVE_TYPE_LABELS = {
+    'marine': { zh:'海洋', en:'Marine', ja:'海洋', fr:'Marin', de:'Meer', nl:'Zee', it:'Marino', ru:'Морской', pt:'Marinho', sv:'Marin', no:'Marint', es:'Marino', ko:'해양', id:'Laut' },
+    'shore': { zh:'岸潜', en:'Shore', ja:'ビーチエントリー', fr:'Depuis le rivage', de:'Vom Ufer', nl:'Vanaf de kant', it:'Da riva', ru:'С берега', pt:'A partir da costa', sv:'Från land', no:'Fra land', es:'Desde la costa', ko:'해안', id:'Dari pantai' },
+    'boat': { zh:'船潜', en:'Boat', ja:'ボート', fr:'En bateau', de:'Boot', nl:'Boot', it:'Barca', ru:'С лодки', pt:'Barco', sv:'Båt', no:'Båt', es:'En barco', ko:'보트', id:'Perahu' },
+    'both': { zh:'岸潜 / 船潜', en:'Shore / boat', ja:'ビーチ / ボート', fr:'Rivage / bateau', de:'Ufer / Boot', nl:'Kant / boot', it:'Riva / barca', ru:'Берег / лодка', pt:'Costa / barco', sv:'Land / båt', no:'Land / båt', es:'Costa / barco', ko:'해안 / 보트', id:'Pantai / perahu' },
+    'beginner': { zh:'初学者', en:'Beginner', ja:'初級者', fr:'Débutant', de:'Anfänger', nl:'Beginner', it:'Principiante', ru:'Начинающий', pt:'Iniciante', sv:'Nybörjare', no:'Nybegynner', es:'Principiante', ko:'초급자', id:'Pemula' },
+    'intermediate': { zh:'中级', en:'Intermediate', ja:'中級者', fr:'Intermédiaire', de:'Fortgeschritten', nl:'Gemiddeld', it:'Intermedio', ru:'Средний уровень', pt:'Intermediário', sv:'Medelnivå', no:'Middels', es:'Intermedio', ko:'중급자', id:'Menengah' },
+    'advanced': { zh:'进阶', en:'Advanced', ja:'上級者', fr:'Avancé', de:'Fortgeschritten', nl:'Gevorderd', it:'Avanzato', ru:'Продвинутый', pt:'Avançado', sv:'Avancerad', no:'Avansert', es:'Avanzado', ko:'상급자', id:'Lanjutan' },
+    'expert': { zh:'专家', en:'Expert', ja:'上級者', fr:'Expert', de:'Experte', nl:'Expert', it:'Esperto', ru:'Эксперт', pt:'Especialista', sv:'Expert', no:'Ekspert', es:'Experto', ko:'전문가', id:'Ahli' },
     'reef': { zh:'珊瑚礁', en:'Reef', ja:'リーフ', fr:'Récif', de:'Riff', nl:'Rif', it:'Barriera corallina', ru:'Риф', pt:'Recife', sv:'Rev', no:'Rev', es:'Arrecife', ko:'산호초', id:'Terumbu' },
     'wall': { zh:'断崖', en:'Wall', ja:'ウォール', fr:'Paroi', de:'Steilwand', nl:'Wand', it:'Parete', ru:'Стенка', pt:'Parede', sv:'Vägg', no:'Vegg', es:'Pared', ko:'절벽', id:'Dinding' },
     'sandy bottom': { zh:'沙地', en:'Sandy bottom', ja:'砂地', fr:'Fond sableux', de:'Sandgrund', nl:'Zandbodem', it:'Fondale sabbioso', ru:'Песчаное дно', pt:'Fundo arenoso', sv:'Sandbotten', no:'Sandbunn', es:'Fondo arenoso', ko:'모래 바닥', id:'Dasar berpasir' },
@@ -21157,12 +21548,189 @@ ZSD·2016–2025</span></span>
     'fjord': { zh:'峡湾', en:'Fjord', ja:'フィヨルド', fr:'Fjord', de:'Fjord', nl:'Fjord', it:'Fiordo', ru:'Фьорд', pt:'Fiorde', sv:'Fjord', no:'Fjord', es:'Fiordo', ko:'피오르', id:'Fjord' }
   };
 
-  function diveTypeLabel(rawType) {
+  function diveCategoryLabel(rawType) {
     const raw = String(rawType || '').trim();
     if (!raw) return '';
-    const item = DIVE_TYPE_LABELS[raw.toLowerCase()];
-    if (!item) return raw;
+    const item = DIVE_TYPE_LABELS[raw.toLowerCase().replaceAll('_', ' ')];
+    if (!item) return raw.replaceAll('_', ' ');
     return item[currentLang] || item.en || raw;
+  }
+
+  function diveCategoryValue(rawValue) {
+    return String(rawValue || '').split(/(\s*[|·,;]\s*)/g)
+      .map(part => /^[|·,;]$/.test(part.trim()) ? part : diveCategoryLabel(part))
+      .join('');
+  }
+
+  function diveTypeLabel(rawType) {
+    return diveCategoryLabel(rawType);
+  }
+
+  function getDiveSiteReviewedCategories(site) {
+    if (!Array.isArray(site) || site[17]?.status !== 'reviewed') return null;
+    return {
+      setting: site[14] || null,
+      access: site[15] || null,
+      features: Array.isArray(site[16]) ? site[16].filter(Boolean) : []
+    };
+  }
+
+  function diveSourceDisplayLabel(label) {
+    return String(label || '')
+      .replace(/\s*\([^)]*direct (?:site|record) URL not retained[^)]*\)/ig, '')
+      .trim();
+  }
+
+  function getPublishedDiveSiteSummary(site) {
+    const siteId = getDiveSiteStableId(site).toLowerCase();
+    const rawSummary = DIVE_SITE_SUMMARIES?.bySiteId?.[siteId];
+    if (!rawSummary) return null;
+    const sourceDefaults = DIVE_SITE_SUMMARIES?.sourceDefaults || {};
+    const profileSnapshot = rawSummary.type === 'profileSnapshot';
+    const summary = {
+      ...(profileSnapshot
+        ? DIVE_SITE_SUMMARIES.profileSnapshotDefaults || {}
+        : DIVE_SITE_SUMMARIES.defaults || {}),
+      ...rawSummary,
+      sources: Array.isArray(rawSummary.sources)
+        ? rawSummary.sources.map(source => {
+          if (!Array.isArray(source)) return source;
+          const defaultsKey = profileSnapshot
+            ? 'snapshot'
+            : source[1] ? 'linked' : 'named';
+          return {
+            ...(sourceDefaults[defaultsKey] || {}),
+            label: source[0],
+            url: source[1],
+            referenceId: source[2],
+            ...(Array.isArray(source[3]) ? { claims: source[3] } : {})
+          };
+        })
+        : []
+    };
+    return summary.status === 'published' && summary.description
+      ? summary
+      : null;
+  }
+
+  function getDiveSiteEvidenceLinks(site) {
+    const metadata = Array.isArray(site) ? site[17] : null;
+    if (metadata?.status !== 'reviewed') return [];
+
+    const sourceNames = String(metadata.evidenceSource || '')
+      .split(/\s*;\s*/)
+      .map(value => value.trim())
+      .filter(Boolean);
+    const references = String(metadata.evidenceUrlOrId || '')
+      .split(/\s*;\s*/)
+      .map(value => value.trim())
+      .filter(value => {
+        try {
+          const url = new URL(value);
+          return url.protocol === 'https:' || url.protocol === 'http:';
+        } catch {
+          return false;
+        }
+      });
+
+    const sourceLabel = sourceNames.length === references.length
+      ? null
+      : sourceNames.join(' · ');
+    return references.map((url, index) => ({
+      url,
+      label: sourceLabel || sourceNames[index] || `${t('diveEvidence')} ${index + 1}`
+    }));
+  }
+
+  function hydrateDiveSiteSummaryPopup(popup) {
+    const site = popup?._diveAtlasSiteRecord;
+    const popupElement = popup?.getElement?.();
+    if (!site || !popupElement || popup._diveAtlasSummaryLoaded || popup._diveAtlasSummaryLoading) return;
+
+    popup._diveAtlasSummaryLoading = true;
+    ensureDiveSiteSummaries().then(() => {
+      popup._diveAtlasSummaryLoading = false;
+      if (!popup.isOpen() || popup.getElement() !== popupElement) return;
+
+      const summarySlot = popupElement.querySelector('.dive-popup-summary-slot');
+      const summary = getPublishedDiveSiteSummary(site);
+      if (summarySlot && summarySlot.dataset.loaded !== 'true') {
+        summarySlot.dataset.loaded = 'true';
+        if (summary) {
+          summarySlot.hidden = false;
+          summarySlot.className = 'dive-popup-summary dive-popup-summary-slot';
+          summarySlot.innerHTML =
+            `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
+            `<p>${escapeHtml(summary.description)}</p>` +
+            (summary.evidenceNote
+              ? `<p class="dive-popup-summary__note">${escapeHtml(summary.evidenceNote)}</p>`
+              : '');
+        } else {
+          summarySlot.remove();
+        }
+      }
+
+      const sourceTooltip = popupElement.querySelector('.dive-popup-sources__tooltip');
+      const knownReferenceUrls = new Set(
+        Array.from(popupElement.querySelectorAll('.dive-popup-sources__tooltip a[href]'))
+          .map(link => link.href.replace(/\/+$/, '').toLowerCase())
+      );
+      const summaryReferences = (summary?.sources || [])
+        .filter(source => {
+          const url = String(source.url || '');
+          if (!/^https?:\/\//i.test(url)) return true;
+          const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
+          if (knownReferenceUrls.has(normalizedUrl)) return false;
+          knownReferenceUrls.add(normalizedUrl);
+          return true;
+        })
+        .map(source => {
+          const url = String(source.url || '');
+          const label = diveSourceDisplayLabel(source.label);
+          if (/^https?:\/\//i.test(url)) return popupSourceLink(url, label || url);
+          return [label, source.referenceId]
+            .filter(Boolean).map(value => escapeHtml(String(value))).join(' · ');
+        })
+        .filter(Boolean);
+      const hasSummaryReferenceUrl = (summary?.sources || []).some(source =>
+        /^https?:\/\//i.test(String(source.url || ''))
+      );
+      if (hasSummaryReferenceUrl && sourceTooltip) {
+        const datasetSources = sourceTooltip.querySelector('.dive-popup-dataset-sources');
+        if (datasetSources) {
+          datasetSources.innerHTML = renderDiveSourceLinks(String(site[8] || ''), true);
+          if (!datasetSources.innerHTML) {
+            datasetSources.remove();
+            sourceTooltip.innerHTML = sourceTooltip.innerHTML.replace(/^\s*·\s*/, '');
+          }
+        }
+      }
+      if (summaryReferences.length) {
+        let target = sourceTooltip;
+        if (!target) {
+          const details = document.createElement('details');
+          details.className = 'bio-popup-source dive-popup-source--compact dive-popup-sources';
+          details.innerHTML = `<summary>${escapeHtml(t('diveSource'))}</summary><div class="dive-popup-sources__tooltip"></div>`;
+          popupElement.querySelector('.bio-popup')?.append(details);
+          target = details.querySelector('.dive-popup-sources__tooltip');
+        }
+        target.innerHTML = [target.innerHTML.trim(), ...summaryReferences].filter(Boolean).join(' · ');
+      }
+
+      const emptySources = popupElement.querySelector('.dive-popup-sources');
+      if (emptySources && !emptySources.querySelector('.dive-popup-sources__tooltip')?.innerHTML.trim()) {
+        emptySources.remove();
+      }
+      const emptyFooter = popupElement.querySelector('.dive-popup-footer');
+      if (emptyFooter && !emptyFooter.children.length) emptyFooter.remove();
+
+      popup._diveAtlasSummaryLoaded = true;
+      const popupContent = popupElement.querySelector('.bio-popup');
+      if (popupContent) popup.setContent(popupContent);
+    }).catch(error => {
+      popup._diveAtlasSummaryLoading = false;
+      console.warn('Dive-site summaries could not be loaded.', error);
+    });
   }
 
   function parseDiveSiteTypes(siteTypes) {
@@ -21657,11 +22225,19 @@ ZSD·2016–2025</span></span>
       String(nameRaw || '').trim() ||
       t('diveSiteGeneric');
 
-    const level = String(levelRaw || '').trim();
+      const level = String(levelRaw || '').trim();
     const siteTypes = String(siteTypesRaw || '').trim();
-    const siteTypeList = parseDiveSiteTypes(siteTypes);
+    const reviewedCategories = getDiveSiteReviewedCategories(site);
+    const siteTypeList = reviewedCategories
+      ? [
+          reviewedCategories.setting,
+          reviewedCategories.access,
+          ...reviewedCategories.features
+        ].filter(Boolean)
+      : parseDiveSiteTypes(siteTypes);
     const sources = String(sourcesRaw || '').trim();
     const photo = getDiveSitePhoto(site);
+    const siteSummary = getPublishedDiveSiteSummary(site);
 
     const marker = L.circleMarker(
       [lat, lng],
@@ -21719,9 +22295,11 @@ ZSD·2016–2025</span></span>
         `alt="" aria-hidden="true" width="640" height="360" ` +
         `loading="eager" decoding="async">` +
         `<div class="dive-popup-photo-shade" aria-hidden="true"></div>` +
+        `<button class="dive-popup-photo-trigger" type="button" ` +
+        `aria-label="${escapeHtml(t('divePhotoPreview'))}">` +
         `<img class="dive-popup-photo" src="${escapeHtml(photo.src)}" ` +
         `alt="${escapeHtml(photo.alt)}" width="640" height="360" ` +
-        `loading="eager" decoding="async">` +
+        `loading="eager" decoding="async"></button>` +
         `</div>`,
         `<div class="dive-popup-body">`
       );
@@ -21730,6 +22308,20 @@ ZSD·2016–2025</span></span>
       `<div class="bio-popup-title">${escapeHtml(name)}</div>`,
       `<div class="bio-popup-meta">${popupTitle}</div>`
     );
+
+    if (siteSummary) {
+      rows.push(
+        `<section class="dive-popup-summary dive-popup-summary-slot" data-loaded="true">` +
+        `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
+        `<p>${escapeHtml(siteSummary.description)}</p>` +
+        (siteSummary.evidenceNote
+          ? `<p class="dive-popup-summary__note">${escapeHtml(siteSummary.evidenceNote)}</p>`
+          : '') +
+        `</section>`
+      );
+    } else {
+      rows.push(`<section class="dive-popup-summary-slot" hidden></section>`);
+    }
 
     const properties = [];
     if (rangeText) {
@@ -21754,36 +22346,103 @@ ZSD·2016–2025</span></span>
       properties.push(
         `<div class="dive-popup-property">` +
         `<span class="dive-popup-property__label">${t('diveLevel')}</span>` +
-        `<span class="dive-popup-property__value">${escapeHtml(level)}</span>` +
+        `<span class="dive-popup-property__value">${escapeHtml(diveCategoryValue(level))}</span>` +
+        `</div>`
+      );
+    }
+
+    if (reviewedCategories) {
+      const reviewedRows = [
+        [t('diveSetting'), reviewedCategories.setting],
+        [t('diveAccess'), reviewedCategories.access],
+        [t('diveFeatures'), reviewedCategories.features.join(' · ')]
+      ].filter(([, value]) => value);
+      properties.push(...reviewedRows.map(([label, value]) =>
+        `<div class="dive-popup-property">` +
+        `<span class="dive-popup-property__label">${escapeHtml(label)}</span>` +
+        `<span class="dive-popup-property__value">${escapeHtml(
+          diveCategoryValue(value)
+        )}</span>` +
+        `</div>`
+      ));
+      if (siteTypes) {
+        properties.push(
+          `<div class="dive-popup-property">` +
+          `<span class="dive-popup-property__label">${t('diveOriginalType')}</span>` +
+          `<span class="dive-popup-property__value">${escapeHtml(siteTypes)}</span>` +
+          `</div>`
+        );
+      }
+    } else if (siteTypeList.length) {
+      properties.push(
+        `<div class="dive-popup-property">` +
+        `<span class="dive-popup-property__label">${t('diveType')}</span>` +
+        `<span class="dive-popup-property__value">` +
+        siteTypeList.map(type => escapeHtml(diveTypeLabel(type))).join(' · ') +
+        `</span>` +
         `</div>`
       );
     }
 
     if (properties.length) rows.push(`<div class="dive-popup-properties">${properties.join('')}</div>`);
 
-    if (siteTypeList.length) {
-      rows.push(
-        `<div class="dive-popup-types">` +
-        `<div class="dive-popup-types__label">${t('diveType')}</div>` +
-        `<div class="dive-popup-types__values">` +
-        siteTypeList.map(type => escapeHtml(diveTypeLabel(type))).join(' · ') +
-        `</div>` +
+    const evidenceLinks = getDiveSiteEvidenceLinks(site);
+    const evidenceUrlSet = new Set(
+      evidenceLinks
+        .map(({ url }) => String(url || '').replace(/\/+$/, '').toLowerCase())
+        .filter(Boolean)
+    );
+    const summaryUrlSet = new Set();
+    const summaryLinks = (siteSummary?.sources || [])
+      .filter(source => {
+        const url = String(source.url || '');
+        if (!/^https?:\/\//i.test(url)) return true;
+        const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
+        if (evidenceUrlSet.has(normalizedUrl) || summaryUrlSet.has(normalizedUrl)) return false;
+        summaryUrlSet.add(normalizedUrl);
+        return true;
+      })
+      .map(source => {
+        const url = String(source.url || '');
+        const label = diveSourceDisplayLabel(source.label);
+        if (/^https?:\/\//i.test(url)) {
+          return popupSourceLink(url, label || url);
+        }
+        const reference = [label, source.referenceId]
+          .filter(Boolean).map(value => escapeHtml(String(value))).join(' · ');
+        return reference ? `<span>${reference}</span>` : '';
+      })
+      .filter(Boolean);
+    const hasReferenceUrl = evidenceLinks.length > 0 || (siteSummary?.sources || []).some(source =>
+      /^https?:\/\//i.test(String(source.url || ''))
+    );
+    const datasetSourceLinks = renderDiveSourceLinks(sources, hasReferenceUrl);
+    const sourceContent = [
+      datasetSourceLinks ? `<span class="dive-popup-dataset-sources">${datasetSourceLinks}</span>` : '',
+      evidenceLinks.map(({ url, label }) => popupSourceLink(url, label)).join(' · '),
+      summaryLinks.join(' · ')
+    ].filter(Boolean).join(' · ');
+    const footerItems = [];
+    if (photo) {
+      footerItems.push(
+        `<div class="dive-popup-photo-credit">` +
+        `${t('divePhotoCredit')}: ${escapeHtml(photo.credit)}` +
         `</div>`
       );
     }
-
-    rows.push(
-      `<div class="bio-popup-source dive-popup-source--compact">` +
-      `${t('diveSource')}: ${renderDiveSourceLinks(sources)}` +
-      `</div>`
-    );
-    if (photo) {
-      rows.push(
-        `<div class="dive-popup-photo-credit">` +
-        `${t('divePhotoCredit')}: ${escapeHtml(photo.credit)}` +
-        `</div>`,
-        `</div>`
+    if (sourceContent || !siteSummary) {
+      footerItems.push(
+        `<details class="bio-popup-source dive-popup-source--compact dive-popup-sources">` +
+        `<summary>${escapeHtml(t('diveSource'))}</summary>` +
+        `<div class="dive-popup-sources__tooltip">${sourceContent}</div>` +
+        `</details>`
       );
+    }
+    if (footerItems.length) {
+      rows.push(`<div class="dive-popup-footer">${footerItems.join('')}</div>`);
+    }
+    if (photo) {
+      rows.push(`</div>`);
     }
 
     bindMapInfoPopup(
@@ -21793,18 +22452,28 @@ ZSD·2016–2025</span></span>
         maxWidth: 280,
         minWidth: 210,
         closeButton: true,
-        className: photo ? 'dive-site-popup--with-photo' : ''
+        className: `dive-site-popup${photo ? ' dive-site-popup--with-photo' : ''}`
       }
     );
     marker.getPopup()._diveAtlasSiteId = getDiveSiteStableId(site);
+    marker.getPopup()._diveAtlasSiteRecord = site;
 
     if (photo) {
       marker.on('popupopen', event => {
         const popup = event.popup;
         const popupElement = popup.getElement();
-        const image = popupElement?.querySelector('.dive-popup-photo');
+        const trigger = popupElement?.querySelector('.dive-popup-photo-trigger');
+        const image = trigger?.querySelector('.dive-popup-photo');
         const frame = popupElement?.querySelector('.dive-popup-photo-frame');
         if (!image) return;
+
+        if (trigger && trigger.dataset.previewBound !== 'true') {
+          trigger.dataset.previewBound = 'true';
+          trigger.addEventListener('click', clickEvent => {
+            clickEvent.stopPropagation();
+            openDivePhotoPreview(photo, name, popup);
+          });
+        }
 
         const updatePhotoFit = () => {
           if (!image.naturalWidth || !image.naturalHeight) return;
@@ -22453,6 +23122,7 @@ ZSD·2016–2025</span></span>
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
+    hydrateDiveSiteSummaryPopup(popup);
     if (popup._diveAtlasLayerKey === 'reef-survey-condition') {
       if (!popup._diveAtlasInfoPopoverContentUpdateHandler) {
         // Managed placement calls popup.update(), which recreates string-based

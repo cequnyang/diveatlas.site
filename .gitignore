@@ -23,6 +23,7 @@ playwright-report/
 !/docs/dive-experience-confidence-guide.md
 !/docs/dive-site-category-contract.md
 !/docs/export_dive_site_category_review.py
+!/docs/dive-site-summary-descriptions.md
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py
