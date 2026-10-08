@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
-const { openMap, setMapView } = require('./support');
+const { openMap, selectEnvironmentView, setMapView } = require('./support');
 
 const EXPERIMENT_URL = '/?__diveatlas_test=1&__currents_flow=1&lat=-8&lng=130&z=8';
 
@@ -9,7 +9,7 @@ async function enableCurrents(page) {
   const panel = page.locator('#bioLegend');
   if (await panel.evaluate(node => node.classList.contains('is-collapsed'))) await page.locator('#bioLegendTitle').click();
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'false');
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect(page.locator('#currentsControls')).toBeVisible();
   await page.locator('#currentsDepth').selectOption('0');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
@@ -170,7 +170,7 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   await page.locator('#currentsDepth').selectOption('0');
   await expectCurrentFieldReady(page);
 
-  await page.locator('label.environment-segment:has(input[name="environmentView"][value="default"])').click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('.regional-current-flow-canvas')).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.state?.rafActive)).toBe(false);
   const requestCountWhenOff = flowRequests.length;
@@ -178,7 +178,7 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   expect(flowRequests).toHaveLength(requestCountWhenOff);
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.activate());
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('reduced-motion');
   await expect(page.locator('.regional-current-flow-canvas')).toHaveCount(0);

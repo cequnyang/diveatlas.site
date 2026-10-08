@@ -1,7 +1,7 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const { openMap, setMapView } = require('./support');
+const { openMap, selectEnvironmentView, setMapView } = require('./support');
 
 async function setLegendCollapsed(page, collapsed) {
   const isCollapsed = await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'));
@@ -28,11 +28,8 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   const monthAsset = `month-${String(month).padStart(2, '0')}.bin.gz`;
   await setMapView(page, -5.7, 131, 7);
   await setLegendCollapsed(page, false);
-  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
   const activationStarted = Date.now();
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
-  }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await expect(page.locator('#diveExperienceOutlookPanel')).toBeVisible();
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   if (test.info().project.name === 'mobile-touch-chromium') {
@@ -220,7 +217,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
 
 test('Dive Experience Outlook can be disabled for a staged rollout', async ({ page }) => {
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-5.7&lng=131&z=7&diveExperienceOutlook=0' });
-  await expect(page.locator('[data-dive-experience-outlook]')).toBeHidden();
+  await expect(page.locator('.environment-featured-view[data-dive-experience-outlook]')).toBeHidden();
   await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveCount(0);
   expect(page.url()).toContain('diveExperienceOutlook=0');
 });
@@ -228,9 +225,7 @@ test('Dive Experience Outlook can be disabled for a staged rollout', async ({ pa
 test('Dive Experience panel, popup, and info tooltip follow every supported language', async ({ page }, testInfo) => {
   await openMap(page);
   await setLegendCollapsed(page, false);
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
-  }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   const titles = {
     en:'Dive Experience Outlook', zh:'潜水体验展望', ja:'ダイビング体験の見通し', fr:'Perspectives de plongée',
@@ -280,10 +275,7 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
 test('Dive Experience popup reports the selected cell outlook and supporting evidence', async ({ page }) => {
   await openMap(page, { url:'/?__diveatlas_test=1&lat=69.53125&lng=-23.46875&z=7' });
   await setLegendCollapsed(page, false);
-  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
-  }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
   await setLegendCollapsed(page, true);
@@ -306,9 +298,7 @@ test('Dive Experience still shows a local outlook when the physical-conditions s
   await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({ status:503, body:'Unavailable' }));
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
   await setLegendCollapsed(page, false);
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
-  }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
   await setLegendCollapsed(page, true);
@@ -325,9 +315,7 @@ test('expanded Dive Experience month chart stays inside the popup safe area', as
   await page.setViewportSize({ width:390, height:640 });
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
   await setLegendCollapsed(page, false);
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
-  }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await setLegendCollapsed(page, true);
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
   await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);

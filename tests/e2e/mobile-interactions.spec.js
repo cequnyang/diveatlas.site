@@ -4,6 +4,7 @@ const {
   mapState,
   openMap,
   resetActionCount,
+  selectEnvironmentView,
   setMapView,
   waitForClickResolution
 } = require('./support');
@@ -14,27 +15,24 @@ test('Waves remains reachable on mobile, fits the panel, and follows the map the
   if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
   }
-  await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = track.scrollWidth; });
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="waves"]') }).click();
+  await selectEnvironmentView(page, 'waves');
   await expect(page.locator('#wavesControls')).toBeVisible();
   await expect(page.locator('#wavesStatus')).toHaveAttribute('data-state', 'ready');
   const light = await page.evaluate(() => {
     const panel = document.querySelector('#bioLegend').getBoundingClientRect();
-    const track = document.querySelector('.environment-segment-group');
     const tileLayer = document.querySelector('.waves-tiles');
     return {
       panelWidth: panel.width,
       viewportWidth: document.documentElement.clientWidth,
-      scrollWidth: track.scrollWidth,
-      visibleWidth: track.clientWidth,
       selectedWaves: document.querySelector('input[name="environmentView"][value="waves"]').checked,
+      oceanGroupCollapsed: !document.querySelector('#environmentOceanViewsGroup').open,
       mapFilter: getComputedStyle(tileLayer).filter,
       mapOpacity: getComputedStyle(tileLayer).opacity
     };
   });
   expect(light.panelWidth).toBeLessThanOrEqual(light.viewportWidth - 16);
-  expect(light.scrollWidth).toBeGreaterThan(light.visibleWidth);
   expect(light.selectedWaves).toBe(true);
+  expect(light.oceanGroupCollapsed).toBe(true);
 
   await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
   const dark = await page.locator('.waves-tiles').evaluate(node => ({
@@ -44,7 +42,7 @@ test('Waves remains reachable on mobile, fits the panel, and follows the map the
   expect(dark.mapFilter).not.toBe(light.mapFilter);
   expect(dark.mapOpacity).not.toBe(light.mapOpacity);
 
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') }).click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('.waves-tiles')).toHaveCount(0);
   await expect(page.locator('#wavesControls')).toBeHidden();
 });
@@ -104,9 +102,7 @@ test('mobile long press on empty ocean opens Depth Inspection', async ({ page })
   if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
   }
-  const terrainSegment = page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="default"]') });
-  await terrainSegment.scrollIntoViewIfNeeded();
-  await terrainSegment.click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
   await dispatchTouchSequence(page, { duration: 720 });
   await expect(page.locator('.leaflet-popup')).toBeVisible({ timeout: 5000 });

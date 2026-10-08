@@ -1,18 +1,15 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const { openMap } = require('./support');
+const { openMap, selectEnvironmentView } = require('./support');
 
 async function openReefView(page, testInfo) {
   if (testInfo.project.name.includes('mobile')) {
     if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
       await page.locator('#bioLegendTitle').click();
     }
-    await page.locator('.environment-segment-group').evaluate(group => { group.scrollLeft = group.scrollWidth; });
   }
-  await page.locator('.environment-segment').filter({
-    has:page.locator('input[name="environmentView"][value="reef-survey-condition"]')
-  }).click();
+  await selectEnvironmentView(page, 'reef-survey-condition');
   await expect(page.locator('#reefSurveyConditionControls')).toBeVisible();
 }
 

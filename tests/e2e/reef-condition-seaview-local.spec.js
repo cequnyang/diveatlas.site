@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
-const { openMap } = require('./support');
+const { openMap, selectEnvironmentView } = require('./support');
 
 const SCREENSHOT_DIR = path.resolve('data/.build/reef_condition/seaview/screenshots');
 const CANONICAL_BUNDLE = path.resolve('data/.build/reef_condition/seaview/canonical.json.gz');
@@ -32,10 +32,8 @@ async function openReefCondition(page, mobile) {
     if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
       await page.locator('#bioLegendTitle').click();
     }
-    await page.locator('.environment-segment-group').evaluate(group => { group.scrollLeft = group.scrollWidth; });
   }
-  const tab = page.locator('input[name="environmentView"][value="reef-survey-condition"]');
-  await page.locator('.environment-segment').filter({ has: tab }).click();
+  await selectEnvironmentView(page, 'reef-survey-condition');
   await setLayersPanelCollapsed(page, false);
   await expect(page.locator('#reefSurveyMetric')).toBeVisible();
 }

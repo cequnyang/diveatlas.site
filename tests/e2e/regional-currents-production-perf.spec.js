@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
-const { openMap } = require('./support');
+const { openMap, selectEnvironmentView } = require('./support');
 
 const sourceRoot = path.resolve(__dirname, '../..');
 const baselineHtml = execFileSync('git', ['show', 'HEAD:index.html'], {
@@ -128,7 +128,7 @@ test('measures disabled startup and real global current tile loading, redraw, an
   await openLayersPanel(page);
   const globalStart = Date.now();
   const metadataResponse = page.waitForResponse(response => /\/data\/currents\/metadata\.json/.test(response.url()));
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await metadataResponse;
   await page.locator('#currentsDepth').selectOption('0');
   // The experimental particle field contains September surface data only.

@@ -1,11 +1,10 @@
 const { test, expect } = require('@playwright/test');
-const { openMap, openMobileSettings, setMapView } = require('./support');
+const { openMap, openMobileSettings, selectEnvironmentView, setMapView } = require('./support');
 
 test('standalone Dive Conditions tab is removed while Dive Experience retains monthly conditions', async ({ page }) => {
   await openMap(page);
   if (page.viewportSize().width <= 720) {
     if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) await page.locator('#bioLegendTitle').click();
-    await page.locator('.environment-segment-group').evaluate(group => { group.scrollLeft = 0; });
   }
   await setMapView(page, -5, 130, 7);
 
@@ -15,7 +14,7 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await expect(page.locator('#diveExperienceMonth')).toBeAttached();
   await expect(page.locator('#environmentViewSelect option[value="dive-conditions"]')).toHaveCount(0);
 
-  await page.locator('.environment-segment').filter({ hasText: 'Dive Experience' }).click();
+  await selectEnvironmentView(page, 'dive-experience-outlook');
   await page.getByRole('button', { name: 'Map layers' }).click();
   await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;

@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const fixture = require('../fixtures/reef-condition/mock-raja-ampat.json');
-const { openMap } = require('./support');
+const { openMap, selectEnvironmentView } = require('./support');
 
 async function expandLayers(page) {
   if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
@@ -13,9 +13,8 @@ async function openReefCondition(page, testInfo) {
   await openMap(page, { url: '/?__diveatlas_test=1&lat=-5.7&lng=131&z=5' });
   if (testInfo.project.name.includes('mobile')) {
     if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) await page.locator('#bioLegendTitle').click();
-    await page.locator('.environment-segment-group').evaluate(group => { group.scrollLeft = group.scrollWidth; });
   }
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="reef-survey-condition"]') }).click();
+  await selectEnvironmentView(page, 'reef-survey-condition');
   if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
     await page.getByRole('button', { name: 'Map layers' }).click();
   }

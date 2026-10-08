@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const { closeTopMenu, openMap, openTopMenu } = require('./support');
+const { closeTopMenu, openMap, openTopMenu, selectEnvironmentView } = require('./support');
 
 const fixtureRoot = path.resolve(__dirname, '..', 'fixtures', 'regional-currents-real');
 const samples = require('../fixtures/regional-currents-real/samples.json');
@@ -60,7 +60,7 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
   await openLayersPanel(page);
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-8, 130], 8, { animate: false }));
   const metadataRequest = page.waitForRequest(request => new URL(request.url()).pathname.endsWith('/metadata.json'));
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await metadataRequest;
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
@@ -157,9 +157,9 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
   await openLayersPanel(page);
   await page.locator('label.layer-switch-label:has(#terrainLayerToggle) .layer-toggle-switch').click();
   await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
-  await page.locator('label.environment-segment:has(input[name="environmentView"][value="default"])').click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('.regional-current-speed-tint-tile')).toHaveCount(0);
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   await expect.poll(() => page.locator('.regional-current-speed-tint-tile').count()).toBeGreaterThan(0);
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -188,7 +188,7 @@ test('monthly current comparison leaves loading state when one tile request stal
   await openMap(page);
   await openLayersPanel(page);
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([-8, 130], 8, { animate: false }));
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   await page.locator('#currentsMonth').selectOption('9');
   await page.locator('#currentsDepth').selectOption('20');

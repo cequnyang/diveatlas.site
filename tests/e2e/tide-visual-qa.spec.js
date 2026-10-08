@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { test, expect } = require('@playwright/test');
+const { selectEnvironmentView } = require('./support');
 
 test('captures the requested Tide visual QA matrix', async ({ page, browser }) => {
   test.setTimeout(300_000);
@@ -16,10 +17,7 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.invalidateSize({ animate: false }));
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setLegendCollapsed(false));
 
-  const tab = view => page.locator('.environment-segment').filter({
-    has: page.locator(`input[name="environmentView"][value="${view}"]`)
-  });
-  await tab('tide').click();
+  await selectEnvironmentView(page, 'tide');
   await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
 
   async function center(lat, lon, zoom, theme = 'light') {

@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const zlib = require('node:zlib');
 const fixture = require('../fixtures/reef-condition/mock-raja-ampat.json');
-const { closeTopMenu, openMap, openMobileSettings, openTopMenu } = require('./support');
+const { closeTopMenu, openMap, openMobileSettings, openTopMenu, selectEnvironmentView } = require('./support');
 
 function thermalHistoryMetadata() {
   return {
@@ -49,9 +49,8 @@ async function openReefCondition(page, testInfo) {
   await openMap(page, { url: '/?__diveatlas_test=1&lat=0&lng=0&z=3' });
   if (testInfo.project.name.includes('mobile')) {
     if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) await page.locator('#bioLegendTitle').click();
-    await page.locator('.environment-segment-group').evaluate(group => { group.scrollLeft = group.scrollWidth; });
   }
-  await page.locator('.environment-segment').filter({ has: page.locator('input[name="environmentView"][value="reef-survey-condition"]') }).click();
+  await selectEnvironmentView(page, 'reef-survey-condition');
   if (await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
   }

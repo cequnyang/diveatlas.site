@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { openMap, setMapView } = require('./support');
+const { openMap, selectEnvironmentView, setMapView } = require('./support');
 
 async function expandLayers(page) {
   const layers = page.locator('#bioLegend');
@@ -16,16 +16,16 @@ test('Tide is a peer environmental tab with a lazy blue surface and numeric lege
   });
   await expandLayers(page);
 
-  const tideTab = page.locator('.environment-segment').filter({
-    has: page.locator('input[name="environmentView"][value="tide"]')
-  });
+  const tideTab = page.locator('#environmentTideLabelVisible');
+  const oceanViews = page.locator('#environmentOceanViewsGroup');
+  if (!(await oceanViews.evaluate(node => node.open))) await oceanViews.locator('summary').click();
   await expect(tideTab).toBeVisible();
-  await expect(tideTab.locator('span')).toHaveText('Tide');
+  await expect(tideTab).toHaveText('Tide');
   await expect(tideTab).toHaveCSS('min-height', '44px');
   await expect(page.locator('#tideControls')).toBeHidden();
   expect(tideRequests).toEqual([]);
 
-  await tideTab.click();
+  await selectEnvironmentView(page, 'tide');
   await expect(page.locator('#tideControls')).toBeVisible();
   await expect(page.locator('#tideTitle')).toHaveText('Tide');
   await expect(page.locator('#tideInfoAbout')).toBeVisible();
@@ -92,9 +92,7 @@ test('Tide map taps open a location popup directly and reuse nearby model data',
   await openMap(page);
   await setMapView(page, 44.9, -124.95, 5);
   await expandLayers(page);
-  await page.locator('.environment-segment').filter({
-    has: page.locator('input[name="environmentView"][value="tide"]')
-  }).click();
+  await selectEnvironmentView(page, 'tide');
   await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
   if (testInfo.project.name === 'mobile-touch-chromium') {
     const layers = page.locator('#bioLegend');

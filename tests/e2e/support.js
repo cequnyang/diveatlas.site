@@ -83,6 +83,15 @@ async function setMapView(page, lat, lng, zoom) {
   }, [lat, lng, zoom]);
 }
 
+async function selectEnvironmentView(page, view) {
+  const choice = page.locator(`[data-environment-view="${view}"]`);
+  const group = choice.locator('xpath=ancestor::details[1]');
+  if (await group.count() && !(await group.evaluate(node => node.open))) {
+    await group.locator('summary').click();
+  }
+  await choice.click();
+}
+
 async function addFixture(page, type, { id, lat, lng, count } = {}) {
   await page.evaluate(({ type, id, lat, lng, count }) => {
     const api = window.__DIVEATLAS_TEST__;
@@ -188,6 +197,7 @@ module.exports = {
   readTestDataAsset,
   openMap,
   resetActionCount,
+  selectEnvironmentView,
   setMapView,
   waitForClickResolution
 };

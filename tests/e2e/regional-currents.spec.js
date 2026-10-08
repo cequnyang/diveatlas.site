@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { gzipSync } = require('node:zlib');
-const { closeTopMenu, openMap, openMobileSettings, openTopMenu } = require('./support');
+const { closeTopMenu, openMap, openMobileSettings, openTopMenu, selectEnvironmentView } = require('./support');
 
 async function openLayersPanel(page) {
   const panel = page.locator('#bioLegend');
@@ -55,9 +55,6 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
 
   await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await openLayersPanel(page);
-  if (testInfo.project.name.includes('mobile')) {
-    await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = track.scrollWidth; });
-  }
   await page.route('**/data/currents/metadata.json', async route => {
     metadataRequests.push(route.request().url());
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify(metadata) });
@@ -67,7 +64,7 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
     await route.fulfill({ contentType: 'application/gzip', body: compressedTile });
   });
 
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect.poll(() => metadataRequests.length).toBe(1);
   await expect.poll(() => tileRequests.length).toBeGreaterThan(0);
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
@@ -124,15 +121,15 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   expect(tileRequests.length).toBe(requestsBeforeCachedReturn);
 
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
   await expect(page.locator('.regional-currents-popup')).toHaveCount(0);
   const requestsAfterDisable = tileRequests.length;
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
   expect(metadataRequests).toHaveLength(1);
   expect(tileRequests.length).toBe(requestsAfterDisable);
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'default');
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
 });
 
@@ -150,7 +147,7 @@ test('Regional Currents controls fit a narrow screen and keep touch-sized select
     })
   }));
   await openLayersPanel(page);
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   await expect(page.locator('#currentsControls')).toBeVisible();
   await expect(page.locator('#currentsStatus')).toContainText('unavailable');
   const measurements = await page.evaluate(() => {
@@ -171,7 +168,7 @@ test('Regional Currents controls fit a narrow screen and keep touch-sized select
 test('Regional Currents explanation card stays readable across themes and mobile width', async ({ page }) => {
   await openMap(page);
   await openLayersPanel(page);
-  await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
+  await selectEnvironmentView(page, 'currents');
   const card = page.locator('.regional-currents-legend-card');
   await expect(card).toBeVisible();
   await expect(card).toContainText('Typical regional current · m/s');
