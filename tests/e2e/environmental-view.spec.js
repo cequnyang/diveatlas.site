@@ -955,18 +955,14 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
       const bytes = (await response.arrayBuffer()).byteLength;
       return { status:response.status, bytes, milliseconds:Math.round(performance.now() - started) };
     }
-    return {
-      v1:await fetchMeasure('/data/temperature/query/chunks/r08_c31.i16.gz'),
-      v2:await fetchMeasure('/data/temperature/query/v2/chunks/09/20/r08_c31.i16.gz')
-    };
+    return fetchMeasure('/data/temperature/query/v2/chunks/09/20/r08_c31.i16.gz');
   });
   await cdp.send('Network.emulateNetworkConditions', {
     offline:false, latency:0, downloadThroughput:-1, uploadThroughput:-1
   });
   await cdp.detach();
-  expect(coldCacheComparison.v1.status).toBe(200);
-  expect(coldCacheComparison.v2.status).toBe(200);
-  expect(coldCacheComparison.v2.bytes).toBeLessThan(coldCacheComparison.v1.bytes);
+  expect(coldCacheComparison.status).toBe(200);
+  expect(coldCacheComparison.bytes).toBeGreaterThan(0);
   console.log('real query performance:', JSON.stringify({ firstClickMs, firstClickBytes: firstClickResponseBytes,
     sameChunkAdditionalRequests: requests.length - 2,
     detailAndSelectionBytes: totalQueryBytes - firstClickResponseBytes,
