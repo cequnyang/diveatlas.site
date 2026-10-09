@@ -24,6 +24,7 @@ playwright-report/
 !/docs/dive-site-category-contract.md
 !/docs/export_dive_site_category_review.py
 !/docs/dive-site-summary-descriptions.md
+!/docs/country-boundaries.md
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py

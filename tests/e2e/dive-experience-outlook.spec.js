@@ -292,6 +292,7 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   expect(interaction).toBe('dive-experience-outlook-location-selected');
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
+  await expect(popup.locator('.dive-conditions-popup-region')).toHaveText('Greenland · Denmark · Europe');
   const selectedCell = await page.evaluate(async () => {
     const store = window.DiveAtlasDiveExperienceMap.createDataStore();
     return store.sample({ lat:69.53125, lng:-23.46875 }, Number(document.querySelector('#diveExperienceMonth').value));
@@ -300,6 +301,29 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   await expect(popup.locator('.dive-experience-main-score')).toContainText(`${selectedCell.score}/100`);
   await expect(popup.locator('.dive-experience-evidence-line')).toContainText(`${selectedCell.activeDimensionCount} of 7 dimensions available`);
   await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
+  const australiaPoint = { lat:-28.536, lng:137.505 };
+  await waitForMapInteractionWindow(page);
+  expect(await page.evaluate(({ lat, lng }) => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat, lng }), australiaPoint))
+    .toBe('dive-experience-outlook-location-selected');
+  await expect(popup.locator('.dive-conditions-popup-region')).toHaveText('Australia · Oceania');
+  const indonesiaPoint = { lat:-4.303, lng:124.629 };
+  await waitForMapInteractionWindow(page);
+  expect(await page.evaluate(({ lat, lng }) => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat, lng }), indonesiaPoint))
+    .toBe('dive-experience-outlook-location-selected');
+  await expect(popup.locator('.dive-conditions-popup-region')).toHaveText('Indonesia · Asia');
+  const screenshotPoints = [
+    { point:{ lat:-2.285, lng:100.107 }, label:'Indonesia · Asia' },
+    { point:{ lat:7.202, lng:134.547 }, label:'Palau · Oceania' },
+    { point:{ lat:8.059, lng:110.127 }, label:'Vietnam · Asia' },
+    { point:{ lat:4.697, lng:73.037 }, label:'Maldives · Asia' },
+    { point:{ lat:13.595, lng:144.745 }, label:'Guam · United States of America · Americas' }
+  ];
+  for (const { point, label } of screenshotPoints) {
+    await waitForMapInteractionWindow(page);
+    expect(await page.evaluate(({ lat, lng }) => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat, lng }), point))
+      .toBe('dive-experience-outlook-location-selected');
+    await expect(popup.locator('.dive-conditions-popup-region')).toHaveText(label);
+  }
 });
 
 test('Dive Experience still shows a local outlook when the physical-conditions service fails to load', async ({ page }) => {

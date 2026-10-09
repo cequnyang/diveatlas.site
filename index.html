@@ -1794,10 +1794,12 @@
     .dive-conditions-reef-profile-controls input[type="checkbox"] { width:13px; height:13px; margin:0; accent-color:var(--primary); }
     .dive-conditions-reef-explanation { margin:5px 0 0; color:var(--layers-legend-meta,var(--text-muted)); font-size:9px; line-height:1.4; }
     .dive-conditions-popup-subtitle { margin:0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:12px; line-height:1.05; }
-    .dive-conditions-popup-location-row { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+    .dive-conditions-popup-location-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:baseline; gap:3px 8px; }
     .dive-conditions-popup-header-block { display:block; }
     .dive-conditions-popup-header-block .dive-conditions-popup-location-row { margin:7px 0 0; }
     .dive-conditions-popup-location { margin:0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:10px; line-height:1.05; font-variant-numeric:tabular-nums; }
+    .dive-conditions-popup-region { grid-column:1; margin:0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:9px; line-height:1.05; }
+    .dive-conditions-popup-month { grid-column:2; grid-row:1 / span 2; align-self:center; }
     .dive-conditions-popup-month { flex:0 0 auto; margin:0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:10px; line-height:1.05; text-align:right; }
     .dive-conditions-popup-header { display:grid; gap:4px; margin:0 0 1px; padding:0 0 9px; border-bottom:1px solid var(--line); }
     .dive-conditions-popup-content .dive-conditions-grid { grid-template-columns:minmax(0,1fr); gap:2px; }
@@ -12211,13 +12213,52 @@ ZSD·2016–2025</span></span>
     const location = document.createElement('p');
     location.className = 'dive-conditions-popup-location';
     location.textContent = `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`;
+    const region = document.createElement('p');
+    region.className = 'dive-conditions-popup-region';
+    region.hidden = true;
     const monthLabel = document.createElement('p');
     monthLabel.className = 'dive-conditions-popup-month';
     monthLabel.textContent = localizedTemperatureMonth(diveConditionsMonth);
-    locationRow.append(location, monthLabel);
+    locationRow.append(location, region, monthLabel);
     header.append(titleRow, month);
     headerBlock.append(header, locationRow);
+    void updateDiveConditionsRegionLabel(region, latlng);
     return headerBlock;
+  }
+  async function updateDiveConditionsRegionLabel(element, latlng) {
+    try {
+      const { lookupCountryAtLocation } = await import('./js/country-region-lookup.js');
+      const location = await lookupCountryAtLocation(latlng);
+      if (location) {
+        if (location.kind === 'ambiguous' || location.kind === 'joint') {
+          const label = location.kind === 'ambiguous' ? 'Overlapping maritime claims' : 'Joint maritime zone';
+          element.textContent = `${label} · ${location.names.join(' / ')}`;
+        } else {
+          const country = location.properties;
+          const countryName = country.names?.[currentLang] || country.name;
+          const displayName = location.territory ? `${location.territory} · ${countryName}` : countryName;
+          const region = country.region ? ` · ${country.region}` : '';
+          element.textContent = `${displayName}${region}`;
+        }
+      } else {
+        element.textContent = diveExperienceOceanRegion(latlng);
+      }
+      element.hidden = false;
+    } catch (error) {
+      // Coordinates remain useful if the optional local region dataset cannot be read.
+      element.hidden = true;
+    }
+  }
+  function diveExperienceOceanRegion(latlng) {
+    const { lat, lng } = latlng;
+    const lon = normalizeBaseLongitude(lng);
+    // Broad geographic basins provide useful map context without implying a site-level geocode.
+    if (lat <= -60) return 'Southern Ocean';
+    if (lat >= 66.5) return 'Arctic Ocean';
+    if (lon >= 20 && lon < 100) return 'Indian Ocean';
+    if (lon >= 100 && lon < 130) return 'Indo-Pacific';
+    if (lon >= 130 || lon < -70) return 'Pacific Ocean';
+    return 'Atlantic Ocean';
   }
   function syncDiveConditionsPopupTheme(content) {
     const panelStyle = getComputedStyle(els.bioLegend);
@@ -16197,7 +16238,10 @@ ZSD·2016–2025</span></span>
       if (typeof DecompressionStream !== 'function') {
         throw new Error('This browser does not support gzip decompression for dive-site summaries.');
       }
-      const response = await fetch('datasets/dive-site-summaries.json.gz?v=2');
+      const summariesUrl = window.DiveAtlasDataAssets?.external
+        ? window.DiveAtlasDataAssets.url('data/dive-site-summaries-v3.json.gz?v=1')
+        : 'datasets/dive-site-summaries.json.gz?v=2';
+      const response = await fetch(summariesUrl);
       if (!response.ok || !response.body) {
         throw new Error(`Failed to load dive-site summaries (${response.status}).`);
       }
@@ -16228,9 +16272,12 @@ ZSD·2016–2025</span></span>
       if (typeof DecompressionStream !== 'function') {
         throw new Error('This browser does not support gzip decompression for dive-site search locations.');
       }
-      // This compact search index ships with Pages. Keeping it same-origin
-      // avoids requiring a separate R2 release before geographic search works.
-      const response = await fetch('datasets/dive-site-search-locations.json.gz?v=3');
+      // Keep search assets together in the active R2 release so the deployed
+      // catalog and its location index always use a matching version.
+      const locationsUrl = window.DiveAtlasDataAssets?.external
+        ? window.DiveAtlasDataAssets.url('data/dive-site-search-locations-v4.json.gz?v=1')
+        : 'datasets/dive-site-search-locations.json.gz?v=3';
+      const response = await fetch(locationsUrl);
       if (!response.ok || !response.body) {
         throw new Error(`Failed to load dive-site search locations (${response.status}).`);
       }
@@ -16255,7 +16302,7 @@ ZSD·2016–2025</span></span>
     if (diveSiteDataPromise) return diveSiteDataPromise;
 
     const diveSitesScriptUrl = window.DiveAtlasDataAssets?.external
-      ? window.DiveAtlasDataAssets.url('data/dive-sites.js?v=2')
+      ? window.DiveAtlasDataAssets.url('data/dive-sites-v3.js?v=1')
       : 'datasets/dive-sites.js?v=2';
     diveSiteDataPromise = Promise.all([
       loadLocalScript(diveSitesScriptUrl),
