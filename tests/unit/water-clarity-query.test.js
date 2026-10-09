@@ -57,3 +57,60 @@ test('query wraps longitudes around the dateline and rejects points beyond grid 
   assert.equal(wrapped.value_m, 1);
   assert.equal((await query.query({ lat: 91, lng: 180 }, { month: 1 })).unavailable, true);
 });
+
+test('v2 clarity fetches and caches only the selected month plane', async () => {
+  const metadata = {
+    format:'diveatlas-water-clarity-query', format_version:2, generated_at_utc:'fixture',
+    available_months:[8, 9],
+    grid:{ latitude_count:2, longitude_count:4, latitude_first_center:-0.5,
+      longitude_first_center:0.5, latitude_step_degrees:1, longitude_step_degrees:1 },
+    value_encoding:{ scale_m:0.5, missing_sentinel:255 },
+    query:{ chunk_degrees:10, chunk_file_template:'chunks/{month}/r{row}_c{column}.u8.gz',
+      chunks:[{ row:0, column:0, row_start:0, column_start:0, rows:2, columns:4 }] }
+  };
+  const requests = [];
+  const fetchImpl = async url => {
+    const key = String(url);
+    if (key === 'metadata.json') return new Response(JSON.stringify(metadata), { status:200 });
+    requests.push(key);
+    const plane = key.includes('/09/') ? [2, 4, 6, 8, 2, 4, 6, 8] : [2, 4, 6, 8, 10, 12, 14, 16];
+    return new Response(gzipSync(Buffer.from(plane)), { status:200 });
+  };
+  const query = createWaterClarityQuery({ metadataUrl:'metadata.json', fetchImpl });
+  const first = await query.query({ lat:0.5, lng:0.5 }, { month:9 });
+  const again = await query.query({ lat:0.5, lng:0.5 }, { month:9 });
+  const otherMonth = await query.query({ lat:0.5, lng:0.5 }, { month:8 });
+  assert.equal(first.value_m, 1);
+  assert.equal(again.value_m, 1);
+  assert.equal(otherMonth.value_m, 5);
+  assert.equal(requests.length, 2);
+  assert.match(requests[0], /data\/water_clarity\/query\/v2\/chunks\/09\/r00_c00\.u8\.gz\?/);
+  assert.match(requests[1], /data\/water_clarity\/query\/v2\/chunks\/08\/r00_c00\.u8\.gz\?/);
+});
+
+test('defaults to v1 clarity metadata only when the v2 metadata asset is not published yet', async () => {
+  const metadata = {
+    format:'diveatlas-water-clarity', format_version:1, available_months:[9],
+    grid:{ latitude_count:1, longitude_count:1, latitude_first_center:0,
+      longitude_first_center:0, latitude_step_degrees:1, longitude_step_degrees:1 },
+    value_encoding:{ scale_m:0.5, missing_sentinel:255 },
+    query:{ chunk_degrees:10, chunks:[{ row:0, column:0, file:'r00_c00.u8.gz',
+      row_start:0, column_start:0, rows:1, columns:1 }] }
+  };
+  const requests = [];
+  const fetchImpl = async url => {
+    requests.push(String(url));
+    if (String(url) === 'data/water_clarity/query/v2/metadata.json') return new Response('', { status:404 });
+    if (String(url) === 'data/water_clarity/metadata.json') return new Response(JSON.stringify(metadata), { status:200 });
+    const planes = Buffer.alloc(12, 255);
+    planes[8] = 30;
+    return new Response(gzipSync(planes), { status:200 });
+  };
+  const query = createWaterClarityQuery({ fetchImpl });
+  const result = await query.query({ lat:0, lng:0 }, { month:9 });
+  assert.equal(result.value_m, 15);
+  assert.deepEqual(requests.slice(0, 2), [
+    'data/water_clarity/query/v2/metadata.json', 'data/water_clarity/metadata.json'
+  ]);
+  assert.ok(requests[2].includes('data/water_clarity/query/chunks/'));
+});

@@ -13403,6 +13403,7 @@ ZSD·2016–2025</span></span>
   let temperatureDetailPopup = null;
   let temperatureDetailTab = 'value';
   let temperatureDetailResult = null;
+  let temperatureDetailQueryKey = '';
   let temperatureDetailPopupElement = null;
   let selectedEnvironmentalMonth = readSavedMonth(ENVIRONMENT_MONTH_STORAGE_KEY);
   let wavesView = null;
@@ -15501,7 +15502,18 @@ ZSD·2016–2025</span></span>
         event.preventDefault();
         event.stopPropagation();
         temperatureDetailTab = button.dataset.temperatureTab;
-        if (temperatureDetailResult) renderTemperatureDetail(temperatureDetailResult);
+        if (!temperatureDetailResult) return;
+        const detailsLoaded = temperatureDetailTab === 'profile'
+          ? temperatureDetailResult.profile_loaded
+          : temperatureDetailTab === 'year'
+            ? temperatureDetailResult.year_loaded
+            : true;
+        if (!detailsLoaded && lastTemperatureQueryLatLng) {
+          renderTemperatureDetail({ ...temperatureDetailResult, loadingDetails:true });
+          void showTemperatureQuery(lastTemperatureQueryLatLng, { resetTab:false });
+          return;
+        }
+        renderTemperatureDetail(temperatureDetailResult);
       }, true);
     }
   }
@@ -15515,10 +15527,16 @@ ZSD·2016–2025</span></span>
     const dataPurpose = result.metadata.designation === 'development-validation'
       ? `${t('temperaturePopupDevelopment')} · ${formatTemperatureNumber(resolution, 2)}°`
       : `${String(result.metadata.climatology_period || t('temperaturePopupClimatology')).replace(' climate normal', '')} · ${formatTemperatureNumber(resolution, 2)}°`;
-    const yearAvailable = result.year.length === 12;
+    const yearAvailable = result.year_loaded
+      ? result.year.length === 12
+      : result.metadata.available_months.length === 12;
     let panel = `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureDepth')}</span><span class="dive-popup-property__value">${depthLabel}</span></div><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureMonth')}</span><span class="dive-popup-property__value">${monthName}</span></div></div>`;
-    if (temperatureDetailTab === 'profile') panel = makeTemperatureProfileSvg(result.profile, result.depth_m);
-    if (temperatureDetailTab === 'year') panel = makeTemperatureYearSvg(result.year, result.month);
+    if (temperatureDetailTab === 'profile') panel = result.profile_loaded
+      ? makeTemperatureProfileSvg(result.profile, result.depth_m)
+      : `<p class="temperature-detail-caption">${t('diveExperienceLoadingData')}</p>`;
+    if (temperatureDetailTab === 'year') panel = result.year_loaded
+      ? makeTemperatureYearSvg(result.year, result.month)
+      : `<p class="temperature-detail-caption">${t('diveExperienceLoadingData')}</p>`;
     const valueMarkup = `<span class="temperature-detail-value">${value}</span>`;
     const heading = t('temperaturePopupTitle').replace('{value}', valueMarkup).replace(/°C/g, `°${temperatureUnit}`);
     temperatureDetailPopup.setContent(`<div class="temperature-detail"><div class="temperature-detail-heading">${heading}</div><div class="temperature-detail-caption">${t('temperaturePopupCaption')}</div><div class="temperature-detail-tabs" role="tablist" aria-label="${t('temperaturePopupTabs')}"><button type="button" data-temperature-tab="value" aria-selected="${temperatureDetailTab === 'value'}">${t('temperaturePopupValue')}</button><button type="button" data-temperature-tab="profile" aria-selected="${temperatureDetailTab === 'profile'}">${t('temperatureDepth')}</button><button type="button" data-temperature-tab="year" aria-selected="${temperatureDetailTab === 'year'}"${yearAvailable ? '' : ` disabled title="${t('temperaturePopupYearDisabled')}"`}>${t('temperaturePopupYear')}</button></div><div class="temperature-detail-panel">${panel}</div><div class="temperature-detail-source dive-popup-source--compact">${popupSourceLink(SOURCE_URLS.woa23, 'WOA23', t('temperaturePopupExternalLink'))} &middot; ${dataPurpose}</div></div>`);
@@ -15539,12 +15557,14 @@ ZSD·2016–2025</span></span>
       if (generation !== temperatureQueryGeneration || environmentalViewController.activeView !== 'temperature') return;
       if (!temperatureQueryService) {
         const { createTemperatureQuery } = window.DiveAtlasTemperatureQuery;
-        temperatureQueryService = createTemperatureQuery({ maxChunks: 4 });
+        temperatureQueryService = createTemperatureQuery({ maxChunks: 32 });
       }
       const result = await temperatureQueryService.query(queryLatLng, {
         month: selectedEnvironmentalMonth,
         depth: Number(els.temperatureDepth.value),
-        signal: temperatureQueryAbortController.signal
+        signal: temperatureQueryAbortController.signal,
+        includeProfile:temperatureDetailTab === 'profile',
+        includeYear:temperatureDetailTab === 'year'
       });
       if (generation !== temperatureQueryGeneration || environmentalViewController.activeView !== 'temperature' ||
           popupRevision !== activeClickPopupRevision) return;
@@ -15552,13 +15572,23 @@ ZSD·2016–2025</span></span>
         closeManagedPopupForLayer('temperature');
         return;
       }
+      const resultKey = `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${result.month}:${result.depth_m}`;
+      const previous = resultKey === temperatureDetailQueryKey ? temperatureDetailResult : null;
+      const mergedResult = {
+        ...result,
+        profile:result.profile_loaded ? result.profile : previous?.profile || [],
+        year:result.year_loaded ? result.year : previous?.year || [],
+        profile_loaded:Boolean(result.profile_loaded || previous?.profile_loaded),
+        year_loaded:Boolean(result.year_loaded || previous?.year_loaded)
+      };
+      temperatureDetailQueryKey = resultKey;
       applyTemperatureQueryCoverage(result.metadata);
       if (!temperatureDetailPopup) {
         temperatureDetailPopup = createMapInfoPopup({ maxWidth: 252, minWidth: 190, closeButton: true, closeOnClick: false, className: 'temperature-detail-popup' });
         temperatureDetailPopup._diveAtlasLayerKey = 'temperature';
       }
       temperatureDetailPopup.setLatLng(queryLatLng);
-      renderTemperatureDetail(result);
+      renderTemperatureDetail(mergedResult);
       openManagedPopup('temperature:query', temperatureDetailPopup, queryLatLng);
       bindTemperatureDetailPopupControls();
       temperatureDetailPopup.update();
@@ -15566,7 +15596,17 @@ ZSD·2016–2025</span></span>
       if (error?.name === 'AbortError' || generation !== temperatureQueryGeneration ||
           environmentalViewController.activeView !== 'temperature' || popupRevision !== activeClickPopupRevision) return;
       console.warn('Temperature query could not be loaded:', error);
-      closeManagedPopupForLayer('temperature');
+      const sameQuery = temperatureDetailQueryKey ===
+        `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${selectedEnvironmentalMonth}:${Number(els.temperatureDepth.value)}`;
+      if (sameQuery && temperatureDetailResult && (temperatureDetailTab === 'profile' || temperatureDetailTab === 'year')) {
+        temperatureDetailResult = {
+          ...temperatureDetailResult,
+          ...(temperatureDetailTab === 'profile' ? { profile:[], profile_loaded:true } : { year:[], year_loaded:true })
+        };
+        renderTemperatureDetail(temperatureDetailResult);
+      } else {
+        closeManagedPopupForLayer('temperature');
+      }
     }
   }
 
@@ -15883,6 +15923,7 @@ ZSD·2016–2025</span></span>
       temperatureQueryService = null;
       closeManagedPopupForLayer('temperature');
       temperatureDetailResult = null;
+      temperatureDetailQueryKey = '';
       temperatureDetailTab = 'value';
       temperatureDetailPopup?.setContent('');
       temperatureView?.deactivate();

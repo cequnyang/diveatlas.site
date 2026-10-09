@@ -84,8 +84,12 @@ try {
 
     if ($AppendExisting) {
         $extensionPaths = @($manifest.files | ForEach-Object { $_.path } | Sort-Object)
-        if ($extensionPaths.Count -eq 0 -or @($extensionPaths | Where-Object { $_ -notin $appendableStartupDataPaths }).Count -gt 0) {
-            throw 'Append mode accepts only a non-empty selection of designated startup data objects.'
+        if ($extensionPaths.Count -eq 0 -or @($extensionPaths | Where-Object {
+            $_ -notin $appendableStartupDataPaths -and
+            $_ -notlike 'data/temperature/query/v2/*' -and
+            $_ -notlike 'data/water_clarity/query/v2/*'
+        }).Count -gt 0) {
+            throw 'Append mode accepts only designated startup data objects or versioned environmental query assets.'
         }
 
         $remoteManifestPath = Join-Path $env:TEMP ("diveatlas-r2-manifest-$([Guid]::NewGuid().ToString('N')).json")
@@ -134,7 +138,25 @@ try {
                 throw 'R2 prefix has missing inventoried objects or unrelated unlisted objects; refusing to append.'
             }
 
+            # The v2 query set has more than 90,000 small files. Use the AWS
+            # transfer manager for bounded-concurrency uploads instead of one
+            # process and connection per chunk. Versioned paths were already
+            # checked for collisions, and the inventory remains the final write.
+            $environmentalQueryFiles = @($manifest.files | Where-Object {
+                $_.path -like 'data/temperature/query/v2/*' -or
+                $_.path -like 'data/water_clarity/query/v2/*'
+            })
+            if ($environmentalQueryFiles.Count -gt 0) {
+                & aws s3 sync $release "s3://$bucket/$prefix/" --endpoint-url $endpoint `
+                    --exclude '*' --include 'data/temperature/query/v2/*' --include 'data/water_clarity/query/v2/*' `
+                    --cache-control 'public, max-age=31536000, immutable' --no-progress
+                if ($LASTEXITCODE -ne 0) { throw 'Environmental query asset batch upload failed. The release manifest was not changed.' }
+            }
+
             foreach ($file in $manifest.files) {
+                if ($file.path -like 'data/temperature/query/v2/*' -or $file.path -like 'data/water_clarity/query/v2/*') {
+                    continue
+                }
                 $source = Join-Path $release ($file.path -replace '/', [IO.Path]::DirectorySeparatorChar)
                 $target = "s3://$bucket/$prefix/$($file.path)"
                 if ($actualRemote.Contains("$prefix/$($file.path)")) {
@@ -192,6 +214,18 @@ try {
     $remoteObjects = @($remoteLines | Where-Object { $_ -match '^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+\d+\s+' })
     if ($remoteObjects.Count -ne ([int]$manifest.fileCount + 1)) {
         throw "Uploaded object count mismatch: expected $([int]$manifest.fileCount + 1), found $($remoteObjects.Count). Do not switch the site configuration."
+    }
+    $remoteSizes = @{}
+    foreach ($line in $remoteObjects) {
+        if ($line -match '^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+(?<size>\d+)\s+(?<key>.+)$') {
+            $remoteSizes[$Matches.key] = [long]$Matches.size
+        }
+    }
+    foreach ($file in $manifest.files) {
+        $key = "$prefix/$($file.path)"
+        if (-not $remoteSizes.ContainsKey($key) -or $remoteSizes[$key] -ne [long]$file.bytes) {
+            throw "Uploaded object is missing or has a different size than its verified local manifest: $($file.path). Do not switch the site configuration."
+        }
     }
 
     $smoke = & python tools/verify_r2_data_release.py --asset-base-url $AssetBaseUrl --app-origin $AppOrigin | ConvertFrom-Json

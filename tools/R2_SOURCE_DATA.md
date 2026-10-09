@@ -48,3 +48,17 @@ python tools/stage_data_release.py --release 2026-10-05-v2 --dive-site-search-as
 ```
 
 Append mode publishes `data/dive-sites-v3.js` plus `data/dive-site-search-locations-v4.json.gz` and `data/dive-site-summaries-v3.json.gz` in addition to the designated startup files. The catalog and sidecar inventories can be staged separately, then appended in sequence; each inventory is updated after its objects are uploaded and verified.
+
+## Environmental query slices
+
+Dive Conditions reads only the selected month and 5 m temperature slice plus the selected month's clarity slice. Temperature profile and annual-chart slices are fetched only when those popup tabs are opened. The v2 data is a byte-preserving split of the current v1 quantized chunks; nearest-cell lookup, missing sentinels, and source values do not change. The extra small objects increase the Temperature archive by about 26 MB in the current dataset, while making the common point query substantially smaller.
+
+After building new v2 assets from the existing local production chunks, prepare an additive release extension with:
+
+```powershell
+python scripts/rechunk_environmental_queries.py
+python tools/stage_data_release.py --release <current-release-id> --environmental-query-only `
+  --releases-directory $env:TEMP/diveatlas-environmental-query
+```
+
+Review and verify the generated release before using the existing append procedure. The uploader sends the many small v2 chunks through the AWS transfer manager and writes the release inventory last. The query readers use v2 when its metadata exists and fall back to v1 on HTTP 404, so the application code and the additive R2 assets can be released in either order without making lookups unavailable.

@@ -14,11 +14,15 @@
       if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
       const queryTemperature = async () => {
         try {
-          return await temperature.query(location, { month, depth:5, signal, maxDistanceKm:25 });
+          return await temperature.query(location, {
+            month, depth:5, signal, maxDistanceKm:25, includeProfile:false, includeYear:false
+          });
         } catch (firstError) {
           if (signal?.aborted || firstError?.name === 'AbortError') throw firstError;
           // A transient chunk request must not turn an otherwise supported dive location into a missing score dimension.
-          return temperature.query(location, { month, depth:5, signal, maxDistanceKm:25 });
+          return temperature.query(location, {
+            month, depth:5, signal, maxDistanceKm:25, includeProfile:false, includeYear:false
+          });
         }
       };
       const [t, c, r, w] = await Promise.allSettled([

@@ -209,9 +209,12 @@ test('Water Clarity click popup renders a local numeric chunk with the current l
   // This test uses synthetic water-clarity data; its tile bytes must not depend
   // on a large terrain tile that is intentionally absent from Git.
   const tile = fs.readFileSync(path.resolve(__dirname, '../../assets/favicon-light.png'));
+  const queryMetadata = { ...metadata, format:'diveatlas-water-clarity-query', format_version:2,
+    query:{ ...metadata.query, chunk_file_template:'chunks/{month}/r{row}_c{column}.u8.gz' } };
   await page.route('**/data/water_clarity/metadata.json', route => route.fulfill({ json: metadata }));
-  await page.route('**/data/water_clarity/query/chunks/r00_c00.u8.gz**', route => route.fulfill({
-    status: 200, contentType: 'application/gzip', body: gzipSync(values)
+  await page.route('**/data/water_clarity/query/v2/metadata.json', route => route.fulfill({ json: queryMetadata }));
+  await page.route('**/data/water_clarity/query/v2/chunks/09/r00_c00.u8.gz**', route => route.fulfill({
+    status: 200, contentType: 'application/gzip', body: gzipSync(Buffer.from([30]))
   }));
   await page.route('**/data/water_clarity/tiles/**', route => route.fulfill({
     status: 200, contentType: 'image/png', body: tile
@@ -877,7 +880,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
       queryResponses.push(response.body().then(body => ({ url: response.url(), bytes: body.byteLength })));
     }
   });
-  const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/metadata.json')).toString('utf8'));
+  const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/v2/metadata.json')).toString('utf8'));
   expect(queryMetadata.format).toBe('diveatlas-temperature-query');
   await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
   expect(requests).toEqual([]);
@@ -885,7 +888,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   await expect(page.locator('.temperature-tiles')).toHaveCount(1);
   expect(requests).toEqual([]);
 
-  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/chunks/'));
+  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
   await page.locator('#temperatureMonth').selectOption('9');
   await page.locator('#temperatureDepth').selectOption('20');
   const centerBeforeClick = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
@@ -893,6 +896,7 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   await clickMapCoordinate(page, -5.7, 131);
   const response = await chunkResponse;
   expect(response.status()).toBe(200);
+  const firstClickResponseBytes = (await response.body()).byteLength;
   await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
   const firstClickMs = Date.now() - firstClickStarted;
   const centerAfterPopup = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
@@ -906,10 +910,9 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   await expect(page.locator('.temperature-detail-value')).toHaveText('27.8');
   await page.locator('#temperatureMonth').selectOption('9');
   await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
-  const initialResponseBytes = (await Promise.all(queryResponses)).reduce((sum, item) => sum + item.bytes, 0);
   expect(requests.filter(url => url.includes('/metadata.json'))).toHaveLength(1);
   const chunkRequests = requests.filter(url => url.includes('/chunks/'));
-  expect(chunkRequests).toHaveLength(1);
+  expect(chunkRequests).toHaveLength(4);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart')).toBeVisible();
   expect(await page.locator('.temperature-profile-chart circle').count()).toBe(11);
@@ -922,19 +925,52 @@ test('real WOA23 query chunk stays lazy, returns the generated value/profile, an
   expect(await page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill')).toBe('var(--accent)');
   await page.locator('#temperatureMonth').selectOption('10');
   await expect(page.locator('.temperature-year-chart circle')).toHaveCount(12);
-  expect(await page.locator('.temperature-year-chart circle').nth(9).getAttribute('fill')).toBe('var(--accent)');
+  await expect.poll(() => page.locator('.temperature-year-chart circle').nth(9).getAttribute('fill'))
+    .toBe('var(--accent)');
   await page.locator('#temperatureMonth').selectOption('9');
-  expect(await page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill')).toBe('var(--accent)');
+  await expect.poll(() => page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill'))
+    .toBe('var(--accent)');
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setZoom(8));
   await page.waitForTimeout(600);
   await expect(page.locator('.leaflet-popup')).toBeVisible();
 
+  const beforeRepeatClick = requests.filter(url => url.includes('/chunks/09/20/r08_c31.i16.gz')).length;
   await clickMapCoordinate(page, -5.6, 131.1);
   await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
-  expect(requests.filter(url => url.includes('/chunks/'))).toHaveLength(1);
-  console.log('real query performance:', JSON.stringify({ firstClickMs, firstClickBytes: initialResponseBytes,
+  const afterRepeatClick = requests.filter(url => url.includes('/chunks/09/20/r08_c31.i16.gz')).length;
+  console.log('selected Temperature slice cache:', JSON.stringify({ beforeRepeatClick, afterRepeatClick }));
+  expect(afterRepeatClick - beforeRepeatClick).toBe(0);
+  const totalQueryBytes = (await Promise.all(queryResponses)).reduce((sum, item) => sum + item.bytes, 0);
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Network.enable');
+  await cdp.send('Network.setCacheDisabled', { cacheDisabled:true });
+  await cdp.send('Network.emulateNetworkConditions', {
+    offline:false, latency:500, downloadThroughput:64 * 1024, uploadThroughput:64 * 1024,
+    connectionType:'cellular3g'
+  });
+  const coldCacheComparison = await page.evaluate(async () => {
+    async function fetchMeasure(path) {
+      const started = performance.now();
+      const response = await fetch(`${path}?benchmark=${crypto.randomUUID()}`, { cache:'no-store' });
+      const bytes = (await response.arrayBuffer()).byteLength;
+      return { status:response.status, bytes, milliseconds:Math.round(performance.now() - started) };
+    }
+    return {
+      v1:await fetchMeasure('/data/temperature/query/chunks/r08_c31.i16.gz'),
+      v2:await fetchMeasure('/data/temperature/query/v2/chunks/09/20/r08_c31.i16.gz')
+    };
+  });
+  await cdp.send('Network.emulateNetworkConditions', {
+    offline:false, latency:0, downloadThroughput:-1, uploadThroughput:-1
+  });
+  await cdp.detach();
+  expect(coldCacheComparison.v1.status).toBe(200);
+  expect(coldCacheComparison.v2.status).toBe(200);
+  expect(coldCacheComparison.v2.bytes).toBeLessThan(coldCacheComparison.v1.bytes);
+  console.log('real query performance:', JSON.stringify({ firstClickMs, firstClickBytes: firstClickResponseBytes,
     sameChunkAdditionalRequests: requests.length - 2,
-    sameChunkAdditionalBytes: (await Promise.all(queryResponses)).reduce((sum, item) => sum + item.bytes, 0) - initialResponseBytes }));
+    detailAndSelectionBytes: totalQueryBytes - firstClickResponseBytes,
+    coldCache3g: coldCacheComparison }));
   await page.locator('#environmentViewSelect').selectOption('default');
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
@@ -960,7 +996,7 @@ test('temperature query never steals marker clicks and its detail closes when di
 test('masked land produces no popup and a slower earlier click cannot replace the latest location', async ({ page }) => {
   let noDataChunkResponses = 0;
   page.on('response', response => {
-    if (response.url().includes('/data/temperature/query/chunks/')) noDataChunkResponses += 1;
+    if (response.url().includes('/data/temperature/query/v2/chunks/')) noDataChunkResponses += 1;
   });
   await openMap(page);
   await page.locator('#environmentViewSelect').selectOption('temperature');
@@ -971,7 +1007,7 @@ test('masked land produces no popup and a slower earlier click cannot replace th
 
   let firstChunkRoute;
   let releaseFirstChunk;
-  await page.route('**/data/temperature/query/chunks/**', async route => {
+  await page.route('**/data/temperature/query/v2/chunks/**', async route => {
     if (!firstChunkRoute) {
       firstChunkRoute = route;
       await new Promise(resolve => { releaseFirstChunk = resolve; });
@@ -996,7 +1032,7 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
   await page.locator('#environmentViewSelect').selectOption('temperature');
   let pendingRoute;
   let releasePending;
-  await page.route('**/data/temperature/query/chunks/**', async route => {
+  await page.route('**/data/temperature/query/v2/chunks/**', async route => {
     pendingRoute = route;
     await new Promise(resolve => { releasePending = resolve; });
     try { await route.continue(); } catch (_) {}
@@ -1021,7 +1057,7 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   await page.locator('#bioLegendTitle').click();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
-  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/chunks/'));
+  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
   await clickMapCoordinate(page, -5.7, 131);
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
@@ -1081,7 +1117,7 @@ test('Temperature popup content stays inside the safe area at the top boundary w
   await expect(page.locator('#temperatureControls')).toBeVisible();
   await placeCoordinateNearSafeTop(page, -5.7, 131);
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
-  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/chunks/'));
+  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
   await clickMapCoordinate(page, -5.7, 131);
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.leaflet-popup')).toBeVisible();

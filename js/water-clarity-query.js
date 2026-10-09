@@ -17,7 +17,7 @@
   }
 
   function createWaterClarityQuery({
-    metadataUrl = 'data/water_clarity/metadata.json',
+    metadataUrl = null,
     fetchImpl = fetch,
     maxChunks = 4
   } = {}) {
@@ -27,19 +27,30 @@
 
     async function getMetadata() {
       if (!metadataPromise) {
-        metadataPromise = fetchImpl(metadataUrl).then(response => {
+        const fetchMetadata = async () => {
+          if (metadataUrl) return fetchImpl(metadataUrl);
+          const sliced = await fetchImpl('data/water_clarity/query/v2/metadata.json');
+          if (sliced.status !== 404) return sliced;
+          return fetchImpl('data/water_clarity/metadata.json');
+        };
+        metadataPromise = fetchMetadata().then(response => {
           if (!response.ok) throw new Error(`Water Clarity metadata returned HTTP ${response.status}`);
           return response.json();
         }).then(metadata => {
           const grid = metadata?.grid;
           const encoding = metadata?.value_encoding;
-          if (metadata?.format !== 'diveatlas-water-clarity' || metadata.format_version !== 1 ||
+          const legacyFormat = metadata?.format === 'diveatlas-water-clarity' && metadata.format_version === 1;
+          if ((!legacyFormat && metadata?.format !== 'diveatlas-water-clarity-query') ||
+              ![1, 2].includes(metadata.format_version) ||
               !Array.isArray(metadata.available_months) || !Array.isArray(metadata.query?.chunks) ||
               !grid || !encoding || Number(encoding.missing_sentinel) !== 255 ||
               !Number.isFinite(Number(encoding.scale_m)) || Number(encoding.scale_m) <= 0 ||
               !Number.isFinite(Number(grid.latitude_count)) || !Number.isFinite(Number(grid.longitude_count)) ||
               !Number.isFinite(Number(grid.latitude_step_degrees)) || !Number.isFinite(Number(grid.longitude_step_degrees))) {
             throw new Error('Water Clarity metadata is missing required grid or encoding fields');
+          }
+          if (metadata.format_version >= 2 && typeof metadata.query.chunk_file_template !== 'string') {
+            throw new Error('Water Clarity metadata is missing the sliced chunk template');
           }
           return metadata;
         }).catch(error => {
@@ -50,8 +61,11 @@
       return metadataPromise;
     }
 
-    async function loadChunk(metadata, descriptor) {
-      const key = `${descriptor.row}:${descriptor.column}`;
+    async function loadChunk(metadata, descriptor, month) {
+      const isSliced = metadata.format_version >= 2;
+      const key = isSliced
+        ? `${descriptor.row}:${descriptor.column}:${month}`
+        : `${descriptor.row}:${descriptor.column}`;
       if (chunks.has(key)) {
         const value = chunks.get(key);
         chunks.delete(key);
@@ -60,14 +74,21 @@
       }
       if (inflight.has(key)) return inflight.get(key);
       const pending = (async () => {
-        const url = `data/water_clarity/query/chunks/${descriptor.file}?v=${encodeURIComponent(metadata.generated_at_utc || 'dataset')}`;
+        const filename = isSliced
+          ? metadata.query.chunk_file_template
+            .replaceAll('{month}', String(month).padStart(2, '0'))
+            .replaceAll('{row}', String(descriptor.row).padStart(2, '0'))
+            .replaceAll('{column}', String(descriptor.column).padStart(2, '0'))
+          : `chunks/${descriptor.file}`;
+        const root = isSliced ? 'data/water_clarity/query/v2/' : 'data/water_clarity/query/';
+        const url = `${root}${filename}?v=${encodeURIComponent(metadata.generated_at_utc || 'dataset')}`;
         const response = await fetchImpl(url);
         if (!response.ok) throw new Error(`Water Clarity chunk returned HTTP ${response.status}`);
         const compressed = await response.arrayBuffer();
         if (typeof DecompressionStream !== 'function') throw new Error('This browser cannot decode compressed Water Clarity data');
         const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
         const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
-        const expected = 12 * Number(descriptor.rows) * Number(descriptor.columns);
+        const expected = (isSliced ? 1 : 12) * Number(descriptor.rows) * Number(descriptor.columns);
         if (bytes.byteLength !== expected) throw new Error('Water Clarity chunk has an invalid length');
         chunks.set(key, bytes);
         while (chunks.size > Math.max(1, maxChunks)) chunks.delete(chunks.keys().next().value);
@@ -123,10 +144,12 @@
         const columnChunk = Math.floor(candidate.column / coreColumns);
         const descriptor = metadata.query.chunks.find(chunk => Number(chunk.row) === rowChunk && Number(chunk.column) === columnChunk);
         if (!descriptor) continue;
-        const values = await loadChunk(metadata, descriptor);
+        const values = await loadChunk(metadata, descriptor, monthNumber);
         const localRow = candidate.row - Number(descriptor.row_start);
         const localColumn = candidate.column - Number(descriptor.column_start);
-        const offset = (monthIndex * Number(descriptor.rows) + localRow) * Number(descriptor.columns) + localColumn;
+        const offset = metadata.format_version >= 2
+          ? localRow * Number(descriptor.columns) + localColumn
+          : (monthIndex * Number(descriptor.rows) + localRow) * Number(descriptor.columns) + localColumn;
         const stored = values[offset];
         if (stored === Number(metadata.value_encoding.missing_sentinel)) continue;
         const valueM = stored * Number(metadata.value_encoding.scale_m);
