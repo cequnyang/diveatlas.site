@@ -12362,7 +12362,15 @@ ZSD·2016–2025</span></span>
     return `${value.toLocaleString(locale, { minimumFractionDigits:fractionDigits, maximumFractionDigits:fractionDigits })} ${unit}`;
   }
   async function ensureDiveConditionsService() {
-    diveConditionsModulePromise ||= Promise.all([import('./js/dive-conditions-model.js'), import('./js/dive-conditions-service.js'), import('./js/temperature-query.js?v=20261004-temperature-retry-1'), import('./js/water-clarity-query.js'), import('./js/current-math.js'), import('./js/current-tile-cache.js'), import('./js/regional-currents.js'), import('./js/waves-view.js')]);
+    diveConditionsModulePromise ||= Promise.all([
+      import('./js/dive-conditions-model.js'),
+      import('./js/dive-conditions-service.js'),
+      import('./js/temperature-query.js?v=20261004-temperature-retry-1'),
+      import('./js/water-clarity-query.js'),
+      import('./js/current-math.js'),
+      import('./js/current-tile-cache.js'),
+      import('./js/waves-view.js')
+    ]).then(() => import('./js/regional-currents.js'));
     await diveConditionsModulePromise;
     if (!diveConditionsService) {
       const model = window.DiveAtlasConditionsModel;
