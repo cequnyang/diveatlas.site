@@ -83,6 +83,10 @@ EXTERNAL_DATA_ROOTS = {
     Path("data/depth_samples"),
     Path("data/dive-experience-outlook/v3"),
     Path("datasets/dive-sites.js"),
+    # Production fetches these compressed dive-site sidecars from the configured
+    # R2 release; local builds retain their datasets/ copies for previews.
+    Path("datasets/dive-site-search-locations.json.gz"),
+    Path("datasets/dive-site-summaries.json.gz"),
     Path("data/fish_map_units.json.gz"),
     Path("data/reef_tiles"),
     Path("data/reef_vector_chunks"),

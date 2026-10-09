@@ -61,7 +61,18 @@ def selected_files(
     *,
     manifests_only: bool = False,
     temperature_metadata_only: bool = False,
+    dive_site_catalog_only: bool = False,
+    dive_site_search_assets_only: bool = False,
 ) -> list[Path]:
+    if dive_site_catalog_only:
+        catalog = Path("datasets/dive-sites.js")
+        return [catalog] if (ROOT / catalog).is_file() else []
+    if dive_site_search_assets_only:
+        sidecars = (
+            Path("datasets/dive-site-search-locations.json.gz"),
+            Path("datasets/dive-site-summaries.json.gz"),
+        )
+        return [path for path in sidecars if (ROOT / path).is_file()]
     if temperature_metadata_only:
         metadata = Path("datasets/temperature/metadata.json")
         return [metadata] if (ROOT / metadata).is_file() else []
@@ -91,29 +102,46 @@ def stage(
     *,
     manifests_only: bool = False,
     temperature_metadata_only: bool = False,
+    dive_site_catalog_only: bool = False,
+    dive_site_search_assets_only: bool = False,
 ) -> dict:
     if not RELEASE_ID_RE.fullmatch(release_id):
         raise ValueError("Release ID must be 1-64 letters, digits, dots, underscores, or hyphens and start with a letter or digit.")
     destination = (destination_root / release_id).resolve()
     if destination.exists():
         raise FileExistsError(f"Refusing to overwrite immutable data release: {destination}")
-    if manifests_only and temperature_metadata_only:
-        raise ValueError("Choose either all startup assets or only Temperature metadata, not both.")
-    files = selected_files(manifests_only=manifests_only, temperature_metadata_only=temperature_metadata_only)
+    if sum((manifests_only, temperature_metadata_only, dive_site_catalog_only, dive_site_search_assets_only)) > 1:
+        raise ValueError("Choose only one R2 extension mode.")
+    files = selected_files(
+        manifests_only=manifests_only,
+        temperature_metadata_only=temperature_metadata_only,
+        dive_site_catalog_only=dive_site_catalog_only,
+        dive_site_search_assets_only=dive_site_search_assets_only,
+    )
     if not files:
         raise ValueError("No external production data files were found to stage.")
 
     destination.mkdir(parents=True)
     entries = []
     try:
-        sources = [(relative, ROOT / relative) for relative in files]
-        if not manifests_only and not temperature_metadata_only:
+        if dive_site_catalog_only:
+            # R2 objects are immutable. Publish replacements under a new key
+            # rather than overwriting the existing catalog in the active release.
+            sources = [(Path("data/dive-sites-v3.js"), ROOT / "datasets/dive-sites.js")]
+        elif dive_site_search_assets_only:
+            # Keep sidecars versioned for long-lived cache headers in R2.
+            sources = [
+                (Path("data/dive-site-search-locations-v4.json.gz"), ROOT / "datasets/dive-site-search-locations.json.gz"),
+                (Path("data/dive-site-summaries-v3.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz"),
+            ]
+        else:
+            sources = [(release_path_for_source(relative), ROOT / relative) for relative in files]
+        if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only:
             sources.extend(
                 (Path(relative), resolve_r2_source_file(relative, source_data_asset_base_url))
                 for relative in R2_SOURCE_DATA_PATHS
             )
-        for relative, source in sources:
-            release_relative = release_path_for_source(relative)
+        for release_relative, source in sources:
             target = destination / release_relative
             target.parent.mkdir(parents=True, exist_ok=True)
             byte_count, file_digest = copy_and_hash(source, target)
@@ -195,10 +223,22 @@ def main() -> None:
         action="store_true",
         help="stage only the Temperature metadata for a safe additive update to an existing release",
     )
+    parser.add_argument(
+        "--dive-site-catalog-only",
+        action="store_true",
+        help="stage only the dive-site catalog for a safe additive update to an existing release",
+    )
+    parser.add_argument(
+        "--dive-site-search-assets-only",
+        action="store_true",
+        help="stage only the compressed search and popup sidecars for a safe additive update to an existing release",
+    )
     args = parser.parse_args()
     print(json.dumps(stage(args.release, args.releases_directory, args.source_data_asset_base_url,
                            manifests_only=args.manifests_only,
-                           temperature_metadata_only=args.temperature_metadata_only), indent=2))
+                           temperature_metadata_only=args.temperature_metadata_only,
+                           dive_site_catalog_only=args.dive_site_catalog_only,
+                           dive_site_search_assets_only=args.dive_site_search_assets_only), indent=2))
 
 
 if __name__ == "__main__":

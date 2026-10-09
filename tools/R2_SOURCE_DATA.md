@@ -26,3 +26,25 @@ python tools/stage_data_release.py --release 2026-10-05-v2 --startup-data-only
 ```
 
 The inventory is replaced only after all six files are present and verified. Consumers fetch the small inventory with a cache-busting query because earlier releases used a year-long immutable cache header for that URL.
+
+The dive-site catalog and its two compressed sidecars are part of live search and popup rendering. R2 release objects are immutable, so replacements use versioned keys and the app is updated to request those keys. Stage only the relevant objects and append them to the active release; do not overwrite existing objects or change the site's configured release URL:
+
+```powershell
+python tools/stage_data_release.py --release 2026-10-05-v2 --dive-site-catalog-only `
+  --releases-directory $env:TEMP/diveatlas-r2-catalog
+./tools/upload_r2_data_release.ps1 `
+  -ReleaseDirectory (Join-Path $env:TEMP 'diveatlas-r2-catalog/2026-10-05-v2') `
+  -AssetBaseUrl https://assets.diveatlas.site/releases/2026-10-05-v2/ `
+  -AppOrigin https://diveatlas.site `
+  -AppendExisting
+
+python tools/stage_data_release.py --release 2026-10-05-v2 --dive-site-search-assets-only `
+  --releases-directory $env:TEMP/diveatlas-r2-search
+./tools/upload_r2_data_release.ps1 `
+  -ReleaseDirectory (Join-Path $env:TEMP 'diveatlas-r2-search/2026-10-05-v2') `
+  -AssetBaseUrl https://assets.diveatlas.site/releases/2026-10-05-v2/ `
+  -AppOrigin https://diveatlas.site `
+  -AppendExisting
+```
+
+Append mode publishes `data/dive-sites-v3.js` plus `data/dive-site-search-locations-v4.json.gz` and `data/dive-site-summaries-v3.json.gz` in addition to the designated startup files. The catalog and sidecar inventories can be staged separately, then appended in sequence; each inventory is updated after its objects are uploaded and verified.

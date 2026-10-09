@@ -21,8 +21,15 @@ const R2_DATASET_ASSETS = new Set([
   'reef_vector_manifest.js',
   'terrain_manifest.js',
   'dive-sites.js',
+  'dive-site-search-locations.json.gz',
+  'dive-site-summaries.json.gz',
   'temperature/metadata.json'
 ]);
+const R2_VERSIONED_DATASET_PATHS = {
+  'dive-sites.js': 'data/dive-sites-v3.js',
+  'dive-site-search-locations.json.gz': 'data/dive-site-search-locations-v4.json.gz',
+  'dive-site-summaries.json.gz': 'data/dive-site-summaries-v3.json.gz'
+};
 const contentTypes = new Map([
   ['.bin', 'application/octet-stream'],
   ['.css', 'text/css; charset=utf-8'],
@@ -97,7 +104,7 @@ async function handle(req, res) {
   const remoteAssetPath = segments[0] === 'data'
     ? segments.join('/')
     : isR2DatasetAsset
-      ? `data/${datasetRelativePath}`
+      ? R2_VERSIONED_DATASET_PATHS[datasetRelativePath] || `data/${datasetRelativePath}`
       : null;
   if (remoteAssetPath && dataAssetBase) {
     const clientAbort = new AbortController();

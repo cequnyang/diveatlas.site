@@ -30,7 +30,10 @@ $appendableStartupDataPaths = @(
     'data/reef_raster_manifest.js',
     'data/reef_vector_manifest.js',
     'data/terrain_manifest.js',
-    'data/temperature/metadata.json'
+    'data/temperature/metadata.json',
+    'data/dive-sites-v3.js',
+    'data/dive-site-search-locations-v4.json.gz',
+    'data/dive-site-summaries-v3.json.gz'
 )
 
 $release = (Resolve-Path -LiteralPath $ReleaseDirectory).Path
@@ -101,16 +104,32 @@ try {
                 throw 'Existing R2 release inventory failed its count, size, or checksum validation.'
             }
             $oldPaths = @{}
-            foreach ($file in $oldFiles) { $oldPaths[$file.path] = $true }
+            $expectedRemote = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+            $requiredRemote = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+            foreach ($file in $oldFiles) {
+                $oldPaths[$file.path] = $true
+                [void] $expectedRemote.Add("$prefix/$($file.path)")
+                [void] $requiredRemote.Add("$prefix/$($file.path)")
+            }
             foreach ($file in $manifest.files) {
                 if ($oldPaths.ContainsKey($file.path)) { throw "Refusing to overwrite an object already listed in the release: $($file.path)" }
+                [void] $expectedRemote.Add("$prefix/$($file.path)")
             }
-            $oldRemote = @($oldFiles | ForEach-Object { "$prefix/$($_.path)" }) + "$prefix/release-manifest.json"
-            $actualRemote = @($existing.Contents | ForEach-Object { $_.Key })
-            $missingOld = @($oldRemote | Where-Object { $_ -notin $actualRemote })
-            $unexpected = @($actualRemote | Where-Object {
-                $_ -notin $oldRemote -and $_ -notin @($manifest.files | ForEach-Object { "$prefix/$($_.path)" })
-            })
+            [void] $expectedRemote.Add("$prefix/release-manifest.json")
+            [void] $requiredRemote.Add("$prefix/release-manifest.json")
+            $actualRemote = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+            foreach ($item in $existing.Contents) { [void] $actualRemote.Add($item.Key) }
+            # The active release contains tens of thousands of objects. Hash-set
+            # membership keeps this integrity check linear instead of comparing
+            # every listed key against the entire inventory repeatedly.
+            $missingOld = [System.Collections.Generic.List[string]]::new()
+            foreach ($key in $requiredRemote) {
+                if (-not $actualRemote.Contains($key)) { [void] $missingOld.Add($key) }
+            }
+            $unexpected = [System.Collections.Generic.List[string]]::new()
+            foreach ($key in $actualRemote) {
+                if (-not $expectedRemote.Contains($key)) { [void] $unexpected.Add($key) }
+            }
             if ($missingOld.Count -gt 0 -or $unexpected.Count -gt 0) {
                 throw 'R2 prefix has missing inventoried objects or unrelated unlisted objects; refusing to append.'
             }
@@ -118,7 +137,7 @@ try {
             foreach ($file in $manifest.files) {
                 $source = Join-Path $release ($file.path -replace '/', [IO.Path]::DirectorySeparatorChar)
                 $target = "s3://$bucket/$prefix/$($file.path)"
-                if ("$prefix/$($file.path)" -in $actualRemote) {
+                if ($actualRemote.Contains("$prefix/$($file.path)")) {
                     $existingObjectPath = Join-Path $env:TEMP ("diveatlas-r2-object-$([Guid]::NewGuid().ToString('N'))")
                     try {
                         & aws s3 cp $target $existingObjectPath --endpoint-url $endpoint --no-progress
@@ -132,7 +151,13 @@ try {
                     }
                     continue
                 }
-                $contentType = if ($file.path.EndsWith('.json', [StringComparison]::OrdinalIgnoreCase)) { 'application/json' } else { 'application/javascript' }
+                $contentType = if ($file.path.EndsWith('.gz', [StringComparison]::OrdinalIgnoreCase)) {
+                    'application/gzip'
+                } elseif ($file.path.EndsWith('.json', [StringComparison]::OrdinalIgnoreCase)) {
+                    'application/json'
+                } else {
+                    'application/javascript'
+                }
                 & aws s3 cp $source $target --endpoint-url $endpoint --cache-control 'public, max-age=31536000, immutable' --content-type $contentType --no-progress
                 if ($LASTEXITCODE -ne 0) { throw "Could not append $($file.path). The release inventory was not changed." }
             }
