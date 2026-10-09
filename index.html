@@ -17761,7 +17761,7 @@ ZSD·2016–2025</span></span>
       .map(value => value.trim())
       .filter(Boolean);
 
-    if (!tokens.length) return hideDefaultSources ? '' : escapeHtml('Third-party dataset');
+    if (!tokens.length) return '';
     if (hideDefaultSources) {
       tokens = tokens.filter(token => !['osm', 'padi', 'ssi'].includes(token.toLowerCase()));
       if (!tokens.length) return '';
@@ -17771,8 +17771,8 @@ ZSD·2016–2025</span></span>
       const key = token.toLowerCase();
       return SOURCE_URLS[key]
         ? popupSourceLink(SOURCE_URLS[key], token)
-        : escapeHtml(token);
-    }).join(' | ');
+        : '';
+    }).filter(Boolean).join(' · ');
   }
 
   /* ---------- dive-site search ---------- */
@@ -21920,7 +21920,7 @@ ZSD·2016–2025</span></span>
       const summaryReferences = (summary?.sources || [])
         .filter(source => {
           const url = String(source.url || '');
-          if (!/^https?:\/\//i.test(url)) return true;
+          if (!/^https?:\/\//i.test(url)) return false;
           const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
           if (knownReferenceUrls.has(normalizedUrl)) return false;
           knownReferenceUrls.add(normalizedUrl);
@@ -21929,9 +21929,7 @@ ZSD·2016–2025</span></span>
         .map(source => {
           const url = String(source.url || '');
           const label = diveSourceDisplayLabel(source.label);
-          if (/^https?:\/\//i.test(url)) return popupSourceLink(url, label || url);
-          return [label, source.referenceId]
-            .filter(Boolean).map(value => escapeHtml(String(value))).join(' · ');
+          return popupSourceLink(url, label || url);
         })
         .filter(Boolean);
       const hasSummaryReferenceUrl = (summary?.sources || []).some(source =>
@@ -22639,7 +22637,7 @@ ZSD·2016–2025</span></span>
     const summaryLinks = (siteSummary?.sources || [])
       .filter(source => {
         const url = String(source.url || '');
-        if (!/^https?:\/\//i.test(url)) return true;
+        if (!/^https?:\/\//i.test(url)) return false;
         const normalizedUrl = url.replace(/\/+$/, '').toLowerCase();
         if (evidenceUrlSet.has(normalizedUrl) || summaryUrlSet.has(normalizedUrl)) return false;
         summaryUrlSet.add(normalizedUrl);
@@ -22648,21 +22646,18 @@ ZSD·2016–2025</span></span>
       .map(source => {
         const url = String(source.url || '');
         const label = diveSourceDisplayLabel(source.label);
-        if (/^https?:\/\//i.test(url)) {
-          return popupSourceLink(url, label || url);
-        }
-        const reference = [label, source.referenceId]
-          .filter(Boolean).map(value => escapeHtml(String(value))).join(' · ');
-        return reference ? `<span>${reference}</span>` : '';
+        return popupSourceLink(url, label || url);
       })
       .filter(Boolean);
-    const hasReferenceUrl = evidenceLinks.length > 0 || (siteSummary?.sources || []).some(source =>
+    const hasReferenceUrl = evidenceLinks.some(({ url }) => /^https?:\/\//i.test(String(url || ''))) || (siteSummary?.sources || []).some(source =>
       /^https?:\/\//i.test(String(source.url || ''))
     );
     const datasetSourceLinks = renderDiveSourceLinks(sources, hasReferenceUrl);
     const sourceContent = [
       datasetSourceLinks ? `<span class="dive-popup-dataset-sources">${datasetSourceLinks}</span>` : '',
-      evidenceLinks.map(({ url, label }) => popupSourceLink(url, label)).join(' · '),
+      evidenceLinks
+        .filter(({ url }) => /^https?:\/\//i.test(String(url || '')))
+        .map(({ url, label }) => popupSourceLink(url, label)).join(' · '),
       summaryLinks.join(' · ')
     ].filter(Boolean).join(' · ');
     const footerItems = [];
@@ -22673,7 +22668,7 @@ ZSD·2016–2025</span></span>
         `</div>`
       );
     }
-    if (sourceContent || !siteSummary) {
+    if (sourceContent) {
       footerItems.push(
         `<details class="bio-popup-source dive-popup-source--compact dive-popup-sources">` +
         `<summary>${escapeHtml(t('diveSource'))}</summary>` +
