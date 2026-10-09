@@ -224,6 +224,73 @@
     });
   }
 
+  function haversineKm(a, b) {
+    const radians = degrees => Number(degrees) * Math.PI / 180;
+    const dLat = radians(Number(b.lat) - Number(a.lat));
+    const dLng = radians(Number(b.lng) - Number(a.lng));
+    const latA = radians(a.lat);
+    const latB = radians(b.lat);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(latA) * Math.cos(latB) * Math.sin(dLng / 2) ** 2;
+    return 6371.0088 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(Math.max(0, 1 - h)));
+  }
+
+  // The bathymetry mask is intentionally conservative at shorelines. If a
+  // click misses it, allow a nearby scored ocean cell to represent the point,
+  // but never silently move a query farther than this regional-outlook limit.
+  function sampleNearestOceanCell(latlng, monthData, supportData, oceanMask, manifest, maxDistanceKm = 30) {
+    const grid = manifest.grid;
+    const origin = cellIndexAt(latlng, grid);
+    if (!origin || !Number.isFinite(maxDistanceKm) || maxDistanceKm < 0) return null;
+    const latitudeRadius = maxDistanceKm / 110.574;
+    const longitudeScale = Math.max(0.01, Math.cos(Number(latlng.lat) * Math.PI / 180));
+    const longitudeRadius = maxDistanceKm / (111.32 * longitudeScale);
+    const rowRadius = Math.ceil(latitudeRadius / grid.step) + 1;
+    const columnRadius = Math.ceil(longitudeRadius / grid.step) + 1;
+    const originLongitude = ((Number(latlng.lng) - grid.west) % 360 + 360) % 360 + grid.west;
+    let nearest = null;
+    const pathHasNoLandBarrier = candidate => {
+      const distanceKm = haversineKm(latlng, candidate);
+      const steps = Math.max(1, Math.ceil(distanceKm / 3));
+      let reachedOcean = false;
+      for (let step = 1; step <= steps; step += 1) {
+        const fraction = step / steps;
+        const point = { lat:Number(latlng.lat) + (candidate.lat - Number(latlng.lat)) * fraction,
+          lng:originLongitude + ((((candidate.lng - originLongitude + 540) % 360) + 360) % 360 - 180) * fraction };
+        const cell = cellIndexAt(point, grid);
+        if (!cell) return false;
+        const wet = Boolean(oceanMask[cell.index * manifest.oceanMask.samplesPerAxis + cell.subrow] & (1 << cell.subcolumn));
+        if (wet) reachedOcean = true;
+        else if (reachedOcean) return false;
+      }
+      return reachedOcean;
+    };
+
+    for (let row = Math.max(0, origin.row - rowRadius); row <= Math.min(grid.height - 1, origin.row + rowRadius); row += 1) {
+      const latitudeNorth = grid.south + (row + 1) * grid.step;
+      const latitudeSouth = grid.south + row * grid.step;
+      for (let deltaColumn = -columnRadius; deltaColumn <= columnRadius; deltaColumn += 1) {
+        const column = ((origin.column + deltaColumn) % grid.width + grid.width) % grid.width;
+        const index = row * grid.width + column;
+        const maskOffset = index * manifest.oceanMask.samplesPerAxis;
+        for (let subrow = 0; subrow < manifest.oceanMask.samplesPerAxis; subrow += 1) {
+          const latitude = latitudeSouth + ((subrow + 0.5) / manifest.oceanMask.samplesPerAxis) * grid.step;
+          for (let subcolumn = 0; subcolumn < manifest.oceanMask.samplesPerAxis; subcolumn += 1) {
+            if (!(oceanMask[maskOffset + subrow] & (1 << subcolumn))) continue;
+            const longitude = ((originLongitude + deltaColumn * grid.step + ((subcolumn + 0.5) / manifest.oceanMask.samplesPerAxis) * grid.step - grid.west) % 360 + 360) % 360 + grid.west;
+            const candidateLocation = { lat:latitude, lng:longitude };
+            const distanceKm = haversineKm(latlng, candidateLocation);
+            if (distanceKm > maxDistanceKm || (nearest && distanceKm >= nearest.nearbyEstimate.distanceKm)) continue;
+            if (!pathHasNoLandBarrier(candidateLocation)) continue;
+            const sample = sampleAt(candidateLocation, monthData, supportData, oceanMask, manifest);
+            if (!sample || sample.score == null) continue;
+            nearest = Object.freeze({ ...sample, nearbyEstimate:Object.freeze({ distanceKm, sourceLocation:Object.freeze(candidateLocation) }) });
+          }
+        }
+      }
+    }
+    return nearest;
+  }
+
   function scoreLabel(score, thresholds) {
     if (!Number.isFinite(Number(score))) return null;
     const value = Number(score);
@@ -310,7 +377,8 @@
     return Object.freeze({ loadManifest, loadMask, loadStaticSupport, loadMonth,
       sample:async (latlng, month) => {
         const [manifest, mask, support, monthData] = await Promise.all([loadManifest(), loadMask(), loadStaticSupport(), loadMonth(month)]);
-        return sampleAt(latlng, monthData, support, mask, manifest);
+        const direct = sampleAt(latlng, monthData, support, mask, manifest);
+        return direct || sampleNearestOceanCell(latlng, monthData, support, mask, manifest);
       },
       getCachedMonth:month => months.get(month) || null,
       cachedMonthCount:() => months.size });
@@ -443,7 +511,7 @@
   }
 
   return Object.freeze({ validateManifest, decodeMonth, decodeStaticSupport, decodeOceanMask, cellIndexAt,
-    sampleAt, interpolateViridis, opacityFor, scoreLabel, physicalLabel, confidenceLabel,
+    sampleAt, sampleNearestOceanCell, interpolateViridis, opacityFor, scoreLabel, physicalLabel, confidenceLabel,
     createDataStore, createGridLayer, getRenderDiagnostics:() => Object.freeze({ tileCount:renderedTileCount,
       totalTileRenderMs:Number(renderedTileMsTotal.toFixed(1)), maxTileRenderMs:Number(renderedTileMsMax.toFixed(1)),
       meanTileRenderMs:renderedTileCount ? Number((renderedTileMsTotal / renderedTileCount).toFixed(1)) : 0,

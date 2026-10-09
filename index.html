@@ -12423,7 +12423,9 @@ ZSD·2016–2025</span></span>
   const diveExperienceOutlookMonthLoads = new Map();
   async function sampleDiveExperienceOutlook(location, month) {
     const loaded = await ensureDiveExperienceOutlookMonth(month);
-    return diveExperienceOutlookMapApi.sampleAt(location, loaded.monthData, loaded.support, loaded.oceanMask, loaded.manifest);
+    const direct = diveExperienceOutlookMapApi.sampleAt(location, loaded.monthData, loaded.support, loaded.oceanMask, loaded.manifest);
+    return direct || diveExperienceOutlookMapApi.sampleNearestOceanCell(location, loaded.monthData, loaded.support,
+      loaded.oceanMask, loaded.manifest);
   }
   function diveExperienceAvailablePhysicalDimensionCount(result) {
     return ['temperature','clarity','current','waves'].filter(key => Number.isFinite(Number(result?.metrics?.[key]?.value))).length;
@@ -12674,6 +12676,9 @@ ZSD·2016–2025</span></span>
     evidence.textContent = scoreValue == null
       ? `${t('diveExperienceOverallConfidenceUnavailable')} · ${completenessText}`
       : `${(I18N[currentLang]?.diveExperienceConfidenceLine || `${t('diveConditionsConfidence')}: {confidence}`).replace('{confidence}', localizedConfidenceLevel(sample.confidence))} · ${completenessText}`;
+    if (sample?.nearbyEstimate) {
+      evidence.textContent += ` · ${t('diveExperienceNearbyEstimate')} · ${formatLongDistanceMeters(sample.nearbyEstimate.distanceKm * 1000)} ${t('diveConditionsFromSelection')}`;
+    }
     const infoControl = getDiveExperiencePopupInfoControl();
     const scoreRow = document.createElement('div');
     scoreRow.className = 'dive-experience-score-row';
