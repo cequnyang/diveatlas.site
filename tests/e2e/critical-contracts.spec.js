@@ -70,6 +70,17 @@ test('individual Dive site opens its details popup', async ({ page }) => {
   expect(popupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? 320 : 360, 0);
   const after = await mapState(page);
   expect(after.popup.type).toBe('dive');
+  await expect(page.locator('.dive-popup-rating__label')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
+  await expect(page.locator('.dive-popup-rating__label .dive-brand-mark')).toBeVisible();
+  await expect(page.locator('.dive-popup-rating__value')).not.toHaveAttribute('data-status', 'loading', { timeout: 30_000 });
+  const ratingValue = page.locator('.dive-popup-rating__value');
+  await expect(ratingValue).toContainText('Oct');
+  await page.evaluate(() => {
+    const month = document.getElementById('diveExperienceMonth');
+    month.value = '6';
+    month.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await expect(ratingValue).toContainText('Jun');
   await expectMapViewUnchanged(page, before, after);
 });
 

@@ -1338,6 +1338,11 @@
       line-height: 1.5;
     }
     .dive-popup-location { position:relative; margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
+    .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; }
+    .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; }
+    .dive-popup-rating__label .dive-brand-mark { width:5.0765em; height:1.573em; margin:0 -1px 0 0; }
+    .dive-popup-rating__value { color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
+    .dive-popup-rating__value[data-status="loading"] { color:var(--muted); font-weight:500; }
     .dive-popup-location__region { margin:0 !important; line-height:inherit; }
     .dive-popup-location__region { width:max-content; max-width:100%; font-size:9px; cursor:pointer; }
     .dive-conditions-popup-location-row { position:relative; }
@@ -12480,6 +12485,36 @@ ZSD·2016–2025</span></span>
     if (resolution == null || lengthUnit !== 'ft') return resolution;
     return String(resolution).replace(/([\d.]+)\s*km\b/giu, (_, value) => formatLongDistanceMeters(Number(value) * 1000));
   }
+  function diveSiteRatingMonth() {
+    return DIVE_EXPERIENCE_OUTLOOK_ENABLED ? diveConditionsMonth : new Date().getMonth() + 1;
+  }
+  function requestDiveSiteRating(popup, location) {
+    const element = popup?.getElement?.();
+    const rating = element?.querySelector('.dive-popup-rating__value');
+    if (!rating) return;
+    const month = diveSiteRatingMonth();
+    if (popup._diveAtlasRatingMonth === month && rating.dataset.status !== 'loading') return;
+    if (popup._diveAtlasRatingLoading) popup._diveAtlasRatingGeneration = (popup._diveAtlasRatingGeneration || 0) + 1;
+    const generation = (popup._diveAtlasRatingGeneration || 0) + 1;
+    popup._diveAtlasRatingGeneration = generation;
+    popup._diveAtlasRatingMonth = month;
+    popup._diveAtlasRatingLoading = true;
+    rating.dataset.status = 'loading';
+    rating.textContent = `${t('diveExperienceLoadingMonth').replace('…', '')} · ${localizedTemperatureMonth(month, 'short')}`;
+    void sampleDiveExperienceOutlook(location, month).then(sample => {
+      if (!popup.isOpen() || popup._diveAtlasRatingGeneration !== generation || popup.getElement() !== element) return;
+      rating.textContent = sample?.score == null
+        ? t('diveExperienceNoScore')
+        : `${Math.round(sample.score)} · ${localizedDiveExperienceLevel(sample.category || diveExperienceOutlookMapApi.scoreLabel(sample.score))} · ${localizedTemperatureMonth(month, 'short')}`;
+      rating.dataset.status = sample?.score == null ? 'unavailable' : 'ready';
+    }).catch(() => {
+      if (!popup.isOpen() || popup._diveAtlasRatingGeneration !== generation || popup.getElement() !== element) return;
+      rating.textContent = `${t('diveConditionsUnavailable')} · ${localizedTemperatureMonth(month, 'short')}`;
+      rating.dataset.status = 'unavailable';
+    }).finally(() => {
+      if (popup._diveAtlasRatingGeneration === generation) popup._diveAtlasRatingLoading = false;
+    });
+  }
   function diveExperiencePhysicalSupportText(metric) {
     if (!metric || metric.value == null) return null;
     const parts = [metric.provenance, formatDiveExperienceResolutionText(metric.resolution), metric.period,
@@ -12952,6 +12987,10 @@ ZSD·2016–2025</span></span>
     diveConditionsMonth = month;
     saveMonthSelection(DIVE_EXPERIENCE_MONTH_STORAGE_KEY, month);
     diveExperienceMonthSelect.value = String(month);
+    const openDivePopup = activeClickPopup;
+    if (openDivePopup?._diveAtlasRatingLocation && openDivePopup.isOpen()) {
+      requestDiveSiteRating(openDivePopup, openDivePopup._diveAtlasRatingLocation);
+    }
     document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(month);
     if (environmentalViewController.activeView === 'dive-experience-outlook') {
       if (diveConditionsPopup?.isOpen() && diveConditionsLocation) void refreshDiveExperienceOutlook();
@@ -22659,6 +22698,10 @@ ZSD·2016–2025</span></span>
       `<div class="bio-popup-title">${escapeHtml(name)}</div>`,
       `<div class="dive-popup-location">` +
       `<p class="dive-popup-location__region" hidden></p>` +
+      `</div>`,
+      `<div class="dive-popup-rating" aria-label="${escapeHtml(t('diveExperienceHistoricalOutlook'))}">` +
+      `<span class="dive-popup-rating__label" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}"></span>` +
+      `<span class="dive-popup-rating__value" data-status="loading">${escapeHtml(t('diveConditionsLoading'))}</span>` +
       `</div>`
     );
 
@@ -22807,9 +22850,18 @@ ZSD·2016–2025</span></span>
     );
     marker.getPopup()._diveAtlasSiteId = getDiveSiteStableId(site);
     marker.getPopup()._diveAtlasSiteRecord = site;
+    marker.getPopup()._diveAtlasRatingLocation = L.latLng(lat, normalizeBaseLongitude(lng));
+    const ratingLabel = document.createElement('span');
+    ratingLabel.className = 'dive-popup-rating__label';
+    ratingLabel.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
+    renderBrandedDiveLabel(ratingLabel);
+    marker.getPopup()._diveAtlasRatingLabel = ratingLabel;
 
     marker.on('popupopen', event => {
+      const popupRatingLabel = event.popup.getElement()?.querySelector('.dive-popup-rating__label');
+      if (popupRatingLabel && !popupRatingLabel.querySelector('.dive-brand-mark')) renderBrandedDiveLabel(popupRatingLabel);
       const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
+      if (event.popup._diveAtlasRatingLocation) requestDiveSiteRating(event.popup, event.popup._diveAtlasRatingLocation);
       if (popupRegion) {
         bindDiveLocationCoordinateTooltip(popupRegion, marker.getLatLng());
         void updateDiveConditionsRegionLabel(popupRegion, marker.getLatLng());
