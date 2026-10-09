@@ -3130,7 +3130,7 @@
     }
 
     .unit-segmented-control { --unit-segment-height: 32px; --unit-segment-min-width: 42px; --unit-segment-font-size: 13px; --unit-segment-padding: 3px; --unit-segment-radius: 12px; --unit-segment-item-radius: 9px; position: relative; isolation: isolate; display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); flex: 0 0 auto; gap: 2px; padding: var(--unit-segment-padding); overflow: hidden; border: 1px solid var(--border-subtle); border-radius: var(--unit-segment-radius); background: var(--panel-soft); }
-    .unit-segmented-control::before { content: ''; position: absolute; z-index: -1; top: var(--unit-segment-padding); bottom: var(--unit-segment-padding); left: 0; width: var(--unit-indicator-width, 0px); border: 1px solid var(--border-subtle); border-radius: var(--unit-segment-item-radius); background: var(--surface-elevated); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border-subtle) 42%, transparent); opacity: 0; transform: translate3d(var(--unit-indicator-x, 0px), 0, 0); transition: transform 160ms cubic-bezier(.2,.75,.25,1), opacity 100ms ease-out; pointer-events: none; }
+    .unit-segmented-control::before { content: ''; position: absolute; z-index: -1; top: var(--unit-segment-padding); bottom: var(--unit-segment-padding); left: 0; width: var(--unit-indicator-width, 0px); border: 1px solid var(--border-subtle); border-radius: var(--unit-segment-item-radius); background: var(--surface-elevated); box-shadow: none; opacity: 0; transform: translate3d(var(--unit-indicator-x, 0px), 0, 0); transition: transform 160ms cubic-bezier(.2,.75,.25,1), opacity 100ms ease-out; pointer-events: none; }
     .unit-segmented-control[data-indicator-ready="true"]::before { opacity: 1; }
     .unit-segmented-control:not([data-indicator-ready="true"])::before { transition: none; }
     .unit-segmented-control > button { position: relative; z-index: 0; min-width: var(--unit-segment-min-width); min-height: var(--unit-segment-height); padding: 0 10px; border: 1px solid transparent; border-radius: var(--unit-segment-item-radius); background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--unit-segment-font-size); font-weight: 600; line-height: 1; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -5091,6 +5091,9 @@
     .environment-segment-shell[data-indicator-ready="true"] .environment-segment input:checked + span { border-color:transparent; background:transparent; box-shadow:none; }
     .environment-segment-group { position: absolute; inset: -1px; height: auto; min-inline-size: 0; padding: 1px 5px; gap: 4px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
     .environment-segment span { min-height: 38px; color: var(--layers-segment-text); font-size: 14px; font-weight: 500; }
+    .environment-segment:has(input[value="default"]) { width: 40px; min-width: 40px; }
+    .environment-segment #environmentNoneLabel { padding-inline: 10px; }
+    .environment-segment .environment-none-icon { display: block; width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
     .environment-segment input:checked + span { border-color: var(--layers-segment-border); background: var(--layers-segment-background); box-shadow: var(--layers-segment-shadow); color: var(--layers-segment-active-text); font-weight: 600; }
     .reef-survey-popup-primary { display:grid; gap:3px; margin-top:8px; padding-bottom:7px; border-bottom:1px solid var(--line); }
     .reef-survey-popup-primary span { color:var(--muted); font-size:9px; font-weight:700; letter-spacing:.08em; }
@@ -5325,10 +5328,22 @@
     .bio-legend-layers { max-height:min(780px, calc(100dvh - 120px)); scrollbar-width:none; }
     .bio-legend-layers-inner { row-gap:4px; }
     .layer-switch-label--layers { --layer-switch-track-width:40px; --layer-switch-track-height:20px; --layer-switch-thumb-size:16px; }
+    .bio-legend-row .layer-toggle-input[data-layer="contours"] + .layer-toggle-switch { --overlay-check-color: var(--layer-contour-context-color); }
+    .bio-legend-row .layer-toggle-input[data-layer="reef"] + .layer-toggle-switch { --overlay-check-color: var(--reef-color); }
+    .bio-legend-row .layer-toggle-input[data-layer="species"] + .layer-toggle-switch { --overlay-check-color: var(--coral-color); }
+    .bio-legend-row .layer-toggle-input[data-layer="fish"] + .layer-toggle-switch { --overlay-check-color: var(--fish-color); }
+    .bio-legend-row .layer-toggle-input[data-layer="dive"] + .layer-toggle-switch { --overlay-check-color: var(--dive-color); }
+    .regional-currents-speed-tint-row .layer-toggle-switch { --overlay-check-color: #3b73e8; }
+    /* Keep the fill until the white check has retracted on uncheck. */
+    :is(.bio-legend-row, .regional-currents-speed-tint-row) .layer-toggle-switch { width: calc(24px * var(--layers-ui-scale, 1)); height: calc(24px * var(--layers-ui-scale, 1)); border: 2px solid var(--overlay-check-color); background: transparent; box-shadow: none; transition: background-color 80ms ease 210ms; }
+    :is(.bio-legend-row, .regional-currents-speed-tint-row) .layer-toggle-switch::after { inset: 2px; width: auto; height: auto; border: 0; border-radius: 0; background: #fff; box-shadow: none; opacity: 0; clip-path: inset(0 100% 0 0); transform: scale(.85); transition: opacity 60ms linear 180ms, clip-path 220ms ease-in, transform 220ms ease-in; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m4 12.5 5.5 5.5L20 6.5' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m4 12.5 5.5 5.5L20 6.5' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+    :is(.bio-legend-row, .regional-currents-speed-tint-row) .layer-toggle-input:checked + .layer-toggle-switch { border-color: var(--overlay-check-color); background: var(--overlay-check-color); box-shadow: none; transition: background-color 120ms ease; }
+    :is(.bio-legend-row, .regional-currents-speed-tint-row) .layer-toggle-input:checked + .layer-toggle-switch::after { background: #fff; box-shadow: none; opacity: 1; clip-path: inset(0); transform: scale(1); transition: opacity 60ms linear, clip-path 240ms ease-out, transform 240ms cubic-bezier(.2, 1.4, .4, 1); }
+    @media (hover: hover) { :is(.bio-legend-row, .regional-currents-speed-tint-row) .layer-switch-label:hover .layer-toggle-switch { border-color: var(--overlay-check-color); } }
     .bio-legend-layers::-webkit-scrollbar { display:none; width:0; height:0; }
     /* Keep both panel states anchored below the menu so opening grows downward. */
     .bio-legend { top: calc(42px + 6px); right: auto; bottom: auto; left: 12px; }
-    .bio-legend.is-collapsed { padding: 0 14px; border-radius: 7px; }
+    .bio-legend.is-collapsed { padding: 0 14px; border-radius: 7px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
     .bio-legend.is-collapsed .bio-legend-heading { min-height: 50px; margin: 0 -14px; padding: 0 10px 0 14px; border-bottom: 0; }
     .bio-legend.is-collapsed .bio-legend-title { min-height: 48px; }
     @media (max-width: 720px) {
@@ -5892,7 +5907,7 @@
       <div class="environment-segment-shell">
         <span class="environment-segment-indicator" aria-hidden="true"></span>
         <fieldset class="environment-segment-group" aria-label="Functions">
-          <label class="environment-segment"><input type="radio" name="environmentView" value="default"><span id="environmentNoneLabel">None</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="default" aria-label="None"><span id="environmentNoneLabel"><svg class="environment-none-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor"/><path d="M5.6 18.4 18.4 5.6" fill="none" stroke="currentColor"/></svg></span></label>
           <label class="environment-segment" data-dive-experience-outlook><input type="radio" name="environmentView" value="dive-experience-outlook"><span id="environmentDiveExperienceLabel">Dive Experience</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="temperature"><span id="environmentTemperatureLabel">Temperature</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="water-clarity"><span id="environmentWaterClarityLabel">Water Clarity</span></label>
@@ -11301,7 +11316,7 @@ ZSD·2016–2025</span></span>
     els.terrainLayerToggle.setAttribute('aria-label', `${t('terrainLegend')}: ${t('terrainDescription')}`);
     renderBrandedDiveLabel(els.environmentDiveExperienceLabel);
     els.environmentDiveExperienceLabel.previousElementSibling.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
-    els.environmentNoneLabel.textContent = t('environmentNone');
+    els.environmentNoneLabel.previousElementSibling.setAttribute('aria-label', t('environmentNone'));
     els.environmentReefConditionLabel.textContent = t('reefFieldMetricTitle');
     els.environmentReefConditionLabel.previousElementSibling.setAttribute('aria-label', t('reefFieldMetricTitle'));
     els.environmentTemperatureLabel.textContent = ENVIRONMENT_TEMPERATURE_TAB_LABELS[currentLang] || t('environmentTemperature');
