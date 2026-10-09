@@ -1330,15 +1330,19 @@
     }
 
     .dive-popup-summary {
-      margin: 9px 0 8px;
-      padding-bottom: 8px;
+      margin: 5px 0 6px;
+      padding-bottom: 5px;
       border-bottom: 1px solid var(--line-soft);
       color: var(--text);
       font-size: 11px;
       line-height: 1.5;
     }
-    .dive-site-popup .bio-popup-meta + .dive-popup-summary {
-      padding-top: 8px;
+    .dive-popup-location { margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
+    .dive-popup-location__coordinates,
+    .dive-popup-location__region { margin:0 !important; line-height:inherit; }
+    .dive-popup-location__region { font-size:9px; }
+    .dive-site-popup .dive-popup-location + .dive-popup-summary {
+      padding-top: 4px;
       border-top: 1px solid var(--line-soft);
     }
     .dive-popup-summary__heading {
@@ -1699,7 +1703,7 @@
     .dive-experience-popup-content .dive-experience-overview { padding:7px 0 3px; border-bottom:1px solid var(--line); }
     .dive-conditions-popup-content.dive-experience-popup-content { --layers-ui-scale:.82; box-sizing:border-box; width:100%; }
     .dive-experience-score-row { display:flex; align-items:center; gap:14px; margin-top:2px; }
-    .dive-experience-main-score { min-width:0; margin:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:21px; font-weight:800; letter-spacing:-.035em; }
+    .dive-experience-main-score { min-width:0; margin:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:31.5px; font-weight:800; letter-spacing:-.035em; }
     .dive-experience-popup-content .dive-experience-score-info { width:44px; height:44px; flex:0 0 44px; }
     .dive-experience-popup-content .dive-experience-score-info > summary,
     .dive-experience-popup-content .dive-experience-score-info > summary:hover,
@@ -22523,8 +22527,6 @@ ZSD·2016–2025</span></span>
       }
     );
 
-    const popupTitle = t('diveSiteGeneric');
-
     const rows = [];
     if (photo) {
       rows.push(
@@ -22544,7 +22546,10 @@ ZSD·2016–2025</span></span>
     }
     rows.push(
       `<div class="bio-popup-title">${escapeHtml(name)}</div>`,
-      `<div class="bio-popup-meta">${popupTitle}</div>`
+      `<div class="dive-popup-location">` +
+      `<p class="dive-popup-location__coordinates">${lat.toFixed(3)}°, ${lng.toFixed(3)}°</p>` +
+      `<p class="dive-popup-location__region" hidden></p>` +
+      `</div>`
     );
 
     if (siteSummary) {
@@ -22695,6 +22700,11 @@ ZSD·2016–2025</span></span>
     );
     marker.getPopup()._diveAtlasSiteId = getDiveSiteStableId(site);
     marker.getPopup()._diveAtlasSiteRecord = site;
+
+    marker.on('popupopen', event => {
+      const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
+      if (popupRegion) void updateDiveConditionsRegionLabel(popupRegion, marker.getLatLng());
+    });
 
     if (photo) {
       marker.on('popupopen', event => {
