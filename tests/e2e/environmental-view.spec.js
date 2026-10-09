@@ -208,7 +208,7 @@ test('Water Clarity click popup renders a local numeric chunk with the current l
   };
   // This test uses synthetic water-clarity data; its tile bytes must not depend
   // on a large terrain tile that is intentionally absent from Git.
-  const tile = fs.readFileSync(path.resolve(__dirname, '../../assets/favicon-light.png'));
+  const tile = fs.readFileSync(path.resolve(__dirname, '../../assets/favicon-brand.png'));
   const queryMetadata = { ...metadata, format:'diveatlas-water-clarity-query', format_version:2,
     query:{ ...metadata.query, chunk_file_template:'chunks/{month}/r{row}_c{column}.u8.gz' } };
   await page.route('**/data/water_clarity/metadata.json', route => route.fulfill({ json: metadata }));

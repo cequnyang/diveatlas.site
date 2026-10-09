@@ -15,7 +15,9 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await expect(page.locator('#diveExperienceMonth')).toBeAttached();
   await expect(page.locator('#environmentViewSelect option[value="dive-conditions"]')).toHaveCount(0);
 
-  await page.locator('.environment-segment').filter({ hasText: 'Dive Experience' }).click();
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
+  }).click();
   await page.getByRole('button', { name: 'Map layers' }).click();
   await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;
@@ -38,6 +40,9 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await infoTooltip.locator('.dive-experience-dimension-details > summary').click();
   await expect(infoTooltip).toContainText('°F-weeks');
   await expect(infoTooltip).toContainText('mi from source');
+  await popup.locator('.dive-experience-score-info > summary').focus();
+  await page.keyboard.press('Escape');
+  await expect(infoTooltip).toBeHidden();
   await page.locator('.leaflet-popup-close-button').click();
   await page.getByRole('button', { name: 'Map layers' }).click();
 

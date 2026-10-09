@@ -37,9 +37,9 @@
   <title>DiveAtlas – Interactive Dive Site, Coral Reef &amp; Bathymetry Map</title>
   <meta name="description" content="Explore dive sites, coral records, reef extent, bathymetry and depth contours on an interactive global map for scuba divers." />
   <link rel="canonical" href="https://diveatlas.site/" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-light.png?v=5" media="(prefers-color-scheme: light)" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-dark.png?v=5" media="(prefers-color-scheme: dark)" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=1" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon-brand.ico?v=4" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-brand.png?v=4" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-brand.png?v=1" />
 
   <link
     rel="stylesheet"
@@ -1735,6 +1735,10 @@
     .dive-conditions-panel[hidden] { display:none; }
     .dive-conditions-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; }
     .dive-conditions-heading h2 { margin:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:var(--layers-temp-title-size,18px); font-weight:500; letter-spacing:-.45px; line-height:28px; }
+    /* The standalone SVG includes space after the final s; offset it in rating labels. */
+    .dive-brand-mark { display:inline-block; width:5.0765em; height:1.573em; vertical-align:-.3em; margin-right:-1px; }
+    #environmentDiveExperienceLabel { gap:0; }
+    #environmentDiveExperienceLabel .dive-brand-mark { flex:0 0 auto; width:5.0765em; height:1.573em; margin:0 -1px 0 0; }
     .dive-experience-info { margin-right:-8px; }
     .dive-conditions-month-picker { margin:14px 0; }
     .dive-conditions-score-map-legend { display:grid; box-sizing:border-box; grid-template-columns:1fr auto; align-items:center; gap:5px 10px; margin:8px 0 2px; padding:10px 12px; border:1px solid var(--layers-legend-card-border); border-radius:var(--layers-control-radius); background:var(--layers-legend-card-background); color:var(--layers-legend-meta,var(--text-muted)); font-size:10px; }
@@ -2997,17 +3001,10 @@
       border-radius: 4px;
     }
 
-    .top-menu-mark {
-      flex: 0 0 auto;
-      font-size: 14px;
-      line-height: 1;
-      font-weight: 800;
-      color: var(--accent);
-      transform: translateY(-.5px);
-    }
-
     .top-menu-title {
       margin: 0;
+      display: inline-flex;
+      align-items: center;
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 11px;
@@ -3016,24 +3013,11 @@
       letter-spacing: .01em;
     }
 
-    .top-menu-wordmark {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .top-menu-wordmark > span:first-child {
-      position: relative;
-      z-index: 1;
-    }
-
-    .top-menu-lighthouse {
-      width: 1.34em;
-      height: 1.42em;
-      margin: 0 -.12em 0 -.25em;
+    .top-menu-logo {
+      display: block;
       flex: 0 0 auto;
-      overflow: visible;
-      transform: translateY(calc(-.20em + .5px));
+      width: 98px;
+      height: auto;
     }
 
     .top-menu-subtitle {
@@ -3297,23 +3281,6 @@
 
     .top-menu-brand { gap: 7px; }
 
-    .top-menu-mark {
-      width: 30px;
-      height: 30px;
-      display: inline-grid;
-      place-items: center;
-      flex: 0 0 30px;
-      transform: none;
-    }
-
-    .top-menu-mark img {
-      width: 30px;
-      height: 30px;
-      display: block;
-      object-fit: contain;
-    }
-
-    .top-menu-mark svg,
     .top-menu-theme svg,
     .top-menu-menu-button svg,
     .bio-cache-refresh .refresh-octicon,
@@ -4347,8 +4314,8 @@
         max-width: 100%;
       }
 
-      /* Flatten the linked brand into its logo and title so search can sit
-         between them without making the search controls part of the link. */
+      /* Flatten the linked brand so search can sit beside the logo without
+         making the search controls part of the link. */
       .top-menu-brand,
       .top-menu-home {
         display: contents;
@@ -4358,8 +4325,7 @@
         display: none;
       }
 
-      .top-menu-mark { order: 0; }
-      .top-menu-title { order: 1; flex: 0 0 auto; }
+      .top-menu-title { order: 0; flex: 0 0 auto; }
       #topMenuSearchSlot {
         order: 2;
         flex: 0 0 auto;
@@ -4485,6 +4451,11 @@
       line-height: 1.15;
       letter-spacing: -.02em;
       font-weight: 650;
+    }
+    .tutorial-title-logo {
+      height: 1.1em;
+      width: auto;
+      vertical-align: -.2em;
     }
     .tutorial-intro {
       margin: 3px 0 10px;
@@ -5669,18 +5640,8 @@
   <header class="top-menu-bar" id="topMenuBar" role="banner">
     <div class="top-menu-brand">
       <a class="top-menu-home" href="./index.html" aria-label="DiveAtlas home">
-        <span class="top-menu-mark" aria-hidden="true"><img id="brandIcon" src="assets/favicon-light.png?v=5" alt="" /></span>
-        <h1 class="top-menu-title" id="brandTitle" aria-label="diveAtlas">
-          <span class="top-menu-wordmark" aria-hidden="true">
-            <span>dive</span>
-            <svg class="top-menu-lighthouse" viewBox="-3 0 25 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <path d="M6.7 7-3.4 5.9v4.2L6.7 9Z" fill="#f7e7a5" stroke="none"/>
-              <path d="M11 2.5V1M7.5 5.5 11 3l3.5 2.5H7.5ZM8 5.5h6v5H8z"/>
-              <path d="M6.7 7-3.4 5.9M6.7 9l-10.1 1.1" stroke-width=".8"/>
-              <path d="M6.5 11h9M7.5 12 4 25M18 25l-3.5-13M6.5 16h9m-10.5 4h12"/>
-            </svg>
-            <span>tlas</span>
-          </span><span class="top-menu-brand-suffix"></span>
+        <h1 class="top-menu-title" id="brandTitle" aria-label="DiveAtlas">
+          <img class="top-menu-logo" src="assets/diveatlas-logo.svg?v=2" alt="" aria-hidden="true" /><span class="top-menu-brand-suffix"></span>
         </h1>
       </a>
       <span class="top-menu-subtitle" id="brandSubtitle">Coral reef distribution</span>
@@ -7822,7 +7783,6 @@ ZSD·2016–2025</span></span>
     siteSuggestionSubmitButton: document.getElementById('siteSuggestionSubmitButton'),
     themeBtn: document.getElementById('themeBtn'),
     measurementUnitSwitch: document.getElementById('measurementUnitSwitch'),
-    brandIcon: document.getElementById('brandIcon'),
     collapseBtn: document.getElementById('collapseBtn'),
     panelLauncher: document.getElementById('panelLauncher'),
     langSelect: document.getElementById('langSelect'),
@@ -10609,7 +10569,24 @@ ZSD·2016–2025</span></span>
 
   function renderTutorialTexts() {
     els.tutorialEyebrow.textContent = tutorialText('tutorialEyebrow');
-    els.tutorialTitle.textContent = tutorialText('tutorialTitle');
+    const title = tutorialText('tutorialTitle');
+    const brandIndex = title.indexOf('DiveAtlas');
+    if (brandIndex >= 0) {
+      // Keep each language's word order while displaying the same brand asset.
+      const logo = document.createElement('img');
+      logo.className = 'tutorial-title-logo';
+      logo.src = 'assets/diveatlas-logo.svg?v=2';
+      logo.alt = '';
+      logo.setAttribute('aria-hidden', 'true');
+      els.tutorialTitle.replaceChildren(
+        document.createTextNode(title.slice(0, brandIndex)),
+        logo,
+        document.createTextNode(title.slice(brandIndex + 'DiveAtlas'.length))
+      );
+    } else {
+      els.tutorialTitle.textContent = title;
+    }
+    els.tutorialTitle.setAttribute('aria-label', title);
     els.tutorialIntro.textContent = tutorialText('tutorialIntro');
     els.tutorialReefTitle.textContent = t('reefLegend');
     els.tutorialReefCopy.textContent = tutorialText('tutorialReefCopy');
@@ -11168,10 +11145,10 @@ ZSD·2016–2025</span></span>
   });
 
   function renderBrandTitle(title) {
-    // Keep the drawn A while preserving the language-specific text after the brand name.
+    // Keep the localized suffix beside the fixed logo on wide screens.
     const suffix = title.startsWith('DiveAtlas') ? title.slice('DiveAtlas'.length) : '';
     els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = suffix;
-    els.brandTitle.setAttribute('aria-label', `diveAtlas${suffix}`);
+    els.brandTitle.setAttribute('aria-label', `DiveAtlas${suffix}`);
   }
 
   function syncCompactMobileHeaderCopy() {
@@ -11262,6 +11239,20 @@ ZSD·2016–2025</span></span>
     syncCompactMobileHeaderCopy();
   }, { passive: true });
 
+  // The rating name is a fixed product label in every language.
+  const DIVEATLAS_RATING_LABEL = 'DiveAtlas Rating';
+
+  function renderBrandedDiveLabel(target) {
+    const mark = document.createElement('img');
+    mark.className = 'dive-brand-mark';
+    mark.src = 'assets/diveatlas-logo.svg?v=2';
+    mark.alt = '';
+    mark.setAttribute('aria-hidden', 'true');
+    target.replaceChildren(mark, 'Rating');
+    target.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
+    return DIVEATLAS_RATING_LABEL;
+  }
+
   function renderStaticTexts() {
     document.title = t('pageTitle');
     updateShareButtonDescription();
@@ -11308,8 +11299,8 @@ ZSD·2016–2025</span></span>
     els.terrainLegendLabel.textContent = t('terrainLegend');
     els.terrainLayerToggle.title = t('terrainDescription');
     els.terrainLayerToggle.setAttribute('aria-label', `${t('terrainLegend')}: ${t('terrainDescription')}`);
-    els.environmentDiveExperienceLabel.textContent = t('diveExperienceTab');
-    els.environmentDiveExperienceLabel.previousElementSibling.setAttribute('aria-label', t('diveExperienceTitle'));
+    renderBrandedDiveLabel(els.environmentDiveExperienceLabel);
+    els.environmentDiveExperienceLabel.previousElementSibling.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
     els.environmentNoneLabel.textContent = t('environmentNone');
     els.environmentReefConditionLabel.textContent = t('reefFieldMetricTitle');
     els.environmentReefConditionLabel.previousElementSibling.setAttribute('aria-label', t('reefFieldMetricTitle'));
@@ -12130,7 +12121,6 @@ ZSD·2016–2025</span></span>
     if (typeof value === 'string' && /typical/iu.test(value)) return levels?.Moderate || value;
     return levels?.[fallbackLevels[value]] || value;
   }
-  function localizedDiveExperienceTitle() { return t('diveExperienceTitle'); }
   function setDiveExperienceStatusCopy(copy) {
     diveExperienceOutlookStatusKey = null;
     els.diveExperienceOutlookStatus.textContent = copy;
@@ -12164,10 +12154,9 @@ ZSD·2016–2025</span></span>
     return localizedDiveConditionLabel(equivalents[value]) || value;
   }
   function renderDiveConditionsTexts() {
-    const title = localizedDiveExperienceTitle();
     const panel = document.getElementById('diveExperienceOutlookPanel');
+    const title = renderBrandedDiveLabel(panel.querySelector('.dive-conditions-heading h2'));
     panel.setAttribute('aria-label', title);
-    panel.querySelector('.dive-conditions-heading h2').textContent = title;
     const about = panel.querySelector('.dive-experience-info > summary');
     about.setAttribute('aria-label', `${t('diveConditionsAbout')} · ${title}`);
     about.title = t('diveConditionsAbout');
@@ -12219,7 +12208,7 @@ ZSD·2016–2025</span></span>
     titleRow.className = 'dive-conditions-popup-title-row';
     const title = document.createElement('h2');
     title.className = 'dive-conditions-popup-title';
-    title.textContent = localizedDiveExperienceTitle();
+    renderBrandedDiveLabel(title);
     titleRow.append(title);
     const month = document.createElement('p');
     month.className = 'dive-conditions-popup-subtitle';
@@ -24310,11 +24299,6 @@ ZSD·2016–2025</span></span>
     els.themeBtn.setAttribute('aria-label', themeActionLabel);
     els.themeBtn.title = themeActionLabel;
     els.themeBtn.setAttribute('aria-busy', String(themeTransitionState !== 'idle'));
-    const icon = dark
-      ? 'assets/favicon-dark.png?v=5'
-      : 'assets/favicon-light.png?v=5';
-    if (els.brandIcon) els.brandIcon.src = icon;
-
     syncThemeOverlayStyles();
     if (persist) persistTheme(theme);
   }

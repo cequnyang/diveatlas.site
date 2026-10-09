@@ -112,8 +112,9 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   await expect(popup).toBeVisible({ timeout:15000 });
   expect(await page.evaluate(() => window.__diveExperienceRedrawsAfterActivation)).toBe(0);
   const popupLatencyMs = Date.now() - popupStarted;
-  await expect(popup).toContainText('Dive Experience Outlook');
   const popupHeading = popup.locator('.dive-conditions-popup-title');
+  await expect(popupHeading).toHaveAttribute('aria-label', 'DiveAtlas Rating');
+  await expect(popupHeading.locator('.dive-brand-mark')).toBeVisible();
   await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
   await expect.poll(() => popupHeading.evaluate(node => getComputedStyle(node).color)).toMatch(/^rgb\(/);
   const lightHeadingColor = await popupHeading.evaluate(node => getComputedStyle(node).color);
@@ -232,12 +233,6 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
     has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')
   }).click();
   await expect(page.locator('#diveExperienceOutlookStatus')).toContainText('Historical monthly outlook');
-  const titles = {
-    en:'Dive Experience Outlook', zh:'潜水体验展望', ja:'ダイビング体験の見通し', fr:'Perspectives de plongée',
-    de:'Ausblick auf das Taucherlebnis', nl:'Duikervaring in beeld', it:'Prospettiva sull’esperienza subacquea',
-    ru:'Оценка условий для дайвинга', pt:'Perspectiva de mergulho', sv:'Utsikter för dykupplevelsen',
-    no:'Utsikter for dykkeopplevelsen', es:'Perspectiva de buceo', ko:'다이빙 경험 전망', id:'Prospek pengalaman menyelam'
-  };
   const tabLabels = {
     en:'Dive Experience', zh:'潜水体验', ja:'ダイビング体験', fr:'Plongée', de:'Taucherlebnis',
     nl:'Duikervaring', it:'Esperienza subacquea', ru:'Дайвинг', pt:'Mergulho', sv:'Dykning',
@@ -251,14 +246,19 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
 
-  for (const [language, title] of Object.entries(titles)) {
+  for (const language of Object.keys(tabLabels)) {
     if (language !== 'en') {
       await page.locator('#languageMenuButton').click();
       await page.locator(`#languageDropdown [data-language="${language}"]`).click();
     }
-    await expect(page.locator('#diveExperienceOutlookPanel h2')).toHaveText(title);
-    await expect(popup.locator('.dive-conditions-popup-title')).toHaveText(title);
-    await expect(page.locator('#environmentDiveExperienceLabel')).toHaveText(tabLabels[language]);
+    await expect(page.locator('#diveExperienceOutlookPanel h2')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
+    await expect(popup.locator('.dive-conditions-popup-title')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
+    await expect(page.locator('#environmentDiveExperienceLabel')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
+    for (const selector of ['#diveExperienceOutlookPanel h2', '.dive-conditions-popup-title', '#environmentDiveExperienceLabel']) {
+      const mark = page.locator(`${selector} .dive-brand-mark`);
+      await expect(mark).toHaveCount(1);
+      await expect(mark).toHaveAttribute('src', 'assets/diveatlas-logo.svg?v=2');
+    }
     await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveText(tabLabels[language]);
     const layout = await page.evaluate(() => {
       const panel = document.querySelector('#diveExperienceOutlookPanel');
