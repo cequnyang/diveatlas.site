@@ -3022,11 +3022,17 @@
       white-space: nowrap;
     }
 
+    .top-menu-wordmark > span:first-child {
+      position: relative;
+      z-index: 1;
+    }
+
     .top-menu-lighthouse {
-      width: 1.18em;
+      width: 1.34em;
       height: 1.42em;
-      margin: 0 .01em;
+      margin: 0 -.12em 0 -.25em;
       flex: 0 0 auto;
+      overflow: visible;
       transform: translateY(calc(-.20em + .5px));
     }
 
@@ -5667,9 +5673,11 @@
         <h1 class="top-menu-title" id="brandTitle" aria-label="diveAtlas">
           <span class="top-menu-wordmark" aria-hidden="true">
             <span>dive</span>
-            <svg class="top-menu-lighthouse" viewBox="0 0 22 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-              <path d="M7 6 11 2l4 4H7M8 6h6v5H8zM8 11 4 24M14 11l4 13M6 18h10M3 24h16M1.5 5 5.5 7M1.5 11.5 5.5 9.5M20.5 5 16.5 7M20.5 11.5 16.5 9.5"/>
-              <path d="m7.1 14.5 8 1.5"/>
+            <svg class="top-menu-lighthouse" viewBox="-3 0 25 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M6.7 7-3.4 5.9v4.2L6.7 9Z" fill="#f7e7a5" stroke="none"/>
+              <path d="M11 2.5V1M7.5 5.5 11 3l3.5 2.5H7.5ZM8 5.5h6v5H8z"/>
+              <path d="M6.7 7-3.4 5.9M6.7 9l-10.1 1.1" stroke-width=".8"/>
+              <path d="M6.5 11h9M7.5 12 4 25M18 25l-3.5-13M6.5 16h9m-10.5 4h12"/>
             </svg>
             <span>tlas</span>
           </span><span class="top-menu-brand-suffix"></span>
