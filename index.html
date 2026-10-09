@@ -1337,10 +1337,14 @@
       font-size: 11px;
       line-height: 1.5;
     }
-    .dive-popup-location { margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
-    .dive-popup-location__coordinates,
+    .dive-popup-location { position:relative; margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
     .dive-popup-location__region { margin:0 !important; line-height:inherit; }
-    .dive-popup-location__region { font-size:9px; }
+    .dive-popup-location__region { width:max-content; max-width:100%; font-size:9px; cursor:pointer; }
+    .dive-conditions-popup-location-row { position:relative; }
+    .dive-conditions-popup-region { width:max-content; max-width:100%; cursor:pointer; }
+    .dive-popup-location__region:focus-visible,
+    .dive-conditions-popup-region:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+    .dive-location-coordinate-tooltip { position:absolute; z-index:20; top:calc(100% + 4px); left:0; max-width:min(240px,calc(100vw - 80px)); padding:5px 8px; border:1px solid var(--line-soft); border-radius:6px; background:var(--panel-solid); color:var(--text); box-shadow:0 5px 16px rgb(0 0 0 / 18%); font-size:10px; font-variant-numeric:tabular-nums; line-height:1.25; white-space:nowrap; }
     .dive-site-popup .dive-popup-location + .dive-popup-summary {
       padding-top: 4px;
       border-top: 1px solid var(--line-soft);
@@ -1700,7 +1704,7 @@
       scrollbar-width:none;
     }
     .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content::-webkit-scrollbar { display:none; }
-    .dive-experience-popup-content .dive-experience-overview { padding:7px 0 3px; border-bottom:1px solid var(--line); }
+    .dive-experience-popup-content .dive-experience-overview { padding:5.2px 0 3px; border-bottom:1px solid var(--line); }
     .dive-conditions-popup-content.dive-experience-popup-content { --layers-ui-scale:.82; box-sizing:border-box; width:100%; }
     .dive-experience-score-row { display:flex; align-items:center; gap:14px; margin-top:2px; }
     .dive-experience-main-score { min-width:0; margin:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:31.5px; font-weight:800; letter-spacing:-.035em; }
@@ -12214,20 +12218,60 @@ ZSD·2016–2025</span></span>
     month.textContent = t('diveExperienceHistoricalOutlook');
     const locationRow = document.createElement('div');
     locationRow.className = 'dive-conditions-popup-location-row';
-    const location = document.createElement('p');
-    location.className = 'dive-conditions-popup-location';
-    location.textContent = `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`;
     const region = document.createElement('p');
     region.className = 'dive-conditions-popup-region';
     region.hidden = true;
     const monthLabel = document.createElement('p');
     monthLabel.className = 'dive-conditions-popup-month';
     monthLabel.textContent = localizedTemperatureMonth(diveConditionsMonth);
-    locationRow.append(location, region, monthLabel);
+    locationRow.append(region, monthLabel);
     header.append(titleRow, month);
     headerBlock.append(header, locationRow);
+    bindDiveLocationCoordinateTooltip(region, latlng);
     void updateDiveConditionsRegionLabel(region, latlng);
     return headerBlock;
+  }
+  let diveLocationCoordinateTooltipSequence = 0;
+  function bindDiveLocationCoordinateTooltip(trigger, latlng) {
+    if (!trigger || trigger.dataset.coordinatesBound === 'true') return;
+    trigger.dataset.coordinatesBound = 'true';
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('tabindex', '0');
+    trigger.setAttribute('aria-label', 'Show coordinates');
+    trigger.setAttribute('aria-expanded', 'false');
+    const tooltip = document.createElement('span');
+    tooltip.className = 'dive-location-coordinate-tooltip';
+    tooltip.id = `dive-location-coordinates-${++diveLocationCoordinateTooltipSequence}`;
+    tooltip.setAttribute('role', 'tooltip');
+    trigger.setAttribute('aria-describedby', tooltip.id);
+    tooltip.hidden = true;
+    tooltip.textContent = `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`;
+    trigger.insertAdjacentElement('afterend', tooltip);
+    const hideTooltip = () => {
+      tooltip.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('pointerdown', dismissOutside, true);
+    };
+    const dismissOutside = event => {
+      if (trigger.contains(event.target) || tooltip.contains(event.target)) return;
+      hideTooltip();
+    };
+    const toggleTooltip = event => {
+      event.preventDefault();
+      event.stopPropagation();
+      tooltip.hidden = !tooltip.hidden;
+      trigger.setAttribute('aria-expanded', String(!tooltip.hidden));
+      if (tooltip.hidden) {
+        document.removeEventListener('pointerdown', dismissOutside, true);
+      } else {
+        document.addEventListener('pointerdown', dismissOutside, true);
+      }
+    };
+    trigger.addEventListener('click', toggleTooltip);
+    trigger.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') toggleTooltip(event);
+      if (event.key === 'Escape' && !tooltip.hidden) hideTooltip();
+    });
   }
   async function updateDiveConditionsRegionLabel(element, latlng) {
     try {
@@ -22545,7 +22589,6 @@ ZSD·2016–2025</span></span>
     rows.push(
       `<div class="bio-popup-title">${escapeHtml(name)}</div>`,
       `<div class="dive-popup-location">` +
-      `<p class="dive-popup-location__coordinates">${lat.toFixed(3)}°, ${lng.toFixed(3)}°</p>` +
       `<p class="dive-popup-location__region" hidden></p>` +
       `</div>`
     );
@@ -22698,7 +22741,10 @@ ZSD·2016–2025</span></span>
 
     marker.on('popupopen', event => {
       const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
-      if (popupRegion) void updateDiveConditionsRegionLabel(popupRegion, marker.getLatLng());
+      if (popupRegion) {
+        bindDiveLocationCoordinateTooltip(popupRegion, marker.getLatLng());
+        void updateDiveConditionsRegionLabel(popupRegion, marker.getLatLng());
+      }
     });
 
     if (photo) {
