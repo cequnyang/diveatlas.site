@@ -83,7 +83,6 @@ EXTERNAL_DATA_ROOTS = {
     Path("data/depth_samples"),
     Path("data/dive-experience-outlook/v3"),
     Path("datasets/dive-sites.js"),
-    Path("datasets/dive-site-search-locations.json.gz"),
     Path("data/fish_map_units.json.gz"),
     Path("data/reef_tiles"),
     Path("data/reef_vector_chunks"),

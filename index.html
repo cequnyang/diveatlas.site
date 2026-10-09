@@ -16228,10 +16228,9 @@ ZSD·2016–2025</span></span>
       if (typeof DecompressionStream !== 'function') {
         throw new Error('This browser does not support gzip decompression for dive-site search locations.');
       }
-      const locationUrl = window.DiveAtlasDataAssets?.external
-        ? window.DiveAtlasDataAssets.url('datasets/dive-site-search-locations.json.gz?v=2')
-        : 'datasets/dive-site-search-locations.json.gz?v=2';
-      const response = await fetch(locationUrl);
+      // This compact search index ships with Pages. Keeping it same-origin
+      // avoids requiring a separate R2 release before geographic search works.
+      const response = await fetch('datasets/dive-site-search-locations.json.gz?v=3');
       if (!response.ok || !response.body) {
         throw new Error(`Failed to load dive-site search locations (${response.status}).`);
       }
