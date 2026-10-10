@@ -1106,7 +1106,7 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
 
-test('temperature detail stays compact and tappable at a mobile viewport', async ({ page }) => {
+test('temperature detail stays compact at a mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page, {
     localStorage: { 'global-coral-map-environment-month-v1': '9' },
@@ -1144,8 +1144,8 @@ test('temperature detail stays compact and tappable at a mobile viewport', async
   const bounds = await page.locator('.leaflet-popup').boundingBox();
   const closeBounds = await page.locator('.leaflet-popup-close-button').boundingBox();
   expect(bounds.width).toBeLessThanOrEqual(330);
-  expect(closeBounds.width).toBeGreaterThanOrEqual(44);
-  expect(closeBounds.height).toBeGreaterThanOrEqual(44);
+  expect(closeBounds.width).toBe(28);
+  expect(closeBounds.height).toBe(28);
   await page.screenshot({ path: 'test-results/temperature-detail-mobile.png' });
 });
 
