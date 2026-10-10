@@ -1756,14 +1756,14 @@
     .dive-conditions-popup .leaflet-popup-content { margin:10px 11px 2px; }
     .dive-conditions-popup-title-row { display:flex; align-items:center; gap:6px; }
     .dive-conditions-popup-back, .dive-conditions-popup-close { display:inline-flex; flex:0 0 28px; width:28px; height:28px; align-items:center; justify-content:center; margin:0; padding:0; border:0; border-radius:6px; background:transparent; color:var(--text-secondary); cursor:pointer; }
-    .temperature-detail-popup .temperature-detail-heading-row--with-back { position:relative; }
-    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back { position:absolute; top:-5px; left:0; }
-    .temperature-detail-popup .temperature-detail-heading-row--with-back .temperature-detail-heading { margin:0; padding-left:34px; }
+    :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back { position:relative; }
+    :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back { position:absolute; top:-5px; left:0; }
+    :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .temperature-detail-heading { margin:0; padding-left:34px; }
     .dive-conditions-popup-back svg, .dive-conditions-popup-close svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .dive-conditions-popup-back:hover, .dive-conditions-popup-close:hover { background:var(--dc-bg-neutral); color:var(--text-primary); }
     .dive-conditions-popup-back:focus-visible, .dive-conditions-popup-close:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
-    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back:hover,
-    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral,#E2F0FA); color:var(--text-primary,var(--text)); }
+    :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:hover,
+    :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral,#E2F0FA); color:var(--text-primary,var(--text)); }
     .dive-conditions-popup-title { flex:1 1 auto; min-width:0; margin:0 !important; padding:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.25; }
     .dive-conditions-suitability-row { display:flex; margin:7px 0 6px; }
     .dive-conditions-suitability { display:flex; box-sizing:border-box; width:100%; align-items:center; justify-content:space-between; gap:8px; padding:7px 10px; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:9px; background:var(--dc-bg-neutral); color:var(--dc-fg-neutral); line-height:1.15; }
@@ -7781,8 +7781,10 @@ ZSD·2016–2025</span></span>
   }
 
   let pendingDiveExperienceMetricPopup = null;
+  let regionalCurrentPopupReturnSite = null;
+  let wavesPopupReturnSite = null;
   function openDiveExperienceMetricPopup(metric, latlng) {
-    if (!latlng || !['temperature','clarity'].includes(metric)) return;
+    if (!latlng || !['temperature','clarity','current','waves'].includes(metric)) return;
     const location = L.latLng(latlng.lat, latlng.lng);
     const returnSitePopup = diveConditionsPopup?._diveAtlasReturnDiveSitePopup || null;
     const returnLocation = diveConditionsPopupLocation || diveConditionsLocation;
@@ -7794,9 +7796,66 @@ ZSD·2016–2025</span></span>
     if (metric === 'temperature') {
       temperatureDetailPopupReturnSite = returnTarget;
       void showTemperatureQuery(location, { independent:true });
-    } else {
+    } else if (metric === 'clarity') {
       waterClarityPopupReturnSite = returnTarget;
       void showWaterClarityQuery(location, { independent:true });
+    } else if (metric === 'current') {
+      regionalCurrentPopupReturnSite = returnTarget;
+      void showRegionalCurrentMetricPopup(location);
+    } else {
+      wavesPopupReturnSite = returnTarget;
+      void showWavesMetricPopup(location);
+    }
+  }
+
+  async function showRegionalCurrentMetricPopup(location) {
+    try {
+      regionalCurrentsModulePromise ||= (async () => {
+        await import('./js/current-math.js');
+        await import('./js/current-tile-cache.js');
+        await import('./js/regional-currents.js');
+        return window.DiveAtlasRegionalCurrents;
+      })();
+      const api = await regionalCurrentsModulePromise;
+      if (!regionalCurrentsView) {
+        regionalCurrentsView = api.createCurrentView({ L, map, onStatus:() => {}, onInspect:() => {} });
+      }
+      const month = environmentalMonth('currents');
+      const depth = regionalCurrentsDepth;
+      const sample = await regionalCurrentsView.sample(location.lat, location.lng, month, depth);
+      if (!sample) return;
+      const locationKey = `${Number(location.lat).toFixed(5)},${Number(location.lng).toFixed(5)}:${String(depth)}`;
+      if (locationKey !== regionalCurrentsMonthlyComparison.locationKey) {
+        regionalCurrentsMonthlyComparison.generation += 1;
+        cancelRegionalCurrentsMonthlyRequests();
+        regionalCurrentsMonthlyComparison.locationKey = locationKey;
+        regionalCurrentsMonthlyComparison.open = false;
+        regionalCurrentsMonthlyComparison.loading = false;
+        regionalCurrentsMonthlyComparison.error = false;
+        regionalCurrentsMonthlyComparison.points = null;
+        regionalCurrentsMonthlyComparison.progress = 0;
+      }
+      const result = {
+        ...sample, month, depth, latlng:location,
+        direction:window.DiveAtlasCurrentMath.currentDirection(sample.u, sample.v)
+      };
+      lastRegionalCurrentLatLng = location;
+      lastRegionalCurrentResult = result;
+      renderRegionalCurrentPopup(result);
+    } catch (error) {
+      console.warn('Regional current detail could not be loaded:', error);
+    }
+  }
+
+  async function showWavesMetricPopup(location) {
+    try {
+      wavesModulePromise ||= import('./js/waves-view.js').then(() => window.DiveAtlasWavesView);
+      const api = await wavesModulePromise;
+      if (!wavesView) wavesView = api.createWavesView({ L, map, onStatus:() => {} });
+      const result = await wavesView.sample(location.lat, location.lng, environmentalMonth('waves'));
+      if (result) renderWavesPopup(result, location);
+    } catch (error) {
+      console.warn('Wave detail could not be loaded:', error);
     }
   }
 
@@ -12814,8 +12873,9 @@ ZSD·2016–2025</span></span>
     return button;
   }
   function bindDiveExperienceReturnButton(popup, returnTarget) {
-    if (!popup || !returnTarget) return;
-    popup._diveAtlasReturnRatingSitePopup = returnTarget;
+    if (!popup) return;
+    popup._diveAtlasReturnRatingSitePopup = returnTarget || null;
+    if (!returnTarget) return;
     const bindToPopupElement = () => {
       const element = popup.getElement?.();
       if (!element || element.dataset.returnToRatingBound === 'true') return;
@@ -13122,8 +13182,7 @@ ZSD·2016–2025</span></span>
     conditionsGrid.className = 'dive-conditions-grid';
     const conditionNames = { temperature:currentLang === 'en' ? 'Water temp.' : t('diveConditionsTemperature'), clarity:t('diveConditionsClarity'), current:t('diveConditionsCurrent'), waves:t('diveConditionsWaves') };
     for (const key of ['temperature','clarity','current','waves']) {
-      conditionsGrid.append(diveExperienceDimensionRow(conditionNames[key], diveExperiencePhysicalMetricText(key, result?.metrics?.[key]), null,
-        key === 'temperature' || key === 'clarity' ? key : null));
+      conditionsGrid.append(diveExperienceDimensionRow(conditionNames[key], diveExperiencePhysicalMetricText(key, result?.metrics?.[key]), null, key));
     }
     physicalSection.append(conditionsGrid);
     content.append(physicalSection);
@@ -15519,7 +15578,10 @@ ZSD·2016–2025</span></span>
     }
     const monthName = localizedTemperatureMonth(result.month);
     const selectedDepth = result.depth === '0' ? t('temperatureSurface') : localizedTemperatureDepth(Number(result.depth), { spacing: true });
-    const heading = `<div class="bio-popup-title">${escapeHtml(t('currentsTitle'))}</div>`;
+    const currentReturnButton = createDiveExperienceReturnButton(regionalCurrentPopupReturnSite);
+    const heading = currentReturnButton
+      ? `<div class="temperature-detail-heading-row--with-back">${currentReturnButton.outerHTML}<div class="temperature-detail-heading">${escapeHtml(t('currentsTitle'))}</div></div>`
+      : `<div class="bio-popup-title">${escapeHtml(t('currentsTitle'))}</div>`;
     const primary = `<div class="regional-current-value"><span>${escapeHtml(t('currentsToward'))} <strong>${escapeHtml(result.direction || '—')}</strong></span><strong>${escapeHtml(formatRegionalCurrentSpeed(result.speed))}</strong></div>`;
     const comparison = regionalCurrentsMonthlyComparison;
     let comparisonChart = '';
@@ -15551,6 +15613,7 @@ ZSD·2016–2025</span></span>
       ? '<div class="waves-detail-divider regional-current-comparison-divider" aria-hidden="true"></div>'
       : '<div class="regional-current-comparison-gap" aria-hidden="true"></div>';
     regionalCurrentsPopup.setLatLng(result.latlng).setContent(`<div class="bio-popup">${heading}${typical}${primary}${comparisonButton}${comparisonChart}${comparisonSeparator}${details}<div class="bio-popup-source">${currentsAttribution}</div><div class="bio-popup-meta regional-current-resolution">~${escapeHtml(formatLongDistanceMeters(8000))}</div></div>`);
+    bindDiveExperienceReturnButton(regionalCurrentsPopup, regionalCurrentPopupReturnSite);
     openManagedPopup('currents', regionalCurrentsPopup, result.latlng);
     regionalCurrentsPopup.update();
     const button = regionalCurrentsPopup.getElement()?.querySelector('.waves-seasonal-button');
@@ -15773,6 +15836,7 @@ ZSD·2016–2025</span></span>
             }
           },
           onInspect: result => {
+            regionalCurrentPopupReturnSite = null;
             const locationKey = `${Number(result.latlng?.lat).toFixed(5)},${Number(result.latlng?.lng).toFixed(5)}:${String(result.depth)}`;
             if (locationKey !== regionalCurrentsMonthlyComparison.locationKey) {
               regionalCurrentsMonthlyComparison.generation += 1;
@@ -16214,12 +16278,17 @@ ZSD·2016–2025</span></span>
     const attribution = `${popupSourceLink('https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_WAV_001_032/description', t('wavesPopupSource'))} · DOI: ${popupSourceLink('https://doi.org/10.48670/moi-00022', '10.48670/moi-00022')}`;
     const buttonLabel = wavesSeasonalError ? t('wavesRetry') : wavesSeasonalOpen ? t('wavesSeasonalClose') : t('wavesSeasonalOpen');
     const button = `<div class="temperature-detail-tabs waves-seasonal-tabs"><button class="waves-seasonal-button" type="button" aria-expanded="${wavesSeasonalOpen}">${escapeHtml(buttonLabel)}</button></div>`;
+    const wavesReturnButton = createDiveExperienceReturnButton(wavesPopupReturnSite);
+    const wavesHeading = wavesReturnButton
+      ? `<div class="temperature-detail-heading-row--with-back">${wavesReturnButton.outerHTML}<div class="temperature-detail-heading">${escapeHtml(t('wavesTitle'))}</div></div>`
+      : `<div class="temperature-detail-heading">${escapeHtml(t('wavesTitle'))}</div>`;
     wavesPopup.setLatLng(latlng).setContent(
-      `<div class="temperature-detail waves-detail"><div class="temperature-detail-heading">${escapeHtml(t('wavesTitle'))}</div>` +
+      `<div class="temperature-detail waves-detail">${wavesHeading}` +
       `<div class="temperature-detail-caption">${escapeHtml(t('wavesDescription'))}</div><div class="waves-detail-divider waves-primary-divider" aria-hidden="true"></div>` +
       `${waveMetrics}${button}${chart}${chart ? '<div class="waves-detail-divider" aria-hidden="true"></div>' : ''}${contextFields}` +
       `<div class="temperature-detail-source dive-popup-source--compact">${attribution}</div><div class="temperature-detail-resolution">${escapeHtml(formatWavesResolution(resolution))}</div></div>`
     );
+    bindDiveExperienceReturnButton(wavesPopup, wavesPopupReturnSite);
     openManagedPopup('waves:query', wavesPopup, latlng);
     wavesPopup.update();
     wavesPopupElement = wavesPopup.getElement();
@@ -16254,6 +16323,7 @@ ZSD·2016–2025</span></span>
 
   async function showWavesQuery(latlng) {
     if (environmentalViewController.activeView !== 'waves' || !wavesView?.state?.enabled) return;
+    wavesPopupReturnSite = null;
     lastWavesLatLng = L.latLng(latlng.lat, latlng.lng);
     const location = lastWavesLatLng;
     const requestGeneration = ++wavesQueryGeneration;
