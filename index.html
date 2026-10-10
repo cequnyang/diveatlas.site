@@ -1734,6 +1734,7 @@
     .dive-experience-dimension-details { margin-top:7px; border-bottom:1px solid var(--line); color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
     .dive-experience-dimension-details > summary { padding:5px 0; color:var(--layers-legend-title,var(--text-secondary)); font-weight:700; cursor:pointer; }
     .dive-experience-dimension-list { display:grid; gap:3px; padding:2px 0 7px; }
+    #environmentDiveExperienceLabel .environment-dive-rating-word { display:inline-block; position:relative; top:1px; flex:0 0 auto; min-height:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; color:inherit; font:inherit; line-height:inherit; font-weight:800; }
     .dive-experience-dimension-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(90px,auto); align-items:baseline; gap:2px 10px; padding:3px 0; }
     .dive-experience-dimension-label { color:var(--layers-legend-meta,var(--text-muted)); }
     .dive-experience-dimension-value { color:var(--layers-temperature-title,var(--text-primary)); text-align:right; font-variant-numeric:tabular-nums; }
@@ -11290,13 +11291,20 @@ ZSD·2016–2025</span></span>
   // The rating name is a fixed product label in every language.
   const DIVEATLAS_RATING_LABEL = 'DiveAtlas Rating';
 
-  function renderBrandedDiveLabel(target) {
+  function renderBrandedDiveLabel(target, { ratingClass = '' } = {}) {
     const mark = document.createElement('img');
     mark.className = 'dive-brand-mark';
     mark.src = 'assets/diveatlas-logo.svg?v=2';
     mark.alt = '';
     mark.setAttribute('aria-hidden', 'true');
-    target.replaceChildren(mark, 'Rating');
+    if (ratingClass) {
+      const ratingWord = document.createElement('span');
+      ratingWord.className = ratingClass;
+      ratingWord.textContent = 'Rating';
+      target.replaceChildren(mark, ratingWord);
+    } else {
+      target.replaceChildren(mark, 'Rating');
+    }
     target.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
     return DIVEATLAS_RATING_LABEL;
   }
@@ -11347,7 +11355,7 @@ ZSD·2016–2025</span></span>
     els.terrainLegendLabel.textContent = t('terrainLegend');
     els.terrainLayerToggle.title = t('terrainDescription');
     els.terrainLayerToggle.setAttribute('aria-label', `${t('terrainLegend')}: ${t('terrainDescription')}`);
-    renderBrandedDiveLabel(els.environmentDiveExperienceLabel);
+    renderBrandedDiveLabel(els.environmentDiveExperienceLabel, { ratingClass:'environment-dive-rating-word' });
     els.environmentDiveExperienceLabel.previousElementSibling.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
     els.environmentNoneLabel.previousElementSibling.setAttribute('aria-label', t('environmentNone'));
     els.environmentReefConditionLabel.textContent = t('reefFieldMetricTitle');
