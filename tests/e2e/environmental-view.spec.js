@@ -279,7 +279,7 @@ test('Layers palette follows the active site theme without changing its layout',
   await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
   await page.locator('#temperatureInfoAbout').click();
   await expect(popover).toHaveAttribute('data-theme', 'dark');
-  await expect(popover).toHaveCSS('background-color', 'rgb(32, 33, 36)');
+  await expect(popover).toHaveCSS('background-color', 'rgb(22, 27, 34)');
   const dark = await page.evaluate(() => {
     const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
     const geometry = selectors.map(selector => {
@@ -288,10 +288,25 @@ test('Layers palette follows the active site theme without changing its layout',
     });
     const panel = document.querySelector('#bioLegend');
     const style = getComputedStyle(panel);
-    return { geometry, primary: style.getPropertyValue('--text-primary').trim(), scheme: style.colorScheme, surface: style.backgroundImage };
+    const selector = getComputedStyle(document.querySelector('.environment-segment-shell'));
+    return {
+      geometry,
+      primary: style.getPropertyValue('--text-primary').trim(),
+      scheme: style.colorScheme,
+      surface: style.backgroundImage,
+      panelBackground: style.getPropertyValue('--layers-panel-background').trim(),
+      menuBackground: style.getPropertyValue('--layers-menu-background').trim(),
+      selectorBackground: selector.backgroundColor,
+      selectorShadow: selector.boxShadow
+    };
   });
   expect(dark.primary).toBe('#f4f6fa');
   expect(dark.scheme).toBe('dark');
+  expect(dark.panelBackground).toBe('#161b22');
+  expect(dark.menuBackground).toBe('#161b22');
+  expect(dark.selectorBackground).toBe('rgb(32, 40, 51)');
+  expect(dark.selectorShadow).toContain('rgba(255, 255, 255, 0.045)');
+  expect(dark.selectorShadow).toContain('rgba(0, 0, 0, 0.18)');
   expect(dark.geometry).toEqual(light.geometry);
   expect(dark.surface).not.toBe(light.surface);
 
