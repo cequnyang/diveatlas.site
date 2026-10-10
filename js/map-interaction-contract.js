@@ -32,6 +32,7 @@
   function choosePopupVerticalPlacement({
     aboveShift,
     belowShift,
+    preferredSide = 'above',
     aboveAdjustment = { cost: Infinity },
     belowAdjustment = { cost: Infinity }
   } = {}) {
@@ -40,7 +41,21 @@
       return { side: belowWins ? 'below' : 'above', fallback: true };
     }
     if (aboveShift == null) return { side: 'below', fallback: false };
-    if (belowShift == null || Math.abs(aboveShift) <= Math.abs(belowShift)) {
+    if (belowShift == null) return { side: 'above', fallback: false };
+    if (preferredSide === 'below' || preferredSide === 'above') {
+      // Keep the responsive preference when that side fits without moving the
+      // popup; use the other side if only it fits in place, then minimize shift.
+      const preferredShift = preferredSide === 'below' ? belowShift : aboveShift;
+      const alternateSide = preferredSide === 'below' ? 'above' : 'below';
+      const alternateShift = alternateSide === 'below' ? belowShift : aboveShift;
+      if (preferredShift === 0 || alternateShift !== 0) {
+        if (preferredShift === 0 || Math.abs(preferredShift) <= Math.abs(alternateShift)) {
+          return { side: preferredSide, fallback: false };
+        }
+      }
+      return { side: alternateSide, fallback: false };
+    }
+    if (Math.abs(aboveShift) <= Math.abs(belowShift)) {
       return { side: 'above', fallback: false };
     }
     return { side: 'below', fallback: false };

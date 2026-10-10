@@ -33,6 +33,24 @@ test('popup placement prefers above when both directions fit', () => {
   });
 });
 
+test('popup placement honors a preferred side when both directions fit', () => {
+  assert.deepEqual(contract.choosePopupVerticalPlacement({
+    aboveShift: 0, belowShift: 0, preferredSide: 'below'
+  }), { side: 'below', fallback: false });
+});
+
+test('popup placement flips from the preferred side when it cannot fit', () => {
+  assert.deepEqual(contract.choosePopupVerticalPlacement({
+    aboveShift: 0, belowShift: null, preferredSide: 'below'
+  }), { side: 'above', fallback: false });
+});
+
+test('popup placement uses the opposite side when only it fits without shifting', () => {
+  assert.deepEqual(contract.choosePopupVerticalPlacement({
+    aboveShift: 0, belowShift: -84, preferredSide: 'below'
+  }), { side: 'above', fallback: false });
+});
+
 test('popup placement flips below when above does not fit', () => {
   assert.equal(contract.choosePopupVerticalPlacement({ aboveShift: null, belowShift: 0 }).side, 'below');
 });

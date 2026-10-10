@@ -34,6 +34,25 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   for (const value of await conditionValues.all()) {
     await expect(value).toHaveCSS('font-weight', '650');
   }
+  const placement = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const state = window.__DIVEATLAS_TEST__.getState().popup;
+    const anchor = map.latLngToContainerPoint([-5, 130]);
+    const mapRect = map.getContainer().getBoundingClientRect();
+    const anchorY = mapRect.top + anchor.y;
+    const popupHeight = state.bounds.bottom - state.bounds.top;
+    const preferredSide = innerWidth <= 720 ? 'above' : 'below';
+    const fitsAbove = anchorY - popupHeight - 24 >= state.safeBounds.top;
+    const fitsBelow = anchorY + popupHeight + 24 <= state.safeBounds.bottom;
+    return { preferredSide, fitsAbove, fitsBelow, arrowSide:state.arrowSide };
+  });
+  const expectedSide = placement.preferredSide === 'above' ? 'bottom' : 'top';
+  const alternateSide = placement.preferredSide === 'above' ? 'top' : 'bottom';
+  if (placement.preferredSide === 'above' ? placement.fitsAbove : placement.fitsBelow) {
+    expect(placement.arrowSide).toBe(expectedSide);
+  } else if (placement.preferredSide === 'above' ? placement.fitsBelow : placement.fitsAbove) {
+    expect(placement.arrowSide).toBe(alternateSide);
+  }
   await openMobileSettings(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await expect(popup.locator('.dive-conditions-grid')).toContainText('°F');

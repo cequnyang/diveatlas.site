@@ -240,7 +240,7 @@ test('right-edge popup shifts its body while its anchor remains fixed', async ({
   expect(bounds.x + bounds.width).toBeLessThanOrEqual(mapBounds.x + mapBounds.width + 1);
   expect(Math.abs(pointAfter.x - pointBefore.x)).toBeLessThan(1);
   const popupState = (await mapState(page)).popup;
-  expect(popupState.arrowSide).toBe('bottom');
+  expect(popupState.arrowSide).toBe('top');
   expect(Math.abs(popupState.arrowX - popupState.anchorX)).toBeLessThan(14);
   await stabilizeDiveRatingScreenshot(page);
   await expect(popup).toHaveScreenshot('popup-shifted-from-right-edge.png', {
@@ -266,7 +266,7 @@ test('left-edge popup shifts its body while its anchor remains fixed', async ({ 
   expect(Math.abs(popupState.arrowX - popupState.anchorX)).toBeLessThan(14);
 });
 
-test('popup near the bottom edge stays above its anchor', async ({ page }) => {
+test('popup near the bottom edge flips above its anchor when below has no space', async ({ page }) => {
   const map = await page.locator('#map').boundingBox();
   await addDiveSiteAtScreenPoint(page, 'popup-bottom', map.width * 0.52, map.height - 25);
   const point = await fixturePoint(page, 'popup-bottom');
