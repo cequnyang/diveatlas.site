@@ -18720,6 +18720,7 @@ ZSD·2016–2025</span></span>
 
   function loadMoreDiveSearchResults() {
     if (diveSearchVisibleCount >= diveSearchMatches.length) return;
+    const resultsScrollTop = els.diveSearchResultsScroll.scrollTop;
     const preserveLoadMoreFocus =
       document.activeElement ===
       els.diveSearchResults.querySelector('[data-search-load-more]');
@@ -18737,6 +18738,9 @@ ZSD·2016–2025</span></span>
       nextFocusTarget?.focus({ preventScroll: true });
     }
     if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
+    // Re-rendering replaces the list contents, which otherwise resets the
+    // scroll container even though the user's current results remain valid.
+    els.diveSearchResultsScroll.scrollTop = resultsScrollTop;
   }
 
   /* ---------- place selection ---------- */
