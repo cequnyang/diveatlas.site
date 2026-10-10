@@ -13,6 +13,15 @@ const {
 
 test.beforeEach(async ({ page }) => openMap(page));
 
+async function stabilizeDiveRatingScreenshot(page, { minimumPopupHeight = 0 } = {}) {
+  await page.addStyleTag({
+    content: [
+      '.dive-popup-rating__value { width:120px !important; min-width:120px !important; visibility:hidden !important; }',
+      minimumPopupHeight ? `.leaflet-popup.dive-site-popup { min-height:${minimumPopupHeight}px !important; }` : ''
+    ].join('\n')
+  });
+}
+
 async function expectMapViewUnchanged(page, before, after) {
   expect(after.zoom).toBe(before.zoom);
   const displacementPx = await page.evaluate(([start, end]) => {
@@ -71,7 +80,7 @@ test('individual Dive site opens its details popup', async ({ page }) => {
   const after = await mapState(page);
   expect(after.popup.type).toBe('dive');
   await expect(page.locator('.dive-popup-rating__label')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
-  await expect(page.locator('.dive-popup-rating__label .dive-brand-mark')).toBeVisible();
+  await expect(page.locator('.dive-popup-rating__label .dive-brand-rating-logo')).toBeVisible();
   await expect(page.locator('.dive-popup-rating__value')).not.toHaveAttribute('data-status', 'loading', { timeout: 30_000 });
   const ratingValue = page.locator('.dive-popup-rating__value');
   await expect(ratingValue).toContainText('Oct');
@@ -210,6 +219,7 @@ test('top-edge popup is below its anchor on its first visible frame', async ({ p
     expect(firstVisible.className).toContain('diveatlas-popup-below');
     expect(firstVisible.arrowSide).toBe('top');
   }
+  await stabilizeDiveRatingScreenshot(page, { minimumPopupHeight:165 });
   await expect(popup).toHaveScreenshot('popup-below-anchor.png', {
     animations: 'disabled',
     maxDiffPixelRatio: 0.12
@@ -232,6 +242,7 @@ test('right-edge popup shifts its body while its anchor remains fixed', async ({
   const popupState = (await mapState(page)).popup;
   expect(popupState.arrowSide).toBe('bottom');
   expect(Math.abs(popupState.arrowX - popupState.anchorX)).toBeLessThan(14);
+  await stabilizeDiveRatingScreenshot(page);
   await expect(popup).toHaveScreenshot('popup-shifted-from-right-edge.png', {
     animations: 'disabled',
     maxDiffPixelRatio: 0.12

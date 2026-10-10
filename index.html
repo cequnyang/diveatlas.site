@@ -2089,6 +2089,8 @@
     .temperature-detail-tabs button { flex: 1; min-height: 28px; padding: 3px 6px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--muted); font: inherit; font-size: 10px; cursor: pointer; }
     .temperature-detail-tabs.waves-seasonal-tabs { justify-content: flex-start; margin-top: 8px; padding-top: 0; border-top: 0; }
     .temperature-detail-tabs .waves-seasonal-button { box-sizing:border-box; display:flex; flex:1 1 100%; width:100%; height:32px; min-height:32px; align-items:center; justify-content:center; padding:4px 10px; border-color:var(--line); background:var(--panel-soft); color:var(--text); font-size:11px; font-weight:700; line-height:1.2; white-space:normal; text-align:center; }
+    .temperature-detail-popup .leaflet-popup-close-button { width:44px !important; height:44px !important; }
+    .temperature-detail-popup .leaflet-popup-close-button::after { top:50%; right:auto; left:50%; transform:translate(-50%,-50%); }
     .temperature-detail-tabs button[aria-selected="true"] { border-color: var(--line); background: var(--panel-soft); color: var(--text); font-weight: 700; }
     .temperature-detail-tabs button:disabled { opacity: .45; cursor: default; }
     .temperature-detail-panel { padding-top: 2px; }

@@ -78,7 +78,7 @@ test('saved month preferences restore independently across environmental layers'
   await expect(page.locator('#wavesMonth')).toHaveValue('7');
   await expect(page.locator('#temperatureLegendSelection')).toContainText('Oct');
   await expect(page.locator('#temperatureLegendSlice')).toContainText('October');
-  await expect(page.locator('#waterClarityLegendSelection')).toHaveText('Sep');
+  await expect(page.locator('#waterClarityLegendSelection')).toHaveText('Sept');
   await expect(page.locator('#currentsLegendSelection')).toContainText('Aug');
   await expect(page.locator('#wavesLegendSelection')).toHaveText('July');
 
@@ -365,7 +365,9 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await openMap(page);
   await expect(page.locator('#temperatureControls')).toBeHidden();
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('.environment-segment').first()).toHaveText('None');
+  const defaultView = page.locator('input[name="environmentView"][value="default"]');
+  await expect(defaultView).toHaveAttribute('aria-label', 'None');
+  await expect(page.locator('.environment-segment').filter({ has:defaultView }).locator('.environment-none-icon')).toBeVisible();
   await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
   await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
   await expect(page.locator('#environmentViewSelect option[value="default"]')).toHaveText('None');
