@@ -1338,7 +1338,7 @@
       line-height: 1.5;
     }
     .dive-popup-location { position:relative; margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
-    .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; }
+    .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; cursor:pointer; }
     .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; vertical-align: 0.3em;}
     .dive-popup-rating__label .dive-brand-rating-logo { height:1.573em; width:auto; margin:0; }
     button.dive-popup-rating__label { padding:0; border:0; background:transparent; font:inherit; font-size:14px; font-weight:800; cursor:pointer; }
@@ -23143,14 +23143,24 @@ ZSD·2016–2025</span></span>
     marker.on('popupopen', event => {
       const popupRatingLabel = event.popup.getElement()?.querySelector('.dive-popup-rating__label');
       if (popupRatingLabel && !popupRatingLabel.querySelector('.dive-brand-rating-logo')) renderBrandedDiveLabel(popupRatingLabel);
-      if (popupRatingLabel && popupRatingLabel.dataset.ratingPopupBound !== 'true') {
-        popupRatingLabel.dataset.ratingPopupBound = 'true';
-        popupRatingLabel.addEventListener('click', clickEvent => {
+      const popupRatingRow = popupRatingLabel?.closest('.dive-popup-rating');
+      if (popupRatingRow && popupRatingRow.dataset.ratingPopupBound !== 'true') {
+        popupRatingRow.dataset.ratingPopupBound = 'true';
+        popupRatingRow.addEventListener('click', clickEvent => {
           clickEvent.preventDefault();
           clickEvent.stopPropagation();
           L.DomEvent.stop(clickEvent);
           openDiveSiteRatingPopup(event.popup);
         });
+        popupRatingRow.addEventListener('keydown', keyEvent => {
+          if (keyEvent.target.closest('button, a, input, select, textarea')) return;
+          if (keyEvent.key !== 'Enter' && keyEvent.key !== ' ') return;
+          keyEvent.preventDefault();
+          openDiveSiteRatingPopup(event.popup);
+        });
+        popupRatingRow.tabIndex = 0;
+        popupRatingRow.setAttribute('role', 'button');
+        popupRatingRow.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
       }
       const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
       if (event.popup._diveAtlasRatingLocation) requestDiveSiteRating(event.popup, event.popup._diveAtlasRatingLocation);
