@@ -11292,17 +11292,16 @@ ZSD·2016–2025</span></span>
     id: { layers: 'Lapisan', all: 'Semua', defaults: 'Bawaan' }
   });
 
-  function renderBrandTitle(title) {
-    // Keep the localized suffix beside the fixed logo on wide screens.
-    const suffix = title.startsWith('DiveAtlas') ? title.slice('DiveAtlas'.length) : '';
-    els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = suffix;
-    els.brandTitle.setAttribute('aria-label', `DiveAtlas${suffix}`);
+  function renderBrandTitle() {
+    // Keep the brand consistent across locales; the language selector already shows the active locale.
+    els.brandTitle.querySelector('.top-menu-brand-suffix').textContent = '';
+    els.brandTitle.setAttribute('aria-label', 'DiveAtlas');
   }
 
   function syncCompactMobileHeaderCopy() {
     const compact = window.matchMedia('(max-width: 720px)').matches;
     const compactCopy = COMPACT_MOBILE_HEADER_COPY[currentLang] || COMPACT_MOBILE_HEADER_COPY.en;
-    renderBrandTitle(compact ? 'DiveAtlas' : t('brandTitle'));
+    renderBrandTitle();
     els.bioLegendTitle.querySelector('.bio-legend-title-label').textContent = compact
       ? compactCopy.layers
       : currentLang === 'en' ? 'Layers' : t('legendTitle');
@@ -11447,7 +11446,7 @@ ZSD·2016–2025</span></span>
   function renderStaticTexts() {
     document.title = t('pageTitle');
     updateShareButtonDescription();
-    renderBrandTitle(t('brandTitle'));
+    renderBrandTitle();
     els.brandSubtitle.textContent = t('brandSubtitle');
     els.themeBtn.title = t('themeTitle');
     els.topMenuButton.title = t('menuTitle');
