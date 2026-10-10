@@ -1756,11 +1756,14 @@
     .dive-conditions-popup .leaflet-popup-content { margin:10px 11px 2px; }
     .dive-conditions-popup-title-row { display:flex; align-items:center; gap:6px; }
     .dive-conditions-popup-back, .dive-conditions-popup-close { display:inline-flex; flex:0 0 28px; width:28px; height:28px; align-items:center; justify-content:center; margin:0; padding:0; border:0; border-radius:6px; background:transparent; color:var(--text-secondary); cursor:pointer; }
+    .temperature-detail-popup .temperature-detail-heading-row--with-back { position:relative; }
+    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back { position:absolute; top:-5px; left:0; }
+    .temperature-detail-popup .temperature-detail-heading-row--with-back .temperature-detail-heading { margin:0; padding-left:34px; }
     .dive-conditions-popup-back svg, .dive-conditions-popup-close svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .dive-conditions-popup-back:hover, .dive-conditions-popup-close:hover { background:var(--dc-bg-neutral); color:var(--text-primary); }
     .dive-conditions-popup-back:focus-visible, .dive-conditions-popup-close:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
-    .temperature-detail-popup .dive-conditions-popup-back:hover,
-    .temperature-detail-popup .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral) !important; color:var(--text-primary) !important; }
+    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back:hover,
+    .temperature-detail-popup .temperature-detail-heading-row--with-back .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral,#E2F0FA); color:var(--text-primary,var(--text)); }
     .dive-conditions-popup-title { flex:1 1 auto; min-width:0; margin:0 !important; padding:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.25; }
     .dive-conditions-suitability-row { display:flex; margin:7px 0 6px; }
     .dive-conditions-suitability { display:flex; box-sizing:border-box; width:100%; align-items:center; justify-content:space-between; gap:8px; padding:7px 10px; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:9px; background:var(--dc-bg-neutral); color:var(--dc-fg-neutral); line-height:1.15; }
@@ -7782,11 +7785,17 @@ ZSD·2016–2025</span></span>
     if (!latlng || !['temperature','clarity'].includes(metric)) return;
     const location = L.latLng(latlng.lat, latlng.lng);
     const returnSitePopup = diveConditionsPopup?._diveAtlasReturnDiveSitePopup || null;
+    const returnLocation = diveConditionsPopupLocation || diveConditionsLocation;
+    const returnTarget = returnLocation ? {
+      location:L.latLng(returnLocation.lat, returnLocation.lng),
+      month:diveConditionsMonth,
+      sitePopup:returnSitePopup
+    } : null;
     if (metric === 'temperature') {
-      temperatureDetailPopupReturnSite = returnSitePopup;
+      temperatureDetailPopupReturnSite = returnTarget;
       void showTemperatureQuery(location, { independent:true });
     } else {
-      waterClarityPopupReturnSite = returnSitePopup;
+      waterClarityPopupReturnSite = returnTarget;
       void showWaterClarityQuery(location, { independent:true });
     }
   }
@@ -12789,8 +12798,8 @@ ZSD·2016–2025</span></span>
     }
     return row;
   }
-  function createDiveExperienceReturnButton(sitePopup) {
-    if (!sitePopup) return null;
+  function createDiveExperienceReturnButton(returnTarget) {
+    if (!returnTarget?.location) return null;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'dive-conditions-popup-back';
@@ -12805,9 +12814,9 @@ ZSD·2016–2025</span></span>
     button.append(icon);
     return button;
   }
-  function bindDiveExperienceReturnButton(popup, sitePopup) {
-    if (!popup || !sitePopup) return;
-    popup._diveAtlasReturnRatingSitePopup = sitePopup;
+  function bindDiveExperienceReturnButton(popup, returnTarget) {
+    if (!popup || !returnTarget) return;
+    popup._diveAtlasReturnRatingSitePopup = returnTarget;
     const bindToPopupElement = () => {
       const element = popup.getElement?.();
       if (!element || element.dataset.returnToRatingBound === 'true') return;
@@ -12820,21 +12829,18 @@ ZSD·2016–2025</span></span>
         if (!button || !element.contains(button)) return;
         event.preventDefault();
         event.stopPropagation();
-        const returnSitePopup = popup._diveAtlasReturnRatingSitePopup;
-        const location = returnSitePopup?._diveAtlasRatingLocation;
+        const returnTarget = popup._diveAtlasReturnRatingSitePopup;
+        const location = returnTarget?.location;
         if (!location) {
-          console.error('DiveAtlas could not return to the rating popup: saved site location is missing.');
+          console.error('DiveAtlas could not return to the rating popup: saved rating location is missing.');
           return;
         }
-        // The site marker cache is rebuilt as data, zoom, and language change.
-        // Reopen the saved rating view directly instead of resolving a marker
-        // that may no longer exist in the current cache.
         const ratingPopup = ensureDiveConditionsPopup();
         ratingPopup._diveAtlasLayerKey = 'dive-rating';
-        ratingPopup._diveAtlasReturnDiveSitePopup = returnSitePopup;
+        ratingPopup._diveAtlasReturnDiveSitePopup = returnTarget.sitePopup;
         setDiveConditionsLocation(location, {
           forcePopup:true,
-          month:returnSitePopup._diveAtlasRatingMonth || diveSiteRatingMonth()
+          month:returnTarget.month || diveSiteRatingMonth()
         });
       });
     };
@@ -15896,7 +15902,9 @@ ZSD·2016–2025</span></span>
     const valueMarkup = `<span class="temperature-detail-value">${value}</span>`;
     const heading = t('temperaturePopupTitle').replace('{value}', valueMarkup).replace(/°C/g, `°${temperatureUnit}`);
     const returnButton = createDiveExperienceReturnButton(temperatureDetailPopupReturnSite);
-    const returnButtonMarkup = returnButton ? `<div class="dive-conditions-popup-title-row">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${heading}</h2></div>` : `<div class="temperature-detail-heading">${heading}</div>`;
+    const returnButtonMarkup = returnButton
+      ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${heading}</h2></div>`
+      : `<div class="temperature-detail-heading">${heading}</div>`;
     temperatureDetailPopup.setContent(`<div class="temperature-detail">${returnButtonMarkup}<div class="temperature-detail-caption">${t('temperaturePopupCaption')}</div><div class="temperature-detail-tabs" role="tablist" aria-label="${t('temperaturePopupTabs')}"><button type="button" data-temperature-tab="value" aria-selected="${temperatureDetailTab === 'value'}">${t('temperaturePopupValue')}</button><button type="button" data-temperature-tab="profile" aria-selected="${temperatureDetailTab === 'profile'}">${t('temperatureDepth')}</button><button type="button" data-temperature-tab="year" aria-selected="${temperatureDetailTab === 'year'}"${yearAvailable ? '' : ` disabled title="${t('temperaturePopupYearDisabled')}"`}>${t('temperaturePopupYear')}</button></div><div class="temperature-detail-panel">${panel}</div><div class="temperature-detail-source dive-popup-source--compact">${popupSourceLink(SOURCE_URLS.woa23, 'WOA23', t('temperaturePopupExternalLink'))} &middot; ${dataPurpose}</div></div>`);
     bindDiveExperienceReturnButton(temperatureDetailPopup, temperatureDetailPopupReturnSite);
     bindTemperatureDetailPopupControls();
