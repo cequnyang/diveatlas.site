@@ -260,7 +260,7 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
     for (const selector of ['#diveExperienceOutlookPanel h2', '.dive-conditions-popup-title', '#environmentDiveExperienceLabel']) {
       const logo = page.locator(`${selector} .dive-brand-rating-logo`);
       await expect(logo).toHaveCount(1);
-      await expect(logo.locator('image')).toHaveAttribute('href', 'assets/diveatlas-logo.svg?v=2');
+      await expect(logo.locator('image')).toHaveAttribute('href', 'assets/diveatlas-logo.svg?v=3');
     }
     await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveText(tabLabels[language]);
     const layout = await page.evaluate(() => {
