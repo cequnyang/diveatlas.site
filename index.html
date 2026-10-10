@@ -1707,8 +1707,11 @@
     .dive-experience-popup-content .dive-experience-score-info > summary:hover,
     .dive-experience-popup-content .dive-experience-score-info > summary:active { box-sizing:border-box; width:44px; height:44px; min-height:44px; padding:0; aspect-ratio:1; background:transparent; color:var(--layers-info-icon); }
     .dive-experience-popup-content .dive-experience-score-info > summary > span { box-sizing:border-box; width:calc(20px * var(--layers-ui-scale)); min-width:calc(20px * var(--layers-ui-scale)); height:calc(20px * var(--layers-ui-scale)); min-height:calc(20px * var(--layers-ui-scale)); padding:0; aspect-ratio:1; border-radius:50%; font-family:Arial,sans-serif; font-size:10px; font-weight:500; line-height:1; }
-    .temperature-info-popover.dive-experience-popup-info-popover { max-height:min(70vh,560px); overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+    .temperature-info-popover.dive-experience-popup-info-popover { max-height:min(70vh,560px); overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--faint) var(--panel-solid); }
     .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar { width:6px; }
+    .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-track { border-radius:999px; background:var(--panel-solid); }
+    .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb { border:2px solid var(--panel-solid); border-radius:999px; background:var(--faint); }
+    .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb:hover { background:var(--muted); }
     .dive-experience-popup-info-popover > h4 { margin:0 0 8px; color:var(--layers-legend-title,var(--text-primary)); font-size:13px; }
     .dive-experience-evidence-line { margin:2px 0 0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:11px; line-height:1.25; }
     .dive-experience-key-reasons { margin-top:8px; color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
@@ -2654,6 +2657,8 @@
       width: min(460px, calc(100vw - 28px));
       max-height: min(680px, calc(100vh - 36px));
       overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
       box-sizing: border-box;
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -2661,6 +2666,10 @@
       color: var(--text);
       box-shadow: 0 16px 48px rgba(31, 35, 40, .22);
     }
+    .site-suggestion-dialog::-webkit-scrollbar { width: 8px; }
+    .site-suggestion-dialog::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .site-suggestion-dialog::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .site-suggestion-dialog::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .site-suggestion-header {
       display: flex;
       align-items: flex-start;
@@ -3515,7 +3524,13 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.45;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
     }
+    .top-menu-about-tooltip::-webkit-scrollbar { width: 8px; }
+    .top-menu-about-tooltip::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .top-menu-about-tooltip::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .top-menu-about-tooltip::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .top-menu-about-tooltip[hidden] { display: none; }
     .top-menu-about-tooltip p { margin: 0; }
     .top-menu-about-copyright { margin-top: 8px !important; padding-top: 8px; border-top: 1px solid var(--line-soft); font-size: 11px; }
@@ -3621,7 +3636,13 @@
       min-width: min(126px, calc(100vw - 24px));
       max-height: min(360px, 70vh);
       overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
     }
+    .language-dropdown::-webkit-scrollbar { width: 8px; }
+    .language-dropdown::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .language-dropdown::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .language-dropdown::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .language-dropdown .top-menu-dropdown-item { min-height: 34px; padding: 7px 10px; font-size: 13px; }
     .language-dropdown .top-menu-dropdown-item[aria-checked="true"] { font-weight: 600; }
     .top-menu-lang-select { display: none; }
@@ -3661,6 +3682,8 @@
       width: min(520px, calc(100vw - 28px));
       max-height: min(720px, calc(100vh - 36px));
       overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
       box-sizing: border-box;
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -3668,6 +3691,10 @@
       color: var(--text);
       box-shadow: 0 16px 48px rgba(31, 35, 40, .22);
     }
+    .contact-dialog::-webkit-scrollbar { width: 8px; }
+    .contact-dialog::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .contact-dialog::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .contact-dialog::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
     .contact-dialog-header {
       display: flex;
@@ -4506,7 +4533,13 @@
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-gutter: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
     }
+    .tutorial-content::-webkit-scrollbar { width: 8px; }
+    .tutorial-content::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .tutorial-content::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .tutorial-content::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .tutorial-content:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent); outline-offset: -2px; }
     .tutorial-eyebrow { display: none; }
     .tutorial-title {
