@@ -19,6 +19,14 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
   const tab = view => page.locator('.environment-segment').filter({
     has: page.locator(`input[name="environmentView"][value="${view}"]`)
   });
+
+  async function waitForMapInteractionWindow() {
+    await expect.poll(() => page.evaluate(() => {
+      const state = window.__DIVEATLAS_TEST__.getState();
+      return !state.pendingInteraction && !state.activePointerGesture && performance.now() >= state.suppressedUntil;
+    })).toBe(true);
+  }
+
   await tab('tide').click();
   await expect.poll(() => page.locator('#tideStatus').textContent(), { timeout: 30_000 }).toContain('Tide surface ready');
 
@@ -60,6 +68,7 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
     const rect = document.getElementById('map').getBoundingClientRect();
     return { x: rect.left + point.x, y: rect.top + point.y };
   });
+  await waitForMapInteractionWindow();
   await page.mouse.click(clickPoint.x, clickPoint.y);
   await expect(page.locator('.tide-map-popup')).toBeVisible();
   await expect(page.locator('.tide-map-popup')).toContainText('Predicted level');
@@ -74,6 +83,7 @@ test('captures the requested Tide visual QA matrix', async ({ page, browser }) =
     const rect = document.getElementById('map').getBoundingClientRect();
     return { x: rect.left + point.x, y: rect.top + point.y };
   });
+  await waitForMapInteractionWindow();
   await page.mouse.click(darkClickPoint.x, darkClickPoint.y);
   await expect(page.locator('.tide-map-popup')).toBeVisible();
   await capture('05-tide-popup-dark');
