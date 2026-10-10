@@ -15872,7 +15872,7 @@ ZSD·2016–2025</span></span>
             : true;
         if (!detailsLoaded && lastTemperatureQueryLatLng) {
           renderTemperatureDetail({ ...temperatureDetailResult, loadingDetails:true });
-          void showTemperatureQuery(lastTemperatureQueryLatLng, { resetTab:false });
+          void showTemperatureQuery(lastTemperatureQueryLatLng, { resetTab:false, independent:true });
           return;
         }
         renderTemperatureDetail(temperatureDetailResult);
