@@ -3042,9 +3042,11 @@
       color: var(--text);
       cursor: pointer;
     }
-    .top-menu-share:hover { background: var(--gh-neutral-muted); }
+    .top-menu-share { border-radius:6px; transition:background-color .16s ease; }
+    .top-menu-share:hover,
+    .top-menu-share:active { background:#f0f1f3; }
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: #6b7280; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
     @media (max-width: 480px) {
       .top-menu-share { width: 40px; height: 40px; flex-basis: 40px; }
@@ -3093,14 +3095,14 @@
       position: absolute;
       top: 50%;
       z-index: 1;
-      width: 14px;
-      height: 14px;
+      width: 16.94px;
+      height: 16.94px;
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
     .top-menu-theme .theme-mode-icon:first-child { left: 14px; color: #57606a; opacity: 1; transform: translate(-50%, -50%) scale(1); }
     .top-menu-theme .theme-mode-icon:last-child { left: 38px; color: #aab2bb; opacity: .55; transform: translate(-50%, -50%) scale(.92); }
-    .top-menu-theme .theme-mode-icon svg { display: block; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .top-menu-theme .theme-mode-icon svg { display: block; width: 16.94px; height: 16.94px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
     [data-theme="dark"] .top-menu-theme {
       justify-content: flex-start;
@@ -3126,14 +3128,20 @@
     }
 
     .unit-segmented-control { --unit-segment-height: 32px; --unit-segment-min-width: 42px; --unit-segment-font-size: 13px; --unit-segment-padding: 3px; --unit-segment-radius: 12px; --unit-segment-item-radius: 9px; position: relative; isolation: isolate; display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); flex: 0 0 auto; gap: 2px; padding: var(--unit-segment-padding); overflow: hidden; border: 1px solid var(--border-subtle); border-radius: var(--unit-segment-radius); background: var(--panel-soft); }
-    .unit-segmented-control::before { content: ''; position: absolute; z-index: -1; top: var(--unit-segment-padding); bottom: var(--unit-segment-padding); left: 0; width: var(--unit-indicator-width, 0px); border: 1px solid var(--border-subtle); border-radius: var(--unit-segment-item-radius); background: var(--surface-elevated); box-shadow: none; opacity: 0; transform: translate3d(var(--unit-indicator-x, 0px), 0, 0); transition: transform 160ms cubic-bezier(.2,.75,.25,1), opacity 100ms ease-out; pointer-events: none; }
+    .unit-segmented-control::before { content: ''; position: absolute; z-index: -1; top: var(--unit-segment-padding); bottom: var(--unit-segment-padding); left: 0; width: var(--unit-indicator-width, 0px); border: 1px solid color-mix(in srgb, var(--primary) 32%, var(--border-subtle)); border-radius: var(--unit-segment-item-radius); background: color-mix(in srgb, var(--primary) 11%, var(--surface-elevated)); box-shadow: 0 1px 3px rgb(0 0 0 / .12); opacity: 0; transform: translate3d(var(--unit-indicator-x, 0px), 0, 0); transition: transform 160ms cubic-bezier(.2,.75,.25,1), opacity 100ms ease-out; pointer-events: none; }
     .unit-segmented-control[data-indicator-ready="true"]::before { opacity: 1; }
     .unit-segmented-control:not([data-indicator-ready="true"])::before { transition: none; }
-    .unit-segmented-control > button { position: relative; z-index: 0; min-width: var(--unit-segment-min-width); min-height: var(--unit-segment-height); padding: 0 10px; border: 1px solid transparent; border-radius: var(--unit-segment-item-radius); background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--unit-segment-font-size); font-weight: 600; line-height: 1; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    .unit-segmented-control > button[aria-pressed="true"] { color: var(--text-primary); }
+    .unit-segmented-control > button { position: relative; z-index: 0; display:inline-flex; align-items:center; justify-content:center; min-width: var(--unit-segment-min-width); min-height: var(--unit-segment-height); padding: 0 10px; border: 1px solid transparent; border-radius: var(--unit-segment-item-radius); background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--unit-segment-font-size); font-weight: 600; line-height: 1; white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    #measurementUnitSwitch [data-length-unit="m"] { transform: translateY(-2px); }
+    #measurementUnitSwitch [data-length-unit="ft"] { transform: translateY(-1px); }
+    #temperatureUnitSwitch [data-temperature-unit="C"] { transform: translateY(-1px); }
+    #temperatureUnitSwitch [data-temperature-unit="F"] { transform: translateY(-1px); }
+    .unit-segmented-control > button[aria-pressed="true"] { color: var(--primary); font-weight: 750; }
     .unit-segmented-control > button:focus-visible { z-index: 2; outline: 2px solid var(--primary); outline-offset: -3px; }
+    .unit-setting { display:inline-flex; align-items:center; gap:5px; flex:0 0 auto; }
+    .unit-setting-label { color:var(--text-secondary); font-size:9px; font-weight:750; letter-spacing:.07em; text-transform:uppercase; }
     .unit-segmented-control--compact { --unit-segment-height: 22px; --unit-segment-min-width: 27px; --unit-segment-font-size: 11px; --unit-segment-padding: 2px; --unit-segment-radius: 9px; --unit-segment-item-radius: 8px; gap: 1px; }
-    .unit-segmented-control--compact > button { padding: 0 5px; font-weight: 700; }
+    .unit-segmented-control--compact > button { min-width:0; padding: 0 3px; font-weight: 700; }
     .unit-segmented-control--small { --unit-segment-height: 22.4px; --unit-segment-min-width: 29.4px; --unit-segment-font-size: 9.1px; --unit-segment-padding: 2px; --unit-segment-radius: 8.4px; --unit-segment-item-radius: 6.3px; gap: 1.4px; }
     .unit-segmented-control--small > button { padding: 0 7px; }
 
@@ -3392,6 +3400,10 @@
       outline-offset: 2px;
     }
 
+    @media (max-width: 720px) {
+      #topMenuButton svg { width:24px; height:24px; }
+    }
+
     .top-menu-dropdown {
       position: absolute;
       z-index: 1400;
@@ -3426,15 +3438,25 @@
         border-bottom: 1px solid var(--line-soft);
       }
       #topMenuMobileSettings .top-menu-share-wrap { flex: 0 0 40px; width: 40px; height: 40px; }
+      #topMenuMobileSettings .top-menu-share { border-radius:6px; transition:background-color .16s ease; }
+      #topMenuMobileSettings .top-menu-share:hover,
+      #topMenuMobileSettings .top-menu-share:active { background:#f0f1f3; }
+      #topMenuMobileSettings .top-menu-share svg { width:24px; height:24px; }
+      #topMenuMobileSettings .top-menu-share svg { stroke:#6b7280; }
+      #topMenuMobileSettings .top-menu-theme .theme-mode-icon,
+      #topMenuMobileSettings .top-menu-theme .theme-mode-icon svg { width:25.41px; height:25.41px; }
+      #topMenuMobileSettings .top-menu-theme .theme-mode-icon:first-child { color:#6b7280; }
       #topMenuMobileSettings .unit-segmented-control--compact {
         --unit-segment-height: 32px;
-        --unit-segment-min-width: 42px;
-        --unit-segment-font-size: 13px;
+        --unit-segment-min-width: 33.6px;
+        --unit-segment-font-size: 15.6px;
         --unit-segment-padding: 3px;
         --unit-segment-radius: 12px;
         --unit-segment-item-radius: 9px;
       }
-      #topMenuMobileSettings .unit-segmented-control--compact > button { padding: 0 10px; }
+      #topMenuMobileSettings .unit-segmented-control--compact > button { min-width:0; padding: 0 8px; font-weight: 787.5; }
+      #topMenuMobileSettings .unit-setting { flex-direction:column; align-items:flex-start; gap:3px; }
+      #topMenuMobileSettings .unit-setting-label { padding-left:2px; font-size:8px; }
     }
 
     @media (max-width: 340px) {
@@ -3564,6 +3586,22 @@
     }
     .top-menu-lang-trigger svg { width: 12px; height: 12px; flex: 0 0 12px; fill: none; }
     .top-menu-lang-trigger[aria-expanded="true"] { background: var(--gh-neutral-muted); }
+    #languageMenuButton:hover,
+    #languageMenuButton:active,
+    #topMenuButton:hover,
+    #topMenuButton:active { background:#f0f1f3; }
+    #languageMenuButton,
+    #topMenuButton { color:#6b7280; }
+    [data-theme="dark"] .top-menu-share:hover,
+    [data-theme="dark"] .top-menu-share:active,
+    [data-theme="dark"] #languageMenuButton:hover,
+    [data-theme="dark"] #languageMenuButton:active,
+    [data-theme="dark"] #languageMenuButton[aria-expanded="true"],
+    [data-theme="dark"] #topMenuButton:hover,
+    [data-theme="dark"] #topMenuButton:active,
+    [data-theme="dark"] #topMenuButton[aria-expanded="true"] { background:#252a33; }
+    [data-theme="dark"] #topMenuMobileSettings .top-menu-share:hover,
+    [data-theme="dark"] #topMenuMobileSettings .top-menu-share:active { background:#252a33; }
     .top-menu-lang::after { display: none; }
     .language-dropdown {
       width: min(126px, calc(100vw - 24px));
@@ -5722,9 +5760,11 @@
         <span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.7"/><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M12.6 3.4l-.9.9M4.3 11.7l-.9.9"/></svg></span>
         <span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M12.8 10.2A5.8 5.8 0 0 1 5.8 3.1a5.8 5.8 0 1 0 7 7.1Z"/></svg></span>
       </button>
-      <div class="unit-segmented-control unit-segmented-control--compact" id="measurementUnitSwitch" data-unit-segmented data-indicator-ready="false" role="group" aria-label="Length units">
-        <button type="button" data-length-unit="m" aria-pressed="true" aria-label="Meters" title="Meters">m</button>
-        <button type="button" data-length-unit="ft" aria-pressed="false" aria-label="Feet" title="Feet">ft</button>
+      <div class="unit-setting" aria-label="Length units">
+        <div class="unit-segmented-control unit-segmented-control--compact" id="measurementUnitSwitch" data-unit-segmented data-indicator-ready="false" role="group" aria-label="Length units">
+          <button type="button" data-length-unit="m" aria-pressed="true" aria-label="Meters" title="Meters">m</button>
+          <button type="button" data-length-unit="ft" aria-pressed="false" aria-label="Feet" title="Feet">ft</button>
+        </div>
       </div>
       <div class="unit-segmented-control unit-segmented-control--compact" id="temperatureUnitSwitch" data-unit-segmented data-indicator-ready="false" role="group" aria-label="Temperature units">
         <button type="button" data-temperature-unit="C" aria-pressed="true" aria-label="Celsius" title="Celsius">°C</button>
@@ -25347,7 +25387,7 @@ ZSD·2016–2025</span></span>
   const mobileTopMenuControls = [
     document.querySelector('.top-menu-share-wrap'),
     els.themeBtn,
-    els.measurementUnitSwitch,
+    document.querySelector('.unit-setting'),
     els.temperatureUnitSwitch
   ].filter(Boolean).map(element => {
     const anchor = document.createComment('top menu control position');
