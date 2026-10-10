@@ -12370,6 +12370,10 @@ ZSD·2016–2025</span></span>
     const clickedLongitude = Number(latlng.lng);
     diveConditionsLocation = L.latLng(latlng.lat, normalizedLongitude);
     diveConditionsPopupLocation = L.latLng(latlng.lat, clickedLongitude);
+    const openDiveSitePopup = activeClickPopup;
+    if (openDiveSitePopup?._diveAtlasRatingLocation && openDiveSitePopup.isOpen()) {
+      requestDiveSiteRating(openDiveSitePopup, openDiveSitePopup._diveAtlasRatingLocation);
+    }
     diveConditionsAbort?.abort();
     closeManagedPopupForLayer('dive-conditions');
     showMapClickLocationPin(diveConditionsPopupLocation);
@@ -12502,22 +12506,31 @@ ZSD·2016–2025</span></span>
     const rating = element?.querySelector('.dive-popup-rating__value');
     if (!rating) return;
     const month = diveSiteRatingMonth();
-    if (popup._diveAtlasRatingMonth === month && rating.dataset.status !== 'loading') return;
+    const ratingLocation = location;
+    const ratingLocationKey = `${Number(ratingLocation.lat).toFixed(6)},${Number(ratingLocation.lng).toFixed(6)}`;
+    if (popup._diveAtlasRatingMonth === month && popup._diveAtlasRatingLocationKey === ratingLocationKey && rating.dataset.status !== 'loading') return;
     if (popup._diveAtlasRatingLoading) popup._diveAtlasRatingGeneration = (popup._diveAtlasRatingGeneration || 0) + 1;
     const generation = (popup._diveAtlasRatingGeneration || 0) + 1;
     popup._diveAtlasRatingGeneration = generation;
     popup._diveAtlasRatingMonth = month;
+    popup._diveAtlasRatingLocationKey = ratingLocationKey;
     popup._diveAtlasRatingLoading = true;
     rating.dataset.status = 'loading';
     rating.textContent = `${t('diveExperienceLoadingMonth').replace('…', '')} · ${localizedTemperatureMonth(month, 'short')}`;
-    void sampleDiveExperienceOutlook(location, month).then(sample => {
+    void sampleDiveExperienceOutlook(ratingLocation, month).then(sample => {
       if (!popup.isOpen() || popup._diveAtlasRatingGeneration !== generation || popup.getElement() !== element) return;
       rating.textContent = sample?.score == null
         ? t('diveExperienceNoScore')
-        : `${Math.round(sample.score)} · ${localizedDiveExperienceLevel(sample.category || diveExperienceOutlookMapApi.scoreLabel(sample.score))} · ${localizedTemperatureMonth(month, 'short')}`;
+        : `${Math.round(sample.score)} · ${localizedDiveExperienceLevel(sample.label)} · ${localizedTemperatureMonth(month, 'short')}`;
       rating.dataset.status = sample?.score == null ? 'unavailable' : 'ready';
-    }).catch(() => {
+    }).catch(error => {
       if (!popup.isOpen() || popup._diveAtlasRatingGeneration !== generation || popup.getElement() !== element) return;
+      console.error('Dive-site rating lookup failed.', {
+        siteId:popup._diveAtlasSiteId || null,
+        location:{ lat:Number(ratingLocation.lat), lng:Number(ratingLocation.lng) },
+        month,
+        error
+      });
       rating.textContent = `${t('diveConditionsUnavailable')} · ${localizedTemperatureMonth(month, 'short')}`;
       rating.dataset.status = 'unavailable';
     }).finally(() => {

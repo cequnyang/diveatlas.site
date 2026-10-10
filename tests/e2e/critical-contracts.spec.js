@@ -75,12 +75,42 @@ test('individual Dive site opens its details popup', async ({ page }) => {
   await expect(page.locator('.dive-popup-rating__value')).not.toHaveAttribute('data-status', 'loading', { timeout: 30_000 });
   const ratingValue = page.locator('.dive-popup-rating__value');
   await expect(ratingValue).toContainText('Oct');
+  await expect(ratingValue).toContainText(/\d+ · (Challenging|Fair|Good|Excellent)/);
+  await expect(ratingValue).not.toContainText('nearby estimate');
   await page.evaluate(() => {
+    window.__DIVEATLAS_TEST__.selectEnvironmentalView('dive-experience-outlook');
     const month = document.getElementById('diveExperienceMonth');
     month.value = '6';
     month.dispatchEvent(new Event('change', { bubbles: true }));
   });
+  await clickFixture(page, 'dive-single');
   await expect(ratingValue).toContainText('Jun');
+  await page.evaluate(() => {
+    window.__DIVEATLAS_TEST__.selectEnvironmentalView('water-clarity');
+    const month = document.getElementById('waterClarityMonth');
+    month.value = '8';
+    month.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await clickFixture(page, 'dive-single');
+  await expect(ratingValue).toContainText('Aug');
+  for (const [view, selector, month, label] of [
+    ['temperature', 'temperatureMonth', '9', 'Sep'],
+    ['currents', 'currentsMonth', '7', 'Jul'],
+    ['waves', 'wavesMonth', '4', 'Apr']
+  ]) {
+    await page.evaluate(([nextView, selectId, nextMonth]) => {
+      window.__DIVEATLAS_TEST__.selectEnvironmentalView(nextView);
+      const monthSelect = document.getElementById(selectId);
+      monthSelect.value = nextMonth;
+      monthSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }, [view, selector, month]);
+    await clickFixture(page, 'dive-single');
+    await expect(ratingValue).toContainText(label);
+  }
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.selectEnvironmentalView('tide'));
+  await clickFixture(page, 'dive-single');
+  const localMonth = await page.evaluate(() => new Intl.DateTimeFormat('en', { month:'short' }).format(new Date()));
+  await expect(ratingValue).toContainText(localMonth);
   await expectMapViewUnchanged(page, before, after);
 });
 
