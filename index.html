@@ -1339,9 +1339,9 @@
     }
     .dive-popup-location { position:relative; margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
     .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; }
-    .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; }
-    .dive-popup-rating__label .dive-brand-mark { width:5.0765em; height:1.573em; margin:0 -1px 0 0; }
-    button.dive-popup-rating__label { padding:0; border:0; background:transparent; font:inherit; cursor:pointer; }
+    .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; vertical-align: 0.3em;}
+    .dive-popup-rating__label .dive-brand-rating-logo { height:1.573em; width:auto; margin:0; }
+    button.dive-popup-rating__label { padding:0; border:0; background:transparent; font:inherit; font-size:14px; font-weight:800; cursor:pointer; }
     button.dive-popup-rating__label:focus-visible { outline:2px solid var(--layers-focus-ring); outline-offset:3px; border-radius:2px; }
     .dive-popup-rating__value { color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
     .dive-popup-rating__value[data-status="loading"] { color:var(--muted); font-weight:500; }
@@ -1734,7 +1734,6 @@
     .dive-experience-dimension-details { margin-top:7px; border-bottom:1px solid var(--line); color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
     .dive-experience-dimension-details > summary { padding:5px 0; color:var(--layers-legend-title,var(--text-secondary)); font-weight:700; cursor:pointer; }
     .dive-experience-dimension-list { display:grid; gap:3px; padding:2px 0 7px; }
-    #environmentDiveExperienceLabel .environment-dive-rating-word { display:inline-block; position:relative; top:1px; flex:0 0 auto; min-height:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; color:inherit; font:inherit; line-height:inherit; font-weight:800; }
     .dive-experience-dimension-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(90px,auto); align-items:baseline; gap:2px 10px; padding:3px 0; }
     .dive-experience-dimension-label { color:var(--layers-legend-meta,var(--text-muted)); }
     .dive-experience-dimension-value { color:var(--layers-temperature-title,var(--text-primary)); text-align:right; font-variant-numeric:tabular-nums; }
@@ -1743,10 +1742,7 @@
     .dive-conditions-panel[hidden] { display:none; }
     .dive-conditions-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; }
     .dive-conditions-heading h2 { margin:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:var(--layers-temp-title-size,18px); font-weight:500; letter-spacing:-.45px; line-height:28px; }
-    /* The standalone SVG includes space after the final s; offset it in rating labels. */
-    .dive-brand-mark { display:inline-block; width:5.0765em; height:1.573em; vertical-align:-.3em; margin-right:-1px; }
-    #environmentDiveExperienceLabel { gap:0; }
-    #environmentDiveExperienceLabel .dive-brand-mark { flex:0 0 auto; width:5.0765em; height:1.573em; margin:0 -1px 0 0; }
+    .dive-brand-rating-logo { display:inline-block; flex:0 0 auto; width:auto; height:1.573em; overflow:visible; vertical-align:-.3em; }
     .dive-experience-info { margin-right:-8px; }
     .dive-conditions-month-picker { margin:14px 0; }
     .dive-conditions-score-map-legend { display:grid; box-sizing:border-box; grid-template-columns:1fr auto; align-items:center; gap:5px 10px; margin:8px 0 2px; padding:10px 12px; border:1px solid var(--layers-legend-card-border); border-radius:var(--layers-control-radius); background:var(--layers-legend-card-background); color:var(--layers-legend-meta,var(--text-muted)); font-size:10px; }
@@ -11290,21 +11286,57 @@ ZSD·2016–2025</span></span>
 
   // The rating name is a fixed product label in every language.
   const DIVEATLAS_RATING_LABEL = 'DiveAtlas Rating';
+  // Outlined Segoe UI glyphs keep the Rating word inside the shared logo; the small stroke and
+  // per-glyph shifts reproduce the popup header's 800 weight and -0.02em tracking.
+  const DIVEATLAS_RATING_WORD_PATH = [
+    "M41.38,66.9L30.15,66.9L23.4,55.73C22.9,54.89 22.41,54.13 21.95,53.46C21.48,52.8 21.01,52.23 20.54,51.75C20.07,51.28 19.57,50.91 19.06,50.66C18.54,50.41 17.98,50.28 17.38,50.28L14.74,50.28L14.74,66.9L4.96,66.9L4.96,23.49L20.46,23.49C31,23.49 36.27,27.43 36.27,35.3C36.27,36.81 36.04,38.21 35.57,39.49C35.11,40.77 34.45,41.93 33.6,42.96C32.76,43.99 31.73,44.88 30.53,45.62C29.33,46.37 27.99,46.95 26.52,47.38L26.52,47.5C27.17,47.7 27.79,48.03 28.4,48.48C29,48.94 29.59,49.47 30.15,50.07C30.72,50.68 31.26,51.33 31.77,52.02C32.29,52.72 32.76,53.4 33.18,54.07Z",
+    "M14.74,30.82L14.74,42.9L18.98,42.9C21.08,42.9 22.77,42.29 24.04,41.08C25.33,39.85 25.97,38.33 25.97,36.51C25.97,32.72 23.7,30.82 19.16,30.82Z",
+    "M70.29,66.9L61.24,66.9L61.24,62.45L61.12,62.45C59.04,65.93 55.97,67.66 51.89,67.66C48.88,67.66 46.52,66.81 44.79,65.1C43.06,63.4 42.2,61.12 42.2,58.28C42.2,52.26 45.76,48.79 52.89,47.86L61.3,46.74C61.3,43.35 59.47,41.66 55.79,41.66C52.1,41.66 48.59,42.76 45.26,44.96L45.26,37.75C46.59,37.06 48.41,36.46 50.72,35.93C53.03,35.41 55.14,35.15 57.04,35.15C65.88,35.15 70.29,39.56 70.29,48.38Z",
+    "M61.3,54.31L61.3,52.22L55.67,52.95C52.56,53.35 51.01,54.75 51.01,57.16C51.01,58.25 51.39,59.14 52.15,59.84C52.9,60.53 53.93,60.88 55.22,60.88C57.01,60.88 58.48,60.26 59.61,59.02C60.74,57.78 61.3,56.21 61.3,54.31Z",
+    "M96.6,66.54C95.19,67.29 93.06,67.66 90.21,67.66C83.47,67.66 80.1,64.16 80.1,57.16L80.1,42.96L75.08,42.96L75.08,35.9L80.1,35.9L80.1,29.21L89.64,26.49L89.64,35.9L96.6,35.9L96.6,42.96L89.64,42.96L89.64,55.49C89.64,58.72 90.92,60.33 93.48,60.33C94.49,60.33 95.53,60.04 96.6,59.46Z",
+    "M106.84,31C105.22,31 103.9,30.52 102.87,29.56C101.84,28.6 101.33,27.43 101.33,26.04C101.33,24.6 101.84,23.43 102.87,22.52C103.9,21.62 105.22,21.16 106.84,21.16C108.47,21.16 109.8,21.62 110.82,22.52C111.84,23.43 112.34,24.6 112.34,26.04C112.34,27.49 111.84,28.68 110.82,29.61C109.8,30.54 108.47,31 106.84,31Z",
+    "M111.56,66.9L101.99,66.9L101.99,35.9L111.56,35.9Z",
+    "M149.55,66.9L140.01,66.9L140.01,49.68C140.01,44.88 138.3,42.47 134.87,42.47C133.21,42.47 131.85,43.11 130.78,44.38C129.71,45.65 129.18,47.27 129.18,49.22L129.18,66.9L119.61,66.9L119.61,35.9L129.18,35.9L129.18,40.81L129.3,40.81C131.58,37.03 134.9,35.15 139.26,35.15C146.12,35.15 149.55,39.41 149.55,47.92Z",
+    "M187.51,63.36C187.51,69.11 185.85,73.57 182.52,76.73C179.19,79.89 174.36,81.47 168.05,81.47C163.87,81.47 160.56,80.87 158.12,79.68L158.12,71.63C161.31,73.48 164.53,74.41 167.78,74.41C171,74.41 173.51,73.56 175.28,71.85C177.06,70.15 177.95,67.83 177.95,64.91L177.95,62.45L177.83,62.45C175.65,65.93 172.43,67.66 168.17,67.66C164.21,67.66 161.07,66.27 158.75,63.48C156.43,60.7 155.27,56.96 155.27,52.28C155.27,47.03 156.56,42.87 159.15,39.78C161.73,36.69 165.13,35.15 169.35,35.15C173.12,35.15 175.95,36.6 177.83,39.51L177.95,39.51L177.95,35.9L187.51,35.9Z",
+    "M178.07,52.01L178.07,49.56C178.07,47.6 177.49,45.93 176.33,44.55C175.17,43.16 173.66,42.47 171.8,42.47C169.68,42.47 168.02,43.3 166.81,44.96C165.6,46.61 164.99,48.94 164.99,51.95C164.99,54.53 165.57,56.58 166.72,58.08C167.87,59.58 169.44,60.33 171.44,60.33C173.42,60.33 175.02,59.57 176.24,58.05C177.46,56.53 178.07,54.51 178.07,52.01Z",
+  ].join(' ');
 
-  function renderBrandedDiveLabel(target, { ratingClass = '' } = {}) {
-    const mark = document.createElement('img');
-    mark.className = 'dive-brand-mark';
-    mark.src = 'assets/diveatlas-logo.svg?v=2';
-    mark.alt = '';
-    mark.setAttribute('aria-hidden', 'true');
-    if (ratingClass) {
-      const ratingWord = document.createElement('span');
-      ratingWord.className = ratingClass;
-      ratingWord.textContent = 'Rating';
-      target.replaceChildren(mark, ratingWord);
-    } else {
-      target.replaceChildren(mark, 'Rating');
-    }
+  function renderBrandedDiveLabel(target) {
+    const svgNamespace = 'http://www.w3.org/2000/svg';
+    const logo = document.createElementNS(svgNamespace, 'svg');
+    logo.classList.add('dive-brand-rating-logo');
+    logo.setAttribute('viewBox', '0 0 512 100');
+    logo.setAttribute('aria-hidden', 'true');
+
+    const brandMark = document.createElementNS(svgNamespace, 'image');
+    brandMark.setAttribute('x', '0');
+    brandMark.setAttribute('y', '0');
+    brandMark.setAttribute('width', '322.35');
+    brandMark.setAttribute('height', '100');
+    brandMark.setAttribute('href', 'assets/diveatlas-logo.svg?v=2');
+
+    const ratingWord = document.createElementNS(svgNamespace, 'g');
+    ratingWord.setAttribute('transform', 'translate(319 9)');
+    ratingWord.setAttribute('fill', 'currentColor');
+    ratingWord.setAttribute('fill-rule', 'evenodd');
+    const ratingGlyphs = DIVEATLAS_RATING_WORD_PATH.match(/M[^M]*/g) || [];
+    const ratingLetterContours = [[0, 1], [2, 3], [4], [5, 6], [7], [8, 9]];
+    const ratingLetterAnchors = [4.96, 42.2, 75.08, 101.99, 119.61, 155.27];
+    const ratingHorizontalScale = 1.12;
+    const ratingLetterTracking = 0.6;
+    ratingLetterContours.forEach((contours, index) => {
+      const glyph = document.createElementNS(svgNamespace, 'path');
+      glyph.setAttribute('d', contours.map(contour => ratingGlyphs[contour] || '').join(' '));
+      const anchoredOffset = ratingLetterAnchors[index] * (1 - ratingHorizontalScale) + ratingLetterTracking * index;
+      glyph.setAttribute('transform', `translate(${anchoredOffset} 0) scale(${ratingHorizontalScale} 1)`);
+      glyph.setAttribute('stroke', 'currentColor');
+      glyph.setAttribute('stroke-width', '2.1');
+      glyph.setAttribute('stroke-linejoin', 'round');
+      ratingWord.append(glyph);
+    });
+
+    logo.append(brandMark, ratingWord);
+    target.replaceChildren(logo);
     target.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
     return DIVEATLAS_RATING_LABEL;
   }
@@ -11355,7 +11387,7 @@ ZSD·2016–2025</span></span>
     els.terrainLegendLabel.textContent = t('terrainLegend');
     els.terrainLayerToggle.title = t('terrainDescription');
     els.terrainLayerToggle.setAttribute('aria-label', `${t('terrainLegend')}: ${t('terrainDescription')}`);
-    renderBrandedDiveLabel(els.environmentDiveExperienceLabel, { ratingClass:'environment-dive-rating-word' });
+    renderBrandedDiveLabel(els.environmentDiveExperienceLabel);
     els.environmentDiveExperienceLabel.previousElementSibling.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
     els.environmentNoneLabel.previousElementSibling.setAttribute('aria-label', t('environmentNone'));
     els.environmentReefConditionLabel.textContent = t('reefFieldMetricTitle');
@@ -23005,7 +23037,7 @@ ZSD·2016–2025</span></span>
 
     marker.on('popupopen', event => {
       const popupRatingLabel = event.popup.getElement()?.querySelector('.dive-popup-rating__label');
-      if (popupRatingLabel && !popupRatingLabel.querySelector('.dive-brand-mark')) renderBrandedDiveLabel(popupRatingLabel);
+      if (popupRatingLabel && !popupRatingLabel.querySelector('.dive-brand-rating-logo')) renderBrandedDiveLabel(popupRatingLabel);
       if (popupRatingLabel && popupRatingLabel.dataset.ratingPopupBound !== 'true') {
         popupRatingLabel.dataset.ratingPopupBound = 'true';
         popupRatingLabel.addEventListener('click', clickEvent => {
