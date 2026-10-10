@@ -53,6 +53,41 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   } else if (placement.preferredSide === 'above' ? placement.fitsBelow : placement.fitsAbove) {
     expect(placement.arrowSide).toBe(alternateSide);
   }
+
+  for (const [rowLabel, popupSelector] of [
+    ['Regional current:', '.regional-currents-popup'],
+    ['Typical wave height:', '.waves-popup']
+  ]) {
+    await popup.getByRole('button', { name: new RegExp(rowLabel) }).click();
+    const metricPopup = page.locator(popupSelector);
+    await expect(metricPopup).toBeVisible();
+    await expect(metricPopup.locator('.dive-conditions-popup-back')).toBeVisible();
+
+    const metricPlacement = await page.evaluate(() => {
+      const state = window.__DIVEATLAS_TEST__.getState().popup;
+      const preferredSide = innerWidth <= 720 ? 'above' : 'below';
+      const anchorY = state.anchorY;
+      const popupHeight = state.bounds.bottom - state.bounds.top;
+      const fitsAbove = anchorY - popupHeight - 24 >= state.safeBounds.top;
+      const fitsBelow = anchorY + popupHeight + 24 <= state.safeBounds.bottom;
+      return { preferredSide, fitsAbove, fitsBelow, arrowSide:state.arrowSide };
+    });
+    const preferredArrow = metricPlacement.preferredSide === 'above' ? 'bottom' : 'top';
+    const alternateArrow = metricPlacement.preferredSide === 'above' ? 'top' : 'bottom';
+    if (metricPlacement.preferredSide === 'above' ? metricPlacement.fitsAbove : metricPlacement.fitsBelow) {
+      expect(metricPlacement.arrowSide).toBe(preferredArrow);
+    } else if (metricPlacement.preferredSide === 'above' ? metricPlacement.fitsBelow : metricPlacement.fitsAbove) {
+      expect(metricPlacement.arrowSide).toBe(alternateArrow);
+    }
+
+    await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
+    const backButton = metricPopup.locator('.dive-conditions-popup-back');
+    await backButton.hover();
+    await expect(backButton).toHaveCSS('background-color', 'rgb(32, 52, 71)');
+    await backButton.click();
+    await expect(popup).toBeVisible();
+  }
+
   await openMobileSettings(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await expect(popup.locator('.dive-conditions-grid')).toContainText('°F');
