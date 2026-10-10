@@ -61,22 +61,26 @@ test('temperature metadata uses R2 in external builds and local files in develop
   }
 });
 
-test('saved month preferences keep each month selector and legend in sync on startup', async ({ page }) => {
+test('saved month preferences restore independently across environmental layers', async ({ page }) => {
   await openMap(page, {
     localStorage: {
-      'global-coral-map-environment-month-v1': '10',
+      'global-coral-map-temperature-month-v1': '10',
+      'global-coral-map-water-clarity-month-v1': '9',
+      'global-coral-map-currents-month-v1': '8',
+      'global-coral-map-waves-month-v1': '7',
       'global-coral-map-dive-experience-month-v1': '6'
     }
   });
 
-  for (const selector of ['#temperatureMonth', '#waterClarityMonth', '#currentsMonth', '#wavesMonth']) {
-    await expect(page.locator(selector)).toHaveValue('10');
-  }
+  await expect(page.locator('#temperatureMonth')).toHaveValue('10');
+  await expect(page.locator('#waterClarityMonth')).toHaveValue('9');
+  await expect(page.locator('#currentsMonth')).toHaveValue('8');
+  await expect(page.locator('#wavesMonth')).toHaveValue('7');
   await expect(page.locator('#temperatureLegendSelection')).toContainText('Oct');
   await expect(page.locator('#temperatureLegendSlice')).toContainText('October');
-  await expect(page.locator('#waterClarityLegendSelection')).toHaveText('Oct');
-  await expect(page.locator('#currentsLegendSelection')).toContainText('Oct');
-  await expect(page.locator('#wavesLegendSelection')).toHaveText('October');
+  await expect(page.locator('#waterClarityLegendSelection')).toHaveText('Sep');
+  await expect(page.locator('#currentsLegendSelection')).toContainText('Aug');
+  await expect(page.locator('#wavesLegendSelection')).toHaveText('July');
 
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('6');
   await expect(page.locator('#diveExperienceLegendMonth')).toHaveText('June');

@@ -8104,12 +8104,18 @@ ZSD·2016–2025</span></span>
   const TUTORIAL_SUPPRESSED_STORAGE_KEY = 'global-coral-map-tutorial-suppressed-v1';
   const ENVIRONMENT_VIEW_STORAGE_KEY = 'global-coral-map-environment-view-v1';
   const ENVIRONMENT_MONTH_STORAGE_KEY = 'global-coral-map-environment-month-v1';
+  const ENVIRONMENT_MONTH_STORAGE_KEYS = Object.freeze({
+    temperature:'global-coral-map-temperature-month-v1',
+    'water-clarity':'global-coral-map-water-clarity-month-v1',
+    currents:'global-coral-map-currents-month-v1',
+    waves:'global-coral-map-waves-month-v1'
+  });
   const DIVE_EXPERIENCE_MONTH_STORAGE_KEY = 'global-coral-map-dive-experience-month-v1';
-  function readSavedMonth(key) {
+  function readSavedMonth(key, fallback = new Date().getMonth() + 1) {
     try {
       const month = Number(localStorage.getItem(key));
-      return Number.isInteger(month) && month >= 1 && month <= 12 ? month : new Date().getMonth() + 1;
-    } catch (_) { return new Date().getMonth() + 1; }
+      return Number.isInteger(month) && month >= 1 && month <= 12 ? month : fallback;
+    } catch (_) { return fallback; }
   }
   function saveMonthSelection(key, month) {
     if (suppressPanelPreferenceWrites || !Number.isInteger(month) || month < 1 || month > 12) return;
@@ -11378,7 +11384,7 @@ ZSD·2016–2025</span></span>
     els.currentsDepth.value = selectedCurrentsDepth;
     els.currentsMonth.replaceChildren(...Array.from({ length: 12 }, (_, index) =>
       new Option(localizedTemperatureMonth(index + 1), String(index + 1))));
-    els.currentsMonth.value = String(selectedEnvironmentalMonth);
+    els.currentsMonth.value = String(environmentalMonth('currents'));
     els.waterClarityTitle.textContent = t('waterClarityTitle');
     els.waterClarityInfoAbout.setAttribute('aria-label', t('waterClarityAbout'));
     els.waterClarityInfoAbout.title = t('waterClarityAbout');
@@ -12486,7 +12492,10 @@ ZSD·2016–2025</span></span>
     return String(resolution).replace(/([\d.]+)\s*km\b/giu, (_, value) => formatLongDistanceMeters(Number(value) * 1000));
   }
   function diveSiteRatingMonth() {
-    return DIVE_EXPERIENCE_OUTLOOK_ENABLED ? diveConditionsMonth : new Date().getMonth() + 1;
+    const view = environmentalViewController.activeView;
+    if (view === 'dive-experience-outlook') return diveConditionsMonth;
+    if (Object.hasOwn(environmentalMonths, view)) return environmentalMonth(view);
+    return new Date().getMonth() + 1;
   }
   function requestDiveSiteRating(popup, location) {
     const element = popup?.getElement?.();
@@ -13440,7 +13449,10 @@ ZSD·2016–2025</span></span>
   let temperatureDetailResult = null;
   let temperatureDetailQueryKey = '';
   let temperatureDetailPopupElement = null;
-  let selectedEnvironmentalMonth = readSavedMonth(ENVIRONMENT_MONTH_STORAGE_KEY);
+  const legacyEnvironmentMonth = readSavedMonth(ENVIRONMENT_MONTH_STORAGE_KEY);
+  const environmentalMonths = Object.fromEntries(Object.entries(ENVIRONMENT_MONTH_STORAGE_KEYS)
+    .map(([view, key]) => [view, readSavedMonth(key, legacyEnvironmentMonth)]));
+  function environmentalMonth(view) { return environmentalMonths[view] || legacyEnvironmentMonth; }
   let wavesView = null;
   let wavesModulePromise = null;
   let wavesPopup = null;
@@ -14013,9 +14025,9 @@ ZSD·2016–2025</span></span>
     Array.from(els.wavesMonth.options).forEach(option => {
       option.textContent = localizedTemperatureMonth(Number(option.value));
     });
-    els.wavesMonth.value = String(selectedEnvironmentalMonth);
+    els.wavesMonth.value = String(environmentalMonth('waves'));
     renderWavesLengthLabels();
-    els.wavesLegendSelection.textContent = localizedTemperatureMonth(selectedEnvironmentalMonth);
+    els.wavesLegendSelection.textContent = localizedTemperatureMonth(environmentalMonth('waves'));
     els.wavesRetry.textContent = t('wavesRetry');
     if (!els.wavesStatus.hidden) {
       els.wavesStatus.textContent = wavesStatusKey ? t(wavesStatusKey) : '';
@@ -14354,13 +14366,12 @@ ZSD·2016–2025</span></span>
 
   function updateLegendCollapsedSummary() {
     const activeView = els.environmentViewRadios.find(input => input.checked)?.value || 'default';
-    const monthLabel = localizedTemperatureMonth(selectedEnvironmentalMonth, 'short');
     const summaries = {
       'dive-experience-outlook': `${t('diveExperienceTab')} · ${localizedTemperatureMonth(diveConditionsMonth, 'short')}`,
-      temperature: `${t('temperatureTitle')} · ${localizedTemperatureDepth(els.temperatureDepth.value)} · ${monthLabel}`,
-      'water-clarity': `${t('waterClarityTitle')} · ${monthLabel}`,
-      currents: `${t('currentsTitle')} · ${localizedTemperatureDepth(regionalCurrentsDepth)} · ${monthLabel}`,
-      waves: `${t('wavesTitle')} · ${monthLabel}`,
+      temperature: `${t('temperatureTitle')} · ${localizedTemperatureDepth(els.temperatureDepth.value)} · ${localizedTemperatureMonth(environmentalMonth('temperature'), 'short')}`,
+      'water-clarity': `${t('waterClarityTitle')} · ${localizedTemperatureMonth(environmentalMonth('water-clarity'), 'short')}`,
+      currents: `${t('currentsTitle')} · ${localizedTemperatureDepth(regionalCurrentsDepth)} · ${localizedTemperatureMonth(environmentalMonth('currents'), 'short')}`,
+      waves: `${t('wavesTitle')} · ${localizedTemperatureMonth(environmentalMonth('waves'), 'short')}`,
       'reef-survey-condition': t('reefFieldMetricTitle'),
       tide: t('tideTitle')
     };
@@ -14371,16 +14382,17 @@ ZSD·2016–2025</span></span>
   function updateTemperatureSliceLabel() {
     const depth = els.temperatureDepth.value;
     const legendDepth = localizedTemperatureDepth(depth, { spacing: true });
-    const compactMonth = localizedTemperatureMonth(selectedEnvironmentalMonth, 'short');
-    const legendMonth = localizedTemperatureMonth(selectedEnvironmentalMonth);
-    const monthValue = String(selectedEnvironmentalMonth);
-    [els.temperatureMonth, els.waterClarityMonth, els.currentsMonth, els.wavesMonth].forEach(select => {
-      if (Array.from(select.options).some(option => option.value === monthValue)) select.value = monthValue;
-    });
-    els.temperatureLegendSelection.textContent = `${localizedTemperatureDepth(depth)} · ${compactMonth}`;
-    els.temperatureLegendSlice.textContent = `${legendDepth} · ${legendMonth}`;
-    els.waterClarityLegendSelection.textContent = compactMonth;
-    els.currentsLegendSelection.textContent = `${localizedTemperatureDepth(regionalCurrentsDepth)} · ${compactMonth}`;
+    const temperatureMonth = environmentalMonth('temperature');
+    const clarityMonth = environmentalMonth('water-clarity');
+    const currentsMonth = environmentalMonth('currents');
+    els.temperatureMonth.value = String(temperatureMonth);
+    els.waterClarityMonth.value = String(clarityMonth);
+    els.currentsMonth.value = String(currentsMonth);
+    els.wavesMonth.value = String(environmentalMonth('waves'));
+    els.temperatureLegendSelection.textContent = `${localizedTemperatureDepth(depth)} · ${localizedTemperatureMonth(temperatureMonth, 'short')}`;
+    els.temperatureLegendSlice.textContent = `${legendDepth} · ${localizedTemperatureMonth(temperatureMonth)}`;
+    els.waterClarityLegendSelection.textContent = localizedTemperatureMonth(clarityMonth, 'short');
+    els.currentsLegendSelection.textContent = `${localizedTemperatureDepth(regionalCurrentsDepth)} · ${localizedTemperatureMonth(currentsMonth, 'short')}`;
     updateLegendCollapsedSummary();
   }
 
@@ -14393,8 +14405,8 @@ ZSD·2016–2025</span></span>
 
     els.temperatureMonth.replaceChildren(...months.map(month => new Option(localizedTemperatureMonth(month), String(month))));
     els.temperatureDepth.replaceChildren(...depths.map(depth => new Option(localizedTemperatureDepth(depth, { spacing: depth !== 0 }), String(depth))));
-    if (!months.includes(selectedEnvironmentalMonth)) selectedEnvironmentalMonth = months[0];
-    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
+    if (!months.includes(environmentalMonths.temperature)) environmentalMonths.temperature = months[0];
+    els.temperatureMonth.value = String(environmentalMonth('temperature'));
     if (!depths.includes(Number(els.temperatureDepth.value))) els.temperatureDepth.value = String(depths[0]);
     updateTemperatureSliceLabel();
 
@@ -14425,13 +14437,13 @@ ZSD·2016–2025</span></span>
     const months = [...new Set(metadata.available_months.map(Number))].filter(month => month >= 1 && month <= 12).sort((a, b) => a - b);
     const depths = [...new Set(metadata.available_depths_m.map(Number))].filter(depth => depth >= 0 && depth <= 50).sort((a, b) => a - b);
     if (!months.length || !depths.length) return;
-    const monthValue = selectedEnvironmentalMonth;
+    const monthValue = environmentalMonth('temperature');
     const depthValue = Number(els.temperatureDepth.value);
     els.temperatureMonth.replaceChildren(...months.map(month => new Option(localizedTemperatureMonth(month), String(month))));
     els.temperatureDepth.replaceChildren(...depths.map(depth => new Option(localizedTemperatureDepth(depth, { spacing: depth !== 0 }), String(depth))));
-    if (months.includes(monthValue)) selectedEnvironmentalMonth = monthValue;
-    else selectedEnvironmentalMonth = months[0];
-    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
+    if (months.includes(monthValue)) environmentalMonths.temperature = monthValue;
+    else environmentalMonths.temperature = months[0];
+    els.temperatureMonth.value = String(environmentalMonth('temperature'));
     els.temperatureDepth.value = String(depths.includes(depthValue) ? depthValue : depths[0]);
     updateTemperatureSliceLabel();
   }
@@ -14457,7 +14469,7 @@ ZSD·2016–2025</span></span>
           }
         });
       }
-      temperatureView.activate(selectedEnvironmentalMonth, els.temperatureDepth.value);
+      temperatureView.activate(environmentalMonth('temperature'), els.temperatureDepth.value);
     } catch (error) {
       if (!isCurrent()) return;
       temperatureStatusKey = 'temperatureUnavailable';
@@ -14494,7 +14506,7 @@ ZSD·2016–2025</span></span>
           }
         });
       }
-      waterClarityView.activate(selectedEnvironmentalMonth);
+      waterClarityView.activate(environmentalMonth('water-clarity'));
     } catch (error) {
       if (!isCurrent()) return;
       waterClarityStatusKey = 'waterClarityUnavailable';
@@ -14526,7 +14538,8 @@ ZSD·2016–2025</span></span>
     els.wavesStatus.hidden = !key;
     els.wavesStatus.dataset.state = key ? (state.startsWith('loading') ? 'loading' : 'unavailable') : 'ready';
     els.wavesRetry.hidden = state !== 'unavailable';
-    els.wavesLegendSelection.textContent = localizedTemperatureMonth(selectedEnvironmentalMonth);
+    els.wavesMonth.value = String(environmentalMonth('waves'));
+    els.wavesLegendSelection.textContent = localizedTemperatureMonth(environmentalMonth('waves'));
   }
 
   const coralHeatStressCategoryKeys = [
@@ -14959,7 +14972,7 @@ ZSD·2016–2025</span></span>
           }
         });
       }
-      wavesView.activate(selectedEnvironmentalMonth);
+      wavesView.activate(environmentalMonth('waves'));
     } catch (error) {
       if (!isCurrent()) return;
       setWavesStatus('unavailable');
@@ -14981,7 +14994,7 @@ ZSD·2016–2025</span></span>
 
   function setRegionalCurrentFlowDiagnostics(data) {
     regionalCurrentFlowDiagnostics = {
-      month: selectedEnvironmentalMonth,
+      month: environmentalMonth('currents'),
       depth_m: Number(regionalCurrentsDepth),
       ...data,
       cacheEntries: regionalCurrentsView?.state?.cachedTiles ?? data.cacheEntries ?? 0
@@ -15154,7 +15167,7 @@ ZSD·2016–2025</span></span>
     const renderer = await ensureRegionalCurrentFlowRenderer();
     if (!layerVisibility.currents) return false;
     const activated = await renderer.activate({
-      month: selectedEnvironmentalMonth,
+      month: environmentalMonth('currents'),
       depth: regionalCurrentsDepth,
       resolution: regionalCurrentFlowResolution,
       particleCount: regionalCurrentFlowParticleCount
@@ -15165,7 +15178,7 @@ ZSD·2016–2025</span></span>
 
   function selectRegionalCurrentFlowSlice() {
     if (!regionalCurrentFlowRenderer || !layerVisibility.currents) return;
-    void regionalCurrentFlowRenderer.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth).then(available => {
+    void regionalCurrentFlowRenderer.selectSlice(environmentalMonth('currents'), regionalCurrentsDepth).then(available => {
       if (!available) setRegionalCurrentFlowDiagnostics({
         status: 'slice-unavailable',
         resolution: regionalCurrentFlowResolution,
@@ -15465,7 +15478,8 @@ ZSD·2016–2025</span></span>
           }
         });
       }
-      regionalCurrentsView.activate(selectedEnvironmentalMonth, regionalCurrentsDepth);
+      els.currentsMonth.value = String(environmentalMonth('currents'));
+      regionalCurrentsView.activate(environmentalMonth('currents'), regionalCurrentsDepth);
       void setRegionalCurrentSpeedTintEnabled(regionalCurrentSpeedTintEnabled).catch(error => {
         console.warn('Current speed tint could not be rendered:', error);
       });
@@ -15595,7 +15609,7 @@ ZSD·2016–2025</span></span>
         temperatureQueryService = createTemperatureQuery({ maxChunks: 32 });
       }
       const result = await temperatureQueryService.query(queryLatLng, {
-        month: selectedEnvironmentalMonth,
+        month: environmentalMonth('temperature'),
         depth: Number(els.temperatureDepth.value),
         signal: temperatureQueryAbortController.signal,
         includeProfile:temperatureDetailTab === 'profile',
@@ -15632,7 +15646,7 @@ ZSD·2016–2025</span></span>
           environmentalViewController.activeView !== 'temperature' || popupRevision !== activeClickPopupRevision) return;
       console.warn('Temperature query could not be loaded:', error);
       const sameQuery = temperatureDetailQueryKey ===
-        `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${selectedEnvironmentalMonth}:${Number(els.temperatureDepth.value)}`;
+        `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${environmentalMonth('temperature')}:${Number(els.temperatureDepth.value)}`;
       if (sameQuery && temperatureDetailResult && (temperatureDetailTab === 'profile' || temperatureDetailTab === 'year')) {
         temperatureDetailResult = {
           ...temperatureDetailResult,
@@ -15783,7 +15797,7 @@ ZSD·2016–2025</span></span>
         const { createWaterClarityQuery } = window.DiveAtlasWaterClarityQuery;
         waterClarityQueryService = createWaterClarityQuery({ maxChunks: 4 });
       }
-      const result = await waterClarityQueryService.query(queryLatLng, { month: selectedEnvironmentalMonth });
+      const result = await waterClarityQueryService.query(queryLatLng, { month: environmentalMonth('water-clarity') });
       if (generation !== waterClarityQueryGeneration || environmentalViewController.activeView !== 'water-clarity' ||
           popupRevision !== activeClickPopupRevision) return;
       if (result.unavailable) {
@@ -15926,7 +15940,7 @@ ZSD·2016–2025</span></span>
     wavesSeasonalPoints = null;
     wavesSeasonalError = false;
     try {
-      const result = await wavesView.sample(location.lat, location.lng, selectedEnvironmentalMonth, { signal: wavesQueryAbortController.signal });
+      const result = await wavesView.sample(location.lat, location.lng, environmentalMonth('waves'), { signal: wavesQueryAbortController.signal });
       if (requestGeneration !== wavesQueryGeneration || environmentalViewController.activeView !== 'waves' ||
           popupRevision !== activeClickPopupRevision) return;
       if (!result || !Number.isFinite(result.height_m)) {
@@ -15990,6 +16004,10 @@ ZSD·2016–2025</span></span>
         persistLayerVisibility();
       }
       syncLayerToggleUI();
+      const openDiveSitePopup = activeClickPopup;
+      if (openDiveSitePopup?._diveAtlasRatingLocation && openDiveSitePopup.isOpen()) {
+        requestDiveSiteRating(openDiveSitePopup, openDiveSitePopup._diveAtlasRatingLocation);
+      }
       return true;
     } finally {
       suppressPanelPreferenceWrites = wasSuppressed;
@@ -17519,9 +17537,14 @@ ZSD·2016–2025</span></span>
 
     withSuppressedPanelPreferenceWrites(() => {
       if (selections.month) {
-        selectedEnvironmentalMonth = selections.month;
-        [els.temperatureMonth, els.waterClarityMonth, els.currentsMonth, els.wavesMonth]
-          .forEach(select => { select.value = String(selections.month); });
+        const sharedView = sharedMapState.view;
+        if (Object.hasOwn(environmentalMonths, sharedView)) {
+          environmentalMonths[sharedView] = selections.month;
+          const monthKey = ENVIRONMENT_MONTH_STORAGE_KEYS[sharedView];
+          saveMonthSelection(monthKey, selections.month);
+          ({ temperature:els.temperatureMonth, 'water-clarity':els.waterClarityMonth,
+            currents:els.currentsMonth, waves:els.wavesMonth })[sharedView].value = String(selections.month);
+        }
       }
       if (Number.isFinite(selections.temperatureDepth)) {
         const value = String(selections.temperatureDepth);
@@ -17576,7 +17599,9 @@ ZSD·2016–2025</span></span>
           }
         : null,
       selections: {
-        month: selectedEnvironmentalMonth,
+        month: Object.hasOwn(environmentalMonths, environmentalViewController.activeView)
+          ? environmentalMonth(environmentalViewController.activeView)
+          : diveConditionsMonth,
         temperatureDepth: Number(els.temperatureDepth.value),
         currentDepth: String(els.currentsDepth.value),
         tideTime: String(els.tideTime.value),
@@ -23343,76 +23368,52 @@ ZSD·2016–2025</span></span>
   });
   els.temperatureDepth.addEventListener('change', () => {
     updateTemperatureSliceLabel();
-    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
+    temperatureView?.selectSlice(environmentalMonth('temperature'), els.temperatureDepth.value);
     refreshOpenTemperatureQuery();
   });
   els.temperatureMonth.addEventListener('change', () => {
-    selectedEnvironmentalMonth = Number(els.temperatureMonth.value);
-    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEY, selectedEnvironmentalMonth);
-    els.waterClarityMonth.value = String(selectedEnvironmentalMonth);
-    els.currentsMonth.value = String(selectedEnvironmentalMonth);
-    els.wavesMonth.value = String(selectedEnvironmentalMonth);
+    environmentalMonths.temperature = Number(els.temperatureMonth.value);
+    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEYS.temperature, environmentalMonth('temperature'));
     updateTemperatureSliceLabel();
-    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
-    regionalCurrentsView?.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth);
-    wavesView?.selectMonth(selectedEnvironmentalMonth);
-    selectRegionalCurrentFlowSlice();
+    temperatureView?.selectSlice(environmentalMonth('temperature'), els.temperatureDepth.value);
     refreshOpenTemperatureQuery();
-    refreshOpenWavesQuery();
+    const popup = activeClickPopup;
+    if (popup?._diveAtlasRatingLocation && popup.isOpen()) requestDiveSiteRating(popup, popup._diveAtlasRatingLocation);
   });
   els.waterClarityMonth.addEventListener('change', () => {
-    selectedEnvironmentalMonth = Number(els.waterClarityMonth.value);
-    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEY, selectedEnvironmentalMonth);
-    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
-    els.currentsMonth.value = String(selectedEnvironmentalMonth);
-    els.wavesMonth.value = String(selectedEnvironmentalMonth);
-    waterClarityView?.selectMonth(selectedEnvironmentalMonth);
-    regionalCurrentsView?.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth);
-    wavesView?.selectMonth(selectedEnvironmentalMonth);
-    selectRegionalCurrentFlowSlice();
+    environmentalMonths['water-clarity'] = Number(els.waterClarityMonth.value);
+    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEYS['water-clarity'], environmentalMonth('water-clarity'));
+    waterClarityView?.selectMonth(environmentalMonth('water-clarity'));
     updateTemperatureSliceLabel();
     refreshOpenWaterClarityQuery();
-    refreshOpenWavesQuery();
+    const popup = activeClickPopup;
+    if (popup?._diveAtlasRatingLocation && popup.isOpen()) requestDiveSiteRating(popup, popup._diveAtlasRatingLocation);
   });
   els.currentsMonth.addEventListener('change', () => {
-    selectedEnvironmentalMonth = Number(els.currentsMonth.value);
-    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEY, selectedEnvironmentalMonth);
-    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
-    els.waterClarityMonth.value = String(selectedEnvironmentalMonth);
-    els.wavesMonth.value = String(selectedEnvironmentalMonth);
+    environmentalMonths.currents = Number(els.currentsMonth.value);
+    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEYS.currents, environmentalMonth('currents'));
     closeManagedPopupForLayer('currents');
     updateTemperatureSliceLabel();
-    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
-    waterClarityView?.selectMonth(selectedEnvironmentalMonth);
-    regionalCurrentsView?.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth);
-    wavesView?.selectMonth(selectedEnvironmentalMonth);
+    regionalCurrentsView?.selectSlice(environmentalMonth('currents'), regionalCurrentsDepth);
     selectRegionalCurrentFlowSlice();
-    refreshOpenTemperatureQuery();
-    refreshOpenWaterClarityQuery();
-    refreshOpenWavesQuery();
+    const popup = activeClickPopup;
+    if (popup?._diveAtlasRatingLocation && popup.isOpen()) requestDiveSiteRating(popup, popup._diveAtlasRatingLocation);
   });
   els.wavesMonth.addEventListener('change', () => {
-    selectedEnvironmentalMonth = Number(els.wavesMonth.value);
-    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEY, selectedEnvironmentalMonth);
-    els.temperatureMonth.value = String(selectedEnvironmentalMonth);
-    els.waterClarityMonth.value = String(selectedEnvironmentalMonth);
-    els.currentsMonth.value = String(selectedEnvironmentalMonth);
-    wavesView?.selectMonth(selectedEnvironmentalMonth);
-    temperatureView?.selectSlice(selectedEnvironmentalMonth, els.temperatureDepth.value);
-    waterClarityView?.selectMonth(selectedEnvironmentalMonth);
-    regionalCurrentsView?.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth);
-    selectRegionalCurrentFlowSlice();
+    environmentalMonths.waves = Number(els.wavesMonth.value);
+    saveMonthSelection(ENVIRONMENT_MONTH_STORAGE_KEYS.waves, environmentalMonth('waves'));
+    wavesView?.selectMonth(environmentalMonth('waves'));
     updateTemperatureSliceLabel();
     closeManagedPopupForLayer('currents');
-    refreshOpenTemperatureQuery();
-    refreshOpenWaterClarityQuery();
     refreshOpenWavesQuery();
+    const popup = activeClickPopup;
+    if (popup?._diveAtlasRatingLocation && popup.isOpen()) requestDiveSiteRating(popup, popup._diveAtlasRatingLocation);
   });
   els.wavesRetry.addEventListener('click', () => { void wavesView?.retry(); });
   els.currentsDepth.addEventListener('change', () => {
     regionalCurrentsDepth = String(els.currentsDepth.value);
     updateTemperatureSliceLabel();
-    regionalCurrentsView?.selectSlice(selectedEnvironmentalMonth, regionalCurrentsDepth);
+    regionalCurrentsView?.selectSlice(environmentalMonth('currents'), regionalCurrentsDepth);
     selectRegionalCurrentFlowSlice();
     closeManagedPopupForLayer('currents');
   });
