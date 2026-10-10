@@ -1771,6 +1771,9 @@
     .leaflet-popup.dive-conditions-popup .leaflet-popup-content-wrapper { position:relative; border-radius:6px !important; }
     .dive-conditions-popup .leaflet-popup-content { margin:10px 11px 2px; }
     .dive-conditions-popup-title-row { display:flex; align-items:flex-start; justify-content:space-between; gap:5px; padding-right:25px; }
+    .dive-conditions-popup-back { flex:0 0 auto; margin:0 2px 0 0; padding:1px 5px; border:0; border-radius:4px; background:transparent; color:var(--text-secondary); font:inherit; font-size:11px; font-weight:650; line-height:1.25; cursor:pointer; }
+    .dive-conditions-popup-back:hover { background:var(--dc-bg-neutral); color:var(--text-primary); }
+    .dive-conditions-popup-back:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
     .dive-conditions-popup-title { flex:1 1 auto; min-width:0; margin:0 !important; padding:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.25; }
     .dive-conditions-suitability-row { display:flex; margin:7px 0 6px; }
     .dive-conditions-suitability { display:flex; box-sizing:border-box; width:100%; align-items:center; justify-content:space-between; gap:8px; padding:7px 10px; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:9px; background:var(--dc-bg-neutral); color:var(--dc-fg-neutral); line-height:1.15; }
@@ -5680,6 +5683,10 @@
               type="text"
               autocomplete="off"
               spellcheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-controls="diveSearchResultsScroll"
               placeholder="Where Will You Dive Next?"
               aria-label="Where Will You Dive Next?"
             >
@@ -7684,7 +7691,9 @@ ZSD·2016–2025</span></span>
     const location = sitePopup?._diveAtlasRatingLocation;
     if (!location) return;
     if (!DIVE_EXPERIENCE_OUTLOOK_ENABLED) return;
-    ensureDiveConditionsPopup()._diveAtlasLayerKey = 'dive-rating';
+    const ratingPopup = ensureDiveConditionsPopup();
+    ratingPopup._diveAtlasLayerKey = 'dive-rating';
+    ratingPopup._diveAtlasReturnDiveSitePopup = sitePopup;
     setDiveConditionsLocation(location, {
       forcePopup:true,
       month:sitePopup._diveAtlasRatingMonth || diveSiteRatingMonth()
@@ -12245,6 +12254,32 @@ ZSD·2016–2025</span></span>
     header.className = 'dive-conditions-popup-header';
     const titleRow = document.createElement('div');
     titleRow.className = 'dive-conditions-popup-title-row';
+    const returnSitePopup = diveConditionsPopup?._diveAtlasReturnDiveSitePopup;
+    if (returnSitePopup) {
+      const backButton = document.createElement('button');
+      backButton.type = 'button';
+      backButton.className = 'dive-conditions-popup-back';
+      backButton.textContent = '← Back';
+      backButton.setAttribute('aria-label', 'Back to dive site');
+      backButton.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        const siteEntry = Array.from(diveSiteMarkerCache.values()).find(entry =>
+          entry.marker?.getPopup?.() === returnSitePopup ||
+          (returnSitePopup._diveAtlasSiteId &&
+            entry.marker?.getPopup?.()?._diveAtlasSiteId === returnSitePopup._diveAtlasSiteId)
+        );
+        if (!siteEntry?.marker || !returnSitePopup._diveAtlasOwnerKey) return;
+        returnSitePopup._diveAtlasLayerKey = 'dive';
+        openManagedPopup(
+          returnSitePopup._diveAtlasOwnerKey,
+          returnSitePopup,
+          siteEntry.marker.getLatLng(),
+          siteEntry.marker
+        );
+      });
+      titleRow.append(backButton);
+    }
     const title = document.createElement('h2');
     title.className = 'dive-conditions-popup-title';
     renderBrandedDiveLabel(title);
@@ -18212,15 +18247,25 @@ ZSD·2016–2025</span></span>
   }
 
   function hideDiveSearchResults() {
+    diveSearchHasRenderedQuery = false;
     diveSearchMatches = [];
     diveSearchActiveIndex = -1;
     diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
     els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.setAttribute('aria-busy', 'false');
+    els.diveSearchInput.setAttribute('aria-expanded', 'false');
+    els.diveSearchInput.removeAttribute('aria-activedescendant');
     if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
       els.diveSearchResults.append(els.diveSearchSuggestion);
     }
     els.diveSearchResultsScroll.innerHTML = '';
     els.diveSearchSuggestion.hidden = true;
+  }
+
+  function dismissDiveSearchResults() {
+    els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.setAttribute('aria-busy', 'false');
+    els.diveSearchInput.setAttribute('aria-expanded', 'false');
   }
 
   function clearDiveSearch({ focus = false } = {}) {
@@ -18233,13 +18278,9 @@ ZSD·2016–2025</span></span>
     if (focus) els.diveSearchInput.focus();
   }
 
-  function renderDiveSearchResults() {
+  function renderDiveSearchResults({ allowSameQueryRefresh = false } = {}) {
     if (!els.diveSearchInput) return;
     const renderRequest = ++diveSearchRenderRequest;
-    if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
-      els.diveSearchResults.append(els.diveSearchSuggestion);
-    }
-    els.diveSearchSuggestion.hidden = true;
 
     const query =
       els.diveSearchInput.value.trim();
@@ -18255,11 +18296,27 @@ ZSD·2016–2025</span></span>
       return;
     }
 
+    // Async data readiness may re-enter this renderer for the same text. Once
+    // the displayed query is current, preserve its list DOM, scroll, and active
+    // option instead of resetting the user's search state.
+    if (!allowSameQueryRefresh && query === diveSearchQuery && diveSearchHasRenderedQuery) {
+      els.diveSearchResults.classList.add('visible');
+      els.diveSearchResults.setAttribute('aria-busy', 'false');
+      els.diveSearchInput.setAttribute('aria-expanded', 'true');
+      return;
+    }
+
+    if (els.diveSearchSuggestion.parentElement === els.diveSearchResultsScroll) {
+      els.diveSearchResults.append(els.diveSearchSuggestion);
+    }
+    els.diveSearchSuggestion.hidden = true;
+
     const showLoading = () => {
       els.diveSearchResultsScroll.innerHTML =
         `<div class="dive-search-empty">${escapeHtml(t('diveLoading'))}</div>`;
       els.diveSearchResults.setAttribute('aria-busy', 'true');
       els.diveSearchResults.classList.add('visible');
+      els.diveSearchInput.setAttribute('aria-expanded', 'true');
     };
     const showUnavailable = () => {
       if (renderRequest !== diveSearchRenderRequest) return;
@@ -18267,6 +18324,7 @@ ZSD·2016–2025</span></span>
         `<div class="dive-search-empty">${escapeHtml(t('divePartial'))}</div>`;
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       els.diveSearchResults.classList.add('visible');
+      els.diveSearchInput.setAttribute('aria-expanded', 'true');
     };
 
     if (!diveSiteDataReady) {
@@ -18300,12 +18358,21 @@ ZSD·2016–2025</span></span>
     }
 
     const nextMatches = findDiveSites(query);
-    if (query !== diveSearchQuery) diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+    if (query !== diveSearchQuery) {
+      diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+      diveSearchActiveIndex = -1;
+      els.diveSearchInput.removeAttribute('aria-activedescendant');
+    }
     diveSearchQuery = query;
     diveSearchMatches = nextMatches;
+    diveSearchHasRenderedQuery = true;
     els.diveSearchResults.setAttribute('aria-busy', 'false');
+    els.diveSearchInput.setAttribute('aria-expanded', 'true');
+    els.diveSearchResultsScroll.setAttribute('aria-setsize', String(diveSearchMatches.length));
 
     if (!diveSearchMatches.length) {
+      diveSearchActiveIndex = -1;
+      els.diveSearchInput.removeAttribute('aria-activedescendant');
       els.diveSearchResultsScroll.innerHTML =
         `<div class="dive-search-empty">` +
         `${escapeHtml(t('diveSearchEmpty'))}` +
@@ -18329,8 +18396,13 @@ ZSD·2016–2025</span></span>
         return (
           `<button class="dive-search-result" ` +
           `type="button" ` +
+          `id="dive-search-result-${resultIndex}" ` +
           `data-site-index="${siteIndex}" ` +
           `data-result-index="${resultIndex}" ` +
+          `data-search-query="${escapeHtml(query)}" ` +
+          `aria-posinset="${resultIndex + 1}" ` +
+          `aria-setsize="${diveSearchMatches.length}" ` +
+          `aria-selected="${resultIndex === diveSearchActiveIndex}" ` +
           `role="option">` +
             `<div class="dive-search-result-name">` +
               `${escapeHtml(name)}` +
@@ -18347,6 +18419,7 @@ ZSD·2016–2025</span></span>
       : '');
 
     els.diveSearchResults.classList.add('visible');
+    if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
     els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
     els.diveSearchSuggestion.hidden = false;
     els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
@@ -18468,11 +18541,16 @@ ZSD·2016–2025</span></span>
   }
 
   function setDiveSearchActive(next) {
-    if (!diveSearchMatches.length) return;
+    const availableCount = Math.min(diveSearchVisibleCount, diveSearchMatches.length);
+    if (!availableCount) {
+      diveSearchActiveIndex = -1;
+      els.diveSearchInput.removeAttribute('aria-activedescendant');
+      return;
+    }
 
     diveSearchActiveIndex = Math.max(
       0,
-      Math.min(next, diveSearchVisibleCount - 1)
+      Math.min(next, availableCount - 1)
     );
 
     const buttons =
@@ -18480,19 +18558,24 @@ ZSD·2016–2025</span></span>
         .querySelectorAll('.dive-search-result');
 
     buttons.forEach((button, index) => {
-      button.classList.toggle(
-        'active',
-        Number(button.dataset.resultIndex) === diveSearchActiveIndex
-      );
+      const selected = Number(button.dataset.resultIndex) === diveSearchActiveIndex;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-selected', String(selected));
     });
 
-    els.diveSearchResults.querySelector(
+    const activeOption = els.diveSearchResults.querySelector(
       `[data-result-index="${diveSearchActiveIndex}"]`
-    )
-      ?.scrollIntoView({ block: 'nearest' });
+    );
+    if (activeOption) {
+      els.diveSearchInput.setAttribute('aria-activedescendant', activeOption.id);
+      activeOption.scrollIntoView({ block: 'nearest' });
+    } else {
+      els.diveSearchInput.removeAttribute('aria-activedescendant');
+    }
   }
 
   let diveSearchQuery = '';
+  let diveSearchHasRenderedQuery = false;
 
   function loadMoreDiveSearchResults() {
     if (diveSearchVisibleCount >= diveSearchMatches.length) return;
@@ -18503,7 +18586,7 @@ ZSD·2016–2025</span></span>
       diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,
       diveSearchMatches.length
     );
-    renderDiveSearchResults();
+    renderDiveSearchResults({ allowSameQueryRefresh:true });
     if (preserveLoadMoreFocus) {
       const nextFocusTarget =
         els.diveSearchResults.querySelector('[data-search-load-more]') ||
@@ -18512,11 +18595,7 @@ ZSD·2016–2025</span></span>
         );
       nextFocusTarget?.focus({ preventScroll: true });
     }
-    if (diveSearchActiveIndex >= 0) {
-      els.diveSearchResults.querySelector(
-        `[data-result-index="${diveSearchActiveIndex}"]`
-      )?.classList.add('active');
-    }
+    if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
   }
 
   /* ---------- place selection ---------- */
@@ -25394,8 +25473,16 @@ ZSD·2016–2025</span></span>
   els.diveSearchInput.addEventListener(
     'input',
     () => {
-      diveSearchQuery = els.diveSearchInput.value.trim();
-      diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+      const query = els.diveSearchInput.value.trim();
+      if (query === diveSearchQuery && diveSearchHasRenderedQuery) {
+        clearTimeout(diveSearchTimer);
+        els.diveSearchResults.classList.add('visible');
+        els.diveSearchResults.setAttribute('aria-busy', 'false');
+        els.diveSearchInput.setAttribute('aria-expanded', 'true');
+        syncDiveSearchWidth();
+        return;
+      }
+      els.diveSearchResults.setAttribute('aria-busy', 'true');
       try {
         localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY);
       } catch (_) {}
@@ -25416,6 +25503,14 @@ ZSD·2016–2025</span></span>
   els.diveSearchInput.addEventListener(
     'keydown',
     event => {
+      if (
+        ['ArrowDown', 'ArrowUp', 'Enter'].includes(event.key) &&
+        els.diveSearchInput.value.trim() !== diveSearchQuery
+      ) {
+        clearTimeout(diveSearchTimer);
+        renderDiveSearchResults();
+        if (els.diveSearchInput.value.trim() !== diveSearchQuery) return;
+      }
       if (event.key === 'ArrowDown') {
         event.preventDefault();
 
@@ -25427,10 +25522,10 @@ ZSD·2016–2025</span></span>
         }
 
         if (!diveSearchMatches.length) {
-          if (!els.diveSearchSuggestion.hidden) els.diveSearchSuggestButton.focus();
           return;
         }
-        if (diveSearchActiveIndex < diveSearchVisibleCount - 1) {
+        const visibleMatchCount = Math.min(diveSearchVisibleCount, diveSearchMatches.length);
+        if (diveSearchActiveIndex < visibleMatchCount - 1) {
           setDiveSearchActive(diveSearchActiveIndex + 1);
         } else if (diveSearchVisibleCount < diveSearchMatches.length) {
           const previousActive = diveSearchActiveIndex;
@@ -25453,7 +25548,7 @@ ZSD·2016–2025</span></span>
           focusDiveSearchResult(siteIndex);
         }
       } else if (event.key === 'Escape') {
-        hideDiveSearchResults();
+        dismissDiveSearchResults();
         els.diveSearchInput.blur();
       }
     }
@@ -25470,6 +25565,7 @@ ZSD·2016–2025</span></span>
         event.target.closest('.dive-search-result');
 
       if (!button) return;
+      if (button.dataset.searchQuery !== els.diveSearchInput.value.trim()) return;
 
       const siteIndex =
         Number(button.dataset.siteIndex);
@@ -25692,7 +25788,7 @@ ZSD·2016–2025</span></span>
         !els.diveSearchResults.contains(event.target) &&
         !els.diveSearchClear.contains(event.target)
       ) {
-        hideDiveSearchResults();
+        dismissDiveSearchResults();
       }
     }
   );
