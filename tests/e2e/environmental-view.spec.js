@@ -305,7 +305,10 @@ test('Layers palette follows the active site theme without changing its layout',
   expect(dark.panelBackground).toBe('#161b22');
   expect(dark.menuBackground).toBe('#161b22');
   expect(dark.selectorBackground).toBe('rgb(32, 40, 51)');
-  expect(dark.selectorShadow).toContain('rgba(255, 255, 255, 0.045)');
+  const selectorHighlightAlpha = dark.selectorShadow.match(/rgba\(255, 255, 255, ([\d.]+)\)/)?.[1];
+  expect(selectorHighlightAlpha).toBeDefined();
+  // Chromium serializes CSS alpha through 8-bit channels, so 0.045 is exposed as about 0.043.
+  expect(Number(selectorHighlightAlpha)).toBeCloseTo(0.045, 2);
   expect(dark.selectorShadow).toContain('rgba(0, 0, 0, 0.18)');
   expect(dark.geometry).toEqual(light.geometry);
   expect(dark.surface).not.toBe(light.surface);
