@@ -1460,19 +1460,6 @@
     .dive-site-popup .bio-popup-title { padding-right: 0; }
     .dive-site-popup--with-photo .leaflet-popup-close-button {
       z-index: 3;
-      top: 8px;
-      right: 8px;
-      display: flex;
-      width: 32px;
-      height: 32px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--panel-solid);
-      box-shadow: 0 1px 5px rgba(0, 0, 0, .22);
-      font-size: 22px;
-      line-height: 1;
     }
     .dive-site-popup--with-photo .leaflet-popup-content-wrapper { overflow: visible; padding: 0; }
     .dive-site-popup--with-photo .leaflet-popup-content { margin: 0 0 13px; }
@@ -1767,10 +1754,11 @@
     .dive-conditions-popup-content { width:100%; color:var(--text); font-family:inherit; }
     .leaflet-popup.dive-conditions-popup .leaflet-popup-content-wrapper { position:relative; border-radius:6px !important; }
     .dive-conditions-popup .leaflet-popup-content { margin:10px 11px 2px; }
-    .dive-conditions-popup-title-row { display:flex; align-items:flex-start; justify-content:space-between; gap:5px; padding-right:25px; }
-    .dive-conditions-popup-back { flex:0 0 auto; margin:0 2px 0 0; padding:1px 5px; border:0; border-radius:4px; background:transparent; color:var(--text-secondary); font:inherit; font-size:11px; font-weight:650; line-height:1.25; cursor:pointer; }
-    .dive-conditions-popup-back:hover { background:var(--dc-bg-neutral); color:var(--text-primary); }
-    .dive-conditions-popup-back:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
+    .dive-conditions-popup-title-row { display:flex; align-items:center; gap:6px; }
+    .dive-conditions-popup-back, .dive-conditions-popup-close { display:inline-flex; flex:0 0 28px; width:28px; height:28px; align-items:center; justify-content:center; margin:0; padding:0; border:0; border-radius:6px; background:transparent; color:var(--text-secondary); cursor:pointer; }
+    .dive-conditions-popup-back svg, .dive-conditions-popup-close svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .dive-conditions-popup-back:hover, .dive-conditions-popup-close:hover { background:var(--dc-bg-neutral); color:var(--text-primary); }
+    .dive-conditions-popup-back:focus-visible, .dive-conditions-popup-close:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
     .dive-conditions-popup-title { flex:1 1 auto; min-width:0; margin:0 !important; padding:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.25; }
     .dive-conditions-suitability-row { display:flex; margin:7px 0 6px; }
     .dive-conditions-suitability { display:flex; box-sizing:border-box; width:100%; align-items:center; justify-content:space-between; gap:8px; padding:7px 10px; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:9px; background:var(--dc-bg-neutral); color:var(--dc-fg-neutral); line-height:1.15; }
@@ -2101,7 +2089,6 @@
     .temperature-detail-tabs button { flex: 1; min-height: 28px; padding: 3px 6px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--muted); font: inherit; font-size: 10px; cursor: pointer; }
     .temperature-detail-tabs.waves-seasonal-tabs { justify-content: flex-start; margin-top: 8px; padding-top: 0; border-top: 0; }
     .temperature-detail-tabs .waves-seasonal-button { box-sizing:border-box; display:flex; flex:1 1 100%; width:100%; height:32px; min-height:32px; align-items:center; justify-content:center; padding:4px 10px; border-color:var(--line); background:var(--panel-soft); color:var(--text); font-size:11px; font-weight:700; line-height:1.2; white-space:normal; text-align:center; }
-    .temperature-detail-popup .leaflet-popup-close-button { width: 44px !important; height: 44px !important; }
     .temperature-detail-tabs button[aria-selected="true"] { border-color: var(--line); background: var(--panel-soft); color: var(--text); font-weight: 700; }
     .temperature-detail-tabs button:disabled { opacity: .45; cursor: default; }
     .temperature-detail-panel { padding-top: 2px; }
@@ -3957,21 +3944,38 @@
       border-radius: 6px !important;
     }
     .leaflet-popup-close-button {
+      box-sizing: border-box !important;
+      display: grid !important;
+      place-items: center !important;
       font-size: 0 !important;
-      color: var(--muted) !important;
-      width: 36px !important;
-      height: 36px !important;
+      line-height: 1 !important;
+      color: var(--text-secondary) !important;
+      width: 28px !important;
+      height: 28px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 6px !important;
+      background: transparent !important;
+      transition: color .15s ease, background-color .15s ease;
     }
+    .leaflet-popup-close-button:hover,
+    .leaflet-popup-close-button:focus-visible {
+      color: var(--text-primary) !important;
+      background: color-mix(in srgb,var(--primary) 18%,var(--panel-solid)) !important;
+    }
+    .dive-conditions-popup-close { background:transparent; }
+    .dive-conditions-popup-close:hover,
+    .dive-conditions-popup-close:focus-visible { background:color-mix(in srgb,var(--primary) 18%,var(--panel-solid)); }
     .leaflet-popup-close-button::after {
       content: '';
       position: absolute;
-      width: 16px;
-      height: 16px;
-      top: 10px;
-      right: 10px;
+      width: 18px;
+      height: 18px;
+      top: 5px;
+      right: 5px;
       background: currentColor;
-      -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z'/%3E%3C/svg%3E") center/16px 16px no-repeat;
-      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z'/%3E%3C/svg%3E") center/16px 16px no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6l12 12M18 6 6 18' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/18px 18px no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6l12 12M18 6 6 18' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/18px 18px no-repeat;
     }
 
     @media (max-width: 720px) {
@@ -7142,6 +7146,27 @@ ZSD·2016–2025</span></span>
     return window.matchMedia('(max-width: 720px)').matches ? 287 : 327;
   }
 
+  function alignMapPopupCloseButton(popup) {
+    const popupElement = popup?.getElement?.();
+    const wrapper = popupElement?.querySelector('.leaflet-popup-content-wrapper');
+    const closeButton = popupElement?.querySelector('.leaflet-popup-close-button');
+    if (!wrapper || !closeButton) return;
+
+    closeButton.style.top = '11px';
+    const header = popupElement.querySelector(
+      '.dive-conditions-popup-title-row, .bio-popup-title, .dive-conditions-heading, .temperature-detail-heading, h1, h2, h3'
+    ) || popupElement.querySelector('.leaflet-popup-content > :first-child');
+    if (!header) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const headerRect = header.getBoundingClientRect();
+    const closeRect = closeButton.getBoundingClientRect();
+    const centeredTop = headerRect.top + headerRect.height / 2 - wrapperRect.top - closeRect.height / 2;
+    const topAdjustment = popupElement.querySelector('.reef-condition-ocean-heat-popup') ? 3 : 0;
+    closeButton.style.top = `${Math.max(0, centeredTop - topAdjustment)}px`;
+    closeButton.style.right = `${Math.max(0, wrapperRect.right - headerRect.right)}px`;
+  }
+
   function markMapInfoPopup(popup, { uniformWidth = true, options = {} } = {}) {
     if (!popup) return popup;
     Object.assign(popup.options, INTERACTION_CONTRACT.disablePopupAutoPan(popup.options));
@@ -7176,6 +7201,9 @@ ZSD·2016–2025</span></span>
         }
 
         const result = updatePopup.apply(this, args);
+        if (this._diveAtlasSafeArea && this.isOpen?.()) {
+          alignMapPopupCloseButton(this);
+        }
         if (shouldReposition) correctMapPopupSafeArea(this, true);
         return result;
       };
@@ -12282,7 +12310,7 @@ ZSD·2016–2025</span></span>
 
   function ensureDiveConditionsPopup() {
     if (!diveConditionsPopup) {
-      diveConditionsPopup = createMapInfoPopup({ maxWidth: 300, minWidth: 50, closeButton: true, closeOnClick: false, className: 'temperature-detail-popup dive-conditions-popup' });
+      diveConditionsPopup = createMapInfoPopup({ maxWidth: 300, minWidth: 50, closeButton: false, closeOnClick: false, className: 'temperature-detail-popup dive-conditions-popup' });
       diveConditionsPopup._diveAtlasLayerKey = 'dive-conditions';
     }
     return diveConditionsPopup;
@@ -12299,8 +12327,15 @@ ZSD·2016–2025</span></span>
       const backButton = document.createElement('button');
       backButton.type = 'button';
       backButton.className = 'dive-conditions-popup-back';
-      backButton.textContent = '← Back';
       backButton.setAttribute('aria-label', 'Back to dive site');
+      backButton.title = 'Back to dive site';
+      const backIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      backIcon.setAttribute('viewBox', '0 0 24 24');
+      backIcon.setAttribute('aria-hidden', 'true');
+      const backIconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      backIconPath.setAttribute('d', 'M19 12H5m7 7-7-7 7-7');
+      backIcon.append(backIconPath);
+      backButton.append(backIcon);
       backButton.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
@@ -12324,6 +12359,24 @@ ZSD·2016–2025</span></span>
     title.className = 'dive-conditions-popup-title';
     renderBrandedDiveLabel(title);
     titleRow.append(title);
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'dive-conditions-popup-close';
+    closeButton.setAttribute('aria-label', 'Close outlook popup');
+    closeButton.title = 'Close';
+    const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    closeIcon.setAttribute('viewBox', '0 0 24 24');
+    closeIcon.setAttribute('aria-hidden', 'true');
+    const closeIconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    closeIconPath.setAttribute('d', 'M18 6 6 18M6 6l12 12');
+    closeIcon.append(closeIconPath);
+    closeButton.append(closeIcon);
+    closeButton.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (diveConditionsPopup) map.closePopup(diveConditionsPopup);
+    });
+    titleRow.append(closeButton);
     const month = document.createElement('p');
     month.className = 'dive-conditions-popup-subtitle';
     month.textContent = t('diveExperienceHistoricalOutlook');
@@ -12453,6 +12506,11 @@ ZSD·2016–2025</span></span>
   }
   function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth } = {}) {
     if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng) || Math.abs(latlng.lat) > 90) return;
+    const popup = ensureDiveConditionsPopup();
+    if (!forcePopup) {
+      popup._diveAtlasReturnDiveSitePopup = null;
+      popup._diveAtlasLayerKey = 'dive-conditions';
+    }
     const normalizedLongitude = normalizeBaseLongitude(latlng.lng);
     // Preserve Leaflet's unwrapped longitude so the pin and popup stay on the world copy clicked.
     const clickedLongitude = Number(latlng.lng);
@@ -23749,6 +23807,7 @@ ZSD·2016–2025</span></span>
     if (popup._diveAtlasLayerKey === 'reef-survey-condition') {
       registerPopupInfoPopoverControls(popup);
     }
+    alignMapPopupCloseButton(popup);
   });
 
   const MAP_INTERACTION_SINGLE_CLICK_DELAY = 360;
