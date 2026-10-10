@@ -1688,7 +1688,7 @@
     .dive-experience-outlook-map-legend { margin-top:7px; }
     .dive-experience-outlook-map-legend .dive-experience-score-gradient { height:8px; }
     .dive-experience-outlook-panel .dive-experience-grid-note { display:flex; width:100%; justify-content:flex-end; margin-top:0; color:var(--layers-legend-meta); font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:11px; line-height:16px; }
-    .dive-experience-grid-note .temperature-source-badge-field--stacked { align-items:flex-end; text-align:right; }
+    .dive-experience-grid-note .temperature-source-badge-field--stacked { flex-direction:row; align-items:center; gap:4px; white-space:nowrap; text-align:right; }
     .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content {
       box-sizing:border-box;
       max-height:min(70vh,560px) !important;
@@ -16032,7 +16032,7 @@ ZSD·2016–2025</span></span>
     if (result.unavailable) {
       const returnButton = createDiveExperienceReturnButton(waterClarityPopupReturnSite);
       waterClarityPopup.setContent(
-        `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="dive-conditions-popup-title-row">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${t('waterClarityTitle')}</h2></div>` : `<div class="temperature-detail-heading">${t('waterClarityTitle')}</div>`}` +
+        `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<div class="temperature-detail-heading">${t('waterClarityTitle')}</div></div>` : `<div class="temperature-detail-heading">${t('waterClarityTitle')}</div>`}` +
         `<div class="temperature-detail-caption">${t('waterClarityNoData')}</div>` +
         `<div class="temperature-detail-source dive-popup-source--compact">${source}</div></div>`
       );
@@ -16059,7 +16059,7 @@ ZSD·2016–2025</span></span>
       : '';
     const returnButton = createDiveExperienceReturnButton(waterClarityPopupReturnSite);
     waterClarityPopup.setContent(
-      `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="dive-conditions-popup-title-row">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${heading}</h2></div>` : `<div class="temperature-detail-heading">${heading}</div>`}` +
+      `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<div class="temperature-detail-heading">${heading}</div></div>` : `<div class="temperature-detail-heading">${heading}</div>`}` +
       `<div class="temperature-detail-caption">${t('waterClarityDescription')}</div>` +
       `<div class="temperature-detail-fields">` +
       `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityLevel')}</span><span class="dive-popup-property__value">${t(classificationKey)}</span></div>` +
