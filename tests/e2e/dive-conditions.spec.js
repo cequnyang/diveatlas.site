@@ -29,6 +29,11 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await expect(popup).toBeVisible();
   await expect(popup).toContainText('Dive Conditions');
   await expect(popup).toContainText('Water temp.');
+  const conditionValues = popup.locator('.dive-experience-subscore .dive-conditions-grid .dive-experience-dimension-value');
+  await expect(conditionValues).toHaveCount(4);
+  for (const value of await conditionValues.all()) {
+    await expect(value).toHaveCSS('font-weight', '650');
+  }
   await openMobileSettings(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await expect(popup.locator('.dive-conditions-grid')).toContainText('°F');
