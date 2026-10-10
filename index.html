@@ -1768,6 +1768,8 @@
     .dive-conditions-popup-back:focus-visible, .dive-conditions-popup-close:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; }
     :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:hover,
     :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral,#E2F0FA); color:var(--text-primary,var(--text)); }
+    html[data-theme="dark"] :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:hover,
+    html[data-theme="dark"] :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back .dive-conditions-popup-back:focus-visible { background:var(--dc-bg-neutral,#203447); color:var(--text-primary,var(--text)); }
     .dive-conditions-popup-title { flex:1 1 auto; min-width:0; margin:0 !important; padding:0; color:var(--layers-temperature-title,var(--text-primary)); font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.25; }
     .dive-conditions-suitability-row { display:flex; margin:7px 0 6px; }
     .dive-conditions-suitability { display:flex; box-sizing:border-box; width:100%; align-items:center; justify-content:space-between; gap:8px; padding:7px 10px; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:9px; background:var(--dc-bg-neutral); color:var(--dc-fg-neutral); line-height:1.15; }
@@ -7589,7 +7591,8 @@ ZSD·2016–2025</span></span>
     aboveVisual,
     belowVisual,
     safeTop,
-    safeBottom
+    safeBottom,
+    preferredSide = 'above'
   ) {
     const blockers = getMapPopupVerticalBlockers(popupRect, safeTop, safeBottom);
     const aboveShift = nearestPopupVerticalShift(
@@ -7626,7 +7629,8 @@ ZSD·2016–2025</span></span>
     } else {
       placement = INTERACTION_CONTRACT.choosePopupVerticalPlacement({
         aboveShift,
-        belowShift
+        belowShift,
+        preferredSide
       });
     }
     const below = placement.side === 'below';
@@ -22916,7 +22920,8 @@ ZSD·2016–2025</span></span>
         aboveVisual,
         belowVisual,
         safeTop,
-        safeBottom
+        safeBottom,
+        window.matchMedia('(max-width: 720px)').matches ? 'above' : 'below'
       );
 
       setMapPopupPlacement(popup, placement.below, anchorY);
