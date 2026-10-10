@@ -13,9 +13,12 @@ const {
 
 test.beforeEach(async ({ page }) => openMap(page));
 
-async function stabilizeDiveRatingScreenshot(page) {
+async function stabilizeDiveRatingScreenshot(page, { minimumPopupHeight = 0 } = {}) {
   await page.addStyleTag({
-    content: '.dive-popup-rating__value { width:120px !important; min-width:120px !important; visibility:hidden !important; }'
+    content: [
+      '.dive-popup-rating__value { width:120px !important; min-width:120px !important; visibility:hidden !important; }',
+      minimumPopupHeight ? `.leaflet-popup.dive-site-popup { min-height:${minimumPopupHeight}px !important; }` : ''
+    ].join('\n')
   });
 }
 
@@ -216,7 +219,7 @@ test('top-edge popup is below its anchor on its first visible frame', async ({ p
     expect(firstVisible.className).toContain('diveatlas-popup-below');
     expect(firstVisible.arrowSide).toBe('top');
   }
-  await stabilizeDiveRatingScreenshot(page);
+  await stabilizeDiveRatingScreenshot(page, { minimumPopupHeight:165 });
   await expect(popup).toHaveScreenshot('popup-below-anchor.png', {
     animations: 'disabled',
     maxDiffPixelRatio: 0.12

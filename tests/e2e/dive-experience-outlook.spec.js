@@ -182,7 +182,10 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   const scoreAfter = await popup.locator('.dive-experience-main-score').innerText();
   expect(scoreAfter).not.toBe(scoreBefore);
   await setLegendCollapsed(page, true);
-  await popup.locator('.dive-experience-score-info > summary').click();
+  const scoreInfoDetails = popup.locator('.dive-experience-score-info');
+  if (!await scoreInfoDetails.evaluate(details => details.open)) {
+    await scoreInfoDetails.locator(':scope > summary').click();
+  }
   await expect(scoreInfoPopover).toBeVisible();
   await scoreInfoPopover.locator('.dive-experience-dimension-details > summary').click();
   const fishAfter = await scoreInfoPopover.locator('.dive-experience-dimension-row').filter({ hasText:'Fish abundance outlook' }).innerText();
