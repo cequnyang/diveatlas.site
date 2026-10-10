@@ -4142,6 +4142,10 @@
       -webkit-backdrop-filter: blur(8px);
     }
 
+    html[data-theme="dark"] .top-menu-bar {
+      background: #161b22;
+    }
+
     .top-menu-controls { height: 36px; gap: 4px; }
     .top-menu-menu { height: 36px; margin-left: 2px; }
     .top-menu-menu-button { width: 40px; height: 36px; }
@@ -4981,7 +4985,7 @@
     .temperature-info > summary { display: grid; width: 44px; min-height: 44px; place-items: center; color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer; list-style: none; }
     .temperature-info > summary::marker { content: ''; }
     .temperature-info > summary > span { display: grid; width: 18px; height: 18px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-size: 10px; line-height: 1; }
-    .temperature-info-popover { position: fixed; z-index: 1800; top: 12px; left: 12px; box-sizing: border-box; width: min(270px, calc(100vw - 24px)); max-height: none; overflow: visible; padding: 12px 14px; border: 1px solid #3f4248; border-radius: 10px; background: #202124; color: #e4e4e7; box-shadow: 0 12px 28px rgba(0, 0, 0, .42); font-family: 'Outfit', sans-serif; font-size: 12px; line-height: 1.45; display: none; opacity: 0; translate: 0 -3px; transition: opacity var(--motion-fast) ease-out, translate var(--motion-fast) var(--ease-ui), display var(--motion-fast) allow-discrete; }
+    .temperature-info-popover { position: fixed; z-index: 1800; top: 12px; left: 12px; box-sizing: border-box; width: min(270px, calc(100vw - 24px)); max-height: none; overflow: visible; padding: 12px 14px; border: 1px solid #3f4248; border-radius: 10px; background: #161b22; color: #e4e4e7; box-shadow: 0 12px 28px rgba(0, 0, 0, .42); font-family: 'Outfit', sans-serif; font-size: 12px; line-height: 1.45; display: none; opacity: 0; translate: 0 -3px; transition: opacity var(--motion-fast) ease-out, translate var(--motion-fast) var(--ease-ui), display var(--motion-fast) allow-discrete; }
     .temperature-info-popover.is-detached { display: block; opacity: 1; translate: 0 0; }
     @starting-style { .temperature-info-popover.is-detached { opacity: 0; translate: 0 -3px; } }
     .temperature-info-popover > p { margin: 0 0 9px; }
@@ -5078,7 +5082,7 @@
       --text-muted: #8d94a2;
       --primary: #4d91ff;
       --layers-panel-border: rgba(255,255,255,.15);
-      --layers-panel-background: radial-gradient(140% 90% at 0% 0%, rgba(255,255,255,.022), transparent 62%), linear-gradient(155deg, rgba(24,24,27,.97), rgba(18,18,21,.97));
+      --layers-panel-background: #161b22;
       --layers-panel-shadow: 0 3px 12px rgba(0,0,0,.20);
       --layers-header-divider: rgba(255,255,255,.05);
       --layers-title-hover: #fff;
@@ -5088,11 +5092,11 @@
       --layers-action: #a1a1aa;
       --layers-action-hover-bg: rgba(138, 175, 224, .09);
       --layers-action-hover-text: #e5efff;
-      --layers-menu-background: #202024;
+      --layers-menu-background: #161b22;
       --layers-menu-shadow: 0 12px 30px rgba(17, 37, 52, .16);
       --layers-view-border: rgba(255,255,255,.08);
-      --layers-view-background: rgba(24,24,27,.8);
-      --layers-view-shadow: inset 0 1px 2px rgba(0, 0, 0, .14);
+      --layers-view-background: #202833;
+      --layers-view-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 2px 6px rgba(0,0,0,.18);
       --layers-segment-border: rgba(255,255,255,.1);
       --layers-segment-background: #27272a;
       --layers-segment-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 1px 2px rgba(0,0,0,.2);
@@ -5460,7 +5464,7 @@
       --text-muted: #7b8798;
       --primary: #2563c9;
       --layers-panel-border: #d6dee8;
-      --layers-panel-background: radial-gradient(140% 90% at 0% 0%, rgba(255,255,255,.9), transparent 65%), linear-gradient(155deg, #ffffff, #f1f4f8);
+      --layers-panel-background: radial-gradient(140% 90% at 0% 0%, rgba(255,255,255,.35), transparent 65%), linear-gradient(155deg, #fbfcfe, #f7f8fa);
       --layers-panel-shadow: 0 20px 48px -24px rgba(27, 43, 64, .28), inset 0 1px 0 rgba(255,255,255,.96);
       --layers-header-divider: rgba(38, 55, 78, .1);
       --layers-title-hover: #172334;
