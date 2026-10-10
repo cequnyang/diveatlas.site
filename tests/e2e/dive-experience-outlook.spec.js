@@ -114,7 +114,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   const popupLatencyMs = Date.now() - popupStarted;
   const popupHeading = popup.locator('.dive-conditions-popup-title');
   await expect(popupHeading).toHaveAttribute('aria-label', 'DiveAtlas Rating');
-  await expect(popupHeading.locator('.dive-brand-mark')).toBeVisible();
+  await expect(popupHeading.locator('.dive-brand-rating-logo')).toBeVisible();
   await page.locator('html').evaluate(node => { node.dataset.theme = 'light'; });
   await expect.poll(() => popupHeading.evaluate(node => getComputedStyle(node).color)).toMatch(/^rgb\(/);
   const lightHeadingColor = await popupHeading.evaluate(node => getComputedStyle(node).color);
@@ -146,7 +146,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
     const popupLayout = await page.evaluate(() => {
       const popup = document.querySelector('.leaflet-popup.dive-conditions-popup');
       const content = popup.querySelector('.leaflet-popup-content');
-      const close = popup.querySelector('.leaflet-popup-close-button');
+      const close = popup.querySelector('.dive-conditions-popup-close');
       const popupRect = popup.getBoundingClientRect();
       const closeRect = close.getBoundingClientRect();
       const evidence = popup.querySelector('.dive-experience-evidence-line');
@@ -255,9 +255,9 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
     await expect(popup.locator('.dive-conditions-popup-title')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
     await expect(page.locator('#environmentDiveExperienceLabel')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
     for (const selector of ['#diveExperienceOutlookPanel h2', '.dive-conditions-popup-title', '#environmentDiveExperienceLabel']) {
-      const mark = page.locator(`${selector} .dive-brand-mark`);
-      await expect(mark).toHaveCount(1);
-      await expect(mark).toHaveAttribute('src', 'assets/diveatlas-logo.svg?v=2');
+      const logo = page.locator(`${selector} .dive-brand-rating-logo`);
+      await expect(logo).toHaveCount(1);
+      await expect(logo.locator('image')).toHaveAttribute('href', 'assets/diveatlas-logo.svg?v=2');
     }
     await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveText(tabLabels[language]);
     const layout = await page.evaluate(() => {
