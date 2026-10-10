@@ -12806,14 +12806,42 @@ ZSD·2016–2025</span></span>
     return button;
   }
   function bindDiveExperienceReturnButton(popup, sitePopup) {
-    const button = popup?.getElement?.()?.querySelector('.dive-conditions-popup-back');
-    if (!button || !sitePopup || button.dataset.returnToRatingBound === 'true') return;
-    button.dataset.returnToRatingBound = 'true';
-    button.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopPropagation();
-      openDiveSiteRatingPopup(sitePopup);
-    });
+    if (!popup || !sitePopup) return;
+    popup._diveAtlasReturnRatingSitePopup = sitePopup;
+    const bindToPopupElement = () => {
+      const element = popup.getElement?.();
+      if (!element || element.dataset.returnToRatingBound === 'true') return;
+      element.dataset.returnToRatingBound = 'true';
+      // Popup content is replaced as async temperature/clarity data arrives.
+      // Delegate from Leaflet's stable popup root so replacement cannot leave
+      // a visible back button without its click handler.
+      element.addEventListener('click', event => {
+        const button = event.target.closest('.dive-conditions-popup-back');
+        if (!button || !element.contains(button)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const returnSitePopup = popup._diveAtlasReturnRatingSitePopup;
+        const location = returnSitePopup?._diveAtlasRatingLocation;
+        if (!location) {
+          console.error('DiveAtlas could not return to the rating popup: saved site location is missing.');
+          return;
+        }
+        // The site marker cache is rebuilt as data, zoom, and language change.
+        // Reopen the saved rating view directly instead of resolving a marker
+        // that may no longer exist in the current cache.
+        const ratingPopup = ensureDiveConditionsPopup();
+        ratingPopup._diveAtlasLayerKey = 'dive-rating';
+        ratingPopup._diveAtlasReturnDiveSitePopup = returnSitePopup;
+        setDiveConditionsLocation(location, {
+          forcePopup:true,
+          month:returnSitePopup._diveAtlasRatingMonth || diveSiteRatingMonth()
+        });
+      });
+    };
+    bindToPopupElement();
+    if (popup._diveAtlasReturnRatingAddHandler) return;
+    popup._diveAtlasReturnRatingAddHandler = bindToPopupElement;
+    popup.on('add', bindToPopupElement);
   }
   function diveExperienceReasonCandidates(result, sample) {
     const candidates = [];
