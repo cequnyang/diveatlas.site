@@ -1341,6 +1341,8 @@
     .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; }
     .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; }
     .dive-popup-rating__label .dive-brand-mark { width:5.0765em; height:1.573em; margin:0 -1px 0 0; }
+    button.dive-popup-rating__label { padding:0; border:0; background:transparent; font:inherit; cursor:pointer; }
+    button.dive-popup-rating__label:focus-visible { outline:2px solid var(--layers-focus-ring); outline-offset:3px; border-radius:2px; }
     .dive-popup-rating__value { color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
     .dive-popup-rating__value[data-status="loading"] { color:var(--muted); font-weight:500; }
     .dive-popup-location__region { margin:0 !important; line-height:inherit; }
@@ -7678,6 +7680,17 @@ ZSD·2016–2025</span></span>
     popup.openOn(map);
   }
 
+  function openDiveSiteRatingPopup(sitePopup) {
+    const location = sitePopup?._diveAtlasRatingLocation;
+    if (!location) return;
+    if (!DIVE_EXPERIENCE_OUTLOOK_ENABLED) return;
+    ensureDiveConditionsPopup()._diveAtlasLayerKey = 'dive-rating';
+    setDiveConditionsLocation(location, {
+      forcePopup:true,
+      month:sitePopup._diveAtlasRatingMonth || diveSiteRatingMonth()
+    });
+  }
+
   function closeManagedPopup() {
     if (!activeClickPopup || !map.hasLayer(activeClickPopup)) return;
     map.closePopup(activeClickPopup);
@@ -12127,7 +12140,7 @@ ZSD·2016–2025</span></span>
   let diveExperienceOutlookCurrentSample = null;
   let diveExperienceOutlookViewRegistered = false;
   let diveExperienceOutlookGeneration = 0;
-  const diveExperienceMonthComparison = { locationKey:null, open:false, loading:false, error:false, points:null, generation:0, progress:0 };
+  const diveExperienceMonthComparison = { locationKey:null, selectedMonth:null, open:false, loading:false, error:false, points:null, generation:0, progress:0 };
   let diveExperienceOutlookLoadPromise = null;
   let diveConditionsModulePromise = null;
   let diveConditionsService = null;
@@ -12225,7 +12238,7 @@ ZSD·2016–2025</span></span>
     }
     return diveConditionsPopup;
   }
-  function createDiveConditionsPopupHeader(latlng = diveConditionsLocation) {
+  function createDiveConditionsPopupHeader(latlng = diveConditionsLocation, monthNumber = diveConditionsMonth) {
     const headerBlock = document.createElement('div');
     headerBlock.className = 'dive-conditions-popup-header-block';
     const header = document.createElement('header');
@@ -12246,7 +12259,7 @@ ZSD·2016–2025</span></span>
     region.hidden = true;
     const monthLabel = document.createElement('p');
     monthLabel.className = 'dive-conditions-popup-month';
-    monthLabel.textContent = localizedTemperatureMonth(diveConditionsMonth);
+    monthLabel.textContent = localizedTemperatureMonth(monthNumber);
     locationRow.append(region, monthLabel);
     header.append(titleRow, month);
     headerBlock.append(header, locationRow);
@@ -12343,10 +12356,10 @@ ZSD·2016–2025</span></span>
     });
     content.style.color = panelStyle.color;
   }
-  function diveConditionsMessageText(key) {
-    return t(key).replace('{month}', localizedTemperatureMonth(diveConditionsMonth));
+  function diveConditionsMessageText(key, monthNumber = diveConditionsMonth) {
+    return t(key).replace('{month}', localizedTemperatureMonth(monthNumber));
   }
-  function setDiveConditionsPopupMessage(messageKey) {
+  function setDiveConditionsPopupMessage(messageKey, monthNumber = diveConditionsMonth) {
     diveConditionsPopupMessageKey = messageKey;
     const popup = ensureDiveConditionsPopup();
     const content = document.createElement('div');
@@ -12354,8 +12367,8 @@ ZSD·2016–2025</span></span>
     const status = document.createElement('div');
     status.className = 'dive-conditions-popup-loading';
     status.setAttribute('role', 'status');
-    status.textContent = diveConditionsMessageText(messageKey);
-    content.append(createDiveConditionsPopupHeader(), status);
+    status.textContent = diveConditionsMessageText(messageKey, monthNumber);
+    content.append(createDiveConditionsPopupHeader(diveConditionsPopupLocation || diveConditionsLocation, monthNumber), status);
     syncDiveConditionsPopupTheme(content);
     const anchor = diveConditionsPopupLocation || diveConditionsLocation;
     popup.setLatLng(anchor).setContent(content);
@@ -12363,7 +12376,7 @@ ZSD·2016–2025</span></span>
     if (!popup.isOpen()) openManagedPopup('dive-conditions', popup, anchor);
     popup.update();
   }
-  function setDiveConditionsLocation(latlng) {
+  function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth } = {}) {
     if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng) || Math.abs(latlng.lat) > 90) return;
     const normalizedLongitude = normalizeBaseLongitude(latlng.lng);
     // Preserve Leaflet's unwrapped longitude so the pin and popup stay on the world copy clicked.
@@ -12380,9 +12393,9 @@ ZSD·2016–2025</span></span>
     diveConditionsLastResult = null;
     diveExperienceOutlookCurrentSample = null;
     diveConditionsPopupMessageKey = null;
-    if (environmentalViewController.activeView === 'dive-experience-outlook') {
-      setDiveConditionsPopupMessage('diveConditionsLoading');
-      void refreshDiveExperienceOutlook();
+    if (forcePopup || environmentalViewController.activeView === 'dive-experience-outlook') {
+      setDiveConditionsPopupMessage('diveConditionsLoading', month);
+      void refreshDiveExperienceOutlook({ force:forcePopup, month });
     }
   }
   function formatDiveConditionsLength(meters, fractionDigits) {
@@ -12656,6 +12669,7 @@ ZSD·2016–2025</span></span>
   }
   function syncDiveExperienceMonthComparisonUi() {
     const { button, panel, status, chart, caption } = diveExperienceMonthComparison.elements || {};
+    const selectedMonth = diveExperienceMonthComparison.selectedMonth || diveConditionsMonth;
     if (!button || !panel || !status || !chart || !caption) return;
     button.textContent = diveExperienceMonthComparison.error
       ? t('wavesRetry')
@@ -12673,14 +12687,14 @@ ZSD·2016–2025</span></span>
         ? localizedDiveExperienceText('diveExperienceComparisonLoading').replace('{month}', localizedTemperatureMonth(diveExperienceMonthComparison.progress, 'long')).replace('{count}', diveExperienceMonthComparison.progress)
         : '';
     chart.innerHTML = diveExperienceMonthComparison.points
-      ? makeDiveExperienceMonthComparisonSvg(diveExperienceMonthComparison.points, diveConditionsMonth)
+      ? makeDiveExperienceMonthComparisonSvg(diveExperienceMonthComparison.points, selectedMonth)
       : '';
     caption.hidden = !diveExperienceMonthComparison.points;
     const captionCopy = localizedDiveExperienceText('diveExperienceComparisonCaption');
     caption.textContent = diveExperienceMonthComparison.points
       ? captionCopy.includes('{month}')
-        ? captionCopy.replace('{month}', localizedTemperatureMonth(diveConditionsMonth))
-        : `${captionCopy} · ${localizedTemperatureMonth(diveConditionsMonth)}`
+        ? captionCopy.replace('{month}', localizedTemperatureMonth(selectedMonth))
+        : `${captionCopy} · ${localizedTemperatureMonth(selectedMonth)}`
       : '';
     // The chart changes popup height without calling Leaflet's update().
     // Re-run the managed placement so expanded content stays within map bounds.
@@ -12720,9 +12734,10 @@ ZSD·2016–2025</span></span>
       syncDiveExperienceMonthComparisonUi();
     }
   }
-  function renderDiveExperienceOutlookPopup(result, sample) {
+  function renderDiveExperienceOutlookPopup(result, sample, monthNumber = diveConditionsMonth) {
     const popup = ensureDiveConditionsPopup();
     const popupAnchor = diveConditionsPopupLocation || diveConditionsLocation;
+    diveExperienceMonthComparison.selectedMonth = monthNumber;
     const comparisonLocationKey = diveExperienceComparisonLocationKey(popupAnchor);
     if (comparisonLocationKey && comparisonLocationKey !== diveExperienceMonthComparison.locationKey) {
       diveExperienceMonthComparison.generation += 1;
@@ -12800,8 +12815,8 @@ ZSD·2016–2025</span></span>
       diveExperienceMonthComparison.loading = true;
       diveExperienceMonthComparison.error = false;
       const requestGeneration = ++diveExperienceMonthComparison.generation;
-      const selectedMonth = diveConditionsMonth;
-      const selectedSample = diveExperienceOutlookCurrentSample;
+      const selectedMonth = monthNumber;
+      const selectedSample = sample;
       syncDiveExperienceMonthComparisonUi();
       void loadDiveExperienceMonthComparison(popupAnchor, comparisonLocationKey, requestGeneration, selectedMonth, selectedSample);
     });
@@ -12817,7 +12832,7 @@ ZSD·2016–2025</span></span>
       reasonList.forEach(text => { const item = document.createElement('li'); item.textContent = text; list.append(item); });
       reasons.append(reasonTitle, list);
     }
-    content.append(createDiveConditionsPopupHeader(diveConditionsPopupLocation || diveConditionsLocation), section);
+    content.append(createDiveConditionsPopupHeader(diveConditionsPopupLocation || diveConditionsLocation, monthNumber), section);
 
     const physicalScore = sample?.diveConditionsScore ?? diveExperiencePhysicalScoreFromConditions(result);
     const physicalThresholds = diveExperienceOutlookManifest?.scoring?.physicalConditionThresholds;
@@ -12886,22 +12901,24 @@ ZSD·2016–2025</span></span>
     if (!popup.isOpen()) openManagedPopup('dive-conditions', popup, anchor);
     popup.update();
   }
-  function renderDiveConditions(result) {
-    if (!result || environmentalViewController.activeView !== 'dive-experience-outlook') return;
+  function renderDiveConditions(result, { force = false, month = diveConditionsMonth } = {}) {
+    if (!result || (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
     diveConditionsLastResult = result;
-    renderDiveExperienceOutlookPopup(result, diveExperienceOutlookCurrentSample);
+    renderDiveExperienceOutlookPopup(result, diveExperienceOutlookCurrentSample, month);
   }
-  async function refreshDiveExperienceOutlook() {
-    if (!diveConditionsLocation || environmentalViewController.activeView !== 'dive-experience-outlook') return;
+  async function refreshDiveExperienceOutlook({ force = false, month = diveConditionsMonth } = {}) {
+    if (!diveConditionsLocation || (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
     const generation = ++diveExperienceOutlookGeneration;
     diveConditionsAbort?.abort();
     diveConditionsAbort = new AbortController();
     const controller = diveConditionsAbort;
     const status = els.diveExperienceOutlookStatus;
-    status.hidden = false;
-    diveExperienceOutlookStatusKey = 'diveExperienceLoadingMonth';
-    status.textContent = t(diveExperienceOutlookStatusKey);
-    if (diveConditionsPopup?.isOpen()) setDiveConditionsPopupMessage('diveConditionsLoading');
+    if (!force) {
+      status.hidden = false;
+      diveExperienceOutlookStatusKey = 'diveExperienceLoadingMonth';
+      status.textContent = t(diveExperienceOutlookStatusKey);
+    }
+    if (diveConditionsPopup?.isOpen()) setDiveConditionsPopupMessage('diveConditionsLoading', month);
     try {
       // The outlook grid is self-contained; a failure to initialize the
       // supplemental physical-conditions service must not hide a valid score.
@@ -12909,28 +12926,28 @@ ZSD·2016–2025</span></span>
         .then(service => ({ service, error:null }), error => ({ service:null, error }));
       const [serviceLoad] = await Promise.all([
         servicePromise,
-        ensureDiveExperienceOutlookMonth(diveConditionsMonth)
+        ensureDiveExperienceOutlookMonth(month)
       ]);
       if (controller.signal.aborted || generation !== diveExperienceOutlookGeneration ||
-          environmentalViewController.activeView !== 'dive-experience-outlook') return;
+          (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
       const conditionsPromise = serviceLoad.service
-        ? serviceLoad.service.query(diveConditionsLocation, diveConditionsMonth, { signal:controller.signal })
+        ? serviceLoad.service.query(diveConditionsLocation, month, { signal:controller.signal })
           .then(result => ({ result, error:null }), error => ({ result:null, error }))
         : Promise.resolve({ result:null, error:serviceLoad.error });
-      const sample = await sampleDiveExperienceOutlook(diveConditionsPopupLocation || diveConditionsLocation, diveConditionsMonth);
+      const sample = await sampleDiveExperienceOutlook(diveConditionsPopupLocation || diveConditionsLocation, month);
       if (controller.signal.aborted || generation !== diveExperienceOutlookGeneration ||
-          environmentalViewController.activeView !== 'dive-experience-outlook') return;
+          (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
       const hasGridExperience = sample?.score != null || sample?.diveConditionsScore != null;
       if (hasGridExperience) {
         diveExperienceOutlookCurrentSample = sample;
         diveConditionsLastResult = { metrics:Object.fromEntries(
           ['temperature','clarity','current','waves'].map(key => [key, { value:null, loading:true }])
         ) };
-        renderDiveConditions(diveConditionsLastResult);
+        renderDiveConditions(diveConditionsLastResult, { force, month });
       }
       const { result:conditions, error:conditionsError } = await conditionsPromise;
       if (controller.signal.aborted || generation !== diveExperienceOutlookGeneration ||
-          environmentalViewController.activeView !== 'dive-experience-outlook' || diveConditionsMonth !== Number(diveExperienceMonthSelect.value)) return;
+          (!force && environmentalViewController.activeView !== 'dive-experience-outlook') || (!force && month !== Number(diveExperienceMonthSelect.value))) return;
       if (conditionsError) {
         if (!hasGridExperience) throw conditionsError;
         console.warn('Dive Experience detail-data service failed; score data remains available:', conditionsError);
@@ -12938,29 +12955,32 @@ ZSD·2016–2025</span></span>
           ['temperature','clarity','current','waves'].map(key => [key, { value:null, lookupStatus:'service_failed',
             lookupError:String(conditionsError?.message || conditionsError || 'Unknown detail-service error') }])
         ) };
-        renderDiveConditions(diveConditionsLastResult);
-        setDiveExperienceStatusCopy(`${t('diveExperienceHistoricalOutlook')} · ${localizedTemperatureMonth(diveConditionsMonth)} · ${t('diveExperiencePhysicalUnavailable')}`);
+        renderDiveConditions(diveConditionsLastResult, { force, month });
+        if (!force) setDiveExperienceStatusCopy(`${t('diveExperienceHistoricalOutlook')} · ${localizedTemperatureMonth(month)} · ${t('diveExperiencePhysicalUnavailable')}`);
         return;
       }
       const hasPhysical = Object.values(conditions.metrics || {}).some(metric => metric?.value != null);
       if (!sample && !hasPhysical) {
         diveExperienceOutlookCurrentSample = null;
         diveConditionsLastResult = conditions;
-        setDiveExperienceStatusCopy(t('diveExperienceNoCellSamples'));
-        closeManagedPopupForLayer('dive-conditions');
+        if (force) setDiveConditionsPopupMessage('diveConditionsNoOceanSamples', month);
+        else {
+          setDiveExperienceStatusCopy(t('diveExperienceNoCellSamples'));
+          closeManagedPopupForLayer('dive-conditions');
+        }
         return;
       }
       diveExperienceOutlookCurrentSample = sample;
       diveConditionsLastResult = conditions;
-      renderDiveConditions(conditions);
-      const entry = diveExperienceOutlookManifest?.months?.[diveConditionsMonth - 1];
+      renderDiveConditions(conditions, { force, month });
+      const entry = diveExperienceOutlookManifest?.months?.[month - 1];
       const coverage = entry?.processedOceanCells ? (100 * entry.scoredCells / entry.processedOceanCells).toFixed(1) : null;
-      setDiveExperienceStatusCopy(`${t('diveExperienceHistoricalOutlook')} · ${localizedTemperatureMonth(diveConditionsMonth)} · ${coverage == null ? t('diveExperienceCoverageUnavailable') : `${coverage}% ${t('diveExperienceEligibleCells')}`}`);
+      if (!force) setDiveExperienceStatusCopy(`${t('diveExperienceHistoricalOutlook')} · ${localizedTemperatureMonth(month)} · ${coverage == null ? t('diveExperienceCoverageUnavailable') : `${coverage}% ${t('diveExperienceEligibleCells')}`}`);
     } catch (error) {
       if (!controller.signal.aborted && generation === diveExperienceOutlookGeneration) {
         console.warn('The Dive Experience Outlook could not be loaded:', error);
-        setDiveExperienceStatusCopy(t('diveExperienceTemporarilyUnavailable'));
-        setDiveConditionsPopupMessage('diveConditionsError');
+        if (!force) setDiveExperienceStatusCopy(t('diveExperienceTemporarilyUnavailable'));
+        setDiveConditionsPopupMessage('diveConditionsError', month);
       }
     }
   }
@@ -22495,6 +22515,7 @@ ZSD·2016–2025</span></span>
 
   function popupOwnerRepresentationIsValid(popup) {
     const layerKey = popup?._diveAtlasLayerKey;
+    if (layerKey === 'dive-rating') return popup === diveConditionsPopup && Boolean(diveConditionsLocation);
     if (layerKey === 'reef-survey-condition') return environmentalViewController.activeView === 'reef-survey-condition' && Boolean(reefSurveyConditionView?.visible);
     if (layerKey === 'dive-conditions') return environmentalViewController.activeView === 'dive-experience-outlook' && diveConditionsLocation != null && diveConditionsPopup?.isOpen();
     if (layerKey === 'coral-heat-stress') return environmentalViewController.activeView === 'coral-heat-stress';
@@ -22738,7 +22759,7 @@ ZSD·2016–2025</span></span>
       `<p class="dive-popup-location__region" hidden></p>` +
       `</div>`,
       `<div class="dive-popup-rating" aria-label="${escapeHtml(t('diveExperienceHistoricalOutlook'))}">` +
-      `<span class="dive-popup-rating__label" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}"></span>` +
+      `<button class="dive-popup-rating__label" type="button" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}"></button>` +
       `<span class="dive-popup-rating__value" data-status="loading">${escapeHtml(t('diveConditionsLoading'))}</span>` +
       `</div>`
     );
@@ -22898,6 +22919,15 @@ ZSD·2016–2025</span></span>
     marker.on('popupopen', event => {
       const popupRatingLabel = event.popup.getElement()?.querySelector('.dive-popup-rating__label');
       if (popupRatingLabel && !popupRatingLabel.querySelector('.dive-brand-mark')) renderBrandedDiveLabel(popupRatingLabel);
+      if (popupRatingLabel && popupRatingLabel.dataset.ratingPopupBound !== 'true') {
+        popupRatingLabel.dataset.ratingPopupBound = 'true';
+        popupRatingLabel.addEventListener('click', clickEvent => {
+          clickEvent.preventDefault();
+          clickEvent.stopPropagation();
+          L.DomEvent.stop(clickEvent);
+          openDiveSiteRatingPopup(event.popup);
+        });
+      }
       const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
       if (event.popup._diveAtlasRatingLocation) requestDiveSiteRating(event.popup, event.popup._diveAtlasRatingLocation);
       if (popupRegion) {
