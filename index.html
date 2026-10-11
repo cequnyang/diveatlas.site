@@ -6620,6 +6620,29 @@ ZSD·2016–2025</span></span>
   const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
   const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
   const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
+  // Metric detail popups replace their parent popup, so share links carry this
+  // compact path token instead of repeating popup types and coordinates. The
+  // parent and child use the same sample location in the current UI flow.
+  const SHARE_POPUP_FLOW_DEFINITIONS = {
+    rt: { parentLayer:'dive-rating', childLayer:'temperature', siteAncestor:false },
+    rc: { parentLayer:'dive-rating', childLayer:'water-clarity', siteAncestor:false },
+    ru: { parentLayer:'dive-rating', childLayer:'currents', siteAncestor:false },
+    rw: { parentLayer:'dive-rating', childLayer:'waves', siteAncestor:false },
+    ct: { parentLayer:'dive-conditions', childLayer:'temperature', siteAncestor:false },
+    cc: { parentLayer:'dive-conditions', childLayer:'water-clarity', siteAncestor:false },
+    cu: { parentLayer:'dive-conditions', childLayer:'currents', siteAncestor:false },
+    cw: { parentLayer:'dive-conditions', childLayer:'waves', siteAncestor:false },
+    srt: { parentLayer:'dive-rating', childLayer:'temperature', siteAncestor:true },
+    src: { parentLayer:'dive-rating', childLayer:'water-clarity', siteAncestor:true },
+    sru: { parentLayer:'dive-rating', childLayer:'currents', siteAncestor:true },
+    srw: { parentLayer:'dive-rating', childLayer:'waves', siteAncestor:true },
+    sct: { parentLayer:'dive-conditions', childLayer:'temperature', siteAncestor:true },
+    scc: { parentLayer:'dive-conditions', childLayer:'water-clarity', siteAncestor:true },
+    scu: { parentLayer:'dive-conditions', childLayer:'currents', siteAncestor:true },
+    scw: { parentLayer:'dive-conditions', childLayer:'waves', siteAncestor:true }
+  };
+  const SHARE_POPUP_FLOW_IDS = Object.fromEntries(Object.entries(SHARE_POPUP_FLOW_DEFINITIONS)
+    .map(([id, definition]) => [`${definition.parentLayer}:${definition.childLayer}:${definition.siteAncestor ? 'site' : 'map'}`, id]));
   const SHARE_SITE_PREVIEW_ORIGIN = 'https://diveatlas-share-preview.cequnyang.workers.dev';
   const SHARE_POPUP_DESCRIPTION_KEYS = {
     reef: 'reefLegend', species: 'speciesLegend', fish: 'fishLegend', dive: 'diveLegend',
@@ -6730,6 +6753,13 @@ ZSD·2016–2025</span></span>
     if (rawSiteId) {
       state.requestedSiteId = rawSiteId;
       state.hasValidState = true;
+    }
+
+    const rawPopupFlow = String(params.get('flow') || '').trim().toLowerCase();
+    const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[rawPopupFlow];
+    if (popupFlow && state.popup?.layer === popupFlow.childLayer &&
+        popupFlow.siteAncestor === Boolean(state.requestedSiteId)) {
+      state.popupFlow = { id:rawPopupFlow, ...popupFlow };
     }
 
     return state;
@@ -7834,7 +7864,11 @@ ZSD·2016–2025</span></span>
     const returnTarget = returnLocation ? {
       location:L.latLng(returnLocation.lat, returnLocation.lng),
       month:diveConditionsMonth,
-      sitePopup:returnSitePopup
+      parentLayer:['dive-rating', 'dive-conditions'].includes(diveConditionsPopup?._diveAtlasLayerKey)
+        ? diveConditionsPopup._diveAtlasLayerKey
+        : 'dive-conditions',
+      sitePopup:returnSitePopup,
+      childLayer:({ temperature:'temperature', clarity:'water-clarity', current:'currents', waves:'waves' })[metric]
     } : null;
     if (metric === 'temperature') {
       temperatureDetailPopupReturnSite = returnTarget;
@@ -12918,6 +12952,7 @@ ZSD·2016–2025</span></span>
   function bindDiveExperienceReturnButton(popup, returnTarget) {
     if (!popup) return;
     popup._diveAtlasReturnRatingSitePopup = returnTarget || null;
+    popup._diveAtlasReturnTarget = returnTarget || null;
     if (!returnTarget) return;
     const bindToPopupElement = () => {
       const element = popup.getElement?.();
@@ -12937,9 +12972,9 @@ ZSD·2016–2025</span></span>
           console.error('DiveAtlas could not return to the rating popup: saved rating location is missing.');
           return;
         }
-        const ratingPopup = ensureDiveConditionsPopup();
-        ratingPopup._diveAtlasLayerKey = 'dive-rating';
-        ratingPopup._diveAtlasReturnDiveSitePopup = returnTarget.sitePopup;
+        const parentPopup = ensureDiveConditionsPopup();
+        parentPopup._diveAtlasLayerKey = returnTarget.parentLayer || 'dive-conditions';
+        parentPopup._diveAtlasReturnDiveSitePopup = returnTarget.sitePopup || null;
         setDiveConditionsLocation(location, {
           forcePopup:true,
           month:returnTarget.month || diveSiteRatingMonth()
@@ -17976,13 +18011,17 @@ ZSD·2016–2025</span></span>
 
     withSuppressedPanelPreferenceWrites(() => {
       if (selections.month) {
-        const sharedView = sharedMapState.view;
-        if (Object.hasOwn(environmentalMonths, sharedView)) {
-          environmentalMonths[sharedView] = selections.month;
-          const monthKey = ENVIRONMENT_MONTH_STORAGE_KEYS[sharedView];
+        // A nested detail popup can use its own environmental month while the
+        // map keeps the parent popup's view selected.
+        const monthContext = [sharedMapState.popup?.layer, sharedMapState.view]
+          .find(context => Object.hasOwn(environmentalMonths, context) &&
+            SHARE_SELECTION_KEYS_BY_CONTEXT[context]?.includes('month'));
+        if (monthContext) {
+          environmentalMonths[monthContext] = selections.month;
+          const monthKey = ENVIRONMENT_MONTH_STORAGE_KEYS[monthContext];
           saveMonthSelection(monthKey, selections.month);
           ({ temperature:els.temperatureMonth, 'water-clarity':els.waterClarityMonth,
-            currents:els.currentsMonth, waves:els.wavesMonth })[sharedView].value = String(selections.month);
+            currents:els.currentsMonth, waves:els.wavesMonth })[monthContext].value = String(selections.month);
         }
       }
       if (Number.isFinite(selections.temperatureDepth)) {
@@ -18024,12 +18063,27 @@ ZSD·2016–2025</span></span>
 
   function captureMapState() {
     const center = map.getCenter();
+    const popupReturnTarget = activeClickPopup?.isOpen?.()
+      ? activeClickPopup._diveAtlasReturnTarget
+      : null;
+    const popupFlowId = popupReturnTarget?.parentLayer && popupReturnTarget?.childLayer
+      ? SHARE_POPUP_FLOW_IDS[`${popupReturnTarget.parentLayer}:${popupReturnTarget.childLayer}:${popupReturnTarget.sitePopup?._diveAtlasSiteId ? 'site' : 'map'}`]
+      : null;
+    const selectedSiteId = activeClickPopup?._diveAtlasSiteId || popupReturnTarget?.sitePopup?._diveAtlasSiteId || null;
+    const popupMonthContext = activeClickPopup?.isOpen?.()
+      ? activeClickPopup._diveAtlasLayerKey
+      : null;
+    const activeView = environmentalViewController.activeView;
+    const monthContext = Object.hasOwn(environmentalMonths, popupMonthContext) &&
+      SHARE_SELECTION_KEYS_BY_CONTEXT[popupMonthContext]?.includes('month')
+      ? popupMonthContext
+      : activeView;
     return {
       center: { lat: center.lat, lng: center.lng },
       zoom: map.getZoom(),
       layers: Object.fromEntries(SHARE_LAYER_IDS.map(id => [id, Boolean(layerVisibility[id])])),
       view: els.environmentViewRadios.find(input => input.checked)?.value || 'default',
-      selectedSiteId: activeClickPopup?._diveAtlasSiteId || null,
+      selectedSiteId,
       popup: activeClickPopup?.isOpen?.() && activeClickPopup.getLatLng?.()
         ? {
             layer: activeClickPopup._diveAtlasLayerKey,
@@ -18037,9 +18091,10 @@ ZSD·2016–2025</span></span>
             lng: activeClickPopup.getLatLng().lng
           }
         : null,
+      popupFlow: popupFlowId,
       selections: {
-        month: Object.hasOwn(environmentalMonths, environmentalViewController.activeView)
-          ? environmentalMonth(environmentalViewController.activeView)
+        month: Object.hasOwn(environmentalMonths, monthContext)
+          ? environmentalMonth(monthContext)
           : diveConditionsMonth,
         temperatureDepth: Number(els.temperatureDepth.value),
         currentDepth: String(els.currentsDepth.value),
@@ -18075,6 +18130,11 @@ ZSD·2016–2025</span></span>
       params.set('popup', state.popup.layer);
       params.set('plat', Number(state.popup.lat).toFixed(6));
       params.set('plng', Number(state.popup.lng).toFixed(6));
+    }
+    const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[state?.popupFlow];
+    if (popupFlow && popupFlow.childLayer === state?.popup?.layer &&
+        popupFlow.siteAncestor === Boolean(state?.selectedSiteId)) {
+      params.set('flow', state.popupFlow);
     }
     const selections = state?.selections || {};
     // A shared link needs settings for the active environmental view and popup,
@@ -18851,7 +18911,7 @@ ZSD·2016–2025</span></span>
     return cached?.marker || null;
   }
 
-  function restoreSharedSiteDetail(siteId) {
+  function restoreSharedSiteDetail(siteId, { openPopup = true } = {}) {
     const siteIndex = DIVE_SITES.findIndex(site =>
       String(site?.[12] || '').trim().toLowerCase() === String(siteId || '').toLowerCase()
     );
@@ -18873,7 +18933,8 @@ ZSD·2016–2025</span></span>
     const marker = ensureDiveMarker(siteIndex);
     const popup = marker?.getPopup?.();
     if (popup) {
-      openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
+      popup._diveAtlasLayerKey = 'dive';
+      if (openPopup) openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
       sharedMapState.sharedSitePopupRestored = true;
       cleanRestoredSharedUrl();
     }
@@ -23842,7 +23903,10 @@ ZSD·2016–2025</span></span>
       } finally {
         setMapDataLoading('dive', false);
         if (sharedMapState.requestedSiteId && !sharedMapState.sharedSitePopupRestored) {
-          restoreSharedSiteDetail(sharedMapState.requestedSiteId);
+          restoreSharedSiteDetail(sharedMapState.requestedSiteId, {
+            openPopup:!sharedMapState.popupFlow
+          });
+          if (sharedMapState.popupFlow && sharedMapState.popup) restoreSharedPopup();
         }
       }
     }, delay);
@@ -24465,6 +24529,51 @@ ZSD·2016–2025</span></span>
 
     if (descriptor.layer === 'depthInspection') {
       void requestDepthInspection(latlng);
+      return;
+    }
+
+    // These detail popups replace their rating popup in the live flow. A map
+    // click would resolve against the parent view and reopen the rating popup.
+    const popupFlow = sharedMapState.popupFlow;
+    const returnSitePopup = popupFlow?.siteAncestor
+      ? Array.from(diveSiteMarkerCache.values())
+        .map(entry => entry.marker?.getPopup?.())
+        .find(popup => String(popup?._diveAtlasSiteId || '').trim().toLowerCase() === sharedMapState.requestedSiteId) || null
+      : null;
+    const returnTarget = popupFlow ? {
+      location:latlng,
+      month:sharedMapState.selections?.experienceMonth || diveConditionsMonth,
+      parentLayer:popupFlow.parentLayer,
+      childLayer:popupFlow.childLayer,
+      sitePopup:returnSitePopup
+    } : null;
+    if (popupFlow?.siteAncestor && !returnSitePopup && attempt < SHARED_POPUP_RESTORE_MAX_ATTEMPTS) {
+      window.setTimeout(() => restoreSharedPopup(attempt + 1), SHARED_POPUP_RESTORE_RETRY_MS);
+      return;
+    }
+    const diveExperienceMetricDetails = {
+      temperature: () => {
+        temperatureDetailPopupReturnSite = returnTarget;
+        void showTemperatureQuery(latlng, { independent:true });
+      },
+      'water-clarity': () => {
+        waterClarityPopupReturnSite = returnTarget;
+        void showWaterClarityQuery(latlng, { independent:true });
+      },
+      currents: () => {
+        regionalCurrentPopupReturnSite = returnTarget;
+        void showRegionalCurrentMetricPopup(latlng);
+      },
+      waves: () => {
+        wavesPopupReturnSite = returnTarget;
+        void showWavesMetricPopup(latlng);
+      }
+    };
+    const restoreMetricDetail = diveExperienceMetricDetails[descriptor.layer];
+    if (restoreMetricDetail) {
+      // Legacy links without flow metadata still restore their requested detail
+      // popup, but cannot reconstruct a parent that was never recorded.
+      restoreMetricDetail();
       return;
     }
 
