@@ -3809,6 +3809,7 @@
       overflow: hidden;
     }
     body.site-suggestion-open { overflow: hidden; }
+    body.share-modal-open { overflow: hidden; }
 
     .contact-modal[hidden] {
       display: none;
@@ -3949,6 +3950,108 @@
       min-height: 132px;
       resize: vertical;
       padding: 8px 10px;
+    }
+
+    .share-modal[hidden] { display: none; }
+    .share-modal {
+      position: fixed;
+      z-index: 2250;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .share-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 30, 42, .58);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    [data-theme="dark"] .share-modal-backdrop { background: rgba(1, 4, 9, .72); }
+    .share-dialog {
+      position: relative;
+      width: min(500px, calc(100vw - 28px));
+      max-height: min(720px, calc(100vh - 36px));
+      overflow: auto;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+    }
+    .share-dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px 14px;
+    }
+    .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
+    .share-dialog-subtitle { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 22px; }
+    .share-context-card {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-soft);
+    }
+    .share-context-title { margin: 0; font-size: 16px; line-height: 1.35; font-weight: 700; overflow-wrap: anywhere; }
+    .share-context-copy { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .share-context-list { display: grid; gap: 7px; margin: 0; }
+    .share-context-row { display: grid; grid-template-columns: minmax(92px, auto) 1fr; gap: 12px; font-size: 12px; line-height: 1.4; }
+    .share-context-row dt { color: var(--muted); }
+    .share-context-row dd { margin: 0; text-align: right; font-weight: 600; overflow-wrap: anywhere; }
+    .share-link-row { display: flex; gap: 8px; min-width: 0; }
+    .share-link-input {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
+      box-sizing: border-box;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-solid);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+    }
+    .share-action-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-solid);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .share-action-button:hover { background: var(--panel-soft); }
+    .share-action-button--primary { border-color: #087f9b; background: #087f9b; color: #fff; }
+    .share-action-button--primary:hover { background: #066b83; }
+    .share-action-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .share-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+    .share-action-button[hidden] { display: none; }
+    .share-status { min-height: 18px; margin: -7px 0 0; color: var(--muted); font-size: 12px; }
+    .share-status:empty { display: none; }
+    @media (max-width: 520px) {
+      .share-modal { align-items: end; padding: 10px; }
+      .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
+      .share-dialog-header { padding: 18px 18px 12px; }
+      .share-dialog-body { padding: 4px 18px 18px; }
+      .share-actions { grid-template-columns: 1fr; }
+      .share-actions .share-action-button { justify-content: flex-start; }
+      .share-link-row { flex-direction: column; }
     }
 
     .contact-input:focus,
@@ -6095,6 +6198,50 @@
           <button class="contact-button contact-button-primary" id="contactSubmitButton" type="submit">Send message</button>
         </div>
       </form>
+    </section>
+  </div>
+
+  <div class="share-modal" id="shareModal" hidden>
+    <div class="share-modal-backdrop" data-share-close></div>
+    <section class="share-dialog" id="shareDialog" role="dialog" aria-modal="true" aria-labelledby="shareDialogTitle" aria-describedby="shareDialogSubtitle">
+      <div class="share-dialog-header">
+        <div>
+          <h2 class="share-dialog-title" id="shareDialogTitle">Share</h2>
+          <p class="share-dialog-subtitle" id="shareDialogSubtitle">Choose how to share this DiveAtlas view.</p>
+        </div>
+        <button class="contact-dialog-close" id="shareCloseButton" type="button" title="Close" aria-label="Close" data-share-close>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg>
+        </button>
+      </div>
+      <div class="share-dialog-body">
+        <div class="share-context-card">
+          <h3 class="share-context-title" id="shareContextTitle">Current map view</h3>
+          <p class="share-context-copy" id="shareContextCopy">This link opens the map with the details shown below.</p>
+          <dl class="share-context-list" id="shareContextList"></dl>
+        </div>
+        <div class="share-link-row">
+          <input class="share-link-input" id="shareLinkInput" type="text" readonly aria-label="Share link">
+          <button class="share-action-button share-action-button--primary" id="shareCopyButton" type="button">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 7V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2"/></svg>
+            <span id="shareCopyButtonText">Copy link</span>
+          </button>
+        </div>
+        <div class="share-actions" aria-label="Share options">
+          <button class="share-action-button" id="shareNativeButton" type="button" hidden>
+            <span aria-hidden="true">↗</span><span>More</span>
+          </button>
+          <a class="share-action-button" id="shareWhatsAppButton" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">◉</span><span>WhatsApp</span>
+          </a>
+          <a class="share-action-button" id="shareEmailButton">
+            <span aria-hidden="true">✉</span><span>Email</span>
+          </a>
+          <a class="share-action-button" id="shareXButton" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">𝕏</span><span>X</span>
+          </a>
+        </div>
+        <p class="share-status" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
     </section>
   </div>
 
@@ -8274,6 +8421,20 @@ ZSD·2016–2025</span></span>
     sidebar: document.getElementById('sidebar'),
     topMenuBar: document.getElementById('topMenuBar'),
     shareMapButton: document.getElementById('shareMapButton'),
+    shareModal: document.getElementById('shareModal'),
+    shareDialog: document.getElementById('shareDialog'),
+    shareCloseButton: document.getElementById('shareCloseButton'),
+    shareContextTitle: document.getElementById('shareContextTitle'),
+    shareContextCopy: document.getElementById('shareContextCopy'),
+    shareContextList: document.getElementById('shareContextList'),
+    shareLinkInput: document.getElementById('shareLinkInput'),
+    shareCopyButton: document.getElementById('shareCopyButton'),
+    shareCopyButtonText: document.getElementById('shareCopyButtonText'),
+    shareNativeButton: document.getElementById('shareNativeButton'),
+    shareWhatsAppButton: document.getElementById('shareWhatsAppButton'),
+    shareEmailButton: document.getElementById('shareEmailButton'),
+    shareXButton: document.getElementById('shareXButton'),
+    shareStatus: document.getElementById('shareStatus'),
     diveSearchSuggestion: document.getElementById('diveSearchSuggestion'),
     diveSearchSuggestButton: document.getElementById('diveSearchSuggestButton'),
     siteSuggestionModal: document.getElementById('siteSuggestionModal'),
@@ -18462,11 +18623,108 @@ ZSD·2016–2025</span></span>
     els.shareMapButton.setAttribute('aria-label', copyLabel);
   }
 
-  async function copyShareLink() {
+  let sharePreviousFocus = null;
+
+  function getShareContextTitle(state) {
+    const siteId = String(state?.selectedSiteId || '').toLowerCase();
+    if (siteId && SHARE_SITE_BY_ID.has(siteId)) {
+      const siteIndex = SHARE_SITE_BY_ID.get(siteId);
+      const site = Number.isInteger(siteIndex) ? DIVE_SITES?.[siteIndex] : null;
+      const name = Array.isArray(site) ? site[0] : site?.name;
+      if (name) return String(name);
+    }
+    const popupNameKey = SHARE_POPUP_DESCRIPTION_KEYS[state?.popup?.layer];
+    if (popupNameKey) return t(popupNameKey);
+    return 'Current map view';
+  }
+
+  function addShareContextRow(label, value) {
+    if (!value) return;
+    const row = document.createElement('div');
+    row.className = 'share-context-row';
+    const term = document.createElement('dt');
+    term.textContent = label;
+    const detail = document.createElement('dd');
+    detail.textContent = value;
+    row.append(term, detail);
+    els.shareContextList.append(row);
+  }
+
+  function renderShareDialogContext() {
+    const state = shareSnapshot || {};
+    const siteId = String(state.selectedSiteId || '').toLowerCase();
+    const hasSite = Boolean(siteId && SHARE_SITE_BY_ID.has(siteId));
+    const title = getShareContextTitle(state);
+    els.shareContextTitle.textContent = title;
+    els.shareContextCopy.textContent = hasSite
+      ? 'The link opens this dive site in the map with the current view and details.'
+      : 'The link opens this map position and restores the current view and details.';
+    els.shareContextList.replaceChildren();
+
+    if (hasSite) addShareContextRow('Dive site', title);
+    if (state.popup?.layer) {
+      const popupKey = SHARE_POPUP_DESCRIPTION_KEYS[state.popup.layer];
+      const popupLabel = popupKey ? t(popupKey) : state.popup.layer;
+      const flow = typeof state.popupFlow === 'string'
+        ? SHARE_POPUP_FLOW_DEFINITIONS[state.popupFlow]
+        : state.popupFlow;
+      const flowLabel = flow?.parentLayer
+        ? `${popupLabel} opened from ${flow.parentLayer === 'dive-rating' ? 'DiveAtlas Rating' : 'Dive Conditions'}`
+        : popupLabel;
+      addShareContextRow('Open details', flowLabel);
+      if (Number.isFinite(Number(state.popup.lat)) && Number.isFinite(Number(state.popup.lng))) {
+        addShareContextRow('Detail position', `${Number(state.popup.lat).toFixed(4)}, ${Number(state.popup.lng).toFixed(4)}`);
+      }
+    }
+    if (state.center && Number.isFinite(Number(state.center.lat)) && Number.isFinite(Number(state.center.lng))) {
+      addShareContextRow('Map position', `${Number(state.center.lat).toFixed(4)}, ${Number(state.center.lng).toFixed(4)}`);
+    }
+    if (state.view && state.view !== 'default') {
+      const viewLabel = state.view.replace(/-/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+      addShareContextRow('Map view', viewLabel);
+    }
+    const activeLayers = SHARE_LAYER_IDS.filter(layer => state.layers?.[layer])
+      .map(layer => layer.replace(/-/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase()));
+    addShareContextRow('Visible layers', activeLayers.length ? activeLayers.join(', ') : 'Base map');
+
+    const url = shareUrl;
+    els.shareLinkInput.value = url;
+    const shareText = `${title} | DiveAtlas`;
+    els.shareWhatsAppButton.href = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`;
+    els.shareEmailButton.href = `mailto:?subject=${encodeURIComponent(shareText)}&body=${encodeURIComponent(`${shareText}\n${url}`)}`;
+    els.shareXButton.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+    els.shareNativeButton.hidden = typeof navigator.share !== 'function';
+  }
+
+  function openShareDialog() {
     shareSnapshot = captureMapState();
     shareUrl = buildShareUrl(shareSnapshot);
     shareUiState = 'idle';
     renderShareButtonDescription();
+    renderShareDialogContext();
+    els.shareStatus.textContent = '';
+    els.shareCopyButtonText.textContent = 'Copy link';
+    sharePreviousFocus = document.activeElement;
+    setTopMenuOpen(false);
+    els.shareModal.hidden = false;
+    document.body.classList.add('share-modal-open');
+    requestAnimationFrame(() => els.shareCloseButton.focus());
+  }
+
+  function closeShareDialog() {
+    if (els.shareModal.hidden) return;
+    els.shareModal.hidden = true;
+    document.body.classList.remove('share-modal-open');
+    els.shareStatus.textContent = '';
+    const returnFocus = sharePreviousFocus && els.topMenuDropdown.contains(sharePreviousFocus)
+      ? els.topMenuButton
+      : sharePreviousFocus;
+    if (returnFocus && typeof returnFocus.focus === 'function') {
+      returnFocus.focus({ preventScroll: true });
+    }
+  }
+
+  async function copyShareLink() {
     window.clearTimeout(shareFeedbackTimer);
 
     const urlToCopy = shareUrl;
@@ -18491,12 +18749,25 @@ ZSD·2016–2025</span></span>
     }
 
     shareUiState = copied ? 'success' : 'error';
+    els.shareStatus.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
+    els.shareCopyButtonText.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
     renderShareButtonDescription();
-    showToast(t(copied ? 'shareCopied' : 'shareCopyFailed'));
     shareFeedbackTimer = window.setTimeout(() => {
       shareUiState = 'idle';
+      els.shareCopyButtonText.textContent = 'Copy link';
       renderShareButtonDescription();
     }, 1800);
+  }
+
+  async function shareWithDevice() {
+    if (typeof navigator.share !== 'function') return;
+    try {
+      await navigator.share({ title: `${getShareContextTitle(shareSnapshot)} | DiveAtlas`, url: shareUrl });
+    } catch (error) {
+      if (error?.name !== 'AbortError') {
+        els.shareStatus.textContent = t('shareCopyFailed');
+      }
+    }
   }
 
   function updateShareButtonDescription() {
@@ -18508,7 +18779,12 @@ ZSD·2016–2025</span></span>
   els.shareMapButton.addEventListener('pointerenter', updateShareButtonDescription);
   els.shareMapButton.addEventListener('focus', updateShareButtonDescription);
   updateShareButtonDescription();
-  els.shareMapButton.addEventListener('click', copyShareLink);
+  els.shareMapButton.addEventListener('click', openShareDialog);
+  els.shareCopyButton.addEventListener('click', copyShareLink);
+  els.shareNativeButton.addEventListener('click', shareWithDevice);
+  els.shareModal.addEventListener('click', event => {
+    if (event.target.closest('[data-share-close]')) closeShareDialog();
+  });
 
   function persistPanelState() {
     try {
@@ -26360,11 +26636,13 @@ ZSD·2016–2025</span></span>
   });
 
   document.addEventListener('keydown', event => {
-    const activeModal = !els.contactModal.hidden
-      ? { dialog: els.contactDialog, close: closeContactModal }
-      : !els.siteSuggestionModal.hidden
-        ? { dialog: els.siteSuggestionDialog, close: closeSiteSuggestionModal }
-        : null;
+    const activeModal = !els.shareModal.hidden
+      ? { dialog: els.shareDialog, close: closeShareDialog }
+      : !els.contactModal.hidden
+        ? { dialog: els.contactDialog, close: closeContactModal }
+        : !els.siteSuggestionModal.hidden
+          ? { dialog: els.siteSuggestionDialog, close: closeSiteSuggestionModal }
+          : null;
 
     if (activeModal) {
       if (event.key === 'Escape') {

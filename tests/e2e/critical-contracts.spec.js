@@ -454,6 +454,25 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
+test('share button opens an accessible dialog that previews the link context', async ({ page }) => {
+  const shareButton = page.locator('#shareMapButton');
+  await shareButton.click();
+
+  const dialog = page.getByRole('dialog', { name: 'Share' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByText('Current map view')).toBeVisible();
+  await expect(dialog.getByText('Map position', { exact: true })).toBeVisible();
+  await expect(dialog.locator('#shareLinkInput')).toHaveValue(/https?:\/\//);
+  await expect(dialog.getByRole('button', { name: 'Copy link' })).toBeVisible();
+  await expect(dialog.getByRole('link', { name: 'WhatsApp' })).toBeVisible();
+  await expect(dialog.getByRole('link', { name: 'Email' })).toBeVisible();
+  await expect(dialog.getByRole('link', { name: 'X' })).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(shareButton).toBeFocused();
+});
+
 test('legacy long-form share URLs remain readable and preserve a site popup flow', async ({ page }) => {
   const parsed = await page.evaluate(() => window.__DIVEATLAS_TEST__.parseShareUrl(
     'https://diveatlas.test/?lat=-0.550810&lng=130.701964&z=15&layers=reef,dive&view=dive-experience-outlook&site=site-123&popup=currents&plat=-0.552975&plng=130.697998&flow=sru&month=7&currentDepth=20'
