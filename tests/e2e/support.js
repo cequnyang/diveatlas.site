@@ -166,7 +166,13 @@ async function openTopMenu(page) {
 
 async function closeTopMenu(page) {
   const menu = page.locator('#topMenuDropdown');
-  if (await menu.isVisible()) await page.getByRole('button', { name: 'Menu' }).click();
+  if (await menu.isVisible()) {
+    if (await menu.evaluate(node => node.classList.contains('is-open'))) {
+      await page.locator('#topMenuPageBack').click();
+    } else {
+      await page.getByRole('button', { name: 'Menu' }).click();
+    }
+  }
   await expect(menu).toBeHidden();
 }
 

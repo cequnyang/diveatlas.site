@@ -808,6 +808,7 @@
     }
 
     .bio-legend-layers-inner { min-height: 0; overflow: hidden; }
+    .bio-legend-drag-handle { display: none; }
     .bio-legend.is-tutorial-handoff .bio-legend-layers { transition: grid-template-rows .22s ease, opacity .11s linear .29s, visibility 0s; }
     .bio-legend.is-tutorial-opening .bio-legend-layers { opacity: .55; transition: opacity .12s linear; }
     .bio-legend-footer { display: flex; width: calc(100% - 6px); flex-direction: column; align-items: stretch; gap: 6px; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid color-mix(in srgb, var(--text) 14%, transparent); }
@@ -1964,11 +1965,13 @@
         max-height:min(68dvh, 660px) !important;
         margin:0 !important;
         transform:none !important;
-        translate:none !important;
+        translate:0 var(--mobile-panel-drag-y, 0px) !important;
+        transition:translate .22s cubic-bezier(.2,.72,.2,1);
       }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper {
         box-sizing:border-box;
         width:100%;
+        height:100%;
         max-height:min(68dvh, 660px);
         overflow:hidden;
         border:1px solid var(--line);
@@ -2011,8 +2014,7 @@
       }
       .dive-conditions-rating-sheet .leaflet-popup-tip-container,
       .dive-conditions-rating-sheet .leaflet-popup-tip { display:none !important; }
-      .dive-conditions-rating-sheet.diveatlas-popup-below::before,
-      .dive-conditions-rating-sheet.diveatlas-popup-below::after { display:none !important; }
+      .dive-conditions-rating-sheet.diveatlas-popup-below::before { display:none !important; }
       .dive-conditions-rating-sheet .dive-conditions-popup-back {
         position:relative;
         width:28px;
@@ -2057,11 +2059,13 @@
         max-height:min(78dvh, 720px) !important;
         margin:0 !important;
         transform:none !important;
-        translate:none !important;
+        translate:0 var(--mobile-panel-drag-y, 0px) !important;
+        transition:translate .22s cubic-bezier(.2,.72,.2,1);
       }
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-content-wrapper {
         box-sizing:border-box;
         width:100%;
+        height:100%;
         max-height:min(78dvh, 720px);
         overflow:hidden;
         border:0;
@@ -2093,9 +2097,22 @@
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip-container,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::before,
-      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::after,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) > .leaflet-popup-close-button,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
+      /* Upward resistance translates sheets by at most 34px; extend their own
+         surface past the viewport edge so the map never shows through below. */
+      .leaflet-popup.diveatlas-mobile-sheet::after,
+      .leaflet-popup.dive-conditions-rating-sheet::after {
+        content:"" !important;
+        display:block !important;
+        position:absolute;
+        top:100%;
+        right:0;
+        left:0;
+        height:48px;
+        background:var(--panel-solid);
+        pointer-events:none;
+      }
       .diveatlas-mobile-sheet-handle {
         display:grid;
         width:100%;
@@ -3703,11 +3720,15 @@
         background:var(--panel-solid);
         box-shadow:-10px 0 32px rgba(18,34,51,.18);
         transform:translateX(100%);
+        translate:0 var(--mobile-panel-drag-y, 0px);
         visibility:hidden;
-        transition:transform .26s cubic-bezier(.2,.72,.2,1), visibility .26s;
+        transition:transform .26s cubic-bezier(.2,.72,.2,1), translate .22s cubic-bezier(.2,.72,.2,1), visibility .26s;
         overscroll-behavior:contain;
       }
       #topMenuDropdown.is-open { transform:translateX(0); visibility:visible; }
+      .mobile-vertical-dragging { transition:none !important; user-select:none; }
+      #topMenuDropdown .top-menu-page-header,
+      #languageDropdown .language-page-header { touch-action:none; }
       .top-menu-page-header {
         position:sticky;
         top:env(safe-area-inset-top, 0px);
@@ -3975,11 +3996,14 @@
         background:var(--panel-solid);
         box-shadow:-10px 0 32px rgba(18,34,51,.18);
         transform:translateX(100%);
+        translate:0 var(--mobile-panel-drag-y, 0px);
         visibility:hidden;
-        transition:transform .26s cubic-bezier(.2,.72,.2,1), visibility .26s;
+        transition:transform .26s cubic-bezier(.2,.72,.2,1), translate .22s cubic-bezier(.2,.72,.2,1), visibility .26s;
         overscroll-behavior:contain;
       }
       #languageDropdown.is-open { transform:translateX(0); visibility:visible; }
+      #topMenuDropdown.mobile-vertical-dragging,
+      #languageDropdown.mobile-vertical-dragging { transition:none !important; }
       .language-page-header {
         position:sticky;
         top:env(safe-area-inset-top, 0px);
@@ -6243,13 +6267,55 @@
       }
     }
     @media (max-width: 720px) {
+      .top-menu-controls > .top-menu-share-wrap,
+      .top-menu-controls > #themeBtn,
+      .top-menu-controls > .unit-setting,
+      .top-menu-controls > #temperatureUnitSwitch { display:none; }
       .bio-legend {
         display:flex;
         flex-direction:column;
         max-height:calc(100dvh - 60px - env(safe-area-inset-bottom, 0px));
         overflow:hidden;
+        padding-bottom:0;
       }
-      .bio-legend-heading { flex:0 0 auto; }
+      .bio-legend-heading {
+        position:relative;
+        z-index:1;
+        flex:0 0 auto;
+        background:var(--layers-panel-background);
+      }
+      .bio-legend-body {
+        display:flex;
+        flex:1 1 auto;
+        flex-direction:column;
+        min-height:0;
+      }
+      .bio-legend.mobile-layers-panel-dragging .bio-legend-body { user-select:none; }
+      .bio-legend-drag-handle {
+        display:flex;
+        box-sizing:border-box;
+        flex:0 0 18px;
+        width:100%;
+        align-items:center;
+        justify-content:center;
+        margin:0;
+        padding:0;
+        border:0;
+        background:transparent;
+        touch-action:none;
+        cursor:grab;
+      }
+      .bio-legend-drag-handle::before {
+        width:36px;
+        height:5px;
+        border-radius:999px;
+        background:var(--text-muted);
+        opacity:.72;
+        content:"";
+      }
+      .bio-legend-drag-handle:active { cursor:grabbing; }
+      .bio-legend.is-collapsed .bio-legend-drag-handle { display:none; }
+      .bio-legend.is-collapsed .bio-legend-heading { border-radius:12px; }
       .bio-legend.is-mobile-auto-collapsed {
         width:48px;
         height:48px;
@@ -6257,6 +6323,8 @@
         padding:0;
         border-radius:50%;
       }
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-heading,
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-title { border-radius:50%; }
       .bio-legend.is-mobile-auto-collapsed .bio-legend-heading {
         width:48px;
         height:48px;
@@ -6291,7 +6359,7 @@
         overflow-x:hidden;
         overflow-y:auto;
         overscroll-behavior:contain;
-        scrollbar-width:thin;
+        scrollbar-width:none;
       }
       .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
@@ -6603,7 +6671,7 @@
 
 
 
-<div class="bio-legend" id="bioLegend">
+<div class="bio-legend is-collapsed" id="bioLegend">
   <div class="bio-legend-heading" id="bioLegendHeading">
       <button class="bio-legend-title" id="bioLegendTitle" type="button" aria-expanded="true" aria-controls="bioLegendLayers" aria-label="Map layers"><svg class="bio-legend-title-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 4.8-9 4.8L3 7.8 12 3Z"/><path d="m3 12 9 4.8 9-4.8M3 16.2 12 21l9-4.8"/></svg><span class="bio-legend-title-label">Layers</span><span class="bio-legend-collapsed-summary" id="bioLegendCollapsedSummary" aria-hidden="true">Map layers</span><svg class="bio-legend-title-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
       <button class="bio-legend-bulk-action" id="bioLegendBulkAction" type="button" aria-label="Show all layers">
@@ -6629,6 +6697,7 @@
       </details>
     </div>
 
+    <div class="bio-legend-body" id="bioLegendBody">
     <div class="bio-legend-layers" id="bioLegendLayers">
     <div class="bio-legend-layers-inner">
     <div class="environment-mode">
@@ -7071,6 +7140,8 @@ ZSD·2016–2025</span></span>
       Zoom in to load observation data
     </div>
     </div>
+    </div>
+    <div class="bio-legend-drag-handle" id="bioLegendDragHandle" aria-hidden="true"></div>
     </div>
   </div>
 
@@ -8684,6 +8755,13 @@ ZSD·2016–2025</span></span>
     closeActiveMapHoverTooltipsForLayer(layerKey);
   }
 
+  function closeMobileSheetForLayerPanelInteraction() {
+    if (!compactLayersPanelQuery.matches || !activeClickPopup || !map.hasLayer(activeClickPopup)) return;
+    const popupElement = activeClickPopup.getElement?.();
+    if (!popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
+    map.closePopup(activeClickPopup);
+  }
+
   L.control.zoom({
     position: 'bottomright'
   }).addTo(map);
@@ -8894,6 +8972,8 @@ ZSD·2016–2025</span></span>
 
     bioLegend: document.getElementById('bioLegend'),
     bioLegendHeading: document.getElementById('bioLegendHeading'),
+    bioLegendBody: document.getElementById('bioLegendBody'),
+    bioLegendDragHandle: document.getElementById('bioLegendDragHandle'),
     bioLegendTitle: document.getElementById('bioLegendTitle'),
     bioLegendCollapsedSummary: document.getElementById('bioLegendCollapsedSummary'),
     bioLegendGuide: document.getElementById('bioLegendGuide'),
@@ -9186,6 +9266,7 @@ ZSD·2016–2025</span></span>
   try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
 
   let legendCollapseTimer = null;
+  let legendCollapseAnimation = null;
   let legendCollapsed = false;
   let legendPreferenceSet = false;
   let tutorialState = 'closed';
@@ -9198,16 +9279,46 @@ ZSD·2016–2025</span></span>
     legendCollapsed = storedLegendPreference === '1';
   } catch (_) {}
   const compactLayersPanelQuery = window.matchMedia('(max-width: 720px)');
-  if (!legendPreferenceSet && compactLayersPanelQuery.matches) legendCollapsed = true;
+  if (compactLayersPanelQuery.matches) legendCollapsed = true;
 
-  function setLegendCollapsed(collapsed, { persist = true, auto = false } = {}) {
-    legendCollapsed = Boolean(collapsed);
+  function setLegendCollapsed(collapsed, {
+    persist = true,
+    auto = false,
+    startingHeightOverride = null,
+    clearInlineHeight = false
+  } = {}) {
+    const nextCollapsed = Boolean(collapsed);
+    const stateChanged = nextCollapsed !== legendCollapsed;
+    const animateMobileHeight = stateChanged && compactLayersPanelQuery.matches &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const startingHeight = animateMobileHeight
+      ? (Number.isFinite(startingHeightOverride)
+        ? startingHeightOverride
+        : els.bioLegend.getBoundingClientRect().height)
+      : 0;
+    if (legendCollapseAnimation) {
+      legendCollapseAnimation.cancel();
+      legendCollapseAnimation = null;
+    }
+
+    legendCollapsed = nextCollapsed;
     els.bioLegend.classList.toggle('is-collapsed', legendCollapsed);
     els.bioLegend.classList.toggle('is-mobile-auto-collapsed', legendCollapsed && compactLayersPanelQuery.matches && auto);
     els.bioLegend.setAttribute('aria-expanded', String(!legendCollapsed));
     els.bioLegendTitle?.setAttribute('aria-expanded', String(!legendCollapsed));
     els.bioLegendLayers?.setAttribute('aria-hidden', String(legendCollapsed));
     if (els.bioLegendLayers) els.bioLegendLayers.inert = legendCollapsed;
+    if (clearInlineHeight) els.bioLegend.style.removeProperty('height');
+    if (animateMobileHeight) {
+      const endingHeight = els.bioLegend.getBoundingClientRect().height;
+      if (Math.abs(endingHeight - startingHeight) > 1) {
+        legendCollapseAnimation = els.bioLegend.animate(
+          [{ height:`${startingHeight}px` }, { height:`${endingHeight}px` }],
+          { duration:240, easing:'cubic-bezier(.2,.72,.2,1)' }
+        );
+        legendCollapseAnimation.onfinish = () => { legendCollapseAnimation = null; };
+      }
+    }
     if (persist) {
       try {
         localStorage.setItem(
@@ -9253,7 +9364,6 @@ ZSD·2016–2025</span></span>
     if (event.matches && !legendPreferenceSet) setLegendCollapsed(true, { persist: false });
     if (event.matches && legendCollapsed) scheduleLegendAutoCollapse();
   });
-  if (compactLayersPanelQuery.matches && legendCollapsed) scheduleLegendAutoCollapse();
   els.bioLegendTitle.setAttribute('aria-controls', 'bioLegendLayers');
 
   function isDarkOverlayTheme() {
@@ -19640,6 +19750,8 @@ ZSD·2016–2025</span></span>
     els.diveSearchResults.classList.remove('visible');
     els.diveSearchResults.setAttribute('aria-busy', 'false');
     els.diveSearchInput.setAttribute('aria-expanded', 'false');
+    els.diveSearchResults.style.removeProperty('--mobile-panel-drag-y');
+    els.diveSearchResults.classList.remove('mobile-vertical-dragging');
   }
 
   function clearDiveSearch({ focus = false } = {}) {
@@ -25123,8 +25235,113 @@ ZSD·2016–2025</span></span>
     openManagedPopup(sitePopup._diveAtlasOwnerKey, sitePopup, siteEntry.marker.getLatLng(), siteEntry.marker);
     return true;
   }
+  function bindMobileVerticalDragHandle(handle, surface, onDismiss, {
+    tapToDismiss = false,
+    closeDistance = 82,
+    expandOnUpwardDrag = false
+  } = {}) {
+    if (!handle || !surface || handle._diveAtlasVerticalDragBound) return;
+    handle._diveAtlasVerticalDragBound = true;
+    let drag = null;
+    let suppressClickUntil = 0;
+
+    const resetSurface = () => {
+      surface.classList.remove('mobile-vertical-dragging');
+      surface.style.removeProperty('--mobile-panel-drag-y');
+    };
+
+    handle.addEventListener('pointerdown', event => {
+      if (!window.matchMedia('(max-width:720px)').matches || event.button !== 0) return;
+      drag = {
+        id:event.pointerId,
+        x:event.clientX,
+        y:event.clientY,
+        moved:false,
+        startHeight:expandOnUpwardDrag ? surface.getBoundingClientRect().height : 0,
+        startInlineHeight:expandOnUpwardDrag ? surface.style.height : ''
+      };
+      surface.classList.add('mobile-vertical-dragging');
+      surface.style.setProperty('--mobile-panel-drag-y', '0px');
+      handle.setPointerCapture?.(event.pointerId);
+    });
+    handle.addEventListener('pointermove', event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const deltaX = event.clientX - drag.x;
+      const deltaY = event.clientY - drag.y;
+      if (Math.hypot(deltaX, deltaY) < 4) return;
+      if (Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        drag.moved = true;
+        return;
+      }
+      drag.moved = true;
+      event.preventDefault();
+      if (expandOnUpwardDrag) {
+      if (deltaY < 0) {
+        // Track short pulls closely, then increase resistance as the sheet nears
+        // its 20px limit so the resting snap point stays visually stable.
+        const upwardDistance = -deltaY;
+        const resistedExpansion = 20 * (1 - Math.exp(-upwardDistance / 18));
+        surface.style.height = `${drag.startHeight + resistedExpansion}px`;
+          surface.style.setProperty('--mobile-panel-drag-y', '0px');
+          return;
+        }
+        if (drag.startInlineHeight) surface.style.height = drag.startInlineHeight;
+        else surface.style.removeProperty('height');
+      }
+      const offset = deltaY < 0 ? Math.max(-34, deltaY * 0.16) : Math.min(260, deltaY);
+      surface.style.setProperty('--mobile-panel-drag-y', `${offset}px`);
+    });
+    const finishDrag = event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const deltaX = event.clientX - drag.x;
+      const deltaY = event.clientY - drag.y;
+      const didMove = drag.moved;
+      const wasVerticalDrag = didMove && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
+      const startInlineHeight = drag.startInlineHeight;
+      drag = null;
+      if (expandOnUpwardDrag) {
+        if (startInlineHeight) surface.style.height = startInlineHeight;
+        else surface.style.removeProperty('height');
+      }
+      if (wasVerticalDrag) {
+        event.preventDefault();
+        if (deltaY >= closeDistance) {
+          surface.classList.remove('mobile-vertical-dragging');
+          onDismiss();
+          window.setTimeout(resetSurface, 300);
+          return;
+        }
+      }
+      if (didMove) suppressClickUntil = performance.now() + 350;
+      resetSurface();
+    };
+    handle.addEventListener('pointerup', finishDrag);
+    handle.addEventListener('pointercancel', event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      if (expandOnUpwardDrag) {
+        if (drag.startInlineHeight) surface.style.height = drag.startInlineHeight;
+        else surface.style.removeProperty('height');
+      }
+      drag = null;
+      resetSurface();
+    });
+    handle.addEventListener('click', event => {
+      if (performance.now() < suppressClickUntil) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        suppressClickUntil = 0;
+      } else if (tapToDismiss && window.matchMedia('(max-width:720px)').matches) {
+        event.preventDefault();
+        onDismiss();
+      }
+    });
+  }
+
   function syncDiveRatingPopupForViewport(popup) {
-    if (!popup || popup._diveAtlasLayerKey !== 'dive-conditions') return false;
+    // The same reusable rating popup is tagged differently when opened from a
+    // dive-site card. Treat both entry paths alike so the mobile sheet class,
+    // drag handle, and viewport placement cannot depend on a previous popup.
+    if (!popup || !['dive-conditions', 'dive-rating'].includes(popup._diveAtlasLayerKey)) return false;
     const element = popup.getElement?.();
     if (!element) return false;
     const useMobileSheet = window.matchMedia('(max-width: 720px)').matches;
@@ -25138,24 +25355,11 @@ ZSD·2016–2025</span></span>
         handle.className = 'dive-conditions-rating-handle';
         handle.setAttribute('aria-label', 'Hide rating sheet; swipe down');
         handle.title = 'Swipe down to hide';
-        let dragStart = null;
-        handle.addEventListener('pointerdown', event => {
-          if (event.button !== 0) return;
-          dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
-          handle.setPointerCapture?.(event.pointerId);
+        bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
+          tapToDismiss:true,
+          closeDistance:72,
+          expandOnUpwardDrag:true
         });
-        handle.addEventListener('pointerup', event => {
-          if (!dragStart || event.pointerId !== dragStart.id) return;
-          const deltaY = event.clientY - dragStart.y;
-          const deltaX = event.clientX - dragStart.x;
-          dragStart = null;
-          if (deltaY > 56 && deltaY > Math.abs(deltaX) * 1.2) {
-            event.preventDefault();
-            popup.close();
-          }
-        });
-        handle.addEventListener('pointercancel', () => { dragStart = null; });
-        handle.addEventListener('click', () => popup.close());
         header.prepend(handle);
       }
       const content = element.querySelector('.leaflet-popup-content');
@@ -25180,6 +25384,8 @@ ZSD·2016–2025</span></span>
         content.addEventListener('pointercancel', () => { dragStart = null; });
       }
       element.classList.add('dive-conditions-rating-sheet');
+      element.style.removeProperty('--mobile-panel-drag-y');
+      element.classList.remove('mobile-vertical-dragging');
       // Leaflet positions popups inside a panning/transformed map pane. Moving
       // this one popup to body lets CSS pin it to the phone viewport instead.
       if (element.parentElement !== document.body) document.body.appendChild(element);
@@ -25191,7 +25397,7 @@ ZSD·2016–2025</span></span>
     return useMobileSheet;
   }
   function syncOtherMapPopupForViewport(popup) {
-    if (!popup || popup._diveAtlasLayerKey === 'dive-conditions') return false;
+    if (!popup || ['dive-conditions', 'dive-rating'].includes(popup._diveAtlasLayerKey)) return false;
     const element = popup.getElement?.();
     if (!element) return false;
     const useMobileSheet = window.matchMedia('(max-width: 720px)').matches;
@@ -25204,24 +25410,11 @@ ZSD·2016–2025</span></span>
         handle.className = 'diveatlas-mobile-sheet-handle';
         handle.setAttribute('aria-label', 'Hide details sheet; swipe down');
         handle.title = 'Swipe down to hide';
-        let dragStart = null;
-        handle.addEventListener('pointerdown', event => {
-          if (event.button !== 0) return;
-          dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
-          handle.setPointerCapture?.(event.pointerId);
+        bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
+          tapToDismiss:true,
+          closeDistance:72,
+          expandOnUpwardDrag:true
         });
-        handle.addEventListener('pointerup', event => {
-          if (!dragStart || event.pointerId !== dragStart.id) return;
-          const deltaY = event.clientY - dragStart.y;
-          const deltaX = event.clientX - dragStart.x;
-          dragStart = null;
-          if (deltaY > 56 && deltaY > Math.abs(deltaX) * 1.2) {
-            event.preventDefault();
-            popup.close();
-          }
-        });
-        handle.addEventListener('pointercancel', () => { dragStart = null; });
-        handle.addEventListener('click', () => popup.close());
         content.prepend(handle);
       }
       if (content && content._diveAtlasChildSheetSwipeBound !== true) {
@@ -25244,6 +25437,8 @@ ZSD·2016–2025</span></span>
         content.addEventListener('pointercancel', () => { dragStart = null; });
       }
       element.classList.add('diveatlas-mobile-sheet');
+      element.style.removeProperty('--mobile-panel-drag-y');
+      element.classList.remove('mobile-vertical-dragging');
       if (element.parentElement !== document.body) document.body.appendChild(element);
     } else {
       element.classList.remove('diveatlas-mobile-sheet');
@@ -25342,6 +25537,27 @@ ZSD·2016–2025</span></span>
     return pointerType === 'touch' || pointerType === 'pen';
   }
 
+  let lastMapTouchTap = null;
+  let doubleTapZoomGesture = null;
+  let suppressMapDoubleClickUntil = 0;
+  // Require a nearby quick second tap, then map vertical travel continuously
+  // to zoom so this one-finger gesture does not compete with two-finger pinch.
+  const DOUBLE_TAP_ZOOM_MAX_DELAY_MS = 360;
+  const DOUBLE_TAP_ZOOM_TAP_RADIUS_PX = 36;
+  const DOUBLE_TAP_ZOOM_ACTIVATION_PX = 8;
+  const DOUBLE_TAP_ZOOM_PIXELS_PER_LEVEL = 128;
+
+  function restoreDoubleTapZoomGesture(gesture) {
+    if (!gesture) return;
+    map.options.zoomSnap = gesture.previousZoomSnap;
+    if (gesture.draggingWasEnabled && !map.dragging.enabled()) map.dragging.enable();
+  }
+
+  function cancelDoubleTapZoomGesture() {
+    restoreDoubleTapZoomGesture(doubleTapZoomGesture);
+    doubleTapZoomGesture = null;
+  }
+
   function cancelPendingMapInteraction() {
     if (pendingMapInteractionTimer != null) {
       clearTimeout(pendingMapInteractionTimer);
@@ -25371,6 +25587,96 @@ ZSD·2016–2025</span></span>
   }
 
   const mapInteractionContainer = map.getContainer();
+  mapInteractionContainer.addEventListener('pointerdown', event => {
+    if (!isTouchMapPointerType(event.pointerType) || event.target?.closest?.('.leaflet-control, .leaflet-popup')) {
+      lastMapTouchTap = null;
+      return;
+    }
+    if (doubleTapZoomGesture && event.pointerId !== doubleTapZoomGesture.pointerId) {
+      cancelDoubleTapZoomGesture();
+    }
+    const now = performance.now();
+    const previousTap = lastMapTouchTap;
+    if (
+      previousTap &&
+      now - previousTap.time <= DOUBLE_TAP_ZOOM_MAX_DELAY_MS &&
+      Math.hypot(event.clientX - previousTap.x, event.clientY - previousTap.y) <= DOUBLE_TAP_ZOOM_TAP_RADIUS_PX
+    ) {
+      const rect = mapInteractionContainer.getBoundingClientRect();
+      doubleTapZoomGesture = {
+        pointerId:event.pointerId,
+        startX:event.clientX,
+        startY:event.clientY,
+        anchor:L.point(event.clientX - rect.left, event.clientY - rect.top),
+        startZoom:map.getZoom(),
+        previousZoomSnap:map.options.zoomSnap,
+        draggingWasEnabled:map.dragging.enabled(),
+        active:false
+      };
+      lastMapTouchTap = null;
+      cancelPendingMapInteraction();
+    } else {
+      lastMapTouchTap = null;
+    }
+  }, true);
+
+  mapInteractionContainer.addEventListener('pointermove', event => {
+    const gesture = doubleTapZoomGesture;
+    if (!gesture || event.pointerId !== gesture.pointerId) return;
+    const deltaY = event.clientY - gesture.startY;
+    const deltaX = event.clientX - gesture.startX;
+    if (!gesture.active && Math.hypot(deltaX, deltaY) >= DOUBLE_TAP_ZOOM_ACTIVATION_PX) {
+      if (Math.abs(deltaY) < DOUBLE_TAP_ZOOM_ACTIVATION_PX || Math.abs(deltaY) < Math.abs(deltaX) * 1.15) {
+        cancelDoubleTapZoomGesture();
+        return;
+      }
+      gesture.active = true;
+      map.options.zoomSnap = 0;
+      if (gesture.draggingWasEnabled && map.dragging.enabled()) map.dragging.disable();
+      cancelPendingMapInteraction();
+      suppressedMapClickUntil = performance.now() + 700;
+      suppressMapDoubleClickUntil = performance.now() + 700;
+      markUserMapMovementIntent();
+      noteMapGesture();
+    }
+    if (!gesture.active) return;
+    event.preventDefault();
+    const nextZoom = gesture.startZoom + deltaY / DOUBLE_TAP_ZOOM_PIXELS_PER_LEVEL;
+    map.setZoomAround(gesture.anchor, nextZoom, { animate:false });
+  }, { capture:true, passive:false });
+
+  const finishDoubleTapZoom = event => {
+    const gesture = doubleTapZoomGesture;
+    if (!gesture || event.pointerId !== gesture.pointerId) {
+      const pointer = activeMapPointers.get(event.pointerId);
+      if (
+        isTouchMapPointerType(event.pointerType) &&
+        pointer &&
+        !pointer.moved &&
+        !pointer.multi &&
+        !pointer.longPressHandled &&
+        !event.target?.closest?.('.leaflet-control, .leaflet-popup')
+      ) {
+        lastMapTouchTap = { x:pointer.x, y:pointer.y, time:performance.now() };
+      }
+      return;
+    }
+    if (gesture.active) {
+      suppressedMapClickUntil = performance.now() + 500;
+      suppressMapDoubleClickUntil = performance.now() + 500;
+      noteMapGesture();
+    } else {
+      lastMapTouchTap = { x:gesture.startX, y:gesture.startY, time:performance.now() };
+    }
+    restoreDoubleTapZoomGesture(gesture);
+    doubleTapZoomGesture = null;
+  };
+  mapInteractionContainer.addEventListener('pointerup', finishDoubleTapZoom, true);
+  mapInteractionContainer.addEventListener('pointercancel', event => {
+    if (doubleTapZoomGesture?.pointerId !== event.pointerId) return;
+    cancelDoubleTapZoomGesture();
+  }, true);
+
   mapInteractionContainer.addEventListener('pointerdown', event => {
     if (event.target?.closest?.('.leaflet-control-zoom')) {
       markUserMapMovementIntent();
@@ -25542,6 +25848,11 @@ ZSD·2016–2025</span></span>
     }
   });
   mapInteractionContainer.addEventListener('dblclick', event => {
+    if (performance.now() < suppressMapDoubleClickUntil) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
     if (!event.target?.closest?.('.leaflet-control, .leaflet-popup')) {
       markUserMapMovementIntent();
     }
@@ -25924,6 +26235,12 @@ ZSD·2016–2025</span></span>
 
   map.on('popupclose', event => {
     const popup = event?.popup;
+    const popupElement = popup?.getElement?.();
+    if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
+      popupElement.classList.remove('mobile-vertical-dragging');
+      popupElement.style.removeProperty('--mobile-panel-drag-y');
+      popupElement.style.removeProperty('height');
+    }
     if (popup?._diveAtlasInfoPopoverContentUpdateHandler) {
       popup.off('contentupdate', popup._diveAtlasInfoPopoverContentUpdateHandler);
       popup._diveAtlasInfoPopoverContentUpdateHandler = null;
@@ -26421,6 +26738,8 @@ ZSD·2016–2025</span></span>
     els.languageMenuButton.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
       setTopMenuOpen(false);
+      els.languageDropdown.style.removeProperty('--mobile-panel-drag-y');
+      els.languageDropdown.classList.remove('mobile-vertical-dragging');
       els.languageDropdown.hidden = false;
       if (useMobilePage) {
         document.body.classList.add('language-page-open');
@@ -26959,6 +27278,8 @@ ZSD·2016–2025</span></span>
     clearTimeout(setTopMenuOpen.closeTimer);
     els.topMenuButton.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
     if (nextOpen) {
+      els.topMenuDropdown.style.removeProperty('--mobile-panel-drag-y');
+      els.topMenuDropdown.classList.remove('mobile-vertical-dragging');
       els.topMenuDropdown.hidden = false;
       if (useMobilePage) {
         document.body.classList.add('menu-page-open');
@@ -27015,6 +27336,22 @@ ZSD·2016–2025</span></span>
     setTopMenuOpen(false);
     els.topMenuButton.focus({ preventScroll:true });
   });
+  bindMobileVerticalDragHandle(
+    els.languageDropdown.querySelector('.language-page-header'),
+    els.languageDropdown,
+    () => {
+      setLanguageMenuOpen(false);
+      els.languageMenuButton.focus({ preventScroll:true });
+    }
+  );
+  bindMobileVerticalDragHandle(
+    els.topMenuDropdown.querySelector('.top-menu-page-header'),
+    els.topMenuDropdown,
+    () => {
+      setTopMenuOpen(false);
+      els.topMenuButton.focus({ preventScroll:true });
+    }
+  );
 
   els.topMenuButton.addEventListener('click', event => {
     event.stopPropagation();
@@ -27363,7 +27700,81 @@ ZSD·2016–2025</span></span>
     () => clearDiveSearch({ focus: true })
   );
 
+  if (els.bioLegendDragHandle) {
+    let layersPanelDrag = null;
+
+    const resetLayersPanelDrag = () => {
+      els.bioLegend.classList.remove('mobile-layers-panel-dragging');
+      els.bioLegend.style.removeProperty('height');
+    };
+
+    els.bioLegendDragHandle.addEventListener('pointerdown', event => {
+      if (!compactLayersPanelQuery.matches || event.button !== 0 || legendCollapsed) return;
+      if (legendCollapseAnimation) {
+        legendCollapseAnimation.cancel();
+        legendCollapseAnimation = null;
+      }
+      layersPanelDrag = {
+        pointerId:event.pointerId,
+        x:event.clientX,
+        y:event.clientY,
+        startHeight:els.bioLegend.getBoundingClientRect().height,
+        moved:false
+      };
+      els.bioLegend.classList.add('mobile-layers-panel-dragging');
+      els.bioLegendDragHandle.setPointerCapture?.(event.pointerId);
+    });
+
+    els.bioLegendDragHandle.addEventListener('pointermove', event => {
+      if (!layersPanelDrag || event.pointerId !== layersPanelDrag.pointerId) return;
+      const deltaX = event.clientX - layersPanelDrag.x;
+      const deltaY = event.clientY - layersPanelDrag.y;
+      if (Math.hypot(deltaX, deltaY) < 4 || Math.abs(deltaX) > Math.abs(deltaY) * 1.2) return;
+      layersPanelDrag.moved = true;
+      event.preventDefault();
+      // Track upward motion 1:1 with the finger. Downward motion stays resisted
+      // so the panel cannot be pulled away from its anchored position.
+      const offset = deltaY < 0
+        ? deltaY
+        : Math.min(30, deltaY * 0.14);
+      const minimumPanelHeight = Math.min(
+        layersPanelDrag.startHeight,
+        els.bioLegendHeading.getBoundingClientRect().height + 16
+      );
+      const boundedOffset = Math.max(minimumPanelHeight - layersPanelDrag.startHeight, offset);
+      els.bioLegend.style.height = `${layersPanelDrag.startHeight + boundedOffset}px`;
+    });
+
+    els.bioLegendDragHandle.addEventListener('pointerup', event => {
+      if (!layersPanelDrag || event.pointerId !== layersPanelDrag.pointerId) return;
+      const deltaX = event.clientX - layersPanelDrag.x;
+      const deltaY = event.clientY - layersPanelDrag.y;
+      const didMove = layersPanelDrag.moved;
+      const shouldCollapse = didMove && deltaY <= -68 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
+      const draggedHeight = els.bioLegend.getBoundingClientRect().height;
+      layersPanelDrag = null;
+      if (shouldCollapse) {
+        els.bioLegend.classList.remove('mobile-layers-panel-dragging');
+        cancelLegendAutoCollapse();
+        setLegendCollapsed(true, {
+          startingHeightOverride:draggedHeight,
+          clearInlineHeight:true
+        });
+      } else {
+        resetLayersPanelDrag();
+      }
+    });
+
+    els.bioLegendDragHandle.addEventListener('pointercancel', event => {
+      if (!layersPanelDrag || event.pointerId !== layersPanelDrag.pointerId) return;
+      layersPanelDrag = null;
+      resetLayersPanelDrag();
+    });
+
+  }
+
   els.bioLegend.addEventListener('pointerdown', () => {
+    closeMobileSheetForLayerPanelInteraction();
     restartLegendAutoCollapse();
   });
 
@@ -27542,6 +27953,12 @@ ZSD·2016–2025</span></span>
 
   els.bioLegendTitle.addEventListener('click', () => {
     cancelLegendAutoCollapse();
+    if (compactLayersPanelQuery.matches && els.bioLegend.classList.contains('is-mobile-auto-collapsed')) {
+      // The map launcher opens to the compact layer bar first; a second tap on
+      // that bar is the explicit action that reveals the full layer controls.
+      els.bioLegend.classList.remove('is-mobile-auto-collapsed');
+      return;
+    }
     setLegendCollapsed(!legendCollapsed);
     if (legendCollapsed && compactLayersPanelQuery.matches) scheduleLegendAutoCollapse();
   });
