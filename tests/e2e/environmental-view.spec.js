@@ -942,6 +942,12 @@ async function placeCoordinateNearSafeTop(page, lat, lng) {
 async function expectTemperaturePopupContained(page, { below = true } = {}) {
   const state = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
   expect(state.popup, 'Temperature popup should remain active').not.toBeNull();
+  if (page.viewportSize().width <= 720 && await page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet').count()) {
+    const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet').last();
+    const bounds = await sheet.boundingBox();
+    expect(bounds.y + bounds.height).toBeLessThanOrEqual(page.viewportSize().height + 1);
+    return state;
+  }
   expect(state.popup.below).toBe(below);
   expect(state.popup.arrowSide).toBe(below ? 'top' : 'bottom');
   expect(state.popup.bounds.left).toBeGreaterThanOrEqual(state.popup.safeBounds.left - 1);
@@ -1161,9 +1167,14 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   expect(state.center).toEqual(before.center);
   const bounds = await page.locator('.leaflet-popup').boundingBox();
   const closeBounds = await page.locator('.leaflet-popup-close-button').boundingBox();
-  expect(bounds.width).toBeLessThanOrEqual(330);
-  expect(closeBounds.width).toBe(28);
-  expect(closeBounds.height).toBe(28);
+  const isMobileSheet = await page.locator('.leaflet-popup.diveatlas-mobile-sheet').count() > 0;
+  expect(bounds.width).toBeLessThanOrEqual(isMobileSheet ? page.viewportSize().width : 330);
+  if (isMobileSheet) {
+    expect(closeBounds).toBeNull();
+  } else {
+    expect(closeBounds.width).toBe(28);
+    expect(closeBounds.height).toBe(28);
+  }
   await page.screenshot({ path: 'test-results/temperature-detail-mobile.png' });
 });
 

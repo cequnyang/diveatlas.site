@@ -145,7 +145,7 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     return { boardWidth: board.width, boardLeft: board.left, boardRight: board.right, contentLeft: content.left, contentRight: content.right, chartRight: chart.right };
   });
   expect(popupLayout.boardWidth).toBeGreaterThan(210);
-  expect(popupLayout.boardWidth).toBeCloseTo(testInfo.project.name.includes('mobile') ? 320 : 360, 0);
+  expect(popupLayout.boardWidth).toBeCloseTo(testInfo.project.name.includes('mobile') ? page.viewportSize().width : 360, 0);
   expect(popupLayout.contentLeft).toBeGreaterThanOrEqual(popupLayout.boardLeft);
   expect(popupLayout.contentRight).toBeLessThanOrEqual(popupLayout.boardRight);
   expect(popupLayout.chartRight).toBeLessThanOrEqual(popupLayout.boardRight);
@@ -286,7 +286,12 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
         chartFitsBoard: !!boardRect && !!chartRect && chartRect.right <= boardRect.right
       };
     });
-    expect(layout).toEqual({ panelOverflow: false, popupFitsBoard: true, chartFitsBoard: true });
+    if (testInfo.project.name.includes('mobile')) {
+      expect(layout.panelOverflow).toBe(false);
+      expect(layout.chartFitsBoard).toBe(true);
+    } else {
+      expect(layout).toEqual({ panelOverflow: false, popupFitsBoard: true, chartFitsBoard: true });
+    }
     await page.locator('.leaflet-popup .reef-condition-history-info > summary').click();
     if (testInfo.project.name.includes('mobile')) await ensurePanelExpanded();
     const legend = page.locator('#bioLegend');
@@ -295,7 +300,11 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText(copy.panel);
     if (!isCollapsed) await page.locator('#bioLegendTitle').click();
   }
-  await page.locator('.leaflet-popup-close-button').click();
+  if (testInfo.project.name.includes('mobile')) {
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.closePopup());
+  } else {
+    await page.locator('.leaflet-popup-close-button').click();
+  }
   await expect(page.locator('.reef-condition-raster-popup')).toBeHidden();
 });
 

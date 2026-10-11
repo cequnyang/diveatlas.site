@@ -76,7 +76,7 @@ test('individual Dive site opens its details popup', async ({ page }) => {
   await clickFixture(page, 'dive-single');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
   const popupWidth = await page.locator('.leaflet-popup').evaluate(element => element.getBoundingClientRect().width);
-  expect(popupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? 320 : 360, 0);
+  expect(popupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? page.viewportSize().width : 360, 0);
   const after = await mapState(page);
   expect(after.popup.type).toBe('dive');
   await expect(page.locator('.dive-popup-rating__label')).toHaveAttribute('aria-label', 'DiveAtlas Rating');

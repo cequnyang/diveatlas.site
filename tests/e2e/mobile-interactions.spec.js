@@ -8,7 +8,9 @@ const {
   waitForClickResolution
 } = require('./support');
 
-test.beforeEach(async ({ page }) => openMap(page));
+test.beforeEach(async ({ page }, testInfo) => openMap(page, {
+  disableLegendAutoCollapse: testInfo.title !== 'mobile layer rows toggle across the row and the collapsed bar shrinks after idle'
+}));
 
 test('mobile layer rows toggle across the row and the collapsed bar shrinks after idle', async ({ page }) => {
   const panel = page.locator('#bioLegend');

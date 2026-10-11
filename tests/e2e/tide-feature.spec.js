@@ -114,7 +114,7 @@ test('Tide map taps open a location popup directly and reuse nearby model data',
   else await page.mouse.click(point.x, point.y);
   await expect(page.locator('.tide-map-popup')).toBeVisible();
   const tidePopupWidth = await page.locator('.tide-map-popup').evaluate(element => element.getBoundingClientRect().width);
-  expect(tidePopupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? 320 : 360, 0);
+  expect(tidePopupWidth).toBeCloseTo(page.viewportSize().width <= 720 ? page.viewportSize().width : 360, 0);
   await expect(page.locator('.tide-map-popup')).toContainText('Tide');
   await expect(page.locator('#tideStatus')).toContainText('estimate ready');
   await expect(page.locator('.tide-popup-location')).toContainText('44.9');

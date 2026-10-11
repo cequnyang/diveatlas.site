@@ -39,7 +39,7 @@ test('Ocean Heat History popup uses the shared width for its device size', async
   await expect(popup).toBeVisible();
   await expect(popup).toContainText('Ocean heat history');
   const width = await popup.evaluate(element => element.getBoundingClientRect().width);
-  expect(width).toBeCloseTo(testInfo.project.name.includes('mobile') ? 320 : 360, 0);
+  expect(width).toBeCloseTo(testInfo.project.name.includes('mobile') ? page.viewportSize().width : 360, 0);
 });
 
 test('Ocean Heat History is lazy, query-cached, and independent from reef stress and field observations', async ({ page }, testInfo) => {
@@ -80,7 +80,7 @@ test('Ocean Heat History is lazy, query-cached, and independent from reef stress
   await expect(popup).toBeVisible();
   const oceanPopupWidth = await popup.evaluate(element => element.getBoundingClientRect().width);
   expect(oceanPopupWidth).toBeGreaterThan(210);
-  expect(oceanPopupWidth).toBeLessThanOrEqual(testInfo.project.name.includes('mobile') ? 320 : 360);
+  expect(oceanPopupWidth).toBeLessThanOrEqual(testInfo.project.name.includes('mobile') ? page.viewportSize().width : 360);
   await expect(popup).toContainText('Ocean heat history');
   await expect(popup).toContainText('Peak severity');
   await expect(popup).toContainText('Heatwave days');

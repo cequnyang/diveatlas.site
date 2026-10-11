@@ -83,7 +83,7 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
   await expect(page.locator('.regional-currents-popup')).toContainText('September');
   await expect(page.locator('.regional-currents-popup')).toContainText('Copernicus Marine');
   const regionalPopupWidth = await page.locator('.regional-currents-popup').evaluate(element => element.getBoundingClientRect().width);
-  expect(regionalPopupWidth).toBeCloseTo(testInfo.project.name.includes('mobile') ? 320 : 360, 0);
+  expect(regionalPopupWidth).toBeCloseTo(testInfo.project.name.includes('mobile') ? page.viewportSize().width : 360, 0);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.getState().popup?.lifecycle)).toBe('open');
   if (testInfo.project.name === 'mobile-touch-chromium') {
     await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);

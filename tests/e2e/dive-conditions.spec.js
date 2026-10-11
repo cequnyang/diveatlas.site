@@ -102,7 +102,11 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await popup.locator('.dive-experience-score-info > summary').focus();
   await page.keyboard.press('Escape');
   await expect(infoTooltip).toBeHidden();
-  await page.getByRole('button', { name: 'Close outlook popup' }).click();
+  if (page.viewportSize().width <= 720) {
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.closePopup());
+  } else {
+    await page.getByRole('button', { name: 'Close outlook popup' }).click();
+  }
   await page.getByRole('button', { name: 'Map layers' }).click();
 
   const before = await page.evaluate(() => {

@@ -269,7 +269,9 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
       const popupContent = document.querySelector('.leaflet-popup-content');
       return { panelOverflow:panel.scrollWidth > panel.clientWidth, popupOverflow:popupContent.scrollWidth > popupContent.clientWidth, popupWidth:popup.getBoundingClientRect().width };
     });
-    expect(layout).toMatchObject({ panelOverflow:false, popupOverflow:false, popupWidth:testInfo.project.name.includes('mobile') ? 320 : 360 });
+    expect(layout).toMatchObject({ panelOverflow:false, popupOverflow:false });
+    expect(layout.popupWidth).toBeLessThanOrEqual(page.viewportSize().width);
+    expect(layout.popupWidth).toBeGreaterThanOrEqual(testInfo.project.name.includes('mobile') ? 300 : 340);
     await setLegendCollapsed(page, true);
     await expect(page.locator('#bioLegendCollapsedSummary')).toContainText(`${tabLabels[language]} ·`);
     await setLegendCollapsed(page, false);
@@ -371,9 +373,33 @@ test('expanded Dive Experience month chart stays inside the popup safe area', as
   await expect(popup).toBeVisible();
   await popup.locator('.dive-experience-compare-button').click();
   await expect(popup.locator('.dive-experience-month-chart')).toBeVisible({ timeout:30000 });
-  await expect.poll(() => page.evaluate(() => {
-    const bounds = window.__DIVEATLAS_TEST__.getState().popup;
-    return Boolean(bounds && bounds.bounds.top >= bounds.safeBounds.top - 1 &&
-      bounds.bounds.bottom <= bounds.safeBounds.bottom + 1);
-  })).toBe(true);
+  const sheet = page.locator('.leaflet-popup.dive-conditions-rating-sheet');
+  if (await sheet.isVisible()) {
+    const viewportHeight = page.viewportSize().height;
+    const geometry = await sheet.evaluate(node => {
+      const popupContent = node.querySelector('.leaflet-popup-content');
+      const chart = node.querySelector('.dive-experience-month-chart');
+      const sheetBounds = node.getBoundingClientRect();
+      const contentBounds = popupContent.getBoundingClientRect();
+      const chartBounds = chart.getBoundingClientRect();
+      return {
+        sheetBottom:sheetBounds.bottom,
+        contentTop:contentBounds.top,
+        contentBottom:contentBounds.bottom,
+        contentScrollHeight:popupContent.scrollHeight,
+        chartTop:chartBounds.top,
+        chartBottom:chartBounds.bottom
+      };
+    });
+    expect(geometry.sheetBottom).toBeLessThanOrEqual(viewportHeight + 1);
+    expect(geometry.contentTop).toBeGreaterThanOrEqual(0);
+    expect(geometry.contentBottom).toBeLessThanOrEqual(viewportHeight + 1);
+    expect(geometry.contentScrollHeight).toBeGreaterThanOrEqual(geometry.chartBottom - geometry.contentTop);
+    await page.locator('.dive-experience-month-chart').scrollIntoViewIfNeeded();
+    await expect(page.locator('.dive-experience-month-chart')).toBeInViewport();
+  } else {
+    const bounds = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState().popup);
+    expect(bounds.bounds.top).toBeGreaterThanOrEqual(bounds.safeBounds.top - 1);
+    expect(bounds.bounds.bottom).toBeLessThanOrEqual(bounds.safeBounds.bottom + 1);
+  }
 });

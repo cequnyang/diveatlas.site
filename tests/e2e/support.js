@@ -11,7 +11,12 @@ const dataAssetConfig = fs.existsSync(dataAssetConfigPath)
 const dataAssetBaseUrl = dataAssetConfig && dataAssetConfig !== 'null' ? JSON.parse(dataAssetConfig) : null;
 const dataAssetBase = dataAssetBaseUrl ? new URL(dataAssetBaseUrl) : null;
 
-async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets = false } = {}) {
+async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets = false, disableLegendAutoCollapse = true } = {}) {
+  // Most interaction tests need stable panel geometry; the dedicated mobile
+  // panel test covers the real idle-collapse timer and its 48px affordance.
+  await page.addInitScript(disabled => {
+    window.__DIVEATLAS_TEST_DISABLE_LEGEND_AUTO_COLLAPSE = disabled;
+  }, disableLegendAutoCollapse);
   await page.addInitScript(initialStorage => {
     try {
       localStorage.clear();

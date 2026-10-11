@@ -1758,6 +1758,7 @@
     .dive-conditions-popup-content { width:100%; color:var(--text); font-family:inherit; }
     .leaflet-popup.dive-conditions-popup .leaflet-popup-content-wrapper { position:relative; border-radius:6px !important; }
     .dive-conditions-popup .leaflet-popup-content { margin:10px 11px 2px; }
+    .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content { box-sizing:border-box; width:327px !important; max-width:calc(100vw - 40px) !important; }
     .dive-conditions-popup-title-row { display:flex; align-items:center; gap:6px; }
     .dive-conditions-popup-back, .dive-conditions-popup-close { display:inline-flex; flex:0 0 28px; width:28px; height:28px; align-items:center; justify-content:center; margin:0; padding:0; border:0; border-radius:6px; background:transparent; color:var(--text-secondary); cursor:pointer; }
     :is(.temperature-detail-popup,.regional-currents-popup) .temperature-detail-heading-row--with-back { position:relative; }
@@ -1912,9 +1913,6 @@
         transform:none !important;
         translate:none !important;
       }
-      .leaflet-popup.dive-conditions-popup.dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
-        max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px))) !important;
-      }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper {
         box-sizing:border-box;
         max-height:min(68dvh, 660px);
@@ -1932,6 +1930,7 @@
       .dive-conditions-rating-sheet .leaflet-popup-content {
         box-sizing:border-box;
         width:auto !important;
+        max-width:none !important;
         max-height:calc(min(68dvh, 660px) - 2px) !important;
         margin:0 !important;
         padding:14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
@@ -1941,8 +1940,16 @@
         scrollbar-width:thin;
         touch-action:pan-y;
       }
-      .leaflet-popup.dive-conditions-popup.dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) .leaflet-popup-content {
-        max-height:calc(min(820px, 100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)) - 2px) !important;
+      .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:min(68dvh, 660px); }
+      .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) .leaflet-popup-content-wrapper {
+        max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)));
+      }
+      .leaflet-popup.dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
+        max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px))) !important;
+      }
+      .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content { width:auto !important; }
+      .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content):not(.dive-conditions-rating-sheet) .dive-conditions-popup-content {
+        width:min(287px, calc(100vw - 54px));
       }
       .dive-conditions-rating-sheet .leaflet-popup-tip-container,
       .dive-conditions-rating-sheet .leaflet-popup-tip { display:none !important; }
@@ -8926,7 +8933,8 @@ ZSD·2016–2025</span></span>
 
   function scheduleLegendAutoCollapse() {
     const isMobile = compactLayersPanelQuery.matches;
-    if ((isMobile && (!legendCollapsed || els.bioLegend.classList.contains('is-mobile-auto-collapsed'))) ||
+    if ((DIVEATLAS_INTERACTION_TEST_MODE && window.__DIVEATLAS_TEST_DISABLE_LEGEND_AUTO_COLLAPSE) ||
+        (isMobile && (!legendCollapsed || els.bioLegend.classList.contains('is-mobile-auto-collapsed'))) ||
         (!isMobile && legendCollapsed) || legendCollapseTimer || isTutorialTransitioning() || !els.tutorialBackdrop.hidden) return;
     const delay = isMobile ? LEGEND_AUTO_COLLAPSE_MOBILE_MS : LEGEND_AUTO_COLLAPSE_DESKTOP_MS;
     legendCollapseTimer = setTimeout(() => {
@@ -13540,6 +13548,17 @@ ZSD·2016–2025</span></span>
     }).join('');
     return `<svg class="dive-experience-month-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${t('diveExperienceChartAria')}">${grid}${bars}</svg>`;
   }
+  function scheduleDiveExperiencePopupPlacement() {
+    const popup = diveConditionsPopup;
+    if (!popup?.isOpen()) return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (popup !== diveConditionsPopup || !popup.isOpen()) return;
+        popup.update();
+        if (!popup._diveAtlasMobileSheet) correctMapPopupSafeArea(popup, true);
+      });
+    });
+  }
   function syncDiveExperienceMonthComparisonUi() {
     const { button, panel, status, chart, caption } = diveExperienceMonthComparison.elements || {};
     const selectedMonth = diveExperienceMonthComparison.selectedMonth || diveConditionsMonth;
@@ -13550,7 +13569,7 @@ ZSD·2016–2025</span></span>
     button.setAttribute('aria-expanded', String(diveExperienceMonthComparison.open));
     panel.hidden = !diveExperienceMonthComparison.open;
     if (!diveExperienceMonthComparison.open) {
-      if (diveConditionsPopup?.isOpen()) correctMapPopupSafeArea(diveConditionsPopup, true);
+      scheduleDiveExperiencePopupPlacement();
       return;
     }
     status.hidden = !diveExperienceMonthComparison.loading && !diveExperienceMonthComparison.error;
@@ -13569,9 +13588,9 @@ ZSD·2016–2025</span></span>
         ? captionCopy.replace('{month}', localizedTemperatureMonth(selectedMonth))
         : `${captionCopy} · ${localizedTemperatureMonth(selectedMonth)}`
       : '';
-    // The chart changes popup height without calling Leaflet's update().
-    // Re-run the managed placement so expanded content stays within map bounds.
-    if (diveConditionsPopup?.isOpen()) correctMapPopupSafeArea(diveConditionsPopup, true);
+    // The chart changes popup height without calling Leaflet's update(). Wait
+    // for layout to settle before measuring, otherwise placement uses stale bounds.
+    scheduleDiveExperiencePopupPlacement();
   }
   async function loadDiveExperienceMonthComparison(location, locationKey, generation, selectedMonth, selectedSample) {
     try {
@@ -13706,6 +13725,12 @@ ZSD·2016–2025</span></span>
       reasons.append(reasonTitle, list);
     }
     content.append(createDiveConditionsPopupHeader(diveConditionsPopupLocation || diveConditionsLocation, monthNumber), section);
+    if (diveConditionsPopup && !diveConditionsPopup._diveAtlasExperienceResizeObserver) {
+      diveConditionsPopup._diveAtlasExperienceResizeObserver = new ResizeObserver(() => {
+        scheduleDiveExperiencePopupPlacement();
+      });
+    }
+    diveConditionsPopup?._diveAtlasExperienceResizeObserver?.observe(content);
 
     const physicalScore = sample?.diveConditionsScore ?? diveExperiencePhysicalScoreFromConditions(result);
     const physicalThresholds = diveExperienceOutlookManifest?.scoring?.physicalConditionThresholds;
