@@ -140,6 +140,13 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   await expectCurrentFieldReady(page);
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);
 
+  if (page.viewportSize().width <= 720) {
+    const layersPanel = page.locator('#bioLegend');
+    if (!(await layersPanel.evaluate(node => node.classList.contains('is-collapsed')))) {
+      await page.locator('#bioLegendTitle').click();
+    }
+  }
+
   const centerBefore = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter().lng);
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.panBy([80, 0], { animate: false }));
   await page.locator('.leaflet-control-zoom-in').click();
@@ -158,6 +165,13 @@ test('flow lifecycle handles unsupported slices, map interaction, disable, and r
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.state?.rafActive)).toBe(true);
   await page.waitForTimeout(1_500);
   expect(await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.state?.respawnCount)).toBeGreaterThan(0);
+
+  if (page.viewportSize().width <= 720) {
+    const layersPanel = page.locator('#bioLegend');
+    if (await layersPanel.evaluate(node => node.classList.contains('is-collapsed'))) {
+      await page.locator('#bioLegendTitle').click();
+    }
+  }
 
   await page.locator('#currentsMonth').selectOption('10');
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.diagnostics?.status)).toBe('slice-unavailable');

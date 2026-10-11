@@ -804,7 +804,7 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       scrollHeight: node.scrollHeight,
       clientHeight: node.clientHeight
     }));
-    expect(scrollStyle.scrollbarWidth).toBe('none');
+    expect(scrollStyle.scrollbarWidth).toBe(viewport.width <= 720 ? 'thin' : 'none');
     expect(scrollStyle.scrollbarDisplay).toBe('none');
     expect(scrollStyle.overflowY).toBe('auto');
     if (scrollStyle.scrollHeight > scrollStyle.clientHeight + 1) {

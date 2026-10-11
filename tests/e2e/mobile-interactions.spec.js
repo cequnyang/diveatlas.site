@@ -10,6 +10,57 @@ const {
 
 test.beforeEach(async ({ page }) => openMap(page));
 
+test('mobile layer rows toggle across the row and the collapsed bar shrinks after idle', async ({ page }) => {
+  const panel = page.locator('#bioLegend');
+  const title = page.locator('#bioLegendTitle');
+  const terrain = page.locator('#terrainLayerToggle');
+  const label = page.locator('#terrainLegendLabel');
+
+  await expect(panel).toHaveClass(/is-collapsed/);
+  await expect(panel).not.toHaveClass(/is-mobile-auto-collapsed/);
+  await title.click();
+  await expect(panel).not.toHaveClass(/is-collapsed/);
+  expect(await label.evaluate(node => getComputedStyle(node).fontSize)).toBe('18px');
+  await page.waitForTimeout(6_200);
+  await expect(panel).not.toHaveClass(/is-collapsed/);
+
+  const terrainWasChecked = await terrain.isChecked();
+  await label.click();
+  await expect(terrain).toHaveJSProperty('checked', !terrainWasChecked);
+  await label.click();
+  await expect(terrain).toHaveJSProperty('checked', terrainWasChecked);
+
+  const expandedPosition = await panel.evaluate(node => {
+    const { x, y } = node.getBoundingClientRect();
+    return { x, y };
+  });
+  await title.click();
+  await expect(panel).toHaveClass(/is-collapsed/);
+  await expect(panel).not.toHaveClass(/is-mobile-auto-collapsed/);
+  const collapsedPosition = await panel.evaluate(node => {
+    const { x, y } = node.getBoundingClientRect();
+    return { x, y };
+  });
+  expect(Math.abs(collapsedPosition.x - expandedPosition.x)).toBeLessThanOrEqual(1);
+  expect(Math.abs(collapsedPosition.y - expandedPosition.y)).toBeLessThanOrEqual(1);
+
+  await expect(panel).toHaveClass(/is-mobile-auto-collapsed/, { timeout: 8_000 });
+  const compactSize = await panel.evaluate(node => {
+    const box = node.getBoundingClientRect();
+    return { width: box.width, height: box.height, radius: getComputedStyle(node).borderRadius };
+  });
+  expect(compactSize.width).toBe(48);
+  expect(compactSize.height).toBe(48);
+  expect(compactSize.radius).toBe('50%');
+
+  await title.click();
+  await expect(panel).not.toHaveClass(/is-collapsed/);
+  await page.setViewportSize({ width: 900, height: 900 });
+  const desktopTerrainState = await terrain.isChecked();
+  await label.click();
+  await expect(terrain).toHaveJSProperty('checked', desktopTerrainState);
+});
+
 test('Waves remains reachable on mobile, fits the panel, and follows the map theme', async ({ page }) => {
   if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
