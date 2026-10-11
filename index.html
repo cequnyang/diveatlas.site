@@ -1915,6 +1915,7 @@
       }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper {
         box-sizing:border-box;
+        width:100%;
         max-height:min(68dvh, 660px);
         overflow:hidden;
         border:1px solid var(--line);
@@ -1929,7 +1930,7 @@
       }
       .dive-conditions-rating-sheet .leaflet-popup-content {
         box-sizing:border-box;
-        width:auto !important;
+        width:100% !important;
         max-width:none !important;
         max-height:calc(min(68dvh, 660px) - 2px) !important;
         margin:0 !important;
@@ -1939,6 +1940,10 @@
         overscroll-behavior:contain;
         scrollbar-width:thin;
         touch-action:pan-y;
+      }
+      .leaflet-popup.dive-conditions-rating-sheet:has(.dive-experience-popup-content) .leaflet-popup-content {
+        width:100% !important;
+        max-width:none !important;
       }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:min(68dvh, 660px); }
       .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) .leaflet-popup-content-wrapper {

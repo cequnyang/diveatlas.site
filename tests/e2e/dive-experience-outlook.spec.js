@@ -248,6 +248,19 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   expect(interaction).toBe('dive-experience-outlook-location-selected');
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
+  if (page.viewportSize().width <= 720) {
+    const sheetWidths = await page.locator('.leaflet-popup.dive-conditions-rating-sheet').evaluate(node => {
+      const content = node.querySelector('.leaflet-popup-content');
+      const wrapper = node.querySelector('.leaflet-popup-content-wrapper');
+      return {
+        sheet:node.getBoundingClientRect().width,
+        wrapper:wrapper.getBoundingClientRect().width,
+        content:content.getBoundingClientRect().width
+      };
+    });
+    expect(sheetWidths.wrapper).toBeGreaterThanOrEqual(sheetWidths.sheet - 1);
+    expect(sheetWidths.content).toBeGreaterThanOrEqual(sheetWidths.wrapper - 2);
+  }
 
   for (const language of Object.keys(tabLabels)) {
     if (language !== 'en') {
