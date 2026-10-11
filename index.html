@@ -6620,6 +6620,7 @@ ZSD·2016–2025</span></span>
   const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
   const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
   const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
+  const SHARE_SITE_PREVIEW_ORIGIN = 'https://diveatlas-share-preview.cequnyang.workers.dev';
   const SHARE_POPUP_DESCRIPTION_KEYS = {
     reef: 'reefLegend', species: 'speciesLegend', fish: 'fishLegend', dive: 'diveLegend',
     'dive-conditions': 'diveExperienceDiveConditions', temperature: 'temperatureTitle',
@@ -18094,8 +18095,31 @@ ZSD·2016–2025</span></span>
   }
 
   function buildShareUrl(state) {
+    const serializedState = serializeMapState(state);
+    const selectedSiteId = String(state?.selectedSiteId || '').trim().toLowerCase();
+    if (selectedSiteId && SHARE_SITE_BY_ID.has(selectedSiteId)) {
+      const url = new URL(`/share/${encodeURIComponent(selectedSiteId)}/`, SHARE_SITE_PREVIEW_ORIGIN);
+      url.search = serializedState;
+      const siteIndex = SHARE_SITE_BY_ID.get(selectedSiteId);
+      const site = Number.isInteger(siteIndex) ? DIVE_SITES?.[siteIndex] : null;
+      const reviewed = getDiveSiteReviewedCategories(site);
+      const featureSlugs = new Set(
+        (reviewed?.features || [])
+          .map(value => String(value).trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, ''))
+      );
+      // Prefer a distinctive reviewed feature over a broad reef label. This
+      // query hint selects an illustrative card image; it is not map state.
+      const featurePriority = [
+        'manta', 'wreck', 'cave', 'cavern', 'muck', 'kelp', 'drift',
+        'channel', 'pinnacle', 'seamount', 'artificial_reef', 'sandy_bottom', 'reef'
+      ];
+      const shareFeature = featurePriority.find(feature => featureSlugs.has(feature));
+      if (shareFeature) url.searchParams.set('shareFeature', shareFeature);
+      return url.href;
+    }
+
     const url = new URL(window.location.href);
-    url.search = serializeMapState(state);
+    url.search = serializedState;
     url.hash = '';
     return url.href;
   }
