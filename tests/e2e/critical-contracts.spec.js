@@ -412,3 +412,117 @@ test('one aggregate activation produces at most one semantic action', async ({ p
   await waitForClickResolution(page);
   expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.getActionCount())).toBeLessThanOrEqual(1);
 });
+
+test('compact share state round-trips aliases, map layers, selections, coordinates, and flow', async ({ page }) => {
+  const result = await page.evaluate(() => {
+    const source = {
+      center: { lat:-0.55081, lng:130.70196 },
+      zoom:15,
+      layers:{ contours:false, currents:false, terrain:false, reef:true, species:false, fish:false, dive:true },
+      view:'temperature',
+      popup:{ layer:'currents', lat:-0.55297, lng:130.69799 },
+      popupFlow:'ru',
+      selections:{ month:7, temperatureDepth:0, currentDepth:'20' }
+    };
+    const serialized = window.__DIVEATLAS_TEST__.serializeShareState(source);
+    const parsed = window.__DIVEATLAS_TEST__.parseShareUrl(`https://diveatlas.test/?${serialized}`);
+    const reserialized = window.__DIVEATLAS_TEST__.serializeShareState(parsed);
+    return { serialized, parsed, reserialized };
+  });
+
+  const params = new URLSearchParams(result.serialized);
+  expect(params.get('g')).toMatch(/^[0-9a-z]{20}$/);
+  expect(params.get('l')).toBe('r,d');
+  expect(params.get('v')).toBe('t');
+  expect(params.get('p')).toBe('c');
+  expect(params.get('f')).toBe('ru');
+  expect(params.get('m')).toBe('7');
+  expect(params.get('td')).toBe('0');
+  expect(params.get('cd')).toBe('20');
+  for (const longKey of ['lat', 'lng', 'layers', 'view', 'popup', 'plat', 'plng', 'flow', 'month', 'temperatureDepth', 'currentDepth']) {
+    expect(params.has(longKey), `${longKey} should use its compact representation`).toBe(false);
+  }
+
+  expect(result.parsed.center.lat).toBeCloseTo(-0.55081, 5);
+  expect(result.parsed.center.lng).toBeCloseTo(130.70196, 5);
+  expect(result.parsed.popup.layer).toBe('currents');
+  expect(result.parsed.popup.lat).toBeCloseTo(-0.55297, 5);
+  expect(result.parsed.popup.lng).toBeCloseTo(130.69799, 5);
+  expect(result.parsed.layers).toMatchObject({ reef:true, dive:true, species:false });
+  expect(result.parsed.view).toBe('temperature');
+  expect(result.parsed.selections).toMatchObject({ month:7, temperatureDepth:0, currentDepth:'20' });
+  expect(result.reserialized).toBe(result.serialized);
+});
+
+test('legacy long-form share URLs remain readable and preserve a site popup flow', async ({ page }) => {
+  const parsed = await page.evaluate(() => window.__DIVEATLAS_TEST__.parseShareUrl(
+    'https://diveatlas.test/?lat=-0.550810&lng=130.701964&z=15&layers=reef,dive&view=dive-experience-outlook&site=site-123&popup=currents&plat=-0.552975&plng=130.697998&flow=sru&month=7&currentDepth=20'
+  ));
+
+  expect(parsed.center.lat).toBeCloseTo(-0.55081, 5);
+  expect(parsed.center.lng).toBeCloseTo(130.701964, 5);
+  expect(parsed.layers).toMatchObject({ reef:true, dive:true });
+  expect(parsed.view).toBe('dive-experience-outlook');
+  expect(parsed.popup).toEqual({ layer:'currents', lat:-0.552975, lng:130.697998 });
+  expect(parsed.requestedSiteId).toBe('site-123');
+  expect(parsed.popupFlow).toMatchObject({ id:'sru', parentLayer:'dive-rating', childLayer:'currents', siteAncestor:true });
+
+  const reserialized = new URLSearchParams(await page.evaluate(state =>
+    window.__DIVEATLAS_TEST__.serializeShareState(state, { includeSite:false }), parsed
+  ));
+  expect(reserialized.get('f')).toBe('sru');
+  expect(reserialized.get('p')).toBe('c');
+  expect(reserialized.get('g')).toMatch(/^[0-9a-z]{20}$/);
+});
+
+test('all supported popup flow codes decode to their declared parent and child', async ({ page }) => {
+  const flows = [
+    ['rt', 'dive-rating', 'temperature', false], ['rc', 'dive-rating', 'water-clarity', false],
+    ['ru', 'dive-rating', 'currents', false], ['rw', 'dive-rating', 'waves', false],
+    ['ct', 'dive-conditions', 'temperature', false], ['cc', 'dive-conditions', 'water-clarity', false],
+    ['cu', 'dive-conditions', 'currents', false], ['cw', 'dive-conditions', 'waves', false],
+    ['srt', 'dive-rating', 'temperature', true], ['src', 'dive-rating', 'water-clarity', true],
+    ['sru', 'dive-rating', 'currents', true], ['srw', 'dive-rating', 'waves', true],
+    ['sct', 'dive-conditions', 'temperature', true], ['scc', 'dive-conditions', 'water-clarity', true],
+    ['scu', 'dive-conditions', 'currents', true], ['scw', 'dive-conditions', 'waves', true]
+  ];
+  const decoded = await page.evaluate(cases => cases.map(([id, parentLayer, childLayer, siteAncestor]) => {
+    const coordinateQuery = new URLSearchParams(window.__DIVEATLAS_TEST__.serializeShareState({
+      center:{ lat:0, lng:0 }, popup:{ layer:childLayer, lat:0, lng:0 }, zoom:8, layers:{}
+    }));
+    const params = new URLSearchParams({ p:coordinateQuery.get('p'), f:id, g:coordinateQuery.get('g') });
+    if (siteAncestor) params.set('s', 'site-123');
+    const state = window.__DIVEATLAS_TEST__.parseShareUrl(`https://diveatlas.test/?${params}`);
+    return { expected:{ id, parentLayer, childLayer, siteAncestor }, actual:state.popupFlow || null };
+  }), flows);
+
+  for (const { expected, actual } of decoded) {
+    expect(actual).toMatchObject(expected);
+  }
+});
+
+test('invalid packed coordinates fall back to valid legacy coordinates', async ({ page }) => {
+  const parsed = await page.evaluate(() => window.__DIVEATLAS_TEST__.parseShareUrl(
+    'https://diveatlas.test/?g=invalid&lat=0&lng=180&z=8&popup=currents&plat=-90&plng=-180'
+  ));
+
+  expect(parsed.center).toEqual({ lat:0, lng:180 });
+  expect(parsed.popup).toEqual({ layer:'currents', lat:-90, lng:-180 });
+});
+
+test('packed coordinates retain zero and geographic boundary values within quantization precision', async ({ page }) => {
+  const results = await page.evaluate(() => {
+    const serialize = window.__DIVEATLAS_TEST__.serializeShareState;
+    const parse = window.__DIVEATLAS_TEST__.parseShareUrl;
+    return [[0, 0], [90, 180], [-90, -180], [12.345678, 179.999999]].map(([lat, lng]) => {
+      const query = serialize({ center:{ lat, lng }, zoom:8, layers:{} });
+      return { expected:{ lat, lng }, actual:parse(`https://diveatlas.test/?${query}`).center };
+    });
+  });
+
+  for (const { expected, actual } of results) {
+    expect(actual.lat).toBeCloseTo(expected.lat, 4);
+    const normalizedLongitude = ((expected.lng + 180) % 360 + 360) % 360 - 180;
+    expect(actual.lng).toBeCloseTo(normalizedLongitude, 4);
+  }
+});

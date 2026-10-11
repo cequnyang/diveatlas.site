@@ -18218,10 +18218,15 @@ ZSD·2016–2025</span></span>
       if (Number.isFinite(lat)) setShareParam(params, 'lat', lat.toFixed(6));
       if (Number.isFinite(lng)) setShareParam(params, 'lng', lng.toFixed(6));
     }
-    const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[state?.popupFlow];
+    // Parsed state stores the expanded flow descriptor; captured UI state stores
+    // its compact ID. Accept both so parsing and re-sharing preserve the flow.
+    const popupFlowId = typeof state?.popupFlow === 'string'
+      ? state.popupFlow
+      : state?.popupFlow?.id;
+    const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[popupFlowId];
     if (popupFlow && popupFlow.childLayer === state?.popup?.layer &&
-        popupFlow.siteAncestor === Boolean(state?.selectedSiteId)) {
-      setShareParam(params, 'flow', state.popupFlow);
+        popupFlow.siteAncestor === Boolean(state?.selectedSiteId || state?.requestedSiteId)) {
+      setShareParam(params, 'flow', popupFlowId);
     }
     const selections = state?.selections || {};
     // A shared link needs settings for the active environmental view and popup,
@@ -26663,6 +26668,8 @@ ZSD·2016–2025</span></span>
 
     window.__DIVEATLAS_TEST__ = Object.freeze({
       map,
+      parseShareUrl: parseMapState,
+      serializeShareState: serializeMapState,
       selectEnvironmentalView,
       addAggregate: addFixtureAggregate,
       addCoralPoint: addFixtureCoralPoint,
