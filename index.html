@@ -1896,6 +1896,8 @@
     .dive-conditions-confidence { margin-top:0; padding:4px 0; }
     .dive-conditions-reef-score { margin-top:2px; }
     .dive-conditions-sources-trigger { min-height:28px; }
+    .dive-conditions-rating-handle,
+    .diveatlas-mobile-sheet-handle { display:none; }
     /* Phone rating popups are promoted out of Leaflet's transformed map pane
        so the sheet stays attached to the viewport while the map remains usable. */
     @media (max-width:720px) {
@@ -1923,6 +1925,10 @@
         background:var(--panel-solid);
         box-shadow:0 12px 36px rgba(18,34,51,.24);
       }
+      .dive-conditions-rating-sheet .dive-conditions-popup-header {
+        gap:2px;
+        padding-bottom:2px;
+      }
       .dive-conditions-rating-sheet .leaflet-popup-content {
         box-sizing:border-box;
         width:auto !important;
@@ -1933,6 +1939,7 @@
         overflow-y:auto !important;
         overscroll-behavior:contain;
         scrollbar-width:thin;
+        touch-action:pan-y;
       }
       .leaflet-popup.dive-conditions-popup.dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) .leaflet-popup-content {
         max-height:calc(min(820px, 100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)) - 2px) !important;
@@ -1941,8 +1948,17 @@
       .dive-conditions-rating-sheet .leaflet-popup-tip { display:none !important; }
       .dive-conditions-rating-sheet.diveatlas-popup-below::before,
       .dive-conditions-rating-sheet.diveatlas-popup-below::after { display:none !important; }
-      .dive-conditions-rating-sheet .dive-conditions-popup-back,
-      .dive-conditions-rating-sheet .dive-conditions-popup-close { width:44px; height:44px; flex-basis:44px; }
+      .dive-conditions-rating-sheet .dive-conditions-popup-back {
+        position:relative;
+        width:28px;
+        height:28px;
+        flex-basis:28px;
+      }
+      .dive-conditions-rating-sheet .dive-conditions-popup-back::before {
+        content:'';
+        position:absolute;
+        inset:-8px;
+      }
       .dive-conditions-rating-sheet .dive-conditions-popup-close { display:none !important; }
       .dive-conditions-rating-sheet .dive-conditions-rating-handle {
         display:grid;
@@ -1967,6 +1983,74 @@
       .dive-conditions-rating-sheet .dive-conditions-rating-handle:active { cursor:grabbing; }
       .dive-conditions-rating-sheet .dive-conditions-score-chart-toggle { min-height:44px; }
       .dive-conditions-rating-sheet .dive-experience-main-score { font-size:clamp(27px, 7vw, 34px); }
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) {
+        position:fixed !important;
+        z-index:1500 !important;
+        inset:auto 0 0 0 !important;
+        width:auto !important;
+        max-width:none !important;
+        max-height:min(78dvh, 720px) !important;
+        margin:0 !important;
+        transform:none !important;
+        translate:none !important;
+      }
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-content-wrapper {
+        box-sizing:border-box;
+        width:100%;
+        max-height:min(78dvh, 720px);
+        overflow:hidden;
+        border:0;
+        border-radius:18px 18px 0 0 !important;
+        background:var(--panel-solid);
+        box-shadow:0 12px 36px rgba(18,34,51,.24);
+      }
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-content {
+        box-sizing:border-box;
+        width:auto !important;
+        max-height:calc(min(78dvh, 720px) - 2px) !important;
+        margin:0 !important;
+        padding:12px 16px calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        overflow-x:hidden !important;
+        overflow-y:auto !important;
+        overscroll-behavior:contain;
+        scrollbar-width:thin;
+        touch-action:pan-y;
+      }
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .temperature-detail,
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .waves-detail,
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .temperature-detail.tide-popup,
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .coral-heat-stress-detail,
+      .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .coral-heat-stress-history-popup-detail {
+        box-sizing:border-box;
+        width:100% !important;
+        max-width:none !important;
+      }
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip-container,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::before,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::after,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) > .leaflet-popup-close-button,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
+      .diveatlas-mobile-sheet-handle {
+        display:grid;
+        width:100%;
+        height:20px;
+        place-items:center;
+        margin:-8px 0 6px;
+        padding:0;
+        border:0;
+        background:transparent;
+        cursor:grab;
+        touch-action:none;
+      }
+      .diveatlas-mobile-sheet-handle::before {
+        content:'';
+        width:36px;
+        height:4px;
+        border-radius:999px;
+        background:var(--faint);
+      }
+      .diveatlas-mobile-sheet-handle:active { cursor:grabbing; }
     }
     html[data-theme="dark"] .dive-conditions-panel, html[data-theme="dark"] .dive-conditions-popup-content {
       --dc-bg-easy:#19382F;
@@ -24293,6 +24377,29 @@ ZSD·2016–2025</span></span>
     }
   });
 
+  function returnMapPopupToParentSheet(popup) {
+    const returnTarget = popup?._diveAtlasReturnTarget || popup?._diveAtlasReturnRatingSitePopup;
+    if (returnTarget?.location) {
+      const parentPopup = ensureDiveConditionsPopup();
+      parentPopup._diveAtlasLayerKey = returnTarget.parentLayer || 'dive-conditions';
+      parentPopup._diveAtlasReturnDiveSitePopup = returnTarget.sitePopup || null;
+      setDiveConditionsLocation(returnTarget.location, {
+        forcePopup:true,
+        month:returnTarget.month || diveSiteRatingMonth()
+      });
+      return true;
+    }
+    const sitePopup = popup?._diveAtlasReturnDiveSitePopup;
+    if (!sitePopup?._diveAtlasOwnerKey) return false;
+    const siteEntry = Array.from(diveSiteMarkerCache.values()).find(entry =>
+      entry.marker?.getPopup?.() === sitePopup ||
+      (sitePopup._diveAtlasSiteId && entry.marker?.getPopup?.()?._diveAtlasSiteId === sitePopup._diveAtlasSiteId)
+    );
+    if (!siteEntry?.marker) return false;
+    sitePopup._diveAtlasLayerKey = 'dive';
+    openManagedPopup(sitePopup._diveAtlasOwnerKey, sitePopup, siteEntry.marker.getLatLng(), siteEntry.marker);
+    return true;
+  }
   function syncDiveRatingPopupForViewport(popup) {
     if (!popup || popup._diveAtlasLayerKey !== 'dive-conditions') return false;
     const element = popup.getElement?.();
@@ -24328,6 +24435,27 @@ ZSD·2016–2025</span></span>
         handle.addEventListener('click', () => popup.close());
         header.prepend(handle);
       }
+      const content = element.querySelector('.leaflet-popup-content');
+      if (content && content._diveAtlasRatingSwipeBound !== true) {
+        content._diveAtlasRatingSwipeBound = true;
+        let dragStart = null;
+        const chartSelector = '#diveExperienceMonthComparison, .dive-experience-month-chart, .dive-conditions-score-chart, .waves-seasonal-chart, .regional-currents-month-chart, .temperature-profile-chart, .temperature-year-chart, .coral-heat-stress-history-chart, .tide-popup-chart';
+        content.addEventListener('pointerdown', event => {
+          if (event.button !== 0 || event.target.closest(chartSelector)) return;
+          dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
+        }, { passive:true });
+        content.addEventListener('pointerup', event => {
+          if (!dragStart || event.pointerId !== dragStart.id) return;
+          const deltaX = event.clientX - dragStart.x;
+          const deltaY = event.clientY - dragStart.y;
+          dragStart = null;
+          if (deltaX > 64 && deltaX > Math.abs(deltaY) * 1.25) {
+            event.preventDefault();
+            returnMapPopupToParentSheet(popup);
+          }
+        });
+        content.addEventListener('pointercancel', () => { dragStart = null; });
+      }
       element.classList.add('dive-conditions-rating-sheet');
       // Leaflet positions popups inside a panning/transformed map pane. Moving
       // this one popup to body lets CSS pin it to the phone viewport instead.
@@ -24339,17 +24467,82 @@ ZSD·2016–2025</span></span>
     }
     return useMobileSheet;
   }
+  function syncOtherMapPopupForViewport(popup) {
+    if (!popup || popup._diveAtlasLayerKey === 'dive-conditions') return false;
+    const element = popup.getElement?.();
+    if (!element) return false;
+    const useMobileSheet = window.matchMedia('(max-width: 720px)').matches;
+    popup._diveAtlasMapPopupPane ||= popup.getPane?.();
+    if (useMobileSheet) {
+      const content = element.querySelector('.leaflet-popup-content');
+      if (content && !content.querySelector('.diveatlas-mobile-sheet-handle')) {
+        const handle = document.createElement('button');
+        handle.type = 'button';
+        handle.className = 'diveatlas-mobile-sheet-handle';
+        handle.setAttribute('aria-label', 'Hide details sheet; swipe down');
+        handle.title = 'Swipe down to hide';
+        let dragStart = null;
+        handle.addEventListener('pointerdown', event => {
+          if (event.button !== 0) return;
+          dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
+          handle.setPointerCapture?.(event.pointerId);
+        });
+        handle.addEventListener('pointerup', event => {
+          if (!dragStart || event.pointerId !== dragStart.id) return;
+          const deltaY = event.clientY - dragStart.y;
+          const deltaX = event.clientX - dragStart.x;
+          dragStart = null;
+          if (deltaY > 56 && deltaY > Math.abs(deltaX) * 1.2) {
+            event.preventDefault();
+            popup.close();
+          }
+        });
+        handle.addEventListener('pointercancel', () => { dragStart = null; });
+        handle.addEventListener('click', () => popup.close());
+        content.prepend(handle);
+      }
+      if (content && content._diveAtlasChildSheetSwipeBound !== true) {
+        content._diveAtlasChildSheetSwipeBound = true;
+        let dragStart = null;
+        const chartSelector = '.waves-seasonal-chart, .regional-currents-month-chart, .temperature-profile-chart, .temperature-year-chart, .water-clarity-seasonal-chart, .coral-heat-stress-history-chart, .tide-popup-chart';
+        content.addEventListener('pointerdown', event => {
+          if (event.button !== 0 || event.target.closest(chartSelector)) return;
+          dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
+        }, { passive:true });
+        content.addEventListener('pointerup', event => {
+          if (!dragStart || event.pointerId !== dragStart.id) return;
+          const deltaX = event.clientX - dragStart.x;
+          const deltaY = event.clientY - dragStart.y;
+          dragStart = null;
+          if (deltaX <= 64 || deltaX <= Math.abs(deltaY) * 1.25) return;
+          event.preventDefault();
+          returnMapPopupToParentSheet(popup);
+        });
+        content.addEventListener('pointercancel', () => { dragStart = null; });
+      }
+      element.classList.add('diveatlas-mobile-sheet');
+      if (element.parentElement !== document.body) document.body.appendChild(element);
+    } else {
+      element.classList.remove('diveatlas-mobile-sheet');
+      const pane = popup._diveAtlasMapPopupPane || popup.getPane?.();
+      if (pane && element.parentElement !== pane) pane.appendChild(element);
+    }
+    return useMobileSheet;
+  }
+  function syncMapPopupForViewport(popup) {
+    return syncDiveRatingPopupForViewport(popup) || syncOtherMapPopupForViewport(popup);
+  }
   window.addEventListener('resize', () => {
-    if (diveConditionsPopup?.isOpen()) syncDiveRatingPopupForViewport(diveConditionsPopup);
+    if (activeClickPopup?.isOpen()) syncMapPopupForViewport(activeClickPopup);
   }, { passive:true });
 
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
-    if (popup._diveAtlasRatingHandleContentUpdate !== true) {
-      popup._diveAtlasRatingHandleContentUpdate = true;
+    if (popup._diveAtlasMobileSheetContentUpdate !== true) {
+      popup._diveAtlasMobileSheetContentUpdate = true;
       popup.on('contentupdate', () => {
-        if (popup.isOpen()) syncDiveRatingPopupForViewport(popup);
+        if (popup.isOpen()) syncMapPopupForViewport(popup);
       });
     }
     hydrateDiveSiteSummaryPopup(popup);
@@ -24371,8 +24564,8 @@ ZSD·2016–2025</span></span>
         popup._diveAtlasCurrentClickGuard = true;
       }
     }
-    const mobileRatingSheet = syncDiveRatingPopupForViewport(popup);
-    if (!mobileRatingSheet) beginMapPopupPlacement(popup);
+    const mobileMapSheet = syncMapPopupForViewport(popup);
+    if (!mobileMapSheet) beginMapPopupPlacement(popup);
     if (popup !== activeClickPopup) {
       activeClickPopupRevision += 1;
       popup._diveAtlasOwnerRevision = activeClickPopupRevision;
@@ -24398,7 +24591,7 @@ ZSD·2016–2025</span></span>
       sharedMapState.sharedSitePopupRestored = true;
     }
     cleanRestoredSharedUrl();
-    if (popup._diveAtlasSafeArea && !mobileRatingSheet) {
+    if (popup._diveAtlasSafeArea && !mobileMapSheet) {
       // Apply vertical flip and body shifts before the browser can paint the
       // popup at its default position. Popup placement never moves the map.
       popup.getElement()?.classList.add('diveatlas-popup-pending');
