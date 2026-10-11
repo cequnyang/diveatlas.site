@@ -5804,11 +5804,15 @@
     .temperature-info-popover[data-theme="light"] dt { color: #68778a; }
     html[data-theme="light"] .bio-legend .layer-symbol--contours path { stroke: var(--layers-contour-color); }
     @media (max-width: 720px) {
-      .bio-legend { width: min(calc(380px * .82), calc(100vw - 24px)); max-height: min(80dvh, 620px); padding-inline: 14px; }
-      .bio-legend.is-collapsed { width: min(calc(380px * .82), calc(100vw - 24px)); padding-inline: 14px; }
-      .bio-legend-heading { min-height: 50px; }
-      .bio-legend-heading { margin-inline: -14px; padding-inline: 10px 14px; }
-      .bio-legend.is-collapsed .bio-legend-heading { min-height: 50px; margin-inline: -14px; padding-inline: 10px 14px; }
+      .bio-legend { width: min(380px, calc(100vw - 24px)); max-height: min(80dvh, 620px); padding-inline: 14px; }
+      .bio-legend.is-collapsed {
+        width: min(380px, calc(100vw - 24px));
+        padding-inline: 10px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(17, 37, 52, .14);
+      }
+      .bio-legend-heading { min-height: 50px; margin-inline: -14px; padding-inline: 10px 14px; }
+      .bio-legend.is-collapsed .bio-legend-heading { min-height: 50px; margin-inline: -10px; padding-inline: 12px; gap: 4px; }
       .bio-legend-layers { max-height: calc(min(80dvh, 620px) - 94px); }
     .temperature-configuration { gap: 8px; }
     }
@@ -6006,6 +6010,57 @@
         overflow-y: auto;
         overscroll-behavior: contain;
       }
+    }
+    @media (max-width: 720px) {
+      .bio-legend {
+        display:flex;
+        flex-direction:column;
+        max-height:calc(100dvh - 60px - env(safe-area-inset-bottom, 0px));
+        overflow:hidden;
+      }
+      .bio-legend-heading { flex:0 0 auto; }
+      .bio-legend.is-mobile-auto-collapsed {
+        width:48px;
+        min-height:48px;
+        padding:0;
+        border-radius:50%;
+      }
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-heading {
+        width:48px;
+        min-height:48px;
+        margin:0;
+        padding:0;
+        justify-content:center;
+      }
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-title {
+        width:48px;
+        min-width:48px;
+        min-height:48px;
+        flex:0 0 48px;
+        justify-content:center;
+        padding:0;
+      }
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-title-label,
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-collapsed-summary,
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-title-chevron,
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-bulk-action,
+      .bio-legend.is-mobile-auto-collapsed .bio-legend-overflow {
+        display:none;
+      }
+      .bio-legend-row .legend-label { font-size:18px; line-height:1.35; }
+      .bio-legend-row:has(.layer-toggle-input:not(:disabled)) { cursor:pointer; }
+      .bio-legend-row:has(.layer-toggle-input:not(:disabled)):active { background:color-mix(in srgb, var(--primary) 8%, transparent); }
+      .bio-legend.is-collapsed .bio-legend-layers { flex:0 0 auto; }
+      .bio-legend-layers {
+        flex:1 1 auto;
+        min-height:0;
+        max-height:none;
+        overflow-x:hidden;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+        scrollbar-width:thin;
+      }
+      .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
 
   </style>
@@ -8781,6 +8836,7 @@ ZSD·2016–2025</span></span>
   }
   const ENVIRONMENT_VIEW_IDS = new Set(['default', ...(DIVE_EXPERIENCE_OUTLOOK_ENABLED ? ['dive-experience-outlook'] : []), 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition']);
   const LEGEND_AUTO_COLLAPSE_DESKTOP_MS = 20_000;
+  const LEGEND_AUTO_COLLAPSE_MOBILE_MS = 6_000;
 
   function readSavedEnvironmentalView() {
     try {
@@ -8840,9 +8896,10 @@ ZSD·2016–2025</span></span>
   const compactLayersPanelQuery = window.matchMedia('(max-width: 720px)');
   if (!legendPreferenceSet && compactLayersPanelQuery.matches) legendCollapsed = true;
 
-  function setLegendCollapsed(collapsed, { persist = true } = {}) {
+  function setLegendCollapsed(collapsed, { persist = true, auto = false } = {}) {
     legendCollapsed = Boolean(collapsed);
     els.bioLegend.classList.toggle('is-collapsed', legendCollapsed);
+    els.bioLegend.classList.toggle('is-mobile-auto-collapsed', legendCollapsed && compactLayersPanelQuery.matches && auto);
     els.bioLegend.setAttribute('aria-expanded', String(!legendCollapsed));
     els.bioLegendTitle?.setAttribute('aria-expanded', String(!legendCollapsed));
     els.bioLegendLayers?.setAttribute('aria-hidden', String(legendCollapsed));
@@ -8866,11 +8923,16 @@ ZSD·2016–2025</span></span>
   }
 
   function scheduleLegendAutoCollapse() {
-    if (compactLayersPanelQuery.matches || legendCollapsed || legendCollapseTimer || isTutorialTransitioning() || !els.tutorialBackdrop.hidden) return;
+    const isMobile = compactLayersPanelQuery.matches;
+    if ((isMobile && (!legendCollapsed || els.bioLegend.classList.contains('is-mobile-auto-collapsed'))) ||
+        (!isMobile && legendCollapsed) || legendCollapseTimer || isTutorialTransitioning() || !els.tutorialBackdrop.hidden) return;
+    const delay = isMobile ? LEGEND_AUTO_COLLAPSE_MOBILE_MS : LEGEND_AUTO_COLLAPSE_DESKTOP_MS;
     legendCollapseTimer = setTimeout(() => {
       legendCollapseTimer = null;
-      if (!isTutorialTransitioning() && els.tutorialBackdrop.hidden) setLegendCollapsed(true);
-    }, LEGEND_AUTO_COLLAPSE_DESKTOP_MS);
+      if (!isTutorialTransitioning() && els.tutorialBackdrop.hidden) {
+        setLegendCollapsed(true, { persist: !compactLayersPanelQuery.matches, auto: compactLayersPanelQuery.matches });
+      }
+    }, delay);
   }
 
   function restartLegendAutoCollapse() {
@@ -8882,8 +8944,11 @@ ZSD·2016–2025</span></span>
   setLegendCollapsed(legendCollapsed, { persist: false });
   compactLayersPanelQuery.addEventListener('change', event => {
     restartLegendAutoCollapse();
+    els.bioLegend.classList.remove('is-mobile-auto-collapsed');
     if (event.matches && !legendPreferenceSet) setLegendCollapsed(true, { persist: false });
+    if (event.matches && legendCollapsed) scheduleLegendAutoCollapse();
   });
+  if (compactLayersPanelQuery.matches && legendCollapsed) scheduleLegendAutoCollapse();
   els.bioLegendTitle.setAttribute('aria-controls', 'bioLegendLayers');
 
   function isDarkOverlayTheme() {
@@ -26976,6 +27041,15 @@ ZSD·2016–2025</span></span>
   els.bioLegendTitle.addEventListener('click', () => {
     cancelLegendAutoCollapse();
     setLegendCollapsed(!legendCollapsed);
+    if (legendCollapsed && compactLayersPanelQuery.matches) scheduleLegendAutoCollapse();
+  });
+
+  els.bioLegend.addEventListener('click', event => {
+    if (!compactLayersPanelQuery.matches) return;
+    const row = event.target.closest('.bio-legend-row');
+    if (!row || event.target.closest('.layer-switch-label, .layer-toggle-input')) return;
+    const toggle = row.querySelector('.layer-toggle-input:not(:disabled)');
+    if (toggle) toggle.click();
   });
 
 
