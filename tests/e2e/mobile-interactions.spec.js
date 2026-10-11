@@ -12,6 +12,121 @@ test.beforeEach(async ({ page }, testInfo) => openMap(page, {
   disableLegendAutoCollapse: testInfo.title !== 'mobile layer rows toggle across the row and the collapsed bar shrinks after idle'
 }));
 
+async function swipeRightOn(page, selector) {
+  await page.locator(selector).evaluate(panel => {
+    const rect = panel.getBoundingClientRect();
+    const start = new Touch({ identifier:7, target:panel, clientX:rect.left + 30, clientY:200 });
+    const end = new Touch({ identifier:7, target:panel, clientX:rect.left + 120, clientY:204 });
+    panel.dispatchEvent(new TouchEvent('touchstart', {
+      bubbles:true, cancelable:true, touches:[start], targetTouches:[start], changedTouches:[start]
+    }));
+    panel.dispatchEvent(new TouchEvent('touchend', {
+      bubbles:true, cancelable:true, touches:[], targetTouches:[], changedTouches:[end]
+    }));
+  });
+}
+
+async function expectTitleAtDrawerInset(drawer, titleSelector, inset) {
+  const titleOffset = await drawer.evaluate((panel, selector) => {
+    const title = panel.querySelector(selector);
+    return title.getBoundingClientRect().left - panel.getBoundingClientRect().left;
+  }, titleSelector);
+  expect(titleOffset).toBeCloseTo(inset, 0);
+}
+
+test('language selector opens as a half-width page that slides in from the right', async ({ page }) => {
+  const trigger = page.locator('#languageMenuButton');
+  const languagePage = page.locator('#languageDropdown');
+
+  await expect(trigger.locator('#languageMenuLabel')).toBeHidden();
+  await expect(trigger.locator('.language-globe-icon')).toBeVisible();
+  await expect(trigger.locator('.language-chevron-icon')).toBeHidden();
+  expect(await page.evaluate(() => {
+    const language = document.querySelector('#languageMenuButton').getBoundingClientRect();
+    const menu = document.querySelector('#topMenuButton').getBoundingClientRect();
+    return menu.left - language.right;
+  })).toBeLessThanOrEqual(8);
+  await expect(trigger.locator('.language-globe-icon circle')).toHaveAttribute('stroke-width', '2');
+  await trigger.click();
+  await expect(languagePage).toBeVisible();
+  await expect(languagePage).toHaveClass(/is-open/);
+  const languageHeader = languagePage.locator('.language-page-header');
+  await expect(languageHeader).toBeVisible();
+  await expect(languagePage.locator('.language-page-back')).toHaveCount(0);
+  await expectTitleAtDrawerInset(languagePage, '.language-page-header > span', 21);
+  await expect.poll(() => languageHeader.evaluate(node => node.getBoundingClientRect().top)).toBeLessThanOrEqual(8);
+  await expect.poll(() => languagePage.evaluate(node =>
+    Math.abs(node.getBoundingClientRect().left - document.documentElement.clientWidth / 2)
+  )).toBeLessThan(1);
+  const pageBounds = await languagePage.evaluate(node => {
+    const rect = node.getBoundingClientRect();
+    return { left:rect.left, right:rect.right, width:rect.width, viewport:document.documentElement.clientWidth };
+  });
+  expect(Math.abs(pageBounds.right - pageBounds.viewport)).toBeLessThan(1);
+  expect(Math.abs(pageBounds.width - pageBounds.viewport / 2)).toBeLessThan(1);
+  expect(Math.abs(pageBounds.left - pageBounds.viewport / 2)).toBeLessThan(1);
+
+  await languagePage.locator('[data-language="es"]').click();
+  await expect(page.locator('#langSelect')).toHaveValue('es');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await expect(languagePage).toBeHidden({ timeout:1_000 });
+  await trigger.click();
+  await expect(languagePage).toHaveClass(/is-open/);
+  await swipeRightOn(page, '#languageDropdown');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await expect(languagePage).toBeHidden({ timeout:1_000 });
+});
+
+test('main menu opens as a half-width page from the right on mobile', async ({ page }) => {
+  const trigger = page.locator('#topMenuButton');
+  const menuPage = page.locator('#topMenuDropdown');
+
+  await trigger.click();
+  await expect(menuPage).toBeVisible();
+  await expect(menuPage).toHaveClass(/is-open/);
+  const menuHeader = menuPage.locator('.top-menu-page-header');
+  await expect(menuHeader).toBeVisible();
+  await expect(menuPage.locator('.top-menu-page-back')).toHaveCount(0);
+  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/dive-sites/"]')).toBeHidden();
+  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/regions/"]')).toBeHidden();
+  await expect(menuPage.locator('#aboutMenuItem')).toBeVisible();
+  await expect(menuPage.locator('#contactMenuItem')).toBeVisible();
+  await expectTitleAtDrawerInset(menuPage, '#topMenuPageTitle', 15);
+  await expect.poll(() => menuHeader.evaluate(node => node.getBoundingClientRect().top)).toBeLessThanOrEqual(8);
+  const menuVersion = menuPage.locator('.top-menu-version');
+  const versionBottomGap = await menuPage.evaluate(node => {
+    const panelBottom = node.getBoundingClientRect().bottom;
+    const versionBottom = node.querySelector('.top-menu-version').getBoundingClientRect().bottom;
+    return panelBottom - versionBottom;
+  });
+  expect(versionBottomGap).toBeLessThanOrEqual(24);
+  await expect.poll(() => menuPage.evaluate(node =>
+    Math.abs(node.getBoundingClientRect().left - document.documentElement.clientWidth / 2)
+  )).toBeLessThan(1);
+  const pageBounds = await menuPage.evaluate(node => {
+    const rect = node.getBoundingClientRect();
+    return { left:rect.left, right:rect.right, width:rect.width, viewport:document.documentElement.clientWidth };
+  });
+  expect(Math.abs(pageBounds.right - pageBounds.viewport)).toBeLessThan(1);
+  expect(Math.abs(pageBounds.width - pageBounds.viewport / 2)).toBeLessThan(1);
+  expect(Math.abs(pageBounds.left - pageBounds.viewport / 2)).toBeLessThan(1);
+
+  await swipeRightOn(page, '#topMenuDropdown');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await expect(menuPage).toBeHidden({ timeout:1_000 });
+  await trigger.click();
+  await expect(menuPage).toHaveClass(/is-open/);
+  await menuPage.locator('#aboutMenuItem').click();
+  const aboutModal = page.locator('#aboutInfoModal');
+  await expect(aboutModal).toBeVisible();
+  await expect(menuPage).toBeHidden({ timeout:1_000 });
+  await expect(aboutModal.locator('[role="dialog"]')).toHaveAttribute('aria-modal', 'true');
+  await expect(aboutModal.locator('#aboutInfoContent')).toContainText('DiveAtlas is an interactive map');
+  await page.keyboard.press('Escape');
+  await expect(aboutModal).toBeHidden();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+});
+
 test('mobile layer rows toggle across the row and the collapsed bar shrinks after idle', async ({ page }) => {
   const panel = page.locator('#bioLegend');
   const title = page.locator('#bioLegendTitle');

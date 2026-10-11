@@ -371,6 +371,52 @@
       -webkit-touch-callout: none;
     }
 
+    .mobile-map-credits-control { display:none; }
+
+    @media (max-width:720px) {
+      .leaflet-control-attribution { display:none !important; }
+      .mobile-map-credits-control {
+        display:block;
+        max-width:calc(100vw - 20px);
+      }
+      .mobile-map-credits-button {
+        min-height:28px;
+        padding:4px 9px;
+        border:1px solid var(--line);
+        border-radius:6px;
+        background:var(--panel-solid);
+        box-shadow:0 1px 5px rgba(16,24,40,.16);
+        color:var(--muted);
+        font-size:11px;
+        line-height:18px;
+        cursor:pointer;
+      }
+      .mobile-map-credits-button:hover,
+      .mobile-map-credits-button:focus-visible {
+        color:var(--text);
+        outline:2px solid var(--primary);
+        outline-offset:1px;
+      }
+      .mobile-map-credits-panel {
+        box-sizing:border-box;
+        width:min(340px, calc(100vw - 20px));
+        max-height:34vh;
+        margin-top:5px;
+        padding:7px 9px;
+        overflow:auto;
+        border:1px solid var(--line);
+        border-radius:6px;
+        background:var(--panel-solid);
+        box-shadow:0 2px 9px rgba(16,24,40,.18);
+        color:var(--muted);
+        font-size:11px;
+        line-height:1.45;
+        overflow-wrap:anywhere;
+      }
+      .mobile-map-credits-panel a { color:var(--primary); }
+      .mobile-map-credits-panel[hidden] { display:none; }
+    }
+
     #map .maplibregl-map,
     #map .maplibregl-canvas-container,
     #map .maplibregl-canvas {
@@ -2746,6 +2792,10 @@
     }
     .dive-search-load-more:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
 
+    @media (max-width:720px) {
+      .dive-search-load-more { display:none; }
+    }
+
     .dive-search-result-name {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -3619,16 +3669,78 @@
 
     #topMenuMobileSettings { display: none; }
 
+    .top-menu-page-header { display:none; }
+
     @media (max-width: 720px) {
+      #topMenuDropdown {
+        position:fixed;
+        z-index:2000;
+        inset:0 0 0 auto;
+        box-sizing:border-box;
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+        width:50vw;
+        max-width:360px;
+        min-width:0;
+        height:100vh;
+        height:100dvh;
+        max-height:none;
+        overflow-x:hidden;
+        overflow-y:auto;
+        padding:env(safe-area-inset-top, 0px) 14px calc(env(safe-area-inset-bottom, 0px) + 20px);
+        border:0;
+        border-left:1px solid var(--line);
+        border-radius:0;
+        background:var(--panel-solid);
+        box-shadow:-10px 0 32px rgba(18,34,51,.18);
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .26s cubic-bezier(.2,.72,.2,1), visibility .26s;
+        overscroll-behavior:contain;
+      }
+      #topMenuDropdown.is-open { transform:translateX(0); visibility:visible; }
+      .top-menu-page-header {
+        position:sticky;
+        top:env(safe-area-inset-top, 0px);
+        z-index:1;
+        display:flex;
+        flex:0 0 auto;
+        align-items:center;
+        gap:12px;
+        min-height:52px;
+        margin-bottom:6px;
+        background:var(--panel-solid);
+        color:var(--text);
+        font-size:19px;
+        font-weight:650;
+      }
+      #topMenuDropdown .top-menu-dropdown-item {
+        flex:0 0 auto;
+        min-height:52px;
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:16px;
+        line-height:24px;
+      }
+      #topMenuDropdown a.top-menu-dropdown-item[href="/dive-sites/"],
+      #topMenuDropdown a.top-menu-dropdown-item[href="/regions/"] { display:none; }
+      #topMenuDropdown .seo-menu-summary { display:none; }
+      #topMenuDropdown .top-menu-version { margin-top:auto; }
+      @media (prefers-reduced-motion:reduce) {
+        #topMenuDropdown { transition:none; }
+      }
       #topMenuMobileSettings {
-        display: flex;
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
         align-items: center;
-        justify-content: space-between;
-        gap: 4px;
-        margin: 0 4px 6px;
-        padding: 2px 4px 8px;
+        justify-items:center;
+        gap:8px 4px;
+        margin:4px 0 10px;
+        padding:4px 0 12px;
         border-bottom: 1px solid var(--line-soft);
       }
+      #topMenuMobileSettings .unit-setting { align-items:center; }
       #topMenuMobileSettings .top-menu-share-wrap { flex: 0 0 40px; width: 40px; height: 40px; }
       #topMenuMobileSettings .top-menu-share { border-radius:6px; transition:background-color .16s ease; }
       #topMenuMobileSettings .top-menu-share:hover,
@@ -3783,6 +3895,7 @@
       white-space: nowrap;
     }
     .top-menu-lang-trigger svg { width: 12px; height: 12px; flex: 0 0 12px; fill: none; }
+    .top-menu-lang-trigger .language-globe-icon { display:none; }
     .top-menu-lang-trigger[aria-expanded="true"] { background: var(--gh-neutral-muted); }
     #languageMenuButton:hover,
     #languageMenuButton:active,
@@ -3815,11 +3928,92 @@
     .language-dropdown::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .language-dropdown .top-menu-dropdown-item { min-height: 34px; padding: 7px 10px; font-size: 13px; }
     .language-dropdown .top-menu-dropdown-item[aria-checked="true"] { font-weight: 600; }
+    .language-page-header { display:none; }
     .top-menu-lang-select { display: none; }
+
+    @media (max-width:720px) {
+      #languageMenu {
+        --lang-control-width:40px;
+        width:40px;
+        min-width:40px;
+        max-width:40px;
+        flex:0 0 40px;
+      }
+      #languageMenu + .top-menu-menu { margin-left:.5px; }
+      #languageMenuLabel { display:none; }
+      #languageMenuButton { width:40px; min-width:40px; max-width:40px; height:36px; padding:0; justify-content:center; }
+      #languageMenuButton .language-chevron-icon { display:none; }
+      #languageMenuButton .language-globe-icon { display:block; width:21.6px; height:21.6px; flex:0 0 21.6px; }
+      #languageDropdown {
+        position:fixed;
+        z-index:2000;
+        inset:0 0 0 auto;
+        box-sizing:border-box;
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+        width:50vw;
+        max-width:360px;
+        min-width:0;
+        max-height:none;
+        height:100vh;
+        height:100dvh;
+        overflow-x:hidden;
+        overflow-y:auto;
+        padding:env(safe-area-inset-top, 0px) 20px calc(env(safe-area-inset-bottom, 0px) + 20px);
+        border:0;
+        border-left:1px solid var(--line);
+        border-radius:0;
+        background:var(--panel-solid);
+        box-shadow:-10px 0 32px rgba(18,34,51,.18);
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .26s cubic-bezier(.2,.72,.2,1), visibility .26s;
+        overscroll-behavior:contain;
+      }
+      #languageDropdown.is-open { transform:translateX(0); visibility:visible; }
+      .language-page-header {
+        position:sticky;
+        top:env(safe-area-inset-top, 0px);
+        z-index:1;
+        display:flex;
+        flex:0 0 auto;
+        align-items:center;
+        gap:12px;
+        min-height:52px;
+        margin-bottom:8px;
+        background:var(--panel-solid);
+        color:var(--text);
+        font-size:19px;
+        font-weight:650;
+      }
+      #languageDropdown .top-menu-dropdown-item {
+        flex:0 0 auto;
+        min-height:52px;
+        padding:10px 12px;
+        border-radius:10px;
+        font-size:18px;
+        line-height:26px;
+      }
+      #languageDropdown .top-menu-dropdown-item[aria-checked="true"]::after {
+        content:"✓";
+        margin-left:auto;
+        color:var(--primary);
+        font-size:19px;
+        font-weight:700;
+      }
+      @media (prefers-reduced-motion:reduce) {
+        #languageDropdown { transition:none; }
+      }
+    }
 
     body.contact-modal-open {
       overflow: hidden;
     }
+    body.about-info-modal-open { overflow:hidden; }
+    body.language-page-open { overflow:hidden; }
+    body.menu-page-open { overflow:hidden; }
+    body:is(.language-page-open,.menu-page-open) .top-menu-bar { z-index:3000; }
     body.site-suggestion-open { overflow: hidden; }
     body.share-modal-open { overflow: hidden; }
 
@@ -3866,6 +4060,23 @@
     .contact-dialog::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
     .contact-dialog::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
     .contact-dialog::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    .about-info-modal { z-index:2300; }
+    .about-info-dialog { max-width:520px; }
+    .about-info-content {
+      padding:14px 20px 20px;
+      color:var(--text);
+      font-size:14px;
+      line-height:1.55;
+    }
+    .about-info-content p { margin:0; }
+    .about-info-content p + p { margin-top:12px; }
+    .about-info-content .top-menu-about-copyright {
+      padding-top:12px;
+      border-top:1px solid var(--line-soft);
+      color:var(--muted);
+      font-size:12px;
+    }
 
     .contact-dialog-header {
       display: flex;
@@ -6153,9 +6364,14 @@
       <div class="top-menu-lang" id="languageMenu">
         <button class="top-menu-menu-button top-menu-lang-trigger" id="languageMenuButton" type="button" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="languageDropdown">
           <span id="languageMenuLabel">EN</span>
-          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="language-chevron-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="language-globe-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.8 10h14.4M10 2.5c2 2 3 4.5 3 7.5s-1 5.5-3 7.5c-2-2-3-4.5-3-7.5s1-5.5 3-7.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="top-menu-dropdown language-dropdown" id="languageDropdown" role="menu" aria-label="Language" hidden></div>
+        <div class="top-menu-dropdown language-dropdown" id="languageDropdown" role="menu" aria-label="Language" hidden>
+          <div class="language-page-header">
+            <span>Language</span>
+          </div>
+        </div>
         <select class="top-menu-lang-select" id="langSelect" aria-label="Language" tabindex="-1" aria-hidden="true">
           <option value="en">EN</option>
           <option value="zh">中文</option>
@@ -6184,6 +6400,9 @@
           aria-controls="topMenuDropdown"
         ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
         <div class="top-menu-dropdown" id="topMenuDropdown" hidden>
+          <div class="top-menu-page-header">
+            <span id="topMenuPageTitle">Menu</span>
+          </div>
           <div id="topMenuMobileSettings"></div>
           <section class="auth-menu-section" id="authMenuSection" aria-label="Account">
             <div class="auth-menu-status" id="authMenuStatus" role="status" aria-live="polite">Checking account…</div>
@@ -6267,6 +6486,26 @@
           <button class="contact-button contact-button-primary" id="contactSubmitButton" type="submit">Send message</button>
         </div>
       </form>
+    </section>
+  </div>
+
+  <div class="contact-modal about-info-modal" id="aboutInfoModal" hidden>
+    <div class="contact-modal-backdrop" data-about-close></div>
+    <section
+      class="contact-dialog about-info-dialog"
+      id="aboutInfoDialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aboutInfoTitle"
+      aria-describedby="aboutInfoContent"
+    >
+      <div class="contact-dialog-header">
+        <h2 class="contact-dialog-title" id="aboutInfoTitle">About DiveAtlas</h2>
+        <button class="contact-dialog-close" id="aboutInfoCloseButton" type="button" aria-label="Close" title="Close" data-about-close>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22-1.06 1.06L8 9.06l-3.22 3.22-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg>
+        </button>
+      </div>
+      <div class="about-info-content" id="aboutInfoContent"></div>
     </section>
   </div>
 
@@ -7440,6 +7679,45 @@ ZSD·2016–2025</span></span>
     wheelDebounceTime: 60
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
+  const mobileMapCreditsControl = L.control({ position:'bottomleft' });
+  mobileMapCreditsControl.onAdd = () => {
+    const container = L.DomUtil.create('div', 'mobile-map-credits-control');
+    const button = L.DomUtil.create('button', 'mobile-map-credits-button', container);
+    const panel = L.DomUtil.create('div', 'mobile-map-credits-panel', container);
+    button.type = 'button';
+    button.textContent = '© Map credits';
+    button.setAttribute('aria-label', 'Show map credits');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', 'mobileMapCreditsPanel');
+    panel.id = 'mobileMapCreditsPanel';
+    panel.setAttribute('role', 'region');
+    panel.setAttribute('aria-label', 'Map data and library credits');
+    panel.hidden = true;
+
+    let syncedAttribution = '';
+    const syncAttribution = () => {
+      const source = map.getContainer().querySelector('.leaflet-control-attribution');
+      if (!source || source.innerHTML === syncedAttribution) return;
+      syncedAttribution = source.innerHTML;
+      panel.innerHTML = syncedAttribution;
+    };
+    const observer = new MutationObserver(syncAttribution);
+    observer.observe(map.getContainer(), { childList:true, subtree:true, characterData:true });
+    syncAttribution();
+
+    const setExpanded = expanded => {
+      panel.hidden = !expanded;
+      button.setAttribute('aria-expanded', String(expanded));
+      button.setAttribute('aria-label', `${expanded ? 'Hide' : 'Show'} map credits`);
+    };
+    button.addEventListener('click', () => setExpanded(panel.hidden));
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(panel);
+    map.once('unload', () => observer.disconnect());
+    return container;
+  };
+  mobileMapCreditsControl.addTo(map);
+
   const hasSharedViewport = Boolean(
     sharedMapState.center || Number.isFinite(sharedMapState.zoom) ||
     sharedMapState.selectedSiteId || sharedMapState.requestedSiteId
@@ -8538,8 +8816,12 @@ ZSD·2016–2025</span></span>
     tutorialLanguageDropdown: document.getElementById('tutorialLanguageDropdown'),
     topMenuButton: document.getElementById('topMenuButton'),
     topMenuDropdown: document.getElementById('topMenuDropdown'),
+    topMenuPageTitle: document.getElementById('topMenuPageTitle'),
     aboutMenuItem: document.getElementById('aboutMenuItem'),
     topMenuAboutTooltip: document.getElementById('topMenuAboutTooltip'),
+    aboutInfoModal: document.getElementById('aboutInfoModal'),
+    aboutInfoContent: document.getElementById('aboutInfoContent'),
+    aboutInfoCloseButton: document.getElementById('aboutInfoCloseButton'),
     contactMenuItem: document.getElementById('contactMenuItem'),
     tutorialBackdrop: document.getElementById('tutorialBackdrop'),
     tutorialDialog: document.getElementById('tutorialDialog'),
@@ -11811,7 +12093,7 @@ ZSD·2016–2025</span></span>
     if (!select || !wrapper || !option) return;
 
     [els.languageDropdown, els.tutorialLanguageDropdown].forEach(dropdown => {
-      if (!dropdown.childElementCount) {
+      if (!dropdown.querySelector('[data-language]')) {
         Array.from(select.options).forEach(optionItem => {
           const item = document.createElement('button');
           item.type = 'button';
@@ -12062,6 +12344,7 @@ ZSD·2016–2025</span></span>
     els.themeBtn.title = t('themeTitle');
     els.topMenuButton.title = t('menuTitle');
     els.topMenuButton.setAttribute('aria-label', t('menuTitle'));
+    els.topMenuPageTitle.textContent = t('menuTitle');
     els.aboutMenuItem.textContent = t('menuAbout');
     els.contactMenuItem.textContent = t('menuContact');
     syncLanguageSelectWidth();
@@ -18688,9 +18971,8 @@ ZSD·2016–2025</span></span>
     }
 
     const serializedState = serializeMapState(state);
-    const url = new URL(window.location.href);
+    const url = new URL('/map/', SHARE_SITE_PREVIEW_ORIGIN);
     url.search = serializedState;
-    url.hash = '';
     return url.href;
   }
 
@@ -19681,6 +19963,61 @@ ZSD·2016–2025</span></span>
     // scroll container even though the user's current results remain valid.
     els.diveSearchResultsScroll.scrollTop = resultsScrollTop;
   }
+
+  let diveSearchPullLastY = null;
+  let diveSearchPullDistance = 0;
+  let diveSearchPullLoaded = false;
+  const DIVE_SEARCH_PULL_LOAD_DISTANCE = 96;
+
+  els.diveSearchResultsScroll.addEventListener('touchstart', event => {
+    if (
+      window.innerWidth > 720 ||
+      !els.diveSearchResults.classList.contains('visible') ||
+      event.touches.length !== 1 ||
+      diveSearchVisibleCount >= diveSearchMatches.length
+    ) {
+      diveSearchPullLastY = null;
+      return;
+    }
+    diveSearchPullLastY = event.touches[0].clientY;
+    diveSearchPullDistance = 0;
+    diveSearchPullLoaded = false;
+  }, { passive:true });
+
+  els.diveSearchResultsScroll.addEventListener('touchmove', event => {
+    if (diveSearchPullLastY === null || diveSearchPullLoaded || event.touches.length !== 1) return;
+    const currentY = event.touches[0].clientY;
+    const upwardMovement = diveSearchPullLastY - currentY;
+    diveSearchPullLastY = currentY;
+    if (upwardMovement <= 0) {
+      diveSearchPullDistance = 0;
+      return;
+    }
+
+    const atBottom =
+      els.diveSearchResultsScroll.scrollTop + els.diveSearchResultsScroll.clientHeight >=
+      els.diveSearchResultsScroll.scrollHeight - 2;
+    if (!atBottom) {
+      diveSearchPullDistance = 0;
+      return;
+    }
+
+    // Count only the extra upward drag after the scroll area reaches its end,
+    // so a normal long swipe through the results does not page unexpectedly.
+    diveSearchPullDistance += upwardMovement;
+    if (diveSearchPullDistance >= DIVE_SEARCH_PULL_LOAD_DISTANCE) {
+      diveSearchPullLoaded = true;
+      loadMoreDiveSearchResults();
+    }
+  }, { passive:true });
+
+  const resetDiveSearchPull = () => {
+    diveSearchPullLastY = null;
+    diveSearchPullDistance = 0;
+    diveSearchPullLoaded = false;
+  };
+  els.diveSearchResultsScroll.addEventListener('touchend', resetDiveSearchPull, { passive:true });
+  els.diveSearchResultsScroll.addEventListener('touchcancel', resetDiveSearchPull, { passive:true });
 
   /* ---------- place selection ---------- */
 
@@ -26066,13 +26403,40 @@ ZSD·2016–2025</span></span>
 
   function setLanguageMenuOpen(open, { focusFirst = false } = {}) {
     const isOpen = Boolean(open);
-    els.languageDropdown.hidden = !isOpen;
+    const useMobilePage = window.matchMedia('(max-width:720px)').matches;
+    clearTimeout(setLanguageMenuOpen.closeTimer);
     els.languageMenuButton.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
       setTopMenuOpen(false);
-      if (focusFirst) els.languageDropdown.querySelector('[role="menuitemradio"]')?.focus();
+      els.languageDropdown.hidden = false;
+      if (useMobilePage) {
+        document.body.classList.add('language-page-open');
+        requestAnimationFrame(() => {
+          if (els.languageDropdown.hidden) return;
+          els.languageDropdown.classList.add('is-open');
+          const selected = els.languageDropdown.querySelector('[aria-checked="true"]');
+          (focusFirst ? els.languageDropdown.querySelector('[role="menuitemradio"]') : selected)?.focus();
+        });
+      } else {
+        els.languageDropdown.classList.remove('is-open');
+        if (focusFirst) els.languageDropdown.querySelector('[role="menuitemradio"]')?.focus();
+      }
+    } else if (useMobilePage) {
+      els.languageDropdown.classList.remove('is-open');
+      document.body.classList.remove('language-page-open');
+      setLanguageMenuOpen.closeTimer = setTimeout(() => {
+        if (!els.languageDropdown.classList.contains('is-open')) els.languageDropdown.hidden = true;
+      }, 280);
+    } else {
+      els.languageDropdown.classList.remove('is-open');
+      els.languageDropdown.hidden = true;
     }
   }
+
+  document.getElementById('languagePageBack')?.addEventListener('click', () => {
+    setLanguageMenuOpen(false);
+    els.languageMenuButton.focus();
+  });
 
   els.languageMenuButton.addEventListener('click', event => {
     event.stopPropagation();
@@ -26578,13 +26942,66 @@ ZSD·2016–2025</span></span>
 
   function setTopMenuOpen(open) {
     const nextOpen = Boolean(open);
-    els.topMenuDropdown.hidden = !nextOpen;
+    const useMobilePage = window.matchMedia('(max-width:720px)').matches;
+    clearTimeout(setTopMenuOpen.closeTimer);
     els.topMenuButton.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
-    if (!nextOpen) {
+    if (nextOpen) {
+      els.topMenuDropdown.hidden = false;
+      if (useMobilePage) {
+        document.body.classList.add('menu-page-open');
+        requestAnimationFrame(() => {
+          if (els.topMenuDropdown.hidden) return;
+          els.topMenuDropdown.classList.add('is-open');
+        });
+      } else {
+        els.topMenuDropdown.classList.remove('is-open');
+      }
+    } else {
+      els.topMenuDropdown.classList.remove('is-open');
+      if (useMobilePage) {
+        document.body.classList.remove('menu-page-open');
+        setTopMenuOpen.closeTimer = setTimeout(() => {
+          if (!els.topMenuDropdown.classList.contains('is-open')) els.topMenuDropdown.hidden = true;
+        }, 280);
+      } else {
+        els.topMenuDropdown.hidden = true;
+      }
       els.topMenuAboutTooltip.hidden = true;
       els.aboutMenuItem.setAttribute('aria-expanded', 'false');
     }
   }
+
+  function enableRightSwipeToClose(panel, closePanel) {
+    let startTouch = null;
+    panel.addEventListener('touchstart', event => {
+      if (window.innerWidth > 720 || panel.hidden || !panel.classList.contains('is-open') || event.touches.length !== 1) {
+        startTouch = null;
+        return;
+      }
+      const touch = event.touches[0];
+      startTouch = { identifier:touch.identifier, x:touch.clientX, y:touch.clientY };
+    }, { passive:true });
+    panel.addEventListener('touchend', event => {
+      if (!startTouch) return;
+      const touch = Array.from(event.changedTouches).find(item => item.identifier === startTouch.identifier);
+      const origin = startTouch;
+      startTouch = null;
+      if (!touch) return;
+      const deltaX = touch.clientX - origin.x;
+      const deltaY = touch.clientY - origin.y;
+      if (deltaX >= 70 && deltaX >= Math.abs(deltaY) * 1.25) closePanel();
+    }, { passive:true });
+    panel.addEventListener('touchcancel', () => { startTouch = null; }, { passive:true });
+  }
+
+  enableRightSwipeToClose(els.languageDropdown, () => {
+    setLanguageMenuOpen(false);
+    els.languageMenuButton.focus({ preventScroll:true });
+  });
+  enableRightSwipeToClose(els.topMenuDropdown, () => {
+    setTopMenuOpen(false);
+    els.topMenuButton.focus({ preventScroll:true });
+  });
 
   els.topMenuButton.addEventListener('click', event => {
     event.stopPropagation();
@@ -26601,10 +27018,50 @@ ZSD·2016–2025</span></span>
 
   els.aboutMenuItem.addEventListener('click', event => {
     event.stopPropagation();
+    if (window.matchMedia('(max-width:720px)').matches) {
+      els.aboutMenuItem.setAttribute('aria-controls', 'aboutInfoDialog');
+      els.aboutMenuItem.removeAttribute('aria-describedby');
+      if (els.aboutInfoModal.hidden) {
+        if (!els.aboutInfoContent.childElementCount) {
+          Array.from(els.topMenuAboutTooltip.children).forEach(child => {
+            els.aboutInfoContent.append(child.cloneNode(true));
+          });
+        }
+        setTopMenuOpen(false);
+        els.aboutInfoModal.hidden = false;
+        document.body.classList.add('about-info-modal-open');
+        els.aboutMenuItem.setAttribute('aria-expanded', 'true');
+        requestAnimationFrame(() => els.aboutInfoCloseButton.focus());
+      } else {
+        closeAboutInfoModal();
+      }
+      return;
+    }
+    els.aboutMenuItem.setAttribute('aria-controls', 'topMenuAboutTooltip');
+    els.aboutMenuItem.setAttribute('aria-describedby', 'topMenuAboutTooltip');
     const open = els.topMenuAboutTooltip.hidden;
     els.topMenuAboutTooltip.hidden = !open;
     els.aboutMenuItem.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open) requestAnimationFrame(fitTopMenuAboutTooltip);
+  });
+
+  function closeAboutInfoModal() {
+    if (els.aboutInfoModal.hidden) return;
+    els.aboutInfoModal.hidden = true;
+    document.body.classList.remove('about-info-modal-open');
+    els.aboutMenuItem.setAttribute('aria-expanded', 'false');
+    els.topMenuButton.focus({ preventScroll:true });
+  }
+
+  els.aboutInfoModal.addEventListener('click', event => {
+    if (event.target.closest('[data-about-close]')) closeAboutInfoModal();
+  });
+  els.aboutInfoCloseButton.addEventListener('click', closeAboutInfoModal);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !els.aboutInfoModal.hidden) {
+      event.preventDefault();
+      closeAboutInfoModal();
+    }
   });
 
   function fitTopMenuAboutTooltip() {
