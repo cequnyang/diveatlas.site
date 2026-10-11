@@ -1119,6 +1119,13 @@
       transition: translate 120ms ease-out;
     }
 
+    .map-click-location-marker {
+      background: transparent !important;
+      border: 0 !important;
+      filter: drop-shadow(0 2px 3px rgba(20,35,45,.35));
+      pointer-events: none !important;
+    }
+
     .map-count-cluster .cluster-bubble {
       display: flex;
       align-items: center;
@@ -16004,9 +16011,14 @@ ZSD·2016–2025</span></span>
     if (mapClickLocationMarker) {
       mapClickLocationMarker.setLatLng(latlng);
     } else {
-      mapClickLocationMarker = L.circleMarker(latlng, {
-        pane: 'markerPane', radius: 7, color: '#fff', weight: 2,
-        fillColor: '#2684b7', fillOpacity: 1, interactive: false
+      const locationPinIcon = L.divIcon({
+        className: 'map-click-location-marker',
+        html: '<svg aria-hidden="true" viewBox="0 0 48 54" width="36" height="42" xmlns="http://www.w3.org/2000/svg"><path d="M24 2a19 19 0 0 0-19 19c0 13 19 31 19 31s19-18 19-31A19 19 0 0 0 24 2Z" fill="#3768d5" stroke="#fff" stroke-width="2.5"/><path d="M16 15h16v12H16z" fill="#e0002b" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="m17 16 14 10" stroke="#fff" stroke-width="3.6"/></svg>',
+        iconSize: [36, 42],
+        iconAnchor: [18, 42]
+      });
+      mapClickLocationMarker = L.marker(latlng, {
+        pane: 'markerPane', icon: locationPinIcon, interactive: false, keyboard: false
       }).addTo(map);
     }
   }
