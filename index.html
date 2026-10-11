@@ -6620,6 +6620,70 @@ ZSD·2016–2025</span></span>
   const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
   const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
   const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
+  // Keep the user-facing share URLs compact while accepting the previous long
+  // keys and values indefinitely for links already posted elsewhere.
+  const SHARE_QUERY_KEY_ALIASES = {
+    layers:'l', view:'v', site:'s', popup:'p', plat:'py', plng:'px', flow:'f',
+    month:'m', temperatureDepth:'td', currentDepth:'cd', tideTime:'tt',
+    experienceMonth:'em', reefMetric:'rm', heatMode:'hm', heatYear:'hy'
+  };
+  const SHARE_LAYER_VALUE_CODES = {
+    contours:'c', currents:'u', terrain:'t', reef:'r', species:'s', fish:'f', dive:'d'
+  };
+  const SHARE_VIEW_VALUE_CODES = {
+    default:'d', 'dive-experience-outlook':'o', temperature:'t', 'water-clarity':'c',
+    currents:'u', tide:'i', waves:'w', 'reef-survey-condition':'r'
+  };
+  const SHARE_POPUP_VALUE_CODES = {
+    reef:'r', species:'s', fish:'f', dive:'d', 'dive-conditions':'dc', temperature:'t',
+    'water-clarity':'wc', currents:'c', tide:'ti', waves:'w',
+    'coral-heat-stress':'ch', 'reef-survey-condition':'rs', depthInspection:'di'
+  };
+  const SHARE_PACKED_COORDINATES_KEY = 'g';
+  const SHARE_COORDINATE_SCALE = 100000;
+  const SHARE_COORDINATE_CODE_WIDTH = 5;
+  const SHARE_LATITUDE_OFFSET = 90;
+  const SHARE_LONGITUDE_OFFSET = 180;
+  function getShareParam(params, key) {
+    return params.has(key) ? params.get(key) : params.get(SHARE_QUERY_KEY_ALIASES[key] || key);
+  }
+  function hasShareParam(params, key) {
+    return params.has(key) || params.has(SHARE_QUERY_KEY_ALIASES[key] || key);
+  }
+  function decodeShareValue(value, codes, allowedValues) {
+    const compactMatch = Object.entries(codes).find(([, code]) => code === value);
+    if (compactMatch) return compactMatch[0];
+    return allowedValues.includes(value) ? value : null;
+  }
+  function setShareParam(params, key, value) {
+    params.set(SHARE_QUERY_KEY_ALIASES[key] || key, String(value));
+  }
+  // At 1e-5 degrees the maximum rounding error is about half a metre. Each
+  // fixed-width base-36 pair is 10 characters; `g` stores center then popup.
+  function normalizeShareLongitude(value) {
+    return ((value + SHARE_LONGITUDE_OFFSET) % (SHARE_LONGITUDE_OFFSET * 2) +
+      SHARE_LONGITUDE_OFFSET * 2) % (SHARE_LONGITUDE_OFFSET * 2) - SHARE_LONGITUDE_OFFSET;
+  }
+  function encodeShareCoordinatePair(lat, lng) {
+    if (!Number.isFinite(lat) || lat < -SHARE_LATITUDE_OFFSET || lat > SHARE_LATITUDE_OFFSET || !Number.isFinite(lng)) return null;
+    const normalizedLng = normalizeShareLongitude(lng);
+    const latCode = Math.round((lat + SHARE_LATITUDE_OFFSET) * SHARE_COORDINATE_SCALE).toString(36);
+    const lngCode = Math.round((normalizedLng + SHARE_LONGITUDE_OFFSET) * SHARE_COORDINATE_SCALE).toString(36);
+    if (latCode.length > SHARE_COORDINATE_CODE_WIDTH || lngCode.length > SHARE_COORDINATE_CODE_WIDTH) return null;
+    return latCode.padStart(SHARE_COORDINATE_CODE_WIDTH, '0') +
+      lngCode.padStart(SHARE_COORDINATE_CODE_WIDTH, '0');
+  }
+  function decodeShareCoordinatePair(code) {
+    if (!/^[0-9a-z]{10}$/i.test(String(code || ''))) return null;
+    const latUnits = Number.parseInt(code.slice(0, SHARE_COORDINATE_CODE_WIDTH), 36);
+    const lngUnits = Number.parseInt(code.slice(SHARE_COORDINATE_CODE_WIDTH), 36);
+    if (!Number.isSafeInteger(latUnits) || latUnits > SHARE_LATITUDE_OFFSET * 2 * SHARE_COORDINATE_SCALE ||
+        !Number.isSafeInteger(lngUnits) || lngUnits > SHARE_LONGITUDE_OFFSET * 2 * SHARE_COORDINATE_SCALE) return null;
+    return {
+      lat:latUnits / SHARE_COORDINATE_SCALE - SHARE_LATITUDE_OFFSET,
+      lng:lngUnits / SHARE_COORDINATE_SCALE - SHARE_LONGITUDE_OFFSET
+    };
+  }
   // Metric detail popups replace their parent popup, so share links carry this
   // compact path token instead of repeating popup types and coordinates. The
   // parent and child use the same sample location in the current UI flow.
@@ -6676,10 +6740,15 @@ ZSD·2016–2025</span></span>
     }
 
     const state = { hasValidState: false };
-    const rawLat = params.get('lat');
-    const rawLng = params.get('lng');
-    const lat = rawLat != null && rawLat.trim() !== '' ? Number(rawLat) : NaN;
-    const lng = rawLng != null && rawLng.trim() !== '' ? Number(rawLng) : NaN;
+    const packedCoordinates = params.get(SHARE_PACKED_COORDINATES_KEY) || '';
+    const packedShapeValid = packedCoordinates.length === 10 || packedCoordinates.length === 20;
+    const packedCenter = packedShapeValid
+      ? decodeShareCoordinatePair(packedCoordinates.slice(0, 10))
+      : null;
+    const rawLat = getShareParam(params, 'lat');
+    const rawLng = getShareParam(params, 'lng');
+    const lat = packedCenter?.lat ?? (rawLat != null && rawLat.trim() !== '' ? Number(rawLat) : NaN);
+    const lng = packedCenter?.lng ?? (rawLng != null && rawLng.trim() !== '' ? Number(rawLng) : NaN);
     const center = {};
     if (Number.isFinite(lat) && lat >= -90 && lat <= 90) center.lat = lat;
     if (Number.isFinite(lng) && lng >= -180 && lng <= 180) center.lng = lng;
@@ -6688,17 +6757,19 @@ ZSD·2016–2025</span></span>
       state.hasValidState = true;
     }
 
-    const rawZoom = params.get('z');
+    const rawZoom = getShareParam(params, 'z');
     const zoom = rawZoom != null && rawZoom.trim() !== '' ? Number(rawZoom) : NaN;
     if (Number.isFinite(zoom) && zoom >= 1 && zoom <= 19) {
       state.zoom = zoom;
       state.hasValidState = true;
     }
 
-    if (params.has('layers')) {
-      const rawLayers = params.get('layers').trim();
+    if (hasShareParam(params, 'layers')) {
+      const rawLayers = String(getShareParam(params, 'layers') || '').trim();
       const recognized = rawLayers
-        ? rawLayers.split(',').map(value => value.trim().toLowerCase()).filter(id => SHARE_LAYER_IDS.includes(id) || id === 'coral')
+        ? rawLayers.split(',').map(value => value.trim().toLowerCase())
+          .map(value => decodeShareValue(value, SHARE_LAYER_VALUE_CODES, [...SHARE_LAYER_IDS, 'coral']))
+          .filter(id => id && (SHARE_LAYER_IDS.includes(id) || id === 'coral'))
         : [];
       if (recognized.length || rawLayers === '') {
         state.layers = Object.fromEntries(SHARE_LAYER_IDS.map(id => [
@@ -6709,15 +6780,22 @@ ZSD·2016–2025</span></span>
       }
     }
 
-    const rawView = String(params.get('view') || '').trim().toLowerCase();
-    if (SHARE_VIEW_IDS.includes(rawView)) {
-      state.view = rawView;
+    const rawView = String(getShareParam(params, 'view') || '').trim().toLowerCase();
+    const view = decodeShareValue(rawView, SHARE_VIEW_VALUE_CODES, SHARE_VIEW_IDS);
+    if (view) {
+      state.view = view;
       state.hasValidState = true;
     }
 
-    const popupLayer = String(params.get('popup') || '').trim();
-    const popupLat = Number(params.get('plat'));
-    const popupLng = Number(params.get('plng'));
+    const rawPopupLayer = String(getShareParam(params, 'popup') || '').trim();
+    const popupLayer = decodeShareValue(rawPopupLayer, SHARE_POPUP_VALUE_CODES, SHARE_POPUP_LAYER_IDS);
+    const packedPopup = packedCoordinates.length === 20
+      ? decodeShareCoordinatePair(packedCoordinates.slice(10))
+      : null;
+    const rawPopupLat = getShareParam(params, 'plat');
+    const rawPopupLng = getShareParam(params, 'plng');
+    const popupLat = packedPopup?.lat ?? (rawPopupLat != null && rawPopupLat.trim() !== '' ? Number(rawPopupLat) : NaN);
+    const popupLng = packedPopup?.lng ?? (rawPopupLng != null && rawPopupLng.trim() !== '' ? Number(rawPopupLng) : NaN);
     if (
       SHARE_POPUP_LAYER_IDS.includes(popupLayer) &&
       Number.isFinite(popupLat) && popupLat >= -90 && popupLat <= 90 &&
@@ -6728,16 +6806,16 @@ ZSD·2016–2025</span></span>
     }
 
     const selections = {};
-    const month = Number(params.get('month'));
-    const temperatureDepth = Number(params.get('temperatureDepth'));
-    const currentDepth = String(params.get('currentDepth') || '');
-    const tideTime = String(params.get('tideTime') || '');
-    const experienceMonth = Number(params.get('experienceMonth'));
-    const reefMetric = String(params.get('reefMetric') || '');
-    const heatMode = String(params.get('heatMode') || '');
-    const heatYear = Number(params.get('heatYear'));
+    const month = Number(getShareParam(params, 'month'));
+    const temperatureDepth = Number(getShareParam(params, 'temperatureDepth'));
+    const currentDepth = String(getShareParam(params, 'currentDepth') || '');
+    const tideTime = String(getShareParam(params, 'tideTime') || '');
+    const experienceMonth = Number(getShareParam(params, 'experienceMonth'));
+    const reefMetric = String(getShareParam(params, 'reefMetric') || '');
+    const heatMode = String(getShareParam(params, 'heatMode') || '');
+    const heatYear = Number(getShareParam(params, 'heatYear'));
     if (Number.isInteger(month) && month >= 1 && month <= 12) selections.month = month;
-    if (params.has('temperatureDepth') && Number.isFinite(temperatureDepth) && temperatureDepth >= 0 && temperatureDepth <= 200) selections.temperatureDepth = temperatureDepth;
+    if (hasShareParam(params, 'temperatureDepth') && Number.isFinite(temperatureDepth) && temperatureDepth >= 0 && temperatureDepth <= 200) selections.temperatureDepth = temperatureDepth;
     if (['0', '10', '20', '30'].includes(currentDepth)) selections.currentDepth = currentDepth;
     if (['0', '3', '6', '9', '12', '18', '24'].includes(tideTime)) selections.tideTime = tideTime;
     if (Number.isInteger(experienceMonth) && experienceMonth >= 1 && experienceMonth <= 12) selections.experienceMonth = experienceMonth;
@@ -6749,13 +6827,13 @@ ZSD·2016–2025</span></span>
       state.hasValidState = true;
     }
 
-    const rawSiteId = String(params.get('site') || '').trim().toLowerCase();
+    const rawSiteId = String(getShareParam(params, 'site') || '').trim().toLowerCase();
     if (rawSiteId) {
       state.requestedSiteId = rawSiteId;
       state.hasValidState = true;
     }
 
-    const rawPopupFlow = String(params.get('flow') || '').trim().toLowerCase();
+    const rawPopupFlow = String(getShareParam(params, 'flow') || '').trim().toLowerCase();
     const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[rawPopupFlow];
     if (popupFlow && state.popup?.layer === popupFlow.childLayer &&
         popupFlow.siteAncestor === Boolean(state.requestedSiteId)) {
@@ -18109,32 +18187,41 @@ ZSD·2016–2025</span></span>
     };
   }
 
-  function serializeMapState(state) {
+  function serializeMapState(state, { includeSite = true } = {}) {
     const params = new URLSearchParams();
     const lat = Number(state?.center?.lat);
     const lng = Number(state?.center?.lng);
     const zoom = Number(state?.zoom);
-    if (Number.isFinite(lat)) params.set('lat', lat.toFixed(6));
-    if (Number.isFinite(lng)) params.set('lng', lng.toFixed(6));
-    if (Number.isFinite(zoom)) params.set('z', zoom.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1'));
+    if (Number.isFinite(zoom)) setShareParam(params, 'z', zoom.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1'));
     const activeLayers = SHARE_LAYER_IDS.filter(id => state?.layers?.[id]);
-    params.set('layers', activeLayers.join(','));
-    if (SHARE_VIEW_IDS.includes(state?.view)) params.set('view', state.view);
-    if (state?.selectedSiteId && SHARE_SITE_BY_ID.has(String(state.selectedSiteId).toLowerCase())) {
-      params.set('site', String(state.selectedSiteId).toLowerCase());
+    setShareParam(params, 'layers', activeLayers.map(id => SHARE_LAYER_VALUE_CODES[id]).join(','));
+    if (SHARE_VIEW_IDS.includes(state?.view)) setShareParam(params, 'view', SHARE_VIEW_VALUE_CODES[state.view]);
+    if (includeSite && state?.selectedSiteId && SHARE_SITE_BY_ID.has(String(state.selectedSiteId).toLowerCase())) {
+      setShareParam(params, 'site', String(state.selectedSiteId).toLowerCase());
     }
-    if (
+    const validPopup = Boolean(
       state?.popup && SHARE_POPUP_LAYER_IDS.includes(state.popup.layer) &&
       Number.isFinite(Number(state.popup.lat)) && Number.isFinite(Number(state.popup.lng))
-    ) {
-      params.set('popup', state.popup.layer);
-      params.set('plat', Number(state.popup.lat).toFixed(6));
-      params.set('plng', Number(state.popup.lng).toFixed(6));
+    );
+    let packedCoordinates = encodeShareCoordinatePair(lat, lng);
+    if (validPopup) {
+      setShareParam(params, 'popup', SHARE_POPUP_VALUE_CODES[state.popup.layer]);
+      const packedPopup = encodeShareCoordinatePair(Number(state.popup.lat), Number(state.popup.lng));
+      if (packedCoordinates && packedPopup) packedCoordinates += packedPopup;
+      else {
+        setShareParam(params, 'plat', Number(state.popup.lat).toFixed(6));
+        setShareParam(params, 'plng', Number(state.popup.lng).toFixed(6));
+      }
+    }
+    if (packedCoordinates) params.set(SHARE_PACKED_COORDINATES_KEY, packedCoordinates);
+    else {
+      if (Number.isFinite(lat)) setShareParam(params, 'lat', lat.toFixed(6));
+      if (Number.isFinite(lng)) setShareParam(params, 'lng', lng.toFixed(6));
     }
     const popupFlow = SHARE_POPUP_FLOW_DEFINITIONS[state?.popupFlow];
     if (popupFlow && popupFlow.childLayer === state?.popup?.layer &&
         popupFlow.siteAncestor === Boolean(state?.selectedSiteId)) {
-      params.set('flow', state.popupFlow);
+      setShareParam(params, 'flow', state.popupFlow);
     }
     const selections = state?.selections || {};
     // A shared link needs settings for the active environmental view and popup,
@@ -18143,21 +18230,23 @@ ZSD·2016–2025</span></span>
       ...(SHARE_SELECTION_KEYS_BY_CONTEXT[state?.view] || []),
       ...(SHARE_SELECTION_KEYS_BY_CONTEXT[state?.popup?.layer] || [])
     ]);
-    if (relevantSelectionKeys.has('month') && Number.isInteger(selections.month) && selections.month >= 1 && selections.month <= 12) params.set('month', selections.month);
-    if (relevantSelectionKeys.has('temperatureDepth') && Number.isFinite(Number(selections.temperatureDepth))) params.set('temperatureDepth', Number(selections.temperatureDepth));
-    if (relevantSelectionKeys.has('currentDepth') && ['0', '10', '20', '30'].includes(String(selections.currentDepth))) params.set('currentDepth', String(selections.currentDepth));
-    if (relevantSelectionKeys.has('tideTime') && ['0', '3', '6', '9', '12', '18', '24'].includes(String(selections.tideTime))) params.set('tideTime', String(selections.tideTime));
-    if (relevantSelectionKeys.has('experienceMonth') && Number.isInteger(selections.experienceMonth) && selections.experienceMonth >= 1 && selections.experienceMonth <= 12) params.set('experienceMonth', selections.experienceMonth);
-    if (relevantSelectionKeys.has('reefMetric') && ['oceanHeatHistory', 'thermalStressHistory'].includes(selections.reefMetric)) params.set('reefMetric', selections.reefMetric);
-    if (relevantSelectionKeys.has('heatMode') && ['current', 'history'].includes(selections.heatMode)) params.set('heatMode', selections.heatMode);
-    if (relevantSelectionKeys.has('heatYear') && Number.isInteger(selections.heatYear) && selections.heatYear >= 1980 && selections.heatYear <= 2100) params.set('heatYear', selections.heatYear);
+    if (relevantSelectionKeys.has('month') && Number.isInteger(selections.month) && selections.month >= 1 && selections.month <= 12) setShareParam(params, 'month', selections.month);
+    if (relevantSelectionKeys.has('temperatureDepth') && Number.isFinite(Number(selections.temperatureDepth))) setShareParam(params, 'temperatureDepth', Number(selections.temperatureDepth));
+    if (relevantSelectionKeys.has('currentDepth') && ['0', '10', '20', '30'].includes(String(selections.currentDepth))) setShareParam(params, 'currentDepth', String(selections.currentDepth));
+    if (relevantSelectionKeys.has('tideTime') && ['0', '3', '6', '9', '12', '18', '24'].includes(String(selections.tideTime))) setShareParam(params, 'tideTime', String(selections.tideTime));
+    if (relevantSelectionKeys.has('experienceMonth') && Number.isInteger(selections.experienceMonth) && selections.experienceMonth >= 1 && selections.experienceMonth <= 12) setShareParam(params, 'experienceMonth', selections.experienceMonth);
+    if (relevantSelectionKeys.has('reefMetric') && ['oceanHeatHistory', 'thermalStressHistory'].includes(selections.reefMetric)) setShareParam(params, 'reefMetric', selections.reefMetric);
+    if (relevantSelectionKeys.has('heatMode') && ['current', 'history'].includes(selections.heatMode)) setShareParam(params, 'heatMode', selections.heatMode);
+    if (relevantSelectionKeys.has('heatYear') && Number.isInteger(selections.heatYear) && selections.heatYear >= 1980 && selections.heatYear <= 2100) setShareParam(params, 'heatYear', selections.heatYear);
     return params.toString().replace(/%2C/gi, ',');
   }
 
   function buildShareUrl(state) {
-    const serializedState = serializeMapState(state);
     const selectedSiteId = String(state?.selectedSiteId || '').trim().toLowerCase();
     if (selectedSiteId && SHARE_SITE_BY_ID.has(selectedSiteId)) {
+      // The Worker route already carries this UUID in its path and adds the
+      // legacy `site` key when redirecting browsers to the main application.
+      const serializedState = serializeMapState(state, { includeSite:false });
       const url = new URL(`/share/${encodeURIComponent(selectedSiteId)}/`, SHARE_SITE_PREVIEW_ORIGIN);
       url.search = serializedState;
       const siteIndex = SHARE_SITE_BY_ID.get(selectedSiteId);
@@ -18179,6 +18268,7 @@ ZSD·2016–2025</span></span>
       return url.href;
     }
 
+    const serializedState = serializeMapState(state);
     const url = new URL(window.location.href);
     url.search = serializedState;
     url.hash = '';
