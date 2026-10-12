@@ -349,7 +349,7 @@
   }
 
   function createReefSurveyConditionView({
-    map, L, panel, createPopup = null, bindPopup = null, openPopup = null, showLocationPin = null, providerRegistry = null,
+    map, L, panel, createPopup = null, bindPopup = null, openPopup = null, showLocationPin = null, onLocationFeedback = null, providerRegistry = null,
     displayMode = DISPLAY_MODES.EVENT, referenceDate = new Date(), localMetricDefinitions = [],
     formatLongDistance = meters => `${(Number(meters) / 1000).toFixed(1)} km`,
     formatDhwNumber = value => Number(value).toFixed(1),
@@ -392,6 +392,7 @@
     let active = false;
     let metric = DEFAULT_METRIC;
     let lastRasterPopup = null;
+    let rasterQueryGeneration = 0;
     const renderer = L.canvas({ padding: 0.4 });
     const layer = L.layerGroup();
     const markers = [];
@@ -495,15 +496,19 @@
       if (!active || activeProviderId !== state.id) return;
       if (hasHigherPriorityOverlay(event.latlng)) return;
       showLocationPin?.(event.latlng);
+      onLocationFeedback?.('checking');
+      const queryGeneration = ++rasterQueryGeneration;
       const statusVersion = state.id;
       if (rasterStatus) rasterStatus.textContent = 'Loading NOAA history…';
       try {
         const sample = await sampleRaster(event.latlng, state);
-        if (!active || activeProviderId !== statusVersion) return;
+        if (!active || activeProviderId !== statusVersion || queryGeneration !== rasterQueryGeneration) return;
         if (!sample) {
           if (rasterStatus) rasterStatus.textContent = 'No NOAA value is available at this location.';
+          onLocationFeedback?.('noData');
           return;
         }
+        onLocationFeedback?.('clear');
         if (rasterStatus) rasterStatus.textContent = '';
         const isOceanHeat = state.metric === OCEAN_HEAT_HISTORY_METRIC;
         const popupOptions = {
@@ -520,7 +525,10 @@
         if (openPopup) openPopup('reef-survey-condition:query', popup, event.latlng);
         else popup.openOn(map);
       } catch (_) {
-        if (active && activeProviderId === statusVersion && rasterStatus) rasterStatus.textContent = 'NOAA location details are unavailable.';
+        if (active && activeProviderId === statusVersion && queryGeneration === rasterQueryGeneration) {
+          if (rasterStatus) rasterStatus.textContent = 'NOAA location details are unavailable.';
+          onLocationFeedback?.('unavailable');
+        }
       }
     }
 

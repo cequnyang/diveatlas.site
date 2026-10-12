@@ -1126,6 +1126,29 @@
       filter: drop-shadow(0 2px 3px rgba(20,35,45,.35));
       pointer-events: none !important;
     }
+    @media (max-width: 720px) {
+      .leaflet-tooltip.map-click-location-status-tooltip {
+        width: max-content;
+        min-width: min(240px, calc(100vw - 36px));
+        max-width: min(340px, calc(100vw - 36px));
+        box-sizing: border-box;
+        padding: 7px 11px;
+        border: 1px solid #d5deeb;
+        border-radius: 999px;
+        background: #fff;
+        color: #1f2937;
+        box-shadow: 0 3px 12px rgba(20,35,45,.2);
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.3;
+        text-align: center;
+        white-space: normal;
+        pointer-events: none;
+      }
+      .leaflet-tooltip-top.map-click-location-status-tooltip::before {
+        border-top-color: #fff;
+      }
+    }
     .map-click-location-marker--offscreen::after {
       content: '↑';
       position: absolute;
@@ -13622,11 +13645,17 @@ ZSD·2016–2025</span></span>
     diveConditionsAbort?.abort();
     closeManagedPopupForLayer('dive-conditions');
     showMapClickLocationPin(diveConditionsPopupLocation);
+    if (!forcePopup && environmentalViewController.activeView === 'dive-experience-outlook') {
+      setMapClickLocationStatus('diveConditionsLoading', { month, delayMs:300, centerLocation:true });
+    }
     diveConditionsLastResult = null;
     diveExperienceOutlookCurrentSample = null;
     diveConditionsPopupMessageKey = null;
     if (forcePopup || environmentalViewController.activeView === 'dive-experience-outlook') {
-      setDiveConditionsPopupMessage('diveConditionsLoading', month);
+      // Ordinary map selections may land outside supported data coverage. Keep
+      // the sheet closed until a result can populate it so an empty lookup
+      // cannot open a loading-only sheet and immediately dismiss it.
+      if (forcePopup) setDiveConditionsPopupMessage('diveConditionsLoading', month);
       void refreshDiveExperienceOutlook({ force:forcePopup, month });
     }
   }
@@ -14256,6 +14285,7 @@ ZSD·2016–2025</span></span>
           (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
       const hasGridExperience = sample?.score != null || sample?.diveConditionsScore != null;
       if (hasGridExperience) {
+        clearMapClickLocationStatus();
         diveExperienceOutlookCurrentSample = sample;
         diveConditionsLastResult = { metrics:Object.fromEntries(
           ['temperature','clarity','current','waves'].map(key => [key, { value:null, loading:true }])
@@ -14277,18 +14307,20 @@ ZSD·2016–2025</span></span>
         return;
       }
       const hasPhysical = Object.values(conditions.metrics || {}).some(metric => metric?.value != null);
-      if (!sample && !hasPhysical) {
+      if (!hasGridExperience && !hasPhysical) {
         diveExperienceOutlookCurrentSample = null;
         diveConditionsLastResult = conditions;
         if (force) setDiveConditionsPopupMessage('diveConditionsNoOceanSamples', month);
         else {
           setDiveExperienceStatusCopy(t('diveExperienceNoCellSamples'));
+          setMapClickLocationStatus('diveConditionsNoOceanSamples', { durationMs:2800, centerLocation:true });
           closeManagedPopupForLayer('dive-conditions');
         }
         return;
       }
       diveExperienceOutlookCurrentSample = sample;
       diveConditionsLastResult = conditions;
+      clearMapClickLocationStatus();
       renderDiveConditions(conditions, { force, month });
       const entry = diveExperienceOutlookManifest?.months?.[month - 1];
       const coverage = entry?.processedOceanCells ? (100 * entry.scoredCells / entry.processedOceanCells).toFixed(1) : null;
@@ -14297,7 +14329,8 @@ ZSD·2016–2025</span></span>
       if (!controller.signal.aborted && generation === diveExperienceOutlookGeneration) {
         console.warn('The Dive Experience Outlook could not be loaded:', error);
         if (!force) setDiveExperienceStatusCopy(t('diveExperienceTemporarilyUnavailable'));
-        setDiveConditionsPopupMessage('diveConditionsError', month);
+        if (force) setDiveConditionsPopupMessage('diveConditionsError', month);
+        else setMapClickLocationStatus('diveConditionsError', { durationMs:3500, centerLocation:true });
       }
     }
   }
@@ -14546,6 +14579,7 @@ ZSD·2016–2025</span></span>
     lastTideLatLng = latlng;
     lastTideResult = null;
     showMapClickLocationPin(latlng);
+    setMapLocationFeedback('checking');
     // Keep the selection pin independent of model coverage. Waiting for a
     // valid prediction avoids flashing a loading/no-coverage popup on land.
     closeManagedPopupForLayer('tide');
@@ -14554,7 +14588,15 @@ ZSD·2016–2025</span></span>
     import('./js/tides/runtime.js').then(async api => {
       const result = await api.predictAt(latlng.lat, latlng.lng, selectedTideTimestamp());
       if (generation !== tideSelectionGeneration || environmentalViewController.activeView !== 'tide') return;
-      if (!result) return;
+      if (!result) {
+        setMapLocationFeedback('noData');
+        return;
+      }
+      if (!Number.isFinite(result.level_m) || !Array.isArray(result.series) || result.series.length < 2) {
+        setMapLocationFeedback('noData');
+        return;
+      }
+      clearMapClickLocationStatus();
       els.tideStatus.hidden = false;
       els.tideStatus.dataset.state = 'ready';
       setTideStatus('tidePredictionReady');
@@ -14567,6 +14609,7 @@ ZSD·2016–2025</span></span>
     }).catch(error => {
       if (generation !== tideSelectionGeneration) return;
       console.warn('Tide model could not be loaded:', error);
+      setMapLocationFeedback('unavailable');
     });
   }
 
@@ -14844,6 +14887,42 @@ ZSD·2016–2025</span></span>
   let lastCoralHeatStressLatLng = null;
   let mapClickLocationMarker = null;
   let mapClickLocationLatLng = null;
+  let mapClickLocationStatusTimer = null;
+  let mapClickLocationStatusGeneration = 0;
+  let mapClickLocationStatusCentered = false;
+  const MAP_LOCATION_STATUS_COPY = {
+    en: { checking:'Checking this location…', noData:'No data is available at this location.', unavailable:'Data could not be loaded for this location.' },
+    zh: { checking:'正在检查此位置…', noData:'此位置没有可用数据。', unavailable:'无法加载此位置的数据。' },
+    ja: { checking:'この場所を確認中…', noData:'この場所のデータはありません。', unavailable:'この場所のデータを読み込めませんでした。' },
+    fr: { checking:'Vérification de ce lieu…', noData:'Aucune donnée disponible à cet endroit.', unavailable:'Impossible de charger les données de ce lieu.' },
+    de: { checking:'Standort wird geprüft…', noData:'Für diesen Standort sind keine Daten verfügbar.', unavailable:'Die Daten für diesen Standort konnten nicht geladen werden.' },
+    nl: { checking:'Locatie controleren…', noData:'Geen gegevens beschikbaar op deze locatie.', unavailable:'De gegevens voor deze locatie konden niet worden geladen.' },
+    it: { checking:'Verifica della posizione…', noData:'Nessun dato disponibile in questa posizione.', unavailable:'Impossibile caricare i dati per questa posizione.' },
+    ru: { checking:'Проверяем это место…', noData:'Для этого места нет доступных данных.', unavailable:'Не удалось загрузить данные для этого места.' },
+    pt: { checking:'Verificando este local…', noData:'Não há dados disponíveis neste local.', unavailable:'Não foi possível carregar os dados deste local.' },
+    sv: { checking:'Kontrollerar platsen…', noData:'Det finns inga data för den här platsen.', unavailable:'Det gick inte att läsa in data för den här platsen.' },
+    no: { checking:'Kontrollerer stedet…', noData:'Ingen data er tilgjengelig for dette stedet.', unavailable:'Kunne ikke laste inn data for dette stedet.' },
+    es: { checking:'Comprobando esta ubicación…', noData:'No hay datos disponibles en esta ubicación.', unavailable:'No se pudieron cargar los datos de esta ubicación.' },
+    ko: { checking:'위치 확인 중…', noData:'이 위치에서 사용할 수 있는 데이터가 없습니다.', unavailable:'이 위치의 데이터를 불러오지 못했습니다.' },
+    id: { checking:'Memeriksa lokasi ini…', noData:'Tidak ada data yang tersedia di lokasi ini.', unavailable:'Data untuk lokasi ini tidak dapat dimuat.' }
+  };
+
+  function setMapLocationFeedback(state, options = {}) {
+    if (state === 'clear') {
+      clearMapClickLocationStatus();
+      return;
+    }
+    if (!window.matchMedia('(max-width: 720px)').matches) return;
+    const messageKeys = {
+      checking:'mapLocationChecking',
+      noData:'mapLocationNoData',
+      unavailable:'mapLocationUnavailable'
+    };
+    const timing = state === 'checking'
+      ? { delayMs:300, ...options }
+      : { durationMs:state === 'unavailable' ? 3500 : 2800, ...options };
+    setMapClickLocationStatus(messageKeys[state], timing);
+  }
   let coralHeatStressMetadata = null;
   let temperatureUnit = (() => {
     try { return localStorage.getItem('diveatlas-temperature-unit') === 'F' ? 'F' : 'C'; }
@@ -14891,6 +14970,7 @@ ZSD·2016–2025</span></span>
           bindPopup: (layer, content, options) => bindMapInfoPopup(layer, content, options),
           openPopup: (ownerKey, popup, latlng) => openManagedPopup(ownerKey, popup, latlng),
           showLocationPin: showMapClickLocationPin,
+          onLocationFeedback: setMapLocationFeedback,
           hasHigherPriorityOverlay: hasOverlayAreaHit,
           providerRegistry: providers,
           localMetricDefinitions: metricDefinitions,
@@ -16135,6 +16215,8 @@ ZSD·2016–2025</span></span>
   }
 
   function showMapClickLocationPin(latlng) {
+    clearMapClickLocationStatus();
+    mapClickLocationStatusCentered = false;
     mapClickLocationLatLng = L.latLng(latlng);
     if (mapClickLocationMarker) {
       mapClickLocationMarker.setLatLng(mapClickLocationLatLng);
@@ -16149,6 +16231,67 @@ ZSD·2016–2025</span></span>
       mapClickLocationMarker = L.marker(mapClickLocationLatLng, {
         pane: 'markerPane', icon: locationPinIcon, interactive: false, keyboard: false
       }).addTo(map);
+    }
+  }
+
+  function setMapClickLocationStatus(messageKey, { month = diveConditionsMonth, delayMs = 0, durationMs = 0, centerLocation = true } = {}) {
+    clearMapClickLocationStatus();
+    const marker = mapClickLocationMarker;
+    if (!messageKey || !marker) return;
+    const generation = mapClickLocationStatusGeneration;
+    const show = () => {
+      if (generation !== mapClickLocationStatusGeneration || marker !== mapClickLocationMarker || !map.hasLayer(marker)) return;
+      if (centerLocation && !mapClickLocationStatusCentered) {
+        centerSelectedLocationInVisibleMapArea();
+        mapClickLocationStatusCentered = true;
+      }
+      const statusKey = messageKey === 'mapLocationChecking' ? 'checking'
+        : messageKey === 'mapLocationNoData' ? 'noData'
+          : messageKey === 'mapLocationUnavailable' ? 'unavailable' : null;
+      const message = statusKey
+        ? (MAP_LOCATION_STATUS_COPY[currentLang]?.[statusKey] || MAP_LOCATION_STATUS_COPY.en[statusKey])
+        : messageKey === 'diveConditionsLoading' ? diveConditionsMessageText(messageKey, month) : t(messageKey);
+      marker.bindTooltip(message, {
+        permanent:true,
+        direction:'top',
+        offset:[0,-44],
+        className:'map-click-location-status-tooltip',
+        opacity:1,
+        interactive:false
+      }).openTooltip();
+      if (durationMs > 0) {
+        mapClickLocationStatusTimer = setTimeout(clearMapClickLocationStatus, durationMs);
+      }
+    };
+    if (delayMs > 0) mapClickLocationStatusTimer = setTimeout(show, delayMs);
+    else show();
+  }
+
+  function centerSelectedLocationInVisibleMapArea() {
+    if (!mapClickLocationLatLng || !window.matchMedia('(max-width: 720px)').matches) return;
+    const { mapRect, safeTop, safeBottom, safeLeft, safeRight } = getMapPopupSafeViewport();
+    if (safeRight <= safeLeft || safeBottom <= safeTop) return;
+    const targetPoint = L.point(
+      ((safeLeft + safeRight) / 2) - mapRect.left,
+      ((safeTop + safeBottom) / 2) - mapRect.top
+    );
+    const selectedPoint = map.latLngToContainerPoint(mapClickLocationLatLng);
+    const offset = selectedPoint.subtract(targetPoint);
+    if (offset.distanceTo(L.point(0, 0)) < 2) return;
+    map.panBy(offset, {
+      animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      duration:0.25
+    });
+  }
+
+  function clearMapClickLocationStatus() {
+    if (mapClickLocationStatusTimer != null) clearTimeout(mapClickLocationStatusTimer);
+    mapClickLocationStatusTimer = null;
+    mapClickLocationStatusGeneration += 1;
+    const marker = mapClickLocationMarker;
+    if (marker?.getTooltip?.()) {
+      marker.closeTooltip();
+      marker.unbindTooltip();
     }
   }
 
@@ -16220,6 +16363,7 @@ ZSD·2016–2025</span></span>
 
   function clearMapClickLocationPin() {
     if (!mapClickLocationMarker) return;
+    clearMapClickLocationStatus();
     map.removeLayer(mapClickLocationMarker);
     mapClickLocationMarker = null;
     mapClickLocationLatLng = null;
@@ -16316,6 +16460,7 @@ ZSD·2016–2025</span></span>
     closeManagedPopupForLayer('coral-heat-stress');
     coralHeatStressPopup?.setContent('');
     showMapClickLocationPin(latlng);
+    setMapLocationFeedback('noData');
   }
 
   async function showCoralHeatStressQuery(latlng) {
@@ -16324,6 +16469,7 @@ ZSD·2016–2025</span></span>
     if (coralHeatStressMode === 'history' && !coralHeatStressHistoryView?.state?.enabled) return;
     lastCoralHeatStressLatLng = L.latLng(latlng.lat, latlng.lng);
     showMapClickLocationPin(lastCoralHeatStressLatLng);
+    setMapLocationFeedback('checking');
     coralHeatStressHistoryResult = null;
     coralHeatStressGlobalHistoryResult = null;
     const location = lastCoralHeatStressLatLng;
@@ -16370,20 +16516,28 @@ ZSD·2016–2025</span></span>
           if (globalHistoryError) {
             console.warn('Coral Heat Stress history could not be loaded for this location:', globalHistoryError);
             showCoralHeatStressNoDataPin(location);
+            setMapLocationFeedback('unavailable');
             return;
           }
           showCoralHeatStressNoDataPin(location);
           return;
         }
+        clearMapClickLocationStatus();
         renderCoralHeatStressHistoryPopup(coralHeatStressHistoryResult, location);
         return;
       }
-      if (!result) { closeManagedPopupForLayer('coral-heat-stress'); return; }
+      if (!result) {
+        closeManagedPopupForLayer('coral-heat-stress');
+        setMapLocationFeedback('noData');
+        return;
+      }
+      clearMapClickLocationStatus();
       renderCoralHeatStressPopup(result, location);
     } catch (error) {
       if (error?.name === 'AbortError' || requestGeneration !== coralHeatStressQueryGeneration) return;
       console.warn('Coral Heat Stress location sample could not be loaded:', error);
       closeManagedPopupForLayer('coral-heat-stress');
+      setMapLocationFeedback('unavailable');
     }
   }
 
@@ -16897,6 +17051,7 @@ ZSD·2016–2025</span></span>
             }
           },
           onInspect: result => {
+            clearMapClickLocationStatus();
             regionalCurrentPopupReturnSite = null;
             const locationKey = `${Number(result.latlng?.lat).toFixed(5)},${Number(result.latlng?.lng).toFixed(5)}:${String(result.depth)}`;
             if (locationKey !== regionalCurrentsMonthlyComparison.locationKey) {
@@ -17038,6 +17193,7 @@ ZSD·2016–2025</span></span>
     if (environmentalViewController.activeView !== 'temperature' && !independent) return;
     if (!independent) temperatureDetailPopupReturnSite = null;
     lastTemperatureQueryLatLng = L.latLng(latlng.lat, latlng.lng);
+    if (!independent) setMapLocationFeedback('checking');
     const queryLatLng = lastTemperatureQueryLatLng;
     const generation = ++temperatureQueryGeneration;
     const popupRevision = activeClickPopupRevision;
@@ -17062,8 +17218,10 @@ ZSD·2016–2025</span></span>
           popupRevision !== activeClickPopupRevision) return;
       if (result.unavailable) {
         closeManagedPopupForLayer('temperature');
+        if (!independent) setMapLocationFeedback('noData');
         return;
       }
+      if (!independent) clearMapClickLocationStatus();
       const resultKey = `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${result.month}:${result.depth_m}`;
       const previous = resultKey === temperatureDetailQueryKey ? temperatureDetailResult : null;
       const mergedResult = {
@@ -17092,6 +17250,7 @@ ZSD·2016–2025</span></span>
       const sameQuery = temperatureDetailQueryKey ===
         `${queryLatLng.lat.toFixed(6)}:${queryLatLng.lng.toFixed(6)}:${environmentalMonth('temperature')}:${Number(els.temperatureDepth.value)}`;
       if (sameQuery && temperatureDetailResult && (temperatureDetailTab === 'profile' || temperatureDetailTab === 'year')) {
+        if (!independent) clearMapClickLocationStatus();
         temperatureDetailResult = {
           ...temperatureDetailResult,
           ...(temperatureDetailTab === 'profile' ? { profile:[], profile_loaded:true } : { year:[], year_loaded:true })
@@ -17099,6 +17258,7 @@ ZSD·2016–2025</span></span>
         renderTemperatureDetail(temperatureDetailResult);
       } else {
         closeManagedPopupForLayer('temperature');
+        if (!independent) setMapLocationFeedback('unavailable');
       }
     }
   }
@@ -17231,6 +17391,7 @@ ZSD·2016–2025</span></span>
     if (environmentalViewController.activeView !== 'water-clarity' && !independent) return;
     if (!independent) waterClarityPopupReturnSite = null;
     lastWaterClarityLatLng = L.latLng(latlng.lat, latlng.lng);
+    if (!independent) setMapLocationFeedback('checking');
     waterClaritySeasonalGeneration += 1;
     waterClaritySeasonalOpen = false;
     waterClaritySeasonalPoints = null;
@@ -17251,8 +17412,10 @@ ZSD·2016–2025</span></span>
           popupRevision !== activeClickPopupRevision) return;
       if (result.unavailable) {
         closeManagedPopupForLayer('water-clarity');
+        if (!independent) setMapLocationFeedback('noData');
         return;
       }
+      if (!independent) clearMapClickLocationStatus();
       if (!waterClarityPopup) {
         waterClarityPopup = createMapInfoPopup({ maxWidth: 270, minWidth: 200, closeButton: true, closeOnClick: false, className: 'temperature-detail-popup water-clarity-popup' });
         waterClarityPopup._diveAtlasLayerKey = 'water-clarity';
@@ -17265,6 +17428,7 @@ ZSD·2016–2025</span></span>
           popupRevision !== activeClickPopupRevision) return;
       console.warn('Water Clarity query could not be loaded:', error);
       closeManagedPopupForLayer('water-clarity');
+      if (!independent) setMapLocationFeedback('unavailable');
     }
   }
 
@@ -17386,6 +17550,7 @@ ZSD·2016–2025</span></span>
     if (environmentalViewController.activeView !== 'waves' || !wavesView?.state?.enabled) return;
     wavesPopupReturnSite = null;
     lastWavesLatLng = L.latLng(latlng.lat, latlng.lng);
+    setMapLocationFeedback('checking');
     const location = lastWavesLatLng;
     const requestGeneration = ++wavesQueryGeneration;
     const popupRevision = activeClickPopupRevision;
@@ -17400,14 +17565,17 @@ ZSD·2016–2025</span></span>
           popupRevision !== activeClickPopupRevision) return;
       if (!result || !Number.isFinite(result.height_m)) {
         closeManagedPopupForLayer('waves');
+        setMapLocationFeedback('noData');
         return;
       }
+      clearMapClickLocationStatus();
       renderWavesPopup(result, location);
     } catch (error) {
       if (error?.name === 'AbortError' || requestGeneration !== wavesQueryGeneration ||
           environmentalViewController.activeView !== 'waves' || popupRevision !== activeClickPopupRevision) return;
       console.warn('Waves location sample could not be loaded:', error);
       closeManagedPopupForLayer('waves');
+      setMapLocationFeedback('unavailable');
     }
   }
 
@@ -19534,12 +19702,17 @@ ZSD·2016–2025</span></span>
 
     const requestSeq = ++depthInspectionRequestSeq;
     closeManagedPopup();
+    setMapLocationFeedback('checking');
     try {
       const depth = await bathymetryDepthAt(latlng);
       if (
-        depth == null ||
         requestSeq !== depthInspectionRequestSeq
       ) return false;
+      if (depth == null) {
+        setMapLocationFeedback('noData');
+        return false;
+      }
+      clearMapClickLocationStatus();
       recordInteractionTestAction();
 
       const html =
@@ -19565,6 +19738,7 @@ ZSD·2016–2025</span></span>
       return true;
     } catch (error) {
       console.warn('Unable to inspect the local bathymetry sample:', error);
+      if (requestSeq === depthInspectionRequestSeq) setMapLocationFeedback('unavailable');
       return false;
     }
   }
@@ -26239,10 +26413,12 @@ ZSD·2016–2025</span></span>
 
     // Currents inspection shares the delayed map-click path so a double-click
     // zoom cancels the first click before it can open a popup.
-    if (
-      environmentalViewController.activeView === 'currents' &&
-      regionalCurrentsView?.inspectAt(latlng)
-    ) return 'currents-query';
+    if (environmentalViewController.activeView === 'currents') {
+      setMapLocationFeedback('checking');
+      if (regionalCurrentsView?.inspectAt(latlng)) return 'currents-query';
+      setMapLocationFeedback('noData');
+      return 'currents-query';
+    }
 
     if (environmentalViewController.activeView === 'coral-heat-stress') {
       void showCoralHeatStressQuery(latlng);
