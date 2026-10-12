@@ -1989,6 +1989,7 @@
     .dive-conditions-sources-trigger { min-height:28px; }
     .dive-conditions-rating-handle,
     .diveatlas-mobile-sheet-handle { display:none; }
+    .diveatlas-sheet-share-button { display:none; }
     /* Phone rating popups are promoted out of Leaflet's transformed map pane
        so the sheet stays attached to the viewport while the map remains usable. */
     @media (max-width:720px) {
@@ -2003,7 +2004,7 @@
         margin:0 !important;
         transform:none !important;
         translate:0 var(--mobile-panel-drag-y, 0px) !important;
-        transition:translate .22s cubic-bezier(.2,.72,.2,1);
+        transition:translate .28s cubic-bezier(.22,1,.36,1), opacity .22s ease;
       }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper {
         box-sizing:border-box;
@@ -2043,6 +2044,23 @@
         max-width:none !important;
       }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:var(--dive-conditions-rating-sheet-max-height); }
+      .leaflet-popup.diveatlas-mobile-sheet .leaflet-popup-content-wrapper,
+      .leaflet-popup.dive-conditions-rating-sheet .leaflet-popup-content-wrapper { position:relative; }
+      .diveatlas-sheet-share-button {
+        position:absolute;
+        z-index:6;
+        top:8px;
+        right:12px;
+        display:grid;
+        width:44px;
+        height:44px;
+        flex:0 0 44px;
+        place-items:center;
+        -webkit-tap-highlight-color:transparent;
+      }
+      .top-menu-share.diveatlas-sheet-share-button { width:59.4px; height:59.4px; flex:0 0 59.4px; }
+      .top-menu-share.diveatlas-sheet-share-button svg { width:21.6px; height:21.6px; }
+      .leaflet-popup:not(.diveatlas-mobile-sheet):not(.dive-conditions-rating-sheet) .diveatlas-sheet-share-button { display:none; }
       .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
         --dive-conditions-rating-sheet-max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)));
       }
@@ -2098,7 +2116,7 @@
         margin:0 !important;
         transform:none !important;
         translate:0 var(--mobile-panel-drag-y, 0px) !important;
-        transition:translate .22s cubic-bezier(.2,.72,.2,1);
+        transition:translate .28s cubic-bezier(.22,1,.36,1), opacity .22s ease;
       }
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-content-wrapper {
         box-sizing:border-box;
@@ -2137,6 +2155,23 @@
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::before,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) > .leaflet-popup-close-button,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
+      .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering,
+      .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-entering {
+        translate:0 100% !important;
+        opacity:0;
+        transition:none !important;
+      }
+      .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-exiting,
+      .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-exiting {
+        translate:0 100% !important;
+        opacity:0;
+        pointer-events:none;
+        transition:translate .24s cubic-bezier(.32,0,.67,0), opacity .2s ease-in !important;
+      }
+      @media (prefers-reduced-motion:reduce) {
+        .leaflet-popup.diveatlas-mobile-sheet,
+        .leaflet-popup.dive-conditions-rating-sheet { transition:none !important; }
+      }
       /* Upward resistance translates sheets by at most 34px; extend their own
          surface past the viewport edge so the map never shows through below. */
       .leaflet-popup.diveatlas-mobile-sheet::after,
@@ -6402,8 +6437,8 @@
         overflow-x:hidden;
         overflow-y:auto;
         overscroll-behavior:contain;
-        /* Modern Chromium honors scrollbar-width over the earlier WebKit hide rule. */
-        scrollbar-width:none;
+        /* Keep mobile scrolling discoverable while hiding the bulky native track. */
+        scrollbar-width:thin;
       }
       .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
@@ -9392,9 +9427,9 @@ ZSD·2016–2025</span></span>
   } = {}) {
     const nextCollapsed = Boolean(collapsed);
     const stateChanged = nextCollapsed !== legendCollapsed;
-    // Opening the full mobile layer panel is an explicit panel action; dismiss
-    // whichever managed sheet is open before the two surfaces overlap.
-    if (stateChanged && !nextCollapsed) closeMobileSheetForLayerPanelInteraction();
+    // Changing the mobile layer panel state dismisses any map sheet so both
+    // surfaces never compete for the same small viewport.
+    if (stateChanged) closeMobileSheetForLayerPanelInteraction();
     const animateMobileHeight = stateChanged && compactLayersPanelQuery.matches &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const startingHeight = animateMobileHeight
@@ -13712,6 +13747,9 @@ ZSD·2016–2025</span></span>
   function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth } = {}) {
     if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng) || Math.abs(latlng.lat) > 90) return;
     const popup = ensureDiveConditionsPopup();
+    const keepOpenWhileLoading = window.matchMedia('(max-width:720px)').matches &&
+      popup.isOpen() && activeClickPopup === popup &&
+      ['dive-conditions', 'dive-rating'].includes(popup._diveAtlasLayerKey);
     if (!forcePopup) {
       popup._diveAtlasReturnDiveSitePopup = null;
       popup._diveAtlasLayerKey = 'dive-conditions';
@@ -13726,7 +13764,7 @@ ZSD·2016–2025</span></span>
       requestDiveSiteRating(openDiveSitePopup, openDiveSitePopup._diveAtlasRatingLocation);
     }
     diveConditionsAbort?.abort();
-    closeManagedPopupForLayer('dive-conditions');
+    if (!keepOpenWhileLoading) closeManagedPopupForLayer('dive-conditions');
     showMapClickLocationPin(diveConditionsPopupLocation);
     if (!forcePopup && environmentalViewController.activeView === 'dive-experience-outlook') {
       setMapClickLocationStatus('diveConditionsLoading', { month, delayMs:300, centerLocation:true });
@@ -13734,6 +13772,11 @@ ZSD·2016–2025</span></span>
     diveConditionsLastResult = null;
     diveExperienceOutlookCurrentSample = null;
     diveConditionsPopupMessageKey = null;
+    if (keepOpenWhileLoading) {
+      // Reuse the visible sheet during a same-layer lookup. Closing it first
+      // makes a slow or empty response look like the next selection failed.
+      setDiveConditionsPopupMessage('diveConditionsLoading', month);
+    }
     if (forcePopup || environmentalViewController.activeView === 'dive-experience-outlook') {
       // Ordinary map selections may land outside supported data coverage. Keep
       // the sheet closed until a result can populate it so an empty lookup
@@ -17280,6 +17323,10 @@ ZSD·2016–2025</span></span>
     const queryLatLng = lastTemperatureQueryLatLng;
     const generation = ++temperatureQueryGeneration;
     const popupRevision = activeClickPopupRevision;
+    const isCurrentRequest = () => generation === temperatureQueryGeneration || (
+      independent && activeClickPopup === temperatureDetailPopup && temperatureDetailPopup?.isOpen() &&
+      queryLatLng.equals(lastTemperatureQueryLatLng)
+    );
     if (resetTab) temperatureDetailTab = 'value';
     if (!temperatureQueryAbortController) temperatureQueryAbortController = new AbortController();
     try {
@@ -17297,7 +17344,7 @@ ZSD·2016–2025</span></span>
         includeProfile:temperatureDetailTab === 'profile',
         includeYear:temperatureDetailTab === 'year'
       });
-      if (generation !== temperatureQueryGeneration || (environmentalViewController.activeView !== 'temperature' && !independent) ||
+      if (!isCurrentRequest() || (environmentalViewController.activeView !== 'temperature' && !independent) ||
           popupRevision !== activeClickPopupRevision) return;
       if (result.unavailable) {
         closeManagedPopupForLayer('temperature');
@@ -17327,7 +17374,7 @@ ZSD·2016–2025</span></span>
       bindTemperatureDetailPopupControls();
       temperatureDetailPopup.update();
     } catch (error) {
-      if (error?.name === 'AbortError' || generation !== temperatureQueryGeneration ||
+      if (error?.name === 'AbortError' || !isCurrentRequest() ||
           (environmentalViewController.activeView !== 'temperature' && !independent) || popupRevision !== activeClickPopupRevision) return;
       console.warn('Temperature query could not be loaded:', error);
       const sameQuery = temperatureDetailQueryKey ===
@@ -25592,6 +25639,57 @@ ZSD·2016–2025</span></span>
     openManagedPopup(sitePopup._diveAtlasOwnerKey, sitePopup, siteEntry.marker.getLatLng(), siteEntry.marker);
     return true;
   }
+  function animateMobileMapSheetEntrance(popup) {
+    const element = popup?.getElement?.();
+    if (!element?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
+    cancelMobileMapSheetDismissal(element);
+    element.classList.remove('mobile-sheet-exiting', 'mobile-vertical-dragging');
+    element.style.removeProperty('--mobile-panel-drag-y');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      element.classList.remove('mobile-sheet-entering');
+      return;
+    }
+    element.classList.add('mobile-sheet-entering');
+    void element.offsetHeight;
+    requestAnimationFrame(() => {
+      if (popup.isOpen?.()) element.classList.remove('mobile-sheet-entering');
+    });
+  }
+
+  const mobileMapSheetDismissals = new WeakMap();
+  function cancelMobileMapSheetDismissal(surface) {
+    const dismissal = surface && mobileMapSheetDismissals.get(surface);
+    if (!dismissal) return;
+    clearTimeout(dismissal.timer);
+    surface.removeEventListener('transitionend', dismissal.onTransitionEnd);
+    mobileMapSheetDismissals.delete(surface);
+  }
+
+  function animateMobileMapSheetDismissal(surface, onDismiss) {
+    if (!surface?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet') ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onDismiss();
+      return;
+    }
+    cancelMobileMapSheetDismissal(surface);
+    surface.classList.remove('mobile-vertical-dragging', 'mobile-sheet-entering');
+    surface.classList.add('mobile-sheet-exiting');
+
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      cancelMobileMapSheetDismissal(surface);
+      if (surface.classList.contains('mobile-sheet-exiting')) onDismiss();
+    };
+    const onTransitionEnd = event => {
+      if (event.target === surface && event.propertyName === 'translate') finish();
+    };
+    const fallbackTimer = window.setTimeout(finish, 320);
+    mobileMapSheetDismissals.set(surface, { timer:fallbackTimer, onTransitionEnd });
+    surface.addEventListener('transitionend', onTransitionEnd);
+  }
+
   function bindMobileVerticalDragHandle(handle, surface, onDismiss, {
     tapToDismiss = false,
     closeDistance = 82,
@@ -25663,9 +25761,7 @@ ZSD·2016–2025</span></span>
       if (wasVerticalDrag) {
         event.preventDefault();
         if (deltaY >= closeDistance) {
-          surface.classList.remove('mobile-vertical-dragging');
-          onDismiss();
-          window.setTimeout(resetSurface, 300);
+          animateMobileMapSheetDismissal(surface, onDismiss);
           return;
         }
       }
@@ -25713,7 +25809,7 @@ ZSD·2016–2025</span></span>
         handle.setAttribute('aria-label', 'Hide rating sheet; swipe down');
         handle.title = 'Swipe down to hide';
         bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
-          tapToDismiss:true,
+          tapToDismiss:false,
           closeDistance:72,
           expandOnUpwardDrag:true
         });
@@ -25768,7 +25864,7 @@ ZSD·2016–2025</span></span>
         handle.setAttribute('aria-label', 'Hide details sheet; swipe down');
         handle.title = 'Swipe down to hide';
         bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
-          tapToDismiss:true,
+          tapToDismiss:false,
           closeDistance:72,
           expandOnUpwardDrag:true
         });
@@ -25804,11 +25900,40 @@ ZSD·2016–2025</span></span>
     }
     return useMobileSheet;
   }
+  function ensureMobileSheetShareButton(popup) {
+    const element = popup?.getElement?.();
+    if (!element?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
+    const wrapper = element.querySelector('.leaflet-popup-content-wrapper');
+    if (!wrapper) return;
+
+    let button = wrapper.querySelector('.diveatlas-sheet-share-button');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'top-menu-share diveatlas-sheet-share-button';
+      button.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="12.5" cy="3.5" r="2"></circle><circle cx="3.5" cy="8" r="2"></circle><circle cx="12.5" cy="12.5" r="2"></circle><path d="m5.3 7.1 5.4-2.7M5.3 8.9l5.4 2.7"></path></svg>';
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        openShareDialog();
+      });
+      L.DomEvent.disableClickPropagation(button);
+      wrapper.appendChild(button);
+    }
+
+    const label = t('shareMap');
+    button.setAttribute('aria-label', label);
+    button.title = label;
+  }
+
   function syncMapPopupForViewport(popup) {
     return syncDiveRatingPopupForViewport(popup) || syncOtherMapPopupForViewport(popup);
   }
   window.addEventListener('resize', () => {
-    if (activeClickPopup?.isOpen()) syncMapPopupForViewport(activeClickPopup);
+    if (activeClickPopup?.isOpen()) {
+      syncMapPopupForViewport(activeClickPopup);
+      ensureMobileSheetShareButton(activeClickPopup);
+    }
   }, { passive:true });
 
   map.on('popupopen', event => {
@@ -25817,7 +25942,10 @@ ZSD·2016–2025</span></span>
     if (popup._diveAtlasMobileSheetContentUpdate !== true) {
       popup._diveAtlasMobileSheetContentUpdate = true;
       popup.on('contentupdate', () => {
-        if (popup.isOpen()) syncMapPopupForViewport(popup);
+        if (popup.isOpen()) {
+          syncMapPopupForViewport(popup);
+          ensureMobileSheetShareButton(popup);
+        }
       });
     }
     hydrateDiveSiteSummaryPopup(popup);
@@ -25840,7 +25968,11 @@ ZSD·2016–2025</span></span>
       }
     }
     const mobileMapSheet = syncMapPopupForViewport(popup);
-    if (mobileMapSheet) observeMobileMapSheetSize(popup);
+    ensureMobileSheetShareButton(popup);
+    if (mobileMapSheet) {
+      animateMobileMapSheetEntrance(popup);
+      observeMobileMapSheetSize(popup);
+    }
     if (!mobileMapSheet) beginMapPopupPlacement(popup);
     if (popup !== activeClickPopup) {
       activeClickPopupRevision += 1;
@@ -26590,6 +26722,8 @@ ZSD·2016–2025</span></span>
     popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
+      cancelMobileMapSheetDismissal(popupElement);
+      popupElement.classList.remove('mobile-sheet-entering', 'mobile-sheet-exiting');
       popupElement.classList.remove('mobile-vertical-dragging');
       popupElement.style.removeProperty('--mobile-panel-drag-y');
       popupElement.style.removeProperty('height');

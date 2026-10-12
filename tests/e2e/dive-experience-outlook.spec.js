@@ -17,6 +17,7 @@ async function waitForMapInteractionWindow(page) {
 
 async function reopenDiveExperiencePopup(page) {
   const popup = page.locator('.dive-experience-popup-content');
+  await setLegendCollapsed(page, true);
   await waitForMapInteractionWindow(page);
   const result = await page.evaluate(() => {
     window.__DIVEATLAS_TEST__.map.closePopup();
