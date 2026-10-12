@@ -175,6 +175,10 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     }
     await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
   };
+  const reopenThermalHistoryPopup = async () => {
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('click', { latlng: window.L.latLng(0, 0) }));
+    await expect(page.locator('.reef-condition-raster-popup').first()).toBeVisible();
+  };
   await ensurePanelExpanded();
   if (testInfo.project.name.includes('mobile') && await page.locator('#bioLegend').evaluate(element => element.classList.contains('is-collapsed'))) {
     await page.locator('#bioLegendTitle').click();
@@ -182,7 +186,12 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
   await page.locator('#reefConditionInfoDetails > summary').click();
   await expect(page.locator('#reefConditionInfoPopover')).toContainText('3.1 mi');
   await page.locator('#reefConditionInfoDetails > summary').click();
-  if (testInfo.project.name.includes('mobile')) await page.locator('#bioLegendTitle').click();
+  if (testInfo.project.name.includes('mobile')) {
+    await page.locator('#bioLegendTitle').click();
+    await expect(page.locator('.leaflet-popup.coral-heat-stress-popup')).toHaveCount(0);
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('click', { latlng: window.L.latLng(0, 0) }));
+    await expect(page.locator('.reef-condition-raster-popup')).toBeVisible();
+  }
   const historyInfo = page.locator('.reef-condition-history-info');
   const historyInfoButton = historyInfo.locator('summary');
   const historyInfoPopover = page.locator('#reefConditionHistoryInfoPopover');
@@ -219,7 +228,12 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
   expect(infoControlMetrics.targetGap).toBeLessThanOrEqual(2);
   expect(infoControlMetrics.verticalCenterOffset).toBeLessThan(2);
   await ensurePanelExpanded();
-  if (testInfo.project.name.includes('mobile')) await collapsePanel();
+  if (testInfo.project.name.includes('mobile')) {
+    await collapsePanel();
+    await expect(page.locator('.leaflet-popup.coral-heat-stress-popup')).toHaveCount(0);
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('click', { latlng: window.L.latLng(0, 0) }));
+    await expect(page.locator('.reef-condition-raster-popup')).toBeVisible();
+  }
   await historyInfoButton.click();
   await expect(historyInfoPopover).toBeVisible();
   await expect(historyInfoPopover).toContainText('6 of 10 years');
@@ -233,12 +247,16 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
   await page.locator('#languageDropdown [data-language="zh"]').click();
   await closeTopMenu(page);
   await ensurePanelExpanded();
+  if (testInfo.project.name.includes('mobile')) {
+    await expect(page.locator('.leaflet-popup.coral-heat-stress-popup')).toHaveCount(0);
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('click', { latlng: window.L.latLng(0, 0) }));
+    await expect(page.locator('.reef-condition-raster-popup')).toBeVisible();
+  }
   await expect(page.locator('#reefSurveyConditionControls h2')).toHaveText('珊瑚礁状况');
   await expect(page.locator('[data-reef-condition-raster-legend]')).toContainText('珊瑚礁热压力历史');
   await expect(page.locator('.reef-condition-raster-popup')).toContainText('珊瑚礁热压力历史');
   await expect(page.locator('.reef-condition-raster-popup')).toContainText('31.7 °F-weeks');
   await expect(page.locator('[data-reef-condition-raster-resolution]')).toHaveText('3.1 mi');
-  if (testInfo.project.name.includes('mobile')) await collapsePanel();
   await page.locator('.leaflet-popup .reef-condition-history-info > summary').click();
   await expect(page.locator('#reefConditionHistoryInfoPopover')).toContainText('严重热压力年份');
   await expect(page.locator('#reefConditionHistoryInfoPopover')).toContainText('54.4 °F-weeks');
@@ -262,6 +280,7 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     await page.locator('#languageMenuButton').click();
     await page.locator(`#languageDropdown [data-language="${language}"]`).click();
     await ensurePanelExpanded();
+    if (testInfo.project.name.includes('mobile')) await reopenThermalHistoryPopup();
     await expect(page.locator('#reefSurveyConditionControls h2')).toHaveText(copy.panel);
     await expect(page.locator('#environmentReefConditionLabel')).toHaveText(copy.panel);
     await expect(page.locator('#environmentViewSelect option[value="reef-survey-condition"]')).toHaveText(copy.panel);
@@ -269,8 +288,11 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     await expect(page.locator('[data-reef-condition-raster-legend]')).toContainText(copy.popup.toLocaleUpperCase());
     await expect(page.locator('.reef-condition-raster-popup')).toContainText(copy.popup);
     await expect(page.locator('.reef-condition-raster-popup')).toContainText(/31[.,]7 °F-weeks/u);
-    if (testInfo.project.name.includes('mobile')) await collapsePanel();
-    await page.locator('.leaflet-popup .reef-condition-history-info > summary').click();
+    if (testInfo.project.name.includes('mobile')) {
+      await collapsePanel();
+      await reopenThermalHistoryPopup();
+    }
+    await page.locator('.leaflet-popup .reef-condition-history-info > summary').first().click();
     await expect(page.locator('#reefConditionHistoryInfoPopover')).toBeVisible();
     const layout = await page.evaluate(() => {
       const panel = document.querySelector('#reefSurveyConditionControls');
@@ -292,7 +314,7 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     } else {
       expect(layout).toEqual({ panelOverflow: false, popupFitsBoard: true, chartFitsBoard: true });
     }
-    await page.locator('.leaflet-popup .reef-condition-history-info > summary').click();
+    await page.locator('.leaflet-popup .reef-condition-history-info > summary').first().click();
     if (testInfo.project.name.includes('mobile')) await ensurePanelExpanded();
     const legend = page.locator('#bioLegend');
     const isCollapsed = await legend.evaluate(element => element.classList.contains('is-collapsed'));

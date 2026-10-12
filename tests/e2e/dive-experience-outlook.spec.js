@@ -15,6 +15,17 @@ async function waitForMapInteractionWindow(page) {
   })).toBe(true);
 }
 
+async function reopenDiveExperiencePopup(page) {
+  const popup = page.locator('.dive-experience-popup-content');
+  await waitForMapInteractionWindow(page);
+  const result = await page.evaluate(() => {
+    window.__DIVEATLAS_TEST__.map.closePopup();
+    return window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 });
+  });
+  expect(result).toBe('dive-experience-outlook-location-selected');
+  await expect(popup).toBeVisible();
+}
+
 test('Dive Experience Outlook loads the selected month on demand and explains a selected cell', async ({ page }) => {
   const outlookRequests = [];
   page.on('request', request => {
@@ -168,6 +179,9 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   }
 
   await setLegendCollapsed(page, false);
+  if (page.viewportSize().width <= 720) {
+    await expect(page.locator('.leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
+  }
   const centerBefore = await page.evaluate(() => {
     const center = window.__DIVEATLAS_TEST__.map.getCenter();
     return { lat:center.lat, lng:center.lng, zoom:window.__DIVEATLAS_TEST__.map.getZoom() };
@@ -176,12 +190,17 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   await page.locator('#diveExperienceMonth').selectOption('7');
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('7');
   await expect.poll(() => outlookRequests.some(url => url.endsWith('/month-07.bin.gz'))).toBe(true);
+  if (page.viewportSize().width <= 720) await reopenDiveExperiencePopup(page);
   await expect(popup).toContainText('July');
   const monthSwitchMs = Date.now() - monthSwitchStarted;
   await expect(popup.locator('.dive-experience-main-score')).toBeVisible();
   const scoreAfter = await popup.locator('.dive-experience-main-score').innerText();
   expect(scoreAfter).not.toBe(scoreBefore);
   await setLegendCollapsed(page, true);
+  if (page.viewportSize().width <= 720) {
+    await expect(page.locator('.leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
+    await reopenDiveExperiencePopup(page);
+  }
   const scoreInfoDetails = popup.locator('.dive-experience-score-info');
   if (!await scoreInfoDetails.evaluate(details => details.open)) {
     await scoreInfoDetails.locator(':scope > summary').click();
@@ -193,6 +212,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   expect(fishAfter).toBe(fishBefore);
   expect(thermalAfter).toBe(thermalBefore);
   await setLegendCollapsed(page, false);
+  if (page.viewportSize().width <= 720) await reopenDiveExperiencePopup(page);
   for (const allMonth of Array.from({ length:12 }, (_, index) => index + 1).filter(value => ![7, Number(month)].includes(value))) {
     const asset = `month-${String(allMonth).padStart(2, '0')}.bin.gz`;
     await page.locator('#diveExperienceMonth').selectOption(String(allMonth));
@@ -266,6 +286,7 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
     if (language !== 'en') {
       await page.locator('#languageMenuButton').click();
       await page.locator(`#languageDropdown [data-language="${language}"]`).click();
+      if (page.viewportSize().width <= 720) await reopenDiveExperiencePopup(page);
     }
     await expect(page.locator('#diveExperienceOutlookPanel h2')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
     await expect(popup.locator('.dive-conditions-popup-title')).toHaveAttribute('aria-label', 'DiveAtlas Rating');
@@ -289,7 +310,11 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
     await expect(page.locator('#bioLegendCollapsedSummary')).toContainText(`${tabLabels[language]} ·`);
     await setLegendCollapsed(page, false);
   }
-  if (page.viewportSize().width <= 720) await setLegendCollapsed(page, true);
+  if (page.viewportSize().width <= 720) {
+    await setLegendCollapsed(page, true);
+    await expect(page.locator('.leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
+    await reopenDiveExperiencePopup(page);
+  }
   await page.locator('.dive-experience-score-info > summary').click();
   await expect(page.locator('.dive-experience-popup-info-popover')).toBeVisible();
   await expect(page.locator('.dive-experience-popup-info-popover')).toContainText('Prospek historis bulanan');
