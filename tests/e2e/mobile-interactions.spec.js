@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { gzipSync } = require('node:zlib');
 const {
   addFixture,
   clickFixture,
@@ -6,8 +7,11 @@ const {
   openMap,
   resetActionCount,
   setMapView,
-  waitForClickResolution
+  waitForClickResolution,
+  waitForMapInteractionWindow
 } = require('./support');
+
+const depthSampleFixture = gzipSync(Buffer.from(new Int16Array(225 * 225).fill(-500).buffer));
 
 test.beforeEach(async ({ page }, testInfo) => openMap(page, {
   disableLegendAutoCollapse: testInfo.title !== 'mobile layer rows toggle across the row and the collapsed bar shrinks after idle'
@@ -474,7 +478,13 @@ test('mobile long press on empty ocean opens Depth Inspection', async ({ page })
   await terrainSegment.scrollIntoViewIfNeeded();
   await terrainSegment.click();
   await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
-  await dispatchTouchSequence(page, { duration: 720 });
+  await page.route('**/data/depth_samples/**', route => route.fulfill({
+    status: 200,
+    contentType: 'application/octet-stream',
+    body: depthSampleFixture
+  }));
+  await waitForMapInteractionWindow(page);
+  await dispatchTouchSequence(page, { duration: 900 });
   await expect(page.locator('.leaflet-popup')).toBeVisible({ timeout: 5000 });
   expect((await mapState(page)).popup.type).toBe('depth');
 });

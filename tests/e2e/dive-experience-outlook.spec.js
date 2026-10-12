@@ -42,6 +42,9 @@ test('Dive Experience Outlook can be disabled for a staged rollout', async ({ pa
 });
 
 test('Dive Experience panel, popup, and info tooltip follow every supported language', async ({ page }, testInfo) => {
+  // Mobile reopens the popup after each locale change; the full 14-language
+  // pass needs more than Playwright's default 30-second budget on CI.
+  test.setTimeout(90_000);
   await openMap(page);
   await setLegendCollapsed(page, false);
   await page.locator('.environment-segment').filter({
