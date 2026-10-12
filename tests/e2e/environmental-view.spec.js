@@ -957,6 +957,32 @@ async function expectTemperaturePopupContained(page, { below = true } = {}) {
   return state;
 }
 
+async function expectMobileSheetAnchorCentered(page, lat, lng) {
+  await expect.poll(() => page.evaluate(({ latitude, longitude }) => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const mapRect = map.getContainer().getBoundingClientRect();
+    const headerRect = document.querySelector('#topMenuBar').getBoundingClientRect();
+    const sheetRect = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet').getBoundingClientRect();
+    const rootStyle = getComputedStyle(document.documentElement);
+    const safeAreaTop = parseFloat(rootStyle.getPropertyValue('--map-safe-area-top')) || 0;
+    const safeAreaBottom = parseFloat(rootStyle.getPropertyValue('--map-safe-area-bottom')) || 0;
+    const visualTop = window.visualViewport?.offsetTop || 0;
+    const visualBottom = window.visualViewport
+      ? visualTop + window.visualViewport.height
+      : window.innerHeight;
+    const safeTop = Math.max(mapRect.top + 14, headerRect.bottom + 14, visualTop + safeAreaTop + 14);
+    const safeBottom = Math.min(mapRect.bottom - 14, visualBottom - safeAreaBottom - 14);
+    const visibleTop = Math.max(mapRect.top, safeTop - 14);
+    const visibleBottom = Math.min(mapRect.bottom, safeBottom + 14, sheetRect.top);
+    const target = {
+      x:mapRect.width / 2,
+      y:(visibleTop + (visibleBottom - visibleTop) / 2) - mapRect.top
+    };
+    const anchor = map.latLngToContainerPoint([latitude, longitude]);
+    return Math.hypot(anchor.x - target.x, anchor.y - target.y);
+  }, { latitude:lat, longitude:lng })).toBeLessThan(2);
+}
+
 test('real WOA23 query chunk stays lazy, returns the generated value/profile, and is reused', async ({ page }) => {
   const requests = [];
   const queryResponses = [];
@@ -1152,6 +1178,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await closeTopMenu(page);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart')).toContainText('ft');
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   await openTopMenu(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await closeTopMenu(page);
@@ -1159,12 +1186,12 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
-  expect(state.center).toEqual(before.center);
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart circle')).toHaveCount(11);
   state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
-  expect(state.center).toEqual(before.center);
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   const bounds = await page.locator('.leaflet-popup').boundingBox();
   const closeBounds = await page.locator('.leaflet-popup-close-button').boundingBox();
   const isMobileSheet = await page.locator('.leaflet-popup.diveatlas-mobile-sheet').count() > 0;
