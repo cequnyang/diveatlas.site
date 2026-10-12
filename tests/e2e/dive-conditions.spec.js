@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { openMap, openMobileSettings, setMapView } = require('./support');
+const { closeTopMenu, openMap, openMobileSettings, setMapView } = require('./support');
 
 test('standalone Dive Conditions tab is removed while Dive Experience retains monthly conditions', async ({ page }) => {
   await openMap(page);
@@ -93,6 +93,7 @@ test('standalone Dive Conditions tab is removed while Dive Experience retains mo
   await expect(popup.locator('.dive-conditions-grid')).toContainText('°F');
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
   await expect(popup.locator('.dive-conditions-grid')).toContainText('ft');
+  await closeTopMenu(page);
   await popup.locator('.dive-experience-score-info > summary').click();
   const infoTooltip = page.locator('.dive-experience-popup-info-popover');
   await expect(infoTooltip).toBeVisible();

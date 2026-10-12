@@ -58,7 +58,16 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       // Test pages run on localhost, while production R2 CORS allows only the
       // deployed site origin. Proxy just the configured public asset origin
       // through Playwright so tests exercise the release without widening bucket CORS.
-      const response = await route.fetch({ timeout: 30_000 });
+      let response;
+      try {
+        response = await route.fetch({ timeout: 30_000 });
+      } catch (error) {
+        // A page can close while an immutable release asset is still in flight.
+        // Do not let that teardown race fail a later test; keep real request
+        // failures visible while the page is still active.
+        if (page.isClosed()) return;
+        throw error;
+      }
       const headers = { ...response.headers() };
       const pageOrigin = route.request().headers().origin;
       if (pageOrigin) headers['access-control-allow-origin'] = pageOrigin;
@@ -172,6 +181,31 @@ async function closeTopMenu(page) {
   await expect(menu).toBeHidden();
 }
 
+async function waitForMapInteractionWindow(page) {
+  await expect.poll(() => page.evaluate(() => {
+    const state = window.__DIVEATLAS_TEST__?.getState?.();
+    return Boolean(state && !state.pendingInteraction && !state.activePointerGesture && performance.now() >= state.suppressedUntil);
+  })).toBe(true);
+}
+
+async function waitForMapMovementToSettle(page) {
+  await page.evaluate(() => new Promise(resolve => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    let timer;
+    const finishAfterQuietPeriod = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        map.off('move', finishAfterQuietPeriod);
+        resolve();
+      }, 120);
+    };
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      map.on('move', finishAfterQuietPeriod);
+      finishAfterQuietPeriod();
+    }));
+  }));
+}
+
 async function addDiveSiteAtScreenPoint(page, id, x, y) {
   await page.evaluate(({ id, x, y }) => {
     const api = window.__DIVEATLAS_TEST__;
@@ -196,5 +230,7 @@ module.exports = {
   openMap,
   resetActionCount,
   setMapView,
+  waitForMapInteractionWindow,
+  waitForMapMovementToSettle,
   waitForClickResolution
 };

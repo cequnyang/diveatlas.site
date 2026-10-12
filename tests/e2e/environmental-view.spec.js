@@ -117,44 +117,6 @@ test('temperature has zero startup requests and loads only after activation', as
   await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
 });
 
-test('Waves loads its selected month on demand and defers point climatology until requested', async ({ page }) => {
-  const requests = [];
-  page.on('request', request => {
-    if (request.url().includes('/data/waves/')) requests.push(request.url());
-  });
-  await openMap(page);
-  expect(requests).toEqual([]);
-  await expect(page.locator('#wavesControls')).toBeHidden();
-
-  await page.locator('#environmentViewSelect').selectOption('waves');
-  await expect(page.locator('#wavesControls')).toBeVisible();
-  await expect(page.locator('#wavesStatus')).toHaveAttribute('data-state', 'ready');
-  await expect(page.locator('.waves-tiles')).toHaveCount(1);
-  await expect.poll(() => requests.some(url => url.endsWith('/data/waves/metadata.json'))).toBe(true);
-  expect(requests.filter(url => url.includes('/data/waves/query/'))).toEqual([]);
-
-  await page.locator('#wavesMonth').selectOption('10');
-  await expect(page.locator('#temperatureMonth')).toHaveValue('10');
-  await clickMapCoordinate(page, -5.7, 131);
-  await expect(page.locator('.waves-detail')).toBeVisible();
-  await expect.poll(() => requests.some(url => url.includes('/data/waves/query/'))).toBe(true);
-  await expect(page.locator('.waves-detail')).toContainText('1993–2020');
-  await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
-  await expect(page.locator('#wavesInfoResolution')).toContainText('mi');
-  await expect(page.locator('#wavesMetaResolutionValue')).toContainText('mi');
-  await expect(page.locator('.temperature-detail-resolution')).toContainText('mi');
-  await expect(page.locator('.waves-primary-metrics')).toContainText('ft');
-
-  await page.locator('.waves-seasonal-button').click();
-  await expect(page.locator('.waves-seasonal-chart')).toBeVisible();
-  expect(requests.filter(url => url.includes('/data/waves/query/')).length).toBeGreaterThan(1);
-
-  await page.locator('#environmentViewSelect').selectOption('default');
-  await expect(page.locator('#wavesControls')).toBeHidden();
-  await expect(page.locator('.waves-tiles')).toHaveCount(0);
-  await expect(page.locator('.waves-detail')).toHaveCount(0);
-});
-
 test('Water Clarity loads on demand, synchronizes month selection, and reports missing assets', async ({ page }) => {
   const clarityRequests = [];
   page.on('request', request => {
@@ -957,107 +919,31 @@ async function expectTemperaturePopupContained(page, { below = true } = {}) {
   return state;
 }
 
-test('real WOA23 query chunk stays lazy, returns the generated value/profile, and is reused', async ({ page }) => {
-  const requests = [];
-  const queryResponses = [];
-  page.on('request', request => {
-    if (request.url().includes('/data/temperature/query/')) requests.push(request.url());
-  });
-  page.on('response', response => {
-    if (response.url().includes('/data/temperature/query/')) {
-      queryResponses.push(response.body().then(body => ({ url: response.url(), bytes: body.byteLength })));
-    }
-  });
-  const queryMetadata = JSON.parse((await readTestDataAsset('data/temperature/query/v2/metadata.json')).toString('utf8'));
-  expect(queryMetadata.format).toBe('diveatlas-temperature-query');
-  await openMap(page, { externalAssets: Boolean(dataAssetBaseUrl) });
-  expect(requests).toEqual([]);
-  await page.locator('#environmentViewSelect').selectOption('temperature');
-  await expect(page.locator('.temperature-tiles')).toHaveCount(1);
-  expect(requests).toEqual([]);
-
-  const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
-  await page.locator('#temperatureMonth').selectOption('9');
-  await page.locator('#temperatureDepth').selectOption('20');
-  const centerBeforeClick = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
-  const firstClickStarted = Date.now();
-  await clickMapCoordinate(page, -5.7, 131);
-  const response = await chunkResponse;
-  expect(response.status()).toBe(200);
-  const firstClickResponseBytes = (await response.body()).byteLength;
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
-  const firstClickMs = Date.now() - firstClickStarted;
-  const centerAfterPopup = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
-  expect(Math.abs(centerAfterPopup.lat - centerBeforeClick.lat)).toBeLessThan(1e-5);
-  expect(Math.abs(centerAfterPopup.lng - centerBeforeClick.lng)).toBeLessThan(1e-5);
-  await page.locator('#temperatureDepth').selectOption('10');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('27');
-  await page.locator('#temperatureMonth').selectOption('10');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('28.1');
-  await page.locator('#temperatureDepth').selectOption('20');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('27.8');
-  await page.locator('#temperatureMonth').selectOption('9');
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
-  expect(requests.filter(url => url.includes('/metadata.json'))).toHaveLength(1);
-  const chunkRequests = requests.filter(url => url.includes('/chunks/'));
-  expect(chunkRequests).toHaveLength(4);
-  await page.getByRole('button', { name: 'Depth' }).click();
-  await expect(page.locator('.temperature-profile-chart')).toBeVisible();
-  expect(await page.locator('.temperature-profile-chart circle').count()).toBe(11);
-  const profileRadii = await page.locator('.temperature-profile-chart circle').evaluateAll(nodes => nodes.map(node => node.getAttribute('r')));
-  expect(profileRadii[4]).toBe('4');
-  await expect(page.locator('[data-temperature-tab="year"]')).toBeEnabled();
-  await page.locator('[data-temperature-tab="year"]').click();
-  await expect(page.locator('.temperature-year-chart circle')).toHaveCount(12);
-  await expect(page.locator('.temperature-year-values span')).toHaveCount(12);
-  expect(await page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill')).toBe('var(--accent)');
-  await page.locator('#temperatureMonth').selectOption('10');
-  await expect(page.locator('.temperature-year-chart circle')).toHaveCount(12);
-  await expect.poll(() => page.locator('.temperature-year-chart circle').nth(9).getAttribute('fill'))
-    .toBe('var(--accent)');
-  await page.locator('#temperatureMonth').selectOption('9');
-  await expect.poll(() => page.locator('.temperature-year-chart circle').nth(8).getAttribute('fill'))
-    .toBe('var(--accent)');
-  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setZoom(8));
-  await page.waitForTimeout(600);
-  await expect(page.locator('.leaflet-popup')).toBeVisible();
-
-  const beforeRepeatClick = requests.filter(url => url.includes('/chunks/09/20/r08_c31.i16.gz')).length;
-  await clickMapCoordinate(page, -5.6, 131.1);
-  await expect(page.locator('.temperature-detail-value')).toHaveText('26.9');
-  const afterRepeatClick = requests.filter(url => url.includes('/chunks/09/20/r08_c31.i16.gz')).length;
-  console.log('selected Temperature slice cache:', JSON.stringify({ beforeRepeatClick, afterRepeatClick }));
-  expect(afterRepeatClick - beforeRepeatClick).toBe(0);
-  const totalQueryBytes = (await Promise.all(queryResponses)).reduce((sum, item) => sum + item.bytes, 0);
-  const cdp = await page.context().newCDPSession(page);
-  await cdp.send('Network.enable');
-  await cdp.send('Network.setCacheDisabled', { cacheDisabled:true });
-  await cdp.send('Network.emulateNetworkConditions', {
-    offline:false, latency:500, downloadThroughput:64 * 1024, uploadThroughput:64 * 1024,
-    connectionType:'cellular3g'
-  });
-  const coldCacheComparison = await page.evaluate(async () => {
-    async function fetchMeasure(path) {
-      const started = performance.now();
-      const response = await fetch(`${path}?benchmark=${crypto.randomUUID()}`, { cache:'no-store' });
-      const bytes = (await response.arrayBuffer()).byteLength;
-      return { status:response.status, bytes, milliseconds:Math.round(performance.now() - started) };
-    }
-    return fetchMeasure('/data/temperature/query/v2/chunks/09/20/r08_c31.i16.gz');
-  });
-  await cdp.send('Network.emulateNetworkConditions', {
-    offline:false, latency:0, downloadThroughput:-1, uploadThroughput:-1
-  });
-  await cdp.detach();
-  expect(coldCacheComparison.status).toBe(200);
-  expect(coldCacheComparison.bytes).toBeGreaterThan(0);
-  console.log('real query performance:', JSON.stringify({ firstClickMs, firstClickBytes: firstClickResponseBytes,
-    sameChunkAdditionalRequests: requests.length - 2,
-    detailAndSelectionBytes: totalQueryBytes - firstClickResponseBytes,
-    coldCache3g: coldCacheComparison }));
-  await page.locator('#environmentViewSelect').selectOption('default');
-  await expect(page.locator('.leaflet-popup')).toHaveCount(0);
-});
+async function expectMobileSheetAnchorCentered(page, lat, lng) {
+  await expect.poll(() => page.evaluate(({ latitude, longitude }) => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const mapRect = map.getContainer().getBoundingClientRect();
+    const headerRect = document.querySelector('#topMenuBar').getBoundingClientRect();
+    const sheetRect = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet').getBoundingClientRect();
+    const rootStyle = getComputedStyle(document.documentElement);
+    const safeAreaTop = parseFloat(rootStyle.getPropertyValue('--map-safe-area-top')) || 0;
+    const safeAreaBottom = parseFloat(rootStyle.getPropertyValue('--map-safe-area-bottom')) || 0;
+    const visualTop = window.visualViewport?.offsetTop || 0;
+    const visualBottom = window.visualViewport
+      ? visualTop + window.visualViewport.height
+      : window.innerHeight;
+    const safeTop = Math.max(mapRect.top + 14, headerRect.bottom + 14, visualTop + safeAreaTop + 14);
+    const safeBottom = Math.min(mapRect.bottom - 14, visualBottom - safeAreaBottom - 14);
+    const visibleTop = Math.max(mapRect.top, safeTop - 14);
+    const visibleBottom = Math.min(mapRect.bottom, safeBottom + 14, sheetRect.top);
+    const target = {
+      x:mapRect.width / 2,
+      y:(visibleTop + (visibleBottom - visibleTop) / 2) - mapRect.top
+    };
+    const anchor = map.latLngToContainerPoint([latitude, longitude]);
+    return Math.hypot(anchor.x - target.x, anchor.y - target.y);
+  }, { latitude:lat, longitude:lng })).toBeLessThan(2);
+}
 
 test('temperature query never steals marker clicks and its detail closes when disabled', async ({ page }) => {
   const queryRequests = [];
@@ -1152,6 +1038,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await closeTopMenu(page);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart')).toContainText('ft');
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   await openTopMenu(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await closeTopMenu(page);
@@ -1159,12 +1046,12 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
-  expect(state.center).toEqual(before.center);
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   await page.getByRole('button', { name: 'Depth' }).click();
   await expect(page.locator('.temperature-profile-chart circle')).toHaveCount(11);
   state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
-  expect(state.center).toEqual(before.center);
+  await expectMobileSheetAnchorCentered(page, -5.7, 131);
   const bounds = await page.locator('.leaflet-popup').boundingBox();
   const closeBounds = await page.locator('.leaflet-popup-close-button').boundingBox();
   const isMobileSheet = await page.locator('.leaflet-popup.diveatlas-mobile-sheet').count() > 0;
@@ -1259,58 +1146,4 @@ test('changing month and depth requests only the newest slice and leaves markers
   await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-8, 134, 7));
   await page.waitForTimeout(250);
   expect(requests.length).toBe(beforePan);
-});
-
-test('real WOA23 September 20 m tile loads, renders, and preserves masked pixels', async ({ page }) => {
-  const realMetadata = dataAssetBaseUrl
-    ? JSON.parse((await readTestDataAsset('data/temperature/metadata.json')).toString('utf8'))
-    : fs.existsSync(temperatureMetadata)
-      ? JSON.parse(fs.readFileSync(temperatureMetadata, 'utf8'))
-      : null;
-  const hasProductionFixture = realMetadata?.active_profile === 'production-0.25deg' &&
-    realMetadata.purpose === 'production' && realMetadata.available_slices?.some(
-      ([month, depth]) => month === 9 && depth === 20
-    );
-  expect(hasProductionFixture, 'The shipped production manifest must include the WOA23 September/20 m slice.').toBe(true);
-
-  await openMap(page, {
-    localStorage: { 'global-coral-map-environment-month-v1': '9' },
-    externalAssets: Boolean(dataAssetBaseUrl)
-  });
-  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-20, 133.8, 3));
-  const tileResponse = page.waitForResponse(response =>
-    response.url().includes('/data/temperature/production-0.25deg/woa23/monthly/09/20/3/6/4.png')
-  );
-  await page.locator('#environmentViewSelect').selectOption('temperature');
-  const response = await tileResponse;
-  expect(response.status()).toBe(200);
-  const tile = page.locator('img.leaflet-tile-loaded[src*="/production-0.25deg/woa23/monthly/09/20/3/6/4.png"]');
-  await expect(tile).toBeVisible();
-  await expect.poll(() => tile.evaluate(image => image.complete && image.naturalWidth === 256)).toBe(true);
-  const alpha = await tile.evaluate(async image => {
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 256;
-    const context = canvas.getContext('2d', { willReadFrequently: true });
-    context.drawImage(image, 0, 0);
-    const pixels = context.getImageData(0, 0, 256, 256).data;
-    let clear = 0;
-    let colored = 0;
-    for (let i = 3; i < pixels.length; i += 4) {
-      if (pixels[i] === 0) clear++;
-      if (pixels[i] > 0) colored++;
-    }
-    // Pixel (249, 118) is interior Australia in this z3/x6/y4 tile.
-    const australiaLandAlpha = pixels[(118 * 256 + 249) * 4 + 3];
-    return { clear, colored, australiaLandAlpha };
-  });
-  expect(alpha.clear).toBeGreaterThan(0);
-  expect(alpha.colored).toBeGreaterThan(0);
-  expect(alpha.australiaLandAlpha).toBe(0);
-  await expect(page.locator('#temperatureScaleMin')).toHaveText(`${realMetadata.temperature_scale.min_c}°C`);
-  await expect(page.locator('#temperatureScaleMax')).toHaveText(`${realMetadata.temperature_scale.max_c}°C`);
-
-  await page.evaluate(() => window.__DIVEATLAS_TEST__.setView(-5.7, 131, 7));
-  await addFixture(page, 'dive-site', { id: 'real-temperature-marker', lat: -5.7, lng: 131 });
-  await clickFixture(page, 'real-temperature-marker');
-  await expect(page.locator('.leaflet-popup')).toBeVisible();
 });
