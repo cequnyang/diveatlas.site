@@ -409,11 +409,36 @@ test('expanded Dive Experience month chart stays inside the popup safe area', as
     .toBe('dive-experience-outlook-location-selected');
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
+  const sheet = page.locator('.leaflet-popup.dive-conditions-rating-sheet');
+  const collapsedHeightLimits = await sheet.evaluate(node => {
+    const content = node.querySelector('.leaflet-popup-content');
+    return {
+      sheet:parseFloat(getComputedStyle(node).maxHeight),
+      content:parseFloat(getComputedStyle(content).maxHeight)
+    };
+  });
   await popup.locator('.dive-experience-compare-button').click();
   await expect(popup.locator('.dive-experience-month-chart')).toBeVisible({ timeout:30000 });
-  const sheet = page.locator('.leaflet-popup.dive-conditions-rating-sheet');
   if (await sheet.isVisible()) {
     const viewportHeight = page.viewportSize().height;
+    const expectPointerCenteredInExposedMap = async () => {
+      await expect.poll(() => page.evaluate(() => {
+        const marker = document.querySelector('.map-click-location-marker');
+        const map = document.querySelector('#map');
+        const sheetElement = document.querySelector('.leaflet-popup.dive-conditions-rating-sheet');
+        const header = document.querySelector('#topMenuBar');
+        if (!marker || !map || !sheetElement || !header) return Infinity;
+        const markerBounds = marker.getBoundingClientRect();
+        const mapBounds = map.getBoundingClientRect();
+        const sheetBounds = sheetElement.getBoundingClientRect();
+        const visibleTop = Math.max(mapBounds.top, header.getBoundingClientRect().bottom);
+        const visibleBottom = Math.min(mapBounds.bottom, sheetBounds.top);
+        return Math.hypot(
+          markerBounds.left + markerBounds.width / 2 - (mapBounds.left + mapBounds.width / 2),
+          markerBounds.bottom - (visibleTop + (visibleBottom - visibleTop) / 2)
+        );
+      })).toBeLessThan(6);
+    };
     const geometry = await sheet.evaluate(node => {
       const popupContent = node.querySelector('.leaflet-popup-content');
       const chart = node.querySelector('.dive-experience-month-chart');
@@ -425,16 +450,24 @@ test('expanded Dive Experience month chart stays inside the popup safe area', as
         contentTop:contentBounds.top,
         contentBottom:contentBounds.bottom,
         contentScrollHeight:popupContent.scrollHeight,
+        sheetMaxHeight:parseFloat(getComputedStyle(node).maxHeight),
+        contentMaxHeight:parseFloat(getComputedStyle(popupContent).maxHeight),
         chartTop:chartBounds.top,
         chartBottom:chartBounds.bottom
       };
     });
+    expect(geometry.sheetMaxHeight).toBeGreaterThan(collapsedHeightLimits.sheet);
+    expect(geometry.contentMaxHeight).toBeGreaterThan(collapsedHeightLimits.content);
     expect(geometry.sheetBottom).toBeLessThanOrEqual(viewportHeight + 1);
     expect(geometry.contentTop).toBeGreaterThanOrEqual(0);
     expect(geometry.contentBottom).toBeLessThanOrEqual(viewportHeight + 1);
     expect(geometry.contentScrollHeight).toBeGreaterThanOrEqual(geometry.chartBottom - geometry.contentTop);
+    await expectPointerCenteredInExposedMap();
     await page.locator('.dive-experience-month-chart').scrollIntoViewIfNeeded();
     await expect(page.locator('.dive-experience-month-chart')).toBeInViewport();
+    await popup.locator('.dive-experience-compare-button').click();
+    await expect(popup.locator('.dive-experience-month-chart')).toBeHidden();
+    await expectPointerCenteredInExposedMap();
   } else {
     const bounds = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState().popup);
     expect(bounds.bounds.top).toBeGreaterThanOrEqual(bounds.safeBounds.top - 1);

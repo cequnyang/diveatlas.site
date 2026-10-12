@@ -1993,12 +1993,13 @@
        so the sheet stays attached to the viewport while the map remains usable. */
     @media (max-width:720px) {
       .leaflet-popup.dive-conditions-rating-sheet {
+        --dive-conditions-rating-sheet-max-height:min(68dvh, 660px);
         position:fixed !important;
         z-index:1500 !important;
         inset:auto 0 0 0 !important;
         width:auto !important;
         max-width:none !important;
-        max-height:min(68dvh, 660px) !important;
+        max-height:var(--dive-conditions-rating-sheet-max-height) !important;
         margin:0 !important;
         transform:none !important;
         translate:0 var(--mobile-panel-drag-y, 0px) !important;
@@ -2008,7 +2009,7 @@
         box-sizing:border-box;
         width:100%;
         height:100%;
-        max-height:min(68dvh, 660px);
+        max-height:var(--dive-conditions-rating-sheet-max-height);
         overflow:hidden;
         border:1px solid var(--line);
         border:0;
@@ -2024,7 +2025,8 @@
         box-sizing:border-box;
         width:100% !important;
         max-width:none !important;
-        max-height:calc(min(68dvh, 660px) - 2px) !important;
+        /* Keep the scroll viewport in step with the larger expanded-chart sheet cap. */
+        max-height:calc(var(--dive-conditions-rating-sheet-max-height) - 2px) !important;
         margin:0 !important;
         padding:14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
         overflow-x:hidden !important;
@@ -2034,15 +2036,15 @@
         touch-action:pan-y;
       }
       .leaflet-popup.dive-conditions-rating-sheet:has(.dive-experience-popup-content) .leaflet-popup-content {
+        max-height:calc(var(--dive-conditions-rating-sheet-max-height) - 2px) !important;
+      }
+      .leaflet-popup.dive-conditions-rating-sheet:has(.dive-experience-popup-content) .leaflet-popup-content {
         width:100% !important;
         max-width:none !important;
       }
-      .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:min(68dvh, 660px); }
-      .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) .leaflet-popup-content-wrapper {
-        max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)));
-      }
-      .leaflet-popup.dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
-        max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px))) !important;
+      .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:var(--dive-conditions-rating-sheet-max-height); }
+      .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
+        --dive-conditions-rating-sheet-max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)));
       }
       .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content { width:auto !important; }
       .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content):not(.dive-conditions-rating-sheet) .dive-conditions-popup-content {
@@ -5244,7 +5246,7 @@
     body.tutorial-open { overflow: hidden; }
     @media (max-width: 520px) {
       .tutorial-backdrop { padding: 12px; align-items: center; }
-      .tutorial-dialog { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); padding: 14px 14px 12px; border-radius: 18px; }
+      .tutorial-dialog { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); padding: 14px 14px max(12px, env(safe-area-inset-bottom)); border-radius: 18px; }
       .tutorial-topbar { gap: 8px; margin-bottom: 8px; }
       .tutorial-header { gap: 8px; }
       .tutorial-language-menu { top: 0; margin-top: 7px; }
@@ -5270,9 +5272,10 @@
       .tutorial-button.primary { min-width: 0; min-height: 34px; padding: 0 16px; }
     }
     @media (max-width: 720px) {
-      .tutorial-footer { gap: 12px; }
+      .tutorial-footer { position: sticky; z-index: 2; bottom: 0; gap: 12px; padding-top: 10px; border-top: 1px solid var(--border-subtle); background: var(--surface-elevated); }
       .tutorial-footer-actions { align-items: stretch; flex-direction: column; gap: 6px; }
-      .tutorial-actions { justify-content: flex-end; }
+      .tutorial-actions { width: 100%; justify-content: flex-end; }
+      .tutorial-button.primary { flex: 1 1 auto; }
     }
     @media (prefers-reduced-motion: reduce) {
       .tutorial-dialog { animation: none; }
@@ -6350,6 +6353,10 @@
         content:"";
       }
       .bio-legend-drag-handle:active { cursor:grabbing; }
+      /* Let the panel height animation reveal its contents in one motion;
+         independent inner transitions create a blank gap below the heading. */
+      .bio-legend.mobile-layers-panel-expanding .bio-legend-layers { transition:none; }
+      .bio-legend.mobile-layers-panel-expanding .bio-legend-drag-handle { visibility:hidden; }
       .bio-legend.is-collapsed .bio-legend-drag-handle { display:none; }
       .bio-legend.is-collapsed .bio-legend-heading { border-radius:12px; }
       .bio-legend.is-mobile-auto-collapsed {
@@ -6395,7 +6402,8 @@
         overflow-x:hidden;
         overflow-y:auto;
         overscroll-behavior:contain;
-        scrollbar-width:thin;
+        /* Modern Chromium honors scrollbar-width over the earlier WebKit hide rule. */
+        scrollbar-width:none;
       }
       .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
@@ -8635,6 +8643,51 @@ ZSD·2016–2025</span></span>
     return tooltip;
   }
 
+  function centerMobileMapSheetPointer(popup, requestedAnchor = null) {
+    if (!isMobileMapSheetPopup(popup) || !popup.isOpen?.()) return;
+    const anchor = requestedAnchor || popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
+    const popupElement = popup.getElement?.();
+    if (!anchor || !popupElement) return;
+
+    requestAnimationFrame(() => {
+      if (
+        !popup.isOpen?.() || popup !== activeClickPopup || !map.hasLayer(popup) ||
+        !isMobileMapSheetPopup(popup)
+      ) return;
+      const { mapRect, safeTop, safeBottom } = getMapPopupSafeViewport();
+      const sheetRect = popupElement.getBoundingClientRect();
+      // The map container extends behind the fixed navigation bar; center in
+      // the unobstructed map band between that bar and the open sheet instead.
+      const visibleTop = Math.max(mapRect.top, safeTop - MAP_POPUP_SAFE_MARGIN);
+      const visibleBottom = Math.min(mapRect.bottom, safeBottom + MAP_POPUP_SAFE_MARGIN, sheetRect.top);
+      if (visibleBottom <= visibleTop) return;
+      const targetPoint = L.point(
+        mapRect.width / 2,
+        (visibleTop + (visibleBottom - visibleTop) / 2) - mapRect.top
+      );
+      const anchorPoint = map.latLngToContainerPoint(anchor);
+      const offset = anchorPoint.subtract(targetPoint);
+      if (offset.distanceTo(L.point(0, 0)) < 2) return;
+      map.panBy(offset, {
+        animate: !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      });
+    });
+  }
+
+  function observeMobileMapSheetSize(popup) {
+    if (typeof ResizeObserver !== 'function' || !isMobileMapSheetPopup(popup)) return;
+    const popupElement = popup.getElement?.();
+    if (!popupElement) return;
+    if (!popup._diveAtlasMobileSheetResizeObserver) {
+      popup._diveAtlasMobileSheetResizeObserver = new ResizeObserver(() => {
+        centerMobileMapSheetPointer(popup);
+      });
+    }
+    popup._diveAtlasMobileSheetResizeObserver.observe(popupElement);
+    const content = popupElement.querySelector('.leaflet-popup-content');
+    if (content) popup._diveAtlasMobileSheetResizeObserver.observe(content);
+  }
+
   function openManagedPopup(ownerKey, popup, latlng = null, ownerFeature = null) {
     if (!popup) return;
 
@@ -8643,14 +8696,28 @@ ZSD·2016–2025</span></span>
       ownerKey || popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
 
     if (
-      activeClickPopup &&
-      map.hasLayer(activeClickPopup) &&
-      (
-        activeClickPopup === popup ||
-        activeClickPopupOwner === popup._diveAtlasOwnerKey
-      )
+      activeClickPopup && map.hasLayer(activeClickPopup) &&
+      (activeClickPopup === popup || activeClickPopupOwner === popup._diveAtlasOwnerKey)
     ) {
-      return;
+      const currentPopup = activeClickPopup;
+      const previousAnchor = currentPopup._diveAtlasAnchorLatLng || currentPopup.getLatLng?.();
+      const requestedAnchor = latlng ? L.latLng(latlng) : popup.getLatLng?.();
+      const anchorChanged = requestedAnchor && (
+        !previousAnchor || previousAnchor.distanceTo(requestedAnchor) > 1
+      );
+      if (currentPopup === popup) {
+        if (anchorChanged) {
+          popup.setLatLng(requestedAnchor);
+          popup._diveAtlasAnchorLatLng = requestedAnchor;
+          popup.update();
+          centerMobileMapSheetPointer(popup, requestedAnchor);
+        }
+        return;
+      }
+      // Query popups can be recreated for each selected location. Keep a
+      // same-location popup stable, but replace it when the user picked a new
+      // point so its content, pin, and sheet centering all follow that point.
+      if (!anchorChanged) return;
     }
 
     activeClickPopup = popup;
@@ -9325,6 +9392,9 @@ ZSD·2016–2025</span></span>
   } = {}) {
     const nextCollapsed = Boolean(collapsed);
     const stateChanged = nextCollapsed !== legendCollapsed;
+    // Opening the full mobile layer panel is an explicit panel action; dismiss
+    // whichever managed sheet is open before the two surfaces overlap.
+    if (stateChanged && !nextCollapsed) closeMobileSheetForLayerPanelInteraction();
     const animateMobileHeight = stateChanged && compactLayersPanelQuery.matches &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const startingHeight = animateMobileHeight
@@ -9333,9 +9403,13 @@ ZSD·2016–2025</span></span>
         : els.bioLegend.getBoundingClientRect().height)
       : 0;
     if (legendCollapseAnimation) {
-      legendCollapseAnimation.cancel();
+      const previousAnimation = legendCollapseAnimation;
       legendCollapseAnimation = null;
+      previousAnimation.cancel();
     }
+    els.bioLegend.classList.remove('mobile-layers-panel-expanding');
+    const mobilePanelExpansion = animateMobileHeight && !nextCollapsed;
+    if (mobilePanelExpansion) els.bioLegend.classList.add('mobile-layers-panel-expanding');
 
     legendCollapsed = nextCollapsed;
     els.bioLegend.classList.toggle('is-collapsed', legendCollapsed);
@@ -9348,11 +9422,20 @@ ZSD·2016–2025</span></span>
     if (animateMobileHeight) {
       const endingHeight = els.bioLegend.getBoundingClientRect().height;
       if (Math.abs(endingHeight - startingHeight) > 1) {
-        legendCollapseAnimation = els.bioLegend.animate(
+        const animation = els.bioLegend.animate(
           [{ height:`${startingHeight}px` }, { height:`${endingHeight}px` }],
           { duration:240, easing:'cubic-bezier(.2,.72,.2,1)' }
         );
-        legendCollapseAnimation.onfinish = () => { legendCollapseAnimation = null; };
+        legendCollapseAnimation = animation;
+        const finishAnimation = () => {
+          if (legendCollapseAnimation !== animation) return;
+          legendCollapseAnimation = null;
+          els.bioLegend.classList.remove('mobile-layers-panel-expanding');
+        };
+        animation.onfinish = finishAnimation;
+        animation.oncancel = finishAnimation;
+      } else if (mobilePanelExpansion) {
+        els.bioLegend.classList.remove('mobile-layers-panel-expanding');
       }
     }
     if (persist) {
@@ -14003,7 +14086,7 @@ ZSD·2016–2025</span></span>
       requestAnimationFrame(() => {
         if (popup !== diveConditionsPopup || !popup.isOpen()) return;
         popup.update();
-        if (!popup._diveAtlasMobileSheet) correctMapPopupSafeArea(popup, true);
+        if (!isMobileMapSheetPopup(popup)) correctMapPopupSafeArea(popup, true);
       });
     });
   }
@@ -14386,7 +14469,7 @@ ZSD·2016–2025</span></span>
     }
     document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(month);
     if (environmentalViewController.activeView === 'dive-experience-outlook') {
-      if (diveConditionsPopup?.isOpen() && diveConditionsLocation) void refreshDiveExperienceOutlook();
+      if (diveConditionsLocation) void refreshDiveExperienceOutlook();
       else void ensureDiveExperienceOutlookMonth(month).then(({ manifest }) => {
         const entry = manifest.months[month - 1];
         const coverage = entry?.processedOceanCells ? (100 * entry.scoredCells / entry.processedOceanCells).toFixed(1) : null;
@@ -21456,6 +21539,7 @@ ZSD·2016–2025</span></span>
 
   function renderFishCache() {
     if (!fishDensityLayer) return;
+    if (shouldDeferMobileMarkerLayerRefresh('fish')) return;
 
     fishDensityLayer.clearLayers();
     fishMarkerCache.clear();
@@ -23593,6 +23677,7 @@ ZSD·2016–2025</span></span>
 
   function renderSpeciesCache() {
     if (!speciesLayer) return;
+    if (shouldDeferMobileMarkerLayerRefresh('species')) return;
 
     resetBatchedSpeciesGridInteraction();
     speciesLayer.clearLayers();
@@ -24477,6 +24562,17 @@ ZSD·2016–2025</span></span>
     return false;
   }
 
+  function isMobileMapSheetPopup(popup) {
+    return window.matchMedia('(max-width: 720px)').matches &&
+      popup?.getElement?.()?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet');
+  }
+
+  function shouldDeferMobileMarkerLayerRefresh(layerKey) {
+    return isMobileMapSheetPopup(activeClickPopup) &&
+      activeClickPopup.isOpen?.() &&
+      activeClickPopup._diveAtlasLayerKey === layerKey;
+  }
+
   function scheduleActiveMapPopupValidation(delay = MAP_POPUP_REVALIDATION_DELAY_MS) {
     const popup = activeClickPopup;
     if (
@@ -24484,7 +24580,8 @@ ZSD·2016–2025</span></span>
       !popup.isOpen() ||
       popup._diveAtlasPlacementLifecycle === 'closing' ||
       popup._diveAtlasPlacementInProgress ||
-      popup._diveAtlasPlacementFrame
+      popup._diveAtlasPlacementFrame ||
+      isMobileMapSheetPopup(popup)
     ) return;
 
     const ownerRevision = popup._diveAtlasOwnerRevision;
@@ -24501,9 +24598,9 @@ ZSD·2016–2025</span></span>
         popup._diveAtlasPlacementEpoch !== placementEpoch ||
         popup._diveAtlasPlacementLifecycle === 'closing' ||
         !popup.isOpen() ||
-        popup._diveAtlasPlacementInProgress
+        popup._diveAtlasPlacementInProgress ||
+        isMobileMapSheetPopup(popup)
       ) return;
-
       if (INTERACTION_CONTRACT.shouldDismissPopupAfterMovement({
         internalMovement: isInternalMapMovementInProgress(),
         userMovementIntent: hasUserMapMovementIntent(),
@@ -24881,6 +24978,7 @@ ZSD·2016–2025</span></span>
 
     if (!diveSiteLayer || !layerVisibility.dive) return;
     if (!diveSiteDataReady) return;
+    if (shouldDeferMobileMarkerLayerRefresh('dive')) return;
 
     const zoom = map.getZoom();
     diveSiteLayer.clearLayers();
@@ -25742,6 +25840,7 @@ ZSD·2016–2025</span></span>
       }
     }
     const mobileMapSheet = syncMapPopupForViewport(popup);
+    if (mobileMapSheet) observeMobileMapSheetSize(popup);
     if (!mobileMapSheet) beginMapPopupPlacement(popup);
     if (popup !== activeClickPopup) {
       activeClickPopupRevision += 1;
@@ -25752,6 +25851,7 @@ ZSD·2016–2025</span></span>
     activeClickPopup = popup;
     activeClickPopupOwner =
       popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
+    centerMobileMapSheetPointer(popup);
     const sharedPopup = sharedMapState.popup;
     const popupLatLng = popup.getLatLng?.();
     if (
@@ -25976,26 +26076,16 @@ ZSD·2016–2025</span></span>
         })) return;
 
         const mapRect = mapInteractionContainer.getBoundingClientRect();
-        const containerPoint = L.point(
+        const latlng = map.containerPointToLatLng(L.point(
           event.clientX - mapRect.left,
           event.clientY - mapRect.top
-        );
-        const latlng = map.containerPointToLatLng(containerPoint);
-        const result = resolveMapInteraction({
-          event: { originalEvent: event },
-          feature: null,
-          beforeOpen: null,
-          latlng,
-          containerPoint,
-          pointerType: event.pointerType
-        });
-
-        if (result === 'empty') {
-          pointer.longPressHandled = true;
-          void requestDepthInspection(latlng);
-        } else if (result === 'opened') {
-          pointer.longPressHandled = true;
-        }
+        ));
+        // A hold is the explicit depth-inspection gesture, so passive raster
+        // overlays and nearby markers must not claim it. Ordinary taps still
+        // go through resolveMapInteraction and keep their existing popup rules.
+        pointer.longPressHandled = true;
+        showMapClickLocationPin(latlng);
+        void requestDepthInspection(latlng);
       }, DEPTH_INSPECTION_LONG_PRESS_MS);
     }
   }, true);
@@ -26095,7 +26185,8 @@ ZSD·2016–2025</span></span>
       speciesInteractionModeBeforeZoom != null &&
       speciesInteractionModeBeforeZoom !== nextMode &&
       activeClickPopup?._diveAtlasLayerKey === 'species' &&
-      activeClickPopup?._diveAtlasSpeciesRenderMode !== nextMode
+      activeClickPopup?._diveAtlasSpeciesRenderMode !== nextMode &&
+      !isMobileMapSheetPopup(activeClickPopup)
     ) closeManagedPopup();
     speciesInteractionModeBeforeZoom = null;
   });
@@ -26496,6 +26587,7 @@ ZSD·2016–2025</span></span>
 
   map.on('popupclose', event => {
     const popup = event?.popup;
+    popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
       popupElement.classList.remove('mobile-vertical-dragging');
@@ -28014,6 +28106,7 @@ ZSD·2016–2025</span></span>
       const shouldCollapse = didMove && deltaY <= -68 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
       const draggedHeight = els.bioLegend.getBoundingClientRect().height;
       layersPanelDrag = null;
+      if (didMove) closeMobileSheetForLayerPanelInteraction();
       if (shouldCollapse) {
         els.bioLegend.classList.remove('mobile-layers-panel-dragging');
         cancelLegendAutoCollapse();
@@ -28034,9 +28127,23 @@ ZSD·2016–2025</span></span>
 
   }
 
-  els.bioLegend.addEventListener('pointerdown', () => {
+  const handleLayersPanelInteraction = event => {
+    if (
+      !compactLayersPanelQuery.matches || legendCollapsed ||
+      !event.isTrusted || els.bioLegendHeading.contains(event.target)
+    ) return;
     closeMobileSheetForLayerPanelInteraction();
     restartLegendAutoCollapse();
+  };
+
+  ['click', 'wheel', 'keydown', 'input', 'change'].forEach(eventName => {
+    els.bioLegend.addEventListener(eventName, event => {
+      if (eventName === 'keydown' && event.key === 'Tab') {
+        restartLegendAutoCollapse();
+        return;
+      }
+      handleLayersPanelInteraction(event);
+    }, { passive: eventName === 'wheel' });
   });
 
   els.bioLegend.addEventListener('focusin', () => {
@@ -28214,10 +28321,13 @@ ZSD·2016–2025</span></span>
 
   els.bioLegendTitle.addEventListener('click', () => {
     cancelLegendAutoCollapse();
+    // The circular launcher is an auto-collapsed version of this same button.
+    // Its first tap restores the compact bar; only a tap on that bar opens the
+    // full panel, keeping the two mobile actions distinct.
     if (compactLayersPanelQuery.matches && els.bioLegend.classList.contains('is-mobile-auto-collapsed')) {
-      // An idle-collapsed bar is already the compact layer control; one tap
-      // should reveal the full panel immediately.
-      els.bioLegend.classList.remove('is-mobile-auto-collapsed');
+      setLegendCollapsed(true);
+      scheduleLegendAutoCollapse();
+      return;
     }
     setLegendCollapsed(!legendCollapsed);
     if (legendCollapsed && compactLayersPanelQuery.matches) scheduleLegendAutoCollapse();
