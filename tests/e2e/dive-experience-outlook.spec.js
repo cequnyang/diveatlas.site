@@ -1,7 +1,7 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const { openMap, setMapView } = require('./support');
+const { openMap, setMapView, waitForMapInteractionWindow, waitForMapMovementToSettle } = require('./support');
 
 async function setLegendCollapsed(page, collapsed) {
   const panel = page.locator('#bioLegend');
@@ -19,31 +19,6 @@ async function setLegendCollapsed(page, collapsed) {
   }
 }
 
-async function waitForMapInteractionWindow(page) {
-  await expect.poll(() => page.evaluate(() => {
-    const state = window.__DIVEATLAS_TEST__.getState();
-    return !state.pendingInteraction && !state.activePointerGesture && performance.now() >= state.suppressedUntil;
-  })).toBe(true);
-}
-
-async function waitForMapMovementToSettle(page) {
-  await page.evaluate(() => new Promise(resolve => {
-    const map = window.__DIVEATLAS_TEST__.map;
-    let timer;
-    const finishAfterQuietPeriod = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        map.off('move', finishAfterQuietPeriod);
-        resolve();
-      }, 120);
-    };
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      map.on('move', finishAfterQuietPeriod);
-      finishAfterQuietPeriod();
-    }));
-  }));
-}
-
 async function reopenDiveExperiencePopup(page) {
   const popup = page.locator('.dive-experience-popup-content');
   await setLegendCollapsed(page, true);
@@ -54,6 +29,8 @@ async function reopenDiveExperiencePopup(page) {
     return window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 });
   });
   expect(result).toBe('dive-experience-outlook-location-selected');
+  await waitForMapMovementToSettle(page);
+  await waitForMapInteractionWindow(page);
   await expect(popup).toBeVisible();
 }
 
@@ -190,7 +167,7 @@ test('Dive Experience Outlook loads the selected month on demand and explains a 
   expect(await page.locator('.dive-experience-dimension-list').innerText()).not.toMatch(/fish\s*\/\s*100\s*m/i);
   if (test.info().project.name === 'mobile-touch-chromium') {
     await page.setViewportSize({ width:320, height:640 });
-    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.invalidateSize({ animate:false }));
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.invalidateSize({ animate:false, pan:false }));
     const popupLayout = await page.evaluate(() => {
       const popup = document.querySelector('.leaflet-popup.dive-conditions-popup');
       const content = popup.querySelector('.leaflet-popup-content');

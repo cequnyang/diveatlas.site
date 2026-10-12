@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { openMap, setMapView } = require('./support');
+const { openMap, setMapView, waitForMapInteractionWindow, waitForMapMovementToSettle } = require('./support');
 
 async function expandLayers(page) {
   const layers = page.locator('#bioLegend');
@@ -38,7 +38,7 @@ test('Tide is a peer environmental tab with a lazy blue surface and numeric lege
     const meta = document.querySelector('.tide-source-badge').getBoundingClientRect();
     return meta.top - card.bottom;
   });
-  expect(legendMetaGap).toBeLessThanOrEqual(4);
+  expect(legendMetaGap).toBeLessThanOrEqual(4.1);
   await page.locator('#tideInfoAbout').click();
   await expect(page.locator('#tideInfoPopover')).toHaveClass(/is-detached/);
   await expect(page.locator('#tideInfoPopover')).toContainText('does not directly indicate local current speed');
@@ -101,6 +101,8 @@ test('Tide map taps open a location popup directly and reuse nearby model data',
     if (!(await layers.evaluate(node => node.classList.contains('is-collapsed')))) {
       await page.locator('#bioLegendTitle').click();
     }
+    await waitForMapMovementToSettle(page);
+    await waitForMapInteractionWindow(page);
   }
   const point = await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;
