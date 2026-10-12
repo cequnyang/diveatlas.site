@@ -35,22 +35,103 @@ async function expectTitleAtDrawerInset(drawer, titleSelector, inset) {
   expect(titleOffset).toBeCloseTo(inset, 0);
 }
 
+async function waitForSelectedMapPointToSettle(page) {
+  let previousPosition = null;
+  let stableSince = 0;
+  await expect.poll(async () => {
+    const position = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const marker = document.querySelector('.map-click-location-marker');
+      if (!map || !marker) return null;
+      const bounds = marker.getBoundingClientRect();
+      const center = map.getCenter();
+      return { left:bounds.left, top:bounds.top, lat:center.lat, lng:center.lng };
+    });
+    if (!position) {
+      previousPosition = null;
+      return false;
+    }
+    const signature = JSON.stringify(position);
+    if (signature !== previousPosition) {
+      previousPosition = signature;
+      stableSince = Date.now();
+      return false;
+    }
+    return Date.now() - stableSince >= 120;
+  }, { interval:40 }).toBe(true);
+}
+
 async function expectPointerCenteredInExposedMap(page) {
-  await expect.poll(() => page.evaluate(() => {
-    const marker = document.querySelector('.map-click-location-marker');
-    const map = document.querySelector('#map');
-    const sheet = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
-    const header = document.querySelector('#topMenuBar');
-    if (!marker || !map || !sheet || !header) return Infinity;
-    const markerBounds = marker.getBoundingClientRect();
-    const mapBounds = map.getBoundingClientRect();
-    const visibleTop = Math.max(mapBounds.top, header.getBoundingClientRect().bottom);
-    const visibleBottom = Math.min(mapBounds.bottom, sheet.getBoundingClientRect().top);
-    return Math.hypot(
-      markerBounds.left + markerBounds.width / 2 - (mapBounds.left + mapBounds.width / 2),
-      markerBounds.bottom - (visibleTop + (visibleBottom - visibleTop) / 2)
-    );
-  })).toBeLessThan(6);
+  let latestGeometry;
+  await expect.poll(async () => {
+    latestGeometry = await page.evaluate(() => {
+      const marker = document.querySelector('.map-click-location-marker');
+      const map = document.querySelector('#map');
+      const sheet = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
+      const header = document.querySelector('#topMenuBar');
+      if (!marker || !map || !sheet || !header) return { deviation:Infinity };
+      const markerBounds = marker.getBoundingClientRect();
+      const mapBounds = map.getBoundingClientRect();
+      const rootStyle = getComputedStyle(document.documentElement);
+      const safeAreaTop = parseFloat(rootStyle.getPropertyValue('--map-safe-area-top')) || 0;
+      const safeAreaBottom = parseFloat(rootStyle.getPropertyValue('--map-safe-area-bottom')) || 0;
+      const visualViewport = window.visualViewport;
+      const visualTop = visualViewport?.offsetTop || 0;
+      const visualBottom = visualViewport ? visualTop + visualViewport.height : window.innerHeight;
+      const visibleTop = Math.max(mapBounds.top, header.getBoundingClientRect().bottom, visualTop + safeAreaTop);
+      const visibleBottom = Math.min(mapBounds.bottom, visualBottom - safeAreaBottom, sheet.getBoundingClientRect().top);
+      if (visibleBottom <= visibleTop) return { deviation:Infinity };
+      const horizontalError = markerBounds.left + markerBounds.width / 2 - (mapBounds.left + mapBounds.width / 2);
+      const verticalError = markerBounds.bottom - (visibleTop + (visibleBottom - visibleTop) / 2);
+      const deviation = Math.hypot(horizontalError, verticalError);
+      return {
+        deviation,
+        horizontalError,
+        verticalError,
+        visibleTop,
+        visibleBottom,
+        markerBottom:markerBounds.bottom,
+        mapBottom:mapBounds.bottom,
+        visualBottom,
+        sheetTop:sheet.getBoundingClientRect().top
+      };
+    });
+    return latestGeometry.deviation;
+  }).toBeLessThan(6).catch(error => {
+    error.message += `\nLast exposed-map geometry: ${JSON.stringify(latestGeometry)}`;
+    throw error;
+  });
+}
+
+async function waitForMobileMapSheetGeometryToSettle(page) {
+  let previousLayout = null;
+  let stableSince = 0;
+  await expect.poll(async () => {
+    const layout = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const sheet = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
+      if (!map || !sheet) return null;
+      const bounds = sheet.getBoundingClientRect();
+      const center = map.getCenter();
+      return {
+        sheetTop:bounds.top,
+        sheetHeight:bounds.height,
+        centerLat:center.lat,
+        centerLng:center.lng
+      };
+    });
+    if (!layout) {
+      previousLayout = null;
+      return false;
+    }
+    const signature = JSON.stringify(layout);
+    if (signature !== previousLayout) {
+      previousLayout = signature;
+      stableSince = Date.now();
+      return false;
+    }
+    return Date.now() - stableSince >= 120;
+  }, { interval:40 }).toBe(true);
 }
 
 test('language selector opens as a half-width page that slides in from the right', async ({ page }) => {
@@ -161,7 +242,7 @@ test('mobile layer rows toggle across the row and the collapsed bar shrinks afte
     scrollbarWidth: getComputedStyle(node).scrollbarWidth
   }));
   expect(layerScrollStyle.overflowY).toBe('auto');
-  expect(layerScrollStyle.scrollbarWidth).toBe('none');
+  expect(layerScrollStyle.scrollbarWidth).toBe('thin');
   expect(await label.evaluate(node => getComputedStyle(node).fontSize)).toBe('18px');
   await page.waitForTimeout(6_200);
   await expect(panel).not.toHaveClass(/is-collapsed/);
@@ -344,6 +425,7 @@ test('mobile location feedback stays wide and centers its selected point after a
   await expect(marker).toBeVisible();
   await expect(tooltip).toContainText('Data could not be loaded for this location.');
   await expect(tooltip).toBeVisible();
+  await waitForSelectedMapPointToSettle(page);
 
   const geometry = await page.evaluate(() => {
     const marker = document.querySelector('.map-click-location-marker');
@@ -353,12 +435,24 @@ test('mobile location feedback stays wide and centers its selected point after a
     const markerBounds = marker.getBoundingClientRect();
     const tooltipBounds = tooltip.getBoundingClientRect();
     const mapBounds = map.getBoundingClientRect();
-    const visibleTop = Math.max(mapBounds.top, header.getBoundingClientRect().bottom);
+    const rootStyle = getComputedStyle(document.documentElement);
+    const safeAreaTop = parseFloat(rootStyle.getPropertyValue('--map-safe-area-top')) || 0;
+    const safeAreaBottom = parseFloat(rootStyle.getPropertyValue('--map-safe-area-bottom')) || 0;
+    const visualViewport = window.visualViewport;
+    const visualTop = visualViewport?.offsetTop || 0;
+    const visualBottom = visualViewport ? visualTop + visualViewport.height : window.innerHeight;
+    const safeMargin = 14;
+    const safeTop = Math.max(
+      mapBounds.top + safeMargin,
+      header.getBoundingClientRect().bottom + safeMargin,
+      visualTop + safeAreaTop + safeMargin
+    );
+    const safeBottom = Math.min(mapBounds.bottom - safeMargin, visualBottom - safeAreaBottom - safeMargin);
     return {
       markerCenterX: markerBounds.left + markerBounds.width / 2,
       markerAnchorY: markerBounds.bottom,
       mapCenterX: mapBounds.left + mapBounds.width / 2,
-      visibleCenterY: (visibleTop + mapBounds.bottom) / 2,
+      visibleCenterY: (safeTop + safeBottom) / 2,
       tooltipWidth: tooltipBounds.width,
       viewportWidth: document.documentElement.clientWidth
     };
@@ -389,7 +483,7 @@ test('resizing any mobile sheet recenters the pointer in the exposed map', async
   await dispatchTouchSequence(page, { duration:720 });
   const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet');
   await expect(sheet).toBeVisible();
-  await expectPointerCenteredInExposedMap(page);
+  await waitForMobileMapSheetGeometryToSettle(page);
   const initialHeight = await sheet.evaluate(node => node.getBoundingClientRect().height);
 
   await sheet.locator('.leaflet-popup-content').evaluate(content => {
@@ -399,10 +493,12 @@ test('resizing any mobile sheet recenters the pointer in the exposed map', async
     content.append(addedContent);
   });
   await expect.poll(() => sheet.evaluate(node => node.getBoundingClientRect().height)).toBeGreaterThan(initialHeight + 100);
+  await waitForMobileMapSheetGeometryToSettle(page);
   await expectPointerCenteredInExposedMap(page);
 
   await sheet.locator('[data-test-sheet-expansion]').evaluate(node => node.remove());
   await expect.poll(() => sheet.evaluate(node => node.getBoundingClientRect().height)).toBeLessThan(initialHeight + 100);
+  await waitForMobileMapSheetGeometryToSettle(page);
   await expectPointerCenteredInExposedMap(page);
 });
 

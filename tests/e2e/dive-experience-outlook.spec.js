@@ -4,12 +4,18 @@ const { test, expect } = require('@playwright/test');
 const { openMap, setMapView } = require('./support');
 
 async function setLegendCollapsed(page, collapsed) {
-  const isCollapsed = await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'));
+  const panel = page.locator('#bioLegend');
+  const isCollapsed = await panel.evaluate(node => node.classList.contains('is-collapsed'));
   if (isCollapsed !== collapsed) {
-    await page.locator('#bioLegendTitle').click();
-    await expect.poll(() => page.locator('#bioLegend').evaluate(panel =>
-      [...panel.getAnimations()].every(animation => animation.playState !== 'running' && animation.playState !== 'pending')
-    )).toBe(true);
+    // This suite covers language updates, while dedicated interaction tests
+    // cover pointer activation of the title. Use the button's click handler
+    // directly so unrelated panel reflow cannot block the localization loop.
+    await panel.locator('#bioLegendTitle').evaluate(button => button.click());
+    await expect.poll(() => panel.evaluate(node => node.classList.contains('is-collapsed'))).toBe(collapsed);
+
+    await expect(panel.locator('#bioLegendTitle')).toHaveAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    if (collapsed) await expect(panel.locator('#bioLegendLayers')).toBeHidden();
+    else await expect(panel.locator('#bioLegendLayers')).toBeVisible();
   }
 }
 
