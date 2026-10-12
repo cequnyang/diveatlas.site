@@ -1126,6 +1126,19 @@
       filter: drop-shadow(0 2px 3px rgba(20,35,45,.35));
       pointer-events: none !important;
     }
+    .map-click-location-marker--offscreen::after {
+      content: '↑';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 14px;
+      text-shadow: 0 1px 3px #173f9c;
+      transform: translateX(-50%) rotate(var(--offscreen-bearing, 0deg));
+      transform-origin: 50% 50%;
+    }
 
     .map-count-cluster .cluster-bubble {
       display: flex;
@@ -14830,6 +14843,7 @@ ZSD·2016–2025</span></span>
   let coralHeatStressQueryAbortController = null;
   let lastCoralHeatStressLatLng = null;
   let mapClickLocationMarker = null;
+  let mapClickLocationLatLng = null;
   let coralHeatStressMetadata = null;
   let temperatureUnit = (() => {
     try { return localStorage.getItem('diveatlas-temperature-unit') === 'F' ? 'F' : 'C'; }
@@ -14875,6 +14889,8 @@ ZSD·2016–2025</span></span>
           map, L, panel,
           createPopup: options => createMapInfoPopup(options),
           bindPopup: (layer, content, options) => bindMapInfoPopup(layer, content, options),
+          openPopup: (ownerKey, popup, latlng) => openManagedPopup(ownerKey, popup, latlng),
+          showLocationPin: showMapClickLocationPin,
           hasHigherPriorityOverlay: hasOverlayAreaHit,
           providerRegistry: providers,
           localMetricDefinitions: metricDefinitions,
@@ -16119,8 +16135,10 @@ ZSD·2016–2025</span></span>
   }
 
   function showMapClickLocationPin(latlng) {
+    mapClickLocationLatLng = L.latLng(latlng);
     if (mapClickLocationMarker) {
-      mapClickLocationMarker.setLatLng(latlng);
+      mapClickLocationMarker.setLatLng(mapClickLocationLatLng);
+      if (!map.hasLayer(mapClickLocationMarker)) mapClickLocationMarker.addTo(map);
     } else {
       const locationPinIcon = L.divIcon({
         className: 'map-click-location-marker',
@@ -16128,16 +16146,83 @@ ZSD·2016–2025</span></span>
         iconSize: [36, 42],
         iconAnchor: [18, 42]
       });
-      mapClickLocationMarker = L.marker(latlng, {
+      mapClickLocationMarker = L.marker(mapClickLocationLatLng, {
         pane: 'markerPane', icon: locationPinIcon, interactive: false, keyboard: false
       }).addTo(map);
     }
   }
 
+  // Keep the selected coordinate exact on-screen; use a directional edge cue
+  // only when panning moves it behind the sheet or beyond the exposed map.
+  function updateReefHistoryPinAfterMapMovement() {
+    const popup = activeClickPopup;
+    const metric = document.getElementById('reefSurveyMetric')?.value;
+    if (
+      !mapClickLocationMarker || !mapClickLocationLatLng
+    ) return;
+
+    const markerElement = mapClickLocationMarker.getElement?.();
+    if (
+      !isMobileMapSheetPopup(popup) ||
+      popup?._diveAtlasLayerKey !== 'reef-survey-condition' ||
+      !['oceanHeatHistory', 'thermalStressHistory'].includes(metric)
+    ) {
+      mapClickLocationMarker.setLatLng(mapClickLocationLatLng);
+      markerElement?.classList.remove('map-click-location-marker--offscreen');
+      markerElement?.style.removeProperty('--offscreen-bearing');
+      return;
+    }
+
+    if (!map.hasLayer(mapClickLocationMarker)) mapClickLocationMarker.addTo(map);
+    const popupElement = popup.getElement?.();
+    if (!popupElement) return;
+    const { mapRect, safeTop, safeBottom, safeLeft, safeRight } = getMapPopupSafeViewport();
+    const visibleLeft = Math.max(mapRect.left, safeLeft) + 18;
+    const visibleRight = Math.min(mapRect.right, safeRight) - 18;
+    const visibleTop = Math.max(mapRect.top, safeTop) + 42;
+    const visibleBottom = Math.min(mapRect.bottom, safeBottom, popupElement.getBoundingClientRect().top) - 2;
+    if (visibleRight <= visibleLeft || visibleBottom <= visibleTop) return;
+
+    const selectedPoint = map.latLngToContainerPoint(mapClickLocationLatLng);
+    const selectedX = mapRect.left + selectedPoint.x;
+    const selectedY = mapRect.top + selectedPoint.y;
+    const isVisible = selectedX >= visibleLeft && selectedX <= visibleRight &&
+      selectedY >= visibleTop && selectedY <= visibleBottom;
+    if (isVisible) {
+      mapClickLocationMarker.setLatLng(mapClickLocationLatLng);
+      markerElement?.classList.remove('map-click-location-marker--offscreen');
+      markerElement?.style.removeProperty('--offscreen-bearing');
+      return;
+    }
+
+    const centerX = (visibleLeft + visibleRight) / 2;
+    const centerY = (visibleTop + visibleBottom) / 2;
+    const deltaX = selectedX - centerX;
+    const deltaY = selectedY - centerY;
+    const edgeDistanceX = deltaX >= 0 ? visibleRight - centerX : centerX - visibleLeft;
+    const edgeDistanceY = deltaY >= 0 ? visibleBottom - centerY : centerY - visibleTop;
+    const scale = Math.min(
+      Math.abs(deltaX) > 0 ? edgeDistanceX / Math.abs(deltaX) : Infinity,
+      Math.abs(deltaY) > 0 ? edgeDistanceY / Math.abs(deltaY) : Infinity
+    );
+    const edgeX = centerX + deltaX * scale;
+    const edgeY = centerY + deltaY * scale;
+    const bearing = Math.atan2(selectedY - edgeY, selectedX - edgeX) * 180 / Math.PI + 90;
+    mapClickLocationMarker.setLatLng(map.containerPointToLatLng([
+      edgeX - mapRect.left,
+      edgeY - mapRect.top
+    ]));
+    markerElement?.classList.add('map-click-location-marker--offscreen');
+    markerElement?.style.setProperty('--offscreen-bearing', `${bearing}deg`);
+  }
+
+  map.on('move zoom resize', updateReefHistoryPinAfterMapMovement);
+
   function clearMapClickLocationPin() {
     if (!mapClickLocationMarker) return;
     map.removeLayer(mapClickLocationMarker);
     mapClickLocationMarker = null;
+    mapClickLocationLatLng = null;
   }
 
   function renderCoralHeatStressPopup(result, latlng) {

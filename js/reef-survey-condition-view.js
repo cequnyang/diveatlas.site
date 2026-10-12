@@ -349,7 +349,7 @@
   }
 
   function createReefSurveyConditionView({
-    map, L, panel, createPopup = null, bindPopup = null, providerRegistry = null,
+    map, L, panel, createPopup = null, bindPopup = null, openPopup = null, showLocationPin = null, providerRegistry = null,
     displayMode = DISPLAY_MODES.EVENT, referenceDate = new Date(), localMetricDefinitions = [],
     formatLongDistance = meters => `${(Number(meters) / 1000).toFixed(1)} km`,
     formatDhwNumber = value => Number(value).toFixed(1),
@@ -494,6 +494,7 @@
     async function onRasterMapClick(state, event) {
       if (!active || activeProviderId !== state.id) return;
       if (hasHigherPriorityOverlay(event.latlng)) return;
+      showLocationPin?.(event.latlng);
       const statusVersion = state.id;
       if (rasterStatus) rasterStatus.textContent = 'Loading NOAA history…';
       try {
@@ -516,7 +517,8 @@
           .setContent(rasterPopupMarkup(state, sample));
         popup._diveAtlasLayerKey = 'reef-survey-condition';
         lastRasterPopup = { popup, state, sample };
-        popup.openOn(map);
+        if (openPopup) openPopup('reef-survey-condition:query', popup, event.latlng);
+        else popup.openOn(map);
       } catch (_) {
         if (active && activeProviderId === statusVersion && rasterStatus) rasterStatus.textContent = 'NOAA location details are unavailable.';
       }
