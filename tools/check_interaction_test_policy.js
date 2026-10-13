@@ -55,7 +55,7 @@ const requiredBehaviorNames = [
   'zooming the map in either direction keeps an open mobile detail sheet visible',
   'Tide tab exposes its controls and wheel endpoint options remain tappable',
   'expanded Dive Experience month chart stays inside safe area and previews other months with pointer input',
-  'share preview shortens long site summaries and saves only after a share action',
+  'share preview shortens long site summaries and defers Worker rendering after local capture failure',
   'turning the owning Coral layer off closes its popup and clears hover state',
   'stale popup owner revision cannot operate on a newer popup',
   'one aggregate activation produces at most one semantic action'
