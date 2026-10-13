@@ -271,12 +271,18 @@ test('popup closes when user navigation moves its anchor outside the usable view
   await expect(page.locator('.leaflet-popup')).toHaveCount(0, { timeout: 4000 });
 });
 
-test('popup remains attached when user navigation keeps its anchor visible', async ({ page }) => {
+test('popup remains attached when zoom keeps its anchor inside the usable viewport', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'visible-anchor', lat: -5.7, lng: 131 });
   await clickFixture(page, 'visible-anchor');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  await setMapView(page, -5.7, 131.04, 14);
+  const initialZoom = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom());
+  await page.locator('.leaflet-control-zoom-out').click();
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBeLessThan(initialZoom);
+  await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('visible-anchor');
+  expect((await mapState(page)).popup.lifecycle).toBe('open');
+  await page.locator('.leaflet-control-zoom-in').click();
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(initialZoom);
   await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('visible-anchor');
   expect((await mapState(page)).popup.lifecycle).toBe('open');
 });
@@ -454,23 +460,71 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share button opens an accessible dialog that previews the link context', async ({ page }) => {
-  const shareButton = page.locator('#shareMapButton');
-  await shareButton.click();
+test('share preview shortens long site summaries and saves only after a share action', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
+  await clickFixture(page, 'long-share-summary');
+  const sitePopup = page.locator('.leaflet-popup.dive-site-popup');
+  await expect(sitePopup).toBeVisible();
+  const longSummary = 'The SSI MyDiveGuide profile snapshot reports a maximum depth of 20 meters and lists advanced difficulty for this remote reef dive site.';
+  await sitePopup.locator('.leaflet-popup-content').evaluate((content, text) => {
+    let summary = content.querySelector('.dive-popup-summary');
+    if (!summary) {
+      summary = document.createElement('div');
+      summary.className = 'dive-popup-summary';
+      content.append(summary);
+    }
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    summary.replaceChildren(paragraph);
+  }, longSummary);
 
-  const dialog = page.getByRole('dialog', { name: 'Share' });
+  const previewRequests = [];
+  await page.route('https://share.diveatlas.site/map-preview-upload/**', async route => {
+    const request = route.request();
+    previewRequests.push({ method:request.method(), url:request.url() });
+    if (request.method() === 'OPTIONS') {
+      return route.fulfill({ status:204, headers:{
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers':'Content-Type'
+      } });
+    }
+    const renderFallback = new URL(request.url()).searchParams.get('render') === '1';
+    return route.fulfill({
+      status:request.method() === 'POST' || renderFallback ? 201 : 404,
+      headers:{ 'Access-Control-Allow-Origin':'*' }
+    });
+  });
+
+  const sheetShareButton = sitePopup.locator('.diveatlas-sheet-share-button');
+  if (await sheetShareButton.count()) await sheetShareButton.click();
+  else await page.locator('#shareMapButton').click();
+  const dialog = page.getByRole('dialog', { name:'Share' });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText('Current map view')).toBeVisible();
-  await expect(dialog.getByText('Map position', { exact: true })).toBeVisible();
-  await expect(dialog.locator('#shareLinkInput')).toHaveValue(/https?:\/\//);
-  await expect(dialog.getByRole('button', { name: 'Copy link' })).toBeVisible();
-  await expect(dialog.getByRole('link', { name: 'WhatsApp' })).toBeVisible();
-  await expect(dialog.getByRole('link', { name: 'Email' })).toBeVisible();
-  await expect(dialog.getByRole('link', { name: 'X' })).toBeVisible();
+  const preview = page.locator('#sharePreviewPopupData');
+  await expect(preview).toBeVisible();
+  const compactSummary = await preview.locator('li').filter({ hasText:'The SSI MyDiveGuide' }).first().innerText();
+  expect(Array.from(compactSummary).length).toBeLessThanOrEqual(72);
+  expect(compactSummary).toMatch(/…$/);
+  expect(compactSummary).not.toBe(longSummary);
+  expect(await preview.locator('li').count()).toBeLessThanOrEqual(6);
+  const previewBounds = await page.evaluate(() => {
+    const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
+    const card = document.querySelector('#sharePreviewPopupData').getBoundingClientRect();
+    return { frame, card, scrollHeight:document.querySelector('#sharePreviewPopupData').scrollHeight,
+      clientHeight:document.querySelector('#sharePreviewPopupData').clientHeight };
+  });
+  expect(previewBounds.card.left).toBeGreaterThanOrEqual(previewBounds.frame.left);
+  expect(previewBounds.card.right).toBeLessThanOrEqual(previewBounds.frame.right);
+  expect(previewBounds.card.top).toBeGreaterThanOrEqual(previewBounds.frame.top);
+  expect(previewBounds.card.bottom).toBeLessThanOrEqual(previewBounds.frame.bottom);
+  expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
+  expect(previewRequests).toEqual([]);
 
-  await page.keyboard.press('Escape');
-  await expect(dialog).toBeHidden();
-  await expect(shareButton).toBeFocused();
+  await dialog.getByRole('button', { name:'Copy link' }).click();
+  await expect.poll(() => previewRequests.some(request => request.method === 'GET')).toBe(true);
+  await expect.poll(() => previewRequests.some(request => request.method === 'POST' || new URL(request.url).searchParams.get('render') === '1')).toBe(true);
 });
 
 test('legacy long-form share URLs remain readable and preserve a site popup flow', async ({ page }) => {

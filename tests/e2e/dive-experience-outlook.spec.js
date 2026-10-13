@@ -183,7 +183,7 @@ test('Dive Experience still shows a local outlook when the physical-conditions s
   await expect(popup).not.toContainText('Some local data could not be loaded at this location.');
 });
 
-test('expanded Dive Experience month chart stays inside the popup safe area', async ({ page }) => {
+test('expanded Dive Experience month chart stays inside safe area and previews other months on touch', async ({ page }) => {
   await page.setViewportSize({ width:390, height:640 });
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
   await setLegendCollapsed(page, false);
@@ -259,7 +259,37 @@ test('expanded Dive Experience month chart stays inside the popup safe area', as
     expect(geometry.contentScrollHeight).toBeGreaterThanOrEqual(geometry.chartBottom - geometry.contentTop);
     await expectPointerCenteredInExposedMap();
     await page.locator('.dive-experience-month-chart').scrollIntoViewIfNeeded();
-    await expect(page.locator('.dive-experience-month-chart')).toBeInViewport();
+    const chart = page.locator('.dive-experience-month-chart');
+    await expect(chart).toBeInViewport();
+    const sheetMonthBeforeInspection = await page.locator('#diveExperienceMonth').inputValue();
+    const chartPointForMonth = index => chart.evaluate((node, monthIndex) => {
+      const point = node.createSVGPoint();
+      point.x = Number(node.dataset.plotLeft) + monthIndex * Number(node.dataset.barStep) + Number(node.dataset.barWidth) / 2;
+      point.y = Number(node.dataset.plotTop) + Number(node.dataset.plotHeight) / 2;
+      const screen = point.matrixTransform(node.getScreenCTM());
+      return { x:screen.x, y:screen.y };
+    }, index);
+    const firstMonthPoint = await chartPointForMonth(0);
+    await page.touchscreen.tap(firstMonthPoint.x, firstMonthPoint.y);
+    const inspection = chart.locator('.dive-experience-month-inspection');
+    await expect(inspection).toHaveAttribute('visibility', 'visible');
+    await expect(chart).toHaveAttribute('data-selected-index', '0');
+    await expect(chart).toHaveAttribute('aria-label', /January.*Dive Conditions/);
+
+    const lastMonthPoint = await chartPointForMonth(11);
+    await chart.dispatchEvent('pointermove', {
+      pointerId:1, pointerType:'touch', isPrimary:true,
+      clientX:lastMonthPoint.x, clientY:lastMonthPoint.y, buttons:1
+    });
+    await expect(chart).toHaveAttribute('data-selected-index', '11');
+    await expect(chart).toHaveAttribute('aria-label', /December.*Dive Conditions/);
+    await expect(page.locator('#diveExperienceMonth')).toHaveValue(sheetMonthBeforeInspection);
+
+    const outsidePoint = await popup.locator('.dive-experience-month-comparison-caption').boundingBox();
+    await page.touchscreen.tap(outsidePoint.x + outsidePoint.width / 2, outsidePoint.y + outsidePoint.height / 2);
+    await expect(inspection).toHaveAttribute('visibility', 'hidden');
+    await expect(page.locator('#diveExperienceMonth')).toHaveValue(sheetMonthBeforeInspection);
+
     await popup.locator('.dive-experience-compare-button').click();
     await expect(popup.locator('.dive-experience-month-chart')).toBeHidden();
     await expectPointerCenteredInExposedMap();

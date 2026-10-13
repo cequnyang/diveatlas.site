@@ -2,12 +2,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const testFiles = [
-  path.join(root, 'tests', 'unit', 'interaction-contract.test.js'),
-  path.join(root, 'tests', 'e2e', 'critical-contracts.spec.js'),
-  path.join(root, 'tests', 'e2e', 'environmental-view.spec.js'),
-  path.join(root, 'tests', 'e2e', 'mobile-interactions.spec.js')
-];
+const testRoots = [path.join(root, 'tests', 'unit'), path.join(root, 'tests', 'e2e')];
+// The workflow runs every JS unit and Playwright file in these directories;
+// discover them so new suites cannot bypass the skip/focus guard.
+const testFiles = testRoots.flatMap(directory => fs.readdirSync(directory, { withFileTypes:true })
+  .filter(entry => entry.isFile() && /\.(?:test|spec)\.js$/.test(entry.name))
+  .map(entry => path.join(directory, entry.name)));
 const source = testFiles.map(file => fs.readFileSync(file, 'utf8')).join('\n');
 const appSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const forbidden = [
@@ -51,6 +51,11 @@ const requiredBehaviorNames = [
   'Temperature popup content stays inside the safe area at the top boundary without moving the map',
   'popup below its anchor keeps its arrow above during dismissal',
   'popup closes when user navigation moves its anchor outside the usable viewport',
+  'popup remains attached when zoom keeps its anchor inside the usable viewport',
+  'zooming the map in either direction keeps an open mobile detail sheet visible',
+  'Tide tab exposes its controls and wheel endpoint options remain tappable',
+  'expanded Dive Experience month chart stays inside safe area and previews other months on touch',
+  'share preview shortens long site summaries and saves only after a share action',
   'turning the owning Coral layer off closes its popup and clears hover state',
   'stale popup owner revision cannot operate on a newer popup',
   'one aggregate activation produces at most one semantic action'

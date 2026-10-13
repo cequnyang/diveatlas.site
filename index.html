@@ -4411,7 +4411,9 @@
       right: 2%;
       bottom: 3%;
       width: min(46%, 520px);
+      max-height: 94%;
       box-sizing: border-box;
+      overflow: hidden;
       padding: clamp(8px, 1.5vw, 16px);
       border: 1px solid rgba(255,255,255,.7);
       border-radius: 12px;
@@ -4548,7 +4550,7 @@
       .share-actions { justify-content: flex-start; gap: 4px; }
       .share-actions .share-action-button { flex-basis: 64px; align-items: center; padding-inline: 1px; font-size: 10px; }
       .share-action-icon { width: 40px; height: 40px; flex-basis: 40px; }
-      .share-preview-popup-data { right: 2%; bottom: 2%; width: 52%; max-height: none; padding: 7px; font-size: 9px; }
+      .share-preview-popup-data { right: 2%; bottom: 2%; width: 52%; max-height: 94%; padding: 7px; font-size: 9px; }
     }
 
     .contact-input:focus,
@@ -9177,6 +9179,7 @@ ZSD·2016–2025</span></span>
     shareModal: document.getElementById('shareModal'),
     shareDialog: document.getElementById('shareDialog'),
     shareCloseButton: document.getElementById('shareCloseButton'),
+    sharePreviewFrame: document.getElementById('sharePreviewFrame'),
     sharePreviewMapSnapshot: document.getElementById('sharePreviewMapSnapshot'),
     sharePreviewPlaceholder: document.getElementById('sharePreviewPlaceholder'),
     sharePreviewPopupData: document.getElementById('sharePreviewPopupData'),
@@ -14328,12 +14331,12 @@ ZSD·2016–2025</span></span>
     }).join('');
     const plotWidth = width - left - right;
     const selectedIndex = Math.max(0, points.findIndex(point => point.month === selectedMonth));
-    const tooltipWidth = 208;
-    const tooltipHeight = 72;
+    const tooltipWidth = 164;
+    const tooltipHeight = 0;
     const tooltipRows = ['temperature','clarity','current','waves'].map((key, index) =>
-      `<text class="dive-experience-month-inspection-metric" data-metric="${key}" x="6" y="${34 + index * 9}" fill="var(--layers-legend-meta,var(--text-muted))" font-size="6.5"></text>`
+      `<text class="dive-experience-month-inspection-metric" data-metric="${key}" x="6" y="0" fill="var(--layers-legend-meta,var(--text-muted))" font-size="9.75"></text>`
     ).join('');
-    const tooltip = `<g class="dive-experience-month-inspection" visibility="hidden" aria-hidden="true"><line class="dive-experience-month-inspection-guide" y1="${top}" y2="${height - bottom}" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="1" stroke-dasharray="2 2"/><circle class="dive-experience-month-inspection-point" r="3.5" fill="var(--surface-elevated)" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="2"/><g class="dive-experience-month-inspection-tooltip"><rect width="${tooltipWidth}" height="${tooltipHeight}" rx="5" fill="var(--surface-elevated)" stroke="var(--line-soft)"/><text class="dive-experience-month-inspection-month" x="6" y="12" fill="var(--layers-temperature-title,var(--text-primary))" font-size="8" font-weight="700"></text><text class="dive-experience-month-inspection-condition" x="6" y="24" fill="var(--layers-temperature-title,var(--text-primary))" font-size="7" font-weight="700"></text>${tooltipRows}</g></g>`;
+    const tooltip = `<g class="dive-experience-month-inspection" visibility="hidden" aria-hidden="true"><line class="dive-experience-month-inspection-guide" y1="${top}" y2="${height - bottom}" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="1" stroke-dasharray="2 2"/><circle class="dive-experience-month-inspection-point" r="3.5" fill="var(--surface-elevated)" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="2"/><g class="dive-experience-month-inspection-tooltip"><rect class="dive-experience-month-inspection-background" width="${tooltipWidth}" height="${tooltipHeight}" rx="5" fill="var(--surface-elevated)" stroke="var(--line-soft)"/><text class="dive-experience-month-inspection-month" x="6" y="15" fill="var(--layers-temperature-title,var(--text-primary))" font-size="12" font-weight="700"></text><text class="dive-experience-month-inspection-condition" x="6" y="30" fill="var(--layers-temperature-title,var(--text-primary))" font-size="10.5" font-weight="700"></text>${tooltipRows}</g></g>`;
     return `<svg class="dive-experience-month-chart" viewBox="0 0 ${width} ${height}" role="img" tabindex="0" data-selected-index="${selectedIndex}" data-plot-left="${left}" data-plot-width="${plotWidth}" data-plot-top="${top}" data-plot-height="${plotHeight}" data-bar-width="${barWidth}" data-bar-step="${(barWidth + gap).toFixed(2)}" data-tooltip-width="${tooltipWidth}" aria-label="${t('diveExperienceChartAria')}"><rect x="${left}" y="${top}" width="${plotWidth}" height="${height - top}" fill="transparent"/>${grid}${bars}${tooltip}</svg>`;
   }
   function bindDiveExperienceMonthComparisonChart(container, points) {
@@ -14343,6 +14346,7 @@ ZSD·2016–2025</span></span>
     const guide = inspection.querySelector('.dive-experience-month-inspection-guide');
     const marker = inspection.querySelector('.dive-experience-month-inspection-point');
     const tooltip = inspection.querySelector('.dive-experience-month-inspection-tooltip');
+    const tooltipBackground = inspection.querySelector('.dive-experience-month-inspection-background');
     const monthText = inspection.querySelector('.dive-experience-month-inspection-month');
     const conditionText = inspection.querySelector('.dive-experience-month-inspection-condition');
     const metricTexts = [...inspection.querySelectorAll('.dive-experience-month-inspection-metric')];
@@ -14353,6 +14357,39 @@ ZSD·2016–2025</span></span>
     const barWidth = Number(chart.dataset.barWidth);
     const barStep = Number(chart.dataset.barStep);
     const tooltipWidth = Number(chart.dataset.tooltipWidth);
+    const wrapText = (node, value, maxWidth, lineHeight, firstBaseline) => {
+      const lines = [];
+      let line = '';
+      const measure = text => {
+        node.textContent = text;
+        const measured = node.getComputedTextLength?.() || 0;
+        return measured || text.length * Number(node.getAttribute('font-size')) * 0.6;
+      };
+      for (const character of Array.from(value)) {
+        const candidate = line + character;
+        if (line && measure(candidate) > maxWidth) {
+          const breakAt = line.lastIndexOf(' ');
+          if (breakAt >= 0) {
+            lines.push(line.slice(0, breakAt));
+            line = line.slice(breakAt + 1) + character;
+          } else {
+            lines.push(line);
+            line = character === ' ' ? '' : character;
+          }
+        } else {
+          line = candidate;
+        }
+      }
+      if (line || !lines.length) lines.push(line.trimEnd());
+      node.replaceChildren(...lines.map((text, index) => {
+        const span = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        span.setAttribute('x', '6');
+        span.setAttribute('y', (firstBaseline + index * lineHeight).toFixed(1));
+        span.textContent = text;
+        return span;
+      }));
+      return lines.length;
+    };
     const indexAtPointer = event => {
       const cursor = chart.createSVGPoint();
       cursor.x = event.clientX;
@@ -14373,34 +14410,56 @@ ZSD·2016–2025</span></span>
       guide.setAttribute('x2', x.toFixed(1));
       marker.setAttribute('cx', x.toFixed(1));
       marker.setAttribute('cy', y.toFixed(1));
-      const tooltipX = x + tooltipWidth + 8 > 380 - 4 ? x - tooltipWidth - 8 : x + 8;
-      const tooltipY = Math.max(1, Math.min(144 - 73, y - 37));
-      tooltip.setAttribute('transform', `translate(${Math.max(1, tooltipX).toFixed(1)} ${tooltipY.toFixed(1)})`);
-      monthText.textContent = localizedTemperatureMonth(point.month);
+      const contentWidth = tooltipWidth - 12;
+      wrapText(monthText, localizedTemperatureMonth(point.month), contentWidth, 15, 15);
       const conditionSummary = `${t('diveExperienceDiveConditions')}: ${point.diveConditionsScore == null
         ? t('diveConditionsUnavailable')
         : `${point.diveConditionsScore} · ${localizedPhysicalLevel(point.diveConditionsLabel || '')}`}`;
-      conditionText.textContent = conditionSummary;
+      const monthLines = monthText.querySelectorAll('tspan').length || 1;
+      const conditionStart = 15 + monthLines * 15;
+      const conditionLines = wrapText(conditionText, conditionSummary, contentWidth, 13, conditionStart);
       const metricLabels = {
         temperature:currentLang === 'en' ? 'Water temp.' : t('diveConditionsTemperature'),
         clarity:t('diveConditionsClarity'),
         current:t('diveConditionsCurrent'),
         waves:t('diveConditionsWaves')
       };
+      let nextBaseline = conditionStart + conditionLines * 13 + 2;
       metricTexts.forEach(node => {
         const key = node.dataset.metric;
         const metric = point.metrics?.[key];
-        node.textContent = `${metricLabels[key]}: ${diveExperiencePhysicalMetricText(key, metric)}`;
+        const lines = wrapText(node, `${metricLabels[key]}: ${diveExperiencePhysicalMetricText(key, metric)}`, contentWidth, 12, nextBaseline);
+        nextBaseline += lines * 12;
       });
+      const tooltipHeight = nextBaseline + 5;
+      tooltipBackground.setAttribute('height', tooltipHeight.toFixed(1));
+      const tooltipX = x + tooltipWidth + 8 > 380 - 4 ? x - tooltipWidth - 8 : x + 8;
+      const tooltipY = Math.max(1, Math.min(144 - tooltipHeight - 1, y - tooltipHeight / 2));
+      tooltip.setAttribute('transform', `translate(${Math.max(1, tooltipX).toFixed(1)} ${tooltipY.toFixed(1)})`);
       inspection.setAttribute('visibility', 'visible');
+      inspection.setAttribute('aria-hidden', 'false');
       chart.dataset.selectedIndex = String(index);
       const metricSummary = metricTexts.map(node => node.textContent).join('. ');
       chart.setAttribute('aria-label', `${localizedTemperatureMonth(point.month)}. ${conditionSummary}. ${metricSummary}`);
     };
     const hideInspection = () => {
       inspection.setAttribute('visibility', 'hidden');
+      inspection.setAttribute('aria-hidden', 'true');
       chart.setAttribute('aria-label', t('diveExperienceChartAria'));
     };
+    if (!document.documentElement.dataset.diveExperienceChartDismissalBound) {
+      document.documentElement.dataset.diveExperienceChartDismissalBound = 'true';
+      // The chart SVG is rebuilt as comparison data or the selected month changes.
+      // Delegate once so outside taps dismiss the tooltip without accumulating listeners.
+      document.addEventListener('pointerdown', event => {
+        const activeChart = document.querySelector('.dive-experience-month-chart');
+        const activeInspection = activeChart?.querySelector('.dive-experience-month-inspection');
+        if (!activeChart || !activeInspection || activeInspection.getAttribute('visibility') !== 'visible' || activeChart.contains(event.target)) return;
+        activeInspection.setAttribute('visibility', 'hidden');
+        activeInspection.setAttribute('aria-hidden', 'true');
+        activeChart.setAttribute('aria-label', t('diveExperienceChartAria'));
+      }, true);
+    }
     const inspectPointer = event => {
       const index = indexAtPointer(event);
       showInspection(index);
@@ -16121,12 +16180,17 @@ ZSD·2016–2025</span></span>
         if (activeOption) list.setAttribute('aria-activedescendant', activeOption.id);
         else list.removeAttribute('aria-activedescendant');
       },
+      optionCenterInList(item) {
+        const listTop = list.getBoundingClientRect().top;
+        const itemRect = item.getBoundingClientRect();
+        return list.scrollTop + itemRect.top - listTop + itemRect.height / 2;
+      },
       scrollToIndex(index) {
         if (!this.optionNodes.length) return;
         this.activeIndex = Math.max(0, Math.min(this.optionNodes.length - 1, index));
         this.paintActiveOption();
         const item = this.optionNodes[this.activeIndex];
-        const targetTop = item.offsetTop + item.offsetHeight / 2 - list.clientHeight / 2;
+        const targetTop = this.optionCenterInList(item) - list.clientHeight / 2;
         this.programmaticScroll = true;
         clearTimeout(this.suppressScrollTimer);
         list.scrollTo({ top: targetTop, behavior: 'auto' });
@@ -16137,7 +16201,7 @@ ZSD·2016–2025</span></span>
         let bestIndex = 0;
         let bestDistance = Infinity;
         this.optionNodes.forEach((item, index) => {
-          const distance = Math.abs(item.offsetTop + item.offsetHeight / 2 - center);
+          const distance = Math.abs(this.optionCenterInList(item) - center);
           if (distance < bestDistance) {
             bestDistance = distance;
             bestIndex = index;
@@ -19869,6 +19933,7 @@ ZSD·2016–2025</span></span>
   let sharePreviousFocus = null;
   let sharePreviewMapRestoreState = null;
   const sharePreviewUploadTasks = new Map();
+  const SHARE_PREVIEW_MAX_ZOOM = 11;
 
   function getShareContextTitle(state) {
     const siteId = String(state?.selectedSiteId || '').toLowerCase();
@@ -19900,6 +19965,18 @@ ZSD·2016–2025</span></span>
       details.push(text);
     };
     const textOf = (root, selector) => root.querySelector(selector)?.innerText || '';
+    const compactSummary = value => {
+      const text = String(value || '').replace(/\s+/g, ' ').trim();
+      const characters = Array.from(text);
+      // The card uses about half the mobile preview width; keep prose short
+      // while leaving the complete summary available in the interactive popup.
+      const maxCharacters = 72;
+      if (characters.length <= maxCharacters) return text;
+      const prefix = characters.slice(0, maxCharacters - 1).join('');
+      const wordBoundary = prefix.lastIndexOf(' ');
+      const compact = wordBoundary >= maxCharacters * 0.65 ? prefix.slice(0, wordBoundary) : prefix;
+      return `${compact.trimEnd()}…`;
+    };
     const fieldText = field => {
       const label = field.querySelector('.bio-popup-field__label, .dive-popup-property__label, dt, strong')?.innerText?.trim();
       const value = field.querySelector('.bio-popup-field__value, .dive-popup-property__value, dd')?.innerText?.trim();
@@ -19943,7 +20020,7 @@ ZSD·2016–2025</span></span>
         const rating = content.querySelector('.dive-popup-rating__value');
         if (rating?.dataset.status !== 'loading') addDetail(rating?.innerText);
         const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
-        addDetail(summary?.innerText);
+        addDetail(compactSummary(summary?.innerText));
         content.querySelectorAll('.dive-popup-property').forEach(field => addDetail(fieldText(field)));
       } else {
         // Site sheets and data popups expose structured rows with stable classes.
@@ -19954,7 +20031,7 @@ ZSD·2016–2025</span></span>
         addDetail(textOf(content, '.bio-popup-site'));
         addDetail(textOf(content, '.bio-popup-meta'));
         const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
-        addDetail(summary?.innerText);
+        addDetail(compactSummary(summary?.innerText));
         content.querySelectorAll('.bio-popup-fields .bio-popup-field, .dive-popup-property').forEach(field => {
           addDetail(fieldText(field));
         });
@@ -19996,6 +20073,23 @@ ZSD·2016–2025</span></span>
       }
       els.sharePreviewPopupData.append(list);
     }
+  }
+
+  async function capSharePreviewMapZoom() {
+    const zoom = map.getZoom();
+    if (zoom <= SHARE_PREVIEW_MAX_ZOOM) return;
+
+    if (!sharePreviewMapRestoreState) {
+      const center = map.getCenter();
+      sharePreviewMapRestoreState = {
+        center: [center.lat, center.lng],
+        zoom
+      };
+    }
+
+    const moveEnd = new Promise(resolve => map.once('moveend', resolve));
+    map.setZoom(SHARE_PREVIEW_MAX_ZOOM, { animate: false });
+    await moveEnd;
   }
 
   async function recenterSharePreviewMapIfNeeded() {
@@ -20218,6 +20312,7 @@ ZSD·2016–2025</span></span>
 
   function prepareSharePreviewCapture() {
     const frame = els.sharePreviewFrame;
+    if (!frame) return null;
     const width = frame.clientWidth;
     const height = frame.clientHeight;
     if (!width || !height || !els.sharePreviewMapSnapshot.firstElementChild) return null;
@@ -20289,19 +20384,40 @@ ZSD·2016–2025</span></span>
     let share;
     try {
       share = new URL(shareUrl);
-      if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || !/^\/map\/?$/.test(share.pathname)) return;
+      const isMapShare = /^\/map\/?$/.test(share.pathname);
+      const isSiteShare = /^\/share\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\/?$/i.test(share.pathname);
+      if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || (!isMapShare && !isSiteShare)) return;
       const existingTask = sharePreviewUploadTasks.get(share.href);
       if (existingTask) return await existingTask;
       const task = (async () => {
-        const capture = prepareSharePreviewCapture();
-        if (!capture) throw new Error('The map preview is not ready');
+        // Copy can be tapped as soon as the dialog opens. Make sure the local
+        // map snapshot is ready before checking R2 so a fast share still saves it.
+        if (!els.sharePreviewMapSnapshot.firstElementChild && !await copySharePreviewMapAfterRender()) {
+          throw new Error('The map preview is not ready');
+        }
         const uploadUrl = new URL('/map-preview-upload/', SHARE_SITE_PREVIEW_ORIGIN);
         uploadUrl.search = share.search;
         const check = await fetch(uploadUrl, { method: 'GET', mode: 'cors', credentials: 'omit' });
         if (check.status === 204) return;
         if (check.status !== 404) throw new Error(`Preview check returned ${check.status}`);
-        const image = await renderSharePreviewJpeg(capture);
-        if (!image) throw new Error('The device could not export the map preview');
+        let image;
+        try {
+          const capture = prepareSharePreviewCapture();
+          if (!capture) throw new Error('The map preview is not ready');
+          image = await renderSharePreviewJpeg(capture);
+          if (!image) throw new Error('The device could not export the map preview');
+        } catch (error) {
+          // SVG foreignObject screenshots are tainted in some browsers even
+          // when every map tile is readable. Ask the Worker to render on click.
+          const fallbackUrl = new URL(uploadUrl);
+          fallbackUrl.searchParams.set('render', '1');
+          const rendered = await fetch(fallbackUrl, { method: 'GET', mode: 'cors', credentials: 'omit' });
+          if (rendered.status === 201 || rendered.status === 204) {
+            console.info('The Worker rendered and saved the share preview after local canvas export failed.');
+            return;
+          }
+          throw new Error(`Local preview export failed and Worker render returned ${rendered.status}`, { cause:error });
+        }
         const saved = await fetch(uploadUrl, {
           method: 'POST',
           mode: 'cors',
@@ -20360,6 +20476,7 @@ ZSD·2016–2025</span></span>
       els.shareCloseButton.focus();
       requestAnimationFrame(async () => {
         try {
+          await capSharePreviewMapZoom();
           await recenterSharePreviewMapIfNeeded();
           if (els.shareModal.hidden) return;
           if (!await copySharePreviewMapAfterRender()) {

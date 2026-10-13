@@ -532,3 +532,23 @@ test('a single touch on an individual Coral feature opens details once', async (
   expect((await mapState(page)).popup.type).toBe('species');
   expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.getActionCount())).toBe(1);
 });
+
+test('zooming the map in either direction keeps an open mobile detail sheet visible', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id:'sheet-survives-zoom', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-survives-zoom');
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet');
+  await expect(sheet).toBeVisible();
+  const initialZoom = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom());
+
+  for (const [control, expectedZoom] of [
+    ['.leaflet-control-zoom-in', initialZoom + 1],
+    ['.leaflet-control-zoom-out', initialZoom]
+  ]) {
+    const bounds = await page.locator(control).boundingBox();
+    await page.touchscreen.tap(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(expectedZoom);
+    await expect(sheet).toBeVisible();
+    await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('sheet-survives-zoom');
+  }
+});

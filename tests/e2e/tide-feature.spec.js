@@ -8,7 +8,7 @@ async function expandLayers(page) {
   }
 }
 
-test('Tide tab exposes its controls and numeric legend without startup requests', async ({ page }) => {
+test('Tide tab exposes its controls and wheel endpoint options remain tappable', async ({ page }, testInfo) => {
   await openMap(page);
   const tideRequests = [];
   page.on('request', request => {
@@ -48,8 +48,28 @@ test('Tide tab exposes its controls and numeric legend without startup requests'
   await page.locator('#tideTime').click();
   const timeWheel = page.locator('#tideTime-wheel-list');
   await expect(timeWheel).toBeVisible();
-  await expect(timeWheel.locator('[role="option"]')).toHaveCount(7);
-  await timeWheel.locator('[role="option"]').filter({ hasText: '+6 h' }).click();
+  const options = timeWheel.locator('[role="option"]');
+  await expect(options).toHaveCount(7);
+  const selectWheelEndpoint = async option => {
+    await option.scrollIntoViewIfNeeded();
+    if (testInfo.project.name === 'mobile-touch-chromium') {
+      const bounds = await option.boundingBox();
+      await page.touchscreen.tap(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    } else {
+      await option.click();
+    }
+  };
+  const firstOption = options.first();
+  const firstLabel = (await firstOption.innerText()).trim();
+  await selectWheelEndpoint(firstOption);
+  await expect(page.locator('#tideLegendSelection')).toHaveText(firstLabel);
+  await expect(timeWheel).toBeHidden();
+
+  await page.locator('#tideTime').click();
+  const lastOption = page.locator('#tideTime-wheel-list [role="option"]').last();
+  const lastLabel = (await lastOption.innerText()).trim();
+  await selectWheelEndpoint(lastOption);
+  await expect(page.locator('#tideLegendSelection')).toHaveText(lastLabel);
   await expect(page.locator('#tideLegendSelection')).toHaveText('+6 h');
   await expect(timeWheel).toBeHidden();
   await page.locator('#tideTime').selectOption('0');
