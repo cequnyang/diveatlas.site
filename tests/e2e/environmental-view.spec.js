@@ -21,6 +21,44 @@ const metadataFixture = {
   }
 };
 
+const temperatureQueryMetadataFixture = {
+  format: 'diveatlas-temperature-query',
+  format_version: 2,
+  generation_version: 'mobile-detail-layout-fixture-v1',
+  source_resolution_degrees: 0.25,
+  grid: {
+    latitude_count: 720,
+    longitude_count: 1440,
+    latitude_first_center: -89.875,
+    longitude_first_center: 0.125,
+    latitude_step_degrees: 0.25,
+    longitude_step_degrees: 0.25,
+    latitude_order: 'south_to_north',
+    longitude_convention: '0_to_360'
+  },
+  chunk_grid: { rows: 720, columns: 1440 },
+  chunk_degrees: 0.25,
+  chunk_halo_cells: 0,
+  available_months: Array.from({ length:12 }, (_, index) => index + 1),
+  available_depths_m: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+  chunk_file_template: 'chunks/{month}/{depth}/r{row}_c{column}.i16.gz',
+  value_encoding: { scale_c:0.01, missing_sentinel:-32768 }
+};
+const temperatureQueryChunkFixture = gzipSync(Buffer.from([200, 0]));
+
+async function installTemperatureQueryFixture(page) {
+  await page.route('**/data/temperature/query/v2/metadata.json', route => route.fulfill({
+    status:200,
+    contentType:'application/json',
+    body:JSON.stringify(temperatureQueryMetadataFixture)
+  }));
+  await page.route('**/data/temperature/query/v2/chunks/**', route => route.fulfill({
+    status:200,
+    contentType:'application/gzip',
+    body:temperatureQueryChunkFixture
+  }));
+}
+
 async function installMetadataFixture(page) {
   await page.route('**/datasets/temperature/metadata.json', route => route.fulfill({ json: metadataFixture }));
 }
@@ -1023,6 +1061,8 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
 });
 
 test('temperature detail stays compact at a mobile viewport', async ({ page }) => {
+  // This is a layout check; keep its sampled value independent of release data availability.
+  await installTemperatureQueryFixture(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page, {
     localStorage: { 'global-coral-map-environment-month-v1': '9' },
