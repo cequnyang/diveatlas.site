@@ -15217,12 +15217,13 @@ ZSD·2016–2025</span></span>
       const y = pad + (high - point.level_m) / span * (height - 2 * pad);
       return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="var(--surface-elevated)" stroke="var(--text-secondary)" stroke-width="1.5" aria-label="${escapeHtml(t(point.kind === 'high' ? 'tideHighAria' : 'tideLowAria'))}"/>`;
     }).join('');
-    const extrema = (result.extrema || []).map(item => `<div><dt>${escapeHtml(t(item.kind === 'high' ? 'tideHigh' : 'tideLow'))}</dt><dd>${escapeHtml(new Intl.DateTimeFormat(HTML_LANG_CODES[currentLang] || currentLang, { timeZone: result.timezone, hour: '2-digit', minute: '2-digit' }).format(new Date(item.time_utc)))} · ${escapeHtml(formatTideHeight(item.level_m))}</dd></div>`).join('');
+    // Stable kinds let previews group high/low rows without parsing translated labels.
+    const extrema = (result.extrema || []).map(item => `<div data-tide-extremum="${item.kind === 'high' ? 'high' : 'low'}"><dt>${escapeHtml(t(item.kind === 'high' ? 'tideHigh' : 'tideLow'))}</dt><dd>${escapeHtml(new Intl.DateTimeFormat(HTML_LANG_CODES[currentLang] || currentLang, { timeZone: result.timezone, hour: '2-digit', minute: '2-digit' }).format(new Date(item.time_utc)))} · ${escapeHtml(formatTideHeight(item.level_m))}</dd></div>`).join('');
     const forecastHours = Number(els.tideTime.value || 0);
     const chartStart = forecastHours ? `+${forecastHours} h` : t('tideNow');
     const chartEnd = forecastHours ? `+${forecastHours + 24} h` : '+24 h';
     const confidence = result.confidence === 'Moderate' ? t('tideConfidenceModerate') : result.confidence === 'Limited' ? t('tideConfidenceLimited') : result.confidence;
-    const html = `<div class="temperature-detail tide-popup"><div class="temperature-detail-heading">${escapeHtml(t('tideTitle'))}</div><div class="tide-popup-disclaimer">${escapeHtml(t('tideDisclaimer'))}</div><div class="tide-popup-location">${escapeHtml(result.location || `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`)} · ${escapeHtml(t('tideLocalTime'))} ${escapeHtml(result.utc_offset || '')}</div><div class="waves-primary-metrics"><div class="bio-popup-field"><span class="bio-popup-field__label">${escapeHtml(t('tidePredictedLevel'))}</span><span class="bio-popup-field__value">${escapeHtml(formatTideHeight(result.level_m))}</span></div><div class="bio-popup-field"><span class="bio-popup-field__label">${escapeHtml(t('tideTrend'))}</span><span class="bio-popup-field__value">${escapeHtml(t(result.rising ? 'tideRising' : 'tideFalling'))}</span></div></div><svg class="tide-popup-chart" viewBox="0 0 ${width} ${height}" role="img" tabindex="0" aria-label="${escapeHtml(t('tideChartAria').replace('{value}', nowLevelLabel))}"><line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" stroke="var(--line-soft)"/><polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>${extremaMarkers}<line x1="${nowX.toFixed(1)}" y1="${pad}" x2="${nowX.toFixed(1)}" y2="${height - pad}" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/><text class="tide-popup-now-value" x="${(pad + 4).toFixed(1)}" y="${Math.max(pad + 9, nowY - 5).toFixed(1)}">${nowLevelLabel}</text><text x="${pad}" y="${height - 1}">${escapeHtml(chartStart)}</text><text x="${width - pad}" y="${height - 1}" text-anchor="end">${chartEnd}</text><g class="tide-chart-inspection" visibility="hidden" aria-hidden="true"><line class="tide-chart-inspection-guide" y1="${pad}" y2="${height - pad}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 2"/><circle class="tide-chart-inspection-point" r="3.5" fill="var(--surface-elevated)" stroke="var(--accent)" stroke-width="2"/><g class="tide-chart-inspection-tooltip"><rect width="104" height="27" rx="4" fill="var(--surface-elevated)" stroke="var(--line-soft)"/><text class="tide-chart-inspection-time" x="5" y="10">--:--</text><text class="tide-chart-inspection-label" x="5" y="21">0.00</text></g></g></svg><dl class="bio-popup-fields">${extrema}<div><dt>${escapeHtml(t('tideRangeToday'))}</dt><dd>${escapeHtml(formatTideHeight(result.range_m))}</dd></div></dl><div class="temperature-detail-caption">${escapeHtml(t('tideModel'))} · ${escapeHtml(confidence)} ${escapeHtml(t('tideSpatialCoverage'))}</div></div>`;
+    const html = `<div class="temperature-detail tide-popup"><div class="temperature-detail-heading">${escapeHtml(t('tideTitle'))}</div><div class="tide-popup-disclaimer">${escapeHtml(t('tideDisclaimer'))}</div><div class="tide-popup-location">${escapeHtml(result.location || `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`)} · ${escapeHtml(t('tideLocalTime'))} ${escapeHtml(result.utc_offset || '')}</div><div class="waves-primary-metrics"><div class="bio-popup-field"><span class="bio-popup-field__label">${escapeHtml(t('tidePredictedLevel'))}</span><span class="bio-popup-field__value">${escapeHtml(formatTideHeight(result.level_m))}</span></div><div class="bio-popup-field"><span class="bio-popup-field__label">${escapeHtml(t('tideTrend'))}</span><span class="bio-popup-field__value">${escapeHtml(t(result.rising ? 'tideRising' : 'tideFalling'))}</span></div></div><svg class="tide-popup-chart" viewBox="0 0 ${width} ${height}" role="img" tabindex="0" aria-label="${escapeHtml(t('tideChartAria').replace('{value}', nowLevelLabel))}"><line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" stroke="var(--line-soft)"/><polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>${extremaMarkers}<line x1="${nowX.toFixed(1)}" y1="${pad}" x2="${nowX.toFixed(1)}" y2="${height - pad}" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/><text class="tide-popup-now-value" x="${(pad + 4).toFixed(1)}" y="${Math.max(pad + 9, nowY - 5).toFixed(1)}">${nowLevelLabel}</text><text x="${pad}" y="${height - 1}">${escapeHtml(chartStart)}</text><text x="${width - pad}" y="${height - 1}" text-anchor="end">${chartEnd}</text><g class="tide-chart-inspection" visibility="hidden" aria-hidden="true"><line class="tide-chart-inspection-guide" y1="${pad}" y2="${height - pad}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 2"/><circle class="tide-chart-inspection-point" r="3.5" fill="var(--surface-elevated)" stroke="var(--accent)" stroke-width="2"/><g class="tide-chart-inspection-tooltip"><rect width="104" height="27" rx="4" fill="var(--surface-elevated)" stroke="var(--line-soft)"/><text class="tide-chart-inspection-time" x="5" y="10">--:--</text><text class="tide-chart-inspection-label" x="5" y="21">0.00</text></g></g></svg><dl class="bio-popup-fields">${extrema}<div data-tide-range><dt>${escapeHtml(t('tideRangeToday'))}</dt><dd>${escapeHtml(formatTideHeight(result.range_m))}</dd></div></dl><div class="temperature-detail-caption">${escapeHtml(t('tideModel'))} · ${escapeHtml(confidence)} ${escapeHtml(t('tideSpatialCoverage'))}</div></div>`;
     if (!tidePopup) tidePopup = createMapInfoPopup({ maxWidth: 350, minWidth: 260, closeButton: true, closeOnClick: false, className: 'temperature-detail-popup tide-map-popup' });
     tidePopup._diveAtlasLayerKey = 'tide';
     tidePopup.setLatLng(latlng).setContent(html);
@@ -18098,7 +18099,7 @@ ZSD·2016–2025</span></span>
     ], 'waves-primary-metrics');
     const contextFields = popupPropertiesHtml([
       { label: t('temperatureMonth'), value: escapeHtml(monthName) },
-      { label: t('wavesBaseline'), value: period }
+      { label: t('wavesBaseline'), value: period, sharePreviewExclude: true }
     ]);
     const chart = wavesSeasonalOpen
       ? (wavesSeasonalPoints
@@ -20051,6 +20052,26 @@ ZSD·2016–2025</span></span>
         '.dive-conditions-popup-back', '.dive-conditions-popup-close'
       ].join(',')).forEach(element => element.remove());
       content.querySelectorAll('[hidden], [aria-hidden="true"]').forEach(element => element.remove());
+      // Keep the compact card focused on location-specific condition values; these are generic context or survey metadata.
+      content.querySelectorAll('.regional-currents-typical, .bio-popup-field--share-preview-exclude').forEach(element => element.remove());
+      content.querySelectorAll('.reef-survey-popup-meta .bio-popup-field').forEach(field => {
+        const label = field.querySelector('.bio-popup-field__label')?.innerText?.trim().toLowerCase();
+        if (label === 'surveyed' || label === 'sample units') field.remove();
+      });
+      const measurementValue = content.querySelector('.temperature-detail-value');
+      if (measurementValue) {
+        const measurementHeading = measurementValue.closest('.temperature-detail-heading')?.cloneNode(true);
+        measurementHeading?.querySelector('.temperature-detail-value')?.remove();
+        const label = measurementHeading?.innerText?.trim();
+        const value = measurementValue.innerText?.trim();
+        if (label && value) addDetail(`${label}: ${value}`);
+      }
+      const currentValue = content.querySelector('.regional-current-value');
+      if (currentValue) {
+        const direction = currentValue.querySelector(':scope > span')?.innerText?.trim();
+        const speed = currentValue.querySelector(':scope > strong')?.innerText?.trim();
+        addDetail([direction, speed].filter(Boolean).join(' · '));
+      }
 
       // Dive-condition outlooks have useful location, month, score, and measured
       // conditions mixed with comparison controls. Pick those facts explicitly.
@@ -20063,9 +20084,7 @@ ZSD·2016–2025</span></span>
         addDetail(textOf(content, '.dive-experience-main-score'));
         const physical = content.querySelector('.dive-experience-subscore');
         if (physical) {
-          const title = physical.querySelector('h4')?.innerText?.trim();
-          const score = physical.querySelector(':scope > strong')?.innerText?.trim();
-          if (title && score) addDetail(`${title}: ${score}`);
+          // The main score is already shown; retain the measured dimensions without repeating their aggregate score.
           physical.querySelectorAll('.dive-experience-dimension-row').forEach(row => {
             const label = row.querySelector('.dive-experience-dimension-label')?.innerText?.trim();
             const value = row.querySelector('.dive-experience-dimension-value')?.innerText?.trim();
@@ -20080,6 +20099,35 @@ ZSD·2016–2025</span></span>
         const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
         addDetail(compactSummary(summary?.innerText));
         content.querySelectorAll('.dive-popup-property').forEach(field => addDetail(fieldText(field)));
+      } else if (content.querySelector('.tide-popup')) {
+        addDetail(textOf(content, '.tide-popup-location'));
+        content.querySelectorAll('.waves-primary-metrics .bio-popup-field').forEach(field => addDetail(fieldText(field)));
+        for (const kind of ['high', 'low']) {
+          const rows = Array.from(content.querySelectorAll(`[data-tide-extremum="${kind}"]`));
+          if (!rows.length) continue;
+          const label = rows[0].querySelector('dt')?.innerText?.trim();
+          const values = rows.map(row => row.querySelector('dd')?.innerText?.trim()).filter(Boolean);
+          if (label && values.length) addDetail(`${label}: ${values.join('; ')}`);
+        }
+        const range = content.querySelector('[data-tide-range]');
+        if (range) addDetail(fieldText(range));
+      } else if (content.querySelector('.reef-condition-raster-popup .reef-condition-worst')) {
+        addDetail(textOf(content, '.bio-popup-title'));
+        const recentPeriod = textOf(content, '.reef-condition-worst-copy > span:first-child');
+        const recentPeak = textOf(content, '.reef-condition-worst-value > strong');
+        if (recentPeriod && recentPeak) addDetail(`${recentPeriod}: ${recentPeak}`);
+        addDetail(textOf(content, '.reef-condition-worst-copy > span:last-child'));
+        const additionalHistory = selector => {
+          const field = popupContent.querySelector(selector);
+          const label = field?.querySelector('dt')?.textContent?.replace(/\s+/g, ' ').trim();
+          const value = field?.querySelector('dd')?.textContent?.replace(/\s+/g, ' ').trim();
+          return label && value ? `${label}: ${value}` : '';
+        };
+        ['.reef-condition-history-severe-years', '.reef-condition-history-full-maximum', '.reef-condition-history-source-period']
+          .forEach(selector => addDetail(additionalHistory(selector)));
+      } else if (content.querySelector('.reef-condition-ocean-heat-popup')) {
+        addDetail(textOf(content, '.bio-popup-title'));
+        content.querySelectorAll('.bio-popup-fields .bio-popup-field').forEach(field => addDetail(fieldText(field)));
       } else {
         // Site sheets and data popups expose structured rows with stable classes.
         addDetail(textOf(content, '.dive-popup-location__region'));
@@ -20093,7 +20141,7 @@ ZSD·2016–2025</span></span>
         content.querySelectorAll('.bio-popup-fields .bio-popup-field, .dive-popup-property').forEach(field => {
           addDetail(fieldText(field));
         });
-        content.querySelectorAll('.dive-experience-main-score, .dive-experience-subscore > strong, .dive-experience-dimension-row').forEach(row => {
+        content.querySelectorAll('.dive-experience-main-score, .dive-experience-dimension-row').forEach(row => {
           if (row.matches('.dive-experience-dimension-row')) {
             const label = row.querySelector('.dive-experience-dimension-label')?.innerText?.trim();
             const value = row.querySelector('.dive-experience-dimension-value')?.innerText?.trim();
@@ -20901,7 +20949,7 @@ function closeShareDialog() {
     const containerClass = className ? `bio-popup-fields ${className}` : 'bio-popup-fields';
     return `<div class="${containerClass}">` +
       fields.map(row =>
-        `<div class="bio-popup-field${row.stacked ? ' bio-popup-field--stacked' : ''}">` +
+        `<div class="bio-popup-field${row.stacked ? ' bio-popup-field--stacked' : ''}${row.sharePreviewExclude ? ' bio-popup-field--share-preview-exclude' : ''}">` +
           `<span class="bio-popup-field__label">${escapeHtml(row.label)}</span>` +
           `<div class="bio-popup-field__value">${row.value}</div>` +
         `</div>`

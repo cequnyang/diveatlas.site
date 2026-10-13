@@ -165,6 +165,7 @@
     const annualValues = timelineYears.map((_, index) => value.recentAnnualValues[index]);
     const threshold = number => formatDhwThreshold(number);
     const dhwThresholdLabel = number => text('reefDhwThreshold', { threshold:threshold(number), unit:dhwUnit });
+    // Stable hooks let share summaries read key facts from collapsed details without parsing translated labels.
     return `<div class="bio-popup reef-condition-raster-popup">
       <div class="bio-popup-title">${escapeHtml(text('reefThermalTitle'))}</div>
       <div class="reef-condition-pressure-note">${escapeHtml(text('reefPressureNote'))}</div>
@@ -179,12 +180,12 @@
                 <p>${escapeHtml(text('reefAdditionalHistory'))}</p>
                 <dl>
                   <div><dt>${escapeHtml(dhwThresholdLabel(4))}</dt><dd>${availableCount(value.recentYearsGte4, value.recentValidYears)} · ${escapeHtml(text('reefRecentPeriod'))}</dd></div>
-                  <div><dt>${escapeHtml(text('reefSevereYears'))} · ${escapeHtml(dhwThresholdLabel(8))}</dt><dd>${availableCount(value.recentYearsGte8, value.recentValidYears)} · ${escapeHtml(text('reefRecentPeriod'))}</dd></div>
+                  <div class="reef-condition-history-severe-years"><dt>${escapeHtml(text('reefSevereYears'))} · ${escapeHtml(dhwThresholdLabel(8))}</dt><dd>${availableCount(value.recentYearsGte8, value.recentValidYears)} · ${escapeHtml(text('reefRecentPeriod'))}</dd></div>
                   <div><dt>${escapeHtml(text('reefLastSevereRecent'))}</dt><dd>${year(value.lastRecentSevereYear)}</dd></div>
                   <div><dt>${escapeHtml(text('reefLastSevereFull'))}</dt><dd>${year(value.lastSevereYear)}</dd></div>
-                  <div><dt>${escapeHtml(text('reefFullMaximum'))}</dt><dd>${Number.isFinite(value.fullHistoryMaxDhw) ? `${escapeHtml(formatDhwNumber(value.fullHistoryMaxDhw))} ${escapeHtml(dhwUnit)} · ${year(value.fullHistoryMaxDhwYear)}` : escapeHtml(text('reefUnavailable'))}</dd></div>
+                  <div class="reef-condition-history-full-maximum"><dt>${escapeHtml(text('reefFullMaximum'))}</dt><dd>${Number.isFinite(value.fullHistoryMaxDhw) ? `${escapeHtml(formatDhwNumber(value.fullHistoryMaxDhw))} ${escapeHtml(dhwUnit)} · ${year(value.fullHistoryMaxDhwYear)}` : escapeHtml(text('reefUnavailable'))}</dd></div>
                   <div><dt>${escapeHtml(text('reefFullYearsThresholds', { four:threshold(4), eight:threshold(8), unit:dhwUnit }))}</dt><dd>${availableCount(value.fullHistoryYearsGte4, value.fullValidYears)} / ${availableCount(value.fullHistoryYearsGte8, value.fullValidYears)}</dd></div>
-                  <div><dt>${escapeHtml(text('reefSourcePeriod'))}</dt><dd>${periods.fullStart}–${periods.fullEnd}</dd></div>
+                  <div class="reef-condition-history-source-period"><dt>${escapeHtml(text('reefSourcePeriod'))}</dt><dd>${periods.fullStart}–${periods.fullEnd}</dd></div>
                 </dl>
               </div>
             </details>
