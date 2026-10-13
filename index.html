@@ -7569,12 +7569,14 @@ ZSD·2016–2025</span></span>
   const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
   const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
   const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
+  const SHARE_LANGUAGE_CODES = ['zh', 'en', 'ja', 'fr', 'de', 'nl', 'it', 'ru', 'pt', 'sv', 'no', 'es', 'ko', 'id'];
   // Keep the user-facing share URLs compact while accepting the previous long
   // keys and values indefinitely for links already posted elsewhere.
   const SHARE_QUERY_KEY_ALIASES = {
     layers:'l', view:'v', site:'s', popup:'p', plat:'py', plng:'px', flow:'f',
     month:'m', temperatureDepth:'td', currentDepth:'cd', tideTime:'tt',
-    experienceMonth:'em', reefMetric:'rm', heatMode:'hm', heatYear:'hy'
+    experienceMonth:'em', reefMetric:'rm', heatMode:'hm', heatYear:'hy',
+    language:'hl', lengthUnit:'lu', temperatureUnit:'tu'
   };
   const SHARE_LAYER_VALUE_CODES = {
     contours:'c', currents:'u', terrain:'t', reef:'r', species:'s', fish:'f', dive:'d'
@@ -7689,6 +7691,16 @@ ZSD·2016–2025</span></span>
     }
 
     const state = { hasValidState: false };
+    if (params.get('ogPreview') === '1') {
+      // Apply the sender's display preferences only in the Worker's offscreen render.
+      const rawLanguage = String(getShareParam(params, 'language') || '').trim().toLowerCase();
+      const language = rawLanguage.split(/[-_]/)[0];
+      if (SHARE_LANGUAGE_CODES.includes(language)) state.language = language;
+      const lengthUnit = String(getShareParam(params, 'lengthUnit') || '').trim().toLowerCase();
+      if (lengthUnit === 'm' || lengthUnit === 'ft') state.lengthUnit = lengthUnit;
+      const temperatureUnit = String(getShareParam(params, 'temperatureUnit') || '').trim().toUpperCase();
+      if (temperatureUnit === 'C' || temperatureUnit === 'F') state.temperatureUnit = temperatureUnit;
+    }
     const packedCoordinates = params.get(SHARE_PACKED_COORDINATES_KEY) || '';
     const packedShapeValid = packedCoordinates.length === 10 || packedCoordinates.length === 20;
     const packedCenter = packedShapeValid
@@ -10335,6 +10347,7 @@ ZSD·2016–2025</span></span>
 
   let currentLang = 'en';
   let lengthUnit = (() => {
+    if (sharedMapState.lengthUnit === 'ft' || sharedMapState.lengthUnit === 'm') return sharedMapState.lengthUnit;
     try { return localStorage.getItem('diveatlas-length-unit') === 'ft' ? 'ft' : 'm'; }
     catch (_) { return 'm'; }
   })();
@@ -15473,6 +15486,7 @@ ZSD·2016–2025</span></span>
   }
   let coralHeatStressMetadata = null;
   let temperatureUnit = (() => {
+    if (sharedMapState.temperatureUnit === 'F' || sharedMapState.temperatureUnit === 'C') return sharedMapState.temperatureUnit;
     try { return localStorage.getItem('diveatlas-temperature-unit') === 'F' ? 'F' : 'C'; }
     catch (_) { return 'C'; }
   })();
@@ -19787,6 +19801,9 @@ ZSD·2016–2025</span></span>
       ? popupMonthContext
       : activeView;
     return {
+      language:currentLang,
+      lengthUnit,
+      temperatureUnit,
       center: { lat: center.lat, lng: center.lng },
       zoom: map.getZoom(),
       layers: Object.fromEntries(SHARE_LAYER_IDS.map(id => [id, Boolean(layerVisibility[id])])),
@@ -19819,6 +19836,10 @@ ZSD·2016–2025</span></span>
 
   function serializeMapState(state, { includeSite = true } = {}) {
     const params = new URLSearchParams();
+    // Carry only display preferences so Worker fallback text matches the device preview.
+    setShareParam(params, 'language', normalizeLang(state?.language || currentLang));
+    setShareParam(params, 'lengthUnit', state?.lengthUnit === 'ft' ? 'ft' : 'm');
+    setShareParam(params, 'temperatureUnit', state?.temperatureUnit === 'F' ? 'F' : 'C');
     const lat = Number(state?.center?.lat);
     const lng = Number(state?.center?.lng);
     const zoom = Number(state?.zoom);
@@ -29663,7 +29684,9 @@ function closeShareDialog() {
     localStorage.getItem('global-coral-map-lang');
 
   const preferredLang =
-    savedLang ? normalizeLang(savedLang) : 'en';
+    sharedMapState.language
+      ? normalizeLang(sharedMapState.language)
+      : savedLang ? normalizeLang(savedLang) : 'en';
 
   // The head boot script selects the saved/time-based theme before first paint;
   // this call synchronizes controls and local overlays without animating.
@@ -29676,7 +29699,7 @@ function closeShareDialog() {
   // English. An explicit saved language skips IP-based auto-selection.
   setLanguage(preferredLang);
 
-  if (!savedLang && !DIVEATLAS_INTERACTION_TEST_MODE) {
+  if (!savedLang && !sharedMapState.language && !DIVEATLAS_INTERACTION_TEST_MODE) {
     void (async () => {
       const location = await getIpGeolocation();
 
