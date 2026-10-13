@@ -4535,6 +4535,18 @@
     .share-action-icon .share-mark--outline { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .share-action-button--primary .share-action-icon { background: #087f9b; color: #fff; }
     .share-action-icon--whatsapp { background:#25d366; color:#fff; }
+    .share-action-icon--wechat,
+    .share-action-icon--rednote,
+    .share-action-icon--line,
+    .share-action-icon--telegram { background:transparent; }
+    .share-action-icon--line img,
+    .share-action-icon--rednote img,
+    .share-action-icon--telegram img { width:100%; height:100%; object-fit:contain; }
+    .share-action-icon--line img { border-radius:50%; }
+    .share-action-icon--wechat { overflow:hidden; border-radius:10px; }
+    .share-action-icon--wechat img { width:100%; height:100%; object-fit:cover; }
+    .share-action-icon--instagram { background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color:#fff; }
+    .share-action-icon--instagram img { width:64%; height:64%; object-fit:contain; }
     .share-action-icon--facebook { background:#0866ff; color:#fff; }
     .share-action-icon--reddit { background:#ff4500; color:#fff; }
     .share-action-icon--x { background:#000; color:#fff; }
@@ -6857,25 +6869,40 @@
           <div class="share-preview-placeholder" id="sharePreviewPlaceholder" role="status">Preparing map preview…</div>
           <aside class="share-preview-popup-data" id="sharePreviewPopupData" hidden></aside>
         </div>
-        <!-- Brand marks are embedded from Simple Icons SVG paths so the share dialog has no CDN dependency. -->
+        <!-- Platform marks are local or inline so the share dialog does not fetch icons from third-party CDNs. -->
         <div class="share-actions" aria-label="Share options">
           <button class="share-action-button share-action-button--primary" id="shareCopyButton" type="button">
             <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="7" y="7" width="10" height="11" rx="2"/><path d="M13 7V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2"/></svg></span>
             <span id="shareCopyButtonText">Copy link</span>
           </button>
-          <a class="share-action-button" id="shareWhatsAppButton" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
-            <span class="share-action-icon share-action-icon--whatsapp" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span>WhatsApp</span>
+          <a class="share-action-button" id="shareLineButton" target="_blank" rel="noopener noreferrer" aria-label="Share with LINE" data-share-platform="LINE" hidden>
+            <span class="share-action-icon share-action-icon--line" aria-hidden="true"><img src="assets/share-platforms/line-share-icon.png" alt=""></span><span id="shareLineButtonText">LINE</span>
           </a>
-          <a class="share-action-button" id="shareXButton" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
-            <span class="share-action-icon share-action-icon--x" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></span><span>X</span>
+          <a class="share-action-button" id="shareTelegramButton" target="_blank" rel="noopener noreferrer" aria-label="Share with Telegram" data-share-platform="Telegram" hidden>
+            <span class="share-action-icon share-action-icon--telegram" aria-hidden="true"><img src="assets/share-platforms/telegram.svg" alt=""></span><span>Telegram</span>
           </a>
-          <a class="share-action-button" id="shareFacebookButton" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+          <a class="share-action-button" id="shareWechatButton" target="_blank" rel="noopener noreferrer" aria-label="分享到微信" data-share-platform="微信" data-copy-only-desktop="true" href="https://weixin.qq.com/" hidden>
+            <span class="share-action-icon share-action-icon--wechat" aria-hidden="true"><img src="assets/share-platforms/wechat-app-icon.jpg" alt=""></span><span>微信</span>
+          </a>
+          <a class="share-action-button" id="shareRedNoteButton" target="_blank" rel="noopener noreferrer" aria-label="分享到小红书" data-share-platform="小红书" data-copy-only-desktop="true" href="https://www.xiaohongshu.com/" hidden>
+            <span class="share-action-icon share-action-icon--rednote" aria-hidden="true"><img src="assets/share-platforms/xiaohongshu.png" alt=""></span><span>小红书</span>
+          </a>
+          <a class="share-action-button" id="shareFacebookButton" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" data-share-platform="Facebook">
             <span class="share-action-icon share-action-icon--facebook" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg></span><span>Facebook</span>
           </a>
-          <a class="share-action-button" id="shareRedditButton" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
+          <a class="share-action-button" id="shareWhatsAppButton" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" data-share-platform="WhatsApp">
+            <span class="share-action-icon share-action-icon--whatsapp" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span>WhatsApp</span>
+          </a>
+          <a class="share-action-button" id="shareXButton" target="_blank" rel="noopener noreferrer" aria-label="Share on X" data-share-platform="X">
+            <span class="share-action-icon share-action-icon--x" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></span><span>X</span>
+          </a>
+          <a class="share-action-button" id="shareInstagramButton" target="_blank" rel="noopener noreferrer" aria-label="Share on Instagram" data-share-platform="Instagram" data-copy-only-desktop="true" href="https://www.instagram.com/">
+            <span class="share-action-icon share-action-icon--instagram" aria-hidden="true"><img src="assets/share-platforms/instagram-glyph.png" alt=""></span><span>Instagram</span>
+          </a>
+          <a class="share-action-button" id="shareRedditButton" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" data-share-platform="Reddit">
             <span class="share-action-icon share-action-icon--reddit" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg></span><span>Reddit</span>
           </a>
-          <a class="share-action-button" id="shareEmailButton" aria-label="Share by email">
+          <a class="share-action-button" id="shareEmailButton" aria-label="Share by email" data-share-platform="Mail">
             <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect class="share-mark--outline" x="3" y="5" width="18" height="14" rx="2"/><path class="share-mark--outline" d="m4 7 8 6 8-6"/></svg></span><span>Mail</span>
           </a>
           <button class="share-action-button" id="shareNativeButton" type="button" hidden>
@@ -9198,11 +9225,17 @@ ZSD·2016–2025</span></span>
     sharePreviewPopupPointer: document.getElementById('sharePreviewPopupPointer'),
     shareCopyButton: document.getElementById('shareCopyButton'),
     shareCopyButtonText: document.getElementById('shareCopyButtonText'),
+    shareLineButton: document.getElementById('shareLineButton'),
+    shareLineButtonText: document.getElementById('shareLineButtonText'),
+    shareTelegramButton: document.getElementById('shareTelegramButton'),
+    shareWechatButton: document.getElementById('shareWechatButton'),
+    shareRedNoteButton: document.getElementById('shareRedNoteButton'),
     shareNativeButton: document.getElementById('shareNativeButton'),
     shareWhatsAppButton: document.getElementById('shareWhatsAppButton'),
     shareEmailButton: document.getElementById('shareEmailButton'),
     shareXButton: document.getElementById('shareXButton'),
     shareFacebookButton: document.getElementById('shareFacebookButton'),
+    shareInstagramButton: document.getElementById('shareInstagramButton'),
     shareRedditButton: document.getElementById('shareRedditButton'),
     shareStatus: document.getElementById('shareStatus'),
     diveSearchSuggestion: document.getElementById('diveSearchSuggestion'),
@@ -11464,20 +11497,20 @@ ZSD·2016–2025</span></span>
   };
 
   const SHARE_I18N = {
-    en: { shareMap: 'Share map', shareCopyMap: 'Share map info', shareCopySite: 'Share dive site info', shareCopyPopupNamed: 'Share {name} info', shareCopied: 'Copied', shareCopyFailed: 'Copy failed' },
-    zh: { shareMap: '分享地图', shareCopyMap: '分享地图信息', shareCopySite: '分享潜点信息', shareCopyPopupNamed: '分享{name}信息', shareCopied: '已复制', shareCopyFailed: '复制失败' },
-    ja: { shareMap: '地図を共有', shareCopyMap: '地図情報を共有', shareCopySite: 'ダイブサイト情報を共有', shareCopyPopupNamed: '{name}の情報を共有', shareCopied: 'コピーしました', shareCopyFailed: 'コピーできませんでした' },
-    fr: { shareMap: 'Partager la carte', shareCopyMap: 'Partager les infos de la carte', shareCopySite: 'Partager les infos du site de plongée', shareCopyPopupNamed: 'Partager les infos de « {name} »', shareCopied: 'Copié', shareCopyFailed: 'Échec de la copie' },
-    de: { shareMap: 'Karte teilen', shareCopyMap: 'Karteninfos teilen', shareCopySite: 'Tauchplatzinfos teilen', shareCopyPopupNamed: 'Infos zu „{name}“ teilen', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieren fehlgeschlagen' },
-    nl: { shareMap: 'Kaart delen', shareCopyMap: 'Kaartinfo delen', shareCopySite: 'Duikstekinfo delen', shareCopyPopupNamed: 'Info over {name} delen', shareCopied: 'Gekopieerd', shareCopyFailed: 'Kopiëren mislukt' },
-    it: { shareMap: 'Condividi mappa', shareCopyMap: 'Condividi info mappa', shareCopySite: 'Condividi info sito di immersione', shareCopyPopupNamed: 'Condividi info {name}', shareCopied: 'Copiato', shareCopyFailed: 'Copia non riuscita' },
-    ru: { shareMap: 'Поделиться картой', shareCopyMap: 'Поделиться данными карты', shareCopySite: 'Поделиться данными дайв-сайта', shareCopyPopupNamed: 'Поделиться данными: {name}', shareCopied: 'Скопировано', shareCopyFailed: 'Не удалось скопировать' },
-    pt: { shareMap: 'Compartilhar mapa', shareCopyMap: 'Compartilhar informações do mapa', shareCopySite: 'Compartilhar informações do ponto de mergulho', shareCopyPopupNamed: 'Compartilhar informações de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Falha ao copiar' },
-    sv: { shareMap: 'Dela karta', shareCopyMap: 'Dela kartinformation', shareCopySite: 'Dela information om dykplatsen', shareCopyPopupNamed: 'Dela information om {name}', shareCopied: 'Kopierad', shareCopyFailed: 'Kopieringen misslyckades' },
-    no: { shareMap: 'Del kart', shareCopyMap: 'Del kartinformasjon', shareCopySite: 'Del informasjon om dykkestedet', shareCopyPopupNamed: 'Del informasjon om {name}', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieringen mislyktes' },
-    es: { shareMap: 'Compartir mapa', shareCopyMap: 'Compartir información del mapa', shareCopySite: 'Compartir información del sitio de buceo', shareCopyPopupNamed: 'Compartir información de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Error al copiar' },
-    ko: { shareMap: '지도 공유', shareCopyMap: '지도 정보 공유', shareCopySite: '다이빙 사이트 정보 공유', shareCopyPopupNamed: '{name} 정보 공유', shareCopied: '복사됨', shareCopyFailed: '복사 실패' },
-    id: { shareMap: 'Bagikan peta', shareCopyMap: 'Bagikan info peta', shareCopySite: 'Bagikan info lokasi selam', shareCopyPopupNamed: 'Bagikan info {name}', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin' }
+    en: { shareMap: 'Share map', shareCopyMap: 'Share map info', shareCopySite: 'Share dive site info', shareCopyPopupNamed: 'Share {name} info', shareCopied: 'Copied', shareCopyFailed: 'Copy failed', shareCopyForInstagram: 'Copy link for Instagram', shareInstagramCopied: 'Link copied. Paste it into Instagram.', shareInstagramCopyFailed: 'Copy failed. Copy the link manually for Instagram.' },
+    zh: { shareMap: '分享地图', shareCopyMap: '分享地图信息', shareCopySite: '分享潜点信息', shareCopyPopupNamed: '分享{name}信息', shareCopied: '已复制', shareCopyFailed: '复制失败', shareCopyForInstagram: '复制链接以分享到 Instagram', shareInstagramCopied: '链接已复制，请粘贴到 Instagram 分享。', shareInstagramCopyFailed: '复制失败，请手动复制链接分享到 Instagram。' },
+    ja: { shareMap: '地図を共有', shareCopyMap: '地図情報を共有', shareCopySite: 'ダイブサイト情報を共有', shareCopyPopupNamed: '{name}の情報を共有', shareCopied: 'コピーしました', shareCopyFailed: 'コピーできませんでした', shareCopyForInstagram: 'Instagram用のリンクをコピー', shareInstagramCopied: 'リンクをコピーしました。Instagramに貼り付けて共有してください。', shareInstagramCopyFailed: 'コピーできませんでした。リンクを手動でコピーしてInstagramに貼り付けてください。' },
+    fr: { shareMap: 'Partager la carte', shareCopyMap: 'Partager les infos de la carte', shareCopySite: 'Partager les infos du site de plongée', shareCopyPopupNamed: 'Partager les infos de « {name} »', shareCopied: 'Copié', shareCopyFailed: 'Échec de la copie', shareCopyForInstagram: 'Copier le lien pour Instagram', shareInstagramCopied: 'Lien copié. Collez-le dans Instagram.', shareInstagramCopyFailed: 'Échec de la copie. Copiez le lien manuellement pour Instagram.' },
+    de: { shareMap: 'Karte teilen', shareCopyMap: 'Karteninfos teilen', shareCopySite: 'Tauchplatzinfos teilen', shareCopyPopupNamed: 'Infos zu „{name}“ teilen', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieren fehlgeschlagen', shareCopyForInstagram: 'Link für Instagram kopieren', shareInstagramCopied: 'Link kopiert. Füge ihn in Instagram ein.', shareInstagramCopyFailed: 'Kopieren fehlgeschlagen. Kopiere den Link manuell für Instagram.' },
+    nl: { shareMap: 'Kaart delen', shareCopyMap: 'Kaartinfo delen', shareCopySite: 'Duikstekinfo delen', shareCopyPopupNamed: 'Info over {name} delen', shareCopied: 'Gekopieerd', shareCopyFailed: 'Kopiëren mislukt', shareCopyForInstagram: 'Link kopiëren voor Instagram', shareInstagramCopied: 'Link gekopieerd. Plak deze in Instagram.', shareInstagramCopyFailed: 'Kopiëren mislukt. Kopieer de link handmatig voor Instagram.' },
+    it: { shareMap: 'Condividi mappa', shareCopyMap: 'Condividi info mappa', shareCopySite: 'Condividi info sito di immersione', shareCopyPopupNamed: 'Condividi info {name}', shareCopied: 'Copiato', shareCopyFailed: 'Copia non riuscita', shareCopyForInstagram: 'Copia il link per Instagram', shareInstagramCopied: 'Link copiato. Incollalo su Instagram.', shareInstagramCopyFailed: 'Copia non riuscita. Copia manualmente il link per Instagram.' },
+    ru: { shareMap: 'Поделиться картой', shareCopyMap: 'Поделиться данными карты', shareCopySite: 'Поделиться данными дайв-сайта', shareCopyPopupNamed: 'Поделиться данными: {name}', shareCopied: 'Скопировано', shareCopyFailed: 'Не удалось скопировать', shareCopyForInstagram: 'Скопировать ссылку для Instagram', shareInstagramCopied: 'Ссылка скопирована. Вставьте её в Instagram.', shareInstagramCopyFailed: 'Не удалось скопировать. Скопируйте ссылку вручную для Instagram.' },
+    pt: { shareMap: 'Compartilhar mapa', shareCopyMap: 'Compartilhar informações do mapa', shareCopySite: 'Compartilhar informações do ponto de mergulho', shareCopyPopupNamed: 'Compartilhar informações de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Falha ao copiar', shareCopyForInstagram: 'Copiar link para o Instagram', shareInstagramCopied: 'Link copiado. Cole-o no Instagram.', shareInstagramCopyFailed: 'Falha ao copiar. Copie o link manualmente para o Instagram.' },
+    sv: { shareMap: 'Dela karta', shareCopyMap: 'Dela kartinformation', shareCopySite: 'Dela information om dykplatsen', shareCopyPopupNamed: 'Dela information om {name}', shareCopied: 'Kopierad', shareCopyFailed: 'Kopieringen misslyckades', shareCopyForInstagram: 'Kopiera länk för Instagram', shareInstagramCopied: 'Länken har kopierats. Klistra in den på Instagram.', shareInstagramCopyFailed: 'Kopieringen misslyckades. Kopiera länken manuellt för Instagram.' },
+    no: { shareMap: 'Del kart', shareCopyMap: 'Del kartinformasjon', shareCopySite: 'Del informasjon om dykkestedet', shareCopyPopupNamed: 'Del informasjon om {name}', shareCopied: 'Kopiert', shareCopyFailed: 'Kopieringen mislyktes', shareCopyForInstagram: 'Kopier lenke for Instagram', shareInstagramCopied: 'Lenken er kopiert. Lim den inn på Instagram.', shareInstagramCopyFailed: 'Kopieringen mislyktes. Kopier lenken manuelt for Instagram.' },
+    es: { shareMap: 'Compartir mapa', shareCopyMap: 'Compartir información del mapa', shareCopySite: 'Compartir información del sitio de buceo', shareCopyPopupNamed: 'Compartir información de {name}', shareCopied: 'Copiado', shareCopyFailed: 'Error al copiar', shareCopyForInstagram: 'Copiar enlace para Instagram', shareInstagramCopied: 'Enlace copiado. Pégalo en Instagram.', shareInstagramCopyFailed: 'Error al copiar. Copia el enlace manualmente para Instagram.' },
+    ko: { shareMap: '지도 공유', shareCopyMap: '지도 정보 공유', shareCopySite: '다이빙 사이트 정보 공유', shareCopyPopupNamed: '{name} 정보 공유', shareCopied: '복사됨', shareCopyFailed: '복사 실패', shareCopyForInstagram: 'Instagram에 공유할 링크 복사', shareInstagramCopied: '링크를 복사했습니다. Instagram에 붙여넣어 공유하세요.', shareInstagramCopyFailed: '복사하지 못했습니다. 링크를 직접 복사해 Instagram에 붙여넣으세요.' },
+    id: { shareMap: 'Bagikan peta', shareCopyMap: 'Bagikan info peta', shareCopySite: 'Bagikan info lokasi selam', shareCopyPopupNamed: 'Bagikan info {name}', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin', shareCopyForInstagram: 'Salin tautan untuk Instagram', shareInstagramCopied: 'Tautan disalin. Tempelkan di Instagram.', shareInstagramCopyFailed: 'Gagal menyalin. Salin tautan secara manual untuk Instagram.' }
   };
 
   const SITE_SUGGESTION_I18N = {
@@ -12961,6 +12994,7 @@ ZSD·2016–2025</span></span>
 
   function setLanguage(lang, { persist = false } = {}) {
     currentLang = normalizeLang(lang);
+    updateSharePlatformVisibility();
     document.documentElement.lang =
       HTML_LANG_CODES[currentLang] || 'en';
 
@@ -20606,10 +20640,35 @@ ZSD·2016–2025</span></span>
     }
   }
 
+  function updateSharePlatformVisibility() {
+    const isChineseAppearance = currentLang === 'zh';
+    const isJapaneseOrKoreanAppearance = currentLang === 'ja' || currentLang === 'ko';
+    const isRussianAppearance = currentLang === 'ru';
+    els.shareLineButton.hidden = !isJapaneseOrKoreanAppearance;
+    els.shareTelegramButton.hidden = !isRussianAppearance;
+    els.shareWechatButton.hidden = !isChineseAppearance;
+    els.shareRedNoteButton.hidden = !isChineseAppearance;
+    const lineButtonLabel = currentLang === 'ja' ? 'LINEで送る' : '공유하기';
+    els.shareLineButtonText.textContent = lineButtonLabel;
+    els.shareLineButton.setAttribute('aria-label', lineButtonLabel);
+    els.shareTelegramButton.setAttribute('aria-label', 'Поделиться в Telegram');
+    els.shareWechatButton.setAttribute('aria-label', '复制链接以分享到微信');
+    els.shareRedNoteButton.setAttribute('aria-label', '复制链接以分享到小红书');
+    els.shareInstagramButton.setAttribute('aria-label', t('shareCopyForInstagram'));
+  }
+
   function renderShareDialogContext() {
+    updateSharePlatformVisibility();
     const title = getShareContextTitle(shareSnapshot);
     const url = shareUrl;
     const shareText = `${title} | DiveAtlas`;
+    // The official LINE icon button shares the URL without a custom message.
+    els.shareLineButton.dataset.desktopHref = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`;
+    els.shareLineButton.href = els.shareLineButton.dataset.desktopHref;
+    // LINE's documented HTTPS URL scheme opens its mobile share screen. Share
+    // only the URL to match this button's existing website-share behavior.
+    els.shareLineButton.dataset.mobileHref = `https://line.me/R/share?text=${encodeURIComponent(url)}`;
+    els.shareTelegramButton.href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
     els.shareWhatsAppButton.href = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`;
     els.shareEmailButton.href = `mailto:?subject=${encodeURIComponent(shareText)}&body=${encodeURIComponent(`${shareText}\n${url}`)}`;
     els.shareXButton.href = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
@@ -20665,7 +20724,7 @@ function closeShareDialog() {
 }
   }
 
-  async function copyShareLink() {
+  async function copyShareLink(platform = null) {
     window.clearTimeout(shareFeedbackTimer);
 
     const urlToCopy = shareUrl;
@@ -20690,7 +20749,9 @@ function closeShareDialog() {
     }
 
     shareUiState = copied ? 'success' : 'error';
-    els.shareStatus.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
+    els.shareStatus.textContent = platform === 'Instagram'
+      ? t(copied ? 'shareInstagramCopied' : 'shareInstagramCopyFailed')
+      : t(copied ? 'shareCopied' : 'shareCopyFailed');
     els.shareCopyButtonText.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
     renderShareButtonDescription();
     shareFeedbackTimer = window.setTimeout(() => {
@@ -20707,8 +20768,31 @@ function closeShareDialog() {
     return copyShareLink();
   }
 
+  function isMobileShareExperience() {
+    return window.matchMedia?.('(max-width: 720px), (pointer: coarse)').matches ?? false;
+  }
+
   function shareExternalLinkAfterPreviewSave(event) {
     const link = event.currentTarget;
+
+    if (isMobileShareExperience()) {
+      // Start the clipboard write during the original tap, then allow the
+      // HTTPS share/app link to open in that same user gesture.
+      if (link.dataset.mobileHref) link.href = link.dataset.mobileHref;
+      void copyShareLink(link.dataset.sharePlatform || null);
+      void storeSharePreviewImage();
+      return;
+    }
+
+    if (link.dataset.desktopHref) link.href = link.dataset.desktopHref;
+
+    if (link.dataset.copyOnlyDesktop === 'true') {
+      event.preventDefault();
+      void copyShareLink(link.dataset.sharePlatform || null);
+      void storeSharePreviewImage();
+      return;
+    }
+
     const destination = link.href;
     event.preventDefault();
     const pendingTab = window.open('about:blank', '_blank');
@@ -20748,7 +20832,7 @@ function closeShareDialog() {
   updateShareButtonDescription();
   els.shareMapButton.addEventListener('click', openShareDialog);
   els.shareCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
-  [els.shareWhatsAppButton, els.shareXButton, els.shareFacebookButton, els.shareRedditButton, els.shareEmailButton]
+  [els.shareLineButton, els.shareTelegramButton, els.shareWechatButton, els.shareRedNoteButton, els.shareFacebookButton, els.shareWhatsAppButton, els.shareXButton, els.shareInstagramButton, els.shareRedditButton, els.shareEmailButton]
     .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
   els.shareNativeButton.addEventListener('click', shareWithDevice);
   els.shareModal.addEventListener('click', event => {
