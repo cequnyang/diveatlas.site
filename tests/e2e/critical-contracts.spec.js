@@ -462,7 +462,7 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share preview shortens long site summaries and saves only after a share action', async ({ page }) => {
+test('share preview shortens long site summaries and defers Worker rendering after local capture failure', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
   await clickFixture(page, 'long-share-summary');
@@ -492,11 +492,7 @@ test('share preview shortens long site summaries and saves only after a share ac
         'Access-Control-Allow-Headers':'Content-Type'
       } });
     }
-    const renderFallback = new URL(request.url()).searchParams.get('render') === '1';
-    return route.fulfill({
-      status:request.method() === 'POST' || renderFallback ? 201 : 404,
-      headers:{ 'Access-Control-Allow-Origin':'*' }
-    });
+    return route.fulfill({ status:201, headers:{ 'Access-Control-Allow-Origin':'*' } });
   });
 
   const sheetShareButton = sitePopup.locator('.diveatlas-sheet-share-button');
@@ -524,9 +520,93 @@ test('share preview shortens long site summaries and saves only after a share ac
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
+  const captureDeferred = page.waitForEvent('console', message =>
+    message.type() === 'debug' && message.text().includes('Device preview upload deferred')
+  );
+  await page.evaluate(() => {
+    const nativeToBlob = HTMLCanvasElement.prototype.toBlob;
+    HTMLCanvasElement.prototype.toBlob = function () {
+      HTMLCanvasElement.prototype.toBlob = nativeToBlob;
+      throw new DOMException('Tainted canvases may not be exported', 'SecurityError');
+    };
+  });
   await dialog.getByRole('button', { name:'Copy link' }).click();
-  await expect.poll(() => previewRequests.some(request => request.method === 'GET')).toBe(true);
-  await expect.poll(() => previewRequests.some(request => request.method === 'POST' || new URL(request.url).searchParams.get('render') === '1')).toBe(true);
+  await captureDeferred;
+  await expect(page.locator('#shareStatus')).toContainText(/copied/i);
+  expect(previewRequests).toEqual([]);
+});
+
+test('does not request Worker rendering immediately after a local preview upload fails', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 8);
+  const previewRequests = [];
+  await page.route('https://share.diveatlas.site/map-preview-upload/**', async route => {
+    previewRequests.push({ method:route.request().method(), url:route.request().url() });
+    if (route.request().method() === 'OPTIONS') {
+      return route.fulfill({ status:204, headers:{
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers':'Content-Type'
+      } });
+    }
+    return route.fulfill({ status:503, headers:{ 'Access-Control-Allow-Origin':'*' } });
+  });
+
+  await page.evaluate(() => document.querySelector('#shareMapButton').click());
+  const dialog = page.getByRole('dialog', { name:'Share' });
+  await expect(dialog).toBeVisible();
+  await page.evaluate(() => {
+    const nativeToBlob = HTMLCanvasElement.prototype.toBlob;
+    HTMLCanvasElement.prototype.toBlob = function (callback, type) {
+      HTMLCanvasElement.prototype.toBlob = nativeToBlob;
+      callback(new Blob(['share preview fixture'], { type:type || 'image/jpeg' }));
+    };
+  });
+  const uploadResponse = page.waitForResponse(response =>
+    response.url().startsWith('https://share.diveatlas.site/map-preview-upload/') &&
+    response.request().method() === 'POST'
+  );
+  await dialog.getByRole('button', { name:'Copy link' }).click();
+  await uploadResponse;
+  await expect.poll(() => page.locator('#shareStatus').innerText()).toMatch(/copied/i);
+  expect(previewRequests.some(request => request.method === 'POST')).toBe(true);
+  expect(previewRequests.some(request => new URL(request.url).searchParams.get('render') === '1')).toBe(false);
+});
+
+test('mobile share preview uses a landscape view without moving the live map', async ({ page }) => {
+  await page.setViewportSize({ width:390, height:844 });
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => {
+    window.__DIVEATLAS_TEST__.map.invalidateSize({ animate:false });
+    requestAnimationFrame(resolve);
+  })));
+  await setMapView(page, -5.7, 131, 8);
+  await page.evaluate(() => {
+    window.__sharePreviewMapChanges = [];
+    const map = window.__DIVEATLAS_TEST__.map;
+    map.on('zoomend moveend', event => {
+      window.__sharePreviewMapChanges.push({ type:event.type, zoom:map.getZoom() });
+    });
+  });
+
+  await page.evaluate(() => document.querySelector('#shareMapButton').click());
+  await expect(page.locator('#sharePreviewMapSnapshot')).toBeVisible();
+  await page.route('https://share.diveatlas.site/map-preview-upload/**', async route => {
+    const request = route.request();
+    return route.fulfill({ status:request.method() === 'POST' ? 201 : 404, headers:{ 'Access-Control-Allow-Origin':'*' } });
+  });
+  await page.getByRole('dialog', { name:'Share' }).getByRole('button', { name:'Copy link' }).click();
+  await expect.poll(() => page.evaluate(() => window.__sharePreviewMapChanges.length)).toBe(0);
+  const geometry = await page.evaluate(() => {
+    const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
+    return {
+      frameAspect:frame.width / frame.height,
+      zoom:window.__DIVEATLAS_TEST__.map.getZoom(),
+      changes:window.__sharePreviewMapChanges
+    };
+  });
+
+  expect(geometry.frameAspect).toBeCloseTo(1200 / 630, 1);
+  expect(geometry.changes).toEqual([]);
+  expect(geometry.zoom).toBe(8);
 });
 
 test('legacy long-form share URLs remain readable and preserve a site popup flow', async ({ page }) => {
