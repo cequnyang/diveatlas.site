@@ -54,7 +54,7 @@ const requiredBehaviorNames = [
   'popup remains attached when zoom keeps its anchor inside the usable viewport',
   'zooming the map in either direction keeps an open mobile detail sheet visible',
   'Tide tab exposes its controls and wheel endpoint options remain tappable',
-  'expanded Dive Experience month chart stays inside safe area and previews other months on touch',
+  'expanded Dive Experience month chart stays inside safe area and previews other months with pointer input',
   'share preview shortens long site summaries and saves only after a share action',
   'turning the owning Coral layer off closes its popup and clears hover state',
   'stale popup owner revision cannot operate on a newer popup',

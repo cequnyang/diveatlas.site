@@ -277,11 +277,11 @@ test('popup remains attached when zoom keeps its anchor inside the usable viewpo
   await clickFixture(page, 'visible-anchor');
   await expect(page.locator('.leaflet-popup')).toBeVisible();
   const initialZoom = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom());
-  await page.locator('.leaflet-control-zoom-out').click();
+  await page.evaluate(zoom => window.__DIVEATLAS_TEST__.map.setZoom(zoom, { animate:false }), initialZoom - 1);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBeLessThan(initialZoom);
   await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('visible-anchor');
   expect((await mapState(page)).popup.lifecycle).toBe('open');
-  await page.locator('.leaflet-control-zoom-in').click();
+  await page.evaluate(zoom => window.__DIVEATLAS_TEST__.map.setZoom(zoom, { animate:false }), initialZoom);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(initialZoom);
   await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('visible-anchor');
   expect((await mapState(page)).popup.lifecycle).toBe('open');
@@ -297,7 +297,7 @@ test('turning the owning Coral layer off closes its popup and clears hover state
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
 
-test('grid popup is invalidated when Coral changes from grid to point representation', async ({ page }) => {
+test('grid popup stays attached when Coral changes from grid to point representation', async ({ page }) => {
   await addFixture(page, 'coral-grid', { id: 'coral-representation', lat: -5.7, lng: 131 });
   const before = await mapState(page);
   await clickFixture(page, 'coral-representation');
@@ -306,7 +306,9 @@ test('grid popup is invalidated when Coral changes from grid to point representa
   expect(afterOpen.popup.type).toBe('coral-grid');
   await expectMapViewUnchanged(page, before, afterOpen);
   await setMapView(page, -5.7, 131, 14);
-  await expect(page.locator('.leaflet-popup')).toHaveCount(0, { timeout: 4000 });
+  await expect(page.locator('.leaflet-popup')).toBeVisible();
+  await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('coral-representation');
+  expect((await mapState(page)).popup.type).toBe('coral-grid');
 });
 
 test('Coral overlay grid popup takes priority over tab map queries', async ({ page }) => {

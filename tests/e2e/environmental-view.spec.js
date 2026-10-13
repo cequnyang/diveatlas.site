@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
 const { gzipSync } = require('node:zlib');
-const { addFixture, clickFixture, closeTopMenu, dataAssetBaseUrl, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView } = require('./support');
+const { addFixture, clickFixture, closeTopMenu, dataAssetBaseUrl, openMap, openMobileSettings, openTopMenu, readTestDataAsset, setMapView, waitForMapInteractionWindow } = require('./support');
 
 const temperatureMetadata = path.resolve(__dirname, '../../datasets/temperature/metadata.json');
 const metadataFixture = {
@@ -29,6 +29,13 @@ async function activateTemperatureView(page) {
   await page.locator('.environment-segment').filter({
     has: page.locator('input[name="environmentView"][value="temperature"]')
   }).click();
+}
+
+async function setLegendCollapsed(page, collapsed) {
+  const legend = page.locator('#bioLegend');
+  if (await legend.evaluate(node => node.classList.contains('is-collapsed')) !== collapsed) {
+    await page.locator('#bioLegendTitle').click();
+  }
 }
 
 test('temperature metadata uses R2 in external builds and local files in development', async ({ page }) => {
@@ -99,7 +106,8 @@ test('temperature has zero startup requests and loads only after activation', as
     await page.locator('#bioLegendTitle').click();
   }
   expect(temperatureRequests).toEqual([]);
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('dive-experience-outlook');
+  await expect(page.locator('input[name="environmentView"][value="dive-experience-outlook"]')).toBeChecked();
   await expect(page.locator('input[name="environmentView"][value="dive-conditions"]')).toHaveCount(0);
   await expect(page.locator('#temperatureControls')).toBeHidden();
 
@@ -345,12 +353,10 @@ test('layer panel segments and native depth select keep existing state, keyboard
   await openMap(page);
   await expect(page.locator('#temperatureControls')).toBeHidden();
   expect(temperatureRequests).toEqual([]);
-  const defaultView = page.locator('input[name="environmentView"][value="default"]');
-  await expect(defaultView).toHaveAttribute('aria-label', 'None');
-  await expect(page.locator('.environment-segment').filter({ has:defaultView }).locator('.environment-none-icon')).toBeVisible();
-  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
-  await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
-  await expect(page.locator('#environmentViewSelect option[value="default"]')).toHaveText('None');
+  const initialView = page.locator('input[name="environmentView"][value="dive-experience-outlook"]');
+  await expect(initialView).toBeChecked();
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('dive-experience-outlook');
+  await expect(page.locator('#environmentViewSelect option[value="dive-experience-outlook"]')).toHaveText('Dive Experience');
 
   const temperatureRadio = page.locator('input[name="environmentView"][value="temperature"]');
   await temperatureRadio.focus();
@@ -857,7 +863,7 @@ test('mobile Layers starts collapsed and expands on demand without temperature r
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page);
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
-  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText('Map');
+  await expect(page.locator('#bioLegendCollapsedSummary')).toHaveText(/^Dive Experience · [A-Z][a-z]{2}$/);
   await expect(page.locator('#bioLegendLayers')).toHaveAttribute('aria-hidden', 'true');
   expect(temperatureRequests).toEqual([]);
   await page.screenshot({ path: 'test-results/layers-panel-mobile-default-collapsed.png' });
@@ -1022,10 +1028,12 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
     localStorage: { 'global-coral-map-environment-month-v1': '9' },
     externalAssets: Boolean(dataAssetBaseUrl)
   });
-  await page.locator('#bioLegendTitle').click();
+  await setLegendCollapsed(page, false);
   await activateTemperatureView(page);
-  await page.locator('#bioLegendTitle').click();
+  await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
+  await setLegendCollapsed(page, true);
   await placeCoordinateNearSafeTop(page, -5.7, 131);
+  await waitForMapInteractionWindow(page);
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
   const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
   await clickMapCoordinate(page, -5.7, 131);

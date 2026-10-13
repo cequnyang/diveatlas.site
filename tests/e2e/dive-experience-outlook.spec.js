@@ -183,7 +183,7 @@ test('Dive Experience still shows a local outlook when the physical-conditions s
   await expect(popup).not.toContainText('Some local data could not be loaded at this location.');
 });
 
-test('expanded Dive Experience month chart stays inside safe area and previews other months on touch', async ({ page }) => {
+test('expanded Dive Experience month chart stays inside safe area and previews other months with pointer input', async ({ page }, testInfo) => {
   await page.setViewportSize({ width:390, height:640 });
   await openMap(page, { url:'/?__diveatlas_test=1&lat=-3.5&lng=131&z=7' });
   await setLegendCollapsed(page, false);
@@ -270,7 +270,11 @@ test('expanded Dive Experience month chart stays inside safe area and previews o
       return { x:screen.x, y:screen.y };
     }, index);
     const firstMonthPoint = await chartPointForMonth(0);
-    await page.touchscreen.tap(firstMonthPoint.x, firstMonthPoint.y);
+    if (testInfo.project.name === 'mobile-touch-chromium') {
+      await page.touchscreen.tap(firstMonthPoint.x, firstMonthPoint.y);
+    } else {
+      await page.mouse.click(firstMonthPoint.x, firstMonthPoint.y);
+    }
     const inspection = chart.locator('.dive-experience-month-inspection');
     await expect(inspection).toHaveAttribute('visibility', 'visible');
     await expect(chart).toHaveAttribute('data-selected-index', '0');
@@ -286,7 +290,11 @@ test('expanded Dive Experience month chart stays inside safe area and previews o
     await expect(page.locator('#diveExperienceMonth')).toHaveValue(sheetMonthBeforeInspection);
 
     const outsidePoint = await popup.locator('.dive-experience-month-comparison-caption').boundingBox();
-    await page.touchscreen.tap(outsidePoint.x + outsidePoint.width / 2, outsidePoint.y + outsidePoint.height / 2);
+    if (testInfo.project.name === 'mobile-touch-chromium') {
+      await page.touchscreen.tap(outsidePoint.x + outsidePoint.width / 2, outsidePoint.y + outsidePoint.height / 2);
+    } else {
+      await page.mouse.click(outsidePoint.x + outsidePoint.width / 2, outsidePoint.y + outsidePoint.height / 2);
+    }
     await expect(inspection).toHaveAttribute('visibility', 'hidden');
     await expect(page.locator('#diveExperienceMonth')).toHaveValue(sheetMonthBeforeInspection);
 

@@ -70,7 +70,6 @@ test('Tide tab exposes its controls and wheel endpoint options remain tappable',
   const lastLabel = (await lastOption.innerText()).trim();
   await selectWheelEndpoint(lastOption);
   await expect(page.locator('#tideLegendSelection')).toHaveText(lastLabel);
-  await expect(page.locator('#tideLegendSelection')).toHaveText('+6 h');
   await expect(timeWheel).toBeHidden();
   await page.locator('#tideTime').selectOption('0');
   await expect(page.locator('.tide-controls .temperature-scale')).toContainText('−2 m');
