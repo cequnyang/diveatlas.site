@@ -1833,7 +1833,10 @@
     .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb { border:2px solid var(--panel-solid); border-radius:999px; background:var(--faint); }
     .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb:hover { background:var(--muted); }
     .dive-experience-popup-info-popover > h4 { margin:0 0 8px; color:var(--layers-legend-title,var(--text-primary)); font-size:13px; }
-    .dive-experience-evidence-line { margin:2px 0 0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:11px; line-height:1.25; }
+    .dive-experience-evidence-line { display:grid; justify-items:start; gap:4px; margin:2px 0 0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:11px; line-height:1.25; }
+    .dive-experience-coverage-meter { display:grid; grid-template-columns:repeat(var(--coverage-total,7),minmax(0,1fr)); gap:2px; width:min(112px,100%); height:4px; }
+    .dive-experience-coverage-meter span { border-radius:999px; background:var(--line-soft); }
+    .dive-experience-coverage-meter span.is-available { background:var(--primary,#2879bd); }
     .dive-experience-key-reasons { margin-top:8px; color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
     .dive-experience-key-reasons strong { font-size:11px; }
     .dive-experience-key-reasons ul { display:flex; flex-wrap:wrap; gap:4px 12px; margin:4px 0 0; padding-left:16px; }
@@ -1914,7 +1917,7 @@
     .dive-experience-month-comparison[hidden] { display:none; }
     .dive-experience-month-comparison { margin-top:5px; }
     .dive-experience-month-comparison-status, .dive-experience-month-comparison-caption { margin:4px 0 0; color:var(--layers-legend-meta,var(--text-muted)); font-size:10px; line-height:1.35; }
-    .dive-experience-month-chart { display:block; width:100%; height:auto; margin-top:4px; overflow:visible; }
+    .dive-experience-month-chart { display:block; width:100%; height:auto; margin-top:4px; overflow:visible; cursor:crosshair; touch-action:none; user-select:none; }
     .dive-experience-month-chart text { font-family:inherit; font-variant-numeric:tabular-nums; }
     html[data-theme="dark"] .regional-currents-month-chart .regional-current-chart-axis-label { fill:#fff; }
     .dive-conditions-reef-score { margin:0; padding:0 0 7px; border-bottom:1px solid var(--line); }
@@ -2186,6 +2189,9 @@
         scrollbar-width:thin;
         touch-action:pan-y;
       }
+      .leaflet-popup.diveatlas-mobile-sheet.tide-map-popup .leaflet-popup-content {
+        width:100% !important;
+      }
       .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .temperature-detail,
       .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .waves-detail,
       .leaflet-popup.diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .temperature-detail.tide-popup,
@@ -2194,6 +2200,9 @@
         box-sizing:border-box;
         width:100% !important;
         max-width:none !important;
+      }
+      .leaflet-popup.diveatlas-mobile-sheet.tide-map-popup .tide-popup-chart {
+        height:auto;
       }
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip-container,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip,
@@ -4399,12 +4408,12 @@
     .share-preview-placeholder[hidden], .share-preview-popup-data[hidden] { display: none; }
     .share-preview-popup-data {
       position: absolute;
-      right: 2.3%;
-      bottom: 6%;
-      width: min(38%, 360px);
-      max-height: 58%;
-      overflow: hidden;
+      right: 2%;
+      bottom: 3%;
+      width: min(46%, 520px);
+      max-height: 94%;
       box-sizing: border-box;
+      overflow: hidden;
       padding: clamp(8px, 1.5vw, 16px);
       border: 1px solid rgba(255,255,255,.7);
       border-radius: 12px;
@@ -4421,7 +4430,7 @@
       font-size: 1.05em;
     }
     .share-preview-popup-data ul { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; }
-    .share-preview-popup-data li { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .share-preview-popup-data li { overflow-wrap: anywhere; }
     .share-preview-popup-data li:nth-child(n+7) { display: none; }
     [data-theme="dark"] .share-preview-popup-data { border-color: rgba(255,255,255,.2); color: #e5edf2; background: rgba(20,29,38,.94); }
     [data-theme="dark"] .share-preview-popup-data strong { color: #83d5ec; }
@@ -4521,6 +4530,7 @@
       line-height: 1;
     }
     .share-action-icon svg { width: 24px; height: 24px; }
+    .share-action-icon--facebook svg { width: 38.4px; height: 38.4px; }
     .share-action-icon .share-mark { fill:currentColor; stroke:none; }
     .share-action-icon .share-mark--outline { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .share-action-button--primary .share-action-icon { background: #087f9b; color: #fff; }
@@ -4536,10 +4546,11 @@
       .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
       .share-dialog-header { padding: 18px 18px 12px; }
       .share-dialog-body { padding: 4px 18px 18px; }
+      .share-preview-frame { aspect-ratio: 1200 / 630; }
       .share-actions { justify-content: flex-start; gap: 4px; }
       .share-actions .share-action-button { flex-basis: 64px; align-items: center; padding-inline: 1px; font-size: 10px; }
       .share-action-icon { width: 40px; height: 40px; flex-basis: 40px; }
-      .share-preview-popup-data { right: 2%; bottom: 4%; width: 46%; max-height: 64%; padding: 7px; font-size: 9px; }
+      .share-preview-popup-data { right: 2%; bottom: 2%; width: 52%; max-height: 94%; padding: 7px; font-size: 9px; }
     }
 
     .contact-input:focus,
@@ -7311,31 +7322,17 @@ ZSD·2016–2025</span></span>
     </section>
     <h2 class="map-data-heading">Overlays</h2>
     <div class="bio-legend-row">
-      <span class="tutorial-context-symbol" aria-hidden="true"><span class="layer-symbol layer-symbol--terrain"></span></span>
+      <i class="layer-symbol layer-symbol--dive mode-cluster" id="diveLegendSymbol" aria-hidden="true"></i>
       <div class="legend-copy">
-        <span class="legend-label" id="terrainLegendLabel">Terrain</span>
+        <span class="legend-label" id="diveLegendLabel">Dive sites</span>
+        <span class="legend-status" id="diveLegendStatus"></span>
       </div>
-      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="terrainLayerToggle">
-        <input class="layer-toggle-input" id="terrainLayerToggle" type="checkbox" data-layer="terrain" aria-labelledby="terrainLegendLabel">
+      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="diveLayerToggle">
+        <input class="layer-toggle-input" id="diveLayerToggle" type="checkbox" data-layer="dive" aria-labelledby="diveLegendLabel" checked>
         <span class="layer-toggle-switch" aria-hidden="true"></span>
       </label>
     </div>
-    <div class="bio-legend-row">
-      <span class="tutorial-context-symbol" aria-hidden="true">
-        <svg class="layer-symbol layer-symbol--contours" viewBox="0 0 24 18" focusable="false">
-          <path d="M1.8 5.1c2.5-1.8 5.1-2.2 7.4-1.1 1.4.7 2.6 1.8 4.1 1.7 1.1 0 2-.6 3.1-1.4 1.1-.8 2.4-1.2 4.2-.8"/>
-          <path d="M1.3 9.3c2.7-1.2 5.1-1.4 7.2-.4 1.4.7 2.5 1.6 4 1.5 1.5-.1 2.6-1.2 3.8-2 1.6-1 3.4-1.2 5.2-.7"/>
-          <path d="M3.1 13.4c2.3-.7 4.2-.7 5.7.1 1.5.7 2.5 1.6 4 1.5 1.5-.1 2.6-1 3.8-1.7 1.1-.7 2.2-1 3.7-.8"/>
-        </svg>
-      </span>
-      <div class="legend-copy">
-        <span class="legend-label" id="contoursLegendLabel">Depth contours</span>
-      </div>
-      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="contoursLayerToggle">
-        <input class="layer-toggle-input" id="contoursLayerToggle" type="checkbox" data-layer="contours" aria-labelledby="contoursLegendLabel">
-        <span class="layer-toggle-switch" aria-hidden="true"></span>
-      </label>
-    </div>
+
     <div class="bio-legend-row">
       <i class="layer-symbol layer-symbol--reef" aria-hidden="true"></i>
       <div class="legend-copy">
@@ -7372,13 +7369,28 @@ ZSD·2016–2025</span></span>
     </div>
 
     <div class="bio-legend-row">
-      <i class="layer-symbol layer-symbol--dive mode-cluster" id="diveLegendSymbol" aria-hidden="true"></i>
+      <span class="tutorial-context-symbol" aria-hidden="true"><span class="layer-symbol layer-symbol--terrain"></span></span>
       <div class="legend-copy">
-        <span class="legend-label" id="diveLegendLabel">Dive sites</span>
-        <span class="legend-status" id="diveLegendStatus"></span>
+        <span class="legend-label" id="terrainLegendLabel">Terrain</span>
       </div>
-      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="diveLayerToggle">
-        <input class="layer-toggle-input" id="diveLayerToggle" type="checkbox" data-layer="dive" aria-labelledby="diveLegendLabel" checked>
+      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="terrainLayerToggle">
+        <input class="layer-toggle-input" id="terrainLayerToggle" type="checkbox" data-layer="terrain" aria-labelledby="terrainLegendLabel">
+        <span class="layer-toggle-switch" aria-hidden="true"></span>
+      </label>
+    </div>
+    <div class="bio-legend-row">
+      <span class="tutorial-context-symbol" aria-hidden="true">
+        <svg class="layer-symbol layer-symbol--contours" viewBox="0 0 24 18" focusable="false">
+          <path d="M1.8 5.1c2.5-1.8 5.1-2.2 7.4-1.1 1.4.7 2.6 1.8 4.1 1.7 1.1 0 2-.6 3.1-1.4 1.1-.8 2.4-1.2 4.2-.8"/>
+          <path d="M1.3 9.3c2.7-1.2 5.1-1.4 7.2-.4 1.4.7 2.5 1.6 4 1.5 1.5-.1 2.6-1.2 3.8-2 1.6-1 3.4-1.2 5.2-.7"/>
+          <path d="M3.1 13.4c2.3-.7 4.2-.7 5.7.1 1.5.7 2.5 1.6 4 1.5 1.5-.1 2.6-1 3.8-1.7 1.1-.7 2.2-1 3.7-.8"/>
+        </svg>
+      </span>
+      <div class="legend-copy">
+        <span class="legend-label" id="contoursLegendLabel">Depth contours</span>
+      </div>
+      <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="contoursLayerToggle">
+        <input class="layer-toggle-input" id="contoursLayerToggle" type="checkbox" data-layer="contours" aria-labelledby="contoursLegendLabel">
         <span class="layer-toggle-switch" aria-hidden="true"></span>
       </label>
     </div>
@@ -9114,12 +9126,16 @@ ZSD·2016–2025</span></span>
   // Light: Positron. Dark: Dark.
   const lightLayer = L.maplibreGL({
     pane: 'basemapPane',
-    style: 'https://tiles.openfreemap.org/styles/positron'
+    style: 'https://tiles.openfreemap.org/styles/positron',
+    // The share dialog snapshots the map canvas locally. Keep the WebGL
+    // drawing buffer readable so the copied preview retains vector tiles.
+    canvasContextAttributes: { preserveDrawingBuffer: true }
   });
 
   const darkLayer = L.maplibreGL({
     pane: 'basemapPane',
-    style: 'https://tiles.openfreemap.org/styles/dark'
+    style: 'https://tiles.openfreemap.org/styles/dark',
+    canvasContextAttributes: { preserveDrawingBuffer: true }
   });
 
   let currentTheme = window.__DIVEATLAS_BOOT_THEME__ || 'light';
@@ -9163,6 +9179,7 @@ ZSD·2016–2025</span></span>
     shareModal: document.getElementById('shareModal'),
     shareDialog: document.getElementById('shareDialog'),
     shareCloseButton: document.getElementById('shareCloseButton'),
+    sharePreviewFrame: document.getElementById('sharePreviewFrame'),
     sharePreviewMapSnapshot: document.getElementById('sharePreviewMapSnapshot'),
     sharePreviewPlaceholder: document.getElementById('sharePreviewPlaceholder'),
     sharePreviewPopupData: document.getElementById('sharePreviewPopupData'),
@@ -13636,10 +13653,29 @@ ZSD·2016–2025</span></span>
   diveExperienceMonthSelect.value = String(diveConditionsMonth);
   let diveConditionsPopupMessageKey = null;
   let diveExperienceOutlookStatusKey = null;
+  const DIVE_EXPERIENCE_SCORE_LEVEL_I18N = {
+    en: { Challenging:'Not ideal', Fair:'Okay', Good:'Good', Excellent:'Great' },
+    zh: { Challenging:'不太理想', Fair:'还可以', Good:'不错', Excellent:'很好' },
+    ja: { Challenging:'いまひとつ', Fair:'まずまず', Good:'良い', Excellent:'とても良い' },
+    fr: { Challenging:'Peu favorable', Fair:'Correct', Good:'Bon', Excellent:'Très bon' },
+    de: { Challenging:'Eher mäßig', Fair:'Ganz okay', Good:'Gut', Excellent:'Sehr gut' },
+    nl: { Challenging:'Minder goed', Fair:'Redelijk', Good:'Goed', Excellent:'Erg goed' },
+    it: { Challenging:'Poco favorevole', Fair:'Discreto', Good:'Buono', Excellent:'Ottimo' },
+    ru: { Challenging:'Не лучшие условия', Fair:'Неплохо', Good:'Хорошо', Excellent:'Отлично' },
+    pt: { Challenging:'Pouco favorável', Fair:'Razoável', Good:'Bom', Excellent:'Muito bom' },
+    sv: { Challenging:'Mindre bra', Fair:'Helt okej', Good:'Bra', Excellent:'Mycket bra' },
+    no: { Challenging:'Mindre bra', Fair:'Helt greit', Good:'Bra', Excellent:'Veldig bra' },
+    es: { Challenging:'Poco favorable', Fair:'Aceptable', Good:'Bueno', Excellent:'Muy bueno' },
+    ko: { Challenging:'다소 아쉬움', Fair:'무난함', Good:'좋음', Excellent:'아주 좋음' },
+    id: { Challenging:'Kurang ideal', Fair:'Cukup', Good:'Baik', Excellent:'Sangat baik' }
+  };
   function localizedDiveExperienceLevel(value) {
+    const scoreLabel = DIVE_EXPERIENCE_SCORE_LEVEL_I18N[currentLang]?.[value];
+    if (scoreLabel) return scoreLabel;
     const keys = { Challenging:'diveExperienceChallenging', Fair:'diveExperienceFair', Good:'diveExperienceGood', Excellent:'diveExperienceExcellent' };
     const ownTranslation = I18N[currentLang]?.[keys[value]];
     if (ownTranslation) return ownTranslation;
+    // These grades describe the overall experience, not physical intensity.
     const fallbackLevels = { Challenging:'Low', Fair:'Moderate', Good:'High', Excellent:'Very strong' };
     const levels = t('diveConditionsLevels');
     if (typeof value === 'string' && /above typical/iu.test(value)) return levels?.High || value;
@@ -14288,9 +14324,169 @@ ZSD·2016–2025</span></span>
         ? `<line x1="${x}" y1="${top + plotHeight - 1}" x2="${x + barWidth}" y2="${top + plotHeight - 1}" stroke="var(--layers-legend-meta,var(--text-muted))" stroke-width="2"/>`
         : `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth}" height="${barHeight.toFixed(1)}" rx="2.5" fill="${color}"${selected ? ' stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="1.5"' : ''}/><text x="${(x + barWidth / 2).toFixed(1)}" y="${Math.max(12, y - 4).toFixed(1)}" text-anchor="middle" fill="var(--layers-temperature-title,var(--text-primary))" font-size="10" font-weight="700">${point.score}</text>`;
       const monthColor = selected ? 'var(--layers-temperature-title,var(--text-primary))' : 'var(--layers-legend-meta,var(--text-muted))';
-      return `<g><title>${escapeHtml(title)}</title>${bar}<text x="${(x + barWidth / 2).toFixed(1)}" y="${height - 5}" text-anchor="middle" fill="${monthColor}" font-size="10">${escapeHtml(monthLabel)}</text></g>`;
+      const diveConditions = point.diveConditionsScore == null
+        ? t('diveConditionsUnavailable')
+        : `${point.diveConditionsScore} · ${localizedPhysicalLevel(point.diveConditionsLabel || '')}`;
+      return `<g><title>${escapeHtml(`${title} · ${t('diveExperienceDiveConditions')}: ${diveConditions}`)}</title>${bar}<text x="${(x + barWidth / 2).toFixed(1)}" y="${height - 5}" text-anchor="middle" fill="${monthColor}" font-size="10">${escapeHtml(monthLabel)}</text></g>`;
     }).join('');
-    return `<svg class="dive-experience-month-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${t('diveExperienceChartAria')}">${grid}${bars}</svg>`;
+    const plotWidth = width - left - right;
+    const selectedIndex = Math.max(0, points.findIndex(point => point.month === selectedMonth));
+    const tooltipWidth = 164;
+    const tooltipHeight = 0;
+    const tooltipRows = ['temperature','clarity','current','waves'].map((key, index) =>
+      `<text class="dive-experience-month-inspection-metric" data-metric="${key}" x="6" y="0" fill="var(--layers-legend-meta,var(--text-muted))" font-size="9.75"></text>`
+    ).join('');
+    const tooltip = `<g class="dive-experience-month-inspection" visibility="hidden" aria-hidden="true"><line class="dive-experience-month-inspection-guide" y1="${top}" y2="${height - bottom}" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="1" stroke-dasharray="2 2"/><circle class="dive-experience-month-inspection-point" r="3.5" fill="var(--surface-elevated)" stroke="var(--layers-temperature-title,var(--text-primary))" stroke-width="2"/><g class="dive-experience-month-inspection-tooltip"><rect class="dive-experience-month-inspection-background" width="${tooltipWidth}" height="${tooltipHeight}" rx="5" fill="var(--surface-elevated)" stroke="var(--line-soft)"/><text class="dive-experience-month-inspection-month" x="6" y="15" fill="var(--layers-temperature-title,var(--text-primary))" font-size="12" font-weight="700"></text><text class="dive-experience-month-inspection-condition" x="6" y="30" fill="var(--layers-temperature-title,var(--text-primary))" font-size="10.5" font-weight="700"></text>${tooltipRows}</g></g>`;
+    return `<svg class="dive-experience-month-chart" viewBox="0 0 ${width} ${height}" role="img" tabindex="0" data-selected-index="${selectedIndex}" data-plot-left="${left}" data-plot-width="${plotWidth}" data-plot-top="${top}" data-plot-height="${plotHeight}" data-bar-width="${barWidth}" data-bar-step="${(barWidth + gap).toFixed(2)}" data-tooltip-width="${tooltipWidth}" aria-label="${t('diveExperienceChartAria')}"><rect x="${left}" y="${top}" width="${plotWidth}" height="${height - top}" fill="transparent"/>${grid}${bars}${tooltip}</svg>`;
+  }
+  function bindDiveExperienceMonthComparisonChart(container, points) {
+    const chart = container?.querySelector('.dive-experience-month-chart');
+    const inspection = chart?.querySelector('.dive-experience-month-inspection');
+    if (!chart || !inspection || !points?.length) return;
+    const guide = inspection.querySelector('.dive-experience-month-inspection-guide');
+    const marker = inspection.querySelector('.dive-experience-month-inspection-point');
+    const tooltip = inspection.querySelector('.dive-experience-month-inspection-tooltip');
+    const tooltipBackground = inspection.querySelector('.dive-experience-month-inspection-background');
+    const monthText = inspection.querySelector('.dive-experience-month-inspection-month');
+    const conditionText = inspection.querySelector('.dive-experience-month-inspection-condition');
+    const metricTexts = [...inspection.querySelectorAll('.dive-experience-month-inspection-metric')];
+    const left = Number(chart.dataset.plotLeft);
+    const plotWidth = Number(chart.dataset.plotWidth);
+    const top = Number(chart.dataset.plotTop);
+    const plotHeight = Number(chart.dataset.plotHeight);
+    const barWidth = Number(chart.dataset.barWidth);
+    const barStep = Number(chart.dataset.barStep);
+    const tooltipWidth = Number(chart.dataset.tooltipWidth);
+    const wrapText = (node, value, maxWidth, lineHeight, firstBaseline) => {
+      const lines = [];
+      let line = '';
+      const measure = text => {
+        node.textContent = text;
+        const measured = node.getComputedTextLength?.() || 0;
+        return measured || text.length * Number(node.getAttribute('font-size')) * 0.6;
+      };
+      for (const character of Array.from(value)) {
+        const candidate = line + character;
+        if (line && measure(candidate) > maxWidth) {
+          const breakAt = line.lastIndexOf(' ');
+          if (breakAt >= 0) {
+            lines.push(line.slice(0, breakAt));
+            line = line.slice(breakAt + 1) + character;
+          } else {
+            lines.push(line);
+            line = character === ' ' ? '' : character;
+          }
+        } else {
+          line = candidate;
+        }
+      }
+      if (line || !lines.length) lines.push(line.trimEnd());
+      node.replaceChildren(...lines.map((text, index) => {
+        const span = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        span.setAttribute('x', '6');
+        span.setAttribute('y', (firstBaseline + index * lineHeight).toFixed(1));
+        span.textContent = text;
+        return span;
+      }));
+      return lines.length;
+    };
+    const indexAtPointer = event => {
+      const cursor = chart.createSVGPoint();
+      cursor.x = event.clientX;
+      cursor.y = event.clientY;
+      const local = cursor.matrixTransform(chart.getScreenCTM().inverse());
+      const firstCenter = left + barWidth / 2;
+      const lastCenter = left + (points.length - 1) * barStep + barWidth / 2;
+      return Math.max(0, Math.min(points.length - 1,
+        Math.round((local.x - firstCenter) / Math.max(1, lastCenter - firstCenter) * (points.length - 1))));
+    };
+    const showInspection = index => {
+      const point = points[Math.max(0, Math.min(points.length - 1, index))];
+      if (!point) return;
+      const x = left + index * barStep + barWidth / 2;
+      const score = point.score == null ? 0 : Number(point.score);
+      const y = top + plotHeight - (score / 100) * plotHeight;
+      guide.setAttribute('x1', x.toFixed(1));
+      guide.setAttribute('x2', x.toFixed(1));
+      marker.setAttribute('cx', x.toFixed(1));
+      marker.setAttribute('cy', y.toFixed(1));
+      const contentWidth = tooltipWidth - 12;
+      wrapText(monthText, localizedTemperatureMonth(point.month), contentWidth, 15, 15);
+      const conditionSummary = `${t('diveExperienceDiveConditions')}: ${point.diveConditionsScore == null
+        ? t('diveConditionsUnavailable')
+        : `${point.diveConditionsScore} · ${localizedPhysicalLevel(point.diveConditionsLabel || '')}`}`;
+      const monthLines = monthText.querySelectorAll('tspan').length || 1;
+      const conditionStart = 15 + monthLines * 15;
+      const conditionLines = wrapText(conditionText, conditionSummary, contentWidth, 13, conditionStart);
+      const metricLabels = {
+        temperature:currentLang === 'en' ? 'Water temp.' : t('diveConditionsTemperature'),
+        clarity:t('diveConditionsClarity'),
+        current:t('diveConditionsCurrent'),
+        waves:t('diveConditionsWaves')
+      };
+      let nextBaseline = conditionStart + conditionLines * 13 + 2;
+      metricTexts.forEach(node => {
+        const key = node.dataset.metric;
+        const metric = point.metrics?.[key];
+        const lines = wrapText(node, `${metricLabels[key]}: ${diveExperiencePhysicalMetricText(key, metric)}`, contentWidth, 12, nextBaseline);
+        nextBaseline += lines * 12;
+      });
+      const tooltipHeight = nextBaseline + 5;
+      tooltipBackground.setAttribute('height', tooltipHeight.toFixed(1));
+      const tooltipX = x + tooltipWidth + 8 > 380 - 4 ? x - tooltipWidth - 8 : x + 8;
+      const tooltipY = Math.max(1, Math.min(144 - tooltipHeight - 1, y - tooltipHeight / 2));
+      tooltip.setAttribute('transform', `translate(${Math.max(1, tooltipX).toFixed(1)} ${tooltipY.toFixed(1)})`);
+      inspection.setAttribute('visibility', 'visible');
+      inspection.setAttribute('aria-hidden', 'false');
+      chart.dataset.selectedIndex = String(index);
+      const metricSummary = metricTexts.map(node => node.textContent).join('. ');
+      chart.setAttribute('aria-label', `${localizedTemperatureMonth(point.month)}. ${conditionSummary}. ${metricSummary}`);
+    };
+    const hideInspection = () => {
+      inspection.setAttribute('visibility', 'hidden');
+      inspection.setAttribute('aria-hidden', 'true');
+      chart.setAttribute('aria-label', t('diveExperienceChartAria'));
+    };
+    if (!document.documentElement.dataset.diveExperienceChartDismissalBound) {
+      document.documentElement.dataset.diveExperienceChartDismissalBound = 'true';
+      // The chart SVG is rebuilt as comparison data or the selected month changes.
+      // Delegate once so outside taps dismiss the tooltip without accumulating listeners.
+      document.addEventListener('pointerdown', event => {
+        const activeChart = document.querySelector('.dive-experience-month-chart');
+        const activeInspection = activeChart?.querySelector('.dive-experience-month-inspection');
+        if (!activeChart || !activeInspection || activeInspection.getAttribute('visibility') !== 'visible' || activeChart.contains(event.target)) return;
+        activeInspection.setAttribute('visibility', 'hidden');
+        activeInspection.setAttribute('aria-hidden', 'true');
+        activeChart.setAttribute('aria-label', t('diveExperienceChartAria'));
+      }, true);
+    }
+    const inspectPointer = event => {
+      const index = indexAtPointer(event);
+      showInspection(index);
+      if (event.pointerType === 'touch') event.stopPropagation();
+    };
+    chart.addEventListener('pointermove', inspectPointer, { passive:true });
+    chart.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'touch') return;
+      event.stopPropagation();
+      chart.setPointerCapture?.(event.pointerId);
+      inspectPointer(event);
+    });
+    chart.addEventListener('pointerup', event => {
+      if (event.pointerType !== 'touch') return;
+      event.stopPropagation();
+      inspectPointer(event);
+    });
+    chart.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch') hideInspection(); });
+    chart.addEventListener('focus', () => showInspection(Number(chart.dataset.selectedIndex) || 0));
+    chart.addEventListener('blur', hideInspection);
+    chart.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const current = Number(chart.dataset.selectedIndex) || 0;
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? points.length - 1 : current + (event.key === 'ArrowRight' ? 1 : -1);
+      showInspection(Math.max(0, Math.min(points.length - 1, next)));
+    });
   }
   function scheduleDiveExperiencePopupPlacement() {
     const popup = diveConditionsPopup;
@@ -14325,6 +14521,7 @@ ZSD·2016–2025</span></span>
     chart.innerHTML = diveExperienceMonthComparison.points
       ? makeDiveExperienceMonthComparisonSvg(diveExperienceMonthComparison.points, selectedMonth)
       : '';
+    bindDiveExperienceMonthComparisonChart(chart, diveExperienceMonthComparison.points);
     caption.hidden = !diveExperienceMonthComparison.points;
     const captionCopy = localizedDiveExperienceText('diveExperienceComparisonCaption');
     caption.textContent = diveExperienceMonthComparison.points
@@ -14339,18 +14536,40 @@ ZSD·2016–2025</span></span>
   async function loadDiveExperienceMonthComparison(location, locationKey, generation, selectedMonth, selectedSample) {
     try {
       const points = [];
+      // The raster supplies the monthly outlook score, while the four physical
+      // readings come from the same month-specific conditions service as the
+      // detail sheet. Keeping them on chart points lets inspection preview a
+      // month without changing the sheet's selected month or displayed values.
+      let conditionsService = null;
+      try {
+        conditionsService = await ensureDiveConditionsService();
+      } catch (error) {
+        console.warn('Monthly Dive Conditions details could not be loaded:', error);
+      }
       for (let month = 1; month <= 12; month += 1) {
         if (generation !== diveExperienceMonthComparison.generation || !diveExperienceMonthComparison.open ||
             locationKey !== diveExperienceMonthComparison.locationKey) return;
         diveExperienceMonthComparison.progress = month;
         syncDiveExperienceMonthComparisonUi();
-        const monthlySample = month === selectedMonth && selectedSample
-          ? selectedSample
-          : await sampleDiveExperienceOutlook(location, month);
+        const [monthlySample, conditions] = await Promise.all([
+          month === selectedMonth && selectedSample
+            ? Promise.resolve(selectedSample)
+            : sampleDiveExperienceOutlook(location, month),
+          conditionsService
+            ? conditionsService.query(location, month).catch(error => {
+              console.warn(`Dive Conditions details for month ${month} could not be loaded:`, error);
+              return null;
+            })
+            : Promise.resolve(null)
+        ]);
         points.push({
           month,
           score:monthlySample?.score != null && Number.isFinite(Number(monthlySample.score)) ? Number(monthlySample.score) : null,
           label:monthlySample?.label || null,
+          diveConditionsScore:monthlySample?.diveConditionsScore != null && Number.isFinite(Number(monthlySample.diveConditionsScore))
+            ? Number(monthlySample.diveConditionsScore) : null,
+          diveConditionsLabel:monthlySample?.diveConditionsLabel || null,
+          metrics:conditions?.metrics || null,
           confidence:monthlySample?.confidence || null,
           availableDimensions:Number(monthlySample?.activeDimensionCount) || 0,
           totalDimensions:Number(monthlySample?.totalScoringDimensions) || 7
@@ -14402,12 +14621,29 @@ ZSD·2016–2025</span></span>
     const completenessText = ownDimensionCount
       ? ownDimensionCount.replace('{count}', availableDimensionCount).replace('{total}', totalDimensionCount)
       : `${availableDimensionCount}/${totalDimensionCount} ${t('diveExperienceDimensionsSuffix')}`;
-    evidence.textContent = scoreValue == null
-      ? `${t('diveExperienceOverallConfidenceUnavailable')} · ${completenessText}`
-      : `${(I18N[currentLang]?.diveExperienceConfidenceLine || `${t('diveConditionsConfidence')}: {confidence}`).replace('{confidence}', localizedConfidenceLevel(sample.confidence))} · ${completenessText}`;
+    const evidenceSummary = document.createElement('span');
+    evidenceSummary.textContent = scoreValue == null
+      ? t('diveExperienceOverallConfidenceUnavailable')
+      : (I18N[currentLang]?.diveExperienceConfidenceLine || `${t('diveConditionsConfidence')}: {confidence}`).replace('{confidence}', localizedConfidenceLevel(sample.confidence));
+    const completenessSummary = document.createElement('span');
+    completenessSummary.textContent = completenessText;
     if (sample?.nearbyEstimate) {
-      evidence.textContent += ` · ${t('diveExperienceNearbyEstimate')} · ${formatLongDistanceMeters(sample.nearbyEstimate.distanceKm * 1000)} ${t('diveConditionsFromSelection')}`;
+      evidenceSummary.textContent += ` · ${t('diveExperienceNearbyEstimate')} · ${formatLongDistanceMeters(sample.nearbyEstimate.distanceKm * 1000)} ${t('diveConditionsFromSelection')}`;
     }
+    const coverageMeter = document.createElement('span');
+    coverageMeter.className = 'dive-experience-coverage-meter';
+    coverageMeter.setAttribute('role', 'img');
+    coverageMeter.setAttribute('aria-label', completenessText);
+    coverageMeter.style.setProperty('--coverage-total', String(totalDimensionCount));
+    const safeAvailableDimensionCount = Math.max(0, Math.min(totalDimensionCount, Number(availableDimensionCount) || 0));
+    // One segment per scoring dimension yields distinct coverage states from 0/N through N/N.
+    for (let index = 0; index < totalDimensionCount; index += 1) {
+      const segment = document.createElement('span');
+      if (index < safeAvailableDimensionCount) segment.classList.add('is-available');
+      segment.setAttribute('aria-hidden', 'true');
+      coverageMeter.append(segment);
+    }
+    evidence.replaceChildren(evidenceSummary, completenessSummary, coverageMeter);
     const infoControl = getDiveExperiencePopupInfoControl();
     const scoreRow = document.createElement('div');
     scoreRow.className = 'dive-experience-score-row';
@@ -14551,6 +14787,9 @@ ZSD·2016–2025</span></span>
   async function refreshDiveExperienceOutlook({ force = false, month = diveConditionsMonth } = {}) {
     if (!diveConditionsLocation || (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
     const generation = ++diveExperienceOutlookGeneration;
+    const popup = ensureDiveConditionsPopup();
+    popup._diveAtlasOutlookGeneration = generation;
+    popup._diveAtlasOutlookLoading = true;
     diveConditionsAbort?.abort();
     diveConditionsAbort = new AbortController();
     const controller = diveConditionsAbort;
@@ -14628,6 +14867,8 @@ ZSD·2016–2025</span></span>
         if (force) setDiveConditionsPopupMessage('diveConditionsError', month);
         else setMapClickLocationStatus('diveConditionsError', { durationMs:3500, centerLocation:true });
       }
+    } finally {
+      if (popup._diveAtlasOutlookGeneration === generation) popup._diveAtlasOutlookLoading = false;
     }
   }
   async function activateDiveExperienceOutlook() {
@@ -14988,11 +15229,22 @@ ZSD·2016–2025</span></span>
         if (event.pointerType === 'touch') event.stopPropagation();
       }, { passive: true });
       chart.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch') hideInspection(); });
-      chart.addEventListener('pointerdown', event => { if (event.pointerType === 'touch') event.stopPropagation(); });
+      chart.addEventListener('pointerdown', event => {
+        if (event.pointerType !== 'touch') return;
+        event.stopPropagation();
+        chart.setPointerCapture?.(event.pointerId);
+        const index = indexAtPointer(event);
+        chart.dataset.tideSeriesIndex = String(index);
+        showInspection(index);
+      });
       chart.addEventListener('pointerup', event => {
         if (event.pointerType !== 'touch') return;
         event.stopPropagation();
-        hideInspection();
+        // Keep the selected reading visible after a tap; another tap or drag
+        // can inspect a different forecast point.
+        const index = indexAtPointer(event);
+        chart.dataset.tideSeriesIndex = String(index);
+        showInspection(index);
       });
       chart.addEventListener('pointercancel', hideInspection);
       chart.addEventListener('focus', () => showInspection(0));
@@ -15933,12 +16185,17 @@ ZSD·2016–2025</span></span>
         if (activeOption) list.setAttribute('aria-activedescendant', activeOption.id);
         else list.removeAttribute('aria-activedescendant');
       },
+      optionCenterInList(item) {
+        const listTop = list.getBoundingClientRect().top;
+        const itemRect = item.getBoundingClientRect();
+        return list.scrollTop + itemRect.top - listTop + itemRect.height / 2;
+      },
       scrollToIndex(index) {
         if (!this.optionNodes.length) return;
         this.activeIndex = Math.max(0, Math.min(this.optionNodes.length - 1, index));
         this.paintActiveOption();
         const item = this.optionNodes[this.activeIndex];
-        const targetTop = item.offsetTop + item.offsetHeight / 2 - list.clientHeight / 2;
+        const targetTop = this.optionCenterInList(item) - list.clientHeight / 2;
         this.programmaticScroll = true;
         clearTimeout(this.suppressScrollTimer);
         list.scrollTo({ top: targetTop, behavior: 'auto' });
@@ -15949,7 +16206,7 @@ ZSD·2016–2025</span></span>
         let bestIndex = 0;
         let bestDistance = Infinity;
         this.optionNodes.forEach((item, index) => {
-          const distance = Math.abs(item.offsetTop + item.offsetHeight / 2 - center);
+          const distance = Math.abs(this.optionCenterInList(item) - center);
           if (distance < bestDistance) {
             bestDistance = distance;
             bestIndex = index;
@@ -19679,7 +19936,7 @@ ZSD·2016–2025</span></span>
   }
 
   let sharePreviousFocus = null;
-  let sharePreviewMapRestoreState = null;
+  const sharePreviewUploadTasks = new Map();
 
   function getShareContextTitle(state) {
     const siteId = String(state?.selectedSiteId || '').toLowerCase();
@@ -19697,15 +19954,112 @@ ZSD·2016–2025</span></span>
   function renderSharePopupPreviewData(state) {
     const popup = state?.popup;
     const popupContent = activeClickPopup?._container?.querySelector('.leaflet-popup-content');
-    const lines = popup
-      ? String(popupContent?.innerText || popupContent?.textContent || '')
-        .split(/\n+/)
-        .map(line => line.replace(/\s+/g, ' ').trim())
-        .filter(Boolean)
-      : [];
     const headingKey = SHARE_POPUP_DESCRIPTION_KEYS[popup?.layer];
     const heading = headingKey ? t(headingKey) : (popup ? popup.layer : '');
-    const details = [...new Set(lines.filter(line => line !== heading && line.length > 1))].slice(0, 6);
+    const details = [];
+    const seen = new Set();
+    const addDetail = value => {
+      const text = String(value || '').replace(/\s+/g, ' ').trim();
+      if (!text || text === heading || text.length < 2 || seen.has(text)) return;
+      // The preview summarizes a sheet; controls and provenance belong in the
+      // interactive sheet itself, where users can inspect them in context.
+      if (/^(historical monthly outlook|compare all months|hide monthly comparison|show monthly comparison|about this outlook|source|sources|close|back)$/i.test(text)) return;
+      seen.add(text);
+      details.push(text);
+    };
+    const textOf = (root, selector) => root.querySelector(selector)?.innerText || '';
+    const compactSummary = value => {
+      const text = String(value || '').replace(/\s+/g, ' ').trim();
+      const characters = Array.from(text);
+      // The card uses about half the mobile preview width; keep prose short
+      // while leaving the complete summary available in the interactive popup.
+      const maxCharacters = 72;
+      if (characters.length <= maxCharacters) return text;
+      const prefix = characters.slice(0, maxCharacters - 1).join('');
+      const wordBoundary = prefix.lastIndexOf(' ');
+      const compact = wordBoundary >= maxCharacters * 0.65 ? prefix.slice(0, wordBoundary) : prefix;
+      return `${compact.trimEnd()}…`;
+    };
+    const fieldText = field => {
+      const label = field.querySelector('.bio-popup-field__label, .dive-popup-property__label, dt, strong')?.innerText?.trim();
+      const value = field.querySelector('.bio-popup-field__value, .dive-popup-property__value, dd')?.innerText?.trim();
+      return label && value ? `${label}: ${value}` : field.innerText;
+    };
+
+    if (popup && popupContent) {
+      const content = popupContent.cloneNode(true);
+      content.querySelectorAll([
+        'button', 'a', 'input', 'select', 'textarea', 'svg',
+        'details', '.bio-popup-source', '.temperature-detail-source',
+        '.temperature-detail-tabs', '.dive-popup-footer',
+        '.dive-experience-month-comparison', '.dive-experience-score-info',
+        '.dive-conditions-popup-back', '.dive-conditions-popup-close'
+      ].join(',')).forEach(element => element.remove());
+      content.querySelectorAll('[hidden], [aria-hidden="true"]').forEach(element => element.remove());
+
+      // Dive-condition outlooks have useful location, month, score, and measured
+      // conditions mixed with comparison controls. Pick those facts explicitly.
+      if (content.querySelector('.dive-experience-popup-content')) {
+        const locationAndMonth = [
+          textOf(content, '.dive-conditions-popup-region'),
+          textOf(content, '.dive-conditions-popup-month')
+        ].filter(Boolean).join(' · ');
+        addDetail(locationAndMonth);
+        addDetail(textOf(content, '.dive-experience-main-score'));
+        const physical = content.querySelector('.dive-experience-subscore');
+        if (physical) {
+          const title = physical.querySelector('h4')?.innerText?.trim();
+          const score = physical.querySelector(':scope > strong')?.innerText?.trim();
+          if (title && score) addDetail(`${title}: ${score}`);
+          physical.querySelectorAll('.dive-experience-dimension-row').forEach(row => {
+            const label = row.querySelector('.dive-experience-dimension-label')?.innerText?.trim();
+            const value = row.querySelector('.dive-experience-dimension-value')?.innerText?.trim();
+            if (label && value) addDetail(`${label}: ${value}`);
+          });
+        }
+      } else if (activeClickPopup?._container?.classList.contains('dive-site-popup')) {
+        addDetail(textOf(content, '.bio-popup-title'));
+        addDetail(textOf(content, '.dive-popup-location__region'));
+        const rating = content.querySelector('.dive-popup-rating__value');
+        if (rating?.dataset.status !== 'loading') addDetail(rating?.innerText);
+        const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
+        addDetail(compactSummary(summary?.innerText));
+        content.querySelectorAll('.dive-popup-property').forEach(field => addDetail(fieldText(field)));
+      } else {
+        // Site sheets and data popups expose structured rows with stable classes.
+        addDetail(textOf(content, '.dive-popup-location__region'));
+        const rating = content.querySelector('.dive-popup-rating__value');
+        if (rating?.dataset.status !== 'loading') addDetail(rating?.innerText);
+        addDetail(textOf(content, '.bio-popup-title'));
+        addDetail(textOf(content, '.bio-popup-site'));
+        addDetail(textOf(content, '.bio-popup-meta'));
+        const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
+        addDetail(compactSummary(summary?.innerText));
+        content.querySelectorAll('.bio-popup-fields .bio-popup-field, .dive-popup-property').forEach(field => {
+          addDetail(fieldText(field));
+        });
+        content.querySelectorAll('.dive-experience-main-score, .dive-experience-subscore > strong, .dive-experience-dimension-row').forEach(row => {
+          if (row.matches('.dive-experience-dimension-row')) {
+            const label = row.querySelector('.dive-experience-dimension-label')?.innerText?.trim();
+            const value = row.querySelector('.dive-experience-dimension-value')?.innerText?.trim();
+            if (label && value) addDetail(`${label}: ${value}`);
+          } else addDetail(row.innerText);
+        });
+        content.querySelectorAll('.bio-popup-list li, .coral-heat-stress-history-summary').forEach(row => addDetail(row.innerText));
+      }
+
+      // Some specialized popups predate the shared field markup. Use their
+      // remaining readable text as a fallback, after removing known UI chrome.
+      if (!details.length) {
+        const fallback = String(content.innerText || content.textContent || '')
+          .split(/\n+/)
+          .map(line => line.replace(/\s+/g, ' ').trim())
+          .filter(line => line && !/\b(compare|historical monthly outlook|about this outlook|source|sources)\b/i.test(line));
+        fallback.forEach(addDetail);
+      }
+    }
+
+    const visibleDetails = details.slice(0, 6);
     els.sharePreviewPopupData.replaceChildren();
     els.sharePreviewPopupData.hidden = !popup;
     if (!popup) return;
@@ -19713,91 +20067,15 @@ ZSD·2016–2025</span></span>
     const title = document.createElement('strong');
     title.textContent = heading;
     els.sharePreviewPopupData.append(title);
-    if (details.length) {
+    if (visibleDetails.length) {
       const list = document.createElement('ul');
-      for (const detail of details) {
+      for (const detail of visibleDetails) {
         const item = document.createElement('li');
         item.textContent = detail;
         list.append(item);
       }
       els.sharePreviewPopupData.append(list);
     }
-  }
-
-  async function recenterSharePreviewMapIfNeeded() {
-    const popup = shareSnapshot?.popup;
-    if (!popup) return;
-
-    const frame = els.sharePreviewMapSnapshot.parentElement;
-    const source = map.getContainer();
-    const width = source.clientWidth;
-    const height = source.clientHeight;
-    const frameWidth = frame.clientWidth;
-    const frameHeight = frame.clientHeight;
-    if (!width || !height || !frameWidth || !frameHeight) return;
-
-    const target = [Number(popup.lat), Number(popup.lng)];
-    if (!target.every(Number.isFinite)) return;
-    const point = map.latLngToContainerPoint(target);
-    const scale = Math.max(frameWidth / width, frameHeight / height);
-    const left = (frameWidth - width * scale) / 2;
-    const top = (frameHeight - height * scale) / 2;
-    // Keep the real pin clear of the detail card by placing its coordinate at
-    // the center of the preview's left half. Convert that preview position
-    // back into map pixels so only the temporary capture view is moved.
-    const desiredPreviewPoint = L.point(frameWidth * 0.25, frameHeight * 0.5);
-    const desiredMapPoint = L.point(
-      (desiredPreviewPoint.x - left) / scale,
-      (desiredPreviewPoint.y - top) / scale
-    );
-    const panOffset = point.subtract(desiredMapPoint);
-    if (Math.abs(panOffset.x) < 1 && Math.abs(panOffset.y) < 1) return;
-
-    // On phones the detail sheet stays open while the map can move underneath
-    // it. Shift only the temporary capture view so the geographically honest
-    // pin sits beside the detail card. The share URL keeps the sender's
-    // original map center; closeShareDialog restores the live map position.
-    if (!sharePreviewMapRestoreState) {
-      const center = map.getCenter();
-      sharePreviewMapRestoreState = {
-        center: [center.lat, center.lng],
-        zoom: map.getZoom()
-      };
-    }
-    const currentGlLayer = currentTheme === 'dark' ? darkLayer : lightLayer;
-    const glMap = currentGlLayer.getMaplibreMap?.();
-    const moveEnd = new Promise(resolve => map.once('moveend', resolve));
-    map.panBy(panOffset, { animate: false });
-    await moveEnd;
-
-    // Leaflet's MapLibre layer updates its projection on moveend. Sync that
-    // settled position first, then wait for the resulting GL render to go idle
-    // before copying its canvas; otherwise the snapshot can contain only the
-    // map background while overlays and markers are already visible.
-    let glIdle = Promise.resolve();
-    if (glMap?.once) {
-      glIdle = new Promise(resolve => {
-        const onIdle = () => {
-          window.clearTimeout(timeout);
-          resolve();
-        };
-        const timeout = window.setTimeout(() => {
-          glMap.off?.('idle', onIdle);
-          resolve();
-        }, 2500);
-        glMap.once('idle', onIdle);
-      });
-    }
-    syncBasemapCanvas();
-    await glIdle;
-  }
-
-  function restoreSharePreviewMapPosition() {
-    if (!sharePreviewMapRestoreState) return;
-    const { center, zoom } = sharePreviewMapRestoreState;
-    sharePreviewMapRestoreState = null;
-    map.setView(center, zoom, { animate: false });
-    requestAnimationFrame(syncBasemapCanvas);
   }
 
   function copySharePreviewMap() {
@@ -19823,9 +20101,30 @@ ZSD·2016–2025</span></span>
     // Map-click data popups use a second pin on the live map; the preview pin
     // replaces it so the captured image shows only one pointer.
     clone.querySelectorAll('.map-click-location-marker').forEach(marker => marker.remove());
-    const scale = Math.max(frameWidth / width, frameHeight / height);
-    const left = (frameWidth - width * scale) / 2;
-    const top = (frameHeight - height * scale) / 2;
+    const popupPoint = shareSnapshot?.popup && Number.isFinite(Number(shareSnapshot.popup.lat)) &&
+      Number.isFinite(Number(shareSnapshot.popup.lng))
+      ? map.latLngToContainerPoint([Number(shareSnapshot.popup.lat), Number(shareSnapshot.popup.lng)])
+      : null;
+    let scale = Math.max(frameWidth / width, frameHeight / height);
+    let left = (frameWidth - width * scale) / 2;
+    let top = (frameHeight - height * scale) / 2;
+    if (popupPoint) {
+      // Recompose the cloned viewport around the selected site; the live map
+      // stays untouched. Increase scale only enough to keep the shifted map
+      // covering the frame after placing the pin at the left-side focal point.
+      const focalX = frameWidth * 0.25;
+      const focalY = frameHeight * 0.5;
+      const epsilon = 1;
+      scale = Math.max(
+        scale,
+        focalX / Math.max(popupPoint.x, epsilon),
+        (frameWidth - focalX) / Math.max(width - popupPoint.x, epsilon),
+        focalY / Math.max(popupPoint.y, epsilon),
+        (frameHeight - focalY) / Math.max(height - popupPoint.y, epsilon)
+      );
+      left = focalX - popupPoint.x * scale;
+      top = focalY - popupPoint.y * scale;
+    }
     clone.style.width = `${width}px`;
     clone.style.height = `${height}px`;
     clone.style.left = `${left}px`;
@@ -19865,18 +20164,9 @@ ZSD·2016–2025</span></span>
 
     els.sharePreviewMapSnapshot.replaceChildren(clone);
     els.sharePreviewMapSnapshot.hidden = false;
-    const popupPoint = shareSnapshot?.popup && Number.isFinite(Number(shareSnapshot.popup.lat)) &&
-      Number.isFinite(Number(shareSnapshot.popup.lng))
-      ? map.latLngToContainerPoint([Number(shareSnapshot.popup.lat), Number(shareSnapshot.popup.lng)])
-      : null;
     if (popupPoint) {
-      // The map is recentered before capture when needed, so the pin remains
-      // at the popup's real coordinate in the preview rather than being drawn
-      // at an invented center point.
-      const previewX = left + popupPoint.x * scale;
-      const previewY = top + popupPoint.y * scale;
-      els.sharePreviewPopupPointer.style.left = `${previewX}px`;
-      els.sharePreviewPopupPointer.style.top = `${previewY}px`;
+      els.sharePreviewPopupPointer.style.left = `${frameWidth * 0.25}px`;
+      els.sharePreviewPopupPointer.style.top = `${frameHeight * 0.5}px`;
       els.sharePreviewPopupPointer.hidden = false;
     } else {
       els.sharePreviewPopupPointer.hidden = true;
@@ -19906,6 +20196,393 @@ ZSD·2016–2025</span></span>
       glMap.once('idle', onIdle);
       glMap.triggerRepaint();
     });
+  }
+
+  function getSharePreviewSummary() {
+    return {
+      title:els.sharePreviewPopupData.querySelector('strong')?.innerText?.trim() || 'DiveAtlas',
+      items:[...els.sharePreviewPopupData.querySelectorAll('li')].slice(0, 6).map(item => item.innerText.trim())
+    };
+  }
+
+  function sharePopupDetailsArePending(state, popup, content) {
+    if (!state?.popup) return false;
+    if (!popup || !content) return true;
+    return Boolean(
+      popup._diveAtlasOutlookLoading ||
+      popup._diveAtlasRatingLoading ||
+      popup._diveAtlasSummaryLoading ||
+      content.querySelector('.dive-conditions-popup-loading, .dive-popup-rating__value[data-status="loading"], .dive-popup-summary-slot:not([data-loaded="true"]), [aria-busy="true"]')
+    );
+  }
+
+  async function waitForSharePopupDetails(state, timeoutMs = 15000) {
+    if (!state?.popup) return true;
+    const startedAt = performance.now();
+    let previousSummary = '';
+    let stableSamples = 0;
+    while (performance.now() - startedAt < timeoutMs) {
+      const popup = activeClickPopup;
+      const content = popup?._container?.querySelector('.leaflet-popup-content');
+      if (!sharePopupDetailsArePending(state, popup, content)) {
+        renderSharePopupPreviewData(state);
+        const summary = JSON.stringify(getSharePreviewSummary());
+        stableSamples = summary === previousSummary ? stableSamples + 1 : 0;
+        previousSummary = summary;
+        // Require the extracted details to remain unchanged across several
+        // frames; loaders can disappear one field at a time as requests finish.
+        if (stableSamples >= 2) return true;
+      } else {
+        previousSummary = '';
+        stableSamples = 0;
+      }
+      await new Promise(resolve => window.setTimeout(resolve, 100));
+    }
+    return false;
+  }
+
+  async function createLocalSharePreviewJpeg() {
+    const frame = els.sharePreviewFrame;
+    const bounds = frame.getBoundingClientRect();
+    const width = Math.round(bounds.width);
+    const height = Math.round(bounds.height);
+    if (!width || !height) throw new Error('The local share preview is not visible');
+    if (!els.sharePreviewMapSnapshot.firstElementChild) throw new Error('The local map snapshot is not ready');
+
+    // Draw the map's already-rendered canvases directly. SVG foreignObject
+    // capture taints the destination canvas in some browsers even when every
+    // tile is local, so compose the summary card with canvas text instead.
+    const outputWidth = 1200;
+    const outputHeight = 630;
+    const canvas = document.createElement('canvas');
+    canvas.width = outputWidth;
+    canvas.height = outputHeight;
+    const context = canvas.getContext('2d');
+    if (!context) throw new Error('The browser could not create a preview canvas');
+    const scaleX = outputWidth / width;
+    const scaleY = outputHeight / height;
+    const frameBounds = frame.getBoundingClientRect();
+    const frameStyle = getComputedStyle(frame);
+    const drawRoundRect = (x, y, w, h, radius) => {
+      const r = Math.max(0, Math.min(radius, w / 2, h / 2));
+      context.beginPath();
+      context.moveTo(x + r, y);
+      context.arcTo(x + w, y, x + w, y + h, r);
+      context.arcTo(x + w, y + h, x, y + h, r);
+      context.arcTo(x, y + h, x, y, r);
+      context.arcTo(x, y, x + w, y, r);
+      context.closePath();
+    };
+    const drawText = (text, style, x, y, maxWidth, bottom) => {
+      const fontSize = parseFloat(style.fontSize) || 13;
+      const lineHeight = parseFloat(style.lineHeight) || fontSize * 1.35;
+      context.font = `${style.fontStyle} ${style.fontWeight} ${fontSize}px ${style.fontFamily}`;
+      context.fillStyle = style.color;
+      context.textBaseline = 'top';
+      const lines = [];
+      let line = '';
+      for (const word of String(text || '').split(/\s+/).filter(Boolean)) {
+        const candidate = line ? `${line} ${word}` : word;
+        if (context.measureText(candidate).width <= maxWidth) {
+          line = candidate;
+          continue;
+        }
+        if (line) lines.push(line);
+        line = '';
+        for (const character of Array.from(word)) {
+          const candidateCharacter = line + character;
+          if (line && context.measureText(candidateCharacter).width > maxWidth) {
+            lines.push(line);
+            line = character;
+          } else line = candidateCharacter;
+        }
+      }
+      if (line) lines.push(line);
+      let drawn = 0;
+      for (const textLine of lines) {
+        if (y + drawn * lineHeight + fontSize > bottom) break;
+        context.fillText(textLine, x, y + drawn * lineHeight, maxWidth);
+        drawn += 1;
+      }
+      return drawn * lineHeight;
+    };
+
+    context.setTransform(scaleX, 0, 0, scaleY, 0, 0);
+    context.fillStyle = frameStyle.backgroundColor;
+    drawRoundRect(0, 0, width, height, parseFloat(frameStyle.borderTopLeftRadius) || 0);
+    context.fill();
+    context.save();
+    context.clip();
+
+    const mapRoot = els.sharePreviewMapSnapshot.firstElementChild;
+    const mapLayers = [...mapRoot.querySelectorAll('canvas, svg')]
+      .filter(element => element.localName !== 'svg' ||
+        (!element.parentElement.closest('svg') && !element.closest('.leaflet-control-container')))
+      .map((element, order) => {
+      const pane = element.closest('.leaflet-pane');
+      return { element, order, z:Number.parseFloat(pane ? getComputedStyle(pane).zIndex : '0') || 0 };
+      }).sort((a, b) => a.z - b.z || a.order - b.order);
+    let drewBasemap = false;
+    for (const { element } of mapLayers) {
+      // HTMLCanvasElement.tagName is uppercase in HTML documents, so use the
+      // element type here; a lowercase tagName check silently skipped every
+      // map canvas and produced a background-only JPEG.
+      if (element instanceof HTMLCanvasElement) {
+        if (!element.width || !element.height) continue;
+        // Canvas export is the origin-clean check. A cross-origin tile should
+        // trigger the Worker fallback, never a partial local map image.
+        element.toDataURL('image/png');
+        const rect = element.getBoundingClientRect();
+        if (!rect.width || !rect.height) continue;
+        const clipLeft = Math.max(frameBounds.left, rect.left);
+        const clipTop = Math.max(frameBounds.top, rect.top);
+        const clipRight = Math.min(frameBounds.right, rect.right);
+        const clipBottom = Math.min(frameBounds.bottom, rect.bottom);
+        if (clipRight <= clipLeft || clipBottom <= clipTop) continue;
+        const sourceX = (clipLeft - rect.left) * element.width / rect.width;
+        const sourceY = (clipTop - rect.top) * element.height / rect.height;
+        const sourceWidth = (clipRight - clipLeft) * element.width / rect.width;
+        const sourceHeight = (clipBottom - clipTop) * element.height / rect.height;
+        context.drawImage(
+          element,
+          sourceX, sourceY, sourceWidth, sourceHeight,
+          clipLeft - frameBounds.left, clipTop - frameBounds.top,
+          clipRight - clipLeft, clipBottom - clipTop
+        );
+        if (element.classList.contains('maplibregl-canvas')) drewBasemap = true;
+        continue;
+      }
+
+      // Leaflet keeps some overlays and dive-site markers as SVG paths instead
+      // of canvases; use their screen matrices so the capture honors the cloned
+      // map's pan/zoom transforms without touching the live map.
+      for (const path of element.querySelectorAll('path')) {
+        const pathData = path.getAttribute('d');
+        const matrix = path.getScreenCTM();
+        if (!pathData || !matrix) continue;
+        const style = getComputedStyle(path);
+        if (style.display === 'none' || style.visibility === 'hidden') continue;
+        const path2d = new Path2D(pathData);
+        let groupOpacity = 1;
+        for (let ancestor = path.parentElement; ancestor && ancestor !== mapRoot; ancestor = ancestor.parentElement) {
+          const opacity = Number.parseFloat(getComputedStyle(ancestor).opacity);
+          if (Number.isFinite(opacity)) groupOpacity *= opacity;
+        }
+        context.save();
+        context.setTransform(
+          scaleX * matrix.a, scaleY * matrix.b,
+          scaleX * matrix.c, scaleY * matrix.d,
+          scaleX * (matrix.e - frameBounds.left),
+          scaleY * (matrix.f - frameBounds.top)
+        );
+        const fillOpacity = Number.parseFloat(style.fillOpacity);
+        const opacity = Number.isFinite(Number.parseFloat(style.opacity)) ? Number.parseFloat(style.opacity) : 1;
+        if (style.fill !== 'none') {
+          context.globalAlpha = groupOpacity * opacity * (Number.isFinite(fillOpacity) ? fillOpacity : 1);
+          context.fillStyle = style.fill;
+          context.fill(path2d, style.fillRule === 'evenodd' ? 'evenodd' : 'nonzero');
+        }
+        const strokeOpacity = Number.parseFloat(style.strokeOpacity);
+        if (style.stroke !== 'none' && parseFloat(style.strokeWidth) > 0) {
+          context.globalAlpha = groupOpacity * opacity * (Number.isFinite(strokeOpacity) ? strokeOpacity : 1);
+          context.strokeStyle = style.stroke;
+          context.lineWidth = parseFloat(style.strokeWidth);
+          context.lineCap = style.strokeLinecap;
+          context.lineJoin = style.strokeLinejoin;
+          if (style.strokeDasharray !== 'none') {
+            context.setLineDash(style.strokeDasharray.split(/[ ,]+/).map(Number).filter(Number.isFinite));
+          }
+          context.stroke(path2d);
+        }
+        context.restore();
+      }
+    }
+    context.restore();
+    if (!drewBasemap) throw new Error('The MapLibre basemap was not included in the local preview');
+
+    const pointer = els.sharePreviewPopupPointer;
+    if (!pointer.hidden) {
+      const rect = pointer.getBoundingClientRect();
+      const x = rect.left - frameBounds.left;
+      const y = rect.top - frameBounds.top;
+      const pin = () => {
+        context.beginPath();
+        context.moveTo(16, 37);
+        context.bezierCurveTo(13, 32, 2, 21, 2, 15);
+        context.arc(16, 15, 14, Math.PI, 0, false);
+        context.bezierCurveTo(30, 22, 19, 33, 16, 37);
+        context.closePath();
+      };
+      context.save();
+      context.translate(x, y);
+      context.shadowColor = 'rgba(0,0,0,.28)';
+      context.shadowBlur = 4;
+      context.fillStyle = '#fff';
+      pin();
+      context.fill();
+      context.shadowColor = 'transparent';
+      context.fillStyle = '#e94d6a';
+      context.beginPath();
+      context.moveTo(16, 33);
+      context.bezierCurveTo(12, 28, 5, 20, 5, 15);
+      context.arc(16, 15, 11, Math.PI, 0, false);
+      context.bezierCurveTo(27, 21, 20, 29, 16, 33);
+      context.closePath();
+      context.fill();
+      context.beginPath();
+      context.arc(16, 15, 5, 0, Math.PI * 2);
+      context.fillStyle = '#fff';
+      context.fill();
+      context.restore();
+    }
+
+    const card = els.sharePreviewPopupData;
+    if (!card.hidden) {
+      const rect = card.getBoundingClientRect();
+      const x = rect.left - frameBounds.left;
+      const y = rect.top - frameBounds.top;
+      const style = getComputedStyle(card);
+      const paddingLeft = parseFloat(style.paddingLeft) || 8;
+      const paddingTop = parseFloat(style.paddingTop) || 8;
+      const paddingRight = parseFloat(style.paddingRight) || 8;
+      const textX = x + paddingLeft;
+      const textWidth = rect.width - paddingLeft - paddingRight;
+      context.save();
+      context.shadowColor = 'rgba(9,35,51,.24)';
+      context.shadowBlur = 16;
+      context.shadowOffsetY = 5;
+      context.fillStyle = style.backgroundColor;
+      drawRoundRect(x, y, rect.width, rect.height, parseFloat(style.borderTopLeftRadius) || 12);
+      context.fill();
+      context.shadowColor = 'transparent';
+      context.shadowBlur = 0;
+      context.shadowOffsetY = 0;
+      context.strokeStyle = style.borderColor;
+      context.lineWidth = parseFloat(style.borderTopWidth) || 1;
+      drawRoundRect(x, y, rect.width, rect.height, parseFloat(style.borderTopLeftRadius) || 12);
+      context.stroke();
+      context.beginPath();
+      drawRoundRect(x, y, rect.width, rect.height, parseFloat(style.borderTopLeftRadius) || 12);
+      context.clip();
+      let textY = y + paddingTop;
+      const title = card.querySelector('strong');
+      if (title) {
+        const titleStyle = getComputedStyle(title);
+        textY += drawText(title.innerText, titleStyle, textX, textY, textWidth, y + rect.height - paddingTop);
+        textY += parseFloat(titleStyle.marginBottom) || 5;
+      }
+      for (const item of card.querySelectorAll('li')) {
+        const itemStyle = getComputedStyle(item);
+        textY += drawText(item.innerText, itemStyle, textX, textY, textWidth, y + rect.height - paddingTop);
+        textY += parseFloat(itemStyle.marginBottom) || 3;
+      }
+      context.restore();
+    }
+
+    context.strokeStyle = frameStyle.borderColor;
+    context.lineWidth = parseFloat(frameStyle.borderTopWidth) || 1;
+    drawRoundRect(0.5, 0.5, width - 1, height - 1, parseFloat(frameStyle.borderTopLeftRadius) || 0);
+    context.stroke();
+
+    // Check the composed image before encoding so cross-origin map content is
+    // handled as an expected local-capture limitation, not a toBlob exception.
+    try {
+      context.getImageData(0, 0, 1, 1);
+    } catch (error) {
+      if (error?.name === 'SecurityError') {
+        throw new Error('A map layer does not allow local preview export');
+      }
+      throw error;
+    }
+
+    const blob = await new Promise((resolve, reject) => {
+      try {
+        canvas.toBlob(result => result ? resolve(result) : reject(new Error('The local preview JPEG could not be encoded')), 'image/jpeg', 0.9);
+      } catch (error) {
+        reject(error);
+      }
+    });
+    if (blob.type !== 'image/jpeg' || !blob.size || blob.size > 4 * 1024 * 1024) {
+      throw new Error('The local preview JPEG is invalid or exceeds the upload limit');
+    }
+    return blob;
+  }
+
+  async function storeSharePreviewImage() {
+    let share;
+    try {
+      share = new URL(shareUrl);
+      const isMapShare = /^\/map\/?$/.test(share.pathname);
+      const isSiteShare = /^\/share\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\/?$/i.test(share.pathname);
+      if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || (!isMapShare && !isSiteShare)) return;
+      const existingTask = sharePreviewUploadTasks.get(share.href);
+      if (existingTask) return await existingTask;
+      const task = (async () => {
+        const popupDetailsReady = await waitForSharePopupDetails(shareSnapshot);
+        if (popupDetailsReady) renderSharePopupPreviewData(shareSnapshot);
+        if (!els.sharePreviewMapSnapshot.firstElementChild && !await copySharePreviewMapAfterRender()) {
+          throw new Error('The map preview is not ready');
+        }
+        const uploadUrl = new URL('/map-preview-upload/', SHARE_SITE_PREVIEW_ORIGIN);
+        uploadUrl.search = share.search;
+        const summary = popupDetailsReady ? getSharePreviewSummary() : null;
+        if (summary?.items.length) uploadUrl.searchParams.set('summary', JSON.stringify(summary));
+
+        if (popupDetailsReady) {
+          try {
+            await Promise.race([
+              document.fonts?.ready,
+              new Promise(resolve => window.setTimeout(resolve, 2500))
+            ]);
+            const localImage = await createLocalSharePreviewJpeg();
+            const localUploadUrl = new URL(uploadUrl);
+            // Share state is identical while popup details can change as data
+            // finishes loading, so the finished local preview must replace an
+            // older Worker render for the same canonical map state.
+            localUploadUrl.searchParams.set('replace', '1');
+            const uploaded = await fetch(localUploadUrl, {
+              method:'POST',
+              mode:'cors',
+              credentials:'omit',
+              headers:{ 'Content-Type':'image/jpeg' },
+              body:localImage
+            });
+            if (uploaded.status === 201 || uploaded.status === 204) return;
+            throw new Error(`Local preview upload returned ${uploaded.status}`);
+          } catch (error) {
+            // Cross-origin map layers and temporary upload failures are
+            // expected on some devices. Keep the share action quiet; the
+            // Worker image endpoint renders on demand when a crawler requests it.
+            const reason = error instanceof Error
+              ? `${error.name}: ${error.message}`.slice(0, 180)
+              : String(error).slice(0, 180);
+            console.debug('Device preview upload deferred to the Worker image endpoint.', reason);
+          }
+        }
+
+        // Do not ask the Worker to render immediately after a local failure.
+        // The share page points at the same image endpoint, which can render
+        // and cache the fallback only when a social crawler actually needs it.
+      })();
+      sharePreviewUploadTasks.set(share.href, task);
+      try {
+        await task;
+      } catch (error) {
+        // Sharing still works when the device or upload cannot create this
+        // optional image; the Worker can render it when a crawler asks later.
+        const reason = error instanceof Error
+          ? `${error.name}: ${error.message}`.slice(0, 180)
+          : String(error).slice(0, 180);
+        console.debug('Device share preview was not saved; server rendering is deferred until requested.', reason);
+      } finally {
+        if (sharePreviewUploadTasks.get(share.href) === task) sharePreviewUploadTasks.delete(share.href);
+      }
+    } catch (error) {
+      const reason = error instanceof Error
+        ? `${error.name}: ${error.message}`.slice(0, 180)
+        : String(error).slice(0, 180);
+      console.debug('Device share preview was not saved; server rendering is deferred until requested.', reason);
+    }
   }
 
   function renderShareDialogContext() {
@@ -19942,7 +20619,6 @@ ZSD·2016–2025</span></span>
       els.shareCloseButton.focus();
       requestAnimationFrame(async () => {
         try {
-          await recenterSharePreviewMapIfNeeded();
           if (els.shareModal.hidden) return;
           if (!await copySharePreviewMapAfterRender()) {
             els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
@@ -19950,7 +20626,6 @@ ZSD·2016–2025</span></span>
         } catch (_) {
           els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
         } finally {
-          restoreSharePreviewMapPosition();
         }
       });
   });
@@ -19958,7 +20633,6 @@ ZSD·2016–2025</span></span>
 
 function closeShareDialog() {
   if (els.shareModal.hidden) return;
-  restoreSharePreviewMapPosition();
     els.shareModal.hidden = true;
     document.body.classList.remove('share-modal-open');
     els.shareStatus.textContent = '';
@@ -20005,11 +20679,36 @@ function closeShareDialog() {
     }, 1800);
   }
 
+  function copyShareLinkAfterPreviewSave() {
+    // Preserve the click's clipboard permission; start the optional image
+    // upload in parallel instead of waiting for network work before copying.
+    void storeSharePreviewImage();
+    return copyShareLink();
+  }
+
+  function shareExternalLinkAfterPreviewSave(event) {
+    const link = event.currentTarget;
+    const destination = link.href;
+    event.preventDefault();
+    const pendingTab = window.open('about:blank', '_blank');
+    if (pendingTab) {
+      pendingTab.opener = null;
+      pendingTab.document.title = 'Share | DiveAtlas';
+      pendingTab.document.body.textContent = 'Preparing your share…';
+    }
+    void storeSharePreviewImage().finally(() => {
+      if (pendingTab && !pendingTab.closed) pendingTab.location.replace(destination);
+      else if (!pendingTab) window.location.assign(destination);
+    });
+  }
+
   async function shareWithDevice() {
     if (typeof navigator.share !== 'function') return;
+    const previewSave = storeSharePreviewImage();
     try {
       const shareText = `${getShareContextTitle(shareSnapshot)} | DiveAtlas`;
       await navigator.share({ title: shareText, text: shareText, url: shareUrl });
+      await previewSave;
     } catch (error) {
       if (error?.name !== 'AbortError') {
         els.shareStatus.textContent = t('shareCopyFailed');
@@ -20027,7 +20726,9 @@ function closeShareDialog() {
   els.shareMapButton.addEventListener('focus', updateShareButtonDescription);
   updateShareButtonDescription();
   els.shareMapButton.addEventListener('click', openShareDialog);
-  els.shareCopyButton.addEventListener('click', copyShareLink);
+  els.shareCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
+  [els.shareWhatsAppButton, els.shareXButton, els.shareFacebookButton, els.shareRedditButton, els.shareEmailButton]
+    .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
   els.shareNativeButton.addEventListener('click', shareWithDevice);
   els.shareModal.addEventListener('click', event => {
     if (event.target.closest('[data-share-close]')) closeShareDialog();
@@ -21595,7 +22296,6 @@ function closeShareDialog() {
       recordInteractionTestAction();
       cancelPendingMapInteraction();
       marker.closeTooltip?.();
-      closeManagedPopup();
       const aggregate = marker._diveAtlasInteraction.aggregate;
       return zoomIntoAggregate(aggregate.cluster, aggregate.config);
     }
@@ -24976,6 +25676,29 @@ function closeShareDialog() {
       popup?.getElement?.()?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet');
   }
 
+  function preserveDesktopPopupForZoom(popup) {
+    if (!popup || isMobileMapSheetPopup(popup)) return;
+    popup._diveAtlasDesktopZoomValidationPending = true;
+    const source = popup._source;
+    if (!source?.closePopup || typeof source.off !== 'function') return;
+
+    // Viewport refresh removes and recreates marker layers after zoom. Leaflet
+    // normally closes a marker's bound popup on removal, before we can check
+    // whether its anchor is still visible; suspend that one removal hook.
+    source.off('remove', source.closePopup, source);
+    popup._diveAtlasZoomDetachedSource ||= source;
+  }
+
+  function restoreZoomDetachedPopupSource(popup) {
+    if (!popup) return;
+    popup._diveAtlasDesktopZoomValidationPending = false;
+    popup._diveAtlasDesktopZoomRetained = false;
+    const source = popup?._diveAtlasZoomDetachedSource;
+    if (!source?.closePopup || typeof source.on !== 'function') return;
+    source.on('remove', source.closePopup, source);
+    popup._diveAtlasZoomDetachedSource = null;
+  }
+
   function shouldDeferMobileMarkerLayerRefresh(layerKey) {
     return isMobileMapSheetPopup(activeClickPopup) &&
       activeClickPopup.isOpen?.() &&
@@ -25010,15 +25733,23 @@ function closeShareDialog() {
         popup._diveAtlasPlacementInProgress ||
         isMobileMapSheetPopup(popup)
       ) return;
-      if (INTERACTION_CONTRACT.shouldDismissPopupAfterMovement({
-        internalMovement: isInternalMapMovementInProgress(),
-        userMovementIntent: hasUserMapMovementIntent(),
-        anchorVisible: popupAnchorIsInSafeViewport(popup),
-        ownerValid: popupOwnerRepresentationIsValid(popup)
-      })) {
+      const zoomValidation = popup._diveAtlasDesktopZoomValidationPending === true;
+      const zoomRetained = popup._diveAtlasDesktopZoomRetained === true;
+      popup._diveAtlasDesktopZoomValidationPending = false;
+      const anchorVisible = popupAnchorIsInSafeViewport(popup);
+      const shouldDismiss = zoomValidation || zoomRetained
+        ? !anchorVisible
+        : INTERACTION_CONTRACT.shouldDismissPopupAfterMovement({
+          internalMovement: isInternalMapMovementInProgress(),
+          userMovementIntent: hasUserMapMovementIntent(),
+          anchorVisible,
+          ownerValid: popupOwnerRepresentationIsValid(popup)
+        });
+      if (shouldDismiss) {
         closeManagedPopup();
         return;
       }
+      if (zoomValidation) popup._diveAtlasDesktopZoomRetained = true;
 
       popup._diveAtlasAnchorLatLng = L.latLng(
         popup.getLatLng().lat,
@@ -26686,6 +27417,7 @@ function closeShareDialog() {
   });
   let speciesInteractionModeBeforeZoom = null;
   map.on('zoomstart', () => {
+    preserveDesktopPopupForZoom(activeClickPopup?.isOpen?.() ? activeClickPopup : null);
     speciesInteractionModeBeforeZoom = speciesDisplayModeForZoom(map.getZoom());
     resetBatchedSpeciesGridInteraction();
   });
@@ -26697,6 +27429,7 @@ function closeShareDialog() {
       speciesInteractionModeBeforeZoom !== nextMode &&
       activeClickPopup?._diveAtlasLayerKey === 'species' &&
       activeClickPopup?._diveAtlasSpeciesRenderMode !== nextMode &&
+      !activeClickPopup?._diveAtlasDesktopZoomValidationPending &&
       !isMobileMapSheetPopup(activeClickPopup)
     ) closeManagedPopup();
     speciesInteractionModeBeforeZoom = null;
@@ -27098,6 +27831,7 @@ function closeShareDialog() {
 
   map.on('popupclose', event => {
     const popup = event?.popup;
+    restoreZoomDetachedPopupSource(popup);
     popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
@@ -28959,14 +29693,12 @@ function closeShareDialog() {
 
   applySharedSelections();
   const savedEnvironmentalView = readSavedEnvironmentalView();
-  const initialEnvironmentalView = sharedMapState.view || savedEnvironmentalView;
-  if (initialEnvironmentalView) {
-    layerVisibility.currents = initialEnvironmentalView === 'currents';
-    selectEnvironmentalView(initialEnvironmentalView, { persist: !sharedMapState.hasValidState });
-  } else {
-    // Keep data-backed map layers lazy on first load; users can select Dive Experience when they need it.
-    selectEnvironmentalView('default', { persist: !sharedMapState.hasValidState });
-  }
+  // Shared links and saved user choices take precedence; first-time visitors
+  // start on the rating view when that feature is available.
+  const initialEnvironmentalView = sharedMapState.view || savedEnvironmentalView ||
+    (DIVE_EXPERIENCE_OUTLOOK_ENABLED ? 'dive-experience-outlook' : 'default');
+  layerVisibility.currents = initialEnvironmentalView === 'currents';
+  selectEnvironmentalView(initialEnvironmentalView, { persist: !sharedMapState.hasValidState });
 
   function prefillContactFromSignedInUser() {
     const user = window.DiveAtlasCurrentUser;

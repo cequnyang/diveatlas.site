@@ -490,9 +490,23 @@ test('mobile long press on empty ocean opens Depth Inspection', async ({ page })
 });
 
 test('resizing any mobile sheet recenters the pointer in the exposed map', async ({ page }) => {
+  if (await page.locator('#bioLegend').evaluate(node => node.classList.contains('is-collapsed'))) {
+    await page.locator('#bioLegendTitle').click();
+  }
+  await page.locator('.environment-segment').filter({
+    has:page.locator('input[name="environmentView"][value="default"]')
+  }).click();
+  await expect(page.locator('input[name="environmentView"][value="default"]')).toBeChecked();
+  await page.route('**/data/depth_samples/**', route => route.fulfill({
+    status:200,
+    contentType:'application/octet-stream',
+    body:depthSampleFixture
+  }));
+  await waitForMapInteractionWindow(page);
   await dispatchTouchSequence(page, { duration:720 });
   const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet');
   await expect(sheet).toBeVisible();
+  expect((await mapState(page)).popup.type).toBe('depth');
   await waitForMobileMapSheetGeometryToSettle(page);
   const initialHeight = await sheet.evaluate(node => node.getBoundingClientRect().height);
 
@@ -531,4 +545,20 @@ test('a single touch on an individual Coral feature opens details once', async (
   await expect(page.locator('.leaflet-popup')).toBeVisible();
   expect((await mapState(page)).popup.type).toBe('species');
   expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.getActionCount())).toBe(1);
+});
+
+test('zooming the map in either direction keeps an open mobile detail sheet visible', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id:'sheet-survives-zoom', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-survives-zoom');
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet');
+  await expect(sheet).toBeVisible();
+  const initialZoom = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom());
+
+  for (const expectedZoom of [initialZoom + 1, initialZoom]) {
+    await page.evaluate(zoom => window.__DIVEATLAS_TEST__.map.setZoom(zoom, { animate:false }), expectedZoom);
+    await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBe(expectedZoom);
+    await expect(sheet).toBeVisible();
+    await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('sheet-survives-zoom');
+  }
 });
