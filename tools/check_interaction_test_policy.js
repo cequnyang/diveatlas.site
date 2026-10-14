@@ -58,7 +58,7 @@ const requiredBehaviorNames = [
   'mobile sheet content drag starts only after scrolling reaches the top',
   'Tide tab exposes its controls and wheel endpoint options remain tappable',
   'expanded Dive Experience month chart stays inside safe area and previews other months with pointer input',
-  'share preview shortens long site summaries and defers Worker rendering after local capture failure',
+  'share preview shortens long site summaries and skips local image uploads',
   'desktop share discovery advances to its second icon after thirty seconds',
   'mobile map sheet share discovery shows localized primary and secondary icons for',
   'turning the owning Coral layer off closes its popup and clears hover state',
