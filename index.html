@@ -20824,6 +20824,29 @@ function closeShareDialog() {
     const link = event.currentTarget;
 
     if (isMobileShareExperience()) {
+      if (link === els.shareWechatButton || link === els.shareRedNoteButton) {
+        event.preventDefault();
+        // A web page cannot choose one installed share target. Use the OS
+        // picker so users can select WeChat or Xiaohongshu without being sent
+        // to either platform's app-download page.
+        void copyShareLink(link.dataset.sharePlatform || null);
+        void storeSharePreviewImage();
+        if (typeof navigator.share === 'function') {
+          const shareText = `${getShareContextTitle(shareSnapshot)} | DiveAtlas`;
+          try {
+            void navigator.share({ title: shareText, text: shareText, url: shareUrl })
+              .catch(error => {
+                if (error?.name !== 'AbortError') {
+                  console.debug('Native share picker could not be opened.', error);
+                }
+              });
+          } catch (error) {
+            console.debug('Native share picker could not be opened.', error);
+          }
+        }
+        return;
+      }
+
       // Start the clipboard write during the original tap, then allow the
       // HTTPS share/app link to open in that same user gesture.
       if (link.dataset.mobileHref) link.href = link.dataset.mobileHref;
