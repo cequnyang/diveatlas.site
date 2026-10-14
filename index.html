@@ -4449,6 +4449,8 @@
       height: 100%;
       object-fit: cover;
     }
+    /* The explicit display rule above otherwise overrides the hidden attribute. */
+    .share-preview-site-photo[hidden] { display: none; }
     .share-preview-map-snapshot {
       position: absolute;
       z-index: 0;
