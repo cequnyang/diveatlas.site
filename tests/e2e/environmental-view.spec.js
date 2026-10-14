@@ -47,16 +47,24 @@ const temperatureQueryMetadataFixture = {
 const temperatureQueryChunkFixture = gzipSync(Buffer.from([200, 0]));
 
 async function installTemperatureQueryFixture(page) {
-  await page.route('**/data/temperature/query/v2/metadata.json', route => route.fulfill({
-    status:200,
-    contentType:'application/json',
-    body:JSON.stringify(temperatureQueryMetadataFixture)
-  }));
-  await page.route('**/data/temperature/query/v2/chunks/**', route => route.fulfill({
-    status:200,
-    contentType:'application/gzip',
-    body:temperatureQueryChunkFixture
-  }));
+  const fixtureRequestUrls = new Set();
+  await page.route('**/data/temperature/query/v2/metadata.json', route => {
+    fixtureRequestUrls.add(route.request().url());
+    return route.fulfill({
+      status:200,
+      contentType:'application/json',
+      body:JSON.stringify(temperatureQueryMetadataFixture)
+    });
+  });
+  await page.route('**/data/temperature/query/v2/chunks/**', route => {
+    fixtureRequestUrls.add(route.request().url());
+    return route.fulfill({
+      status:200,
+      contentType:'application/gzip',
+      body:temperatureQueryChunkFixture
+    });
+  });
+  return fixtureRequestUrls;
 }
 
 async function installMetadataFixture(page) {
@@ -1062,12 +1070,14 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
 
 test('temperature detail stays compact at a mobile viewport', async ({ page }) => {
   // This is a layout check; keep its sampled value independent of release data availability.
-  await installTemperatureQueryFixture(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await openMap(page, {
     localStorage: { 'global-coral-map-environment-month-v1': '9' },
     externalAssets: Boolean(dataAssetBaseUrl)
   });
+  // Register after openMap's catch-all route so R2-backed CI builds use this
+  // deterministic fixture instead of proxying the production query dataset.
+  const fixtureRequestUrls = await installTemperatureQueryFixture(page);
   await setLegendCollapsed(page, false);
   await activateTemperatureView(page);
   await expect(page.locator('#environmentViewSelect')).toHaveValue('temperature');
@@ -1077,7 +1087,9 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   const before = await page.evaluate(() => window.__DIVEATLAS_TEST__.getState());
   const chunkResponse = page.waitForResponse(response => response.url().includes('/data/temperature/query/v2/chunks/'));
   await clickMapCoordinate(page, -5.7, 131);
-  expect((await chunkResponse).status()).toBe(200);
+  const response = await chunkResponse;
+  expect(response.status()).toBe(200);
+  expect(fixtureRequestUrls.has(response.url()), 'the sample should come from the deterministic query fixture').toBe(true);
   await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
   await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
   await openMobileSettings(page);
