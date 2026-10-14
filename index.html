@@ -4494,6 +4494,7 @@
       color: var(--text);
       font-size: 12px;
     }
+    .share-preview-background-choices[hidden] { display: none; }
     .share-preview-background-choices legend { margin: 0 2px 0 0; padding: 0; color: var(--muted); font-weight: 600; }
     .share-preview-background-choices label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
     .share-preview-background-choices input { width: 14px; height: 14px; margin: 0; accent-color: var(--primary); }
@@ -21228,7 +21229,10 @@ ZSD·2016–2025</span></span>
 
   function renderShareDialogContext() {
     updateSharePlatformVisibility();
-    sharePreviewSitePhoto = getSharePreviewSitePhoto(shareSnapshot);
+    const isDiveSitePopup = shareSnapshot?.popup?.layer === 'dive' &&
+      shareSnapshot?.selectedSiteId &&
+      SHARE_SITE_BY_ID.has(String(shareSnapshot.selectedSiteId).toLowerCase());
+    sharePreviewSitePhoto = isDiveSitePopup ? getSharePreviewSitePhoto(shareSnapshot) : null;
     els.sharePreviewBackgroundChoices.hidden = !sharePreviewSitePhoto;
     els.sharePreviewSitePhoto.removeAttribute('src');
     sharePreviewBackgroundChoice = 'map';
