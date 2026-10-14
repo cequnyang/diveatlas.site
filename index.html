@@ -6970,7 +6970,7 @@
       </div>
       <div class="share-dialog-body">
         <div class="share-preview-frame" id="sharePreviewFrame" data-background="map" aria-label="Preview of the shared map">
-          <img class="share-preview-site-photo" id="sharePreviewSitePhoto" alt="" aria-hidden="true" crossorigin="anonymous" hidden>
+          <img class="share-preview-site-photo" id="sharePreviewSitePhoto" alt="" aria-hidden="true" hidden>
           <div class="share-preview-photo-label" id="sharePreviewPhotoLabel" hidden></div>
           <div class="share-preview-photo-credit" id="sharePreviewPhotoCredit" hidden></div>
           <div class="share-preview-map-snapshot" id="sharePreviewMapSnapshot" aria-hidden="true" hidden></div>
@@ -21159,7 +21159,6 @@ ZSD·2016–2025</span></span>
     if (useSiteImage && sharePreviewSitePhoto) {
       const photo = sharePreviewSitePhoto;
       const source = new URL(photo.src, window.location.href).href;
-      image.crossOrigin = 'anonymous';
       image.alt = '';
       if (image.src !== source) image.src = source;
       label.textContent = t('divePhotoIllustrative');
