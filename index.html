@@ -10842,6 +10842,7 @@ ZSD·2016–2025</span></span>
       diveCached: '当前区域潜点已显示',
       divePartial: '潜点数据暂不可用',
       diveHoverDepth: '深度范围',
+      diveRecordedDepth: '记录深度',
       diveMidpoint: '深度',
       diveMinDepth: '最浅深度',
       diveMaxDepth: '最深深度',
@@ -10918,9 +10919,11 @@ ZSD·2016–2025</span></span>
       diveCached: 'Dive sites shown for this area',
       divePartial: 'Dive-site data unavailable',
       diveHoverDepth: 'Depth range',
+      diveRecordedDepth: 'Recorded depth',
       diveMidpoint: 'Depth',
       diveMinDepth: 'Minimum depth',
       diveMaxDepth: 'Maximum depth',
+      diveDepthUnavailable: 'Unavailable',
       diveLevel: 'Level',
       diveType: 'Site type',
       diveReviewedCategories: 'Reviewed categories',
@@ -10994,6 +10997,7 @@ ZSD·2016–2025</span></span>
       diveCached: 'この範囲のダイブスポットを表示しています',
       divePartial: 'ダイブスポットデータを利用できません',
       diveHoverDepth: '深度範囲',
+      diveRecordedDepth: '記録された深度',
       diveMidpoint: '深度',
       diveMinDepth: '最小深度',
       diveMaxDepth: '最大深度',
@@ -18905,6 +18909,8 @@ ZSD·2016–2025</span></span>
       : 'datasets/dive-sites.js?v=2';
     diveSiteDataPromise = Promise.all([
       loadLocalScript(diveSitesScriptUrl),
+      loadLocalScript('datasets/dive-site-depth-overrides.js?v=1'),
+      loadLocalScript('datasets/dive-site-depth-range-supplement.js?v=4'),
       loadLocalScript('datasets/dive-site-photos.js?v=2'),
       loadLocalScript('datasets/dive-site-fallback-photos.js?v=1')
     ])
@@ -18912,6 +18918,25 @@ ZSD·2016–2025</span></span>
         const sites = window.DIVE_SITES_DATA;
         if (!Array.isArray(sites)) {
           throw new Error('Dive-site dataset did not expose an array.');
+        }
+
+        const depthOverrides = window.DIVE_SITE_DEPTH_OVERRIDES || {};
+        const depthRangeSupplement = window.DIVE_SITE_DEPTH_RANGE_SUPPLEMENT || {};
+        for (const site of sites) {
+          const siteId = getDiveSiteStableId(site);
+          const override = depthOverrides[siteId];
+          if (override) {
+            site[3] = override.depthMinM;
+            site[4] = override.depthMaxM;
+            site[5] = override.depthMidM;
+          }
+
+          const reviewedRange = depthRangeSupplement[siteId];
+          if (reviewedRange) {
+            site[3] = reviewedRange.depthMinM;
+            site[4] = reviewedRange.depthMaxM;
+            site[5] = reviewedRange.depthMidM;
+          }
         }
 
         DIVE_SITES = sites;
@@ -21754,8 +21779,10 @@ function closeShareDialog() {
 
     const depthText =
       diveDepthRangeText(depthMin, depthMax);
+    const recordedDepth = site[5] == null ? null : Number(site[5]);
 
     if (depthText) parts.push(depthText);
+    else if (Number.isFinite(recordedDepth) && recordedDepth > 0) parts.push(formatDepthMeters(recordedDepth));
 
     return parts.join(' · ');
   }
@@ -25712,10 +25739,10 @@ function closeShareDialog() {
       return `${formatDepthMeters(depthMin)} – ${formatDepthMeters(depthMax)}`;
     }
     if (Number.isFinite(depthMin)) {
-      return `${t('diveMinDepth')}: ${formatDepthMeters(depthMin)}`;
+      return `${formatDepthMeters(depthMin)} – ${t('diveDepthUnavailable')}`;
     }
     if (Number.isFinite(depthMax)) {
-      return `${t('diveMaxDepth')}: ${formatDepthMeters(depthMax)}`;
+      return `${t('diveDepthUnavailable')} – ${formatDepthMeters(depthMax)}`;
     }
     return '';
   }
@@ -26475,7 +26502,8 @@ function closeShareDialog() {
       lngRaw,
       depthMinRaw,
       depthMaxRaw,
-      depthMidRaw,
+      // Keep an un-ranged source value visible as a recorded depth; never imply it is a range.
+      recordedDepthRaw,
       levelRaw,
       siteTypesRaw,
       sourcesRaw
@@ -26485,7 +26513,7 @@ function closeShareDialog() {
     const lng = Number(lngRaw);
     const depthMin = depthMinRaw == null ? null : Number(depthMinRaw);
     const depthMax = depthMaxRaw == null ? null : Number(depthMaxRaw);
-    const depthMid = depthMidRaw == null ? null : Number(depthMidRaw);
+    const recordedDepth = recordedDepthRaw == null ? null : Number(recordedDepthRaw);
 
     const name =
       String(nameRaw || '').trim() ||
@@ -26523,17 +26551,17 @@ function closeShareDialog() {
     marker._diveAtlasFeatureId = getDiveSiteStableId(site) || String(cacheKey);
 
     const rangeText = diveDepthRangeText(depthMin, depthMax);
-    const depthText = Number.isFinite(depthMid)
-      ? `${t('diveMidpoint')}: ${lengthReadoutMarkup(depthMid)}`
-      : '';
+    const hasRecordedDepth =
+      !rangeText && Number.isFinite(recordedDepth) && recordedDepth > 0;
+    const depthLabel = hasRecordedDepth ? t('diveRecordedDepth') : t('diveHoverDepth');
+    const depthValue = rangeText
+      ? depthRangeReadoutMarkup(depthMin, depthMax)
+      : hasRecordedDepth
+        ? lengthReadoutMarkup(recordedDepth)
+        : escapeHtml(t('diveDepthUnavailable'));
 
     const hoverLines = [`<b>${escapeHtml(name)}</b>`];
-
-    if (rangeText) {
-      hoverLines.push(`${t('diveHoverDepth')}: ${depthRangeReadoutMarkup(depthMin, depthMax)}`);
-    } else if (depthText) {
-      hoverLines.push(depthText);
-    }
+    hoverLines.push(`${depthLabel}: ${depthValue}`);
 
     if (siteTypeList.length) {
       hoverLines.push(
@@ -26597,23 +26625,14 @@ function closeShareDialog() {
     }
 
     const properties = [];
-    if (rangeText) {
-      properties.push(
-        `<div class="dive-popup-property">` +
-        `<span class="dive-popup-property__label">${t('diveHoverDepth')}</span>` +
-        `<span class="dive-popup-property__value">${depthRangeReadoutMarkup(depthMin, depthMax)}</span>` +
-        `</div>`
-      );
-    }
-
-    if (!rangeText && Number.isFinite(depthMid)) {
-      properties.push(
-        `<div class="dive-popup-property">` +
-        `<span class="dive-popup-property__label">${t('diveMidpoint')}</span>` +
-        `<span class="dive-popup-property__value">${lengthReadoutMarkup(depthMid)}</span>` +
-        `</div>`
-      );
-    }
+    const depthPropertyLabel = depthLabel;
+    const depthPropertyValue = depthValue;
+    properties.push(
+      `<div class="dive-popup-property">` +
+      `<span class="dive-popup-property__label">${depthPropertyLabel}</span>` +
+      `<span class="dive-popup-property__value">${depthPropertyValue}</span>` +
+      `</div>`
+    );
 
     if (level) {
       properties.push(
