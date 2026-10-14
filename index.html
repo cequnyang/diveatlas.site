@@ -3441,6 +3441,38 @@
     .top-menu-share:active { background:#f0f1f3; }
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: #6b7280; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .top-menu-share > svg {
+      grid-area:1 / 1;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .top-menu-share .share-discovery-mark {
+      grid-area:1 / 1;
+      width:26px;
+      height:26px;
+      flex:0 0 26px;
+      margin:0;
+      border-radius:50%;
+      overflow:hidden;
+      opacity:0;
+      transform:scale(.72);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .top-menu-share .share-discovery-mark svg { width:16px; height:16px; }
+    .top-menu-share .share-discovery-mark img { width:100%; height:100%; object-fit:contain; }
+    .top-menu-share.is-share-discovery-active > svg { opacity:0; transform:scale(.72); }
+    .top-menu-share.is-share-discovery-active .share-discovery-mark { opacity:1; transform:scale(1); }
+    @media (max-width:720px) {
+      .top-menu-share .share-discovery-mark {
+        width:31.2px;
+        height:31.2px;
+        flex-basis:31.2px;
+      }
+      .top-menu-share .share-discovery-mark svg { width:19.2px; height:19.2px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .top-menu-share > svg,
+      .top-menu-share .share-discovery-mark { transition:none; }
+    }
 
     @media (max-width: 480px) {
       .top-menu-share { width: 40px; height: 40px; flex-basis: 40px; }
@@ -19992,7 +20024,139 @@ ZSD·2016–2025</span></span>
   }
 
   let sharePreviousFocus = null;
+  // Show one short example per page load so a refresh can introduce sharing again without repeating it on every sheet open.
+  const SHARE_DISCOVERY_ICON_DURATION_MS = 3200;
+  const SHARE_DISCOVERY_ICON_HEADER_DELAY_MS = 1400;
+  const SHARE_DISCOVERY_ICON_SHEET_DELAY_MS = 500;
+  const SHARE_DISCOVERY_SECOND_DESKTOP_DELAY_MS = 30000;
+  // Keep the configured first and second platforms limited to share actions available in the app.
+  const SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE = {
+    en:['shareFacebookButton', 'shareWhatsAppButton'],
+    zh:['shareWechatButton', 'shareRedNoteButton'],
+    ja:['shareLineButton', 'shareXButton'],
+    fr:['shareWhatsAppButton', 'shareInstagramButton'],
+    de:['shareWhatsAppButton', 'shareFacebookButton'],
+    nl:['shareWhatsAppButton', 'shareFacebookButton'],
+    it:['shareWhatsAppButton', 'shareInstagramButton'],
+    ru:['shareTelegramButton', 'shareFacebookButton'],
+    pt:['shareWhatsAppButton', 'shareInstagramButton'],
+    sv:['shareWhatsAppButton', 'shareFacebookButton'],
+    no:['shareWhatsAppButton', 'shareFacebookButton'],
+    es:['shareFacebookButton', 'shareWhatsAppButton'],
+    ko:['shareInstagramButton', 'shareWhatsAppButton'],
+    id:['shareWhatsAppButton', 'shareFacebookButton']
+  };
+  let shareDiscoveryIconStage = 0;
+  let shareDiscoveryIconPending = false;
+  let shareDiscoveryIconPendingTimer = 0;
+  let pendingShareDiscoveryButton = null;
+  let activeShareDiscoveryButton = null;
+  let activeShareDiscoveryMark = null;
+  let activeShareDiscoveryIconTimer = 0;
+  let activeShareDiscoveryIconCleanupTimer = 0;
+  let shareDiscoveryDesktopSecondTimer = 0;
+  let shareDiscoveryIconResizeHandler = null;
   const sharePreviewUploadTasks = new Map();
+
+  function dismissShareDiscoveryIcon() {
+    window.clearTimeout(activeShareDiscoveryIconTimer);
+    activeShareDiscoveryIconTimer = 0;
+    if (shareDiscoveryIconResizeHandler) {
+      window.removeEventListener('resize', shareDiscoveryIconResizeHandler);
+      shareDiscoveryIconResizeHandler = null;
+    }
+
+    const button = activeShareDiscoveryButton;
+    const mark = activeShareDiscoveryMark;
+    if (!button || !mark) return;
+    button.classList.remove('is-share-discovery-active');
+
+    const removeMark = () => {
+      mark.remove();
+      if (activeShareDiscoveryMark === mark) {
+        activeShareDiscoveryButton = null;
+        activeShareDiscoveryMark = null;
+      }
+      activeShareDiscoveryIconCleanupTimer = 0;
+    };
+    window.clearTimeout(activeShareDiscoveryIconCleanupTimer);
+    if (!button.isConnected || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      removeMark();
+    } else {
+      activeShareDiscoveryIconCleanupTimer = window.setTimeout(removeMark, 220);
+    }
+  }
+
+  function scheduleDesktopSecondShareDiscovery(button) {
+    window.clearTimeout(shareDiscoveryDesktopSecondTimer);
+    shareDiscoveryDesktopSecondTimer = window.setTimeout(() => {
+      shareDiscoveryDesktopSecondTimer = 0;
+      if (shareDiscoveryIconStage !== 1 || !button?.isConnected || window.matchMedia('(max-width: 720px)').matches) return;
+      const bounds = button.getBoundingClientRect();
+      if (document.visibilityState === 'hidden' || els.shareModal?.hidden === false || !bounds.width || !bounds.height) {
+        scheduleDesktopSecondShareDiscovery(button);
+        return;
+      }
+      showShareDiscoveryIcon(button, 1, 0, 'desktop');
+    }, SHARE_DISCOVERY_SECOND_DESKTOP_DELAY_MS);
+  }
+
+  function showShareDiscoveryIcon(button, optionIndex = 0, delayMs = 0, presentation = 'desktop') {
+    if (optionIndex !== shareDiscoveryIconStage || activeShareDiscoveryButton) return;
+    if (shareDiscoveryIconPending) {
+      if (presentation !== 'mobile') return;
+      window.clearTimeout(shareDiscoveryIconPendingTimer);
+      shareDiscoveryIconPending = false;
+      shareDiscoveryIconPendingTimer = 0;
+      pendingShareDiscoveryButton = null;
+    }
+    const preferredId = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[optionIndex];
+    if (!preferredId) return;
+
+    shareDiscoveryIconPending = true;
+    pendingShareDiscoveryButton = button;
+    shareDiscoveryIconPendingTimer = window.setTimeout(() => {
+      shareDiscoveryIconPending = false;
+      shareDiscoveryIconPendingTimer = 0;
+      pendingShareDiscoveryButton = null;
+      if (!button?.isConnected || els.shareModal?.hidden === false || document.visibilityState === 'hidden') return;
+      const bounds = button.getBoundingClientRect();
+      if (!bounds.width || !bounds.height || getComputedStyle(button).visibility === 'hidden') return;
+
+      updateSharePlatformVisibility();
+      const priorIds = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang].slice(0, optionIndex);
+      const fallbackIds = ['shareFacebookButton', 'shareWhatsAppButton', 'shareInstagramButton', 'shareXButton', 'shareRedditButton']
+        .filter(id => !priorIds.includes(id));
+      const platformIds = [preferredId, ...fallbackIds];
+      const platformButton = platformIds
+        .filter((id, index, ids) => id && ids.indexOf(id) === index)
+        .map(id => document.getElementById(id))
+        .find(candidate => candidate && !candidate.hidden);
+      if (!platformButton) return;
+
+      const mark = platformButton.querySelector('.share-action-icon')?.cloneNode(true);
+      if (!mark) return;
+      mark.classList.add('share-discovery-mark');
+      mark.setAttribute('aria-hidden', 'true');
+      button.append(mark);
+      activeShareDiscoveryButton = button;
+      activeShareDiscoveryMark = mark;
+      shareDiscoveryIconStage = optionIndex + 1;
+      requestAnimationFrame(() => {
+        if (activeShareDiscoveryButton === button && activeShareDiscoveryMark === mark && button.isConnected && mark.isConnected) {
+          button.classList.add('is-share-discovery-active');
+        }
+      });
+
+      button.addEventListener('click', dismissShareDiscoveryIcon, { once:true });
+      shareDiscoveryIconResizeHandler = dismissShareDiscoveryIcon;
+      window.addEventListener('resize', shareDiscoveryIconResizeHandler, { once:true });
+      activeShareDiscoveryIconTimer = window.setTimeout(dismissShareDiscoveryIcon, SHARE_DISCOVERY_ICON_DURATION_MS);
+      if (optionIndex === 0 && presentation === 'desktop' && SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[1]) {
+        scheduleDesktopSecondShareDiscovery(button);
+      }
+    }, delayMs);
+  }
 
   function getShareContextTitle(state) {
     const siteId = String(state?.selectedSiteId || '').toLowerCase();
@@ -20917,6 +21081,7 @@ function closeShareDialog() {
   [els.shareLineButton, els.shareTelegramButton, els.shareWechatButton, els.shareRedNoteButton, els.shareFacebookButton, els.shareWhatsAppButton, els.shareXButton, els.shareInstagramButton, els.shareRedditButton, els.shareEmailButton]
     .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
   els.shareNativeButton.addEventListener('click', shareWithDevice);
+  window.setTimeout(() => showShareDiscoveryIcon(els.shareMapButton), SHARE_DISCOVERY_ICON_HEADER_DELAY_MS);
   els.shareModal.addEventListener('click', event => {
     if (event.target.closest('[data-share-close]')) closeShareDialog();
   });
@@ -27275,6 +27440,8 @@ function closeShareDialog() {
     const mobileMapSheet = syncMapPopupForViewport(popup);
     ensureMobileSheetShareButton(popup);
     if (mobileMapSheet) {
+      const sheetShareButton = popup.getElement()?.querySelector('.diveatlas-sheet-share-button');
+      showShareDiscoveryIcon(sheetShareButton, shareDiscoveryIconStage, SHARE_DISCOVERY_ICON_SHEET_DELAY_MS, 'mobile');
       animateMobileMapSheetEntrance(popup);
       observeMobileMapSheetSize(popup);
     }
@@ -28029,6 +28196,15 @@ function closeShareDialog() {
     restoreZoomDetachedPopupSource(popup);
     popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
+    if (popupElement && shareDiscoveryIconPending && pendingShareDiscoveryButton && popupElement.contains(pendingShareDiscoveryButton)) {
+      window.clearTimeout(shareDiscoveryIconPendingTimer);
+      shareDiscoveryIconPending = false;
+      shareDiscoveryIconPendingTimer = 0;
+      pendingShareDiscoveryButton = null;
+    }
+    if (popupElement && activeShareDiscoveryButton && popupElement.contains(activeShareDiscoveryButton)) {
+      dismissShareDiscoveryIcon();
+    }
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
       cancelMobileMapSheetDismissal(popupElement);
       popupElement.classList.remove('mobile-vertical-dragging');
