@@ -20717,6 +20717,9 @@ ZSD·2016–2025</span></span>
     // only the URL to match this button's existing website-share behavior.
     els.shareLineButton.dataset.mobileHref = `https://line.me/R/share?text=${encodeURIComponent(url)}`;
     els.shareTelegramButton.href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+    // XHS documents this inbox route; its web SDK shares notes, not private messages.
+    // https://pages.xiaohongshu.com/activity/deeplink and https://agora.xiaohongshu.com/doc/js
+    els.shareRedNoteButton.dataset.mobileHref = 'xhsdiscover://message/center';
     els.shareWhatsAppButton.href = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`;
     els.shareEmailButton.href = `mailto:?subject=${encodeURIComponent(shareText)}&body=${encodeURIComponent(`${shareText}\n${url}`)}`;
     els.shareXButton.href = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
@@ -20824,17 +20827,15 @@ function closeShareDialog() {
     const link = event.currentTarget;
 
     if (isMobileShareExperience()) {
-      if (link === els.shareWechatButton || link === els.shareRedNoteButton) {
+      if (link === els.shareWechatButton) {
         event.preventDefault();
-        // A web page cannot choose one installed share target. Use the OS
-        // picker so users can select WeChat or Xiaohongshu without being sent
-        // to either platform's app-download page.
         void copyShareLink(link.dataset.sharePlatform || null);
         void storeSharePreviewImage();
         if (typeof navigator.share === 'function') {
-          const shareText = `${getShareContextTitle(shareSnapshot)} | DiveAtlas`;
+          // The supplied iOS repro shows WeChat rejecting the structured URL item.
+          // Send the link as plain text so it can be shared as a chat message.
           try {
-            void navigator.share({ title: shareText, text: shareText, url: shareUrl })
+            void navigator.share({ text: shareUrl })
               .catch(error => {
                 if (error?.name !== 'AbortError') {
                   console.debug('Native share picker could not be opened.', error);
@@ -20844,6 +20845,16 @@ function closeShareDialog() {
             console.debug('Native share picker could not be opened.', error);
           }
         }
+        return;
+      }
+
+      if (link === els.shareRedNoteButton) {
+        // The documented XHS route opens the inbox. Copy the link so the user
+        // can choose a friend there and paste it into the conversation.
+        link.href = link.dataset.mobileHref;
+        link.target = '_self';
+        void copyShareLink(link.dataset.sharePlatform || null);
+        void storeSharePreviewImage();
         return;
       }
 

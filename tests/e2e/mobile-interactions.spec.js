@@ -613,3 +613,57 @@ test('zooming the map in either direction keeps an open mobile detail sheet visi
     await expect.poll(async () => (await mapState(page)).popup?.owner).toContain('sheet-survives-zoom');
   }
 });
+
+test('WeChat receives a plain-text URL through the mobile share picker', async ({ page }) => {
+  await page.locator('#languageMenuButton').click();
+  await page.locator('#languageDropdown [data-language="zh"]').click();
+  await page.evaluate(() => {
+    window.__sharePayloads = [];
+    window.__copiedShareUrl = null;
+    Object.defineProperty(navigator, 'share', {
+      configurable:true,
+      value:payload => {
+        window.__sharePayloads.push(payload);
+        return Promise.resolve();
+      }
+    });
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable:true,
+      value:{ writeText:async text => { window.__copiedShareUrl = text; } }
+    });
+  });
+  await page.evaluate(() => document.querySelector('#shareMapButton').click());
+  const wechat = page.locator('#shareWechatButton');
+  await expect(wechat).toBeVisible();
+  await wechat.click();
+
+  const payloads = await page.evaluate(() => window.__sharePayloads);
+  expect(payloads).toHaveLength(1);
+  expect(Object.keys(payloads[0])).toEqual(['text']);
+  expect(payloads[0].text).toBe(await page.evaluate(() => window.__copiedShareUrl));
+  expect(payloads[0].text).toMatch(/^https?:\/\//);
+});
+
+test('RedNote copies the share URL and opens its message center on mobile', async ({ page }) => {
+  await page.locator('#languageMenuButton').click();
+  await page.locator('#languageDropdown [data-language="zh"]').click();
+  await page.evaluate(() => {
+    window.__copiedShareUrl = null;
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable:true,
+      value:{ writeText:async text => { window.__copiedShareUrl = text; } }
+    });
+    // Keep the local browser in place while the click handler's app handoff runs.
+    document.addEventListener('click', event => {
+      if (event.target.closest('#shareRedNoteButton')) event.preventDefault();
+    }, true);
+  });
+  await page.evaluate(() => document.querySelector('#shareMapButton').click());
+  const redNote = page.locator('#shareRedNoteButton');
+  await expect(redNote).toBeVisible();
+  await redNote.click();
+
+  await expect.poll(() => page.evaluate(() => window.__copiedShareUrl)).toMatch(/^https?:\/\//);
+  await expect(redNote).toHaveAttribute('href', 'xhsdiscover://message/center');
+  await expect(redNote).toHaveAttribute('target', '_self');
+});
