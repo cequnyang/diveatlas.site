@@ -63,6 +63,22 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   expect(interaction).toBe('dive-experience-outlook-location-selected');
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
+  const metricRows = popup.locator('.dive-experience-metric-row--linked');
+  await expect(metricRows.first()).toBeVisible();
+  const metricLayout = await metricRows.first().evaluate(row => {
+    const content = row.closest('.dive-experience-popup-content');
+    return {
+      fontSize:getComputedStyle(row).getPropertyValue('font-size'),
+      height:row.getBoundingClientRect().height,
+      evidenceFontSize:getComputedStyle(content.querySelector('.dive-experience-evidence-line')).getPropertyValue('font-size')
+    };
+  });
+  expect(metricLayout.height).toBeLessThanOrEqual(30);
+  if (page.viewportSize().width <= 720) {
+    expect(metricLayout.fontSize).toBe('16.8px');
+  } else {
+    expect(metricLayout.fontSize).toBe(metricLayout.evidenceFontSize);
+  }
   if (page.viewportSize().width <= 720) {
     const sheetWidths = await page.locator('.leaflet-popup.dive-conditions-rating-sheet').evaluate(node => {
       const content = node.querySelector('.leaflet-popup-content');
@@ -261,6 +277,30 @@ test('expanded Dive Experience month chart stays inside safe area and previews o
     await page.locator('.dive-experience-month-chart').scrollIntoViewIfNeeded();
     const chart = page.locator('.dive-experience-month-chart');
     await expect(chart).toBeInViewport();
+    if (page.viewportSize().width <= 720) {
+      const chartTouch = await chart.evaluate(node => {
+        const target = node;
+        const surface = node.closest('.leaflet-popup');
+        const bounds = target.getBoundingClientRect();
+        const makeTouch = clientY => new Touch({ identifier:52, target, clientX:bounds.left + bounds.width / 2, clientY });
+        const dispatch = (type, touch) => target.dispatchEvent(new TouchEvent(type, {
+          bubbles:true,
+          cancelable:true,
+          touches:type === 'touchend' ? [] : [touch],
+          targetTouches:type === 'touchend' ? [] : [touch],
+          changedTouches:[touch]
+        }));
+        dispatch('touchstart', makeTouch(bounds.top + 20));
+        dispatch('touchmove', makeTouch(bounds.top + 110));
+        dispatch('touchend', makeTouch(bounds.top + 110));
+        return {
+          dragging:surface.classList.contains('mobile-vertical-dragging'),
+          offset:surface.style.getPropertyValue('--mobile-panel-drag-y')
+        };
+      });
+      expect(chartTouch).toEqual({ dragging:false, offset:'' });
+      await expect(sheet).toBeVisible();
+    }
     const sheetMonthBeforeInspection = await page.locator('#diveExperienceMonth').inputValue();
     const chartPointForMonth = index => chart.evaluate((node, monthIndex) => {
       const point = node.createSVGPoint();

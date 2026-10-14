@@ -31,6 +31,55 @@ async function swipeRightOn(page, selector) {
   });
 }
 
+async function dispatchSheetContentTouchGesture(page, {
+  sheetSelector = '.leaflet-popup.diveatlas-mobile-sheet',
+  targetSelector = '.bio-popup-title',
+  startY = 300,
+  moveYs = [],
+  endY = moveYs.at(-1) ?? startY,
+  initialScrollTop = 0,
+  scrollTopChanges = []
+} = {}) {
+  return page.locator(sheetSelector).evaluate((surface, options) => {
+    const content = surface.querySelector('.leaflet-popup-content');
+    const target = content.querySelector(options.targetSelector) || content;
+    const bounds = target.getBoundingClientRect();
+    const clientX = bounds.left + Math.min(12, bounds.width / 2);
+    content.scrollTop = options.initialScrollTop;
+    const makeTouch = clientY => new Touch({ identifier:41, target, clientX, clientY });
+    const dispatch = (type, touch) => {
+      const touches = type === 'touchend' ? [] : [touch];
+      const event = new TouchEvent(type, {
+        bubbles:true,
+        cancelable:true,
+        touches,
+        targetTouches:touches,
+        changedTouches:[touch]
+      });
+      target.dispatchEvent(event);
+      return event;
+    };
+
+    dispatch('touchstart', makeTouch(options.startY));
+    const moves = options.moveYs.map((clientY, index) => {
+      const scrollChange = options.scrollTopChanges.find(change => change.moveIndex === index);
+      if (scrollChange) content.scrollTop = scrollChange.value;
+      const event = dispatch('touchmove', makeTouch(clientY));
+      return {
+        dragging:surface.classList.contains('mobile-vertical-dragging'),
+        offset:surface.style.getPropertyValue('--mobile-panel-drag-y'),
+        defaultPrevented:event.defaultPrevented
+      };
+    });
+    dispatch('touchend', makeTouch(options.endY));
+    return {
+      moves,
+      dragging:surface.classList.contains('mobile-vertical-dragging'),
+      offset:surface.style.getPropertyValue('--mobile-panel-drag-y')
+    };
+  }, { sheetSelector, targetSelector, startY, moveYs, endY, initialScrollTop, scrollTopChanges });
+}
+
 async function expectTitleAtDrawerInset(drawer, titleSelector, inset) {
   const titleOffset = await drawer.evaluate((panel, selector) => {
     const title = panel.querySelector(selector);
@@ -280,6 +329,65 @@ test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', asyn
   expect(closeState.exiting).toBe(true);
   expect(closeState.dragOffset).toBe('144px');
   expect(closeState.top).toBeGreaterThanOrEqual(closeState.viewportHeight - 1);
+});
+
+test('mobile sheet content drag follows the finger and snaps back below dismissal threshold', async ({ page }) => {
+  await addFixture(page, 'dive-site', { id:'content-pull-snapback', lat:-5.7, lng:131 });
+  await clickFixture(page, 'content-pull-snapback');
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).toBeVisible();
+
+  const gesture = await dispatchSheetContentTouchGesture(page, {
+    startY:300,
+    moveYs:[336],
+    endY:336
+  });
+
+  expect(gesture.moves).toEqual([{ dragging:true, offset:'36px', defaultPrevented:true }]);
+  expect(gesture.dragging).toBe(false);
+  expect(gesture.offset).toBe('');
+  await expect(sheet).toBeVisible();
+});
+
+test('mobile sheet content pull dismisses after the close threshold', async ({ page }) => {
+  await addFixture(page, 'dive-site', { id:'content-pull-dismiss', lat:-5.7, lng:131 });
+  await clickFixture(page, 'content-pull-dismiss');
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).toBeVisible();
+
+  const gesture = await dispatchSheetContentTouchGesture(page, {
+    startY:300,
+    moveYs:[390],
+    endY:390
+  });
+
+  expect(gesture.moves[0]).toMatchObject({ dragging:true, offset:'90px', defaultPrevented:true });
+  await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
+});
+
+test('mobile sheet content drag starts only after scrolling reaches the top', async ({ page }) => {
+  await addFixture(page, 'dive-site', { id:'content-pull-after-scroll', lat:-5.7, lng:131 });
+  await clickFixture(page, 'content-pull-after-scroll');
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).toBeVisible();
+  await sheet.locator('.leaflet-popup-content').evaluate(content => {
+    const filler = document.createElement('div');
+    filler.style.height = '500px';
+    content.append(filler);
+  });
+
+  const gesture = await dispatchSheetContentTouchGesture(page, {
+    startY:300,
+    moveYs:[330,360],
+    endY:360,
+    initialScrollTop:80,
+    scrollTopChanges:[{ moveIndex:1, value:0 }]
+  });
+
+  expect(gesture.moves[0]).toMatchObject({ dragging:false, offset:'' });
+  expect(gesture.moves[1]).toMatchObject({ dragging:true, offset:'30px', defaultPrevented:true });
+  expect(gesture.dragging).toBe(false);
+  await expect(sheet).toBeVisible();
 });
 
 test('mobile layer rows toggle across the row and the collapsed bar shrinks after idle', async ({ page }) => {
