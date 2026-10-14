@@ -667,3 +667,50 @@ test('RedNote copies the share URL and opens its message center on mobile', asyn
   await expect(redNote).toHaveAttribute('href', 'xhsdiscover://message/center');
   await expect(redNote).toHaveAttribute('target', '_self');
 });
+
+for (const { language, primary, secondary } of [
+  { language:'zh', primary:'wechat', secondary:'rednote' },
+  { language:'ru', primary:'telegram', secondary:'facebook' },
+  { language:'ko', primary:'instagram', secondary:'whatsapp' }
+]) {
+  test(`mobile map sheet share discovery shows localized primary and secondary icons for ${language}`, async ({ page }) => {
+    await page.setViewportSize({ width:390, height:844 });
+    await page.locator('#languageMenuButton').click();
+    await page.locator(`#languageDropdown [data-language="${language}"]`).click();
+    await setMapView(page, -5.7, 131, 14);
+    await addFixture(page, 'dive-site', { id:`share-discovery-${language}`, lat:-5.7, lng:131 });
+
+    await clickFixture(page, `share-discovery-${language}`);
+    const popup = page.locator('.leaflet-popup.dive-site-popup');
+    await expect(popup).toBeVisible();
+    const shareButton = popup.locator('.diveatlas-sheet-share-button');
+    await expect(shareButton).toBeVisible();
+    const buttonSize = await shareButton.evaluate(button => {
+      const style = getComputedStyle(button);
+      return { width:parseFloat(style.width), height:parseFloat(style.height) };
+    });
+    expect(buttonSize.width).toBeCloseTo(59.4, 1);
+    expect(buttonSize.height).toBeCloseTo(59.4, 1);
+    const discoveryIcon = shareButton.locator('.share-discovery-mark');
+    await expect(discoveryIcon).toBeVisible();
+    await expect(discoveryIcon).toHaveClass(new RegExp(`share-action-icon--${primary}`));
+    await expect(shareButton).toHaveClass(/is-share-discovery-active/);
+
+    const iconSize = await discoveryIcon.evaluate(icon => {
+      const style = getComputedStyle(icon);
+      return { width:parseFloat(style.width), height:parseFloat(style.height) };
+    });
+    expect(iconSize.width).toBeCloseTo(31.2, 1);
+    expect(iconSize.height).toBeCloseTo(31.2, 1);
+
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.closePopup());
+    await expect(popup).toHaveCount(0);
+    await page.waitForTimeout(250);
+    await clickFixture(page, `share-discovery-${language}`);
+    const nextShareButton = page.locator('.leaflet-popup.dive-site-popup .diveatlas-sheet-share-button');
+    const nextDiscoveryIcon = nextShareButton.locator('.share-discovery-mark');
+    await expect(nextDiscoveryIcon).toBeVisible();
+    await expect(nextDiscoveryIcon).toHaveClass(new RegExp(`share-action-icon--${secondary}`));
+    await expect(nextShareButton).toHaveClass(/is-share-discovery-active/);
+  });
+}

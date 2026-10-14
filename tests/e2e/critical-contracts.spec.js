@@ -11,7 +11,13 @@ const {
   waitForClickResolution
 } = require('./support');
 
-test.beforeEach(async ({ page }) => openMap(page));
+const desktopShareDiscoveryTestTitle = 'desktop share discovery advances to its second icon after thirty seconds';
+
+test.beforeEach(async ({ page }, testInfo) => {
+  const isDesktopShareDiscovery = testInfo.title === desktopShareDiscoveryTestTitle;
+  if (isDesktopShareDiscovery) await page.clock.install();
+  await openMap(page, isDesktopShareDiscovery ? { localStorage:{ 'global-coral-map-lang':'ru' } } : undefined);
+});
 
 async function stabilizeDiveRatingScreenshot(page, { minimumPopupHeight = 0 } = {}) {
   await page.addStyleTag({
@@ -607,6 +613,24 @@ test('mobile share preview uses a landscape view without moving the live map', a
   expect(geometry.frameAspect).toBeCloseTo(1200 / 630, 1);
   expect(geometry.changes).toEqual([]);
   expect(geometry.zoom).toBe(8);
+});
+
+test(desktopShareDiscoveryTestTitle, async ({ page }) => {
+  const shareButton = page.locator('#shareMapButton');
+  const discoveryIcon = shareButton.locator('.share-discovery-mark');
+  await expect(discoveryIcon).toBeVisible();
+  await expect(discoveryIcon).toHaveClass(/share-action-icon--telegram/);
+  await expect(shareButton).toHaveClass(/is-share-discovery-active/);
+
+  const currentTime = await page.evaluate(() => Date.now());
+  await page.clock.pauseAt(currentTime);
+  await page.clock.runFor(3_500);
+  await expect(discoveryIcon).toHaveCount(0);
+  await page.clock.runFor(26_500);
+
+  await expect(discoveryIcon).toBeVisible();
+  await expect(discoveryIcon).toHaveClass(/share-action-icon--facebook/);
+  await expect(shareButton).toHaveClass(/is-share-discovery-active/);
 });
 
 test('legacy long-form share URLs remain readable and preserve a site popup flow', async ({ page }) => {
