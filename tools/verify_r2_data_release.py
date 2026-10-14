@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the public R2 manifest, sample assets, caching, and exact-origin CORS."""
+"""Verify the public R2 manifest, sample assets, caching, and browser-readable CORS."""
 
 from __future__ import annotations
 
@@ -31,6 +31,15 @@ def get(url: str, origin: str) -> tuple[int, dict[str, str], bytes]:
         return error.code, {key.lower(): value for key, value in error.headers.items()}, error.read()
 
 
+def cors_allows_origin(headers: dict[str, str], origin: str) -> bool:
+    allowed_origin = headers.get("access-control-allow-origin", "").strip()
+    if allowed_origin == origin:
+        return True
+    # These public assets are fetched without credentials. A wildcard also lets
+    # local development servers read images into the share-preview canvas.
+    return allowed_origin == "*" and headers.get("access-control-allow-credentials", "").lower() != "true"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--asset-base-url", required=True, help="Public immutable release URL ending in /releases/<id>/")
@@ -56,8 +65,8 @@ def main() -> None:
     status, headers, body = get(base + f"release-manifest.json?cacheBust={time.time_ns()}", origin)
     if status != 200:
         raise SystemExit(f"Public release manifest returned HTTP {status}.")
-    if headers.get("access-control-allow-origin") != origin:
-        raise SystemExit("R2 CORS did not allow the exact app origin.")
+    if not cors_allows_origin(headers, origin):
+        raise SystemExit("R2 CORS did not allow the app origin or anonymous public access.")
     manifest = json.loads(body)
     if manifest.get("format") != "diveatlas-browser-data-release" or manifest.get("schemaVersion") != 1:
         raise SystemExit("Public release manifest has an unsupported format.")
@@ -94,7 +103,7 @@ def main() -> None:
             status, headers, _ = get(base + item["path"], origin)
             if status != 200:
                 raise SystemExit(f"Public sample asset returned HTTP {status}: {item['path']}")
-            if headers.get("access-control-allow-origin") != origin:
+            if not cors_allows_origin(headers, origin):
                 raise SystemExit(f"CORS failed for sample asset: {item['path']}")
             cache = headers.get("cache-control", "").lower()
             if "immutable" not in cache or "31536000" not in cache:
@@ -106,7 +115,7 @@ def main() -> None:
         status, headers, payload = get(base + f"{path}?cacheBust={time.time_ns()}", origin)
         if status != 200:
             raise SystemExit(f"Startup manifest returned HTTP {status}: {path}")
-        if headers.get("access-control-allow-origin") != origin:
+        if not cors_allows_origin(headers, origin):
             raise SystemExit(f"CORS failed for startup asset: {path}")
         if len(payload) != item.get("bytes") or hashlib.sha256(payload).hexdigest() != item.get("sha256"):
             raise SystemExit(f"Startup manifest does not match its release inventory checksum: {path}")
