@@ -10716,7 +10716,6 @@ ZSD·2016–2025</span></span>
       diveLevel: '难度等级',
       diveType: '潜点类型',
       diveReviewedCategories: '已审核分类',
-      diveOriginalType: '原始类型',
       diveSetting: '环境',
       diveAccess: '入水方式',
       diveFeatures: '水下特征',
@@ -10793,7 +10792,6 @@ ZSD·2016–2025</span></span>
       diveLevel: 'Level',
       diveType: 'Site type',
       diveReviewedCategories: 'Reviewed categories',
-      diveOriginalType: 'Original type',
       diveSetting: 'Setting',
       diveAccess: 'Access',
       diveFeatures: 'Features',
@@ -10870,7 +10868,6 @@ ZSD·2016–2025</span></span>
       diveLevel: '難易度',
       diveType: 'スポットタイプ',
       diveReviewedCategories: '確認済みカテゴリ',
-      diveOriginalType: '元のタイプ',
       diveSetting: '環境',
       diveAccess: 'エントリー方法',
       diveFeatures: '水中の特徴',
@@ -26307,14 +26304,6 @@ function closeShareDialog() {
         )}</span>` +
         `</div>`
       ));
-      if (siteTypes) {
-        properties.push(
-          `<div class="dive-popup-property">` +
-          `<span class="dive-popup-property__label">${t('diveOriginalType')}</span>` +
-          `<span class="dive-popup-property__value">${escapeHtml(siteTypes)}</span>` +
-          `</div>`
-        );
-      }
     } else if (siteTypeList.length) {
       properties.push(
         `<div class="dive-popup-property">` +
