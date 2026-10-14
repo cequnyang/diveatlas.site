@@ -1465,7 +1465,7 @@
     [dir="rtl"] .dive-popup-rating::after, [dir="rtl"] .dive-experience-metric-row--linked::after { transform:rotate(225deg); }
     .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; vertical-align: 0.3em;}
     .dive-popup-rating__label .dive-brand-rating-logo { height:1.573em; width:auto; margin:0; }
-    .dive-popup-rating__value { color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
+    .dive-popup-rating__value { margin-left:auto; color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
     .dive-popup-rating__value[data-status="loading"] { color:var(--muted); font-weight:500; }
     .dive-popup-location__region { margin:0 !important; line-height:inherit; }
     .dive-popup-location__region { width:max-content; max-width:100%; font-size:9px; cursor:pointer; }
@@ -1851,7 +1851,7 @@
     .dive-experience-subscore .dive-experience-dimension-value { font-weight:650; }
     .dive-experience-dimension-details { margin-top:7px; border-bottom:1px solid var(--line); color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
     .dive-experience-dimension-details > summary { padding:5px 0; color:var(--layers-legend-title,var(--text-secondary)); font-weight:700; cursor:pointer; }
-    .dive-experience-dimension-list { display:grid; gap:3px; padding:2px 0 7px; }
+    .dive-experience-dimension-list { display:grid; gap:2px; padding:2px 0 7px; }
     .dive-experience-dimension-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(90px,auto); align-items:baseline; gap:2px 10px; padding:3px 0; }
     .dive-experience-dimension-label { color:var(--layers-legend-meta,var(--text-muted)); }
     .dive-experience-dimension-value { color:var(--layers-temperature-title,var(--text-primary)); text-align:right; font-variant-numeric:tabular-nums; }
@@ -1959,7 +1959,7 @@
     .dive-conditions-metric[data-comfort="moderate"] .dive-conditions-value { color:var(--dc-fg-moderate); }
     .dive-conditions-metric[data-comfort="challenging"] .dive-conditions-value { color:var(--dc-fg-challenging); }
     .dive-conditions-popup-content .dive-conditions-value[data-available="false"] { color:var(--layers-legend-meta,var(--text-muted)); }
-    .dive-experience-metric-row--linked { grid-template-columns:minmax(0,1fr) minmax(90px,auto) 10px; align-items:center; min-height:40px; padding:2px 4px; border-radius:6px; font-size:16.8px; line-height:1.25; cursor:pointer; transition:background-color .12s ease; }
+    .dive-experience-metric-row--linked { grid-template-columns:minmax(0,1fr) minmax(90px,auto) 10px; align-items:center; min-height:28px; padding:2px 4px; border-radius:6px; font-size:11px; line-height:1.25; cursor:pointer; transition:background-color .12s ease; }
     .dive-experience-metric-row--linked::after { content:''; grid-column:3; grid-row:1; justify-self:center; width:6px; height:6px; border-top:1.5px solid var(--layers-legend-meta,var(--text-muted)); border-right:1.5px solid var(--layers-legend-meta,var(--text-muted)); transform:rotate(45deg); }
     .dive-experience-metric-row--linked:hover, .dive-experience-metric-row--linked:active { background:var(--panel-soft); }
     .dive-experience-metric-row--linked:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; border-radius:3px; }
@@ -2082,6 +2082,8 @@
         width:100% !important;
         max-width:none !important;
       }
+      .diveatlas-mobile-sheet .dive-experience-metric-row--linked,
+      .dive-conditions-rating-sheet .dive-experience-metric-row--linked { font-size:16.8px; }
       .dive-conditions-rating-sheet .leaflet-popup-content-wrapper { max-height:var(--dive-conditions-rating-sheet-max-height); }
       .leaflet-popup.diveatlas-mobile-sheet .leaflet-popup-content-wrapper,
       .leaflet-popup.dive-conditions-rating-sheet .leaflet-popup-content-wrapper { position:relative; }
@@ -27131,6 +27133,117 @@ function closeShareDialog() {
     surface.addEventListener('transitionend', onTransitionEnd);
   }
 
+  const MOBILE_MAP_SHEET_CHART_SELECTOR = '#diveExperienceMonthComparison, .dive-experience-month-chart, .dive-conditions-score-chart, .waves-seasonal-chart, .regional-currents-month-chart, .temperature-profile-chart, .temperature-year-chart, .water-clarity-seasonal-chart, .coral-heat-stress-history-chart, .tide-popup-chart';
+  function isMobileMapSheetChartTarget(target) {
+    return target instanceof Element && Boolean(target.closest(MOBILE_MAP_SHEET_CHART_SELECTOR));
+  }
+
+  // Keep the content drag's close distance aligned with the sheet-handle gesture.
+  function bindMobileSheetContentPullToClose(content, surface, onDismiss, { closeDistance = 72 } = {}) {
+    if (!content || !surface || content._diveAtlasPullToCloseBound) return;
+    content._diveAtlasPullToCloseBound = true;
+    let pull = null;
+    let suppressClickUntil = 0;
+    let suppressClickTarget = null;
+
+    const resetSurface = () => {
+      surface.classList.remove('mobile-vertical-dragging');
+      surface.style.removeProperty('--mobile-panel-drag-y');
+    };
+    const touchById = (touches, identifier) => Array.from(touches).find(touch => touch.identifier === identifier);
+    const eventTargetElement = event => {
+      if (event.target instanceof Element) return event.target;
+      return event.target?.parentElement || null;
+    };
+
+    content.addEventListener('touchstart', event => {
+      suppressClickUntil = 0;
+      suppressClickTarget = null;
+      if (!window.matchMedia('(max-width:720px)').matches) return;
+      if (event.touches.length !== 1 || isMobileMapSheetChartTarget(eventTargetElement(event))) {
+        if (pull?.dragging) resetSurface();
+        pull = null;
+        return;
+      }
+      const touch = event.changedTouches[0] || event.touches[0];
+      pull = {
+        id:touch.identifier,
+        startX:touch.clientX,
+        startY:touch.clientY,
+        lastY:touch.clientY,
+        axis:null,
+        dragging:false,
+        dragStartY:touch.clientY,
+        contentScrolled:content.scrollTop > 1,
+        target:eventTargetElement(event)
+      };
+    }, { passive:true });
+
+    // Native scrolling stays in control until a downward gesture reaches the
+    // content's top; then prevent scroll chaining and move the sheet itself.
+    content.addEventListener('touchmove', event => {
+      if (!pull) return;
+      const touch = touchById(event.touches, pull.id);
+      if (!touch) return;
+      const deltaX = touch.clientX - pull.startX;
+      const deltaY = touch.clientY - pull.startY;
+      if (!pull.axis && Math.hypot(deltaX, deltaY) >= 4) {
+        pull.axis = Math.abs(deltaX) > Math.abs(deltaY) * 1.2 ? 'horizontal' : 'vertical';
+      }
+      if (pull.axis === 'horizontal') {
+        pull.lastY = touch.clientY;
+        return;
+      }
+      if (deltaY < 0 || content.scrollTop > 1) pull.contentScrolled = true;
+      if (!pull.dragging && pull.axis === 'vertical' && touch.clientY > pull.lastY && content.scrollTop <= 1) {
+        pull.dragging = true;
+        pull.dragStartY = pull.contentScrolled ? pull.lastY : pull.startY;
+      }
+      if (pull.dragging) {
+        if (event.cancelable) event.preventDefault();
+        const offset = Math.max(0, touch.clientY - pull.dragStartY);
+        surface.classList.add('mobile-vertical-dragging');
+        surface.style.setProperty('--mobile-panel-drag-y', `${offset}px`);
+      }
+      pull.lastY = touch.clientY;
+    }, { passive:false });
+
+    const finishPull = event => {
+      if (!pull) return;
+      const touch = touchById(event.changedTouches, pull.id);
+      if (!touch) return;
+      const wasDragging = pull.dragging;
+      const distance = wasDragging ? Math.max(0, touch.clientY - pull.dragStartY) : 0;
+      const target = pull.target;
+      pull = null;
+      if (!wasDragging) return;
+      suppressClickUntil = performance.now() + 350;
+      suppressClickTarget = target;
+      if (distance >= closeDistance) {
+        animateMobileMapSheetDismissal(surface, onDismiss);
+        return;
+      }
+      surface.classList.remove('mobile-vertical-dragging');
+      void surface.offsetHeight;
+      surface.style.removeProperty('--mobile-panel-drag-y');
+    };
+    content.addEventListener('touchend', finishPull, { passive:true });
+    content.addEventListener('touchcancel', () => {
+      const wasDragging = pull?.dragging;
+      pull = null;
+      if (wasDragging) resetSurface();
+    }, { passive:true });
+    content.addEventListener('click', event => {
+      if (performance.now() >= suppressClickUntil || !suppressClickTarget) return;
+      if (event.target === suppressClickTarget || (event.target instanceof Node && suppressClickTarget.contains(event.target))) {
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClickUntil = 0;
+        suppressClickTarget = null;
+      }
+    }, true);
+  }
+
   function bindMobileVerticalDragHandle(handle, surface, onDismiss, {
     tapToDismiss = false,
     closeDistance = 82,
@@ -27262,12 +27375,12 @@ function closeShareDialog() {
         header.prepend(handle);
       }
       const content = element.querySelector('.leaflet-popup-content');
+      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), { closeDistance:72 });
       if (content && content._diveAtlasRatingSwipeBound !== true) {
         content._diveAtlasRatingSwipeBound = true;
         let dragStart = null;
-        const chartSelector = '#diveExperienceMonthComparison, .dive-experience-month-chart, .dive-conditions-score-chart, .waves-seasonal-chart, .regional-currents-month-chart, .temperature-profile-chart, .temperature-year-chart, .coral-heat-stress-history-chart, .tide-popup-chart';
         content.addEventListener('pointerdown', event => {
-          if (event.button !== 0 || event.target.closest(chartSelector)) return;
+          if (event.button !== 0 || isMobileMapSheetChartTarget(event.target)) return;
           dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
         }, { passive:true });
         content.addEventListener('pointerup', event => {
@@ -27316,12 +27429,12 @@ function closeShareDialog() {
         });
         content.prepend(handle);
       }
+      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), { closeDistance:72 });
       if (content && content._diveAtlasChildSheetSwipeBound !== true) {
         content._diveAtlasChildSheetSwipeBound = true;
         let dragStart = null;
-        const chartSelector = '.waves-seasonal-chart, .regional-currents-month-chart, .temperature-profile-chart, .temperature-year-chart, .water-clarity-seasonal-chart, .coral-heat-stress-history-chart, .tide-popup-chart';
         content.addEventListener('pointerdown', event => {
-          if (event.button !== 0 || event.target.closest(chartSelector)) return;
+          if (event.button !== 0 || isMobileMapSheetChartTarget(event.target)) return;
           dragStart = { x:event.clientX, y:event.clientY, id:event.pointerId };
         }, { passive:true });
         content.addEventListener('pointerup', event => {
