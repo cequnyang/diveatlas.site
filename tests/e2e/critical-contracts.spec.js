@@ -622,7 +622,9 @@ test(desktopShareDiscoveryTestTitle, async ({ page }) => {
   await expect(discoveryIcon).toHaveClass(/share-action-icon--telegram/);
   await expect(shareButton).toHaveClass(/is-share-discovery-active/);
 
-  const currentTime = await page.evaluate(() => Date.now());
+  // Give the clock protocol call a small cushion so pauseAt cannot target a time
+  // that has already passed while the browser round-trip is in flight.
+  const currentTime = await page.evaluate(() => Date.now() + 1_000);
   await page.clock.pauseAt(currentTime);
   await page.clock.runFor(3_500);
   await expect(discoveryIcon).toHaveCount(0);
