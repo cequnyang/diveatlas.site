@@ -468,7 +468,7 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share preview shortens long site summaries and defers Worker rendering after local capture failure', async ({ page }) => {
+test('share preview shortens long site summaries and skips local image uploads', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
   await clickFixture(page, 'long-share-summary');
@@ -526,23 +526,12 @@ test('share preview shortens long site summaries and defers Worker rendering aft
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
-  const captureDeferred = page.waitForEvent('console', message =>
-    message.type() === 'debug' && message.text().includes('Device preview upload deferred')
-  );
-  await page.evaluate(() => {
-    const nativeToBlob = HTMLCanvasElement.prototype.toBlob;
-    HTMLCanvasElement.prototype.toBlob = function () {
-      HTMLCanvasElement.prototype.toBlob = nativeToBlob;
-      throw new DOMException('Tainted canvases may not be exported', 'SecurityError');
-    };
-  });
   await dialog.getByRole('button', { name:'Copy link' }).click();
-  await captureDeferred;
   await expect(page.locator('#shareStatus')).toContainText(/copied/i);
   expect(previewRequests).toEqual([]);
 });
 
-test('does not request Worker rendering immediately after a local preview upload fails', async ({ page }) => {
+test('local share links do not upload images or request Worker rendering early', async ({ page }) => {
   await setMapView(page, -5.7, 131, 8);
   const previewRequests = [];
   await page.route('https://share.diveatlas.site/map-preview-upload/**', async route => {
@@ -560,22 +549,9 @@ test('does not request Worker rendering immediately after a local preview upload
   await page.evaluate(() => document.querySelector('#shareMapButton').click());
   const dialog = page.getByRole('dialog', { name:'Share' });
   await expect(dialog).toBeVisible();
-  await page.evaluate(() => {
-    const nativeToBlob = HTMLCanvasElement.prototype.toBlob;
-    HTMLCanvasElement.prototype.toBlob = function (callback, type) {
-      HTMLCanvasElement.prototype.toBlob = nativeToBlob;
-      callback(new Blob(['share preview fixture'], { type:type || 'image/jpeg' }));
-    };
-  });
-  const uploadResponse = page.waitForResponse(response =>
-    response.url().startsWith('https://share.diveatlas.site/map-preview-upload/') &&
-    response.request().method() === 'POST'
-  );
   await dialog.getByRole('button', { name:'Copy link' }).click();
-  await uploadResponse;
   await expect.poll(() => page.locator('#shareStatus').innerText()).toMatch(/copied/i);
-  expect(previewRequests.some(request => request.method === 'POST')).toBe(true);
-  expect(previewRequests.some(request => new URL(request.url).searchParams.get('render') === '1')).toBe(false);
+  expect(previewRequests).toEqual([]);
 });
 
 test('mobile share preview uses a landscape view without moving the live map', async ({ page }) => {
