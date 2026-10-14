@@ -21021,6 +21021,12 @@ ZSD·2016–2025</span></span>
       const isMapShare = /^\/map\/?$/.test(share.pathname);
       const isSiteShare = /^\/share\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\/?$/i.test(share.pathname);
       if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || (!isMapShare && !isSiteShare)) return;
+      const hostname = window.location.hostname.toLowerCase();
+      if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]' || hostname.endsWith('.localhost')) {
+        // The Worker renders and caches previews on demand, so local pages can
+        // skip image export and upload rather than request loopback CORS access.
+        return;
+      }
       const existingTask = sharePreviewUploadTasks.get(share.href);
       if (existingTask) return await existingTask;
       const task = (async () => {
