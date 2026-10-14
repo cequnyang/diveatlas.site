@@ -15595,6 +15595,11 @@ ZSD·2016–2025</span></span>
   let waterClarityQueryModulePromise = null;
   let waterClarityQueryService = null;
   let waterClarityQueryGeneration = 0;
+  function invalidateWaterClarityQuery() {
+    waterClarityQueryGeneration += 1;
+    // A stale query will not reach its normal completion handler to clear this.
+    clearMapClickLocationStatus();
+  }
   let waterClaritySeasonalGeneration = 0;
   let waterClaritySeasonalOpen = false;
   let waterClaritySeasonalPoints = null;
@@ -16761,7 +16766,7 @@ ZSD·2016–2025</span></span>
   }
 
   function deactivateWaterClarityView() {
-    waterClarityQueryGeneration += 1;
+    invalidateWaterClarityQuery();
     waterClaritySeasonalGeneration += 1;
     waterClaritySeasonalOpen = false;
     waterClaritySeasonalPoints = null;
@@ -17085,9 +17090,13 @@ ZSD·2016–2025</span></span>
     const selectedPoint = map.latLngToContainerPoint(mapClickLocationLatLng);
     const offset = selectedPoint.subtract(targetPoint);
     if (offset.distanceTo(L.point(0, 0)) < 2) return;
-    map.panBy(offset, {
-      animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-      duration:0.25
+    // Status-tooltip centering is app-driven; treating it as a user gesture
+    // cancels the async sample that the tooltip is waiting for.
+    runInternalMapMovement(() => {
+      map.panBy(offset, {
+        animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        duration:0.25
+      });
     });
   }
 
@@ -18219,8 +18228,11 @@ ZSD·2016–2025</span></span>
         waterClarityQueryService = createWaterClarityQuery({ maxChunks: 4 });
       }
       const result = await waterClarityQueryService.query(queryLatLng, { month: environmentalMonth('water-clarity') });
-      if (generation !== waterClarityQueryGeneration || (environmentalViewController.activeView !== 'water-clarity' && !independent) ||
-          popupRevision !== activeClickPopupRevision) return;
+      if (generation !== waterClarityQueryGeneration || (environmentalViewController.activeView !== 'water-clarity' && !independent)) return;
+      if (popupRevision !== activeClickPopupRevision) {
+        if (!independent) clearMapClickLocationStatus();
+        return;
+      }
       if (result.unavailable) {
         closeManagedPopupForLayer('water-clarity');
         if (!independent) setMapLocationFeedback('noData');
@@ -18235,8 +18247,11 @@ ZSD·2016–2025</span></span>
       openManagedPopup('water-clarity:query', waterClarityPopup, queryLatLng);
       renderWaterClarityDetail(result);
     } catch (error) {
-      if (generation !== waterClarityQueryGeneration || (environmentalViewController.activeView !== 'water-clarity' && !independent) ||
-          popupRevision !== activeClickPopupRevision) return;
+      if (generation !== waterClarityQueryGeneration || (environmentalViewController.activeView !== 'water-clarity' && !independent)) return;
+      if (popupRevision !== activeClickPopupRevision) {
+        if (!independent) clearMapClickLocationStatus();
+        return;
+      }
       console.warn('Water Clarity query could not be loaded:', error);
       closeManagedPopupForLayer('water-clarity');
       if (!independent) setMapLocationFeedback('unavailable');
@@ -28240,7 +28255,7 @@ function closeShareDialog() {
       temperatureQueryGeneration += 1;
     }
     if (environmentalViewController.activeView === 'water-clarity') {
-      waterClarityQueryGeneration += 1;
+      invalidateWaterClarityQuery();
     }
     closeActiveMapHoverTooltips();
   });
@@ -28621,7 +28636,7 @@ function closeShareDialog() {
       temperatureQueryGeneration += 1;
     }
     if (environmentalViewController.activeView === 'water-clarity' && lastWaterClarityLatLng) {
-      waterClarityQueryGeneration += 1;
+      invalidateWaterClarityQuery();
     }
     if (environmentalViewController.activeView === 'waves' && lastWavesLatLng) {
       wavesQueryGeneration += 1;
