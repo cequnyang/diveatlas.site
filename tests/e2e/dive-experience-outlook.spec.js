@@ -61,23 +61,23 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   await waitForMapInteractionWindow(page);
   const interaction = await page.evaluate(() => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat:-5.7, lng:131 }));
   expect(interaction).toBe('dive-experience-outlook-location-selected');
-  const popup = page.locator('.dive-experience-popup-content');
+  const popup = page.locator('.leaflet-popup:visible .dive-experience-popup-content');
   await expect(popup).toBeVisible();
   const metricRows = popup.locator('.dive-experience-metric-row--linked');
   await expect(metricRows.first()).toBeVisible();
-  const metricLayout = await metricRows.first().evaluate(row => {
-    const content = row.closest('.dive-experience-popup-content');
-    return {
-      fontSize:getComputedStyle(row).getPropertyValue('font-size'),
-      height:row.getBoundingClientRect().height,
-      evidenceFontSize:getComputedStyle(content.querySelector('.dive-experience-evidence-line')).getPropertyValue('font-size')
-    };
-  });
-  expect(metricLayout.height).toBeLessThanOrEqual(30);
+  // Mobile sheets animate into place after the popup becomes visible. Poll the
+  // rendered styles and geometry so this assertion measures the finished sheet,
+  // rather than a transient zero-size state on slower browser runners.
+  await expect.poll(() => metricRows.first().evaluate(row => row.getBoundingClientRect().height)).toBeGreaterThan(0);
+  await expect.poll(() => metricRows.first().evaluate(row => row.getBoundingClientRect().height)).toBeLessThanOrEqual(30);
   if (page.viewportSize().width <= 720) {
-    expect(metricLayout.fontSize).toBe('16.8px');
+    await expect(metricRows.first()).toHaveCSS('font-size', '16.8px');
   } else {
-    expect(metricLayout.fontSize).toBe(metricLayout.evidenceFontSize);
+    await expect.poll(() => metricRows.first().evaluate(row => {
+      const rowSize = getComputedStyle(row).fontSize;
+      const evidenceSize = getComputedStyle(row.closest('.dive-experience-popup-content').querySelector('.dive-experience-evidence-line')).fontSize;
+      return Boolean(rowSize && rowSize !== '0px' && rowSize === evidenceSize);
+    })).toBe(true);
   }
   if (page.viewportSize().width <= 720) {
     const sheetWidths = await page.locator('.leaflet-popup.dive-conditions-rating-sheet').evaluate(node => {
@@ -153,7 +153,10 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   });
   expect(selectedCell?.score).not.toBeNull();
   await expect(popup.locator('.dive-experience-main-score')).toContainText(`${selectedCell.score}/100`);
-  await expect(popup.locator('.dive-experience-evidence-line')).toContainText(`${selectedCell.activeDimensionCount} of 7 dimensions available`);
+  await expect(popup.locator('.dive-experience-completeness > span[aria-hidden="true"]'))
+    .toHaveText(`${selectedCell.activeDimensionCount}/7`);
+  await expect(popup.locator('.dive-experience-coverage-meter'))
+    .toHaveAttribute('aria-label', `${selectedCell.activeDimensionCount} of 7 dimensions available`);
   await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
   const australiaPoint = { lat:-28.536, lng:137.505 };
   await waitForMapInteractionWindow(page);
