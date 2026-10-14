@@ -1641,6 +1641,24 @@
       outline: 3px solid var(--primary);
       outline-offset: -3px;
     }
+    .dive-site-popup--with-photo .dive-popup-photo-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      box-sizing: border-box;
+      max-width: calc(100% - 20px);
+      padding: 5px 8px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 999px;
+      background: rgba(8, 15, 25, .78);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+      pointer-events: none;
+    }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-backdrop,
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-shade { visibility: visible; }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-landscape .dive-popup-photo { object-fit: cover; }
@@ -4422,12 +4440,55 @@
       border-radius: 14px;
       background: var(--panel-soft);
     }
+    .share-preview-site-photo {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .share-preview-map-snapshot {
       position: absolute;
+      z-index: 0;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
     }
+    .share-preview-frame[data-background="site"] .share-preview-map-snapshot { display: none; }
+    .share-preview-photo-label,
+    .share-preview-photo-credit {
+      position: absolute;
+      z-index: 1;
+      max-width: calc(100% - 24px);
+      box-sizing: border-box;
+      padding: 5px 8px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      background: rgba(8,15,25,.78);
+      color: #fff;
+      font-size: 11px;
+      line-height: 1.3;
+      text-shadow: 0 1px 2px rgba(0,0,0,.5);
+      pointer-events: none;
+    }
+    .share-preview-photo-label { top: 12px; left: 12px; font-weight: 600; }
+    .share-preview-photo-credit { bottom: 12px; left: 12px; max-width: min(44%, 420px); overflow-wrap: anywhere; }
+    .share-preview-background-choices {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: var(--text);
+      font-size: 12px;
+    }
+    .share-preview-background-choices legend { margin: 0 2px 0 0; padding: 0; color: var(--muted); font-weight: 600; }
+    .share-preview-background-choices label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+    .share-preview-background-choices input { width: 14px; height: 14px; margin: 0; accent-color: var(--primary); }
     .share-preview-map-clone {
       position: absolute;
       transform-origin: top left;
@@ -6906,12 +6967,20 @@
         </button>
       </div>
       <div class="share-dialog-body">
-        <div class="share-preview-frame" id="sharePreviewFrame" aria-label="Preview of the shared map">
+        <div class="share-preview-frame" id="sharePreviewFrame" data-background="map" aria-label="Preview of the shared map">
+          <img class="share-preview-site-photo" id="sharePreviewSitePhoto" alt="" aria-hidden="true" crossorigin="anonymous" hidden>
+          <div class="share-preview-photo-label" id="sharePreviewPhotoLabel" hidden></div>
+          <div class="share-preview-photo-credit" id="sharePreviewPhotoCredit" hidden></div>
           <div class="share-preview-map-snapshot" id="sharePreviewMapSnapshot" aria-hidden="true" hidden></div>
           <div class="share-preview-popup-pointer" id="sharePreviewPopupPointer" aria-hidden="true" hidden></div>
           <div class="share-preview-placeholder" id="sharePreviewPlaceholder" role="status">Preparing map preview…</div>
           <aside class="share-preview-popup-data" id="sharePreviewPopupData" hidden></aside>
         </div>
+        <fieldset class="share-preview-background-choices" id="sharePreviewBackgroundChoices" hidden>
+          <legend data-i18n="sharePreviewBackground">Preview background</legend>
+          <label><input type="radio" name="sharePreviewBackground" value="map" checked><span data-i18n="sharePreviewMap">Map</span></label>
+          <label><input type="radio" name="sharePreviewBackground" value="site"><span data-i18n="sharePreviewSiteImage">Dive site image</span></label>
+        </fieldset>
         <!-- Platform marks are local or inline so the share dialog does not fetch icons from third-party CDNs. -->
         <div class="share-actions" aria-label="Share options">
           <button class="share-action-button share-action-button--primary" id="shareCopyButton" type="button">
@@ -9262,6 +9331,10 @@ ZSD·2016–2025</span></span>
     shareDialog: document.getElementById('shareDialog'),
     shareCloseButton: document.getElementById('shareCloseButton'),
     sharePreviewFrame: document.getElementById('sharePreviewFrame'),
+    sharePreviewSitePhoto: document.getElementById('sharePreviewSitePhoto'),
+    sharePreviewPhotoLabel: document.getElementById('sharePreviewPhotoLabel'),
+    sharePreviewPhotoCredit: document.getElementById('sharePreviewPhotoCredit'),
+    sharePreviewBackgroundChoices: document.getElementById('sharePreviewBackgroundChoices'),
     sharePreviewMapSnapshot: document.getElementById('sharePreviewMapSnapshot'),
     sharePreviewPlaceholder: document.getElementById('sharePreviewPlaceholder'),
     sharePreviewPopupData: document.getElementById('sharePreviewPopupData'),
@@ -10333,6 +10406,61 @@ ZSD·2016–2025</span></span>
     return photo;
   }
 
+  // Prefer a distinctive site feature before using the general reef group.
+  const DIVE_SITE_FALLBACK_FEATURE_PRIORITY = [
+    'wreck', 'cave', 'cavern', 'artificial_reef', 'manta', 'muck', 'kelp',
+    'seamount', 'pinnacle', 'channel', 'drift', 'wall', 'boulder',
+    'sandy_bottom', 'archaeological', 'reef'
+  ];
+
+  function diveSiteFallbackFeatureKey(value) {
+    return String(value || '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function diveSiteFallbackHash(value) {
+    let hash = 2166136261;
+    for (let index = 0; index < value.length; index += 1) {
+      hash ^= value.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function getDiveSiteFallbackPhoto(site) {
+    const siteId = getDiveSiteStableId(site);
+    if (!siteId) return null;
+
+    const photosByFeature = window.DIVE_SITE_FALLBACK_PHOTOS || {};
+    const reviewedFeatures = getDiveSiteReviewedCategories(site)?.features || [];
+    const rawTypes = Array.isArray(site) ? parseDiveSiteTypes(site[7]) : [];
+    const featureValues = reviewedFeatures.length ? reviewedFeatures : rawTypes;
+    const availableFeatures = new Set(featureValues
+      .map(diveSiteFallbackFeatureKey)
+      .filter(feature => Array.isArray(photosByFeature[feature]) && photosByFeature[feature].length));
+
+    // Stable IDs keep assignments repeatable without storing an image URL per site.
+    // Reef is the general fallback when no feature maps to an image group.
+    const feature = DIVE_SITE_FALLBACK_FEATURE_PRIORITY.find(value => availableFeatures.has(value)) ||
+      (photosByFeature.reef?.length ? 'reef' : Object.keys(photosByFeature)[0]);
+    const candidates = photosByFeature[feature];
+    if (!Array.isArray(candidates) || !candidates.length) return null;
+
+    const image = candidates[diveSiteFallbackHash(`${siteId}:${feature}`) % candidates.length];
+    const key = String(image?.key || '').trim();
+    if (!key.startsWith('share-preview/v1/features/') || key.split('/').includes('..')) return null;
+
+    const base = window.DIVE_SITE_FALLBACK_PHOTO_BASE || 'https://assets.diveatlas.site/';
+    return {
+      ...image,
+      src: new URL(key, base).href,
+      source: 'illustrative-fallback'
+    };
+  }
+
   let divePhotoPreviewDialog = null;
 
   function getDivePhotoPreviewDialog() {
@@ -11088,20 +11216,20 @@ ZSD·2016–2025</span></span>
   }
 
   const DIVE_SITE_PHOTO_I18N = {
-    zh: { divePhotoCredit: '照片', divePhotoPreview: '打开照片预览', divePhotoPreviewClose: '关闭照片预览' },
-    en: { divePhotoCredit: 'Photo', divePhotoPreview: 'Open photo preview', divePhotoPreviewClose: 'Close photo preview' },
-    ja: { divePhotoCredit: '写真', divePhotoPreview: '写真をプレビュー', divePhotoPreviewClose: '写真プレビューを閉じる' },
-    fr: { divePhotoCredit: 'Photo', divePhotoPreview: 'Ouvrir l’aperçu de la photo', divePhotoPreviewClose: 'Fermer l’aperçu de la photo' },
-    de: { divePhotoCredit: 'Foto', divePhotoPreview: 'Fotovorschau öffnen', divePhotoPreviewClose: 'Fotovorschau schließen' },
-    nl: { divePhotoCredit: 'Foto', divePhotoPreview: 'Fotovoorbeeld openen', divePhotoPreviewClose: 'Fotovoorbeeld sluiten' },
-    it: { divePhotoCredit: 'Foto', divePhotoPreview: 'Apri anteprima foto', divePhotoPreviewClose: 'Chiudi anteprima foto' },
-    ru: { divePhotoCredit: 'Фото', divePhotoPreview: 'Открыть предварительный просмотр фото', divePhotoPreviewClose: 'Закрыть предварительный просмотр фото' },
-    pt: { divePhotoCredit: 'Foto', divePhotoPreview: 'Abrir pré-visualização da foto', divePhotoPreviewClose: 'Fechar pré-visualização da foto' },
-    sv: { divePhotoCredit: 'Foto', divePhotoPreview: 'Öppna fotoförhandsvisning', divePhotoPreviewClose: 'Stäng fotoförhandsvisning' },
-    no: { divePhotoCredit: 'Foto', divePhotoPreview: 'Åpne bildeforhåndsvisning', divePhotoPreviewClose: 'Lukk bildeforhåndsvisning' },
-    es: { divePhotoCredit: 'Foto', divePhotoPreview: 'Abrir vista previa de la foto', divePhotoPreviewClose: 'Cerrar vista previa de la foto' },
-    ko: { divePhotoCredit: '사진', divePhotoPreview: '사진 미리보기 열기', divePhotoPreviewClose: '사진 미리보기 닫기' },
-    id: { divePhotoCredit: 'Foto', divePhotoPreview: 'Buka pratinjau foto', divePhotoPreviewClose: 'Tutup pratinjau foto' }
+    zh: { divePhotoCredit: '照片', divePhotoIllustrative: '示意图片 · 非该潜点实景', divePhotoPreview: '打开照片预览', divePhotoPreviewClose: '关闭照片预览' },
+    en: { divePhotoCredit: 'Photo', divePhotoIllustrative: 'Representative image · not this dive site', divePhotoPreview: 'Open photo preview', divePhotoPreviewClose: 'Close photo preview' },
+    ja: { divePhotoCredit: '写真', divePhotoIllustrative: 'イメージ画像 · このスポットの実景ではありません', divePhotoPreview: '写真をプレビュー', divePhotoPreviewClose: '写真プレビューを閉じる' },
+    fr: { divePhotoCredit: 'Photo', divePhotoIllustrative: 'Image illustrative · pas de ce site', divePhotoPreview: 'Ouvrir l’aperçu de la photo', divePhotoPreviewClose: 'Fermer l’aperçu de la photo' },
+    de: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Beispielbild · nicht von diesem Tauchplatz', divePhotoPreview: 'Fotovorschau öffnen', divePhotoPreviewClose: 'Fotovorschau schließen' },
+    nl: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Voorbeeldfoto · niet van deze duiklocatie', divePhotoPreview: 'Fotovoorbeeld openen', divePhotoPreviewClose: 'Fotovoorbeeld sluiten' },
+    it: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Immagine rappresentativa · non di questo sito', divePhotoPreview: 'Apri anteprima foto', divePhotoPreviewClose: 'Chiudi anteprima foto' },
+    ru: { divePhotoCredit: 'Фото', divePhotoIllustrative: 'Иллюстрация · не фото этого места', divePhotoPreview: 'Открыть предварительный просмотр фото', divePhotoPreviewClose: 'Закрыть предварительный просмотр фото' },
+    pt: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Imagem ilustrativa · não é deste local', divePhotoPreview: 'Abrir pré-visualização da foto', divePhotoPreviewClose: 'Fechar pré-visualização da foto' },
+    sv: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Illustrativ bild · inte från platsen', divePhotoPreview: 'Öppna fotoförhandsvisning', divePhotoPreviewClose: 'Stäng fotoförhandsvisning' },
+    no: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Illustrasjonsbilde · ikke fra stedet', divePhotoPreview: 'Åpne bildeforhåndsvisning', divePhotoPreviewClose: 'Lukk bildeforhåndsvisning' },
+    es: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Imagen ilustrativa · no es de este sitio', divePhotoPreview: 'Abrir vista previa de la foto', divePhotoPreviewClose: 'Cerrar vista previa de la foto' },
+    ko: { divePhotoCredit: '사진', divePhotoIllustrative: '예시 이미지 · 이 다이빙 장소의 실제 사진이 아닙니다', divePhotoPreview: '사진 미리보기 열기', divePhotoPreviewClose: '사진 미리보기 닫기' },
+    id: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Gambar ilustrasi · bukan foto lokasi ini', divePhotoPreview: 'Buka pratinjau foto', divePhotoPreviewClose: 'Tutup pratinjau foto' }
   };
   for (const [lang, values] of Object.entries(DIVE_SITE_PHOTO_I18N)) {
     Object.assign(I18N[lang], values);
@@ -11552,6 +11680,26 @@ ZSD·2016–2025</span></span>
     ko: { shareMap: '지도 공유', shareCopyMap: '지도 정보 공유', shareCopySite: '다이빙 사이트 정보 공유', shareCopyPopupNamed: '{name} 정보 공유', shareCopied: '복사됨', shareCopyFailed: '복사 실패', shareCopyForInstagram: 'Instagram에 공유할 링크 복사', shareInstagramCopied: '링크를 복사했습니다. Instagram에 붙여넣어 공유하세요.', shareInstagramCopyFailed: '복사하지 못했습니다. 링크를 직접 복사해 Instagram에 붙여넣으세요.' },
     id: { shareMap: 'Bagikan peta', shareCopyMap: 'Bagikan info peta', shareCopySite: 'Bagikan info lokasi selam', shareCopyPopupNamed: 'Bagikan info {name}', shareCopied: 'Disalin', shareCopyFailed: 'Gagal menyalin', shareCopyForInstagram: 'Salin tautan untuk Instagram', shareInstagramCopied: 'Tautan disalin. Tempelkan di Instagram.', shareInstagramCopyFailed: 'Gagal menyalin. Salin tautan secara manual untuk Instagram.' }
   };
+
+  const SHARE_PREVIEW_BACKGROUND_I18N = {
+    en: { sharePreviewBackground: 'Preview background', sharePreviewMap: 'Map', sharePreviewSiteImage: 'Dive site image', sharePreviewMapAria: 'Preview of the shared map', sharePreviewSiteImageAria: 'Preview using the dive site image', sharePreviewImageUnavailable: 'Dive site image unavailable. Choose Map instead.' },
+    zh: { sharePreviewBackground: '预览背景', sharePreviewMap: '地图', sharePreviewSiteImage: '潜点图片', sharePreviewMapAria: '地图分享预览', sharePreviewSiteImageAria: '使用潜点图片的分享预览', sharePreviewImageUnavailable: '无法加载潜点图片，请改选地图。' },
+    ja: { sharePreviewBackground: 'プレビューの背景', sharePreviewMap: '地図', sharePreviewSiteImage: 'ダイブスポットの画像', sharePreviewMapAria: '地図の共有プレビュー', sharePreviewSiteImageAria: 'ダイブスポット画像を使った共有プレビュー', sharePreviewImageUnavailable: '画像を読み込めません。地図を選択してください。' },
+    fr: { sharePreviewBackground: 'Arrière-plan de l’aperçu', sharePreviewMap: 'Carte', sharePreviewSiteImage: 'Image du site', sharePreviewMapAria: 'Aperçu de la carte à partager', sharePreviewSiteImageAria: 'Aperçu avec l’image du site de plongée', sharePreviewImageUnavailable: 'Image du site indisponible. Choisissez la carte.' },
+    de: { sharePreviewBackground: 'Vorschauhintergrund', sharePreviewMap: 'Karte', sharePreviewSiteImage: 'Tauchplatzbild', sharePreviewMapAria: 'Vorschau der geteilten Karte', sharePreviewSiteImageAria: 'Vorschau mit dem Tauchplatzbild', sharePreviewImageUnavailable: 'Tauchplatzbild nicht verfügbar. Wähle die Karte.' },
+    nl: { sharePreviewBackground: 'Achtergrond van voorbeeld', sharePreviewMap: 'Kaart', sharePreviewSiteImage: 'Afbeelding van duikplek', sharePreviewMapAria: 'Voorbeeld van de gedeelde kaart', sharePreviewSiteImageAria: 'Voorbeeld met de afbeelding van de duikplek', sharePreviewImageUnavailable: 'Afbeelding niet beschikbaar. Kies de kaart.' },
+    it: { sharePreviewBackground: 'Sfondo anteprima', sharePreviewMap: 'Mappa', sharePreviewSiteImage: 'Immagine del sito', sharePreviewMapAria: 'Anteprima della mappa da condividere', sharePreviewSiteImageAria: 'Anteprima con l’immagine del sito d’immersione', sharePreviewImageUnavailable: 'Immagine del sito non disponibile. Scegli la mappa.' },
+    ru: { sharePreviewBackground: 'Фон предпросмотра', sharePreviewMap: 'Карта', sharePreviewSiteImage: 'Фото дайв-сайта', sharePreviewMapAria: 'Предпросмотр карты для публикации', sharePreviewSiteImageAria: 'Предпросмотр с фото дайв-сайта', sharePreviewImageUnavailable: 'Фото дайв-сайта недоступно. Выберите карту.' },
+    pt: { sharePreviewBackground: 'Fundo da pré-visualização', sharePreviewMap: 'Mapa', sharePreviewSiteImage: 'Imagem do local', sharePreviewMapAria: 'Pré-visualização do mapa para compartilhar', sharePreviewSiteImageAria: 'Pré-visualização com a imagem do local de mergulho', sharePreviewImageUnavailable: 'Imagem do local indisponível. Escolha o mapa.' },
+    sv: { sharePreviewBackground: 'Förhandsvisningens bakgrund', sharePreviewMap: 'Karta', sharePreviewSiteImage: 'Bild av dykplatsen', sharePreviewMapAria: 'Förhandsvisning av kartan som delas', sharePreviewSiteImageAria: 'Förhandsvisning med bilden av dykplatsen', sharePreviewImageUnavailable: 'Bilden är inte tillgänglig. Välj kartan.' },
+    no: { sharePreviewBackground: 'Forhåndsvisningsbakgrunn', sharePreviewMap: 'Kart', sharePreviewSiteImage: 'Bilde av dykkestedet', sharePreviewMapAria: 'Forhåndsvisning av kartet som deles', sharePreviewSiteImageAria: 'Forhåndsvisning med bildet av dykkestedet', sharePreviewImageUnavailable: 'Bildet er ikke tilgjengelig. Velg kartet.' },
+    es: { sharePreviewBackground: 'Fondo de vista previa', sharePreviewMap: 'Mapa', sharePreviewSiteImage: 'Imagen del sitio', sharePreviewMapAria: 'Vista previa del mapa para compartir', sharePreviewSiteImageAria: 'Vista previa con la imagen del sitio de buceo', sharePreviewImageUnavailable: 'Imagen del sitio no disponible. Elige el mapa.' },
+    ko: { sharePreviewBackground: '미리보기 배경', sharePreviewMap: '지도', sharePreviewSiteImage: '다이빙 장소 이미지', sharePreviewMapAria: '공유할 지도 미리보기', sharePreviewSiteImageAria: '다이빙 장소 이미지를 사용한 미리보기', sharePreviewImageUnavailable: '다이빙 장소 이미지를 불러올 수 없습니다. 지도를 선택하세요.' },
+    id: { sharePreviewBackground: 'Latar pratinjau', sharePreviewMap: 'Peta', sharePreviewSiteImage: 'Gambar lokasi selam', sharePreviewMapAria: 'Pratinjau peta yang dibagikan', sharePreviewSiteImageAria: 'Pratinjau dengan gambar lokasi selam', sharePreviewImageUnavailable: 'Gambar lokasi tidak tersedia. Pilih peta.' }
+  };
+  for (const [lang, values] of Object.entries(SHARE_PREVIEW_BACKGROUND_I18N)) {
+    Object.assign(SHARE_I18N[lang], values);
+  }
 
   const SITE_SUGGESTION_I18N = {
     en: { siteSuggestionCta: 'Suggest a missing Dive site', siteSuggestionTitle: 'Suggest a dive site', siteSuggestionCopy: 'Your suggestion goes to DiveAtlas for review. It won’t be added automatically.', siteSuggestionName: 'Dive-site name', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Source link', siteSuggestionSend: 'Send suggestion', siteSuggestionCancel: 'Cancel', siteSuggestionSending: 'Sending suggestion…', siteSuggestionSent: 'Thanks—your suggestion was sent for review.', siteSuggestionError: 'Couldn’t send the suggestion. Please try again.', siteSuggestionNameRequired: 'Enter a dive-site name.', siteSuggestionSourceInvalid: 'Enter a valid http or https link.', siteSuggestionVerify: 'Complete the security check, then try again.', siteSuggestionVerifyUnavailable: 'The security check is unavailable. Please try again later.' },
@@ -18755,7 +18903,8 @@ ZSD·2016–2025</span></span>
       : 'datasets/dive-sites.js?v=2';
     diveSiteDataPromise = Promise.all([
       loadLocalScript(diveSitesScriptUrl),
-      loadLocalScript('datasets/dive-site-photos.js?v=2')
+      loadLocalScript('datasets/dive-site-photos.js?v=2'),
+      loadLocalScript('datasets/dive-site-fallback-photos.js?v=1')
     ])
       .then(() => {
         const sites = window.DIVE_SITES_DATA;
@@ -19976,7 +20125,17 @@ ZSD·2016–2025</span></span>
     return params.toString().replace(/%2C/gi, ',');
   }
 
-  function buildShareUrl(state) {
+  let sharePreviewBackgroundChoice = 'map';
+  let sharePreviewSitePhoto = null;
+
+  function getSharePreviewSitePhoto(state) {
+    const siteId = String(state?.selectedSiteId || '').trim().toLowerCase();
+    const siteIndex = SHARE_SITE_BY_ID.get(siteId);
+    const site = Number.isInteger(siteIndex) ? DIVE_SITES?.[siteIndex] : null;
+    return site ? getDiveSitePhoto(site) || getDiveSiteFallbackPhoto(site) : null;
+  }
+
+  function buildShareUrl(state, { previewBackground = 'map' } = {}) {
     const selectedSiteId = String(state?.selectedSiteId || '').trim().toLowerCase();
     if (selectedSiteId && SHARE_SITE_BY_ID.has(selectedSiteId)) {
       // The Worker route already carries this UUID in its path and adds the
@@ -19984,6 +20143,7 @@ ZSD·2016–2025</span></span>
       const serializedState = serializeMapState(state, { includeSite:false });
       const url = new URL(`/share/${encodeURIComponent(selectedSiteId)}/`, SHARE_SITE_PREVIEW_ORIGIN);
       url.search = serializedState;
+      url.searchParams.set('shareSiteId', selectedSiteId);
       const siteIndex = SHARE_SITE_BY_ID.get(selectedSiteId);
       const site = Number.isInteger(siteIndex) ? DIVE_SITES?.[siteIndex] : null;
       const reviewed = getDiveSiteReviewedCategories(site);
@@ -20000,6 +20160,8 @@ ZSD·2016–2025</span></span>
       ];
       const shareFeature = featurePriority.find(feature => featureSlugs.has(feature));
       if (shareFeature) url.searchParams.set('shareFeature', shareFeature);
+      // The Worker uses these share-only values to keep map and site images in separate cache entries.
+      url.searchParams.set('previewBackground', previewBackground === 'site' ? 'site' : 'map');
       return url.href;
     }
 
@@ -20443,7 +20605,7 @@ ZSD·2016–2025</span></span>
 
     els.sharePreviewMapSnapshot.replaceChildren(clone);
     els.sharePreviewMapSnapshot.hidden = false;
-    if (popupPoint) {
+    if (popupPoint && sharePreviewBackgroundChoice !== 'site') {
       els.sharePreviewPopupPointer.style.left = `${frameWidth * 0.25}px`;
       els.sharePreviewPopupPointer.style.top = `${frameHeight * 0.5}px`;
       els.sharePreviewPopupPointer.hidden = false;
@@ -20520,17 +20682,29 @@ ZSD·2016–2025</span></span>
     return false;
   }
 
-  async function createLocalSharePreviewJpeg() {
+  async function createLocalSharePreviewJpeg({ background = sharePreviewBackgroundChoice, photo = sharePreviewSitePhoto } = {}) {
     const frame = els.sharePreviewFrame;
     const bounds = frame.getBoundingClientRect();
     const width = Math.round(bounds.width);
     const height = Math.round(bounds.height);
     if (!width || !height) throw new Error('The local share preview is not visible');
-    if (!els.sharePreviewMapSnapshot.firstElementChild) throw new Error('The local map snapshot is not ready');
+    const useSitePhoto = background === 'site';
+    let siteImage = null;
+    if (useSitePhoto) {
+      if (!photo?.src) throw new Error('The dive site image is not available');
+      siteImage = new Image();
+      // The R2 fallback host is cross-origin; CORS keeps its pixels exportable to the share JPEG.
+      siteImage.crossOrigin = 'anonymous';
+      siteImage.src = new URL(photo.src, window.location.href).href;
+      await siteImage.decode();
+      if (!siteImage.naturalWidth || !siteImage.naturalHeight) throw new Error('The dive site image is not available');
+    } else if (!els.sharePreviewMapSnapshot.firstElementChild) {
+      throw new Error('The local map snapshot is not ready');
+    }
 
-    // Draw the map's already-rendered canvases directly. SVG foreignObject
-    // capture taints the destination canvas in some browsers even when every
-    // tile is local, so compose the summary card with canvas text instead.
+    // Draw the selected site photo or the map's rendered canvases directly.
+    // Avoid SVG foreignObject capture because it can taint this canvas even
+    // when every tile is local; compose the summary card and photo credits here.
     const outputWidth = 1200;
     const outputHeight = 630;
     const canvas = document.createElement('canvas');
@@ -20585,6 +20759,24 @@ ZSD·2016–2025</span></span>
       }
       return drawn * lineHeight;
     };
+    const drawPhotoCaption = (text, x, y, maxWidth) => {
+      if (!text || maxWidth < 40) return;
+      const style = {
+        fontStyle: 'normal', fontWeight: '500', fontSize: '11px',
+        fontFamily: 'system-ui, sans-serif', lineHeight: '14px', color: '#fff'
+      };
+      context.save();
+      context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const measuredWidth = context.measureText(text).width;
+      const boxWidth = Math.min(maxWidth, measuredWidth + 16);
+      const lineCount = Math.max(1, Math.ceil(measuredWidth / Math.max(1, boxWidth - 16)));
+      const boxHeight = 10 + Math.min(3, lineCount) * 14;
+      context.fillStyle = 'rgba(8,15,25,.78)';
+      drawRoundRect(x, y, boxWidth, boxHeight, 8);
+      context.fill();
+      drawText(text, style, x + 8, y + 5, boxWidth - 16, y + boxHeight - 3);
+      context.restore();
+    };
 
     context.setTransform(scaleX, 0, 0, scaleY, 0, 0);
     context.fillStyle = frameStyle.backgroundColor;
@@ -20593,94 +20785,123 @@ ZSD·2016–2025</span></span>
     context.save();
     context.clip();
 
-    const mapRoot = els.sharePreviewMapSnapshot.firstElementChild;
-    const mapLayers = [...mapRoot.querySelectorAll('canvas, svg')]
-      .filter(element => element.localName !== 'svg' ||
-        (!element.parentElement.closest('svg') && !element.closest('.leaflet-control-container')))
-      .map((element, order) => {
-      const pane = element.closest('.leaflet-pane');
-      return { element, order, z:Number.parseFloat(pane ? getComputedStyle(pane).zIndex : '0') || 0 };
-      }).sort((a, b) => a.z - b.z || a.order - b.order);
-    let drewBasemap = false;
-    for (const { element } of mapLayers) {
-      // HTMLCanvasElement.tagName is uppercase in HTML documents, so use the
-      // element type here; a lowercase tagName check silently skipped every
-      // map canvas and produced a background-only JPEG.
-      if (element instanceof HTMLCanvasElement) {
-        if (!element.width || !element.height) continue;
-        // Canvas export is the origin-clean check. A cross-origin tile should
-        // trigger the Worker fallback, never a partial local map image.
-        element.toDataURL('image/png');
-        const rect = element.getBoundingClientRect();
-        if (!rect.width || !rect.height) continue;
-        const clipLeft = Math.max(frameBounds.left, rect.left);
-        const clipTop = Math.max(frameBounds.top, rect.top);
-        const clipRight = Math.min(frameBounds.right, rect.right);
-        const clipBottom = Math.min(frameBounds.bottom, rect.bottom);
-        if (clipRight <= clipLeft || clipBottom <= clipTop) continue;
-        const sourceX = (clipLeft - rect.left) * element.width / rect.width;
-        const sourceY = (clipTop - rect.top) * element.height / rect.height;
-        const sourceWidth = (clipRight - clipLeft) * element.width / rect.width;
-        const sourceHeight = (clipBottom - clipTop) * element.height / rect.height;
-        context.drawImage(
-          element,
-          sourceX, sourceY, sourceWidth, sourceHeight,
-          clipLeft - frameBounds.left, clipTop - frameBounds.top,
-          clipRight - clipLeft, clipBottom - clipTop
-        );
-        if (element.classList.contains('maplibregl-canvas')) drewBasemap = true;
-        continue;
-      }
+    if (useSitePhoto) {
+      const coverScale = Math.max(width / siteImage.naturalWidth, height / siteImage.naturalHeight);
+      const sourceWidth = width / coverScale;
+      const sourceHeight = height / coverScale;
+      context.drawImage(
+        siteImage,
+        (siteImage.naturalWidth - sourceWidth) / 2,
+        (siteImage.naturalHeight - sourceHeight) / 2,
+        sourceWidth,
+        sourceHeight,
+        0, 0, width, height
+      );
+    } else {
+      const mapRoot = els.sharePreviewMapSnapshot.firstElementChild;
+      const mapLayers = [...mapRoot.querySelectorAll('canvas, svg')]
+        .filter(element => element.localName !== 'svg' ||
+          (!element.parentElement.closest('svg') && !element.closest('.leaflet-control-container')))
+        .map((element, order) => {
+          const pane = element.closest('.leaflet-pane');
+          return { element, order, z:Number.parseFloat(pane ? getComputedStyle(pane).zIndex : '0') || 0 };
+        }).sort((a, b) => a.z - b.z || a.order - b.order);
+      let drewBasemap = false;
+      for (const { element } of mapLayers) {
+        // HTMLCanvasElement.tagName is uppercase in HTML documents, so use the
+        // element type here; a lowercase tagName check silently skipped every
+        // map canvas and produced a background-only JPEG.
+        if (element instanceof HTMLCanvasElement) {
+          if (!element.width || !element.height) continue;
+          // Canvas export is the origin-clean check. A cross-origin tile should
+          // trigger the Worker fallback, never a partial local map image.
+          element.toDataURL('image/png');
+          const rect = element.getBoundingClientRect();
+          if (!rect.width || !rect.height) continue;
+          const clipLeft = Math.max(frameBounds.left, rect.left);
+          const clipTop = Math.max(frameBounds.top, rect.top);
+          const clipRight = Math.min(frameBounds.right, rect.right);
+          const clipBottom = Math.min(frameBounds.bottom, rect.bottom);
+          if (clipRight <= clipLeft || clipBottom <= clipTop) continue;
+          const sourceX = (clipLeft - rect.left) * element.width / rect.width;
+          const sourceY = (clipTop - rect.top) * element.height / rect.height;
+          const sourceWidth = (clipRight - clipLeft) * element.width / rect.width;
+          const sourceHeight = (clipBottom - clipTop) * element.height / rect.height;
+          context.drawImage(
+            element,
+            sourceX, sourceY, sourceWidth, sourceHeight,
+            clipLeft - frameBounds.left, clipTop - frameBounds.top,
+            clipRight - clipLeft, clipBottom - clipTop
+          );
+          if (element.classList.contains('maplibregl-canvas')) drewBasemap = true;
+          continue;
+        }
 
-      // Leaflet keeps some overlays and dive-site markers as SVG paths instead
-      // of canvases; use their screen matrices so the capture honors the cloned
-      // map's pan/zoom transforms without touching the live map.
-      for (const path of element.querySelectorAll('path')) {
-        const pathData = path.getAttribute('d');
-        const matrix = path.getScreenCTM();
-        if (!pathData || !matrix) continue;
-        const style = getComputedStyle(path);
-        if (style.display === 'none' || style.visibility === 'hidden') continue;
-        const path2d = new Path2D(pathData);
-        let groupOpacity = 1;
-        for (let ancestor = path.parentElement; ancestor && ancestor !== mapRoot; ancestor = ancestor.parentElement) {
-          const opacity = Number.parseFloat(getComputedStyle(ancestor).opacity);
-          if (Number.isFinite(opacity)) groupOpacity *= opacity;
-        }
-        context.save();
-        context.setTransform(
-          scaleX * matrix.a, scaleY * matrix.b,
-          scaleX * matrix.c, scaleY * matrix.d,
-          scaleX * (matrix.e - frameBounds.left),
-          scaleY * (matrix.f - frameBounds.top)
-        );
-        const fillOpacity = Number.parseFloat(style.fillOpacity);
-        const opacity = Number.isFinite(Number.parseFloat(style.opacity)) ? Number.parseFloat(style.opacity) : 1;
-        if (style.fill !== 'none') {
-          context.globalAlpha = groupOpacity * opacity * (Number.isFinite(fillOpacity) ? fillOpacity : 1);
-          context.fillStyle = style.fill;
-          context.fill(path2d, style.fillRule === 'evenodd' ? 'evenodd' : 'nonzero');
-        }
-        const strokeOpacity = Number.parseFloat(style.strokeOpacity);
-        if (style.stroke !== 'none' && parseFloat(style.strokeWidth) > 0) {
-          context.globalAlpha = groupOpacity * opacity * (Number.isFinite(strokeOpacity) ? strokeOpacity : 1);
-          context.strokeStyle = style.stroke;
-          context.lineWidth = parseFloat(style.strokeWidth);
-          context.lineCap = style.strokeLinecap;
-          context.lineJoin = style.strokeLinejoin;
-          if (style.strokeDasharray !== 'none') {
-            context.setLineDash(style.strokeDasharray.split(/[ ,]+/).map(Number).filter(Number.isFinite));
+        // Leaflet keeps some overlays and dive-site markers as SVG paths instead
+        // of canvases; use their screen matrices so the capture honors the cloned
+        // map's pan/zoom transforms without touching the live map.
+        for (const path of element.querySelectorAll('path')) {
+          const pathData = path.getAttribute('d');
+          const matrix = path.getScreenCTM();
+          if (!pathData || !matrix) continue;
+          const style = getComputedStyle(path);
+          if (style.display === 'none' || style.visibility === 'hidden') continue;
+          const path2d = new Path2D(pathData);
+          let groupOpacity = 1;
+          for (let ancestor = path.parentElement; ancestor && ancestor !== mapRoot; ancestor = ancestor.parentElement) {
+            const opacity = Number.parseFloat(getComputedStyle(ancestor).opacity);
+            if (Number.isFinite(opacity)) groupOpacity *= opacity;
           }
-          context.stroke(path2d);
+          context.save();
+          context.setTransform(
+            scaleX * matrix.a, scaleY * matrix.b,
+            scaleX * matrix.c, scaleY * matrix.d,
+            scaleX * (matrix.e - frameBounds.left),
+            scaleY * (matrix.f - frameBounds.top)
+          );
+          const fillOpacity = Number.parseFloat(style.fillOpacity);
+          const opacity = Number.isFinite(Number.parseFloat(style.opacity)) ? Number.parseFloat(style.opacity) : 1;
+          if (style.fill !== 'none') {
+            context.globalAlpha = groupOpacity * opacity * (Number.isFinite(fillOpacity) ? fillOpacity : 1);
+            context.fillStyle = style.fill;
+            context.fill(path2d, style.fillRule === 'evenodd' ? 'evenodd' : 'nonzero');
+          }
+          const strokeOpacity = Number.parseFloat(style.strokeOpacity);
+          if (style.stroke !== 'none' && parseFloat(style.strokeWidth) > 0) {
+            context.globalAlpha = groupOpacity * opacity * (Number.isFinite(strokeOpacity) ? strokeOpacity : 1);
+            context.strokeStyle = style.stroke;
+            context.lineWidth = parseFloat(style.strokeWidth);
+            context.lineCap = style.strokeLinecap;
+            context.lineJoin = style.strokeLinejoin;
+            if (style.strokeDasharray !== 'none') {
+              context.setLineDash(style.strokeDasharray.split(/[ ,]+/).map(Number).filter(Number.isFinite));
+            }
+            context.stroke(path2d);
+          }
+          context.restore();
         }
-        context.restore();
+      }
+      if (!drewBasemap) throw new Error('The MapLibre basemap was not included in the local preview');
+    }
+
+    if (useSitePhoto) {
+      if (photo.source === 'illustrative-fallback') {
+        drawPhotoCaption(t('divePhotoIllustrative'), 12, 12, width * .48);
+      }
+      if (photo.credit) {
+        const creditText = `${t('divePhotoCredit')}: ${photo.credit}`;
+        const maxCreditWidth = width * .44;
+        context.font = `500 11px system-ui, sans-serif`;
+        const measuredWidth = context.measureText(creditText).width;
+        const lineCount = Math.max(1, Math.ceil(measuredWidth / Math.max(1, maxCreditWidth - 16)));
+        const boxHeight = 10 + Math.min(3, lineCount) * 14;
+        drawPhotoCaption(creditText, 12, height - boxHeight - 12, maxCreditWidth);
       }
     }
     context.restore();
-    if (!drewBasemap) throw new Error('The MapLibre basemap was not included in the local preview');
 
     const pointer = els.sharePreviewPopupPointer;
-    if (!pointer.hidden) {
+    if (!useSitePhoto && !pointer.hidden) {
       const rect = pointer.getBoundingClientRect();
       const x = rect.left - frameBounds.left;
       const y = rect.top - frameBounds.top;
@@ -20789,17 +21010,21 @@ ZSD·2016–2025</span></span>
 
   async function storeSharePreviewImage() {
     let share;
+    const requestedShareUrl = shareUrl;
+    const requestedShareState = shareSnapshot;
+    const requestedBackground = sharePreviewBackgroundChoice;
+    const requestedSitePhoto = sharePreviewSitePhoto;
     try {
-      share = new URL(shareUrl);
+      share = new URL(requestedShareUrl);
       const isMapShare = /^\/map\/?$/.test(share.pathname);
       const isSiteShare = /^\/share\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\/?$/i.test(share.pathname);
       if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || (!isMapShare && !isSiteShare)) return;
       const existingTask = sharePreviewUploadTasks.get(share.href);
       if (existingTask) return await existingTask;
       const task = (async () => {
-        const popupDetailsReady = await waitForSharePopupDetails(shareSnapshot);
-        if (popupDetailsReady) renderSharePopupPreviewData(shareSnapshot);
-        if (!els.sharePreviewMapSnapshot.firstElementChild && !await copySharePreviewMapAfterRender()) {
+        const popupDetailsReady = await waitForSharePopupDetails(requestedShareState);
+        if (popupDetailsReady) renderSharePopupPreviewData(requestedShareState);
+        if (requestedBackground !== 'site' && !els.sharePreviewMapSnapshot.firstElementChild && !await copySharePreviewMapAfterRender()) {
           throw new Error('The map preview is not ready');
         }
         const uploadUrl = new URL('/map-preview-upload/', SHARE_SITE_PREVIEW_ORIGIN);
@@ -20807,13 +21032,18 @@ ZSD·2016–2025</span></span>
         const summary = popupDetailsReady ? getSharePreviewSummary() : null;
         if (summary?.items.length) uploadUrl.searchParams.set('summary', JSON.stringify(summary));
 
-        if (popupDetailsReady) {
+        // A chosen site photo can be saved without waiting for map capture or
+        // every asynchronous rating and summary field to finish loading.
+        if (popupDetailsReady || requestedBackground === 'site') {
           try {
             await Promise.race([
               document.fonts?.ready,
               new Promise(resolve => window.setTimeout(resolve, 2500))
             ]);
-            const localImage = await createLocalSharePreviewJpeg();
+            const localImage = await createLocalSharePreviewJpeg({
+              background: requestedBackground,
+              photo: requestedSitePhoto
+            });
             const localUploadUrl = new URL(uploadUrl);
             // Share state is identical while popup details can change as data
             // finishes loading, so the finished local preview must replace an
@@ -20881,8 +21111,7 @@ ZSD·2016–2025</span></span>
     els.shareInstagramButton.setAttribute('aria-label', t('shareCopyForInstagram'));
   }
 
-  function renderShareDialogContext() {
-    updateSharePlatformVisibility();
+  function renderShareDestinationLinks() {
     const title = getShareContextTitle(shareSnapshot);
     const url = shareUrl;
     const shareText = `${title} | DiveAtlas`;
@@ -20902,6 +21131,78 @@ ZSD·2016–2025</span></span>
     els.shareFacebookButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
     els.shareRedditButton.href = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(shareText)}`;
     els.shareNativeButton.hidden = typeof navigator.share !== 'function';
+  }
+
+  function setSharePreviewBackgroundChoice(background) {
+    const useSiteImage = background === 'site';
+    sharePreviewBackgroundChoice = useSiteImage ? 'site' : 'map';
+    shareUrl = buildShareUrl(shareSnapshot, { previewBackground: sharePreviewBackgroundChoice });
+    renderShareDestinationLinks();
+
+    const image = els.sharePreviewSitePhoto;
+    const label = els.sharePreviewPhotoLabel;
+    const credit = els.sharePreviewPhotoCredit;
+    els.sharePreviewFrame.dataset.background = sharePreviewBackgroundChoice;
+    els.sharePreviewFrame.setAttribute(
+      'aria-label',
+      t(useSiteImage ? 'sharePreviewSiteImageAria' : 'sharePreviewMapAria')
+    );
+    els.sharePreviewBackgroundChoices.querySelectorAll('input[name="sharePreviewBackground"]').forEach(input => {
+      input.checked = input.value === sharePreviewBackgroundChoice;
+    });
+
+    image.hidden = !useSiteImage || !sharePreviewSitePhoto;
+    label.hidden = !useSiteImage || !sharePreviewSitePhoto || sharePreviewSitePhoto.source !== 'illustrative-fallback';
+    credit.hidden = !useSiteImage || !sharePreviewSitePhoto?.credit;
+    if (useSiteImage && sharePreviewSitePhoto) {
+      const photo = sharePreviewSitePhoto;
+      const source = new URL(photo.src, window.location.href).href;
+      image.crossOrigin = 'anonymous';
+      image.alt = '';
+      if (image.src !== source) image.src = source;
+      label.textContent = t('divePhotoIllustrative');
+      credit.textContent = `${t('divePhotoCredit')}: ${photo.credit}`;
+      els.sharePreviewPopupPointer.hidden = true;
+      if (image.complete && image.naturalWidth) {
+        els.sharePreviewPlaceholder.hidden = true;
+      } else {
+        els.sharePreviewPlaceholder.textContent = `${t('sharePreviewSiteImage')}…`;
+        els.sharePreviewPlaceholder.hidden = false;
+      }
+    } else if (useSiteImage) {
+      els.sharePreviewPlaceholder.textContent = t('sharePreviewImageUnavailable');
+      els.sharePreviewPlaceholder.hidden = false;
+    } else {
+      if (shareSnapshot?.popup) {
+        const frameBounds = els.sharePreviewFrame.getBoundingClientRect();
+        els.sharePreviewPopupPointer.style.left = `${frameBounds.width * 0.25}px`;
+        els.sharePreviewPopupPointer.style.top = `${frameBounds.height * 0.5}px`;
+      }
+      els.sharePreviewPopupPointer.hidden = !shareSnapshot?.popup;
+      if (els.sharePreviewMapSnapshot.firstElementChild) {
+        els.sharePreviewPlaceholder.hidden = true;
+      } else {
+        els.sharePreviewPlaceholder.textContent = 'Preparing a preview from the map shown on this device…';
+        els.sharePreviewPlaceholder.hidden = false;
+      }
+    }
+  }
+
+  function renderShareDialogContext() {
+    updateSharePlatformVisibility();
+    sharePreviewSitePhoto = getSharePreviewSitePhoto(shareSnapshot);
+    els.sharePreviewBackgroundChoices.hidden = !sharePreviewSitePhoto;
+    els.sharePreviewSitePhoto.removeAttribute('src');
+    sharePreviewBackgroundChoice = 'map';
+    els.sharePreviewFrame.dataset.background = 'map';
+    els.sharePreviewFrame.setAttribute('aria-label', t('sharePreviewMapAria'));
+    els.sharePreviewSitePhoto.hidden = true;
+    els.sharePreviewPhotoLabel.hidden = true;
+    els.sharePreviewPhotoCredit.hidden = true;
+    els.sharePreviewBackgroundChoices.querySelectorAll('input[name="sharePreviewBackground"]').forEach(input => {
+      input.checked = input.value === 'map';
+    });
+    renderShareDestinationLinks();
     renderSharePopupPreviewData(shareSnapshot);
     els.sharePreviewMapSnapshot.replaceChildren();
     els.sharePreviewMapSnapshot.hidden = true;
@@ -21089,6 +21390,27 @@ function closeShareDialog() {
   els.shareMapButton.addEventListener('focus', updateShareButtonDescription);
   updateShareButtonDescription();
   els.shareMapButton.addEventListener('click', openShareDialog);
+  els.sharePreviewBackgroundChoices.addEventListener('change', event => {
+    const input = event.target.closest('input[name="sharePreviewBackground"]');
+    if (!input) return;
+    setSharePreviewBackgroundChoice(input.value);
+    if (sharePreviewBackgroundChoice === 'site' && els.sharePreviewSitePhoto.complete && els.sharePreviewSitePhoto.naturalWidth) {
+      void storeSharePreviewImage();
+    }
+  });
+  els.sharePreviewSitePhoto.addEventListener('load', () => {
+    if (sharePreviewBackgroundChoice !== 'site') return;
+    els.sharePreviewPlaceholder.hidden = true;
+    void storeSharePreviewImage();
+  });
+  els.sharePreviewSitePhoto.addEventListener('error', () => {
+    if (sharePreviewBackgroundChoice !== 'site') return;
+    els.sharePreviewSitePhoto.hidden = true;
+    els.sharePreviewPhotoLabel.hidden = true;
+    els.sharePreviewPhotoCredit.hidden = true;
+    els.sharePreviewPlaceholder.textContent = t('sharePreviewImageUnavailable');
+    els.sharePreviewPlaceholder.hidden = false;
+  });
   els.shareCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
   [els.shareLineButton, els.shareTelegramButton, els.shareWechatButton, els.shareRedNoteButton, els.shareFacebookButton, els.shareWhatsAppButton, els.shareXButton, els.shareInstagramButton, els.shareRedditButton, els.shareEmailButton]
     .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
@@ -26173,7 +26495,7 @@ function closeShareDialog() {
         ].filter(Boolean)
       : parseDiveSiteTypes(siteTypes);
     const sources = String(sourcesRaw || '').trim();
-    const photo = getDiveSitePhoto(site);
+    const photo = getDiveSitePhoto(site) || getDiveSiteFallbackPhoto(site);
     const siteSummary = getPublishedDiveSiteSummary(site);
 
     const marker = L.circleMarker(
@@ -26235,6 +26557,9 @@ function closeShareDialog() {
         `<img class="dive-popup-photo" src="${escapeHtml(photo.src)}" ` +
         `alt="${escapeHtml(photo.alt)}" width="640" height="360" ` +
         `loading="eager" decoding="async"></button>` +
+        (photo.source === 'illustrative-fallback'
+          ? `<span class="dive-popup-photo-label">${escapeHtml(t('divePhotoIllustrative'))}</span>`
+          : '') +
         `</div>`,
         `<div class="dive-popup-body">`
       );
