@@ -26942,6 +26942,9 @@ function closeShareDialog() {
     }
     cancelMobileMapSheetDismissal(surface);
     surface.classList.remove('mobile-vertical-dragging', 'mobile-sheet-entering');
+    // Commit the dragged position after re-enabling transitions so the exit
+    // animation starts where the finger released instead of flashing at rest.
+    void surface.offsetHeight;
     surface.classList.add('mobile-sheet-exiting');
 
     let finished = false;
@@ -27023,17 +27026,22 @@ function closeShareDialog() {
       const wasVerticalDrag = didMove && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
       const startInlineHeight = drag.startInlineHeight;
       drag = null;
-      if (expandOnUpwardDrag) {
+      const restoreHeight = () => {
+        if (!expandOnUpwardDrag) return;
         if (startInlineHeight) surface.style.height = startInlineHeight;
         else surface.style.removeProperty('height');
-      }
+      };
       if (wasVerticalDrag) {
         event.preventDefault();
         if (deltaY >= closeDistance) {
-          animateMobileMapSheetDismissal(surface, onDismiss);
+          animateMobileMapSheetDismissal(surface, () => {
+            restoreHeight();
+            onDismiss();
+          });
           return;
         }
       }
+      restoreHeight();
       if (didMove) suppressClickUntil = performance.now() + 350;
       resetSurface();
     };
@@ -28012,10 +28020,14 @@ function closeShareDialog() {
     const popupElement = popup?.getElement?.();
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
       cancelMobileMapSheetDismissal(popupElement);
-      popupElement.classList.remove('mobile-sheet-entering', 'mobile-sheet-exiting');
       popupElement.classList.remove('mobile-vertical-dragging');
-      popupElement.style.removeProperty('--mobile-panel-drag-y');
-      popupElement.style.removeProperty('height');
+      // Leaflet keeps a closing popup in the DOM for its own fade-out. Clearing
+      // the custom exit state here makes a swiped sheet jump back into view.
+      if (!popupElement.classList.contains('mobile-sheet-exiting')) {
+        popupElement.classList.remove('mobile-sheet-entering');
+        popupElement.style.removeProperty('--mobile-panel-drag-y');
+        popupElement.style.removeProperty('height');
+      }
     }
     if (popup?._diveAtlasInfoPopoverContentUpdateHandler) {
       popup.off('contentupdate', popup._diveAtlasInfoPopoverContentUpdateHandler);

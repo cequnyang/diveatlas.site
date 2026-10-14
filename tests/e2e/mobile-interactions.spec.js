@@ -231,6 +231,57 @@ test('main menu opens as a half-width page from the right on mobile', async ({ p
   await expect(trigger).toHaveAttribute('aria-expanded', 'false');
 });
 
+test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', async ({ page }) => {
+  await page.evaluate(() => {
+    const marker = window.__DIVEATLAS_TEST__.addDiveSite(-5.7, 131, 'mobile-sheet-dismiss');
+    const popup = marker.getPopup();
+    window.__mobileSheetCloseState = null;
+    window.__DIVEATLAS_TEST__.map.on('popupclose', event => {
+      if (event.popup !== popup) return;
+      const element = popup.getElement();
+      const bounds = element.getBoundingClientRect();
+      window.__mobileSheetCloseState = {
+        exiting:element.classList.contains('mobile-sheet-exiting'),
+        dragOffset:element.style.getPropertyValue('--mobile-panel-drag-y'),
+        top:bounds.top,
+        viewportHeight:window.innerHeight
+      };
+    });
+    marker.openPopup();
+  });
+
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  const handle = sheet.locator('.diveatlas-mobile-sheet-handle');
+  await handle.evaluate(element => {
+    element.setPointerCapture = () => {};
+    const bounds = element.getBoundingClientRect();
+    const x = bounds.left + bounds.width / 2;
+    const startY = bounds.top + bounds.height / 2;
+    const dispatch = (type, clientY) => element.dispatchEvent(new PointerEvent(type, {
+      bubbles:true,
+      cancelable:true,
+      pointerId:17,
+      pointerType:'touch',
+      isPrimary:true,
+      button:0,
+      buttons:type === 'pointerup' ? 0 : 1,
+      clientX:x,
+      clientY
+    }));
+    dispatch('pointerdown', startY);
+    dispatch('pointermove', startY + 144);
+    dispatch('pointerup', startY + 144);
+  });
+
+  await expect.poll(() => page.evaluate(() => window.__mobileSheetCloseState)).not.toBeNull();
+  const closeState = await page.evaluate(() => window.__mobileSheetCloseState);
+  expect(closeState.exiting).toBe(true);
+  expect(closeState.dragOffset).toBe('144px');
+  expect(closeState.top).toBeGreaterThanOrEqual(closeState.viewportHeight - 1);
+});
+
 test('mobile layer rows toggle across the row and the collapsed bar shrinks after idle', async ({ page }) => {
   const panel = page.locator('#bioLegend');
   const title = page.locator('#bioLegendTitle');
