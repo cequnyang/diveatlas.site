@@ -1458,11 +1458,13 @@
       line-height: 1.5;
     }
     .dive-popup-location { position:relative; margin:0 0 4px; color:var(--muted); font-size:10px; line-height:1.2; }
-    .dive-popup-rating { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); color:var(--muted); font-size:10px; line-height:1.25; cursor:pointer; }
+    .dive-popup-rating { display:flex; box-sizing:border-box; width:100%; min-height:44px; align-items:center; justify-content:space-between; gap:10px; margin:0 0 5px; padding:5px 8px; border:0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); border-radius:6px; background:transparent; color:var(--muted); font:inherit; font-size:10px; line-height:1.25; text-align:left; cursor:pointer; transition:background-color .12s ease; }
+    .dive-popup-rating::after { content:''; flex:0 0 7px; width:7px; height:7px; margin-left:2px; border-top:2px solid var(--muted); border-right:2px solid var(--muted); transform:rotate(45deg); }
+    .dive-popup-rating:hover, .dive-popup-rating:active { background:var(--panel-soft); }
+    .dive-popup-rating:focus-visible { outline:2px solid var(--layers-focus-ring); outline-offset:2px; }
+    [dir="rtl"] .dive-popup-rating::after, [dir="rtl"] .dive-experience-metric-row--linked::after { transform:rotate(225deg); }
     .dive-popup-rating__label { display:inline-flex; align-items:center; min-width:0; color:var(--text); font-size:14px; font-weight:750; white-space:nowrap; vertical-align: 0.3em;}
     .dive-popup-rating__label .dive-brand-rating-logo { height:1.573em; width:auto; margin:0; }
-    button.dive-popup-rating__label { padding:0; border:0; background:transparent; font:inherit; font-size:14px; font-weight:800; cursor:pointer; }
-    button.dive-popup-rating__label:focus-visible { outline:2px solid var(--layers-focus-ring); outline-offset:3px; border-radius:2px; }
     .dive-popup-rating__value { color:var(--text); font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
     .dive-popup-rating__value[data-status="loading"] { color:var(--muted); font-weight:500; }
     .dive-popup-location__region { margin:0 !important; line-height:inherit; }
@@ -1833,8 +1835,10 @@
     .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb { border:2px solid var(--panel-solid); border-radius:999px; background:var(--faint); }
     .temperature-info-popover.dive-experience-popup-info-popover::-webkit-scrollbar-thumb:hover { background:var(--muted); }
     .dive-experience-popup-info-popover > h4 { margin:0 0 8px; color:var(--layers-legend-title,var(--text-primary)); font-size:13px; }
-    .dive-experience-evidence-line { display:grid; justify-items:start; gap:4px; margin:2px 0 0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:11px; line-height:1.25; }
-    .dive-experience-coverage-meter { display:grid; grid-template-columns:repeat(var(--coverage-total,7),minmax(0,1fr)); gap:2px; width:min(112px,100%); height:4px; }
+    .dive-experience-evidence-line { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; column-gap:12px; margin:2px 0 0 !important; color:var(--layers-legend-meta,var(--text-muted)); font-size:11px; line-height:1.25; }
+    .dive-experience-completeness { display:grid; justify-items:end; gap:2px; min-width:0; text-align:right; }
+    .dive-experience-completeness > span:first-child { white-space:nowrap; }
+    .dive-experience-coverage-meter { display:grid; grid-template-columns:repeat(var(--coverage-total,7),minmax(0,1fr)); justify-self:end; gap:2px; width:min(112px,100%); height:4px; }
     .dive-experience-coverage-meter span { border-radius:999px; background:var(--line-soft); }
     .dive-experience-coverage-meter span.is-available { background:var(--primary,#2879bd); }
     .dive-experience-key-reasons { margin-top:8px; color:var(--layers-row-text,var(--text-secondary)); font-size:11px; }
@@ -1955,7 +1959,9 @@
     .dive-conditions-metric[data-comfort="moderate"] .dive-conditions-value { color:var(--dc-fg-moderate); }
     .dive-conditions-metric[data-comfort="challenging"] .dive-conditions-value { color:var(--dc-fg-challenging); }
     .dive-conditions-popup-content .dive-conditions-value[data-available="false"] { color:var(--layers-legend-meta,var(--text-muted)); }
-    .dive-experience-metric-row--linked { cursor:pointer; }
+    .dive-experience-metric-row--linked { grid-template-columns:minmax(0,1fr) minmax(90px,auto) 10px; align-items:center; min-height:40px; padding:2px 4px; border-radius:6px; font-size:16.8px; line-height:1.25; cursor:pointer; transition:background-color .12s ease; }
+    .dive-experience-metric-row--linked::after { content:''; grid-column:3; grid-row:1; justify-self:center; width:6px; height:6px; border-top:1.5px solid var(--layers-legend-meta,var(--text-muted)); border-right:1.5px solid var(--layers-legend-meta,var(--text-muted)); transform:rotate(45deg); }
+    .dive-experience-metric-row--linked:hover, .dive-experience-metric-row--linked:active { background:var(--panel-soft); }
     .dive-experience-metric-row--linked:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; border-radius:3px; }
     .dive-conditions-confidence { display:grid; width:100%; grid-template-columns:1fr auto; align-items:center; gap:5px; margin-top:8px; padding:6px 0; border:0; background:transparent; color:var(--layers-legend-title,var(--text-secondary)); font:inherit; font-size:11px; text-align:left; cursor:pointer; }
     .dive-conditions-confidence--chart-open { border-top:0; }
@@ -4402,6 +4408,8 @@
       gap: 16px;
       padding: 20px 22px 14px;
     }
+    #shareCloseButton { position:absolute; top:2px; right:8px; width:60px; height:60px; flex:0 0 60px; border-radius:10px; }
+    #shareCloseButton svg { width:24px; height:24px; }
     .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
     .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 22px; }
     .share-preview-frame {
@@ -4588,7 +4596,8 @@
     @media (max-width: 520px) {
       .share-modal { align-items: end; padding: 10px; }
       .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
-      .share-dialog-header { padding: 18px 18px 12px; }
+      .share-dialog-header { min-height:60px; padding:18px 70px 12px 18px; }
+      #shareCloseButton { position:absolute; top:0; right:0; z-index:2; border-radius:0 18px 0 12px; }
       .share-dialog-body { padding: 4px 18px 18px; }
       .share-preview-frame { aspect-ratio: 1200 / 630; }
       .share-actions { justify-content: flex-start; gap: 4px; }
@@ -14705,7 +14714,8 @@ ZSD·2016–2025</span></span>
       ? t('diveExperienceOverallConfidenceUnavailable')
       : (I18N[currentLang]?.diveExperienceConfidenceLine || `${t('diveConditionsConfidence')}: {confidence}`).replace('{confidence}', localizedConfidenceLevel(sample.confidence));
     const completenessSummary = document.createElement('span');
-    completenessSummary.textContent = completenessText;
+    completenessSummary.textContent = `${availableDimensionCount}/${totalDimensionCount}`;
+    completenessSummary.setAttribute('aria-hidden', 'true');
     if (sample?.nearbyEstimate) {
       evidenceSummary.textContent += ` · ${t('diveExperienceNearbyEstimate')} · ${formatLongDistanceMeters(sample.nearbyEstimate.distanceKm * 1000)} ${t('diveConditionsFromSelection')}`;
     }
@@ -14722,7 +14732,10 @@ ZSD·2016–2025</span></span>
       segment.setAttribute('aria-hidden', 'true');
       coverageMeter.append(segment);
     }
-    evidence.replaceChildren(evidenceSummary, completenessSummary, coverageMeter);
+    const completeness = document.createElement('div');
+    completeness.className = 'dive-experience-completeness';
+    completeness.append(completenessSummary, coverageMeter);
+    evidence.replaceChildren(evidenceSummary, completeness);
     const infoControl = getDiveExperiencePopupInfoControl();
     const scoreRow = document.createElement('div');
     scoreRow.className = 'dive-experience-score-row';
@@ -26232,10 +26245,10 @@ function closeShareDialog() {
       `<div class="dive-popup-location">` +
       `<p class="dive-popup-location__region" hidden></p>` +
       `</div>`,
-      `<div class="dive-popup-rating" aria-label="${escapeHtml(t('diveExperienceHistoricalOutlook'))}">` +
-      `<button class="dive-popup-rating__label" type="button" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}"></button>` +
+      `<button class="dive-popup-rating" type="button" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}">` +
+      `<span class="dive-popup-rating__label" aria-label="${escapeHtml(DIVEATLAS_RATING_LABEL)}"></span>` +
       `<span class="dive-popup-rating__value" data-status="loading">${escapeHtml(t('diveConditionsLoading'))}</span>` +
-      `</div>`
+      `</button>`
     );
 
     if (siteSummary) {
@@ -26402,15 +26415,6 @@ function closeShareDialog() {
           L.DomEvent.stop(clickEvent);
           openDiveSiteRatingPopup(event.popup);
         });
-        popupRatingRow.addEventListener('keydown', keyEvent => {
-          if (keyEvent.target.closest('button, a, input, select, textarea')) return;
-          if (keyEvent.key !== 'Enter' && keyEvent.key !== ' ') return;
-          keyEvent.preventDefault();
-          openDiveSiteRatingPopup(event.popup);
-        });
-        popupRatingRow.tabIndex = 0;
-        popupRatingRow.setAttribute('role', 'button');
-        popupRatingRow.setAttribute('aria-label', DIVEATLAS_RATING_LABEL);
       }
       const popupRegion = event.popup.getElement()?.querySelector('.dive-popup-location__region');
       if (event.popup._diveAtlasRatingLocation) requestDiveSiteRating(event.popup, event.popup._diveAtlasRatingLocation);
