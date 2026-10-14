@@ -102,6 +102,24 @@
     return new Uint8Array(view.buffer, view.byteOffset + 16, grid.width * grid.height * samplesPerAxis);
   }
 
+  function decodeLandMask(buffer, manifest) {
+    const samplesPerAxis = manifest.oceanMask.samplesPerAxis;
+    const view = verifyHeader(buffer, { magic:'DALM', version:1, grid:manifest.grid, bytesPerCell:samplesPerAxis });
+    if (view.getUint8(5) !== samplesPerAxis) throw new TypeError('Land mask subcell count does not match the manifest.');
+    return new Uint8Array(view.buffer, view.byteOffset + 16, manifest.grid.width * manifest.grid.height * samplesPerAxis);
+  }
+
+  function excludeLandSubcells(oceanMask, landMask, manifest) {
+    const expectedLength = manifest.grid.width * manifest.grid.height * manifest.oceanMask.samplesPerAxis;
+    if (oceanMask?.length !== expectedLength || landMask?.length !== expectedLength) {
+      throw new TypeError('Ocean and land masks do not match the Dive Experience grid.');
+    }
+    // Elevation alone cannot distinguish ocean from dry terrain below sea level.
+    // The bundled polygons stop at mapped coasts, so the Caspian remains water.
+    for (let index = 0; index < expectedLength; index += 1) oceanMask[index] &= ~landMask[index];
+    return oceanMask;
+  }
+
   function interpolateViridis(score) {
     const value = Math.max(0, Math.min(1, Number(score) / 100));
     let rightIndex = VIRIDIS.findIndex(stop => stop.at >= value);
@@ -318,7 +336,8 @@
     throw new Error('This browser cannot decompress the Dive Experience map data.');
   }
 
-  function createDataStore({ fetchImpl, baseUrl = 'data/dive-experience-outlook/v3/' } = {}) {
+  function createDataStore({ fetchImpl, baseUrl = 'data/dive-experience-outlook/v3/',
+    landMaskUrl = '../datasets/dive-experience-land-mask-v1.bin.gz' } = {}) {
     const fetcher = fetchImpl || ((...args) => root.fetch(...args));
     let manifestPromise = null;
     let maskPromise = null;
@@ -328,6 +347,11 @@
     async function fetchPacked(file, signal) {
       const response = await fetcher(`${baseUrl}${file}`, { signal, cache:'force-cache' });
       if (!response?.ok) throw new Error(`Dive Experience asset ${file} returned HTTP ${response?.status ?? 'no response'}.`);
+      return response.arrayBuffer();
+    }
+    async function fetchLandMask(signal) {
+      const response = await fetcher(landMaskUrl, { signal, cache:'force-cache' });
+      if (!response?.ok) throw new Error(`Dive Experience land mask returned HTTP ${response?.status ?? 'no response'}.`);
       return response.arrayBuffer();
     }
     function loadManifest() {
@@ -342,8 +366,12 @@
       if (!maskPromise) {
         maskPromise = (async () => {
           const manifest = await loadManifest();
-          const packed = await fetchPacked(manifest.oceanMask.file);
-          return decodeOceanMask(await decompress(packed), manifest);
+          const [packedOceanMask, packedLandMask] = await Promise.all([
+            fetchPacked(manifest.oceanMask.file), fetchLandMask()
+          ]);
+          const oceanMask = decodeOceanMask(await decompress(packedOceanMask), manifest);
+          const landMask = decodeLandMask(await decompress(packedLandMask), manifest);
+          return excludeLandSubcells(oceanMask, landMask, manifest);
         })().catch(error => { maskPromise = null; throw error; });
       }
       return maskPromise;
@@ -510,7 +538,8 @@
       keepBuffer:1, className:'dive-experience-outlook-grid', interactive:false, crossOrigin:true });
   }
 
-  return Object.freeze({ validateManifest, decodeMonth, decodeStaticSupport, decodeOceanMask, cellIndexAt,
+  return Object.freeze({ validateManifest, decodeMonth, decodeStaticSupport, decodeOceanMask, decodeLandMask,
+    excludeLandSubcells, cellIndexAt,
     sampleAt, sampleNearestOceanCell, interpolateViridis, opacityFor, scoreLabel, physicalLabel, confidenceLabel,
     createDataStore, createGridLayer, getRenderDiagnostics:() => Object.freeze({ tileCount:renderedTileCount,
       totalTileRenderMs:Number(renderedTileMsTotal.toFixed(1)), maxTileRenderMs:Number(renderedTileMsMax.toFixed(1)),

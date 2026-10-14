@@ -22,6 +22,8 @@ Choose **Dive Experience** in the Layers view selector, choose one of the 12 mon
 
 The view is enabled by default. Set `window.DIVEATLAS_FEATURE_FLAGS.diveExperienceOutlook = false` before the application initializes to disable it. For local checks, `?diveExperienceOutlook=0` also hides the view. No Outlook module or score data are requested until the view is selected; the selected month is loaded lazily and the two most recently used month grids are cached.
 
+The score grid's bathymetry-derived water mask is intersected with a separate 8×8 subcell land mask built from the bundled Natural Earth country boundaries. This prevents dry terrain below sea level, including the Caspian lowlands, from being colored as ocean. The land mask is a generalized display filter, not a navigation coastline.
+
 ## Scoring configuration
 
 **Scoring map v5:** the production Dive Experience layer uses the versioned `v3` runtime package generated from the seven-dimension model and guides below. Each scored dimension has seven documented stages.
@@ -43,6 +45,14 @@ The previous `v1` and `v2` runtime packages remain available as rollback points.
 
 See the [ocean missing-data estimation guide](ocean-missing-data-estimation-guide.md) for the dimension-specific fallback and validation rules.
 
+Rebuild the static land exclusion mask after changing the bundled country boundaries with:
+
+```sh
+node scripts/build_dive_experience_land_mask.js
+```
+
+The builder reads `datasets/country-boundaries.geojson.gz` and writes `datasets/dive-experience-land-mask-v1.bin.gz`, which is served with the site and applied to the runtime water mask in the browser.
+
 After regenerating an accepted analysis prototype, build static spatial support and publish the runtime package, then create the Pages site:
 
 ```sh
@@ -57,7 +67,7 @@ These commands require complete local analysis inputs under `analysis/`; they do
 ## Implementation and checks
 
 - `js/dive-experience-model.js` owns group weights, thresholds, support requirements, confidence, completeness, and deterministic reasons.
-- `js/dive-experience-outlook-map.js` decodes month/static assets, samples masked locations, and renders reversed-Viridis score tiles with the accepted evidence/completeness opacity function (yellow low, dark purple-blue high).
+- `js/dive-experience-outlook-map.js` intersects the runtime water mask with the static country-boundary land exclusion mask, decodes month/static assets, samples masked locations, and renders reversed-Viridis score tiles with the accepted evidence/completeness opacity function (yellow low, dark purple-blue high).
 - `js/dive-conditions-service.js` remains the source for physical-condition sampling and provenance.
 - `tools/build_dive_experience_support.js` and `tools/publish_dive_experience_outlook.js` prepare the runtime package.
 - `tools/verify_pages_build.py` enforces its production boundary.
