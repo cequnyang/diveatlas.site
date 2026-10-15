@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "name": "diveatlas-site-photo-upload",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-15",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "diveatlas.site/api/site-photo-submissions*",
+      "zone_name": "diveatlas.site"
+    },
+    {
+      "pattern": "www.diveatlas.site/api/site-photo-submissions*",
+      "zone_name": "diveatlas.site"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true
+    }
+  },
+  "vars": {
+    "APP_ORIGIN": "https://diveatlas.site"
+  },
+  "r2_buckets": [
+    {
+      // Keep original submissions private; the browser never receives direct bucket access.
+      "binding": "SITE_PHOTOS_BUCKET",
+      "bucket_name": "diveatlas-user-photo-submissions"
+    }
+  ],
+  "d1_databases": [
+    {
+      // Used only to validate the session created by the auth Worker.
+      "binding": "AUTH_DB",
+      "database_name": "diveatlas-auth",
+      "database_id": "07cd6cae-a714-4f22-a4a9-684a3e32fb32"
+    },
+    {
+      // Submission and review metadata are isolated from auth and suggestion records.
+      "binding": "SITE_PHOTOS_DB",
+      "database_name": "diveatlas-site-photos",
+      "database_id": "26d10eef-da4d-4c0c-a04f-bf36d79d74de",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

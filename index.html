@@ -1697,6 +1697,9 @@
       .dive-site-popup--with-photo .dive-popup-photo-label--upload {
         display: inline-grid;
         grid-template-areas: "label";
+        box-sizing: border-box;
+        height: calc(1.3em + 12px);
+        align-items: center;
       }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover,
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible {
@@ -1709,12 +1712,18 @@
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__rest { opacity: 0; }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover .dive-popup-photo-label__action,
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__action { opacity: 1; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__action {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     }
     /* Touch and narrow layouts show the status and a separate tap target over the same photo. */
     @media (hover: none) and (pointer: coarse), (max-width: 720px) {
       .dive-site-popup--with-photo .dive-popup-photo-label--upload {
         display: inline-flex;
+        height: auto;
         top: 10px;
         right: 10px;
         left: auto;
@@ -1743,6 +1752,15 @@
         background: color-mix(in srgb, var(--primary) 94%, transparent);
         box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
         pointer-events: none;
+      }
+      /* Narrow hybrid devices can still match :hover; keep the 44px target transparent so the 32px pill stays the visible background. */
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible {
+        border-color: transparent;
+        background: transparent;
+        color: #fff;
+        text-shadow: none;
+        box-shadow: none;
       }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__rest,
       .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__action { display: none; }
@@ -3168,6 +3186,7 @@
     }
 
     .site-suggestion-modal[hidden] { display: none; }
+    .site-photo-upload-modal [hidden] { display: none; }
     .site-suggestion-modal {
       position: fixed;
       z-index: 2201;
@@ -3210,6 +3229,7 @@
       padding: 18px 20px 12px;
       border-bottom: 1px solid var(--line);
     }
+    .site-suggestion-modal .site-suggestion-header { padding-right: 70px; }
     .site-suggestion-title { margin: 0; font-size: 18px; line-height: 24px; font-weight: 650; }
     .site-suggestion-copy { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
     .site-suggestion-form { display: grid; gap: 13px; padding: 16px 20px 20px; }
@@ -3240,24 +3260,171 @@
     .site-suggestion-actions .contact-button { min-height: 38px; }
     body.site-photo-upload-open { overflow: hidden; }
     .site-photo-upload-modal { z-index: 2202; }
-    .site-photo-upload-form { gap: 12px; }
-    .site-photo-upload-site { margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-photo-upload-modal .site-suggestion-copy { font-weight: 600; }
+    .site-photo-upload-form { gap: 15px; }
+    .site-photo-upload-site {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 11px 20px 11px 17px;
+      border-inline-start: 3px solid var(--primary);
+      border-bottom: 1px solid var(--line);
+      background: var(--primary-soft);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 20px;
+    }
+    .site-photo-upload-site span { font-weight: 650; }
+    .site-photo-upload-site strong { color: var(--primary); font-size: 14px; font-weight: 750; }
     .site-photo-upload-auth { display: grid; gap: 10px; padding: 18px 20px 20px; }
     .site-photo-upload-auth p, .site-photo-upload-success p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
     .site-photo-upload-auth a { justify-self: start; text-decoration: none; }
-    .site-photo-upload-help, .site-photo-upload-privacy { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
-    .site-photo-upload-check { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 8px; color: var(--text); font-size: 12px; line-height: 1.5; }
-    .site-photo-upload-check input { width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--primary); }
-    .site-photo-upload-preview { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 72px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); }
+    .site-photo-upload-help { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .site-photo-upload-form .site-suggestion-field > span { color: var(--text); font-size: 13px; line-height: 19px; font-weight: 650; }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]) {
+      height: 44px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]):hover { border-color: var(--muted); }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]):focus { border-color: var(--primary); outline: 2px solid rgba(9, 105, 218, .18); }
+    .site-photo-upload-form .site-suggestion-input[type="file"] {
+      height: auto;
+      min-height: 58px;
+      padding: 7px 8px;
+      border-radius: 12px;
+      background: var(--panel-soft);
+      color: var(--primary);
+      cursor: pointer;
+      transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"]:hover { border-color: var(--primary); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]:focus-visible {
+      border-color: var(--primary);
+      outline: 3px solid rgba(9, 105, 218, .18);
+      outline-offset: 1px;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"][aria-invalid="true"] { border-color: #cf222e; box-shadow: 0 0 0 1px rgba(207, 34, 46, .28); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button {
+      min-height: 40px;
+      margin: 0 12px 0 0;
+      padding: 0 15px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--primary);
+      color: #fff;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      transition: filter .16s ease, transform .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button:hover { filter: brightness(.94); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button:active { transform: scale(.98); }
+    .site-photo-upload-policy-label { color: var(--text); font-size: 13px; line-height: 1.5; font-weight: 700; cursor: pointer; }
+    .site-photo-upload-policy-trigger {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-inline-start: .35em;
+      padding: 0 2px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
+      text-underline-offset: 4px;
+      vertical-align: baseline;
+      cursor: pointer;
+    }
+    .site-photo-upload-policy-trigger:hover,
+    .site-photo-upload-policy-trigger[aria-expanded="true"] { color: var(--primary); }
+    .site-photo-upload-policy-trigger:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+    .site-photo-upload-policy-popover {
+      position: fixed;
+      z-index: 2304;
+      width: min(420px, calc(100vw - 24px));
+      max-height: min(68vh, 440px);
+      overflow: auto;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 12px 32px rgba(31, 35, 40, .24);
+      font-size: 12px;
+      line-height: 1.5;
+      overscroll-behavior: contain;
+    }
+    .site-photo-upload-policy-popover p { margin: 0; color: var(--muted); }
+    .site-photo-upload-policy-popover p + p { margin-top: 10px; }
+    .site-photo-upload-policy-popover strong { color: var(--text); }
+    .site-photo-upload-policy-popover:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .site-photo-upload-check { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-soft); color: var(--text); font-size: 13px; line-height: 1.5; }
+    .site-photo-upload-check.is-invalid { border-color: #cf222e; box-shadow: 0 0 0 1px rgba(207, 34, 46, .28); }
+    [data-theme="dark"] .site-photo-upload-form .site-suggestion-input[type="file"][aria-invalid="true"],
+    [data-theme="dark"] .site-photo-upload-check.is-invalid { border-color: #ff7b72; box-shadow: 0 0 0 1px rgba(255, 123, 114, .3); }
+    .site-photo-upload-check input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--primary); }
+    .site-photo-upload-check-copy { display: block; }
+    .site-photo-upload-check strong { font-weight: 700; }
+    .site-photo-upload-form .site-suggestion-actions .contact-button { min-height: 46px; border-radius: 10px; }
+    #sitePhotoUploadSubmitButton { border-color: var(--primary); background: var(--primary); }
+    #sitePhotoUploadSubmitButton:hover { background: var(--primary); filter: brightness(.94); }
+    #contactSubmitButton,
+    #siteSuggestionSubmitButton { border-color: var(--primary); background: var(--primary); }
+    #contactSubmitButton:hover,
+    #siteSuggestionSubmitButton:hover { background: var(--primary); filter: brightness(.94); }
+    .site-photo-upload-form .site-suggestion-actions .contact-button:focus-visible { outline: 3px solid rgba(9, 105, 218, .22); outline-offset: 2px; }
+    .site-photo-upload-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 220px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-soft);
+    }
     .site-photo-upload-preview[hidden] { display: none; }
-    .site-photo-upload-preview img { display: block; width: 92px; height: 72px; border-radius: 5px; object-fit: cover; background: var(--panel-solid); }
-    .site-photo-upload-preview span { min-width: 0; color: var(--muted); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
+    .site-photo-upload-file-field.has-preview > #sitePhotoUploadFile,
+    .site-photo-upload-file-field.has-preview > #sitePhotoUploadFileHelp { display: none; }
+    .site-photo-upload-preview img { display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: contain; background: transparent; }
+    .site-photo-upload-preview-remove {
+      position: absolute;
+      inset-block-start: 8px;
+      inset-inline-end: 8px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5);
+      color: #343a40;
+      box-shadow: 0 2px 8px rgba(31, 35, 40, .2);
+      cursor: pointer;
+    }
+    .site-photo-upload-preview-remove svg { display: block; width: 30px; height: 30px; }
+    .site-photo-upload-preview-remove:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+    .site-photo-upload-preview-remove:disabled { cursor: not-allowed; opacity: .65; }
+    .site-photo-upload-file-label { color: var(--text); font-size: 13px; line-height: 19px; font-weight: 650; }
     .site-photo-upload-success { display: grid; gap: 8px; padding: 20px; }
     .site-photo-upload-success h3 { margin: 0; font-size: 16px; line-height: 22px; }
     @media (max-width: 520px) {
       .site-suggestion-modal { align-items: end; padding: 8px; }
       .site-suggestion-dialog { width: 100%; max-height: calc(100vh - 16px); border-radius: 12px; }
       .site-suggestion-header, .site-suggestion-form { padding-left: 16px; padding-right: 16px; }
+      .site-photo-upload-site { padding-left: 13px; padding-right: 16px; }
       .site-photo-upload-auth, .site-photo-upload-success { padding-left: 16px; padding-right: 16px; }
     }
 
@@ -4454,6 +4621,7 @@
       padding: 18px 20px 12px;
       border-bottom: 1px solid var(--line);
     }
+    #contactModal .contact-dialog-header { padding-right: 70px; }
 
     .contact-dialog-title {
       margin: 0;
@@ -4579,8 +4747,22 @@
       gap: 16px;
       padding: 20px 22px 14px;
     }
-    #shareCloseButton { position:absolute; top:2px; right:8px; width:60px; height:60px; flex:0 0 60px; border-radius:10px; }
-    #shareCloseButton svg { width:24px; height:24px; }
+    #shareCloseButton,
+    #contactCloseButton,
+    #siteSuggestionCloseButton,
+    #sitePhotoUploadCloseButton {
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      border-radius: 10px;
+    }
+    #shareCloseButton svg,
+    #contactCloseButton svg,
+    #siteSuggestionCloseButton svg,
+    #sitePhotoUploadCloseButton svg { width: 24px; height: 24px; }
     .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
     .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 22px; }
     .share-preview-frame {
@@ -4815,6 +4997,9 @@
       .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
       .share-dialog-header { min-height:60px; padding:18px 70px 12px 18px; }
       #shareCloseButton { position:absolute; top:0; right:0; z-index:2; border-radius:0 18px 0 12px; }
+      #contactCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 10px 0 10px; }
+      #siteSuggestionCloseButton,
+      #sitePhotoUploadCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 12px 0 12px; }
       .share-dialog-body { padding: 4px 18px 18px; }
       .share-preview-frame { aspect-ratio: 1200 / 630; }
       .share-actions { justify-content: flex-start; gap: 4px; }
@@ -6882,8 +7067,8 @@
         overflow-x:hidden;
         overflow-y:auto;
         overscroll-behavior:contain;
-        /* Keep mobile scrolling discoverable while hiding the bulky native track. */
-        scrollbar-width:thin;
+        /* Keep touch and wheel scrolling available when the viewport is short without painting a persistent bar over layer controls. */
+        scrollbar-width:none;
       }
       .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
@@ -7219,43 +7404,41 @@
     <section class="site-suggestion-dialog" id="sitePhotoUploadDialog" role="dialog" aria-modal="true" aria-labelledby="sitePhotoUploadTitle" aria-describedby="sitePhotoUploadCopy">
       <div class="site-suggestion-header">
         <div>
-          <h2 class="site-suggestion-title" id="sitePhotoUploadTitle">Contribute a photo</h2>
-          <p class="site-suggestion-copy" id="sitePhotoUploadCopy">Help replace the representative image at this dive site.</p>
-          <p class="site-photo-upload-site"><span id="sitePhotoUploadSiteLabel">Dive site:</span> <strong id="sitePhotoUploadSiteName"></strong></p>
+          <h2 class="site-suggestion-title" id="sitePhotoUploadTitle">Submit a photo</h2>
+          <p class="site-suggestion-copy" id="sitePhotoUploadCopy">Your photo stays private during review.</p>
         </div>
         <button class="contact-dialog-close" id="sitePhotoUploadCloseButton" type="button" aria-label="Close" title="Close" data-site-photo-upload-close><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
       </div>
+      <p class="site-photo-upload-site"><span id="sitePhotoUploadSiteLabel">Dive site:</span> <strong id="sitePhotoUploadSiteName"></strong></p>
       <div class="site-photo-upload-auth" id="sitePhotoUploadAuthRequired" hidden>
-        <p id="sitePhotoUploadSignInCopy">Sign in to submit a photo. After signing in, reopen this panel and choose your image.</p>
+        <p id="sitePhotoUploadSignInCopy">Sign in to continue. We’ll bring you back here to choose your photo.</p>
         <a class="contact-button contact-button-primary" id="sitePhotoUploadSignIn">Sign in with Google</a>
       </div>
       <form class="site-suggestion-form site-photo-upload-form" id="sitePhotoUploadForm" novalidate hidden>
-        <label class="site-suggestion-field">
-          <span id="sitePhotoUploadFileLabel">Photo</span>
+        <div class="site-suggestion-field site-photo-upload-file-field">
+          <label class="site-photo-upload-file-label" id="sitePhotoUploadFileLabel" for="sitePhotoUploadFile">Photo</label>
+          <div class="site-photo-upload-preview" id="sitePhotoUploadPreview" hidden>
+            <button class="site-photo-upload-preview-remove" id="sitePhotoUploadPreviewRemoveButton" type="button" aria-label="Remove selected photo" title="Remove selected photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.4"/></svg></button>
+            <img id="sitePhotoUploadPreviewImage" alt="Selected photo preview">
+          </div>
           <input class="site-suggestion-input" id="sitePhotoUploadFile" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
-          <small class="site-photo-upload-help" id="sitePhotoUploadFileHelp">JPEG, PNG or WebP · up to 12 MB · at least 1 megapixel</small>
-        </label>
-        <div class="site-photo-upload-preview" id="sitePhotoUploadPreview" hidden>
-          <img id="sitePhotoUploadPreviewImage" alt="Selected photo preview">
-          <span id="sitePhotoUploadPreviewDetails"></span>
+          <small class="site-photo-upload-help" id="sitePhotoUploadFileHelp">JPEG/PNG/WebP · optimized before upload</small>
         </div>
         <label class="site-suggestion-field">
-          <span id="sitePhotoUploadCreditLabel">Photo credit</span>
+          <span id="sitePhotoUploadCreditLabel">Photo credit (optional)</span>
           <input class="site-suggestion-input" id="sitePhotoUploadCredit" name="creditName" type="text" maxlength="80" autocomplete="name">
         </label>
-        <p class="site-photo-upload-privacy" id="sitePhotoUploadPrivacy">Use a real photo taken at or near this site. GPS/EXIF is optional and kept private during review.</p>
-        <label class="site-photo-upload-check">
-          <input id="sitePhotoUploadRealAttestation" name="attestRealPhoto" type="checkbox" value="yes" required>
-          <span id="sitePhotoUploadRealCopy">I confirm this is a real photograph taken at or near this site and was not generated by AI.</span>
-        </label>
-        <label class="site-photo-upload-check">
-          <input id="sitePhotoUploadRightsAttestation" name="attestRights" type="checkbox" value="yes" required>
-          <span id="sitePhotoUploadRightsCopy">I own this photo or have permission to submit it. If approved, I let DiveAtlas store, resize and display it on this dive-site page. I keep the copyright.</span>
-        </label>
+        <div class="site-photo-upload-check">
+          <input id="sitePhotoUploadPolicyAttestation" name="policyAttestation" type="checkbox" value="yes" required>
+          <div class="site-photo-upload-check-copy">
+            <label class="site-photo-upload-policy-label" id="sitePhotoUploadPolicyAttestationCopy" for="sitePhotoUploadPolicyAttestation">Required: I confirm this is a genuine, non-AI photo taken at or near this dive site, and I have the right to let DiveAtlas use it.</label>
+            <button class="site-photo-upload-policy-trigger" id="sitePhotoUploadPolicyTrigger" type="button" aria-expanded="false" aria-controls="sitePhotoUploadPolicyPopover"><span id="sitePhotoUploadPolicyLabel">Policy details</span></button>
+          </div>
+        </div>
         <p class="site-suggestion-status" id="sitePhotoUploadStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         <div class="site-suggestion-actions">
           <button class="contact-button contact-button-secondary" id="sitePhotoUploadCancelButton" type="button" data-site-photo-upload-close>Cancel</button>
-          <button class="contact-button contact-button-primary" id="sitePhotoUploadSubmitButton" type="submit">Send for review</button>
+          <button class="contact-button contact-button-primary" id="sitePhotoUploadSubmitButton" type="submit">Submit</button>
         </div>
       </form>
       <div class="site-photo-upload-success" id="sitePhotoUploadSuccess" hidden>
@@ -7264,6 +7447,12 @@
         <div class="site-suggestion-actions">
           <button class="contact-button contact-button-primary" id="sitePhotoUploadDoneButton" type="button" data-site-photo-upload-close>Done</button>
         </div>
+      </div>
+      <div class="site-photo-upload-policy-popover" id="sitePhotoUploadPolicyPopover" role="region" aria-labelledby="sitePhotoUploadPolicyLabel" tabindex="0" hidden>
+        <p><strong id="sitePhotoUploadReviewHeading">Review</strong> <span id="sitePhotoUploadReviewCopy">We automatically check file type, size, and pixel count. A reviewer checks photo clarity and whether it matches this site. We can't reliably confirm if it was made with AI or exactly where it was taken.</span></p>
+        <p><strong id="sitePhotoUploadAuthenticityHeading">Authenticity</strong> <span id="sitePhotoUploadAuthenticityCopy">The photo must be a genuine image taken at or near this dive site and must not be generated by AI.</span></p>
+        <p><strong id="sitePhotoUploadPrivacyHeading">Privacy</strong> <span id="sitePhotoUploadPrivacyCopy">GPS and capture time may help with review. We extract these details before optimizing the image and store them privately with your submission. Your original photo stays on your device.</span></p>
+        <p><strong id="sitePhotoUploadRightsHeading">Photo rights and use</strong> <span id="sitePhotoUploadRightsCopy">You must own the photo or have the owner’s permission. You grant DiveAtlas a non-exclusive, worldwide, royalty-free license to store the photo for review and, if accepted, crop, resize, and display it on DiveAtlas, including through its hosting providers. You keep the copyright and may continue to use the photo or let others use it. DiveAtlas pays no royalty for this use.</span></p>
       </div>
     </section>
   </div>
@@ -7865,6 +8054,7 @@ ZSD·2016–2025</span></span>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 <script src="js/map-interaction-contract.js"></script>
 <script src="js/environmental-view-controller.js"></script>
+<script src="js/site-photo-metadata.js"></script>
 <script src="js/auth-ui.js" defer></script>
 <script>
   // Embedders can set this before loading the page; a query override supports controlled local/staging checks.
@@ -9596,12 +9786,22 @@ ZSD·2016–2025</span></span>
     sitePhotoUploadFile: document.getElementById('sitePhotoUploadFile'),
     sitePhotoUploadFileHelp: document.getElementById('sitePhotoUploadFileHelp'),
     sitePhotoUploadPreview: document.getElementById('sitePhotoUploadPreview'),
+    sitePhotoUploadPreviewRemoveButton: document.getElementById('sitePhotoUploadPreviewRemoveButton'),
     sitePhotoUploadPreviewImage: document.getElementById('sitePhotoUploadPreviewImage'),
-    sitePhotoUploadPreviewDetails: document.getElementById('sitePhotoUploadPreviewDetails'),
     sitePhotoUploadCreditLabel: document.getElementById('sitePhotoUploadCreditLabel'),
     sitePhotoUploadCredit: document.getElementById('sitePhotoUploadCredit'),
-    sitePhotoUploadPrivacy: document.getElementById('sitePhotoUploadPrivacy'),
-    sitePhotoUploadRealCopy: document.getElementById('sitePhotoUploadRealCopy'),
+    sitePhotoUploadPolicyTrigger: document.getElementById('sitePhotoUploadPolicyTrigger'),
+    sitePhotoUploadPolicyLabel: document.getElementById('sitePhotoUploadPolicyLabel'),
+    sitePhotoUploadPolicyAttestation: document.getElementById('sitePhotoUploadPolicyAttestation'),
+    sitePhotoUploadPolicyAttestationCopy: document.getElementById('sitePhotoUploadPolicyAttestationCopy'),
+    sitePhotoUploadPolicyPopover: document.getElementById('sitePhotoUploadPolicyPopover'),
+    sitePhotoUploadReviewHeading: document.getElementById('sitePhotoUploadReviewHeading'),
+    sitePhotoUploadReviewCopy: document.getElementById('sitePhotoUploadReviewCopy'),
+    sitePhotoUploadAuthenticityHeading: document.getElementById('sitePhotoUploadAuthenticityHeading'),
+    sitePhotoUploadAuthenticityCopy: document.getElementById('sitePhotoUploadAuthenticityCopy'),
+    sitePhotoUploadPrivacyHeading: document.getElementById('sitePhotoUploadPrivacyHeading'),
+    sitePhotoUploadPrivacyCopy: document.getElementById('sitePhotoUploadPrivacyCopy'),
+    sitePhotoUploadRightsHeading: document.getElementById('sitePhotoUploadRightsHeading'),
     sitePhotoUploadRightsCopy: document.getElementById('sitePhotoUploadRightsCopy'),
     sitePhotoUploadStatus: document.getElementById('sitePhotoUploadStatus'),
     sitePhotoUploadCancelButton: document.getElementById('sitePhotoUploadCancelButton'),
@@ -9912,7 +10112,17 @@ ZSD·2016–2025</span></span>
   const PANEL_STATE_STORAGE_KEY = 'global-coral-map-panel-collapsed-v1';
   const CONTACT_ENDPOINT = '/api/contact';
   const SITE_SUGGESTION_ENDPOINT = '/api/site-suggestions';
-  const SITE_PHOTO_SUBMISSION_ENDPOINT = '/api/site-photo-submissions';
+  const SITE_PHOTO_SUBMISSION_ENDPOINT = window.location.hostname === 'localhost' && window.location.port === '8787'
+    ? 'http://localhost:8788/api/site-photo-submissions'
+    : '/api/site-photo-submissions';
+  const SITE_PHOTO_UPLOAD_MAX_BYTES = 5 * 1024 * 1024;
+  const SITE_PHOTO_UPLOAD_COMPRESSED_TARGET_BYTES = 4.5 * 1024 * 1024;
+  // Bound local image decoding work while still accepting typical high-resolution camera photos.
+  const SITE_PHOTO_UPLOAD_MAX_SOURCE_BYTES = 50 * 1024 * 1024;
+  const SITE_PHOTO_UPLOAD_COMPRESSED_MAX_EDGE = 8000;
+  const SITE_PHOTO_UPLOAD_CONTINUATION_KEY = 'diveatlas:photo-upload-after-sign-in:v1';
+  // Keep the continuation no longer than the auth worker's 10-minute OAuth state lifetime.
+  const SITE_PHOTO_UPLOAD_CONTINUATION_TTL_MS = 10 * 60 * 1000;
   const TURNSTILE_SITE_KEY = '0x4AAAAAAFCEklFmZKeIgpIp';
   const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
@@ -9978,10 +10188,15 @@ ZSD·2016–2025</span></span>
   let sitePhotoUploadPreviousFocus = null;
   let sitePhotoUploadSiteId = '';
   let sitePhotoUploadSiteName = '';
+  let sitePhotoUploadPreparedFile = null;
+  let sitePhotoUploadPreparedMetadata = null;
+  let sitePhotoUploadPreparing = false;
+  let sitePhotoUploadPreparationId = 0;
   let sitePhotoUploadObjectUrl = '';
   let sitePhotoUploadSubmitting = false;
   let sitePhotoUploadStatusKey = '';
   let sitePhotoUploadStatusTone = '';
+  let sitePhotoUploadStatusValues = null;
 
   let panelCollapsed = false;
   try {
@@ -11489,35 +11704,48 @@ ZSD·2016–2025</span></span>
       divePhotoUploadCta: 'Share a real photo',
       divePhotoUploadHoverCta: 'Been diving here? Share a real photo.',
       divePhotoUploadMobileCta: 'Share a real photo',
-      photoUploadTitle: 'Contribute a photo',
+      photoUploadTitle: 'Submit a photo',
       photoUploadChecking: 'Checking sign-in…',
-      photoUploadCopy: 'Your original stays private while DiveAtlas reviews the submission.',
+      photoUploadCopy: 'Your photo stays private during review.',
       photoUploadSite: 'Dive site:',
-      photoUploadSignInCopy: 'Sign in to submit a photo. After signing in, reopen this panel and choose your image.',
+      photoUploadSignInCopy: 'Sign in to continue. We’ll bring you back here to choose your photo.',
       photoUploadSignIn: 'Sign in with Google',
       photoUploadFile: 'Photo',
-      photoUploadFileHelp: 'JPEG, PNG or WebP · up to 12 MB · at least 1 megapixel',
-      photoUploadCredit: 'Photo credit',
-      photoUploadPrivacy: 'File type, size and pixel count are checked automatically. A person reviews sharpness and whether it matches this site; AI origin and exact location cannot be reliably proven automatically. GPS/EXIF can help and stays private with the original.',
-      photoUploadReal: 'I confirm this is a genuine photograph taken at or near this dive site and was not generated by AI.',
-      photoUploadRights: 'I own the copyright, or the owner authorized me to grant this license. I grant DiveAtlas a non-exclusive, worldwide, royalty-free license to store the photo for review and, if accepted, crop or resize it and display it on DiveAtlas, including through its hosting providers. I keep the copyright.',
-      photoUploadConsentRequired: 'Confirm both photo statements before sending it for review.',
-      photoUploadSubmit: 'Send for review',
+      photoUploadFileHelp: 'JPEG/PNG/WebP · optimized before upload',
+      photoUploadRemoveSelectedPhoto: 'Remove selected photo',
+      photoUploadCredit: 'Photo credit (optional)',
+      photoUploadPolicyLabel: 'Policy details',
+      photoUploadPolicyAttestation: 'Required: I confirm this is a genuine, non-AI photo taken at or near this dive site, and I have the right to let DiveAtlas use it.',
+      photoUploadReviewHeading: 'Review',
+      photoUploadReview: "We automatically check file type, size, and pixel count. A reviewer checks photo clarity and whether it matches this site. We can't reliably confirm if it was made with AI or exactly where it was taken.",
+      photoUploadAuthenticityHeading: 'Authenticity',
+      photoUploadAuthenticity: 'The photo must be a genuine image taken at or near this dive site and must not be generated by AI.',
+      photoUploadPrivacyHeading: 'Privacy',
+      photoUploadPrivacy: 'GPS and capture time in a photo’s EXIF may help review where and when it was taken. When present, we extract them before compression and store them privately with your submission. Approved public copies will not include location metadata.',
+      photoUploadRightsHeading: 'Photo rights and use',
+      photoUploadRights: 'You must own the photo or have the owner’s permission. You grant DiveAtlas a non-exclusive, worldwide, royalty-free license to store the photo for review and, if accepted, crop, resize, and display it on DiveAtlas, including through its hosting providers. You keep the copyright and may continue to use the photo or let others use it. DiveAtlas pays no royalty for this use.',
+      photoUploadConsentRequired: 'Confirm the photo and usage policy before sending it for review.',
+      photoUploadSubmit: 'Submit',
       photoUploadSending: 'Sending…',
       photoUploadCancel: 'Cancel',
       photoUploadDone: 'Done',
       photoUploadPickFile: 'Choose a photo file.',
       photoUploadInvalid: 'Choose a JPEG, PNG or WebP photo.',
-      photoUploadTooLarge: 'This photo is larger than 12 MB.',
+      photoUploadTooLarge: 'This photo could not be prepared for upload. Try a smaller photo.',
+      photoUploadSourceTooLarge: 'This photo is too large to prepare on this device. Choose a smaller photo.',
+      photoUploadCompressing: 'Compressing this photo on your device…',
+      photoUploadPreparing: 'Preparing…',
+      photoUploadCompressFailed: 'This photo could not be compressed enough to upload. Try a smaller photo.',
       photoUploadTooSmall: 'Choose a sharper photo with at least 1 megapixel and a 700-pixel short side.',
+      photoUploadTooSmallSelected: 'Too small: {megapixels} MP, {shortSide}px short side. Choose a photo with at least 1 MP and a 700px short side.',
       photoUploadDimensions: 'This image’s dimensions exceed the supported limit.',
       photoUploadAlreadyPending: 'You already have a photo for this site awaiting review.',
       photoUploadDailyLimit: 'You have reached today’s photo submission limit. Try again tomorrow.',
-      photoUploadAuthUnavailable: 'Account sign-in is unavailable. Please try again later.',
+      photoUploadAuthUnavailable: 'Sign-in is temporarily unavailable. Please try again later.',
       photoUploadStorageUnavailable: 'Photo submissions are unavailable right now. Please try again later.',
       photoUploadFailed: 'The photo could not be sent. Check your connection and try again.',
       photoUploadSuccessTitle: 'Photo received for review',
-      photoUploadSuccessCopy: 'Your original is stored privately. The representative photo stays until a reviewer approves a replacement.'
+      photoUploadSuccessCopy: 'Your photo and any review details are stored privately. The representative photo stays until a reviewer approves a replacement.'
     },
     zh: {
       divePhotoUploadCta: '分享实拍照片',
@@ -11525,33 +11753,46 @@ ZSD·2016–2025</span></span>
       divePhotoUploadMobileCta: '分享实拍照片',
       photoUploadTitle: '提交潜点照片',
       photoUploadChecking: '正在检查登录状态…',
-      photoUploadCopy: 'DiveAtlas 审核期间，原始照片会保持私密。',
+      photoUploadCopy: '审核期间，你提交的照片不会公开。',
       photoUploadSite: '潜点：',
-      photoUploadSignInCopy: '请先登录再提交照片。登录后重新打开此窗口并选择照片。',
+      photoUploadSignInCopy: '登录后将自动返回这里，继续选择照片。',
       photoUploadSignIn: '使用 Google 登录',
       photoUploadFile: '照片',
-      photoUploadFileHelp: 'JPEG、PNG 或 WebP · 最大 12 MB · 至少 100 万像素',
-      photoUploadCredit: '照片署名',
-      photoUploadPrivacy: '系统会自动检查文件类型、大小和像素数；清晰度和是否符合此潜点由人工审核。AI 来源和准确地点无法可靠地自动证明。GPS/EXIF 可提供线索，并会随原图保持私密。',
-      photoUploadReal: '我确认这是在此潜点或附近拍摄的真实照片，并非 AI 生成。',
-      photoUploadRights: '我拥有此照片版权，或版权人已授权我授予本许可。我授予 DiveAtlas 非独占、全球、免版税的许可，用于审核存储此照片；若照片通过审核，可裁剪或调整尺寸并在 DiveAtlas 展示（包括通过其托管服务）。版权仍归我所有。',
-      photoUploadConsentRequired: '提交审核前，请确认以上两项声明。',
-      photoUploadSubmit: '提交审核',
+      photoUploadFileHelp: 'JPEG/PNG/WebP · 上传前自动优化',
+      photoUploadRemoveSelectedPhoto: '移除所选照片',
+      photoUploadCredit: '照片署名（选填）',
+      photoUploadPolicyLabel: '政策详情',
+      photoUploadPolicyAttestation: '必选：我确认这是一张在此潜点或附近拍摄的真实照片，并非 AI 生成；我有权允许 DiveAtlas 使用这张照片。',
+      photoUploadReviewHeading: '审核',
+      photoUploadReview: '系统会自动检查文件格式、大小和像素数。审核人员会检查照片是否清晰、是否符合此潜点。我们无法可靠判断照片是否由 AI 生成或准确拍摄地点。',
+      photoUploadAuthenticityHeading: '照片真实性',
+      photoUploadAuthenticity: '照片必须是在此潜点或附近实地拍摄的真实照片，不能由 AI 生成。',
+      photoUploadPrivacyHeading: '隐私',
+      photoUploadPrivacy: '照片 EXIF 中的 GPS 和拍摄时间可能有助于审核照片的拍摄地点和时间。如有这些信息，我们会在压缩前提取，并与提交的照片一起私密保存。审核通过后公开展示的照片不会包含位置信息。',
+      photoUploadRightsHeading: '照片权利与使用',
+      photoUploadRights: '你必须拥有照片版权，或已获得所有者许可。你授予 DiveAtlas 非独占、全球范围、免版税的许可，以便我们为审核存储照片；若审核通过，我们可裁剪、调整尺寸并在 DiveAtlas 展示照片，包括通过网站托管服务展示。你仍保留版权，也可以继续使用照片或授权他人使用。DiveAtlas 无需为此支付版税。',
+      photoUploadConsentRequired: '提交审核前，请确认照片符合要求并同意使用政策。',
+      photoUploadSubmit: '提交',
       photoUploadSending: '正在提交…',
       photoUploadCancel: '取消',
       photoUploadDone: '完成',
       photoUploadPickFile: '请选择照片文件。',
       photoUploadInvalid: '请选择 JPEG、PNG 或 WebP 照片。',
-      photoUploadTooLarge: '照片超过 12 MB。',
+      photoUploadTooLarge: '无法处理这张照片以供上传，请选择较小的照片。',
+      photoUploadSourceTooLarge: '这张照片太大，无法在此设备上处理。请换一张较小的照片。',
+      photoUploadCompressing: '正在此设备上压缩照片…',
+      photoUploadPreparing: '正在准备…',
+      photoUploadCompressFailed: '照片无法压缩到可上传的大小，请换一张较小的照片。',
       photoUploadTooSmall: '请使用更清晰的照片：至少 100 万像素，短边至少 700 像素。',
+      photoUploadTooSmallSelected: '照片尺寸不足：{megapixels} MP，短边 {shortSide}px。请选择至少 1 MP、短边至少 700px 的照片。',
       photoUploadDimensions: '图片尺寸超过支持范围。',
       photoUploadAlreadyPending: '此潜点已有一张你提交的照片正在等待审核。',
       photoUploadDailyLimit: '你已达到今天的照片提交上限，请明天再试。',
-      photoUploadAuthUnavailable: '账号登录服务暂不可用，请稍后再试。',
+      photoUploadAuthUnavailable: '登录服务暂时不可用，请稍后重试。',
       photoUploadStorageUnavailable: '照片提交服务暂不可用，请稍后再试。',
       photoUploadFailed: '照片提交失败，请检查网络后重试。',
       photoUploadSuccessTitle: '照片已提交审核',
-      photoUploadSuccessCopy: '原始照片已私密保存。审核通过前，潜点页面仍会显示示意图片。'
+      photoUploadSuccessCopy: '照片及可用于审核的信息已私密保存。审核人员批准替换前，潜点页面仍会显示示意图片。'
     }
   };
   for (const [lang, values] of Object.entries(SITE_PHOTO_UPLOAD_I18N)) {
@@ -29918,14 +30159,26 @@ function closeShareDialog() {
     els.sitePhotoUploadSignIn.textContent = t('photoUploadSignIn');
     els.sitePhotoUploadFileLabel.textContent = t('photoUploadFile');
     els.sitePhotoUploadFileHelp.textContent = t('photoUploadFileHelp');
+    els.sitePhotoUploadPreviewRemoveButton.setAttribute('aria-label', t('photoUploadRemoveSelectedPhoto'));
+    els.sitePhotoUploadPreviewRemoveButton.title = t('photoUploadRemoveSelectedPhoto');
     els.sitePhotoUploadCreditLabel.textContent = t('photoUploadCredit');
-    els.sitePhotoUploadPrivacy.textContent = t('photoUploadPrivacy');
-    els.sitePhotoUploadRealCopy.textContent = t('photoUploadReal');
+    els.sitePhotoUploadPolicyLabel.textContent = t('photoUploadPolicyLabel');
+    els.sitePhotoUploadPolicyAttestationCopy.textContent = t('photoUploadPolicyAttestation');
+    els.sitePhotoUploadReviewHeading.textContent = t('photoUploadReviewHeading');
+    els.sitePhotoUploadReviewCopy.textContent = t('photoUploadReview');
+    els.sitePhotoUploadAuthenticityHeading.textContent = t('photoUploadAuthenticityHeading');
+    els.sitePhotoUploadAuthenticityCopy.textContent = t('photoUploadAuthenticity');
+    els.sitePhotoUploadPrivacyHeading.textContent = t('photoUploadPrivacyHeading');
+    els.sitePhotoUploadPrivacyCopy.textContent = t('photoUploadPrivacy');
+    els.sitePhotoUploadRightsHeading.textContent = t('photoUploadRightsHeading');
     els.sitePhotoUploadRightsCopy.textContent = t('photoUploadRights');
+    if (els.sitePhotoUploadPolicyTrigger.getAttribute('aria-expanded') === 'true') {
+      positionSitePhotoUploadPolicyPopover();
+    }
     els.sitePhotoUploadCancelButton.textContent = t('photoUploadCancel');
     els.sitePhotoUploadSubmitButton.textContent = sitePhotoUploadSubmitting
       ? t('photoUploadSending')
-      : t('photoUploadSubmit');
+      : sitePhotoUploadPreparing ? t('photoUploadPreparing') : t('photoUploadSubmit');
     els.sitePhotoUploadCloseButton.title = t('contactClose');
     els.sitePhotoUploadCloseButton.setAttribute('aria-label', t('contactClose'));
     els.sitePhotoUploadSuccessTitle.textContent = t('photoUploadSuccessTitle');
@@ -29937,24 +30190,59 @@ function closeShareDialog() {
   function renderSitePhotoUploadStatus() {
     if (!els.sitePhotoUploadStatus) return;
     els.sitePhotoUploadStatus.textContent = sitePhotoUploadStatusKey
-      ? t(sitePhotoUploadStatusKey)
+      ? (sitePhotoUploadStatusValues
+        ? tf(sitePhotoUploadStatusKey, sitePhotoUploadStatusValues)
+        : t(sitePhotoUploadStatusKey))
       : '';
     els.sitePhotoUploadStatus.classList.toggle('is-error', sitePhotoUploadStatusTone === 'error');
     els.sitePhotoUploadStatus.classList.toggle('is-success', sitePhotoUploadStatusTone === 'success');
   }
 
-  function setSitePhotoUploadStatus(key = '', tone = '') {
+  function setSitePhotoUploadPreviewVisible(visible) {
+    const isVisible = Boolean(visible);
+    const moveFocusToPreview = isVisible && document.activeElement === els.sitePhotoUploadFile;
+    els.sitePhotoUploadPreview.hidden = !isVisible;
+    els.sitePhotoUploadPreview.closest('.site-photo-upload-file-field')
+      ?.classList.toggle('has-preview', isVisible);
+    if (moveFocusToPreview) els.sitePhotoUploadPreviewRemoveButton.focus({ preventScroll: true });
+  }
+
+  function setSitePhotoUploadStatus(key = '', tone = '', values = null) {
     sitePhotoUploadStatusKey = key;
     sitePhotoUploadStatusTone = tone;
+    sitePhotoUploadStatusValues = values;
     renderSitePhotoUploadStatus();
+  }
+
+  function setSitePhotoUploadFieldInvalid(field, invalid) {
+    const isInvalid = Boolean(invalid);
+    if (field === 'photo') {
+      if (isInvalid) els.sitePhotoUploadFile.setAttribute('aria-invalid', 'true');
+      else els.sitePhotoUploadFile.removeAttribute('aria-invalid');
+      return;
+    }
+    if (field === 'policy') {
+      if (isInvalid) els.sitePhotoUploadPolicyAttestation.setAttribute('aria-invalid', 'true');
+      else els.sitePhotoUploadPolicyAttestation.removeAttribute('aria-invalid');
+      els.sitePhotoUploadPolicyAttestation.closest('.site-photo-upload-check')
+        ?.classList.toggle('is-invalid', isInvalid);
+    }
   }
 
   function setSitePhotoUploadSubmitting(submitting) {
     sitePhotoUploadSubmitting = Boolean(submitting);
-    els.sitePhotoUploadSubmitButton.disabled = sitePhotoUploadSubmitting;
+    els.sitePhotoUploadSubmitButton.disabled = sitePhotoUploadSubmitting || sitePhotoUploadPreparing;
     els.sitePhotoUploadCancelButton.disabled = sitePhotoUploadSubmitting;
     els.sitePhotoUploadCloseButton.disabled = sitePhotoUploadSubmitting;
-    els.sitePhotoUploadForm.setAttribute('aria-busy', sitePhotoUploadSubmitting ? 'true' : 'false');
+    els.sitePhotoUploadPreviewRemoveButton.disabled = sitePhotoUploadSubmitting;
+    els.sitePhotoUploadForm.setAttribute('aria-busy', sitePhotoUploadSubmitting || sitePhotoUploadPreparing ? 'true' : 'false');
+    renderSitePhotoUploadTexts();
+  }
+
+  function setSitePhotoUploadPreparing(preparing) {
+    sitePhotoUploadPreparing = Boolean(preparing);
+    els.sitePhotoUploadSubmitButton.disabled = sitePhotoUploadSubmitting || sitePhotoUploadPreparing;
+    els.sitePhotoUploadForm.setAttribute('aria-busy', sitePhotoUploadSubmitting || sitePhotoUploadPreparing ? 'true' : 'false');
     renderSitePhotoUploadTexts();
   }
 
@@ -29975,12 +30263,93 @@ function closeShareDialog() {
     }
   }
 
+  function positionSitePhotoUploadPolicyPopover() {
+    const popover = els.sitePhotoUploadPolicyPopover;
+    if (popover.hidden) return;
+    const triggerRect = els.sitePhotoUploadPolicyTrigger.getBoundingClientRect();
+    const popoverRect = popover.getBoundingClientRect();
+    const margin = 12;
+    const left = Math.max(margin, Math.min(triggerRect.left, window.innerWidth - popoverRect.width - margin));
+    const top = Math.max(margin, triggerRect.top - popoverRect.height - 8);
+    popover.style.left = `${left}px`;
+    popover.style.top = `${top}px`;
+  }
+
+  function setSitePhotoUploadPolicyPopover(expanded, restoreFocus = false) {
+    const isExpanded = Boolean(expanded);
+    els.sitePhotoUploadPolicyTrigger.setAttribute('aria-expanded', String(isExpanded));
+    els.sitePhotoUploadPolicyPopover.hidden = !isExpanded;
+    if (isExpanded) {
+      positionSitePhotoUploadPolicyPopover();
+      els.sitePhotoUploadPolicyPopover.focus({ preventScroll: true });
+    } else {
+      els.sitePhotoUploadPolicyPopover.style.removeProperty('left');
+      els.sitePhotoUploadPolicyPopover.style.removeProperty('top');
+      if (restoreFocus) els.sitePhotoUploadPolicyTrigger.focus({ preventScroll: true });
+    }
+  }
+
+  function closeSitePhotoUploadPolicyPopover(restoreFocus = false) {
+    if (els.sitePhotoUploadPolicyTrigger.getAttribute('aria-expanded') !== 'true') return false;
+    setSitePhotoUploadPolicyPopover(false, restoreFocus);
+    return true;
+  }
+
+  function toggleSitePhotoUploadPolicyPopover() {
+    setSitePhotoUploadPolicyPopover(
+      els.sitePhotoUploadPolicyTrigger.getAttribute('aria-expanded') !== 'true'
+    );
+  }
+
+  function rememberSitePhotoUploadContinuation() {
+    if (!sitePhotoUploadSiteId) return;
+    try {
+      sessionStorage.setItem(SITE_PHOTO_UPLOAD_CONTINUATION_KEY, JSON.stringify({
+        siteId: String(sitePhotoUploadSiteId).slice(0, 256),
+        siteName: String(sitePhotoUploadSiteName || '').slice(0, 240),
+        createdAt: Date.now()
+      }));
+    } catch (_) {}
+  }
+
+  function continueSitePhotoUploadAfterSignIn() {
+    let saved = '';
+    try {
+      if (new URLSearchParams(window.location.search).get('auth_notice') !== 'signed-in') {
+        sessionStorage.removeItem(SITE_PHOTO_UPLOAD_CONTINUATION_KEY);
+        return;
+      }
+      saved = sessionStorage.getItem(SITE_PHOTO_UPLOAD_CONTINUATION_KEY) || '';
+      sessionStorage.removeItem(SITE_PHOTO_UPLOAD_CONTINUATION_KEY);
+    } catch (_) {
+      return;
+    }
+    if (!saved) return;
+
+    try {
+      const continuation = JSON.parse(saved);
+      const siteId = typeof continuation.siteId === 'string' ? continuation.siteId.trim() : '';
+      const siteName = typeof continuation.siteName === 'string' ? continuation.siteName.trim() : '';
+      const createdAt = Number(continuation.createdAt);
+      const age = Date.now() - createdAt;
+      if (!siteId || siteId.length > 256 || !siteName || siteName.length > 240 ||
+          !Number.isFinite(age) || age < 0 || age > SITE_PHOTO_UPLOAD_CONTINUATION_TTL_MS) return;
+
+      void openSitePhotoUploadModal(siteId, siteName, null);
+    } catch (_) {}
+  }
+
   async function openSitePhotoUploadModal(siteId, siteName, trigger) {
     if (!siteId || !els.sitePhotoUploadModal.hidden) return;
+    sitePhotoUploadPreparationId += 1;
+    sitePhotoUploadPreparedFile = null;
+    sitePhotoUploadPreparedMetadata = null;
+    setSitePhotoUploadPreparing(false);
     sitePhotoUploadPreviousFocus = trigger || document.activeElement;
     sitePhotoUploadSiteId = siteId;
     sitePhotoUploadSiteName = siteName;
     sitePhotoUploadSubmitting = false;
+    closeSitePhotoUploadPolicyPopover();
     setSitePhotoUploadStatus();
     els.sitePhotoUploadForm.reset();
     els.sitePhotoUploadForm.hidden = true;
@@ -29989,9 +30358,8 @@ function closeShareDialog() {
     els.sitePhotoUploadSignIn.hidden = true;
     els.sitePhotoUploadSignInCopy.textContent = t('photoUploadChecking');
     els.sitePhotoUploadSiteName.textContent = siteName;
-    els.sitePhotoUploadPreview.hidden = true;
+    setSitePhotoUploadPreviewVisible(false);
     els.sitePhotoUploadPreviewImage.removeAttribute('src');
-    els.sitePhotoUploadPreviewDetails.textContent = '';
     if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
     sitePhotoUploadObjectUrl = '';
     setTopMenuOpen(false);
@@ -30021,13 +30389,17 @@ function closeShareDialog() {
 
   function closeSitePhotoUploadModal() {
     if (sitePhotoUploadSubmitting || els.sitePhotoUploadModal.hidden) return;
+    sitePhotoUploadPreparationId += 1;
+    sitePhotoUploadPreparedFile = null;
+    sitePhotoUploadPreparedMetadata = null;
+    setSitePhotoUploadPreparing(false);
+    closeSitePhotoUploadPolicyPopover();
     els.sitePhotoUploadModal.hidden = true;
     document.body.classList.remove('site-photo-upload-open');
     els.sitePhotoUploadForm.reset();
     els.sitePhotoUploadSuccess.hidden = true;
-    els.sitePhotoUploadPreview.hidden = true;
+    setSitePhotoUploadPreviewVisible(false);
     els.sitePhotoUploadPreviewImage.removeAttribute('src');
-    els.sitePhotoUploadPreviewDetails.textContent = '';
     if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
     sitePhotoUploadObjectUrl = '';
     sitePhotoUploadSiteId = '';
@@ -30039,82 +30411,238 @@ function closeShareDialog() {
     }
   }
 
+  function encodeSitePhotoUploadCanvas(canvas, mimeType, quality) {
+    return new Promise((resolve, reject) => {
+      try {
+        canvas.toBlob(blob => resolve(blob), mimeType, quality);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  async function compressSitePhotoUpload(file, image, dimensions, shouldContinue) {
+    const pixels = dimensions.width * dimensions.height;
+    const minimumScale = Math.max(
+      700 / Math.min(dimensions.width, dimensions.height),
+      Math.sqrt(1_000_000 / pixels)
+    );
+    const initialScale = Math.max(minimumScale, Math.min(
+      1,
+      SITE_PHOTO_UPLOAD_COMPRESSED_MAX_EDGE / Math.max(dimensions.width, dimensions.height),
+      Math.sqrt(80_000_000 / pixels)
+    ));
+    const inputType = file.type.toLowerCase();
+    const prefersJpeg = inputType === 'image/jpeg' || inputType === 'image/jpg' || /\.jpe?g$/i.test(file.name);
+    const outputTypes = prefersJpeg ? ['image/jpeg'] : ['image/webp', 'image/jpeg'];
+    const qualities = [0.9, 0.82, 0.74, 0.66, 0.58];
+    const canvas = document.createElement('canvas');
+
+    for (const mimeType of outputTypes) {
+      let scale = initialScale;
+      for (let resizeAttempt = 0; resizeAttempt < 8; resizeAttempt += 1) {
+        if (!shouldContinue()) return null;
+        const width = Math.max(1, Math.round(dimensions.width * scale));
+        const height = Math.max(1, Math.round(dimensions.height * scale));
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext('2d');
+        if (!context) throw new Error('photoUploadCompressFailed');
+        context.clearRect(0, 0, width, height);
+        if (mimeType === 'image/jpeg') {
+          context.fillStyle = '#fff';
+          context.fillRect(0, 0, width, height);
+        }
+        context.drawImage(image, 0, 0, width, height);
+
+        let encodingUnsupported = false;
+        for (const quality of qualities) {
+          if (!shouldContinue()) return null;
+          const blob = await encodeSitePhotoUploadCanvas(canvas, mimeType, quality);
+          if (!shouldContinue()) return null;
+          if (!blob?.size) throw new Error('photoUploadCompressFailed');
+          if (blob.type !== mimeType) {
+            encodingUnsupported = true;
+            break;
+          }
+          if (blob.size <= SITE_PHOTO_UPLOAD_COMPRESSED_TARGET_BYTES) {
+            const extension = mimeType === 'image/webp' ? 'webp' : 'jpg';
+            const baseName = file.name.replace(/\.[^./\\]+$/, '') || 'photo';
+            return {
+              file: new File([blob], `${baseName}.${extension}`, {
+                type: mimeType,
+                lastModified: file.lastModified
+              }),
+              width,
+              height
+            };
+          }
+        }
+        if (encodingUnsupported) break;
+        const nextScale = Math.max(minimumScale, scale * 0.82);
+        if (nextScale >= scale) break;
+        scale = nextScale;
+      }
+    }
+    return null;
+  }
+
   async function previewSitePhotoUpload() {
+    const preparationId = ++sitePhotoUploadPreparationId;
     const file = els.sitePhotoUploadFile.files?.[0];
+    const isCurrentSelection = () =>
+      preparationId === sitePhotoUploadPreparationId && els.sitePhotoUploadFile.files?.[0] === file;
+    setSitePhotoUploadPreparing(false);
+    setSitePhotoUploadFieldInvalid('photo', false);
+    sitePhotoUploadPreparedFile = null;
+    sitePhotoUploadPreparedMetadata = null;
     setSitePhotoUploadStatus();
-    els.sitePhotoUploadPreview.hidden = true;
+    setSitePhotoUploadPreviewVisible(false);
     if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
     sitePhotoUploadObjectUrl = '';
     if (!file) return;
-    if (file.size > 12 * 1024 * 1024) {
-      els.sitePhotoUploadFile.value = '';
-      setSitePhotoUploadStatus('photoUploadTooLarge', 'error');
-      return;
-    }
+
     const supportedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'].includes(file.type);
     if (!supportedMime && !(file.type === '' && /\.(jpe?g|png|webp)$/i.test(file.name))) {
       els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadFieldInvalid('photo', true);
       setSitePhotoUploadStatus('photoUploadInvalid', 'error');
       return;
     }
+    if (file.size > SITE_PHOTO_UPLOAD_MAX_SOURCE_BYTES) {
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadFieldInvalid('photo', true);
+      setSitePhotoUploadStatus('photoUploadSourceTooLarge', 'error');
+      return;
+    }
+    setSitePhotoUploadPreparing(true);
+    setSitePhotoUploadStatus('photoUploadPreparing');
 
-    const previewUrl = URL.createObjectURL(file);
-    const dimensions = await new Promise(resolve => {
-      const image = new Image();
-      image.onload = () => resolve({ width: image.naturalWidth, height: image.naturalHeight });
-      image.onerror = () => resolve(null);
-      image.src = previewUrl;
-    });
-    if (els.sitePhotoUploadFile.files?.[0] !== file) {
-      URL.revokeObjectURL(previewUrl);
-      return;
-    }
-    if (!dimensions) {
-      URL.revokeObjectURL(previewUrl);
+    let sourceUrl = '';
+    let previewUrl = '';
+    try {
+      sourceUrl = URL.createObjectURL(file);
+      const image = await new Promise(resolve => {
+        const loadedImage = new Image();
+        loadedImage.onload = () => resolve(loadedImage);
+        loadedImage.onerror = () => resolve(null);
+        loadedImage.src = sourceUrl;
+      });
+      if (!isCurrentSelection()) return;
+      if (!image) throw new Error('photoUploadInvalid');
+
+      const dimensions = { width: image.naturalWidth, height: image.naturalHeight };
+      const pixels = dimensions.width * dimensions.height;
+      if (Math.min(dimensions.width, dimensions.height) < 700 || pixels < 1_000_000) {
+        const error = new Error('photoUploadTooSmallSelected');
+        error.statusValues = {
+          megapixels: (pixels / 1_000_000).toFixed(2),
+          shortSide: Math.min(dimensions.width, dimensions.height).toLocaleString()
+        };
+        throw error;
+      }
+      if (Math.max(dimensions.width, dimensions.height) > 12_000 || pixels > 80_000_000) {
+        throw new Error('photoUploadDimensions');
+      }
+
+      let extractedReviewMetadata = { version: 1 };
+      try {
+        const readMetadata = window.DiveAtlasPhotoMetadata?.read;
+        if (typeof readMetadata === 'function') {
+          extractedReviewMetadata = await readMetadata(file) || extractedReviewMetadata;
+        }
+      } catch (_) {}
+      if (!isCurrentSelection()) return;
+      sitePhotoUploadPreparedMetadata = {
+        version: 1,
+        originalDimensions: dimensions,
+        ...(extractedReviewMetadata.capturedAt ? { capturedAt: extractedReviewMetadata.capturedAt } : {}),
+        ...(extractedReviewMetadata.gps ? { gps: extractedReviewMetadata.gps } : {})
+      };
+
+      let uploadFile = file;
+      if (file.size > SITE_PHOTO_UPLOAD_MAX_BYTES) {
+        setSitePhotoUploadPreparing(true);
+        setSitePhotoUploadStatus('photoUploadCompressing');
+        const compressed = await compressSitePhotoUpload(file, image, dimensions, isCurrentSelection);
+        if (!isCurrentSelection()) return;
+        if (!compressed || compressed.file.size > SITE_PHOTO_UPLOAD_MAX_BYTES) {
+          throw new Error('photoUploadCompressFailed');
+        }
+        uploadFile = compressed.file;
+      }
+
+      if (!isCurrentSelection()) return;
+      if (uploadFile === file) {
+        previewUrl = sourceUrl;
+        sourceUrl = '';
+      } else {
+        previewUrl = URL.createObjectURL(uploadFile);
+      }
+      sitePhotoUploadPreparedFile = uploadFile;
+      sitePhotoUploadObjectUrl = previewUrl;
+      previewUrl = '';
+      els.sitePhotoUploadPreviewImage.src = sitePhotoUploadObjectUrl;
+      els.sitePhotoUploadPreviewImage.alt = `${sitePhotoUploadSiteName} photo preview`;
+      setSitePhotoUploadPreviewVisible(true);
+      setSitePhotoUploadStatus();
+    } catch (error) {
+      if (!isCurrentSelection()) return;
       els.sitePhotoUploadFile.value = '';
-      setSitePhotoUploadStatus('photoUploadInvalid', 'error');
-      return;
+      sitePhotoUploadPreparedFile = null;
+      sitePhotoUploadPreparedMetadata = null;
+      const statusKey = [
+        'photoUploadInvalid', 'photoUploadTooSmall', 'photoUploadTooSmallSelected', 'photoUploadDimensions',
+        'photoUploadCompressFailed'
+      ].includes(error?.message) ? error.message : 'photoUploadCompressFailed';
+      setSitePhotoUploadFieldInvalid('photo', true);
+      setSitePhotoUploadStatus(statusKey, 'error', error?.statusValues || null);
+    } finally {
+      if (sourceUrl) URL.revokeObjectURL(sourceUrl);
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      if (preparationId === sitePhotoUploadPreparationId) setSitePhotoUploadPreparing(false);
     }
-    const pixels = dimensions.width * dimensions.height;
-    if (Math.min(dimensions.width, dimensions.height) < 700 || pixels < 1_000_000) {
-      URL.revokeObjectURL(previewUrl);
-      els.sitePhotoUploadFile.value = '';
-      setSitePhotoUploadStatus('photoUploadTooSmall', 'error');
-      return;
-    }
-    if (Math.max(dimensions.width, dimensions.height) > 12_000 || pixels > 80_000_000) {
-      URL.revokeObjectURL(previewUrl);
-      els.sitePhotoUploadFile.value = '';
-      setSitePhotoUploadStatus('photoUploadDimensions', 'error');
-      return;
-    }
-    sitePhotoUploadObjectUrl = previewUrl;
-    els.sitePhotoUploadPreviewImage.src = previewUrl;
-    els.sitePhotoUploadPreviewImage.alt = `${sitePhotoUploadSiteName} photo preview`;
-    els.sitePhotoUploadPreviewDetails.textContent =
-      `${dimensions.width.toLocaleString()} × ${dimensions.height.toLocaleString()} · ${(file.size / (1024 * 1024)).toFixed(1)} MB`;
-    els.sitePhotoUploadPreview.hidden = false;
+  }
+
+  function removeSelectedSitePhotoUpload() {
+    if (sitePhotoUploadSubmitting) return;
+    sitePhotoUploadPreparationId += 1;
+    sitePhotoUploadPreparedFile = null;
+    sitePhotoUploadPreparedMetadata = null;
+    setSitePhotoUploadPreparing(false);
+    els.sitePhotoUploadFile.value = '';
+    setSitePhotoUploadPreviewVisible(false);
+    els.sitePhotoUploadPreviewImage.removeAttribute('src');
+    if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
+    sitePhotoUploadObjectUrl = '';
+    setSitePhotoUploadFieldInvalid('photo', false);
+    setSitePhotoUploadStatus();
+    els.sitePhotoUploadFile.focus({ preventScroll: true });
   }
 
   async function submitSitePhotoUpload(event) {
     event.preventDefault();
-    if (sitePhotoUploadSubmitting) return;
-    const photo = els.sitePhotoUploadFile.files?.[0];
+    if (sitePhotoUploadSubmitting || sitePhotoUploadPreparing) return;
+    const photo = sitePhotoUploadPreparedFile;
     if (!photo) {
+      setSitePhotoUploadFieldInvalid('photo', true);
+      setSitePhotoUploadFieldInvalid('policy', !els.sitePhotoUploadPolicyAttestation.checked);
       setSitePhotoUploadStatus('photoUploadPickFile', 'error');
       els.sitePhotoUploadFile.focus();
       return;
     }
-    if (!els.sitePhotoUploadRealAttestation.checked || !els.sitePhotoUploadRightsAttestation.checked) {
+    setSitePhotoUploadFieldInvalid('photo', false);
+    if (!els.sitePhotoUploadPolicyAttestation.checked) {
+      setSitePhotoUploadFieldInvalid('policy', true);
       setSitePhotoUploadStatus('photoUploadConsentRequired', 'error');
-      (!els.sitePhotoUploadRealAttestation.checked
-        ? els.sitePhotoUploadRealAttestation
-        : els.sitePhotoUploadRightsAttestation).focus();
+      els.sitePhotoUploadPolicyAttestation.focus();
       return;
     }
+    setSitePhotoUploadFieldInvalid('policy', false);
 
     const body = new FormData();
     body.append('photo', photo, photo.name);
+    body.append('reviewMetadata', JSON.stringify(sitePhotoUploadPreparedMetadata || { version: 1 }));
     body.append('siteId', sitePhotoUploadSiteId);
     body.append('siteName', sitePhotoUploadSiteName);
     body.append('creditName', els.sitePhotoUploadCredit.value.trim());
@@ -30126,7 +30654,7 @@ function closeShareDialog() {
     try {
       const response = await fetch(SITE_PHOTO_SUBMISSION_ENDPOINT, {
         method: 'POST',
-        credentials: 'same-origin',
+        credentials: 'include',
         body
       });
       let result = null;
@@ -30142,6 +30670,7 @@ function closeShareDialog() {
           unsupported_image: 'photoUploadInvalid',
           photo_too_large: 'photoUploadTooLarge',
           request_too_large: 'photoUploadTooLarge',
+          invalid_review_metadata: 'photoUploadFailed',
           image_too_small: 'photoUploadTooSmall',
           image_dimensions_unsupported: 'photoUploadDimensions',
           already_pending: 'photoUploadAlreadyPending',
@@ -30494,9 +31023,36 @@ function closeShareDialog() {
   });
   els.siteSuggestionForm.addEventListener('submit', submitSiteSuggestion);
   els.sitePhotoUploadModal.addEventListener('click', event => {
-    if (event.target.closest('[data-site-photo-upload-close]')) closeSitePhotoUploadModal();
+    if (event.target.closest('[data-site-photo-upload-close]')) {
+      closeSitePhotoUploadModal();
+      return;
+    }
+    if (event.target.closest('#sitePhotoUploadPolicyTrigger')) {
+      toggleSitePhotoUploadPolicyPopover();
+      return;
+    }
+    if (!event.target.closest('#sitePhotoUploadPolicyPopover')) closeSitePhotoUploadPolicyPopover();
   });
+  els.sitePhotoUploadModal.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !closeSitePhotoUploadPolicyPopover(true)) return;
+    event.preventDefault();
+    event.stopPropagation();
+  });
+  els.sitePhotoUploadSignIn.addEventListener('click', () => {
+    if (els.sitePhotoUploadSignIn.getAttribute('href') === '/api/auth/google') {
+      rememberSitePhotoUploadContinuation();
+    }
+  });
+  els.sitePhotoUploadDialog.addEventListener('scroll', positionSitePhotoUploadPolicyPopover, { passive: true });
+  window.addEventListener('resize', positionSitePhotoUploadPolicyPopover);
   els.sitePhotoUploadFile.addEventListener('change', () => { void previewSitePhotoUpload(); });
+  els.sitePhotoUploadPreviewRemoveButton.addEventListener('click', removeSelectedSitePhotoUpload);
+  els.sitePhotoUploadPolicyAttestation.addEventListener('change', () => {
+    if (!els.sitePhotoUploadPolicyAttestation.checked) return;
+    setSitePhotoUploadFieldInvalid('policy', false);
+    if (sitePhotoUploadPreparedFile) setSitePhotoUploadFieldInvalid('photo', false);
+    if (sitePhotoUploadStatusKey === 'photoUploadConsentRequired') setSitePhotoUploadStatus();
+  });
   els.sitePhotoUploadForm.addEventListener('submit', submitSitePhotoUpload);
 
   els.contactForm.addEventListener('submit', async event => {
@@ -30618,6 +31174,10 @@ function closeShareDialog() {
             'button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]), [href], select:not([disabled])'
           )
         ).filter(element => element.offsetParent !== null);
+        if (activeModal.dialog === els.sitePhotoUploadDialog && !els.sitePhotoUploadPolicyPopover.hidden) {
+          const policyTriggerIndex = focusable.indexOf(els.sitePhotoUploadPolicyTrigger);
+          if (policyTriggerIndex !== -1) focusable.splice(policyTriggerIndex + 1, 0, els.sitePhotoUploadPolicyPopover);
+        }
 
         if (focusable.length) {
           const first = focusable[0];
@@ -31479,6 +32039,8 @@ function closeShareDialog() {
       }));
     });
   }
+
+  continueSitePhotoUploadAfterSignIn();
 })();
 </script>
 </body>

@@ -405,7 +405,7 @@ test('mobile layer rows toggle across the row and the collapsed bar shrinks afte
     scrollbarWidth: getComputedStyle(node).scrollbarWidth
   }));
   expect(layerScrollStyle.overflowY).toBe('auto');
-  expect(layerScrollStyle.scrollbarWidth).toBe('thin');
+  expect(layerScrollStyle.scrollbarWidth).toBe('none');
   expect(await label.evaluate(node => getComputedStyle(node).fontSize)).toBe('18px');
   await page.waitForTimeout(6_200);
   await expect(panel).not.toHaveClass(/is-collapsed/);

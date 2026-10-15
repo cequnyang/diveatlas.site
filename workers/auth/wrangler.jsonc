@@ -25,13 +25,6 @@
     "APP_ORIGIN": "https://diveatlas.site",
     "GOOGLE_REDIRECT_URI": "https://diveatlas.site/api/auth/google/callback"
   },
-  "r2_buckets": [
-    {
-      "binding": "SITE_PHOTO_SUBMISSIONS",
-      // Create this private bucket before deploying the photo submission endpoint.
-      "bucket_name": "diveatlas-user-photo-submissions"
-    }
-  ],
   "d1_databases": [
     {
       "binding": "DB",

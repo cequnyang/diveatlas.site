@@ -1,11 +1,10 @@
 import { handleSiteSuggestion } from './site-suggestions.js';
-import { handleSitePhotoSubmission } from './site-photo-submissions.js';
+import { getAuthenticatedUser, parseCookies, SESSION_COOKIE, sha256Hex } from '../../shared/session-auth.js';
 
 const GOOGLE_AUTHORIZATION_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth';
 const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
 const GOOGLE_JWKS_ENDPOINT = 'https://www.googleapis.com/oauth2/v3/certs';
 const CALLBACK_PATH = '/api/auth/google/callback';
-const SESSION_COOKIE = '__Host-diveatlas_session';
 const STATE_COOKIE = '__Host-diveatlas_oauth_state';
 const NONCE_COOKIE = '__Host-diveatlas_oauth_nonce';
 const VERIFIER_COOKIE = '__Host-diveatlas_pkce_verifier';
@@ -37,10 +36,6 @@ export default {
       if (url.pathname === '/api/site-suggestions') {
         return await handleSiteSuggestion(request, env, () => getAuthenticatedUser(request, env));
       }
-      if (url.pathname === '/api/site-photo-submissions') {
-        return await handleSitePhotoSubmission(request, env, () => getAuthenticatedUser(request, env));
-      }
-
       if (url.pathname.startsWith('/api/')) return textResponse('Not found', 404);
       if (env.ASSETS) return await env.ASSETS.fetch(request);
       return textResponse('Not found', 404);
@@ -250,23 +245,6 @@ async function getCurrentUser(request, env) {
   return jsonResponse({ user: await getAuthenticatedUser(request, env) }, 200);
 }
 
-async function getAuthenticatedUser(request, env) {
-  const token = parseCookies(request.headers.get('Cookie'))[SESSION_COOKIE];
-  if (!token) return null;
-
-  const now = Math.floor(Date.now() / 1000);
-  const sessionHash = await sha256Hex(token);
-  const user = await env.DB.prepare(`
-    SELECT u.id, u.email, u.name, u.picture_url AS picture
-    FROM auth_sessions s
-    JOIN auth_users u ON u.id = s.user_id
-    WHERE s.token_hash = ? AND s.expires_at > ?
-    LIMIT 1
-  `).bind(sessionHash, now).first();
-
-  return user || null;
-}
-
 async function logOut(request, env) {
   if (request.headers.get('Origin') !== env.APP_ORIGIN) {
     return textResponse('Forbidden', 403);
@@ -323,16 +301,6 @@ function cookieHeader(name, value, maxAge) {
   return `${name}=${value}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
 }
 
-function parseCookies(header = '') {
-  const cookies = Object.create(null);
-  for (const part of (header || '').split(';')) {
-    const separator = part.indexOf('=');
-    if (separator <= 0) continue;
-    cookies[part.slice(0, separator).trim()] = part.slice(separator + 1).trim();
-  }
-  return cookies;
-}
-
 function randomToken(byteLength = 32) {
   const bytes = crypto.getRandomValues(new Uint8Array(byteLength));
   return base64UrlEncode(bytes);
@@ -340,10 +308,6 @@ function randomToken(byteLength = 32) {
 
 async function sha256(value) {
   return new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value)));
-}
-
-async function sha256Hex(value) {
-  return Array.from(await sha256(value), (byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
 function base64UrlEncode(bytes) {

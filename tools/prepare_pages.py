@@ -68,6 +68,12 @@ R2_STARTUP_MANIFESTS = (
     Path("datasets/reef_vector_manifest.js"),
     Path("datasets/terrain_manifest.js"),
 )
+LOCAL_PREVIEW_ASSET_PATHS = (
+    Path("datasets/dive-sites.js"),
+    Path("datasets/dive-site-search-locations.json.gz"),
+    Path("datasets/dive-site-summaries.json.gz"),
+    Path("data/bathymetry_tiles"),
+)
 R2_STARTUP_DATA_FILES = (
     Path("datasets/temperature/metadata.json"),
 )
@@ -372,6 +378,25 @@ def main() -> None:
         externalize_tides=args.skip_external_data or tide_asset_base_url is not None or data_asset_base_url is not None,
         externalize_data=args.skip_external_data or data_asset_base_url is not None,
     )
+    if args.skip_external_data:
+        # Keep the map's core catalog and small bathymetry release in this preview;
+        # leave large terrain and other environmental payloads out.
+        included_paths = set(paths)
+        for asset_path in (*R2_STARTUP_MANIFESTS, *LOCAL_PREVIEW_ASSET_PATHS):
+            source = ROOT / asset_path
+            if source.is_file():
+                candidates = [source]
+            elif source.is_dir():
+                candidates = source.rglob("*")
+            else:
+                continue
+            for candidate in candidates:
+                relative = candidate.relative_to(ROOT)
+                if candidate.is_file() and relative not in included_paths:
+                    paths.append(relative)
+                    included_paths.add(relative)
+        # Wrangler's local asset server rejects individual files larger than 25 MiB.
+        paths = [path for path in paths if (ROOT / path).stat().st_size <= 25 * 1024 * 1024]
     selection_seconds = time.perf_counter() - selection_started
     copy_started = time.perf_counter()
     total_bytes = 0

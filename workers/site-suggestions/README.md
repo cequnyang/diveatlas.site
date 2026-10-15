@@ -2,7 +2,7 @@
 
 When search has no matching dive site, the visitor can submit the prefilled name with an optional region and source link. Suggestions enter a private review queue; they are not added to the public map automatically. The form never asks for an email address. For a signed-in visitor, the API associates the verified Google account email from the server-side session; anonymous submissions store `NULL`. The queue does not store visitor IP addresses.
 
-The endpoint is part of the existing `workers/auth` API Worker because that Worker already owns both `/api/*` hostname routes. Keeping one API owner avoids route precedence conflicts with sign-in, callback, profile, and logout endpoints. Suggestion records remain isolated in a separate D1 database.
+The endpoint remains part of the `workers/auth` API Worker, which owns the generic `/api/*` hostname routes. Photo submissions are handled by `workers/site-photo-upload` on a more-specific route; Cloudflare routes that upload path to the photo Worker and leaves sign-in, callback, profile, logout, and suggestions with the auth Worker. Suggestion records stay in `diveatlas-site-suggestions`; photo review records now use the dedicated `diveatlas-site-photos` database. The old photo table is retained as an empty legacy table because its migration has already been applied to the suggestions database.
 
 ## Configure and deploy
 

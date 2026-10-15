@@ -1,5 +1,9 @@
-const MAX_REQUEST_BYTES = 13 * 1024 * 1024;
-const MAX_PHOTO_BYTES = 12 * 1024 * 1024;
+import { persistPhotoSubmission } from './photo-submission-storage.js';
+
+const MAX_REQUEST_BYTES = 6 * 1024 * 1024;
+const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
+// The allowlisted GPS/time/dimension record is tiny; cap client-supplied JSON before parsing it.
+const MAX_REVIEW_METADATA_CHARS = 2048;
 const MIN_PIXEL_COUNT = 1_000_000;
 const MIN_SIDE_LENGTH = 700;
 const MAX_SIDE_LENGTH = 12_000;
@@ -17,9 +21,11 @@ export async function handleSitePhotoSubmission(request, env, getSubmitter) {
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('multipart/form-data;')) {
     return jsonResponse({ success: false, error: 'content_type_not_supported' }, 415);
   }
-  // Submission metadata shares the existing review-queue D1 database; the image bytes remain private in R2.
-  const reviewDb = env.SITE_SUGGESTIONS_DB;
-  if (!reviewDb || !env.SITE_PHOTO_SUBMISSIONS) {
+  // Photo review records have their own D1 database; image bytes remain private in R2.
+  const authDb = env.AUTH_DB;
+  const reviewDb = env.SITE_PHOTOS_DB;
+  const photoBucket = env.SITE_PHOTOS_BUCKET;
+  if (!authDb || !reviewDb || !photoBucket) {
     return jsonResponse({ success: false, error: 'storage_unavailable' }, 503);
   }
 
@@ -79,6 +85,10 @@ export async function handleSitePhotoSubmission(request, env, getSubmitter) {
   if (Math.max(image.width, image.height) > MAX_SIDE_LENGTH || pixelCount > MAX_PIXEL_COUNT) {
     return jsonResponse({ success: false, error: 'image_dimensions_unsupported' }, 400);
   }
+  const reviewMetadataJson = readReviewMetadata(form, image.width, image.height);
+  if (reviewMetadataJson === null) {
+    return jsonResponse({ success: false, error: 'invalid_review_metadata' }, 400);
+  }
 
   const now = new Date().toISOString();
   const recentCount = await reviewDb.prepare(`
@@ -90,42 +100,55 @@ export async function handleSitePhotoSubmission(request, env, getSubmitter) {
     return jsonResponse({ success: false, error: 'daily_limit_reached' }, 429);
   }
 
-  const duplicate = await reviewDb.prepare(`
-    SELECT id FROM site_photo_submissions
-    WHERE site_id = ? AND submitter_user_id = ? AND status = 'pending'
-    LIMIT 1
-  `).bind(siteId, submitter.id).first();
-  if (duplicate) return jsonResponse({ success: false, error: 'already_pending' }, 409);
+  if (await hasPendingSubmission(reviewDb, siteId, submitter.id)) {
+    return jsonResponse({ success: false, error: 'already_pending' }, 409);
+  }
 
   const id = crypto.randomUUID();
   const extension = image.contentType === 'image/jpeg' ? 'jpg' : image.contentType.slice('image/'.length);
-  const objectKey = `pending/${id}/original.${extension}`;
+  const objectKey = `pending/${id}/submission.${extension}`;
   const sha256 = await digestHex(bytes);
 
-  await env.SITE_PHOTO_SUBMISSIONS.put(objectKey, bytes, {
-    httpMetadata: { contentType: image.contentType },
-    customMetadata: { submissionId: id, siteId }
-  });
-
   try {
-    await reviewDb.prepare(`
-      INSERT INTO site_photo_submissions (
-        id, site_id, site_name, submitter_user_id, submitter_email, credit_name,
-        object_key, content_type, byte_size, width, height, sha256,
-        attested_real_location, attested_not_ai_generated, attested_rights,
-        license_version, status, submitted_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 1, ?, 'pending', ?)
-    `).bind(
-      id, siteId, siteName, submitter.id, submitter.email, creditName,
-      objectKey, image.contentType, bytes.byteLength, image.width, image.height,
-      sha256, LICENSE_VERSION, now
-    ).run();
+    await persistPhotoSubmission({
+      bucket: photoBucket,
+      database: reviewDb,
+      bytes,
+      submission: {
+        id,
+        siteId,
+        siteName,
+        submitterUserId: submitter.id,
+        submitterEmail: submitter.email,
+        creditName,
+        objectKey,
+        contentType: image.contentType,
+        byteSize: bytes.byteLength,
+        width: image.width,
+        height: image.height,
+        reviewMetadataJson,
+        sha256,
+        licenseVersion: LICENSE_VERSION,
+        submittedAt: now
+      }
+    });
   } catch (error) {
-    await env.SITE_PHOTO_SUBMISSIONS.delete(objectKey);
+    // A concurrent request may have won the pending-submission uniqueness race.
+    if (await hasPendingSubmission(reviewDb, siteId, submitter.id)) {
+      return jsonResponse({ success: false, error: 'already_pending' }, 409);
+    }
     throw error;
   }
 
   return jsonResponse({ success: true, id, status: 'pending' }, 202);
+}
+
+async function hasPendingSubmission(database, siteId, submitterId) {
+  return Boolean(await database.prepare(`
+    SELECT id FROM site_photo_submissions
+    WHERE site_id = ? AND submitter_user_id = ? AND status = 'pending'
+    LIMIT 1
+  `).bind(siteId, submitterId).first());
 }
 
 async function readLimitedBody(request, maxBytes) {
@@ -153,6 +176,78 @@ async function readLimitedBody(request, maxBytes) {
     offset += chunk.byteLength;
   }
   return bytes;
+}
+
+function readReviewMetadata(form, fallbackWidth, fallbackHeight) {
+  const raw = form.get('reviewMetadata');
+  if (raw === null) {
+    return JSON.stringify({
+      version: 1,
+      originalDimensions: { width: fallbackWidth, height: fallbackHeight }
+    });
+  }
+  if (typeof raw !== 'string' || raw.length > MAX_REVIEW_METADATA_CHARS) return null;
+
+  let candidate;
+  try {
+    candidate = JSON.parse(raw);
+  } catch {
+    return null;
+  }
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate) || candidate.version !== 1) return null;
+
+  const dimensions = candidate.originalDimensions;
+  const width = dimensions === undefined ? fallbackWidth : dimensions?.width;
+  const height = dimensions === undefined ? fallbackHeight : dimensions?.height;
+  if (!isValidPhotoDimensions(width, height)) return null;
+
+  const metadata = { version: 1, originalDimensions: { width, height } };
+  if (candidate.capturedAt !== undefined) {
+    if (typeof candidate.capturedAt !== 'string' || !isValidReviewCaptureTime(candidate.capturedAt)) return null;
+    metadata.capturedAt = candidate.capturedAt;
+  }
+  if (candidate.gps !== undefined) {
+    const gps = candidate.gps;
+    if (!gps || typeof gps !== 'object' || Array.isArray(gps) ||
+        typeof gps.latitude !== 'number' || !Number.isFinite(gps.latitude) || gps.latitude < -90 || gps.latitude > 90 ||
+        typeof gps.longitude !== 'number' || !Number.isFinite(gps.longitude) || gps.longitude < -180 || gps.longitude > 180) {
+      return null;
+    }
+    metadata.gps = { latitude: gps.latitude, longitude: gps.longitude };
+    if (gps.altitudeMeters !== undefined) {
+      if (typeof gps.altitudeMeters !== 'number' || !Number.isFinite(gps.altitudeMeters) ||
+          gps.altitudeMeters < -12_000 || gps.altitudeMeters > 100_000) return null;
+      metadata.gps.altitudeMeters = gps.altitudeMeters;
+    }
+  }
+  return JSON.stringify(metadata);
+}
+
+function isValidPhotoDimensions(width, height) {
+  return Number.isInteger(width) && Number.isInteger(height) &&
+    width >= MIN_SIDE_LENGTH && height >= MIN_SIDE_LENGTH &&
+    width <= MAX_SIDE_LENGTH && height <= MAX_SIDE_LENGTH &&
+    width * height >= MIN_PIXEL_COUNT && width * height <= MAX_PIXEL_COUNT;
+}
+
+function isValidReviewCaptureTime(value) {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})([+-])(\d{2}):(\d{2})$|^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/);
+  if (!match) return false;
+  const year = Number(match[1] || match[10]);
+  const month = Number(match[2] || match[11]);
+  const day = Number(match[3] || match[12]);
+  const hour = Number(match[4] || match[13]);
+  const minute = Number(match[5] || match[14]);
+  const second = Number(match[6] || match[15]);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1] || 0;
+  if (year < 1 || month < 1 || month > 12 || day < 1 || day > daysInMonth || hour > 23 || minute > 59 || second > 60) return false;
+  if (match[7]) {
+    const zoneHour = Number(match[8]);
+    const zoneMinute = Number(match[9]);
+    if (zoneHour > 14 || zoneMinute > 59 || (zoneHour === 14 && zoneMinute !== 0)) return false;
+  }
+  return true;
 }
 
 function inspectImage(bytes) {
