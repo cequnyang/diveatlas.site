@@ -1719,19 +1719,36 @@
         right: 10px;
         left: auto;
         min-height: 44px;
-        padding: 8px 10px;
-        border-color: rgba(255, 255, 255, .45);
-        background: color-mix(in srgb, var(--primary) 94%, transparent);
+        padding: 0 10px;
+        border-color: transparent;
+        background: transparent;
         color: #fff;
         font-size: 11px;
         font-weight: 700;
         text-shadow: none;
         white-space: nowrap;
+        box-shadow: none;
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        box-sizing: border-box;
+        height: 32px;
+        transform: translateY(-50%);
+        border: 1px solid rgba(255, 255, 255, .45);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--primary) 94%, transparent);
         box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
+        pointer-events: none;
       }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__rest,
       .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__action { display: none; }
       .dive-site-popup--with-photo .dive-popup-photo-label__touch {
+        position: relative;
+        z-index: 1;
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -1747,9 +1764,22 @@
         bottom: 8px;
         transform: none;
       }
-      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative { bottom: 7px; }
-      .dive-site-popup--with-photo .dive-popup-photo-frame:has(.dive-popup-photo-label--upload) .dive-popup-photo-label--illustrative {
-        max-width: calc(100% - 176px);
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload { bottom: 2px; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative {
+        top: 8px;
+        bottom: auto;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 8px;
+        overflow: hidden;
+        line-height: 1.1;
+      }
+      .dive-popup-photo-label__illustrative-copy {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
       }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -11458,7 +11488,7 @@ ZSD·2016–2025</span></span>
     en: {
       divePhotoUploadCta: 'Share a real photo',
       divePhotoUploadHoverCta: 'Been diving here? Share a real photo.',
-      divePhotoUploadMobileCta: 'Add a site photo',
+      divePhotoUploadMobileCta: 'Share a real photo',
       photoUploadTitle: 'Contribute a photo',
       photoUploadChecking: 'Checking sign-in…',
       photoUploadCopy: 'Your original stays private while DiveAtlas reviews the submission.',
@@ -11492,7 +11522,7 @@ ZSD·2016–2025</span></span>
     zh: {
       divePhotoUploadCta: '分享实拍照片',
       divePhotoUploadHoverCta: '在这里潜过水？分享你的实拍照片。',
-      divePhotoUploadMobileCta: '添加潜点照片',
+      divePhotoUploadMobileCta: '分享实拍照片',
       photoUploadTitle: '提交潜点照片',
       photoUploadChecking: '正在检查登录状态…',
       photoUploadCopy: 'DiveAtlas 审核期间，原始照片会保持私密。',
@@ -26900,7 +26930,7 @@ function closeShareDialog() {
         `alt="${escapeHtml(photo.alt)}" width="640" height="360" ` +
         `loading="eager" decoding="async"></button>` +
         (photo.source === 'illustrative-fallback'
-          ? `<span class="dive-popup-photo-label dive-popup-photo-label--illustrative">${escapeHtml(t('divePhotoIllustrative'))}</span>` +
+          ? `<span class="dive-popup-photo-label dive-popup-photo-label--illustrative"><span class="dive-popup-photo-label__illustrative-copy">${escapeHtml(t('divePhotoIllustrative'))}</span></span>` +
             (photoUploadSiteId
               ? `<button class="dive-popup-photo-label dive-popup-photo-label--upload" type="button" data-dive-site-photo-upload ` +
                 `data-site-id="${escapeHtml(photoUploadSiteId)}" data-site-name="${escapeHtml(name)}" ` +

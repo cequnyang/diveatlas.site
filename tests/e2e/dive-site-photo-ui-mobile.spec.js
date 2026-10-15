@@ -15,7 +15,7 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   await expect(status).toBeVisible();
   await expect(status).toHaveText('Representative image · not this dive site');
   await expect(upload).toBeVisible();
-  await expect(upload.locator('.dive-popup-photo-label__touch')).toContainText('Add a site photo');
+  await expect(upload.locator('.dive-popup-photo-label__touch')).toContainText('Share a real photo');
   const photoLayout = await frame.evaluate((node, selectors) => {
     const frameBounds = node.getBoundingClientRect();
     const statusBounds = node.querySelector(selectors.status).getBoundingClientRect();
