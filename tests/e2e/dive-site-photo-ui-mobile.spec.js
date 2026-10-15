@@ -1,24 +1,12 @@
 const { test, expect } = require('@playwright/test');
-const { clickFixture, openMap, setMapView } = require('./support');
+const { openMap } = require('./support');
+const { openFallbackPhotoPopup } = require('./photo-ui-support');
 
-const fixtureId = 'photo-fallback-ui';
-const fixtureName = `Test dive site ${fixtureId}`;
+const fixtureName = 'Test dive site photo-fallback-ui';
 
 test.beforeEach(async ({ page }) => openMap(page));
 
-async function openFallbackPhotoPopup(page) {
-  await setMapView(page, -5.7, 131, 14);
-  await page.evaluate(id => {
-    window.__DIVEATLAS_TEST__.addDiveSite(-5.7, 131, id, { withFallbackPhoto:true });
-  }, fixtureId);
-  await clickFixture(page, fixtureId);
-  const popup = page.locator('.leaflet-popup.dive-site-popup--with-photo');
-  await expect(popup).toBeVisible();
-  return popup;
-}
-
 test('mobile fallback photos invite a site-specific contribution without crowding the photo', async ({ page }) => {
-  test.skip(page.viewportSize().width > 720, 'mobile photo controls are shown only on touch and narrow layouts');
   const popup = await openFallbackPhotoPopup(page);
   const frame = popup.locator('.dive-popup-photo-frame');
   const status = frame.locator('.dive-popup-photo-label--illustrative');
@@ -75,37 +63,4 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#sitePhotoUploadSiteName')).toHaveText(fixtureName);
   await expect(dialog.locator('#sitePhotoUploadAuthRequired')).toBeVisible();
-});
-
-test('desktop fallback-photo label changes to a contribution invite on hover without resizing', async ({ page }) => {
-  test.skip(page.viewportSize().width <= 720, 'desktop photo-label hover is unavailable on mobile');
-  const popup = await openFallbackPhotoPopup(page);
-  const frame = popup.locator('.dive-popup-photo-frame');
-  const status = frame.locator('.dive-popup-photo-label--illustrative');
-  const upload = frame.locator('[data-dive-site-photo-upload]');
-
-  await expect(status).toBeHidden();
-  await expect(upload).toBeVisible();
-  const resting = await upload.evaluate(node => ({
-    width:node.getBoundingClientRect().width,
-    statusOpacity:getComputedStyle(node.querySelector('.dive-popup-photo-label__rest')).opacity,
-    actionOpacity:getComputedStyle(node.querySelector('.dive-popup-photo-label__action')).opacity,
-    background:getComputedStyle(node).backgroundColor
-  }));
-  expect(resting.statusOpacity).toBe('1');
-  expect(resting.actionOpacity).toBe('0');
-
-  await upload.hover();
-  await expect.poll(() => upload.evaluate(node => ({
-    width:node.getBoundingClientRect().width,
-    statusOpacity:getComputedStyle(node.querySelector('.dive-popup-photo-label__rest')).opacity,
-    actionOpacity:getComputedStyle(node.querySelector('.dive-popup-photo-label__action')).opacity,
-    background:getComputedStyle(node).backgroundColor
-  }))).toMatchObject({ statusOpacity:'0', actionOpacity:'1' });
-  const hovered = await upload.evaluate(node => ({
-    width:node.getBoundingClientRect().width,
-    background:getComputedStyle(node).backgroundColor
-  }));
-  expect(hovered.width).toBeCloseTo(resting.width, 0);
-  expect(hovered.background).not.toBe(resting.background);
 });
