@@ -2184,6 +2184,19 @@
         scrollbar-width:thin;
         touch-action:pan-y;
       }
+      /* Larger mobile popup headings should read more clearly without making the sheet taller. */
+      .leaflet-popup.diveatlas-mobile-sheet .bio-popup-title {
+        font-size:18px;
+        line-height:16.25px;
+      }
+      .leaflet-popup.diveatlas-mobile-sheet.regional-currents-popup .bio-popup-title,
+      .leaflet-popup.diveatlas-mobile-sheet .regional-currents-popup .bio-popup-title {
+        line-height:18.75px;
+      }
+      .leaflet-popup.diveatlas-mobile-sheet .temperature-detail-heading {
+        font-size:18px;
+        line-height:18.75px;
+      }
       .leaflet-popup.dive-conditions-rating-sheet:has(.dive-experience-popup-content) .leaflet-popup-content {
         max-height:calc(var(--dive-conditions-rating-sheet-max-height) - 2px) !important;
       }
