@@ -19,17 +19,24 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   const photoLayout = await frame.evaluate((node, selectors) => {
     const frameBounds = node.getBoundingClientRect();
     const statusBounds = node.querySelector(selectors.status).getBoundingClientRect();
-    const uploadBounds = node.querySelector(selectors.upload).getBoundingClientRect();
+    const upload = node.querySelector(selectors.upload);
+    const uploadBounds = upload.getBoundingClientRect();
     return {
+      frameTop:frameBounds.top,
       frameBottom:frameBounds.bottom,
+      statusTop:statusBounds.top,
       statusBottom:statusBounds.bottom,
       uploadBottom:uploadBounds.bottom,
-      uploadHeight:uploadBounds.height
+      uploadTop:uploadBounds.top,
+      uploadHeight:uploadBounds.height,
+      uploadPillHeight:parseFloat(getComputedStyle(upload, '::before').height)
     };
   }, { status:'.dive-popup-photo-label--illustrative', upload:'[data-dive-site-photo-upload]' });
-  expect(Math.abs(photoLayout.statusBottom - photoLayout.uploadBottom)).toBeLessThanOrEqual(1);
-  expect(photoLayout.frameBottom - photoLayout.uploadBottom).toBeGreaterThanOrEqual(0);
+  expect(Math.abs(photoLayout.statusTop - photoLayout.frameTop - 8)).toBeLessThanOrEqual(1);
+  expect(Math.abs(photoLayout.frameBottom - photoLayout.uploadBottom - 2)).toBeLessThanOrEqual(1);
+  expect(photoLayout.statusBottom).toBeLessThanOrEqual(photoLayout.uploadTop);
   expect(photoLayout.uploadHeight).toBeGreaterThanOrEqual(44);
+  expect(photoLayout.uploadPillHeight).toBe(32);
 
   const headingStyles = await popup.evaluate(node => {
     const title = node.querySelector('.bio-popup-title');
