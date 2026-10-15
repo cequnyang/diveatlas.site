@@ -1,4 +1,5 @@
 import { handleSiteSuggestion } from './site-suggestions.js';
+import { handleSitePhotoSubmission } from './site-photo-submissions.js';
 
 const GOOGLE_AUTHORIZATION_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth';
 const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
@@ -35,6 +36,9 @@ export default {
       }
       if (url.pathname === '/api/site-suggestions') {
         return await handleSiteSuggestion(request, env, () => getAuthenticatedUser(request, env));
+      }
+      if (url.pathname === '/api/site-photo-submissions') {
+        return await handleSitePhotoSubmission(request, env, () => getAuthenticatedUser(request, env));
       }
 
       if (url.pathname.startsWith('/api/')) return textResponse('Not found', 404);

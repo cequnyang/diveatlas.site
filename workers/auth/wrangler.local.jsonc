@@ -13,6 +13,12 @@
     "binding": "ASSETS",
     "run_worker_first": true
   },
+  "r2_buckets": [
+    {
+      "binding": "SITE_PHOTO_SUBMISSIONS",
+      "bucket_name": "diveatlas-user-photo-submissions-local"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",

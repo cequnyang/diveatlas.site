@@ -1665,11 +1665,96 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
       pointer-events: none;
     }
+    .dive-site-popup--with-photo .dive-popup-photo-label--upload {
+      display: none;
+      pointer-events: auto;
+      appearance: none;
+      -webkit-appearance: none;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+    /* Keep both captions in one grid cell so the longer label holds the hover target steady. */
+    .dive-popup-photo-label__rest,
+    .dive-popup-photo-label__action {
+      grid-area: 1 / 1;
+      transition: opacity .12s ease;
+    }
+    .dive-popup-photo-label__action { justify-self: center; opacity: 0; }
+    .dive-popup-photo-label__touch { display: none; }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-backdrop,
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-shade { visibility: visible; }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-landscape .dive-popup-photo { object-fit: cover; }
     .dive-site-popup--with-photo .dive-popup-body { box-sizing: border-box; width: 100%; padding: 12px 0 0; }
     .dive-popup-photo-credit { margin-top: 8px; color: var(--faint); font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
+    /* Pointer type chooses the contribution control so narrow desktop windows keep hover behavior. */
+    @media (hover: hover) and (pointer: fine) {
+      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative { display: none; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload {
+        display: inline-grid;
+        grid-template-areas: "label";
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible {
+        border-color: var(--primary);
+        background: var(--primary);
+        color: #fff;
+        text-shadow: none;
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover .dive-popup-photo-label__rest,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__rest { opacity: 0; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover .dive-popup-photo-label__action,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__action { opacity: 1; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    }
+    /* Touch and narrow layouts show the status and a separate tap target over the same photo. */
+    @media (hover: none) and (pointer: coarse), (max-width: 720px) {
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload {
+        display: inline-flex;
+        top: 10px;
+        right: 10px;
+        left: auto;
+        min-height: 44px;
+        padding: 8px 10px;
+        border-color: rgba(255, 255, 255, .45);
+        background: color-mix(in srgb, var(--primary) 94%, transparent);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        text-shadow: none;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__rest,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__action { display: none; }
+      .dive-site-popup--with-photo .dive-popup-photo-label__touch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label__touch svg { display: block; width: 17px; height: 17px; flex: 0 0 auto; }
+    }
+    @media (max-width: 720px) {
+      .dive-site-popup--with-photo .dive-popup-body { padding-top: 8px; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative { display: block; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative,
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload {
+        top: auto;
+        bottom: 8px;
+        transform: none;
+      }
+      .dive-site-popup--with-photo .dive-popup-photo-label--illustrative { bottom: 7px; }
+      .dive-site-popup--with-photo .dive-popup-photo-frame:has(.dive-popup-photo-label--upload) .dive-popup-photo-label--illustrative {
+        max-width: calc(100% - 176px);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload { transition: none; }
+    }
 
     .dive-photo-preview {
       position: fixed;
@@ -3110,10 +3195,27 @@
     [data-theme="dark"] .site-suggestion-status.is-success { color: #3fb950; }
     .site-suggestion-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 2px; }
     .site-suggestion-actions .contact-button { min-height: 38px; }
+    body.site-photo-upload-open { overflow: hidden; }
+    .site-photo-upload-modal { z-index: 2202; }
+    .site-photo-upload-form { gap: 12px; }
+    .site-photo-upload-site { margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-photo-upload-auth { display: grid; gap: 10px; padding: 18px 20px 20px; }
+    .site-photo-upload-auth p, .site-photo-upload-success p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .site-photo-upload-auth a { justify-self: start; text-decoration: none; }
+    .site-photo-upload-help, .site-photo-upload-privacy { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .site-photo-upload-check { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 8px; color: var(--text); font-size: 12px; line-height: 1.5; }
+    .site-photo-upload-check input { width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--primary); }
+    .site-photo-upload-preview { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 72px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); }
+    .site-photo-upload-preview[hidden] { display: none; }
+    .site-photo-upload-preview img { display: block; width: 92px; height: 72px; border-radius: 5px; object-fit: cover; background: var(--panel-solid); }
+    .site-photo-upload-preview span { min-width: 0; color: var(--muted); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
+    .site-photo-upload-success { display: grid; gap: 8px; padding: 20px; }
+    .site-photo-upload-success h3 { margin: 0; font-size: 16px; line-height: 22px; }
     @media (max-width: 520px) {
       .site-suggestion-modal { align-items: end; padding: 8px; }
       .site-suggestion-dialog { width: 100%; max-height: calc(100vh - 16px); border-radius: 12px; }
       .site-suggestion-header, .site-suggestion-form { padding-left: 16px; padding-right: 16px; }
+      .site-photo-upload-auth, .site-photo-upload-success { padding-left: 16px; padding-right: 16px; }
     }
 
     .panel-launcher {
@@ -7069,6 +7171,60 @@
     </section>
   </div>
 
+  <div class="site-suggestion-modal site-photo-upload-modal" id="sitePhotoUploadModal" hidden>
+    <div class="site-suggestion-backdrop" data-site-photo-upload-close></div>
+    <section class="site-suggestion-dialog" id="sitePhotoUploadDialog" role="dialog" aria-modal="true" aria-labelledby="sitePhotoUploadTitle" aria-describedby="sitePhotoUploadCopy">
+      <div class="site-suggestion-header">
+        <div>
+          <h2 class="site-suggestion-title" id="sitePhotoUploadTitle">Contribute a photo</h2>
+          <p class="site-suggestion-copy" id="sitePhotoUploadCopy">Help replace the representative image at this dive site.</p>
+          <p class="site-photo-upload-site"><span id="sitePhotoUploadSiteLabel">Dive site:</span> <strong id="sitePhotoUploadSiteName"></strong></p>
+        </div>
+        <button class="contact-dialog-close" id="sitePhotoUploadCloseButton" type="button" aria-label="Close" title="Close" data-site-photo-upload-close><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+      </div>
+      <div class="site-photo-upload-auth" id="sitePhotoUploadAuthRequired" hidden>
+        <p id="sitePhotoUploadSignInCopy">Sign in to submit a photo. After signing in, reopen this panel and choose your image.</p>
+        <a class="contact-button contact-button-primary" id="sitePhotoUploadSignIn" href="/api/auth/google">Sign in with Google</a>
+      </div>
+      <form class="site-suggestion-form site-photo-upload-form" id="sitePhotoUploadForm" novalidate hidden>
+        <label class="site-suggestion-field">
+          <span id="sitePhotoUploadFileLabel">Photo</span>
+          <input class="site-suggestion-input" id="sitePhotoUploadFile" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+          <small class="site-photo-upload-help" id="sitePhotoUploadFileHelp">JPEG, PNG or WebP · up to 12 MB · at least 1 megapixel</small>
+        </label>
+        <div class="site-photo-upload-preview" id="sitePhotoUploadPreview" hidden>
+          <img id="sitePhotoUploadPreviewImage" alt="Selected photo preview">
+          <span id="sitePhotoUploadPreviewDetails"></span>
+        </div>
+        <label class="site-suggestion-field">
+          <span id="sitePhotoUploadCreditLabel">Photo credit</span>
+          <input class="site-suggestion-input" id="sitePhotoUploadCredit" name="creditName" type="text" maxlength="80" autocomplete="name">
+        </label>
+        <p class="site-photo-upload-privacy" id="sitePhotoUploadPrivacy">Use a real photo taken at or near this site. GPS/EXIF is optional and kept private during review.</p>
+        <label class="site-photo-upload-check">
+          <input id="sitePhotoUploadRealAttestation" name="attestRealPhoto" type="checkbox" value="yes" required>
+          <span id="sitePhotoUploadRealCopy">I confirm this is a real photograph taken at or near this site and was not generated by AI.</span>
+        </label>
+        <label class="site-photo-upload-check">
+          <input id="sitePhotoUploadRightsAttestation" name="attestRights" type="checkbox" value="yes" required>
+          <span id="sitePhotoUploadRightsCopy">I own this photo or have permission to submit it. If approved, I let DiveAtlas store, resize and display it on this dive-site page. I keep the copyright.</span>
+        </label>
+        <p class="site-suggestion-status" id="sitePhotoUploadStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-secondary" id="sitePhotoUploadCancelButton" type="button" data-site-photo-upload-close>Cancel</button>
+          <button class="contact-button contact-button-primary" id="sitePhotoUploadSubmitButton" type="submit">Send for review</button>
+        </div>
+      </form>
+      <div class="site-photo-upload-success" id="sitePhotoUploadSuccess" hidden>
+        <h3 id="sitePhotoUploadSuccessTitle">Photo received for review</h3>
+        <p id="sitePhotoUploadSuccessCopy">Your original is stored privately. The representative photo stays until a reviewer approves a replacement.</p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-primary" id="sitePhotoUploadDoneButton" type="button" data-site-photo-upload-close>Done</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- Hidden compatibility shell: V35 panel state code remains harmless and keeps old saved state readable. -->
   <aside class="sidebar ui-compat-hidden" id="sidebar" aria-hidden="true">
     <button id="collapseBtn" type="button" tabindex="-1">‹</button>
@@ -9382,6 +9538,35 @@ ZSD·2016–2025</span></span>
     siteSuggestionStatus: document.getElementById('siteSuggestionStatus'),
     siteSuggestionCancelButton: document.getElementById('siteSuggestionCancelButton'),
     siteSuggestionSubmitButton: document.getElementById('siteSuggestionSubmitButton'),
+    sitePhotoUploadModal: document.getElementById('sitePhotoUploadModal'),
+    sitePhotoUploadDialog: document.getElementById('sitePhotoUploadDialog'),
+    sitePhotoUploadCloseButton: document.getElementById('sitePhotoUploadCloseButton'),
+    sitePhotoUploadTitle: document.getElementById('sitePhotoUploadTitle'),
+    sitePhotoUploadCopy: document.getElementById('sitePhotoUploadCopy'),
+    sitePhotoUploadSiteLabel: document.getElementById('sitePhotoUploadSiteLabel'),
+    sitePhotoUploadSiteName: document.getElementById('sitePhotoUploadSiteName'),
+    sitePhotoUploadAuthRequired: document.getElementById('sitePhotoUploadAuthRequired'),
+    sitePhotoUploadSignInCopy: document.getElementById('sitePhotoUploadSignInCopy'),
+    sitePhotoUploadSignIn: document.getElementById('sitePhotoUploadSignIn'),
+    sitePhotoUploadForm: document.getElementById('sitePhotoUploadForm'),
+    sitePhotoUploadFileLabel: document.getElementById('sitePhotoUploadFileLabel'),
+    sitePhotoUploadFile: document.getElementById('sitePhotoUploadFile'),
+    sitePhotoUploadFileHelp: document.getElementById('sitePhotoUploadFileHelp'),
+    sitePhotoUploadPreview: document.getElementById('sitePhotoUploadPreview'),
+    sitePhotoUploadPreviewImage: document.getElementById('sitePhotoUploadPreviewImage'),
+    sitePhotoUploadPreviewDetails: document.getElementById('sitePhotoUploadPreviewDetails'),
+    sitePhotoUploadCreditLabel: document.getElementById('sitePhotoUploadCreditLabel'),
+    sitePhotoUploadCredit: document.getElementById('sitePhotoUploadCredit'),
+    sitePhotoUploadPrivacy: document.getElementById('sitePhotoUploadPrivacy'),
+    sitePhotoUploadRealCopy: document.getElementById('sitePhotoUploadRealCopy'),
+    sitePhotoUploadRightsCopy: document.getElementById('sitePhotoUploadRightsCopy'),
+    sitePhotoUploadStatus: document.getElementById('sitePhotoUploadStatus'),
+    sitePhotoUploadCancelButton: document.getElementById('sitePhotoUploadCancelButton'),
+    sitePhotoUploadSubmitButton: document.getElementById('sitePhotoUploadSubmitButton'),
+    sitePhotoUploadSuccess: document.getElementById('sitePhotoUploadSuccess'),
+    sitePhotoUploadSuccessTitle: document.getElementById('sitePhotoUploadSuccessTitle'),
+    sitePhotoUploadSuccessCopy: document.getElementById('sitePhotoUploadSuccessCopy'),
+    sitePhotoUploadDoneButton: document.getElementById('sitePhotoUploadDoneButton'),
     themeBtn: document.getElementById('themeBtn'),
     measurementUnitSwitch: document.getElementById('measurementUnitSwitch'),
     collapseBtn: document.getElementById('collapseBtn'),
@@ -9684,6 +9869,7 @@ ZSD·2016–2025</span></span>
   const PANEL_STATE_STORAGE_KEY = 'global-coral-map-panel-collapsed-v1';
   const CONTACT_ENDPOINT = '/api/contact';
   const SITE_SUGGESTION_ENDPOINT = '/api/site-suggestions';
+  const SITE_PHOTO_SUBMISSION_ENDPOINT = '/api/site-photo-submissions';
   const TURNSTILE_SITE_KEY = '0x4AAAAAAFCEklFmZKeIgpIp';
   const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
@@ -9746,6 +9932,13 @@ ZSD·2016–2025</span></span>
   let siteSuggestionStatusTone = '';
   let siteSuggestionSubmitting = false;
   let siteSuggestionSent = false;
+  let sitePhotoUploadPreviousFocus = null;
+  let sitePhotoUploadSiteId = '';
+  let sitePhotoUploadSiteName = '';
+  let sitePhotoUploadObjectUrl = '';
+  let sitePhotoUploadSubmitting = false;
+  let sitePhotoUploadStatusKey = '';
+  let sitePhotoUploadStatusTone = '';
 
   let panelCollapsed = false;
   try {
@@ -11245,6 +11438,80 @@ ZSD·2016–2025</span></span>
     id: { divePhotoCredit: 'Foto', divePhotoIllustrative: 'Gambar ilustrasi · bukan foto lokasi ini', divePhotoPreview: 'Buka pratinjau foto', divePhotoPreviewClose: 'Tutup pratinjau foto' }
   };
   for (const [lang, values] of Object.entries(DIVE_SITE_PHOTO_I18N)) {
+    Object.assign(I18N[lang], values);
+  }
+
+  const SITE_PHOTO_UPLOAD_I18N = {
+    en: {
+      divePhotoUploadCta: 'Share a real photo',
+      divePhotoUploadHoverCta: 'Been diving here? Share a real photo.',
+      divePhotoUploadMobileCta: 'Add a site photo',
+      photoUploadTitle: 'Contribute a photo',
+      photoUploadChecking: 'Checking sign-in…',
+      photoUploadCopy: 'Your original stays private while DiveAtlas reviews the submission.',
+      photoUploadSite: 'Dive site:',
+      photoUploadSignInCopy: 'Sign in to submit a photo. After signing in, reopen this panel and choose your image.',
+      photoUploadSignIn: 'Sign in with Google',
+      photoUploadFile: 'Photo',
+      photoUploadFileHelp: 'JPEG, PNG or WebP · up to 12 MB · at least 1 megapixel',
+      photoUploadCredit: 'Photo credit',
+      photoUploadPrivacy: 'File type, size and pixel count are checked automatically. A person reviews sharpness and whether it matches this site; AI origin and exact location cannot be reliably proven automatically. GPS/EXIF can help and stays private with the original.',
+      photoUploadReal: 'I confirm this is a genuine photograph taken at or near this dive site and was not generated by AI.',
+      photoUploadRights: 'I own the copyright, or the owner authorized me to grant this license. I grant DiveAtlas a non-exclusive, worldwide, royalty-free license to store the photo for review and, if accepted, crop or resize it and display it on DiveAtlas, including through its hosting providers. I keep the copyright.',
+      photoUploadConsentRequired: 'Confirm both photo statements before sending it for review.',
+      photoUploadSubmit: 'Send for review',
+      photoUploadSending: 'Sending…',
+      photoUploadCancel: 'Cancel',
+      photoUploadDone: 'Done',
+      photoUploadPickFile: 'Choose a photo file.',
+      photoUploadInvalid: 'Choose a JPEG, PNG or WebP photo.',
+      photoUploadTooLarge: 'This photo is larger than 12 MB.',
+      photoUploadTooSmall: 'Choose a sharper photo with at least 1 megapixel and a 700-pixel short side.',
+      photoUploadDimensions: 'This image’s dimensions exceed the supported limit.',
+      photoUploadAlreadyPending: 'You already have a photo for this site awaiting review.',
+      photoUploadDailyLimit: 'You have reached today’s photo submission limit. Try again tomorrow.',
+      photoUploadAuthUnavailable: 'Account sign-in is unavailable. Please try again later.',
+      photoUploadStorageUnavailable: 'Photo submissions are unavailable right now. Please try again later.',
+      photoUploadFailed: 'The photo could not be sent. Check your connection and try again.',
+      photoUploadSuccessTitle: 'Photo received for review',
+      photoUploadSuccessCopy: 'Your original is stored privately. The representative photo stays until a reviewer approves a replacement.'
+    },
+    zh: {
+      divePhotoUploadCta: '分享实拍照片',
+      divePhotoUploadHoverCta: '在这里潜过水？分享你的实拍照片。',
+      divePhotoUploadMobileCta: '添加潜点照片',
+      photoUploadTitle: '提交潜点照片',
+      photoUploadChecking: '正在检查登录状态…',
+      photoUploadCopy: 'DiveAtlas 审核期间，原始照片会保持私密。',
+      photoUploadSite: '潜点：',
+      photoUploadSignInCopy: '请先登录再提交照片。登录后重新打开此窗口并选择照片。',
+      photoUploadSignIn: '使用 Google 登录',
+      photoUploadFile: '照片',
+      photoUploadFileHelp: 'JPEG、PNG 或 WebP · 最大 12 MB · 至少 100 万像素',
+      photoUploadCredit: '照片署名',
+      photoUploadPrivacy: '系统会自动检查文件类型、大小和像素数；清晰度和是否符合此潜点由人工审核。AI 来源和准确地点无法可靠地自动证明。GPS/EXIF 可提供线索，并会随原图保持私密。',
+      photoUploadReal: '我确认这是在此潜点或附近拍摄的真实照片，并非 AI 生成。',
+      photoUploadRights: '我拥有此照片版权，或版权人已授权我授予本许可。我授予 DiveAtlas 非独占、全球、免版税的许可，用于审核存储此照片；若照片通过审核，可裁剪或调整尺寸并在 DiveAtlas 展示（包括通过其托管服务）。版权仍归我所有。',
+      photoUploadConsentRequired: '提交审核前，请确认以上两项声明。',
+      photoUploadSubmit: '提交审核',
+      photoUploadSending: '正在提交…',
+      photoUploadCancel: '取消',
+      photoUploadDone: '完成',
+      photoUploadPickFile: '请选择照片文件。',
+      photoUploadInvalid: '请选择 JPEG、PNG 或 WebP 照片。',
+      photoUploadTooLarge: '照片超过 12 MB。',
+      photoUploadTooSmall: '请使用更清晰的照片：至少 100 万像素，短边至少 700 像素。',
+      photoUploadDimensions: '图片尺寸超过支持范围。',
+      photoUploadAlreadyPending: '此潜点已有一张你提交的照片正在等待审核。',
+      photoUploadDailyLimit: '你已达到今天的照片提交上限，请明天再试。',
+      photoUploadAuthUnavailable: '账号登录服务暂不可用，请稍后再试。',
+      photoUploadStorageUnavailable: '照片提交服务暂不可用，请稍后再试。',
+      photoUploadFailed: '照片提交失败，请检查网络后重试。',
+      photoUploadSuccessTitle: '照片已提交审核',
+      photoUploadSuccessCopy: '原始照片已私密保存。审核通过前，潜点页面仍会显示示意图片。'
+    }
+  };
+  for (const [lang, values] of Object.entries(SITE_PHOTO_UPLOAD_I18N)) {
     Object.assign(I18N[lang], values);
   }
 
@@ -13071,6 +13338,7 @@ ZSD·2016–2025</span></span>
         : t('contactSend');
     renderContactStatus();
     renderSiteSuggestionTexts();
+    renderSitePhotoUploadTexts();
     els.collapseBtn.title = t('collapseTitle');
     els.panelLauncher.title = t('launcherTitle');
     els.diveSearchInput.placeholder = t('diveSearchPlaceholder');
@@ -26605,6 +26873,7 @@ function closeShareDialog() {
     );
 
     const rows = [];
+    const photoUploadSiteId = getDiveSiteStableId(site);
     if (photo) {
       rows.push(
         `<div class="dive-popup-photo-frame">` +
@@ -26618,7 +26887,17 @@ function closeShareDialog() {
         `alt="${escapeHtml(photo.alt)}" width="640" height="360" ` +
         `loading="eager" decoding="async"></button>` +
         (photo.source === 'illustrative-fallback'
-          ? `<span class="dive-popup-photo-label">${escapeHtml(t('divePhotoIllustrative'))}</span>`
+          ? `<span class="dive-popup-photo-label dive-popup-photo-label--illustrative">${escapeHtml(t('divePhotoIllustrative'))}</span>` +
+            (photoUploadSiteId
+              ? `<button class="dive-popup-photo-label dive-popup-photo-label--upload" type="button" data-dive-site-photo-upload ` +
+                `data-site-id="${escapeHtml(photoUploadSiteId)}" data-site-name="${escapeHtml(name)}" ` +
+                `aria-label="${escapeHtml(`${t('divePhotoUploadMobileCta')}: ${name}`)}">` +
+                `<span class="dive-popup-photo-label__rest">${escapeHtml(t('divePhotoIllustrative'))}</span>` +
+                `<span class="dive-popup-photo-label__action">${escapeHtml(t('divePhotoUploadHoverCta'))}</span>` +
+                `<span class="dive-popup-photo-label__touch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">` +
+                `<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>` +
+                `<circle cx="12" cy="13" r="3.25"/></svg>${escapeHtml(t('divePhotoUploadMobileCta'))}</span></button>`
+              : '')
           : '') +
         `</div>`,
         `<div class="dive-popup-body">`
@@ -26798,6 +27077,21 @@ function closeShareDialog() {
         const trigger = popupElement?.querySelector('.dive-popup-photo-trigger');
         const image = trigger?.querySelector('.dive-popup-photo');
         const frame = popupElement?.querySelector('.dive-popup-photo-frame');
+        const uploadTriggers = popupElement?.querySelectorAll('[data-dive-site-photo-upload]') || [];
+        for (const uploadTrigger of uploadTriggers) {
+          if (uploadTrigger.dataset.uploadBound === 'true') continue;
+          uploadTrigger.dataset.uploadBound = 'true';
+          uploadTrigger.addEventListener('click', clickEvent => {
+            clickEvent.preventDefault();
+            clickEvent.stopPropagation();
+            L.DomEvent.stop(clickEvent);
+            openSitePhotoUploadModal(
+              uploadTrigger.dataset.siteId || '',
+              uploadTrigger.dataset.siteName || '',
+              uploadTrigger
+            );
+          });
+        }
         if (!image) return;
 
         if (trigger && trigger.dataset.previewBound !== 'true') {
@@ -29572,6 +29866,260 @@ function closeShareDialog() {
     }
   }
 
+  function renderSitePhotoUploadTexts() {
+    if (!els.sitePhotoUploadForm) return;
+    els.sitePhotoUploadTitle.textContent = t('photoUploadTitle');
+    els.sitePhotoUploadCopy.textContent = t('photoUploadCopy');
+    els.sitePhotoUploadSiteLabel.textContent = t('photoUploadSite');
+    els.sitePhotoUploadSignInCopy.textContent = t('photoUploadSignInCopy');
+    els.sitePhotoUploadSignIn.textContent = t('photoUploadSignIn');
+    els.sitePhotoUploadFileLabel.textContent = t('photoUploadFile');
+    els.sitePhotoUploadFileHelp.textContent = t('photoUploadFileHelp');
+    els.sitePhotoUploadCreditLabel.textContent = t('photoUploadCredit');
+    els.sitePhotoUploadPrivacy.textContent = t('photoUploadPrivacy');
+    els.sitePhotoUploadRealCopy.textContent = t('photoUploadReal');
+    els.sitePhotoUploadRightsCopy.textContent = t('photoUploadRights');
+    els.sitePhotoUploadCancelButton.textContent = t('photoUploadCancel');
+    els.sitePhotoUploadSubmitButton.textContent = sitePhotoUploadSubmitting
+      ? t('photoUploadSending')
+      : t('photoUploadSubmit');
+    els.sitePhotoUploadCloseButton.title = t('contactClose');
+    els.sitePhotoUploadCloseButton.setAttribute('aria-label', t('contactClose'));
+    els.sitePhotoUploadSuccessTitle.textContent = t('photoUploadSuccessTitle');
+    els.sitePhotoUploadSuccessCopy.textContent = t('photoUploadSuccessCopy');
+    els.sitePhotoUploadDoneButton.textContent = t('photoUploadDone');
+    renderSitePhotoUploadStatus();
+  }
+
+  function renderSitePhotoUploadStatus() {
+    if (!els.sitePhotoUploadStatus) return;
+    els.sitePhotoUploadStatus.textContent = sitePhotoUploadStatusKey
+      ? t(sitePhotoUploadStatusKey)
+      : '';
+    els.sitePhotoUploadStatus.classList.toggle('is-error', sitePhotoUploadStatusTone === 'error');
+    els.sitePhotoUploadStatus.classList.toggle('is-success', sitePhotoUploadStatusTone === 'success');
+  }
+
+  function setSitePhotoUploadStatus(key = '', tone = '') {
+    sitePhotoUploadStatusKey = key;
+    sitePhotoUploadStatusTone = tone;
+    renderSitePhotoUploadStatus();
+  }
+
+  function setSitePhotoUploadSubmitting(submitting) {
+    sitePhotoUploadSubmitting = Boolean(submitting);
+    els.sitePhotoUploadSubmitButton.disabled = sitePhotoUploadSubmitting;
+    els.sitePhotoUploadCancelButton.disabled = sitePhotoUploadSubmitting;
+    els.sitePhotoUploadCloseButton.disabled = sitePhotoUploadSubmitting;
+    els.sitePhotoUploadForm.setAttribute('aria-busy', sitePhotoUploadSubmitting ? 'true' : 'false');
+    renderSitePhotoUploadTexts();
+  }
+
+  function showSitePhotoUploadAccount(user, unavailable = false) {
+    const signedIn = Boolean(user && typeof user === 'object');
+    els.sitePhotoUploadForm.hidden = !signedIn;
+    els.sitePhotoUploadAuthRequired.hidden = signedIn;
+    els.sitePhotoUploadSignIn.hidden = unavailable;
+    if (signedIn) {
+      const name = String(user.name || '').trim();
+      if (!els.sitePhotoUploadCredit.value.trim()) els.sitePhotoUploadCredit.value = name;
+    } else {
+      els.sitePhotoUploadSignInCopy.textContent = unavailable
+        ? t('photoUploadAuthUnavailable')
+        : t('photoUploadSignInCopy');
+    }
+  }
+
+  async function openSitePhotoUploadModal(siteId, siteName, trigger) {
+    if (!siteId || !els.sitePhotoUploadModal.hidden) return;
+    sitePhotoUploadPreviousFocus = trigger || document.activeElement;
+    sitePhotoUploadSiteId = siteId;
+    sitePhotoUploadSiteName = siteName;
+    sitePhotoUploadSubmitting = false;
+    setSitePhotoUploadStatus();
+    els.sitePhotoUploadForm.reset();
+    els.sitePhotoUploadForm.hidden = true;
+    els.sitePhotoUploadSuccess.hidden = true;
+    els.sitePhotoUploadAuthRequired.hidden = false;
+    els.sitePhotoUploadSignIn.hidden = true;
+    els.sitePhotoUploadSignInCopy.textContent = t('photoUploadChecking');
+    els.sitePhotoUploadSiteName.textContent = siteName;
+    els.sitePhotoUploadPreview.hidden = true;
+    els.sitePhotoUploadPreviewImage.removeAttribute('src');
+    els.sitePhotoUploadPreviewDetails.textContent = '';
+    if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
+    sitePhotoUploadObjectUrl = '';
+    setTopMenuOpen(false);
+    els.sitePhotoUploadModal.hidden = false;
+    document.body.classList.add('site-photo-upload-open');
+    renderSitePhotoUploadTexts();
+    requestAnimationFrame(() => els.sitePhotoUploadCloseButton.focus());
+
+    try {
+      const response = await fetch('/api/auth/me', {
+        credentials: 'same-origin',
+        cache: 'no-store',
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('Account lookup failed');
+      const result = await response.json();
+      if (els.sitePhotoUploadModal.hidden) return;
+      showSitePhotoUploadAccount(result?.user || null);
+      if (result?.user) requestAnimationFrame(() => els.sitePhotoUploadFile.focus());
+      else requestAnimationFrame(() => els.sitePhotoUploadSignIn.focus());
+    } catch (_) {
+      if (els.sitePhotoUploadModal.hidden) return;
+      showSitePhotoUploadAccount(null, true);
+      requestAnimationFrame(() => els.sitePhotoUploadCloseButton.focus());
+    }
+  }
+
+  function closeSitePhotoUploadModal() {
+    if (sitePhotoUploadSubmitting || els.sitePhotoUploadModal.hidden) return;
+    els.sitePhotoUploadModal.hidden = true;
+    document.body.classList.remove('site-photo-upload-open');
+    els.sitePhotoUploadForm.reset();
+    els.sitePhotoUploadSuccess.hidden = true;
+    els.sitePhotoUploadPreview.hidden = true;
+    els.sitePhotoUploadPreviewImage.removeAttribute('src');
+    els.sitePhotoUploadPreviewDetails.textContent = '';
+    if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
+    sitePhotoUploadObjectUrl = '';
+    sitePhotoUploadSiteId = '';
+    sitePhotoUploadSiteName = '';
+    setSitePhotoUploadStatus();
+    renderSitePhotoUploadTexts();
+    if (sitePhotoUploadPreviousFocus?.isConnected && typeof sitePhotoUploadPreviousFocus.focus === 'function') {
+      sitePhotoUploadPreviousFocus.focus({ preventScroll: true });
+    }
+  }
+
+  async function previewSitePhotoUpload() {
+    const file = els.sitePhotoUploadFile.files?.[0];
+    setSitePhotoUploadStatus();
+    els.sitePhotoUploadPreview.hidden = true;
+    if (sitePhotoUploadObjectUrl) URL.revokeObjectURL(sitePhotoUploadObjectUrl);
+    sitePhotoUploadObjectUrl = '';
+    if (!file) return;
+    if (file.size > 12 * 1024 * 1024) {
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadStatus('photoUploadTooLarge', 'error');
+      return;
+    }
+    const supportedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'].includes(file.type);
+    if (!supportedMime && !(file.type === '' && /\.(jpe?g|png|webp)$/i.test(file.name))) {
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadStatus('photoUploadInvalid', 'error');
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    const dimensions = await new Promise(resolve => {
+      const image = new Image();
+      image.onload = () => resolve({ width: image.naturalWidth, height: image.naturalHeight });
+      image.onerror = () => resolve(null);
+      image.src = previewUrl;
+    });
+    if (els.sitePhotoUploadFile.files?.[0] !== file) {
+      URL.revokeObjectURL(previewUrl);
+      return;
+    }
+    if (!dimensions) {
+      URL.revokeObjectURL(previewUrl);
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadStatus('photoUploadInvalid', 'error');
+      return;
+    }
+    const pixels = dimensions.width * dimensions.height;
+    if (Math.min(dimensions.width, dimensions.height) < 700 || pixels < 1_000_000) {
+      URL.revokeObjectURL(previewUrl);
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadStatus('photoUploadTooSmall', 'error');
+      return;
+    }
+    if (Math.max(dimensions.width, dimensions.height) > 12_000 || pixels > 80_000_000) {
+      URL.revokeObjectURL(previewUrl);
+      els.sitePhotoUploadFile.value = '';
+      setSitePhotoUploadStatus('photoUploadDimensions', 'error');
+      return;
+    }
+    sitePhotoUploadObjectUrl = previewUrl;
+    els.sitePhotoUploadPreviewImage.src = previewUrl;
+    els.sitePhotoUploadPreviewImage.alt = `${sitePhotoUploadSiteName} photo preview`;
+    els.sitePhotoUploadPreviewDetails.textContent =
+      `${dimensions.width.toLocaleString()} × ${dimensions.height.toLocaleString()} · ${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+    els.sitePhotoUploadPreview.hidden = false;
+  }
+
+  async function submitSitePhotoUpload(event) {
+    event.preventDefault();
+    if (sitePhotoUploadSubmitting) return;
+    const photo = els.sitePhotoUploadFile.files?.[0];
+    if (!photo) {
+      setSitePhotoUploadStatus('photoUploadPickFile', 'error');
+      els.sitePhotoUploadFile.focus();
+      return;
+    }
+    if (!els.sitePhotoUploadRealAttestation.checked || !els.sitePhotoUploadRightsAttestation.checked) {
+      setSitePhotoUploadStatus('photoUploadConsentRequired', 'error');
+      (!els.sitePhotoUploadRealAttestation.checked
+        ? els.sitePhotoUploadRealAttestation
+        : els.sitePhotoUploadRightsAttestation).focus();
+      return;
+    }
+
+    const body = new FormData();
+    body.append('photo', photo, photo.name);
+    body.append('siteId', sitePhotoUploadSiteId);
+    body.append('siteName', sitePhotoUploadSiteName);
+    body.append('creditName', els.sitePhotoUploadCredit.value.trim());
+    body.append('attestRealPhoto', 'yes');
+    body.append('attestRights', 'yes');
+
+    setSitePhotoUploadStatus();
+    setSitePhotoUploadSubmitting(true);
+    try {
+      const response = await fetch(SITE_PHOTO_SUBMISSION_ENDPOINT, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body
+      });
+      let result = null;
+      try { result = await response.json(); } catch (_) {}
+      if (response.status === 401 || result?.error === 'sign_in_required') {
+        showSitePhotoUploadAccount(null);
+        requestAnimationFrame(() => els.sitePhotoUploadSignIn.focus());
+        return;
+      }
+      if (!response.ok || result?.success !== true || result?.status !== 'pending') {
+        const statusKeys = {
+          photo_required: 'photoUploadPickFile',
+          unsupported_image: 'photoUploadInvalid',
+          photo_too_large: 'photoUploadTooLarge',
+          request_too_large: 'photoUploadTooLarge',
+          image_too_small: 'photoUploadTooSmall',
+          image_dimensions_unsupported: 'photoUploadDimensions',
+          already_pending: 'photoUploadAlreadyPending',
+          daily_limit_reached: 'photoUploadDailyLimit',
+          attestations_required: 'photoUploadConsentRequired',
+          storage_unavailable: 'photoUploadStorageUnavailable'
+        };
+        throw new Error(statusKeys[result?.error] || 'photoUploadFailed');
+      }
+      els.sitePhotoUploadForm.hidden = true;
+      els.sitePhotoUploadAuthRequired.hidden = true;
+      els.sitePhotoUploadSuccess.hidden = false;
+      requestAnimationFrame(() => els.sitePhotoUploadDoneButton.focus());
+    } catch (error) {
+      setSitePhotoUploadStatus(
+        error?.message?.startsWith('photoUpload') ? error.message : 'photoUploadFailed',
+        'error'
+      );
+    } finally {
+      setSitePhotoUploadSubmitting(false);
+    }
+  }
+
   function openSiteSuggestionModal() {
     if (!els.siteSuggestionModal.hidden) return;
     siteSuggestionPreviousFocus = els.diveSearchInput;
@@ -29900,6 +30448,11 @@ function closeShareDialog() {
     if (event.target.closest('[data-site-suggestion-close]')) closeSiteSuggestionModal();
   });
   els.siteSuggestionForm.addEventListener('submit', submitSiteSuggestion);
+  els.sitePhotoUploadModal.addEventListener('click', event => {
+    if (event.target.closest('[data-site-photo-upload-close]')) closeSitePhotoUploadModal();
+  });
+  els.sitePhotoUploadFile.addEventListener('change', () => { void previewSitePhotoUpload(); });
+  els.sitePhotoUploadForm.addEventListener('submit', submitSitePhotoUpload);
 
   els.contactForm.addEventListener('submit', async event => {
     event.preventDefault();
@@ -30003,7 +30556,9 @@ function closeShareDialog() {
         ? { dialog: els.contactDialog, close: closeContactModal }
         : !els.siteSuggestionModal.hidden
           ? { dialog: els.siteSuggestionDialog, close: closeSiteSuggestionModal }
-          : null;
+          : !els.sitePhotoUploadModal.hidden
+            ? { dialog: els.sitePhotoUploadDialog, close: closeSitePhotoUploadModal }
+            : null;
 
     if (activeModal) {
       if (event.key === 'Escape') {
