@@ -31293,9 +31293,11 @@ function closeShareDialog() {
       return tagFixtureMarker(fishMarkerCache.get(id).marker, id);
     }
 
-    function addFixtureDiveSite(lat, lng, id = 'dive-site') {
+    function addFixtureDiveSite(lat, lng, id = 'dive-site', { withFallbackPhoto = false } = {}) {
       const layer = enableFixtureLayer('dive');
       const site = [`Test dive site ${id}`, lat, lng, 5, 18, 11, 'Beginner', 'Reef', 'DiveAtlas'];
+      // Keep generic popup fixtures photo-free so unrelated layout tests stay stable.
+      if (withFallbackPhoto) site[12] = id;
       const marker = makeDiveMarker(site, id).addTo(layer);
       diveSiteMarkerCache.set(id, { marker, site });
       return tagFixtureMarker(marker, id);
