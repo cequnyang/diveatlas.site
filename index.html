@@ -7197,7 +7197,7 @@
       </div>
       <div class="site-photo-upload-auth" id="sitePhotoUploadAuthRequired" hidden>
         <p id="sitePhotoUploadSignInCopy">Sign in to submit a photo. After signing in, reopen this panel and choose your image.</p>
-        <a class="contact-button contact-button-primary" id="sitePhotoUploadSignIn" href="/api/auth/google">Sign in with Google</a>
+        <a class="contact-button contact-button-primary" id="sitePhotoUploadSignIn">Sign in with Google</a>
       </div>
       <form class="site-suggestion-form site-photo-upload-form" id="sitePhotoUploadForm" novalidate hidden>
         <label class="site-suggestion-field">
@@ -29933,6 +29933,8 @@ function closeShareDialog() {
     els.sitePhotoUploadForm.hidden = !signedIn;
     els.sitePhotoUploadAuthRequired.hidden = signedIn;
     els.sitePhotoUploadSignIn.hidden = unavailable;
+    if (!signedIn && !unavailable) els.sitePhotoUploadSignIn.href = '/api/auth/google';
+    else els.sitePhotoUploadSignIn.removeAttribute('href');
     if (signedIn) {
       const name = String(user.name || '').trim();
       if (!els.sitePhotoUploadCredit.value.trim()) els.sitePhotoUploadCredit.value = name;

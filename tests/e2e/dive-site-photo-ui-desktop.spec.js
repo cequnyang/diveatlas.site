@@ -35,3 +35,17 @@ test('desktop fallback-photo label changes to a contribution invite on hover wit
   expect(hovered.width).toBeCloseTo(resting.width, 0);
   expect(hovered.background).not.toBe(resting.background);
 });
+
+test('photo upload sign-in link resolves to the auth Worker when available', async ({ page }) => {
+  const popup = await openFallbackPhotoPopup(page);
+  await page.route('**/api/auth/me', route => route.fulfill({
+    status:200,
+    contentType:'application/json',
+    body:JSON.stringify({ user:null })
+  }));
+
+  await popup.locator('[data-dive-site-photo-upload]').click();
+  const signIn = page.locator('#sitePhotoUploadSignIn');
+  await expect(signIn).toBeVisible();
+  await expect(signIn).toHaveAttribute('href', '/api/auth/google');
+});
