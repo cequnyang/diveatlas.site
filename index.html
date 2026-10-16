@@ -1714,8 +1714,8 @@
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-landscape .dive-popup-photo { object-fit: cover; }
     .dive-site-popup--with-photo .dive-popup-body { box-sizing: border-box; width: 100%; padding: 12px 0 0; }
     .dive-popup-photo-credit { margin-top: 8px; color: var(--faint); font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
-    /* Pointer type chooses the contribution control so narrow desktop windows keep hover behavior. */
-    @media (hover: hover) and (pointer: fine) {
+    /* Narrow windows use the touch caption even with a mouse; desktop hover captions must not enter that flex layout. */
+    @media (min-width: 721px) and (hover: hover) and (pointer: fine) {
       .dive-site-popup--with-photo .dive-popup-photo-label--illustrative { display: none; }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload {
         display: inline-grid;
@@ -1813,17 +1813,19 @@
         width: fit-content;
         max-width: calc(100% - 20px);
         align-items: center;
-        height: 28px;
-        padding: 0 8px;
-        overflow: hidden;
-        line-height: 1.1;
+        min-height: 28px;
+        padding: 3px 8px;
+        line-height: 1.5;
       }
+      /* A clamped line box clips descenders; let translated captions wrap at their natural height. */
       .dive-popup-photo-label__illustrative-copy {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+        display: block;
+        overflow-wrap: anywhere;
       }
+    }
+    @media (min-width: 721px) and (hover: hover) and (pointer: fine) {
+      /* Desktop shows the contribution button's captions instead of the separate touch status. */
+      .dive-popup-photo-label--upload .dive-popup-photo-label__rest { transform: translateY(-2px); }
     }
     @media (prefers-reduced-motion: reduce) {
       .dive-site-popup--with-photo .dive-popup-photo-label--upload { transition: none; }
