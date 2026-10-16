@@ -8639,8 +8639,11 @@ ZSD·2016–2025</span></span>
     closePopupOnClick: false,
     maxBounds: MAP_VERTICAL_BOUNDS,
     maxBoundsViscosity: 1.0,
+    // Preserve fractional gesture zoom instead of snapping back to whole levels.
+    zoomSnap: 0,
+    zoomDelta: 0.25,
     wheelPxPerZoomLevel: 120,
-    wheelDebounceTime: 60
+    wheelDebounceTime: 40
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
   const mobileMapCreditsControl = L.control({ position:'bottomleft' });
