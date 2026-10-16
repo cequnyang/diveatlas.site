@@ -1561,17 +1561,11 @@ def summary_text(row: dict[str, str]) -> tuple[str, list[str]]:
         if label and label not in features:
             features.append(label)
 
-    parts: list[str] = []
+    facts: list[str] = []
     if setting:
-        parts.append(f"{setting} dive site")
-    elif features or access:
-        parts.append("dive site")
-    else:
-        return "", []
-
-    sentence = f"{row['name']} is a {parts[0]}"
+        facts.append(f"a {setting} setting")
     if access:
-        sentence += f" accessed by {access}"
+        facts.append(f"{access} access")
     if features:
         if len(features) == 1:
             feature_text = features[0]
@@ -1579,10 +1573,892 @@ def summary_text(row: dict[str, str]) -> tuple[str, list[str]]:
             feature_text = f"{features[0]} and {features[1]}"
         else:
             feature_text = ", ".join(features[:-1]) + f", and {features[-1]}"
-        sentence += f" with recorded features including {feature_text}"
-    sentence += "."
+        facts.append(f"{feature_text} features")
+    if not facts:
+        return "", []
+
+    location = ", ".join(dict.fromkeys(
+        str(row.get(field) or "").strip() for field in ("region", "country")
+        if str(row.get(field) or "").strip()
+    ))
+    facts_text = ", ".join(facts[:-1]) + (f" and {facts[-1]}" if len(facts) > 1 else facts[0])
+    site_text = f" for {row['name']}" + (f" in {location}" if location else "")
+    sentence = f"The DiveAtlas record lists {facts_text}{site_text}."
     claims = (["setting"] if setting else []) + (["access"] if access else []) + (["features"] if features else [])
     return sentence, claims
+
+
+MELISSAS_GARDEN_SUMMARY = {
+    "status": "published",
+    "summaryReviewStatus": "firsthand-report-synthesis",
+    "language": "en",
+    "authoringMethod": "AI-assisted synthesis of two first-hand diver trip reports",
+    "description": "Divers describe colorful coral and plenty of small fish, including anthias.",
+    "sources": [
+        {
+            "label": "Diver trip report: Kri, Raja Ampat",
+            "url": "https://www.reddit.com/r/backpacking/comments/1bk2vhx/trip_report_kri_raja_ampat_indonesia/",
+            "sourceClass": "firsthand-diver-trip-report",
+            "retrievedAt": "2026-10-16",
+            "limitations": "The author describes a personal week of diving in Raja Ampat. Their account is subjective and does not establish typical conditions or guaranteed sightings.",
+            "claims": ["site-identity", "coral-experience", "small-fish-reported"],
+        },
+        {
+            "label": "Diver account: Melissa’s Garden, Raja Ampat",
+            "url": "https://www.reddit.com/r/scuba/comments/1g8buzg/",
+            "sourceClass": "firsthand-diver-account",
+            "retrievedAt": "2026-10-16",
+            "limitations": "The author reports a week of diving in Raja Ampat and describes this site as sprawling, with small fish such as anthias. This is one visitor’s account, not a current conditions report.",
+            "claims": ["site-identity", "site-scale-reported", "small-fish-reported"],
+        },
+    ],
+}
+
+# These nine SSI-linked profiles contain first-person dive accounts or
+# site-specific observations from community contributors.
+DIVER_REVIEW_SUMMARY_OVERRIDES = {
+    "095635cd-45a1-4bf3-91e2-585cb16a3c05": (
+        "Divers report nudibranchs and pygmy seahorses in the shallows.",
+        "https://www.divessi.com/mydiveguide/divesite/abyss-triggerfish-solomon-islands-323960",
+    ),
+    "190410c1-6450-42b7-ba69-c6f93ad910a9": (
+        "Divers have reported eels and blind fish in the cave.",
+        "https://www.divessi.com/mydiveguide/divesite/cenote-nicte-ha-nic-te-mexico-244956",
+    ),
+    "d19a2031-018a-4ad1-9a03-0e0725a52497": (
+        "Divers have reported grey nurse sharks in the cave.",
+        "https://www.divessi.com/mydiveguide/divesite/foggy-shark-cave-australia-9857",
+    ),
+    "df0048e9-cbfc-41c0-8382-3314611e818b": (
+        "Divers have seen devil rays here, along with small reef fish.",
+        "https://www.divessi.com/mydiveguide/divesite/jack-a-dan-west-carriacou-grenada-241916",
+    ),
+    "e57c53c7-5801-4410-9173-763c64450eff": (
+        "Divers report low visibility over a muddy pinnacle, with small marine life.",
+        "https://www.divessi.com/mydiveguide/divesite/no-viz-reef-fiji-356919",
+    ),
+    "730dd457-9753-4ce4-b6a0-e4fe9a995bbc": (
+        "Divers report octopuses, frogfish, scorpionfish, rays, and turtles.",
+        "https://www.divessi.com/mydiveguide/divesite/seaview-carriacou-tropical-hill-grenada-235883",
+    ),
+    "98bb60aa-62f5-4806-b0ef-e973fb5b28b3": (
+        "Divers report reef fish, moray eels, and turtles among steep rock faces.",
+        "https://www.divessi.com/mydiveguide/divesite/wahoo-panama-560326",
+    ),
+    "2b41e05e-4704-4bb2-9bf9-7e68c58023f2": (
+        "Divers report coral, sponges, tuna, blacktip sharks, and batfish.",
+        "https://www.divessi.com/mydiveguide/divesite/wrong-entry-indonesia-812025",
+    ),
+    "3e8313c1-cac1-4cb7-9092-cb49b9417056": (
+        "A diver describes looking for sharks near the marina and visiting the nearby Island of Snakes.",
+        "https://www.scubago.com/en/explore/divesite/herradura-133857",
+    ),
+}
+
+# Published first-person accounts are kept separate from community-profile
+# observations so each source's publisher, date, and limits remain explicit.
+DIVER_ACCOUNT_SUMMARY_OVERRIDES = {
+    "028c3686-aed6-4b02-bb9e-3330f905f00e": {
+        "description": "Local dive instructor Bojan Runtic reports a thermal spring in a wall crevice at about 3 m. He describes water near 25°C at the spring in winter, when surrounding water was 12–14°C, plus reddish rock and abundant marine life.",
+        "url": "https://more-sub-makarska.hr/2026/03/14/nugal-termalni-izvor/",
+        "label": "Bojan Runtic’s firsthand Nugal spring report (2026)",
+        "sourceClass": "firsthand-diver-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One local instructor’s March 2026 post; temperatures are approximate observations and do not establish typical year-round conditions.",
+    },
+    "190410c1-6450-42b7-ba69-c6f93ad910a9": {
+        "description": "On a 2024 dive, Indira Pranabudi describes a shallow route around Nicte Ha’s cavern and open pool, with lily pads and sunbeams in clear water. She says it reached about 20 ft (6 m) and notes the silty floor calls for careful buoyancy.",
+        "url": "https://indirapranabudi.com/blog/cenote-diving-yucatan/",
+        "label": "Indira Pranabudi’s firsthand Nicte Ha dive report (2024)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One diver’s 2024 trip and route; depth, light, and visibility describe that visit, not typical or current conditions.",
+    },
+    "7c71b426-85da-4286-bc2a-efcfb35e25eb": {
+        "description": "Chris Sullivan's dive logs describe light current at Palancar Horseshoe, with an electric ray, a turtle, and a reef memorial on one visit; on another he saw a stingray and large grouper.",
+        "url": "https://deepstop.wordpress.com/tag/palancar-horseshoe/",
+        "label": "Chris Sullivan's Palancar Horseshoe dive logs (2007 and 2009)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "Two visits by one diver in 2007 and 2009; wildlife and current observations describe those dives, not typical or current conditions.",
+    },
+    "04651263-3ca8-4555-b2af-05eb59d2c9f3": {
+        "description": "A 2026 dive map made during SSI Divemaster training charts shallow features off Genève-Plage, including seagrass, a pipe, and an artificial coral reef; its marked depths reach 6 m.",
+        "url": "https://scubajacs.com/wp-content/uploads/sites/6/2026/08/Geneve-Plage-Dive-Map-2026.pdf",
+        "label": "Scuba Jac’s diver-created site map: Genève-Plage (2026)",
+        "sourceClass": "firsthand-diver-topography",
+        "retrievedAt": "2026-10-16",
+        "limitations": "Created during SSI Divemaster training in spring 2026 with a dive buddy. It is a site map, not a narrative review or current-conditions report; mapped features and depths may not describe every route.",
+    },
+    "730dd457-9753-4ce4-b6a0-e4fe9a995bbc": {
+        "description": "In a 2015 field study, diver Luana Haller compared Seaview with nearby Barrel. Her account reports stronger current at Seaview and fewer lionfish there than at Barrel.",
+        "url": "https://www.caribbeancompass.com/online/november15compass_online.pdf",
+        "label": "Luana Haller’s firsthand Carriacou dive study (2015)",
+        "sourceClass": "firsthand-diver-research-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One student’s field project during a three-week July 2015 visit; observations compare two sites and do not establish current or typical conditions.",
+    },
+    "0e0eb010-bcf4-422b-8594-d2aa6d06dafd": {
+        "description": "A night-dive report from Tisvildeleje describes dense mysid shrimp, flatfish, sea scorpions, weeverfish, sand eels, and herring.",
+        "url": "https://www.baracudaturudvalg.dk/baracuda_bladet/baracuda_okt_2013_web_udgave.pdf",
+        "label": "Baracuda magazine firsthand dive report: Tisvildeleje (2013)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The article describes one night dive from August 2012; the wildlife sightings describe that visit, not typical conditions.",
+    },
+    "0aab469f-5de3-4b12-beee-746c55eeefe4": {
+        "description": "A 2002 diver report describes linked training platforms, a small boat wreck, and many crayfish, carp, pike, and perch. The author notes that carp can stir up the visibility.",
+        "url": "https://taucher.net/tauchplatz-neufelder_see__neufeld_leitha-bericht-hlz13732",
+        "label": "Taucher.Net diver report: Neufelder See (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The report covers the lake and several entry points, not only the Strandbad entry; sightings and conditions are from one 2002 account.",
+    },
+    "64f8bdca-4327-4490-85bd-6afea6a4d164": {
+        "description": "Five diver reviews rate Cynthiana from good to exceptional. Logged dives reached 6–12 m, with visibility ranging from average to excellent.",
+        "url": "https://www.scubadiving.place/divesite/cynthiana",
+        "label": "Scuba Diving Place diver reviews: Cynthiana, Cyprus (5 reviews)",
+        "sourceClass": "firsthand-diver-review-collection",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The five reviews are undated and describe individual dives; depth and visibility are not current or typical conditions. The matching catalog record is the Cynthiana site near Paphos; a separate same-named catalog record is farther away and was not matched.",
+    },
+    "20be0200-86c4-48f7-b88a-4256aa009310": {
+        "description": "A 2024 diver described False Entrance’s deep canyons, a school of trevally, and large red and yellow soft corals. The report noted slight current and a 0.5 m swell on that dive.",
+        "url": "https://cairnsdiveadventures.com.au/review/mike-ball-coral-sea-cod-hole-expedition-5-night-trip-review/",
+        "label": "Cairns Dive Adventures diver trip report: False Entrance (2024)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One diver’s 31 August 2024 visit; sightings and conditions describe that dive, not current or typical conditions.",
+    },
+    "b24899e5-e346-431a-8153-1d11fde4ab32": {
+        "description": "A 2019 dive-club report describes clear water over Lahami’s healthy house reefs, with turtles and several kinds of rays. Divers reached Banana Reef by following a line through the seagrass.",
+        "url": "https://tauchfreunde-duesseldorf.com/2019/06/14/tauchurlaub-ganz-im-sueden-aegyptens-lahami-bay/",
+        "label": "Tauchfreunde e.V. diver report: Lahami Bay (2019)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "A single group’s 2019 trip report covering the house reefs; the conditions and sightings describe that visit, not current conditions.",
+    },
+    "0023cddb-3a63-4d2a-858d-1d892b93babd": {
+        "description": "A visitor described a first scuba dive in Rousoum Bay, starting in the shallows before heading into deeper water.",
+        "url": "https://www.tripadvisor.co.uk/Attraction_Review-g1187882-d6958991-Reviews-or40-Alonissos_Seacolours_Dive_Center-Patitiri_Alonnisos_Sporades.html",
+        "label": "Tripadvisor diver review: Rousoum Bay (2020)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2020 account in a dive-center review; it describes a try dive in Rousoum Bay and gives no typical or current site conditions.",
+    },
+    "655dbb14-5af4-4e9e-828c-f1cdb7d6b1f1": {
+        "description": "A 2017 diver reported up to 5 m visibility, changing layers, and an underwater training course with a mussel-covered caravan and small fish.",
+        "url": "https://taucher.net/tauchbasis-tauchlehrerausbildungszentrum_am_bernsteinsee_goitzsche-faz14206",
+        "label": "Taucher.Net diver review: Goitzschesee (2017)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visit in 2017; conditions describe that dive, not the lake today. The reviewed dive center is now closed and had moved, though the diver account explicitly describes dives in Goitzschesee.",
+    },
+    "2ffd53f2-20d1-49d8-8308-ed49dda62056": {
+        "description": "A diver enjoyed Garden Eel Cove’s coral and marine life, including several kinds of eels, before the night manta dive.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Hawaii/KonaHonuDivers_BigIsland_report_2597.html",
+        "label": "Undercurrent diver review: Garden Eel Cove, Kona (2006)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor’s account from 2006; the sightings and impressions describe that trip, not typical or current conditions.",
+    },
+    "741df9e4-117d-45d5-8844-901c4cddeb44": {
+        "description": "A diver enjoyed Garden Eel Cove’s coral and marine life, including several kinds of eels, before the night manta dive.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Hawaii/KonaHonuDivers_BigIsland_report_2597.html",
+        "label": "Undercurrent diver review: Manta Ray Heaven, Garden Eel Cove (2006)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor’s account from 2006; the sightings and impressions describe that trip, not typical or current conditions. This catalog name appears to identify Garden Eel Cove, a nearby variant record.",
+    },
+    "0681ad40-fbd1-42f3-a515-c0f9b6708a9b": {
+        "description": "A diver enjoyed Garden Eel Cove’s coral and marine life, including several kinds of eels, before the night manta dive.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Hawaii/KonaHonuDivers_BigIsland_report_2597.html",
+        "label": "Undercurrent diver review: Manta Dive-Garden Eel Cove, Kona (2006)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor’s account from 2006; the sightings and impressions describe that trip, not typical or current conditions. This catalog name appears to identify Garden Eel Cove, a nearby variant record.",
+    },
+    "a8039b55-bb7b-4652-9544-079c0b855091": {
+        "description": "A diver described two memorable dives on the Yongala, with dense schools of juvenile fish, trevally and large groupers around the coral-covered wreck.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Australia/YongalaDive_NorthQueensland_report_11573.html",
+        "label": "Undercurrent diver review: SS Yongala Wreck, Australia (2021)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2021; wildlife and conditions describe those dives, not typical or current conditions.",
+    },
+    "355e4281-b48a-441b-a457-189193a0012f": {
+        "description": "A diver called the Cod Hole dive great fun, with friendly potato cod.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Australia/MikeBallsSupersport_GreatBarrierReef_report_1360.html",
+        "label": "Undercurrent diver review: Cod Hole, Ribbon Reef No. 10 (2004)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2004 account; cod encounters and site conditions are not guaranteed or current. Two other canonical records at the same coordinates appear to name this same site.",
+    },
+    "1d7ce8c2-a1fa-4625-9a75-299c7df4aa55": {
+        "description": "A diver called the Cod Hole dive great fun, with friendly potato cod.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Australia/MikeBallsSupersport_GreatBarrierReef_report_1360.html",
+        "label": "Undercurrent diver review: Cod Hole, Ribbon Reef No. 10 (2004)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2004 account; cod encounters and site conditions are not guaranteed or current. Two other canonical records at the same coordinates appear to name this same site.",
+    },
+    "ae1d2912-00a7-46bc-861c-fb7af1da979f": {
+        "description": "A diver called the Cod Hole dive great fun, with friendly potato cod.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Australia/MikeBallsSupersport_GreatBarrierReef_report_1360.html",
+        "label": "Undercurrent diver review: Cod Hole, Ribbon Reef No. 10 (2004)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2004 account; cod encounters and site conditions are not guaranteed or current. Two other canonical records at the same coordinates appear to name this same site.",
+    },
+    "d0d02e01-2667-460b-9371-ca0dcd2f69c0": {
+        "description": "A diver saw large schools of fish and sharks at Castle Rock during a Komodo liveaboard trip.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Indonesia/Arenui_Komodo_report_8277.html",
+        "label": "Undercurrent diver review: Castle Rock, Komodo (2015)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2015 liveaboard account; sightings describe that trip and are not guaranteed or current conditions.",
+    },
+    "3b9f386a-25fd-4023-9015-d378f3944898": {
+        "description": "A diver saw large schools of fish and sharks at Crystal Rock during a Komodo liveaboard trip.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Indonesia/Arenui_Komodo_report_8277.html",
+        "label": "Undercurrent diver review: Crystal Rock, Komodo (2015)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2015 liveaboard account; sightings describe that trip and are not guaranteed or current conditions.",
+    },
+    "877fd63c-7f3f-47af-9c7a-d64058c92fbb": {
+        "description": "A diver reported nine or more mantas on a Manta Alley dive, with rays all around the group.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Indonesia/MermaidII_Komodo_report_7774.html",
+        "label": "Undercurrent diver review: Manta Alley, Komodo (2014)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one liveaboard visit in 2014; manta sightings and water conditions vary and are not guaranteed or current.",
+    },
+    "1d9aa78c-0eea-4a69-b62c-36599bffaf0f": {
+        "description": "A diver described close mantas swimming alongside the group during their ascent and safety stop at Roca Partida.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Mexico_Western/SolmarV_RevillagigedoIslands_report_3126.html",
+        "label": "Undercurrent diver review: Roca Partida, Revillagigedo (2006)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one group’s account from 2006; wildlife encounters describe that trip and are not guaranteed or current conditions.",
+    },
+    "6f0fc8c7-33d7-4d1c-9334-54df149e9f12": {
+        "description": "One diver had three quiet dives at The Boiler, then saw three large mantas make repeated passes on the last.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Mexico_Western/MVValentina_SocorroIslands_report_10793.html",
+        "label": "Undercurrent diver review: The Boiler, San Benedicto (2018)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2018; the sightings show how encounters varied across that trip and are not current conditions.",
+    },
+    "26a67277-4455-43ac-98d9-7328b6c381cd": {
+        "description": "A diver described close manta encounters at Cabo Pearce, along with dolphins and false killer whales.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Mexico_Western/NautilusExplorer_report_12978.html",
+        "label": "Undercurrent diver review: Cabo Pearce, Socorro (2024)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from May 2024; sightings describe that trip and are not guaranteed or current conditions.",
+    },
+    "ba870135-1544-4147-816e-f52534dbbbe5": {
+        "description": "A diver drifted over Palancar Bricks in little current, enjoying the formations, turtles and large parrotfish.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Cozumel/ScubaClubCozumel_report_10394.html",
+        "label": "Undercurrent diver review: Palancar Bricks, Cozumel (2018)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from one 2018 visit; the current and wildlife describe that dive, not typical or present conditions.",
+    },
+    "2629512d-8477-4c08-b917-3b73bf021c7d": {
+        "description": "A repeat visitor called Palancar Gardens colorful and reported seeing turtles on every dive during that trip.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Cozumel/DivePalancar_report_5552.html",
+        "label": "Undercurrent diver review: Palancar Gardens, Cozumel (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One repeat visitor’s 2010 account; the sightings and impressions describe that trip, not typical or current conditions.",
+    },
+    "ab8ba4f7-e048-46b6-8bb2-b2d6d2e63a0a": {
+        "description": "A repeat visitor said Palancar Caves looked colorful and reported turtles on every dive during that trip.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Cozumel/DivePalancar_report_5552.html",
+        "label": "Undercurrent diver review: Palancar Caves, Cozumel (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One repeat visitor’s 2010 account; the sightings and impressions describe that trip, not typical or current conditions.",
+    },
+    "593e81e7-2241-4259-a3be-3a1318fc95e5": {
+        "description": "A diver described descending through clear water to a sulfur cloud, with tree debris and steep rock walls below.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Cozumel/DiveMike_PlayaDelCarmen_report_883.html",
+        "label": "Undercurrent diver review: Cenote Angelita, Mexico (2003)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2003; the described route and conditions are from that visit, not a current report.",
+    },
+    "5f413050-4dc0-4728-8aef-ae6c42e6e8d3": {
+        "description": "A diver described the Liberty wreck sloping from its shallow stern toward a deeper bow, with swim-throughs and abundant marine life.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Indonesia/ZenDive_report_8331.html",
+        "label": "Undercurrent diver review: USAT Liberty Wreck, Tulamben (2015)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2015; the route, entry and marine life describe that visit, not current conditions.",
+    },
+    "11982658-8c28-4873-99df-1943c3d8c9e4": {
+        "description": "A diver described the Liberty wreck sloping from its shallow stern toward a deeper bow, with swim-throughs and abundant marine life.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Indonesia/ZenDive_report_8331.html",
+        "label": "Undercurrent diver review: USS Liberty Wreck, Tulamben (2015)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This canonical record appears to identify the same Tulamben wreck as USAT Liberty Wreck; the source describes one diver’s 2015 visit, not current conditions.",
+    },
+    "a7ced4d1-f0e1-486c-b524-d08036c9673a": {
+        "description": "A diver hooked in at Cape Kri and watched barracuda, trevally, sharks and other large fish pass in the current.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Indonesia/PapuaExplorers_RajaAmpat_report_12964.html",
+        "label": "Undercurrent diver review: Cape Kri, Raja Ampat (2024)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2024; the wildlife and current describe that dive, not typical or current conditions.",
+    },
+    "49d0d556-0f04-4829-9e8f-5938cf0a013c": {
+        "description": "A diver reported manta rays at Manta Point’s cleaning station, but found the site crowded with 10–15 boats.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Indonesia/LegendDivingLembongan_NusaPenidaBali_report_9459.html",
+        "label": "Undercurrent diver review: Manta Point, Nusa Penida (2017)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This account describes one trip in 2017; its sightings and boat traffic are not a current conditions report.",
+    },
+    "9b18e578-9032-4a0d-b4ea-ee8a6642b4eb": {
+        "description": "A diver described descending among the Great Blue Hole’s stalactites and seeing reef sharks in the deep blue.",
+        "url": "https://squid-rhombus-gmpl.squarespace.com/blog/diving-the-great-blue-hole-experience-belize",
+        "label": "Jhanielle Brown diver’s account: Great Blue Hole, Belize (2023)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The author describes this as a personal milestone and a new diver’s experience. Depth and wildlife sightings are from one visit, not a recommendation or typical conditions.",
+    },
+    "24578a6d-215e-4d04-8c74-334bddbc60d7": {
+        "description": "A diver described exploring the Thistlegorm’s holds among jeeps, motorcycles, trucks and other wartime cargo, with fish around the wreck.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Red_Sea/RedSeaDivingCollege_SharmElSheikh_report_897.html",
+        "label": "Undercurrent diver review: Thistlegorm, Egypt (2003)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2003; wreck access and marine life describe that visit, not current conditions.",
+    },
+    "a62bfc37-a53a-4b78-9c6f-85786339b3db": {
+        "description": "A diver described shallow dives at Tiger Beach, with tiger sharks circling near the group.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bahamas/Aggressor_TigerBeach_report_12622.html",
+        "label": "Undercurrent diver review: Tiger Beach, Bahamas (2023)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one diver’s trip in 2023, including baited shark dives; sightings and conditions are not guaranteed or typical.",
+    },
+    "45488ac1-44ce-43f0-af6a-0c1f8bd5e79b": {
+        "description": "A diver described hooking in at Alcyone in strong current and watching large schools of hammerhead sharks pass.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Costa_Rica/SeaHunter_CocosIsland_report_771.html",
+        "label": "Undercurrent diver review: Alcyone, Cocos Island (2003)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from 2003; currents and wildlife sightings describe that trip, not typical or current conditions.",
+    },
+    "61a22e99-8852-4828-b7da-8d37b8d9692b": {
+        "description": "A diver hooked in at Blue Corner and watched thresher and reef sharks nearby.",
+        "url": "https://undercurrent.org/UCnow/dive_magazine/2025/PalauRoyalResort202508.html",
+        "label": "Undercurrent diver trip report: Blue Corner, Palau (2025)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one diver’s visit in 2025; sightings and current conditions are not typical or guaranteed.",
+    },
+    "e10c7269-113a-46a5-8b2f-307ffcfced94": {
+        "description": "One diver saw thousands of barracuda at Barracuda Point, along with groupers, moray eels, frogfish, and rainbow runners.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Malaysia/BorneoDivers_Sipadan_report_11071.html",
+        "label": "Undercurrent diver review: Barracuda Point, Sipadan (2019)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s account from 2019; wildlife sightings and conditions describe that dive, not typical or current conditions. A separate 2015 report describes fewer barracuda and poor deep visibility on another visit.",
+    },
+    "f6733ae9-4d50-46ca-826f-547980d22bb6": {
+        "description": "Divers enjoyed Bari Reef’s coral and abundant fish, including French angelfish at several life stages, squid, and octopuses.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5212.html",
+        "label": "Undercurrent diver review: Bari Reef, Bonaire (2009)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor group’s account from 2009; the sightings and reef impressions describe those dives, not current conditions.",
+    },
+    "06c2add5-bd53-46a4-bba1-d7a83cddba18": {
+        "description": "One diver saw two sunfish circle in the shallows after a cold, strong-current dive at Crystal Bay.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Indonesia/AquaMarineDiving_BaliNusaPenida_report_6250.html",
+        "label": "Undercurrent diver review: Crystal Bay, Nusa Penida (2011)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2011 visit; the temperature, current and wildlife describe that dive, not typical or current conditions.",
+    },
+    "81db1656-6a38-4dba-b862-c34ea950b640": {
+        "description": "A diver saw two thresher sharks pass close by during an early-morning dive at Monad Shoal.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: Monad Shoal, Malapascua (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 visit; thresher shark sightings are not guaranteed on every dive.",
+    },
+    "28723050-6b11-4cd5-96ca-079cade21b9d": {
+        "description": "A diver spotted seahorses, pipefish, nudibranchs, and shrimp at Pantaw Pantaw.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: Pantaw Pantaw, Malapascua (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 visit; the sightings describe that dive, not typical or current conditions.",
+    },
+    "363f10f2-08ec-4104-8c41-314d92eee66a": {
+        "description": "A diver found frogfish, nudibranchs, squat shrimp, and mantis shrimp at North Point.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: North Point, Malapascua (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 visit; the sightings describe that dive, not typical or current conditions.",
+    },
+    "7015f625-541c-4f52-aee6-b0895a61d919": {
+        "description": "A diver saw sleeping whitetip sharks in Gato Island’s cave, along with shrimp, pipefish, clownfish, and nudibranchs.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: Gato Island, Philippines (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 visit; wildlife sightings describe that trip, not typical or current conditions.",
+    },
+    "d951f380-f88b-4b14-b5f5-3fa93efde503": {
+        "description": "On a night dive at Lighthouse Reef, a diver saw mandarin fish, seahorses, nudibranchs, scorpionfish, and spider crabs.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: Lighthouse Reef, Malapascua (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 night dive; the sightings describe that dive, not typical or current conditions.",
+    },
+    "1be73a7c-3428-4d0d-aa87-318ff60d8adc": {
+        "description": "On a night dive at Lighthouse Reef, a diver saw mandarin fish, seahorses, nudibranchs, scorpionfish, and spider crabs.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/ExoticDivers_Malapascua_report_5730.html",
+        "label": "Undercurrent diver review: Lighthouse Reef, Malapascua (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2010 night dive; this nearby catalog record appears to be a variant of Lighthouse Reef. The sightings describe that dive, not typical or current conditions.",
+    },
+    "f4bfa66e-f254-42dd-923f-9cbe4d3ef5ba": {
+        "description": "A diver praised the wide variety of fish at 1000 Steps.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: 1000 Steps, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2002 impression; the report uses 1000 Steps, which is the nearby catalog variant of Thousand Steps.",
+    },
+    "42b4a729-b55a-4ea1-b18c-d56e5409bbe7": {
+        "description": "A diver praised the wide variety of fish at 1000 Steps.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: 1000 Steps, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2002 impression; this catalog record is a nearby variant of Thousand Steps.",
+    },
+    "66f47a24-bbe4-4b89-aac0-8ef152122792": {
+        "description": "A diver thought the large eel they saw might have been at Jeff Davis Memorial.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: Jeff Davis Memorial, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2002 sighting; this describes that dive, not typical or current marine life.",
+    },
+    "8ca68906-d0cf-4784-86ba-099b40374258": {
+        "description": "A visitor said Leonora’s Reef had a lot of color.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: Lenora’s Reef, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The review spells the name Lenora’s Reef; the catalog and local references use Leonora’s Reef. This is one visitor’s brief 2002 impression.",
+    },
+    "8cc7dbfc-873b-4b94-9367-2b0a414b5bb6": {
+        "description": "A diver called La Machaca a great dive and saw seahorses there more than once.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: La Machaca, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2002 impression and sightings; they describe that trip, not typical or current conditions.",
+    },
+    "1a676090-3237-4d1a-969d-c5209ed9b790": {
+        "description": "A diver called La Machaca a great dive and saw seahorses there more than once.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptainDonsHabitat_NA_report_68.html",
+        "label": "Undercurrent diver review: La Machaca, Bonaire (2002)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2002 impression and sightings; this nearby catalog record appears to be a variant of La Machaca.",
+    },
+    "bb2e06a3-8071-477a-ad5e-5f469fdf8aa9": {
+        "description": "A diver enjoyed Tori’s Reef and its large schools of small fish.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5212.html",
+        "label": "Undercurrent diver review: Tori’s Reef, Bonaire (2009)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor group’s 2009 impression; fish sightings describe those dives, not current conditions.",
+    },
+    "80122551-61df-4154-9294-de82b7c45e9d": {
+        "description": "A long-time Bonaire diver described large sponges and soft corals at Joanne’s Sunchi and recalled seeing a seahorse and loggerhead turtle.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2026/BonaireDutchWestIndies202608.html",
+        "label": "Undercurrent diver account: Bonaire (2026)",
+        "sourceClass": "firsthand-diver-account",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one long-time visitor’s account; sightings describe their visits and are not guaranteed or current conditions.",
+    },
+    "a58307c8-02f3-4d75-a94e-6bc6adc5b468": {
+        "description": "A long-time Bonaire diver praised Salt Pier’s sponge-covered pilings and schools of grunts, barracuda, and bar jacks in the afternoon light.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2026/BonaireDutchWestIndies202608.html",
+        "label": "Undercurrent diver account: Bonaire (2026)",
+        "sourceClass": "firsthand-diver-account",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one long-time visitor’s account; wildlife sightings and conditions vary by visit.",
+    },
+    "d1392200-defe-4b01-a767-f2999348a5bc": {
+        "description": "A diver praised Karpata’s sand chutes and large coral formations, but found the surge too strong on a second attempt.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5747.html",
+        "label": "Undercurrent diver review: Karpata, Bonaire (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one visitor group’s dives in 2010; surge and conditions vary by visit.",
+    },
+    "c32be679-d0b0-4e44-8994-f4bfaf20c8b4": {
+        "description": "A long-time Bonaire diver described soft-coral gardens and staghorn coral teeming with fish around Country Garden.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2026/BonaireDutchWestIndies202608.html",
+        "label": "Undercurrent diver account: Bonaire (2026)",
+        "sourceClass": "firsthand-diver-account",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one long-time visitor’s account; it describes their observations, not current reef conditions.",
+    },
+    "4b7b01ce-96dc-4551-948f-e3ab877cb053": {
+        "description": "A long-time Bonaire diver described Angel City’s double reef and a school of schoolmaster snappers near shallow coral-restoration trees.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2026/BonaireDutchWestIndies202608.html",
+        "label": "Undercurrent diver account: Bonaire (2026)",
+        "sourceClass": "firsthand-diver-account",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one long-time visitor’s account; wildlife and reef conditions vary by visit.",
+    },
+    "24d2e826-405c-4a31-b839-092c163cb0c0": {
+        "description": "A visitor group saw a large eagle ray near the end of their dive at Alice in Wonderland.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5747.html",
+        "label": "Undercurrent diver review: Alice in Wonderland, Bonaire (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one group’s 2010 sighting; wildlife encounters are not guaranteed.",
+    },
+    "406cc8dc-62cf-4f05-bc04-77ade4c30a74": {
+        "description": "A diver called Oil Slick Leap a fun dive and spotted an octopus near the ladder.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5747.html",
+        "label": "Undercurrent diver review: Oil Slick Leap, Bonaire (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one diver’s 2010 visit; wildlife sightings are not guaranteed.",
+    },
+    "6b6f8181-efc9-4ac1-8d50-626a9e16b61a": {
+        "description": "A diver found a dark red frogfish near an anemone and saw a permit fish at Yellow Submarine.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5747.html",
+        "label": "Undercurrent diver review: Yellow Submarine, Bonaire (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "These are sightings from one visitor group’s 2010 trip; wildlife encounters are not guaranteed.",
+    },
+    "3d2b1b68-d40f-4a9b-9fc1-2ae5cbd038b1": {
+        "description": "A diver spotted a large grouper resting beside the big anchor at ChaChaCha Beach.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BonaireDiveandAdventure_report_5747.html",
+        "label": "Undercurrent diver review: ChaChaCha Beach, Bonaire (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor group’s 2010 sighting; wildlife encounters are not guaranteed.",
+    },
+    "aa8ff57e-eb71-4fed-8364-4b586ce4ccf9": {
+        "description": "A diver’s favorite site, Invisibles had two garden-eel fields and a school of small barracuda that stayed with the group.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BuddyDive_report_4439.html",
+        "label": "Undercurrent diver review: Invisibles, Bonaire (2008)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This describes one visitor’s 2008 trip; wildlife and conditions vary by visit.",
+    },
+    "a0005094-194b-4b02-ac1e-1adde4def1f4": {
+        "description": "A diver reported a large lobster, a green eel by the wheelhouse, and territorial sergeant majors on the Hilma Hooker wreck.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Bonaire/BuddyDiveResort_report_6472.html",
+        "label": "Undercurrent diver review: Hilma Hooker, Bonaire (2012)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor’s 2012 account; the source page may require a subscription and sightings are not guaranteed.",
+    },
+    "7ea08fd0-ff4e-4ef9-9dab-26c0932f862f": {
+        "description": "A diver listed Red Slave among Bonaire’s must-do dives and praised its soft corals.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Bonaire/CaptDonsHabitat_report_1872.html",
+        "label": "Undercurrent diver review: Capt. Don’s Habitat, Bonaire (2005)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one visitor’s brief 2005 impression; reef conditions may have changed.",
+    },
+    "977f72e5-782e-4753-b0ef-fb8d097e812c": {
+        "description": "A diver called Newman’s Wall a fun, easy dive.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Honduras/CoCoView_Roatan_report_1779.html",
+        "label": "Undercurrent diver review: Newman’s Wall, Roatan (2005)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2005 impression; it describes that dive, not current conditions.",
+    },
+    "2cb01a24-7f3b-47ca-8fcd-73c68425b6bd": {
+        "description": "A diver singled out Calvin’s Crack for its coral, sponges, and critters.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Honduras/CoCoView_Roatan_report_1281.html",
+        "label": "Undercurrent diver review: Calvin’s Crack, Roatan (2004)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2004 impression; it describes that trip, not current conditions.",
+    },
+    "e44e6ae9-f0f3-48ed-8bf7-969892143d2b": {
+        "description": "A diver described the Prince Albert wreck as a good shore dive, a short swim from the resort.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Honduras/CocoView_Roatan_report_3431.html",
+        "label": "Undercurrent diver review: Prince Albert wreck, Roatan (2007)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2007 impression; access and site conditions may have changed.",
+    },
+    "cb29a9de-db08-48ae-8f10-ba1c1bb8b6fb": {
+        "description": "A diver saw a manta at German Channel.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Micronesia/AggressorFleet_Palau_report_12153.html",
+        "label": "Undercurrent diver review: German Channel, Palau (2022)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One diver’s 2022 sighting; manta rays are not guaranteed on every dive.",
+    },
+    "a3d18792-219f-4eea-b7e6-36a899cac8a8": {
+        "description": "A diver saw a large bait ball of mackerel with sharks and other fish at Ulong Channel.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Micronesia/SamsTours_Palau_report_4696.html",
+        "label": "Undercurrent diver review: Ulong Channel, Palau (2009)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2009 dive; fish and shark activity vary by visit and conditions.",
+    },
+    "3f69938a-7d51-4ffb-a7ab-63146ec23a50": {
+        "description": "A diver called Blue Holes beautiful and enjoyed looking up as other divers descended through the openings.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Micronesia/Sams_Palau_report_1613.html",
+        "label": "Undercurrent diver review: Blue Holes, Palau (2005)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2005 impression; it describes that dive, not current conditions.",
+    },
+    "cc412948-05b6-40de-9b85-ce790292b9d1": {
+        "description": "A diver found Chandelier Cave crowded and could not reach its last chamber.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Micronesia/BlackPearlPalau_Palau_report_12357.html",
+        "label": "Undercurrent diver review: Chandelier Cave, Palau (2023)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One diver’s 2023 visit; the crowding and route describe that particular dive.",
+    },
+    "9869acd0-1a28-4e88-b91f-e588eb28fb29": {
+        "description": "A diver described strong current, soft coral and abundant marine life at Richelieu Rock, with many boats at the site.",
+        "url": "https://undercurrent.org/UCnow/dive_reviews/Thailand/KhaoLakScubaAdventures_AndamanSea_report_9383.html",
+        "label": "Undercurrent diver review: Richelieu Rock, Thailand (2015)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This account describes one visit in 2015, including its crowding and conditions; these are not current or typical conditions.",
+    },
+    "610a0295-a064-4166-af44-f23d0c28ee63": {
+        "description": "One diver reported a drift past reef fish and a whitetip shark resting under a ledge.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2006/ScubaCoiba200603.html",
+        "label": "Undercurrent diver trip report: Frijoles, Coiba (2006)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from a trip reported in 2006. Its sightings and conditions describe that visit, not typical or current conditions.",
+    },
+    "8917bc6e-91ce-4e71-a4f6-d25e79215b36": {
+        "description": "One diver called Pure Magic one of two incredible sites on a 2010 Ra Divers trip.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Fiji_and_Tuvalu/RaDivers_fiji_report_5448.html",
+        "label": "Undercurrent diver review: Ra Divers, Fiji (2010)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The review mentions Pure Magic as one of two sites but gives no separate description of that dive. This is one visitor’s impression from 2010.",
+    },
+    "3abfe9a0-6284-4a94-9f05-ecd91d3a5987": {
+        "description": "A diver praised the coral and described a double dive at The Caves as a great morning out.",
+        "url": "https://www.tripadvisor.com.au/Attraction_Review-g261638-d7031854-Reviews-or30-Sunreef_Mooloolaba-Mooloolaba_Sunshine_Coast_Queensland.html",
+        "label": "Tripadvisor diver review: The Caves, Mooloolaba (2021)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This operator review specifically mentions a double dive at The Caves. The coral praise is the visitor’s view of that trip, not a claim about typical conditions.",
+    },
+    "28f54cd4-96d0-4246-b811-e8991f1f989f": {
+        "description": "A diver describes an overhang opening onto a wall covered with soft coral and sea fans, with morays and reef fish nearby.",
+        "url": "https://www.nigelmarshphotography.com/blog-posts/christmas-island-divelog",
+        "label": "Nigel Marsh diver’s log: Perpendicular Wall, Christmas Island",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s account from a Christmas Island trip; sightings describe that visit and are not a current conditions report.",
+    },
+    "db454677-9ed8-4639-9a98-c8e86ee5bdee": {
+        "description": "A diver described Aeolus as a fish-filled wreck dive with sand tiger sharks around the hull.",
+        "url": "https://www.scubago.com/en/explore/divesite/aeolus-wreck-80484",
+        "label": "SCUBAGO diver account: Aeolus Wreck, North Carolina",
+        "sourceClass": "firsthand-diver-account",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The account is first-person, but the author’s identity is not independently verified. DiveAtlas’s stored coordinate differs by about 9 km from another published position for the wreck, so the mapped point needs review.",
+    },
+    "b6105f43-5480-4414-b9c8-a9762e07802c": {
+        "description": "A diver described Alexander Springs as a relaxed beginner dive, with clear blue water, rock formations, and freshwater life.",
+        "url": "https://www.zentacle.com/Beach/109/alexander-springs",
+        "label": "Zentacle diver review: Alexander Springs, Florida (2022)",
+        "sourceClass": "firsthand-diver-review",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One visitor’s 2022 account; visibility, wildlife, and conditions describe that visit, not current conditions.",
+    },
+    "90dd6bb7-d955-444a-9161-2bb7b7365206": {
+        "description": "A diver reported sand tiger sharks over the Schurz, with schools of baitfish around the wreck.",
+        "url": "https://www.undercurrent.org/UCnow/dive_magazine/2018/OlympusDiveCenter201810.html",
+        "label": "Undercurrent diver report: USS Schurz, North Carolina (2018)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One diver’s 2018 visit; the wreck features were also corroborated by NOAA, but wildlife and visibility describe that trip and are not a current conditions report.",
+    },
+    "ed685338-b3a1-4ba4-93f9-54bcbbc93135": {
+        "description": "A diver found dense schools of fish around the Papoose wreck, with sand tiger sharks cruising along the hull.",
+        "url": "https://www.advanceddivermagazine.com/papoose.html",
+        "label": "Advanced Diver Magazine first-person report: Papoose Wreck, North Carolina",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "A technical diver’s single rebreather trip; marine life and wreck conditions describe that visit, not typical or current conditions. The wreck is commonly called Papoose by divers, although its historical vessel identification has been revised.",
+    },
+    "0255ecd6-2873-4f57-a913-9a124ef6f115": {
+        "description": "Recent local dive reports describe cloud sponges, crabs, sea stars, and a giant Pacific octopus among Whytecliff Park’s rocky reefs.",
+        "url": "https://pnwdiving.com/whytecliff-park",
+        "label": "PNW Diving reports: Whytecliff Park, British Columbia (2026)",
+        "sourceClass": "firsthand-diver-reports",
+        "retrievedAt": "2026-10-16",
+        "limitations": "Synthesis of several user-submitted local dive logs from 2026; individual sightings and conditions vary. The page matches the West Vancouver park named in the catalog.",
+    },
+    "48e0702d-a5a8-460b-855c-d782924a53fa": {
+        "description": "A freediver described a dark lake session with a noticeable thermocline and reached about 21 metres on one breath.",
+        "url": "https://cleffairy.com/freediving-at-bandar-saujana-putra-lake-on-chinese-valentines-day/",
+        "label": "First-person freediving report: Tasik Bandar Saujana Putra (2023)",
+        "sourceClass": "firsthand-freediver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "One freediver’s 2023 report; the 21 m figure is her personal performance, not a measured site depth or a typical condition.",
+    },
+    "0015fde6-d347-4d1e-ab2a-ff6caabc1c88": {
+        "description": "Four of five diver reviews call Coral Garden a good one-time dive; one reviewer says there was little to see.",
+        "url": "https://scubadiving.place/divesite/coral-garden-sapi-island",
+        "label": "Scuba Diving Place diver reviews: Coral Garden, Sapi Island",
+        "sourceClass": "community-diver-reviews",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The page lists five reviews under the matching site name, but does not show review dates or independently verified reviewer credentials. This small set of opinions is not a representative or current site rating.",
+    },
+    "aef3c883-2892-4380-b7b3-cd5a0d544f55": {
+        "description": "A Lanzarote dive instructor describes Playa Grande’s sandy plateau and reef wall, with angel sharks and rays over the sand and octopuses and nudibranchs among the reef.",
+        "url": "https://divernet.com/fb/DIVER_0521_FB/files/downloads/DIVER_0521.pdf",
+        "label": "DIVER magazine first-person report: Playa Grande, Lanzarote (2021)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "A 2021 first-person account by the owner and instructor at Euro-Divers Lanzarote, which PADI credits on the coordinate-matched Playa Grande profile. Sightings describe that diver’s visits and are not a current wildlife survey.",
+    },
+    "7de729a8-13a1-4092-b230-a441c2deb3e6": {
+        "description": "A diver explored the bow of the Servemar I wreck at about 24 metres during a Recife wreck-park trip.",
+        "url": "https://viajandopatagonia.blogspot.com/2011/12/mergulho-recife-pernambuco.html",
+        "label": "First-person Recife wreck-diving report: Servemar I (2011)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The 2011 report describes one of six dives on a multi-wreck trip and shows the diver near the bow at 24 metres; this is a visit detail, not a measured or typical site depth.",
+    },
+    "0566eeed-4aaf-4ade-82bf-c6cc56c2cdc3": {
+        "description": "A 2024 diver report describes muck diving along Dauin’s coast, with coral-covered artificial structures and small marine life; boat rides were short and currents mild on that trip.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/AtmosphereResortSpa_DumagueteDauinCoast_report_13013.html",
+        "label": "Undercurrent first-person dive report: Dauin Coast (2024)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The contributor describes a multi-day stay at Atmosphere Resort and dives at several sites along the coast, not only the catalog point. Conditions and wildlife observations are from that trip; the ratings are category-specific and are not an overall site score.",
+    },
+    "051b46c2-b58d-403e-8cbb-0e3a3e4ae274": {
+        "description": "A diver reported dense fish schools beneath the water-ski hut and enjoyed the lake’s plants and underwater gullies; visibility was 5–8 metres on that 2007 visit.",
+        "url": "https://taucher.net/tauchplatz-friedberger_see-bericht-hlz33028",
+        "label": "Taucher.Net first-person dive review: Friedberger See (2007)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one diver’s 2007 visit, not a current conditions report. The reviewer profile lists SSI AOWD and 165 dives; visibility and fish observations are specific to that visit.",
+    },
+    "00615317-7d35-4884-ac56-f42850a43687": {
+        "description": "Twiske dive logs report pike, perch, and eels around its object routes, while visibility often improves below the murky surface layer.",
+        "url": "https://www.duikersgids.nl/duikstekken/onderwaterpark-twiske",
+        "label": "Duikersgids community dive logs: Onderwaterpark Twiske",
+        "sourceClass": "first-person-community-dive-logs",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The source lists Oostzaanzijde and Stootersplas among the site’s aliases. The summary draws on multiple user logs, whose visibility and wildlife observations vary by visit.",
+    },
+    "071eb157-5695-48d2-be27-77421f78314e": {
+        "description": "A 2025 club-diving report from Eichwald (Bruno) records perch, pike, frog spawn, and a burbot; some divers in the group visited the wreck.",
+        "url": "https://s7c962d432aff94d5.jimcontent.com/download/version/1746991308/module/11161283619/name/Bericht_Bruno_Mai_25.pdf",
+        "label": "First-person club dive report: Eichwald (Bruno), May 2025",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The report describes a two-dive club outing in rainy weather; sightings are from that day, and not every diver visited the wreck.",
+    },
+    "0be737b8-9941-451c-a017-1d98ff8b76a1": {
+        "description": "A diver called Mainit their favorite local Dauin site, describing black sand that gives way to coral bommies and abundant fish.",
+        "url": "https://www.undercurrent.org/UCnow/dive_reviews/Philippines/SeaExplorersPhilippines_Dauin_report_10150.html",
+        "label": "Undercurrent first-person report: Mainit, Dauin (2018)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The contributor's 2018 report covers several Dauin sites; only the described terrain and fish life are specifically attributed to Mainit. Category ratings in the report apply to Dauin overall, not this individual site.",
+    },
+    "092ea625-75e6-463f-97cf-88b87b7cff38": {
+        "description": "A 2024 club dive had calm seas and 8–10 feet of visibility; divers later found the sunken sailboat.",
+        "url": "https://aquatutus.org/content.aspx?club_id=664669&item_id=101770&page_id=5",
+        "label": "Aqua Tutus first-person club dive report: Del Monte Beach (2024)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The visibility and sea conditions describe this club outing only. The sailboat was found during a later dive by students, not by the report's author.",
+    },
+    "d1ec9a57-06a4-47cd-9aa7-b7d8e9f77947": {
+        "description": "On a 2026 visit, a diver saw scallops, shrimp, langoustines, sea urchins, and crabs around A-Frames.",
+        "url": "https://jumpsaildive.com/2026/08/31/first-dives-in-scotland/",
+        "label": "Jump – Sail – Dive first-person report: Finnart Pier (A-Frames), 2026",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The report describes two short training dives by one diver; marine-life sightings are from that visit only.",
+    },
+    "bbecd76f-32bf-40df-ba18-f0c30546f034": {
+        "description": "A local diver describes a silty, low-visibility line to the Alastor wreck, with crabs and blennies along the route and wrasse around the hull.",
+        "url": "https://iarediver.blogspot.com/2011/06/alastor-ringhaddy-ropes-aliens.html",
+        "label": "I Are Diver first-person wreck report: Alastor, Ringhaddy (2011)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "This is one local diver's account from 2011. Visibility, marine life, and wreck condition may have changed since then.",
+    },
+    "d3d7b900-2bf2-44f4-bfb8-aa18dd03218d": {
+        "description": "A 2001 dive account describes a short swim to the reef wall, explored at about 10–12 metres before it drops to around 25 metres.",
+        "url": "https://www.gotouring.com/razzledazzle/articles/diving.html",
+        "label": "Razzle Dazzle first-person dive account: Alona Beach House Reef (2001)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The article describes a first dive by one member of the traveling pair in 2001; depth and reef descriptions are from that visit.",
+    },
+    "08f5963a-2b7e-4c30-920f-eab269a89431": {
+        "description": "A 2024 dive report found the Dreimaster at 26 metres; visibility cleared below 8 metres, and anemones covered the well-preserved wreck.",
+        "url": "https://www.tauchen.de/reise/ab-ins-gruene-tauchen-um-die-ostseeinsel-fehmarn/",
+        "label": "TAUCHEN first-person dive report: Dreimaster, Fehmarn (2024)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The article describes one August visit in calm weather; depth, visibility, and marine life are from that dive only.",
+    },
+    "e4cfe5ac-e086-412e-a1c9-964b9819bed7": {
+        "description": "Divers describe a medium swim from shore to the reef, where one reviewer saw many eels; another began a drift dive from Aquarius toward Angel City.",
+        "url": "https://www.zentacle.com/Beach/125/aquarius",
+        "label": "Zentacle first-person dive reviews: Aquarius, Bonaire",
+        "sourceClass": "firsthand-diver-review-collection",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The page combines individual reviews written between 2002 and 2021. Animal sightings and route details are visit-specific; the 2021 review notes a longer swim than nearby sites.",
+    },
+    "3f1045d4-a8f2-4837-86df-a33784ad962e": {
+        "description": "A 2021 trip report describes two dives on the New Venture in flat seas, with no current, excellent visibility, and 74°F water.",
+        "url": "https://www.flickr.com/photos/steelreefs/albums/72157719377274292",
+        "label": "Harry’s Dive Shop first-person trip report: New Venture (June 2021)",
+        "sourceClass": "firsthand-diver-trip-report",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The conditions describe one two-dive trip in June 2021, not typical or current conditions.",
+    },
+    "94b7b405-9561-4ca5-9fc3-cd49fe621f7f": {
+        "description": "Port Beach diver logs show visibility ranging from near zero to 20 metres; reports also mention weedy sea dragons and leatherjackets.",
+        "url": "https://vis.report/PRT",
+        "label": "Vis.Report first-person condition logs: Port Beach, Fremantle",
+        "sourceClass": "firsthand-community-dive-logs",
+        "retrievedAt": "2026-10-16",
+        "limitations": "The source aggregates individual logged visits from 2022–2025; visibility, sea state, and wildlife vary by visit. The catalog site and log page share the Port Beach name and Fremantle location.",
+    },
+}
 
 
 def build() -> dict[str, Any]:
@@ -1705,6 +2581,13 @@ def build() -> dict[str, Any]:
             "sources": sources,
         }
 
+    # Add a site-specific description where the published profile contains
+    # useful narrative beyond the categories already captured in the record.
+    melissas_garden_id = "6c4e81de-9648-404c-8a32-69db89707e5c"
+    if melissas_garden_id not in canonical_ids:
+        raise ValueError("Melissa’s Garden stable ID is missing from canonical data")
+    by_id[melissas_garden_id] = MELISSAS_GARDEN_SUMMARY
+
     # A small set of uncovered sites has narrative profile evidence but no
     # reviewed categories. Keep those summaries attributed to the contributor
     # and attach the exact site page; do not infer omitted categories.
@@ -1821,6 +2704,49 @@ def build() -> dict[str, Any]:
     if CHICKEN_REEF_ID not in canonical_ids:
         raise ValueError("Chicken Reef stable ID is missing from canonical data")
     by_id[CHICKEN_REEF_ID] = CHICKEN_REEF
+
+    # Prefer a matched first-person contributor account over the generic
+    # category/profile summary, while keeping observations attributed and
+    # avoiding claims that the contributor's identity was verified.
+    for site_id, (description, url) in DIVER_REVIEW_SUMMARY_OVERRIDES.items():
+        if site_id not in canonical_ids:
+            raise ValueError(f"First-hand summary site ID is missing: {site_id}")
+        by_id[site_id] = {
+            "status": "published",
+            "summaryReviewStatus": "first-person-community-account-synthesis",
+            "language": "en",
+            "authoringMethod": "AI-assisted synthesis of a first-person SSI-linked community profile",
+            "description": description,
+            "evidenceNote": "A first-person observation appears in the SSI-linked community profile. The profile author’s identity and diving credentials are not independently verified; sightings and conditions are individual reports.",
+            "sources": [{
+                "label": "SSI MyDiveGuide community profile (snapshot 2026-10-07)",
+                "url": url,
+                "sourceClass": "first-person-community-dive-account",
+                "retrievedAt": "2026-10-07",
+                "limitations": "Community-maintained profile matched to the canonical site by exact country/name and coordinates. First-person wording supports an account of experience but does not independently verify the author's identity, credentials, or whether conditions remain current.",
+                "claims": ["first-person-dive-observation"],
+            }],
+        }
+
+    for site_id, account in DIVER_ACCOUNT_SUMMARY_OVERRIDES.items():
+        if site_id not in canonical_ids:
+            raise ValueError(f"First-hand trip-report site ID is missing: {site_id}")
+        by_id[site_id] = {
+            "status": "published",
+            "summaryReviewStatus": "firsthand-diver-account-synthesis",
+            "language": "en",
+            "authoringMethod": "AI-assisted synthesis of a published first-person diver account",
+            "description": account["description"],
+            "evidenceNote": account["limitations"],
+            "sources": [{
+                "label": account["label"],
+                "url": account["url"],
+                "sourceClass": account["sourceClass"],
+                "retrievedAt": account["retrievedAt"],
+                "limitations": account["limitations"],
+                "claims": ["firsthand-dive-observation", "site-identity"],
+            }],
+        }
     return dict(sorted(by_id.items()))
 
 

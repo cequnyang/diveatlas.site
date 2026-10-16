@@ -115,6 +115,7 @@ def load_summary_metrics(canonical_ids: set[str]) -> dict[str, int]:
     contributor_profile_summaries = 0
     operator_summaries = 0
     profile_snapshot_summaries = 0
+    firsthand_account_summary_ids: set[str] = set()
     for site_id, summary in summaries.items():
         if site_id not in canonical_ids:
             unmatched_ids += 1
@@ -147,6 +148,8 @@ def load_summary_metrics(canonical_ids: set[str]) -> dict[str, int]:
             for source in sources
             if isinstance(source, dict)
         }
+        if any(str(source_class).startswith("firsthand-diver") for source_class in source_classes):
+            firsthand_account_summary_ids.add(site_id)
         contributor_profile_summaries += "contributor-site-profile" in source_classes
         operator_summaries += "dive-operator-guide" in source_classes
         profile_snapshot_summaries += summary.get("type") == "profileSnapshot"
@@ -165,6 +168,8 @@ def load_summary_metrics(canonical_ids: set[str]) -> dict[str, int]:
         "contributor_profile_summary_records": contributor_profile_summaries,
         "operator_guide_summary_records": operator_summaries,
         "profile_snapshot_summary_records": profile_snapshot_summaries,
+        "firsthand_diver_account_summary_records": len(firsthand_account_summary_ids),
+        "canonical_sites_without_firsthand_diver_account_summary": len(canonical_ids - firsthand_account_summary_ids),
     }
 
 

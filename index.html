@@ -20037,8 +20037,8 @@ ZSD·2016–2025</span></span>
         throw new Error('This browser does not support gzip decompression for dive-site summaries.');
       }
       const summariesUrl = window.DiveAtlasDataAssets?.external
-        ? window.DiveAtlasDataAssets.url('data/dive-site-summaries-v3.json.gz?v=1')
-        : 'datasets/dive-site-summaries.json.gz?v=2';
+        ? window.DiveAtlasDataAssets.url('data/dive-site-summaries-v4.json.gz?v=1')
+        : 'datasets/dive-site-summaries.json.gz?v=4';
       const response = await fetch(summariesUrl);
       if (!response.ok || !response.body) {
         throw new Error(`Failed to load dive-site summaries (${response.status}).`);
@@ -27156,10 +27156,7 @@ function closeShareDialog() {
           summarySlot.className = 'dive-popup-summary dive-popup-summary-slot';
           summarySlot.innerHTML =
             `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
-            `<p>${escapeHtml(summary.description)}</p>` +
-            (summary.evidenceNote
-              ? `<p class="dive-popup-summary__note">${escapeHtml(summary.evidenceNote)}</p>`
-              : '');
+            `<p>${escapeHtml(summary.description)}</p>`;
         } else {
           summarySlot.remove();
         }
@@ -27875,9 +27872,6 @@ function closeShareDialog() {
         `<section class="dive-popup-summary dive-popup-summary-slot" data-loaded="true">` +
         `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
         `<p>${escapeHtml(siteSummary.description)}</p>` +
-        (siteSummary.evidenceNote
-          ? `<p class="dive-popup-summary__note">${escapeHtml(siteSummary.evidenceNote)}</p>`
-          : '') +
         `</section>`
       );
     } else {

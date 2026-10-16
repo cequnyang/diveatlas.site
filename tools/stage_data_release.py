@@ -63,6 +63,7 @@ def selected_files(
     temperature_metadata_only: bool = False,
     dive_site_catalog_only: bool = False,
     dive_site_search_assets_only: bool = False,
+    dive_site_summary_only: bool = False,
     environmental_query_only: bool = False,
 ) -> list[Path]:
     if dive_site_catalog_only:
@@ -74,6 +75,9 @@ def selected_files(
             Path("datasets/dive-site-summaries.json.gz"),
         )
         return [path for path in sidecars if (ROOT / path).is_file()]
+    if dive_site_summary_only:
+        summary = Path("datasets/dive-site-summaries.json.gz")
+        return [summary] if (ROOT / summary).is_file() else []
     if environmental_query_only:
         roots = (Path("data/temperature/query/v2"), Path("data/water_clarity/query/v2"))
         return sorted(path.relative_to(ROOT) for root in roots
@@ -109,6 +113,7 @@ def stage(
     temperature_metadata_only: bool = False,
     dive_site_catalog_only: bool = False,
     dive_site_search_assets_only: bool = False,
+    dive_site_summary_only: bool = False,
     environmental_query_only: bool = False,
 ) -> dict:
     if not RELEASE_ID_RE.fullmatch(release_id):
@@ -117,13 +122,14 @@ def stage(
     if destination.exists():
         raise FileExistsError(f"Refusing to overwrite immutable data release: {destination}")
     if sum((manifests_only, temperature_metadata_only, dive_site_catalog_only,
-            dive_site_search_assets_only, environmental_query_only)) > 1:
+            dive_site_search_assets_only, dive_site_summary_only, environmental_query_only)) > 1:
         raise ValueError("Choose only one R2 extension mode.")
     files = selected_files(
         manifests_only=manifests_only,
         temperature_metadata_only=temperature_metadata_only,
         dive_site_catalog_only=dive_site_catalog_only,
         dive_site_search_assets_only=dive_site_search_assets_only,
+        dive_site_summary_only=dive_site_summary_only,
         environmental_query_only=environmental_query_only,
     )
     if not files:
@@ -142,9 +148,13 @@ def stage(
                 (Path("data/dive-site-search-locations-v4.json.gz"), ROOT / "datasets/dive-site-search-locations.json.gz"),
                 (Path("data/dive-site-summaries-v3.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz"),
             ]
+        elif dive_site_summary_only:
+            # Keep R2's existing summary object immutable; publish revised popup
+            # copy under a new key so cached clients and rollback remain safe.
+            sources = [(Path("data/dive-site-summaries-v4.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz")]
         else:
             sources = [(release_path_for_source(relative), ROOT / relative) for relative in files]
-        if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only and not environmental_query_only:
+        if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only and not dive_site_summary_only and not environmental_query_only:
             sources.extend(
                 (Path(relative), resolve_r2_source_file(relative, source_data_asset_base_url))
                 for relative in R2_SOURCE_DATA_PATHS
@@ -242,6 +252,11 @@ def main() -> None:
         help="stage only the compressed search and popup sidecars for a safe additive update to an existing release",
     )
     parser.add_argument(
+        "--dive-site-summary-only",
+        action="store_true",
+        help="stage only the revised popup summary sidecar under a new versioned path for additive publication",
+    )
+    parser.add_argument(
         "--environmental-query-only",
         action="store_true",
         help="stage only the versioned v2 temperature and water-clarity query assets for additive review",
@@ -252,6 +267,7 @@ def main() -> None:
                            temperature_metadata_only=args.temperature_metadata_only,
                            dive_site_catalog_only=args.dive_site_catalog_only,
                            dive_site_search_assets_only=args.dive_site_search_assets_only,
+                           dive_site_summary_only=args.dive_site_summary_only,
                            environmental_query_only=args.environmental_query_only), indent=2))
 
 

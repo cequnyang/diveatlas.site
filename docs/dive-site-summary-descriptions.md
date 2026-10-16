@@ -11,7 +11,7 @@ for approval of newly written prose.
 
 ## Coverage audit
 
-Snapshot: 2026-10-08. Reproduce the current counts with
+Snapshot: 2026-10-16. Reproduce the current counts with
 `python maintenance/audit_dive_site_summary_coverage.py`.
 
 | Dataset evidence | Sites or rows | Use |
@@ -26,7 +26,49 @@ Snapshot: 2026-10-08. Reproduce the current counts with
 | Latest source-evidence export (`v147`) | 68,200 rows / 11,982 matching sites | Contains URL-backed records; many rows are context or profile metrics, not descriptions |
 | Extractable descriptive source text in `v147` | 3,520 sites, 3,519 with a URL | Candidate source material for richer summaries; each claim still needs source and limitation checks |
 | Latest site-page adjudications (`v147`) | 47,365 rows / 11,580 matching sites | Field-level quotes and profile evidence; not every quote is narrative description |
-| Generated summary sidecar | 18,139 sites (96.42% of canonical dataset) | 10,886 deterministic reviewed-category summaries, 7,168 dated SSI profile snapshots, and 85 site-specific source syntheses (14 cite operator guides); 11,808 sites have one or more clickable URLs, with 6,331 named-source-only records |
+| Generated summary sidecar | 18,166 sites (96.56% of canonical dataset) | Includes 7,145 dated SSI profile snapshots; the audit identifies 97 records with an explicit first-hand diver source class. In total, 18,716 canonical sites do not yet have that kind of account summary. A further 647 sites have no published summary of any kind. 11,854 sites have one or more clickable URLs, with 6,312 named-source-only records |
+
+Review-based descriptions remain a small, curated layer: Melissa’s Garden
+uses two visitor reports; Frijoles and Pure Magic use published diver trip
+reports; The Caves uses a visitor review; Perpendicular Wall uses a diver log;
+Blue Corner, Barracuda Point Sipadan, Richelieu Rock, Tiger Beach, Alcyone,
+Great Blue Hole - Belize, and Thistlegorm use published diver reports; and nine
+other sites use matched community-profile observations. Cape Kri and Manta
+Point, Nusa Penida, Cenote Angelita, the two catalog records for the Tulamben
+Liberty wreck, and Palancar Bricks, Gardens, and Caves also use published diver
+reports. Roca Partida, The Boiler, Cabo Pearce, Castle Rock, Crystal Rock,
+Manta Alley, SS Yongala, Cod Hole, Bari Reef, Crystal Bay in Nusa Penida, and
+Monad Shoal also use published diver reports. The same Malapascua trip report
+supports Gato Island, North Point, Pantaw Pantaw, and Lighthouse Reef, including
+a nearby Lighthouse catalog variant. Garden Eel Cove and two nearby catalog
+variants use one matching visitor report. A 2002 Bonaire report adds short
+visit notes for 1000 Steps, Jeff Davis Memorial, and La Machaca, plus a 2009
+report for Tori’s Reef. A 2010 report adds observations for Karpata, Yellow
+Submarine, ChaChaCha Beach, Oil Slick Leap, and Alice in Wonderland; a 2008
+report describes Invisibles; a 2005 report mentions Red Slave; and a 2012
+report describes Hilma Hooker. A 2026 first-person Bonaire account adds
+observations for Joanne’s Sunchi, Salt Pier, Country Garden, and Angel City.
+The report spells Leonora’s Reef as “Lenora’s Reef”; the
+matching Bonaire site name supports that identity. Nearby catalog variants
+share the 1000 Steps and La Machaca account notes. This brings the first-hand
+review/account layer to 87 catalog records; several nearby or duplicate records
+refer to the same sites. Roatan reports also describe Newman’s Wall, Calvin’s
+Crack, and the Prince Albert wreck. Palau reports add observations for German
+Channel, Ulong Channel, Blue Holes, and Chandelier Cave. First-person accounts
+also add Aeolus Wreck and Alexander Springs; Aeolus carries a note that its
+stored map point differs from another published wreck position. First-person
+North Carolina wreck reports add the USS Schurz and Papoose, with conditions
+clearly presented as observations from individual trips. Recent Whytecliff Park
+logs add observations from local divers. A first-person freediving report adds
+a lake-session account for Tasik Bandar Saujana Putra.
+Five diver reviews for Coral Garden at Sapi Island show mixed opinions: four
+call it good for one visit and one says there was little to see.
+A Lanzarote instructor’s first-person Playa Grande report describes a sandy
+plateau and reef wall with angel sharks, rays, octopuses, and nudibranchs.
+The v147 archive contains many more profile descriptions, but
+they are not all reviews; generic promotional copy and mismatched site
+descriptions must be excluded. A missing account in this archive does not
+prove that none exists elsewhere.
 
 Environmental occurrence, reef proximity, bathymetry, ratings, logged-dives,
 visibility snapshots, and aggregate wildlife counts do not by themselves
@@ -56,8 +98,8 @@ it actually supports. Keep source limitations with the evidence.
    source-checked operator-guide description and visible depth discrepancy.
    The builder also emits access-only summaries when shore/boat entry is the
    only reviewed category. PADI contributor-profile summaries are added where site identity and descriptive evidence support them;
-   7,168 sites receive a dated, explicitly labeled SSI snapshot summary for
-   profile-reported depth or difficulty. Fifty-seven additional site-specific source summaries have been added after identity and source checks.
+   7,145 sites receive a dated, explicitly labeled SSI snapshot summary for
+   profile-reported depth or difficulty. Seventy-one additional site-specific source summaries have been added after identity and source checks.
 4. **Research evidence gaps in batches.** Use stable ID and coordinate/name
    match checks to attach additional operator or official references. Prioritize
    records with reviewed categories but no direct source link, and high-value
@@ -72,7 +114,7 @@ it actually supports. Keep source limitations with the evidence.
    YDT-15, Sliema Pitch Bay, Tie Dye Arch, La Ballena (Sonabia), 4 Mile Reef, Tent Reef Deep, The LuLu (Wreck), Greer Gut, S.S. Trevier, and Santorini House Reef. Exact or close
    coordinates and name/location agreement support identity; conflicts and
    source-reported conditions stay visible. This phase remains in progress
-   for 674 sites.
+   for 666 sites.
 5. **Publish summaries and references — implemented.** Keep the summary
    sidecar separate from the canonical site rows. Load it on the first dive-site
    popup open, then cache it for later popups; opening the map or loading the
@@ -90,7 +132,7 @@ it actually supports. Keep source limitations with the evidence.
    opened. The current browser check also confirmed the Racha Noi, Tiger Reef,
    Japanese Shipwreck, Chapeirão Faca Cega, and Talisay Point summaries; each
    Source control starts collapsed and expands to its site-specific references.
-   The remaining 674 sites need either site-specific descriptive evidence or a clarified
+   The remaining 666 sites need either site-specific descriptive evidence or a clarified
    category/source record before a factual narrative can be published.
 
 ## Drafting and publication rules
@@ -107,7 +149,135 @@ it actually supports. Keep source limitations with the evidence.
 - Withhold descriptive copy when only the site name or unrelated regional data
   is available; keep the site and its source record in the atlas.
 
+### First-hand diver accounts and ratings
+
+When a public first-hand trip report is available, prefer its site-specific
+observations for the summary over generic category prose. Confirm that the
+account describes a personal dive and that its named site and location match
+the canonical stable ID. Keep opinions and sightings attributed to the diver,
+combine only details supported by the cited accounts, and note that individual
+observations do not establish typical or current conditions. A platform profile
+or operator guide can add site facts, but it is not a diver review.
+
+Keep snapshot ratings in `dive-site-review-ratings-v147.csv` and live checks in
+the dated `dive-site-review-ratings-live-YYYY-MM-DD.csv` inventory. Its
+`rating_count` is blank when the provider did not expose the number of ratings.
+Logged dives and logged users are activity totals, not rating counts; provider
+scores remain separate and are not averaged together. A rating alone does not
+supply descriptive review text for the summary.
+
+The audit counts 97 catalog records with an explicit first-hand diver source
+class, including published
+reports for sites such as Manta Alley, SS Yongala, Cod Hole, Bari Reef, Crystal
+Bay, Monad Shoal, and the Bonaire, Palau, and Roatan sites above, plus site-matched
+SSI-linked community accounts. Nearby aliases can share one source-backed note.
+The live rating inventory contains 69 unique sites, with 22 site ratings added
+across recent batches; rating counts stay blank when the provider did
+not show them. Community profile accounts are attributed to a contributor because the export does not
+verify each author’s identity or credentials. Ratings alone never qualify as
+review text. Sites without a qualifying account in the inspected archive are
+skipped; the archive does not cover every review site on the web, so absence
+here does not mean no review exists elsewhere.
+
 ## Progress log
+
+- 2026-10-16: Added first-person summaries for Aeolus Wreck and Alexander
+  Springs, and recorded their SCUBAGO and Zentacle ratings. The Aeolus summary
+  retains a location caveat because its stored point differs from a published
+  wreck position. The current coverage audit reports 18,166 of 18,813 published
+  summaries and 647 sites still without any published summary. It separately
+  identifies 97 first-hand diver-account summaries, leaving 18,716 catalog
+  sites without that kind of account summary. Added diver accounts for the
+  USS Schurz and Papoose wrecks, recent local reports for Whytecliff Park, a
+  2023 freediving account for Tasik Bandar Saujana Putra, five mixed reviews
+  for Coral Garden, Sapi Island, a 2021 Playa Grande report, and a 2011
+  first-person account for Servemar I, a 2024 Dauin Coast report, and a 2007
+  Friedberger Baggersee review, recent Twiske community logs, and a May 2025
+  Eichwald (Bruno) club-dive report and a 2018 Mainit review. Added a 2024
+  Del Monte Beach club-dive report describing calm seas, 8–10-foot visibility,
+  and a sailboat found by students on a later dive. Recorded New Venture's
+  SCUBAGO 4/5 score; the page and search result disagreed on rating count, so
+  the count is left blank. Recorded Lahami Bay - Hausriff Nord's SCUBAGO 4/5
+  score and 433 ratings. Added a 2026 A-Frames report recording scallops,
+  shrimp, langoustines, sea urchins, and crabs, and a 2011 Alastor wreck account
+  describing the silty route line, crabs, blennies, and wrasse. Added an Alona
+  Beach House Reef account describing its shore swim and reef wall, and a 2024
+  report on the Dreimaster wreck. Added firsthand reports for New Venture and
+  Port Beach. Added four firsthand Aquarius reviews and
+  recorded its Zentacle 5/5 score from four reviews. Recorded the
+  Tasik 4/5 (1,063 ratings), the
+  Guraidhoo Lagoon 4/5 (195 ratings), Servemar 1 5/5 (263 ratings), the Dauin
+  category scores, and individual 4/5 reviews for Friedberger and Eichwald;
+  Coral Garden's category counts in the
+  separate inventory; the category reviews have no numeric average.
+  Checked La Croche aux Tacauds but excluded its sole visible 3/5 review because
+  it is explicitly a snorkel review, not a scuba diver account.
+
+- 2026-10-16: Added 12 Bonaire summaries from site-specific first-person
+  accounts: one long-time diver’s 2026 account and Undercurrent visitor reports
+  from 2005, 2008, 2010, and 2012. Added 10 matching SCUBAGO ratings to the
+  separate inventory, with rating counts left blank when the provider did not
+  expose them. The full audit still leaves 671 canonical sites without a
+  published summary.
+
+- 2026-10-16: Audited the v147 SSI-linked source archive for first-person dive
+  observations, then checked canonical name, country, and coordinates. Added
+  attributed summaries for Abyss’ Triggerfish, Cenote Nicte Ha, Foggy Shark
+  Cave, Jack-A-Dan West, No Viz Reef, Seaview, Wahoo, and Wrong Entry. General
+  site-guide copy, operator-style marketing, and ratings without written
+  observations were excluded. The source profile authors are not independently
+  verified, so the popup and source note preserve that limitation.
+
+- 2026-10-16: Added first-person accounts for Frijoles, Pure Magic, The Caves,
+  and Perpendicular Wall after matching each report to the site name and
+  location. The reports include one brief site mention, which remains explicit
+  in its source limitation. Added each site's visible SCUBAGO score and rating
+  count to the separate live-rating inventory.
+
+- 2026-10-16: Added site-specific diver reports for Blue Corner, Barracuda
+  Point Sipadan, and Richelieu Rock after matching each report to the canonical
+  site identity. Recorded their current SCUBAGO scores and rating counts in the
+  separate live-rating inventory; observations remain attributed to individual
+  trips.
+
+- 2026-10-16: Added first-person reports for Tiger Beach and Alcyone after
+  matching the named sites and locations. Recorded Tiger Beach's current
+  SCUBAGO score and rating count; the Alcyone SSI snapshot has a score but no
+  rating count, so it remains in the snapshot inventory only.
+
+- 2026-10-16: Added personal accounts for Great Blue Hole - Belize and
+  Thistlegorm, matched to their Belize and Egypt catalog entries. Recorded the
+  current SCUBAGO scores and rating counts in the live inventory; the Great Blue
+  Hole account is explicitly labeled as a new diver's personal experience.
+
+- 2026-10-16: Added concise Bonaire visit notes from a 2002 first-person report
+  for 1000 Steps, Jeff Davis Memorial, Leonora’s Reef, and La Machaca, plus a
+  2009 report for Tori’s Reef. Nearby 1000 Steps and La Machaca catalog variants
+  share the matching note. Recorded SCUBAGO scores and available rating counts
+  separately; Tori’s Reef and Leonora’s Reef listings exposed scores but no count.
+
+- 2026-10-16: Added site-matched Roatan diver observations for Newman’s Wall,
+  Calvin’s Crack, and the Prince Albert wreck from Undercurrent reports dated
+  2004–2007. The Prince Albert SCUBAGO page displayed a 4.3/5 score and 1,976
+  ratings; the other two site ratings were not found in the captured results.
+
+- 2026-10-16: Added Palau accounts for German Channel, Ulong Channel, Blue Holes,
+  and Chandelier Cave from published diver reports dated 2005–2023. A report
+  matched Ulong Channel to the PADI-listed coordinates; a second same-named
+  catalog marker is too far away to treat as the same site without more evidence.
+  Recorded German Channel’s SCUBAGO score and rating count separately.
+
+- 2026-10-16: Added first-person reports matched to Cape Kri and Manta Point,
+  Nusa Penida. The Manta Point account records both manta sightings and the
+  crowding the diver observed; added the current SCUBAGO scores and rating
+  counts separately.
+
+- 2026-10-16: Replaced Melissa’s Garden’s SSI editorial-guide paragraph with a
+  synthesis of two visitor trip reports, explicitly labeling their coral and
+  small-fish observations as individual accounts. Built a separate review-rating
+  inventory for every canonical site from the SSI MyDiveGuide and SSI-linked
+  OpenDiveMap evidence snapshots. Rating counts were absent, source log totals
+  remain separate, and differing provider snapshots are preserved independently.
 
 - 2026-10-08: Completed the repeatable source/attribute coverage audit and
   created the `dive-site-summary-v2` sidecar. Added one source-checked Chicken
@@ -189,3 +359,84 @@ it actually supports. Keep source limitations with the evidence.
   and expanding it exposes operator links. A source-only record displays its
   named provenance alongside the retained OpenStreetMap link. Updated the
   repeatable audit to report the current sidecar's summary and citation counts.
+- 2026-10-16: Added a short Herradura account based on the contributor's
+  description of looking for sharks near the marina and visiting the nearby
+  Island of Snakes. The current SCUBAGO page showed 4 of 5 stars from 239
+  ratings; this was added to the separate live-rating inventory. A same-named
+  Rainbow Reef account mentioned Fiji's Somosomo Strait, so it was excluded
+  from the Cayman Islands site. The v147 archive has 3,121 SSI-linked profile
+  descriptions, but many are general site copy rather than diver accounts;
+  each candidate needs content and identity checks. Absence from this archive
+  does not prove no review exists elsewhere.
+
+- 2026-10-16: Added a short 2017 Goitzschesee diver account: the visitor
+  reported visibility up to 5 m, changing layers, and a training course with
+  a mussel-covered caravan and small fish. The source says the reviewed dive
+  center later closed and moved, so the summary is clearly limited to that
+  historic visit. Recorded the current SCUBAGO five-star score from 190 ratings
+  separately from the diver account.
+
+- 2026-10-16: Added a short account of a 2020 first scuba dive in Rousoum
+  Bay, based on a visitor review of Alonissos Seacolours Dive Center. It says
+  the try dive began in shallow water before moving deeper; it is one visitor’s
+  experience, not a report of typical conditions. A site-specific rating was
+  not found, so no rating was added.
+
+- 2026-10-16: Recorded nine SCUBAGO site scores for Port-Louis, Guadeloupe,
+  including Eden, Caye Ronde, Patates, and other nearby named sites. The
+  displayed scores did not include rating totals, so counts were left blank.
+
+- 2026-10-16: Added a short False Entrance summary from a 2024 firsthand
+  trip report. The diver described deep canyons, trevally, soft corals, and
+  that dive’s slight current and 0.5 m swell. The trip report says the author
+  is a local diver with 738 dives; these details describe one visit, not current
+  conditions. No site rating was found in the inspected source.
+- 2026-10-16: Replaced the generic Cynthiana summary for the catalog record
+  near Paphos with a short summary of five diver reviews. The second same-named
+  record is several kilometres away and was not matched. Recorded the five
+  reviews’ qualitative labels; the source gives no combined numeric score.
+- 2026-10-16: Screened Otomi Beach, Burns Point, La Croche aux Tacauds,
+  Veleiro Orca, and Terence Bay Wharf. The results were site profiles or
+  operator guides rather than firsthand scuba reviews, a snorkel-only review,
+  or a wreck report whose coordinates did not match the catalog; no summaries
+  were added for these candidates.
+- 2026-10-16: Improved the Neufelder See summary with an exact-coordinate
+  match and a 2002 firsthand Taucher.Net report. Recorded its 11 posted reviews,
+  but no combined numerical score was displayed. The account covers several
+  lake entry points, not only the Strandbad entry.
+- 2026-10-16: Added a short Tisvildeleje night-dive account from a 2013
+  Baracuda magazine article describing one August 2012 dive and its sightings.
+  The report documents that visit only; no site rating was found.
+- 2026-10-16: Added a concise Genève-Plage site-map summary from a 2026
+  underwater map made by an SSI Divemaster trainee and dive buddy. The map
+  marks seagrass, a pipe, and an artificial coral reef, with depths reaching
+  6 m. It is documented as diver-created topography, not a narrative review;
+  no site rating was found.
+- 2026-10-16: Screened more catalog candidates. A Dinah’s Beach article
+  identifies the planned shallow muck dive but does not describe the dive
+  itself. Thalassa House Reef search results exposed anonymous, generic review
+  snippets that could not be verified as real diver accounts. Results for
+  Cala Punta Santa Ana, Nugal izvor - Mali Gaj, and Santa Martha Bay did not
+  surface a qualifying first-hand review matched to those catalog sites. No
+  summaries or ratings were added from those leads.
+- 2026-10-16: Added a short firsthand report for Nugal izvor - Mali Gaj from
+  local dive instructor Bojan Runtic. His 2026 post places a thermal spring
+  around 3 m in a wall crevice and contrasts its approximate winter temperature
+  with the surrounding water. The catalog and PADI coordinates match exactly.
+  No site rating was shown by the inspected source.
+- 2026-10-16: Replaced generic SSI-linked community summaries for Cenote
+  Nicte Ha and Seaview, Carriacou with named firsthand reports. Indira
+  Pranabudi’s 2024 Nicte Ha account describes a shallow cavern loop, lily pads,
+  sunbeams, and a silty floor; Luana Haller’s 2015 Carriacou field study reports
+  stronger current and fewer lionfish at Seaview than at nearby Barrel. The
+  existing SCUBAGO ratings remain in the separate inventory: Nicte Ha 5/5 from
+  684 ratings and Seaview 4/5 from 134 ratings.
+- 2026-10-16: Added a short Palancar Horseshoe summary from Chris Sullivan's
+  first-person 2007 and 2009 dive logs. They describe light current on one visit
+  and sightings of rays, a turtle, grouper, and a reef memorial. The inventory
+  records the SSI profile's 5/5 score; no rating count was available.
+- 2026-10-16: Added a short Lahami Bay Hausriff South summary from a
+  2019 dive-club report covering the house reefs, including Banana Reef. The
+  account describes clear water, reef life, turtles, and rays from that trip.
+  Recorded the direct SCUBAGO three-star score; language versions disagreed
+  on the rating count, so the count remains blank.

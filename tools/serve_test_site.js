@@ -27,7 +27,7 @@ const R2_DATASET_ASSETS = new Set([
 const R2_VERSIONED_DATASET_PATHS = {
   'dive-sites.js': 'data/dive-sites-v3.js',
   'dive-site-search-locations.json.gz': 'data/dive-site-search-locations-v4.json.gz',
-  'dive-site-summaries.json.gz': 'data/dive-site-summaries-v3.json.gz'
+  'dive-site-summaries.json.gz': 'data/dive-site-summaries-v4.json.gz'
 };
 const contentTypes = new Map([
   ['.bin', 'application/octet-stream'],
