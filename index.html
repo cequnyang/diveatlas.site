@@ -2666,6 +2666,7 @@
     .temperature-detail-caption--divider { margin: 5px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft); }
     .water-clarity-detail .temperature-detail-caption { margin: 5px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft); }
     .water-clarity-detail .water-clarity-chart-caption { padding-bottom: 0; border-bottom: 0; }
+    .water-clarity-chart-divider { margin-top: 7px; border-top: 1px solid var(--line-soft); }
     .water-clarity-detail .temperature-detail-value { white-space: nowrap; }
     .temperature-detail-tabs { display: flex; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line-soft); }
     .temperature-detail-tabs--after-value { padding-top: 0; border-top: 0; }
@@ -19154,7 +19155,7 @@ ZSD·2016–2025</span></span>
     const yearAvailable = result.year_loaded
       ? result.year.length === 12
       : result.metadata.available_months.length === 12;
-    let panel = `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureDepth')}</span><span class="dive-popup-property__value">${depthLabel}</span></div><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureMonth')}</span><span class="dive-popup-property__value">${monthName}</span></div></div>`;
+    let panel = `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperatureMonth')} · ${t('temperatureDepth')}</span><span class="dive-popup-property__value">${monthName} · ${depthLabel}</span></div></div>`;
     if (temperatureDetailTab === 'profile') panel = result.profile_loaded
       ? makeTemperatureProfileSvg(result.profile, result.depth_m)
       : `<p class="temperature-detail-caption">${t('diveExperienceLoadingData')}</p>`;
@@ -19328,6 +19329,7 @@ ZSD·2016–2025</span></span>
         ? `${makeWaterClaritySeasonalSvg(waterClaritySeasonalPoints, result.month)}<div class="temperature-detail-caption water-clarity-chart-caption">${escapeHtml(t('waterClarityTypical'))}</div>`
         : `<div class="temperature-detail-caption" role="status">${escapeHtml(waterClaritySeasonalError ? t('waterClarityUnavailable') : t('waterClarityLoading'))}</div>`)
       : '';
+    const chartDivider = waterClaritySeasonalOpen ? '<div class="water-clarity-chart-divider" aria-hidden="true"></div>' : '';
     const returnButton = createDiveExperienceReturnButton(waterClarityPopupReturnSite);
     waterClarityPopup.setContent(
       `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<div class="temperature-detail-heading">${heading}</div></div>` : `<div class="temperature-detail-heading">${heading}</div>`}` +
@@ -19336,7 +19338,7 @@ ZSD·2016–2025</span></span>
       `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityTypical')}</span><span class="dive-popup-property__value temperature-detail-value">${escapeHtml(value)}</span></div>` +
       `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityLevel')}</span><span class="dive-popup-property__value">${t(classificationKey)}</span></div>` +
       `</div>` +
-      `${comparison}${chart}` +
+      `${comparison}${chart}${chartDivider}` +
       `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityMonth')}</span><span class="dive-popup-property__value">${month}</span></div></div>` +
       `<div class="temperature-detail-source dive-popup-source--compact">${source}</div></div>`
     );
