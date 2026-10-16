@@ -510,7 +510,7 @@ test('share preview keeps concise site facts and skips local image uploads', asy
   await expect(preview).toBeVisible();
   const summaryText = await preview.locator('li').filter({ hasText: 'The SSI MyDiveGuide' }).innerText();
   expect(Array.from(summaryText).length).toBeLessThanOrEqual(72);
-  expect(summaryText).toMatch(/\u2026$/);
+  expect(summaryText).toMatch(/…$/);
   expect(await preview.locator('li').count()).toBeLessThanOrEqual(4);
   const previewBounds = await page.evaluate(() => {
     const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
@@ -525,7 +525,7 @@ test('share preview keeps concise site facts and skips local image uploads', asy
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
-  await dialog.getByRole('button', { name:'Copy link' }).click();
+  await dialog.locator('#shareCopyButton').click();
   await expect(page.locator('#shareStatus')).toContainText(/copied/i);
   expect(previewRequests).toEqual([]);
 });
@@ -548,7 +548,7 @@ test('local share links do not upload images or request Worker rendering early',
   await page.evaluate(() => document.querySelector('#shareMapButton').click());
   const dialog = page.locator('#shareDialog');
   await expect(dialog).toBeVisible();
-  await dialog.getByRole('button', { name:'Copy link' }).click();
+  await dialog.locator('#shareCopyButton').click();
   await expect.poll(() => page.locator('#shareStatus').innerText()).toMatch(/copied/i);
   expect(previewRequests).toEqual([]);
 });
@@ -574,7 +574,7 @@ test('mobile share preview uses a landscape view without moving the live map', a
     const request = route.request();
     return route.fulfill({ status:request.method() === 'POST' ? 201 : 404, headers:{ 'Access-Control-Allow-Origin':'*' } });
   });
-  await page.locator('#shareDialog').getByRole('button', { name:'Copy link' }).click();
+  await page.locator('#shareCopyButton').click();
   await expect.poll(() => page.evaluate(() => window.__sharePreviewMapChanges.length)).toBe(0);
   const geometry = await page.evaluate(() => {
     const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();

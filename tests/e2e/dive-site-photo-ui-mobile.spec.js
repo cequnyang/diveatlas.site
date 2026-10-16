@@ -4,7 +4,10 @@ const { openFallbackPhotoPopup } = require('./photo-ui-support');
 
 const fixtureName = 'Test dive site photo-fallback-ui';
 
-test.beforeEach(async ({ page }) => openMap(page));
+test.beforeEach(async ({ page }, testInfo) => {
+  const language = testInfo.title.includes('Chinese') ? 'zh' : 'en';
+  await openMap(page, { localStorage:{ 'global-coral-map-lang':language } });
+});
 
 test('mobile fallback photos invite a site-specific contribution without crowding the photo', async ({ page }) => {
   const popup = await openFallbackPhotoPopup(page);
@@ -38,6 +41,19 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   expect(photoLayout.uploadHeight).toBeGreaterThanOrEqual(44);
   expect(photoLayout.uploadPillHeight).toBe(32);
 
+  const labelLayout = await status.evaluate(node => {
+    const frame = node.closest('.dive-popup-photo-frame');
+    const text = node.querySelector('.dive-popup-photo-label__illustrative-copy');
+    return {
+      frameWidth:frame.getBoundingClientRect().width,
+      labelWidth:node.getBoundingClientRect().width,
+      textWidth:text.getBoundingClientRect().width,
+      horizontalChrome:parseFloat(getComputedStyle(node).paddingLeft) + parseFloat(getComputedStyle(node).paddingRight) + parseFloat(getComputedStyle(node).borderLeftWidth) + parseFloat(getComputedStyle(node).borderRightWidth)
+    };
+  });
+  expect(labelLayout.labelWidth).toBeLessThan(labelLayout.frameWidth * 0.75);
+  expect(labelLayout.labelWidth).toBeCloseTo(labelLayout.textWidth + labelLayout.horizontalChrome, 0);
+
   const headingStyles = await popup.evaluate(node => {
     const title = node.querySelector('.bio-popup-title');
     const temperatureHeading = document.createElement('div');
@@ -70,4 +86,24 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#sitePhotoUploadSiteName')).toHaveText(fixtureName);
   await expect(dialog.locator('#sitePhotoUploadAuthRequired')).toBeVisible();
+});
+
+test('Chinese fallback-photo labels shrink-wrap their translated text', async ({ page }) => {
+  const popup = await openFallbackPhotoPopup(page);
+  const status = popup.locator('.dive-popup-photo-label--illustrative');
+  await expect(status).toHaveText('示意图片 · 非该潜点实景');
+
+  const labelLayout = await status.evaluate(node => {
+    const frame = node.closest('.dive-popup-photo-frame');
+    const text = node.querySelector('.dive-popup-photo-label__illustrative-copy');
+    const style = getComputedStyle(node);
+    return {
+      frameWidth:frame.getBoundingClientRect().width,
+      labelWidth:node.getBoundingClientRect().width,
+      textWidth:text.getBoundingClientRect().width,
+      horizontalChrome:parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) + parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth)
+    };
+  });
+  expect(labelLayout.labelWidth).toBeLessThan(labelLayout.frameWidth * 0.75);
+  expect(labelLayout.labelWidth).toBeCloseTo(labelLayout.textWidth + labelLayout.horizontalChrome, 0);
 });

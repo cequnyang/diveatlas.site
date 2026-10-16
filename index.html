@@ -1686,6 +1686,15 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
       pointer-events: none;
     }
+    .dive-site-popup--with-photo .dive-popup-photo-label--illustrative {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+    }
+    .dive-popup-photo-label__illustrative-copy {
+      min-width: 0;
+      max-width: 100%;
+    }
     .dive-site-popup--with-photo .dive-popup-photo-label--upload {
       display: none;
       pointer-events: auto;
@@ -1699,13 +1708,17 @@
       cursor: pointer;
       transition: background-color .15s ease, border-color .15s ease, color .15s ease;
     }
-    /* Keep both captions in one grid cell so the longer label holds the hover target steady. */
+    /* Only the active caption contributes intrinsic width, including the longer hover invitation. */
     .dive-popup-photo-label__rest,
     .dive-popup-photo-label__action {
       grid-area: 1 / 1;
       transition: opacity .12s ease;
     }
-    .dive-popup-photo-label__action { justify-self: center; opacity: 0; }
+    .dive-popup-photo-label__action {
+      display: none;
+      text-align: center;
+      opacity: 0;
+    }
     .dive-popup-photo-label__touch { display: none; }
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-backdrop,
     .dive-site-popup--with-photo .dive-popup-photo-frame.is-portrait .dive-popup-photo-shade { visibility: visible; }
@@ -1730,9 +1743,9 @@
         text-shadow: none;
       }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover .dive-popup-photo-label__rest,
-      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__rest { opacity: 0; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__rest { display: none; opacity: 0; }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload:hover .dive-popup-photo-label__action,
-      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__action { opacity: 1; }
+      .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible .dive-popup-photo-label__action { display: block; opacity: 1; }
       .dive-site-popup--with-photo .dive-popup-photo-label--upload .dive-popup-photo-label__action {
         overflow: hidden;
         white-space: nowrap;
@@ -1807,8 +1820,8 @@
       .dive-site-popup--with-photo .dive-popup-photo-label--illustrative {
         top: 8px;
         bottom: auto;
-        display: flex;
-        width: fit-content;
+        display: inline-flex;
+        width: max-content;
         max-width: calc(100% - 20px);
         align-items: center;
         min-height: 28px;
@@ -4828,7 +4841,7 @@
     #siteSuggestionCloseButton svg,
     #sitePhotoUploadCloseButton svg { width: 24px; height: 24px; }
     .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
-    .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 22px; }
+    .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 12px; }
     .share-preview-frame {
       position: relative;
       overflow: hidden;
@@ -4836,6 +4849,37 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--panel-soft);
+    }
+    .share-preview-copy {
+      display: none;
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 0;
+      background: rgba(8, 20, 32, .24);
+      color: #fff;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .15s ease;
+    }
+    /* Tint the complete image, but reserve the summary column when positioning the copy control. */
+    .share-preview-frame:has(.share-preview-popup-data:not([hidden])) .share-preview-copy { padding-right: 52%; }
+    .share-preview-copy-content { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 999px; background: rgba(8, 20, 32, .72); font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .share-preview-copy svg { width: 18px; height: 18px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; }
+    .share-preview-copy:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+    @media (min-width: 721px) and (hover: hover) and (pointer: fine) {
+      .share-preview-copy { display: flex; }
+      .share-preview-frame:hover .share-preview-copy,
+      .share-preview-copy:focus-visible { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .share-preview-copy { transition: none; }
     }
     .share-preview-site-photo {
       position: absolute;
@@ -4894,9 +4938,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 23.4px;
+      box-sizing: border-box;
+      min-height: 25.4px;
       line-height: 1;
-      padding: 0 12px;
+      padding: 0 12px 2px;
       border: 1px solid transparent;
       border-radius: 9px;
       background: var(--panel-soft);
@@ -4933,6 +4978,7 @@
     .share-preview-placeholder[hidden], .share-preview-popup-data[hidden] { display: none; }
     .share-preview-popup-data {
       position: absolute;
+      z-index: 5;
       right: 2%;
       bottom: 3%;
       width: min(46%, 520px);
@@ -5108,7 +5154,7 @@
       #contactCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 10px 0 10px; }
       #siteSuggestionCloseButton,
       #sitePhotoUploadCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 12px 0 12px; }
-      .share-dialog-body { padding: 4px 18px 18px; }
+      .share-dialog-body { padding: 4px 18px 12px; }
       .share-preview-frame { aspect-ratio: 1200 / 630; }
       .share-actions { justify-content: flex-start; gap: 4px; }
       .share-actions .share-action-button { flex-basis: calc((100% - 12px) / 4); align-items: center; padding-inline: 1px; font-size: 10px; }
@@ -7422,6 +7468,9 @@
           <div class="share-preview-popup-pointer" id="sharePreviewPopupPointer" aria-hidden="true" hidden></div>
           <div class="share-preview-placeholder" id="sharePreviewPlaceholder" role="status">Preparing map preview…</div>
           <aside class="share-preview-popup-data" id="sharePreviewPopupData" hidden></aside>
+          <button class="share-preview-copy" id="sharePreviewCopyButton" type="button">
+            <span class="share-preview-copy-content"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg><span id="sharePreviewCopyText">Copy link</span></span>
+          </button>
         </div>
         <fieldset class="share-preview-background-choices" id="sharePreviewBackgroundChoices" hidden>
           <legend data-i18n="sharePreviewBackground">Preview background</legend>
@@ -7468,7 +7517,7 @@
             <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="share-mark--outline" cx="18" cy="5" r="3"/><circle class="share-mark--outline" cx="6" cy="12" r="3"/><circle class="share-mark--outline" cx="18" cy="19" r="3"/><path class="share-mark--outline" d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.2"/></svg></span><span>More</span>
           </button>
         </div>
-        <p class="share-status" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <p class="share-status visually-hidden" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
     </section>
   </div>
@@ -9880,10 +9929,15 @@ ZSD·2016–2025</span></span>
     shareDialog: document.getElementById('shareDialog'),
     shareCloseButton: document.getElementById('shareCloseButton'),
     sharePreviewFrame: document.getElementById('sharePreviewFrame'),
+    sharePreviewCopyButton: document.getElementById('sharePreviewCopyButton'),
+    sharePreviewCopyText: document.getElementById('sharePreviewCopyText'),
     sharePreviewSitePhoto: document.getElementById('sharePreviewSitePhoto'),
     sharePreviewPhotoLabel: document.getElementById('sharePreviewPhotoLabel'),
     sharePreviewPhotoCredit: document.getElementById('sharePreviewPhotoCredit'),
     sharePreviewBackgroundChoices: document.getElementById('sharePreviewBackgroundChoices'),
+    sharePreviewBackgroundLegend: document.querySelector('#sharePreviewBackgroundChoices legend'),
+    sharePreviewMapLabel: document.querySelector('#sharePreviewBackgroundChoices input[value="map"] + span'),
+    sharePreviewSiteImageLabel: document.querySelector('#sharePreviewBackgroundChoices input[value="site"] + span'),
     sharePreviewMapSnapshot: document.getElementById('sharePreviewMapSnapshot'),
     sharePreviewPlaceholder: document.getElementById('sharePreviewPlaceholder'),
     sharePreviewPopupData: document.getElementById('sharePreviewPopupData'),
@@ -13010,10 +13064,12 @@ ZSD·2016–2025</span></span>
   }
 
   Object.assign(SHARE_I18N.en, {
+    shareCopyLink: 'Copy link',
     sharePreviewBackground: 'Preview image',
     sharePasteCopied: 'Link copied. Paste it into {platform}.'
   });
   Object.assign(SHARE_I18N.zh, {
+    shareCopyLink: '复制链接',
     sharePreviewBackground: '预览图片',
     sharePasteCopied: '链接已复制，请粘贴到{platform}。'
   });
@@ -14376,6 +14432,9 @@ ZSD·2016–2025</span></span>
     renderContactStatus();
     renderSiteSuggestionTexts();
     renderSitePhotoUploadTexts();
+    els.sharePreviewBackgroundLegend.textContent = t('sharePreviewBackground');
+    els.sharePreviewMapLabel.textContent = t('sharePreviewMap');
+    els.sharePreviewSiteImageLabel.textContent = t('sharePreviewSiteImage');
     els.collapseBtn.title = t('collapseTitle');
     els.panelLauncher.title = t('launcherTitle');
     els.diveSearchInput.placeholder = t('diveSearchPlaceholder');
@@ -21816,6 +21875,7 @@ ZSD·2016–2025</span></span>
         addDetail(textOf(content, '.dive-popup-location__region'));
         // Prioritize a short site description; trailing measurements can be dropped if the card is full.
         addDetail(compactSummary(textOf(content, '.dive-popup-summary p')));
+        [...content.querySelectorAll('.dive-popup-property')].slice(0, 2).forEach(field => addDetail(fieldText(field)));
       } else if (content.querySelector('.tide-popup')) {
         addDetail(textOf(content, '.tide-popup-location'));
         content.querySelectorAll('.waves-primary-metrics .bio-popup-field').forEach(field => addDetail(fieldText(field)));
@@ -22586,6 +22646,7 @@ ZSD·2016–2025</span></span>
 
   function renderShareDialogContext() {
     updateSharePlatformVisibility();
+    els.sharePreviewCopyText.textContent = t('shareCopyLink');
     sortShareDestinations();
     const isDiveSitePopup = shareSnapshot?.popup?.layer === 'dive' &&
       shareSnapshot?.selectedSiteId &&
@@ -22682,10 +22743,12 @@ function closeShareDialog() {
       ? t('sharePasteCopied').replace('{platform}', platform)
       : t(copied ? 'shareCopied' : 'shareCopyFailed');
     els.shareCopyButtonText.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
+    els.sharePreviewCopyText.textContent = copied ? `${t('shareCopied')} ✓` : t('shareCopyFailed');
     renderShareButtonDescription();
     shareFeedbackTimer = window.setTimeout(() => {
       shareUiState = 'idle';
       els.shareCopyButtonText.textContent = 'Copy link';
+      els.sharePreviewCopyText.textContent = t('shareCopyLink');
       renderShareButtonDescription();
     }, 1800);
   }
@@ -22813,6 +22876,7 @@ function closeShareDialog() {
     els.sharePreviewPlaceholder.hidden = false;
   });
   els.shareCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
+  els.sharePreviewCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
   const shareDestinationRow = els.shareCopyButton.closest('.share-actions');
   const shareDefaultDestinations = [...shareDestinationRow.querySelectorAll('.share-action-button')];
   const SHARE_INTERACTION_STORAGE_KEY = 'global-coral-map-share-interactions-v1';
