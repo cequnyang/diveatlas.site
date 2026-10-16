@@ -1120,6 +1120,7 @@
       transition: translate 120ms ease-out;
     }
 
+    .current-location-marker,
     .map-click-location-marker {
       background: transparent !important;
       border: 0 !important;
@@ -1146,6 +1147,8 @@
       background:#e34b68;
       transform:rotate(-45deg);
     }
+    .current-location-marker .map-click-location-pin::before { background: #3887ff; }
+
     .map-click-location-pin::after {
       content:'';
       position:absolute;
@@ -1938,6 +1941,33 @@
       width: 40px !important;
       height: 40px !important;
       line-height: 40px !important;
+    .map-current-location {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-solid);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .map-current-location svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .map-current-location:hover { color: var(--accent); }
+    .map-current-location:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+    .map-current-location:disabled { opacity: .55; cursor: wait; }
+
+
       border: 0 !important;
       background: var(--panel-solid) !important;
       color: var(--text) !important;
@@ -9764,6 +9794,44 @@ ZSD·2016–2025</span></span>
     canvasContextAttributes: { preserveDrawingBuffer: true }
   });
 
+  const currentLocationButton = L.DomUtil.create('button', 'map-current-location', zoomControl.getContainer());
+  currentLocationButton.type = 'button';
+  currentLocationButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>';
+  zoomControl.getContainer().prepend(currentLocationButton);
+  let currentLocationMarker = null;
+  currentLocationButton.addEventListener('click', () => {
+    if (!navigator.geolocation || !window.isSecureContext) {
+      showToast(t('locationUnavailable'));
+      return;
+    }
+    currentLocationButton.disabled = true;
+    currentLocationButton.setAttribute('aria-busy', 'true');
+    // Request only on click; a one-shot fix avoids continuous location tracking.
+    navigator.geolocation.getCurrentPosition(position => {
+      currentLocationButton.disabled = false;
+      currentLocationButton.removeAttribute('aria-busy');
+      const latlng = [position.coords.latitude, position.coords.longitude];
+      if (!currentLocationMarker) {
+        currentLocationMarker = L.marker(latlng, {
+          icon: L.divIcon({
+            className: 'current-location-marker',
+            html: '<span class="map-click-location-pin" aria-hidden="true"></span>',
+            iconSize: [36, 42],
+            iconAnchor: [18, 42]
+          }),
+          interactive: false, keyboard: false
+        }).addTo(map);
+      } else {
+        currentLocationMarker.setLatLng(latlng);
+      }
+      map.setView(latlng, Math.max(map.getZoom(), 12));
+    }, error => {
+      currentLocationButton.disabled = false;
+      currentLocationButton.removeAttribute('aria-busy');
+      showToast(t(error.code === 1 ? 'locationDenied' : error.code === 3 ? 'locationTimeout' : 'locationUnavailable'));
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+
   const darkLayer = L.maplibreGL({
     pane: 'basemapPane',
     style: 'https://tiles.openfreemap.org/styles/dark',
@@ -11420,6 +11488,10 @@ ZSD·2016–2025</span></span>
       bioPartial: '部分区域数据加载失败；已保留成功区域，可刷新重试',
       cacheLoaded: '已从浏览器本地缓存加载当前区域',
       apiLoaded: '已从远程数据源更新并写入本地缓存',
+      currentLocation: '当前位置',
+      locationUnavailable: '无法获取位置，请检查设备定位服务。',
+      locationDenied: '位置权限被拒绝，请在浏览器设置中允许定位。',
+      locationTimeout: '定位超时，请重试。',
       cacheRefreshing: '正在更新当前区域数据…',
       cacheRefresh: '刷新',
       cacheRefreshTitle: '忽略本地缓存，重新从 OBIS / AODN 获取当前区域数据',
@@ -11497,6 +11569,10 @@ ZSD·2016–2025</span></span>
       bioLimited: 'Large result set; zoom in for more complete survey detail',
       bioPartial: 'Some map areas failed to load; successful areas were kept. Refresh to retry',
       cacheLoaded: 'Loaded this area from the browser cache',
+      currentLocation: 'Current location',
+      locationUnavailable: 'Location unavailable. Check your device location services.',
+      locationDenied: 'Location permission denied. Allow location access in your browser settings.',
+      locationTimeout: 'Location request timed out. Please try again.',
       apiLoaded: 'Updated from remote sources and saved to the local cache',
       cacheRefreshing: 'Refreshing data for the current area…',
       cacheRefresh: 'Refresh',
@@ -11575,6 +11651,10 @@ ZSD·2016–2025</span></span>
       offlineReady: '埋め込みデータの準備完了。OBIS / AODN API へのアクセスは不要です',
       offlineBuildStart: '世界データの取得を準備中…',
       offlineBuildObis: 'OBIS サンゴ',
+      currentLocation: '現在地',
+      locationUnavailable: '位置情報を取得できません。端末の位置情報設定を確認してください。',
+      locationDenied: '位置情報の権限が拒否されました。ブラウザーの設定で許可してください。',
+      locationTimeout: '位置情報の取得がタイムアウトしました。もう一度お試しください。',
       offlineBuildFish: 'AODN/NRMN 魚類',
       offlineBuildPacking: '圧縮して HTML を生成中…',
       offlineBuildDone: 'オフライン HTML を生成し、ダウンロードを開始しました',
@@ -14322,6 +14402,8 @@ ZSD·2016–2025</span></span>
     els.environmentTemperatureLabel.textContent = ENVIRONMENT_TEMPERATURE_TAB_LABELS[currentLang] || t('environmentTemperature');
     els.environmentTemperatureLabel.previousElementSibling.setAttribute('aria-label', t('environmentTemperature'));
     els.environmentWaterClarityLabel.textContent = t('environmentWaterClarity');
+    currentLocationButton.title = t('currentLocation');
+    currentLocationButton.setAttribute('aria-label', t('currentLocation'));
     els.environmentCurrentsLabel.textContent = ENVIRONMENT_CURRENTS_TAB_LABELS[currentLang] || t('currentsTitle');
     els.environmentTideLabel.textContent = t('environmentTide');
     els.environmentTideLabel.previousElementSibling.setAttribute('aria-label', t('environmentTide'));
