@@ -2663,10 +2663,12 @@
     .coral-heat-stress-popup .temperature-detail-source,
     .coral-heat-stress-popup .coral-heat-stress-history-summary { overflow-wrap: anywhere; }
     .temperature-detail-caption { margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .temperature-detail-caption--divider { margin: 5px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft); }
     .water-clarity-detail .temperature-detail-caption { margin: 5px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line-soft); }
     .water-clarity-detail .water-clarity-chart-caption { padding-bottom: 0; border-bottom: 0; }
     .water-clarity-detail .temperature-detail-value { white-space: nowrap; }
     .temperature-detail-tabs { display: flex; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line-soft); }
+    .temperature-detail-tabs--after-value { padding-top: 0; border-top: 0; }
     .temperature-detail-tabs button { flex: 1; min-height: 28px; padding: 3px 6px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--muted); font: inherit; font-size: 10px; cursor: pointer; }
     .temperature-detail-tabs.waves-seasonal-tabs { justify-content: flex-start; margin-top: 8px; padding-top: 0; border-top: 0; }
     .temperature-detail-tabs .waves-seasonal-button { box-sizing:border-box; display:flex; flex:1 1 100%; width:100%; height:32px; min-height:32px; align-items:center; justify-content:center; padding:4px 10px; border-color:var(--line); background:var(--panel-soft); color:var(--text); font-size:11px; font-weight:700; line-height:1.2; white-space:normal; text-align:center; }
@@ -19159,13 +19161,13 @@ ZSD·2016–2025</span></span>
     if (temperatureDetailTab === 'year') panel = result.year_loaded
       ? makeTemperatureYearSvg(result.year, result.month)
       : `<p class="temperature-detail-caption">${t('diveExperienceLoadingData')}</p>`;
-    const valueMarkup = `<span class="temperature-detail-value">${value}</span>`;
-    const heading = t('temperaturePopupTitle').replace('{value}', valueMarkup).replace(/°C/g, `°${temperatureUnit}`);
+    const heading = t('temperaturePopupTitle').replace(/\s*\{value\}\s*°C\s*$/, '').trim();
+    const valueMarkup = `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('temperaturePopupValue')}</span><span class="dive-popup-property__value temperature-detail-value">${escapeHtml(value)}</span></div></div>`;
     const returnButton = createDiveExperienceReturnButton(temperatureDetailPopupReturnSite);
     const returnButtonMarkup = returnButton
-      ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${heading}</h2></div>`
-      : `<div class="temperature-detail-heading">${heading}</div>`;
-    temperatureDetailPopup.setContent(`<div class="temperature-detail">${returnButtonMarkup}<div class="temperature-detail-caption">${t('temperaturePopupCaption')}</div><div class="temperature-detail-tabs" role="tablist" aria-label="${t('temperaturePopupTabs')}"><button type="button" data-temperature-tab="value" aria-selected="${temperatureDetailTab === 'value'}">${t('temperaturePopupValue')}</button><button type="button" data-temperature-tab="profile" aria-selected="${temperatureDetailTab === 'profile'}">${t('temperatureDepth')}</button><button type="button" data-temperature-tab="year" aria-selected="${temperatureDetailTab === 'year'}"${yearAvailable ? '' : ` disabled title="${t('temperaturePopupYearDisabled')}"`}>${t('temperaturePopupYear')}</button></div><div class="temperature-detail-panel">${panel}</div><div class="temperature-detail-source dive-popup-source--compact">${popupSourceLink(SOURCE_URLS.woa23, 'WOA23', t('temperaturePopupExternalLink'))} &middot; ${dataPurpose}</div></div>`);
+      ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<h2 class="temperature-detail-heading">${escapeHtml(heading)}</h2></div>`
+      : `<div class="temperature-detail-heading">${escapeHtml(heading)}</div>`;
+    temperatureDetailPopup.setContent(`<div class="temperature-detail">${returnButtonMarkup}<div class="temperature-detail-caption temperature-detail-caption--divider">${t('temperaturePopupCaption')}</div>${valueMarkup}<div class="temperature-detail-tabs temperature-detail-tabs--after-value" role="tablist" aria-label="${t('temperaturePopupTabs')}"><button type="button" data-temperature-tab="value" aria-selected="${temperatureDetailTab === 'value'}">${t('temperaturePopupValue')}</button><button type="button" data-temperature-tab="profile" aria-selected="${temperatureDetailTab === 'profile'}">${t('temperatureDepth')}</button><button type="button" data-temperature-tab="year" aria-selected="${temperatureDetailTab === 'year'}"${yearAvailable ? '' : ` disabled title="${t('temperaturePopupYearDisabled')}"`}>${t('temperaturePopupYear')}</button></div><div class="temperature-detail-panel">${panel}</div><div class="temperature-detail-source dive-popup-source--compact">${popupSourceLink(SOURCE_URLS.woa23, 'WOA23', t('temperaturePopupExternalLink'))} &middot; ${dataPurpose}</div></div>`);
     bindDiveExperienceReturnButton(temperatureDetailPopup, temperatureDetailPopupReturnSite);
     bindTemperatureDetailPopupControls();
   }
@@ -19317,7 +19319,7 @@ ZSD·2016–2025</span></span>
     }[result.classification] || 'waterClarityModerate';
     const value = formatLengthMeters(result.value_m, { whole: true });
     const month = localizedTemperatureMonth(result.month);
-    const heading = `${t('waterClarityTitle')} <span class="temperature-detail-value">${value}</span>`;
+    const heading = t('waterClarityTitle');
     const buttonLabel = waterClaritySeasonalError ? t('wavesRetry')
       : waterClaritySeasonalOpen ? t('wavesSeasonalClose') : t('wavesSeasonalOpen');
     const comparison = `<div class="temperature-detail-tabs waves-seasonal-tabs"><button class="waves-seasonal-button water-clarity-seasonal-button" type="button" aria-expanded="${waterClaritySeasonalOpen}">${escapeHtml(buttonLabel)}</button></div>`;
@@ -19331,9 +19333,11 @@ ZSD·2016–2025</span></span>
       `<div class="temperature-detail water-clarity-detail">${returnButton ? `<div class="temperature-detail-heading-row--with-back">${returnButton.outerHTML}<div class="temperature-detail-heading">${heading}</div></div>` : `<div class="temperature-detail-heading">${heading}</div>`}` +
       `<div class="temperature-detail-caption">${t('waterClarityDescription')}</div>` +
       `<div class="temperature-detail-fields">` +
+      `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityTypical')}</span><span class="dive-popup-property__value temperature-detail-value">${escapeHtml(value)}</span></div>` +
       `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityLevel')}</span><span class="dive-popup-property__value">${t(classificationKey)}</span></div>` +
-      `<div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityMonth')}</span><span class="dive-popup-property__value">${month}</span></div></div>` +
+      `</div>` +
       `${comparison}${chart}` +
+      `<div class="temperature-detail-fields"><div class="dive-popup-property"><span class="dive-popup-property__label">${t('waterClarityMonth')}</span><span class="dive-popup-property__value">${month}</span></div></div>` +
       `<div class="temperature-detail-source dive-popup-source--compact">${source}</div></div>`
     );
     bindDiveExperienceReturnButton(waterClarityPopup, waterClarityPopupReturnSite);
@@ -21613,9 +21617,11 @@ ZSD·2016–2025</span></span>
       });
       const measurementValue = content.querySelector('.temperature-detail-value');
       if (measurementValue) {
+        const measurementLabel = measurementValue.closest('.temperature-detail-current-value')?.dataset.label
+          || measurementValue.closest('.dive-popup-property')?.querySelector('.dive-popup-property__label')?.innerText?.trim();
         const measurementHeading = measurementValue.closest('.temperature-detail-heading')?.cloneNode(true);
         measurementHeading?.querySelector('.temperature-detail-value')?.remove();
-        const label = measurementHeading?.innerText?.trim();
+        const label = measurementLabel || measurementHeading?.innerText?.trim();
         const value = measurementValue.innerText?.trim();
         if (label && value) addDetail(`${label}: ${value}`);
       }
