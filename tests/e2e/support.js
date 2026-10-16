@@ -55,16 +55,15 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       });
     }
     if (dataAssetBase && url.origin === dataAssetBase.origin && url.pathname.startsWith(dataAssetBase.pathname)) {
-      // Test pages run on localhost, while production R2 CORS allows only the
-      // deployed site origin. Proxy just the configured public asset origin
-      // through Playwright so tests exercise the release without widening bucket CORS.
+      // Route published assets through the local test server. Its Python
+      // client matches the release preflight and avoids Cloudflare's challenge
+      // page for Node-based requests to the public R2 hostname.
+      const relativeAssetPath = url.pathname.slice(dataAssetBase.pathname.length).replace(/^\/+/, '');
+      const localAssetUrl = new URL(`/${relativeAssetPath}${url.search}`, page.url());
       let response;
       try {
-        response = await route.fetch({ timeout: 30_000 });
+        response = await route.fetch({ url: localAssetUrl.href, timeout: 60_000 });
       } catch (error) {
-        // A page can close while an immutable release asset is still in flight.
-        // Do not let that teardown race fail a later test; keep real request
-        // failures visible while the page is still active.
         if (page.isClosed()) return;
         throw error;
       }
