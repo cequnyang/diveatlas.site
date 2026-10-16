@@ -67,6 +67,13 @@ async function installTemperatureQueryFixture(page) {
   return fixtureRequestUrls;
 }
 
+async function expectTemperatureReadingRow(page, expectedValue = /^\d+(?:[.,]\d+)?$/) {
+  await expect(page.locator('.temperature-detail-heading')).toHaveText('Water TEMP');
+  const readingRow = page.locator('.dive-popup-property').filter({ has: page.locator('.temperature-detail-value') });
+  await expect(readingRow.locator('.dive-popup-property__label')).toHaveText('Value');
+  await expect(readingRow.locator('.temperature-detail-value')).toHaveText(expectedValue);
+}
+
 async function installMetadataFixture(page) {
   await page.route('**/datasets/temperature/metadata.json', route => route.fulfill({ json: metadataFixture }));
 }
@@ -1042,8 +1049,7 @@ test('masked land produces no popup and a slower earlier click cannot replace th
   await expect.poll(() => Boolean(firstChunkRoute)).toBe(true);
   await clickMapCoordinate(page, -8, 155);
   releaseFirstChunk();
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
-  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
+  await expectTemperatureReadingRow(page);
   const latestValue = await page.locator('.temperature-detail-value').textContent();
   await page.waitForTimeout(350);
   await expect(page.locator('.temperature-detail-value')).toHaveText(latestValue);
@@ -1090,8 +1096,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   const response = await chunkResponse;
   expect(response.status()).toBe(200);
   expect(fixtureRequestUrls.has(response.url()), 'the sample should come from the deterministic query fixture').toBe(true);
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
-  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
+  await expectTemperatureReadingRow(page, '2');
   await openMobileSettings(page);
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
   await expect(page.locator('#temperatureCoverageNote')).toContainText('15.5 mi');
@@ -1102,7 +1107,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await openTopMenu(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await closeTopMenu(page);
-  await expect(page.locator('.temperature-detail-heading')).toContainText('°F');
+  await expectTemperatureReadingRow(page, '35.6');
   await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);
@@ -1157,8 +1162,7 @@ test('Temperature popup content stays inside the safe area at the top boundary w
   await clickMapCoordinate(page, -5.7, 131);
   expect((await chunkResponse).status()).toBe(200);
   await expect(page.locator('.leaflet-popup')).toBeVisible();
-  await expect(page.locator('.temperature-detail-value')).toHaveText(/^\d+(?:[.,]\d+)?$/);
-  await expect(page.locator('.temperature-detail-heading')).toContainText('°C');
+  await expectTemperatureReadingRow(page);
   let after = await expectTemperaturePopupContained(page);
   expect(after.zoom).toBe(before.zoom);
   expect(after.center).toEqual(before.center);
