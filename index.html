@@ -1508,11 +1508,6 @@
       font-weight: 650;
     }
     .dive-popup-summary p { margin: 0; }
-    .dive-popup-summary .dive-popup-summary__note {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 10px;
-    }
 
     .bio-popup-source,
     .dive-popup-source--compact {
@@ -21711,8 +21706,8 @@ ZSD·2016–2025</span></span>
         }
       } else if (activeClickPopup?._container?.classList.contains('dive-site-popup')) {
         addDetail(textOf(content, '.dive-popup-location__region'));
-        // Site prose belongs in the linked sheet; two structured facts keep the preview readable on phones.
-        [...content.querySelectorAll('.dive-popup-property')].slice(0, 2).forEach(field => addDetail(fieldText(field)));
+        // Prioritize a short site description; trailing measurements can be dropped if the card is full.
+        addDetail(compactSummary(textOf(content, '.dive-popup-summary p')));
       } else if (content.querySelector('.tide-popup')) {
         addDetail(textOf(content, '.tide-popup-location'));
         content.querySelectorAll('.waves-primary-metrics .bio-popup-field').forEach(field => addDetail(fieldText(field)));
@@ -21750,7 +21745,7 @@ ZSD·2016–2025</span></span>
         addDetail(textOf(content, '.bio-popup-title'));
         addDetail(textOf(content, '.bio-popup-site'));
         addDetail(textOf(content, '.bio-popup-meta'));
-        const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
+        const summary = content.querySelector('.dive-popup-summary p');
         addDetail(compactSummary(summary?.innerText));
         content.querySelectorAll('.bio-popup-fields .bio-popup-field, .dive-popup-property').forEach(field => {
           addDetail(fieldText(field));

@@ -508,7 +508,9 @@ test('share preview keeps concise site facts and skips local image uploads', asy
   await expect(dialog).toBeVisible();
   const preview = page.locator('#sharePreviewPopupData');
   await expect(preview).toBeVisible();
-  await expect(preview).not.toContainText('The SSI MyDiveGuide');
+  const summaryText = await preview.locator('li').filter({ hasText: 'The SSI MyDiveGuide' }).innerText();
+  expect(Array.from(summaryText).length).toBeLessThanOrEqual(72);
+  expect(summaryText).toMatch(/\u2026$/);
   expect(await preview.locator('li').count()).toBeLessThanOrEqual(4);
   const previewBounds = await page.evaluate(() => {
     const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
