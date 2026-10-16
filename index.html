@@ -32121,11 +32121,104 @@ function closeShareDialog() {
 
   if (els.bioLegendDragHandle) {
     let layersPanelDrag = null;
+    let contentPull = null;
+    let suppressContentClickUntil = 0;
+    let layersScrollAnchor = null;
+
+    const anchorLayersContent = () => {
+      layersScrollAnchor = { top:els.bioLegendLayers.scrollTop, height:els.bioLegendLayers.clientHeight };
+    };
+    const followLayersPanelHeight = () => {
+      if (!layersScrollAnchor) return;
+      // Preserve the visible bottom edge: shrinking the viewport must hide
+      // content beneath the heading rather than cut off the bottom rows.
+      els.bioLegendLayers.scrollTop = layersScrollAnchor.top + layersScrollAnchor.height - els.bioLegendLayers.clientHeight;
+    };
 
     const resetLayersPanelDrag = () => {
       els.bioLegend.classList.remove('mobile-layers-panel-dragging');
       els.bioLegend.style.removeProperty('height');
+      if (layersScrollAnchor) els.bioLegendLayers.scrollTop = layersScrollAnchor.top;
+      layersScrollAnchor = null;
     };
+
+    const resizeLayersPanel = (startHeight, deltaY) => {
+      const minimumHeight = Math.min(startHeight, els.bioLegendHeading.getBoundingClientRect().height + 16);
+      els.bioLegend.style.height = `${Math.max(minimumHeight, startHeight + Math.min(0, deltaY))}px`;
+      followLayersPanelHeight();
+    };
+    const finishContentPull = (cancelled = false) => {
+      const pull = contentPull;
+      contentPull = null;
+      if (!pull?.dragging) return;
+      suppressContentClickUntil = performance.now() + 350;
+      const draggedHeight = els.bioLegend.getBoundingClientRect().height;
+      if (!cancelled && pull.distance >= 68) {
+        els.bioLegend.classList.remove('mobile-layers-panel-dragging');
+        cancelLegendAutoCollapse();
+        setLegendCollapsed(true, { startingHeightOverride:draggedHeight, clearInlineHeight:true });
+        layersScrollAnchor = null;
+      } else {
+        resetLayersPanelDrag();
+        scheduleLegendAutoCollapse();
+      }
+    };
+    els.bioLegendLayers.addEventListener('touchstart', event => {
+      finishContentPull(true);
+      if (!compactLayersPanelQuery.matches || legendCollapsed || event.touches.length !== 1) return;
+      const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+      if (!target || target.closest('input, select, textarea') || isMobileMapSheetChartTarget(target)) return;
+      const touch = event.touches[0];
+      contentPull = { id:touch.identifier, x:touch.clientX, y:touch.clientY, lastY:touch.clientY, target, axis:null, dragging:false, distance:0 };
+    }, { passive:true });
+    els.bioLegendLayers.addEventListener('touchmove', event => {
+      if (!contentPull) return;
+      if (event.touches.length !== 1 || !compactLayersPanelQuery.matches || legendCollapsed) {
+        finishContentPull(true);
+        return;
+      }
+      const pull = contentPull;
+      const touch = Array.from(event.touches).find(item => item.identifier === pull.id);
+      if (!touch) return;
+      const dx = touch.clientX - pull.x;
+      const dy = touch.clientY - pull.y;
+      if (!pull.axis && Math.hypot(dx, dy) >= 4) pull.axis = Math.abs(dx) > Math.abs(dy) * 1.2 ? 'horizontal' : 'vertical';
+      // Let every nested scroller finish first. Only movement beyond its bottom
+      // contributes to collapse, so a long content swipe cannot dismiss early.
+      let canScrollFurther = false;
+      for (let node = pull.target; node && els.bioLegendLayers.contains(node); node = node.parentElement) {
+        if (/(auto|scroll)/.test(getComputedStyle(node).overflowY) && node.scrollTop + node.clientHeight < node.scrollHeight - 1) {
+          canScrollFurther = true;
+          break;
+        }
+      }
+      if (!pull.dragging && pull.axis === 'vertical' && touch.clientY < pull.lastY && !canScrollFurther) {
+        pull.dragging = true;
+        pull.edgeY = pull.lastY;
+        pull.startHeight = els.bioLegend.getBoundingClientRect().height;
+        if (legendCollapseAnimation) {
+          legendCollapseAnimation.cancel();
+          legendCollapseAnimation = null;
+        }
+        cancelLegendAutoCollapse();
+        closeMobileSheetForLayerPanelInteraction();
+        anchorLayersContent();
+        els.bioLegend.classList.add('mobile-layers-panel-dragging');
+      }
+      if (pull.dragging) {
+        if (event.cancelable) event.preventDefault();
+        pull.distance = Math.max(0, pull.edgeY - touch.clientY);
+        resizeLayersPanel(pull.startHeight, -pull.distance);
+      }
+      pull.lastY = touch.clientY;
+    }, { passive:false });
+    els.bioLegendLayers.addEventListener('touchend', () => finishContentPull(), { passive:true });
+    els.bioLegendLayers.addEventListener('touchcancel', () => finishContentPull(true), { passive:true });
+    els.bioLegendLayers.addEventListener('click', event => {
+      if (performance.now() >= suppressContentClickUntil) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }, { capture:true });
 
     els.bioLegendDragHandle.addEventListener('pointerdown', event => {
       if (!compactLayersPanelQuery.matches || event.button !== 0 || legendCollapsed) return;
@@ -32140,6 +32233,7 @@ function closeShareDialog() {
         startHeight:els.bioLegend.getBoundingClientRect().height,
         moved:false
       };
+      anchorLayersContent();
       els.bioLegend.classList.add('mobile-layers-panel-dragging');
       els.bioLegendDragHandle.setPointerCapture?.(event.pointerId);
     });
@@ -32162,6 +32256,7 @@ function closeShareDialog() {
       );
       const boundedOffset = Math.max(minimumPanelHeight - layersPanelDrag.startHeight, offset);
       els.bioLegend.style.height = `${layersPanelDrag.startHeight + boundedOffset}px`;
+      followLayersPanelHeight();
     });
 
     els.bioLegendDragHandle.addEventListener('pointerup', event => {
@@ -32180,6 +32275,7 @@ function closeShareDialog() {
           startingHeightOverride:draggedHeight,
           clearInlineHeight:true
         });
+        layersScrollAnchor = null;
       } else {
         resetLayersPanelDrag();
       }
