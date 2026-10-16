@@ -8119,6 +8119,7 @@ ZSD·2016–2025</span></span>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
     <script src="js/dive-site-name-localization.js"></script>
+    <script src="js/dive-site-summary-translations.js?v=1"></script>
     <script src="datasets/bathymetry_manifest.js?v=7"></script>
     <script src="datasets/terrain_manifest.js?v=6"></script>
 <script src="datasets/reef_vector_manifest.js?v=78"></script>
@@ -14456,6 +14457,9 @@ ZSD·2016–2025</span></span>
       diveSiteLayer.clearLayers();
       diveSiteMarkerCache.clear();
       scheduleDiveRefresh(0);
+    }
+    if (activeClickPopup?._diveAtlasSiteRecord && activeClickPopup.isOpen()) {
+      hydrateDiveSiteSummaryPopup(activeClickPopup);
     }
   }
 
@@ -27201,6 +27205,8 @@ function closeShareDialog() {
         ? DIVE_SITE_SUMMARIES.profileSnapshotDefaults || {}
         : DIVE_SITE_SUMMARIES.defaults || {}),
       ...rawSummary,
+      description: window.DiveAtlasSummaryTranslations?.translate(currentLang, rawSummary.description)
+        || rawSummary.description,
       sources: Array.isArray(rawSummary.sources)
         ? rawSummary.sources.map(source => {
           if (!Array.isArray(source)) return source;
@@ -27254,16 +27260,25 @@ function closeShareDialog() {
   function hydrateDiveSiteSummaryPopup(popup) {
     const site = popup?._diveAtlasSiteRecord;
     const popupElement = popup?.getElement?.();
-    if (!site || !popupElement || popup._diveAtlasSummaryLoaded || popup._diveAtlasSummaryLoading) return;
+    if (!site || !popupElement || popup._diveAtlasSummaryLoading
+      || (popup._diveAtlasSummaryLoaded && popup._diveAtlasSummaryLanguage === currentLang)) return;
 
     popup._diveAtlasSummaryLoading = true;
-    ensureDiveSiteSummaries().then(() => {
+    const requestedLanguage = currentLang;
+    Promise.all([
+      ensureDiveSiteSummaries(),
+      window.DiveAtlasSummaryTranslations?.ensure(requestedLanguage)
+    ]).then(() => {
       popup._diveAtlasSummaryLoading = false;
       if (!popup.isOpen() || popup.getElement() !== popupElement) return;
+      if (currentLang !== requestedLanguage) {
+        hydrateDiveSiteSummaryPopup(popup);
+        return;
+      }
 
       const summarySlot = popupElement.querySelector('.dive-popup-summary-slot');
       const summary = getPublishedDiveSiteSummary(site);
-      if (summarySlot && summarySlot.dataset.loaded !== 'true') {
+      if (summarySlot) {
         summarySlot.dataset.loaded = 'true';
         if (summary) {
           summarySlot.hidden = false;
@@ -27329,6 +27344,7 @@ function closeShareDialog() {
       if (emptyFooter && !emptyFooter.children.length) emptyFooter.remove();
 
       popup._diveAtlasSummaryLoaded = true;
+      popup._diveAtlasSummaryLanguage = requestedLanguage;
       const popupContent = popupElement.querySelector('.bio-popup');
       if (popupContent) popup.setContent(popupContent);
     }).catch(error => {

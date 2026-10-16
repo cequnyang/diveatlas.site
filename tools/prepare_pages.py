@@ -49,6 +49,10 @@ EXCLUDED_FILES = {
     "reef-survey-evidence-coverage-metadata.json",
 }
 EXCLUDED_PATH_PREFIXES = {
+    # Editable translation dictionaries are build inputs; publish only the
+    # compact locale sidecars consumed by the summary loader.
+    Path("maintenance/summary-translations"),
+    Path("maintenance/build_dive_site_summary_translations.py"),
     Path("data/.build"),
     Path("data/coral-heat-stress"),
     Path("data/reef-condition/seaview"),
