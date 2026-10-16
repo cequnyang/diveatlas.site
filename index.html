@@ -15581,7 +15581,7 @@ ZSD·2016–2025</span></span>
   async function ensureDiveExperienceOutlookMonth(month) {
     const startedAt = performance.now();
     if (!DIVE_EXPERIENCE_OUTLOOK_ENABLED) throw new Error('Dive Experience Outlook is disabled by its feature flag.');
-    diveExperienceOutlookModulePromise ||= import('./js/dive-experience-outlook-map.js').then(() => {
+    diveExperienceOutlookModulePromise ||= import('./js/dive-experience-outlook-map.js?v=7').then(() => {
       diveExperienceOutlookMapApi = window.DiveAtlasDiveExperienceMap;
       if (!diveExperienceOutlookMapApi) throw new Error('The Dive Experience map module did not initialize.');
       diveExperienceOutlookDataStore = diveExperienceOutlookMapApi.createDataStore();
@@ -15623,7 +15623,7 @@ ZSD·2016–2025</span></span>
   async function sampleDiveExperienceOutlook(location, month) {
     const loaded = await ensureDiveExperienceOutlookMonth(month);
     const direct = diveExperienceOutlookMapApi.sampleAt(location, loaded.monthData, loaded.support, loaded.oceanMask, loaded.manifest);
-    return direct || diveExperienceOutlookMapApi.sampleNearestOceanCell(location, loaded.monthData, loaded.support,
+    return direct?.score != null ? direct : diveExperienceOutlookMapApi.sampleNearestOceanCell(location, loaded.monthData, loaded.support,
       loaded.oceanMask, loaded.manifest);
   }
   function diveExperienceAvailablePhysicalDimensionCount(result) {
@@ -16585,7 +16585,7 @@ ZSD·2016–2025</span></span>
   }
   async function ensureTideVisualization() {
     if (tideVisualizationLayer) return tideVisualizationLayer;
-    tideTileRendererModulePromise ||= import('./js/tides/tile-render-client.js?v=1');
+    tideTileRendererModulePromise ||= import('./js/tides/tile-render-client.js?v=5');
     const { createTideTileRenderer } = await tideTileRendererModulePromise;
     tideTileRenderer ||= createTideTileRenderer();
     const pane = map.getPane('tidePane');
@@ -16596,9 +16596,9 @@ ZSD·2016–2025</span></span>
       canvas.width = tileSize; canvas.height = tileSize;
       canvas.className = 'tide-surface-tile';
       const generation = tideVisualizationGeneration;
-      // Coarse map pixels cannot show 0.125-degree detail. Reduced samples keep
-      // each tile's work smaller; map-world alignment preserves shared edge samples.
-      const sampleSize = coords.z <= 3 ? 32 : coords.z <= 5 ? 48 : 96;
+      // Match the sample density to the 1-degree overview or 0.125-degree source
+      // grid while keeping worker cost bounded; world alignment preserves seams.
+      const sampleSize = coords.z <= 3 ? 64 : coords.z <= 5 ? 96 : 128;
       const sampleSpacing = tileSize / sampleSize;
       const sampleGutter = 2;
       const timestamp = selectedTideTimestamp();

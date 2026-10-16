@@ -28,7 +28,7 @@ export function createTideTileRenderer() {
   function ensureWorker() {
     if (failed) throw new Error('Tide rendering worker is unavailable.');
     if (worker) return worker;
-    worker = new Worker(new URL('./tile-render-worker.js?v=1', import.meta.url), { type: 'module', name: 'diveatlas-tide-render' });
+    worker = new Worker(new URL('./tile-render-worker.js?v=5', import.meta.url), { type: 'module', name: 'diveatlas-tide-render' });
     worker.addEventListener('message', event => {
       const job = activeJob;
       if (!job || event.data.id !== job.id) return;

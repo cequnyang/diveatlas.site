@@ -1,4 +1,4 @@
-import { createTideVisualizationSampler } from './visualization.js?v=5';
+import { createTideVisualizationSampler } from './visualization.js?v=6';
 
 const SCALE_STOPS = [-2, -1.2, -0.4, 0.4, 1.2, 2];
 const COLOR_BIN_COUNT = 64;
@@ -49,7 +49,9 @@ self.addEventListener('message', async event => {
     }
 
     const sampler = createTideVisualizationSampler(timestamp, { overview });
-    const levels = await sampler.batch(points);
+    const sampled = await sampler.batch(points);
+    const levels = Array.isArray(sampled) ? sampled : sampled.levels;
+    const coverage = Array.isArray(sampled) ? null : sampled.coverage;
     const colors = colorTable(theme);
     const pixels = new Uint8ClampedArray(width * width * 4);
     for (let index = 0; index < levels.length; index += 1) {
@@ -63,7 +65,10 @@ self.addEventListener('message', async event => {
       pixels[target] = colors[source];
       pixels[target + 1] = colors[source + 1];
       pixels[target + 2] = colors[source + 2];
-      pixels[target + 3] = colors[source + 3];
+      // Full-support source pixels keep the established opacity; only newly
+      // interpolated partial-support pixels fade across the added fringe.
+      pixels[target + 3] = Math.round(colors[source + 3] *
+        (coverage && Number.isFinite(coverage[index]) ? Math.max(0, Math.min(1, coverage[index])) : 1));
     }
     self.postMessage({ id, width, pixels: pixels.buffer }, [pixels.buffer]);
   } catch (error) {

@@ -6,6 +6,10 @@
   const CELL_COUNT = 720 * 340;
   const MONTH_BYTES_PER_CELL = 10;
   const SUPPORT_BYTES_PER_CELL = 20;
+  // One 0.5° source-cell spacing is about 56 km at the equator. A 90 km
+  // expansion fills the next cell in cardinal directions; land-mask
+  // connectivity still prevents estimates across land.
+  const MAX_OUTLOOK_EXPANSION_DISTANCE_KM = 90;
   const MONTH_MAGIC = 'DAEO';
   const MASK_MAGIC = 'DAOM';
   const SUPPORT_MAGIC = 'DAES';
@@ -136,10 +140,8 @@
     return Math.max(0, Math.min(1, (0.62 + 0.38 * evidence) * (0.90 + 0.10 * available)));
   }
 
-  // Tile cells store score, evidence, and completeness as bytes with fixed ranges.
-  // Precomputing their final paint values avoids allocating an RGB array and
-  // re-evaluating the same curves for every screen pixel while preserving the
-  // existing interpolation and opacity equations exactly.
+  // Scores and confidence are byte-backed; tables preserve the established
+  // palette/opacity for source cells while keeping the per-pixel renderer lean.
   const TILE_SCORE_RGB = new Uint8Array(101 * 3);
   for (let score = 0; score <= 100; score += 1) {
     const color = interpolateViridis(score);
@@ -252,10 +254,76 @@
     return 6371.0088 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(Math.max(0, 1 - h)));
   }
 
+  function pathHasNoLandBarrier(start, candidate, grid, oceanMask, manifest) {
+    const distanceKm = haversineKm(start, candidate);
+    const steps = Math.max(1, Math.ceil(distanceKm / 3));
+    const originLongitude = ((Number(start.lng) - grid.west) % 360 + 360) % 360 + grid.west;
+    const longitudeDelta = (((Number(candidate.lng) - originLongitude + 540) % 360) + 360) % 360 - 180;
+    let reachedOcean = false;
+    for (let step = 1; step <= steps; step += 1) {
+      const fraction = step / steps;
+      const point = { lat:Number(start.lat) + (Number(candidate.lat) - Number(start.lat)) * fraction,
+        lng:originLongitude + longitudeDelta * fraction };
+      const cell = cellIndexAt(point, grid);
+      if (!cell) return false;
+      const wet = Boolean(oceanMask[cell.index * manifest.oceanMask.samplesPerAxis + cell.subrow] & (1 << cell.subcolumn));
+      if (wet) reachedOcean = true;
+      else if (reachedOcean) return false;
+    }
+    return reachedOcean;
+  }
+
+  function sampleNearbyScoreSurface(latlng, monthData, oceanMask, manifest,
+    maxDistanceKm = MAX_OUTLOOK_EXPANSION_DISTANCE_KM) {
+    const grid = manifest.grid;
+    const longitude = ((Number(latlng.lng) - grid.west) % 360 + 360) % 360 + grid.west;
+    const x = (longitude - grid.west) / grid.step - 0.5;
+    const y = (Number(latlng.lat) - grid.south) / grid.step - 0.5;
+    const column0 = Math.floor(x), row0 = Math.floor(y);
+    const fx = x - column0, fy = y - row0;
+    const nodes = [
+      { row:row0, column:column0, weight:(1 - fx) * (1 - fy) },
+      { row:row0, column:column0 + 1, weight:fx * (1 - fy) },
+      { row:row0 + 1, column:column0, weight:(1 - fx) * fy },
+      { row:row0 + 1, column:column0 + 1, weight:fx * fy }
+    ];
+    const samplesPerAxis = manifest.oceanMask.samplesPerAxis;
+    const centerSubcell = Math.floor(samplesPerAxis / 2);
+    const available = [];
+    let totalWeight = 0;
+    let nearestDistanceKm = Infinity;
+    for (const node of nodes) {
+      if (node.weight <= 1e-9 || node.row < 0 || node.row >= grid.height) continue;
+      const column = ((node.column % grid.width) + grid.width) % grid.width;
+      const cell = node.row * grid.width + column;
+      const centerMask = oceanMask[cell * samplesPerAxis + centerSubcell];
+      if (!(centerMask & (1 << centerSubcell))) continue;
+      const score = monthData.view.getUint8(monthData.scoreOffset + cell);
+      if (score > 100) continue;
+      const sourceLocation = { lat:grid.south + (node.row + 0.5) * grid.step,
+        lng:grid.west + (column + 0.5) * grid.step };
+      const distanceKm = haversineKm(latlng, sourceLocation);
+      if (distanceKm > maxDistanceKm || !pathHasNoLandBarrier(latlng, sourceLocation, grid, oceanMask, manifest)) continue;
+      nearestDistanceKm = Math.min(nearestDistanceKm, distanceKm);
+      const confidenceByte = monthData.view.getUint8(monthData.overallConfidenceOffset + cell);
+      const completeness = monthData.view.getUint8(monthData.completenessOffset + cell);
+      available.push({ score, confidenceByte, completeness, weight:node.weight });
+      totalWeight += node.weight;
+    }
+    if (!(totalWeight > 1e-9)) return null;
+    return {
+      score:available.reduce((sum, node) => sum + node.score * node.weight, 0) / totalWeight,
+      confidenceByte:Math.round(available.reduce((sum, node) => sum + node.confidenceByte * node.weight, 0) / totalWeight),
+      completeness:Math.round(available.reduce((sum, node) => sum + node.completeness * node.weight, 0) / totalWeight),
+      nearestDistanceKm
+    };
+  }
+
   // The bathymetry mask is intentionally conservative at shorelines. If a
   // click misses it, allow a nearby scored ocean cell to represent the point,
   // but never silently move a query farther than this regional-outlook limit.
-  function sampleNearestOceanCell(latlng, monthData, supportData, oceanMask, manifest, maxDistanceKm = 30) {
+  function findNearestScoredOceanPoint(latlng, monthData, oceanMask, manifest,
+    maxDistanceKm = MAX_OUTLOOK_EXPANSION_DISTANCE_KM) {
     const grid = manifest.grid;
     const origin = cellIndexAt(latlng, grid);
     if (!origin || !Number.isFinite(maxDistanceKm) || maxDistanceKm < 0) return null;
@@ -264,49 +332,40 @@
     const longitudeRadius = maxDistanceKm / (111.32 * longitudeScale);
     const rowRadius = Math.ceil(latitudeRadius / grid.step) + 1;
     const columnRadius = Math.ceil(longitudeRadius / grid.step) + 1;
-    const originLongitude = ((Number(latlng.lng) - grid.west) % 360 + 360) % 360 + grid.west;
     let nearest = null;
-    const pathHasNoLandBarrier = candidate => {
-      const distanceKm = haversineKm(latlng, candidate);
-      const steps = Math.max(1, Math.ceil(distanceKm / 3));
-      let reachedOcean = false;
-      for (let step = 1; step <= steps; step += 1) {
-        const fraction = step / steps;
-        const point = { lat:Number(latlng.lat) + (candidate.lat - Number(latlng.lat)) * fraction,
-          lng:originLongitude + ((((candidate.lng - originLongitude + 540) % 360) + 360) % 360 - 180) * fraction };
-        const cell = cellIndexAt(point, grid);
-        if (!cell) return false;
-        const wet = Boolean(oceanMask[cell.index * manifest.oceanMask.samplesPerAxis + cell.subrow] & (1 << cell.subcolumn));
-        if (wet) reachedOcean = true;
-        else if (reachedOcean) return false;
-      }
-      return reachedOcean;
-    };
-
     for (let row = Math.max(0, origin.row - rowRadius); row <= Math.min(grid.height - 1, origin.row + rowRadius); row += 1) {
-      const latitudeNorth = grid.south + (row + 1) * grid.step;
       const latitudeSouth = grid.south + row * grid.step;
       for (let deltaColumn = -columnRadius; deltaColumn <= columnRadius; deltaColumn += 1) {
         const column = ((origin.column + deltaColumn) % grid.width + grid.width) % grid.width;
         const index = row * grid.width + column;
+        // Missing-score cells cannot supply an estimate. Reject them before
+        // visiting mask subcells, especially during whole-world rendering.
+        if (monthData.view.getUint8(monthData.scoreOffset + index) > 100) continue;
         const maskOffset = index * manifest.oceanMask.samplesPerAxis;
         for (let subrow = 0; subrow < manifest.oceanMask.samplesPerAxis; subrow += 1) {
           const latitude = latitudeSouth + ((subrow + 0.5) / manifest.oceanMask.samplesPerAxis) * grid.step;
           for (let subcolumn = 0; subcolumn < manifest.oceanMask.samplesPerAxis; subcolumn += 1) {
             if (!(oceanMask[maskOffset + subrow] & (1 << subcolumn))) continue;
-            const longitude = ((originLongitude + deltaColumn * grid.step + ((subcolumn + 0.5) / manifest.oceanMask.samplesPerAxis) * grid.step - grid.west) % 360 + 360) % 360 + grid.west;
+            const longitude = grid.west + (column + (subcolumn + 0.5) / manifest.oceanMask.samplesPerAxis) * grid.step;
             const candidateLocation = { lat:latitude, lng:longitude };
             const distanceKm = haversineKm(latlng, candidateLocation);
-            if (distanceKm > maxDistanceKm || (nearest && distanceKm >= nearest.nearbyEstimate.distanceKm)) continue;
-            if (!pathHasNoLandBarrier(candidateLocation)) continue;
-            const sample = sampleAt(candidateLocation, monthData, supportData, oceanMask, manifest);
-            if (!sample || sample.score == null) continue;
-            nearest = Object.freeze({ ...sample, nearbyEstimate:Object.freeze({ distanceKm, sourceLocation:Object.freeze(candidateLocation) }) });
+            if (distanceKm > maxDistanceKm || (nearest && distanceKm >= nearest.distanceKm)) continue;
+            if (!pathHasNoLandBarrier(latlng, candidateLocation, grid, oceanMask, manifest)) continue;
+            nearest = { index, distanceKm, sourceLocation:candidateLocation };
           }
         }
       }
     }
     return nearest;
+  }
+
+  function sampleNearestOceanCell(latlng, monthData, supportData, oceanMask, manifest,
+    maxDistanceKm = MAX_OUTLOOK_EXPANSION_DISTANCE_KM) {
+    const nearest = findNearestScoredOceanPoint(latlng, monthData, oceanMask, manifest, maxDistanceKm);
+    if (!nearest) return null;
+    const sample = sampleAt(nearest.sourceLocation, monthData, supportData, oceanMask, manifest);
+    return Object.freeze({ ...sample, nearbyEstimate:Object.freeze({ distanceKm:nearest.distanceKm,
+      sourceLocation:Object.freeze(nearest.sourceLocation) }) });
   }
 
   function scoreLabel(score, thresholds) {
@@ -406,7 +465,8 @@
       sample:async (latlng, month) => {
         const [manifest, mask, support, monthData] = await Promise.all([loadManifest(), loadMask(), loadStaticSupport(), loadMonth(month)]);
         const direct = sampleAt(latlng, monthData, support, mask, manifest);
-        return direct || sampleNearestOceanCell(latlng, monthData, support, mask, manifest);
+        return direct?.score != null ? direct : sampleNearestOceanCell(latlng, monthData, support, mask,
+          manifest, MAX_OUTLOOK_EXPANSION_DISTANCE_KM);
       },
       getCachedMonth:month => months.get(month) || null,
       cachedMonthCount:() => months.size });
@@ -492,6 +552,7 @@
             const startY = coords.y * size.y;
             const grid = manifest.grid;
             const samplesPerAxis = manifest.oceanMask.samplesPerAxis;
+            const expandedSamples = new Map();
             for (let py = 0; py < size.y; py += 1) {
               const pixelY = startY + py + 0.5;
               if (pixelY < 0 || pixelY >= worldPixels) continue;
@@ -506,16 +567,60 @@
                 const cell = row * grid.width + column;
                 const subcolumn = Math.min(samplesPerAxis - 1, Math.floor(((longitude - grid.west) / grid.step - column) * samplesPerAxis));
                 if (!(oceanMask[cell * samplesPerAxis + subrow] & (1 << subcolumn))) continue;
-                const score = monthData.view.getUint8(monthData.scoreOffset + cell);
-                if (score > 100) continue;
-                const evidence = monthData.view.getUint8(monthData.overallConfidenceOffset + cell);
-                const completeness = monthData.view.getUint8(monthData.completenessOffset + cell);
-                const colorOffset = score * 3;
+                let score = monthData.view.getUint8(monthData.scoreOffset + cell);
+                let alpha = TILE_ALPHA[
+                  monthData.view.getUint8(monthData.overallConfidenceOffset + cell) * 101 +
+                  Math.min(100, monthData.view.getUint8(monthData.completenessOffset + cell))
+                ];
+                if (score > 100) {
+                  // Keep source-backed cells unchanged. Missing ocean pixels
+                  // receive a smooth estimate from nearby valid cells without
+                  // changing the existing layer's opacity.
+                  const estimateKey = cell * samplesPerAxis * samplesPerAxis + subrow * samplesPerAxis + subcolumn;
+                  let estimate = expandedSamples.get(estimateKey);
+                  if (estimate === undefined) {
+                    const sampleLocation = {
+                      lat: grid.south + (row + (subrow + 0.5) / samplesPerAxis) * grid.step,
+                      lng: grid.west + (column + (subcolumn + 0.5) / samplesPerAxis) * grid.step
+                    };
+                    estimate = sampleNearbyScoreSurface(sampleLocation, monthData, oceanMask, manifest);
+                    if (!estimate) {
+                      // Raster paint needs only monthly bytes. Full popup
+                      // support data belongs to the click-query path.
+                      const nearest = findNearestScoredOceanPoint(sampleLocation, monthData, oceanMask, manifest);
+                      estimate = nearest ? {
+                        score:monthData.view.getUint8(monthData.scoreOffset + nearest.index),
+                        confidenceByte:monthData.view.getUint8(monthData.overallConfidenceOffset + nearest.index),
+                        completeness:monthData.view.getUint8(monthData.completenessOffset + nearest.index),
+                        nearestDistanceKm:nearest.distanceKm
+                      } : null;
+                    }
+                    expandedSamples.set(estimateKey, estimate);
+                  }
+                  if (!estimate || estimate.score == null) continue;
+                  score = estimate.score;
+                  const confidence = estimate.confidenceByte ??
+                    Math.max(0, Math.min(255, Math.round(estimate.confidenceValue * 255)));
+                  alpha = TILE_ALPHA[confidence * 101 + Math.min(100, estimate.completeness)];
+                  const nearestDistanceKm = estimate.nearestDistanceKm ?? estimate.nearbyEstimate?.distanceKm;
+                  if (Number.isFinite(nearestDistanceKm)) {
+                    const fadeStartKm = grid.step * 111.2 * 0.5;
+                    const fadeRangeKm = Math.max(1, MAX_OUTLOOK_EXPANSION_DISTANCE_KM - fadeStartKm);
+                    const edgeOpacity = Math.max(0, Math.min(1, (MAX_OUTLOOK_EXPANSION_DISTANCE_KM - nearestDistanceKm) / fadeRangeKm));
+                    alpha *= edgeOpacity;
+                  }
+                }
+
+                const lowerScore = Math.floor(score);
+                const upperScore = Math.min(100, lowerScore + 1);
+                const mix = score - lowerScore;
+                const lowerColorOffset = lowerScore * 3;
+                const upperColorOffset = upperScore * 3;
                 const offset = (py * size.x + px) * 4;
-                image.data[offset] = TILE_SCORE_RGB[colorOffset];
-                image.data[offset + 1] = TILE_SCORE_RGB[colorOffset + 1];
-                image.data[offset + 2] = TILE_SCORE_RGB[colorOffset + 2];
-                image.data[offset + 3] = TILE_ALPHA[evidence * 101 + Math.min(100, completeness)];
+                image.data[offset] = Math.round(TILE_SCORE_RGB[lowerColorOffset] * (1 - mix) + TILE_SCORE_RGB[upperColorOffset] * mix);
+                image.data[offset + 1] = Math.round(TILE_SCORE_RGB[lowerColorOffset + 1] * (1 - mix) + TILE_SCORE_RGB[upperColorOffset + 1] * mix);
+                image.data[offset + 2] = Math.round(TILE_SCORE_RGB[lowerColorOffset + 2] * (1 - mix) + TILE_SCORE_RGB[upperColorOffset + 2] * mix);
+                image.data[offset + 3] = Math.round(alpha);
               }
             }
             context.putImageData(image, 0, 0);

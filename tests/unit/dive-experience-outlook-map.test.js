@@ -133,3 +133,48 @@ test('Reversed Viridis hue and balanced opacity are independent dimensions', () 
   assert.equal(outlook.opacityFor(0, 0), 0.558);
   assert.equal(outlook.opacityFor(1, 1), 1);
 });
+
+test('an expanded rating tile renders without popup support data and its extension is queryable', async () => {
+  const { manifest, index, month, support, mask } = makeBuffers();
+  mask.fill(255, 16 + index * 8, 16 + (index + 1) * 8);
+  mask.fill(255, 16 + (index + grid.width) * 8, 16 + (index + grid.width + 1) * 8);
+  // Force the nearest-point fallback: the scored cell's center is masked,
+  // while its other ocean subcells can still supply the added fringe.
+  mask[16 + index * 8 + 4] &= ~(1 << 4);
+  const monthData = outlook.decodeMonth(month, manifest, 10);
+  const oceanMask = outlook.decodeOceanMask(mask, manifest);
+  let painted;
+  const context = {
+    createImageData:(width, height) => ({ data:new Uint8ClampedArray(width * height * 4) }),
+    putImageData:image => { painted = image; }
+  };
+  const canvas = { isConnected:true, getContext:() => context };
+  const root = { document:{ createElement:() => canvas }, setTimeout };
+  const sandbox = { window:root };
+  require('node:vm').runInNewContext(require('node:fs').readFileSync(
+    require.resolve('../../js/dive-experience-outlook-map.js'), 'utf8'), sandbox);
+  const L = { GridLayer:{ extend:methods => class {
+    getTileSize() { return { x:256, y:256 }; }
+    createTile(...args) { return methods.createTile.apply(this, args); }
+  } } };
+  const layer = root.DiveAtlasDiveExperienceMap.createGridLayer({ L,
+    getManifest:() => manifest, getOceanMask:() => oceanMask, getMonthData:() => monthData });
+  await new Promise((resolve, reject) => layer.createTile({ x:256, y:255, z:9 }, error =>
+    error ? reject(error) : resolve()));
+  const pixelAt = (lat, lng) => {
+    const world = 256 * 2 ** 9;
+    const px = Math.floor((lng + 180) / 360 * world) - 256 * 256;
+    const radians = lat * Math.PI / 180;
+    const py = Math.floor((1 - Math.asinh(Math.tan(radians)) / Math.PI) / 2 * world) - 255 * 256;
+    return Array.from(painted.data.slice((py * 256 + px) * 4, (py * 256 + px) * 4 + 4));
+  };
+  const expectedColor = outlook.interpolateViridis(88);
+  assert.deepEqual(pixelAt(0.2, 0.2), [...expectedColor,
+    Math.round(outlook.opacityFor(153 / 255, 72 / 100) * 255)]);
+  assert.ok(pixelAt(0.6, 0.25)[3] > 0, 'the previously missing ocean cell is painted');
+  const sample = outlook.sampleNearestOceanCell({ lat:0.6, lng:0.25 }, monthData,
+    outlook.decodeStaticSupport(support, manifest), oceanMask, manifest);
+  assert.equal(sample.score, 88);
+  assert.ok(sample.nearbyEstimate.distanceKm < 90);
+  assert.ok(sample.nearbyEstimate.sourceLocation.lat < 0.5);
+});

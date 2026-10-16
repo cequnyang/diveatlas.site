@@ -1,5 +1,5 @@
 import { createHarmonicPredictor, createHarmonicRecordPredictor } from './astronomy.js';
-import { resolveTideLevel, resolveTideLevels } from './model-loader.js?v=3';
+import { resolveTideLevel, resolveTideLevels, sampleTideGridWeights } from './model-loader.js?v=4';
 import { tideAssetUrl } from './asset-config.js';
 
 const ROOT = 'eot20-viz-v1/';
@@ -67,23 +67,18 @@ function overviewKeyForLocation(lat, lon) {
 
 function resolveOverviewCoefficientsFromTile(tile, lat, wrappedLon) {
   if (!tile) return null;
-  const x = (wrappedLon - tile.lon0) / tile.step;
-  const y = (lat - tile.lat0) / tile.step;
-  const x0 = Math.floor(x), y0 = Math.floor(y), fx = x - x0, fy = y - y0;
-  if (x0 < 1 || y0 < 1 || x0 + 2 >= tile.columns || y0 + 2 >= tile.rows) return null;
-  for (let row = y0 - 1; row <= y0 + 2; row += 1) for (let column = x0 - 1; column <= x0 + 2; column += 1) {
-    if (tile.data.getUint8((row * tile.columns + column) * RECORD_SIZE) !== 1) return null;
-  }
-  const cells = [[y0, x0, (1 - fx) * (1 - fy)], [y0, x0 + 1, fx * (1 - fy)], [y0 + 1, x0, (1 - fx) * fy], [y0 + 1, x0 + 1, fx * fy]];
+  const sampled = sampleTideGridWeights(tile, lat, wrappedLon,
+    (row, column) => tile.data.getUint8((row * tile.columns + column) * RECORD_SIZE) === 1);
+  if (!sampled) return null;
   const coefficients = Array.from({ length: CONSTITUENT_COUNT }, () => [0, 0]);
-  for (const [row, column, weight] of cells) {
+  for (const { row, column, weight } of sampled.nodes) {
     const offset = (row * tile.columns + column) * RECORD_SIZE;
     for (let index = 0; index < CONSTITUENT_COUNT; index += 1) {
       coefficients[index][0] += tile.data.getFloat32(offset + 1 + index * 8, true) * weight;
       coefficients[index][1] += tile.data.getFloat32(offset + 5 + index * 8, true) * weight;
     }
   }
-  return coefficients;
+  return { coefficients, coverage:sampled.coverage };
 }
 
 async function resolveOverviewCoefficients(lat, lon) {
@@ -100,11 +95,12 @@ export function createTideVisualizationSampler(timestamp, { overview = false } =
   const { coefficients: predict, records: predictRecord } = harmonicPredictors(minuteTimestamp);
   if (overview) {
     const sample = async (lat, lon) => {
-      const coefficients = await resolveOverviewCoefficients(lat, lon);
-      return coefficients ? predict(coefficients) : null;
+      const sampled = await resolveOverviewCoefficients(lat, lon);
+      return sampled ? predict(sampled.coefficients) : null;
     };
     sample.batch = async points => {
       const levels = new Array(points.length).fill(null);
+      const coverage = new Float32Array(points.length);
       const groups = new Map();
       for (let index = 0; index < points.length; index += 1) {
         const point = points[index];
@@ -118,20 +114,22 @@ export function createTideVisualizationSampler(timestamp, { overview = false } =
         const tile = await overviewTile(ty, tx);
         if (!tile) return;
         for (const { index, point, wrappedLon } of entries) {
-          const coefficients = resolveOverviewCoefficientsFromTile(tile, point.lat, wrappedLon);
-          levels[index] = coefficients ? predict(coefficients) : null;
+          const sampled = resolveOverviewCoefficientsFromTile(tile, point.lat, wrappedLon);
+          if (!sampled) continue;
+          levels[index] = predict(sampled.coefficients);
+          coverage[index] = sampled.coverage;
         }
       }));
-      return levels;
+      return { levels, coverage };
     };
     return sample;
   }
   const sample = (lat, lon) => resolveTideLevel(lat, lon, minuteTimestamp, predictRecord);
-  sample.batch = points => resolveTideLevels(points, minuteTimestamp, predictRecord);
+  sample.batch = points => resolveTideLevels(points, minuteTimestamp, predictRecord, { includeCoverage:true });
   return sample;
 }
 
 export async function tideVisualizationLevel(lat, lon, timestamp) {
-  const coefficients = await resolveOverviewCoefficients(lat, lon);
-  return coefficients ? createHarmonicPredictor(timestamp)(coefficients) : null;
+  const sampled = await resolveOverviewCoefficients(lat, lon);
+  return sampled ? createHarmonicPredictor(timestamp)(sampled.coefficients) : null;
 }
