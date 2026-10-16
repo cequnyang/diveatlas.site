@@ -468,7 +468,7 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share preview keeps concise site facts and skips local image uploads', async ({ page }) => {
+test('share preview shortens long site summaries and skips local image uploads', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
   await clickFixture(page, 'long-share-summary');
@@ -525,8 +525,13 @@ test('share preview keeps concise site facts and skips local image uploads', asy
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
-  await dialog.locator('#shareCopyButton').click();
+  const previewCopyButton = dialog.locator('#sharePreviewCopyButton');
+  await expect(previewCopyButton).toHaveCSS('display', 'flex');
+  await page.locator('#sharePreviewFrame').hover({ position:{ x:20, y:20 } });
+  await expect(previewCopyButton).toHaveCSS('opacity', '1');
+  await previewCopyButton.locator('.share-preview-copy-content').click();
   await expect(page.locator('#shareStatus')).toContainText(/copied/i);
+  await expect(previewCopyButton).toContainText(/copied/i);
   expect(previewRequests).toEqual([]);
 });
 
