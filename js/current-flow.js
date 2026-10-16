@@ -121,6 +121,53 @@
       (mobile ? 2_000 : 5_000) * Math.max(0.6, Math.min(1.4, areaScale)) * deviceScale)));
   }
 
+  async function buildViewportVelocityField({ width, height, sampleVelocity, pixelToLatLng,
+    cancelled = () => false, yieldControl = () => new Promise(resolve => setTimeout(resolve, 0)) }) {
+    // This is a display cache, not a new source grid. A few screen pixels per
+    // cell retain coastal detail while bounding memory on large displays.
+    // Nearest-cell lookup deliberately avoids interpolating across invalid cells.
+    const spacing = Math.max(4, Math.ceil(Math.sqrt(width * height / 64_000)));
+    const columns = Math.ceil(width / spacing), rows = Math.ceil(height / spacing);
+    const values = new Float32Array(columns * rows * 2);
+    const valid = new Uint8Array(columns * rows);
+    let validSamples = 0;
+    const velocity = new Float64Array(2);
+    const started = performance.now();
+    let sliceStarted = started;
+    for (let row = 0; row < rows; row += 1) {
+      if (cancelled()) return null;
+      for (let column = 0; column < columns; column += 1) {
+        const latlng = pixelToLatLng(Math.min(width - 0.5, (column + 0.5) * spacing),
+          Math.min(height - 0.5, (row + 0.5) * spacing));
+        const index = row * columns + column;
+        if (latlng.lat < -79.5 || latlng.lat > 84.5 || !sampleVelocity(latlng.lat, latlng.lng, velocity)) continue;
+        values[index * 2] = velocity[0];
+        values[index * 2 + 1] = velocity[1];
+        valid[index] = 1;
+        validSamples += 1;
+      }
+      // Yield during coast checks so panning and slice changes can cancel an
+      // obsolete build instead of blocking the UI until the whole field is ready.
+      if (performance.now() - sliceStarted >= 6) {
+        await yieldControl();
+        sliceStarted = performance.now();
+      }
+    }
+    if (cancelled()) return null;
+    return Object.freeze({
+      samples: valid.length, validSamples, bytes: values.byteLength + valid.byteLength,
+      buildMs: performance.now() - started,
+      sample(x, y, output) {
+        if (!(x >= 0 && x < width && y >= 0 && y < height)) return false;
+        const index = Math.floor(y / spacing) * columns + Math.floor(x / spacing);
+        if (!valid[index]) return false;
+        output[0] = values[index * 2];
+        output[1] = values[index * 2 + 1];
+        return true;
+      }
+    });
+  }
+
   function createRenderer({ L, map, baseUrl = 'tests/fixtures/regional-currents-flow', sampleVelocity = null, onDiagnostics = () => {} }) {
     if (!L || !map) throw new TypeError('Leaflet and map are required for the current flow renderer');
     const resolutions = new Set(['0.083', '0.25', '0.5']);
@@ -129,6 +176,9 @@
     let canvas = null;
     let context = null;
     let field = null;
+    let viewportField = null;
+    let displayView = null;
+    let viewportFieldGeneration = 0;
     let active = false;
     let rafId = 0;
     let generation = 0;
@@ -167,6 +217,9 @@
       onDiagnostics({
         status, resolution: selectedResolution, particleCount: particles?.longitudes.length || 0,
         loadedBytes: field?._compressedBytes || 0, cacheEntries: field ? 1 : 0,
+        viewportFieldSamples: viewportField?.samples || 0,
+        viewportFieldBytes: viewportField?.bytes || 0,
+        viewportFieldBuildMs: viewportField?.buildMs ?? null,
         fps: framesInWindow, meanFrameMs: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : null,
         p99FrameMs: sorted.length ? sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.99))] : null,
         worstFrameMs: sorted.length ? sorted[sorted.length - 1] : null,
@@ -177,15 +230,15 @@
         downloadMs: field?._downloadMs ?? null,
         decompressionMs: field?._decompressionMs ?? null,
         renderCpuPercent: null,
-        rafEligible: Boolean(active && (field || usesSharedTiles) && !document.hidden && inViewport &&
-          !reducedMotion.matches && particles && !mapGestureActive),
+        rafEligible: Boolean(active && (field || viewportField) && !document.hidden && inViewport &&
+          !reducedMotion.matches && particles && (!mapGestureActive || viewportField)),
         inViewport,
         reducedMotion: reducedMotion.matches,
         rafPending: Boolean(rafId),
         contextReady: Boolean(context),
         mapGestureActive,
         pauseReason: document.hidden ? 'hidden' : !inViewport ? 'outside-viewport' : reducedMotion.matches ? 'reduced-motion'
-          : mapGestureActive ? 'map-gesture' : !particles ? 'no-particles' : null,
+          : mapGestureActive && !viewportField ? 'map-gesture' : !particles ? 'no-particles' : null,
         elapsedMs: activatedAt ? now - activatedAt : 0,
         ...extras
       });
@@ -195,8 +248,19 @@
       if (context && canvas) context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    function syncCanvasPosition() {
+    function syncCanvasPosition(event) {
       if (!canvas || !map.getPane?.('currentFlowPane') || canvas.parentElement !== map.getPane('currentFlowPane')) return;
+      if (usesSharedTiles && displayView) {
+        const zoom = event?.zoom ?? map.getZoom();
+        const position = event?.center
+          ? map.project(displayView.origin, zoom).subtract(map.project(event.center, zoom))
+            .add(map.getSize().divideBy(2)).add(map.containerPointToLayerPoint([0, 0]))
+          : map.latLngToLayerPoint(displayView.origin);
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        L.DomUtil.setTransform(canvas, position, map.getZoomScale(zoom, displayView.zoom));
+        return;
+      }
       // A pane child inherits Leaflet's map transform. Offset it back to the map
       // container origin so its existing container-pixel particle coordinates stay valid.
       const layerOrigin = map.containerPointToLayerPoint([0, 0]);
@@ -204,17 +268,26 @@
       canvas.style.top = `${layerOrigin.y}px`;
     }
 
+    function displayPoint(latitude, longitude) {
+      return usesSharedTiles && displayView
+        ? map.project([latitude, longitude], displayView.zoom).subtract(displayView.pixelOrigin)
+        : map.latLngToContainerPoint([latitude, longitude]);
+    }
+
     function clearOverlayFootprints() {
       if (!context || !canvas) return;
       const containerRect = map.getContainer().getBoundingClientRect();
+      const origin = usesSharedTiles && displayView ? map.latLngToContainerPoint(displayView.origin) : L.point(0, 0);
+      const scale = usesSharedTiles && displayView ? map.getZoomScale(map.getZoom(), displayView.zoom) : 1;
+      const size = usesSharedTiles && displayView ? displayView.size : viewportSize();
       for (const overlay of map.getContainer().querySelectorAll('.leaflet-popup, .leaflet-tooltip')) {
         if (!overlay.getClientRects().length || getComputedStyle(overlay).visibility === 'hidden') continue;
         const overlayRect = overlay.getBoundingClientRect();
         // Include the popup tip, tooltip arrow, and soft edges around each box.
-        const left = Math.max(0, overlayRect.left - containerRect.left - 8);
-        const top = Math.max(0, overlayRect.top - containerRect.top - 8);
-        const right = Math.min(containerRect.width, overlayRect.right - containerRect.left + 8);
-        const bottom = Math.min(containerRect.height, overlayRect.bottom - containerRect.top + 8);
+        const left = Math.max(0, (overlayRect.left - containerRect.left - origin.x - 8) / scale);
+        const top = Math.max(0, (overlayRect.top - containerRect.top - origin.y - 8) / scale);
+        const right = Math.min(size.x, (overlayRect.right - containerRect.left - origin.x + 8) / scale);
+        const bottom = Math.min(size.y, (overlayRect.bottom - containerRect.top - origin.y + 8) / scale);
         if (right > left && bottom > top) context.clearRect(left, top, right - left, bottom - top);
       }
     }
@@ -230,7 +303,8 @@
       context?.setTransform(ratio, 0, 0, ratio, 0, 0);
       syncCanvasPosition();
       clearTrails();
-      rebuildCandidates(true);
+      if (usesSharedTiles) void rebuildViewportField();
+      else rebuildCandidates(true);
     }
 
     function ensureCanvas() {
@@ -255,9 +329,9 @@
         container.appendChild(pane);
       }
       canvas = document.createElement('canvas');
-      canvas.className = 'regional-current-flow-canvas';
+      canvas.className = 'regional-current-flow-canvas leaflet-zoom-animated';
       canvas.setAttribute('aria-hidden', 'true');
-      Object.assign(canvas.style, { position: 'absolute', left: '0', top: '0', pointerEvents: 'none' });
+      Object.assign(canvas.style, { position: 'absolute', left: '0', top: '0', pointerEvents: 'none', transformOrigin: '0 0' });
       pane.appendChild(canvas);
       context = canvas.getContext('2d', { alpha: true });
       resizeCanvas();
@@ -272,6 +346,7 @@
       intersectObserver?.observe(map.getContainer());
       map.on('moveend zoomend resize', handleMapViewChange);
       map.on('movestart zoomstart', startMapGesture);
+      map.on('move zoomanim', syncCanvasPosition);
       document.addEventListener('visibilitychange', handleVisibilityChange);
       reducedMotion.addEventListener?.('change', handleReducedMotionChange);
     }
@@ -282,12 +357,16 @@
       intersectObserver?.disconnect(); intersectObserver = null;
       map.off('moveend zoomend resize', handleMapViewChange);
       map.off('movestart zoomstart', startMapGesture);
+      map.off('move zoomanim', syncCanvasPosition);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       reducedMotion.removeEventListener?.('change', handleReducedMotionChange);
       canvas?.remove();
       canvas = null; context = null;
       particles = null; candidates = [];
       field = null;
+      viewportField = null;
+      displayView = null;
+      viewportFieldGeneration += 1;
     }
 
     function pauseFrame() {
@@ -308,23 +387,83 @@
 
     function startMapGesture() {
       mapGestureActive = true;
-      pauseFrame();
-      clearTrails();
+      viewportFieldGeneration += 1;
+      // Keep the old field in its original geographic frame while its canvas
+      // follows Leaflet's pan/zoom transform. Clearing here caused the visible
+      // disappearance during gestures and every subsequent cache rebuild.
+      if (!viewportField) pauseFrame();
     }
 
     function handleMapViewChange() {
       mapGestureActive = false;
       syncCanvasPosition();
+      if (usesSharedTiles) void rebuildViewportField();
+      else { clearTrails(); rebuildCandidates(true); scheduleFrame(); }
+    }
+
+    async function rebuildViewportField() {
+      if (!active || !usesSharedTiles || !canvas || mapGestureActive) return false;
+      const version = ++viewportFieldGeneration;
+      if (!viewportField) pauseFrame();
+      diagnostics('building-current-field');
+      const size = viewportSize();
+      const nextView = {
+        zoom: map.getZoom(), size: { x: size.x, y: size.y },
+        origin: map.containerPointToLatLng([0, 0])
+      };
+      nextView.pixelOrigin = map.project(nextView.origin, nextView.zoom);
+      let next;
+      try {
+        next = await buildViewportVelocityField({
+          width: size.x, height: size.y, sampleVelocity,
+          pixelToLatLng: (x, y) => map.unproject(L.point(x, y).add(nextView.pixelOrigin), nextView.zoom),
+          cancelled: () => !active || version !== viewportFieldGeneration
+        });
+      } catch (error) {
+        if (active && version === viewportFieldGeneration) {
+          unavailableReason = String(error);
+          diagnostics('error', { error: String(error) });
+        }
+        return false;
+      }
+      if (!next || version !== viewportFieldGeneration) return false;
+      if (!next.validSamples && viewportField) return false;
+      const oldView = displayView;
+      let previousFrame = null;
+      if (viewportField && oldView) {
+        previousFrame = document.createElement('canvas');
+        previousFrame.width = canvas.width;
+        previousFrame.height = canvas.height;
+        previousFrame.getContext('2d').drawImage(canvas, 0, 0);
+      }
+      viewportField = next;
+      displayView = nextView;
+      syncCanvasPosition();
       clearTrails();
+      // Reproject the existing trails into the new canvas frame for the swap;
+      // otherwise clearing here still creates a flash after every gesture.
+      if (previousFrame) {
+        const offset = map.project(oldView.origin, nextView.zoom).subtract(nextView.pixelOrigin);
+        const scale = map.getZoomScale(nextView.zoom, oldView.zoom);
+        context.drawImage(previousFrame, offset.x, offset.y, oldView.size.x * scale, oldView.size.y * scale);
+      }
+      lastFpsWindow = 0;
+      framesInWindow = 0;
+      frameIntervals = [];
+      drawDuration = 0;
       rebuildCandidates(true);
-      scheduleFrame();
+      if (!particles && candidates.length) seedParticles(selectedCount == null ? defaultParticleCount() : selectedCount);
+      diagnostics(candidates.length ? 'tiles-ready' : 'waiting-for-current-tiles', { candidateCount: candidates.length });
+      if (candidates.length) scheduleFrame();
+      return candidates.length > 0;
     }
 
     function rebuildCandidates(reseed = false) {
       if ((!field && !usesSharedTiles) || !canvas) return;
-      const size = viewportSize();
+      const size = usesSharedTiles && displayView ? displayView.size : viewportSize();
       const next = [];
       if (usesSharedTiles) {
+        if (!viewportField) return;
         const currentZoom = map.getZoom();
         const target = selectedCount == null ? defaultParticleCount() : selectedCount;
         // A bounded jittered screen grid keeps startup work tied to viewport area. Random
@@ -334,8 +473,8 @@
           for (let x = spacing / 2; x < size.x; x += spacing) {
             const point = L.point(x + (Math.random() - 0.5) * spacing * 0.8,
               y + (Math.random() - 0.5) * spacing * 0.8);
-            const latlng = map.containerPointToLatLng(point);
-            if (latlng.lat < -79.5 || latlng.lat > 84.5 || !sampleVelocity(latlng.lat, latlng.lng, sampledVelocity)) continue;
+            const latlng = map.unproject(point.add(displayView.pixelOrigin), displayView.zoom);
+            if (!viewportField.sample(point.x, point.y, sampledVelocity)) continue;
             if (sampledVelocity[0] * sampledVelocity[0] + sampledVelocity[1] * sampledVelocity[1] < 0.000025) continue;
             // Keep Leaflet's unwrapped longitude so a wide viewport can seed
             // particles in each horizontally repeated world copy.
@@ -388,7 +527,7 @@
         longitudes[index] = candidate.longitude + (Math.random() * 2 - 1) * candidate.halfLongitude;
         latitudes[index] = candidate.latitude + (Math.random() * 2 - 1) * candidate.halfLatitude;
         ages[index] = Math.random() * maxAgeSeconds;
-        const point = map.latLngToContainerPoint([latitudes[index], longitudes[index]]);
+        const point = displayPoint(latitudes[index], longitudes[index]);
         previousX[index] = point.x;
         previousY[index] = point.y;
       }
@@ -425,7 +564,7 @@
     }
 
     function scheduleFrame() {
-      if (!active || (!field && !usesSharedTiles) || rafId || document.hidden || !inViewport || reducedMotion.matches || !particles) return;
+      if (!active || (!field && !viewportField) || rafId || document.hidden || !inViewport || reducedMotion.matches || !particles) return;
       rafId = requestAnimationFrame(drawFrame);
     }
 
@@ -434,8 +573,9 @@
       if (usesSharedTiles && !candidate) {
         const size = viewportSize();
         for (let attempt = 0; attempt < 40; attempt += 1) {
-          const latlng = map.containerPointToLatLng(L.point(Math.random() * size.x, Math.random() * size.y));
-          if (latlng.lat < -79.5 || latlng.lat > 84.5 || !sampleVelocity(latlng.lat, latlng.lng, sampledVelocity) ||
+          const point = L.point(Math.random() * size.x, Math.random() * size.y);
+          const latlng = map.containerPointToLatLng(point);
+          if (!viewportField?.sample(point.x, point.y, sampledVelocity) ||
               Math.hypot(sampledVelocity[0], sampledVelocity[1]) < 0.005) continue;
           candidate = { latitude: latlng.lat, longitude: latlng.lng, halfLatitude: 0, halfLongitude: 0 };
           break;
@@ -446,7 +586,7 @@
       particles.longitudes[index] = candidate.longitude + (Math.random() * 2 - 1) * candidate.halfLongitude;
       particles.latitudes[index] = candidate.latitude + (Math.random() * 2 - 1) * candidate.halfLatitude;
       particles.ages[index] = 0;
-      const point = map.latLngToContainerPoint([particles.latitudes[index], particles.longitudes[index]]);
+      const point = displayPoint(particles.latitudes[index], particles.longitudes[index]);
       particles.previousX[index] = point.x;
       particles.previousY[index] = point.y;
       return true;
@@ -454,10 +594,10 @@
 
     function drawFrame(timestamp) {
       rafId = 0;
-      if (!active || (!field && !usesSharedTiles) || !context || document.hidden || !inViewport || reducedMotion.matches || mapGestureActive) {
+      if (!active || (!field && !usesSharedTiles) || !context || document.hidden || !inViewport || reducedMotion.matches || (mapGestureActive && !viewportField)) {
         return;
       }
-      const size = viewportSize();
+      const size = usesSharedTiles && displayView ? displayView.size : viewportSize();
       const actualFrameIntervalMs = lastFrame ? Math.max(0, timestamp - lastFrame) : 16;
       const deltaSeconds = Math.min(0.05, actualFrameIntervalMs / 1000);
       lastFrame = timestamp;
@@ -474,7 +614,7 @@
       context.lineCap = 'round';
       let drawn = 0;
       const bounds = usesSharedTiles ? null : fieldBounds(field);
-      const zoom = map.getZoom();
+      const zoom = usesSharedTiles && displayView ? displayView.zoom : map.getZoom();
       const zoomCompensation = 2 ** (7 - zoom);
       const pixelsPerProjectedMeter = TILE_SIZE_PX * 2 ** zoom / (2 * Math.PI * EARTH_RADIUS_M);
       for (let index = 0; index < particles.longitudes.length; index += 1) {
@@ -483,7 +623,7 @@
         if (particles.ages[index] >= maxAgeSeconds) { respawn(index); continue; }
         let u; let v; let speed; let nextLongitude; let nextLatitude;
         if (usesSharedTiles) {
-          if (!sampleVelocity(previousLatitude, previousLongitude, sampledVelocity)) { respawn(index); continue; }
+          if (!viewportField?.sample(particles.previousX[index], particles.previousY[index], sampledVelocity)) { respawn(index); continue; }
           u = sampledVelocity[0]; v = sampledVelocity[1]; speed = Math.hypot(u, v);
           if (speed < 0.005 || Math.abs(previousLatitude) >= 89.5) { respawn(index); continue; }
           const seconds = deltaSeconds * baseVisualTimeScale * zoomCompensation;
@@ -555,13 +695,8 @@
       ensureCanvas();
       if (usesSharedTiles) {
         unavailableReason = null;
-        rebuildCandidates(false);
-        const automaticCount = defaultParticleCount();
-        seedParticles(selectedCount == null ? automaticCount : selectedCount);
         firstFrameMs = null;
-        diagnostics('waiting-for-current-tiles');
-        scheduleFrame();
-        return Promise.resolve(true);
+        return rebuildViewportField();
       }
       if (Number(month) !== 9 || !['0', 'surface'].includes(String(depth))) {
         unavailableReason = 'This experiment contains September surface data only.';
@@ -590,7 +725,7 @@
 
     function setParticleCount(count) {
       selectedCount = count == null ? null : Math.max(0, Math.floor(Number(count) || 0));
-      if (field && active) {
+      if ((field || viewportField) && active) {
         const effectiveCount = selectedCount == null ? defaultParticleCount() : selectedCount;
         rebuildCandidates(false);
         seedParticles(effectiveCount);
@@ -606,6 +741,10 @@
     function selectSlice(month, depth) {
       if (!active) return Promise.resolve(false);
       if (usesSharedTiles) {
+        viewportFieldGeneration += 1;
+        viewportField = null;
+        pauseFrame();
+        clearTrails();
         diagnostics('waiting-for-current-tiles', { month: Number(month), depth: String(depth) });
         return Promise.resolve(true);
       }
@@ -631,16 +770,8 @@
 
     function refreshData() {
       if (!active || !usesSharedTiles) return false;
-      rebuildCandidates(true);
-      if (!particles && candidates.length) {
-        const count = selectedCount == null ? defaultParticleCount() : selectedCount;
-        seedParticles(count);
-      }
-      if (particles && candidates.length) {
-        diagnostics('tiles-ready', { candidateCount: candidates.length });
-        scheduleFrame();
-      } else diagnostics('waiting-for-current-tiles', { candidateCount: candidates.length });
-      return candidates.length > 0;
+      void rebuildViewportField();
+      return true;
     }
 
     return Object.freeze({ activate, deactivate, setResolution, setParticleCount, selectSlice, refreshData, clearOverlayFootprints,
@@ -650,5 +781,5 @@
   }
 
   return Object.freeze({ decodeField, bilinearVelocity, geographicDisplacement, advanceParticle, fieldBounds,
-    adaptiveParticleCount, createRenderer, FIELD_HEADER_BYTES, MISSING_VALUE, EARTH_RADIUS_M });
+    adaptiveParticleCount, buildViewportVelocityField, createRenderer, FIELD_HEADER_BYTES, MISSING_VALUE, EARTH_RADIUS_M });
 });

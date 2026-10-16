@@ -9677,7 +9677,7 @@ ZSD·2016–2025</span></span>
       regionalCurrentsModulePromise ||= (async () => {
         await import('./js/current-math.js');
         await import('./js/current-tile-cache.js');
-        await import('./js/regional-currents.js');
+        await import('./js/regional-currents.js?v=3');
         return window.DiveAtlasRegionalCurrents;
       })();
       const api = await regionalCurrentsModulePromise;
@@ -15564,7 +15564,7 @@ ZSD·2016–2025</span></span>
       import('./js/current-math.js'),
       import('./js/current-tile-cache.js'),
       import('./js/waves-view.js')
-    ]).then(() => import('./js/regional-currents.js'));
+    ]).then(() => import('./js/regional-currents.js?v=3'));
     await diveConditionsModulePromise;
     if (!diveConditionsService) {
       const model = window.DiveAtlasConditionsModel;
@@ -18713,30 +18713,42 @@ ZSD·2016–2025</span></span>
     };
   }
 
+  function sampleRegionalCurrentDisplayVelocity(latitude, longitude, output,
+    oceanPath = regionalCurrentSpeedTintLayer?.isOceanPath) {
+    if (regionalCurrentsView?.sampleVelocity(latitude, longitude, output)) return true;
+    // Flow and static arrows must use the same coastal expansion as the tint
+    // and click query. Requiring four source corners leaves whole grid cells
+    // blank around islands even when some corners contain valid currents.
+    return Boolean(oceanPath && regionalCurrentsView?.sampleVelocity(latitude, longitude, output, oceanPath));
+  }
+
   async function ensureRegionalCurrentFlowRenderer() {
-    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js').then(() => window.DiveAtlasCurrentFlow);
+    await ensureRegionalCurrentSpeedTintLayer();
+    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js?v=3').then(() => window.DiveAtlasCurrentFlow);
     const api = await regionalCurrentFlowModulePromise;
     if (!regionalCurrentFlowRenderer) {
       regionalCurrentFlowRenderer = api.createRenderer({
         L, map,
         ...(DIVEATLAS_INTERACTION_TEST_MODE && CURRENT_FLOW_EXPERIMENT_ENABLED
           ? { baseUrl: 'tests/fixtures/regional-currents-flow' }
-          : { sampleVelocity: (latitude, longitude, output) =>
-            regionalCurrentsView?.sampleVelocity(latitude, longitude, output) || false }),
+          : { sampleVelocity: sampleRegionalCurrentDisplayVelocity }),
         onDiagnostics: setRegionalCurrentFlowDiagnostics
       });
+      // A current field built before the coast mask is ready must be rebuilt
+      // when the mask arrives, including when Speed tint is switched off.
+      bathymetryLayer.on('load', () => regionalCurrentFlowRenderer?.refreshData());
     }
     return regionalCurrentFlowRenderer;
   }
 
   async function ensureRegionalCurrentVectorsLayer() {
+    await ensureRegionalCurrentSpeedTintLayer();
     regionalCurrentVectorsModulePromise ||= import('./js/current-vectors.js').then(() => window.DiveAtlasCurrentVectors);
     const api = await regionalCurrentVectorsModulePromise;
     if (!regionalCurrentVectorsLayer) {
       regionalCurrentVectorsLayer = api.createLayer({
         map,
-        sampleVelocity: (latitude, longitude, output) =>
-          regionalCurrentsView?.sampleVelocity(latitude, longitude, output) || false
+        sampleVelocity: sampleRegionalCurrentDisplayVelocity
       });
     }
     return regionalCurrentVectorsLayer;
@@ -18754,7 +18766,7 @@ ZSD·2016–2025</span></span>
   }
 
   async function ensureRegionalCurrentSpeedTintLayer() {
-    regionalCurrentSpeedTintModulePromise ||= import('./js/current-speed-tint.js').then(() => window.DiveAtlasCurrentSpeedTint);
+    regionalCurrentSpeedTintModulePromise ||= import('./js/current-speed-tint.js?v=9').then(() => window.DiveAtlasCurrentSpeedTint);
     const api = await regionalCurrentSpeedTintModulePromise;
     if (!regionalCurrentSpeedTintLayer) {
       const bathymetryMaskPixels = new WeakMap();
@@ -18780,7 +18792,9 @@ ZSD·2016–2025</span></span>
         const canvas = preferredCanvas ||
           bathymetryLayer._tiles?.[keyForX(tileX)]?.el ||
           bathymetryLayer._tiles?.[keyForX(wrappedTileX)]?.el;
-        if (!canvas?.classList.contains('leaflet-tile-loaded')) return null;
+        // Atlas crops are ready when their image promise resolves and never
+        // enter Leaflet's tile lifecycle. Only map-owned tiles need its marker.
+        if (!canvas || (!preferredCanvas && !canvas.classList.contains('leaflet-tile-loaded'))) return null;
         let alpha = bathymetryMaskPixels.get(canvas);
         if (!alpha) {
           const rgba = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
@@ -18846,8 +18860,9 @@ ZSD·2016–2025</span></span>
 
       regionalCurrentSpeedTintLayer = api.createLayer({
         L,
-        sampleVelocity: (latitude, longitude, output, maskAware) =>
-          regionalCurrentsView?.sampleVelocity(latitude, longitude, output, maskAware) || false,
+        zoom:() => map.getZoom(),
+        sampleVelocity: (latitude, longitude, output, oceanPath) =>
+          regionalCurrentsView?.sampleVelocity(latitude, longitude, output, oceanPath) || false,
         sampleOceanMask: bathymetryOceanCoverage,
         getOceanMaskTile: bathymetryMaskTileForTint
       });
@@ -18884,7 +18899,6 @@ ZSD·2016–2025</span></span>
       resolution: regionalCurrentFlowResolution,
       particleCount: regionalCurrentFlowParticleCount
     });
-    renderer.refreshData();
     return activated;
   }
 
@@ -19159,7 +19173,7 @@ ZSD·2016–2025</span></span>
       regionalCurrentsModulePromise ||= (async () => {
         await import('./js/current-math.js');
         await import('./js/current-tile-cache.js');
-        await import('./js/regional-currents.js');
+        await import('./js/regional-currents.js?v=3');
         return window.DiveAtlasRegionalCurrents;
       })();
       const api = await regionalCurrentsModulePromise;
@@ -19170,7 +19184,10 @@ ZSD·2016–2025</span></span>
           onStatus: status => {
             if (!layerVisibility.currents) return;
             setRegionalCurrentsStatus(status.state);
-            regionalCurrentSpeedTintLayer?.redraw();
+            // Retain the displayed tint while tiles load. Repainting on both
+            // loading and ready duplicated coastal sampling for the whole view.
+            if (status.state === 'loading') regionalCurrentSpeedTintLayer?.pauseForData();
+            else if (['ready', 'partial', 'unavailable', 'zoom'].includes(status.state)) regionalCurrentSpeedTintLayer?.redraw();
             regionalCurrentVectorsLayer?.redraw();
             if (['ready', 'partial'].includes(status.state)) {
               regionalCurrentFlowRenderer?.refreshData();
@@ -28805,7 +28822,7 @@ function closeShareDialog() {
       activate: activateRegionalCurrentFlow,
       sampleVelocity: (latitude, longitude) => {
         const output = new Float64Array(2);
-        const sampled = regionalCurrentsView?.sampleVelocity(latitude, longitude, output) || false;
+        const sampled = sampleRegionalCurrentDisplayVelocity(latitude, longitude, output);
         return sampled ? { u: output[0], v: output[1] } : null;
       },
       setSpeedTintEnabled: setRegionalCurrentSpeedTintEnabled,
@@ -30056,7 +30073,7 @@ function closeShareDialog() {
     // zoom cancels the first click before it can open a popup.
     if (environmentalViewController.activeView === 'currents') {
       setMapLocationFeedback('checking');
-      if (regionalCurrentsView?.inspectAt(latlng)) return 'currents-query';
+      if (regionalCurrentsView?.inspectAt(latlng, regionalCurrentSpeedTintLayer?.isOceanPath)) return 'currents-query';
       setMapLocationFeedback('noData');
       return 'currents-query';
     }

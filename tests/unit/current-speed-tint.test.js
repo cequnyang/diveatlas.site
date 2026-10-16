@@ -1,6 +1,29 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { SPEED_STOPS, colorAtSpeed, opacityForZoom, renderTintPixels, tileSampleCoordinates } = require('../../js/current-speed-tint.js');
+const { SPEED_STOPS, colorAtSpeed, opacityForZoom, renderTintPixels, createTintPixelRenderer, tileSampleCoordinates } = require('../../js/current-speed-tint.js');
+
+test('incremental tint preserves pixels across work batches and row boundaries', () => {
+  let samples = 0;
+  const renderer = createTintPixelRenderer({
+    width: 7, height: 3,
+    latitudeAt: y => -y, longitudeAt: x => x,
+    sampleOceanMask: (_lat, lng) => lng === 3 ? 0 : 1,
+    sampleVelocity: (_lat, _lng, output) => {
+      samples += 1; output[0] = 0.3; output[1] = 0.4; return true;
+    }
+  });
+  assert.equal(renderer.renderNext(8), false);
+  assert.equal(renderer.renderNext(8), false);
+  assert.equal(renderer.renderNext(8), true);
+  assert.equal(samples, 18, 'each ocean pixel is sampled once');
+  const color = colorAtSpeed(0.5);
+  for (let pixel = 0; pixel < 21; pixel += 1) {
+    assert.deepEqual([...renderer.pixels.slice(pixel * 4, pixel * 4 + 4)], pixel % 7 === 3
+      ? [0, 0, 0, 0] : [color.red, color.green, color.blue, Math.round(color.alpha * 255)]);
+  }
+  assert.equal(renderer.renderNext(8), true);
+  assert.equal(samples, 18, 'completed work cannot sample pixels again');
+});
 
 test('speed tint interpolates a quiet marine palette across the documented stops', () => {
   assert.deepEqual(SPEED_STOPS.map(stop => stop.speed), [0, 0.2, 0.5, 1, 1.5]);
@@ -39,6 +62,25 @@ test('tint derives magnitude from sampled u/v and leaves missing samples transpa
   assert.deepEqual([...pixels.slice(0, 4)], [halfMeterPerSecond.red, halfMeterPerSecond.green,
     halfMeterPerSecond.blue, Math.round(halfMeterPerSecond.alpha * 255)]);
   assert.deepEqual([...pixels.slice(4, 8)], [0, 0, 0, 0]);
+});
+
+test('expanded current samples keep the same speed-tint opacity as source samples', () => {
+  const pixels = renderTintPixels({
+    width:1,
+    height:1,
+    latitudeAt:() => -5,
+    longitudeAt:() => 1,
+    sampleOceanMask:() => 1,
+    sampleVelocity:(_latitude, _longitude, output, maskAware) => {
+      if (!maskAware) return false;
+      output[0] = 0.3;
+      output[1] = 0.4;
+      output[2] = 0.05;
+      return true;
+    }
+  });
+  const expected = colorAtSpeed(0.5);
+  assert.deepEqual([...pixels], [expected.red, expected.green, expected.blue, Math.round(expected.alpha * 255)]);
 });
 
 test('GEBCO ocean coverage keeps land clear and gives coastline pixels fractional alpha', () => {

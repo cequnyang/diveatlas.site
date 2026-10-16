@@ -53,6 +53,89 @@ test('query-only current sampling uses the finest shipped tile and preserves mas
   assert.equal(await maskedView.sample(90, -180, 9, '10'), null);
 });
 
+test('current rendering and map inspection can reuse a nearby loaded ocean value', async t => {
+  const originalRequestAnimationFrame = global.requestAnimationFrame;
+  const originalCancelAnimationFrame = global.cancelAnimationFrame;
+  const originalFetch = global.fetch;
+  global.requestAnimationFrame = callback => setTimeout(() => callback(Date.now()), 0);
+  global.cancelAnimationFrame = handle => clearTimeout(handle);
+
+  const metadata = {
+    data_format_version:1,
+    grid:{ width:4320, height:2041, longitude_min:-180, longitude_step:1 / 12,
+      latitude_max:90, latitude_min:-80, latitude_step:1 / 12 },
+    zooms:[{ min_zoom:2, max_zoom:4, step:32 }, { min_zoom:5, max_zoom:7, step:8 }, { min_zoom:8, max_zoom:22, step:4 }],
+    tile_size:128, asset_base:'https://example.test/currents',
+    tile_template:'v1/{month}/{depth}/s{step}/{column}_{row}.bin.gz',
+    available_slices:[{ month:9, depth_label:'20m' }],
+    quantization:{ scale_m_s:1 }, version:'fixture'
+  };
+  const requests = [];
+  const fetchImpl = async url => {
+    requests.push(String(url));
+    if (String(url).endsWith('metadata.json')) return new Response(JSON.stringify(metadata), { status:200 });
+    const match = String(url).match(/s4\/(\d+)_(\d+)\.bin\.gz/);
+    assert.ok(match, `unexpected fixture tile URL: ${url}`);
+    const column = Number(match[1]), row = Number(match[2]);
+    const buffer = Buffer.alloc(16 + 128 * 128 * 4);
+    buffer.write('DATC', 0, 'ascii');
+    buffer.writeUInt8(1, 4); buffer.writeUInt8(7, 5); buffer.writeUInt8(4, 6);
+    buffer.writeUInt16LE(1, 8); buffer.writeUInt16LE(128, 10);
+    buffer.writeUInt16LE(row, 12); buffer.writeUInt16LE(column, 14);
+    new Int16Array(buffer.buffer, buffer.byteOffset + 16, 128 * 128 * 2).fill(MISSING_VALUE);
+    if (row === 2 && column === 4) {
+      const sampleOffset = 16 + ((272 - row * 128) * 128 + (540 - column * 128)) * 4;
+      buffer.writeInt16LE(500, sampleOffset);
+      buffer.writeInt16LE(0, sampleOffset + 2);
+    }
+    return new Response(gzipSync(buffer), { status:200 });
+  };
+  global.fetch = fetchImpl;
+  t.after(() => {
+    global.requestAnimationFrame = originalRequestAnimationFrame;
+    global.cancelAnimationFrame = originalCancelAnimationFrame;
+    global.fetch = originalFetch;
+  });
+  const map = {
+    getZoom:() => 8,
+    getBounds:() => ({ getWest:() => -5, getEast:() => 5, getSouth:() => -5, getNorth:() => 5 }),
+    getCenter:() => ({ lat:0, lng:0 }),
+    on() {}, off() {}
+  };
+  let resolveReady;
+  const ready = new Promise(resolve => { resolveReady = resolve; });
+  let finalStatus = null;
+  let inspected = null;
+  const view = createCurrentView({ L:{}, map, fetchImpl,
+    onStatus:status => {
+      if (['ready', 'partial', 'unavailable'].includes(status.state)) {
+        finalStatus = status;
+        resolveReady();
+      }
+    },
+    onInspect:result => { inspected = result; }
+  });
+  view.activate(9, '20');
+  await ready;
+  assert.ok(['ready', 'partial'].includes(finalStatus?.state), `${JSON.stringify(finalStatus)}\n${requests.slice(0, 4).join('\n')}`);
+
+  const query = { lat:90 - 270.5 / 12 * 4, lng:-180 + 540.5 / 12 * 4 };
+  const velocity = new Float64Array(2);
+  assert.equal(view.sampleVelocity(query.lat, query.lng, velocity), false,
+    'the original sample has no current values at this location');
+  assert.equal(view.sampleVelocity(query.lat, query.lng, velocity, () => true), true,
+    'the display layer can expand from a nearby ocean sample');
+  assert.equal(velocity[0], 0.5);
+  assert.equal(velocity[1], 0);
+  assert.equal(view.inspectAt(query, () => false), false,
+    'the query fallback cannot cross a masked land path');
+  assert.equal(view.inspectAt(query), true, 'an expanded ocean location remains clickable');
+  assert.equal(inspected.speed, 0.5);
+  assert.ok(inspected.distanceKm > 32 && inspected.distanceKm < 90);
+  assert.ok(requests.some(url => /s4\/4_2\.bin\.gz/.test(url)), 'the neighboring source tile was loaded');
+  view.destroy();
+});
+
 test('direction rounds into all eight compass sectors, including negative components', () => {
   assert.deepEqual([
     currentDirection(0, 1), currentDirection(1, 1), currentDirection(1, 0), currentDirection(1, -1),

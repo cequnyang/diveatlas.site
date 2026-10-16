@@ -87,6 +87,7 @@
   }
 
   function createCurrentView({ L, map, metadataUrl = 'data/currents/metadata.json', onStatus = () => {}, onInspect = () => {}, fetchImpl = (...args) => fetch(...args), tileCacheEntries = 96 }) {
+    const MAX_NEARBY_CURRENT_DISTANCE_KM = 90;
     let metadata = null;
     let metadataPromise = null;
     let enabled = false;
@@ -234,7 +235,17 @@
       }
       const bounds = map.getBounds();
       const centerLongitude = map.getCenter().lng;
-      const uniqueAddresses = viewportTileAddresses(bounds, tier, metadata, centerLongitude);
+      // Keep one source-tile ring loaded so edge estimates and map-click
+      // inspections can read the same neighboring nodes as visible pixels.
+      const longitudePadding = metadata.grid.longitude_step * tier.step * metadata.tile_size;
+      const latitudePadding = metadata.grid.latitude_step * tier.step * metadata.tile_size;
+      const paddedBounds = {
+        getWest:() => bounds.getWest() - longitudePadding,
+        getEast:() => bounds.getEast() + longitudePadding,
+        getSouth:() => bounds.getSouth() - latitudePadding,
+        getNorth:() => bounds.getNorth() + latitudePadding
+      };
+      const uniqueAddresses = viewportTileAddresses(paddedBounds, tier, metadata, centerLongitude);
       activeTiles.clear();
       activeTileColumns = Math.ceil(Math.ceil(metadata.grid.width / tier.step) / metadata.tile_size);
       onStatus({ state: 'loading', pending: uniqueAddresses.length });
@@ -319,37 +330,61 @@
       return true;
     }
 
-    function findNearest(latlng) {
-      if (!metadata || !activeTiles.size || !enabled) return null;
-      const tier = tierForZoom(metadata.zooms, map.getZoom());
-      if (!tier) return null;
+    function nearestLoadedCurrent(latitude, longitude, tier, maskAware = null) {
+      const grid = metadata.grid;
+      const longitudeCount = Math.ceil(grid.width / tier.step);
+      const latitudeCount = Math.ceil(grid.height / tier.step);
+      let x = (longitude - grid.longitude_min) / (grid.longitude_step * tier.step);
+      x = ((x % longitudeCount) + longitudeCount) % longitudeCount;
+      const y = (grid.latitude_max - latitude) / (grid.latitude_step * tier.step);
+      if (y < 0 || y > latitudeCount - 1) return null;
+
+      const latitudeSpacingKm = grid.latitude_step * tier.step * 111.2;
+      const longitudeSpacingKm = grid.longitude_step * tier.step * 111.2 *
+        Math.max(0.01, Math.cos(latitude * Math.PI / 180));
+      const maxDistanceKm = Math.min(MAX_NEARBY_CURRENT_DISTANCE_KM,
+        Math.hypot(latitudeSpacingKm, longitudeSpacingKm) * 1.25);
+      const rowRadius = Math.ceil(maxDistanceKm / latitudeSpacingKm);
+      const columnRadius = Math.ceil(maxDistanceKm / longitudeSpacingKm);
       let closest = null;
-      const maxDistance = metadata.grid.longitude_step * tier.step * 0.75;
-      for (const entry of activeTiles.values()) {
-        const { tile, address } = entry;
-        for (let y = 0; y < tile.height; y += 1) {
-          const row = address.row * metadata.tile_size + y;
-          const lat = metadata.grid.latitude_max - row * tier.step * metadata.grid.latitude_step;
-          if (Math.abs(lat - latlng.lat) > maxDistance) continue;
-          const rowOffset = y * tile.width * 2;
-          for (let x = 0; x < tile.width; x += 1) {
-            const column = address.column * metadata.tile_size + x;
-            const lon = metadata.grid.longitude_min + column * tier.step * metadata.grid.longitude_step;
-            const longitudeDelta = Math.abs(lon - latlng.lng) % 360;
-            const dx = Math.min(longitudeDelta, 360 - longitudeDelta) * Math.cos(latlng.lat * Math.PI / 180);
-            const dy = Math.abs(lat - latlng.lat);
-            const distance = Math.hypot(dx, dy);
-            if (distance > maxDistance || (closest && distance >= closest.distance)) continue;
-            const offset = rowOffset + x * 2;
-            const storedU = tile.samples[offset];
-            const storedV = tile.samples[offset + 1];
-            if (storedU === tile.missingValue || storedV === tile.missingValue) continue;
-            closest = { u: storedU * tile.scale, v: storedV * tile.scale, lat, lng: lon, distance };
-          }
+      const rowCenter = Math.round(y);
+      const columnCenter = Math.round(x);
+      for (let row = Math.max(0, rowCenter - rowRadius); row <= Math.min(latitudeCount - 1, rowCenter + rowRadius); row += 1) {
+        const sampleLatitude = grid.latitude_max - row * grid.latitude_step * tier.step;
+        for (let deltaColumn = -columnRadius; deltaColumn <= columnRadius; deltaColumn += 1) {
+          const column = ((columnCenter + deltaColumn) % longitudeCount + longitudeCount) % longitudeCount;
+          const tileColumn = Math.floor(column / metadata.tile_size);
+          const tileRow = Math.floor(row / metadata.tile_size);
+          const entry = activeTiles.get(tileRow * activeTileColumns + tileColumn);
+          if (!entry) continue;
+          const localRow = row % metadata.tile_size;
+          const localColumn = column % metadata.tile_size;
+          if (localRow >= entry.tile.height || localColumn >= entry.tile.width) continue;
+          const offset = (localRow * entry.tile.width + localColumn) * 2;
+          const storedU = entry.tile.samples[offset];
+          const storedV = entry.tile.samples[offset + 1];
+          if (storedU === entry.tile.missingValue || storedV === entry.tile.missingValue) continue;
+          const sampleLongitude = grid.longitude_min + column * grid.longitude_step * tier.step;
+          const longitudeDelta = (((sampleLongitude - longitude + 540) % 360) - 180) *
+            Math.cos(latitude * Math.PI / 180);
+          const distanceKm = Math.hypot(sampleLatitude - latitude, longitudeDelta) * 111.2;
+          if (distanceKm > maxDistanceKm || (closest && distanceKm >= closest.distanceKm)) continue;
+          if (maskAware && !maskAware(latitude, longitude, sampleLatitude, sampleLongitude)) continue;
+          closest = { u:storedU * entry.tile.scale, v:storedV * entry.tile.scale,
+            lat:sampleLatitude, lng:sampleLongitude, distanceKm };
         }
       }
+      return closest;
+    }
+
+    function findNearest(latlng, maskAware = null) {
+      if (!metadata || !activeTiles.size || !enabled || !latlng) return null;
+      const tier = tierForZoom(metadata.zooms, map.getZoom());
+      if (!tier) return null;
+      const closest = nearestLoadedCurrent(Number(latlng.lat), Number(latlng.lng), tier, maskAware);
       if (!closest) return null;
-      return Object.freeze({ ...closest, speed: math.currentSpeed(closest.u, closest.v), direction: math.currentDirection(closest.u, closest.v) });
+      return Object.freeze({ ...closest, distance:closest.distanceKm / 111.2,
+        speed: math.currentSpeed(closest.u, closest.v), direction: math.currentDirection(closest.u, closest.v) });
     }
 
     // Flow samples the same viewport tiles as inspections, avoiding a second field download.
@@ -394,8 +429,8 @@
           continue;
         }
         if (maskAware) {
-          const sampleLatitude = grid.latitude_max - row * grid.latitude_step;
-          const sampleLongitude = grid.longitude_min + column * grid.longitude_step;
+          const sampleLatitude = grid.latitude_max - row * latitudeStep;
+          const sampleLongitude = grid.longitude_min + column * longitudeStep;
           if (!maskAware(latitude, longitude, sampleLatitude, sampleLongitude)) continue;
         }
         u += storedU * entry.tile.scale * weight;
@@ -409,36 +444,10 @@
         } else {
           // Zoom tiers intentionally thin the stored grid. Near coasts, an
           // entire bilinear cell can be no-data even though its ocean edge is
-          // covered by the neighboring valid current cell. Reuse only an
-          // already-loaded source sample one tier step away, and only across
-          // an all-water bathymetry path; Flow keeps the strict sampler above.
-          let nearest = null;
-          for (let rowOffset = -1; rowOffset <= 1; rowOffset += 1) {
-            const row = y0 + rowOffset;
-            if (row < 0 || row >= latitudeCount) continue;
-            const sampleLatitude = grid.latitude_max - row * grid.latitude_step;
-            for (let columnOffset = -1; columnOffset <= 1; columnOffset += 1) {
-              const column = ((x0 + columnOffset) % longitudeCount + longitudeCount) % longitudeCount;
-              const sampleLongitude = grid.longitude_min + column * grid.longitude_step;
-              if (!maskAware(latitude, longitude, sampleLatitude, sampleLongitude)) continue;
-              const tileColumn = Math.floor(column / metadata.tile_size);
-              const tileRow = Math.floor(row / metadata.tile_size);
-              const entry = activeTiles.get(tileRow * activeTileColumns + tileColumn);
-              if (!entry) continue;
-              const offset = ((row % metadata.tile_size) * entry.tile.width + (column % metadata.tile_size)) * 2;
-              const storedU = entry.tile.samples[offset];
-              const storedV = entry.tile.samples[offset + 1];
-              if (storedU === entry.tile.missingValue || storedV === entry.tile.missingValue) continue;
-              const longitudeDistance = (((sampleLongitude - longitude + 540) % 360) - 180) *
-                Math.cos(latitude * Math.PI / 180);
-              const distance = Math.hypot(sampleLatitude - latitude, longitudeDistance);
-              if (!nearest || distance < nearest.distance) nearest = {
-                u: storedU * entry.tile.scale,
-                v: storedV * entry.tile.scale,
-                distance
-              };
-            }
-          }
+          // Reuse nearby loaded ocean samples to bridge source gaps. Keep the
+          // speed tint at its normal opacity; the layer's color already maps
+          // the source speed and a fade made estimated areas look like seams.
+          const nearest = nearestLoadedCurrent(latitude, longitude, tier, maskAware);
           if (!nearest) return false;
           u = nearest.u;
           v = nearest.v;
@@ -449,9 +458,9 @@
       return true;
     }
 
-    function inspectAt(latlng) {
+    function inspectAt(latlng, maskAware = null) {
       if (!enabled || !activeTiles.size || !latlng) return false;
-      const result = findNearest(latlng);
+      const result = findNearest(latlng, maskAware);
       if (!result) return false;
       onInspect({ ...result, month, depth, latlng, metadata });
       return true;

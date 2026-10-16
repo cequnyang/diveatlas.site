@@ -27,6 +27,55 @@ async function clickCurrentSample(page, sample) {
   }, sample);
 }
 
+test('speed tint yields to gestures, preserves its tiles on redraw, and cancels removed work', async ({ page }) => {
+  await openMap(page);
+  await page.evaluate(async () => {
+    await import('/js/current-speed-tint.js?v=9');
+    window.__tintSampleCalls = 0;
+    window.__tintLayer = window.DiveAtlasCurrentSpeedTint.createLayer({
+      L, mobile: () => false,
+      sampleOceanMask: () => 1,
+      sampleVelocity: (_lat, _lng, output) => {
+        window.__tintSampleCalls += 1;
+        // Make rendering span several work batches on fast test machines.
+        const until = performance.now() + 0.01;
+        while (performance.now() < until) {}
+        output[0] = 0.3; output[1] = 0.4; return true;
+      }
+    }).addTo(window.__DIVEATLAS_TEST__.map);
+    window.__tintInk = () => {
+      const canvas = window.__keptTintTile;
+      const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+      let alpha = 0;
+      for (let i = 3; i < pixels.length; i += 4) alpha += pixels[i];
+      return alpha;
+    };
+  });
+  await expect.poll(() => page.evaluate(() => window.__tintLayer.tintMetrics.renderCount)).toBeGreaterThan(0);
+  const before = await page.evaluate(() => {
+    window.__DIVEATLAS_TEST__.map.fire('movestart');
+    window.__keptTintTile = document.querySelector('.regional-current-speed-tint-tile.leaflet-tile-loaded');
+    const ink = window.__tintInk();
+    window.__tintLayer.redraw();
+    return { ink, calls: window.__tintSampleCalls };
+  });
+  expect(before.ink).toBeGreaterThan(0);
+  await page.waitForTimeout(150);
+  expect(await page.evaluate(() => window.__tintSampleCalls)).toBe(before.calls);
+  expect(await page.evaluate(() => window.__tintInk())).toBe(before.ink);
+  expect(await page.evaluate(() => window.__keptTintTile.isConnected)).toBe(true);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('moveend'));
+  await expect.poll(() => page.evaluate(() => window.__tintLayer.tintMetrics.pendingJobs), { timeout: 15_000 }).toBe(0);
+  await page.evaluate(() => {
+    window.__tintLayer.redraw();
+    window.__tintLayer.remove();
+  });
+  const stopped = await page.evaluate(() => window.__tintSampleCalls);
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__tintSampleCalls)).toBe(stopped);
+  expect(await page.evaluate(() => window.__tintLayer.tintMetrics.pendingJobs)).toBe(0);
+});
+
 test('real GLORYS12 fixture reaches the browser with source-matched values and mask behavior', async ({ page }, testInfo) => {
   const requests = [];
   const metadataPath = path.join(fixtureRoot, 'metadata.json');

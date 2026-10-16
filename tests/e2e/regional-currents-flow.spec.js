@@ -50,6 +50,66 @@ test('flow experiment stays lazy and remains idle while Currents is off', async 
   expect(await page.evaluate(() => window.__DIVEATLAS_CURRENT_FLOW__.state)).toBeNull();
 });
 
+test('shared current cache rebuilds on view and slice changes and stops on disable', async ({ page }) => {
+  await openMap(page, { url: EXPERIMENT_URL });
+  await page.evaluate(async () => {
+    await import('/js/current-flow.js?v=3');
+    window.__cacheSourceCalls = 0;
+    window.__cacheVelocity = 0.2;
+    window.__cacheRenderer = window.DiveAtlasCurrentFlow.createRenderer({
+      L, map: window.__DIVEATLAS_TEST__.map,
+      sampleVelocity: (_lat, _lng, output) => {
+        window.__cacheSourceCalls += 1;
+        output[0] = window.__cacheVelocity; output[1] = 0;
+        return true;
+      },
+      onDiagnostics: data => { window.__cacheDiagnostics = data; }
+    });
+    await window.__cacheRenderer.activate({ particleCount: 100 });
+  });
+  await expect.poll(() => page.evaluate(() => window.__cacheDiagnostics?.status)).toBe('animating');
+  const calls = await page.evaluate(() => window.__cacheSourceCalls);
+  await page.waitForTimeout(350);
+  expect(await page.evaluate(() => window.__cacheSourceCalls)).toBe(calls);
+
+  // A gesture must neither clear the visible frame nor discard the cache.
+  expect(await page.evaluate(() => {
+    window.__DIVEATLAS_TEST__.map.fire('movestart');
+    const canvas = document.querySelector('.regional-current-flow-canvas');
+    const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+    return pixels.some((value, index) => index % 4 === 3 && value > 0);
+  })).toBe(true);
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(true);
+  expect(await page.evaluate(() => window.__cacheSourceCalls)).toBe(calls);
+
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.panBy([40, 0], { animate: false }));
+  await expect.poll(() => page.evaluate(() => window.__cacheSourceCalls)).toBeGreaterThan(calls);
+  await expect.poll(() => page.evaluate(() => window.__cacheDiagnostics?.status)).toBe('animating');
+  await page.locator('.leaflet-control-zoom-in').click();
+  await expect.poll(() => page.evaluate(() => window.__cacheDiagnostics?.status)).toBe('animating');
+  expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(true);
+  const afterPan = await page.evaluate(() => window.__cacheSourceCalls);
+  await page.evaluate(() => {
+    window.__cacheVelocity = 0.5;
+    window.__cacheRenderer.selectSlice(11, '20');
+  });
+  expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(false);
+  await page.evaluate(() => window.__cacheRenderer.refreshData());
+  await expect.poll(() => page.evaluate(() => window.__cacheSourceCalls)).toBeGreaterThan(afterPan);
+  await expect.poll(() => page.evaluate(() => window.__cacheDiagnostics?.status)).toBe('animating');
+
+  await page.evaluate(() => {
+    window.__cacheRenderer.refreshData();
+    window.__cacheRenderer.deactivate();
+  });
+  const stopped = await page.evaluate(() => window.__cacheSourceCalls);
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__cacheSourceCalls)).toBe(stopped);
+  expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(false);
+  await expect(page.locator('.regional-current-flow-canvas')).toHaveCount(0);
+});
+
 test('the animated flow renderer benchmarks at matched particle counts without an arrow fallback', async ({ page }, testInfo) => {
   test.setTimeout(90_000);
   const fieldResponses = [];

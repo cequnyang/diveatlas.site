@@ -6,10 +6,57 @@ const {
   geographicDisplacement,
   advanceParticle,
   adaptiveParticleCount,
+  buildViewportVelocityField,
   FIELD_HEADER_BYTES,
   MISSING_VALUE,
   EARTH_RADIUS_M
 } = require('../../js/current-flow.js');
+
+test('viewport field reuses current samples without blending across missing cells', async () => {
+  let calls = 0;
+  const field = await buildViewportVelocityField({
+    width: 12, height: 8,
+    pixelToLatLng: (x, y) => ({ lat: -y, lng: x }),
+    sampleVelocity: (lat, lng, output) => {
+      calls += 1;
+      if (lng > 4 && lng < 8) return false;
+      output[0] = lng < 4 ? 0 : 0.5;
+      output[1] = 0;
+      return true;
+    }
+  });
+  assert.equal(calls, 6);
+  const output = new Float64Array(2);
+  for (let frame = 0; frame < 100; frame += 1) {
+    assert.equal(field.sample(1, 1, output), true, 'zero current remains valid');
+    assert.deepEqual([...output], [0, 0]);
+    assert.equal(field.sample(5, 1, output), false, 'missing cells stay missing');
+    assert.equal(field.sample(9, 1, output), true);
+    assert.deepEqual([...output], [0.5, 0]);
+  }
+  assert.equal(calls, 6, 'animation frames never repeat expensive source or coastline sampling');
+  assert.equal(field.sample(-1, 0, output), false);
+  assert.equal(field.sample(12, 0, output), false);
+  assert.equal(field.sample(0, 8, output), false);
+});
+
+test('an obsolete viewport field is discarded before it can be used', async () => {
+  let cancelled = false;
+  let calls = 0;
+  const field = await buildViewportVelocityField({
+    width: 12, height: 8,
+    pixelToLatLng: (x, y) => ({ lat: -y, lng: x }),
+    cancelled: () => cancelled,
+    sampleVelocity: (_lat, _lng, output) => {
+      calls += 1;
+      cancelled = true;
+      output[0] = 0.5; output[1] = 0;
+      return true;
+    }
+  });
+  assert.equal(field, null);
+  assert.equal(calls, 3, 'a cancelled build stops after its current row');
+});
 
 function makeField({ width = 2, height = 2, u = [100, 200, 300, 400], v = [400, 300, 200, 100], missing = [] } = {}) {
   const buffer = new ArrayBuffer(FIELD_HEADER_BYTES + width * height * 4);
