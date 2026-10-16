@@ -4853,7 +4853,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px 14px;
+      gap: 4px;
       margin: 0;
       padding: 0;
       border: 0;
@@ -4861,9 +4861,31 @@
       font-size: 12px;
     }
     .share-preview-background-choices[hidden] { display: none; }
-    .share-preview-background-choices legend { margin: 0 2px 0 0; padding: 0; color: var(--muted); font-weight: 600; }
-    .share-preview-background-choices label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
-    .share-preview-background-choices input { width: 14px; height: 14px; margin: 0; accent-color: var(--primary); }
+    .share-preview-background-choices legend { margin: 0 0 6px; padding: 0; color: var(--muted); font-size: 11px; font-weight: 550; }
+    .share-preview-background-choices label { position: relative; display: inline-flex; cursor: pointer; }
+    /* Keep native radio semantics and keyboard navigation while styling the visible option. */
+    .share-preview-background-choices input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+    .share-preview-background-choices label span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 23.4px;
+      line-height: 1;
+      padding: 0 12px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-weight: 550;
+    }
+    .share-preview-background-choices label:hover span { color: var(--text); }
+    .share-preview-background-choices input:checked + span {
+      border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+      background: color-mix(in srgb, var(--primary) 12%, var(--panel));
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent);
+    }
+    .share-preview-background-choices input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 2px; }
     .share-preview-map-clone {
       position: absolute;
       transform-origin: top left;
@@ -4978,12 +5000,34 @@
     .share-action-button--primary { border-color: #087f9b; background: #087f9b; color: #fff; }
     .share-action-button--primary:hover { background: #066b83; }
     .share-action-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .share-actions { display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 4px; min-width: 0; overflow-x: auto; padding: 2px 0 5px; scrollbar-width: thin; }
+    .share-actions {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 4px;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 2px 0 8px;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) var(--panel-soft);
+    }
+    .share-actions::-webkit-scrollbar { height: 5px; }
+    .share-actions::-webkit-scrollbar-track { background: var(--panel-soft); border-radius: 999px; }
+    .share-actions::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 999px; }
+    .share-actions::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+    .share-actions::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
     .share-actions .share-action-button {
-      flex: 0 0 68px;
+      /* Seven complete slots keep both viewport edges between destinations after snapping. */
+      flex: 0 0 calc((100% - 24px) / 7);
+      min-width: 0;
+      box-sizing: border-box;
+      scroll-snap-align: start;
       min-height: 84px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: flex-start;
       gap: 6px;
       padding: 0 3px;
@@ -5042,7 +5086,7 @@
       .share-dialog-body { padding: 4px 18px 18px; }
       .share-preview-frame { aspect-ratio: 1200 / 630; }
       .share-actions { justify-content: flex-start; gap: 4px; }
-      .share-actions .share-action-button { flex-basis: 64px; align-items: center; padding-inline: 1px; font-size: 10px; }
+      .share-actions .share-action-button { flex-basis: calc((100% - 12px) / 4); align-items: center; padding-inline: 1px; font-size: 10px; }
       .share-action-icon { width: 40px; height: 40px; flex-basis: 40px; }
       .share-preview-popup-data { right: 2%; bottom: 2%; width: 52%; max-height: 94%; padding: 7px; font-size: 9px; }
     }
@@ -7337,9 +7381,7 @@
     <div class="share-modal-backdrop" data-share-close></div>
     <section class="share-dialog" id="shareDialog" role="dialog" aria-modal="true" aria-labelledby="shareDialogTitle">
       <div class="share-dialog-header">
-        <div>
-          <h2 class="share-dialog-title" id="shareDialogTitle">Share</h2>
-        </div>
+        <h2 class="share-dialog-title" id="shareDialogTitle">Share</h2>
         <button class="contact-dialog-close" id="shareCloseButton" type="button" title="Close" aria-label="Close" data-share-close>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg>
         </button>
@@ -7399,7 +7441,7 @@
             <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="share-mark--outline" cx="18" cy="5" r="3"/><circle class="share-mark--outline" cx="6" cy="12" r="3"/><circle class="share-mark--outline" cx="18" cy="19" r="3"/><path class="share-mark--outline" d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.2"/></svg></span><span>More</span>
           </button>
         </div>
-        <p class="share-status visually-hidden" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <p class="share-status" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
     </section>
   </div>
@@ -9792,6 +9834,7 @@ ZSD·2016–2025</span></span>
     shareInstagramButton: document.getElementById('shareInstagramButton'),
     shareRedditButton: document.getElementById('shareRedditButton'),
     shareStatus: document.getElementById('shareStatus'),
+    shareDialogTitle: document.getElementById('shareDialogTitle'),
     diveSearchSuggestion: document.getElementById('diveSearchSuggestion'),
     diveSearchSuggestButton: document.getElementById('diveSearchSuggestButton'),
     siteSuggestionModal: document.getElementById('siteSuggestionModal'),
@@ -12884,6 +12927,15 @@ ZSD·2016–2025</span></span>
   for (const [lang, values] of Object.entries(SHARE_PREVIEW_BACKGROUND_I18N)) {
     Object.assign(SHARE_I18N[lang], values);
   }
+
+  Object.assign(SHARE_I18N.en, {
+    sharePreviewBackground: 'Preview image',
+    sharePasteCopied: 'Link copied. Paste it into {platform}.'
+  });
+  Object.assign(SHARE_I18N.zh, {
+    sharePreviewBackground: '预览图片',
+    sharePasteCopied: '链接已复制，请粘贴到{platform}。'
+  });
 
   const SITE_SUGGESTION_I18N = {
     en: { siteSuggestionCta: 'Suggest a missing Dive site', siteSuggestionTitle: 'Suggest a dive site', siteSuggestionCopy: 'Your suggestion goes to DiveAtlas for review. It won’t be added automatically.', siteSuggestionName: 'Dive-site name', siteSuggestionRegion: 'Region', siteSuggestionSource: 'Source link', siteSuggestionSend: 'Send suggestion', siteSuggestionCancel: 'Cancel', siteSuggestionSending: 'Sending suggestion…', siteSuggestionSent: 'Thanks—your suggestion was sent for review.', siteSuggestionError: 'Couldn’t send the suggestion. Please try again.', siteSuggestionNameRequired: 'Enter a dive-site name.', siteSuggestionSourceInvalid: 'Enter a valid http or https link.', siteSuggestionVerify: 'Complete the security check, then try again.', siteSuggestionVerifyUnavailable: 'The security check is unavailable. Please try again later.' },
@@ -21574,7 +21626,8 @@ ZSD·2016–2025</span></span>
     const popup = state?.popup;
     const popupContent = activeClickPopup?._container?.querySelector('.leaflet-popup-content');
     const headingKey = SHARE_POPUP_DESCRIPTION_KEYS[popup?.layer];
-    const heading = headingKey ? t(headingKey) : (popup ? popup.layer : '');
+    const heading = popup?.layer === 'dive' ? getShareContextTitle(state)
+      : headingKey ? t(headingKey) : (popup ? popup.layer : '');
     const details = [];
     const seen = new Set();
     const addDetail = value => {
@@ -21657,13 +21710,9 @@ ZSD·2016–2025</span></span>
           });
         }
       } else if (activeClickPopup?._container?.classList.contains('dive-site-popup')) {
-        addDetail(textOf(content, '.bio-popup-title'));
         addDetail(textOf(content, '.dive-popup-location__region'));
-        const rating = content.querySelector('.dive-popup-rating__value');
-        if (rating?.dataset.status !== 'loading') addDetail(rating?.innerText);
-        const summary = content.querySelector('.dive-popup-summary p:not(.dive-popup-summary__note)');
-        addDetail(compactSummary(summary?.innerText));
-        content.querySelectorAll('.dive-popup-property').forEach(field => addDetail(fieldText(field)));
+        // Site prose belongs in the linked sheet; two structured facts keep the preview readable on phones.
+        [...content.querySelectorAll('.dive-popup-property')].slice(0, 2).forEach(field => addDetail(fieldText(field)));
       } else if (content.querySelector('.tide-popup')) {
         addDetail(textOf(content, '.tide-popup-location'));
         content.querySelectorAll('.waves-primary-metrics .bio-popup-field').forEach(field => addDetail(fieldText(field)));
@@ -21727,7 +21776,7 @@ ZSD·2016–2025</span></span>
       }
     }
 
-    const visibleDetails = details.slice(0, 6);
+    const visibleDetails = details.slice(0, 4);
     els.sharePreviewPopupData.replaceChildren();
     els.sharePreviewPopupData.hidden = !popup;
     if (!popup) return;
@@ -21743,6 +21792,17 @@ ZSD·2016–2025</span></span>
         list.append(item);
       }
       els.sharePreviewPopupData.append(list);
+    }
+    requestAnimationFrame(fitSharePreviewCard);
+  }
+
+  function fitSharePreviewCard() {
+    const card = els.sharePreviewPopupData;
+    if (!card || card.hidden || !card.clientHeight) return;
+    // Drop complete trailing facts instead of cropping a row at the card's height limit.
+    const list = card.querySelector('ul');
+    while (list?.children.length && card.scrollHeight > card.clientHeight) {
+      list.lastElementChild.remove();
     }
   }
 
@@ -21867,6 +21927,7 @@ ZSD·2016–2025</span></span>
   }
 
   function getSharePreviewSummary() {
+    fitSharePreviewCard();
     return {
       title:els.sharePreviewPopupData.querySelector('strong')?.innerText?.trim() || 'DiveAtlas',
       items:[...els.sharePreviewPopupData.querySelectorAll('li')].slice(0, 6).map(item => item.innerText.trim())
@@ -22422,10 +22483,12 @@ ZSD·2016–2025</span></span>
 
   function renderShareDialogContext() {
     updateSharePlatformVisibility();
+    sortShareDestinations();
     const isDiveSitePopup = shareSnapshot?.popup?.layer === 'dive' &&
       shareSnapshot?.selectedSiteId &&
       SHARE_SITE_BY_ID.has(String(shareSnapshot.selectedSiteId).toLowerCase());
     sharePreviewSitePhoto = isDiveSitePopup ? getSharePreviewSitePhoto(shareSnapshot) : null;
+    els.shareDialogTitle.textContent = 'Share';
     els.sharePreviewBackgroundChoices.hidden = !sharePreviewSitePhoto;
     els.sharePreviewSitePhoto.removeAttribute('src');
     sharePreviewBackgroundChoice = 'map';
@@ -22512,8 +22575,8 @@ function closeShareDialog() {
     }
 
     shareUiState = copied ? 'success' : 'error';
-    els.shareStatus.textContent = platform === 'Instagram'
-      ? t(copied ? 'shareInstagramCopied' : 'shareInstagramCopyFailed')
+    els.shareStatus.textContent = copied && ['Instagram', '微信', '小红书'].includes(platform)
+      ? t('sharePasteCopied').replace('{platform}', platform)
       : t(copied ? 'shareCopied' : 'shareCopyFailed');
     els.shareCopyButtonText.textContent = t(copied ? 'shareCopied' : 'shareCopyFailed');
     renderShareButtonDescription();
@@ -22647,6 +22710,57 @@ function closeShareDialog() {
     els.sharePreviewPlaceholder.hidden = false;
   });
   els.shareCopyButton.addEventListener('click', copyShareLinkAfterPreviewSave);
+  const shareDestinationRow = els.shareCopyButton.closest('.share-actions');
+  const shareDefaultDestinations = [...shareDestinationRow.querySelectorAll('.share-action-button')];
+  const SHARE_INTERACTION_STORAGE_KEY = 'global-coral-map-share-interactions-v1';
+  const SHARE_LAST_DESTINATION_STORAGE_KEY = 'global-coral-map-share-last-destination-v1';
+  let shareInteractionCounts = {};
+  let shareLastDestination = '';
+
+  function readShareInteractionCounts() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(SHARE_INTERACTION_STORAGE_KEY) || '{}');
+      // Accept only known destinations and finite nonnegative counts from browser storage.
+      return Object.fromEntries(shareDefaultDestinations.map(button => {
+        const count = stored?.[button.id];
+        return [button.id, Number.isSafeInteger(count) && count >= 0 ? count : 0];
+      }));
+    } catch (_) {
+      return { ...shareInteractionCounts };
+    }
+  }
+
+  function sortShareDestinations() {
+    shareInteractionCounts = readShareInteractionCounts();
+    const middle = shareDefaultDestinations.filter(button => button !== els.shareCopyButton && button !== els.shareNativeButton);
+    try {
+      const stored = localStorage.getItem(SHARE_LAST_DESTINATION_STORAGE_KEY);
+      shareLastDestination = middle.some(button => button.id === stored) ? stored : '';
+    } catch (_) {}
+    // Stable ties preserve the original order across opens and language changes.
+    middle.sort((a, b) => Number(b.id === shareLastDestination) - Number(a.id === shareLastDestination)
+      || (shareInteractionCounts[b.id] || 0) - (shareInteractionCounts[a.id] || 0));
+    shareDestinationRow.append(els.shareCopyButton, ...middle, els.shareNativeButton);
+    shareDestinationRow.scrollLeft = 0;
+  }
+
+  shareDestinationRow.addEventListener('click', event => {
+    const button = event.target.closest('.share-action-button');
+    if (!shareDefaultDestinations.includes(button)) return;
+    shareInteractionCounts = readShareInteractionCounts();
+    shareInteractionCounts[button.id] = Math.min(Number.MAX_SAFE_INTEGER, (shareInteractionCounts[button.id] || 0) + 1);
+    try {
+      localStorage.setItem(SHARE_INTERACTION_STORAGE_KEY, JSON.stringify(shareInteractionCounts));
+    } catch (_) {}
+    // Copy and the native picker do not replace the most recently selected platform.
+    if (button !== els.shareCopyButton && button !== els.shareNativeButton) {
+      shareLastDestination = button.id;
+      try {
+        localStorage.setItem(SHARE_LAST_DESTINATION_STORAGE_KEY, shareLastDestination);
+      } catch (_) {}
+    }
+    // Reorder on the next open so the destination stays under the pointer during this interaction.
+  }, { capture: true });
   [els.shareLineButton, els.shareTelegramButton, els.shareWechatButton, els.shareRedNoteButton, els.shareFacebookButton, els.shareWhatsAppButton, els.shareXButton, els.shareInstagramButton, els.shareRedditButton, els.shareEmailButton]
     .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
   els.shareNativeButton.addEventListener('click', shareWithDevice);

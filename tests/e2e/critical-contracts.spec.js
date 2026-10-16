@@ -468,7 +468,7 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share preview shortens long site summaries and skips local image uploads', async ({ page }) => {
+test('share preview keeps concise site facts and skips local image uploads', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
   await clickFixture(page, 'long-share-summary');
@@ -504,15 +504,12 @@ test('share preview shortens long site summaries and skips local image uploads',
   const sheetShareButton = sitePopup.locator('.diveatlas-sheet-share-button');
   if (await sheetShareButton.count()) await sheetShareButton.click();
   else await page.locator('#shareMapButton').click();
-  const dialog = page.getByRole('dialog', { name:'Share' });
+  const dialog = page.locator('#shareDialog');
   await expect(dialog).toBeVisible();
   const preview = page.locator('#sharePreviewPopupData');
   await expect(preview).toBeVisible();
-  const compactSummary = await preview.locator('li').filter({ hasText:'The SSI MyDiveGuide' }).first().innerText();
-  expect(Array.from(compactSummary).length).toBeLessThanOrEqual(72);
-  expect(compactSummary).toMatch(/…$/);
-  expect(compactSummary).not.toBe(longSummary);
-  expect(await preview.locator('li').count()).toBeLessThanOrEqual(6);
+  await expect(preview).not.toContainText('The SSI MyDiveGuide');
+  expect(await preview.locator('li').count()).toBeLessThanOrEqual(4);
   const previewBounds = await page.evaluate(() => {
     const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
     const card = document.querySelector('#sharePreviewPopupData').getBoundingClientRect();
@@ -547,7 +544,7 @@ test('local share links do not upload images or request Worker rendering early',
   });
 
   await page.evaluate(() => document.querySelector('#shareMapButton').click());
-  const dialog = page.getByRole('dialog', { name:'Share' });
+  const dialog = page.locator('#shareDialog');
   await expect(dialog).toBeVisible();
   await dialog.getByRole('button', { name:'Copy link' }).click();
   await expect.poll(() => page.locator('#shareStatus').innerText()).toMatch(/copied/i);
@@ -575,7 +572,7 @@ test('mobile share preview uses a landscape view without moving the live map', a
     const request = route.request();
     return route.fulfill({ status:request.method() === 'POST' ? 201 : 404, headers:{ 'Access-Control-Allow-Origin':'*' } });
   });
-  await page.getByRole('dialog', { name:'Share' }).getByRole('button', { name:'Copy link' }).click();
+  await page.locator('#shareDialog').getByRole('button', { name:'Copy link' }).click();
   await expect.poll(() => page.evaluate(() => window.__sharePreviewMapChanges.length)).toBe(0);
   const geometry = await page.evaluate(() => {
     const frame = document.querySelector('#sharePreviewFrame').getBoundingClientRect();
