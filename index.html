@@ -20039,8 +20039,8 @@ ZSD·2016–2025</span></span>
         throw new Error('This browser does not support gzip decompression for dive-site summaries.');
       }
       const summariesUrl = window.DiveAtlasDataAssets?.external
-        ? window.DiveAtlasDataAssets.url('data/dive-site-summaries-v4.json.gz?v=1')
-        : 'datasets/dive-site-summaries.json.gz?v=4';
+        ? window.DiveAtlasDataAssets.url('data/dive-site-summaries-v5.json.gz?v=1')
+        : 'datasets/dive-site-summaries.json.gz?v=5';
       const response = await fetch(summariesUrl);
       if (!response.ok || !response.body) {
         throw new Error(`Failed to load dive-site summaries (${response.status}).`);

@@ -151,7 +151,7 @@ def stage(
         elif dive_site_summary_only:
             # Keep R2's existing summary object immutable; publish revised popup
             # copy under a new key so cached clients and rollback remain safe.
-            sources = [(Path("data/dive-site-summaries-v4.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz")]
+            sources = [(Path("data/dive-site-summaries-v5.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz")]
         else:
             sources = [(release_path_for_source(relative), ROOT / relative) for relative in files]
         if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only and not dive_site_summary_only and not environmental_query_only:

@@ -440,3 +440,5 @@ here does not mean no review exists elsewhere.
   account describes clear water, reef life, turtles, and rays from that trip.
   Recorded the direct SCUBAGO three-star score; language versions disagreed
   on the rating count, so the count remains blank.
+- 2026-10-16: Reworded generated and site-specific summaries in plain language,
+  removing record-list phrasing while retaining source details in the data.

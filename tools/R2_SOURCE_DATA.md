@@ -27,7 +27,7 @@ python tools/stage_data_release.py --release 2026-10-05-v2 --startup-data-only
 
 The inventory is replaced only after all six files are present and verified. Consumers fetch the small inventory with a cache-busting query because earlier releases used a year-long immutable cache header for that URL.
 
-The dive-site catalog and its two compressed sidecars are part of live search and popup rendering. R2 release objects are immutable, so replacements use versioned keys and the app is updated to request those keys. Stage only the relevant objects and append them to the active release; do not overwrite existing objects or change the site's configured release URL. For a summary-only refresh, use `--dive-site-summary-only`; this stages `data/dive-site-summaries-v4.json.gz` without resending the unchanged search index:
+The dive-site catalog and its two compressed sidecars are part of live search and popup rendering. R2 release objects are immutable, so replacements use versioned keys and the app is updated to request those keys. Stage only the relevant objects and append them to the active release; do not overwrite existing objects or change the site's configured release URL. For a summary-only refresh, use `--dive-site-summary-only`; this stages the next versioned summary sidecar without resending the unchanged search index:
 
 ```powershell
 python tools/stage_data_release.py --release 2026-10-05-v2 --dive-site-catalog-only `
@@ -47,7 +47,7 @@ python tools/stage_data_release.py --release 2026-10-05-v2 --dive-site-search-as
   -AppendExisting
 ```
 
-Append mode publishes `data/dive-sites-v3.js` plus `data/dive-site-search-locations-v4.json.gz` and `data/dive-site-summaries-v3.json.gz` in addition to the designated startup files. The catalog and sidecar inventories can be staged separately, then appended in sequence; each inventory is updated after its objects are uploaded and verified.
+Append mode publishes `data/dive-sites-v3.js` plus `data/dive-site-search-locations-v4.json.gz` and `data/dive-site-summaries-v3.json.gz` in addition to the designated startup files. Later summary-only refreshes use a new summary version so existing cached clients keep their verified data. The catalog and sidecar inventories can be staged separately, then appended in sequence; each inventory is updated after its objects are uploaded and verified.
 
 ## Environmental query slices
 

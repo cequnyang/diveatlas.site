@@ -34,7 +34,8 @@ $appendableStartupDataPaths = @(
     'data/dive-sites-v3.js',
     'data/dive-site-search-locations-v4.json.gz',
     'data/dive-site-summaries-v3.json.gz',
-    'data/dive-site-summaries-v4.json.gz'
+    'data/dive-site-summaries-v4.json.gz',
+    'data/dive-site-summaries-v5.json.gz'
 )
 
 $release = (Resolve-Path -LiteralPath $ReleaseDirectory).Path

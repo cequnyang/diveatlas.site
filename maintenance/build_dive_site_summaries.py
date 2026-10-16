@@ -32,6 +32,18 @@ FEATURE = {
     "blue_hole": "blue hole", "thermal": "thermal feature", "arch": "arch",
     "reef_ridge": "reef ridge", "manta": "manta cleaning station",
 }
+FEATURE_SUMMARY = {
+    "reef": "a reef", "artificial reef": "an artificial reef", "pinnacle": "a pinnacle",
+    "wreck": "a wreck", "wall": "a wall", "cave": "a cave", "cavern": "a cavern",
+    "drift": "drift diving", "muck": "muck diving", "sandy bottom": "a sandy bottom",
+    "seagrass": "seagrass", "kelp": "kelp", "cenote": "a cenote",
+    "blue hole": "a blue hole", "thermal feature": "a thermal feature", "arch": "an arch",
+    "reef ridge": "a reef ridge", "manta cleaning station": "a manta cleaning station",
+}
+SUMMARY_RECORD_LIST_PATTERN = re.compile(
+    r"\bthe\b[^.;]{0,160}\b(?:record|profile|listing|guide|page|database)\s+lists\b",
+    re.IGNORECASE,
+)
 LISTED_SOURCE_LABELS = {
     "osm": "OpenStreetMap (listed source; direct record URL not retained)",
     "padi": "PADI (listed source; direct site URL not retained)",
@@ -77,7 +89,7 @@ PROFILE_SUMMARY_OVERRIDES = {
         "https://travel.padi.com/dive-site/united-kingdom/brixham-breakwater-beach/",
     ),
     "8ed66de5-039b-4992-8634-3b4fa5599f71": (
-        "Below the Cabo de Palos lighthouse, Cala Fría is described as a shore dive with rock formations to swim through. The PADI contributor lists a 12 m maximum depth.",
+        "Below the Cabo de Palos lighthouse, Cala Fría is a shore dive with rock formations to swim through and a reported maximum depth of 12 m.",
         "https://travel.padi.com/dive-site/spain/cala-fria/",
     ),
     "64d1824a-e36e-47ab-bb54-4f9efa29f0f2": (
@@ -105,7 +117,7 @@ PROFILE_SUMMARY_OVERRIDES = {
         "https://travel.padi.com/dive-site/spain/playa-de-las-vistas/",
     ),
     "a42c326d-baf8-46b8-9f7b-b1034570f531": (
-        "At Yanui Beach, the contributor describes hard coral over a sandy bottom, easy entry and exit, and generally little current. The profile lists a 14 m maximum depth.",
+        "Yanui Beach has hard coral over a sandy bottom, easy entry and exit, and generally little current. The maximum depth is 14 m.",
         "https://travel.padi.com/dive-site/thailand/yanui-beach/",
     ),
 }
@@ -185,7 +197,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "0061b719-356f-4661-bf9b-6caa5ebbf227": {
         "description": (
             "Grand Makadi House Reef is a shore-access reef off Makadi Bay, with easy entry for training and night dives. "
-            "Aquarius Diving Club describes vibrant coral and macro life, while the coordinate-matched PADI profile lists hard and soft corals and a variety of reef fish."
+            "It has vibrant coral, macro life, and a variety of reef fish."
         ),
         "evidenceNote": "The PADI contributor profile exactly matches the atlas coordinates and credits Aquarius Diving Club - Makadi. Aquarius's own current site guide describes direct shore access, training and night diving, and a 0–30 m range; no fixed depth is included in the summary because routes differ and the PADI profile's 40 m maximum is not corroborated by the operator site page.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI profile and credited local dive operator's site guide",
@@ -208,8 +220,8 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "0923b563-8773-4b6a-8b75-57e229695073": {
         "description": (
-            "Cala Vidre is a shallow shore-access cove near l'Ametlla de Mar, with Posidonia seagrass meadows and rocky underwater formations described by the local PADI contributor. "
-            "The profile lists an 8 m maximum and reports small marine life such as octopus, nudibranchs, and crabs."
+            "Cala Vidre is a shallow shore-access cove near l'Ametlla de Mar, with Posidonia seagrass meadows and rocky underwater formations. "
+            "The site reaches about 8 m; divers have reported octopus, nudibranchs, and crabs."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas and credits DSDivers Cambrils. The 8 m maximum and habitat or wildlife descriptions are contributor-reported; they are not a current-condition assessment or guarantee of sightings.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor site profile",
@@ -233,7 +245,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "05edfa71-e4c2-4d64-9c35-ff974a837d10": {
         "description": (
             "Olowalu Beach is a shallow shore-entry dive in Maui, where a gently sloping sandy bottom leads to coral formations. "
-            "The coordinate-matched PADI contributor profile describes it as a training and refresher site and lists a 3 m maximum."
+            "It is used for training and refresher dives, with a reported maximum depth of 3 m."
         ),
         "evidenceNote": "PADI's site profile coordinates exactly match the atlas. The description and 3 m maximum are contributor-reported; the source's marine-life and visibility claims are not presented as guaranteed sightings or current conditions.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor site profile",
@@ -255,7 +267,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "2f9cfb27-b408-4665-aa68-39cd5f1c1270": {
         "description": (
             "Terme del Lacus is a submerged Roman bath complex within Baia's underwater archaeological park, with polychrome mosaic and marble floors. "
-            "The park describes the remains at about 4 m; its dive-program page lists a 5 m maximum and low difficulty."
+            "The remains lie about 4 m deep, and dives reach about 5 m."
         ),
         "evidenceNote": "The canonical marker is in the Baia underwater-park cluster and matches the official park's named Terme del Lacus dive site. The park's archaeology page reports about 4 m for the remains, while its dive booking page lists a 5 m maximum; both are source-reported site figures.",
         "authoringMethod": "AI-assisted synthesis of the archaeological park's site description and dive guidance",
@@ -267,7 +279,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "4805dde2-d4e8-4953-b163-2d5ed794d774": {
         "description": (
             "Villa con Ingresso a Protiro is a submerged Roman villa in Baia's archaeological park, with distinctive floor decoration and remains of the surrounding ancient street and shops. "
-            "The local park dive operator describes a porticoed entrance and stone benches; the atlas lists a 5 m site depth."
+            "The local park dive operator describes a porticoed entrance and stone benches; the site reaches about 5 m."
         ),
         "evidenceNote": "The official park identifies Villa a Protiro among its dive sites and describes pavement decoration, a street, and adjacent tabernae; the operator gives the portico-and-benches detail. The canonical marker matches the named site. The 5 m figure is atlas metadata and is not used as a planned depth.",
         "authoringMethod": "AI-assisted synthesis of official archaeological-park and local dive-operator descriptions",
@@ -290,7 +302,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "d6716da8-6839-4093-9928-b3675ea006f8": {
         "description": (
             "Secca delle Fumose, also called Smoky Reef, is a volcanic underwater site in Baia's archaeological park, where submerged masonry pillars are surrounded by active seabed fumaroles and sulfur deposits. "
-            "The park lists an average depth near 12 m and maximum around 16 m."
+            "The park reports an average depth near 12 m and a maximum around 16 m."
         ),
         "evidenceNote": "The official park source calls this site Smoky Reef and describes pylons believed to have protected Portus Julius, colonized pillars, active volcanic gas vents, and sulfur on the seabed. The Italian official park also lists Secca delle Fumose as a dive site; its 12 m average and 16 m maximum are source-reported, not a dive plan.",
         "authoringMethod": "AI-assisted synthesis of official archaeological-park dive and site references",
@@ -326,7 +338,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "0373f3e6-7bd4-4df1-ad34-112082f23931": {
         "description": (
             "Escafandra is an underwater diving-helmet statue on the sandy seabed near Wied iz-Zurrieq, described by local dive guides as a landmark about halfway to the Um El Faroud wreck. "
-            "PADI's coordinate-matched contributor profile says the statue is about a five-minute swim from shore and lists a 35 m maximum for the dive site; a local guide places the helmet itself at about 28 m."
+            "The statue is about a five-minute swim from shore. The dive site reaches 35 m, while a local guide places the helmet itself at about 28 m."
         ),
         "evidenceNote": "This canonical row shares the exact coordinates and apparent helmet-statue identity with ESCAFANDRA, Wied iz-Zurrieq (Sur). PADI pages credit the same Malta dive center; a local site guide independently describes the helmet landmark. The 28 m feature depth and 35 m site maximum are separate source-reported measures.",
         "authoringMethod": "AI-assisted synthesis of a coordinate-matched PADI profile and Malta dive-site guides",
@@ -357,7 +369,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "22c2bb64-4ce0-4043-ba96-31b5b7c480e5": {
         "description": (
             "Escafandra is an underwater diving-helmet statue on the sandy seabed near Wied iz-Zurrieq, described by local dive guides as a landmark about halfway to the Um El Faroud wreck. "
-            "PADI's coordinate-matched contributor profile says the statue is about a five-minute swim from shore and lists a 35 m maximum for the dive site; a local guide places the helmet itself at about 28 m."
+            "The statue is about a five-minute swim from shore. The dive site reaches 35 m, while a local guide places the helmet itself at about 28 m."
         ),
         "evidenceNote": "This canonical row shares the exact coordinates and apparent helmet-statue identity with Escafandra. PADI pages credit the same Malta dive center; a local site guide independently describes the helmet landmark. The 28 m feature depth and 35 m site maximum are separate source-reported measures.",
         "authoringMethod": "AI-assisted synthesis of a coordinate-matched PADI profile and Malta dive-site guides",
@@ -387,7 +399,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "578059b8-ae15-45d8-95ef-85ba2017a842": {
         "description": (
-            "Mundoo Kandu is a boat-access channel dive in Laamu Atoll. The coordinate-matched PADI contributor describes schools of fish and a manta cleaning station in the channel, and lists a 30 m maximum; its suggested training includes Advanced Open Water and drift-diving experience."
+            "Mundoo Kandu is a boat-access channel dive in Laamu Atoll. A PADI contributor reports schools of fish, a manta cleaning station, and a maximum depth of 30 m. Advanced Open Water and drift-diving experience are recommended."
         ),
         "evidenceNote": "The PADI site profile coordinates exactly match the atlas marker. Marine-life sightings and site characterization are contributor-reported, not guarantees; current and route should be confirmed with the local dive team.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -459,7 +471,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "9efab191-37d6-44e8-b96b-bdcd425e7aa5": {
         "description": (
             "La Madonna at Cirkewwa begins in a shallow lagoon and follows a reef drop to a small cave at about 18 m, where a Madonna statue was placed in 1987. "
-            "The coordinate-matched PADI profile lists shore entry and a 25 m maximum; the statue and cave are the distinctive feature described by its local dive-center contributor."
+            "Shore entry is available, and the site reaches up to 25 m."
         ),
         "evidenceNote": "The PADI profile's coordinates exactly match the atlas marker and credits DS Divers Malta. Its narrative places the statue cave at about 18 m while the structured profile and atlas list a 25 m maximum; those figures describe different depth measures.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -483,7 +495,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "10f33892-1f4f-4fd7-b2f0-e7332529b19f": {
         "description": (
             "Fanning Springs is a freshwater spring basin where divers can explore the spring boil, limestone outcrops, fallen cypress logs, and sandy bottom. "
-            "Published depth figures conflict: the atlas lists 20 m, while the PADI profile narrative gives 18–21 ft and its structured depth field says 2 m, so confirm local depth information before planning."
+            "Published depth figures conflict: the atlas gives 20 m, while the PADI profile says 18–21 ft in its description and 2 m in its depth field. Confirm local depth information before planning."
         ),
         "evidenceNote": "The PADI profile's coordinates exactly match the atlas marker. Its narrative and structured depth field disagree with each other and with the atlas; all figures are stated with their source rather than resolved by inference.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI site profile and official Florida State Parks guidance",
@@ -507,7 +519,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "c6e09803-72eb-4cdd-ad4c-3ed8300cb0e9": {
         "description": (
             "Bjarnagjá is a lava ravine on Iceland’s Reykjanes Peninsula, filled mostly with fresh groundwater that mixes with seawater from the nearby coast. "
-            "DIVE.IS describes sections with an overhead environment for divers with the appropriate training; its guide describes the ravine as 18 m deep, while the atlas lists 20 m."
+            "DIVE.IS describes sections with an overhead environment for divers with the appropriate training; its guide gives the ravine's depth as 18 m, while the atlas gives 20 m."
         ),
         "evidenceNote": "The PADI profile coordinate exactly matches the atlas marker and credits DIVE.IS. DIVE.IS gives 18 m in its narrative, whereas PADI's structured profile and the atlas list 20 m; the figures are retained as reported rather than reconciled.",
         "authoringMethod": "AI-assisted synthesis of a coordinate-matched PADI profile and the credited local dive operator's guide",
@@ -530,7 +542,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "3d4dff04-8a6e-455f-80f7-feee1abab1a6": {
         "description": (
-            "El Palmer is a shore-entry dive from the beach near Aguadulce; its site profile lists a 14 m maximum. "
+            "El Palmer is a shore-entry dive from the beach near Aguadulce, reaching about 14 m. "
             "Aquatours describes the nearby Sierra de Gádor cliff dives as Posidonia over sand and rock, with collapsed rocks forming cracks and small caves."
         ),
         "evidenceNote": "The atlas point is within about 30 m of mapped El Palmer beach; the site profile supplies entry and depth details. Aquatours describes the adjacent cliff-diving area generally, not this exact route, so those seabed features are regional context.",
@@ -562,7 +574,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "17d192d9-37b8-4890-8c1b-d9589df26b12": {
         "description": (
             "Dom João de Castro is an offshore volcanic seamount whose caldera and summit vents form the focus of the dive; the summit is reported at about 13 m. "
-            "The Azores dive guide lists boat journeys of roughly 110–160 minutes, depths to 60 m, and currents ranging from moderate to strong, and recommends the site for experienced divers."
+            "Boat trips take roughly 110–160 minutes. Dives reach about 60 m, with moderate to strong currents; the site suits experienced divers."
         ),
         "evidenceNote": "The official Azores dive-site profile names this bank and gives access, depth, current, and experience information. Its narrative reports a 13 m summit; confirm the route and conditions with the local operator.",
         "authoringMethod": "AI-assisted synthesis of the official Azores tourism dive-site profile",
@@ -579,7 +591,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "95d28224-52a2-43af-87f6-23a6e05edc03": {
         "description": (
             "Chapeirão Faca Cega is a coral pinnacle cluster in Abrolhos with a hollow chamber nearly 20 m across and passages opening into the formation. "
-            "DiveAtlas lists 24 m, while the SSI profile describes the chamber reaching about 25 m; plan the overhead route with a local guide."
+            "DiveAtlas gives 24 m, while the SSI profile describes the chamber at about 25 m. Plan the overhead route with a local guide."
         ),
         "evidenceNote": "The SSI profile and Reefwander site point identify the same uniquely named Abrolhos site at the exact atlas coordinates. DiveAtlas lists 24 m; the source describes the chamber reaching about 25 m.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate SSI profile and linked site guide",
@@ -602,7 +614,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "8610d632-8345-477b-97f3-2a230c708669": {
         "description": (
-            "Talisay Point is a boat-access Moalboal site off Basdiot, about 1 km from Panagsama Beach. Local dive centers describe a sloping reef and wall with canyons and small caves; Neptune Diving lists a 5–15 m interesting-depth range and reports turtles among the marine life."
+            "Talisay Point is a boat-access Moalboal site off Basdiot, about 1 km from Panagsama Beach. Local dive centers describe a sloping reef and wall with canyons and small caves; Neptune Diving gives a 5–15 m depth range and reports turtles in the area."
         ),
         "evidenceNote": "Neptune Diving's published coordinates are about 70 m from the atlas marker; a second Moalboal dive-center guide describes the same Talisay wall. Depths and wildlife reports are operator-provided.",
         "authoringMethod": "AI-assisted synthesis of two local Moalboal dive-center guides",
@@ -648,7 +660,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "0fb73e76-0e8f-47fb-a528-8502ad34dcf5": {
         "description": (
-            "PADI's exact-coordinate profile classifies Japanese Shipwreck as a wreck and reef dive with beach entry. A local Amed dive operator lists it among its shore-dive sites; the available profiles do not describe the wreck's condition or a specific route."
+            "Japanese Shipwreck is a wreck and reef dive with beach entry. A local Amed dive operator includes it on shore-dive trips, but the available profiles do not describe the wreck's condition or a specific route."
         ),
         "evidenceNote": "PADI's site point exactly matches the atlas marker; the local operator listing independently identifies Japanese Shipwreck as a shore-dive option in Amed.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI profile and Amed dive-operator listing",
@@ -671,7 +683,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "698f468b-7461-43cc-ad50-1452d165fa39": {
         "description": (
-            "The PADI contributor describes racha noi as a white-sand dive site and lists wreck, beach, and ocean diving types with boat entry. "
+            "Racha Noi is a white-sand dive site for wreck, beach, and ocean diving, reached by boat. "
             "The profile gives a 40 m maximum; it does not describe a specific route, so confirm route depth and conditions with a local guide."
         ),
         "evidenceNote": "PADI's profile coordinates exactly match the atlas point; the short description and listed maximum are contributor-provided.",
@@ -687,7 +699,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "dad2a8bb-ea30-450b-a91d-c2ed0356e494": {
         "description": (
             "The Canyon is a shore-access Dahab dive that starts in a shallow sandy lagoon and descends into a narrow canyon, reported by PADI's contributor to begin around 20 m. "
-            "The passage leads toward a coral dome with glassfish; the profile lists a 40 m site maximum, not a recommended route depth."
+            "The passage leads toward a coral dome with glassfish; the site's maximum depth is 40 m, though this is not a recommended route depth."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas point; canyon dimensions and depth details are contributor-reported.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -702,7 +714,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "9125d98e-62cd-417d-8f6a-36c3f12ed719": {
         "description": (
             "Anchor Point is a shore-entry training site with gently sloping areas and three sections of pinnacles, walls, and boulders. "
-            "The PADI contributor reports kelp and nudibranchs around the reef and lists a 30 m maximum depth."
+            "Kelp and nudibranchs are found around the reef, which reaches a maximum depth of about 30 m."
         ),
         "evidenceNote": "The PADI page coordinates exactly match the atlas point; the route and sightings are member-reported.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -717,7 +729,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "3f088408-838f-4173-b41a-497769ccfef1": {
         "description": (
             "The Labyrinth is a boat-access dive site in Lombok where rock formations create a maze-like route. "
-            "PADI's profile lists reef and wall diving and a maximum depth of 30 m."
+            "It has reef and wall diving, with a maximum depth of 30 m."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas point; the maze-like route description is contributor-reported.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -747,7 +759,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "d034025f-d9d1-4853-bcf5-895d518942bb": {
         "description": (
             "Princess Bay is a shore-entry Wellington reef site with two entry points. A PADI member-contributed guide describes rocky reef through weed to sand at about 8–10 m, "
-            "with additional reef structure on the second route; it lists an 18 m maximum."
+            "with additional reef structure on the second route; the reported maximum depth is 18 m."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match this atlas point; route depths and marine-life reports are member-contributed.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -762,7 +774,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "3c8053a8-1c8b-4a68-adeb-8e17322aa92e": {
         "description": (
             "The Drop Off at Tulamben begins on a shallow reef and continues down a coral-covered wall. PADI's member-contributed profile reports the wall extends beyond 80 m, "
-            "while DiveAtlas lists 30 m; confirm the planned route and depth with a local operator."
+            "while DiveAtlas gives 30 m; confirm the planned route and depth with a local operator."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas point; its reported wall depth (>80 m) differs from DiveAtlas's 30 m listing.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -831,7 +843,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "3a57a92c-0e4a-4ac4-9f64-6e9750f4bc3a": {
         "description": (
             "At Pyramids near Amed, a local dive-center contributor describes artificial pyramid structures that have become reef habitat. "
-            "The profile lists boat or shore entry and a maximum depth of 40 m; turtle sightings are reported but not guaranteed."
+            "Divers can enter from shore or by boat; the site reaches 40 m, and turtles have been reported."
         ),
         "evidenceNote": "The PADI contributor profile coordinates exactly match this atlas record; wildlife observations and the listed maximum are source-reported.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -861,7 +873,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "93362254-7978-4dfe-835b-5759e4d2995d": {
         "description": (
             "PADI's local Maui dive-center profile describes Airport Beach as a shore-entry site with a shallow reef and a second reef around 80 ft for advanced divers. "
-            "The same page's structured field lists a 24 ft maximum, so its depth details conflict; verify the route and depth with a local operator."
+            "The same page gives a 24 ft maximum in its depth field, which conflicts with its description; verify the route and depth with a local operator."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas point; its narrative reef depth (~80 ft) conflicts with its structured 24 ft maximum.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -876,7 +888,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "77d62a39-b6b9-462b-8762-650dd7643ee0": {
         "description": (
             "PADI's member-contributed profile describes Turtle Rock as a shore-entry reef dive, reached by following the reef to the rock. "
-            "It lists a sandy bottom, a wall, and a maximum depth of 40 m; sea turtle sightings are reported but not guaranteed."
+            "The site has a sandy bottom, a wall, and a reported maximum depth of 40 m. Sea turtle sightings are possible but not guaranteed."
         ),
         "evidenceNote": "The PADI page coordinates exactly match this Curaçao record; site details and sightings are member-reported.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -906,7 +918,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "687dc661-5c03-45c6-bdf5-8d8e23bdb337": {
         "description": (
             "Aliwal Shoal is a broad reef destination about 5 km off KwaZulu-Natal. PADI's member-contributed profile describes boat access, "
-            "a range of shallow and deeper reef dives, and nearby wreck dives; it lists a maximum depth of 40 m. The marker represents the wider shoal, not one fixed route."
+            "a range of shallow and deeper reef dives, and nearby wreck dives. The reported maximum depth is 40 m. The marker represents the wider shoal, not one fixed route."
         ),
         "evidenceNote": "The PADI page's coordinates exactly match this atlas record; its description covers the wider shoal and its varied dive sites.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI contributor profile",
@@ -957,7 +969,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "9a7219e3-bf73-4939-856a-25bacca4ad5d": {
         "description": (
             "The King Cruiser is an 85 m passenger-ferry wreck between Phuket and Phi Phi that has become an artificial reef. "
-            "Operator and local guides describe upper sections at roughly 16–18 m and the stern near 31–32 m. DiveAtlas currently lists 26 m, "
+            "Operator and local guides describe upper sections at roughly 16–18 m and the stern near 31–32 m. DiveAtlas gives 26 m, "
             "so confirm the planned route and depth reference with the boat guide."
         ),
         "evidenceNote": "Depth reports differ: DiveAtlas lists 26 m; local guides describe the stern near 31–32 m and upper sections around 16–18 m.",
@@ -1131,7 +1143,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "2269ba6f-4a19-4682-9246-f1368bd7ee84": {
         "description": (
             "Eagle Ray Alley is described in the SSI MyDiveGuide profile as a shallow dive on Utila's southeastern wall, with a buoy and a nearby cave. "
-            "That profile lists 4–18 m, while Just Gotta Dive lists a maximum near 24 m; confirm the intended route and depth with the local guide."
+            "Published depth figures range from 4–18 m to about 24 m, so confirm the route and depth with a local guide."
         ),
         "evidenceNote": "The atlas marker is near the southeast side of Utila, matching the SSI profile's location description. Depth reports differ, and marine-life sightings are contributor-reported rather than guaranteed.",
         "authoringMethod": "AI-assisted synthesis of SSI MyDiveGuide and dive-site profile details",
@@ -1215,8 +1227,8 @@ OPERATOR_SUMMARY_OVERRIDES = {
     },
     "8d0ad1fb-0ac5-42f8-8fca-87cd88c78788": {
         "description": (
-            "PADI's exact-coordinate profile classifies La Herradura as a saltwater beach dive with both shore and boat entry and lists a maximum depth of 52 m. "
-            "A local dive center operates from the bay and nearby Punta de la Mona; treat the listed maximum as a site limit, not a planned route."
+            "La Herradura is a saltwater beach dive with both shore and boat entry and a reported maximum depth of 52 m. "
+            "A local dive center operates from the bay and nearby Punta de la Mona; treat this as a site limit, not a planned route."
         ),
         "evidenceNote": "The PADI profile coordinates exactly match the atlas marker. Its 52 m figure is explicitly a maximum; the local operator describes the broader bay and nearby sites rather than a single route at this marker.",
         "authoringMethod": "AI-assisted synthesis of an exact-coordinate PADI profile and local La Herradura dive-center guidance",
@@ -1355,7 +1367,7 @@ OPERATOR_SUMMARY_OVERRIDES = {
     "af205e53-7de3-4d30-8836-a81ba16ced9c": {
         "description": (
             "La Ballena (Sonabia Whale) is a boat-access dive among rocky corridors and formations, with a reported depth span from 6 m to over 20 m. "
-            "The SSI profile describes mild currents and lists local fish and invertebrates; these conditions and wildlife observations are source-reported."
+            "The SSI profile reports mild currents, fish, and invertebrates; conditions and wildlife sightings can vary."
         ),
         "evidenceNote": "The site-specific SSI profile matches the atlas name and Sonabia locality and identifies the nearby dive center. Its depth, current and wildlife details are contributor-reported; no fixed route or exact underwater point is provided.",
         "authoringMethod": "AI-assisted synthesis of an SSI MyDiveGuide site profile",
@@ -1561,29 +1573,29 @@ def summary_text(row: dict[str, str]) -> tuple[str, list[str]]:
         if label and label not in features:
             features.append(label)
 
-    facts: list[str] = []
-    if setting:
-        facts.append(f"a {setting} setting")
-    if access:
-        facts.append(f"{access} access")
-    if features:
-        if len(features) == 1:
-            feature_text = features[0]
-        elif len(features) == 2:
-            feature_text = f"{features[0]} and {features[1]}"
-        else:
-            feature_text = ", ".join(features[:-1]) + f", and {features[-1]}"
-        facts.append(f"{feature_text} features")
-    if not facts:
+    if not setting and not access and not features:
         return "", []
 
     location = ", ".join(dict.fromkeys(
         str(row.get(field) or "").strip() for field in ("region", "country")
         if str(row.get(field) or "").strip()
     ))
-    facts_text = ", ".join(facts[:-1]) + (f" and {facts[-1]}" if len(facts) > 1 else facts[0])
-    site_text = f" for {row['name']}" + (f" in {location}" if location else "")
-    sentence = f"The DiveAtlas record lists {facts_text}{site_text}."
+    site_text = f"{row['name']}" + (f" in {location}" if location else "")
+    dive_type = f"{setting} dive site" if setting else "dive site"
+    sentence = f"{site_text} is a {dive_type}"
+    if features:
+        feature_phrases = [FEATURE_SUMMARY.get(feature, feature) for feature in features]
+        feature_text = ", ".join(feature_phrases[:-1]) + (
+            f" and {feature_phrases[-1]}" if len(feature_phrases) > 1 else feature_phrases[0]
+        )
+        sentence += f" with {feature_text}"
+    sentence += "."
+    if access == "shore":
+        sentence += " It is a shore-entry dive."
+    elif access == "boat":
+        sentence += " It is reached by boat."
+    elif access == "shore or boat":
+        sentence += " It can be reached from shore or by boat."
     claims = (["setting"] if setting else []) + (["access"] if access else []) + (["features"] if features else [])
     return sentence, claims
 
@@ -2674,11 +2686,11 @@ def build() -> dict[str, Any]:
             clauses = []
             claims = []
             if depth_text:
-                clauses.append(f"reports a {depth_text}")
+                clauses.append(f"gives a {depth_text}")
                 claims.append("max_depth")
             if levels:
-                level_text = " and ".join(levels)
-                clauses.append(f"lists {level_text} difficulty")
+                level_text = ", ".join(levels[:-1]) + (f" and {levels[-1]}" if len(levels) > 1 else levels[0])
+                clauses.append(f"marks it for {level_text} divers")
                 claims.append("difficulty")
 
             url = clean_source_urls(row.get("source_url") or profile.get("url") or "")
@@ -2689,7 +2701,7 @@ def build() -> dict[str, Any]:
                 "summaryReviewStatus": "source-snapshot-synthesis",
                 "language": "en",
                 "authoringMethod": "Summary from a coordinate-matched SSI profile snapshot",
-                "description": f"The SSI MyDiveGuide profile snapshot dated 22 June 2026 { ' and '.join(clauses) }.",
+                "description": f"SSI's profile from 22 June 2026 { ' and '.join(clauses) }.",
                 "sources": [{
                     "label": "SSI MyDiveGuide profile (snapshot 2026-06-22)",
                     "url": url[0],
@@ -2798,6 +2810,16 @@ def main() -> None:
         else:
             compact = entry
         by_site_id[site_id] = compact
+
+    leftover_list_phrases = [
+        site_id for site_id, summary in by_site_id.items()
+        if SUMMARY_RECORD_LIST_PATTERN.search(summary.get("description", ""))
+    ]
+    if leftover_list_phrases:
+        raise ValueError(
+            "Summary copy still uses a record-list template for site IDs: "
+            + ", ".join(leftover_list_phrases[:10])
+        )
 
     payload = {
         "schema": "dive-site-summary-v2",
