@@ -10268,14 +10268,16 @@ ZSD·2016–2025</span></span>
   function setLegendCollapsed(collapsed, {
     persist = true,
     auto = false,
+    dismissMobileSheet = true,
     startingHeightOverride = null,
     clearInlineHeight = false
   } = {}) {
     const nextCollapsed = Boolean(collapsed);
     const stateChanged = nextCollapsed !== legendCollapsed;
     // Changing the mobile layer panel state dismisses any map sheet so both
-    // surfaces never compete for the same small viewport.
-    if (stateChanged) closeMobileSheetForLayerPanelInteraction();
+    // surfaces never compete for the same small viewport. A sheet opening is
+    // the exception: its panel collapse should preserve the newly opened sheet.
+    if (stateChanged && dismissMobileSheet) closeMobileSheetForLayerPanelInteraction();
     const animateMobileHeight = stateChanged && compactLayersPanelQuery.matches &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const startingHeight = animateMobileHeight
@@ -29183,6 +29185,10 @@ function closeShareDialog() {
       if (anchor) popup._diveAtlasAnchorLatLng = L.latLng(anchor.lat, anchor.lng);
     }
     activeClickPopup = popup;
+    if (mobileMapSheet) {
+      cancelLegendAutoCollapse();
+      setLegendCollapsed(true, { persist:false, dismissMobileSheet:false });
+    }
     activeClickPopupOwner =
       popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
     centerMobileMapSheetPointer(popup);
