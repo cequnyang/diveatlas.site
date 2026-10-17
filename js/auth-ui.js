@@ -22,6 +22,7 @@
   }
 
   function showSignedOut() {
+    delete status.dataset.authState;
     window.DiveAtlasCurrentUser = null;
     window.dispatchEvent(new CustomEvent('diveatlas:auth-change', { detail: { user: null } }));
     status.textContent = 'Not signed in';
@@ -31,6 +32,7 @@
   }
 
   function showSignedIn(user) {
+    delete status.dataset.authState;
     const name = typeof user.name === 'string' ? user.name.trim() : '';
     const email = typeof user.email === 'string' ? user.email.trim() : '';
     window.DiveAtlasCurrentUser = { name, email };
@@ -74,12 +76,21 @@
         showSignedOut();
       }
     } catch {
-      status.textContent = 'Account sign-in is unavailable';
+      status.dataset.authState = 'unavailable';
+      status.textContent = window.DiveAtlasTranslate
+        ? window.DiveAtlasTranslate('accountUnavailable')
+        : 'Account sign-in is unavailable';
       signInLink.removeAttribute('href');
       signInLink.hidden = true;
       signOutButton.hidden = true;
     }
   }
+
+  window.addEventListener('diveatlas:language-change', () => {
+    if (status.dataset.authState === 'unavailable' && window.DiveAtlasTranslate) {
+      status.textContent = window.DiveAtlasTranslate('accountUnavailable');
+    }
+  });
 
   signOutButton.addEventListener('click', async () => {
     signOutButton.disabled = true;
