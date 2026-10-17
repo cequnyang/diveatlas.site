@@ -3119,7 +3119,7 @@
       min-width: 0;
       flex: 1;
       height: 100%;
-      padding: 0 42px 0 0;
+      padding: 0 78px 0 0;
       border: 0;
       outline: none;
       background: transparent;
@@ -3170,6 +3170,42 @@
     }
 
     .dive-search-clear:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+    .dive-search-filter-toggle {
+      position:absolute;
+      right:4px;
+      top:50%;
+      display:grid;
+      width:34px;
+      height:34px;
+      place-items:center;
+      transform:translateY(-50%);
+      border:0;
+      border-radius:9px;
+      background:transparent;
+      color:var(--muted);
+      cursor:pointer;
+    }
+    .dive-search-filter-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .dive-search-filter-toggle svg circle { fill:var(--panel-solid); }
+    .dive-search-filter-toggle:hover, .dive-search-filter-toggle[aria-expanded="true"], .dive-search-filter-toggle.has-active-filters { background:var(--panel-soft); color:var(--primary); }
+    .dive-search-filter-toggle:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+    .dive-search-box.has-query .dive-search-filter-toggle { right:40px; }
+
+    .dive-search-filter-controls {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      padding:10px;
+      border-bottom:1px solid var(--line);
+    }
+    .dive-search-filter-controls[hidden] { display:none; }
+    .dive-search-filter-field { display:grid; min-width:0; gap:4px; color:var(--muted); font-size:10px; font-weight:650; }
+    .dive-search-filter-field:first-child { grid-column:1 / -1; }
+    .dive-search-filter-field select { box-sizing:border-box; width:100%; min-width:0; height:34px; padding:0 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); font:inherit; font-size:11px; }
+    .dive-search-filter-field select:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+    .dive-search-filter-clear { grid-column:1 / -1; justify-self:start; padding:4px 0; border:0; background:transparent; color:var(--primary); font:inherit; font-size:10px; font-weight:700; cursor:pointer; }
+    .dive-search-filter-clear[hidden] { display:none; }
 
     .dive-search-results {
       display: none;
@@ -7383,8 +7419,15 @@
               title="Clear search"
               aria-label="Clear search"
             ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+            <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18M3 17h18"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
+            <div class="dive-search-filter-controls" id="diveSearchFilterControls" hidden>
+              <label class="dive-search-filter-field"><span id="diveSearchCountryLabel">Country</span><select id="diveSearchCountryFilter" aria-labelledby="diveSearchCountryLabel"><option value="">Any country</option></select></label>
+              <label class="dive-search-filter-field"><span id="diveSearchDifficultyLabel">Difficulty</span><select id="diveSearchDifficultyFilter" aria-labelledby="diveSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
+              <label class="dive-search-filter-field"><span id="diveSearchFeatureLabel">Feature</span><select id="diveSearchFeatureFilter" aria-labelledby="diveSearchFeatureLabel"><option value="">Any feature</option></select></label>
+              <button class="dive-search-filter-clear" id="diveSearchFilterClear" type="button" hidden>Clear filters</button>
+            </div>
             <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
             <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
               <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
@@ -10225,9 +10268,19 @@ ZSD·2016–2025</span></span>
     brandSubtitle: document.getElementById('brandSubtitle'),
 
 
+    diveSearchBox: document.querySelector('#diveSearchSection .dive-search-box'),
     diveSearchInput: document.getElementById('diveSearchInput'),
     diveSearchToggle: document.getElementById('diveSearchToggle'),
     diveSearchClear: document.getElementById('diveSearchClear'),
+    diveSearchFilterToggle: document.getElementById('diveSearchFilterToggle'),
+    diveSearchFilterControls: document.getElementById('diveSearchFilterControls'),
+    diveSearchCountryLabel: document.getElementById('diveSearchCountryLabel'),
+    diveSearchDifficultyLabel: document.getElementById('diveSearchDifficultyLabel'),
+    diveSearchFeatureLabel: document.getElementById('diveSearchFeatureLabel'),
+    diveSearchCountryFilter: document.getElementById('diveSearchCountryFilter'),
+    diveSearchDifficultyFilter: document.getElementById('diveSearchDifficultyFilter'),
+    diveSearchFeatureFilter: document.getElementById('diveSearchFeatureFilter'),
+    diveSearchFilterClear: document.getElementById('diveSearchFilterClear'),
     diveSearchResults: document.getElementById('diveSearchResults'),
     diveSearchResultsScroll: document.getElementById('diveSearchResultsScroll'),
 
@@ -23914,6 +23967,95 @@ function closeShareDialog() {
     return scored.map(item => item.index);
   }
 
+  const DIVE_SEARCH_DIFFICULTY_LEVELS = ['beginner', 'intermediate', 'advanced', 'expert'];
+  const DIVE_SEARCH_NON_FEATURE_TYPES = new Set([
+    'marine', 'ocean', 'lake', 'river', 'freshwater', 'shore', 'beach', 'boat', 'both', 'land'
+  ]);
+  let diveSearchFiltersOpen = false;
+  let diveSearchFilterOptionsLanguage = null;
+
+  function diveSearchSiteDifficultyKeys(site) {
+    return String(site?.[6] || '')
+      .split(/\s*(?:\||,|;|\bto\b|–|—)\s*/i)
+      .map(value => value.trim().toLowerCase())
+      .filter(value => DIVE_SEARCH_DIFFICULTY_LEVELS.includes(value));
+  }
+
+  function diveSearchSiteFeatureKeys(site) {
+    const reviewed = getDiveSiteReviewedCategories(site);
+    const values = reviewed ? reviewed.features : parseDiveSiteTypes(site?.[7]);
+    return values
+      .map(diveSiteFallbackFeatureKey)
+      .filter(value => value && !DIVE_SEARCH_NON_FEATURE_TYPES.has(value) &&
+        !DIVE_SEARCH_DIFFICULTY_LEVELS.includes(value));
+  }
+
+  function populateDiveSearchFilterOptions() {
+    if (!DIVE_SITES.length || diveSearchFilterOptionsLanguage === currentLang) return;
+    const selected = {
+      country: els.diveSearchCountryFilter.value,
+      difficulty: els.diveSearchDifficultyFilter.value,
+      feature: els.diveSearchFeatureFilter.value
+    };
+    const countries = new Set();
+    const features = new Map();
+    for (const site of DIVE_SITES) {
+      const country = String(site?.[9] || '').trim();
+      if (country) countries.add(country);
+      for (const feature of diveSearchSiteFeatureKeys(site)) {
+        if (!features.has(feature)) features.set(feature, feature.replaceAll('_', ' '));
+      }
+    }
+
+    const replaceOptions = (select, anyLabel, values, labelForValue) => {
+      const options = [[ '', anyLabel ], ...values.map(value => [value, labelForValue(value)])];
+      select.replaceChildren(...options.map(([value, label]) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = label;
+        return option;
+      }));
+    };
+    replaceOptions(els.diveSearchCountryFilter, t('diveSearchFilterAnyCountry'),
+      [...countries].sort((a, b) => a.localeCompare(b, currentLang)), value => value);
+    replaceOptions(els.diveSearchDifficultyFilter, t('diveSearchFilterAnyDifficulty'),
+      DIVE_SEARCH_DIFFICULTY_LEVELS, value => diveCategoryLabel(value));
+    replaceOptions(els.diveSearchFeatureFilter, t('diveSearchFilterAnyFeature'),
+      [...features.keys()].sort((a, b) => diveCategoryLabel(a).localeCompare(diveCategoryLabel(b), currentLang)),
+      value => diveCategoryLabel(value));
+
+    els.diveSearchCountryFilter.value = selected.country;
+    els.diveSearchDifficultyFilter.value = selected.difficulty;
+    els.diveSearchFeatureFilter.value = selected.feature;
+    diveSearchFilterOptionsLanguage = currentLang;
+  }
+
+  function hasActiveDiveSearchFilters() {
+    return Boolean(
+      els.diveSearchCountryFilter.value ||
+      els.diveSearchDifficultyFilter.value ||
+      els.diveSearchFeatureFilter.value
+    );
+  }
+
+  function updateDiveSearchFilterControls() {
+    const active = hasActiveDiveSearchFilters();
+    els.diveSearchFilterToggle.classList.toggle('has-active-filters', active);
+    els.diveSearchFilterToggle.setAttribute('aria-expanded', String(diveSearchFiltersOpen));
+    els.diveSearchFilterControls.hidden = !diveSearchFiltersOpen;
+    els.diveSearchFilterClear.hidden = !active;
+  }
+
+  function diveSiteMatchesSearchFilters(site) {
+    const country = els.diveSearchCountryFilter.value;
+    const difficulty = els.diveSearchDifficultyFilter.value;
+    const feature = els.diveSearchFeatureFilter.value;
+    if (country && String(site?.[9] || '').trim() !== country) return false;
+    if (difficulty && !diveSearchSiteDifficultyKeys(site).includes(difficulty)) return false;
+    if (feature && !diveSearchSiteFeatureKeys(site).includes(feature)) return false;
+    return true;
+  }
+
   function hideDiveSearchResults() {
     diveSearchHasRenderedQuery = false;
     diveSearchMatches = [];
@@ -23943,8 +24085,13 @@ function closeShareDialog() {
     els.diveSearchInput.value = '';
     syncDiveSearchWidth();
     try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
-    hideDiveSearchResults();
     els.diveSearchClear.classList.remove('visible');
+    els.diveSearchBox.classList.remove('has-query');
+    if (hasActiveDiveSearchFilters() || diveSearchFiltersOpen) {
+      renderDiveSearchResults({ allowSameQueryRefresh: true });
+    } else {
+      hideDiveSearchResults();
+    }
     if (focus) els.diveSearchInput.focus();
   }
 
@@ -23954,13 +24101,21 @@ function closeShareDialog() {
 
     const query =
       els.diveSearchInput.value.trim();
+    els.diveSearchFilterToggle.title = t('diveSearchFilters');
+    els.diveSearchFilterToggle.setAttribute('aria-label', t('diveSearchFilters'));
+    els.diveSearchCountryLabel.textContent = t('diveSearchFilterCountry');
+    els.diveSearchDifficultyLabel.textContent = t('diveSearchFilterDifficulty');
+    els.diveSearchFeatureLabel.textContent = t('diveSearchFilterFeature');
+    els.diveSearchFilterClear.textContent = t('diveSearchFilterClear');
+    updateDiveSearchFilterControls();
 
     els.diveSearchClear.classList.toggle(
       'visible',
       Boolean(query)
     );
+    els.diveSearchBox.classList.toggle('has-query', Boolean(query));
 
-    if (!query) {
+    if (!query && !hasActiveDiveSearchFilters() && !diveSearchFiltersOpen) {
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       hideDiveSearchResults();
       return;
@@ -24027,8 +24182,18 @@ function closeShareDialog() {
       return;
     }
 
-    const nextMatches = findDiveSites(query);
-    if (query !== diveSearchQuery) {
+    if (diveSearchFiltersOpen) populateDiveSearchFilterOptions();
+    updateDiveSearchFilterControls();
+    const activeFilters = hasActiveDiveSearchFilters();
+    const baseMatches = query
+      ? findDiveSites(query)
+      : activeFilters
+        ? DIVE_SITES.map((_, index) => index)
+        : [];
+    const nextMatches = baseMatches.filter(siteIndex =>
+      diveSiteMatchesSearchFilters(DIVE_SITES[siteIndex])
+    );
+    if (query !== diveSearchQuery || allowSameQueryRefresh) {
       diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
       diveSearchActiveIndex = -1;
       els.diveSearchInput.removeAttribute('aria-activedescendant');
@@ -24040,6 +24205,13 @@ function closeShareDialog() {
     els.diveSearchInput.setAttribute('aria-expanded', 'true');
     els.diveSearchResultsScroll.setAttribute('aria-setsize', String(diveSearchMatches.length));
 
+    if (!query && !activeFilters) {
+      els.diveSearchResultsScroll.innerHTML =
+        `<div class="dive-search-empty">${escapeHtml(t('diveSearchFilterChoose'))}</div>`;
+      els.diveSearchResults.classList.add('visible');
+      return;
+    }
+
     if (!diveSearchMatches.length) {
       diveSearchActiveIndex = -1;
       els.diveSearchInput.removeAttribute('aria-activedescendant');
@@ -24049,10 +24221,12 @@ function closeShareDialog() {
         `</div>`;
 
       els.diveSearchResults.classList.add('visible');
-      els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
-      els.diveSearchSuggestion.hidden = false;
-      els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
-      els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
+      if (query) {
+        els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
+        els.diveSearchSuggestion.hidden = false;
+        els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
+        els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
+      }
       return;
     }
 
@@ -27813,6 +27987,33 @@ function closeShareDialog() {
   };
   for (const [lang, copy] of Object.entries(DIVE_CATEGORY_COPY)) {
     Object.assign(I18N[lang], copy);
+  }
+
+  const DIVE_SEARCH_FILTER_COPY = {
+    zh: ['筛选', '国家', '所有国家', '难度', '所有等级', '特征', '所有特征', '清除筛选', '选择筛选条件以浏览潜点。'],
+    en: ['Filters', 'Country', 'Any country', 'Difficulty', 'Any level', 'Feature', 'Any feature', 'Clear filters', 'Choose a filter to browse dive sites.'],
+    ja: ['絞り込み', '国', 'すべての国', '難易度', 'すべてのレベル', '特徴', 'すべての特徴', '絞り込みを解除', 'ダイブサイトを探すには条件を選択してください。'],
+    fr: ['Filtres', 'Pays', 'Tous les pays', 'Difficulté', 'Tous les niveaux', 'Caractéristique', 'Toutes les caractéristiques', 'Effacer les filtres', 'Choisissez un filtre pour parcourir les sites de plongée.'],
+    de: ['Filter', 'Land', 'Alle Länder', 'Schwierigkeit', 'Alle Niveaus', 'Merkmal', 'Alle Merkmale', 'Filter löschen', 'Wähle einen Filter, um Tauchplätze zu durchsuchen.'],
+    nl: ['Filters', 'Land', 'Alle landen', 'Niveau', 'Alle niveaus', 'Kenmerk', 'Alle kenmerken', 'Filters wissen', 'Kies een filter om duiklocaties te bekijken.'],
+    it: ['Filtri', 'Paese', 'Tutti i paesi', 'Difficoltà', 'Tutti i livelli', 'Caratteristica', 'Tutte le caratteristiche', 'Cancella filtri', 'Scegli un filtro per esplorare i siti di immersione.'],
+    ru: ['Фильтры', 'Страна', 'Все страны', 'Сложность', 'Любой уровень', 'Особенность', 'Все особенности', 'Сбросить фильтры', 'Выберите фильтр, чтобы просмотреть места для дайвинга.'],
+    pt: ['Filtros', 'País', 'Todos os países', 'Dificuldade', 'Todos os níveis', 'Característica', 'Todas as características', 'Limpar filtros', 'Escolha um filtro para explorar os locais de mergulho.'],
+    sv: ['Filter', 'Land', 'Alla länder', 'Svårighetsgrad', 'Alla nivåer', 'Egenskap', 'Alla egenskaper', 'Rensa filter', 'Välj ett filter för att bläddra bland dykplatser.'],
+    no: ['Filtre', 'Land', 'Alle land', 'Vanskelighetsgrad', 'Alle nivåer', 'Egenskap', 'Alle egenskaper', 'Tøm filtre', 'Velg et filter for å bla gjennom dykkesteder.'],
+    es: ['Filtros', 'País', 'Todos los países', 'Dificultad', 'Todos los niveles', 'Característica', 'Todas las características', 'Borrar filtros', 'Elige un filtro para explorar los sitios de buceo.'],
+    ko: ['필터', '국가', '모든 국가', '난이도', '모든 레벨', '특징', '모든 특징', '필터 지우기', '다이빙 사이트를 찾으려면 필터를 선택하세요.'],
+    id: ['Filter', 'Negara', 'Semua negara', 'Kesulitan', 'Semua tingkat', 'Fitur', 'Semua fitur', 'Hapus filter', 'Pilih filter untuk menelusuri lokasi menyelam.']
+  };
+  for (const [lang, values] of Object.entries(DIVE_SEARCH_FILTER_COPY)) {
+    const [diveSearchFilters, diveSearchFilterCountry, diveSearchFilterAnyCountry,
+      diveSearchFilterDifficulty, diveSearchFilterAnyDifficulty, diveSearchFilterFeature,
+      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose] = values;
+    Object.assign(I18N[lang], {
+      diveSearchFilters, diveSearchFilterCountry, diveSearchFilterAnyCountry,
+      diveSearchFilterDifficulty, diveSearchFilterAnyDifficulty, diveSearchFilterFeature,
+      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose
+    });
   }
 
   const DIVE_TYPE_LABELS = {
@@ -32814,6 +33015,35 @@ function closeShareDialog() {
     'click',
     () => clearDiveSearch({ focus: true })
   );
+
+  els.diveSearchFilterToggle.addEventListener('click', () => {
+    diveSearchFiltersOpen = !diveSearchFiltersOpen;
+    updateDiveSearchFilterControls();
+    if (diveSearchFiltersOpen || hasActiveDiveSearchFilters() || els.diveSearchInput.value.trim()) {
+      renderDiveSearchResults({ allowSameQueryRefresh: true });
+    } else {
+      hideDiveSearchResults();
+    }
+  });
+
+  [
+    els.diveSearchCountryFilter,
+    els.diveSearchDifficultyFilter,
+    els.diveSearchFeatureFilter
+  ].forEach(select => select.addEventListener('change', () => {
+    diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+    diveSearchActiveIndex = -1;
+    renderDiveSearchResults({ allowSameQueryRefresh: true });
+  }));
+
+  els.diveSearchFilterClear.addEventListener('click', () => {
+    els.diveSearchCountryFilter.value = '';
+    els.diveSearchDifficultyFilter.value = '';
+    els.diveSearchFeatureFilter.value = '';
+    diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
+    diveSearchActiveIndex = -1;
+    renderDiveSearchResults({ allowSameQueryRefresh: true });
+  });
 
   if (els.bioLegendDragHandle) {
     let layersPanelDrag = null;
