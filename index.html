@@ -371,6 +371,12 @@
       -webkit-touch-callout: none;
     }
 
+    .map-view-legend { width:min(360px, calc(100vw - 80px)); padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--panel-solid); color:var(--text); box-shadow:0 2px 10px rgba(16,24,40,.18); }
+    .map-view-legend[hidden] { display:none; }
+    .map-view-legend-title { margin-bottom:6px; font-size:11px; font-weight:600; line-height:1.4; }
+    .map-view-legend-bar { display:flex; justify-content:space-between; align-items:center; gap:6px; box-sizing:border-box; min-height:22px; padding:2px 10px; border-radius:999px; color:#fff; font-size:11px; line-height:16px; font-weight:600; font-variant-numeric:tabular-nums; text-shadow:0 1px 3px #000, 0 0 4px #000; }
+    .map-view-legend-bar span { flex:1; text-align:center; overflow-wrap:anywhere; }
+    @media (max-width:720px) { .map-view-legend { width:min(300px, calc(100vw - 80px)); } }
     .mobile-map-credits-control { display:none; }
 
     @media (max-width:720px) {
@@ -7707,13 +7713,13 @@
           <label class="environment-segment"><input type="radio" name="environmentView" value="water-clarity"><span id="environmentWaterClarityLabel">Water Clarity</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" id="currentsLayerToggle" value="currents"><span id="environmentCurrentsLabel">Currents</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="waves"><span id="environmentWavesLabel">Waves</span></label>
-          <label class="environment-segment"><input type="radio" name="environmentView" value="reef-survey-condition"><span id="environmentReefConditionLabel">Reef Condition</span></label>
           <label class="environment-segment"><input type="radio" name="environmentView" value="tide"><span id="environmentTideLabel">Tide</span></label>
+          <label class="environment-segment"><input type="radio" name="environmentView" value="reef-survey-condition"><span id="environmentReefConditionLabel">Reef Condition</span></label>
         </fieldset>
       </div>
       </div>
       <select id="environmentViewSelect" class="environment-view-source" aria-hidden="true" tabindex="-1">
-        <option value="dive-experience-outlook">Dive Experience</option><option value="temperature">Water TEMP</option><option value="water-clarity">Water Clarity</option><option value="currents">Current</option><option value="waves">Wave</option><option value="reef-survey-condition">Reef Condition</option><option value="tide">Tide</option><option value="default" selected>None</option>
+        <option value="dive-experience-outlook">Dive Experience</option><option value="temperature">Water TEMP</option><option value="water-clarity">Water Clarity</option><option value="currents">Current</option><option value="waves">Wave</option><option value="tide">Tide</option><option value="reef-survey-condition">Reef Condition</option><option value="default" selected>None</option>
       </select>
       <section class="temperature-controls reef-survey-controls" id="reefSurveyConditionControls" aria-label="Reef Condition controls" aria-hidden="true" inert hidden>
         <div class="temperature-controls-inner">
@@ -33298,6 +33304,68 @@ function closeShareDialog() {
       }));
     });
   }
+
+  // Mirror the panel scales instead of maintaining a second set of thresholds,
+  // palettes and translations that could drift away from the rendered layers.
+  const mapViewLegendControl = L.control({ position:'bottomleft' });
+  const mapViewLegend = L.DomUtil.create('div', 'map-view-legend');
+  mapViewLegend.hidden = true;
+  mapViewLegend.setAttribute('role', 'img');
+  mapViewLegendControl.onAdd = () => mapViewLegend;
+  mapViewLegendControl.addTo(map);
+  // Leaflet prepends bottom controls; keep credits above the legend so the
+  // scale remains anchored to the map edge as the credits panel expands.
+  mapViewLegend.before(mobileMapCreditsControl.getContainer());
+  L.DomEvent.disableClickPropagation(mapViewLegend);
+  L.DomEvent.disableScrollPropagation(mapViewLegend);
+
+  const mapLegendPanels = Array.from(document.querySelectorAll('.temperature-controls'));
+  function syncMapViewLegend() {
+    const selectedView = els.environmentViewRadios.find(input => input.checked)?.value;
+    const panel = selectedView === 'default' ? null : selectedView === 'dive-experience-outlook'
+      ? els.diveExperienceOutlookPanel
+      : mapLegendPanels.find(panel => !panel.hidden && panel.getAttribute('aria-hidden') !== 'true');
+    const gradient = panel?.querySelector('.temperature-gradient');
+    const scale = panel?.querySelector('.temperature-scale, .waves-scale-ticks, .regional-currents-speed-labels');
+    mapViewLegend.hidden = !gradient || !scale ||
+      (selectedView === 'currents' && !regionalCurrentSpeedTintEnabled);
+    if (mapViewLegend.hidden) return;
+    const title = panel.querySelector('.temperature-heading-title')?.textContent.trim() || panel.getAttribute('aria-label');
+    const description = panel.querySelector('.temperature-legend-title')?.textContent.trim() || '';
+    const labels = Array.from(scale.children, tick => tick.textContent.trim().replace(/\s+/g, ' '));
+    const heading = document.createElement('div');
+    heading.className = 'map-view-legend-title';
+    heading.textContent = `${title} · ${description}`;
+    const bar = document.createElement('div');
+    bar.className = 'map-view-legend-bar';
+    bar.style.background = getComputedStyle(gradient).backgroundImage;
+    labels.forEach(label => {
+      const tick = document.createElement('span');
+      tick.textContent = label;
+      bar.append(tick);
+    });
+    mapViewLegend.setAttribute('aria-label', `${heading.textContent}: ${labels.join(', ')}`);
+    mapViewLegend.replaceChildren(heading, bar);
+  }
+  let mapLegendFrame = 0;
+  const scheduleMapViewLegend = () => {
+    if (mapLegendFrame) return;
+    mapLegendFrame = requestAnimationFrame(() => {
+      mapLegendFrame = 0;
+      syncMapViewLegend();
+    });
+  };
+  const mapLegendObserver = new MutationObserver(scheduleMapViewLegend);
+  els.environmentViewRadios.forEach(input => input.addEventListener('change', scheduleMapViewLegend));
+  els.currentsSpeedTintToggle.addEventListener('change', scheduleMapViewLegend);
+  mapLegendPanels.forEach(panel => mapLegendObserver.observe(panel, {
+    subtree:true, childList:true, characterData:true, attributes:true,
+    attributeFilter:['hidden', 'aria-hidden', 'style']
+  }));
+  new MutationObserver(scheduleMapViewLegend).observe(document.documentElement, {
+    attributes:true, attributeFilter:['data-theme', 'lang']
+  });
+  syncMapViewLegend();
 
   continueSitePhotoUploadAfterSignIn();
 })();
