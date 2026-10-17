@@ -474,6 +474,13 @@ test('share preview shortens long site summaries and skips local image uploads',
   await clickFixture(page, 'long-share-summary');
   const sitePopup = page.locator('.leaflet-popup.dive-site-popup');
   await expect(sitePopup).toBeVisible();
+  // Let the published-summary loader finish before adding test-only popup
+  // content; otherwise its async render can replace this summary while Share
+  // is building the preview.
+  await expect.poll(() => sitePopup.evaluate(popup => {
+    const summarySlot = popup.querySelector('.dive-popup-summary-slot');
+    return !summarySlot || summarySlot.dataset.loaded === 'true';
+  })).toBe(true);
   const longSummary = 'The SSI MyDiveGuide profile snapshot reports a maximum depth of 20 meters and lists advanced difficulty for this remote reef dive site.';
   await sitePopup.locator('.leaflet-popup-content').evaluate((content, text) => {
     let summary = content.querySelector('.dive-popup-summary');
