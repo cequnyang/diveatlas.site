@@ -27777,6 +27777,24 @@ function closeShareDialog() {
     return '';
   }
 
+  function diveRecommendedLevelValue(rawValue) {
+    const levels = String(rawValue || '')
+      .split(/\s*(?:\||,|;|\bto\b)\s*/i)
+      .map(value => value.trim())
+      .filter(Boolean);
+    const rank = { beginner: 0, intermediate: 1, advanced: 2, expert: 3 };
+    const recognized = levels.filter(value => Object.hasOwn(rank, value.toLowerCase()));
+
+    // When a source lists a range, show its least demanding level as the site's entry point.
+    if (recognized.length) {
+      const lowest = recognized.reduce((best, value) =>
+        rank[value.toLowerCase()] < rank[best.toLowerCase()] ? value : best
+      );
+      return diveCategoryValue(lowest);
+    }
+    return diveCategoryValue(rawValue);
+  }
+
   const DIVE_CATEGORY_COPY = {
     zh: { diveLevel:'难度等级', diveSetting:'环境', diveAccess:'入水方式', diveFeatures:'水下特征' },
     en: { diveLevel:'Difficulty', diveSetting:'Setting', diveAccess:'Access', diveFeatures:'Features' },
@@ -28690,7 +28708,7 @@ function closeShareDialog() {
       properties.push(
         `<div class="dive-popup-property">` +
         `<span class="dive-popup-property__label">${t('diveLevel')}</span>` +
-        `<span class="dive-popup-property__value">${escapeHtml(diveCategoryValue(level))}</span>` +
+        `<span class="dive-popup-property__value">${escapeHtml(diveRecommendedLevelValue(level))}</span>` +
         `</div>`
       );
     }
