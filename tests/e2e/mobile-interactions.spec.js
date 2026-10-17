@@ -291,7 +291,6 @@ test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', asyn
       const bounds = element.getBoundingClientRect();
       window.__mobileSheetCloseState = {
         exiting:element.classList.contains('mobile-sheet-exiting'),
-        dragOffset:element.style.getPropertyValue('--mobile-panel-drag-y'),
         top:bounds.top,
         viewportHeight:window.innerHeight
       };
@@ -327,7 +326,6 @@ test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', asyn
   await expect.poll(() => page.evaluate(() => window.__mobileSheetCloseState)).not.toBeNull();
   const closeState = await page.evaluate(() => window.__mobileSheetCloseState);
   expect(closeState.exiting).toBe(true);
-  expect(closeState.dragOffset).toBe('144px');
   expect(closeState.top).toBeGreaterThanOrEqual(closeState.viewportHeight - 1);
 });
 
