@@ -1504,6 +1504,11 @@
       padding-top: 4px;
       border-top: 1px solid var(--line-soft);
     }
+    .dive-site-popup .dive-popup-summary-slot[hidden] + .dive-popup-properties {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
     .dive-popup-summary__heading {
       margin-bottom: 3px;
       color: var(--muted);
@@ -27512,7 +27517,8 @@ function closeShareDialog() {
             `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
             `<p>${escapeHtml(summary.description)}</p>`;
         } else {
-          summarySlot.remove();
+          summarySlot.hidden = true;
+          summarySlot.replaceChildren();
         }
       }
 
