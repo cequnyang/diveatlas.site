@@ -3189,7 +3189,7 @@
       transition:background-color 140ms ease, color 140ms ease, box-shadow 140ms ease, scale 140ms ease;
     }
     .dive-search-filter-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-    .dive-search-filter-toggle svg circle { fill:var(--panel-solid); }
+    .dive-search-filter-toggle svg circle { fill:transparent; }
     .dive-search-filter-toggle:hover { background:var(--panel-soft); color:var(--text); scale:1.06; }
     .dive-search-filter-toggle.has-active-filters { background:var(--panel-soft); color:var(--primary); }
     .dive-search-filter-toggle[aria-expanded="true"] {
@@ -5940,6 +5940,7 @@
     @media (max-width: 720px) {
       .top-menu-bar { justify-content: flex-start; }
       #topMenuSearchSlot .dive-search-input { font-size: 12px; }
+      #topMenuSearchSlot .dive-search-box::after { right:36px; }
       #topMenuSearchSlot {
         transition: width 400ms cubic-bezier(.4, 0, .2, 1), flex-basis 400ms cubic-bezier(.4, 0, .2, 1), flex-grow 400ms cubic-bezier(.4, 0, .2, 1);
       }
@@ -5958,19 +5959,20 @@
       }
 
       #topMenuSearchSlot:not(.is-mobile-expanded) #diveSearchSection {
-        width: 32px;
-        min-width: 32px;
-        max-width: 32px;
+        width: 72px;
+        min-width: 72px;
+        max-width: 72px;
       }
 
       #topMenuSearchSlot:not(.is-mobile-expanded) {
-        flex: 0 0 32px;
+        flex: 0 0 72px;
+        width:72px;
       }
 
       #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box {
-        width: 32px;
+        width: 72px;
         height: 32px;
-        border-radius: 50%;
+        border-radius: 999px;
         background: color-mix(in srgb, var(--text) 8%, var(--surface-elevated));
       }
 
@@ -7506,7 +7508,7 @@
               title="Clear search"
               aria-label="Clear search"
             ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
-            <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18M3 17h18"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
+            <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
             <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
@@ -8265,7 +8267,7 @@ ZSD·2016–2025</span></span>
       <div class="legend-copy">
         <div class="dive-legend-label-row">
           <span class="legend-label" id="diveLegendLabel">Dive sites</span>
-          <button class="dive-search-filter-toggle" id="diveLegendFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18M3 17h18"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
+          <button class="dive-search-filter-toggle" id="diveLegendFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
         </div>
         <span class="legend-status" id="diveLegendStatus"></span>
       </div>
@@ -8923,6 +8925,20 @@ ZSD·2016–2025</span></span>
     if (mobileSearchQuery.matches && !isExpanded && document.activeElement === diveSearchInput) {
       diveSearchInput.blur();
     }
+  }
+
+  function closeMobileDiveSearchForLayers() {
+    if (!mobileSearchQuery.matches) return;
+    // Invalidate pending renders too, so a delayed search response cannot reopen the flyout over Layers.
+    clearTimeout(diveSearchTimer);
+    diveSearchRenderRequest += 1;
+    setDiveSearchFocusRetained(false);
+    if (diveSearchFiltersOpen) {
+      diveSearchFiltersOpen = false;
+      updateDiveSearchFilterControls();
+    }
+    setMobileSearchExpanded(false);
+    hideDiveSearchResults();
   }
 
   setMobileSearchExpanded(false);
@@ -10758,6 +10774,8 @@ ZSD·2016–2025</span></span>
     clearInlineHeight = false
   } = {}) {
     const nextCollapsed = Boolean(collapsed);
+    // On phones, opening Layers dismisses search because both panels occupy the same map area.
+    if (!nextCollapsed && compactLayersPanelQuery.matches) closeMobileDiveSearchForLayers();
     const stateChanged = nextCollapsed !== legendCollapsed;
     // Changing the mobile layer panel state dismisses any map sheet so both
     // surfaces never compete for the same small viewport. A sheet opening is
@@ -24403,26 +24421,34 @@ function closeShareDialog() {
     const filtersOpen = diveSearchFiltersOpen;
     const boxStyle = getComputedStyle(els.diveSearchBox);
     const searchDividerStyle = getComputedStyle(els.diveSearchBox, '::after');
+    const mobileLayout = mobileSearchQuery.matches;
     const dividerOffset = Math.max(0,
       rect.width - parseFloat(boxStyle.borderRightWidth) - parseFloat(searchDividerStyle.right) - parseFloat(searchDividerStyle.width)
     );
     const availableFilterWidth = Math.max(0, window.innerWidth - rect.left - dividerOffset - 12);
-    const filterWidth = Math.min(360, availableFilterWidth) * 0.6;
-    const stacked = filtersOpen && filterWidth < 200;
+    const filterWidth = mobileLayout
+      ? availableFilterWidth
+      : Math.min(360, availableFilterWidth) * 0.6;
+    const stacked = filtersOpen && filterWidth < 200 && !mobileLayout;
+    const minimumMobileCandidateWidth = 250;
+    const candidateExpansion = filtersOpen && !stacked && mobileLayout
+      ? Math.min(Math.max(0, minimumMobileCandidateWidth - dividerOffset), Math.max(0, rect.left - 12))
+      : 0;
+    const candidatePaneWidth = dividerOffset + candidateExpansion;
     els.diveSearchResults.classList.toggle('is-stacked', stacked);
     els.diveSearchResults.classList.toggle('is-filter-compact', filtersOpen && !stacked && filterWidth < 300);
     const top = Math.max(12, Math.min(rect.bottom + 8, window.innerHeight - 180));
     if (filtersOpen && !stacked) {
-      // Match the clear/filter separator above; only the filter pane extends beyond the bar.
-      els.diveSearchResults.style.setProperty('--search-results-candidate-width', `${Math.max(0, dividerOffset - 1)}px`);
+      // On phones, widen candidates to the left while keeping the divider anchored to the search bar.
+      els.diveSearchResults.style.setProperty('--search-results-candidate-width', `${Math.max(0, candidatePaneWidth - 1)}px`);
       els.diveSearchResults.style.setProperty('--search-results-filter-width', `${filterWidth}px`);
-      els.diveSearchResults.style.width = `${dividerOffset + filterWidth + 1}px`;
+      els.diveSearchResults.style.width = `${candidatePaneWidth + filterWidth + 1}px`;
     } else {
       els.diveSearchResults.style.removeProperty('--search-results-candidate-width');
       els.diveSearchResults.style.removeProperty('--search-results-filter-width');
       els.diveSearchResults.style.width = `${rect.width}px`;
     }
-    els.diveSearchResults.style.left = `${rect.left}px`;
+    els.diveSearchResults.style.left = `${rect.left - candidateExpansion}px`;
     els.diveSearchResults.style.top = `${top}px`;
     els.diveSearchResults.style.maxHeight = `${Math.min(440, window.innerHeight - top - 12)}px`;
   }
@@ -24545,6 +24571,12 @@ function closeShareDialog() {
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       hideDiveSearchResults();
       return;
+    }
+
+    if (mobileSearchQuery.matches) {
+      // Let the search flyout own the mobile overlay area and reduce Layers to its circular launcher.
+      cancelLegendAutoCollapse();
+      setLegendCollapsed(true, { persist:false, auto:true });
     }
 
     // Async data readiness may re-enter this renderer for the same text. Once
@@ -33873,6 +33905,7 @@ function closeShareDialog() {
 
   els.bioLegendTitle.addEventListener('click', () => {
     cancelLegendAutoCollapse();
+    if (compactLayersPanelQuery.matches) closeMobileDiveSearchForLayers();
     // The circular launcher is an auto-collapsed version of this same button.
     // Its first tap restores the compact bar; only a tap on that bar opens the
     // full panel, keeping the two mobile actions distinct.
