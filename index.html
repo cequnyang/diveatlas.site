@@ -2347,8 +2347,8 @@
       }
       .leaflet-popup.diveatlas-mobile-sheet .diveatlas-sheet-share-button,
       .leaflet-popup.dive-conditions-rating-sheet .diveatlas-sheet-share-button { display:grid; }
-      .top-menu-share.diveatlas-sheet-share-button { width:59.4px; height:59.4px; flex:0 0 59.4px; }
-      .top-menu-share.diveatlas-sheet-share-button svg { width:21.6px; height:21.6px; }
+      .top-menu-share.diveatlas-sheet-share-button { width:44px; height:44px; flex:0 0 44px; }
+      .top-menu-share.diveatlas-sheet-share-button svg { width:22px; height:22px; }
       .dive-site-popup--with-photo .bio-popup-title--share {
         display:flex;
         align-items:center;
@@ -2361,7 +2361,7 @@
         flex:0 0 44px;
         margin-left:auto;
       }
-      .dive-site-popup--with-photo .bio-popup-title--share .diveatlas-sheet-share-button svg { width:21.6px; height:21.6px; }
+      .dive-site-popup--with-photo .bio-popup-title--share .diveatlas-sheet-share-button svg { width:22px; height:22px; }
       .leaflet-popup:not(.diveatlas-mobile-sheet):not(.dive-conditions-rating-sheet) .diveatlas-sheet-share-button { display:none; }
       .dive-conditions-rating-sheet:has(#diveExperienceMonthComparison:not([hidden])) {
         --dive-conditions-rating-sheet-max-height:min(820px, calc(100dvh - max(150px, env(safe-area-inset-top, 0px) + 120px)));
@@ -3872,16 +3872,18 @@
     .top-menu-share:hover,
     .top-menu-share:active { background:#f0f1f3; }
     .top-menu-share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .top-menu-share svg { width: 16px; height: 16px; fill: none; stroke: #6b7280; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .top-menu-share svg { display:block; width:20px; height:20px; flex-shrink:0; fill:none; stroke:#6b7280; stroke-width:2; stroke-linecap: round; stroke-linejoin: round; }
     .top-menu-share > svg {
       grid-area:1 / 1;
       transition:opacity .18s ease, transform .18s ease;
     }
     .top-menu-share .share-discovery-mark {
       grid-area:1 / 1;
+      display:grid;
+      place-items:center;
       width:26px;
       height:26px;
-      flex:0 0 26px;
+      pointer-events:none;
       margin:0;
       border-radius:50%;
       overflow:hidden;
@@ -3894,11 +3896,7 @@
     .top-menu-share.is-share-discovery-active > svg { opacity:0; transform:scale(.72); }
     .top-menu-share.is-share-discovery-active .share-discovery-mark { opacity:1; transform:scale(1); }
     @media (max-width:720px) {
-      .top-menu-share .share-discovery-mark {
-        width:31.2px;
-        height:31.2px;
-        flex-basis:31.2px;
-      }
+      .top-menu-share .share-discovery-mark { width:31.2px; height:31.2px; }
       .top-menu-share .share-discovery-mark svg { width:19.2px; height:19.2px; }
     }
     @media (prefers-reduced-motion:reduce) {
@@ -7333,7 +7331,7 @@
     <div class="top-menu-controls" aria-label="Page settings">
       <div class="top-menu-share-wrap">
         <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map info" title="Share map info">
-          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="12.5" cy="3.5" r="2"/><circle cx="3.5" cy="8" r="2"/><circle cx="12.5" cy="12.5" r="2"/><path d="m5.3 7.1 5.4-2.7M5.3 8.9l5.4 2.7"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg>
         </button>
       </div>
       <button class="top-menu-theme" id="themeBtn" type="button" title="Toggle map style" aria-label="Toggle map style" aria-pressed="false">
@@ -7565,7 +7563,7 @@
             <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect class="share-mark--outline" x="3" y="5" width="18" height="14" rx="2"/><path class="share-mark--outline" d="m4 7 8 6 8-6"/></svg></span><span>Mail</span>
           </a>
           <button class="share-action-button" id="shareNativeButton" type="button" hidden>
-            <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="share-mark--outline" cx="18" cy="5" r="3"/><circle class="share-mark--outline" cx="6" cy="12" r="3"/><circle class="share-mark--outline" cx="18" cy="19" r="3"/><path class="share-mark--outline" d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.2"/></svg></span><span>More</span>
+            <span class="share-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark--outline" d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></span><span>More</span>
           </button>
         </div>
         <p class="share-status visually-hidden" id="shareStatus" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -21864,10 +21862,14 @@ ZSD·2016–2025</span></span>
       activeShareDiscoveryButton = button;
       activeShareDiscoveryMark = mark;
       shareDiscoveryIconStage = optionIndex + 1;
+      // Paint the inserted logo at opacity zero before activating its transition;
+      // a single frame can merge insertion and activation and skip the fade-in.
       requestAnimationFrame(() => {
-        if (activeShareDiscoveryButton === button && activeShareDiscoveryMark === mark && button.isConnected && mark.isConnected) {
-          button.classList.add('is-share-discovery-active');
-        }
+        requestAnimationFrame(() => {
+          if (activeShareDiscoveryButton === button && activeShareDiscoveryMark === mark && button.isConnected && mark.isConnected) {
+            button.classList.add('is-share-discovery-active');
+          }
+        });
       });
 
       button.addEventListener('click', dismissShareDiscoveryIcon, { once:true });
@@ -29596,7 +29598,7 @@ function closeShareDialog() {
       button = document.createElement('button');
       button.type = 'button';
       button.className = 'top-menu-share diveatlas-sheet-share-button';
-      button.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="12.5" cy="3.5" r="2"></circle><circle cx="3.5" cy="8" r="2"></circle><circle cx="12.5" cy="12.5" r="2"></circle><path d="m5.3 7.1 5.4-2.7M5.3 8.9l5.4 2.7"></path></svg>';
+      button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"></path></svg>';
       button.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
