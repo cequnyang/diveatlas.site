@@ -741,6 +741,8 @@ test('WeChat receives a plain-text URL through the mobile share picker', async (
     });
   });
   await page.evaluate(() => document.querySelector('#shareMapButton').click());
+  await expect(page.locator('#sharePreviewCopyButton')).toHaveCSS('display', 'none');
+  await expect(page.locator('#shareCopyButton')).toBeVisible();
   const wechat = page.locator('#shareWechatButton');
   await expect(wechat).toBeVisible();
   await wechat.click();

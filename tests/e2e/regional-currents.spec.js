@@ -42,16 +42,23 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
     ]).flat()
   };
   const size = 128;
-  const raw = new ArrayBuffer(16 + size * size * 4);
-  const bytes = new Uint8Array(raw);
-  bytes.set([68, 65, 84, 67]);
-  const header = new DataView(raw);
-  header.setUint8(4, 1); header.setUint8(5, 7); header.setUint8(6, 8);
-  header.setUint16(8, 1, true); header.setUint16(10, size, true);
-  header.setUint16(12, 1, true); header.setUint16(14, 3, true);
-  const samples = new Int16Array(raw, 16);
-  for (let index = 0; index < samples.length; index += 2) { samples[index] = 321; samples[index + 1] = 234; }
-  const compressedTile = gzipSync(Buffer.from(raw));
+  const compressedTiles = new Map();
+  function fixtureTile(step, column, row) {
+    const key = `${step}/${column}/${row}`;
+    if (compressedTiles.has(key)) return compressedTiles.get(key);
+    const raw = new ArrayBuffer(16 + size * size * 4);
+    const bytes = new Uint8Array(raw);
+    bytes.set([68, 65, 84, 67]);
+    const header = new DataView(raw);
+    header.setUint8(4, 1); header.setUint8(5, 7); header.setUint8(6, step);
+    header.setUint16(8, 1, true); header.setUint16(10, size, true);
+    header.setUint16(12, row, true); header.setUint16(14, column, true);
+    const samples = new Int16Array(raw, 16);
+    for (let index = 0; index < samples.length; index += 2) { samples[index] = 321; samples[index + 1] = 234; }
+    const compressed = gzipSync(Buffer.from(raw));
+    compressedTiles.set(key, compressed);
+    return compressed;
+  }
 
   await openMap(page, { localStorage: { 'global-coral-map-environment-month-v1': '9' } });
   await openLayersPanel(page);
@@ -62,9 +69,13 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
     metadataRequests.push(route.request().url());
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify(metadata) });
   });
-  await page.route('**/data/currents/v1/*/*/s8/*.bin.gz*', async route => {
+  await page.route('**/data/currents/v1/*/*/s*/*.bin.gz*', async route => {
+    const tileMatch = /\/s(\d+)\/(\d+)_(\d+)\.bin\.gz(?:\?|$)/.exec(route.request().url());
+    if (!tileMatch) return route.continue();
+    const [, stepValue, columnValue, rowValue] = tileMatch;
+    const step = Number(stepValue), column = Number(columnValue), row = Number(rowValue);
     tileRequests.push(route.request().url());
-    await route.fulfill({ contentType: 'application/gzip', body: compressedTile });
+    await route.fulfill({ contentType: 'application/gzip', body: fixtureTile(step, column, row) });
   });
 
   await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
@@ -109,20 +120,21 @@ test('enabling Regional Currents loads visible tiles and reports flow direction 
   await page.screenshot({ path: `test-results/regional-currents-${screenshotName}-dark.png` });
 
   await openLayersPanel(page);
-  const octoberTile = page.waitForResponse(response => response.url().includes('/currents/v1/oct/20m/s8/'));
+  const octoberTile = page.waitForResponse(response => response.url().includes('/currents/v1/oct/20m/s'));
   await page.locator('#currentsMonth').selectOption('10');
   await octoberTile;
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
-  const octoberThirtyMeterTile = page.waitForResponse(response => response.url().includes('/currents/v1/oct/30m/s8/'));
+  const octoberThirtyMeterTile = page.waitForResponse(response => response.url().includes('/currents/v1/oct/30m/s'));
   await page.locator('#currentsDepth').selectOption('30');
   await octoberThirtyMeterTile;
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
+  const cachedSeptemberTiles = new Set(tileRequests.filter(url => url.includes('/v1/sep/20m/s')));
   const requestsBeforeCachedReturn = tileRequests.length;
   await page.locator('#currentsDepth').selectOption('20');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
   await page.locator('#currentsMonth').selectOption('9');
   await expect(page.locator('#currentsStatus')).toHaveAttribute('data-state', 'ready');
-  expect(tileRequests.length).toBe(requestsBeforeCachedReturn);
+  expect(tileRequests.slice(requestsBeforeCachedReturn).filter(url => cachedSeptemberTiles.has(url))).toEqual([]);
 
   await page.locator('label.environment-segment:has(#currentsLayerToggle)').click();
   await expect(page.locator('.regional-currents-canvas')).toHaveCount(0);

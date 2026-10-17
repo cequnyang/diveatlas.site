@@ -468,12 +468,19 @@ test('compact share state round-trips aliases, map layers, selections, coordinat
   expect(result.reserialized).toBe(result.serialized);
 });
 
-test('share preview keeps concise site facts and skips local image uploads', async ({ page }) => {
+test('share preview shortens long site summaries and skips local image uploads', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id: 'long-share-summary', lat: -5.7, lng: 131 });
   await clickFixture(page, 'long-share-summary');
   const sitePopup = page.locator('.leaflet-popup.dive-site-popup');
   await expect(sitePopup).toBeVisible();
+  // Let the published-summary loader finish before adding test-only popup
+  // content; otherwise its async render can replace this summary while Share
+  // is building the preview.
+  await expect.poll(() => sitePopup.evaluate(popup => {
+    const summarySlot = popup.querySelector('.dive-popup-summary-slot');
+    return !summarySlot || summarySlot.dataset.loaded === 'true';
+  })).toBe(true);
   const longSummary = 'The SSI MyDiveGuide profile snapshot reports a maximum depth of 20 meters and lists advanced difficulty for this remote reef dive site.';
   await sitePopup.locator('.leaflet-popup-content').evaluate((content, text) => {
     let summary = content.querySelector('.dive-popup-summary');
@@ -525,8 +532,13 @@ test('share preview keeps concise site facts and skips local image uploads', asy
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
-  await dialog.locator('#shareCopyButton').click();
+  const previewCopyButton = dialog.locator('#sharePreviewCopyButton');
+  await expect(previewCopyButton).toHaveCSS('display', 'flex');
+  await page.locator('#sharePreviewFrame').hover({ position:{ x:20, y:20 } });
+  await expect(previewCopyButton).toHaveCSS('opacity', '1');
+  await previewCopyButton.locator('.share-preview-copy-content').click();
   await expect(page.locator('#shareStatus')).toContainText(/copied/i);
+  await expect(previewCopyButton).toContainText(/copied/i);
   expect(previewRequests).toEqual([]);
 });
 

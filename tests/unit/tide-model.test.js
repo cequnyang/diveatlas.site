@@ -6,7 +6,7 @@ async function loadModule(path) {
   return import(`${path}?test=${Math.random().toString(36).slice(2)}`);
 }
 
-function buildChunk({ lat0 = 44.875, lon0 = -125.125, invalidCell = -1 } = {}) {
+function buildChunk({ lat0 = 44.875, lon0 = -125.125, invalidCells = [] } = {}) {
   const rows = 3, columns = 3, constituentCount = 17, recordSize = 1 + constituentCount * 8;
   const buffer = Buffer.alloc(28 + rows * columns * recordSize);
   buffer.write('EOT1', 0, 'ascii');
@@ -19,7 +19,7 @@ function buildChunk({ lat0 = 44.875, lon0 = -125.125, invalidCell = -1 } = {}) {
   buffer.writeDoubleLE(lon0, 20);
   for (let cell = 0; cell < rows * columns; cell += 1) {
     const offset = 28 + cell * recordSize;
-    buffer.writeUInt8(cell === invalidCell ? 0 : 1, offset);
+    buffer.writeUInt8(invalidCells.includes(cell) ? 0 : 1, offset);
     for (let index = 0; index < constituentCount; index += 1) {
       buffer.writeFloatLE(100 + index, offset + 1 + index * 8);
       buffer.writeFloatLE(-2, offset + 5 + index * 8);
@@ -28,7 +28,7 @@ function buildChunk({ lat0 = 44.875, lon0 = -125.125, invalidCell = -1 } = {}) {
   return gzipSync(buffer);
 }
 
-function mockFetch({ invalidCell = -1, missingChunk = false } = {}) {
+function mockFetch({ invalidCells = [], missingChunk = false } = {}) {
   const originalFetch = global.fetch;
   const requests = [];
   global.fetch = async input => {
@@ -45,7 +45,7 @@ function mockFetch({ invalidCell = -1, missingChunk = false } = {}) {
     const ty = Number(match[1]), tx = Number(match[2]);
     const lon0 = tx === 71 ? 179.875 : tx === 0 ? -180.125 : -125.125;
     const lat0 = ty === 18 ? -0.125 : 44.875;
-    return new Response(buildChunk({ lat0, lon0, invalidCell }), { status: 200 });
+    return new Response(buildChunk({ lat0, lon0, invalidCells }), { status: 200 });
   };
   return { requests, restore: () => { global.fetch = originalFetch; } };
 }
@@ -88,7 +88,7 @@ test('nearby locations reuse the coefficient chunk and interpolate all constitue
 });
 
 test('land, missing tiles, and both sides of the longitude seam fail or resolve safely', async () => {
-  const land = mockFetch({ invalidCell: 1 });
+  const land = mockFetch({ invalidCells: Array.from({ length: 9 }, (_, index) => index) });
   try {
     const { resolveCoefficients } = await loadModule('../../js/tides/model-loader.js');
     assert.equal(await resolveCoefficients(44.9, -124.95), null);
@@ -99,6 +99,15 @@ test('land, missing tiles, and both sides of the longitude seam fail or resolve 
     const { resolveCoefficients } = await loadModule('../../js/tides/model-loader.js');
     assert.equal(await resolveCoefficients(44.9, -124.95), null);
   } finally { missing.restore(); }
+
+  const partialLand = mockFetch({ invalidCells: [1] });
+  try {
+    const { resolveCoefficients } = await loadModule('../../js/tides/model-loader.js');
+    const coastal = await resolveCoefficients(44.9, -124.95);
+    assert.ok(coastal);
+    assert.equal(coastal.confidence, 'Limited');
+    assert.ok(coastal.coverage < 1);
+  } finally { partialLand.restore(); }
 
   const seam = mockFetch();
   try {
