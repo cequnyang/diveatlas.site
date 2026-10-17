@@ -2262,6 +2262,15 @@
     .dive-conditions-rating-handle,
     .diveatlas-mobile-sheet-handle { display:none; }
     .leaflet-popup .diveatlas-sheet-share-button { display:none; }
+      .leaflet-popup .diveatlas-sheet-share-button.diveatlas-popup-share-button {
+        display:grid; position:absolute; z-index:4; width:28px; height:28px;
+      }
+      .leaflet-popup .popup-share-heading {
+        box-sizing:border-box; min-height:28px; padding-right:64px;
+      }
+      .leaflet-popup .diveatlas-sheet-share-button.diveatlas-popup-share-inline {
+        position:static; flex:0 0 28px;
+      }
     /* Phone rating popups are promoted out of Leaflet's transformed map pane
        so the sheet stays attached to the viewport while the map remains usable. */
     @media (max-width:720px) {
@@ -4849,6 +4858,14 @@
     #contactCloseButton svg,
     #siteSuggestionCloseButton svg,
     #sitePhotoUploadCloseButton svg { width: 24px; height: 24px; }
+    html[data-theme="light"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+      background: color-mix(in srgb, var(--primary) 18%, var(--panel-solid));
+      color: var(--text-primary);
+    }
+    html[data-theme="dark"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+      background: #1b2e48;
+      color: var(--text-primary);
+    }
     .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
     .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 12px; }
     .share-preview-frame {
@@ -9123,6 +9140,15 @@ ZSD·2016–2025</span></span>
     const topAdjustment = popupElement.querySelector('.reef-condition-ocean-heat-popup') ? 3 : 0;
     closeButton.style.top = `${Math.max(0, centeredTop - topAdjustment)}px`;
     closeButton.style.right = `${Math.max(0, wrapperRect.right - headerRect.right)}px`;
+    const shareButton = popupElement.querySelector('.diveatlas-popup-share-button');
+    if (shareButton) {
+      // Use the measured close control so photo heights and wrapped titles keep
+      // both actions aligned, with a gap between their separate hit targets.
+      shareButton.style.width = `${closeRect.width}px`;
+      shareButton.style.height = `${closeRect.height}px`;
+      shareButton.style.top = closeButton.style.top;
+      shareButton.style.right = `${Math.max(0, wrapperRect.right - headerRect.right) + closeRect.width + 8}px`;
+    }
   }
 
   function markMapInfoPopup(popup, { uniformWidth = true, options = {} } = {}) {
@@ -21877,121 +21903,171 @@ ZSD·2016–2025</span></span>
     ko:['shareInstagramButton', 'shareWhatsAppButton'],
     id:['shareWhatsAppButton', 'shareFacebookButton']
   };
-  let shareDiscoveryIconStage = 0;
-  let shareDiscoveryIconPending = false;
-  let shareDiscoveryIconPendingTimer = 0;
-  let pendingShareDiscoveryButton = null;
-  let activeShareDiscoveryButton = null;
-  let activeShareDiscoveryMark = null;
-  let activeShareDiscoveryIconTimer = 0;
-  let activeShareDiscoveryIconCleanupTimer = 0;
-  let shareDiscoveryDesktopSecondTimer = 0;
-  let shareDiscoveryIconResizeHandler = null;
-  const sharePreviewUploadTasks = new Map();
+  // The header and popup family have separate budgets. All popup types and
+  // mobile sheets consume the same two examples, including across site changes.
+  function createShareDiscoveryController() {
+    let shareDiscoveryIconStage = 0;
+    let shareDiscoveryIconPending = false;
+    let shareDiscoveryIconPendingTimer = 0;
+    let pendingShareDiscoveryButton = null;
+    let activeShareDiscoveryButton = null;
+    let activeShareDiscoveryMark = null;
+    let activeShareDiscoveryIconTimer = 0;
+    let activeShareDiscoveryIconCleanupTimer = 0;
+    let shareDiscoveryDesktopSecondTimer = 0;
+    let shareDiscoveryIconResizeHandler = null;
 
-  function dismissShareDiscoveryIcon() {
-    window.clearTimeout(activeShareDiscoveryIconTimer);
-    activeShareDiscoveryIconTimer = 0;
-    if (shareDiscoveryIconResizeHandler) {
-      window.removeEventListener('resize', shareDiscoveryIconResizeHandler);
-      shareDiscoveryIconResizeHandler = null;
-    }
-
-    const button = activeShareDiscoveryButton;
-    const mark = activeShareDiscoveryMark;
-    if (!button || !mark) return;
-    button.classList.remove('is-share-discovery-active');
-
-    const removeMark = () => {
-      mark.remove();
-      if (activeShareDiscoveryMark === mark) {
-        activeShareDiscoveryButton = null;
-        activeShareDiscoveryMark = null;
+    function dismissShareDiscoveryIcon() {
+      window.clearTimeout(activeShareDiscoveryIconTimer);
+      activeShareDiscoveryIconTimer = 0;
+      if (shareDiscoveryIconResizeHandler) {
+        window.removeEventListener('resize', shareDiscoveryIconResizeHandler);
+        shareDiscoveryIconResizeHandler = null;
       }
-      activeShareDiscoveryIconCleanupTimer = 0;
-    };
-    window.clearTimeout(activeShareDiscoveryIconCleanupTimer);
-    if (!button.isConnected || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      removeMark();
-    } else {
-      activeShareDiscoveryIconCleanupTimer = window.setTimeout(removeMark, 220);
-    }
-  }
 
-  function scheduleDesktopSecondShareDiscovery(button) {
-    window.clearTimeout(shareDiscoveryDesktopSecondTimer);
-    shareDiscoveryDesktopSecondTimer = window.setTimeout(() => {
-      shareDiscoveryDesktopSecondTimer = 0;
-      if (shareDiscoveryIconStage !== 1 || !button?.isConnected || window.matchMedia('(max-width: 720px)').matches) return;
-      const bounds = button.getBoundingClientRect();
-      if (document.visibilityState === 'hidden' || els.shareModal?.hidden === false || !bounds.width || !bounds.height) {
-        scheduleDesktopSecondShareDiscovery(button);
-        return;
+      const button = activeShareDiscoveryButton;
+      const mark = activeShareDiscoveryMark;
+      if (!button || !mark) return;
+      button.classList.remove('is-share-discovery-active');
+
+      const removeMark = () => {
+        mark.remove();
+        if (activeShareDiscoveryMark === mark) {
+          activeShareDiscoveryButton = null;
+          activeShareDiscoveryMark = null;
+        }
+        activeShareDiscoveryIconCleanupTimer = 0;
+      };
+      window.clearTimeout(activeShareDiscoveryIconCleanupTimer);
+      if (!button.isConnected || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        removeMark();
+      } else {
+        activeShareDiscoveryIconCleanupTimer = window.setTimeout(removeMark, 220);
       }
-      showShareDiscoveryIcon(button, 1, 0, 'desktop');
-    }, SHARE_DISCOVERY_SECOND_DESKTOP_DELAY_MS);
-  }
-
-  function showShareDiscoveryIcon(button, optionIndex = 0, delayMs = 0, presentation = 'desktop') {
-    if (optionIndex !== shareDiscoveryIconStage || activeShareDiscoveryButton) return;
-    if (shareDiscoveryIconPending) {
-      if (presentation !== 'mobile') return;
-      window.clearTimeout(shareDiscoveryIconPendingTimer);
-      shareDiscoveryIconPending = false;
-      shareDiscoveryIconPendingTimer = 0;
-      pendingShareDiscoveryButton = null;
     }
-    const preferredId = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[optionIndex];
-    if (!preferredId) return;
 
-    shareDiscoveryIconPending = true;
-    pendingShareDiscoveryButton = button;
-    shareDiscoveryIconPendingTimer = window.setTimeout(() => {
-      shareDiscoveryIconPending = false;
-      shareDiscoveryIconPendingTimer = 0;
-      pendingShareDiscoveryButton = null;
-      if (!button?.isConnected || els.shareModal?.hidden === false || document.visibilityState === 'hidden') return;
-      const bounds = button.getBoundingClientRect();
-      if (!bounds.width || !bounds.height || getComputedStyle(button).visibility === 'hidden') return;
+    function scheduleDesktopSecondShareDiscovery(button) {
+      window.clearTimeout(shareDiscoveryDesktopSecondTimer);
+      shareDiscoveryDesktopSecondTimer = window.setTimeout(() => {
+        shareDiscoveryDesktopSecondTimer = 0;
+        if (shareDiscoveryIconStage !== 1 || !button?.isConnected || window.matchMedia('(max-width: 720px)').matches) return;
+        const bounds = button.getBoundingClientRect();
+        if (document.visibilityState === 'hidden' || els.shareModal?.hidden === false || !bounds.width || !bounds.height) {
+          scheduleDesktopSecondShareDiscovery(button);
+          return;
+        }
+        showShareDiscoveryIcon(button, 1, 0, 'desktop');
+      }, SHARE_DISCOVERY_SECOND_DESKTOP_DELAY_MS);
+    }
 
-      updateSharePlatformVisibility();
-      const priorIds = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang].slice(0, optionIndex);
-      const fallbackIds = ['shareFacebookButton', 'shareWhatsAppButton', 'shareInstagramButton', 'shareXButton', 'shareRedditButton']
-        .filter(id => !priorIds.includes(id));
-      const platformIds = [preferredId, ...fallbackIds];
-      const platformButton = platformIds
-        .filter((id, index, ids) => id && ids.indexOf(id) === index)
-        .map(id => document.getElementById(id))
-        .find(candidate => candidate && !candidate.hidden);
-      if (!platformButton) return;
+    function showShareDiscoveryIcon(button, optionIndex = 0, delayMs = 0, presentation = 'desktop') {
+      if (optionIndex !== shareDiscoveryIconStage || activeShareDiscoveryButton) return;
+      if (shareDiscoveryIconPending) {
+        if (presentation !== 'mobile') return;
+        window.clearTimeout(shareDiscoveryIconPendingTimer);
+        shareDiscoveryIconPending = false;
+        shareDiscoveryIconPendingTimer = 0;
+        pendingShareDiscoveryButton = null;
+      }
+      const preferredId = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[optionIndex];
+      if (!preferredId) return;
 
-      const mark = platformButton.querySelector('.share-action-icon')?.cloneNode(true);
-      if (!mark) return;
-      mark.classList.add('share-discovery-mark');
-      mark.setAttribute('aria-hidden', 'true');
-      button.append(mark);
-      activeShareDiscoveryButton = button;
-      activeShareDiscoveryMark = mark;
-      shareDiscoveryIconStage = optionIndex + 1;
-      // Paint the inserted logo at opacity zero before activating its transition;
-      // a single frame can merge insertion and activation and skip the fade-in.
-      requestAnimationFrame(() => {
+      shareDiscoveryIconPending = true;
+      pendingShareDiscoveryButton = button;
+      shareDiscoveryIconPendingTimer = window.setTimeout(() => {
+        shareDiscoveryIconPending = false;
+        shareDiscoveryIconPendingTimer = 0;
+        pendingShareDiscoveryButton = null;
+        if (!button?.isConnected || els.shareModal?.hidden === false || document.visibilityState === 'hidden') return;
+        const bounds = button.getBoundingClientRect();
+        if (!bounds.width || !bounds.height || getComputedStyle(button).visibility === 'hidden') return;
+
+        updateSharePlatformVisibility();
+        const priorIds = SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang].slice(0, optionIndex);
+        const fallbackIds = ['shareFacebookButton', 'shareWhatsAppButton', 'shareInstagramButton', 'shareXButton', 'shareRedditButton']
+          .filter(id => !priorIds.includes(id));
+        const platformIds = [preferredId, ...fallbackIds];
+        const platformButton = platformIds
+          .filter((id, index, ids) => id && ids.indexOf(id) === index)
+          .map(id => document.getElementById(id))
+          .find(candidate => candidate && !candidate.hidden);
+        if (!platformButton) return;
+
+        const mark = platformButton.querySelector('.share-action-icon')?.cloneNode(true);
+        if (!mark) return;
+        mark.classList.add('share-discovery-mark');
+        mark.setAttribute('aria-hidden', 'true');
+        button.append(mark);
+        activeShareDiscoveryButton = button;
+        activeShareDiscoveryMark = mark;
+        shareDiscoveryIconStage = optionIndex + 1;
+        // Paint the inserted logo at opacity zero before activating its transition;
+        // a single frame can merge insertion and activation and skip the fade-in.
         requestAnimationFrame(() => {
-          if (activeShareDiscoveryButton === button && activeShareDiscoveryMark === mark && button.isConnected && mark.isConnected) {
-            button.classList.add('is-share-discovery-active');
-          }
+          requestAnimationFrame(() => {
+            if (activeShareDiscoveryButton === button && activeShareDiscoveryMark === mark && button.isConnected && mark.isConnected) {
+              button.classList.add('is-share-discovery-active');
+            }
+          });
         });
-      });
 
-      button.addEventListener('click', dismissShareDiscoveryIcon, { once:true });
-      shareDiscoveryIconResizeHandler = dismissShareDiscoveryIcon;
-      window.addEventListener('resize', shareDiscoveryIconResizeHandler, { once:true });
-      activeShareDiscoveryIconTimer = window.setTimeout(dismissShareDiscoveryIcon, SHARE_DISCOVERY_ICON_DURATION_MS);
-      if (optionIndex === 0 && presentation === 'desktop' && SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[1]) {
-        scheduleDesktopSecondShareDiscovery(button);
-      }
-    }, delayMs);
+        button.addEventListener('click', dismissShareDiscoveryIcon, { once:true });
+        shareDiscoveryIconResizeHandler = dismissShareDiscoveryIcon;
+        window.addEventListener('resize', shareDiscoveryIconResizeHandler, { once:true });
+        activeShareDiscoveryIconTimer = window.setTimeout(dismissShareDiscoveryIcon, SHARE_DISCOVERY_ICON_DURATION_MS);
+        if (optionIndex === 0 && presentation === 'desktop' && SHARE_DISCOVERY_PLATFORMS_BY_LANGUAGE[currentLang]?.[1]) {
+          scheduleDesktopSecondShareDiscovery(button);
+        }
+      }, delayMs);
+    }
+
+    function cancelShareDiscovery() {
+      window.clearTimeout(shareDiscoveryIconPendingTimer);
+      window.clearTimeout(shareDiscoveryDesktopSecondTimer);
+      shareDiscoveryIconPending = false;
+      shareDiscoveryIconPendingTimer = 0;
+      pendingShareDiscoveryButton = null;
+      dismissShareDiscoveryIcon();
+      window.clearTimeout(activeShareDiscoveryIconCleanupTimer);
+      activeShareDiscoveryButton?.removeEventListener('click', dismissShareDiscoveryIcon);
+      activeShareDiscoveryMark?.remove();
+      activeShareDiscoveryButton = null;
+      activeShareDiscoveryMark = null;
+    }
+
+    let currentOwner = null;
+    return {
+      show(button, delayMs = 0, presentation = 'desktop', owner = button) {
+        if (!button) return;
+        if (currentOwner !== owner && activeShareDiscoveryButton) cancelShareDiscovery();
+        // Move the existing example onto replacement DOM without replaying it
+        // or consuming the next platform during asynchronous content updates.
+        if (activeShareDiscoveryButton && (!activeShareDiscoveryButton.isConnected || !activeShareDiscoveryMark?.isConnected)) {
+          if (currentOwner === owner && activeShareDiscoveryMark) {
+            activeShareDiscoveryButton.removeEventListener('click', dismissShareDiscoveryIcon);
+            button.append(activeShareDiscoveryMark);
+            activeShareDiscoveryButton = button;
+            button.classList.add('is-share-discovery-active');
+            button.addEventListener('click', dismissShareDiscoveryIcon, { once:true });
+            return;
+          }
+          cancelShareDiscovery();
+        }
+        if (currentOwner === owner && !shareDiscoveryIconPending) return;
+        if (shareDiscoveryIconPending && pendingShareDiscoveryButton === button) return;
+        currentOwner = owner;
+        showShareDiscoveryIcon(button, shareDiscoveryIconStage, delayMs, presentation);
+      },
+      cancelFor(root) {
+        if (root && (root.contains(pendingShareDiscoveryButton) || root.contains(activeShareDiscoveryButton))) cancelShareDiscovery();
+      },
+      cancel: cancelShareDiscovery
+    };
   }
+
+  const headerShareDiscovery = createShareDiscoveryController();
+  const popupShareDiscovery = createShareDiscoveryController();
+  const sharePreviewUploadTasks = new Map();
 
   function getShareContextTitle(state) {
     const siteId = String(state?.selectedSiteId || '').toLowerCase();
@@ -23239,7 +23315,7 @@ function closeShareDialog() {
   [els.shareLineButton, els.shareTelegramButton, els.shareWechatButton, els.shareRedNoteButton, els.shareFacebookButton, els.shareWhatsAppButton, els.shareXButton, els.shareInstagramButton, els.shareRedditButton, els.shareEmailButton]
     .forEach(button => button.addEventListener('click', shareExternalLinkAfterPreviewSave));
   els.shareNativeButton.addEventListener('click', shareWithDevice);
-  window.setTimeout(() => showShareDiscoveryIcon(els.shareMapButton), SHARE_DISCOVERY_ICON_HEADER_DELAY_MS);
+  window.setTimeout(() => headerShareDiscovery.show(els.shareMapButton), SHARE_DISCOVERY_ICON_HEADER_DELAY_MS);
   els.shareModal.addEventListener('click', event => {
     if (event.target.closest('[data-share-close]')) closeShareDialog();
   });
@@ -29691,16 +29767,12 @@ function closeShareDialog() {
     }
     return useMobileSheet;
   }
-  function ensureMobileSheetShareButton(popup) {
+  function ensurePopupShareButton(popup) {
     const element = popup?.getElement?.();
     if (!element) return;
     const isMobileSheet = window.matchMedia('(max-width: 720px)').matches &&
       element.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet');
-    if (!isMobileSheet) {
-      element.querySelector('.diveatlas-sheet-share-button')?.remove();
-      element.querySelector('.bio-popup-title--share')?.classList.remove('bio-popup-title--share');
-      return;
-    }
+    const isCompactPopup = !isMobileSheet;
     const wrapper = element.querySelector('.leaflet-popup-content-wrapper');
     if (!wrapper) return;
 
@@ -29718,10 +29790,22 @@ function closeShareDialog() {
       L.DomEvent.disableClickPropagation(button);
     }
 
-    const photoTitle = element.classList.contains('dive-site-popup--with-photo')
+    button.classList.toggle('diveatlas-popup-share-button', isCompactPopup);
+    const inlineClose = isCompactPopup ? wrapper.querySelector('.dive-conditions-popup-close') : null;
+    button.classList.toggle('diveatlas-popup-share-inline', Boolean(inlineClose));
+    wrapper.querySelector('.popup-share-heading')?.classList.remove('popup-share-heading');
+    if (!isCompactPopup || inlineClose) {
+      button.style.removeProperty('width');
+      button.style.removeProperty('height');
+      button.style.removeProperty('top');
+      button.style.removeProperty('right');
+    }
+    const photoTitle = isMobileSheet && element.classList.contains('dive-site-popup--with-photo')
       ? wrapper.querySelector('.dive-popup-body .bio-popup-title')
       : null;
-    if (photoTitle) {
+    if (inlineClose) {
+      inlineClose.before(button);
+    } else if (photoTitle) {
       photoTitle.classList.add('bio-popup-title--share');
       photoTitle.appendChild(button);
     } else {
@@ -29729,9 +29813,16 @@ function closeShareDialog() {
       wrapper.querySelector('.bio-popup-title--share')?.classList.remove('bio-popup-title--share');
     }
 
-    const label = t('shareMap');
+    const label = t(element.classList.contains('dive-site-popup') ? 'shareCopySite' : 'shareMap');
     button.setAttribute('aria-label', label);
     button.title = label;
+    if (isCompactPopup) {
+      if (!inlineClose) {
+        wrapper.querySelector('.bio-popup-title, .dive-conditions-heading, .temperature-detail-heading, h1, h2, h3')?.classList.add('popup-share-heading');
+      }
+      alignMapPopupCloseButton(popup);
+    }
+    popupShareDiscovery.show(button, SHARE_DISCOVERY_ICON_SHEET_DELAY_MS, 'mobile', popup._diveAtlasShareDiscoverySession);
   }
 
   function syncMapPopupForViewport(popup) {
@@ -29740,19 +29831,20 @@ function closeShareDialog() {
   window.addEventListener('resize', () => {
     if (activeClickPopup?.isOpen()) {
       syncMapPopupForViewport(activeClickPopup);
-      ensureMobileSheetShareButton(activeClickPopup);
+      ensurePopupShareButton(activeClickPopup);
     }
   }, { passive:true });
 
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
+    popup._diveAtlasShareDiscoverySession = {};
     if (popup._diveAtlasMobileSheetContentUpdate !== true) {
       popup._diveAtlasMobileSheetContentUpdate = true;
       popup.on('contentupdate', () => {
         if (popup.isOpen()) {
           syncMapPopupForViewport(popup);
-          ensureMobileSheetShareButton(popup);
+          ensurePopupShareButton(popup);
         }
       });
     }
@@ -29776,10 +29868,8 @@ function closeShareDialog() {
       }
     }
     const mobileMapSheet = syncMapPopupForViewport(popup);
-    ensureMobileSheetShareButton(popup);
+    ensurePopupShareButton(popup);
     if (mobileMapSheet) {
-      const sheetShareButton = popup.getElement()?.querySelector('.diveatlas-sheet-share-button');
-      showShareDiscoveryIcon(sheetShareButton, shareDiscoveryIconStage, SHARE_DISCOVERY_ICON_SHEET_DELAY_MS, 'mobile');
       animateMobileMapSheetEntrance(popup);
       observeMobileMapSheetSize(popup);
     }
@@ -30538,15 +30628,7 @@ function closeShareDialog() {
     restoreZoomDetachedPopupSource(popup);
     popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
-    if (popupElement && shareDiscoveryIconPending && pendingShareDiscoveryButton && popupElement.contains(pendingShareDiscoveryButton)) {
-      window.clearTimeout(shareDiscoveryIconPendingTimer);
-      shareDiscoveryIconPending = false;
-      shareDiscoveryIconPendingTimer = 0;
-      pendingShareDiscoveryButton = null;
-    }
-    if (popupElement && activeShareDiscoveryButton && popupElement.contains(activeShareDiscoveryButton)) {
-      dismissShareDiscoveryIcon();
-    }
+    popupShareDiscovery.cancelFor(popupElement);
     if (popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) {
       cancelMobileMapSheetDismissal(popupElement);
       popupElement.classList.remove('mobile-vertical-dragging');
