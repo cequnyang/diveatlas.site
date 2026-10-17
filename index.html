@@ -4854,6 +4854,27 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--panel-soft);
+      user-select: none;
+    }
+    .share-preview-frame > :not(.share-preview-copy) { pointer-events: none; }
+    /* Keep one composition while the dialog changes size; recropping the live
+       map on resize would change the shared area and can expose empty edges. */
+    .share-preview-composition {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      transform-origin: top left;
+      background: var(--panel-soft);
+    }
+    .share-preview-composition .share-preview-popup-data {
+      right: 2%;
+      bottom: 3%;
+      width: 520px;
+      padding: 16px;
+      font-size: 22px;
     }
     .share-preview-copy {
       display: none;
@@ -4872,6 +4893,8 @@
       cursor: pointer;
       opacity: 0;
       transition: opacity .15s ease;
+      pointer-events: auto;
+      user-select: none;
     }
     /* Tint the complete image, but reserve the summary column when positioning the copy control. */
     .share-preview-frame:has(.share-preview-popup-data:not([hidden])) .share-preview-copy { padding-right: 52%; }
@@ -4904,6 +4927,17 @@
       overflow: hidden;
       pointer-events: none;
     }
+    .share-preview-canonical-image {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .share-preview-canonical-image[hidden] { display: none; }
+    .share-preview-frame[data-canonical-ready="true"] .share-preview-popup-data { display: none; }
     .share-preview-frame[data-background="site"] .share-preview-map-snapshot { display: none; }
     .share-preview-photo-label,
     .share-preview-photo-credit {
@@ -7468,13 +7502,16 @@
       </div>
       <div class="share-dialog-body">
         <div class="share-preview-frame" id="sharePreviewFrame" data-background="map" aria-label="Preview of the shared map">
+          <div class="share-preview-composition" id="sharePreviewComposition">
           <img class="share-preview-site-photo" id="sharePreviewSitePhoto" alt="" aria-hidden="true" hidden>
           <div class="share-preview-photo-label" id="sharePreviewPhotoLabel" hidden></div>
           <div class="share-preview-photo-credit" id="sharePreviewPhotoCredit" hidden></div>
           <div class="share-preview-map-snapshot" id="sharePreviewMapSnapshot" aria-hidden="true" hidden></div>
+          <img class="share-preview-canonical-image" id="sharePreviewCanonicalImage" alt="" aria-hidden="true" hidden>
           <div class="share-preview-popup-pointer" id="sharePreviewPopupPointer" aria-hidden="true" hidden></div>
           <div class="share-preview-placeholder" id="sharePreviewPlaceholder" role="status">Preparing map preview…</div>
           <aside class="share-preview-popup-data" id="sharePreviewPopupData" hidden></aside>
+          </div>
           <button class="share-preview-copy" id="sharePreviewCopyButton" type="button">
             <span class="share-preview-copy-content"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg><span id="sharePreviewCopyText">Copy link</span></span>
           </button>
@@ -9938,6 +9975,7 @@ ZSD·2016–2025</span></span>
     shareDialog: document.getElementById('shareDialog'),
     shareCloseButton: document.getElementById('shareCloseButton'),
     sharePreviewFrame: document.getElementById('sharePreviewFrame'),
+    sharePreviewComposition: document.getElementById('sharePreviewComposition'),
     sharePreviewCopyButton: document.getElementById('sharePreviewCopyButton'),
     sharePreviewCopyText: document.getElementById('sharePreviewCopyText'),
     sharePreviewSitePhoto: document.getElementById('sharePreviewSitePhoto'),
@@ -9948,6 +9986,7 @@ ZSD·2016–2025</span></span>
     sharePreviewMapLabel: document.querySelector('#sharePreviewBackgroundChoices input[value="map"] + span'),
     sharePreviewSiteImageLabel: document.querySelector('#sharePreviewBackgroundChoices input[value="site"] + span'),
     sharePreviewMapSnapshot: document.getElementById('sharePreviewMapSnapshot'),
+    sharePreviewCanonicalImage: document.getElementById('sharePreviewCanonicalImage'),
     sharePreviewPlaceholder: document.getElementById('sharePreviewPlaceholder'),
     sharePreviewPopupData: document.getElementById('sharePreviewPopupData'),
     sharePreviewPopupPointer: document.getElementById('sharePreviewPopupPointer'),
@@ -22022,6 +22061,13 @@ ZSD·2016–2025</span></span>
     requestAnimationFrame(fitSharePreviewCard);
   }
 
+  function scaleSharePreviewComposition() {
+    const width = els.sharePreviewFrame.clientWidth;
+    if (width) els.sharePreviewComposition.style.transform = `scale(${width / 1200})`;
+  }
+
+  new ResizeObserver(scaleSharePreviewComposition).observe(els.sharePreviewFrame);
+
   function fitSharePreviewCard() {
     const card = els.sharePreviewPopupData;
     if (!card || card.hidden || !card.clientHeight) return;
@@ -22197,11 +22243,25 @@ ZSD·2016–2025</span></span>
   }
 
   async function createLocalSharePreviewJpeg({ background = sharePreviewBackgroundChoice, photo = sharePreviewSitePhoto } = {}) {
-    const frame = els.sharePreviewFrame;
+    const frame = els.sharePreviewComposition;
     const bounds = frame.getBoundingClientRect();
-    const width = Math.round(bounds.width);
-    const height = Math.round(bounds.height);
+    const width = frame.clientWidth;
+    const height = frame.clientHeight;
     if (!width || !height) throw new Error('The local share preview is not visible');
+    const displayScale = bounds.width / width;
+    // Convert displayed positions back into composition coordinates so exporting
+    // at phone and desktop sizes produces the same text, pins, and map framing.
+    const previewRect = element => {
+      const rect = element.getBoundingClientRect();
+      return {
+        left: (rect.left - bounds.left) / displayScale,
+        top: (rect.top - bounds.top) / displayScale,
+        right: (rect.right - bounds.left) / displayScale,
+        bottom: (rect.bottom - bounds.top) / displayScale,
+        width: rect.width / displayScale,
+        height: rect.height / displayScale
+      };
+    };
     const useSitePhoto = background === 'site';
     let siteImage = null;
     if (useSitePhoto) {
@@ -22228,7 +22288,7 @@ ZSD·2016–2025</span></span>
     if (!context) throw new Error('The browser could not create a preview canvas');
     const scaleX = outputWidth / width;
     const scaleY = outputHeight / height;
-    const frameBounds = frame.getBoundingClientRect();
+    const frameBounds = previewRect(frame);
     const frameStyle = getComputedStyle(frame);
     const drawRoundRect = (x, y, w, h, radius) => {
       const r = Math.max(0, Math.min(radius, w / 2, h / 2));
@@ -22330,7 +22390,7 @@ ZSD·2016–2025</span></span>
           // Canvas export is the origin-clean check. A cross-origin tile should
           // trigger the Worker fallback, never a partial local map image.
           element.toDataURL('image/png');
-          const rect = element.getBoundingClientRect();
+          const rect = previewRect(element);
           if (!rect.width || !rect.height) continue;
           const clipLeft = Math.max(frameBounds.left, rect.left);
           const clipTop = Math.max(frameBounds.top, rect.top);
@@ -22368,10 +22428,10 @@ ZSD·2016–2025</span></span>
           }
           context.save();
           context.setTransform(
-            scaleX * matrix.a, scaleY * matrix.b,
-            scaleX * matrix.c, scaleY * matrix.d,
-            scaleX * (matrix.e - frameBounds.left),
-            scaleY * (matrix.f - frameBounds.top)
+            scaleX * matrix.a / displayScale, scaleY * matrix.b / displayScale,
+            scaleX * matrix.c / displayScale, scaleY * matrix.d / displayScale,
+            scaleX * (matrix.e - bounds.left) / displayScale,
+            scaleY * (matrix.f - bounds.top) / displayScale
           );
           const fillOpacity = Number.parseFloat(style.fillOpacity);
           const opacity = Number.isFinite(Number.parseFloat(style.opacity)) ? Number.parseFloat(style.opacity) : 1;
@@ -22416,7 +22476,7 @@ ZSD·2016–2025</span></span>
 
     const pointer = els.sharePreviewPopupPointer;
     if (!useSitePhoto && !pointer.hidden) {
-      const rect = pointer.getBoundingClientRect();
+      const rect = previewRect(pointer);
       const x = rect.left - frameBounds.left;
       const y = rect.top - frameBounds.top;
       const pin = () => {
@@ -22452,7 +22512,7 @@ ZSD·2016–2025</span></span>
 
     const card = els.sharePreviewPopupData;
     if (!card.hidden) {
-      const rect = card.getBoundingClientRect();
+      const rect = previewRect(card);
       const x = rect.left - frameBounds.left;
       const y = rect.top - frameBounds.top;
       const style = getComputedStyle(card);
@@ -22535,9 +22595,11 @@ ZSD·2016–2025</span></span>
       if (share.origin !== SHARE_SITE_PREVIEW_ORIGIN || (!isMapShare && !isSiteShare)) return;
       const hostname = window.location.hostname.toLowerCase();
       if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]' || hostname.endsWith('.localhost')) {
-        // The Worker renders and caches previews on demand, so local pages can
-        // skip image export and upload rather than request loopback CORS access.
-        return;
+        const workerAllowedLocalOrigin = ['http://localhost:8765', 'http://127.0.0.1:8765']
+          .includes(window.location.origin);
+        // The Worker allows the local preview server to request the same fixed
+        // map image as production. Keep local site-photo uploads disabled.
+        if (requestedBackground === 'site' || !workerAllowedLocalOrigin) return;
       }
       const existingTask = sharePreviewUploadTasks.get(share.href);
       if (existingTask) return await existingTask;
@@ -22551,6 +22613,36 @@ ZSD·2016–2025</span></span>
         uploadUrl.search = share.search;
         const summary = popupDetailsReady ? getSharePreviewSummary() : null;
         if (summary?.items.length) uploadUrl.searchParams.set('summary', JSON.stringify(summary));
+
+        if (requestedBackground === 'map') {
+          // The Worker renders every map share into its fixed 1200x630 viewport.
+          // Showing that same cached image here prevents a phone-sized map capture
+          // from becoming the social preview used on every device.
+          const renderUrl = new URL(uploadUrl);
+          renderUrl.searchParams.set('render', '1');
+          const rendered = await fetch(renderUrl, { mode:'cors', credentials:'omit' });
+          const canonicalUrl = rendered.headers.get('X-Map-Preview-Url');
+          if (!rendered.ok || !canonicalUrl) {
+            throw new Error(`Canonical map preview render returned ${rendered.status}`);
+          }
+          const image = els.sharePreviewCanonicalImage;
+          const showCanonicalPreview = () => {
+            if (shareUrl !== requestedShareUrl || sharePreviewBackgroundChoice !== 'map') return;
+            image.hidden = false;
+            els.sharePreviewMapSnapshot.hidden = true;
+            els.sharePreviewPopupPointer.hidden = true;
+            els.sharePreviewFrame.dataset.canonicalReady = 'true';
+            els.sharePreviewPlaceholder.hidden = true;
+          };
+          image.onload = showCanonicalPreview;
+          image.onerror = () => {
+            image.hidden = true;
+            delete els.sharePreviewFrame.dataset.canonicalReady;
+          };
+          image.src = new URL(canonicalUrl, SHARE_SITE_PREVIEW_ORIGIN).href;
+          if (image.complete && image.naturalWidth) showCanonicalPreview();
+          return;
+        }
 
         // A chosen site photo can be saved without waiting for map capture or
         // every asynchronous rating and summary field to finish loading.
@@ -22662,6 +22754,12 @@ ZSD·2016–2025</span></span>
     const image = els.sharePreviewSitePhoto;
     const label = els.sharePreviewPhotoLabel;
     const credit = els.sharePreviewPhotoCredit;
+    els.sharePreviewCanonicalImage.hidden = true;
+    els.sharePreviewCanonicalImage.removeAttribute('src');
+    delete els.sharePreviewFrame.dataset.canonicalReady;
+    if (!useSiteImage && els.sharePreviewMapSnapshot.firstElementChild) {
+      els.sharePreviewMapSnapshot.hidden = false;
+    }
     els.sharePreviewFrame.dataset.background = sharePreviewBackgroundChoice;
     els.sharePreviewFrame.setAttribute(
       'aria-label',
@@ -22693,9 +22791,8 @@ ZSD·2016–2025</span></span>
       els.sharePreviewPlaceholder.hidden = false;
     } else {
       if (shareSnapshot?.popup) {
-        const frameBounds = els.sharePreviewFrame.getBoundingClientRect();
-        els.sharePreviewPopupPointer.style.left = `${frameBounds.width * 0.25}px`;
-        els.sharePreviewPopupPointer.style.top = `${frameBounds.height * 0.5}px`;
+        els.sharePreviewPopupPointer.style.left = `${els.sharePreviewComposition.clientWidth * 0.25}px`;
+        els.sharePreviewPopupPointer.style.top = `${els.sharePreviewComposition.clientHeight * 0.5}px`;
       }
       els.sharePreviewPopupPointer.hidden = !shareSnapshot?.popup;
       if (els.sharePreviewMapSnapshot.firstElementChild) {
@@ -22731,6 +22828,9 @@ ZSD·2016–2025</span></span>
     renderSharePopupPreviewData(shareSnapshot);
     els.sharePreviewMapSnapshot.replaceChildren();
     els.sharePreviewMapSnapshot.hidden = true;
+    els.sharePreviewCanonicalImage.hidden = true;
+    els.sharePreviewCanonicalImage.removeAttribute('src');
+    delete els.sharePreviewFrame.dataset.canonicalReady;
     els.sharePreviewPopupPointer.hidden = true;
     els.sharePreviewPlaceholder.textContent = 'Preparing a preview from the map shown on this device…';
     els.sharePreviewPlaceholder.hidden = false;
@@ -22747,6 +22847,7 @@ ZSD·2016–2025</span></span>
     sharePreviousFocus = document.activeElement;
     setTopMenuOpen(false);
     els.shareModal.hidden = false;
+    scaleSharePreviewComposition();
     document.body.classList.add('share-modal-open');
     requestAnimationFrame(() => {
       els.shareCloseButton.focus();
@@ -22756,6 +22857,7 @@ ZSD·2016–2025</span></span>
           if (!await copySharePreviewMapAfterRender()) {
             els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
           }
+          void storeSharePreviewImage();
         } catch (_) {
           els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
         } finally {

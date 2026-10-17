@@ -13,6 +13,40 @@ const {
 
 const desktopShareDiscoveryTestTitle = 'desktop share discovery advances to its second icon after thirty seconds';
 
+async function expectSharePreviewToScaleOnResize(page) {
+  await expect(page.locator('.share-preview-map-clone')).toBeVisible();
+  const geometry = () => page.evaluate(() => {
+    const frame = document.querySelector('#sharePreviewMapSnapshot').getBoundingClientRect();
+    const normalized = selector => {
+      const element = document.querySelector(selector);
+      if (element.hidden) return null;
+      const rect = element.getBoundingClientRect();
+      return [(rect.left - frame.left) / frame.width, (rect.top - frame.top) / frame.height,
+        rect.width / frame.width, rect.height / frame.height];
+    };
+    return {
+      map:normalized('.share-preview-map-clone'),
+      card:normalized('#sharePreviewPopupData'),
+      text:document.querySelector('#sharePreviewPopupData').textContent
+    };
+  });
+  const before = await geometry();
+  for (const width of [1280, 495, 390, 1280]) {
+    await page.setViewportSize({ width, height:900 });
+    await expect.poll(() => page.evaluate(() => {
+      const frame = document.querySelector('#sharePreviewFrame');
+      const composition = document.querySelector('#sharePreviewComposition').getBoundingClientRect();
+      return Math.abs(composition.width - frame.clientWidth);
+    })).toBeLessThan(1);
+    const after = await geometry();
+    for (const key of ['map', 'card']) {
+      if (before[key] === null) { expect(after[key]).toBeNull(); continue; }
+      after[key].forEach((value, index) => expect(value).toBeCloseTo(before[key][index], 3));
+    }
+    expect(after.text).toBe(before.text);
+  }
+}
+
 test.beforeEach(async ({ page }, testInfo) => {
   const isDesktopShareDiscovery = testInfo.title === desktopShareDiscoveryTestTitle;
   if (isDesktopShareDiscovery) await page.clock.install();
@@ -603,6 +637,8 @@ test('share preview shortens long site summaries and skips local image uploads',
   expect(previewBounds.scrollHeight).toBeLessThanOrEqual(previewBounds.clientHeight);
   expect(previewRequests).toEqual([]);
 
+  await expectSharePreviewToScaleOnResize(page);
+
   const previewCopyButton = dialog.locator('#sharePreviewCopyButton');
   await expect(previewCopyButton).toHaveCSS('display', 'flex');
   await page.locator('#sharePreviewFrame').hover({ position:{ x:20, y:20 } });
@@ -671,6 +707,7 @@ test('mobile share preview uses a landscape view without moving the live map', a
   expect(geometry.frameAspect).toBeCloseTo(1200 / 630, 1);
   expect(geometry.changes).toEqual([]);
   expect(geometry.zoom).toBe(8);
+  await expectSharePreviewToScaleOnResize(page);
 });
 
 test(desktopShareDiscoveryTestTitle, async ({ page }) => {
