@@ -896,6 +896,49 @@ test('Layers panel stays within desktop, narrow, and mobile viewports and collap
       ).toBeLessThanOrEqual(3.5);
     }
     expect(Math.max(...columns[2].map(position => position.right)) - Math.min(...columns[2].map(position => position.right))).toBeLessThan(1);
+    if (viewport.name === 'mobile') {
+      await page.locator('input[name="environmentView"][value="dive-experience-outlook"]').check({ force: true });
+      await expect(page.locator('input[name="environmentView"][value="dive-experience-outlook"]')).toBeChecked();
+      await expect.poll(() => page.evaluate(() => {
+        const selected = document.querySelector('input[name="environmentView"]:checked + span');
+        const indicator = document.querySelector('.environment-segment-indicator');
+        return Math.abs(selected.getBoundingClientRect().left - indicator.getBoundingClientRect().left);
+      })).toBeLessThan(2);
+      await expect(page.locator('#environmentDiveExperienceLabel svg')).toBeVisible();
+      const selectedLabelPaint = await page.locator('#environmentDiveExperienceLabel').evaluate(label => {
+        const bounds = label.getBoundingClientRect();
+        const hit = document.elementFromPoint(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+        return { width: bounds.width, height: bounds.height, labelIsTopmost: hit?.closest('#environmentDiveExperienceLabel') === label };
+      });
+      expect(selectedLabelPaint.width).toBeGreaterThan(0);
+      expect(selectedLabelPaint.height).toBeGreaterThan(0);
+      expect(selectedLabelPaint.labelIsTopmost).toBe(true);
+
+      await page.locator('#bioLegendOverflow > summary').click();
+      const menuOverlap = await page.evaluate(() => {
+        const menu = document.querySelector('#bioLegendOverflow .bio-legend-overflow-menu');
+        const tabs = document.querySelector('.environment-segment-shell');
+        const menuBounds = menu.getBoundingClientRect();
+        const tabBounds = tabs.getBoundingClientRect();
+        const left = Math.max(menuBounds.left, tabBounds.left);
+        const right = Math.min(menuBounds.right, tabBounds.right);
+        const top = Math.max(menuBounds.top, tabBounds.top);
+        const bottom = Math.min(menuBounds.bottom, tabBounds.bottom);
+        if (right <= left || bottom <= top) return { area: 0, menuIsTopmost: false };
+        const hit = document.elementFromPoint((left + right) / 2, (top + bottom) / 2);
+        return { area: (right - left) * (bottom - top), menuIsTopmost: hit?.closest('#bioLegendOverflow .bio-legend-overflow-menu') === menu };
+      });
+      expect(menuOverlap.area).toBeGreaterThan(0);
+      expect(menuOverlap.menuIsTopmost).toBe(true);
+      await page.locator('#bioLegendOverflow > summary').click();
+      await page.locator('input[name="environmentView"][value="temperature"]').check({ force: true });
+      await expect(page.locator('input[name="environmentView"][value="temperature"]')).toBeChecked();
+      await expect.poll(() => page.evaluate(() => {
+        const selected = document.querySelector('input[name="environmentView"]:checked + span');
+        const indicator = document.querySelector('.environment-segment-indicator');
+        return Math.abs(selected.getBoundingClientRect().left - indicator.getBoundingClientRect().left);
+      })).toBeLessThan(2);
+    }
     if (viewport.name === 'wide' || viewport.name === 'medium' || viewport.name === 'narrow' || viewport.name === 'mobile') {
       await page.screenshot({ path: `test-results/layers-panel-${viewport.name}.png` });
     }

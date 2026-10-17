@@ -7181,7 +7181,8 @@
       }
       .bio-legend-heading {
         position:relative;
-        z-index:1;
+        /* Keep the header menu above the tab strip's positioned labels below. */
+        z-index:3;
         flex:0 0 auto;
         background:var(--layers-panel-background);
       }
