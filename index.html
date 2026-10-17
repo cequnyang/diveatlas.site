@@ -7361,7 +7361,8 @@
         </div>
         <select class="top-menu-lang-select" id="langSelect" aria-label="Language" tabindex="-1" aria-hidden="true">
           <option value="en">EN</option>
-          <option value="zh">中文</option>
+          <option value="zh">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
           <option value="es">ES</option>
           <option value="de">DE</option>
           <option value="fr">FR</option>
@@ -8277,6 +8278,7 @@ ZSD·2016–2025</span></span>
 
 </script>
 
+<script src="assets/vendor/opencc-js-1.4.2.js"></script>
 <script>
 (() => {
   const INTERACTION_CONTRACT = window.DiveAtlasInteractionContract;
@@ -8314,7 +8316,7 @@ ZSD·2016–2025</span></span>
   const SHARE_LAYER_IDS = ['contours', 'currents', 'terrain', 'reef', 'species', 'fish', 'dive'];
   const SHARE_VIEW_IDS = ['default', 'dive-experience-outlook', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'reef-survey-condition'];
   const SHARE_POPUP_LAYER_IDS = ['reef', 'species', 'fish', 'dive', 'dive-conditions', 'temperature', 'water-clarity', 'currents', 'tide', 'waves', 'coral-heat-stress', 'reef-survey-condition', 'depthInspection'];
-  const SHARE_LANGUAGE_CODES = ['zh', 'en', 'ja', 'fr', 'de', 'nl', 'it', 'ru', 'pt', 'sv', 'no', 'es', 'ko', 'id'];
+  const SHARE_LANGUAGE_CODES = ['zh', 'zh-TW', 'en', 'ja', 'fr', 'de', 'nl', 'it', 'ru', 'pt', 'sv', 'no', 'es', 'ko', 'id'];
   // Keep the user-facing share URLs compact while accepting the previous long
   // keys and values indefinitely for links already posted elsewhere.
   const SHARE_QUERY_KEY_ALIASES = {
@@ -8439,7 +8441,9 @@ ZSD·2016–2025</span></span>
     if (params.get('ogPreview') === '1') {
       // Apply the sender's display preferences only in the Worker's offscreen render.
       const rawLanguage = String(getShareParam(params, 'language') || '').trim().toLowerCase();
-      const language = rawLanguage.split(/[-_]/)[0];
+      const language = ['zh-tw', 'zh-hant', 'zh-hant-tw'].includes(rawLanguage)
+        ? 'zh-TW'
+        : rawLanguage.split(/[-_]/)[0];
       if (SHARE_LANGUAGE_CODES.includes(language)) state.language = language;
       const lengthUnit = String(getShareParam(params, 'lengthUnit') || '').trim().toLowerCase();
       if (lengthUnit === 'm' || lengthUnit === 'ft') state.lengthUnit = lengthUnit;
@@ -8616,7 +8620,7 @@ ZSD·2016–2025</span></span>
   ];
 
   const IP_COUNTRY_LANGUAGE = {
-    CN: 'zh', TW: 'zh', HK: 'zh', MO: 'zh',
+    CN: 'zh', TW: 'zh-TW', HK: 'zh', MO: 'zh',
     JP: 'ja',
     FR: 'fr', MC: 'fr', LU: 'fr',
     DE: 'de', AT: 'de', LI: 'de', CH: 'de',
@@ -11275,6 +11279,7 @@ ZSD·2016–2025</span></span>
   let diveSearchRenderRequest = 0;
 
   let currentLang = 'en';
+  let currentLanguageChoice = 'en';
   let lengthUnit = (() => {
     if (sharedMapState.lengthUnit === 'ft' || sharedMapState.lengthUnit === 'm') return sharedMapState.lengthUnit;
     try { return localStorage.getItem('diveatlas-length-unit') === 'ft' ? 'ft' : 'm'; }
@@ -13195,6 +13200,105 @@ ZSD·2016–2025</span></span>
     return SUPPORTED_LANGS.has(base) ? base : 'en';
   }
 
+  function normalizeLanguageChoice(lang) {
+    const value = String(lang || '').trim().toLowerCase().replace(/_/g, '-');
+    return value === 'zh-tw' || value === 'zh-hant' || value === 'zh-hant-tw'
+      ? 'zh-TW'
+      : normalizeLang(lang);
+  }
+
+  const traditionalChineseConverter = window.OpenCC?.Converter({ from:'cn', to:'twp' });
+  const traditionalChineseTextNodes = new Map();
+  const traditionalChineseAttributes = new Map();
+  let traditionalChineseObserver = null;
+
+  function convertTraditionalChineseText(node) {
+    if (
+      node.nodeType !== Node.TEXT_NODE ||
+      node.parentElement?.closest('.ignore-opencc, script, style, textarea, input') ||
+      !/\p{Script=Han}/u.test(node.nodeValue)
+    ) return;
+    const previous = traditionalChineseTextNodes.get(node);
+    if (previous?.converted === node.nodeValue) return;
+    const source = node.nodeValue;
+    const converted = traditionalChineseConverter(source);
+    if (converted !== source) {
+      traditionalChineseTextNodes.set(node, { source, converted });
+      node.nodeValue = converted;
+    }
+  }
+
+  function convertTraditionalChineseElement(element) {
+    if (!(element instanceof Element) || element.closest('.ignore-opencc, script, style, textarea, input')) return;
+    for (const attribute of ['aria-label', 'placeholder', 'title', 'alt']) {
+      if (!element.hasAttribute(attribute)) continue;
+      let values = traditionalChineseAttributes.get(element);
+      if (!values) traditionalChineseAttributes.set(element, values = new Map());
+      const source = element.getAttribute(attribute);
+      const previous = values.get(attribute);
+      if (previous?.converted === source) continue;
+      const converted = traditionalChineseConverter(source);
+      if (converted !== source) {
+        values.set(attribute, { source, converted });
+        element.setAttribute(attribute, converted);
+      }
+    }
+  }
+
+  function convertTraditionalChineseSubtree(root) {
+    if (root.nodeType === Node.ELEMENT_NODE) convertTraditionalChineseElement(root);
+    if (root.nodeType === Node.TEXT_NODE) convertTraditionalChineseText(root);
+    if (root.nodeType === Node.ELEMENT_NODE || root.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) convertTraditionalChineseText(walker.currentNode);
+      root.querySelectorAll?.('*').forEach(convertTraditionalChineseElement);
+    }
+  }
+
+  function restoreSimplifiedChinese() {
+    traditionalChineseObserver?.disconnect();
+    for (const [node, value] of traditionalChineseTextNodes) {
+      if (node.nodeValue === value.converted) node.nodeValue = value.source;
+    }
+    for (const [element, attributes] of traditionalChineseAttributes) {
+      for (const [attribute, value] of attributes) {
+        if (element.getAttribute(attribute) === value.converted) element.setAttribute(attribute, value.source);
+      }
+    }
+    traditionalChineseTextNodes.clear();
+    traditionalChineseAttributes.clear();
+    if (traditionalChineseObserver && document.body) {
+      traditionalChineseObserver.observe(document.documentElement, {
+        subtree:true, childList:true, characterData:true, attributes:true,
+        attributeFilter:['aria-label', 'placeholder', 'title', 'alt']
+      });
+    }
+  }
+
+  function syncTraditionalChineseDisplay() {
+    if (!traditionalChineseConverter) return;
+    if (currentLanguageChoice === 'zh-TW') {
+      convertTraditionalChineseSubtree(document.documentElement);
+      return;
+    }
+    restoreSimplifiedChinese();
+  }
+
+  if (traditionalChineseConverter) {
+    traditionalChineseObserver = new MutationObserver(records => {
+      if (currentLanguageChoice !== 'zh-TW') return;
+      records.forEach(record => {
+        if (record.type === 'characterData') convertTraditionalChineseText(record.target);
+        if (record.type === 'attributes') convertTraditionalChineseElement(record.target);
+        record.addedNodes?.forEach(convertTraditionalChineseSubtree);
+      });
+    });
+    traditionalChineseObserver.observe(document.documentElement, {
+      subtree:true, childList:true, characterData:true, attributes:true,
+      attributeFilter:['aria-label', 'placeholder', 'title', 'alt']
+    });
+  }
+
   function t(key) {
     return I18N[currentLang]?.[key] ?? SHARE_I18N[currentLang]?.[key] ?? SITE_SUGGESTION_I18N[currentLang]?.[key] ?? WAVES_I18N[currentLang]?.[key] ?? I18N.en[key] ?? SHARE_I18N.en[key] ?? SITE_SUGGESTION_I18N.en[key] ?? key;
   }
@@ -14643,17 +14747,24 @@ ZSD·2016–2025</span></span>
   }
 
   function setLanguage(lang, { persist = false } = {}) {
+    const previousLanguageChoice = currentLanguageChoice;
+    currentLanguageChoice = normalizeLanguageChoice(lang);
     currentLang = normalizeLang(lang);
     updateSharePlatformVisibility();
-    document.documentElement.lang =
-      HTML_LANG_CODES[currentLang] || 'en';
-
-    if (persist) {
-      localStorage.setItem('global-coral-map-lang', currentLang);
+    document.documentElement.lang = currentLanguageChoice === 'zh-TW'
+      ? 'zh-TW'
+      : HTML_LANG_CODES[currentLang] || 'en';
+    if (previousLanguageChoice === 'zh-TW' && currentLanguageChoice !== 'zh-TW') {
+      restoreSimplifiedChinese();
     }
 
-    els.langSelect.value = currentLang;
+    if (persist) {
+      localStorage.setItem('global-coral-map-lang', currentLanguageChoice);
+    }
+
+    els.langSelect.value = currentLanguageChoice;
     renderStaticTexts();
+    syncTraditionalChineseDisplay();
     updateLegendCollapsedSummary();
     if (tideStatusKey) els.tideStatus.textContent = t(tideStatusKey);
     if (coralHeatStressMetadata) renderCoralHeatStressMetadata(coralHeatStressMetadata);
@@ -21574,7 +21685,7 @@ ZSD·2016–2025</span></span>
       ? popupMonthContext
       : activeView;
     return {
-      language:currentLang,
+      language:currentLanguageChoice,
       lengthUnit,
       temperatureUnit,
       center: { lat: center.lat, lng: center.lng },
@@ -21610,7 +21721,7 @@ ZSD·2016–2025</span></span>
   function serializeMapState(state, { includeSite = true } = {}) {
     const params = new URLSearchParams();
     // Carry only display preferences so Worker fallback text matches the device preview.
-    setShareParam(params, 'language', normalizeLang(state?.language || currentLang));
+    setShareParam(params, 'language', normalizeLanguageChoice(state?.language || currentLanguageChoice));
     setShareParam(params, 'lengthUnit', state?.lengthUnit === 'ft' ? 'ft' : 'm');
     setShareParam(params, 'temperatureUnit', state?.temperatureUnit === 'F' ? 'F' : 'C');
     const lat = Number(state?.center?.lat);
@@ -31178,7 +31289,7 @@ function closeShareDialog() {
   }
 
   function currentContactTurnstileLanguage() {
-    return TURNSTILE_LANG_CODES[currentLang] || 'auto';
+    return currentLanguageChoice === 'zh-TW' ? 'zh-tw' : TURNSTILE_LANG_CODES[currentLang] || 'auto';
   }
 
   function removeContactTurnstile() {
@@ -32948,8 +33059,8 @@ function closeShareDialog() {
 
   const preferredLang =
     sharedMapState.language
-      ? normalizeLang(sharedMapState.language)
-      : savedLang ? normalizeLang(savedLang) : 'en';
+      ? normalizeLanguageChoice(sharedMapState.language)
+      : savedLang ? normalizeLanguageChoice(savedLang) : 'en';
 
   // The head boot script selects the saved/time-based theme before first paint;
   // this call synchronizes controls and local overlays without animating.
