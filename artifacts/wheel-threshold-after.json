@@ -1,0 +1,254 @@
+[
+  {
+    "earlyVector": false,
+    "snap": 0,
+    "stats": {
+      "wheel": 20,
+      "zoom": 15,
+      "zoomend": 15,
+      "moveend": 15,
+      "longTasks": [
+        60,
+        52,
+        58,
+        51,
+        57,
+        59,
+        50,
+        51,
+        55,
+        58,
+        53
+      ],
+      "frames": [
+        16.600000000002183,
+        16.69999999999709,
+        566.6000000000022,
+        16.700000000000728,
+        16.69999999999709,
+        16.700000000000728,
+        16.600000000002183,
+        16.69999999999709,
+        83.30000000000291,
+        100,
+        100,
+        133.39999999999782,
+        116.60000000000218,
+        133.29999999999927,
+        133.39999999999782,
+        133.3000000000029,
+        116.59999999999854,
+        116.79999999999927,
+        116.5,
+        116.70000000000073,
+        116.70000000000073,
+        83.29999999999927,
+        100,
+        116.70000000000073,
+        100,
+        100,
+        116.59999999999854,
+        100,
+        100.10000000000218,
+        216.59999999999854,
+        100,
+        116.70000000000073,
+        116.59999999999854,
+        100,
+        116.70000000000073,
+        100,
+        116.70000000000073,
+        99.89999999999782,
+        100,
+        100,
+        100,
+        100.10000000000218,
+        99.89999999999782,
+        100,
+        100,
+        100,
+        100,
+        100,
+        116.60000000000218,
+        100,
+        100.09999999999854,
+        99.90000000000146,
+        116.70000000000073,
+        116.69999999999709,
+        99.90000000000146,
+        116.70000000000073,
+        116.70000000000073,
+        116.69999999999709,
+        116.60000000000218,
+        100,
+        116.70000000000073,
+        116.59999999999854,
+        116.70000000000073,
+        83.39999999999782,
+        99.90000000000146,
+        116.70000000000073,
+        116.70000000000073,
+        116.59999999999854,
+        116.70000000000073,
+        116.70000000000073,
+        99.89999999999782,
+        133.29999999999927,
+        116.70000000000073,
+        116.70000000000073,
+        116.59999999999854
+      ],
+      "zooms": [
+        7.04788946270417,
+        7.095778925408339,
+        7.143668388112509,
+        7.191557850816679,
+        7.239447313520849,
+        7.287336776225018,
+        7.335226238929188,
+        7.287336776225018,
+        7.239447313520849,
+        7.191557850816679,
+        7.143668388112509,
+        7.095778925408339,
+        7.04788946270417,
+        7,
+        6.95211053729583
+      ],
+      "work": {
+        "createLocalReefWorldLayer": {
+          "calls": 0,
+          "ms": 0
+        },
+        "renderSpeciesCache": {
+          "calls": 15,
+          "ms": 16.59999999869615
+        }
+      },
+      "layers": 43
+    },
+    "top": [
+      {
+        "name": "(idle)",
+        "url": "",
+        "line": 0,
+        "samples": 3908
+      },
+      {
+        "name": "(program)",
+        "url": "",
+        "line": 0,
+        "samples": 1994
+      },
+      {
+        "name": "(garbage collector)",
+        "url": "",
+        "line": 0,
+        "samples": 171
+      },
+      {
+        "name": "_containerDimensions",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 22
+      },
+      {
+        "name": "draw",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 14
+      },
+      {
+        "name": "getBoundingClientRect",
+        "url": "",
+        "line": 0,
+        "samples": 8
+      },
+      {
+        "name": "removeStaleBuckets",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 4
+      },
+      {
+        "name": "render",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 4
+      },
+      {
+        "name": "_updatePlacement",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 3
+      },
+      {
+        "name": "addLayer",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 3
+      },
+      {
+        "name": "renderLayer",
+        "url": "https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js",
+        "line": 46,
+        "samples": 3
+      },
+      {
+        "name": "renderBatchedSpeciesDensityGrid",
+        "url": "http://127.0.0.1:8765/?hl=en&z=7.31&l=c,t,r,s,f,d&v=i&g=5ck3giept0&tt=0",
+        "line": 26663,
+        "samples": 3
+      },
+      {
+        "name": "",
+        "url": "http://127.0.0.1:8765/?hl=en&z=7.31&l=c,t,r,s,f,d&v=i&g=5ck3giept0&tt=0",
+        "line": 27433,
+        "samples": 3
+      },
+      {
+        "name": "translateWords",
+        "url": "http://127.0.0.1:8765/js/dive-site-name-localization.js",
+        "line": 103,
+        "samples": 3
+      },
+      {
+        "name": "_layerAdd",
+        "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+        "line": 5,
+        "samples": 3
+      },
+      {
+        "name": "closePath",
+        "url": "",
+        "line": 0,
+        "samples": 3
+      },
+      {
+        "name": "drawImage",
+        "url": "",
+        "line": 0,
+        "samples": 3
+      },
+      {
+        "name": "_projectLatlngs",
+        "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+        "line": 5,
+        "samples": 2
+      },
+      {
+        "name": "closePath",
+        "url": "",
+        "line": 0,
+        "samples": 2
+      },
+      {
+        "name": "setAttribute",
+        "url": "",
+        "line": 0,
+        "samples": 2
+      }
+    ],
+    "errors": [],
+    "profileDurationMs": 8186.808
+  }
+]

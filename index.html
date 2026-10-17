@@ -8723,6 +8723,11 @@ ZSD·2016–2025</span></span>
     closePopupOnClick: false,
     maxBounds: MAP_VERTICAL_BOUNDS,
     maxBoundsViscosity: 1.0,
+    // Keep zoom interpolation continuous during gestures, but settle wheel and
+    // pinch zoom on the established integer levels for predictable raster LODs.
+    zoomSnap: 1,
+    // Preserve the established mouse-wheel cadence; finer sensitivity caused
+    // more frequent animation retargets without improving settled zoom quality.
     wheelPxPerZoomLevel: 120,
     wheelDebounceTime: 60
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
@@ -10806,6 +10811,8 @@ ZSD·2016–2025</span></span>
   }
 
   function fishLodStepForZoom(zoom) {
+    // Fractional navigation must retain the lower integer level's data budget.
+    zoom = Math.floor(zoom);
     // Coarser local LOD at overview zooms keeps the working set small while
     // preserving the total number of underlying surveys/sites in clusterWeight.
     // The exact points remain unchanged and are used again above Z8.
@@ -19965,6 +19972,8 @@ ZSD·2016–2025</span></span>
   });
 
   const REEF_RASTER_MAX_ZOOM = 7;
+  // Raster tiles have integer source levels, but their display range includes
+  // fractional zooms below Z8. Switching at >7 rebuilds dense vectors early.
   const REEF_VECTOR_MIN_ZOOM = 8;
   const REEF_DETAIL_MIN_ZOOM = 12;
   const REEF_CLICK_BUCKET_DEGREES = 1;
@@ -20825,7 +20834,7 @@ ZSD·2016–2025</span></span>
     if (
       !localReefReady ||
       !layerVisibility.reef ||
-      map.getZoom() <= REEF_RASTER_MAX_ZOOM
+      map.getZoom() < REEF_VECTOR_MIN_ZOOM
     ) return;
 
     // A Leaflet zoom commonly emits both zoomstart and movestart. Treat those
@@ -20856,7 +20865,7 @@ ZSD·2016–2025</span></span>
         completed ||
         seq !== reefVectorRenderSeq ||
         !layerVisibility.reef ||
-        map.getZoom() <= REEF_RASTER_MAX_ZOOM
+        map.getZoom() < REEF_VECTOR_MIN_ZOOM
       ) return;
 
       completed = true;
@@ -20881,7 +20890,7 @@ ZSD·2016–2025</span></span>
 
     const zoom = map.getZoom();
 
-    if (zoom <= REEF_RASTER_MAX_ZOOM) {
+    if (zoom < REEF_VECTOR_MIN_ZOOM) {
       reefVectorRenderSeq += 1;
       reefVectorSwapPending = false;
       clearReefInteractionSnapshot();
@@ -21019,7 +21028,7 @@ ZSD·2016–2025</span></span>
     // Invalidate an in-flight render as soon as newer map bounds are known,
     // so stale geometry cannot attach during the debounce window.
     const requestedRenderSeq = ++reefVectorRenderSeq;
-    if (map.getZoom() <= REEF_RASTER_MAX_ZOOM) {
+    if (map.getZoom() < REEF_VECTOR_MIN_ZOOM) {
       void renderLocalReefWorldCopies();
       return;
     }
@@ -21268,7 +21277,7 @@ ZSD·2016–2025</span></span>
       reefVectorRefreshTimer = null;
 
       if (layerVisibility.reef) {
-        reefVectorSwapPending = map.getZoom() > REEF_RASTER_MAX_ZOOM;
+        reefVectorSwapPending = map.getZoom() >= REEF_VECTOR_MIN_ZOOM;
         if (localReefReady) {
           void renderLocalReefWorldCopies(true);
         } else {
@@ -21509,7 +21518,8 @@ ZSD·2016–2025</span></span>
     const lat = Number(state?.center?.lat);
     const lng = Number(state?.center?.lng);
     const zoom = Number(state?.zoom);
-    if (Number.isFinite(zoom)) setShareParam(params, 'z', zoom.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1'));
+    // Share previews use integer zoom levels; keep fractional zoom local to navigation.
+    if (Number.isFinite(zoom)) setShareParam(params, 'z', String(Math.round(zoom)));
     const activeLayers = SHARE_LAYER_IDS.filter(id => state?.layers?.[id]);
     setShareParam(params, 'layers', activeLayers.map(id => SHARE_LAYER_VALUE_CODES[id]).join(','));
     if (SHARE_VIEW_IDS.includes(state?.view)) setShareParam(params, 'view', SHARE_VIEW_VALUE_CODES[state.view]);
@@ -26329,6 +26339,8 @@ function closeShareDialog() {
   }
 
   function speciesGridStepDegrees(zoom) {
+    // Fractional navigation must retain the lower integer level's data budget.
+    zoom = Math.floor(zoom);
     // Z3-Z11 intentionally use fine, monotonically shrinking cells so a
     // single occupied coastal record does not visually color an oversized area.
     // These levels are batched into a handful of Canvas paths, so fidelity no
@@ -28903,23 +28915,29 @@ function closeShareDialog() {
 
   let customLayerSyncFrame = 0;
   let customLayerSyncRevision = 0;
+  let customLayerDataRefreshPending = false;
 
   function syncCustomLayersToMap({
     refreshViewportData = true,
     refreshReefViewport = true
   } = {}) {
     const revision = ++customLayerSyncRevision;
+    // A projection-only request may share this frame with a completed zoom;
+    // it must not cancel that zoom's pending viewport-data refresh.
+    customLayerDataRefreshPending ||= refreshViewportData;
     if (customLayerSyncFrame) cancelAnimationFrame(customLayerSyncFrame);
-
-    // Leaflet owns projection for the SVG markers and Canvas paths. Refresh
-    // viewport data after the settled view has been synchronized.
-    if (refreshViewportData && !DIVEATLAS_INTERACTION_TEST_MODE) {
-      scheduleAllDataRefresh();
-    }
 
     customLayerSyncFrame = requestAnimationFrame(() => {
       customLayerSyncFrame = 0;
       if (revision !== customLayerSyncRevision) return;
+
+      // zoomend and moveend describe the same completed zoom. Coalesce before
+      // scheduling data work: local Coral refreshes synchronously here.
+      const refreshData = customLayerDataRefreshPending;
+      customLayerDataRefreshPending = false;
+      if (refreshData && !DIVEATLAS_INTERACTION_TEST_MODE) {
+        scheduleAllDataRefresh();
+      }
 
       const center = map.getCenter();
       const zoom = map.getZoom();

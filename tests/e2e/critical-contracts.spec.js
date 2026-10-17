@@ -40,6 +40,63 @@ async function expectMapViewUnchanged(page, before, after) {
   expect(displacementPx).toBeLessThanOrEqual(1);
 }
 
+test('wheel zoom settles on integer levels and respects map limits', async ({ page }) => {
+  const bounds = await page.locator('#map').boundingBox();
+  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+  const before = (await mapState(page)).zoom;
+  await page.mouse.wheel(0, -90);
+  await expect.poll(async () => (await mapState(page)).zoom).toBeGreaterThan(before);
+  await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
+  const after = (await mapState(page)).zoom;
+  expect(after).toBe(Math.round(after));
+  await page.mouse.wheel(0, 90);
+  await expect.poll(async () => (await mapState(page)).zoom).toBeLessThan(after);
+  // Wait for the native animation to finish before issuing another zoom.
+  await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
+  const limits = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    map.setZoom(100, { animate:false });
+    const upper = map.getZoom();
+    map.setZoom(-100, { animate:false });
+    return { upper, lower:map.getZoom(), min:map.getMinZoom(), max:map.getMaxZoom() };
+  });
+  expect(limits.upper).toBe(limits.max);
+  expect(limits.lower).toBe(limits.min);
+});
+
+test('fractional zoom below Z8 retains Reef raster coverage', async ({ page }) => {
+  const states = await page.evaluate(() => {
+    const api = window.__DIVEATLAS_TEST__;
+    api.addReefArea(-5.7, 131, 'fractional-reef');
+    const map = api.map;
+    const previousSnap = map.options.zoomSnap;
+    map.options.zoomSnap = 0;
+    const states = [7, 7.31, 7.99, 8, 7.31].map(zoom => {
+      api.setLayerVisibility('reef', false);
+      map.setView([-5.7, 131], zoom, { animate:false });
+      // Use the real toggle: the fixture helper forcibly adds a raster fallback
+      // and would mask a premature switch to vectors in production.
+      const toggle = document.getElementById('reefLayerToggle');
+      toggle.checked = true;
+      toggle.dispatchEvent(new Event('change', { bubbles:true }));
+      let hasRaster = false;
+      map.eachLayer(layer => {
+        if (layer.options?.className === 'reef-raster-tiles') hasRaster = true;
+      });
+      return { zoom:api.map.getZoom(), hasRaster };
+    });
+    map.options.zoomSnap = previousSnap;
+    return states;
+  });
+  expect(states).toEqual([
+    { zoom:7, hasRaster:true },
+    { zoom:7.31, hasRaster:true },
+    { zoom:7.99, hasRaster:true },
+    { zoom:8, hasRaster:false },
+    { zoom:7.31, hasRaster:true }
+  ]);
+});
+
 test('aggregate Coral marker zooms and never opens details', async ({ page }) => {
   await addFixture(page, 'aggregate', { id: 'coral-aggregate', lat: -5.7, lng: 131, count: 12 });
   await resetActionCount(page);
@@ -425,6 +482,20 @@ test('one aggregate activation produces at most one semantic action', async ({ p
   await clickFixture(page, 'single-action', { clickCount: 1 });
   await waitForClickResolution(page);
   expect(await page.evaluate(() => window.__DIVEATLAS_TEST__.getActionCount())).toBeLessThanOrEqual(1);
+});
+
+test('shared zoom is serialized as an integer while map view stays unchanged', async ({ page }) => {
+  const result = await page.evaluate(() => {
+    const api = window.__DIVEATLAS_TEST__;
+    const zoom = api.map.getZoom();
+    const values = [2, 7.31, 7.69, 17].map(zoom => {
+      const query = api.serializeShareState({ center:{ lat:0, lng:0 }, zoom, layers:{} });
+      return new URLSearchParams(query).get('z');
+    });
+    return { values, zoom, after:api.map.getZoom() };
+  });
+  expect(result.values).toEqual(['2', '7', '8', '17']);
+  expect(result.after).toBe(result.zoom);
 });
 
 test('compact share state round-trips aliases, map layers, selections, coordinates, and flow', async ({ page }) => {
