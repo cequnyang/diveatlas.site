@@ -3186,37 +3186,91 @@
       background:transparent;
       color:var(--muted);
       cursor:pointer;
+      transition:background-color 140ms ease, color 140ms ease, box-shadow 140ms ease, scale 140ms ease;
     }
     .dive-search-filter-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
     .dive-search-filter-toggle svg circle { fill:var(--panel-solid); }
-    .dive-search-filter-toggle:hover, .dive-search-filter-toggle[aria-expanded="true"], .dive-search-filter-toggle.has-active-filters { background:var(--panel-soft); color:var(--primary); }
+    .dive-search-filter-toggle:hover { background:var(--panel-soft); color:var(--text); scale:1.06; }
+    .dive-search-filter-toggle.has-active-filters { background:var(--panel-soft); color:var(--primary); }
+    .dive-search-filter-toggle[aria-expanded="true"] {
+      background:var(--panel-soft);
+      box-shadow:inset 0 0 0 1.5px var(--primary);
+      scale:1;
+    }
     .dive-search-filter-toggle:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
-    .dive-search-box.has-query .dive-search-filter-toggle { right:40px; }
+    .dive-legend-label-row { display:flex; align-items:center; gap:6px; }
+    .dive-legend-label-row .dive-search-filter-toggle { position:static; flex:0 0 34px; transform:none; }
+    .dive-search-box.has-query .dive-search-clear { right:40px; }
+    .dive-search-box::after {
+      position:absolute;
+      top:50%;
+      right:39px;
+      width:1px;
+      height:18px;
+      border-radius:1px;
+      background:var(--line);
+      content:'';
+      pointer-events:none;
+      transform:translateY(-50%);
+    }
 
     .dive-search-filter-controls {
+      box-sizing:border-box;
+      min-width:0;
+      min-height:0;
+      max-height:100%;
+      overflow:auto;
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:8px;
-      padding:10px;
-      border-bottom:1px solid var(--line);
+      gap:12px;
+      align-content:start;
+      padding:16px;
+      border-left:1px solid var(--line);
+      background:var(--panel-solid);
     }
     .dive-search-filter-controls[hidden] { display:none; }
     .dive-search-filter-field { display:grid; min-width:0; gap:4px; color:var(--muted); font-size:10px; font-weight:650; }
     .dive-search-filter-field:first-child { grid-column:1 / -1; }
     .dive-search-filter-field select { box-sizing:border-box; width:100%; min-width:0; height:34px; padding:0 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); font:inherit; font-size:11px; }
+    /* Native dropdown scrollbars need an explicit scheme to follow the site's theme. */
+    .dive-search-filter-field select { color-scheme:light; scrollbar-width:thin; scrollbar-color:var(--faint) var(--panel-solid); }
+    [data-theme="dark"] .dive-search-filter-field select { color-scheme:dark; }
+    .dive-search-filter-field select option { background:var(--panel-solid); color:var(--text); }
     .dive-search-filter-field select:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+    .dive-filter-picker-wrap { position:relative; min-width:0; }
+    .dive-filter-picker { box-sizing:border-box; display:block; width:100%; min-width:0; height:34px; padding:0 28px 0 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); font:inherit; font-size:11px; text-align:left; }
+    .dive-filter-picker-wrap.has-clear .dive-filter-picker { padding-right:54px; }
+    .dive-filter-picker-clear { position:absolute; top:50%; right:27px; display:grid; width:22px; height:22px; padding:0; place-items:center; transform:translateY(-50%); border:0; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
+    .dive-filter-picker-clear:hover { background:var(--panel-soft); color:var(--text); }
+    .dive-filter-picker-clear:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+    .dive-filter-picker-clear[hidden] { display:none; }
+    .dive-filter-picker-clear svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
+    .dive-filter-picker-wrap::after { position:absolute; top:13px; right:10px; width:6px; height:6px; border-right:1.5px solid var(--text); border-bottom:1.5px solid var(--text); content:''; pointer-events:none; transform:rotate(45deg); }
+    .dive-filter-picker:focus-visible, .dive-filter-picker[aria-expanded="true"] { outline:2px solid var(--primary); outline-offset:1px; }
+    .dive-filter-options { position:fixed; z-index:1500; box-sizing:border-box; overflow:hidden; padding:6px 3px 6px 6px; border:1px solid var(--line); border-radius:10px; background:var(--panel-solid); color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,.2); font:inherit; font-size:12px; }
+    .dive-filter-options[hidden] { display:none; }
+    .dive-filter-options-scroll { position:relative; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--faint) var(--panel-solid); }
+    .dive-filter-options-scroll::-webkit-scrollbar { width:8px; }
+    .dive-filter-options-scroll::-webkit-scrollbar-track { background:var(--panel-solid); border-radius:999px; }
+    .dive-filter-options-scroll::-webkit-scrollbar-thumb { background:var(--faint); border:2px solid var(--panel-solid); border-radius:999px; }
+    .dive-filter-option { padding:8px; border-radius:6px; overflow-wrap:anywhere; cursor:pointer; }
+    .dive-filter-option:hover, .dive-filter-option.is-active { background:var(--panel-soft); color:var(--primary); }
+    .dive-filter-option[aria-selected="true"] { font-weight:700; }
     .dive-search-filter-clear { grid-column:1 / -1; justify-self:start; padding:4px 0; border:0; background:transparent; color:var(--primary); font:inherit; font-size:10px; font-weight:700; cursor:pointer; }
     .dive-search-filter-clear[hidden] { display:none; }
 
     .dive-search-results {
       display: none;
-      margin-top: 7px;
-      max-height: 276px;
+      position:fixed;
+      z-index:1400;
+      box-sizing:border-box;
+      width:min(780px, calc(100vw - 24px));
+      max-height:min(440px, calc(100vh - 24px));
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--panel-solid);
-      box-shadow: 0 12px 30px rgba(16,24,40,.10);
+      box-shadow: 0 16px 44px rgba(0,0,0,.24);
     }
 
     .dive-search-results-scroll {
@@ -3227,7 +3281,7 @@
       overflow-x: hidden;
       overflow-y: auto;
       touch-action: pan-y;
-      padding: 5px;
+      padding: 10px 6px 10px 10px;
       overscroll-behavior: contain;
       scrollbar-width: thin;
       scrollbar-color: color-mix(in srgb, var(--muted) 52%, transparent) transparent;
@@ -3251,13 +3305,20 @@
 
     .dive-search-results.visible {
       display: flex;
-      flex-direction: column;
+      flex-direction:column;
+    }
+    .dive-search-results.mobile-search-collapsed { display:none !important; }
+
+    .dive-search-results.visible.has-filters {
+      display:grid;
+      grid-template-columns:minmax(0, var(--search-results-candidate-width, 1fr)) minmax(0, var(--search-results-filter-width, 1fr));
+      grid-template-rows:minmax(0, 1fr);
     }
 
     .dive-search-result {
       width: 100%;
       display: block;
-      padding: 6px 10px;
+      padding: 10px 12px;
       border: 0;
       border-radius: 10px;
       background: transparent;
@@ -3795,11 +3856,6 @@
       border-radius: 12px;
     }
 
-    .search-float .dive-search-results {
-      max-height: min(360px, calc(100vh - 90px));
-      margin-top: 7px;
-    }
-
     @media (max-width: 720px) {
       .sidebar {
         top: 9px;
@@ -4170,10 +4226,6 @@
 
     .search-float .dive-search-box {
       height: 40px;
-    }
-
-    .search-float .dive-search-results {
-      max-height: min(360px, calc(100vh - 92px));
     }
 
     @media (max-width: 720px) {
@@ -5781,10 +5833,18 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: min(460px, calc(100% - 24px));
+        width: min(280px, calc(100% - 24px));
         flex: none;
         transform: translate(-50%, -50%);
         pointer-events: none;
+        transition:width .22s cubic-bezier(.22, 1, .36, 1);
+      }
+
+      #topMenuSearchSlot:focus-within {
+        width:min(364px, calc(100% - 24px));
+      }
+      #topMenuSearchSlot.is-search-focus-retained {
+        width:min(364px, calc(100% - 24px));
       }
 
       #topMenuSearchSlot #diveSearchSection {
@@ -5793,6 +5853,8 @@
     }
 
     #topMenuSearchSlot #diveSearchSection {
+      /* Reserve the enlarged width before startup measures the placeholder. */
+      --search-content-width:273px;
       position: relative;
       inset: auto;
       transform: none;
@@ -5804,9 +5866,21 @@
     }
 
     @media (min-width: 721px) {
-      #topMenuSearchSlot:focus-within #diveSearchSection {
-        width: min(calc(var(--search-content-width, 210px) * 1.5), 100%);
+      #topMenuSearchSlot:focus-within #diveSearchSection,
+      #topMenuSearchSlot.is-search-focus-retained #diveSearchSection,
+      #topMenuSearchSlot.has-search-filters #diveSearchSection {
+        width: 100%;
       }
+    }
+
+    #topMenuSearchSlot.is-search-focus-retained .dive-search-box {
+      border-color: color-mix(in srgb, #4f7cff 58%, var(--line));
+      box-shadow: 0 0 0 3px rgba(79,124,255,.10), inset 0 1px 0 rgba(255,255,255,.22);
+    }
+
+    @media (min-width: 1000px) {
+      /* Keep the header anchor fixed across focus and filter states. */
+      #topMenuSearchSlot #diveSearchSection { width:100%; }
     }
 
     #topMenuSearchSlot .dive-search-box {
@@ -5816,10 +5890,29 @@
 
     #topMenuSearchSlot .dive-search-input { text-overflow: ellipsis; }
 
-    /* The clear button is hidden while the placeholder is shown, so don't
-       reserve its full hit area and truncate the mobile search hint. */
+    /* The header's 32px search pill is shorter than the shared filter button. */
+    #topMenuSearchSlot .dive-search-filter-toggle {
+      width:28px;
+      height:calc(100% - 8px);
+      max-height:28px;
+      padding:0;
+      border-radius:999px;
+    }
+
+    @media (min-width: 1000px) {
+      /* Keep the toggle at the bar's trailing edge in every state. */
+      #topMenuSearchSlot .dive-search-filter-toggle {
+        right:4px;
+        left:auto;
+        border-left:0;
+        border-radius:999px;
+      }
+      #topMenuSearchSlot .dive-search-box::after { right:36px; }
+    }
+
+    /* The placeholder only needs room for the trailing filter toggle. */
     #topMenuSearchSlot .dive-search-input:placeholder-shown {
-      padding-right: 8px;
+      padding-right: 40px;
     }
 
     #topMenuSearchSlot .dive-search-clear {
@@ -5840,14 +5933,9 @@
       margin: 0;
     }
 
-    #topMenuSearchSlot .dive-search-results {
-      position: absolute;
-      z-index: 1400;
-      top: calc(100% + 7px);
-      left: 0;
-      right: 0;
-      margin: 0;
-    }
+    .dive-search-results.visible.has-filters.is-stacked { grid-template-columns:minmax(0, 1fr); }
+    .dive-search-results.is-stacked .dive-search-filter-controls { border-left:0; border-top:1px solid var(--line); }
+    .dive-search-results.is-filter-compact .dive-search-filter-controls { grid-template-columns:minmax(0, 1fr); }
 
     @media (max-width: 720px) {
       .top-menu-bar { justify-content: flex-start; }
@@ -5915,8 +6003,6 @@
       #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box {
         transition-duration: 850ms;
       }
-
-      #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-results { display: none; }
 
       #topMenuSearchSlot.is-mobile-expanded #diveSearchSection {
         width: min(var(--search-content-width, 210px), 100%);
@@ -7423,13 +7509,13 @@
             <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18M3 17h18"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
+            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
             <div class="dive-search-filter-controls" id="diveSearchFilterControls" hidden>
               <label class="dive-search-filter-field"><span id="diveSearchCountryLabel">Country</span><select id="diveSearchCountryFilter" aria-labelledby="diveSearchCountryLabel"><option value="">Any country</option></select></label>
               <label class="dive-search-filter-field"><span id="diveSearchDifficultyLabel">Difficulty</span><select id="diveSearchDifficultyFilter" aria-labelledby="diveSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
               <label class="dive-search-filter-field"><span id="diveSearchFeatureLabel">Feature</span><select id="diveSearchFeatureFilter" aria-labelledby="diveSearchFeatureLabel"><option value="">Any feature</option></select></label>
-              <button class="dive-search-filter-clear" id="diveSearchFilterClear" type="button" hidden>Clear filters</button>
+              <button class="dive-search-filter-clear" id="diveSearchFilterClear" type="button" hidden>Clear All</button>
             </div>
-            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
             <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
               <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
             </div>
@@ -8177,7 +8263,10 @@ ZSD·2016–2025</span></span>
     <div class="bio-legend-row">
       <i class="layer-symbol layer-symbol--dive mode-cluster" id="diveLegendSymbol" aria-hidden="true"></i>
       <div class="legend-copy">
-        <span class="legend-label" id="diveLegendLabel">Dive sites</span>
+        <div class="dive-legend-label-row">
+          <span class="legend-label" id="diveLegendLabel">Dive sites</span>
+          <button class="dive-search-filter-toggle" id="diveLegendFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18M3 17h18"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
+        </div>
         <span class="legend-status" id="diveLegendStatus"></span>
       </div>
       <label class="layer-switch-label layer-switch-label--tutorial layer-switch-label--layers" for="diveLayerToggle">
@@ -8812,14 +8901,26 @@ ZSD·2016–2025</span></span>
   const diveSearchSuggestionModal = document.getElementById('siteSuggestionModal');
   const mobileSearchQuery = window.matchMedia('(max-width: 720px)');
 
+  function isDiveSearchMenuTarget(target) {
+    return Boolean(target && (
+      diveSearchResultsPanel?.contains(target) ||
+      target.closest?.('.dive-filter-options')
+    ));
+  }
+
+  function setDiveSearchFocusRetained(retained) {
+    topMenuSearchSlot?.classList.toggle('is-search-focus-retained', Boolean(retained));
+  }
+
   function setMobileSearchExpanded(expanded) {
     const isExpanded = mobileSearchQuery.matches && Boolean(expanded);
     topMenuSearchSlot?.classList.toggle('is-mobile-expanded', isExpanded);
+    diveSearchResultsPanel?.classList.toggle('mobile-search-collapsed', mobileSearchQuery.matches && !isExpanded);
     diveSearchToggle?.setAttribute(
       'aria-expanded',
       String(!mobileSearchQuery.matches || isExpanded)
     );
-    if (!isExpanded && document.activeElement === diveSearchInput) {
+    if (mobileSearchQuery.matches && !isExpanded && document.activeElement === diveSearchInput) {
       diveSearchInput.blur();
     }
   }
@@ -8845,17 +8946,26 @@ ZSD·2016–2025</span></span>
   });
   document.addEventListener('pointerdown', event => {
     if (
+      !topMenuSearchSlot?.contains(event.target) &&
+      !isDiveSearchMenuTarget(event.target)
+    ) {
+      setDiveSearchFocusRetained(false);
+    }
+    if (
       mobileSearchQuery.matches &&
       topMenuSearchSlot?.classList.contains('is-mobile-expanded') &&
       diveSearchSuggestionModal?.hidden !== false &&
       !topMenuSearchSlot.contains(event.target) &&
-      !diveSearchResultsPanel?.contains(event.target)
+      !diveSearchResultsPanel?.contains(event.target) &&
+      !els.diveSearchFilterControls.contains(event.target) &&
+      !event.target.closest('.dive-filter-options')
     ) {
       setMobileSearchExpanded(false);
     }
   });
   topMenuSearchSlot?.addEventListener('focusout', event => {
-    if (diveSearchResultsPanel?.contains(event.relatedTarget)) {
+    if (isDiveSearchMenuTarget(event.relatedTarget)) {
+      if (event.target === diveSearchInput) setDiveSearchFocusRetained(true);
       setMobileSearchExpanded(true);
       return;
     }
@@ -8874,6 +8984,20 @@ ZSD·2016–2025</span></span>
   diveSearchResultsPanel?.addEventListener('focusin', () => {
     if (mobileSearchQuery.matches) setMobileSearchExpanded(true);
   });
+  document.addEventListener('focusout', event => {
+    if (event.target === diveSearchInput && isDiveSearchMenuTarget(event.relatedTarget)) {
+      setDiveSearchFocusRetained(true);
+      setMobileSearchExpanded(true);
+    }
+  }, true);
+  document.addEventListener('focusin', event => {
+    if (
+      !topMenuSearchSlot?.contains(event.target) &&
+      !isDiveSearchMenuTarget(event.target)
+    ) {
+      setDiveSearchFocusRetained(false);
+    }
+  }, true);
 
   const map = L.map('map', {
     minZoom: 2,
@@ -10274,6 +10398,7 @@ ZSD·2016–2025</span></span>
     diveSearchToggle: document.getElementById('diveSearchToggle'),
     diveSearchClear: document.getElementById('diveSearchClear'),
     diveSearchFilterToggle: document.getElementById('diveSearchFilterToggle'),
+    diveLegendFilterToggle: document.getElementById('diveLegendFilterToggle'),
     diveSearchFilterControls: document.getElementById('diveSearchFilterControls'),
     diveSearchCountryLabel: document.getElementById('diveSearchCountryLabel'),
     diveSearchDifficultyLabel: document.getElementById('diveSearchDifficultyLabel'),
@@ -10497,6 +10622,10 @@ ZSD·2016–2025</span></span>
 
     toast: document.getElementById('toast')
   };
+
+  // Keep the shared results-and-filters flyout outside the transformed header
+  // so its fixed viewport coordinates remain stable on desktop and mobile.
+  document.body.append(els.diveSearchResults);
 
   let shareSnapshot = null;
   let shareUrl = '';
@@ -14646,7 +14775,7 @@ ZSD·2016–2025</span></span>
       }
     }
     const minWidth = Math.min(viewportWidth <= 720 ? 250 : 240, maxWidth);
-    const width = Math.min(availableSearchWidth, Math.max(minWidth, Math.ceil(textWidth + chromeWidth)));
+    const width = Math.min(availableSearchWidth, Math.ceil(Math.max(minWidth, textWidth + chromeWidth) * 1.15));
     section.style.setProperty('--search-content-width', width + 'px');
   }
   window.addEventListener('resize', () => {
@@ -23975,6 +24104,215 @@ function closeShareDialog() {
   let diveSearchFiltersOpen = false;
   let diveSearchFilterOptionsLanguage = null;
 
+  // Keep the existing selects as the filter data model; the popup is ordinary
+  // DOM so its scrollbar and colors follow the site on every platform.
+  const diveFilterPickers = [els.diveSearchCountryFilter, els.diveSearchDifficultyFilter, els.diveSearchFeatureFilter].map(select => {
+    const button = document.createElement('input');
+    button.type = 'text';
+    button.id = `${select.id}Picker`;
+    button.className = 'dive-filter-picker';
+    button.autocomplete = 'off';
+    button.spellcheck = false;
+    button.setAttribute('role', 'combobox');
+    button.setAttribute('aria-haspopup', 'listbox');
+    button.setAttribute('aria-autocomplete', 'list');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-labelledby', select.getAttribute('aria-labelledby'));
+    button.setAttribute('placeholder', select.options[0]?.textContent || '');
+    const list = document.createElement('div');
+    list.id = `${button.id}Options`;
+    list.className = 'dive-filter-options';
+    const scroll = document.createElement('div');
+    scroll.className = 'dive-filter-options-scroll';
+    list.append(scroll);
+    list.hidden = true;
+    list.setAttribute('role', 'listbox');
+    list.setAttribute('aria-labelledby', select.getAttribute('aria-labelledby'));
+    button.setAttribute('aria-controls', list.id);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'dive-filter-picker-wrap';
+    select.hidden = true;
+    select.after(wrapper);
+    const clearButton = document.createElement('button');
+    clearButton.type = 'button';
+    clearButton.className = 'dive-filter-picker-clear';
+    clearButton.setAttribute('aria-label', t('diveSearchFilterClear'));
+    clearButton.title = t('diveSearchFilterClear');
+    clearButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 4 8 8M12 4l-8 8"/></svg>';
+    clearButton.hidden = true;
+    wrapper.append(button, clearButton);
+    function syncClearButton() {
+      const hasContent = Boolean(button.value.trim() || select.value);
+      const clearLabel = t('diveSearchFilterClear');
+      clearButton.hidden = !hasContent;
+      clearButton.setAttribute('aria-label', clearLabel);
+      clearButton.title = clearLabel;
+      wrapper.classList.toggle('has-clear', hasContent);
+    }
+    // The header is transformed; a body-level popup keeps viewport coordinates
+    // accurate and avoids clipping by the search results container.
+    document.body.append(list);
+    let activeIndex = 0;
+    let visibleIndexes = [];
+    function close() {
+      list.hidden = true;
+      button.setAttribute('aria-expanded', 'false');
+      button.removeAttribute('aria-activedescendant');
+    }
+    function highlight(visibleIndex) {
+      activeIndex = Math.max(0, Math.min(visibleIndexes.length - 1, visibleIndex));
+      Array.from(scroll.children).forEach(option => option.classList.toggle('is-active', Number(option.dataset.optionIndex) === visibleIndexes[activeIndex]));
+      const option = scroll.querySelector(`[data-option-index="${visibleIndexes[activeIndex]}"]`);
+      if (option) {
+        button.setAttribute('aria-activedescendant', option.id);
+        // scrollIntoView also scrolls ancestors, which closes the popup.
+        const top = option.offsetTop;
+        if (top < scroll.scrollTop) scroll.scrollTop = top;
+        else if (top + option.offsetHeight > scroll.scrollTop + scroll.clientHeight) {
+          scroll.scrollTop = top + option.offsetHeight - scroll.clientHeight;
+        }
+      }
+    }
+    function choose(index) {
+      if (!Number.isInteger(index) || index < 0) return;
+      select.selectedIndex = index;
+      const selectedLabel = select.selectedOptions[0]?.textContent || '';
+      button.value = select.value ? selectedLabel : '';
+      button.placeholder = selectedLabel;
+      close();
+      syncClearButton();
+      select.dispatchEvent(new Event('change', { bubbles:true }));
+      button.focus({ preventScroll:true });
+    }
+    function renderOptions(query = '') {
+      const normalizedQuery = query.trim().toLocaleLowerCase();
+      const matches = Array.from(select.options, (option, index) => ({
+        option,
+        index,
+        label: option.textContent.toLocaleLowerCase()
+      })).filter(({label}) => !normalizedQuery || label.includes(normalizedQuery));
+      if (normalizedQuery) {
+        matches.sort((a, b) => {
+          const aStartsWithQuery = a.label.startsWith(normalizedQuery);
+          const bStartsWithQuery = b.label.startsWith(normalizedQuery);
+          return Number(bStartsWithQuery) - Number(aStartsWithQuery) ||
+            a.option.textContent.localeCompare(b.option.textContent, currentLang, { sensitivity:'base' }) ||
+            a.index - b.index;
+        });
+      }
+      visibleIndexes = matches.map(({index}) => index);
+      scroll.replaceChildren(...visibleIndexes.map(index => {
+        const option = select.options[index];
+        const item = document.createElement('div');
+        item.id = `${list.id}-${index}`;
+        item.className = 'dive-filter-option';
+        item.dataset.optionIndex = String(index);
+        item.setAttribute('role', 'option');
+        item.setAttribute('aria-selected', String(option.selected));
+        const label = option.textContent;
+        if (normalizedQuery) {
+          const lowerLabel = label.toLocaleLowerCase();
+          let offset = 0;
+          let matchAt = lowerLabel.indexOf(normalizedQuery, offset);
+          while (matchAt !== -1) {
+            item.append(document.createTextNode(label.slice(offset, matchAt)));
+            const match = document.createElement('strong');
+            match.textContent = label.slice(matchAt, matchAt + normalizedQuery.length);
+            item.append(match);
+            offset = matchAt + normalizedQuery.length;
+            matchAt = lowerLabel.indexOf(normalizedQuery, offset);
+          }
+          item.append(document.createTextNode(label.slice(offset)));
+        } else {
+          item.textContent = label;
+        }
+        item.addEventListener('click', () => choose(index));
+        return item;
+      }));
+      if (!visibleIndexes.length) {
+        const empty = document.createElement('div');
+        empty.className = 'dive-filter-option';
+        empty.setAttribute('aria-disabled', 'true');
+        empty.textContent = 'No matching options';
+        scroll.append(empty);
+      }
+    }
+    function positionList() {
+      const rect = button.getBoundingClientRect();
+      const below = window.innerHeight - rect.bottom - 12;
+      const above = rect.top - 12;
+      const upwards = below < 160 && above > below;
+      const height = Math.min(280, Math.max(40, upwards ? above : below));
+      list.style.width = `${Math.min(Math.max(rect.width, 180), window.innerWidth - 16)}px`;
+      list.style.left = `${Math.max(8, Math.min(rect.left, window.innerWidth - parseFloat(list.style.width) - 8))}px`;
+      list.style.maxHeight = `${height}px`;
+      // Reserve the shell's padding and border so the scrollbar stays inside its corners.
+      scroll.style.maxHeight = `${height - 14}px`;
+      list.style.top = upwards ? 'auto' : `${rect.bottom + 4}px`;
+      list.style.bottom = upwards ? `${window.innerHeight - rect.top + 4}px` : 'auto';
+    }
+    function open() {
+      diveFilterPickers.forEach(picker => picker.close());
+      renderOptions(button.value);
+      positionList();
+      list.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+      const selectedVisibleIndex = visibleIndexes.indexOf(Math.max(0, select.selectedIndex));
+      highlight(selectedVisibleIndex >= 0 ? selectedVisibleIndex : 0);
+    }
+    button.addEventListener('click', open);
+    button.addEventListener('input', () => {
+      syncClearButton();
+      if (list.hidden) open();
+      else { renderOptions(button.value); positionList(); highlight(0); }
+      renderDiveSearchResults({ allowSameQueryRefresh:true });
+    });
+    button.addEventListener('focus', () => button.select());
+    button.addEventListener('keydown', event => {
+      if (event.key === 'Tab') { close(); return; }
+      if (event.key === 'Escape') {
+        if (!list.hidden) {
+          event.preventDefault(); event.stopPropagation();
+          button.value = select.value ? (select.selectedOptions[0]?.textContent || '') : '';
+          syncClearButton();
+          close();
+        }
+        return;
+      }
+      if (['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter'].includes(event.key)) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (list.hidden) { open(); return; }
+        if (event.key === 'Enter' && visibleIndexes.length) choose(visibleIndexes[activeIndex]);
+        else highlight(event.key === 'Home' ? 0 : event.key === 'End' ? visibleIndexes.length - 1 : activeIndex + (event.key === 'ArrowDown' ? 1 : -1));
+      }
+    });
+    button.addEventListener('blur', () => close());
+    clearButton.addEventListener('mousedown', event => event.preventDefault());
+    clearButton.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      select.value = '';
+      button.value = '';
+      close();
+      syncClearButton();
+      select.dispatchEvent(new Event('change', { bubbles:true }));
+      button.focus({ preventScroll:true });
+    });
+    // Retain combobox focus while clicking or dragging inside its popup.
+    list.addEventListener('mousedown', event => {
+      if (event.target.closest('.dive-filter-option')) event.preventDefault();
+    });
+    document.addEventListener('pointerdown', event => {
+      if (!button.contains(event.target) && !list.contains(event.target)) close();
+    });
+    window.addEventListener('resize', close);
+    document.addEventListener('scroll', event => {
+      if (!list.contains(event.target)) close();
+    }, true);
+    return { select, input:button, close, sync() { const selected = select.selectedOptions[0]?.textContent || ''; if (document.activeElement !== button) button.value = select.value ? selected : ''; button.placeholder = selected; syncClearButton(); } };
+  });
+
   function diveSearchSiteDifficultyKeys(site) {
     return String(site?.[6] || '')
       .split(/\s*(?:\||,|;|\bto\b|–|—)\s*/i)
@@ -24029,6 +24367,7 @@ function closeShareDialog() {
     els.diveSearchDifficultyFilter.value = selected.difficulty;
     els.diveSearchFeatureFilter.value = selected.feature;
     diveSearchFilterOptionsLanguage = currentLang;
+    diveFilterPickers.forEach(picker => picker.sync());
   }
 
   function hasActiveDiveSearchFilters() {
@@ -24040,20 +24379,106 @@ function closeShareDialog() {
   }
 
   function updateDiveSearchFilterControls() {
+    diveFilterPickers.forEach(picker => {
+      picker.sync();
+      if (!diveSearchFiltersOpen) picker.close();
+    });
     const active = hasActiveDiveSearchFilters();
-    els.diveSearchFilterToggle.classList.toggle('has-active-filters', active);
-    els.diveSearchFilterToggle.setAttribute('aria-expanded', String(diveSearchFiltersOpen));
+    [els.diveSearchFilterToggle, els.diveLegendFilterToggle].forEach(button => {
+      button.classList.toggle('has-active-filters', active);
+      button.setAttribute('aria-expanded', String(diveSearchFiltersOpen));
+      button.title = t('diveSearchFilters');
+      button.setAttribute('aria-label', t('diveSearchFilters'));
+    });
     els.diveSearchFilterControls.hidden = !diveSearchFiltersOpen;
+    els.diveSearchResults.classList.toggle('has-filters', diveSearchFiltersOpen);
+    // The portaled filter controls live outside :focus-within. Keep their anchor
+    // expanded until the filter menu closes, even when focus moves into them.
+    topMenuSearchSlot.classList.toggle('has-search-filters', diveSearchFiltersOpen);
     els.diveSearchFilterClear.hidden = !active;
   }
 
+  function positionDiveSearchFlyout() {
+    const rect = els.diveSearchBox.getBoundingClientRect();
+    const filtersOpen = diveSearchFiltersOpen;
+    const boxStyle = getComputedStyle(els.diveSearchBox);
+    const searchDividerStyle = getComputedStyle(els.diveSearchBox, '::after');
+    const dividerOffset = Math.max(0,
+      rect.width - parseFloat(boxStyle.borderRightWidth) - parseFloat(searchDividerStyle.right) - parseFloat(searchDividerStyle.width)
+    );
+    const availableFilterWidth = Math.max(0, window.innerWidth - rect.left - dividerOffset - 12);
+    const filterWidth = Math.min(360, availableFilterWidth) * 0.6;
+    const stacked = filtersOpen && filterWidth < 200;
+    els.diveSearchResults.classList.toggle('is-stacked', stacked);
+    els.diveSearchResults.classList.toggle('is-filter-compact', filtersOpen && !stacked && filterWidth < 300);
+    const top = Math.max(12, Math.min(rect.bottom + 8, window.innerHeight - 180));
+    if (filtersOpen && !stacked) {
+      // Match the clear/filter separator above; only the filter pane extends beyond the bar.
+      els.diveSearchResults.style.setProperty('--search-results-candidate-width', `${Math.max(0, dividerOffset - 1)}px`);
+      els.diveSearchResults.style.setProperty('--search-results-filter-width', `${filterWidth}px`);
+      els.diveSearchResults.style.width = `${dividerOffset + filterWidth + 1}px`;
+    } else {
+      els.diveSearchResults.style.removeProperty('--search-results-candidate-width');
+      els.diveSearchResults.style.removeProperty('--search-results-filter-width');
+      els.diveSearchResults.style.width = `${rect.width}px`;
+    }
+    els.diveSearchResults.style.left = `${rect.left}px`;
+    els.diveSearchResults.style.top = `${top}px`;
+    els.diveSearchResults.style.maxHeight = `${Math.min(440, window.innerHeight - top - 12)}px`;
+  }
+
+  function diveSearchFilterDrafts() {
+    return diveFilterPickers.map(picker => {
+      const query = picker.input.value.trim();
+      const selectedLabel = picker.select.selectedOptions[0]?.textContent?.trim() || '';
+      return query && query.toLocaleLowerCase() !== selectedLabel.toLocaleLowerCase()
+        ? query.toLocaleLowerCase()
+        : '';
+    });
+  }
+
+  function highlightDiveSearchText(value, queries) {
+    const text = String(value || '');
+    const terms = queries.map(query => query.trim()).filter(Boolean);
+    if (!terms.length) return escapeHtml(text);
+    const lowerText = text.toLocaleLowerCase();
+    const matches = [];
+    terms.forEach(term => {
+      const lowerTerm = term.toLocaleLowerCase();
+      let fromIndex = 0;
+      let matchAt = lowerText.indexOf(lowerTerm, fromIndex);
+      while (matchAt !== -1) {
+        matches.push({ start:matchAt, end:matchAt + lowerTerm.length });
+        fromIndex = matchAt + lowerTerm.length;
+        matchAt = lowerText.indexOf(lowerTerm, fromIndex);
+      }
+    });
+    matches.sort((a, b) => a.start - b.start || b.end - a.end);
+    let html = '';
+    let offset = 0;
+    matches.forEach(({start, end}) => {
+      if (start < offset) return;
+      html += `${escapeHtml(text.slice(offset, start))}<strong>${escapeHtml(text.slice(start, end))}</strong>`;
+      offset = end;
+    });
+    return html + escapeHtml(text.slice(offset));
+  }
+
   function diveSiteMatchesSearchFilters(site) {
-    const country = els.diveSearchCountryFilter.value;
-    const difficulty = els.diveSearchDifficultyFilter.value;
-    const feature = els.diveSearchFeatureFilter.value;
+    const [countryDraft, difficultyDraft, featureDraft] = diveSearchFilterDrafts();
+    const country = countryDraft ? '' : els.diveSearchCountryFilter.value;
+    const difficulty = difficultyDraft ? '' : els.diveSearchDifficultyFilter.value;
+    const feature = featureDraft ? '' : els.diveSearchFeatureFilter.value;
     if (country && String(site?.[9] || '').trim() !== country) return false;
     if (difficulty && !diveSearchSiteDifficultyKeys(site).includes(difficulty)) return false;
     if (feature && !diveSearchSiteFeatureKeys(site).includes(feature)) return false;
+    if (countryDraft && !String(site?.[9] || '').trim().toLocaleLowerCase().includes(countryDraft)) return false;
+    if (difficultyDraft && !diveSearchSiteDifficultyKeys(site).some(key =>
+      String(diveCategoryLabel(key) || key).toLocaleLowerCase().includes(difficultyDraft)
+    )) return false;
+    if (featureDraft && !diveSearchSiteFeatureKeys(site).some(key =>
+      String(diveCategoryLabel(key) || key).toLocaleLowerCase().includes(featureDraft)
+    )) return false;
     return true;
   }
 
@@ -24096,14 +24521,12 @@ function closeShareDialog() {
     if (focus) els.diveSearchInput.focus();
   }
 
-  function renderDiveSearchResults({ allowSameQueryRefresh = false } = {}) {
+  function renderDiveSearchResults({ allowSameQueryRefresh = false, forceRender = false } = {}) {
     if (!els.diveSearchInput) return;
     const renderRequest = ++diveSearchRenderRequest;
 
     const query =
       els.diveSearchInput.value.trim();
-    els.diveSearchFilterToggle.title = t('diveSearchFilters');
-    els.diveSearchFilterToggle.setAttribute('aria-label', t('diveSearchFilters'));
     els.diveSearchCountryLabel.textContent = t('diveSearchFilterCountry');
     els.diveSearchDifficultyLabel.textContent = t('diveSearchFilterDifficulty');
     els.diveSearchFeatureLabel.textContent = t('diveSearchFilterFeature');
@@ -24115,8 +24538,10 @@ function closeShareDialog() {
       Boolean(query)
     );
     els.diveSearchBox.classList.toggle('has-query', Boolean(query));
+    // The clear/filter separator is created by has-query, so measure the anchor after syncing that class.
+    positionDiveSearchFlyout();
 
-    if (!query && !hasActiveDiveSearchFilters() && !diveSearchFiltersOpen) {
+    if (!query && !hasActiveDiveSearchFilters() && !diveSearchFiltersOpen && document.activeElement !== els.diveSearchInput) {
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       hideDiveSearchResults();
       return;
@@ -24125,7 +24550,7 @@ function closeShareDialog() {
     // Async data readiness may re-enter this renderer for the same text. Once
     // the displayed query is current, preserve its list DOM, scroll, and active
     // option instead of resetting the user's search state.
-    if (!allowSameQueryRefresh && query === diveSearchQuery && diveSearchHasRenderedQuery) {
+    if (!allowSameQueryRefresh && !forceRender && query === diveSearchQuery && diveSearchHasRenderedQuery) {
       els.diveSearchResults.classList.add('visible');
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       els.diveSearchInput.setAttribute('aria-expanded', 'true');
@@ -24185,7 +24610,7 @@ function closeShareDialog() {
 
     if (diveSearchFiltersOpen) populateDiveSearchFilterOptions();
     updateDiveSearchFilterControls();
-    const activeFilters = hasActiveDiveSearchFilters();
+    const activeFilters = hasActiveDiveSearchFilters() || diveSearchFilterDrafts().some(Boolean);
     const baseMatches = query
       ? findDiveSites(query)
       : activeFilters
@@ -24232,6 +24657,7 @@ function closeShareDialog() {
     }
 
     const visibleMatches = diveSearchMatches.slice(0, diveSearchVisibleCount);
+    const resultHighlightQueries = [query, ...diveSearchFilterDrafts()];
     els.diveSearchResultsScroll.innerHTML =
       visibleMatches.map((siteIndex, resultIndex) => {
         const site = DIVE_SITES[siteIndex];
@@ -24251,15 +24677,15 @@ function closeShareDialog() {
           `aria-selected="${resultIndex === diveSearchActiveIndex}" ` +
           `role="option">` +
             `<div class="dive-search-result-name">` +
-              `${escapeHtml(name)}` +
+              `${highlightDiveSearchText(name, resultHighlightQueries)}` +
               diveSiteNameBadge(localizedName) +
             `</div>` +
             (localizedName.originalName && localizedName.originalName !== name
-              ? `<div class="dive-search-result-original">${escapeHtml(localizedName.originalName)}</div>`
+              ? `<div class="dive-search-result-original">${highlightDiveSearchText(localizedName.originalName, resultHighlightQueries)}</div>`
               : '') +
             (meta
               ? `<div class="dive-search-result-meta">` +
-                `${escapeHtml(meta)}` +
+                `${highlightDiveSearchText(meta, resultHighlightQueries)}` +
                 `</div>`
               : '') +
           `</button>`
@@ -24449,7 +24875,8 @@ function closeShareDialog() {
       diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,
       diveSearchMatches.length
     );
-    renderDiveSearchResults({ allowSameQueryRefresh:true });
+    // Rebuild the current query's list while retaining the larger visible count.
+    renderDiveSearchResults({ forceRender:true });
     if (preserveLoadMoreFocus) {
       const nextFocusTarget =
         els.diveSearchResults.querySelector('[data-search-load-more]') ||
@@ -27991,20 +28418,20 @@ function closeShareDialog() {
   }
 
   const DIVE_SEARCH_FILTER_COPY = {
-    zh: ['筛选', '国家', '所有国家', '难度', '所有等级', '特征', '所有特征', '清除筛选', '选择筛选条件以浏览潜点。'],
-    en: ['Filters', 'Country', 'Any country', 'Difficulty', 'Any level', 'Feature', 'Any feature', 'Clear filters', 'Choose a filter to browse dive sites.'],
-    ja: ['絞り込み', '国', 'すべての国', '難易度', 'すべてのレベル', '特徴', 'すべての特徴', '絞り込みを解除', 'ダイブサイトを探すには条件を選択してください。'],
-    fr: ['Filtres', 'Pays', 'Tous les pays', 'Difficulté', 'Tous les niveaux', 'Caractéristique', 'Toutes les caractéristiques', 'Effacer les filtres', 'Choisissez un filtre pour parcourir les sites de plongée.'],
-    de: ['Filter', 'Land', 'Alle Länder', 'Schwierigkeit', 'Alle Niveaus', 'Merkmal', 'Alle Merkmale', 'Filter löschen', 'Wähle einen Filter, um Tauchplätze zu durchsuchen.'],
-    nl: ['Filters', 'Land', 'Alle landen', 'Niveau', 'Alle niveaus', 'Kenmerk', 'Alle kenmerken', 'Filters wissen', 'Kies een filter om duiklocaties te bekijken.'],
-    it: ['Filtri', 'Paese', 'Tutti i paesi', 'Difficoltà', 'Tutti i livelli', 'Caratteristica', 'Tutte le caratteristiche', 'Cancella filtri', 'Scegli un filtro per esplorare i siti di immersione.'],
-    ru: ['Фильтры', 'Страна', 'Все страны', 'Сложность', 'Любой уровень', 'Особенность', 'Все особенности', 'Сбросить фильтры', 'Выберите фильтр, чтобы просмотреть места для дайвинга.'],
-    pt: ['Filtros', 'País', 'Todos os países', 'Dificuldade', 'Todos os níveis', 'Característica', 'Todas as características', 'Limpar filtros', 'Escolha um filtro para explorar os locais de mergulho.'],
-    sv: ['Filter', 'Land', 'Alla länder', 'Svårighetsgrad', 'Alla nivåer', 'Egenskap', 'Alla egenskaper', 'Rensa filter', 'Välj ett filter för att bläddra bland dykplatser.'],
-    no: ['Filtre', 'Land', 'Alle land', 'Vanskelighetsgrad', 'Alle nivåer', 'Egenskap', 'Alle egenskaper', 'Tøm filtre', 'Velg et filter for å bla gjennom dykkesteder.'],
-    es: ['Filtros', 'País', 'Todos los países', 'Dificultad', 'Todos los niveles', 'Característica', 'Todas las características', 'Borrar filtros', 'Elige un filtro para explorar los sitios de buceo.'],
-    ko: ['필터', '국가', '모든 국가', '난이도', '모든 레벨', '특징', '모든 특징', '필터 지우기', '다이빙 사이트를 찾으려면 필터를 선택하세요.'],
-    id: ['Filter', 'Negara', 'Semua negara', 'Kesulitan', 'Semua tingkat', 'Fitur', 'Semua fitur', 'Hapus filter', 'Pilih filter untuk menelusuri lokasi menyelam.']
+    zh: ['筛选', '国家', '所有国家', '难度', '所有等级', '特征', '所有特征', '清除全部', '选择筛选条件以浏览潜点。'],
+    en: ['Filters', 'Country', 'Any country', 'Difficulty', 'Any level', 'Feature', 'Any feature', 'Clear All', 'Choose a filter to browse dive sites.'],
+    ja: ['絞り込み', '国', 'すべての国', '難易度', 'すべてのレベル', '特徴', 'すべての特徴', 'すべてクリア', 'ダイブサイトを探すには条件を選択してください。'],
+    fr: ['Filtres', 'Pays', 'Tous les pays', 'Difficulté', 'Tous les niveaux', 'Caractéristique', 'Toutes les caractéristiques', 'Tout effacer', 'Choisissez un filtre pour parcourir les sites de plongée.'],
+    de: ['Filter', 'Land', 'Alle Länder', 'Schwierigkeit', 'Alle Niveaus', 'Merkmal', 'Alle Merkmale', 'Alle löschen', 'Wähle einen Filter, um Tauchplätze zu durchsuchen.'],
+    nl: ['Filters', 'Land', 'Alle landen', 'Niveau', 'Alle niveaus', 'Kenmerk', 'Alle kenmerken', 'Alles wissen', 'Kies een filter om duiklocaties te bekijken.'],
+    it: ['Filtri', 'Paese', 'Tutti i paesi', 'Difficoltà', 'Tutti i livelli', 'Caratteristica', 'Tutte le caratteristiche', 'Cancella tutto', 'Scegli un filtro per esplorare i siti di immersione.'],
+    ru: ['Фильтры', 'Страна', 'Все страны', 'Сложность', 'Любой уровень', 'Особенность', 'Все особенности', 'Очистить всё', 'Выберите фильтр, чтобы просмотреть места для дайвинга.'],
+    pt: ['Filtros', 'País', 'Todos os países', 'Dificuldade', 'Todos os níveis', 'Característica', 'Todas as características', 'Limpar tudo', 'Escolha um filtro para explorar os locais de mergulho.'],
+    sv: ['Filter', 'Land', 'Alla länder', 'Svårighetsgrad', 'Alla nivåer', 'Egenskap', 'Alla egenskaper', 'Rensa allt', 'Välj ett filter för att bläddra bland dykplatser.'],
+    no: ['Filtre', 'Land', 'Alle land', 'Vanskelighetsgrad', 'Alle nivåer', 'Egenskap', 'Alle egenskaper', 'Tøm alt', 'Velg et filter for å bla gjennom dykkesteder.'],
+    es: ['Filtros', 'País', 'Todos los países', 'Dificultad', 'Todos los niveles', 'Característica', 'Todas las características', 'Borrar todo', 'Elige un filtro para explorar los sitios de buceo.'],
+    ko: ['필터', '국가', '모든 국가', '난이도', '모든 레벨', '특징', '모든 특징', '모두 지우기', '다이빙 사이트를 찾으려면 필터를 선택하세요.'],
+    id: ['Filter', 'Negara', 'Semua negara', 'Kesulitan', 'Semua tingkat', 'Fitur', 'Semua fitur', 'Hapus semua', 'Pilih filter untuk menelusuri lokasi menyelam.']
   };
   for (const [lang, values] of Object.entries(DIVE_SEARCH_FILTER_COPY)) {
     const [diveSearchFilters, diveSearchFilterCountry, diveSearchFilterAnyCountry,
@@ -32930,6 +33357,13 @@ function closeShareDialog() {
   els.diveSearchInput.addEventListener(
     'focus',
     () => {
+      setDiveSearchFocusRetained(false);
+      if (hasActiveDiveSearchFilters()) {
+        diveSearchFiltersOpen = true;
+        setMobileSearchExpanded(true);
+        renderDiveSearchResults({ allowSameQueryRefresh:true });
+        return;
+      }
       if (els.diveSearchInput.value.trim()) {
         renderDiveSearchResults();
       }
@@ -32990,6 +33424,14 @@ function closeShareDialog() {
     }
   );
 
+  // Result selection should not transfer DOM focus away from the search input.
+  // Filter controls are intentionally excluded so native and custom selectors remain usable.
+  els.diveSearchResults.addEventListener('mousedown', event => {
+    if (event.target.closest('.dive-search-result, [data-search-load-more]')) {
+      event.preventDefault();
+    }
+  });
+
   els.diveSearchResults.addEventListener(
     'click',
     event => {
@@ -33017,15 +33459,36 @@ function closeShareDialog() {
     () => clearDiveSearch({ focus: true })
   );
 
-  els.diveSearchFilterToggle.addEventListener('click', () => {
+  // Prevent the toggle's mouse down from stealing focus. Preserve a search focus
+  // already held in the input or moved into the portaled menu, but do not focus
+  // the bar when filters are opened from an unfocused state.
+  let diveSearchInputFocusedBeforeFilterPointer = false;
+  els.diveSearchFilterToggle.addEventListener('mousedown', event => {
+    if (event.button === 0) {
+      diveSearchInputFocusedBeforeFilterPointer = document.activeElement === els.diveSearchInput ||
+        topMenuSearchSlot.classList.contains('is-search-focus-retained');
+      event.preventDefault();
+    }
+  });
+
+  [els.diveSearchFilterToggle, els.diveLegendFilterToggle].forEach(button => button.addEventListener('click', event => {
+    const preserveSearchFocus = button === els.diveSearchFilterToggle &&
+      event.detail > 0 && diveSearchInputFocusedBeforeFilterPointer;
+    diveSearchInputFocusedBeforeFilterPointer = false;
+    event.stopPropagation();
     diveSearchFiltersOpen = !diveSearchFiltersOpen;
+    if (diveSearchFiltersOpen) {
+      setMobileSearchExpanded(true);
+      positionDiveSearchFlyout();
+    }
     updateDiveSearchFilterControls();
-    if (diveSearchFiltersOpen || hasActiveDiveSearchFilters() || els.diveSearchInput.value.trim()) {
+    if (diveSearchFiltersOpen || hasActiveDiveSearchFilters() || els.diveSearchInput.value.trim() || document.activeElement === els.diveSearchInput) {
       renderDiveSearchResults({ allowSameQueryRefresh: true });
     } else {
       hideDiveSearchResults();
     }
-  });
+    if (preserveSearchFocus) els.diveSearchInput.focus({ preventScroll: true });
+  }));
 
   [
     els.diveSearchCountryFilter,
@@ -33453,12 +33916,30 @@ function closeShareDialog() {
       if (
         !els.diveSearchInput.contains(event.target) &&
         !els.diveSearchResults.contains(event.target) &&
+        !els.diveSearchBox.contains(event.target) &&
+        !els.diveSearchFilterControls.contains(event.target) &&
+        !event.target.closest('.dive-filter-options') &&
         !els.diveSearchClear.contains(event.target)
       ) {
+        if (diveSearchFiltersOpen) {
+          diveSearchFiltersOpen = false;
+          updateDiveSearchFilterControls();
+        }
         dismissDiveSearchResults();
       }
     }
   );
+
+  window.addEventListener('resize', () => {
+    if (els.diveSearchResults.classList.contains('visible')) positionDiveSearchFlyout();
+  });
+
+  // Focus expands the search bar without resizing the window. Recalculate from
+  // its actual geometry so the menu follows both edges throughout that change.
+  const diveSearchAnchorResizeObserver = new ResizeObserver(() => {
+    if (els.diveSearchResults.classList.contains('visible')) positionDiveSearchFlyout();
+  });
+  diveSearchAnchorResizeObserver.observe(els.diveSearchBox);
 
   /* ---------- collapse ---------- */
 
