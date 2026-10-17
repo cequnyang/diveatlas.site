@@ -1390,6 +1390,55 @@
       vertical-align: middle;
     }
 
+    .dive-site-name-draft {
+      position: relative;
+      appearance: none;
+      background: transparent;
+      font: inherit;
+      font-size: 8px;
+      cursor: pointer;
+    }
+
+    .dive-site-name-draft::after {
+      position: absolute;
+      z-index: 20;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      width: max-content;
+      max-width: min(240px, calc(100vw - 40px));
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel-solid);
+      box-shadow: 0 5px 18px rgba(0,0,0,.2);
+      color: var(--text-primary);
+      content: attr(title);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.35;
+      white-space: normal;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, 3px);
+      transition: opacity .12s ease, transform .12s ease, visibility .12s ease;
+    }
+
+    .dive-site-name-draft:focus-visible::after,
+    .dive-site-name-draft.is-name-draft-tooltip-open::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    @media (hover: hover) {
+      .dive-site-name-draft:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+      }
+    }
+
     .bio-popup-site {
       margin-top: 3px;
       color: var(--muted);
@@ -7422,7 +7471,7 @@
             <button class="top-menu-dropdown-item" id="aboutMenuItem" type="button" aria-expanded="false" aria-controls="topMenuAboutTooltip" aria-describedby="topMenuAboutTooltip">About</button>
             <div class="top-menu-about-tooltip" id="topMenuAboutTooltip" role="tooltip" hidden>
               <p data-i18n="aboutDescription">DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean layers for water temperature, clarity, currents, waves, and tides. The historical monthly Dive Experience Outlook summarizes available physical and ecological data with a score, confidence, and source details. Reef Condition provides historical ocean-heat and reef thermal-stress context. These views use climatologies, models, and mapped records—not live dive reports—and the outlook is not a safety rating.</p>
-              <p class="top-menu-about-copyright" data-i18n="aboutCopyright">© 2026 Cequn Yang. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p>
+              <p class="top-menu-about-copyright" data-i18n="aboutCopyright">© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p>
             </div>
           </div>
           <button class="top-menu-dropdown-item" id="contactMenuItem" type="button">Contact</button>
@@ -12727,20 +12776,20 @@ ZSD·2016–2025</span></span>
   }
 
   const MISSING_UI_I18N = {
-    en: { browseDiveSites:'Browse dive sites', browseRegions:'Browse regions', aboutMapData:'About map data', aboutDescription:'DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean layers for water temperature, clarity, currents, waves, and tides. The historical monthly Dive Experience Outlook summarizes available physical and ecological data with a score, confidence, and source details. Reef Condition provides historical ocean-heat and reef thermal-stress context. These views use climatologies, models, and mapped records—not live dive reports—and the outlook is not a safety rating.', aboutCopyright:'© 2026 Cequn Yang. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.', shareTitle:'Share', shareCopyLink:'Copy link', sourceLabel:'Source', resolutionLabel:'Resolution', loadMore:'Load more…', accountUnavailable:'Account sign-in is unavailable' },
-    zh: { browseDiveSites:'浏览潜点', browseRegions:'浏览区域', aboutMapData:'关于地图数据', aboutDescription:'DiveAtlas 是一张交互式地图，可探索潜点和区域，并查看珊瑚礁范围、珊瑚与鱼类记录、海底地形，以及海水温度、清澈度、海流、海浪和潮汐图层。每月潜水体验展望根据可用的物理与生态数据，汇总评分、可信度和数据来源。珊瑚礁状况提供历史海洋高温与珊瑚礁热压力背景。这些视图基于气候态、模型和地图记录，并非实时潜水报告；展望也不是安全评级。', aboutCopyright:'© 2026 Cequn Yang。DiveAtlas 原创代码、文本和设计；第三方材料各自遵循其许可条款。', shareTitle:'分享', shareCopyLink:'复制链接', sourceLabel:'数据来源', resolutionLabel:'分辨率', loadMore:'加载更多…', accountUnavailable:'账户登录暂不可用' },
-    ja: { browseDiveSites:'ダイブサイトを見る', browseRegions:'地域を見る', aboutMapData:'地図データについて', aboutDescription:'DiveAtlas は、ダイブサイトや地域を探索できるインタラクティブな地図です。サンゴ礁の範囲、サンゴや魚の記録、海底地形、水温・透明度・海流・波・潮汐のレイヤーを表示します。月ごとのダイブ体験アウトルックは、利用可能な物理・生態データをスコア、信頼度、出典とともにまとめます。リーフコンディションは過去の海洋熱とサンゴ礁の熱ストレスを示します。これらは気候値、モデル、地図上の記録に基づき、リアルタイムのダイビング報告ではありません。安全評価でもありません。', aboutCopyright:'© 2026 Cequn Yang。DiveAtlas のコード、文章、デザインはオリジナルです。第三者の素材には各自の利用条件が適用されます。', shareTitle:'共有', shareCopyLink:'リンクをコピー', sourceLabel:'データ出典', resolutionLabel:'解像度', loadMore:'さらに読み込む…', accountUnavailable:'アカウントへのサインインは利用できません' },
-    fr: { browseDiveSites:'Parcourir les sites de plongée', browseRegions:'Parcourir les régions', aboutMapData:'À propos des données cartographiques', aboutDescription:'DiveAtlas est une carte interactive pour explorer les sites de plongée et les régions, avec l’étendue des récifs, les observations de coraux et de poissons, la bathymétrie et les couches océaniques. Les vues s’appuient sur des climatologies, des modèles et des données cartographiées, et non sur des comptes rendus en temps réel. Les perspectives ne constituent pas une évaluation de sécurité.', aboutCopyright:'© 2026 Cequn Yang. Code, textes et design originaux de DiveAtlas ; les contenus tiers restent soumis à leurs propres conditions.', shareTitle:'Partager', shareCopyLink:'Copier le lien', sourceLabel:'Source', resolutionLabel:'Résolution', loadMore:'Charger plus…', accountUnavailable:'La connexion au compte est indisponible' },
-    de: { browseDiveSites:'Tauchplätze durchsuchen', browseRegions:'Regionen durchsuchen', aboutMapData:'Über Kartendaten', aboutDescription:'DiveAtlas ist eine interaktive Karte zum Erkunden von Tauchplätzen und Regionen mit Riffausdehnung, Korallen- und Fischbeobachtungen, Bathymetrie und Meeresdaten. Die Ansichten beruhen auf Klimatologien, Modellen und kartierten Beobachtungen, nicht auf aktuellen Tauchberichten. Die Einschätzung ist keine Sicherheitsbewertung.', aboutCopyright:'© 2026 Cequn Yang. Originalcode, Texte und Design von DiveAtlas; für Materialien Dritter gelten deren eigene Bedingungen.', shareTitle:'Teilen', shareCopyLink:'Link kopieren', sourceLabel:'Quelle', resolutionLabel:'Auflösung', loadMore:'Mehr laden…', accountUnavailable:'Die Kontoanmeldung ist nicht verfügbar' },
-    nl: { browseDiveSites:'Duikplekken bekijken', browseRegions:'Regio’s bekijken', aboutMapData:'Over kaartgegevens', aboutDescription:'DiveAtlas is een interactieve kaart om duikplekken en regio’s te verkennen, met rifomvang, koraal- en viswaarnemingen, bathymetrie en oceaanlagen. De overzichten zijn gebaseerd op klimaatgemiddelden, modellen en kaartgegevens, niet op actuele duikverslagen. De vooruitblik is geen veiligheidsbeoordeling.', aboutCopyright:'© 2026 Cequn Yang. Originele DiveAtlas-code, tekst en vormgeving; voor materiaal van derden gelden hun eigen voorwaarden.', shareTitle:'Delen', shareCopyLink:'Link kopiëren', sourceLabel:'Bron', resolutionLabel:'Resolutie', loadMore:'Meer laden…', accountUnavailable:'Inloggen op het account is niet beschikbaar' },
-    it: { browseDiveSites:'Esplora i siti d’immersione', browseRegions:'Esplora le regioni', aboutMapData:'Informazioni sui dati cartografici', aboutDescription:'DiveAtlas è una mappa interattiva per esplorare siti d’immersione e regioni, con estensione delle barriere, osservazioni di coralli e pesci, batimetria e livelli oceanici. Le viste si basano su climatologie, modelli e dati cartografici, non su resoconti in tempo reale. La panoramica non è una valutazione di sicurezza.', aboutCopyright:'© 2026 Cequn Yang. Codice, testi e design originali di DiveAtlas; i materiali di terzi restano soggetti ai rispettivi termini.', shareTitle:'Condividi', shareCopyLink:'Copia link', sourceLabel:'Fonte', resolutionLabel:'Risoluzione', loadMore:'Carica altro…', accountUnavailable:'Accesso all’account non disponibile' },
-    ru: { browseDiveSites:'Список мест для дайвинга', browseRegions:'Список регионов', aboutMapData:'О картографических данных', aboutDescription:'DiveAtlas — интерактивная карта для изучения мест для дайвинга и регионов с данными о рифах, кораллах и рыбах, батиметрией и океаническими слоями. Представления основаны на климатологиях, моделях и картографических записях, а не на актуальных отчётах о погружениях. Обзор не является оценкой безопасности.', aboutCopyright:'© 2026 Cequn Yang. Оригинальные код, текст и дизайн DiveAtlas; на сторонние материалы распространяются их собственные условия.', shareTitle:'Поделиться', shareCopyLink:'Копировать ссылку', sourceLabel:'Источник', resolutionLabel:'Разрешение', loadMore:'Загрузить ещё…', accountUnavailable:'Вход в аккаунт недоступен' },
-    pt: { browseDiveSites:'Explorar locais de mergulho', browseRegions:'Explorar regiões', aboutMapData:'Sobre os dados do mapa', aboutDescription:'DiveAtlas é um mapa interativo para explorar locais de mergulho e regiões, com extensão de recifes, registros de corais e peixes, batimetria e camadas oceânicas. As visualizações usam climatologias, modelos e registros cartográficos, não relatos de mergulho em tempo real. A perspectiva não é uma avaliação de segurança.', aboutCopyright:'© 2026 Cequn Yang. Código, texto e design originais do DiveAtlas; materiais de terceiros seguem seus próprios termos.', shareTitle:'Compartilhar', shareCopyLink:'Copiar link', sourceLabel:'Fonte', resolutionLabel:'Resolução', loadMore:'Carregar mais…', accountUnavailable:'O acesso à conta está indisponível' },
-    sv: { browseDiveSites:'Bläddra bland dykplatser', browseRegions:'Bläddra bland regioner', aboutMapData:'Om kartdata', aboutDescription:'DiveAtlas är en interaktiv karta för att utforska dykplatser och regioner med revutbredning, korall- och fiskobservationer, batymetri och havslager. Vyerna bygger på klimatologier, modeller och kartlagda observationer, inte aktuella dykrapporter. Översikten är ingen säkerhetsbedömning.', aboutCopyright:'© 2026 Cequn Yang. DiveAtlas originalkod, text och design; material från tredje part omfattas av sina egna villkor.', shareTitle:'Dela', shareCopyLink:'Kopiera länk', sourceLabel:'Källa', resolutionLabel:'Upplösning', loadMore:'Läs in fler…', accountUnavailable:'Det går inte att logga in på kontot' },
-    no: { browseDiveSites:'Bla gjennom dykkesteder', browseRegions:'Bla gjennom regioner', aboutMapData:'Om kartdata', aboutDescription:'DiveAtlas er et interaktivt kart for å utforske dykkesteder og regioner med revutbredelse, korall- og fiskeregistreringer, batymetri og havlag. Visningene bygger på klimatologier, modeller og kartlagte registreringer, ikke sanntidsrapporter fra dykk. Oversikten er ingen sikkerhetsvurdering.', aboutCopyright:'© 2026 Cequn Yang. DiveAtlas’ originale kode, tekst og design; tredjepartsmateriale følger egne vilkår.', shareTitle:'Del', shareCopyLink:'Kopier lenke', sourceLabel:'Kilde', resolutionLabel:'Oppløsning', loadMore:'Last inn flere…', accountUnavailable:'Innlogging på kontoen er utilgjengelig' },
-    es: { browseDiveSites:'Ver sitios de buceo', browseRegions:'Ver regiones', aboutMapData:'Acerca de los datos del mapa', aboutDescription:'DiveAtlas es un mapa interactivo para explorar sitios de buceo y regiones, con extensión de arrecifes, registros de corales y peces, batimetría y capas oceánicas. Las vistas usan climatologías, modelos y registros cartográficos, no informes de buceo en tiempo real. La perspectiva no es una clasificación de seguridad.', aboutCopyright:'© 2026 Cequn Yang. Código, textos y diseño originales de DiveAtlas; los materiales de terceros mantienen sus propias condiciones.', shareTitle:'Compartir', shareCopyLink:'Copiar enlace', sourceLabel:'Fuente', resolutionLabel:'Resolución', loadMore:'Cargar más…', accountUnavailable:'El inicio de sesión no está disponible' },
-    ko: { browseDiveSites:'다이빙 장소 둘러보기', browseRegions:'지역 둘러보기', aboutMapData:'지도 데이터 정보', aboutDescription:'DiveAtlas는 다이빙 장소와 지역을 탐색하는 인터랙티브 지도입니다. 산호초 범위, 산호와 어류 기록, 수심 지형, 해양 레이어를 제공합니다. 이 정보는 기후 평년값, 모델, 지도 기록을 바탕으로 하며 실시간 다이빙 보고가 아닙니다. 전망은 안전 등급이 아닙니다.', aboutCopyright:'© 2026 Cequn Yang. DiveAtlas의 코드, 텍스트, 디자인은 원본이며 제3자 자료에는 각자의 이용 약관이 적용됩니다.', shareTitle:'공유', shareCopyLink:'링크 복사', sourceLabel:'출처', resolutionLabel:'해상도', loadMore:'더 불러오기…', accountUnavailable:'계정 로그인을 사용할 수 없습니다' },
-    id: { browseDiveSites:'Jelajahi lokasi selam', browseRegions:'Jelajahi wilayah', aboutMapData:'Tentang data peta', aboutDescription:'DiveAtlas adalah peta interaktif untuk menjelajahi lokasi selam dan wilayah, termasuk bentang terumbu, catatan karang dan ikan, batimetri, serta lapisan laut. Tampilan menggunakan klimatologi, model, dan catatan peta, bukan laporan selam langsung. Outlook bukan penilaian keselamatan.', aboutCopyright:'© 2026 Cequn Yang. Kode, teks, dan desain DiveAtlas asli; materi pihak ketiga tunduk pada ketentuannya masing-masing.', shareTitle:'Bagikan', shareCopyLink:'Salin tautan', sourceLabel:'Sumber', resolutionLabel:'Resolusi', loadMore:'Muat lainnya…', accountUnavailable:'Login akun tidak tersedia' }
+    en: { browseDiveSites:'Browse dive sites', browseRegions:'Browse regions', aboutMapData:'About map data', aboutDescription:'DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean layers for water temperature, clarity, currents, waves, and tides. The historical monthly Dive Experience Outlook summarizes available physical and ecological data with a score, confidence, and source details. Reef Condition provides historical ocean-heat and reef thermal-stress context. These views use climatologies, models, and mapped records—not live dive reports—and the outlook is not a safety rating.', aboutCopyright:'© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.', shareTitle:'Share', shareCopyLink:'Copy link', sourceLabel:'Source', resolutionLabel:'Resolution', loadMore:'Load more…', accountUnavailable:'Account sign-in is unavailable' },
+    zh: { browseDiveSites:'浏览潜点', browseRegions:'浏览区域', aboutMapData:'关于地图数据', aboutDescription:'DiveAtlas 是一张交互式地图，可探索潜点和区域，并查看珊瑚礁范围、珊瑚与鱼类记录、海底地形，以及海水温度、清澈度、海流、海浪和潮汐图层。每月潜水体验展望根据可用的物理与生态数据，汇总评分、可信度和数据来源。珊瑚礁状况提供历史海洋高温与珊瑚礁热压力背景。这些视图基于气候态、模型和地图记录，并非实时潜水报告；展望也不是安全评级。', aboutCopyright:'© 2026 DiveAtlas。DiveAtlas 原创代码、文本和设计；第三方材料各自遵循其许可条款。', shareTitle:'分享', shareCopyLink:'复制链接', sourceLabel:'数据来源', resolutionLabel:'分辨率', loadMore:'加载更多…', accountUnavailable:'账户登录暂不可用' },
+    ja: { browseDiveSites:'ダイブサイトを見る', browseRegions:'地域を見る', aboutMapData:'地図データについて', aboutDescription:'DiveAtlas は、ダイブサイトや地域を探索できるインタラクティブな地図です。サンゴ礁の範囲、サンゴや魚の記録、海底地形、水温・透明度・海流・波・潮汐のレイヤーを表示します。月ごとのダイブ体験アウトルックは、利用可能な物理・生態データをスコア、信頼度、出典とともにまとめます。リーフコンディションは過去の海洋熱とサンゴ礁の熱ストレスを示します。これらは気候値、モデル、地図上の記録に基づき、リアルタイムのダイビング報告ではありません。安全評価でもありません。', aboutCopyright:'© 2026 DiveAtlas。DiveAtlas のコード、文章、デザインはオリジナルです。第三者の素材には各自の利用条件が適用されます。', shareTitle:'共有', shareCopyLink:'リンクをコピー', sourceLabel:'データ出典', resolutionLabel:'解像度', loadMore:'さらに読み込む…', accountUnavailable:'アカウントへのサインインは利用できません' },
+    fr: { browseDiveSites:'Parcourir les sites de plongée', browseRegions:'Parcourir les régions', aboutMapData:'À propos des données cartographiques', aboutDescription:'DiveAtlas est une carte interactive pour explorer les sites de plongée et les régions, avec l’étendue des récifs, les observations de coraux et de poissons, la bathymétrie et les couches océaniques. Les vues s’appuient sur des climatologies, des modèles et des données cartographiées, et non sur des comptes rendus en temps réel. Les perspectives ne constituent pas une évaluation de sécurité.', aboutCopyright:'© 2026 DiveAtlas. Code, textes et design originaux de DiveAtlas ; les contenus tiers restent soumis à leurs propres conditions.', shareTitle:'Partager', shareCopyLink:'Copier le lien', sourceLabel:'Source', resolutionLabel:'Résolution', loadMore:'Charger plus…', accountUnavailable:'La connexion au compte est indisponible' },
+    de: { browseDiveSites:'Tauchplätze durchsuchen', browseRegions:'Regionen durchsuchen', aboutMapData:'Über Kartendaten', aboutDescription:'DiveAtlas ist eine interaktive Karte zum Erkunden von Tauchplätzen und Regionen mit Riffausdehnung, Korallen- und Fischbeobachtungen, Bathymetrie und Meeresdaten. Die Ansichten beruhen auf Klimatologien, Modellen und kartierten Beobachtungen, nicht auf aktuellen Tauchberichten. Die Einschätzung ist keine Sicherheitsbewertung.', aboutCopyright:'© 2026 DiveAtlas. Originalcode, Texte und Design von DiveAtlas; für Materialien Dritter gelten deren eigene Bedingungen.', shareTitle:'Teilen', shareCopyLink:'Link kopieren', sourceLabel:'Quelle', resolutionLabel:'Auflösung', loadMore:'Mehr laden…', accountUnavailable:'Die Kontoanmeldung ist nicht verfügbar' },
+    nl: { browseDiveSites:'Duikplekken bekijken', browseRegions:'Regio’s bekijken', aboutMapData:'Over kaartgegevens', aboutDescription:'DiveAtlas is een interactieve kaart om duikplekken en regio’s te verkennen, met rifomvang, koraal- en viswaarnemingen, bathymetrie en oceaanlagen. De overzichten zijn gebaseerd op klimaatgemiddelden, modellen en kaartgegevens, niet op actuele duikverslagen. De vooruitblik is geen veiligheidsbeoordeling.', aboutCopyright:'© 2026 DiveAtlas. Originele DiveAtlas-code, tekst en vormgeving; voor materiaal van derden gelden hun eigen voorwaarden.', shareTitle:'Delen', shareCopyLink:'Link kopiëren', sourceLabel:'Bron', resolutionLabel:'Resolutie', loadMore:'Meer laden…', accountUnavailable:'Inloggen op het account is niet beschikbaar' },
+    it: { browseDiveSites:'Esplora i siti d’immersione', browseRegions:'Esplora le regioni', aboutMapData:'Informazioni sui dati cartografici', aboutDescription:'DiveAtlas è una mappa interattiva per esplorare siti d’immersione e regioni, con estensione delle barriere, osservazioni di coralli e pesci, batimetria e livelli oceanici. Le viste si basano su climatologie, modelli e dati cartografici, non su resoconti in tempo reale. La panoramica non è una valutazione di sicurezza.', aboutCopyright:'© 2026 DiveAtlas. Codice, testi e design originali di DiveAtlas; i materiali di terzi restano soggetti ai rispettivi termini.', shareTitle:'Condividi', shareCopyLink:'Copia link', sourceLabel:'Fonte', resolutionLabel:'Risoluzione', loadMore:'Carica altro…', accountUnavailable:'Accesso all’account non disponibile' },
+    ru: { browseDiveSites:'Список мест для дайвинга', browseRegions:'Список регионов', aboutMapData:'О картографических данных', aboutDescription:'DiveAtlas — интерактивная карта для изучения мест для дайвинга и регионов с данными о рифах, кораллах и рыбах, батиметрией и океаническими слоями. Представления основаны на климатологиях, моделях и картографических записях, а не на актуальных отчётах о погружениях. Обзор не является оценкой безопасности.', aboutCopyright:'© 2026 DiveAtlas. Оригинальные код, текст и дизайн DiveAtlas; на сторонние материалы распространяются их собственные условия.', shareTitle:'Поделиться', shareCopyLink:'Копировать ссылку', sourceLabel:'Источник', resolutionLabel:'Разрешение', loadMore:'Загрузить ещё…', accountUnavailable:'Вход в аккаунт недоступен' },
+    pt: { browseDiveSites:'Explorar locais de mergulho', browseRegions:'Explorar regiões', aboutMapData:'Sobre os dados do mapa', aboutDescription:'DiveAtlas é um mapa interativo para explorar locais de mergulho e regiões, com extensão de recifes, registros de corais e peixes, batimetria e camadas oceânicas. As visualizações usam climatologias, modelos e registros cartográficos, não relatos de mergulho em tempo real. A perspectiva não é uma avaliação de segurança.', aboutCopyright:'© 2026 DiveAtlas. Código, texto e design originais do DiveAtlas; materiais de terceiros seguem seus próprios termos.', shareTitle:'Compartilhar', shareCopyLink:'Copiar link', sourceLabel:'Fonte', resolutionLabel:'Resolução', loadMore:'Carregar mais…', accountUnavailable:'O acesso à conta está indisponível' },
+    sv: { browseDiveSites:'Bläddra bland dykplatser', browseRegions:'Bläddra bland regioner', aboutMapData:'Om kartdata', aboutDescription:'DiveAtlas är en interaktiv karta för att utforska dykplatser och regioner med revutbredning, korall- och fiskobservationer, batymetri och havslager. Vyerna bygger på klimatologier, modeller och kartlagda observationer, inte aktuella dykrapporter. Översikten är ingen säkerhetsbedömning.', aboutCopyright:'© 2026 DiveAtlas. DiveAtlas originalkod, text och design; material från tredje part omfattas av sina egna villkor.', shareTitle:'Dela', shareCopyLink:'Kopiera länk', sourceLabel:'Källa', resolutionLabel:'Upplösning', loadMore:'Läs in fler…', accountUnavailable:'Det går inte att logga in på kontot' },
+    no: { browseDiveSites:'Bla gjennom dykkesteder', browseRegions:'Bla gjennom regioner', aboutMapData:'Om kartdata', aboutDescription:'DiveAtlas er et interaktivt kart for å utforske dykkesteder og regioner med revutbredelse, korall- og fiskeregistreringer, batymetri og havlag. Visningene bygger på klimatologier, modeller og kartlagte registreringer, ikke sanntidsrapporter fra dykk. Oversikten er ingen sikkerhetsvurdering.', aboutCopyright:'© 2026 DiveAtlas. DiveAtlas’ originale kode, tekst og design; tredjepartsmateriale følger egne vilkår.', shareTitle:'Del', shareCopyLink:'Kopier lenke', sourceLabel:'Kilde', resolutionLabel:'Oppløsning', loadMore:'Last inn flere…', accountUnavailable:'Innlogging på kontoen er utilgjengelig' },
+    es: { browseDiveSites:'Ver sitios de buceo', browseRegions:'Ver regiones', aboutMapData:'Acerca de los datos del mapa', aboutDescription:'DiveAtlas es un mapa interactivo para explorar sitios de buceo y regiones, con extensión de arrecifes, registros de corales y peces, batimetría y capas oceánicas. Las vistas usan climatologías, modelos y registros cartográficos, no informes de buceo en tiempo real. La perspectiva no es una clasificación de seguridad.', aboutCopyright:'© 2026 DiveAtlas. Código, textos y diseño originales de DiveAtlas; los materiales de terceros mantienen sus propias condiciones.', shareTitle:'Compartir', shareCopyLink:'Copiar enlace', sourceLabel:'Fuente', resolutionLabel:'Resolución', loadMore:'Cargar más…', accountUnavailable:'El inicio de sesión no está disponible' },
+    ko: { browseDiveSites:'다이빙 장소 둘러보기', browseRegions:'지역 둘러보기', aboutMapData:'지도 데이터 정보', aboutDescription:'DiveAtlas는 다이빙 장소와 지역을 탐색하는 인터랙티브 지도입니다. 산호초 범위, 산호와 어류 기록, 수심 지형, 해양 레이어를 제공합니다. 이 정보는 기후 평년값, 모델, 지도 기록을 바탕으로 하며 실시간 다이빙 보고가 아닙니다. 전망은 안전 등급이 아닙니다.', aboutCopyright:'© 2026 DiveAtlas. DiveAtlas의 코드, 텍스트, 디자인은 원본이며 제3자 자료에는 각자의 이용 약관이 적용됩니다.', shareTitle:'공유', shareCopyLink:'링크 복사', sourceLabel:'출처', resolutionLabel:'해상도', loadMore:'더 불러오기…', accountUnavailable:'계정 로그인을 사용할 수 없습니다' },
+    id: { browseDiveSites:'Jelajahi lokasi selam', browseRegions:'Jelajahi wilayah', aboutMapData:'Tentang data peta', aboutDescription:'DiveAtlas adalah peta interaktif untuk menjelajahi lokasi selam dan wilayah, termasuk bentang terumbu, catatan karang dan ikan, batimetri, serta lapisan laut. Tampilan menggunakan klimatologi, model, dan catatan peta, bukan laporan selam langsung. Outlook bukan penilaian keselamatan.', aboutCopyright:'© 2026 DiveAtlas. Kode, teks, dan desain DiveAtlas asli; materi pihak ketiga tunduk pada ketentuannya masing-masing.', shareTitle:'Bagikan', shareCopyLink:'Salin tautan', sourceLabel:'Sumber', resolutionLabel:'Resolusi', loadMore:'Muat lainnya…', accountUnavailable:'Login akun tidak tersedia' }
   };
   for (const [lang, values] of Object.entries(MISSING_UI_I18N)) Object.assign(I18N[lang], values);
 
@@ -19604,7 +19653,7 @@ ZSD·2016–2025</span></span>
 
   function renderTemperatureDetail(result) {
     temperatureDetailResult = result;
-    const value = formatTemperatureNumber(temperatureInSelectedUnit(result.value_c), 1);
+    const value = formatTemperatureValue(result.value_c, 1);
     const monthName = localizedTemperatureMonth(result.month);
     const depthLabel = localizedTemperatureDepth(result.depth_m, { spacing: result.depth_m !== 0 });
     const resolution = Number(result.metadata.source_resolution_degrees);
@@ -23193,6 +23242,15 @@ function closeShareDialog() {
 
     if (link.dataset.desktopHref) link.href = link.dataset.desktopHref;
 
+    if (link === els.shareInstagramButton) {
+      // Instagram has no web share endpoint for prefilled links. Copy the
+      // DiveAtlas URL and let the anchor open Instagram so it can be pasted
+      // into a post or message there.
+      void copyShareLink(link.dataset.sharePlatform || null);
+      void storeSharePreviewImage();
+      return;
+    }
+
     if (link.dataset.copyOnlyDesktop === 'true') {
       event.preventDefault();
       void copyShareLink(link.dataset.sharePlatform || null);
@@ -23572,6 +23630,13 @@ function closeShareDialog() {
     };
   }
 
+  Object.assign(I18N.en, {
+    diveSiteNameAutoExplanation: 'This is an automatic translation draft. The original dive-site name is shown below.'
+  });
+  Object.assign(I18N.zh, {
+    diveSiteNameAutoExplanation: '这是自动翻译草稿，原始潜点名称显示在下方。'
+  });
+
   function diveSiteNameBadge(localizedName) {
     if (!localizedName.isLocalized) return '';
     if (localizedName.isVerified) {
@@ -23580,8 +23645,48 @@ function closeShareDialog() {
         : 'Source-verified localized name';
       return `<span class="dive-site-name-verified" title="${escapeHtml(source)}">✓</span>`;
     }
-    return '<span class="dive-site-name-draft" title="Automatic translation draft; original name shown below">AUTO</span>';
+    const explanation = t('diveSiteNameAutoExplanation');
+    return `<button class="dive-site-name-draft" type="button" title="${escapeHtml(explanation)}" aria-label="AUTO: ${escapeHtml(explanation)}" aria-expanded="false">AUTO</button>`;
   }
+
+  const nameDraftTooltipTimers = new WeakMap();
+  document.addEventListener('click', event => {
+    const badge = event.target.closest?.('.dive-site-name-draft');
+    document.querySelectorAll('.dive-site-name-draft.is-name-draft-tooltip-open').forEach(openBadge => {
+      if (openBadge !== badge) {
+        window.clearTimeout(nameDraftTooltipTimers.get(openBadge));
+        nameDraftTooltipTimers.delete(openBadge);
+        openBadge.classList.remove('is-name-draft-tooltip-open');
+        openBadge.setAttribute('aria-expanded', 'false');
+      }
+    });
+    if (!badge) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const isOpen = badge.classList.toggle('is-name-draft-tooltip-open');
+    badge.setAttribute('aria-expanded', String(isOpen));
+    window.clearTimeout(nameDraftTooltipTimers.get(badge));
+    nameDraftTooltipTimers.delete(badge);
+    if (isOpen) {
+      nameDraftTooltipTimers.set(badge, window.setTimeout(() => {
+        badge.classList.remove('is-name-draft-tooltip-open');
+        badge.setAttribute('aria-expanded', 'false');
+        if (document.activeElement === badge) badge.blur();
+        nameDraftTooltipTimers.delete(badge);
+      }, 4000));
+    }
+  }, true);
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('.dive-site-name-draft.is-name-draft-tooltip-open').forEach(badge => {
+      window.clearTimeout(nameDraftTooltipTimers.get(badge));
+      nameDraftTooltipTimers.delete(badge);
+      badge.classList.remove('is-name-draft-tooltip-open');
+      badge.setAttribute('aria-expanded', 'false');
+      if (document.activeElement === badge) badge.blur();
+    });
+  });
 
   function ensureDiveSearchIndex() {
     if (DIVE_SEARCH_INDEX) return Promise.resolve();
@@ -24084,10 +24189,12 @@ function closeShareDialog() {
       Math.max(DIVE_CLUSTER_EXPAND_ZOOM, map.getZoom());
 
     let opened = false;
+    let openTimer = 0;
 
     const openMarker = () => {
       if (opened) return;
       opened = true;
+      openTimer = 0;
 
       refreshDiveLayer();
 
@@ -24097,7 +24204,16 @@ function closeShareDialog() {
       marker?.openPopup();
     };
 
-    map.once('moveend', openMarker);
+    const scheduleOpenMarker = delay => {
+      if (opened) return;
+      window.clearTimeout(openTimer);
+      openTimer = window.setTimeout(openMarker, delay);
+    };
+
+    // moveend also queues the normal viewport marker refresh on the next
+    // frame. Let that debounced refresh run first so it cannot remove the
+    // marker and close the popup immediately after search navigation.
+    map.once('moveend', () => scheduleOpenMarker(200));
 
     runInternalMapMovement(() => map.flyTo(
       [lat, lng],
@@ -24108,7 +24224,7 @@ function closeShareDialog() {
       }
     ));
 
-    setTimeout(openMarker, 950);
+    scheduleOpenMarker(950);
   }
 
   function setDiveSearchActive(next) {
