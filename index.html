@@ -371,9 +371,21 @@
       -webkit-touch-callout: none;
     }
 
+    .map-view-legend-control[hidden], .map-view-legend[hidden], .map-view-legend-collapsed-button[hidden] { display:none; }
+    .map-view-legend, .map-view-legend-collapsed-button { grid-area:1 / 1; transform-origin:bottom left; transition:opacity 180ms ease, transform 180ms ease; }
+    .map-view-legend-control { display:grid; width:max-content; }
+    .map-view-legend-control.is-collapsed .map-view-legend,
+    .map-view-legend-control:not(.is-collapsed) .map-view-legend-collapsed-button { opacity:0; pointer-events:none; }
+    .map-view-legend-control.is-collapsed .map-view-legend { transform:scaleY(0); }
+    .map-view-legend-control:not(.is-collapsed) .map-view-legend-collapsed-button { transform:scale(.8); }
+    @media (prefers-reduced-motion:reduce) { .map-view-legend, .map-view-legend-collapsed-button { transition:none; } }
     .map-view-legend { box-sizing:border-box; width:min(312px, calc(100vw - 80px)); max-width:312px; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--panel-solid); color:var(--text); box-shadow:0 2px 10px rgba(16,24,40,.18); }
-    .map-view-legend[hidden] { display:none; }
-    .map-view-legend-title { margin-bottom:6px; font-size:11px; font-weight:600; line-height:1.4; }
+    .map-view-legend-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+    .map-view-legend-title { min-width:0; margin-bottom:6px; font-size:11px; font-weight:600; line-height:1.4; }
+    .map-view-legend-toggle, .map-view-legend-collapsed-button { display:grid; place-items:center; flex:none; width:24px; height:24px; padding:0; border:0; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
+    .map-view-legend-toggle:hover, .map-view-legend-collapsed-button:hover { background:rgba(255,255,255,.07); color:var(--text); }
+    .map-view-legend-toggle svg, .map-view-legend-collapsed-button svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .map-view-legend-collapsed-button { width:30px; height:30px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); box-shadow:0 2px 10px rgba(16,24,40,.18); }
     .map-view-legend-bar { display:flex; justify-content:space-between; align-items:center; gap:6px; box-sizing:border-box; min-height:22px; padding:2px 10px; border-radius:999px; color:#fff; font-size:11px; line-height:16px; font-weight:600; font-variant-numeric:tabular-nums; text-shadow:0 1px 3px #000, 0 0 4px #000; }
     /* Size translated labels around whole words instead of splitting them into equal-width columns. */
     .map-view-legend-bar span { flex:1 1 min-content; min-width:0; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; text-align:center; white-space:normal; overflow-wrap:normal; word-break:normal; hyphens:none; }
@@ -387,15 +399,21 @@
         max-width:calc(100vw - 20px);
       }
       .mobile-map-credits-button {
-        min-height:28px;
-        padding:4px 9px;
+        box-sizing:border-box;
+        display:grid;
+        width:20px;
+        height:20px;
+        min-height:20px;
+        padding:0;
+        place-items:center;
         border:1px solid var(--line);
-        border-radius:6px;
+        border-radius:4px;
         background:var(--panel-solid);
         box-shadow:0 1px 5px rgba(16,24,40,.16);
         color:var(--muted);
-        font-size:11px;
-        line-height:18px;
+        font-size:12px;
+        font-weight:600;
+        line-height:1;
         cursor:pointer;
       }
       .mobile-map-credits-button:hover,
@@ -405,11 +423,12 @@
         outline-offset:1px;
       }
       .mobile-map-credits-panel {
+        position:relative;
         box-sizing:border-box;
         width:min(340px, calc(100vw - 20px));
         max-height:34vh;
         margin-top:5px;
-        padding:7px 9px;
+        padding:8px 9px 7px;
         overflow:auto;
         border:1px solid var(--line);
         border-radius:6px;
@@ -420,8 +439,26 @@
         line-height:1.45;
         overflow-wrap:anywhere;
       }
+      .mobile-map-credits-panel[hidden], .mobile-map-credits-button[hidden] { display:none; }
+      .mobile-map-credits-close {
+        position:absolute;
+        top:4px;
+        right:6px;
+        display:grid;
+        width:24px;
+        height:24px;
+        place-items:center;
+        padding:0;
+        border:0;
+        border-radius:6px;
+        background:transparent;
+        color:var(--muted);
+        cursor:pointer;
+      }
+      .mobile-map-credits-close:hover { background:rgba(255,255,255,.07); color:var(--text); }
+      .mobile-map-credits-close svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .mobile-map-credits-content { overflow-wrap:anywhere; }
       .mobile-map-credits-panel a { color:var(--primary); }
-      .mobile-map-credits-panel[hidden] { display:none; }
     }
 
     #map .maplibregl-map,
@@ -3337,6 +3374,7 @@
       flex-direction:column;
     }
     .dive-search-results.mobile-search-collapsed { display:none !important; }
+    .dive-search-results-handle { display:none; }
 
     .dive-search-results.visible.has-filters {
       display:grid;
@@ -3388,7 +3426,16 @@
 
     @media (max-width:720px) {
       .dive-search-load-more { display:none; }
+      .dive-search-load-hint:not([hidden]) {
+        display:block;
+        padding:6px 8px 8px;
+        color:var(--muted);
+        font-size:10px;
+        font-weight:600;
+        text-align:center;
+      }
     }
+    .dive-search-load-hint { display:none; }
 
     .dive-search-result-name {
       overflow: hidden;
@@ -5976,6 +6023,41 @@
       .top-menu-bar { justify-content: flex-start; }
       #topMenuSearchSlot .dive-search-input { font-size: 12px; }
       #topMenuSearchSlot .dive-search-box::after { right:36px; }
+      #diveSearchResults {
+        transition:height .22s cubic-bezier(.22,1,.36,1);
+      }
+      #diveSearchResults.mobile-vertical-dragging { transition:none; }
+      #diveSearchResultsScroll,
+      #diveSearchFilterControls { padding-bottom:26px; }
+      .dive-search-results-handle {
+        position:absolute;
+        z-index:4;
+        bottom:2px;
+        left:50%;
+        display:grid;
+        width:72px;
+        height:28px;
+        place-items:center;
+        padding:0;
+        transform:translateX(-50%);
+        border:0;
+        border-radius:999px;
+        background:transparent;
+        cursor:grab;
+        pointer-events:auto;
+        touch-action:none;
+        -webkit-tap-highlight-color:transparent;
+        user-select:none;
+      }
+      .dive-search-results-handle::before {
+        content:'';
+        width:36px;
+        height:4px;
+        border-radius:999px;
+        background:var(--muted);
+        pointer-events:none;
+      }
+      .dive-search-results-handle:active { cursor:grabbing; }
       #topMenuSearchSlot {
         transition: width 400ms cubic-bezier(.4, 0, .2, 1), flex-basis 400ms cubic-bezier(.4, 0, .2, 1), flex-grow 400ms cubic-bezier(.4, 0, .2, 1);
       }
@@ -7546,7 +7628,7 @@
             <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
-            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
+            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"><div class="dive-search-load-hint" id="diveSearchLoadHint" hidden></div></div>
             <div class="dive-search-filter-controls" id="diveSearchFilterControls" hidden>
               <label class="dive-search-filter-field"><span id="diveSearchCountryLabel">Country</span><select id="diveSearchCountryFilter" aria-labelledby="diveSearchCountryLabel"><option value="">Any country</option></select></label>
               <label class="dive-search-filter-field"><span id="diveSearchDifficultyLabel">Difficulty</span><select id="diveSearchDifficultyFilter" aria-labelledby="diveSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
@@ -7556,6 +7638,7 @@
             <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
               <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
             </div>
+            <button class="dive-search-results-handle" id="diveSearchResultsHandle" type="button" aria-label="Drag up to close dive-site results" title="Drag up to close"></button>
           </div>
     </div>
   </div>
@@ -9082,13 +9165,15 @@ ZSD·2016–2025</span></span>
     wheelDebounceTime: 60
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
-  const mobileMapCreditsControl = L.control({ position:'bottomleft' });
+  const mobileMapCreditsControl = L.control({ position:'bottomright' });
   mobileMapCreditsControl.onAdd = () => {
     const container = L.DomUtil.create('div', 'mobile-map-credits-control');
     const button = L.DomUtil.create('button', 'mobile-map-credits-button', container);
     const panel = L.DomUtil.create('div', 'mobile-map-credits-panel', container);
+    const closeButton = L.DomUtil.create('button', 'mobile-map-credits-close', panel);
+    const creditsContent = L.DomUtil.create('div', 'mobile-map-credits-content', panel);
     button.type = 'button';
-    button.textContent = '© Map credits';
+    button.textContent = '©';
     button.setAttribute('aria-label', 'Show map credits');
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', 'mobileMapCreditsPanel');
@@ -9096,13 +9181,17 @@ ZSD·2016–2025</span></span>
     panel.setAttribute('role', 'region');
     panel.setAttribute('aria-label', 'Map data and library credits');
     panel.hidden = true;
+    closeButton.type = 'button';
+    closeButton.setAttribute('aria-label', 'Hide map credits');
+    closeButton.title = 'Hide map credits';
+    closeButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 6 5 5 5-5"/></svg>';
 
     let syncedAttribution = '';
     const syncAttribution = () => {
       const source = map.getContainer().querySelector('.leaflet-control-attribution');
       if (!source || source.innerHTML === syncedAttribution) return;
       syncedAttribution = source.innerHTML;
-      panel.innerHTML = syncedAttribution;
+      creditsContent.innerHTML = syncedAttribution;
     };
     const observer = new MutationObserver(syncAttribution);
     observer.observe(map.getContainer(), { childList:true, subtree:true, characterData:true });
@@ -9110,10 +9199,12 @@ ZSD·2016–2025</span></span>
 
     const setExpanded = expanded => {
       panel.hidden = !expanded;
+      button.hidden = expanded;
       button.setAttribute('aria-expanded', String(expanded));
       button.setAttribute('aria-label', `${expanded ? 'Hide' : 'Show'} map credits`);
     };
     button.addEventListener('click', () => setExpanded(panel.hidden));
+    closeButton.addEventListener('click', () => setExpanded(false));
     L.DomEvent.disableClickPropagation(container);
     L.DomEvent.disableScrollPropagation(panel);
     map.once('unload', () => observer.disconnect());
@@ -10484,6 +10575,8 @@ ZSD·2016–2025</span></span>
     diveLayerFilterClear: document.getElementById('diveLayerFilterClear'),
     diveSearchResults: document.getElementById('diveSearchResults'),
     diveSearchResultsScroll: document.getElementById('diveSearchResultsScroll'),
+    diveSearchLoadHint: document.getElementById('diveSearchLoadHint'),
+    diveSearchResultsHandle: document.getElementById('diveSearchResultsHandle'),
 
     bioLegend: document.getElementById('bioLegend'),
     bioLegendHeading: document.getElementById('bioLegendHeading'),
@@ -11612,6 +11705,13 @@ ZSD·2016–2025</span></span>
   let diveSearchVisibleCount = 20;
   const DIVE_SEARCH_PAGE_SIZE = 20;
   let diveSearchRenderRequest = 0;
+
+  function updateDiveSearchLoadHint() {
+    if (!els.diveSearchLoadHint) return;
+    els.diveSearchLoadHint.textContent = t('diveSearchSwipeLoadMore');
+    els.diveSearchLoadHint.hidden = !mobileSearchQuery.matches ||
+      diveSearchVisibleCount >= diveSearchMatches.length;
+  }
 
   let currentLang = 'en';
   let currentLanguageChoice = 'en';
@@ -24583,6 +24683,7 @@ function closeShareDialog() {
     const boxStyle = getComputedStyle(els.diveSearchBox);
     const searchDividerStyle = getComputedStyle(els.diveSearchBox, '::after');
     const mobileLayout = mobileSearchQuery.matches;
+    updateDiveSearchLoadHint();
     const dividerOffset = Math.max(0,
       rect.width - parseFloat(boxStyle.borderRightWidth) - parseFloat(searchDividerStyle.right) - parseFloat(searchDividerStyle.width)
     );
@@ -24611,7 +24712,9 @@ function closeShareDialog() {
     }
     els.diveSearchResults.style.left = `${rect.left - candidateExpansion}px`;
     els.diveSearchResults.style.top = `${top}px`;
-    els.diveSearchResults.style.maxHeight = `${Math.min(440, window.innerHeight - top - 12)}px`;
+    const availableHeight = Math.max(0, window.innerHeight - top - 12);
+    els.diveSearchResults.style.maxHeight = `${Math.min(440, availableHeight)}px`;
+    els.diveSearchResults.style.removeProperty('height');
   }
 
   function diveSearchFilterDrafts() {
@@ -24685,6 +24788,9 @@ function closeShareDialog() {
     diveSearchActiveIndex = -1;
     diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
     els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.style.removeProperty('height');
+    els.diveSearchResults.style.removeProperty('max-height');
+    els.diveSearchLoadHint.hidden = true;
     els.diveSearchResults.setAttribute('aria-busy', 'false');
     els.diveSearchInput.setAttribute('aria-expanded', 'false');
     els.diveSearchInput.removeAttribute('aria-activedescendant');
@@ -24697,6 +24803,9 @@ function closeShareDialog() {
 
   function dismissDiveSearchResults() {
     els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.style.removeProperty('height');
+    els.diveSearchResults.style.removeProperty('max-height');
+    els.diveSearchLoadHint.hidden = true;
     els.diveSearchResults.setAttribute('aria-busy', 'false');
     els.diveSearchInput.setAttribute('aria-expanded', 'false');
     els.diveSearchResults.style.removeProperty('--mobile-panel-drag-y');
@@ -24751,6 +24860,7 @@ function closeShareDialog() {
     // the displayed query is current, preserve its list DOM, scroll, and active
     // option instead of resetting the user's search state.
     if (!allowSameQueryRefresh && !forceRender && query === diveSearchQuery && diveSearchHasRenderedQuery) {
+      updateDiveSearchLoadHint();
       els.diveSearchResults.classList.add('visible');
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       els.diveSearchInput.setAttribute('aria-expanded', 'true');
@@ -24761,6 +24871,7 @@ function closeShareDialog() {
       els.diveSearchResults.append(els.diveSearchSuggestion);
     }
     els.diveSearchSuggestion.hidden = true;
+    els.diveSearchLoadHint.hidden = true;
 
     const showLoading = () => {
       els.diveSearchResultsScroll.innerHTML =
@@ -24827,6 +24938,7 @@ function closeShareDialog() {
     diveSearchQuery = query;
     diveSearchMatches = nextMatches;
     diveSearchHasRenderedQuery = true;
+    updateDiveSearchLoadHint();
     els.diveSearchResults.setAttribute('aria-busy', 'false');
     els.diveSearchInput.setAttribute('aria-expanded', 'true');
     els.diveSearchResultsScroll.setAttribute('aria-setsize', String(diveSearchMatches.length));
@@ -24896,7 +25008,7 @@ function closeShareDialog() {
 
     els.diveSearchResults.classList.add('visible');
     if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
-    els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
+    els.diveSearchResultsScroll.append(els.diveSearchLoadHint, els.diveSearchSuggestion);
     els.diveSearchSuggestion.hidden = false;
     els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
     els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
@@ -28619,29 +28731,31 @@ function closeShareDialog() {
   }
 
   const DIVE_SEARCH_FILTER_COPY = {
-    zh: ['筛选', '国家', '所有国家', '难度', '所有等级', '特征', '所有特征', '清除全部', '选择筛选条件以浏览潜点。', '关闭筛选菜单'],
-    en: ['Filters', 'Country', 'Any country', 'Difficulty', 'Any level', 'Feature', 'Any feature', 'Clear All', 'Choose a filter to browse dive sites.', 'Close filter menu'],
-    ja: ['絞り込み', '国', 'すべての国', '難易度', 'すべてのレベル', '特徴', 'すべての特徴', 'すべてクリア', 'ダイブサイトを探すには条件を選択してください。', 'フィルターメニューを閉じる'],
-    fr: ['Filtres', 'Pays', 'Tous les pays', 'Difficulté', 'Tous les niveaux', 'Caractéristique', 'Toutes les caractéristiques', 'Tout effacer', 'Choisissez un filtre pour parcourir les sites de plongée.', 'Fermer le menu des filtres'],
-    de: ['Filter', 'Land', 'Alle Länder', 'Schwierigkeit', 'Alle Niveaus', 'Merkmal', 'Alle Merkmale', 'Alle löschen', 'Wähle einen Filter, um Tauchplätze zu durchsuchen.', 'Filtermenü schließen'],
-    nl: ['Filters', 'Land', 'Alle landen', 'Niveau', 'Alle niveaus', 'Kenmerk', 'Alle kenmerken', 'Alles wissen', 'Kies een filter om duiklocaties te bekijken.', 'Filtermenu sluiten'],
-    it: ['Filtri', 'Paese', 'Tutti i paesi', 'Difficoltà', 'Tutti i livelli', 'Caratteristica', 'Tutte le caratteristiche', 'Cancella tutto', 'Scegli un filtro per esplorare i siti di immersione.', 'Chiudi menu filtri'],
-    ru: ['Фильтры', 'Страна', 'Все страны', 'Сложность', 'Любой уровень', 'Особенность', 'Все особенности', 'Очистить всё', 'Выберите фильтр, чтобы просмотреть места для дайвинга.', 'Закрыть меню фильтров'],
-    pt: ['Filtros', 'País', 'Todos os países', 'Dificuldade', 'Todos os níveis', 'Característica', 'Todas as características', 'Limpar tudo', 'Escolha um filtro para explorar os locais de mergulho.', 'Fechar menu de filtros'],
-    sv: ['Filter', 'Land', 'Alla länder', 'Svårighetsgrad', 'Alla nivåer', 'Egenskap', 'Alla egenskaper', 'Rensa allt', 'Välj ett filter för att bläddra bland dykplatser.', 'Stäng filtermenyn'],
-    no: ['Filtre', 'Land', 'Alle land', 'Vanskelighetsgrad', 'Alle nivåer', 'Egenskap', 'Alle egenskaper', 'Tøm alt', 'Velg et filter for å bla gjennom dykkesteder.', 'Lukk filtermenyen'],
-    es: ['Filtros', 'País', 'Todos los países', 'Dificultad', 'Todos los niveles', 'Característica', 'Todas las características', 'Borrar todo', 'Elige un filtro para explorar los sitios de buceo.', 'Cerrar menú de filtros'],
-    ko: ['필터', '국가', '모든 국가', '난이도', '모든 레벨', '특징', '모든 특징', '모두 지우기', '다이빙 사이트를 찾으려면 필터를 선택하세요.', '필터 메뉴 닫기'],
-    id: ['Filter', 'Negara', 'Semua negara', 'Kesulitan', 'Semua tingkat', 'Fitur', 'Semua fitur', 'Hapus semua', 'Pilih filter untuk menelusuri lokasi menyelam.', 'Tutup menu filter']
+    zh: ['筛选', '国家', '所有国家', '难度', '所有等级', '特征', '所有特征', '清除全部', '选择筛选条件以浏览潜点。', '关闭筛选菜单', '向上滑动以加载更多'],
+    en: ['Filters', 'Country', 'Any country', 'Difficulty', 'Any level', 'Feature', 'Any feature', 'Clear All', 'Choose a filter to browse dive sites.', 'Close filter menu', 'Swipe up to load more'],
+    ja: ['絞り込み', '国', 'すべての国', '難易度', 'すべてのレベル', '特徴', 'すべての特徴', 'すべてクリア', 'ダイブサイトを探すには条件を選択してください。', 'フィルターメニューを閉じる', '上にスワイプしてさらに読み込む'],
+    fr: ['Filtres', 'Pays', 'Tous les pays', 'Difficulté', 'Tous les niveaux', 'Caractéristique', 'Toutes les caractéristiques', 'Tout effacer', 'Choisissez un filtre pour parcourir les sites de plongée.', 'Fermer le menu des filtres', 'Balayez vers le haut pour charger la suite'],
+    de: ['Filter', 'Land', 'Alle Länder', 'Schwierigkeit', 'Alle Niveaus', 'Merkmal', 'Alle Merkmale', 'Alle löschen', 'Wähle einen Filter, um Tauchplätze zu durchsuchen.', 'Filtermenü schließen', 'Nach oben wischen, um mehr zu laden'],
+    nl: ['Filters', 'Land', 'Alle landen', 'Niveau', 'Alle niveaus', 'Kenmerk', 'Alle kenmerken', 'Alles wissen', 'Kies een filter om duiklocaties te bekijken.', 'Filtermenu sluiten', 'Veeg omhoog om meer te laden'],
+    it: ['Filtri', 'Paese', 'Tutti i paesi', 'Difficoltà', 'Tutti i livelli', 'Caratteristica', 'Tutte le caratteristiche', 'Cancella tutto', 'Scegli un filtro per esplorare i siti di immersione.', 'Chiudi menu filtri', 'Scorri verso l’alto per caricare altri risultati'],
+    ru: ['Фильтры', 'Страна', 'Все страны', 'Сложность', 'Любой уровень', 'Особенность', 'Все особенности', 'Очистить всё', 'Выберите фильтр, чтобы просмотреть места для дайвинга.', 'Закрыть меню фильтров', 'Проведите вверх, чтобы загрузить ещё'],
+    pt: ['Filtros', 'País', 'Todos os países', 'Dificuldade', 'Todos os níveis', 'Característica', 'Todas as características', 'Limpar tudo', 'Escolha um filtro para explorar os locais de mergulho.', 'Fechar menu de filtros', 'Deslize para cima para carregar mais'],
+    sv: ['Filter', 'Land', 'Alla länder', 'Svårighetsgrad', 'Alla nivåer', 'Egenskap', 'Alla egenskaper', 'Rensa allt', 'Välj ett filter för att bläddra bland dykplatser.', 'Stäng filtermenyn', 'Svep uppåt för att läsa in fler'],
+    no: ['Filtre', 'Land', 'Alle land', 'Vanskelighetsgrad', 'Alle nivåer', 'Egenskap', 'Alle egenskaper', 'Tøm alt', 'Velg et filter for å bla gjennom dykkesteder.', 'Lukk filtermenyen', 'Sveip opp for å laste inn flere'],
+    es: ['Filtros', 'País', 'Todos los países', 'Dificultad', 'Todos los niveles', 'Característica', 'Todas las características', 'Borrar todo', 'Elige un filtro para explorar los sitios de buceo.', 'Cerrar menú de filtros', 'Desliza hacia arriba para cargar más'],
+    ko: ['필터', '국가', '모든 국가', '난이도', '모든 레벨', '특징', '모든 특징', '모두 지우기', '다이빙 사이트를 찾으려면 필터를 선택하세요.', '필터 메뉴 닫기', '위로 밀어 더 불러오기'],
+    id: ['Filter', 'Negara', 'Semua negara', 'Kesulitan', 'Semua tingkat', 'Fitur', 'Semua fitur', 'Hapus semua', 'Pilih filter untuk menelusuri lokasi menyelam.', 'Tutup menu filter', 'Geser ke atas untuk memuat lebih banyak']
   };
   for (const [lang, values] of Object.entries(DIVE_SEARCH_FILTER_COPY)) {
     const [diveSearchFilters, diveSearchFilterCountry, diveSearchFilterAnyCountry,
       diveSearchFilterDifficulty, diveSearchFilterAnyDifficulty, diveSearchFilterFeature,
-      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose, diveSearchFilterClose] = values;
+      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose,
+      diveSearchFilterClose, diveSearchSwipeLoadMore] = values;
     Object.assign(I18N[lang], {
       diveSearchFilters, diveSearchFilterCountry, diveSearchFilterAnyCountry,
       diveSearchFilterDifficulty, diveSearchFilterAnyDifficulty, diveSearchFilterFeature,
-      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose, diveSearchFilterClose
+      diveSearchFilterAnyFeature, diveSearchFilterClear, diveSearchFilterChoose,
+      diveSearchFilterClose, diveSearchSwipeLoadMore
     });
   }
 
@@ -30425,6 +30539,7 @@ function closeShareDialog() {
       surface.classList.remove('mobile-vertical-dragging');
       surface.style.removeProperty('--mobile-panel-drag-y');
     };
+
     const touchById = (touches, identifier) => Array.from(touches).find(touch => touch.identifier === identifier);
     const eventTargetElement = event => {
       if (event.target instanceof Element) return event.target;
@@ -30522,7 +30637,10 @@ function closeShareDialog() {
   function bindMobileVerticalDragHandle(handle, surface, onDismiss, {
     tapToDismiss = false,
     closeDistance = 82,
-    expandOnUpwardDrag = false
+    expandOnUpwardDrag = false,
+    upwardOnlyDrag = false,
+    dismissOnUpwardDrag = false,
+    dismissThreshold = 72
   } = {}) {
     if (!handle || !surface || handle._diveAtlasVerticalDragBound) return;
     handle._diveAtlasVerticalDragBound = true;
@@ -30534,6 +30652,47 @@ function closeShareDialog() {
       surface.style.removeProperty('--mobile-panel-drag-y');
     };
 
+    const restoreUpwardOnlyHeight = (height, maxHeight) => {
+      resetSurface();
+      const currentHeight = surface.getBoundingClientRect().height;
+      if (Math.abs(currentHeight - height) < 1) {
+        surface.style.removeProperty('height');
+        if (maxHeight) surface.style.maxHeight = maxHeight;
+        else surface.style.removeProperty('max-height');
+        return;
+      }
+      surface.style.height = `${height}px`;
+      surface.addEventListener('transitionend', event => {
+        if (event.propertyName === 'height' && !surface.classList.contains('mobile-vertical-dragging')) {
+          surface.style.removeProperty('height');
+          if (maxHeight) surface.style.maxHeight = maxHeight;
+          else surface.style.removeProperty('max-height');
+        }
+      }, { once:true });
+    };
+
+    const dismissUpwardOnlySurface = () => {
+      surface.classList.remove('mobile-vertical-dragging');
+      surface.style.removeProperty('--mobile-panel-drag-y');
+      // Start the closing transition from the finger's release height.
+      void surface.offsetHeight;
+      surface.style.height = '0px';
+      let completed = false;
+      let fallbackTimer = 0;
+      const complete = () => {
+        if (completed) return;
+        completed = true;
+        clearTimeout(fallbackTimer);
+        surface.removeEventListener('transitionend', finishTransition);
+        onDismiss();
+      };
+      const finishTransition = event => {
+        if (event.target === surface && event.propertyName === 'height') complete();
+      };
+      surface.addEventListener('transitionend', finishTransition);
+      fallbackTimer = window.setTimeout(complete, 280);
+    };
+
     handle.addEventListener('pointerdown', event => {
       if (!window.matchMedia('(max-width:720px)').matches || event.button !== 0) return;
       drag = {
@@ -30541,11 +30700,18 @@ function closeShareDialog() {
         x:event.clientX,
         y:event.clientY,
         moved:false,
+        hasMovedUpward:false,
+        hasResizedSheet:false,
         startHeight:expandOnUpwardDrag ? surface.getBoundingClientRect().height : 0,
-        startInlineHeight:expandOnUpwardDrag ? surface.style.height : ''
+        upwardOnlyStartHeight:upwardOnlyDrag ? surface.getBoundingClientRect().height : 0,
+        upwardOnlyStartMaxHeight:upwardOnlyDrag ? surface.style.maxHeight : '',
+        startInlineHeight:expandOnUpwardDrag ? surface.style.height : '',
+        startInlineMaxHeight:expandOnUpwardDrag ? surface.style.maxHeight : ''
       };
-      surface.classList.add('mobile-vertical-dragging');
-      surface.style.setProperty('--mobile-panel-drag-y', '0px');
+      if (!upwardOnlyDrag) {
+        surface.classList.add('mobile-vertical-dragging');
+        surface.style.setProperty('--mobile-panel-drag-y', '0px');
+      }
       handle.setPointerCapture?.(event.pointerId);
     });
     handle.addEventListener('pointermove', event => {
@@ -30559,13 +30725,35 @@ function closeShareDialog() {
       }
       drag.moved = true;
       event.preventDefault();
+      if (upwardOnlyDrag) {
+        if (deltaY < 0) drag.hasMovedUpward = true;
+        drag.hasResizedSheet = true;
+        surface.classList.add('mobile-vertical-dragging');
+        const collapseDistance = Math.max(0, -deltaY);
+        const maxDownwardStretch = Math.max(
+          0,
+          window.innerHeight - surface.getBoundingClientRect().top - drag.upwardOnlyStartHeight
+        );
+        const resistedDownwardStretch = Math.min(
+          20 * (1 - Math.exp(-Math.max(0, deltaY) / 18)),
+          maxDownwardStretch
+        );
+        const remainingHeight = deltaY < 0
+          ? Math.max(72, drag.upwardOnlyStartHeight - collapseDistance)
+          : drag.upwardOnlyStartHeight + resistedDownwardStretch;
+        if (deltaY > 0) surface.style.maxHeight = 'none';
+        else if (drag.upwardOnlyStartMaxHeight) surface.style.maxHeight = drag.upwardOnlyStartMaxHeight;
+        else surface.style.removeProperty('max-height');
+        surface.style.height = `${remainingHeight}px`;
+        return;
+      }
       if (expandOnUpwardDrag) {
-      if (deltaY < 0) {
-        // Track short pulls closely, then increase resistance as the sheet nears
-        // its 20px limit so the resting snap point stays visually stable.
-        const upwardDistance = -deltaY;
-        const resistedExpansion = 20 * (1 - Math.exp(-upwardDistance / 18));
-        surface.style.height = `${drag.startHeight + resistedExpansion}px`;
+        if (deltaY < 0) {
+          // Other mobile sheets use a small elastic pull as feedback without
+          // changing their content-driven resting height.
+          const upwardDistance = -deltaY;
+          const resistedExpansion = 20 * (1 - Math.exp(-upwardDistance / 18));
+          surface.style.height = `${drag.startHeight + resistedExpansion}px`;
           surface.style.setProperty('--mobile-panel-drag-y', '0px');
           return;
         }
@@ -30581,13 +30769,38 @@ function closeShareDialog() {
       const deltaY = event.clientY - drag.y;
       const didMove = drag.moved;
       const wasVerticalDrag = didMove && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
+      const hasMovedUpward = drag.hasMovedUpward;
+      const hasResizedSheet = drag.hasResizedSheet;
+      const finalCollapseDistance = Math.max(0, -deltaY);
+      const upwardOnlyStartHeight = drag.upwardOnlyStartHeight;
+      const upwardOnlyStartMaxHeight = drag.upwardOnlyStartMaxHeight;
+      const upwardDrag = upwardOnlyDrag
+        ? didMove && hasMovedUpward && deltaY < 0 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2
+        : wasVerticalDrag && deltaY < 0;
       const startInlineHeight = drag.startInlineHeight;
+      const startInlineMaxHeight = drag.startInlineMaxHeight;
       drag = null;
       const restoreHeight = () => {
         if (!expandOnUpwardDrag) return;
         if (startInlineHeight) surface.style.height = startInlineHeight;
         else surface.style.removeProperty('height');
+        if (startInlineMaxHeight) surface.style.maxHeight = startInlineMaxHeight;
+        else surface.style.removeProperty('max-height');
       };
+      if (upwardOnlyDrag) {
+        if (upwardDrag) {
+          event.preventDefault();
+          suppressClickUntil = performance.now() + 350;
+        }
+        if (upwardDrag && dismissOnUpwardDrag && finalCollapseDistance >= dismissThreshold) {
+          dismissUpwardOnlySurface();
+        } else if (hasResizedSheet) {
+          restoreUpwardOnlyHeight(upwardOnlyStartHeight, upwardOnlyStartMaxHeight);
+        } else if (didMove) {
+          resetSurface();
+        }
+        return;
+      }
       if (wasVerticalDrag) {
         event.preventDefault();
         if (deltaY >= closeDistance) {
@@ -30605,14 +30818,25 @@ function closeShareDialog() {
     handle.addEventListener('pointerup', finishDrag);
     handle.addEventListener('pointercancel', event => {
       if (!drag || event.pointerId !== drag.id) return;
+      const upwardOnlyStartHeight = drag.upwardOnlyStartHeight;
+      const upwardOnlyStartMaxHeight = drag.upwardOnlyStartMaxHeight;
+      const didResizeUpwardOnly = upwardOnlyDrag && drag.hasResizedSheet;
       if (expandOnUpwardDrag) {
         if (drag.startInlineHeight) surface.style.height = drag.startInlineHeight;
         else surface.style.removeProperty('height');
+        if (drag.startInlineMaxHeight) surface.style.maxHeight = drag.startInlineMaxHeight;
+        else surface.style.removeProperty('max-height');
       }
       drag = null;
-      resetSurface();
+      if (didResizeUpwardOnly) {
+        restoreUpwardOnlyHeight(upwardOnlyStartHeight, upwardOnlyStartMaxHeight);
+      } else resetSurface();
     });
     handle.addEventListener('click', event => {
+      if (upwardOnlyDrag) {
+        event.preventDefault();
+        return;
+      }
       if (performance.now() < suppressClickUntil) {
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -30623,6 +30847,26 @@ function closeShareDialog() {
       }
     });
   }
+
+  bindMobileVerticalDragHandle(
+    els.diveSearchResultsHandle,
+    els.diveSearchResults,
+    () => {
+      if (diveSearchFiltersOpen) {
+        diveSearchFiltersOpen = false;
+        updateDiveSearchFilterControls();
+      }
+      dismissDiveSearchResults();
+      setMobileSearchExpanded(false);
+    },
+    {
+      tapToDismiss:false,
+      upwardOnlyDrag:true,
+      dismissOnUpwardDrag:true,
+      // Require a deliberate upward pull before closing the results sheet.
+      dismissThreshold:72
+    }
+  );
 
   function syncDiveRatingPopupForViewport(popup) {
     // The same reusable rating popup is tagged differently when opened from a
@@ -33492,6 +33736,27 @@ function closeShareDialog() {
             ? { dialog: els.sitePhotoUploadDialog, close: closeSitePhotoUploadModal }
             : null;
 
+    const eventTarget = event.target;
+    const isOtherEditableTarget =
+      eventTarget instanceof HTMLElement &&
+      eventTarget !== els.diveSearchInput &&
+      (eventTarget.isContentEditable || eventTarget.matches('input, textarea, select, [role="textbox"]'));
+    if (
+      !activeModal &&
+      !mobileSearchQuery.matches &&
+      event.ctrlKey &&
+      !event.shiftKey &&
+      !event.altKey &&
+      !event.metaKey &&
+      event.key.toLowerCase() === 'f' &&
+      !isOtherEditableTarget
+    ) {
+      event.preventDefault();
+      els.diveSearchInput.focus({ preventScroll: true });
+      els.diveSearchInput.select();
+      return;
+    }
+
     if (activeModal) {
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -34631,16 +34896,59 @@ function closeShareDialog() {
   // Mirror the panel scales instead of maintaining a second set of thresholds,
   // palettes and translations that could drift away from the rendered layers.
   const mapViewLegendControl = L.control({ position:'bottomleft' });
-  const mapViewLegend = L.DomUtil.create('div', 'map-view-legend');
-  mapViewLegend.hidden = true;
-  mapViewLegend.setAttribute('role', 'img');
-  mapViewLegendControl.onAdd = () => mapViewLegend;
+  const mapViewLegendControlElement = L.DomUtil.create('div', 'map-view-legend-control');
+  const mapViewLegend = L.DomUtil.create('section', 'map-view-legend', mapViewLegendControlElement);
+  const mapViewLegendHeading = L.DomUtil.create('div', 'map-view-legend-heading', mapViewLegend);
+  const mapViewLegendToggle = L.DomUtil.create('button', 'map-view-legend-toggle', mapViewLegendHeading);
+  mapViewLegendToggle.type = 'button';
+  mapViewLegendToggle.setAttribute('aria-label', 'Collapse map legend');
+  mapViewLegendToggle.title = 'Collapse map legend';
+  mapViewLegendToggle.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 6 5 5 5-5"/></svg>';
+  const mapViewLegendCollapsedButton = L.DomUtil.create('button', 'map-view-legend-collapsed-button', mapViewLegendControlElement);
+  mapViewLegendCollapsedButton.type = 'button';
+  mapViewLegendCollapsedButton.hidden = true;
+  mapViewLegendCollapsedButton.setAttribute('aria-label', 'Show map legend');
+  mapViewLegendCollapsedButton.title = 'Show map legend';
+  mapViewLegendCollapsedButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 10 5-5 5 5"/></svg>';
+  let mapViewLegendCollapsed = false;
+  let mapViewLegendTransitionFrame = 0;
+  let mapViewLegendTransitionTimer = 0;
+  mapViewLegendControlElement.hidden = true;
+  mapViewLegendControl.onAdd = () => mapViewLegendControlElement;
   mapViewLegendControl.addTo(map);
-  // Leaflet prepends bottom controls; keep credits above the legend so the
-  // scale remains anchored to the map edge as the credits panel expands.
-  mapViewLegend.before(mobileMapCreditsControl.getContainer());
-  L.DomEvent.disableClickPropagation(mapViewLegend);
-  L.DomEvent.disableScrollPropagation(mapViewLegend);
+  // Keep the map sample at bottom-left; credits occupy a separate bottom-right
+  // control stack with the map operation buttons above them.
+  L.DomEvent.disableClickPropagation(mapViewLegendControlElement);
+  L.DomEvent.disableScrollPropagation(mapViewLegendControlElement);
+  function setMapViewLegendCollapsed(collapsed) {
+    const nextCollapsed = Boolean(collapsed);
+    if (nextCollapsed === mapViewLegendCollapsed) return;
+    mapViewLegendCollapsed = nextCollapsed;
+    cancelAnimationFrame(mapViewLegendTransitionFrame);
+    clearTimeout(mapViewLegendTransitionTimer);
+
+    if (mapViewLegendCollapsed) {
+      mapViewLegendCollapsedButton.hidden = false;
+      mapViewLegendTransitionFrame = requestAnimationFrame(() => {
+        mapViewLegendControlElement.classList.add('is-collapsed');
+      });
+      mapViewLegendTransitionTimer = window.setTimeout(() => {
+        if (mapViewLegendCollapsed) mapViewLegend.hidden = true;
+      }, 200);
+      return;
+    }
+
+    mapViewLegend.hidden = false;
+    mapViewLegendCollapsedButton.hidden = false;
+    mapViewLegendTransitionFrame = requestAnimationFrame(() => {
+      mapViewLegendControlElement.classList.remove('is-collapsed');
+    });
+    mapViewLegendTransitionTimer = window.setTimeout(() => {
+      if (!mapViewLegendCollapsed) mapViewLegendCollapsedButton.hidden = true;
+    }, 200);
+  }
+  mapViewLegendToggle.addEventListener('click', () => setMapViewLegendCollapsed(true));
+  mapViewLegendCollapsedButton.addEventListener('click', () => setMapViewLegendCollapsed(false));
 
   const mapLegendPanels = Array.from(document.querySelectorAll('.temperature-controls'));
   function syncMapViewLegend() {
@@ -34650,9 +34958,9 @@ function closeShareDialog() {
       : mapLegendPanels.find(panel => !panel.hidden && panel.getAttribute('aria-hidden') !== 'true');
     const gradient = panel?.querySelector('.temperature-gradient');
     const scale = panel?.querySelector('.temperature-scale, .waves-scale-ticks, .regional-currents-speed-labels');
-    mapViewLegend.hidden = !gradient || !scale ||
+    mapViewLegendControlElement.hidden = !gradient || !scale ||
       (selectedView === 'currents' && !regionalCurrentSpeedTintEnabled);
-    if (mapViewLegend.hidden) return;
+    if (mapViewLegendControlElement.hidden) return;
     const title = panel.querySelector('.temperature-heading-title')?.textContent.trim() || panel.getAttribute('aria-label');
     const description = panel.querySelector('.temperature-legend-title')?.textContent.trim() || '';
     const labels = Array.from(scale.children, tick => tick.textContent.trim().replace(/\s+/g, ' '));
@@ -34668,7 +34976,9 @@ function closeShareDialog() {
       bar.append(tick);
     });
     mapViewLegend.setAttribute('aria-label', `${heading.textContent}: ${labels.join(', ')}`);
-    mapViewLegend.replaceChildren(heading, bar);
+    mapViewLegendHeading.replaceChildren(heading, mapViewLegendToggle);
+    mapViewLegend.replaceChildren(mapViewLegendHeading, bar);
+    setMapViewLegendCollapsed(mapViewLegendCollapsed);
   }
   let mapLegendFrame = 0;
   const scheduleMapViewLegend = () => {
