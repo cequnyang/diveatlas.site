@@ -649,27 +649,47 @@ test('share preview shortens long site summaries and skips local image uploads',
   expect(previewRequests).toEqual([]);
 });
 
-test('local share links do not upload images or request Worker rendering early', async ({ page }) => {
+test('share preview image generation waits until a share action is clicked', async ({ page }) => {
   await setMapView(page, -5.7, 131, 8);
   const previewRequests = [];
   await page.route('https://share.diveatlas.site/map-preview-upload/**', async route => {
-    previewRequests.push({ method:route.request().method(), url:route.request().url() });
-    if (route.request().method() === 'OPTIONS') {
+    const request = route.request();
+    const method = request.method();
+    const body = method === 'POST' ? request.postDataBuffer() : null;
+    previewRequests.push({
+      method,
+      url:request.url(),
+      contentType:request.headers()['content-type'] || '',
+      bodyPrefix:body?.subarray(0, 3).toString('hex') || '',
+      bodySize:body?.length || 0
+    });
+    if (method === 'OPTIONS') {
       return route.fulfill({ status:204, headers:{
         'Access-Control-Allow-Origin':'*',
         'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers':'Content-Type'
       } });
     }
-    return route.fulfill({ status:503, headers:{ 'Access-Control-Allow-Origin':'*' } });
+    return route.fulfill({ status:method === 'POST' ? 201 : 503, headers:{ 'Access-Control-Allow-Origin':'*' } });
   });
 
   await page.evaluate(() => document.querySelector('#shareMapButton').click());
   const dialog = page.locator('#shareDialog');
   await expect(dialog).toBeVisible();
+  await expect(page.locator('#sharePreviewMapSnapshot')).toBeVisible();
+  expect(previewRequests).toEqual([]);
+
   await dialog.locator('#shareCopyButton').click();
   await expect.poll(() => page.locator('#shareStatus').innerText()).toMatch(/copied/i);
-  expect(previewRequests).toEqual([]);
+  await expect.poll(() => previewRequests.some(request => request.method === 'POST')).toBe(true);
+  expect(previewRequests.map(request => request.method)).toEqual(['POST']);
+  const upload = previewRequests[0];
+  const uploadUrl = new URL(upload.url);
+  expect(upload.contentType).toBe('image/jpeg');
+  expect(upload.bodyPrefix).toBe('ffd8ff');
+  expect(upload.bodySize).toBeGreaterThan(0);
+  expect(uploadUrl.searchParams.get('replace')).toBe('1');
+  expect(uploadUrl.searchParams.has('render')).toBe(false);
 });
 
 test('mobile share preview uses a landscape view without moving the live map', async ({ page }) => {

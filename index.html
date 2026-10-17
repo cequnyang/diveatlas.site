@@ -22596,10 +22596,10 @@ ZSD·2016–2025</span></span>
       const hostname = window.location.hostname.toLowerCase();
       if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]' || hostname.endsWith('.localhost')) {
         const workerAllowedLocalOrigin = ['http://localhost:8765', 'http://127.0.0.1:8765']
-          .includes(window.location.origin);
-        // The Worker allows the local preview server to request the same fixed
-        // map image as production. Keep local site-photo uploads disabled.
-        if (requestedBackground === 'site' || !workerAllowedLocalOrigin) return;
+          .includes(window.location.origin) || DIVEATLAS_INTERACTION_TEST_MODE;
+        // The local preview server is allowed to exercise both canonical map
+        // renders and selected site-photo uploads against the Worker.
+        if (!workerAllowedLocalOrigin) return;
       }
       const existingTask = sharePreviewUploadTasks.get(share.href);
       if (existingTask) return await existingTask;
@@ -22615,9 +22615,33 @@ ZSD·2016–2025</span></span>
         if (summary?.items.length) uploadUrl.searchParams.set('summary', JSON.stringify(summary));
 
         if (requestedBackground === 'map') {
-          // The Worker renders every map share into its fixed 1200x630 viewport.
-          // Showing that same cached image here prevents a phone-sized map capture
-          // from becoming the social preview used on every device.
+          try {
+            const localImage = await createLocalSharePreviewJpeg({
+              background: requestedBackground,
+              photo: requestedSitePhoto
+            });
+            const localUploadUrl = new URL(uploadUrl);
+            // Replace a previously cached Worker render so crawlers receive the
+            // same fixed-size composition the user sees in the share dialog.
+            localUploadUrl.searchParams.set('replace', '1');
+            const uploaded = await fetch(localUploadUrl, {
+              method:'POST',
+              mode:'cors',
+              credentials:'omit',
+              headers:{ 'Content-Type':'image/jpeg' },
+              body:localImage
+            });
+            if (uploaded.status !== 201 && uploaded.status !== 204) {
+              throw new Error(`Local preview upload returned ${uploaded.status}`);
+            }
+            return;
+          } catch (error) {
+            const reason = error instanceof Error
+              ? `${error.name}: ${error.message}`.slice(0, 180)
+              : String(error).slice(0, 180);
+            console.debug('Device map preview upload failed; requesting the Worker fallback.', reason);
+          }
+
           const renderUrl = new URL(uploadUrl);
           renderUrl.searchParams.set('render', '1');
           const rendered = await fetch(renderUrl, { mode:'cors', credentials:'omit' });
@@ -22857,7 +22881,6 @@ ZSD·2016–2025</span></span>
           if (!await copySharePreviewMapAfterRender()) {
             els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
           }
-          void storeSharePreviewImage();
         } catch (_) {
           els.sharePreviewPlaceholder.textContent = 'The map preview is not available yet.';
         } finally {
