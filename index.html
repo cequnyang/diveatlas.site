@@ -116,6 +116,9 @@
       --radius-modal: 18px;
       --shadow: 0 14px 42px rgba(16,24,40,.15);
       --shadow-soft: 0 5px 20px rgba(16,24,40,.10);
+      --map-view-legend-bg: rgb(237, 241, 246);
+      --map-view-legend-fg: rgb(52, 64, 84);
+      --map-view-legend-outline: rgb(107, 114, 128);
     }
 
     [data-theme="dark"] {
@@ -165,6 +168,9 @@
       --layer-contour-context-border: #536e63;
       --shadow: 0 8px 24px rgba(1,4,9,.45);
       --shadow-soft: 0 3px 12px rgba(1,4,9,.38);
+      --map-view-legend-bg: rgb(36, 40, 47);
+      --map-view-legend-fg: rgb(228, 228, 231);
+      --map-view-legend-outline: rgb(107, 114, 128);
       --gh-success: #3fb950;
       --gh-danger: #f85149;
       --gh-neutral-muted: rgba(110,118,129,.24);
@@ -380,14 +386,15 @@
     .map-view-legend-control.is-collapsed .map-view-legend { transform:scale(.04); }
     .map-view-legend-control:not(.is-collapsed) .map-view-legend-collapsed-button { transform:scale(.8); }
     @media (prefers-reduced-motion:reduce) { .map-view-legend, .map-view-legend-collapsed-button { transition:none; } }
-    .map-view-legend { box-sizing:border-box; width:min(312px, calc(100vw - 80px)); max-width:312px; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--panel-solid); color:var(--text); box-shadow:0 2px 10px rgba(16,24,40,.18); }
+    .map-view-legend { box-sizing:border-box; width:min(312px, calc(100vw - 80px)); max-width:312px; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--map-view-legend-bg); color:var(--map-view-legend-fg); box-shadow:0 2px 10px rgba(16,24,40,.18); }
     .map-view-legend-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
     .map-view-legend-title { min-width:0; margin-bottom:6px; font-size:11px; font-weight:600; line-height:1.4; }
-    .map-view-legend-toggle, .map-view-legend-collapsed-button { display:grid; place-items:center; flex:none; width:24px; height:24px; padding:0; border:0; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
-    .map-view-legend-toggle:hover, .map-view-legend-collapsed-button:hover { background:rgba(255,255,255,.07); color:var(--text); }
+    .map-view-legend-toggle, .map-view-legend-collapsed-button { display:grid; place-items:center; flex:none; width:24px; height:24px; padding:0; border:0; border-radius:6px; background:var(--map-view-legend-bg); color:var(--map-view-legend-fg); cursor:pointer; }
+    .map-view-legend-toggle:hover, .map-view-legend-collapsed-button:hover,
+    .map-view-legend-toggle:focus-visible, .map-view-legend-collapsed-button:focus-visible { background:var(--map-view-legend-bg); outline:2px solid var(--map-view-legend-outline); outline-offset:1px; }
     .map-view-legend-toggle svg, .map-view-legend-collapsed-button svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
     .map-view-legend-collapsed-button svg { width:20px; height:20px; }
-    .map-view-legend-collapsed-button { width:30px; height:30px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); box-shadow:0 2px 10px rgba(16,24,40,.18); }
+    .map-view-legend-collapsed-button { width:30px; height:30px; border:1px solid var(--line); border-radius:8px; background:var(--map-view-legend-bg); color:var(--map-view-legend-fg); box-shadow:0 2px 10px rgba(16,24,40,.18); }
     .map-view-legend-bar { display:flex; justify-content:space-between; align-items:center; gap:6px; box-sizing:border-box; min-height:22px; padding:2px 10px; border-radius:999px; color:#fff; font-size:11px; line-height:16px; font-weight:600; font-variant-numeric:tabular-nums; text-shadow:0 1px 3px #000, 0 0 4px #000; }
     /* Size translated labels around whole words instead of splitting them into equal-width columns. */
     .map-view-legend-bar span { flex:1 1 min-content; min-width:0; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; text-align:center; white-space:normal; overflow-wrap:normal; word-break:normal; hyphens:none; }
