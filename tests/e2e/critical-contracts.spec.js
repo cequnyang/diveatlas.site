@@ -145,7 +145,10 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
         deltaY, clientX:rect.x + point.x, clientY:rect.y + point.y,
         bubbles:true, cancelable:true
       }));
-      await new Promise(resolve => setTimeout(resolve, 40));
+      // Deliver one wheel input per paint opportunity. Fixed sleeps can bunch
+      // several inputs into one frame on slower CI runners, which makes this
+      // a test of timer scheduling instead of continuous zoom updates.
+      await new Promise(resolve => requestAnimationFrame(resolve));
     }
     const tilesDuringGesture = tilesCreated - initialTiles;
     await settled;
@@ -244,8 +247,13 @@ test('raster overlays stay aligned through fractional wheel zoom frames', async 
     const sample = () => {
       const imageRect = image.getBoundingClientRect();
       const mapRect = map.getContainer().getBoundingClientRect();
+      // ImageOverlay is positioned in Leaflet layer points relative to its
+      // rounded pixel origin. Include the map-pane offset to compare against
+      // its actual CSS geometry at fractional zooms.
+      const pixelOrigin = map._getNewPixelOrigin(view.center, view.zoom);
+      const panePosition = map._getMapPanePos();
       const toContainerPoint = point => map.project(point, view.zoom)
-        .subtract(map.project(view.center, view.zoom)).add(map.getSize().divideBy(2));
+        .subtract(pixelOrigin).add(panePosition);
       const northWest = toContainerPoint(bounds.getNorthWest());
       const southEast = toContainerPoint(bounds.getSouthEast());
       errors.push(Math.max(
@@ -265,7 +273,7 @@ test('raster overlays stay aligned through fractional wheel zoom frames', async 
         deltaY:-10, clientX:rect.left + rect.width * 0.65,
         clientY:rect.top + rect.height / 2, bubbles:true, cancelable:true
       }));
-      await new Promise(resolve => setTimeout(resolve, 40));
+      await new Promise(resolve => requestAnimationFrame(resolve));
     }
     await settled;
     await new Promise(resolve => setTimeout(resolve, 80));
