@@ -6047,6 +6047,10 @@
         transition:height .22s cubic-bezier(.22,1,.36,1);
       }
       #diveSearchResults.mobile-vertical-dragging { transition:none; }
+      #diveSearchResults.mobile-search-dismissing {
+        overflow:hidden;
+        pointer-events:none;
+      }
       #diveSearchResultsScroll,
       #diveSearchFilterControls { padding-bottom:26px; }
       .dive-search-results-handle {
@@ -9129,7 +9133,9 @@ ZSD·2016–2025</span></span>
       !els.diveSearchFilterControls.contains(event.target) &&
       !event.target.closest('.dive-filter-options')
     ) {
-      setMobileSearchExpanded(false);
+      if (!diveSearchResultsPanel?.classList.contains('visible')) {
+        setMobileSearchExpanded(false);
+      }
     }
   });
   topMenuSearchSlot?.addEventListener('focusout', event => {
@@ -9144,7 +9150,8 @@ ZSD·2016–2025</span></span>
         topMenuSearchSlot.classList.contains('is-mobile-expanded') &&
         diveSearchSuggestionModal?.hidden !== false &&
         !topMenuSearchSlot.contains(document.activeElement) &&
-        !diveSearchResultsPanel?.contains(document.activeElement)
+        !diveSearchResultsPanel?.contains(document.activeElement) &&
+        !diveSearchResultsPanel?.classList.contains('visible')
       ) {
         setMobileSearchExpanded(false);
       }
@@ -24852,6 +24859,7 @@ function closeShareDialog() {
   }
 
   function dismissDiveSearchResults() {
+    cancelDiveSearchResultsDismissal();
     els.diveSearchResults.classList.remove('visible');
     els.diveSearchResults.style.removeProperty('height');
     els.diveSearchResults.style.removeProperty('max-height');
@@ -24860,6 +24868,57 @@ function closeShareDialog() {
     els.diveSearchInput.setAttribute('aria-expanded', 'false');
     els.diveSearchResults.style.removeProperty('--mobile-panel-drag-y');
     els.diveSearchResults.classList.remove('mobile-vertical-dragging');
+  }
+
+  function cancelDiveSearchResultsDismissal() {
+    const surface = els.diveSearchResults;
+    const dismissal = surface?._diveSearchDismissal;
+    if (dismissal) {
+      clearTimeout(dismissal.timer);
+      surface.removeEventListener('transitionend', dismissal.onTransitionEnd);
+      surface.style.height = dismissal.previousHeight;
+      surface.style.maxHeight = dismissal.previousMaxHeight;
+      delete surface._diveSearchDismissal;
+    }
+    surface?.classList.remove('mobile-search-dismissing');
+  }
+
+  function animateDiveSearchResultsDismissal(onDismiss) {
+    const surface = els.diveSearchResults;
+    if (surface._diveSearchDismissal) return;
+    if (!surface.classList.contains('visible') ||
+        !window.matchMedia('(max-width:720px)').matches ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onDismiss();
+      return;
+    }
+
+    const previousHeight = surface.style.height;
+    const previousMaxHeight = surface.style.maxHeight;
+    const startHeight = surface.getBoundingClientRect().height;
+    cancelDiveSearchResultsDismissal();
+    surface.classList.remove('mobile-vertical-dragging');
+    surface.style.maxHeight = 'none';
+    surface.style.height = `${startHeight}px`;
+    // Keep the flyout visible while its height contracts; removing `visible`
+    // first would skip the transition and make outside taps feel abrupt.
+    void surface.offsetHeight;
+    surface.classList.add('mobile-search-dismissing');
+    surface.style.height = '0px';
+
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      cancelDiveSearchResultsDismissal();
+      onDismiss();
+    };
+    const onTransitionEnd = event => {
+      if (event.target === surface && event.propertyName === 'height') finish();
+    };
+    const timer = window.setTimeout(finish, 300);
+    surface._diveSearchDismissal = { timer, onTransitionEnd, previousHeight, previousMaxHeight };
+    surface.addEventListener('transitionend', onTransitionEnd);
   }
 
   function clearDiveSearch({ focus = false } = {}) {
@@ -24879,6 +24938,7 @@ function closeShareDialog() {
 
   function renderDiveSearchResults({ allowSameQueryRefresh = false, forceRender = false } = {}) {
     if (!els.diveSearchInput) return;
+    cancelDiveSearchResultsDismissal();
     const renderRequest = ++diveSearchRenderRequest;
 
     const query =
@@ -34514,11 +34574,14 @@ function closeShareDialog() {
         !event.target.closest('.dive-filter-options') &&
         !els.diveSearchClear.contains(event.target)
       ) {
-        if (diveSearchFiltersOpen) {
-          diveSearchFiltersOpen = false;
-          updateDiveSearchFilterControls();
-        }
-        dismissDiveSearchResults();
+        animateDiveSearchResultsDismissal(() => {
+          if (diveSearchFiltersOpen) {
+            diveSearchFiltersOpen = false;
+            updateDiveSearchFilterControls();
+          }
+          dismissDiveSearchResults();
+          if (mobileSearchQuery.matches) setMobileSearchExpanded(false);
+        });
       }
     }
   );
