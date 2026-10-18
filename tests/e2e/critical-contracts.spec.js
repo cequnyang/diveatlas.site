@@ -74,19 +74,34 @@ async function expectMapViewUnchanged(page, before, after) {
   expect(displacementPx).toBeLessThanOrEqual(1);
 }
 
-test('wheel zoom settles on integer levels and respects map limits', async ({ page }) => {
+test('wheel zoom supports fractional stops and respects map limits', async ({ page }) => {
   const bounds = await page.locator('#map').boundingBox();
   await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+  const wheelAndSettle = async delta => {
+    await page.evaluate(() => {
+      window.__wheelSettled = false;
+      window.__DIVEATLAS_TEST__.map.once('zoomend', () => { window.__wheelSettled = true; });
+    });
+    await page.mouse.wheel(0, delta);
+    await page.waitForFunction(() => window.__wheelSettled);
+  };
   const before = (await mapState(page)).zoom;
-  await page.mouse.wheel(0, -90);
+  await wheelAndSettle(-90);
   await expect.poll(async () => (await mapState(page)).zoom).toBeGreaterThan(before);
   await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
   const after = (await mapState(page)).zoom;
-  expect(after).toBe(Math.round(after));
-  await page.mouse.wheel(0, 90);
+  expect(after - before).toBeGreaterThan(0);
+  expect(after - before).toBeLessThan(1);
+  await wheelAndSettle(90);
   await expect.poll(async () => (await mapState(page)).zoom).toBeLessThan(after);
   // Wait for the native animation to finish before issuing another zoom.
   await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
+  const beforeFine = (await mapState(page)).zoom;
+  await wheelAndSettle(-10);
+  await expect.poll(async () => (await mapState(page)).zoom).toBeGreaterThan(beforeFine);
+  await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
+  const fineStep = (await mapState(page)).zoom - beforeFine;
+  expect(fineStep).toBeLessThan(1);
   const limits = await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;
     map.setZoom(100, { animate:false });
@@ -96,6 +111,150 @@ test('wheel zoom settles on integer levels and respects map limits', async ({ pa
   });
   expect(limits.upper).toBe(limits.max);
   expect(limits.lower).toBe(limits.min);
+});
+
+for (const direction of ['in', 'out']) {
+test(`a wheel burst ${direction} updates continuously and settles only once`, async ({ page }) => {
+  const result = await page.evaluate(async deltaY => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    let updates = 0;
+    let ends = 0;
+    let tilesCreated = 0;
+    const tileLevels = new Set();
+    const basemap = Object.values(map._layers).find(layer => layer.getMaplibreMap);
+    const gl = basemap.getMaplibreMap();
+    let cameraUpdates = 0;
+    const onCamera = () => { cameraUpdates += 1; };
+    gl.on('move', onCamera);
+    const TestGrid = L.GridLayer.extend({
+      createTile(coords) { tilesCreated += 1; tileLevels.add(coords.z); return document.createElement('div'); }
+    });
+    const grid = new TestGrid({ updateWhenZooming:false }).addTo(map);
+    const initialTiles = tilesCreated;
+    const onZoom = () => { updates += 1; };
+    const onEnd = () => { ends += 1; };
+    map.on('zoom', onZoom);
+    map.on('zoomend', onEnd);
+    const rect = map.getContainer().getBoundingClientRect();
+    const point = L.point(Math.round(rect.x + rect.width * 0.65) - rect.x,
+      Math.round(rect.y + rect.height / 2) - rect.y);
+    const anchor = map.containerPointToLatLng(point);
+    const settled = new Promise(resolve => map.once('zoomend', resolve));
+    for (let index = 0; index < 8; index += 1) {
+      map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+        deltaY, clientX:rect.x + point.x, clientY:rect.y + point.y,
+        bubbles:true, cancelable:true
+      }));
+      await new Promise(resolve => setTimeout(resolve, 40));
+    }
+    const tilesDuringGesture = tilesCreated - initialTiles;
+    await settled;
+    map.off('zoom', onZoom);
+    map.off('zoomend', onEnd);
+    const result = { updates, ends, tilesDuringGesture,
+      cameraUpdates, tileLevels:[...tileLevels], basemapZoom:gl.getZoom(), zoom:map.getZoom(),
+      cursorDrift:map.latLngToContainerPoint(anchor).distanceTo(point) };
+    gl.off('move', onCamera);
+    grid.remove();
+    return result;
+  }, direction === 'in' ? -10 : 10);
+  expect(result.updates).toBeGreaterThan(8);
+  expect(result.ends).toBe(1);
+  expect(result.tileLevels).toHaveLength(1);
+  expect(result.tileLevels.every(Number.isInteger)).toBe(true);
+  expect(result.cameraUpdates).toBeLessThan(result.updates / 2);
+  expect(result.basemapZoom).toBeCloseTo(result.zoom - 1, 6);
+  expect(result.cursorDrift).toBeLessThanOrEqual(1.5);
+});
+}
+
+test('basemap stays anchored across wheel texture refreshes', async ({ page }) => {
+  // Odd dimensions expose fractional camera origins hidden by even viewports.
+  await page.setViewportSize({ width:1281, height:901 });
+  await page.waitForTimeout(1100);
+  const result = await page.evaluate(async () => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const gl = Object.values(map._layers).find(layer => layer.getMaplibreMap).getMaplibreMap();
+    const canvas = gl.getCanvas();
+    const rect = map.getContainer().getBoundingClientRect();
+    const point = L.point(Math.round(rect.x + rect.width * 0.65) - rect.x,
+      Math.round(rect.y + rect.height / 2) - rect.y);
+    const anchor = map.containerPointToLatLng(point);
+    let camera = { center:gl.getCenter(), zoom:gl.getZoom() + 1 };
+    const onRender = () => { camera = { center:gl.getCenter(), zoom:gl.getZoom() + 1 }; };
+    gl.on('render', onRender);
+    let frame;
+    const errors = [];
+    const sample = () => {
+      // Track the camera that actually painted the canvas, which may lag the
+      // requested GL camera while the old image is still being transformed.
+      const box = canvas.getBoundingClientRect();
+      const delta = map.project(anchor, camera.zoom)
+        .subtract(map.project([camera.center.lat, camera.center.lng], camera.zoom));
+      const x = box.left + (gl.transform.width / 2 + delta.x) * box.width / gl.transform.width;
+      const y = box.top + (gl.transform.height / 2 + delta.y) * box.height / gl.transform.height;
+      errors.push({ error:Math.hypot(x - rect.left - point.x, y - rect.top - point.y),
+        zoom:map.getZoom(), renderedZoom:camera.zoom, glZoom:gl.getZoom()+1,
+        transform:canvas.parentElement.parentElement.style.transform });
+      frame = requestAnimationFrame(sample);
+    };
+    frame = requestAnimationFrame(sample);
+    for (let index = 0; index < 24; index += 1) {
+      map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+        deltaY:index < 12 ? -90 : 90, clientX:rect.x + point.x, clientY:rect.y + point.y,
+        bubbles:true, cancelable:true
+      }));
+      await new Promise(resolve => setTimeout(resolve, 55));
+    }
+    await new Promise(resolve => setTimeout(resolve, 600));
+    cancelAnimationFrame(frame);
+    gl.off('render', onRender);
+    return { frames:errors.length, maxError:Math.max(...errors.map(item => item.error)),
+      worst:errors.sort((a,b) => b.error-a.error).slice(0,8) };
+  });
+  expect(result.frames).toBeGreaterThan(10);
+  expect(result.maxError, JSON.stringify(result)).toBeLessThanOrEqual(1);
+});
+
+test('wheel input during an active zoom is applied after the animation', async ({ page }) => {
+  const targetZoom = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const target = map.getZoom() + 1;
+    map.setZoom(target, { animate:true });
+    return target;
+  });
+  await page.waitForFunction(() => window.__DIVEATLAS_TEST__.map._animatingZoom);
+  await page.evaluate(() => {
+    const rect = document.getElementById('map').getBoundingClientRect();
+    document.getElementById('map').dispatchEvent(new WheelEvent('wheel', {
+      deltaY:-90, clientX:rect.x + rect.width / 2, clientY:rect.y + rect.height / 2,
+      bubbles:true, cancelable:true
+    }));
+  });
+  await expect.poll(async () => (await mapState(page)).zoom).toBeGreaterThan(targetZoom);
+  await page.waitForFunction(() => !window.__DIVEATLAS_TEST__.map._animatingZoom);
+});
+
+test('basemap zoom avoids canvas resizing while viewport resize still works', async ({ page }) => {
+  // Exclude the intentional one-second startup resize from zoom accounting.
+  await page.waitForTimeout(1100);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const gl = Object.values(map._layers).find(layer => layer.getMaplibreMap)?.getMaplibreMap();
+    if (!gl) throw new Error('MapLibre basemap is required');
+    window.__basemapResizeCount = 0;
+    const resize = gl.resize;
+    gl.resize = function (...args) {
+      window.__basemapResizeCount += 1;
+      return resize.apply(this, args);
+    };
+    map.setZoom(map.getZoom() + 0.1, { animate:false });
+  });
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  expect(await page.evaluate(() => window.__basemapResizeCount)).toBe(0);
+  await page.setViewportSize({ width:1180, height:850 });
+  await expect.poll(() => page.evaluate(() => window.__basemapResizeCount)).toBeGreaterThan(0);
 });
 
 test('fractional zoom below Z8 retains Reef raster coverage', async ({ page }) => {

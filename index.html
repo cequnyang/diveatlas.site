@@ -8624,6 +8624,7 @@ ZSD·2016–2025</span></span>
       ? window.DIVEATLAS_FEATURE_FLAGS.diveExperienceOutlook
       : new URLSearchParams(location.search).get('diveExperienceOutlook') !== '0' };
 </script>
+<script src="js/map-wheel-zoom.js"></script>
 <script>
 /* V58: embedded AODN fish fallback + non-destructive online refresh + persistent top bar + upper-left search + V34 full biodiversity snapshot builder + embedded offline runtime.
    V42 internal legend-section collapse + popup source links + persistent cache/clustering retained. Embedded dive-site dataset: 17,875 records. */
@@ -9194,6 +9195,8 @@ ZSD·2016–2025</span></span>
     button.textContent = '©';
     button.setAttribute('aria-label', 'Show map credits');
     button.setAttribute('aria-expanded', 'false');
+  DiveAtlasWheelZoom.install(map, L);
+
     button.setAttribute('aria-controls', 'mobileMapCreditsPanel');
     panel.id = 'mobileMapCreditsPanel';
     panel.setAttribute('role', 'region');
@@ -10385,7 +10388,7 @@ ZSD·2016–2025</span></span>
   // MapLibre tiles can briefly leave uncovered canvas areas during fast
   // zoom/pan. Keep the fallback close to the Positron ocean tone and force
   // canvas synchronization after Leaflet view changes.
-  function syncBasemapCanvas() {
+  function syncBasemapCanvas({ resize = true } = {}) {
     try {
       [lightLayer, darkLayer].forEach(layer => {
         if (!map.hasLayer(layer)) return;
@@ -10395,7 +10398,7 @@ ZSD·2016–2025</span></span>
         // projection and pane position from Leaflet's settled view before a
         // theme fade resizes or repaints the GL canvas.
         if (typeof layer._update === 'function') layer._update();
-        glMap.resize();
+        if (resize) glMap.resize();
         if (typeof glMap.triggerRepaint === 'function') glMap.triggerRepaint();
       });
     } catch (_) {}
@@ -10403,8 +10406,19 @@ ZSD·2016–2025</span></span>
 
   map.getContainer().style.background =
     currentTheme === 'dark' ? '#0d1117' : '#cbd5d8';
-  map.on('resize zoomend moveend', () => {
-    requestAnimationFrame(syncBasemapCanvas);
+  let basemapSyncFrame = 0;
+  let basemapResizePending = false;
+  map.on('resize zoomend moveend', event => {
+    // One zoom emits both end events. Flush the GL projection once, without
+    // a canvas resize and its extra GL events unless dimensions really changed.
+    basemapResizePending ||= event.type === 'resize';
+    if (basemapSyncFrame) return;
+    basemapSyncFrame = requestAnimationFrame(() => {
+      basemapSyncFrame = 0;
+      const resize = basemapResizePending;
+      basemapResizePending = false;
+      syncBasemapCanvas({ resize });
+    });
   });
   setTimeout(syncBasemapCanvas, 1000);
 
