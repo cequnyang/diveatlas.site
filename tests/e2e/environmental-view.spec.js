@@ -67,7 +67,7 @@ async function installTemperatureQueryFixture(page) {
   return fixtureRequestUrls;
 }
 
-async function expectTemperatureReadingRow(page, expectedValue = /^\d+(?:[.,]\d+)?$/) {
+async function expectTemperatureReadingRow(page, expectedValue = /^\d+(?:[.,]\d+)?\s*°[CF]$/) {
   await expect(page.locator('.temperature-detail-heading')).toHaveText('Water TEMP');
   const readingRow = page.locator('.dive-popup-property').filter({ has: page.locator('.temperature-detail-value') });
   await expect(readingRow.locator('.dive-popup-property__label')).toHaveText('Value');
@@ -1139,7 +1139,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   const response = await chunkResponse;
   expect(response.status()).toBe(200);
   expect(fixtureRequestUrls.has(response.url()), 'the sample should come from the deterministic query fixture').toBe(true);
-  await expectTemperatureReadingRow(page, '2');
+  await expectTemperatureReadingRow(page, '2°C');
   await openMobileSettings(page);
   await page.locator('#measurementUnitSwitch [data-length-unit="ft"]').click();
   await expect(page.locator('#temperatureCoverageNote')).toContainText('15.5 mi');
@@ -1150,7 +1150,7 @@ test('temperature detail stays compact at a mobile viewport', async ({ page }) =
   await openTopMenu(page);
   await page.locator('#temperatureUnitSwitch [data-temperature-unit="F"]').click();
   await closeTopMenu(page);
-  await expectTemperatureReadingRow(page, '35.6');
+  await expectTemperatureReadingRow(page, '35.6°F');
   await expect(page.locator('.temperature-profile-chart')).toContainText('°F');
   let state = await expectTemperaturePopupContained(page);
   expect(state.zoom).toBe(before.zoom);

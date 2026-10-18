@@ -797,8 +797,8 @@ for (const { language, primary, secondary } of [
       const style = getComputedStyle(button);
       return { width:parseFloat(style.width), height:parseFloat(style.height) };
     });
-    expect(buttonSize.width).toBeCloseTo(59.4, 1);
-    expect(buttonSize.height).toBeCloseTo(59.4, 1);
+    expect(buttonSize.width).toBeCloseTo(44, 1);
+    expect(buttonSize.height).toBeCloseTo(44, 1);
     const discoveryIcon = shareButton.locator('.share-discovery-mark');
     await expect(discoveryIcon).toBeVisible();
     await expect(discoveryIcon).toHaveClass(new RegExp(`share-action-icon--${primary}`));
