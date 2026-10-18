@@ -9176,13 +9176,11 @@ ZSD·2016–2025</span></span>
     closePopupOnClick: false,
     maxBounds: MAP_VERTICAL_BOUNDS,
     maxBoundsViscosity: 1.0,
-    // Keep zoom interpolation continuous during gestures, but settle wheel and
-    // pinch zoom on the established integer levels for predictable raster LODs.
-    zoomSnap: 1,
-    // Preserve the established mouse-wheel cadence; finer sensitivity caused
-    // more frequent animation retargets without improving settled zoom quality.
+    // Fractional stops avoid a full-level jump after small wheel or pinch
+    // gestures. Raster GridLayers still choose their own integer tile levels.
+    zoomSnap: 0.1,
     wheelPxPerZoomLevel: 120,
-    wheelDebounceTime: 60
+    wheelDebounceTime: 40
   }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
   const mobileMapCreditsControl = L.control({ position:'bottomright' });
