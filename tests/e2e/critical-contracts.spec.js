@@ -131,6 +131,7 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
     });
     const grid = new TestGrid({ updateWhenZooming:false }).addTo(map);
     const initialTiles = tilesCreated;
+    const initialTileLevels = [...tileLevels];
     const onEnd = () => { ends += 1; };
     const onZoomAnim = event => zoomSamples.add(Number(event.zoom).toFixed(4));
     map.on('zoomanim', onZoomAnim);
@@ -151,11 +152,13 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
       await new Promise(resolve => requestAnimationFrame(resolve));
     }
     const tilesDuringGesture = tilesCreated - initialTiles;
+    const tileLevelsDuringGesture = [...tileLevels];
     await settled;
     map.off('zoomanim', onZoomAnim);
     map.off('zoomend', onEnd);
     const result = { zoomSamples:zoomSamples.size, ends, tilesDuringGesture,
-      cameraUpdates, tileLevels:[...tileLevels], basemapZoom:gl.getZoom(), zoom:map.getZoom(),
+      cameraUpdates, initialTileLevels, tileLevelsDuringGesture, tileLevels:[...tileLevels],
+      basemapZoom:gl.getZoom(), zoom:map.getZoom(),
       cursorDrift:map.latLngToContainerPoint(anchor).distanceTo(point) };
     gl.off('move', onCamera);
     grid.remove();
@@ -163,7 +166,10 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
   }, direction === 'in' ? -10 : 10);
   expect(result.zoomSamples).toBeGreaterThan(5);
   expect(result.ends).toBe(1);
-  expect(result.tileLevels).toHaveLength(1);
+  // Existing tiles remain in place during fractional frames. Once settled,
+  // the final integer tile level may differ from the starting level.
+  expect(result.tilesDuringGesture).toBe(0);
+  expect(result.tileLevelsDuringGesture).toEqual(result.initialTileLevels);
   expect(result.tileLevels.every(Number.isInteger)).toBe(true);
   expect(result.cameraUpdates).toBeLessThan(result.zoomSamples / 2);
   expect(result.basemapZoom).toBeCloseTo(result.zoom - 1, 6);
