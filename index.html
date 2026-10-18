@@ -373,10 +373,11 @@
 
     .map-view-legend-control[hidden], .map-view-legend[hidden], .map-view-legend-collapsed-button[hidden] { display:none; }
     .map-view-legend, .map-view-legend-collapsed-button { grid-area:1 / 1; transform-origin:bottom left; transition:opacity 180ms ease, transform 180ms ease; }
+    .map-view-legend-collapsed-button { align-self:end; justify-self:start; }
     .map-view-legend-control { display:grid; width:max-content; }
     .map-view-legend-control.is-collapsed .map-view-legend,
     .map-view-legend-control:not(.is-collapsed) .map-view-legend-collapsed-button { opacity:0; pointer-events:none; }
-    .map-view-legend-control.is-collapsed .map-view-legend { transform:scaleY(0); }
+    .map-view-legend-control.is-collapsed .map-view-legend { transform:scale(.04); }
     .map-view-legend-control:not(.is-collapsed) .map-view-legend-collapsed-button { transform:scale(.8); }
     @media (prefers-reduced-motion:reduce) { .map-view-legend, .map-view-legend-collapsed-button { transition:none; } }
     .map-view-legend { box-sizing:border-box; width:min(312px, calc(100vw - 80px)); max-width:312px; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--panel-solid); color:var(--text); box-shadow:0 2px 10px rgba(16,24,40,.18); }
@@ -385,6 +386,7 @@
     .map-view-legend-toggle, .map-view-legend-collapsed-button { display:grid; place-items:center; flex:none; width:24px; height:24px; padding:0; border:0; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
     .map-view-legend-toggle:hover, .map-view-legend-collapsed-button:hover { background:rgba(255,255,255,.07); color:var(--text); }
     .map-view-legend-toggle svg, .map-view-legend-collapsed-button svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .map-view-legend-collapsed-button svg { width:20px; height:20px; }
     .map-view-legend-collapsed-button { width:30px; height:30px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); box-shadow:0 2px 10px rgba(16,24,40,.18); }
     .map-view-legend-bar { display:flex; justify-content:space-between; align-items:center; gap:6px; box-sizing:border-box; min-height:22px; padding:2px 10px; border-radius:999px; color:#fff; font-size:11px; line-height:16px; font-weight:600; font-variant-numeric:tabular-nums; text-shadow:0 1px 3px #000, 0 0 4px #000; }
     /* Size translated labels around whole words instead of splitting them into equal-width columns. */
@@ -395,23 +397,38 @@
     @media (max-width:720px) {
       .leaflet-control-attribution { display:none !important; }
       .mobile-map-credits-control {
-        display:block;
+        display:grid;
+        width:max-content;
         max-width:calc(100vw - 20px);
       }
+      .mobile-map-credits-button,
+      .mobile-map-credits-panel {
+        grid-area:1 / 1;
+        transform-origin:bottom right;
+        transition:opacity 180ms ease, transform 180ms ease;
+      }
+      .mobile-map-credits-button { align-self:end; justify-self:end; }
+      .mobile-map-credits-control:not(.is-expanded) .mobile-map-credits-panel,
+      .mobile-map-credits-control.is-expanded .mobile-map-credits-button {
+        opacity:0;
+        pointer-events:none;
+      }
+      .mobile-map-credits-control:not(.is-expanded) .mobile-map-credits-panel { transform:scale(.04); }
+      .mobile-map-credits-control.is-expanded .mobile-map-credits-button { transform:scale(.8); }
       .mobile-map-credits-button {
         box-sizing:border-box;
         display:grid;
-        width:20px;
-        height:20px;
-        min-height:20px;
+        width:30px;
+        height:30px;
+        min-height:30px;
         padding:0;
         place-items:center;
         border:1px solid var(--line);
-        border-radius:4px;
+        border-radius:6px;
         background:var(--panel-solid);
         box-shadow:0 1px 5px rgba(16,24,40,.16);
         color:var(--muted);
-        font-size:12px;
+        font-size:20px;
         font-weight:600;
         line-height:1;
         cursor:pointer;
@@ -427,7 +444,7 @@
         box-sizing:border-box;
         width:min(340px, calc(100vw - 20px));
         max-height:34vh;
-        margin-top:5px;
+        margin-top:0;
         padding:8px 9px 7px;
         overflow:auto;
         border:1px solid var(--line);
@@ -459,6 +476,9 @@
       .mobile-map-credits-close svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
       .mobile-map-credits-content { overflow-wrap:anywhere; }
       .mobile-map-credits-panel a { color:var(--primary); }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .mobile-map-credits-button, .mobile-map-credits-panel { transition:none; }
     }
 
     #map .maplibregl-map,
@@ -9187,6 +9207,9 @@ ZSD·2016–2025</span></span>
     closeButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 6 5 5 5-5"/></svg>';
 
     let syncedAttribution = '';
+    let creditsExpanded = false;
+    let creditsTransitionFrame = 0;
+    let creditsTransitionTimer = 0;
     const syncAttribution = () => {
       const source = map.getContainer().querySelector('.leaflet-control-attribution');
       if (!source || source.innerHTML === syncedAttribution) return;
@@ -9198,10 +9221,25 @@ ZSD·2016–2025</span></span>
     syncAttribution();
 
     const setExpanded = expanded => {
-      panel.hidden = !expanded;
-      button.hidden = expanded;
-      button.setAttribute('aria-expanded', String(expanded));
-      button.setAttribute('aria-label', `${expanded ? 'Hide' : 'Show'} map credits`);
+      const nextExpanded = Boolean(expanded);
+      if (nextExpanded === creditsExpanded) return;
+      creditsExpanded = nextExpanded;
+      cancelAnimationFrame(creditsTransitionFrame);
+      clearTimeout(creditsTransitionTimer);
+      button.setAttribute('aria-expanded', String(nextExpanded));
+      button.setAttribute('aria-label', `${nextExpanded ? 'Hide' : 'Show'} map credits`);
+
+      panel.hidden = false;
+      button.hidden = false;
+      creditsTransitionFrame = requestAnimationFrame(() => {
+        container.classList.toggle('is-expanded', nextExpanded);
+      });
+      creditsTransitionTimer = window.setTimeout(() => {
+        if (creditsExpanded === nextExpanded) {
+          if (nextExpanded) button.hidden = true;
+          else panel.hidden = true;
+        }
+      }, 200);
     };
     button.addEventListener('click', () => setExpanded(panel.hidden));
     closeButton.addEventListener('click', () => setExpanded(false));
@@ -34909,7 +34947,7 @@ function closeShareDialog() {
   mapViewLegendCollapsedButton.hidden = true;
   mapViewLegendCollapsedButton.setAttribute('aria-label', 'Show map legend');
   mapViewLegendCollapsedButton.title = 'Show map legend';
-  mapViewLegendCollapsedButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 10 5-5 5 5"/></svg>';
+  mapViewLegendCollapsedButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="3" width="19" height="18" rx="2.5" fill="currentColor" stroke="none"/><path d="M6 7h1.5M11 7h7M6 12h1.5M11 12h7M6 17h1.5M11 17h7" fill="none" stroke="var(--panel-solid)" stroke-width="1.7" stroke-linecap="round"/></svg>';
   let mapViewLegendCollapsed = false;
   let mapViewLegendTransitionFrame = 0;
   let mapViewLegendTransitionTimer = 0;
