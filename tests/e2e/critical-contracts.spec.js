@@ -117,7 +117,7 @@ for (const direction of ['in', 'out']) {
 test(`a wheel burst ${direction} updates continuously and settles only once`, async ({ page }) => {
   const result = await page.evaluate(async deltaY => {
     const map = window.__DIVEATLAS_TEST__.map;
-    let updates = 0;
+    const zoomSamples = new Set();
     let ends = 0;
     let tilesCreated = 0;
     const tileLevels = new Set();
@@ -131,9 +131,9 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
     });
     const grid = new TestGrid({ updateWhenZooming:false }).addTo(map);
     const initialTiles = tilesCreated;
-    const onZoom = () => { updates += 1; };
     const onEnd = () => { ends += 1; };
-    map.on('zoom', onZoom);
+    const onZoomAnim = event => zoomSamples.add(Number(event.zoom).toFixed(4));
+    map.on('zoomanim', onZoomAnim);
     map.on('zoomend', onEnd);
     const rect = map.getContainer().getBoundingClientRect();
     const point = L.point(Math.round(rect.x + rect.width * 0.65) - rect.x,
@@ -149,20 +149,20 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
     }
     const tilesDuringGesture = tilesCreated - initialTiles;
     await settled;
-    map.off('zoom', onZoom);
+    map.off('zoomanim', onZoomAnim);
     map.off('zoomend', onEnd);
-    const result = { updates, ends, tilesDuringGesture,
+    const result = { zoomSamples:zoomSamples.size, ends, tilesDuringGesture,
       cameraUpdates, tileLevels:[...tileLevels], basemapZoom:gl.getZoom(), zoom:map.getZoom(),
       cursorDrift:map.latLngToContainerPoint(anchor).distanceTo(point) };
     gl.off('move', onCamera);
     grid.remove();
     return result;
   }, direction === 'in' ? -10 : 10);
-  expect(result.updates).toBeGreaterThan(8);
+  expect(result.zoomSamples).toBeGreaterThan(5);
   expect(result.ends).toBe(1);
   expect(result.tileLevels).toHaveLength(1);
   expect(result.tileLevels.every(Number.isInteger)).toBe(true);
-  expect(result.cameraUpdates).toBeLessThan(result.updates / 2);
+  expect(result.cameraUpdates).toBeLessThan(result.zoomSamples / 2);
   expect(result.basemapZoom).toBeCloseTo(result.zoom - 1, 6);
   expect(result.cursorDrift).toBeLessThanOrEqual(1.5);
 });
@@ -214,6 +214,69 @@ test('basemap stays anchored across wheel texture refreshes', async ({ page }) =
   });
   expect(result.frames).toBeGreaterThan(10);
   expect(result.maxError, JSON.stringify(result)).toBeLessThanOrEqual(1);
+});
+
+test('raster overlays stay aligned through fractional wheel zoom frames', async ({ page }) => {
+  const result = await page.evaluate(async () => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const pointer = L.point(map.getSize().x * 0.65, map.getSize().y / 2);
+    const anchor = map.containerPointToLatLng(pointer);
+    const bounds = L.latLngBounds(
+      [anchor.lat - 0.3, anchor.lng - 0.3],
+      [anchor.lat + 0.3, anchor.lng + 0.3]
+    );
+    const overlay = L.imageOverlay(
+      'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=', bounds
+    ).addTo(map);
+    const image = overlay.getElement();
+    if (!image.complete) await new Promise(resolve => { image.onload = resolve; });
+
+    let view = { center:map.getCenter(), zoom:map.getZoom() };
+    let animationFrames = 0;
+    const onZoomAnim = event => {
+      view = { center:event.center, zoom:event.zoom };
+      animationFrames += 1;
+    };
+    map.on('zoomanim', onZoomAnim);
+    const errors = [];
+    let frame;
+    let sampling = true;
+    const sample = () => {
+      const imageRect = image.getBoundingClientRect();
+      const mapRect = map.getContainer().getBoundingClientRect();
+      const toContainerPoint = point => map.project(point, view.zoom)
+        .subtract(map.project(view.center, view.zoom)).add(map.getSize().divideBy(2));
+      const northWest = toContainerPoint(bounds.getNorthWest());
+      const southEast = toContainerPoint(bounds.getSouthEast());
+      errors.push(Math.max(
+        Math.abs(imageRect.left - mapRect.left - northWest.x),
+        Math.abs(imageRect.top - mapRect.top - northWest.y),
+        Math.abs(imageRect.right - mapRect.left - southEast.x),
+        Math.abs(imageRect.bottom - mapRect.top - southEast.y)
+      ));
+      if (sampling) frame = requestAnimationFrame(sample);
+    };
+    frame = requestAnimationFrame(sample);
+
+    const rect = map.getContainer().getBoundingClientRect();
+    const settled = new Promise(resolve => map.once('zoomend', resolve));
+    for (let index = 0; index < 8; index += 1) {
+      map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+        deltaY:-10, clientX:rect.left + rect.width * 0.65,
+        clientY:rect.top + rect.height / 2, bubbles:true, cancelable:true
+      }));
+      await new Promise(resolve => setTimeout(resolve, 40));
+    }
+    await settled;
+    await new Promise(resolve => setTimeout(resolve, 80));
+    sampling = false;
+    cancelAnimationFrame(frame);
+    map.off('zoomanim', onZoomAnim);
+    overlay.remove();
+    return { animationFrames, maxError:Math.max(...errors) };
+  });
+  expect(result.animationFrames).toBeGreaterThan(5);
+  expect(result.maxError, JSON.stringify(result)).toBeLessThanOrEqual(1.75);
 });
 
 test('wheel input during an active zoom is applied after the animation', async ({ page }) => {
