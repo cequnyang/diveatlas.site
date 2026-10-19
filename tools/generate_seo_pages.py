@@ -404,7 +404,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=94">
+  <link rel="stylesheet" href="/assets/seo.css?v=108">
 </head>
 <body{body_class_attr}>
 {body}
@@ -488,7 +488,46 @@ def generate_site_page(
 
     def feature_tokens(candidate: dict[str, object]) -> list[str]:
         value = str(candidate["categories"].get("features") or candidate.get("characteristics") or "")
-        return [part.strip() for part in value.split("|") if part.strip()]
+        return [part.strip() for part in re.split(r"\s*(?:\||,|;)\s*", value) if part.strip()]
+
+    def major_feature_tokens(candidate: dict[str, object]) -> list[str]:
+        tokens = feature_tokens(candidate)
+        priority = {value: index for index, value in enumerate(FALLBACK_FEATURE_PRIORITY)}
+        indexed = list(enumerate(tokens))
+        indexed.sort(key=lambda pair: (priority.get(re.sub(r"[^a-z0-9]+", "_", pair[1].casefold()).strip("_"), len(priority)), pair[0]))
+        return [value for _, value in indexed[:2]]
+
+    def recommendation_photo_src(candidate: dict[str, object]) -> str:
+        photo = candidate.get("photo")
+        if not isinstance(photo, dict) or not photo.get("src"):
+            return ""
+        source = str(photo["src"])
+        return source if re.match(r"^https?://", source, re.I) else "/" + source.lstrip("/")
+
+    def recommendation_card(candidate: dict[str, object]) -> str:
+        photo = candidate.get("photo") or {}
+        photo_src = recommendation_photo_src(candidate)
+        photo_credit = str(photo.get("credit", "")) if isinstance(photo, dict) else ""
+        photo_title = f' title="{html_text(photo_credit)}"' if photo_credit else ""
+        image = (
+            f'<img class="site-recommendations__image" src="{html_text(photo_src)}" alt="" loading="lazy"'
+            f'{photo_title}>'
+            if photo_src else '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'
+        )
+        feature_markup = "".join(
+            f'<span class="site-recommendations__feature">{html_text(feature)}</span>'
+            for feature in major_feature_tokens(candidate)
+        ) or '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>'
+        return (
+            f'<li><a class="site-recommendations__card" data-recommendation-card data-rating-lat="{float(candidate["lat"]):.6f}" '
+            f'data-rating-lng="{float(candidate["lon"]):.6f}" href="/dive-sites/{quote(str(candidate["slug"]))}/">'
+            f'{image}<span class="site-recommendations__card-body">'
+            f'<span class="site-recommendations__name" title="{html_text(candidate["name"])}">{html_text(candidate["name"])}</span>'
+            f'<span class="site-recommendations__meta"><span class="site-recommendations__location">{html_text(str(candidate["region"]))}</span>'
+            f'<span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span>'
+            f'<span class="site-recommendations__features" aria-label="Recorded features">{feature_markup}</span>'
+            f'</span></a></li>'
+        )
 
     def difficulty_level(candidate: dict[str, object]) -> str:
         levels = [value.strip() for value in re.split(r"\s*(?:\||,|;|\bto\b)\s*", str(candidate.get("difficulty") or ""), flags=re.I) if value.strip()]
@@ -496,13 +535,9 @@ def generate_site_page(
         recognized = [value for value in levels if value.casefold() in ranks]
         return min(recognized, key=lambda value: ranks[value.casefold()]).casefold() if recognized else ""
 
-    def recommendation_group(key: str, candidates: list[dict[str, object]], *, empty_text: str, detail_for=None) -> str:
+    def recommendation_group(key: str, candidates: list[dict[str, object]], *, empty_text: str) -> str:
         if candidates:
-            items = item_list(candidates[:3], lambda candidate: (
-                f'<a href="/dive-sites/{quote(str(candidate["slug"]))}/">'
-                f'<span class="site-recommendations__name">{html_text(candidate["name"])}</span>'
-                f'<span class="site-recommendations__location">{html_text(str(detail_for(candidate) if detail_for else candidate["region"]))}</span></a>'
-            ))
+            items = "".join(recommendation_card(candidate) for candidate in candidates[:3])
         else:
             items = f'<li class="site-recommendations__empty">{html_text(empty_text)}</li>'
         return (
@@ -540,7 +575,10 @@ def generate_site_page(
     rating_candidates = [candidate for candidate in available_sites if candidate["site_id"] != site["site_id"]]
     rating_candidates.sort(key=lambda candidate: (site_distance(candidate), str(candidate["name"]).casefold()))
     rating_candidate_data = [{"name": str(candidate["name"]), "slug": str(candidate["slug"]),
-        "region": str(candidate["region"]), "lat": float(candidate["lat"]), "lon": float(candidate["lon"])}
+        "region": str(candidate["region"]), "lat": float(candidate["lat"]), "lon": float(candidate["lon"]),
+        "photo": recommendation_photo_src(candidate),
+        "photo_credit": str(candidate.get("photo", {}).get("credit", "")) if candidate.get("photo") else "",
+        "features": major_feature_tokens(candidate)}
         for candidate in rating_candidates]
     escaped_rating_candidates = html_text(json.dumps(rating_candidate_data, separators=(",", ":"), ensure_ascii=False))
     rating_group = (
@@ -556,8 +594,7 @@ def generate_site_page(
         recommendation_group("nearby", nearby_sites, empty_text="No nearby sites are available in this published set."),
         rating_group,
         recommendation_group("features", [pair[0] for pair in feature_matches],
-            empty_text="No sites match the recorded features." if primary_features else "No primary features are recorded for this site.",
-            detail_for=lambda candidate: ", ".join(feature for feature in feature_tokens(candidate) if feature.casefold() in primary_feature_keys) or str(candidate["region"])),
+            empty_text="No sites match the recorded features." if primary_features else "No primary features are recorded for this site."),
         recommendation_group("difficulty", difficulty_matches,
             empty_text="No sites with the same recorded difficulty are available." if current_difficulty else "Difficulty is not recorded for this site."),
     ]
@@ -688,7 +725,7 @@ def generate_site_page(
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=10" defer></script><script src="/js/dive-conditions-chart.js?v=28" defer></script><script src="/js/dive-site-rating-card.js?v=7" defer></script><script src="/js/site-recommendations.js?v=6" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=10" defer></script><script src="/js/dive-conditions-chart.js?v=28" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/dive-site-rating-card.js?v=8" defer></script>'''
     html = page_shell(title_base, description, url, body, "seo-site-detail-layout")
     return title_base, html
 

@@ -1,4 +1,64 @@
 (() => {
+  window.DiveAtlasRecommendationCards = {
+    create(candidate, rating) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.className = 'site-recommendations__card';
+      link.dataset.recommendationCard = '';
+      link.dataset.ratingLat = String(candidate.lat);
+      link.dataset.ratingLng = String(candidate.lon);
+      link.href = `/dive-sites/${encodeURIComponent(candidate.slug)}/`;
+
+      const image = document.createElement('img');
+      image.className = 'site-recommendations__image';
+      image.alt = '';
+      image.loading = 'lazy';
+      if (candidate.photo) image.src = candidate.photo;
+      else image.classList.add('site-recommendations__image--placeholder');
+      if (candidate.photoCredit) image.title = candidate.photoCredit;
+      image.addEventListener('error', () => image.classList.add('site-recommendations__image--placeholder'), { once:true });
+
+      const body = document.createElement('span');
+      body.className = 'site-recommendations__card-body';
+      const name = document.createElement('span');
+      name.className = 'site-recommendations__name';
+      name.textContent = candidate.name;
+      name.title = candidate.name;
+
+      const meta = document.createElement('span');
+      meta.className = 'site-recommendations__meta';
+      const region = document.createElement('span');
+      region.className = 'site-recommendations__location';
+      region.textContent = candidate.region;
+      const score = document.createElement('span');
+      score.className = 'site-recommendations__rating';
+      score.setAttribute('aria-label', 'DiveAtlas rating');
+      score.textContent = rating == null ? 'Rating loading' : `${rating}/100`;
+      meta.append(region, score);
+
+      const features = document.createElement('span');
+      features.className = 'site-recommendations__features';
+      features.setAttribute('aria-label', 'Recorded features');
+      for (const feature of (candidate.features || []).slice(0, 2)) {
+        const badge = document.createElement('span');
+        badge.className = 'site-recommendations__feature';
+        badge.textContent = feature;
+        features.append(badge);
+      }
+      if (!features.childElementCount) {
+        const unavailable = document.createElement('span');
+        unavailable.className = 'site-recommendations__feature site-recommendations__feature--empty';
+        unavailable.textContent = 'Features unavailable';
+        features.append(unavailable);
+      }
+
+      body.append(name, meta, features);
+      link.append(image, body);
+      item.append(link);
+      return item;
+    }
+  };
+
   const recommendationAreas = document.querySelectorAll('.site-recommendations');
 
   for (const area of recommendationAreas) {
@@ -9,6 +69,7 @@
     const groups = [...area.querySelectorAll('[data-recommendation-group]')];
     const scrollButtons = [...area.querySelectorAll('[data-recommendation-scroll]')];
     if (!tabsContainer || !tablist || !content || !tabs.length || !groups.length) continue;
+
 
     const combinedList = document.createElement('ul');
     combinedList.className = 'site-recommendations__combined';
@@ -55,6 +116,7 @@
       const atStart = tablist.scrollLeft <= 1;
       const atEnd = tablist.scrollLeft >= maxScroll - 1;
       tabsContainer.classList.toggle('site-recommendations__tabs--not-scrollable', maxScroll <= 1);
+      area.classList.toggle('site-recommendations--filters-scrollable', maxScroll > 1);
       for (const button of scrollButtons) {
         const isLeft = button.dataset.recommendationScroll === '-1';
         const atEdge = isLeft ? atStart : atEnd;
