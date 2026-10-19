@@ -31,7 +31,9 @@ async function reopenDiveExperiencePopup(page) {
   expect(result).toBe('dive-experience-outlook-location-selected');
   await waitForMapMovementToSettle(page);
   await waitForMapInteractionWindow(page);
-  await expect(popup).toBeVisible();
+  // Restoring a closed mobile sheet triggers a fresh grid-cell sample. CI can
+  // take several seconds to finish that lookup even after map movement settles.
+  await expect(popup).toBeVisible({ timeout:15_000 });
 }
 
 test('Dive Experience Outlook can be disabled for a staged rollout', async ({ page }) => {
