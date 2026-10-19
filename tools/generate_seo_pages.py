@@ -404,7 +404,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=108">
+  <link rel="stylesheet" href="/assets/seo.css?v=109">
 </head>
 <body{body_class_attr}>
 {body}
