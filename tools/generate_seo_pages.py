@@ -404,7 +404,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=109">
+  <link rel="stylesheet" href="/assets/seo.css?v=112">
 </head>
 <body{body_class_attr}>
 {body}
@@ -675,13 +675,11 @@ def generate_site_page(
             f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span>Rating</span></div>'
             f'<p class="site-photo-gallery-rating__score" role="status" aria-live="polite" data-status="loading">Loading rating…</p>'
             f'</section>'
-            f'<a class="site-photo-gallery-map" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View this dive site on the map">'
-            f'<svg class="site-photo-gallery-map__art" viewBox="0 0 280 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
-            f'<rect width="280" height="210" fill="var(--map-preview-water, #b9e3e8)"/><path d="M0 0h116l-8 19 20 13-8 22 20 15-11 24 15 14-9 24 20 19-14 20 18 18-9 22H0z" fill="var(--map-preview-land, #e7eee7)"/>'
-            f'<path d="M-12 32 75 54l45 25 33 29 31 8 32 28 35 16 43 12M-10 174l83-26 53-15 38-25 41-6 85-45M27-8l12 53 20 42-5 40 17 38 10 55M171-5l-8 44 14 40-7 43 16 40-2 53" fill="none" stroke="var(--map-preview-road-casing, #c5cdd0)" stroke-width="7"/>'
-            f'<path d="M-12 32 75 54l45 25 33 29 31 8 32 28 35 16 43 12M-10 174l83-26 53-15 38-25 41-6 85-45M27-8l12 53 20 42-5 40 17 38 10 55M171-5l-8 44 14 40-7 43 16 40-2 53" fill="none" stroke="var(--map-preview-road, #fff)" stroke-width="3"/>'
-            f'</svg><span class="site-photo-gallery-map__marker" aria-hidden="true"></span>'
-            f'<span class="site-photo-gallery-map__cta">View on map</span></a></aside></div>'
+            f'<div class="site-photo-gallery-map">'
+            f'<iframe class="site-photo-gallery-map__embed" title="Google Maps preview for {html_text(name)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q={float(site["lat"]):.6f}%2C{float(site["lon"]):.6f}&amp;z=12&amp;output=embed"></iframe>'
+            f'<a class="site-photo-gallery-map__mask" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map"></a>'
+            f'<a class="site-photo-gallery-map__cta" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map">View on map</a>'
+            f'</div></aside></div>'
         )
 
     photo_class = "has-photo" if photo else "no-photo"
