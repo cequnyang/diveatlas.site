@@ -40,6 +40,7 @@
   <link rel="icon" type="image/x-icon" href="assets/favicon-brand.ico?v=7" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-brand.png?v=7" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-brand.png?v=4" />
+  <link rel="stylesheet" href="assets/dive-photo-preview.css?v=1" />
 
   <link
     rel="stylesheet"
@@ -1966,73 +1967,6 @@
     @media (prefers-reduced-motion: reduce) {
       .dive-site-popup--with-photo .dive-popup-photo-label--upload { transition: none; }
     }
-
-    .dive-photo-preview {
-      position: fixed;
-      inset: 0;
-      box-sizing: border-box;
-      width: 100vw;
-      height: 100dvh;
-      max-width: none;
-      max-height: none;
-      margin: 0;
-      padding: 48px 16px 14px;
-      border: 0;
-      border-radius: 0;
-      background: rgba(8, 15, 25, .82);
-      backdrop-filter: blur(3px);
-      color: #fff;
-      box-shadow: none;
-      outline: none;
-    }
-    .dive-photo-preview::backdrop { background: transparent; }
-    .dive-site-popup.dive-site-popup--photo-previewing { visibility: hidden !important; }
-    .dive-photo-preview__layout {
-      display: grid;
-      width: 100%;
-      height: 100%;
-      min-height: 0;
-      padding-bottom: 24px;
-      box-sizing: border-box;
-      grid-template-rows: minmax(0, 1fr);
-    }
-    .dive-photo-preview__image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      min-height: 0;
-      object-fit: contain;
-    }
-    .dive-photo-preview__credit {
-      position: absolute;
-      left: 16px;
-      bottom: 14px;
-      max-width: min(50vw, 420px);
-      color: rgba(255, 255, 255, .82);
-      font-size: 11px;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
-    }
-    .dive-photo-preview__close {
-      position: absolute;
-      top: 9px;
-      right: 9px;
-      display: grid;
-      width: 34px;
-      height: 34px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .24);
-      border-radius: 50%;
-      background: rgba(17, 24, 39, .58);
-      color: #fff;
-      font: inherit;
-      font-size: 21px;
-      line-height: 1;
-      cursor: pointer;
-    }
-    .dive-photo-preview__close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-    .dive-photo-preview__close svg { display: block; width: 16px; height: 16px; }
 
     .bio-popup-list {
       margin-top: 8px;
@@ -8636,6 +8570,7 @@ ZSD·2016–2025</span></span>
 <script src="js/environmental-view-controller.js"></script>
 <script src="js/site-photo-metadata.js"></script>
 <script src="js/auth-ui.js" defer></script>
+<script src="js/dive-photo-preview.js?v=1"></script>
 <script>
   // Embedders can set this before loading the page; a query override supports controlled local/staging checks.
   window.DIVEATLAS_FEATURE_FLAGS = { ...(window.DIVEATLAS_FEATURE_FLAGS || {}),
@@ -8925,6 +8860,10 @@ ZSD·2016–2025</span></span>
   }
 
   const sharedMapState = parseMapState(window.location.href);
+  const initialQuery = new URLSearchParams(window.location.search);
+  const requestedPhotoUploadSiteId = initialQuery.get('addPhoto') === '1'
+    ? String(initialQuery.get('site') || '').trim().toLowerCase()
+    : '';
   let sharedUrlUserNavigated = false;
   let sharedUrlMapStateReady = false;
   let suppressPanelPreferenceWrites = false;
@@ -11689,78 +11628,17 @@ ZSD·2016–2025</span></span>
     };
   }
 
-  let divePhotoPreviewDialog = null;
-
-  function getDivePhotoPreviewDialog() {
-    if (divePhotoPreviewDialog?.isConnected) return divePhotoPreviewDialog;
-
-    const dialog = document.createElement('dialog');
-    dialog.className = 'dive-photo-preview';
-    dialog.setAttribute('aria-label', t('divePhotoPreview'));
-    const closeButton = document.createElement('button');
-    closeButton.className = 'dive-photo-preview__close';
-    closeButton.type = 'button';
-    closeButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>';
-    closeButton.setAttribute('aria-label', t('divePhotoPreviewClose'));
-    const layout = document.createElement('div');
-    layout.className = 'dive-photo-preview__layout';
-    const image = document.createElement('img');
-    image.className = 'dive-photo-preview__image';
-    const credit = document.createElement('div');
-    credit.className = 'dive-photo-preview__credit';
-    layout.append(image, credit);
-    dialog.append(closeButton, layout);
-    closeButton.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', event => {
-      if (!dialog.open) return;
-      const bounds = image.getBoundingClientRect();
-      const scale = image.naturalWidth && image.naturalHeight
-        ? Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight)
-        : 0;
-      const photoWidth = image.naturalWidth * scale;
-      const photoHeight = image.naturalHeight * scale;
-      const photoLeft = bounds.left + (bounds.width - photoWidth) / 2;
-      const photoTop = bounds.top + (bounds.height - photoHeight) / 2;
-      const clickedPhoto = scale > 0 &&
-        event.clientX >= photoLeft && event.clientX <= photoLeft + photoWidth &&
-        event.clientY >= photoTop && event.clientY <= photoTop + photoHeight;
-      if (!clickedPhoto) dialog.close();
-    });
-    const alignCreditWithPhoto = () => {
-      if (!dialog.open || !image.naturalWidth || !image.naturalHeight) return;
-      const bounds = image.getBoundingClientRect();
-      const scale = Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight);
-      const photoLeft = bounds.left + (bounds.width - image.naturalWidth * scale) / 2;
-      credit.style.left = `${Math.round(photoLeft)}px`;
-      credit.style.maxWidth = `min(50vw, ${Math.max(0, window.innerWidth - photoLeft - 16)}px)`;
-    };
-    image.addEventListener('load', alignCreditWithPhoto);
-    window.addEventListener('resize', alignCreditWithPhoto);
-    dialog.addEventListener('close', () => {
-      image.removeAttribute('src');
-      dialog._diveAtlasBackgroundPopup?.classList.remove('dive-site-popup--photo-previewing');
-      dialog._diveAtlasBackgroundPopup = null;
-    });
-    document.body.append(dialog);
-    divePhotoPreviewDialog = dialog;
-    return dialog;
-  }
-
   function openDivePhotoPreview(photo, siteName, popup) {
-    const dialog = getDivePhotoPreviewDialog();
-    const image = dialog.querySelector('.dive-photo-preview__image');
-    const credit = dialog.querySelector('.dive-photo-preview__credit');
-    image.src = photo.src;
-    image.alt = photo.alt || siteName;
-    credit.textContent = `${t('divePhotoCredit')}: ${photo.credit}`;
-    if (!dialog.open) {
-      dialog.showModal();
-      const backgroundPopup = popup?.getElement?.();
-      if (backgroundPopup?.classList.contains('dive-site-popup')) {
-        backgroundPopup.classList.add('dive-site-popup--photo-previewing');
-        dialog._diveAtlasBackgroundPopup = backgroundPopup;
-      }
-    }
+    window.DiveAtlasPhotoPreview?.open({
+      src: photo.src,
+      alt: photo.alt || siteName,
+      credit: `${t('divePhotoCredit')}: ${photo.credit}`
+    }, {
+      previewLabel: t('divePhotoPreview'),
+      closeLabel: t('divePhotoPreviewClose'),
+      popup,
+      onAddPhoto: () => openSitePhotoUploadModal(popup?._diveAtlasSiteId || '', siteName, null)
+    });
   }
 
   const OBIS_CORAL_TAXA = [
@@ -35129,6 +35007,20 @@ function closeShareDialog() {
   syncMapViewLegend();
 
   continueSitePhotoUploadAfterSignIn();
+  if (requestedPhotoUploadSiteId) {
+    void ensureDiveSiteData().then(() => {
+      const site = DIVE_SITES.find(item => getDiveSiteStableId(item).toLowerCase() === requestedPhotoUploadSiteId);
+      if (!site) return;
+      restoreSharedSiteDetail(requestedPhotoUploadSiteId, { openPopup: true });
+      requestAnimationFrame(() => {
+        void openSitePhotoUploadModal(
+          requestedPhotoUploadSiteId,
+          getDiveSiteDisplayName(site).displayName,
+          null
+        );
+      });
+    }).catch(error => console.warn('Could not open the requested site photo upload:', error));
+  }
 })();
 </script>
 </body>

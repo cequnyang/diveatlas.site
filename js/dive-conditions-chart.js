@@ -1,0 +1,309 @@
+(() => {
+  const page = document.querySelector('main.detail-page');
+  const details = page?.querySelector('.facts-section');
+  if (!page || !details) return;
+
+  const MONTHS = Object.freeze(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+  const SERIES = Object.freeze([
+    { key:'clarity', label:'Water clarity', unit:'m', kind:'line', color:'rgb(230, 126, 34)' },
+    { key:'temperature', label:'Water temperature · 5 m', unit:'°C', kind:'line', color:'rgb(180, 55, 65)' },
+    { key:'current', label:'Current speed · 10 m', unit:'m/s', kind:'line', color:'rgb(53, 88, 166)' },
+    { key:'waves', label:'Wave height', unit:'m', kind:'line', color:'rgb(0, 158, 115)' }
+  ]);
+  const OVERALL_SCORE = Object.freeze({ key:'overallScore', label:'Overall condition score', unit:'0–100', kind:'bar', color:'rgb(126, 87, 194)' });
+  const AXES = Object.freeze([
+    { key:'clarity-temperature', series:[SERIES[0], SERIES[1]], side:'left', column:0 },
+    { key:'current-waves', series:[SERIES[2], SERIES[3]], side:'right', column:0 },
+    { key:OVERALL_SCORE.key, series:[OVERALL_SCORE], side:'left', column:1 }
+  ]);
+  const chart = document.createElement('section');
+  chart.className = 'detail-section monthly-conditions-section';
+  chart.setAttribute('aria-labelledby', 'monthly-conditions-heading');
+  chart.innerHTML = `
+    <h2 id="monthly-conditions-heading">Monthly dive conditions</h2>
+    <p class="monthly-conditions-status" role="status" aria-live="polite">Loading monthly estimates…</p>
+    <div class="monthly-conditions-chart" hidden></div>
+    <div class="monthly-conditions-legend" aria-label="Chart legend"></div>`;
+  details.after(chart);
+
+  const status = chart.querySelector('.monthly-conditions-status');
+  const plot = chart.querySelector('.monthly-conditions-chart');
+  let started = false;
+
+  function readCoordinates() {
+    const schema = document.querySelector('script[type="application/ld+json"]');
+    try {
+      const data = JSON.parse(schema?.textContent || 'null');
+      const geo = Array.isArray(data) ? data.find(item => item?.geo)?.geo : data?.geo;
+      const lat = Number(geo?.latitude), lng = Number(geo?.longitude);
+      return Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null;
+    } catch (_) { return null; }
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error(`Could not load ${src}`));
+      document.head.append(script);
+    });
+  }
+
+  async function loadModules() {
+    const modules = [
+      ['/js/current-math.js', 'DiveAtlasCurrentMath'],
+      ['/js/current-tile-cache.js', 'DiveAtlasCurrentTileCache'],
+      ['/js/regional-currents.js', 'DiveAtlasRegionalCurrents'],
+      ['/js/waves-view.js', 'DiveAtlasWavesView'],
+      ['/js/temperature-query.js', 'DiveAtlasTemperatureQuery'],
+      ['/js/water-clarity-query.js', 'DiveAtlasWaterClarityQuery'],
+      ['/js/dive-conditions-model.js', 'DiveAtlasConditionsModel'],
+      ['/js/dive-conditions-service.js', 'DiveAtlasConditionsService']
+    ];
+    for (const [src, globalName] of modules) {
+      if (!window[globalName]) await loadScript(src);
+      if (!window[globalName]) throw new Error(`${globalName} did not initialize`);
+    }
+  }
+
+  function formatValue(value, unit, digits = 1) {
+    if (value == null || !Number.isFinite(Number(value))) return 'No data';
+    const number = Number(value);
+    const formatted = Number.isInteger(number) ? String(number) : number.toFixed(digits).replace(/\.0$/, '');
+    return `${formatted} ${unit}`;
+  }
+
+  function appendSvg(parent, name, attributes = {}) {
+    const element = document.createElementNS('http://www.w3.org/2000/svg', name);
+    for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, String(value));
+    parent.append(element);
+    return element;
+  }
+
+  function niceCeiling(value) {
+    if (!(value > 0)) return 1;
+    const magnitude = 10 ** Math.floor(Math.log10(value));
+    const fraction = value / magnitude;
+    const nice = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find(candidate => candidate >= fraction);
+    return (nice || 10) * magnitude;
+  }
+
+  function axisFor(axis, results) {
+    const values = results.flatMap(result => axis.series
+      .filter(series => series !== OVERALL_SCORE)
+      .map(series => Number(result.metrics[series.key].value)))
+      .filter(value => Number.isFinite(value) && value >= 0);
+    const maxValue = values.length ? Math.max(...values) : 1;
+    return { max:niceCeiling(maxValue * 1.08) };
+  }
+
+  function axisMaxFor(axis, results) {
+    return axis.series.includes(OVERALL_SCORE) ? 100 : axisFor(axis, results).max;
+  }
+
+  function axisLabel(value, max) {
+    if (max < 1) return value.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    if (max < 10 && !Number.isInteger(value)) return value.toFixed(1).replace(/\.0$/, '');
+    return String(Math.round(value * 100) / 100);
+  }
+
+  function monthReadings(result) {
+    const readings = SERIES.map(series => `${series.label}: ${formatValue(result.metrics[series.key].value, series.unit)}`);
+    readings.push(`${OVERALL_SCORE.label}: ${result.overallScore == null ? 'No data' : `${result.overallScore}/100`}`);
+    return readings.join('; ');
+  }
+
+  function render(results) {
+    const available = results.reduce((count, result) => count + SERIES.filter(series =>
+      result.metrics[series.key].value != null && Number.isFinite(Number(result.metrics[series.key].value))).length, 0);
+    if (!available) {
+      status.textContent = 'Monthly estimates are not available for this location.';
+      chart.classList.add('is-unavailable');
+      return;
+    }
+    status.textContent = '';
+
+    chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series =>
+      `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${series.label} (${series.unit})</span>`).join('');
+
+    const width = 840, height = 370, left = 154, right = 122, top = 22, bottom = 58;
+    const innerWidth = width - left - right, innerHeight = height - top - bottom;
+    const xAt = month => left + ((month - 1) / 11) * innerWidth;
+    const axisBySeries = new Map(AXES.flatMap(axis => axis.series.map(series => [series.key, axis])));
+    const axes = new Map(AXES.map(axis => [axis.key, { max:axisMaxFor(axis, results) }]));
+    const yAt = (series, value) => {
+      const axis = axisBySeries.get(series.key);
+      return top + innerHeight - (Number(value) / axes.get(axis.key).max) * innerHeight;
+    };
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.setAttribute('role', 'group');
+    svg.setAttribute('aria-label', 'Monthly water clarity and water temperature share a vertical scale; current speed and wave height share another. Overall dive-condition score is shown as bars on its own scale. Hover or focus a mark for all values in that month.');
+
+    // Pair the measures with similar numeric ranges to reduce axis clutter; tooltips retain each
+    // measurement's original unit so the shared scale does not erase the underlying readings.
+    for (let tick = 0; tick <= 4; tick += 1) {
+      const ratio = tick / 4;
+      const y = top + innerHeight - ratio * innerHeight;
+      appendSvg(svg, 'line', { x1:left, x2:width - right, y1:y, y2:y, class:'monthly-conditions-gridline' });
+      AXES.forEach(({ key, series, side, column }) => {
+        const max = axes.get(key).max;
+        const value = max * ratio;
+        const onLeft = side === 'left';
+        series.forEach((item, seriesIndex) => {
+          const seriesOffset = seriesIndex * 28;
+          const x = onLeft
+            ? left - 32 - column * 42 - seriesOffset
+            : width - right + 32 + column * 42 + seriesOffset;
+          const label = appendSvg(svg, 'text', {
+            x, y:y + 4, 'text-anchor':onLeft ? 'end' : 'start',
+            class:'monthly-conditions-axis-label', style:`color:${item.color}`
+          });
+          label.textContent = axisLabel(value, max);
+          label.setAttribute('aria-hidden', 'true');
+        });
+      });
+    }
+
+    const barWidth = Math.min(42, innerWidth / 18);
+    const markTargets = [];
+    const scoreLabels = [];
+    for (const result of results) {
+      const score = result.overallScore;
+      if (score == null || !Number.isFinite(Number(score))) continue;
+      const x = xAt(result.month), y = yAt(OVERALL_SCORE, score);
+      const rect = appendSvg(svg, 'rect', { x:x - barWidth / 2, y, width:barWidth, height:top + innerHeight - y,
+        rx:4, fill:OVERALL_SCORE.color, class:'monthly-conditions-bar' });
+      rect.setAttribute('aria-label', `${MONTHS[result.month - 1]}. ${monthReadings(result)}`);
+      rect.setAttribute('tabindex', '0');
+      markTargets.push({ element:rect, result, x, y });
+      scoreLabels.push({ x, y:Math.max(top - 4, y - 6), value:String(Math.round(Number(score))) });
+    }
+
+    for (const series of SERIES) {
+      let segment = [];
+      const segments = [];
+      for (const result of results) {
+        const metric = result.metrics[series.key];
+        if (metric.value == null || !Number.isFinite(Number(metric.value))) {
+          if (segment.length) segments.push(segment);
+          segment = [];
+        } else segment.push({ result, metric, x:xAt(result.month), y:yAt(series, metric.value) });
+      }
+      if (segment.length) segments.push(segment);
+      for (const points of segments) {
+        if (points.length > 1) {
+          const path = points.map((point, index) => `${index ? 'L' : 'M'}${point.x},${point.y}`).join(' ');
+          appendSvg(svg, 'path', { d:path, fill:'none', stroke:series.color, 'stroke-width':3.5,
+            'stroke-linecap':'round', 'stroke-linejoin':'round', class:'monthly-conditions-line' });
+        }
+        for (const point of points) {
+          const circle = appendSvg(svg, 'circle', { cx:point.x, cy:point.y, r:5.5, fill:series.color,
+            stroke:'var(--panel-solid)', 'stroke-width':2, class:'monthly-conditions-point' });
+          circle.setAttribute('aria-label', `${MONTHS[point.result.month - 1]}. ${monthReadings(point.result)}`);
+          circle.setAttribute('tabindex', '0');
+          markTargets.push({ element:circle, result:point.result, x:point.x, y:point.y });
+        }
+      }
+    }
+
+    for (const label of scoreLabels) {
+      const text = appendSvg(svg, 'text', { x:label.x, y:label.y, 'text-anchor':'middle', class:'monthly-conditions-score-label' });
+      text.textContent = label.value;
+      text.setAttribute('aria-hidden', 'true');
+    }
+
+    for (let month = 1; month <= 12; month += 1) {
+      const label = appendSvg(svg, 'text', { x:xAt(month), y:height - 18, 'text-anchor':'middle', class:'monthly-conditions-month' });
+      label.textContent = MONTHS[month - 1];
+    }
+
+    const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', visibility:'hidden', 'aria-hidden':'true', 'pointer-events':'none' });
+    const tooltipWidth = 286, tooltipHeight = 142;
+    appendSvg(tooltip, 'rect', { x:0, y:0, width:tooltipWidth, height:tooltipHeight, rx:9,
+      fill:'#20252d', 'fill-opacity':'.94' });
+    const tooltipTitle = appendSvg(tooltip, 'text', { x:14, y:23, class:'monthly-conditions-tooltip-title' });
+    const tooltipRows = [...SERIES, OVERALL_SCORE].map((series, index) => {
+      appendSvg(tooltip, 'rect', { x:14, y:35 + index * 20, width:13, height:13, rx:2, fill:series.color });
+      return appendSvg(tooltip, 'text', { x:36, y:47 + index * 20, class:'monthly-conditions-tooltip-row' });
+    });
+
+    function hideTooltip() {
+      tooltip.setAttribute('visibility', 'hidden');
+      tooltip.setAttribute('aria-hidden', 'true');
+    }
+    function showTooltip(result, targetX, targetY) {
+      tooltipTitle.textContent = MONTHS[result.month - 1];
+      SERIES.forEach((series, index) => {
+        const value = result.metrics[series.key].value;
+        tooltipRows[index].textContent = `${series.label}: ${formatValue(value, series.unit)}`;
+      });
+      tooltipRows[SERIES.length].textContent = `${OVERALL_SCORE.label}: ${result.overallScore == null ? 'No data' : `${result.overallScore}/100`}`;
+      const x = Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
+      const y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
+      tooltip.setAttribute('transform', `translate(${x} ${y})`);
+      tooltip.setAttribute('visibility', 'visible');
+      tooltip.setAttribute('aria-hidden', 'false');
+    }
+    for (const target of markTargets) {
+      target.element.addEventListener('pointerenter', () => showTooltip(target.result, target.x, target.y));
+      target.element.addEventListener('focus', () => showTooltip(target.result, target.x, target.y));
+      target.element.addEventListener('pointerleave', hideTooltip);
+      target.element.addEventListener('blur', hideTooltip);
+    }
+
+    plot.replaceChildren(svg);
+    plot.hidden = false;
+  }
+
+  async function load() {
+    if (started) return;
+    started = true;
+    const location = readCoordinates();
+    if (!location) {
+      status.textContent = 'Monthly estimates are not available for this location.';
+      return;
+    }
+    try {
+      await loadModules();
+      // Query modules use root-relative dataset paths; detail pages are nested under /dive-sites/.
+      const rootFetch = (input, options) => fetch(new URL(input, `${window.location.origin}/`), options);
+      const temperature = window.DiveAtlasTemperatureQuery.createTemperatureQuery({ fetchImpl:rootFetch });
+      const clarity = window.DiveAtlasWaterClarityQuery.createWaterClarityQuery({ fetchImpl:rootFetch });
+      const current = window.DiveAtlasRegionalCurrents.createCurrentView({ L:null, map:null, fetchImpl:rootFetch });
+      const waves = window.DiveAtlasWavesView.createWavesView({ L:null, map:null, fetchImpl:rootFetch });
+      const service = window.DiveAtlasConditionsService.createDiveConditionsService({
+        temperature, clarity, current, waves, model:window.DiveAtlasConditionsModel
+      });
+      const results = [];
+      // Bound concurrent monthly work: each query can fetch and decode four source datasets.
+      for (let start = 1; start <= 12; start += 3) {
+        const batch = await Promise.all(Array.from({ length:Math.min(3, 13 - start) }, (_, offset) =>
+          service.query(location, start + offset)));
+        results.push(...batch);
+      }
+      render(results.map(result => ({
+        month:result.month,
+        overallScore:result.suitability.score,
+        metrics:Object.fromEntries(SERIES.map(series => {
+          const metric = result.metrics[series.key];
+          return [series.key, { value:metric.value }];
+        }))
+      })));
+    } catch (error) {
+      console.warn('Monthly dive conditions could not be loaded:', error);
+      status.textContent = 'Monthly estimates could not be loaded. Please try again later.';
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      void load();
+    }, { rootMargin:'240px' });
+    observer.observe(chart);
+  } else void load();
+})();
