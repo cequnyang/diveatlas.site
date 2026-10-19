@@ -404,7 +404,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=119">
+  <link rel="stylesheet" href="/assets/seo.css?v=120">
 </head>
 <body{body_class_attr}>
 {body}
@@ -706,7 +706,7 @@ def generate_site_page(
 <main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}">
   <section class="site-hero" aria-labelledby="site-title">
     {photo_markup}
-    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1></div><p class="lead" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
+    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div><p class="lead" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
     </div>
   </section>
   {intro_details_markup}
