@@ -1,4 +1,12 @@
 (() => {
+  if (document.body.classList.contains('seo-site-detail-layout')) {
+    const syncViewportInlineSize = () => {
+      document.documentElement.style.setProperty('--viewport-inline-size', `${document.documentElement.clientWidth}px`);
+    };
+    syncViewportInlineSize();
+    window.addEventListener('resize', syncViewportInlineSize, { passive:true });
+  }
+
   const byId = id => document.getElementById(id);
   const languageSelect = byId('seoLanguageSelect');
   const languageButton = byId('seoLanguageButton');

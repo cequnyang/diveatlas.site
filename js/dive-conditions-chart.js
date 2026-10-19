@@ -141,6 +141,16 @@
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.setAttribute('role', 'group');
     svg.setAttribute('aria-label', 'Monthly water clarity and water temperature share a vertical scale; current speed and wave height share another. Overall dive-condition score is shown as bars on its own scale. Hover or focus a mark for all values in that month.');
+    const defs = appendSvg(svg, 'defs');
+    for (const axis of AXES.filter(item => item.series.length === 2)) {
+      const gradient = appendSvg(defs, 'linearGradient', {
+        id:`${axis.key}-axis-gradient`, x1:'0%', y1:'0%', x2:'100%', y2:'100%'
+      });
+      appendSvg(gradient, 'stop', { offset:'0%', 'stop-color':axis.series[0].color });
+      appendSvg(gradient, 'stop', { offset:'49%', 'stop-color':axis.series[0].color });
+      appendSvg(gradient, 'stop', { offset:'51%', 'stop-color':axis.series[1].color });
+      appendSvg(gradient, 'stop', { offset:'100%', 'stop-color':axis.series[1].color });
+    }
 
     // Pair the measures with similar numeric ranges to reduce axis clutter; tooltips retain each
     // measurement's original unit so the shared scale does not erase the underlying readings.
@@ -152,11 +162,22 @@
         const max = axes.get(key).max;
         const value = max * ratio;
         const onLeft = side === 'left';
+        if (series.length === 2) {
+          const label = appendSvg(svg, 'text', {
+            x:onLeft ? left - 32 : width - right + 32, y:y + 4,
+            'text-anchor':onLeft ? 'end' : 'start',
+            class:'monthly-conditions-axis-label', style:`fill:url(#${key}-axis-gradient)`
+          });
+          label.textContent = axisLabel(value, max);
+          label.setAttribute('aria-hidden', 'true');
+          return;
+        }
         series.forEach((item, seriesIndex) => {
           const seriesOffset = seriesIndex * 28;
+          const axisColumnGap = 21;
           const x = onLeft
-            ? left - 32 - column * 42 - seriesOffset
-            : width - right + 32 + column * 42 + seriesOffset;
+            ? left - 32 - column * axisColumnGap - seriesOffset
+            : width - right + 32 + column * axisColumnGap + seriesOffset;
           const label = appendSvg(svg, 'text', {
             x, y:y + 4, 'text-anchor':onLeft ? 'end' : 'start',
             class:'monthly-conditions-axis-label', style:`color:${item.color}`
@@ -167,19 +188,18 @@
       });
     }
 
-    const barWidth = Math.min(42, innerWidth / 18);
+    const barWidth = Math.min(42, innerWidth / 14);
     const markTargets = [];
-    const scoreLabels = [];
     for (const result of results) {
       const score = result.overallScore;
       if (score == null || !Number.isFinite(Number(score))) continue;
       const x = xAt(result.month), y = yAt(OVERALL_SCORE, score);
       const rect = appendSvg(svg, 'rect', { x:x - barWidth / 2, y, width:barWidth, height:top + innerHeight - y,
         rx:4, fill:OVERALL_SCORE.color, class:'monthly-conditions-bar' });
+      rect.dataset.month = String(result.month);
       rect.setAttribute('aria-label', `${MONTHS[result.month - 1]}. ${monthReadings(result)}`);
       rect.setAttribute('tabindex', '0');
       markTargets.push({ element:rect, result, x, y });
-      scoreLabels.push({ x, y:Math.max(top - 4, y - 6), value:String(Math.round(Number(score))) });
     }
 
     for (const series of SERIES) {
@@ -202,6 +222,7 @@
         for (const point of points) {
           const circle = appendSvg(svg, 'circle', { cx:point.x, cy:point.y, r:5.5, fill:series.color,
             stroke:'var(--panel-solid)', 'stroke-width':2, class:'monthly-conditions-point' });
+          circle.dataset.month = String(point.result.month);
           circle.setAttribute('aria-label', `${MONTHS[point.result.month - 1]}. ${monthReadings(point.result)}`);
           circle.setAttribute('tabindex', '0');
           markTargets.push({ element:circle, result:point.result, x:point.x, y:point.y });
@@ -209,18 +230,12 @@
       }
     }
 
-    for (const label of scoreLabels) {
-      const text = appendSvg(svg, 'text', { x:label.x, y:label.y, 'text-anchor':'middle', class:'monthly-conditions-score-label' });
-      text.textContent = label.value;
-      text.setAttribute('aria-hidden', 'true');
-    }
-
     for (let month = 1; month <= 12; month += 1) {
       const label = appendSvg(svg, 'text', { x:xAt(month), y:height - 18, 'text-anchor':'middle', class:'monthly-conditions-month' });
       label.textContent = MONTHS[month - 1];
     }
 
-    const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', visibility:'hidden', 'aria-hidden':'true', 'pointer-events':'none' });
+    const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', 'aria-hidden':'true', 'pointer-events':'none' });
     const tooltipWidth = 286, tooltipHeight = 142;
     appendSvg(tooltip, 'rect', { x:0, y:0, width:tooltipWidth, height:tooltipHeight, rx:9,
       fill:'#20252d', 'fill-opacity':'.94' });
@@ -231,7 +246,7 @@
     });
 
     function hideTooltip() {
-      tooltip.setAttribute('visibility', 'hidden');
+      tooltip.classList.remove('is-visible');
       tooltip.setAttribute('aria-hidden', 'true');
     }
     function showTooltip(result, targetX, targetY) {
@@ -244,14 +259,51 @@
       const x = Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
       const y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
       tooltip.setAttribute('transform', `translate(${x} ${y})`);
-      tooltip.setAttribute('visibility', 'visible');
+      tooltip.classList.add('is-visible');
       tooltip.setAttribute('aria-hidden', 'false');
     }
+    let activeMonth = null;
+    function setActiveMonth(month) {
+      if (activeMonth === month) return;
+      activeMonth = month;
+      for (const target of markTargets) {
+        target.element.classList.toggle('is-active', month != null && target.result.month === month);
+      }
+    }
+    const resultByMonth = new Map(results.map(result => [result.month, result]));
+    svg.addEventListener('pointermove', event => {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const chartPoint = point.matrixTransform(svg.getScreenCTM().inverse());
+      if (chartPoint.x < left || chartPoint.x > width - right || chartPoint.y < top || chartPoint.y > top + innerHeight) {
+        hideTooltip();
+        return;
+      }
+      const month = Math.max(1, Math.min(12, Math.round(1 + ((chartPoint.x - left) / innerWidth) * 11)));
+      const result = resultByMonth.get(month);
+      if (result) {
+        setActiveMonth(month);
+        showTooltip(result, chartPoint.x, chartPoint.y);
+      }
+    });
+    svg.addEventListener('pointerleave', () => {
+      hideTooltip();
+      setActiveMonth(null);
+    });
     for (const target of markTargets) {
-      target.element.addEventListener('pointerenter', () => showTooltip(target.result, target.x, target.y));
-      target.element.addEventListener('focus', () => showTooltip(target.result, target.x, target.y));
-      target.element.addEventListener('pointerleave', hideTooltip);
-      target.element.addEventListener('blur', hideTooltip);
+      target.element.addEventListener('pointerenter', () => {
+        setActiveMonth(target.result.month);
+        showTooltip(target.result, target.x, target.y);
+      });
+      target.element.addEventListener('focus', () => {
+        setActiveMonth(target.result.month);
+        showTooltip(target.result, target.x, target.y);
+      });
+      target.element.addEventListener('blur', () => {
+        hideTooltip();
+        setActiveMonth(null);
+      });
     }
 
     plot.replaceChildren(svg);
