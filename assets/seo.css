@@ -161,6 +161,7 @@ figure { margin: 0; }
   .monthly-conditions-axis-label, .monthly-conditions-month { font-size: 11px; }
 }
 .fact { display: grid; min-width: 0; grid-template-columns: minmax(100px, .35fr) minmax(0, 1fr); align-items: center; gap: 8px; padding: 3px 0; }
+.fact-coordinates, .fact-setting { grid-template-columns: 104px minmax(0, 1fr); column-gap: 20px; }
 .fact dt { color: var(--text-secondary); font-size: 12px; }
 .fact dd { min-width: 0; margin: 0; color: var(--text-primary); font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
 .fact dd a { text-decoration: none; }

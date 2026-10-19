@@ -404,7 +404,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=93">
+  <link rel="stylesheet" href="/assets/seo.css?v=94">
 </head>
 <body{body_class_attr}>
 {body}
@@ -451,7 +451,7 @@ def generate_site_page(
     region_entry = regions.get(place_key)
     facts: list[str] = []
     # Use the Commons thumbnail rendition: the source SVG embeds 19 PNGs and is about 4.3 MB.
-    facts.append(f'<div class="fact"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query={float(site["lat"]):.5f}%2C{float(site["lon"]):.5f}" target="_blank" rel="noopener noreferrer" aria-label="Open coordinates {html_text(coordinate_text)} in Google Maps" title="Open in Google Maps"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Maps</span></a></dd></div>')
+    facts.append(f'<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query={float(site["lat"]):.5f}%2C{float(site["lon"]):.5f}" target="_blank" rel="noopener noreferrer" aria-label="Open coordinates {html_text(coordinate_text)} in Google Maps" title="Open in Google Maps"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Maps</span></a></dd></div>')
     if site["depth_min"] or site["depth_max"]:
         depth = depth_min if same_recorded_depth else "–".join(value for value in (depth_min, depth_max) if value)
         label = "Recorded depth" if same_recorded_depth else "Recorded depth range"
@@ -469,7 +469,8 @@ def generate_site_page(
 
     for label, key in (("Setting", "setting"), ("Access", "access")):
         if site["categories"][key]:
-            facts.append(f'<div class="fact"><dt>{label}</dt><dd>{html_text(category_text(site["categories"][key]))}</dd></div>')
+            fact_class = " fact-setting" if label == "Setting" else ""
+            facts.append(f'<div class="fact{fact_class}"><dt>{label}</dt><dd>{html_text(category_text(site["categories"][key]))}</dd></div>')
     if site["categories"]["features"]:
         facts.append(f'<div class="fact"><dt>Features</dt><dd>{html_text(category_text(site["categories"]["features"]))}</dd></div>')
     intro_detail_parts = []
