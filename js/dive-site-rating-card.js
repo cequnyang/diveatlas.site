@@ -3,6 +3,8 @@
   if (!card) return;
 
   const score = card.querySelector('.site-photo-gallery-rating__score');
+  const trendPanel = card.querySelector('.site-photo-gallery-rating__trend');
+  const trendChart = card.querySelector('.site-photo-gallery-rating__trend-chart');
   const ratingRecommendations = document.querySelector('[data-recommendation-rating-candidates]');
   const location = { lat:Number(card.dataset.ratingLat), lng:Number(card.dataset.ratingLng) };
   if (!Number.isFinite(location.lat) || !Number.isFinite(location.lng)) return;
@@ -10,6 +12,99 @@
   const scoreLabels = Object.freeze({ Challenging:'Not ideal', Fair:'Okay', Good:'Good', Excellent:'Great' });
   const currentMonth = new Date().getMonth() + 1;
   const ratingSamples = new Map();
+  let trendPromise = null;
+  let ratingStore = null;
+
+  function renderRatingTrend(monthlyScores) {
+    const width = 300, height = 112, left = 18, right = 8, top = 8, bottom = 22;
+    const points = monthlyScores.map((value, index) => value == null ? null : ({
+      x:left + index * (width - left - right) / 11,
+      y:top + (100 - value) * (height - top - bottom) / 100,
+      value
+    }));
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Monthly DiveAtlas rating scores from January to December');
+    const ns = 'http://www.w3.org/2000/svg';
+    const line = document.createElementNS(ns, 'path');
+    let penDown = false;
+    line.setAttribute('d', points.map(point => {
+      if (!point) { penDown = false; return ''; }
+      const command = `${penDown ? 'L' : 'M'}${point.x},${point.y}`;
+      penDown = true;
+      return command;
+    }).join(' '));
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', 'rgb(55, 104, 213)');
+    line.setAttribute('stroke-width', '3');
+    line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('stroke-linejoin', 'round');
+    svg.append(line);
+    const labels = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+    points.forEach((point, index) => {
+      if (point) {
+        const marker = document.createElementNS(ns, 'circle');
+        marker.setAttribute('cx', point.x);
+        marker.setAttribute('cy', point.y);
+        marker.setAttribute('r', '3.5');
+        marker.setAttribute('fill', 'rgb(55, 104, 213)');
+        const title = document.createElementNS(ns, 'title');
+        title.textContent = `${labels[index]}: ${Math.round(point.value)}/100`;
+        marker.append(title);
+        svg.append(marker);
+        const value = document.createElementNS(ns, 'text');
+        value.setAttribute('x', point.x);
+        value.setAttribute('y', Math.max(top + 10, point.y - 7));
+        value.setAttribute('text-anchor', 'middle');
+        value.setAttribute('fill', 'rgb(55, 104, 213)');
+        value.setAttribute('font-size', '13.2');
+        value.setAttribute('font-weight', '700');
+        value.textContent = String(Math.round(point.value));
+        svg.append(value);
+      }
+      const month = document.createElementNS(ns, 'text');
+      month.setAttribute('x', left + index * (width - left - right) / 11);
+      month.setAttribute('y', height - 4);
+      month.setAttribute('text-anchor', 'middle');
+      month.setAttribute('fill', 'currentColor');
+      month.setAttribute('font-size', '9');
+      month.setAttribute('font-weight', '700');
+      month.textContent = labels[index];
+      svg.append(month);
+    });
+    trendChart.replaceChildren(svg);
+    trendChart.setAttribute('aria-label', monthlyScores.some(value => value != null)
+      ? 'Monthly DiveAtlas rating scores. Focus a point to read its month and score.'
+      : 'Monthly DiveAtlas rating scores are unavailable.');
+  }
+
+  async function loadRatingTrend(store) {
+    if (trendPromise) return trendPromise;
+    trendPromise = (async () => {
+      const values = [];
+      for (let start = 1; start <= 12; start += 3) {
+        const batch = await Promise.all(Array.from({ length:Math.min(3, 13 - start) }, (_, offset) =>
+          store.sample(location, start + offset).then(result => result?.score == null ? null : Number(result.score)).catch(() => null)));
+        values.push(...batch);
+      }
+      renderRatingTrend(values);
+    })().catch(error => {
+      trendPromise = null;
+      trendChart.textContent = 'Monthly scores are unavailable.';
+      console.warn('Monthly DiveAtlas ratings could not be calculated:', error);
+    });
+    return trendPromise;
+  }
+
+  card.addEventListener('pointerenter', () => { void loadRatingTrend(ratingStore); });
+  card.addEventListener('focusin', () => { void loadRatingTrend(ratingStore); });
+  card.addEventListener('click', event => {
+    if (event.pointerType === 'touch' || matchMedia('(hover: none)').matches) {
+      card.classList.toggle('show-rating-trend');
+      void loadRatingTrend(ratingStore);
+    }
+  });
 
   function sampleRating(candidate, store) {
     const lat = Number(candidate.lat);
@@ -99,10 +194,12 @@
     const baseUrl = new URL('/data/dive-experience-outlook/v3/', window.location.origin).href;
     const landMaskUrl = new URL('/datasets/dive-experience-land-mask-v1.bin.gz', window.location.origin).href;
     const store = outlook.createDataStore({ baseUrl, landMaskUrl });
+    ratingStore = store;
     refreshStaticCardRatings(store).catch(error => {
       console.warn('Dive-site recommendation ratings could not be calculated:', error);
     });
     const sample = await store.sample(location, currentMonth);
+    if (card.matches(':hover')) void loadRatingTrend(store);
 
     if (sample?.score == null) {
       score.textContent = 'No score available';
