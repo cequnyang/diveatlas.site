@@ -4729,7 +4729,8 @@
     .language-dropdown::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
     .language-dropdown::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     .language-dropdown .top-menu-dropdown-item { min-height: 34px; padding: 7px 10px; font-size: 13px; }
-    .language-dropdown .top-menu-dropdown-item[aria-checked="true"] { font-weight: 600; }
+    .language-dropdown .top-menu-dropdown-item[aria-checked="true"] { color: var(--primary); font-weight: 600; }
+    .language-dropdown .top-menu-dropdown-item[aria-checked="true"]::after { margin-left: auto; content: '✓'; }
     .language-page-header { display:none; }
     .top-menu-lang-select { display: none; }
 
