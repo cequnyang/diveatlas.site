@@ -81,22 +81,53 @@
     };
 
     try {
-      const response = await fetch(window.DiveAtlasDataAssets.url('data/dive-site-details/v1/recommendations.json'),
-        { signal:AbortSignal.timeout(8000) });
+      const response = await fetch(window.DiveAtlasDataAssets.url('data/dive-site-details/v2/recommendations.json'),
+        { signal:AbortSignal.timeout(15000) });
       if (!response.ok) throw new Error(`Recommendation catalog HTTP ${response.status}`);
       const payload = await response.json();
-      if (payload?.schema !== 'dive-site-recommendations-v1' || !Array.isArray(payload.sites)) {
+      let catalogSites;
+      if (payload?.schema === 'dive-site-recommendations-v1' && Array.isArray(payload.sites)) {
+        // Keep compatibility with releases that still publish one catalog file.
+        catalogSites = payload.sites;
+      } else if (payload?.schema === 'dive-site-recommendation-manifest-v1'
+        && Number.isSafeInteger(payload.site_count) && payload.site_count >= 0
+        && Array.isArray(payload.shards)) {
+        const shardNames = new Set();
+        const expectedCount = payload.shards.reduce((sum, shard) => {
+          if (!shard || !/^recommendations-\d{4}\.json$/.test(shard.file)
+            || shardNames.has(shard.file) || !Number.isSafeInteger(shard.site_count) || shard.site_count < 1) {
+            throw new Error('Invalid dive-site recommendation shard manifest');
+          }
+          shardNames.add(shard.file);
+          return sum + shard.site_count;
+        }, 0);
+        if (expectedCount !== payload.site_count) throw new Error('Recommendation shard counts do not match the manifest');
+        const shardPayloads = await Promise.all(payload.shards.map(async shard => {
+          const shardResponse = await fetch(window.DiveAtlasDataAssets.url(
+            `data/dive-site-details/v2/${shard.file}`), { signal:AbortSignal.timeout(15000) });
+          if (!shardResponse.ok) throw new Error(`Recommendation shard HTTP ${shardResponse.status}`);
+          const shardPayload = await shardResponse.json();
+          if (shardPayload?.schema !== 'dive-site-recommendations-v1'
+            || !Array.isArray(shardPayload.sites) || shardPayload.sites.length !== shard.site_count) {
+            throw new Error(`Invalid dive-site recommendation shard: ${shard.file}`);
+          }
+          return shardPayload.sites;
+        }));
+        catalogSites = shardPayloads.flat();
+        if (catalogSites.length !== payload.site_count) throw new Error('Recommendation shard contents do not match the manifest');
+      } else {
         throw new Error('Invalid dive-site recommendation catalog');
       }
-      const candidates = payload.sites.filter(candidate => candidate && uuid.test(candidate.site_id)
+      const candidates = catalogSites.filter(candidate => candidate && uuid.test(candidate.site_id)
         && candidate.site_id !== siteId && typeof candidate.name === 'string'
         && Number.isFinite(candidate.lat) && Number.isFinite(candidate.lon));
       const comparable = value => String(value || '').toLowerCase();
       const distanceSorted = values => values.sort((a, b) => recommendationDistance(site, a)
         - recommendationDistance(site, b) || a.name.localeCompare(b.name));
       const nearby = distanceSorted(candidates.filter(candidate => site.region
-        && comparable(candidate.country) === comparable(site.country)
-        && comparable(candidate.region) === comparable(site.region)));
+        ? comparable(candidate.country) === comparable(site.country)
+          && comparable(candidate.region) === comparable(site.region)
+        : site.country && comparable(candidate.country) === comparable(site.country)));
       const primaryFeatures = recommendationTokens(site.categories?.features || site.characteristics).slice(0, 2);
       const primaryFeatureKeys = new Set(primaryFeatures.map(feature => feature.toLowerCase()));
       const features = candidates.map(candidate => ({ candidate,
@@ -109,7 +140,9 @@
       const difficulty = recommendationDifficulty(site.difficulty);
       const difficultyMatches = distanceSorted(candidates.filter(candidate => difficulty
         && recommendationDifficulty(candidate.difficulty) === difficulty));
-      const ratingCandidates = distanceSorted([...candidates]);
+      // Ratings can be compared against the full catalog on demand; keep that
+      // large list out of the DOM attribute so it isn't serialized twice.
+      const ratingCandidates = candidates;
       const featureLabel = primaryFeatures.length
         ? `<span class="site-recommendations__feature-values"> · ${escape(primaryFeatures.join(' · '))}</span>` : '';
       const card = candidate => {
@@ -123,14 +156,9 @@
       };
       const group = (key, values, emptyText) => `<section class="site-recommendations__group" data-recommendation-group="${key}"><ul>${values.length
         ? values.slice(0, 3).map(card).join('') : `<li class="site-recommendations__empty">${emptyText}</li>`}</ul></section>`;
-      const ratingCandidatesMarkup = ratingCandidates.map(candidate => ({
-        name:candidate.name, slug:siteSlug(candidate.name), region:candidate.region,
-        lat:candidate.lat, lon:candidate.lon, photo:safeUrl(candidate.photo),
-        photo_credit:candidate.photo_credit, features:candidate.features || [],
-        detailUrl:detailUrl(candidate)
-      }));
-      const ratingGroup = `<section class="site-recommendations__group" data-recommendation-group="rating"><ul data-recommendation-rating-candidates="${escape(JSON.stringify(ratingCandidatesMarkup))}" aria-live="polite"><li class="site-recommendations__empty">Checking this month’s ratings…</li></ul></section>`;
-      aside.innerHTML = `<div class="site-recommendations__tabs" hidden><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="-1" aria-label="Scroll recommendation filters left"><span class="site-recommendations__scroll-glyph" aria-hidden="true">‹</span></button><div class="site-recommendations__tablist" role="tablist" aria-label="Recommendation filters" tabindex="0"><button type="button" role="tab" id="recommendation-tab-all" aria-controls="recommendation-panel" aria-selected="true" data-recommendation-tab="all">All</button><button type="button" role="tab" id="recommendation-tab-nearby" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="nearby" tabindex="-1">Nearby</button><button type="button" role="tab" id="recommendation-tab-rating" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="rating" tabindex="-1">Rating</button><button type="button" role="tab" id="recommendation-tab-features" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="features" tabindex="-1">Features${featureLabel}</button><button type="button" role="tab" id="recommendation-tab-difficulty" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="difficulty" tabindex="-1">Difficulty</button></div><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="1" aria-label="Scroll recommendation filters right"><span class="site-recommendations__scroll-glyph" aria-hidden="true">›</span></button></div><div class="site-recommendations__content" id="recommendation-panel" data-recommendation-content>${group('nearby', nearby, 'No nearby sites are available in this published set.')}${ratingGroup}${group('features', features, primaryFeatures.length ? 'No sites match the recorded features.' : 'No primary features are recorded for this site.')}${group('difficulty', difficultyMatches, difficulty ? 'No sites with the same recorded difficulty are available.' : 'Difficulty is not recorded for this site.')}</div>`;
+      const ratingGroup = '<section class="site-recommendations__group" data-recommendation-group="rating"><ul data-recommendation-rating-candidates aria-live="polite"><li class="site-recommendations__empty">Select Rating to compare this site with the full catalog.</li></ul></section>';
+      aside.innerHTML = `<div class="site-recommendations__tabs" hidden><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="-1" aria-label="Scroll recommendation filters left"><span class="site-recommendations__scroll-glyph" aria-hidden="true">‹</span></button><div class="site-recommendations__tablist" role="tablist" aria-label="Recommendation filters" tabindex="0"><button type="button" role="tab" id="recommendation-tab-all" aria-controls="recommendation-panel" aria-selected="true" data-recommendation-tab="all">All</button><button type="button" role="tab" id="recommendation-tab-nearby" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="nearby" tabindex="-1">Nearby</button><button type="button" role="tab" id="recommendation-tab-rating" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="rating" tabindex="-1">Rating</button><button type="button" role="tab" id="recommendation-tab-features" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="features" tabindex="-1">Features${featureLabel}</button><button type="button" role="tab" id="recommendation-tab-difficulty" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="difficulty" tabindex="-1">Difficulty</button></div><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="1" aria-label="Scroll recommendation filters right"><span class="site-recommendations__scroll-glyph" aria-hidden="true">›</span></button></div><div class="site-recommendations__content" id="recommendation-panel" data-recommendation-content>${group('nearby', nearby, 'No nearby sites are available in the full catalog.')}${ratingGroup}${group('features', features, primaryFeatures.length ? 'No sites match the recorded features.' : 'No primary features are recorded for this site.')}${group('difficulty', difficultyMatches, difficulty ? 'No sites with the same recorded difficulty are available.' : 'Difficulty is not recorded for this site.')}</div>`;
+      aside.querySelector('[data-recommendation-rating-candidates]').recommendationCandidates = ratingCandidates;
       aside.hidden = false;
     } catch (error) {
       console.warn('Dive-site recommendations could not be loaded; showing regional sites instead.', error);
@@ -246,7 +274,7 @@
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=1', '/js/seo-page-controls.js?v=10',
       '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=14',
-      '/js/dive-site-rating-card.js?v=13']) {
+      '/js/dive-site-rating-card.js?v=14']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }

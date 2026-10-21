@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import http.client
 import json
+import re
 import time
 import urllib.error
 import urllib.request
@@ -20,15 +22,35 @@ REQUIRED_STARTUP_DATA = (
     "data/terrain_manifest.js",
     "data/temperature/metadata.json",
 )
+DETAIL_RECORD_PATH_RE = re.compile(
+    r"data/dive-site-details/v1/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.json",
+    re.IGNORECASE,
+)
+RECOMMENDATIONS_MANIFEST_PATH = "data/dive-site-details/v2/recommendations.json"
+RECOMMENDATIONS_PREFIX = "data/dive-site-details/v2/"
+RECOMMENDATION_SHARD_RE = re.compile(r"recommendations-\d{4}\.json")
+# Must match the exporter so oversized shards cannot pass release verification.
+MAX_RECOMMENDATION_SHARD_BYTES = 512 * 1024
 
 
 def get(url: str, origin: str) -> tuple[int, dict[str, str], bytes]:
     request = urllib.request.Request(url, headers={"Origin": origin, "User-Agent": "DiveAtlas-release-check/1"})
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            return response.status, {key.lower(): value for key, value in response.headers.items()}, response.read()
-    except urllib.error.HTTPError as error:
-        return error.code, {key.lower(): value for key, value in error.headers.items()}, error.read()
+    last_error = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                body = response.read()
+                expected_bytes = response.headers.get("content-length")
+                if expected_bytes is not None and len(body) != int(expected_bytes):
+                    raise http.client.IncompleteRead(body, int(expected_bytes) - len(body))
+                return response.status, {key.lower(): value for key, value in response.headers.items()}, body
+        except urllib.error.HTTPError as error:
+            return error.code, {key.lower(): value for key, value in error.headers.items()}, error.read()
+        except (http.client.IncompleteRead, TimeoutError, urllib.error.URLError) as error:
+            last_error = error
+            if attempt < 2:
+                time.sleep(attempt + 1)
+    raise OSError(f"Could not read complete public asset after 3 attempts: {url}") from last_error
 
 
 def cors_allows_origin(headers: dict[str, str], origin: str) -> bool:
@@ -86,13 +108,14 @@ def main() -> None:
             inventory.hexdigest() != manifest.get("inventorySha256")):
         raise SystemExit("Public release manifest inventory totals or checksum are inconsistent.")
     by_path = {item.get("path"): item for item in files}
+    verified_recommendation_shards = []
     if args.require_site_details:
-        detail = next((item for item in files if item["path"].startswith("data/dive-site-details/v1/")
-                       and item["path"].endswith(".json")
-                       and item["path"] != "data/dive-site-details/v1/recommendations.json"), None)
+        detail = next((item for item in files if isinstance(item.get("path"), str)
+                       and DETAIL_RECORD_PATH_RE.fullmatch(item["path"])), None)
         if not detail:
             raise SystemExit("Publish per-site detail JSON before deploying the shared detail page.")
-        status, headers, payload = get(base + detail["path"], origin)
+        # Avoid edge copies left by an earlier write to an object intended to be immutable.
+        status, headers, payload = get(base + f"{detail['path']}?cacheBust={time.time_ns()}", origin)
         if status != 200 or not cors_allows_origin(headers, origin):
             raise SystemExit("The shared-page detail sample is not browser-readable.")
         if len(payload) != detail["bytes"] or hashlib.sha256(payload).hexdigest() != detail["sha256"]:
@@ -100,7 +123,7 @@ def main() -> None:
         record = json.loads(payload)
         if record.get("schema") != "dive-site-detail-v1" or not detail["path"].endswith(f"/{record.get('site_id')}.json"):
             raise SystemExit("The shared-page detail sample has an invalid schema or ID.")
-        recommendations = by_path.get("data/dive-site-details/v1/recommendations.json")
+        recommendations = by_path.get(RECOMMENDATIONS_MANIFEST_PATH)
         if not recommendations:
             raise SystemExit("Publish the dive-site recommendation catalog before deploying the shared detail page.")
         status, headers, payload = get(base + recommendations["path"], origin)
@@ -109,7 +132,49 @@ def main() -> None:
         if len(payload) != recommendations["bytes"] or hashlib.sha256(payload).hexdigest() != recommendations["sha256"]:
             raise SystemExit("The recommendation catalog differs from its release inventory.")
         catalog = json.loads(payload)
-        if catalog.get("schema") != "dive-site-recommendations-v1" or not isinstance(catalog.get("sites"), list):
+        if catalog.get("schema") == "dive-site-recommendations-v1" and isinstance(catalog.get("sites"), list):
+            # Older immutable releases used one catalog file; continue to verify them.
+            pass
+        elif (catalog.get("schema") == "dive-site-recommendation-manifest-v1"
+              and isinstance(catalog.get("site_count"), int) and catalog["site_count"] >= 0
+              and isinstance(catalog.get("shards"), list)):
+            shard_files = set()
+            declared_sites = 0
+            for shard in catalog["shards"]:
+                filename = shard.get("file") if isinstance(shard, dict) else None
+                site_count = shard.get("site_count") if isinstance(shard, dict) else None
+                byte_count = shard.get("bytes") if isinstance(shard, dict) else None
+                if (not isinstance(filename, str) or not RECOMMENDATION_SHARD_RE.fullmatch(filename)
+                        or filename in shard_files or not isinstance(site_count, int) or site_count < 1
+                        or not isinstance(byte_count, int) or byte_count < 1
+                        or byte_count > MAX_RECOMMENDATION_SHARD_BYTES):
+                    raise SystemExit("The recommendation manifest contains an invalid shard entry.")
+                shard_files.add(filename)
+                declared_sites += site_count
+                shard_path = f"{RECOMMENDATIONS_PREFIX}{filename}"
+                shard_item = by_path.get(shard_path)
+                if not shard_item:
+                    raise SystemExit(f"Recommendation shard is missing from the release inventory: {shard_path}")
+                stored_byte_count = shard_item.get("bytes")
+                # Earlier Windows text-mode exports added CR before the final LF; verify actual stored bytes below.
+                if (not isinstance(stored_byte_count, int) or stored_byte_count > MAX_RECOMMENDATION_SHARD_BYTES
+                        or stored_byte_count not in (byte_count, byte_count + 1)):
+                    raise SystemExit(f"Recommendation shard size metadata is inconsistent: {shard_path}")
+                status, headers, shard_payload = get(base + shard_path, origin)
+                if status != 200 or not cors_allows_origin(headers, origin):
+                    raise SystemExit(f"Recommendation shard is not browser-readable: {shard_path}")
+                if (len(shard_payload) != stored_byte_count or hashlib.sha256(shard_payload).hexdigest() != shard_item["sha256"]
+                        or len(shard_payload) > MAX_RECOMMENDATION_SHARD_BYTES):
+                    raise SystemExit(f"Recommendation shard differs from its release inventory: {shard_path}")
+                shard_catalog = json.loads(shard_payload)
+                if (shard_catalog.get("schema") != "dive-site-recommendations-v1"
+                        or not isinstance(shard_catalog.get("sites"), list)
+                        or len(shard_catalog["sites"]) != site_count):
+                    raise SystemExit(f"Recommendation shard has an invalid schema or site count: {shard_path}")
+                verified_recommendation_shards.append(shard_path)
+            if declared_sites != catalog["site_count"]:
+                raise SystemExit("Recommendation shard site counts do not match the manifest.")
+        else:
             raise SystemExit("The shared-page recommendation catalog has an invalid schema.")
     for required in REQUIRED_STARTUP_DATA:
         if required not in by_path:
@@ -157,6 +222,7 @@ def main() -> None:
     print(json.dumps({"release": manifest.get("release"), "fileCount": manifest.get("fileCount"),
                       "totalBytes": manifest.get("totalBytes"), "sampledAssets": [item["path"] for item in sampled],
                       "verifiedStartupAssets": verified_startup_assets,
+                      "verifiedRecommendationShards": verified_recommendation_shards,
                       "cors": "passed", "cacheHeaders": "passed",
                       "missingObject": "404" if not args.startup_assets_only else None}, indent=2))
 

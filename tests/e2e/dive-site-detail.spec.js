@@ -51,18 +51,23 @@ test('one shared shell renders two different IDs and keeps share/map links site-
 test('matches the static detail page recommendation filters and card links', async ({ page }) => {
   const nearbyId = '3a532e42-9890-4ea9-b239-0f5fbb836317';
   const featureId = '4a532e42-9890-4ea9-b239-0f5fbb836317';
-  await page.route('**/data/dive-site-details/v1/*.json', route => {
-    if (route.request().url().endsWith('/recommendations.json')) return route.fallback();
-    return route.fulfill({ json:record() });
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  const sites = [
+    { site_id:nearbyId, name:'Nearby reef', country:'Indonesia', region:'Raja Ampat', lat:-0.551, lon:130.71,
+      difficulty:'Beginner', features:['reef'], feature_values:['reef'], photo:null },
+    { site_id:featureId, name:'Feature wall', country:'Indonesia', region:'Other region', lat:-0.56, lon:130.72,
+      difficulty:'Advanced', features:['wall'], feature_values:['reef', 'wall'], photo:null }
+  ];
+  const shard = { schema:'dive-site-recommendations-v1', sites };
+  await page.route('**/data/dive-site-details/v2/*.json', route => {
+    if (route.request().url().endsWith('/recommendations.json')) return route.fulfill({ json:{
+      schema:'dive-site-recommendation-manifest-v1', site_count:sites.length,
+      shards:[{ file:'recommendations-0001.json', site_count:sites.length,
+        bytes:Buffer.byteLength(`${JSON.stringify(shard)}\n`) }]
+    } });
+    if (route.request().url().endsWith('/recommendations-0001.json')) return route.fulfill({ json:shard });
+    return route.fallback();
   });
-  await page.route('**/data/dive-site-details/v1/recommendations.json', route => route.fulfill({ json:{
-    schema:'dive-site-recommendations-v1', sites:[
-      { site_id:nearbyId, name:'Nearby reef', country:'Indonesia', region:'Raja Ampat', lat:-0.551, lon:130.71,
-        difficulty:'Beginner', features:['reef'], feature_values:['reef'], photo:null },
-      { site_id:featureId, name:'Feature wall', country:'Indonesia', region:'Other region', lat:-0.56, lon:130.72,
-        difficulty:'Advanced', features:['wall'], feature_values:['reef', 'wall'], photo:null }
-    ]
-  } }));
   await page.goto(`/dive-site.html?id=${FIRST}`);
   await expect(page.getByRole('tab', { name:'All' })).toBeVisible();
   await expect(page.locator('#relatedSites .site-recommendations__combined .site-recommendations__card')).toHaveCount(2);

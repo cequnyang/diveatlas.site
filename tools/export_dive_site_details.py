@@ -19,7 +19,9 @@ load_fallback_photos = seo.load_fallback_photos
 fallback_photo_for_site, row_value = seo.fallback_photo_for_site, seo.row_value
 
 DATA_PATH = Path("data/dive-site-details/v1")
-RECOMMENDATIONS_PATH = DATA_PATH / "recommendations.json"
+RECOMMENDATIONS_PATH = Path("data/dive-site-details/v2/recommendations.json")
+# 512 KiB keeps individual transfers moderate without creating per-site requests.
+MAX_RECOMMENDATION_SHARD_BYTES = 512 * 1024
 
 
 def public_records(rows, photos, summaries, fallback_base, fallback_photos):
@@ -84,25 +86,69 @@ def public_records(rows, photos, summaries, fallback_base, fallback_photos):
 
 
 def recommendation_catalog(candidates):
-    """Publish the same bounded, eligible candidate pool used by static SEO pages."""
+    """Publish every public detail record with enough identity and location data to recommend."""
     sites = []
     priority = {value: index for index, value in enumerate(seo.FALLBACK_FEATURE_PRIORITY)}
-    for site in candidates[:seo.DEFAULT_SITE_LIMIT]:
+    for site in candidates:
         feature_values = [part.strip() for part in re.split(
             r"\s*(?:\||,|;)\s*", str(site["categories"].get("features") or site.get("characteristics") or ""))
             if part.strip()]
         features = sorted(feature_values, key=lambda value: priority.get(
             re.sub(r"[^a-z0-9]+", "_", value.casefold()).strip("_"), len(priority)))
         photo = site.get("photo") or {}
-        sites.append({
-            "site_id": site["site_id"], "name": site["name"], "slug": site["slug"],
-            "lat": site["lat"], "lon": site["lon"], "country": site["country"],
-            "region": site["region"], "difficulty": site["difficulty"],
+        recommendation = {
+            "site_id": site["site_id"], "name": site["name"],
+            "lat": site["lat"], "lon": site["lon"],
             "features": features[:2], "feature_values": feature_values,
-            "photo": str(photo.get("src", "")) if isinstance(photo, dict) else "",
-            "photo_credit": str(photo.get("credit", "")) if isinstance(photo, dict) else "",
-        })
+        }
+        for key in ("country", "region", "difficulty"):
+            if site.get(key):
+                recommendation[key] = site[key]
+        if isinstance(photo, dict) and photo.get("src"):
+            recommendation["photo"] = str(photo["src"])
+        if isinstance(photo, dict) and photo.get("credit"):
+            recommendation["photo_credit"] = str(photo["credit"])
+        sites.append(recommendation)
     return {"schema": "dive-site-recommendations-v1", "sites": sites}
+
+
+def split_recommendation_catalog(catalog, max_bytes=MAX_RECOMMENDATION_SHARD_BYTES):
+    """Split the full catalog into independently cacheable, size-bounded JSON files."""
+    schema = catalog["schema"]
+    prefix = '{"schema":' + json.dumps(schema) + ',"sites":['
+    suffix = "]}\n"
+    base_size = len(prefix.encode("utf-8")) + len(suffix.encode("utf-8"))
+    groups, current, current_size = [], [], base_size
+    for site in catalog["sites"]:
+        serialized = json.dumps(site, ensure_ascii=False, separators=(",", ":"))
+        serialized_size = len(serialized.encode("utf-8"))
+        next_size = current_size + (1 if current else 0) + serialized_size
+        if current and next_size > max_bytes:
+            groups.append(current)
+            current, current_size = [], base_size
+            next_size = current_size + serialized_size
+        if next_size > max_bytes:
+            raise ValueError(f"Recommendation record exceeds the {max_bytes}-byte shard limit.")
+        current.append(serialized)
+        current_size = next_size
+    if current:
+        groups.append(current)
+
+    shard_payloads, shards = {}, []
+    for index, group in enumerate(groups, start=1):
+        filename = f"recommendations-{index:04d}.json"
+        payload = prefix + ",".join(group) + suffix
+        payload_bytes = len(payload.encode("utf-8"))
+        if payload_bytes > max_bytes:
+            raise ValueError(f"Generated recommendation shard exceeds the {max_bytes}-byte limit.")
+        shard_payloads[filename] = payload
+        shards.append({"file": filename, "site_count": len(group), "bytes": payload_bytes})
+    manifest = {
+        "schema": "dive-site-recommendation-manifest-v1",
+        "site_count": len(catalog["sites"]),
+        "shards": shards,
+    }
+    return manifest, shard_payloads
 
 
 def export(output: Path) -> dict:
@@ -136,16 +182,26 @@ def export(output: Path) -> dict:
         ][:8] if record["region"] else []
         (destination / f"{record['site_id']}.json").write_text(
             json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    catalog = recommendation_catalog(selected)
+    # SEO pages intentionally stay capped; recommendations use the complete
+    # public detail set so they don't inherit that search-indexing limit.
+    catalog = recommendation_catalog(records)
+    catalog_manifest, shard_payloads = split_recommendation_catalog(catalog)
+    recommendation_destination = output / RECOMMENDATIONS_PATH.parent
+    recommendation_destination.mkdir(parents=True, exist_ok=True)
+    for filename, payload in shard_payloads.items():
+        (recommendation_destination / filename).write_bytes(payload.encode("utf-8"))
     (output / RECOMMENDATIONS_PATH).write_text(
-        json.dumps(catalog,
-                   ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        json.dumps(catalog_manifest, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     # Remove stale records only inside this exporter-owned version directory.
     current = {record["site_id"] for record in records}
     for previous in destination.glob("*.json"):
         if UUID_RE.fullmatch(previous.stem) and previous.stem not in current:
             previous.unlink()
+    for previous in recommendation_destination.glob("recommendations-*.json"):
+        if re.fullmatch(r"recommendations-\d{4}\.json", previous.name) and previous.name not in shard_payloads:
+            previous.unlink()
     return {"site_count": len(records), "recommendation_site_count": len(catalog["sites"]),
+            "recommendation_shard_count": len(shard_payloads),
             "directory": str(destination)}
 
 

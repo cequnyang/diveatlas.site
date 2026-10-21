@@ -90,6 +90,7 @@ try {
             $_ -notin $appendableStartupDataPaths -and
             $_ -notlike 'data/temperature/query/v2/*' -and
             $_ -notlike 'data/dive-site-details/v1/*.json' -and
+            $_ -notmatch '^data/dive-site-details/v2/recommendations(?:-\d{4})?\.json$' -and
             $_ -notlike 'data/water_clarity/query/v2/*'
         }).Count -gt 0) {
             throw 'Append mode accepts only designated startup data, per-site detail records, or versioned environmental query assets.'

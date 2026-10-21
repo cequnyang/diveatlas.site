@@ -2,9 +2,17 @@
 
 `/dive-site.html?id=<site-name>-<persistent UUID>` displays a dive site using one shared HTML
 shell and a public JSON record. The shell, CSS and browser scripts live beside
-`index.html` in GitHub. Production detail records and the bounded recommendation
-catalog live in the existing R2 data release, outside GitHub Pages. No new
-Worker or database is required.
+`index.html` in GitHub. Production detail records and the full public recommendation
+catalog live in the existing R2 data release, outside GitHub Pages. The catalog
+uses a small manifest and 512 KiB maximum JSON shards; the browser loads every
+shard before ranking so results still cover the full catalog. No new
+Worker or database is required. The refreshed catalog uses a versioned `/v2/`
+path so it can be added to the active immutable R2 release without replacing the
+old catalog or detail records.
+
+At the current catalog size, this produces roughly 14 shard requests. The browser
+waits for all listed shards before ranking, so the full recommendation catalog
+remains available to each filter.
 
 This implements the browser-rendered option discussed in the design. A browser
 Web Worker is unnecessary: ordinary JavaScript fetches the record and builds the
@@ -30,10 +38,13 @@ the displayed site name. `npm run build:auth-preview` also generates and bundles
 The page retains existing photo preview, language and theme controls, unit
 conversion, sharing, monthly conditions and rating modules. Its recommendation
 rail uses the same All, Nearby, Rating, Features and Difficulty filters as the
-generated `/dive-sites/<slug>/` pages. The catalog contains only the bounded
-eligible site set used by those pages; the browser applies those same groups and
-uses the existing rating sampler for Rating results. If the catalog is
-unavailable, the detail record's small regional list remains as a fallback.
+generated `/dive-sites/<slug>/` pages. The catalog includes every public detail
+record with a non-empty name, unique stable ID and valid coordinates, independent
+of the SEO page limit and its stricter content threshold. The exporter splits this
+catalog into size-bounded shards so no recommendation file becomes a single large
+download. The browser ranks category recommendations across that full catalog and
+runs the more expensive Rating comparison only when that filter is opened. If the
+catalog is unavailable, the detail record's small regional list remains as a fallback.
 These page modules start after the record arrives because they inspect the DOM
 at startup. Missing fields are omitted, illustrative photos remain labeled, and
 failed detail requests present a retry action.
@@ -46,7 +57,7 @@ release ID and asset URL with the active release configuration.
 
 ```powershell
 npm run build:site-details
-python tools/stage_data_release.py --release RELEASE_ID --dive-site-details-only
+python tools/stage_data_release.py --release RELEASE_ID --dive-site-recommendations-only
 ./tools/upload_r2_data_release.ps1 `
   -ReleaseDirectory data/.build/r2/releases/RELEASE_ID `
   -AssetBaseUrl https://assets.diveatlas.site/releases/RELEASE_ID/ `
@@ -64,10 +75,10 @@ release or a new versioned data directory and matching browser path.
 
 After public data verification passes, deploy the GitHub Pages changes using the
 existing workflow and its `DATA_ASSET_BASE_URL` variable. The deployment check
-requires both a detail record and the shared recommendation catalog in the release
-so a page-only deployment cannot silently enable links or filters without their
-data. R2 must allow anonymous cross-origin GET requests from the site; no browser
-credentials are sent.
+requires both a detail record and the shared recommendation manifest with every
+listed shard in the release so a page-only deployment cannot silently enable links
+or filters without their data. R2 must allow anonymous cross-origin GET requests
+from the site; no browser credentials are sent.
 
 The exporter shares the map/static generator's photo and published-summary
 selection. It writes an explicit allowlist of public fields, excluding internal

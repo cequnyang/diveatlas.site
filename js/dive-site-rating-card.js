@@ -13,6 +13,7 @@
   trendHandle.innerHTML = '<span aria-hidden="true"></span>';
   trendPanel.append(trendHandle);
   const ratingRecommendations = document.querySelector('[data-recommendation-rating-candidates]');
+  const ratingTab = document.querySelector('[data-recommendation-tab="rating"]');
   const location = { lat:Number(card.dataset.ratingLat), lng:Number(card.dataset.ratingLng) };
   if (!Number.isFinite(location.lat) || !Number.isFinite(location.lng)) return;
 
@@ -111,8 +112,11 @@
   const scoreLabels = Object.freeze({ Challenging:'Not ideal', Fair:'Okay', Good:'Good', Excellent:'Great' });
   const currentMonth = new Date().getMonth() + 1;
   const ratingSamples = new Map();
+  const siteSlug = name => String(name || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'dive-site';
   let trendPromise = null;
   let ratingStore = null;
+  let currentRecommendationScore = NaN;
   let trendScores = null;
 
   function renderRatingTrend(monthlyScores) {
@@ -280,54 +284,77 @@
       ratingRecommendations.replaceChildren(item);
       return;
     }
+    if (ratingRecommendations.dataset.status === 'loading' || ratingRecommendations.dataset.status === 'ready') return;
+    ratingRecommendations.dataset.status = 'loading';
     let candidates = [];
     try {
-      candidates = JSON.parse(ratingRecommendations.dataset.recommendationRatingCandidates || '[]');
+      candidates = ratingRecommendations.recommendationCandidates
+        || JSON.parse(ratingRecommendations.dataset.recommendationRatingCandidates || '[]');
     } catch (error) {
       console.warn('Dive-site rating recommendations could not be read:', error);
     }
+    const status = document.createElement('li');
+    status.className = 'site-recommendations__empty';
+    status.textContent = 'Comparing current ratings across all dive sites…';
+    ratingRecommendations.replaceChildren(status);
 
     (async () => {
       const matches = [];
-      for (const [index, candidate] of candidates.entries()) {
-        if (!Number.isFinite(candidate.lat) || !Number.isFinite(candidate.lon)) continue;
-        try {
-          const result = await sampleRating(candidate, store);
-          if (result != null && Math.abs(result - currentScore) <= 5) {
-            matches.push({ candidate, score:Math.round(result), difference:Math.abs(result - currentScore) });
+      const batchSize = 128;
+      for (let start = 0; start < candidates.length; start += batchSize) {
+        const batch = candidates.slice(start, start + batchSize);
+        const sampled = await Promise.all(batch.map(async candidate => {
+          if (!Number.isFinite(candidate.lat) || !Number.isFinite(candidate.lon)) return null;
+          try {
+            const result = await sampleRating(candidate, store);
+            return result != null && Math.abs(result - currentScore) <= 5
+              ? { candidate, score:Math.round(result), difference:Math.abs(result - currentScore) }
+              : null;
+          } catch (_) {
+            // A candidate with unavailable environmental data should not block the other matches.
+            return null;
           }
-        } catch (_) {
-          // A candidate with unavailable environmental data should not block the other matches.
-        }
-        if ((index + 1) % 8 === 0) await new Promise(resolve => window.setTimeout(resolve, 0));
+        }));
+        matches.push(...sampled.filter(Boolean));
+        matches.sort((a, b) => a.difference - b.difference || a.candidate.name.localeCompare(b.candidate.name));
+        matches.length = Math.min(matches.length, 3);
+        await new Promise(resolve => window.setTimeout(resolve, 0));
       }
 
-      matches.sort((a, b) => a.difference - b.difference || a.candidate.name.localeCompare(b.candidate.name));
       const fragment = document.createDocumentFragment();
       if (matches.length) {
         for (const { candidate, score: candidateScore } of matches.slice(0, 3)) {
           const cardCandidate = {
             ...candidate,
             photoCredit:candidate.photo_credit,
-            features:candidate.features
+            features:candidate.features,
+            detailUrl:`/dive-site.html?id=${encodeURIComponent(`${siteSlug(candidate.name)}-${candidate.site_id}`)}`
           };
           fragment.append(window.DiveAtlasRecommendationCards.create(cardCandidate, candidateScore));
         }
       } else {
         const item = document.createElement('li');
         item.className = 'site-recommendations__empty';
-        item.textContent = 'No sites within 5 points in this published set.';
+        item.textContent = 'No sites within 5 points in the full dive-site catalog.';
         fragment.append(item);
       }
       ratingRecommendations.replaceChildren(fragment);
+      ratingRecommendations.dataset.status = 'ready';
     })().catch(error => {
       console.warn('Dive-site rating recommendations could not be calculated:', error);
       const item = document.createElement('li');
       item.className = 'site-recommendations__empty';
       item.textContent = 'Similar ratings are unavailable right now.';
       ratingRecommendations.replaceChildren(item);
+      ratingRecommendations.dataset.status = 'error';
     });
   }
+
+  ratingTab?.addEventListener('click', () => {
+    if (ratingStore && Number.isFinite(currentRecommendationScore)) {
+      showRatingRecommendations(currentRecommendationScore, ratingStore);
+    }
+  });
 
   async function loadRating() {
     await import('./dive-experience-outlook-map.js?v=7');
@@ -362,12 +389,22 @@
     level.textContent = scoreLabels[sample.label] || sample.label || 'Rated';
     score.replaceChildren(value, level);
     score.dataset.status = 'ready';
-    showRatingRecommendations(sample.score, store);
+    currentRecommendationScore = sample.score;
+    if (ratingTab?.getAttribute('aria-selected') === 'true') {
+      showRatingRecommendations(sample.score, store);
+    }
   }
 
   loadRating().catch(error => {
     console.warn('Dive-site rating card could not be loaded:', error);
     score.textContent = 'Rating unavailable';
     score.dataset.status = 'unavailable';
+    if (ratingRecommendations) {
+      const item = document.createElement('li');
+      item.className = 'site-recommendations__empty';
+      item.textContent = 'Similar ratings are unavailable right now.';
+      ratingRecommendations.replaceChildren(item);
+      ratingRecommendations.dataset.status = 'error';
+    }
   });
 })();
