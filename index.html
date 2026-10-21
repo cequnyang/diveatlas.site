@@ -1621,6 +1621,9 @@
     .dive-popup-location__region:focus-visible,
     .dive-conditions-popup-region:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
     .dive-location-coordinate-tooltip { position:absolute; z-index:20; top:calc(100% + 4px); left:0; max-width:min(240px,calc(100vw - 80px)); padding:5px 8px; border:1px solid var(--line-soft); border-radius:6px; background:var(--panel-solid); color:var(--text); box-shadow:0 5px 16px rgb(0 0 0 / 18%); font-size:10px; font-variant-numeric:tabular-nums; line-height:1.25; white-space:nowrap; }
+    /* Keep the coordinate popover above the adjacent rating row without changing popup layout. */
+    .dive-site-popup .dive-popup-location { z-index: 2; }
+    .dive-site-popup .dive-popup-rating { position: relative; z-index: 1; }
     .dive-site-popup .dive-popup-location + .dive-popup-summary {
       padding-top: 4px;
       border-top: 1px solid var(--line-soft);
@@ -1637,6 +1640,45 @@
       font-weight: 650;
     }
     .dive-popup-summary p { margin: 0; }
+    .dive-popup-detail-link,
+    .dive-popup-detail-link:visited,
+    .dive-popup-detail-link:hover,
+    .dive-popup-detail-link:active,
+    .dive-popup-detail-link:focus-visible { color: rgb(55, 104, 213); text-decoration: none; }
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link,
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link:visited,
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link:hover,
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link:active,
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link:focus-visible {
+      color: rgb(55, 104, 213);
+      text-decoration: none;
+    }
+    .dive-popup-detail-link:focus-visible { border-radius: 3px; outline: 2px solid var(--layers-focus-ring); outline-offset: 2px; }
+    .dive-popup-summary .dive-popup-detail-link,
+    .dive-popup-summary .dive-popup-detail-link:visited,
+    .dive-popup-summary .dive-popup-detail-link:hover,
+    .dive-popup-summary .dive-popup-detail-link:active,
+    .dive-popup-summary .dive-popup-detail-link:focus-visible {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .dive-popup-summary__content { flex: 1 1 auto; min-width: 0; }
+    .dive-popup-summary .dive-popup-detail-link .dive-popup-summary__content p { color: var(--text); }
+    .dive-popup-summary .dive-popup-detail-link::after {
+      content: '';
+      flex: 0 0 7px;
+      width: 7px;
+      height: 7px;
+      margin-left: 2px;
+      margin-inline-end: 8.5px;
+      border-top: 2px solid var(--muted);
+      border-right: 2px solid var(--muted);
+      transform: rotate(45deg);
+    }
+    [dir="rtl"] .dive-popup-summary .dive-popup-detail-link::after { transform: rotate(225deg); }
 
     .bio-popup-source,
     .dive-popup-source--compact {
@@ -11099,6 +11141,15 @@ ZSD·2016–2025</span></span>
   function getDiveSiteStableId(site) {
     if (Array.isArray(site)) return String(site[12] || '').trim();
     return String(site?.id ?? site?.siteId ?? '').trim();
+  }
+
+  function getDiveSiteDetailPageUrl(site) {
+    const siteId = getDiveSiteStableId(site);
+    const sourceName = String(Array.isArray(site) ? site[0] || '' : site?.name || '').trim();
+    if (!siteId || !sourceName) return '';
+    const slug = sourceName.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'dive-site';
+    return `/dive-site.html?id=${encodeURIComponent(`${slug}-${siteId}`)}`;
   }
 
   function getDiveSitePhoto(site) {
@@ -28315,9 +28366,14 @@ function closeShareDialog() {
         if (summary) {
           summarySlot.hidden = false;
           summarySlot.className = 'dive-popup-summary dive-popup-summary-slot';
-          summarySlot.innerHTML =
+          const detailsHref = getDiveSiteDetailPageUrl(site);
+          const summaryContent =
+            `<div class="dive-popup-summary__content">` +
             `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
-            `<p>${escapeHtml(summary.description)}</p>`;
+            `<p>${escapeHtml(summary.description)}</p></div>`;
+          summarySlot.innerHTML = detailsHref
+            ? `<a class="dive-popup-detail-link" href="${detailsHref}" target="_blank" rel="noopener noreferrer">${summaryContent}</a>`
+            : summaryContent;
         } else {
           summarySlot.hidden = true;
           summarySlot.replaceChildren();
@@ -29016,8 +29072,12 @@ function closeShareDialog() {
         `<div class="dive-popup-body">`
       );
     }
+    const detailsHref = getDiveSiteDetailPageUrl(site);
+    const linkedSiteName = detailsHref
+      ? `<a class="dive-popup-detail-link" href="${detailsHref}" target="_blank" rel="noopener noreferrer">${escapeHtml(name)}</a>`
+      : escapeHtml(name);
     rows.push(
-      `<div class="bio-popup-title">${escapeHtml(name)}${diveSiteNameBadge(localizedName)}</div>`,
+      `<div class="bio-popup-title">${linkedSiteName}${diveSiteNameBadge(localizedName)}</div>`,
       ...(originalName && originalName !== name
         ? [`<div class="dive-site-name-original">${escapeHtml(originalName)}</div>`]
         : []),
@@ -29033,8 +29093,10 @@ function closeShareDialog() {
     if (siteSummary) {
       rows.push(
         `<section class="dive-popup-summary dive-popup-summary-slot" data-loaded="true">` +
+        `<a class="dive-popup-detail-link" href="${detailsHref}" target="_blank" rel="noopener noreferrer">` +
+        `<div class="dive-popup-summary__content">` +
         `<div class="dive-popup-summary__heading">${escapeHtml(t('diveSummary'))}</div>` +
-        `<p>${escapeHtml(siteSummary.description)}</p>` +
+        `<p>${escapeHtml(siteSummary.description)}</p></div></a>` +
         `</section>`
       );
     } else {

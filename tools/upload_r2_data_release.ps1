@@ -89,9 +89,10 @@ try {
         if ($extensionPaths.Count -eq 0 -or @($extensionPaths | Where-Object {
             $_ -notin $appendableStartupDataPaths -and
             $_ -notlike 'data/temperature/query/v2/*' -and
+            $_ -notlike 'data/dive-site-details/v1/*.json' -and
             $_ -notlike 'data/water_clarity/query/v2/*'
         }).Count -gt 0) {
-            throw 'Append mode accepts only designated startup data objects or versioned environmental query assets.'
+            throw 'Append mode accepts only designated startup data, per-site detail records, or versioned environmental query assets.'
         }
 
         $remoteManifestPath = Join-Path $env:TEMP ("diveatlas-r2-manifest-$([Guid]::NewGuid().ToString('N')).json")

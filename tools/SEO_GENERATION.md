@@ -1,5 +1,9 @@
 # DiveAtlas dive-site detail pages
 
+For the shared browser-rendered page (`dive-site.html?id=<UUID>`) and per-site R2
+data publication, see [Shared dive-site detail page](../docs/shared-dive-site-details.md).
+The generator below continues to maintain existing indexed pages during migration.
+
 The generator publishes factual HTML detail pages for DiveAtlas dive sites, plus browseable region indexes. Each page is ordinary server-readable HTML with a canonical URL and useful links; it does not load the map application or its large datasets. This provides a direct landing page for people searching for a named dive site and a calmer, focused way to review the recorded facts before opening the map.
 
 ## Generate the pilot

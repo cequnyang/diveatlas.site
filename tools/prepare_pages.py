@@ -73,6 +73,7 @@ R2_STARTUP_MANIFESTS = (
     Path("datasets/terrain_manifest.js"),
 )
 LOCAL_PREVIEW_ASSET_PATHS = (
+    Path("data/dive-site-details"),
     Path("datasets/dive-sites.js"),
     Path("datasets/dive-site-search-locations.json.gz"),
     Path("datasets/dive-site-summaries.json.gz"),
@@ -83,6 +84,7 @@ R2_STARTUP_DATA_FILES = (
 )
 R2_STARTUP_DATA_ASSETS = R2_STARTUP_MANIFESTS + R2_STARTUP_DATA_FILES
 EXTERNAL_DATA_ROOTS = {
+    Path("data/dive-site-details"),
     Path("data/bathymetry_tiles"),
     # Local builds bundle these ignored working copies; production builds omit
     # them because DATA_ASSET_BASE_URL routes requests to the R2 release.
@@ -374,6 +376,14 @@ def main() -> None:
         raise SystemExit("The build output must be the repository's _site directory")
 
     started_at = time.perf_counter()
+    # Detail records stay in R2 in production, but a plain local preview needs
+    # the same per-ID contract without cloud credentials or a Worker runtime.
+    if data_asset_base_url is None:
+        if __package__:
+            from .export_dive_site_details import export as export_dive_site_details
+        else:
+            from export_dive_site_details import export as export_dive_site_details
+        export_dive_site_details(ROOT)
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)

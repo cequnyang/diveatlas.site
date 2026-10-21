@@ -65,7 +65,10 @@ def selected_files(
     dive_site_search_assets_only: bool = False,
     dive_site_summary_only: bool = False,
     environmental_query_only: bool = False,
+    dive_site_details_only: bool = False,
 ) -> list[Path]:
+    if dive_site_details_only:
+        return sorted(path.relative_to(ROOT) for path in (ROOT / "data/dive-site-details/v1").glob("*.json"))
     if dive_site_catalog_only:
         catalog = Path("datasets/dive-sites.js")
         return [catalog] if (ROOT / catalog).is_file() else []
@@ -115,6 +118,7 @@ def stage(
     dive_site_search_assets_only: bool = False,
     dive_site_summary_only: bool = False,
     environmental_query_only: bool = False,
+    dive_site_details_only: bool = False,
 ) -> dict:
     if not RELEASE_ID_RE.fullmatch(release_id):
         raise ValueError("Release ID must be 1-64 letters, digits, dots, underscores, or hyphens and start with a letter or digit.")
@@ -122,7 +126,7 @@ def stage(
     if destination.exists():
         raise FileExistsError(f"Refusing to overwrite immutable data release: {destination}")
     if sum((manifests_only, temperature_metadata_only, dive_site_catalog_only,
-            dive_site_search_assets_only, dive_site_summary_only, environmental_query_only)) > 1:
+            dive_site_search_assets_only, dive_site_summary_only, environmental_query_only, dive_site_details_only)) > 1:
         raise ValueError("Choose only one R2 extension mode.")
     files = selected_files(
         manifests_only=manifests_only,
@@ -131,6 +135,7 @@ def stage(
         dive_site_search_assets_only=dive_site_search_assets_only,
         dive_site_summary_only=dive_site_summary_only,
         environmental_query_only=environmental_query_only,
+        dive_site_details_only=dive_site_details_only,
     )
     if not files:
         raise ValueError("No external production data files were found to stage.")
@@ -154,7 +159,7 @@ def stage(
             sources = [(Path("data/dive-site-summaries-v5.json.gz"), ROOT / "datasets/dive-site-summaries.json.gz")]
         else:
             sources = [(release_path_for_source(relative), ROOT / relative) for relative in files]
-        if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only and not dive_site_summary_only and not environmental_query_only:
+        if not manifests_only and not temperature_metadata_only and not dive_site_catalog_only and not dive_site_search_assets_only and not dive_site_summary_only and not environmental_query_only and not dive_site_details_only:
             sources.extend(
                 (Path(relative), resolve_r2_source_file(relative, source_data_asset_base_url))
                 for relative in R2_SOURCE_DATA_PATHS
@@ -261,6 +266,10 @@ def main() -> None:
         action="store_true",
         help="stage only the versioned v2 temperature and water-clarity query assets for additive review",
     )
+    parser.add_argument(
+        "--dive-site-details-only", action="store_true",
+        help="stage only shared-page per-site JSON for additive publication",
+    )
     args = parser.parse_args()
     print(json.dumps(stage(args.release, args.releases_directory, args.source_data_asset_base_url,
                            manifests_only=args.manifests_only,
@@ -268,7 +277,8 @@ def main() -> None:
                            dive_site_catalog_only=args.dive_site_catalog_only,
                            dive_site_search_assets_only=args.dive_site_search_assets_only,
                            dive_site_summary_only=args.dive_site_summary_only,
-                           environmental_query_only=args.environmental_query_only), indent=2))
+                           environmental_query_only=args.environmental_query_only,
+                           dive_site_details_only=args.dive_site_details_only), indent=2))
 
 
 if __name__ == "__main__":

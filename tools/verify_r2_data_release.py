@@ -44,6 +44,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--asset-base-url", required=True, help="Public immutable release URL ending in /releases/<id>/")
     parser.add_argument("--app-origin", required=True, help="Exact HTTPS origin of the deployed app")
+    parser.add_argument("--require-site-details", action="store_true", help="Require and verify a shared-page detail record")
     parser.add_argument(
         "--startup-assets-only",
         "--startup-manifests-only",
@@ -85,6 +86,19 @@ def main() -> None:
             inventory.hexdigest() != manifest.get("inventorySha256")):
         raise SystemExit("Public release manifest inventory totals or checksum are inconsistent.")
     by_path = {item.get("path"): item for item in files}
+    if args.require_site_details:
+        detail = next((item for item in files if item["path"].startswith("data/dive-site-details/v1/")
+                       and item["path"].endswith(".json")), None)
+        if not detail:
+            raise SystemExit("Publish per-site detail JSON before deploying the shared detail page.")
+        status, headers, payload = get(base + detail["path"], origin)
+        if status != 200 or not cors_allows_origin(headers, origin):
+            raise SystemExit("The shared-page detail sample is not browser-readable.")
+        if len(payload) != detail["bytes"] or hashlib.sha256(payload).hexdigest() != detail["sha256"]:
+            raise SystemExit("The shared-page detail sample differs from its release inventory.")
+        record = json.loads(payload)
+        if record.get("schema") != "dive-site-detail-v1" or not detail["path"].endswith(f"/{record.get('site_id')}.json"):
+            raise SystemExit("The shared-page detail sample has an invalid schema or ID.")
     for required in REQUIRED_STARTUP_DATA:
         if required not in by_path:
             raise SystemExit(f"Public release inventory omits required startup asset: {required}")

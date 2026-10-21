@@ -57,3 +57,21 @@ playwright-report/
 /workers/auth/.wrangler/
 
 # Runtime, generated, and research data stay local; published browser datasets live under datasets/ or the external release.
+# Per-site public records are generated for local previews and R2 publication.
+/data/dive-site-details/
+
+# Keep this feature's reproducible source even in checkouts that locally ignore
+# authoring directories; continue excluding unrelated local tooling and tests.
+!/tools/
+/tools/*
+!/tools/export_dive_site_details.py
+!/docs/shared-dive-site-details.md
+!/tests/
+/tests/*
+!/tests/e2e/
+/tests/e2e/*
+!/tests/e2e/dive-site-detail.spec.js
+!/tests/unit/
+/tests/unit/*
+!/tests/unit/test_dive_site_details.py
+!/tests/unit/dive-conditions-service-metadata.test.js

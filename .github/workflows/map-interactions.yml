@@ -134,7 +134,7 @@ jobs:
           python tools/verify_r2_data_release.py \
             --asset-base-url "$DATA_ASSET_BASE_URL" \
             --app-origin https://diveatlas.site \
-            --startup-assets-only
+            --startup-assets-only --require-site-details
           npm run build
 
       - name: Install Chromium and system dependencies
