@@ -7,7 +7,7 @@
       link.dataset.recommendationCard = '';
       link.dataset.ratingLat = String(candidate.lat);
       link.dataset.ratingLng = String(candidate.lon);
-      link.href = `/dive-sites/${encodeURIComponent(candidate.slug)}/`;
+      link.href = candidate.detailUrl || `/dive-sites/${encodeURIComponent(candidate.slug)}/`;
 
       const image = document.createElement('img');
       image.className = 'site-recommendations__image';

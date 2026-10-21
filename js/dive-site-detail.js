@@ -52,6 +52,92 @@
     return record;
   }
 
+  function recommendationDistance(site, candidate) {
+    const latitudeDelta = candidate.lat - site.lat;
+    const longitudeDelta = (candidate.lon - site.lon) * Math.cos(site.lat * Math.PI / 180);
+    return latitudeDelta ** 2 + longitudeDelta ** 2;
+  }
+
+  function recommendationDifficulty(value) {
+    const levels = String(value || '').split(/\s*(?:\||,|;|\bto\b)\s*/i).map(level => level.toLowerCase());
+    return ['beginner', 'intermediate', 'advanced', 'expert'].find(level => levels.includes(level)) || '';
+  }
+
+  function recommendationTokens(value) {
+    return String(value || '').split(/\s*(?:\||,|;)\s*/).map(token => token.trim()).filter(Boolean);
+  }
+
+  async function renderRecommendations(site) {
+    const aside = document.getElementById('relatedSites');
+    if (!aside) return;
+    const relatedFallback = () => {
+      const related = (site.related || []).filter(other => uuid.test(other.site_id) && other.site_id !== siteId).slice(0, 8);
+      if (!related.length) return;
+      aside.innerHTML = `<h2>More in this region</h2><ul>${related.map(other => {
+        const image = safeUrl(other.photo?.src);
+        return `<li><a class="site-recommendations__card" href="${detailUrl(other)}">${image ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy">` : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name">${escape(other.name)}</span><span class="site-recommendations__location">${escape(other.region)}</span></span></a></li>`;
+      }).join('')}</ul>`;
+      aside.hidden = false;
+    };
+
+    try {
+      const response = await fetch(window.DiveAtlasDataAssets.url('data/dive-site-details/v1/recommendations.json'),
+        { signal:AbortSignal.timeout(8000) });
+      if (!response.ok) throw new Error(`Recommendation catalog HTTP ${response.status}`);
+      const payload = await response.json();
+      if (payload?.schema !== 'dive-site-recommendations-v1' || !Array.isArray(payload.sites)) {
+        throw new Error('Invalid dive-site recommendation catalog');
+      }
+      const candidates = payload.sites.filter(candidate => candidate && uuid.test(candidate.site_id)
+        && candidate.site_id !== siteId && typeof candidate.name === 'string'
+        && Number.isFinite(candidate.lat) && Number.isFinite(candidate.lon));
+      const comparable = value => String(value || '').toLowerCase();
+      const distanceSorted = values => values.sort((a, b) => recommendationDistance(site, a)
+        - recommendationDistance(site, b) || a.name.localeCompare(b.name));
+      const nearby = distanceSorted(candidates.filter(candidate => site.region
+        && comparable(candidate.country) === comparable(site.country)
+        && comparable(candidate.region) === comparable(site.region)));
+      const primaryFeatures = recommendationTokens(site.categories?.features || site.characteristics).slice(0, 2);
+      const primaryFeatureKeys = new Set(primaryFeatures.map(feature => feature.toLowerCase()));
+      const features = candidates.map(candidate => ({ candidate,
+        matches:recommendationTokens(candidate.feature_values || candidate.features)
+          .filter(feature => primaryFeatureKeys.has(feature.toLowerCase())).length
+      })).filter(item => item.matches > 0)
+        .sort((a, b) => b.matches - a.matches
+          || recommendationDistance(site, a.candidate) - recommendationDistance(site, b.candidate)
+          || a.candidate.name.localeCompare(b.candidate.name)).map(item => item.candidate);
+      const difficulty = recommendationDifficulty(site.difficulty);
+      const difficultyMatches = distanceSorted(candidates.filter(candidate => difficulty
+        && recommendationDifficulty(candidate.difficulty) === difficulty));
+      const ratingCandidates = distanceSorted([...candidates]);
+      const featureLabel = primaryFeatures.length
+        ? `<span class="site-recommendations__feature-values"> · ${escape(primaryFeatures.join(' · '))}</span>` : '';
+      const card = candidate => {
+        const image = safeUrl(candidate.photo);
+        const featuresMarkup = (Array.isArray(candidate.features) ? candidate.features : []).slice(0, 2).map(feature =>
+          `<span class="site-recommendations__feature">${escape(feature)}</span>`).join('')
+          || '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>';
+        return `<li><a class="site-recommendations__card" data-recommendation-card data-rating-lat="${candidate.lat}" data-rating-lng="${candidate.lon}" href="${detailUrl(candidate)}">${image
+          ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy"${candidate.photo_credit ? ` title="${escape(candidate.photo_credit)}"` : ''}>`
+          : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name" title="${escape(candidate.name)}">${escape(candidate.name)}</span><span class="site-recommendations__meta"><span class="site-recommendations__location">${escape(candidate.region || candidate.country || '')}</span><span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span><span class="site-recommendations__features" aria-label="Recorded features">${featuresMarkup}</span></span></a></li>`;
+      };
+      const group = (key, values, emptyText) => `<section class="site-recommendations__group" data-recommendation-group="${key}"><ul>${values.length
+        ? values.slice(0, 3).map(card).join('') : `<li class="site-recommendations__empty">${emptyText}</li>`}</ul></section>`;
+      const ratingCandidatesMarkup = ratingCandidates.map(candidate => ({
+        name:candidate.name, slug:siteSlug(candidate.name), region:candidate.region,
+        lat:candidate.lat, lon:candidate.lon, photo:safeUrl(candidate.photo),
+        photo_credit:candidate.photo_credit, features:candidate.features || [],
+        detailUrl:detailUrl(candidate)
+      }));
+      const ratingGroup = `<section class="site-recommendations__group" data-recommendation-group="rating"><ul data-recommendation-rating-candidates="${escape(JSON.stringify(ratingCandidatesMarkup))}" aria-live="polite"><li class="site-recommendations__empty">Checking this month’s ratings…</li></ul></section>`;
+      aside.innerHTML = `<div class="site-recommendations__tabs" hidden><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="-1" aria-label="Scroll recommendation filters left"><span class="site-recommendations__scroll-glyph" aria-hidden="true">‹</span></button><div class="site-recommendations__tablist" role="tablist" aria-label="Recommendation filters" tabindex="0"><button type="button" role="tab" id="recommendation-tab-all" aria-controls="recommendation-panel" aria-selected="true" data-recommendation-tab="all">All</button><button type="button" role="tab" id="recommendation-tab-nearby" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="nearby" tabindex="-1">Nearby</button><button type="button" role="tab" id="recommendation-tab-rating" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="rating" tabindex="-1">Rating</button><button type="button" role="tab" id="recommendation-tab-features" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="features" tabindex="-1">Features${featureLabel}</button><button type="button" role="tab" id="recommendation-tab-difficulty" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="difficulty" tabindex="-1">Difficulty</button></div><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="1" aria-label="Scroll recommendation filters right"><span class="site-recommendations__scroll-glyph" aria-hidden="true">›</span></button></div><div class="site-recommendations__content" id="recommendation-panel" data-recommendation-content>${group('nearby', nearby, 'No nearby sites are available in this published set.')}${ratingGroup}${group('features', features, primaryFeatures.length ? 'No sites match the recorded features.' : 'No primary features are recorded for this site.')}${group('difficulty', difficultyMatches, difficulty ? 'No sites with the same recorded difficulty are available.' : 'Difficulty is not recorded for this site.')}</div>`;
+      aside.hidden = false;
+    } catch (error) {
+      console.warn('Dive-site recommendations could not be loaded; showing regional sites instead.', error);
+      relatedFallback();
+    }
+  }
+
   function render(site) {
     document.title = `${site.name} Dive Site | DiveAtlas`;
     document.querySelector('meta[name="description"]').content =
@@ -76,6 +162,8 @@
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
     const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
+    const regionUrl = typeof site.region_url === 'string' && site.region_url.startsWith('/')
+      && !site.region_url.startsWith('//') ? site.region_url : '';
     const credit = photo?.source === 'illustrative-fallback'
       ? `Illustrative image · ${photo.credit || ''}` : photo?.credit || '';
     const facts = [];
@@ -117,9 +205,10 @@
           </section>
           <div class="site-photo-gallery-map"><iframe class="site-photo-gallery-map__embed" title="Map preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q=${site.lat}%2C${site.lon}&amp;z=12&amp;output=embed"></iframe><a class="site-photo-gallery-map__mask" href="${mapUrl}" aria-label="View on the DiveAtlas map"></a><a class="site-photo-gallery-map__cta" href="${mapUrl}">View on map</a></div>
         </aside></div>
-        <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/dive-sites/">Dive sites</a></nav>
+        <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>${regionUrl ? `<span aria-hidden="true">›</span><a href="${escape(regionUrl)}">${escape(site.region)}</a>` : ''}</nav>
           <div class="site-title-row"><h1 id="site-title" data-seo-site-name>${escape(site.name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
-          <p class="lead" aria-label="Location hierarchy">${escape([site.country, site.region].filter(Boolean).join(' › ') || 'Mapped dive site')}</p>
+          <p class="lead" aria-label="Location hierarchy">${escape(Array.isArray(site.location_hierarchy) && site.location_hierarchy.length
+            ? site.location_hierarchy.join(' › ') : [site.country, site.region].filter(Boolean).join(' › ') || 'Mapped dive site')}</p>
         </div>
       </section>
       ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> ${escape(site.aliases)}.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}
@@ -127,15 +216,7 @@
       ${sources.length ? `<section class="detail-section source-section"><h2>Sources</h2><ul class="source-list">${sources.map(source => `<li><a href="${escape(safeUrl(source[1]))}" target="_blank" rel="noopener noreferrer">${escape(source[0] || 'Reference')}</a></li>`).join('')}</ul></section>` : ''}
       <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>`;
     page.setAttribute('aria-busy', 'false');
-    const related = site.related.filter(other => uuid.test(other.site_id) && other.site_id !== siteId).slice(0, 8);
-    if (related.length) {
-      const aside = document.getElementById('relatedSites');
-      aside.innerHTML = `<h2>More in this region</h2><ul>${related.map(other => {
-        const image = safeUrl(other.photo?.src);
-        return `<li><a class="site-recommendations__card" href="${detailUrl(other)}">${image ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy">` : ''}<span class="site-recommendations__card-body"><span class="site-recommendations__name">${escape(other.name)}</span><span class="site-recommendations__location">${escape(other.region)}</span></span></a></li>`;
-      }).join('')}</ul>`;
-      aside.hidden = false;
-    }
+    return renderRecommendations(site);
   }
 
   async function start() {
@@ -153,7 +234,7 @@
         return;
       }
       if (!response.ok) throw new Error(`Detail HTTP ${response.status}`);
-      render(validate(await response.json()));
+      await render(validate(await response.json()));
     } catch (error) {
       console.warn('Dive-site details could not be loaded.', error);
       showError('Unable to load this dive site', 'Please check your connection and try again.', true);
@@ -164,7 +245,8 @@
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=1', '/js/seo-page-controls.js?v=10',
-      '/js/dive-conditions-chart.js?v=30', '/js/dive-site-rating-card.js?v=13']) {
+      '/js/dive-conditions-chart.js?v=30', '/js/site-recommendations.js?v=14',
+      '/js/dive-site-rating-card.js?v=13']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }

@@ -88,7 +88,8 @@ def main() -> None:
     by_path = {item.get("path"): item for item in files}
     if args.require_site_details:
         detail = next((item for item in files if item["path"].startswith("data/dive-site-details/v1/")
-                       and item["path"].endswith(".json")), None)
+                       and item["path"].endswith(".json")
+                       and item["path"] != "data/dive-site-details/v1/recommendations.json"), None)
         if not detail:
             raise SystemExit("Publish per-site detail JSON before deploying the shared detail page.")
         status, headers, payload = get(base + detail["path"], origin)
@@ -99,6 +100,17 @@ def main() -> None:
         record = json.loads(payload)
         if record.get("schema") != "dive-site-detail-v1" or not detail["path"].endswith(f"/{record.get('site_id')}.json"):
             raise SystemExit("The shared-page detail sample has an invalid schema or ID.")
+        recommendations = by_path.get("data/dive-site-details/v1/recommendations.json")
+        if not recommendations:
+            raise SystemExit("Publish the dive-site recommendation catalog before deploying the shared detail page.")
+        status, headers, payload = get(base + recommendations["path"], origin)
+        if status != 200 or not cors_allows_origin(headers, origin):
+            raise SystemExit("The shared-page recommendation catalog is not browser-readable.")
+        if len(payload) != recommendations["bytes"] or hashlib.sha256(payload).hexdigest() != recommendations["sha256"]:
+            raise SystemExit("The recommendation catalog differs from its release inventory.")
+        catalog = json.loads(payload)
+        if catalog.get("schema") != "dive-site-recommendations-v1" or not isinstance(catalog.get("sites"), list):
+            raise SystemExit("The shared-page recommendation catalog has an invalid schema.")
     for required in REQUIRED_STARTUP_DATA:
         if required not in by_path:
             raise SystemExit(f"Public release inventory omits required startup asset: {required}")

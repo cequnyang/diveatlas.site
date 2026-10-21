@@ -1,9 +1,10 @@
 # Shared dive-site detail page
 
 `/dive-site.html?id=<site-name>-<persistent UUID>` displays a dive site using one shared HTML
-shell and one small public JSON record. The shell, CSS and browser scripts live
-beside `index.html` in GitHub. Production records live in the existing R2 data
-release, outside GitHub Pages. No new Worker or database is required.
+shell and a public JSON record. The shell, CSS and browser scripts live beside
+`index.html` in GitHub. Production detail records and the bounded recommendation
+catalog live in the existing R2 data release, outside GitHub Pages. No new
+Worker or database is required.
 
 This implements the browser-rendered option discussed in the design. A browser
 Web Worker is unnecessary: ordinary JavaScript fetches the record and builds the
@@ -27,11 +28,15 @@ the displayed site name. `npm run build:auth-preview` also generates and bundles
 `DATA_ASSET_BASE_URL` is set.
 
 The page retains existing photo preview, language and theme controls, unit
-conversion, sharing, monthly conditions and rating modules. These modules start
-after the record arrives because they inspect the page at startup. Missing fields
-are omitted, illustrative photos remain labeled, and failed requests present a
-retry action. Regional discovery cards are bounded to eight sites; they do not
-claim nearest distance or matching ratings.
+conversion, sharing, monthly conditions and rating modules. Its recommendation
+rail uses the same All, Nearby, Rating, Features and Difficulty filters as the
+generated `/dive-sites/<slug>/` pages. The catalog contains only the bounded
+eligible site set used by those pages; the browser applies those same groups and
+uses the existing rating sampler for Rating results. If the catalog is
+unavailable, the detail record's small regional list remains as a fallback.
+These page modules start after the record arrives because they inspect the DOM
+at startup. Missing fields are omitted, illustrative photos remain labeled, and
+failed detail requests present a retry action.
 
 ## Publish cloud data before deploying the page
 
@@ -59,9 +64,10 @@ release or a new versioned data directory and matching browser path.
 
 After public data verification passes, deploy the GitHub Pages changes using the
 existing workflow and its `DATA_ASSET_BASE_URL` variable. The deployment check
-requires a detail record in the release so a page-only deployment cannot silently
-enable links to missing data. R2 must allow anonymous cross-origin GET requests
-from the site; no browser credentials are sent.
+requires both a detail record and the shared recommendation catalog in the release
+so a page-only deployment cannot silently enable links or filters without their
+data. R2 must allow anonymous cross-origin GET requests from the site; no browser
+credentials are sent.
 
 The exporter shares the map/static generator's photo and published-summary
 selection. It writes an explicit allowlist of public fields, excluding internal
