@@ -1,0 +1,421 @@
+/* Shared by the map and dive-site share dialogs. */
+    .share-modal[hidden] { display: none; }
+    .share-modal {
+      position: fixed;
+      z-index: 2250;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .share-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 30, 42, .58);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    [data-theme="dark"] .share-modal-backdrop { background: rgba(1, 4, 9, .72); }
+    .share-dialog {
+      position: relative;
+      width: min(560px, calc(100vw - 28px));
+      max-height: min(720px, calc(100vh - 36px));
+      overflow: auto;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+    }
+    .share-dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px 14px;
+    }
+    #shareCloseButton,
+    #contactCloseButton,
+    #siteSuggestionCloseButton,
+    #sitePhotoUploadCloseButton {
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      border-radius: 10px;
+    }
+    #shareCloseButton svg,
+    #contactCloseButton svg,
+    #siteSuggestionCloseButton svg,
+    #sitePhotoUploadCloseButton svg { width: 24px; height: 24px; }
+    html[data-theme="light"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+      background: color-mix(in srgb, var(--primary) 18%, var(--panel-solid));
+      color: var(--text-primary);
+    }
+    html[data-theme="dark"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+      background: #1b2e48;
+      color: var(--text-primary);
+    }
+    .share-dialog-title { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; }
+    .share-dialog-body { display: grid; gap: 16px; padding: 4px 22px 12px; }
+    .share-preview-frame {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1200 / 630;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-soft);
+      user-select: none;
+    }
+    .share-preview-frame > :not(.share-preview-copy) { pointer-events: none; }
+    /* Keep one composition while the dialog changes size; recropping the live
+       map on resize would change the shared area and can expose empty edges. */
+    .share-preview-composition {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      transform-origin: top left;
+      background: var(--panel-soft);
+    }
+    .share-preview-composition .share-preview-popup-data {
+      right: 2%;
+      bottom: 3%;
+      width: 520px;
+      padding: 16px;
+      font-size: 22px;
+    }
+    .share-preview-copy {
+      display: none;
+      position: absolute;
+      z-index: 4;
+      inset: 0;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 0;
+      background: rgba(8, 20, 32, .24);
+      color: #fff;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .15s ease;
+      pointer-events: auto;
+      user-select: none;
+    }
+    /* Tint the complete image, but reserve the summary column when positioning the copy control. */
+    .share-preview-frame:has(.share-preview-popup-data:not([hidden])) .share-preview-copy { padding-right: 52%; }
+    .share-preview-copy-content { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 999px; background: rgba(8, 20, 32, .72); font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .share-preview-copy svg { width: 18px; height: 18px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; }
+    .share-preview-copy:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+    @media (min-width: 721px) and (hover: hover) and (pointer: fine) {
+      .share-preview-copy { display: flex; }
+      .share-preview-frame:hover .share-preview-copy,
+      .share-preview-copy:focus-visible { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .share-preview-copy { transition: none; }
+    }
+    .share-preview-site-photo {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* The explicit display rule above otherwise overrides the hidden attribute. */
+    .share-preview-site-photo[hidden] { display: none; }
+    .share-preview-map-snapshot {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .share-preview-canonical-image {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .share-preview-canonical-image[hidden] { display: none; }
+    .share-preview-frame[data-canonical-ready="true"] .share-preview-popup-data { display: none; }
+    .share-preview-frame[data-background="site"] .share-preview-map-snapshot { display: none; }
+    .share-preview-photo-label,
+    .share-preview-photo-credit {
+      position: absolute;
+      z-index: 1;
+      max-width: calc(100% - 24px);
+      box-sizing: border-box;
+      padding: 5px 8px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      background: rgba(8,15,25,.78);
+      color: #fff;
+      font-size: 11px;
+      line-height: 1.3;
+      text-shadow: 0 1px 2px rgba(0,0,0,.5);
+      pointer-events: none;
+    }
+    .share-preview-photo-label { top: 12px; left: 12px; font-weight: 600; }
+    .share-preview-photo-credit { bottom: 12px; left: 12px; max-width: min(44%, 420px); overflow-wrap: anywhere; }
+    .share-preview-background-choices {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: var(--text);
+      font-size: 12px;
+    }
+    .share-preview-background-choices[hidden] { display: none; }
+    .share-preview-background-choices legend { margin: 0 0 6px; padding: 0; color: var(--muted); font-size: 11px; font-weight: 550; }
+    .share-preview-background-choices label { position: relative; display: inline-flex; cursor: pointer; }
+    /* Keep native radio semantics and keyboard navigation while styling the visible option. */
+    .share-preview-background-choices input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+    .share-preview-background-choices label span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-height: 25.4px;
+      line-height: 1;
+      padding: 0 12px 2px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-weight: 550;
+    }
+    .share-preview-background-choices label:hover span { color: var(--text); }
+    .share-preview-background-choices input:checked + span {
+      border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+      background: color-mix(in srgb, var(--primary) 12%, var(--panel));
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent);
+    }
+    .share-preview-background-choices input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .share-preview-map-clone {
+      position: absolute;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .share-preview-map-clone .leaflet-control-container,
+    .share-preview-map-clone .leaflet-popup { display: none!important; }
+    .share-preview-map-clone img,
+    .share-preview-map-clone canvas { max-width: none!important; }
+    .share-preview-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+    .share-preview-placeholder[hidden], .share-preview-popup-data[hidden] { display: none; }
+    .share-preview-popup-data {
+      position: absolute;
+      z-index: 5;
+      right: 2%;
+      bottom: 3%;
+      width: min(46%, 520px);
+      max-height: 94%;
+      box-sizing: border-box;
+      overflow: hidden;
+      padding: clamp(8px, 1.5vw, 16px);
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 12px;
+      color: #172b3a;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 8px 24px rgba(9,35,51,.24);
+      font-size: clamp(9px, 1.15vw, 13px);
+      line-height: 1.35;
+    }
+    .share-preview-popup-data strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #075e79;
+      font-size: 1.05em;
+    }
+    .share-preview-popup-data ul { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; }
+    .share-preview-popup-data li { overflow-wrap: anywhere; }
+    .share-preview-popup-data li:nth-child(n+7) { display: none; }
+    [data-theme="dark"] .share-preview-popup-data { border-color: rgba(255,255,255,.2); color: #e5edf2; background: rgba(20,29,38,.94); }
+    [data-theme="dark"] .share-preview-popup-data strong { color: #83d5ec; }
+    .share-preview-popup-pointer {
+      position: absolute;
+      z-index: 3;
+      width: 32px;
+      height: 38px;
+      transform: translate(-50%, -100%);
+      pointer-events: none;
+    }
+    .share-preview-popup-pointer::before {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      box-sizing: border-box;
+      border: 3px solid #fff;
+      border-radius: 50% 50% 50% 0;
+      background: #e34b68;
+      box-shadow: 0 2px 6px rgba(0,0,0,.35);
+      transform: rotate(-45deg);
+    }
+    .share-preview-popup-pointer::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 11px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .share-preview-popup-pointer[hidden] { display: none; }
+    .share-status.visually-hidden {
+      position: absolute!important;
+      width: 1px!important;
+      height: 1px!important;
+      padding: 0!important;
+      margin: -1px!important;
+      overflow: hidden!important;
+      clip: rect(0,0,0,0)!important;
+      white-space: nowrap!important;
+      border: 0!important;
+    }
+    .share-action-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-solid);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .share-action-button:hover { background: var(--panel-soft); }
+    .share-action-button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+    .share-action-button--primary { border-color: #087f9b; background: #087f9b; color: #fff; }
+    .share-action-button--primary:hover { background: #066b83; }
+    .share-action-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .share-actions {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 4px;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 2px 0 8px;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) var(--panel-soft);
+    }
+    .share-actions::-webkit-scrollbar { height: 5px; }
+    .share-actions::-webkit-scrollbar-track { background: var(--panel-soft); border-radius: 999px; }
+    .share-actions::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 999px; }
+    .share-actions::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+    .share-actions::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+    .share-actions .share-action-button {
+      /* Seven complete slots keep both viewport edges between destinations after snapping. */
+      flex: 0 0 calc((100% - 24px) / 7);
+      min-width: 0;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      min-height: 84px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      padding: 0 3px;
+      border: 0;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 550;
+      white-space: nowrap;
+    }
+    .share-actions .share-action-button:hover { background: transparent; }
+    .share-actions .share-action-button--primary { color: var(--text); }
+    .share-action-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 44px;
+      border-radius: 50%;
+      background: var(--panel-soft);
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .share-action-icon svg { width: 24px; height: 24px; }
+    .share-action-icon--facebook svg { width: 38.4px; height: 38.4px; }
+    .share-action-icon .share-mark { fill:currentColor; stroke:none; }
+    .share-action-icon .share-mark--outline { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .share-action-button--primary .share-action-icon { background: #087f9b; color: #fff; }
+    .share-action-icon--whatsapp { background:#25d366; color:#fff; }
+    .share-action-icon--wechat,
+    .share-action-icon--rednote,
+    .share-action-icon--line,
+    .share-action-icon--telegram { background:transparent; }
+    .share-action-icon--line img,
+    .share-action-icon--rednote img,
+    .share-action-icon--telegram img { width:100%; height:100%; object-fit:contain; }
+    .share-action-icon--line img { border-radius:50%; }
+    .share-action-icon--wechat { overflow:hidden; border-radius:10px; }
+    .share-action-icon--wechat img { width:100%; height:100%; object-fit:cover; }
+    .share-action-icon--instagram { background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); color:#fff; }
+    .share-action-icon--instagram img { width:64%; height:64%; object-fit:contain; }
+    .share-action-icon--facebook { background:#0866ff; color:#fff; }
+    .share-action-icon--reddit { background:#ff4500; color:#fff; }
+    .share-action-icon--x { background:#000; color:#fff; }
+    .share-action-button[hidden] { display: none; }
+    .share-status { min-height: 18px; margin: -7px 0 0; color: var(--muted); font-size: 12px; }
+    .share-status:empty { display: none; }
+    @media (max-width: 520px) {
+      .share-modal { align-items: end; padding: 10px; }
+      .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
+      .share-dialog-header { min-height:60px; padding:18px 70px 12px 18px; }
+      #shareCloseButton { position:absolute; top:0; right:0; z-index:2; border-radius:0 18px 0 12px; }
+      #contactCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 10px 0 10px; }
+      #siteSuggestionCloseButton,
+      #sitePhotoUploadCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 12px 0 12px; }
+      .share-dialog-body { padding: 4px 18px 12px; }
+      .share-preview-frame { aspect-ratio: 1200 / 630; }
+      .share-actions { justify-content: flex-start; gap: 4px; }
+      .share-actions .share-action-button { flex-basis: calc((100% - 12px) / 4); align-items: center; padding-inline: 1px; font-size: 10px; }
+      .share-action-icon { width: 40px; height: 40px; flex-basis: 40px; }
+      .share-preview-popup-data { right: 2%; bottom: 2%; width: 52%; max-height: 94%; padding: 7px; font-size: 9px; }
+    }
+
+
+.share-dialog .contact-dialog-close { display: inline-grid; place-items: center; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.share-dialog .contact-dialog-close svg { fill: currentColor; }
+.share-dialog .contact-dialog-close:hover, .share-dialog .contact-dialog-close:focus-visible { background: var(--panel-soft); color: var(--text); }

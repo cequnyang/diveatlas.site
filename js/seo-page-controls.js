@@ -1,4 +1,27 @@
 (() => {
+  document.querySelectorAll('.site-photo-gallery-map__cta').forEach(button => {
+    const label = document.createElement('span');
+    button.style.display = 'inline-flex';
+    button.style.justifyContent = 'center';
+    button.style.alignItems = 'center';
+    label.style.display = 'inline-block';
+    label.style.flexShrink = '0';
+    label.style.whiteSpace = 'nowrap';
+    label.append(...button.childNodes);
+    button.append(label);
+    const fitLabel = () => {
+      const style = getComputedStyle(button);
+      const available = button.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      // Measure the rendered text so browser minimum-font settings cannot clip it.
+      label.style.transform = 'none';
+      const width = label.getBoundingClientRect().width;
+      label.style.transform = `scale(${width > 0 ? Math.min(1, Math.max(0, available - 2) / width) : 1})`;
+    };
+    new ResizeObserver(fitLabel).observe(button);
+    document.fonts.ready.then(fitLabel);
+    fitLabel();
+  });
+
   if (document.body.classList.contains('seo-site-detail-layout')) {
     const syncViewportInlineSize = () => {
       document.documentElement.style.setProperty('--viewport-inline-size', `${document.documentElement.clientWidth}px`);
@@ -255,31 +278,55 @@
     // Instagram has no share URL endpoint; copy the page link for pasting there.
     void copyText(shareUrl);
   });
-  const openShareDialog = () => {
+  let siteShareDialog;
+  let siteShareLoading;
+  function siteImageShareUrl() {
+    if (!siteId) return shareUrl;
+    const url = new URL(`/share/${encodeURIComponent(siteId)}/`, 'https://share.diveatlas.site');
+    const mapLink = document.querySelector('.site-photo-gallery-map__mask');
+    if (mapLink) {
+      const state = new URL(mapLink.href);
+      for (const key of ['lat', 'lng', 'z']) {
+        if (state.searchParams.has(key)) url.searchParams.set(key, state.searchParams.get(key));
+      }
+    }
+    url.searchParams.set('shareSiteId', siteId);
+    url.searchParams.set('previewBackground', 'site');
+    const photo = document.querySelector('.site-photo-gallery-main img');
+    const feature = photo?.src.match(/\/features\/([^/]+)\//)?.[1];
+    if (feature) url.searchParams.set('shareFeature', feature);
+    return url.href;
+  }
+  const openShareDialog = async () => {
     previousFocus = document.activeElement;
     setMenu(false);
     if (!shareModal) return;
-    shareModal.hidden = false;
-    byId('seoCopyLinkButton')?.focus();
+    try {
+      siteShareLoading ||= Promise.all([
+        import('/js/share-dialog.js?v=1'),
+        new Promise((resolve, reject) => {
+          const css = document.createElement('link');
+          css.rel = 'stylesheet'; css.href = '/assets/share-dialog.css?v=1';
+          css.onload = resolve; css.onerror = reject; document.head.append(css);
+        })
+      ]);
+      await siteShareLoading;
+      siteShareDialog ||= window.DiveAtlasShare.createSiteDialog({
+        modal: shareModal,
+        getTitle: () => document.querySelector('[data-seo-site-name]')?.textContent || shareTitle,
+        getUrl: siteImageShareUrl, copyText
+      });
+      siteShareDialog.open();
+    } catch (error) {
+      siteShareLoading = null;
+      console.error('Share dialog could not load.', error);
+      shareModal.hidden = false;
+    }
   };
   byId('seoShareButton')?.addEventListener('click', openShareDialog);
   byId('siteTitleShareButton')?.addEventListener('click', openShareDialog);
   const closeShare = () => { if (shareModal) shareModal.hidden = true; previousFocus?.focus?.({ preventScroll: true }); };
   shareModal?.addEventListener('click', event => { if (event.target.closest('[data-seo-share-close]')) closeShare(); });
-  byId('seoCopyLinkButton')?.addEventListener('click', async () => {
-    const status = byId('seoShareStatus');
-    try { await copyText(shareUrl); status.textContent = 'Link copied.'; }
-    catch (_) { status.textContent = 'Copy failed. Select and copy the link above.'; }
-  });
-  byId('seoNativeShareButton')?.addEventListener('click', async () => {
-    if (navigator.share) {
-      try { await navigator.share({ title: shareTitle, text: `Explore ${shareTitle} on DiveAtlas`, url: shareUrl }); }
-      catch (error) { if (error?.name !== 'AbortError') byId('seoShareStatus').textContent = 'Sharing is unavailable in this browser.'; }
-    } else {
-      try { await copyText(shareUrl); byId('seoShareStatus').textContent = 'Link copied.'; }
-      catch (_) { byId('seoShareStatus').textContent = 'Sharing is unavailable in this browser.'; }
-    }
-  });
 
   const contactDialog = byId('seoContactModal');
   function closeContact() {
