@@ -211,6 +211,8 @@ figure { margin: 0; }
 .data-note { display: grid; grid-template-columns: 20px minmax(0, 1fr); align-items: start; gap: 8px; margin: 9px 0 0; padding: 0; border-top: 0; color: var(--text-secondary); }
 .data-note p { margin: 0; font-size: 11px; font-style: italic; line-height: 1.4; }
 .note-icon { display: grid; width: 20px; height: 20px; place-items: center; color: var(--muted); }
+/* Older generated pages retain an inline SVG; the shared mask replaces it. */
+.note-icon > svg { display: none; }
 /* Share the map info silhouette with generated pages. */
 .note-icon::before { content: ''; display: block; width: 16px; height: 16px; background: currentColor; -webkit-mask: url(info-circle.svg) center / contain no-repeat; mask: url(info-circle.svg) center / contain no-repeat; }
 .seo-top-menu-controls { display: flex; align-items: center; gap: 8px; }
