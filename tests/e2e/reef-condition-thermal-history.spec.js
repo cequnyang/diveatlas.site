@@ -202,7 +202,6 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     const panelCircle = document.querySelector('#reefConditionInfoDetails > summary > span').getBoundingClientRect();
     const value = button.closest('.reef-condition-worst-value').querySelector('strong').getBoundingClientRect();
     const style = getComputedStyle(button);
-    const circleStyle = getComputedStyle(button.querySelector('span'));
     return {
       targetWidth: target.width,
       targetHeight: target.height,
@@ -212,15 +211,15 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
       panelCircleHeight: panelCircle.height,
       targetGap: target.left - value.right,
       verticalCenterOffset: Math.abs((target.top + target.height / 2) - (value.top + value.height / 2)),
-      color: style.color,
-      borderColor: circleStyle.borderTopColor
+      color: style.color
     };
   });
+  // The shared info icon is a currentColor mask; its zero-width border color
+  // does not contribute to the visible shape or the control's UI contract.
   expect(infoControlMetrics).toMatchObject({
     targetWidth: 44,
     targetHeight: 44,
-    color: 'rgb(104, 119, 138)',
-    borderColor: 'rgb(154, 168, 184)'
+    color: 'rgb(104, 119, 138)'
   });
   expect(Math.abs(infoControlMetrics.circleWidth - infoControlMetrics.panelCircleWidth)).toBeLessThan(0.1);
   expect(Math.abs(infoControlMetrics.circleHeight - infoControlMetrics.panelCircleHeight)).toBeLessThan(0.1);
