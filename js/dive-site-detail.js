@@ -120,9 +120,13 @@
       } else {
         throw new Error('Invalid dive-site recommendation catalog');
       }
-      const candidates = catalogSites.filter(candidate => candidate && uuid.test(candidate.site_id)
-        && candidate.site_id !== siteId && typeof candidate.name === 'string'
-        && Number.isFinite(candidate.lat) && Number.isFinite(candidate.lon));
+      // Share this already-loaded compact catalog with the header control; site pages do not need the map's full search dataset.
+      window.DIVE_ATLAS_SEO_SEARCH_CATALOG = catalogSites.filter(candidate => candidate && uuid.test(candidate.site_id)
+        && typeof candidate.name === 'string' && Number.isFinite(candidate.lat) && Number.isFinite(candidate.lon));
+      window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-ready', {
+        detail:{ sites:window.DIVE_ATLAS_SEO_SEARCH_CATALOG }
+      }));
+      const candidates = window.DIVE_ATLAS_SEO_SEARCH_CATALOG.filter(candidate => candidate.site_id !== siteId);
       const comparable = value => String(value || '').toLowerCase();
       const distanceSorted = values => values.sort((a, b) => recommendationDistance(site, a)
         - recommendationDistance(site, b) || a.name.localeCompare(b.name));

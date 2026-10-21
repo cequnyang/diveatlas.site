@@ -33069,6 +33069,20 @@ function closeShareDialog() {
     if (event.target.closest('[data-site-suggestion-close]')) closeSiteSuggestionModal();
   });
   els.siteSuggestionForm.addEventListener('submit', submitSiteSuggestion);
+  // Detail-page requests reuse the map's verified suggestion workflow.
+  if (initialQuery.get('suggestSite') === '1') {
+    const suggestedName = initialQuery.get('siteName')?.trim().slice(0, 120) || '';
+    if (suggestedName) {
+      els.diveSearchInput.value = suggestedName;
+      els.diveSearchClear.classList.add('visible');
+      els.diveSearchBox.classList.add('has-query');
+    }
+    openSiteSuggestionModal();
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete('suggestSite');
+    cleanUrl.searchParams.delete('siteName');
+    window.history.replaceState(window.history.state, '', cleanUrl);
+  }
   els.sitePhotoUploadModal.addEventListener('click', event => {
     if (event.target.closest('[data-site-photo-upload-close]')) {
       closeSitePhotoUploadModal();
