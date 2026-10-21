@@ -16,7 +16,7 @@
   const location = { lat:Number(card.dataset.ratingLat), lng:Number(card.dataset.ratingLng) };
   if (!Number.isFinite(location.lat) || !Number.isFinite(location.lng)) return;
 
-  if (trendTitle) trendTitle.textContent = 'Monthly rating';
+  if (trendTitle) trendTitle.textContent = 'Monthly Rating';
 
   let trendDragStartY = null;
   let trendHandleDragged = false;
@@ -118,17 +118,17 @@
   function renderRatingTrend(monthlyScores) {
     trendScores = monthlyScores;
     const width = 300;
-    const expandedBelowGallery = matchMedia('(max-width: 900px)').matches;
     const chartBounds = trendChart.getBoundingClientRect();
-    const scale = expandedBelowGallery && chartBounds.width > 0 ? chartBounds.width / width : 1;
-    const height = expandedBelowGallery && chartBounds.height > 0 ? Math.max(112, chartBounds.height / scale) : 112;
-    const left = 18, right = 8, top = 8 / scale, bottom = 22 / scale;
+    const scale = chartBounds.width > 0 ? chartBounds.width / width : 1;
+    const height = chartBounds.height > 0 ? chartBounds.height / scale : 112;
+    const left = 18, right = 8, top = 20 / scale, bottom = 22 / scale;
     const availableScores = monthlyScores.filter(value => value != null);
     const minScore = availableScores.length ? Math.min(...availableScores) : 0;
     const maxScore = availableScores.length ? Math.max(...availableScores) : 100;
-    // In the expanded desktop popover, use a bounded local range so the taller panel makes the monthly movement legible.
-    const scoreRange = expandedBelowGallery && availableScores.length ? Math.max(20, maxScore - minScore) : 100;
-    const domainMin = expandedBelowGallery && availableScores.length
+    // A local range reveals seasonal movement in every layout. Keep at least
+    // 20 points of range so small differences are not exaggerated.
+    const scoreRange = availableScores.length ? Math.max(20, maxScore - minScore) : 100;
+    const domainMin = availableScores.length
       ? Math.max(0, Math.min((minScore + maxScore - scoreRange) / 2, 100 - scoreRange))
       : 0;
     const domainMax = Math.min(100, domainMin + scoreRange);
@@ -139,7 +139,7 @@
     }));
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    if (expandedBelowGallery) svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('preserveAspectRatio', 'none');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'Monthly DiveAtlas rating scores from January to December');
     const ns = 'http://www.w3.org/2000/svg';
