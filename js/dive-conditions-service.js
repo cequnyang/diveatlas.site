@@ -34,6 +34,10 @@
       if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
       const unwrap = result => result.status === 'fulfilled' ? result.value : null;
       const tv = unwrap(t), cv = unwrap(c), rv = unwrap(r), wv = unwrap(w);
+      // getMetadata may return a promise. After a failed sample, calling it
+      // again starts an unobserved retry and can reject outside this query.
+      const wavesMetadata = w.status === 'fulfilled'
+        ? await Promise.resolve().then(() => waves.getMetadata?.()).catch(() => null) : null;
       const lookup = (settled, value) => settled.status === 'rejected'
         ? { lookupStatus:'request_failed', lookupError:String(settled.reason?.message || settled.reason || 'Unknown request error') }
         : value == null || settled.value?.unavailable
@@ -71,7 +75,7 @@
           sourceLatitude:wv?.source_latitude ?? null, sourceLongitude:wv?.source_longitude ?? null,
           sampleDistanceKm: wv ? distanceKm(location.lat, location.lng, wv.source_latitude, wv.source_longitude) : null,
           fallbackBehavior:'Nearest available regional wave grid cell; missing ocean data remains unavailable.',
-          ...source(waves.getMetadata?.(), { provenance: waves.getMetadata?.()?.dataset_id || 'Copernicus Marine wave model', resolution: `${waves.getMetadata?.()?.grid?.resolution_degrees || 0.2}°`, period: waves.getMetadata?.()?.climatology_period || null }) }
+          ...source(wavesMetadata, { provenance: wavesMetadata?.dataset_id || 'Copernicus Marine wave model', resolution: `${wavesMetadata?.grid?.resolution_degrees || 0.2}°`, period: wavesMetadata?.climatology_period || null }) }
       };
       return model.createResult({ location, month, samples });
     }
