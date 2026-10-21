@@ -18,6 +18,14 @@
       return ['https:', 'http:'].includes(url.protocol) && !url.username && !url.password ? url.href : '';
     } catch (_) { return ''; }
   };
+  const safeRegionBrowseUrl = value => {
+    if (typeof value !== 'string') return '';
+    try {
+      const url = new URL(value, location.origin);
+      return url.origin === location.origin && url.pathname === '/regions/browse.html'
+        && url.searchParams.has('area') ? `${url.pathname}${url.search}` : '';
+    } catch (_) { return ''; }
+  };
   const siteSlug = name => String(name || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'dive-site';
   const detailUrl = site => `/dive-site.html?id=${encodeURIComponent(`${siteSlug(site.name)}-${site.site_id}`)}`;
@@ -294,8 +302,21 @@
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
     const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
-    const regionUrl = typeof site.region_url === 'string' && site.region_url.startsWith('/')
-      && !site.region_url.startsWith('//') ? site.region_url : '';
+    const locationHierarchy = Array.isArray(site.location_hierarchy) && site.location_hierarchy.length
+      ? site.location_hierarchy : [site.country, site.region].filter(Boolean);
+    const locationHierarchyUrls = Array.isArray(site.location_hierarchy_urls)
+      && site.location_hierarchy_urls.length === locationHierarchy.length
+      ? site.location_hierarchy_urls
+      : locationHierarchy.map((_, index) => `/regions/browse.html?area=${encodeURIComponent(
+        JSON.stringify(locationHierarchy.slice(0, index + 1).map(value =>
+          String(value).normalize('NFKD').toLowerCase().replace(/\p{M}/gu, ''))))}`);
+    const locationHierarchyMarkup = locationHierarchy.length
+      ? locationHierarchy.map((label, index) => {
+        const destination = safeRegionBrowseUrl(locationHierarchyUrls[index]);
+        const item = destination ? `<a href="${escape(destination)}">${escape(label)}</a>` : escape(label);
+        return `${index ? '<span aria-hidden="true">›</span>' : ''}${item}`;
+      }).join(' ')
+      : 'Mapped dive site';
     const credit = photo?.source === 'illustrative-fallback'
       ? `Illustrative image · ${photo.credit || ''}` : photo?.credit || '';
     const facts = [];
@@ -337,10 +358,9 @@
           </section>
           <div class="site-photo-gallery-map"><iframe class="site-photo-gallery-map__embed" title="Map preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q=${site.lat}%2C${site.lon}&amp;z=12&amp;output=embed"></iframe><a class="site-photo-gallery-map__mask" href="${mapUrl}" aria-label="View on the DiveAtlas map"></a><a class="site-photo-gallery-map__cta" href="${mapUrl}">View on map</a></div>
         </aside></div>
-        <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>${regionUrl ? `<span aria-hidden="true">›</span><a href="${escape(regionUrl)}">${escape(site.region)}</a>` : ''}</nav>
+        <div class="hero-copy">
           <div class="site-title-row"><h1 id="site-title" data-seo-site-name>${escape(site.name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
-          <p class="lead" aria-label="Location hierarchy">${escape(Array.isArray(site.location_hierarchy) && site.location_hierarchy.length
-            ? site.location_hierarchy.join(' › ') : [site.country, site.region].filter(Boolean).join(' › ') || 'Mapped dive site')}</p>
+          <p class="lead location-hierarchy" aria-label="Location hierarchy">${locationHierarchyMarkup}</p>
         </div>
       </section>
       ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> ${escape(site.aliases)}.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}

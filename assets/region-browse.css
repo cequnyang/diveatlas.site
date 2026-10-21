@@ -1,0 +1,10 @@
+.location-hierarchy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 7px; }
+.location-hierarchy a { color: inherit; text-decoration: none; text-underline-offset: .2em; border-bottom: 1px dotted var(--faint); }
+.location-hierarchy a:hover { color: var(--primary); border-bottom-color: currentColor; }
+.region-browser__search { display: grid; width: min(420px, 100%); gap: 5px; margin: 12px 0 0; color: var(--text-secondary); font-size: 12px; font-weight: 600; }
+.region-browser__search input { min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--panel-solid); color: var(--text-primary); font: inherit; font-weight: 400; }
+.region-browser__search input:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.region-browser__pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 18px 0; }
+.region-browser__pagination button { min-height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--panel-solid); color: var(--text-primary); font: inherit; font-weight: 600; cursor: pointer; }
+.region-browser__pagination button:disabled { color: var(--faint); cursor: default; }
+.region-browser__pagination button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }

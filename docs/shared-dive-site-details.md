@@ -14,6 +14,13 @@ At the current catalog size, this produces roughly 14 shard requests. The browse
 waits for all listed shards before ranking, so the full recommendation catalog
 remains available to each filter.
 
+The location hierarchy below a dive-site title links each recorded geography to
+`/regions/browse.html`. That static browse page reads the generated
+`/regions/area-index.json` from GitHub Pages and lists all public detail records
+in the selected area, independent of the smaller SEO page pilot. Its search and
+pagination operate over the complete area membership list; no additional R2
+release is needed for the browse index.
+
 This implements the browser-rendered option discussed in the design. A browser
 Web Worker is unnecessary: ordinary JavaScript fetches the record and builds the
 DOM. Cloudflare Workers rendering HTML before delivery would be a separate

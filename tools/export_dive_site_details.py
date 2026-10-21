@@ -62,19 +62,15 @@ def public_records(rows, photos, summaries, fallback_base, fallback_photos):
             sources = [[token.strip().upper(), providers[token.strip().lower()]]
                        for token in row_value(row, 8).split("|") if token.strip().lower() in providers]
         country, region = row_value(row, 9), row_value(row, 10)
-        geography = seo.country_geographies().get(seo.normalized_place_name(country)) if country else None
-        if not geography and region:
-            geography = seo.country_geographies().get(seo.normalized_place_name(region))
-        hierarchy, seen_places = [], set()
-        for value in [*(geography or ()), country, region]:
-            key = seo.normalized_place_name(value)
-            if value and key not in seen_places:
-                hierarchy.append(value)
-                seen_places.add(key)
+        location_nodes = seo.location_nodes(country, region)
+        hierarchy = [str(node["label"]) for node in location_nodes]
+        hierarchy_urls = [seo.area_browse_url(node) for node in location_nodes]
         records.append({
             "schema": "dive-site-detail-v1", "site_id": site_id,
             "name": row_value(row, 0), "lat": lat, "lon": lon,
             "country": country, "region": region, "location_hierarchy": hierarchy,
+            "location_hierarchy_urls": hierarchy_urls,
+            "region_url": hierarchy_urls[-1] if region and hierarchy_urls else "",
             "depth_min": row_value(row, 3), "depth_max": row_value(row, 4),
             "recorded_depth": row_value(row, 5), "difficulty": row_value(row, 6),
             "characteristics": row_value(row, 7),
@@ -157,16 +153,6 @@ def export(output: Path) -> dict:
     records = public_records(rows, photos, summaries, base, fallback)
     candidates, _ = seo.validated_candidates(rows, photos, summaries, base, fallback)
     selected = candidates[:seo.DEFAULT_SITE_LIMIT]
-    region_counts = Counter((str(site["country"]).casefold(), str(site["region"]).casefold())
-                            for site in selected if site["region"])
-    region_names = {(str(site["country"]).casefold(), str(site["region"]).casefold()):
-                    (str(site["country"]), str(site["region"]))
-                    for site in selected if site["region"]}
-    eligible_regions = [key for key, count in region_counts.items() if count >= seo.MIN_SITES_PER_REGION]
-    eligible_regions.sort(key=lambda key: (-region_counts[key], key[0], key[1]))
-    region_urls = {key: seo.region_path(*region_names[key]) for key in eligible_regions[:seo.DEFAULT_REGION_LIMIT]}
-    for record in records:
-        record["region_url"] = region_urls.get((record["country"].casefold(), record["region"].casefold()))
     groups = defaultdict(list)
     for record in sorted(records, key=lambda value: (value["name"].casefold(), value["site_id"])):
         groups[(record["country"], record["region"])].append(record)

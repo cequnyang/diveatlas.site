@@ -4,7 +4,7 @@ For the shared browser-rendered page (`dive-site.html?id=<UUID>`) and per-site R
 data publication, see [Shared dive-site detail page](../docs/shared-dive-site-details.md).
 The generator below continues to maintain existing indexed pages during migration.
 
-The generator publishes factual HTML detail pages for DiveAtlas dive sites, plus browseable region indexes. Each page is ordinary server-readable HTML with a canonical URL and useful links; it does not load the map application or its large datasets. This provides a direct landing page for people searching for a named dive site and a calmer, focused way to review the recorded facts before opening the map.
+The generator publishes factual HTML detail pages for a capped DiveAtlas search-indexing pilot, plus a complete interactive area browser. The pilot pages are ordinary server-readable HTML with canonical URLs and useful links; the area browser uses a compact generated index so people can browse every public dive-site record without loading the map application or its large datasets.
 
 ## Generate the pilot
 
@@ -14,7 +14,7 @@ From the repository root:
 python tools/generate_seo_pages.py
 ```
 
-The default build writes up to 100 site pages and 10 region pages, plus both browse indexes and `sitemap.xml`. To preview a smaller output, pass limits such as `--site-limit 5 --region-limit 2`. The `dive-sites/` and `regions/` trees are generator-owned and are rebuilt on every run; keep hand-authored content outside those directories. The generator also replaces the root sitemap from the URLs it successfully writes.
+The default build writes up to 100 indexed site pages and 10 pilot region pages, plus `/regions/browse.html`, `/regions/area-index.json`, both pilot indexes, and `sitemap.xml`. The area index covers every public record with a unique stable ID, valid coordinates, and a nonempty name; the pilot caps do not limit area listings. To preview a smaller SEO output, pass limits such as `--site-limit 5 --region-limit 2`. The `dive-sites/` and `regions/` trees are generator-owned and are rebuilt on every run; keep hand-authored content outside those directories. The generator also replaces the root sitemap from the URLs it successfully writes.
 
 ## Inputs and record fields
 
@@ -43,6 +43,7 @@ Slugs are lowercase ASCII produced from Unicode NFKD normalization and punctuati
 - `/dive-sites/<slug>/` contains static title, description, canonical, one H1, recorded facts, optional verified photo, region link and coordinates that open the exact point in Google Maps.
 - `/regions/` links to every generated region group.
 - `/regions/<country>/<region>/` includes the generated site count, site links, calculated coordinate bounds, map link and same-country pilot region links where available.
+- `/regions/browse.html?area=...` lists all public dive sites matching a recorded continent, subregion, country, or local region. The page supports search and pagination and reads its membership lists from `/regions/area-index.json`; the query-based browser is `noindex` and is not added to the SEO sitemap.
 - `sitemap.xml` contains the homepage and only the browse/detail URLs successfully generated in that run. It does not add resource files or unsupported `lastmod` values.
 
 Detail pages use the shared `/assets/seo.css` stylesheet and do not load Leaflet, MapLibre, or map data. Their typography, surface colors, blue action color, panel width, corner radius and spacing follow the tutorial dialog in `index.html`; the header uses the same DiveAtlas SVG logo and includes a language selector, persistent light/dark toggle, and Google sign-in link. Language preference is shared with the map; available localized summaries and site names use the existing translation datasets. They present the site name and recorded location, exact-site or clearly marked illustrative photo, published site summary, coordinates, recorded depth, difficulty, reviewed setting/access/features (or the source site type when reviewed categories are absent), aliases, and available linked sources. Coordinates open Google Maps at the recorded point. Missing fields are omitted; summaries are included only when published, and no current-condition claims are generated. A small Schema.org `Place` record exposes only the name and coordinates already shown on the page.

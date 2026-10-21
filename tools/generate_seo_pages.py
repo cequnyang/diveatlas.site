@@ -22,7 +22,6 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://diveatlas.site"
 SITE_DATA = ROOT / "datasets" / "dive-sites.js"
 COUNTRY_BOUNDARIES = ROOT / "datasets" / "country-boundaries-50m.geojson"
-MARITIME_BOUNDARIES = ROOT / "datasets" / "maritime-zones-v12.geojson.gz"
 PHOTO_DATA = ROOT / "datasets" / "dive-site-photos.js"
 FALLBACK_PHOTO_DATA = ROOT / "datasets" / "dive-site-fallback-photos.js"
 SUMMARY_DATA = ROOT / "datasets" / "dive-site-summaries.json.gz"
@@ -78,93 +77,58 @@ def country_geographies() -> dict[str, tuple[str, str]]:
     return result
 
 
-@lru_cache(maxsize=1)
-def location_boundary_data() -> tuple[list[dict[str, object]], dict[str, object]]:
-    land = json.loads(COUNTRY_BOUNDARIES.read_text(encoding="utf-8")).get("features", [])
-    with gzip.open(MARITIME_BOUNDARIES, "rt", encoding="utf-8") as source:
-        maritime = json.load(source)
-    return land, maritime
+def area_key(labels: list[str]) -> str:
+    """Build the same stable key in Python and in the shared-page JavaScript fallback."""
+    normalized = ["".join(character for character in unicodedata.normalize("NFKD", value).lower()
+                          if not unicodedata.combining(character)) for value in labels]
+    return json.dumps(normalized,
+                      ensure_ascii=False, separators=(",", ":"))
 
 
-def ring_contains_point(ring: list[list[float]], longitude: float, latitude: float) -> bool:
-    inside = False
-    previous = len(ring) - 1
-    for index, (x1, y1, *_rest) in enumerate(ring):
-        x2, y2, *_rest = ring[previous]
-        if (y1 > latitude) != (y2 > latitude) and longitude < ((x2 - x1) * (latitude - y1)) / (y2 - y1) + x1:
-            inside = not inside
-        previous = index
-    return inside
+def location_nodes(country: str, region: str) -> list[dict[str, str | None]]:
+    """Return only recorded location names, enriched with bundled country groupings."""
+    country, region = country.strip(), region.strip()
+    geography = country_geographies().get(normalized_place_name(country)) if country else None
+    region_is_country = False
+    # Some legacy rows store a country in the region field. Promote it only on
+    # an exact match in the bundled country lookup, never from coordinates.
+    if not geography and region:
+        geography = country_geographies().get(normalized_place_name(region))
+        region_is_country = bool(geography) and not country
+
+    nodes: list[dict[str, str | None]] = []
+    labels: list[str] = []
+
+    def add(kind: str, label: str) -> None:
+        if not label or normalized_place_name(label) in {normalized_place_name(value) for value in labels}:
+            return
+        labels.append(label)
+        nodes.append({
+            "kind": kind,
+            "label": label,
+            "key": area_key(labels),
+            "parent": nodes[-1]["key"] if nodes else None,
+        })
+
+    if geography:
+        add("continent", geography[0])
+        add("subregion", geography[1])
+    country_label = region if region_is_country and not country else country
+    add("country", country_label)
+    if region and not region_is_country and normalized_place_name(region) != normalized_place_name(country_label):
+        add("place", region)
+    return nodes
 
 
-def geometry_contains_point(geometry: dict[str, object], longitude: float, latitude: float) -> bool:
-    geometry_type = geometry.get("type")
-    coordinates = geometry.get("coordinates") or []
-    # As in the map's location lookup, ignore holes so inland lakes remain within their country.
-    if geometry_type == "Polygon":
-        polygons = [coordinates]
-    elif geometry_type == "MultiPolygon":
-        polygons = coordinates
-    else:
-        return False
-    return any(polygon and ring_contains_point(polygon[0], longitude, latitude) for polygon in polygons)
-
-
-def country_at_coordinates(site: dict[str, object]) -> str:
-    try:
-        latitude, longitude = float(site["lat"]), float(site["lon"])
-    except (KeyError, TypeError, ValueError):
-        return ""
-    longitude = ((longitude + 180) % 360) - 180
-    land, maritime = location_boundary_data()
-    feature = next((item for item in land if geometry_contains_point(item.get("geometry") or {}, longitude, latitude)), None)
-    if feature:
-        properties = feature.get("properties") or {}
-        return str(properties.get("NAME_EN") or properties.get("ADMIN") or properties.get("NAME") or "").strip()
-
-    zones = [item for item in maritime.get("features", []) if geometry_contains_point(item.get("geometry") or {}, longitude, latitude)]
-    properties = [item.get("properties") or {} for item in zones]
-    # Preserve contested and joint areas as unresolved instead of assigning a country.
-    if any(item.get("kind") in {"Overlapping claim", "Joint regime"} for item in properties):
-        return ""
-    sovereign_isos = {
-        str(iso)
-        for item in properties if item.get("kind") == "200NM"
-        for iso in item.get("sovereignIsos", [])
-    }
-    if len(sovereign_isos) != 1:
-        return ""
-    country = (maritime.get("countries") or {}).get(next(iter(sovereign_isos)), {})
-    return str(country.get("name") or "").strip()
+def area_browse_url(node: dict[str, str | None]) -> str:
+    return "/regions/browse.html?area=" + quote(str(node["key"]), safe="")
 
 
 def location_hierarchy(site: dict[str, object]) -> str:
-    country = str(site.get("country") or "").strip()
-    region = str(site.get("region") or "").strip()
-    geographies = country_geographies()
-    geography = geographies.get(normalized_place_name(country)) if country else None
-    if not geography:
-        resolved_country = country_at_coordinates(site)
-        if resolved_country:
-            country = resolved_country
-            geography = geographies.get(normalized_place_name(country))
-    # Some legacy records have an island or broad region where the country field belongs.
-    # Only promote it when the name matches a country entry in the bundled geography data.
-    if not geography and region:
-        geography = geographies.get(normalized_place_name(region))
-
-    levels: list[str] = []
-    if geography:
-        levels.extend(value for value in geography if value)
-    levels.extend(value for value in (country, region) if value)
-    unique_levels: list[str] = []
-    seen: set[str] = set()
-    for value in levels:
-        key = normalized_place_name(value)
-        if key not in seen:
-            unique_levels.append(value)
-            seen.add(key)
-    return " <span aria-hidden=\"true\">›</span> ".join(html_text(value) for value in unique_levels)
+    nodes = location_nodes(str(site.get("country") or ""), str(site.get("region") or ""))
+    return " <span aria-hidden=\"true\">›</span> ".join(
+        f'<a href="{html_text(area_browse_url(node))}">{html_text(node["label"])}</a>' for node in nodes
+    )
 
 
 def html_text(value: object) -> str:
@@ -405,6 +369,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=120">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=1">
 </head>
 <body{body_class_attr}>
 {body}
@@ -415,6 +380,70 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
 
 def item_list(items: list[dict[str, object]], render_item) -> str:
     return "\n".join(f"      <li>{render_item(item)}</li>" for item in items)
+
+
+def public_region_index(rows: list[list[object]]) -> dict[str, object]:
+    """Index every public detail record by recorded geography, outside the SEO pilot cap."""
+    id_counts = Counter(row_value(row, 12).lower() for row in rows if row_value(row, 12))
+    sites: list[dict[str, str]] = []
+    for row in rows:
+        site_id, name = row_value(row, 12).lower(), row_value(row, 0)
+        latitude, longitude = row[1:3] if len(row) > 2 else (None, None)
+        if (not UUID_RE.fullmatch(site_id) or id_counts[site_id] != 1 or not name
+                or isinstance(latitude, bool) or isinstance(longitude, bool)
+                or not isinstance(latitude, (int, float)) or not isinstance(longitude, (int, float))
+                or not math.isfinite(latitude) or not math.isfinite(longitude)
+                or not -90 <= latitude <= 90 or not -180 <= longitude <= 180):
+            continue
+        sites.append({"site_id": site_id, "name": name,
+                      "country": row_value(row, 9), "region": row_value(row, 10)})
+    sites.sort(key=lambda site: (site["name"].casefold(), site["site_id"]))
+
+    areas: dict[str, dict[str, object]] = {}
+    for index, site in enumerate(sites):
+        for node in location_nodes(site["country"], site["region"]):
+            key = str(node["key"])
+            area = areas.setdefault(key, {
+                "key": key, "kind": node["kind"], "label": node["label"],
+                "parent": node["parent"], "site_indices": [],
+            })
+            area["site_indices"].append(index)
+    ordered_areas = sorted(areas.values(), key=lambda area: (
+        str(area["kind"]), str(area["label"]).casefold(), str(area["key"])))
+    return {"schema": "dive-site-region-index-v1", "site_count": len(sites),
+            "areas": ordered_areas, "sites": sites}
+
+
+def region_browser_page() -> str:
+    body = '''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/" aria-current="page">Regions</a></nav></header>
+<main class="region-browser">
+  <p class="eyebrow">Explore DiveAtlas</p>
+  <h1 id="regionPageTitle">Browse dive sites by area</h1>
+  <p id="regionPageDescription" class="lead">Choose a continent, country, or recorded local area to see all dive sites in that part of the world.</p>
+  <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
+  <p id="regionPageStatus" role="status" aria-live="polite">Loading recorded dive-site locations…</p>
+  <section id="regionAreaSection" aria-labelledby="regionAreaHeading" hidden>
+    <h2 id="regionAreaHeading">Explore areas</h2>
+    <ul class="site-list" id="regionAreaList"></ul>
+  </section>
+  <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
+    <h2 id="regionSiteHeading">Dive sites</h2>
+    <label class="region-browser__search">Search in this area<input id="regionSiteSearch" type="search" autocomplete="off" placeholder="Search dive sites"></label>
+    <p class="coordinates" id="regionSiteCount" aria-live="polite"></p>
+    <ul class="site-list" id="regionSiteList"></ul>
+    <nav class="region-browser__pagination" id="regionPagination" aria-label="Dive-site pages"></nav>
+  </section>
+</main>
+<footer><a href="/dive-sites/">Browse pilot dive sites</a> · <a href="/">DiveAtlas map</a></footer>
+<script src="/js/region-browse.js?v=1" defer></script>'''
+    page = page_shell(
+        "Dive Sites by Area | DiveAtlas",
+        "Browse all DiveAtlas dive sites by their recorded continent, country, or local area.",
+        f"{BASE_URL}/regions/browse.html",
+        body,
+        body_class="region-browser-page",
+    )
+    return page.replace('  <meta name="viewport"', '  <meta name="robots" content="noindex,follow">\n  <meta name="viewport"', 1)
 
 
 def generate_site_page(
@@ -706,7 +735,7 @@ def generate_site_page(
 <main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}">
   <section class="site-hero" aria-labelledby="site-title">
     {photo_markup}
-    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div><p class="lead" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
+    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div><p class="lead location-hierarchy" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
     </div>
   </section>
   {intro_details_markup}
@@ -769,6 +798,7 @@ def write_page(path: Path, content: str) -> None:
 
 def build(args: argparse.Namespace) -> dict[str, object]:
     rows, photos, summaries = load_rows(), load_photos(), load_summaries()
+    area_index = public_region_index(rows)
     fallback_photo_base, fallback_photos = load_fallback_photos()
     candidates, rejected = validated_candidates(rows, photos, summaries, fallback_photo_base, fallback_photos)
     selected = candidates[:args.site_limit]
@@ -824,9 +854,13 @@ def build(args: argparse.Namespace) -> dict[str, object]:
 
     region_index_items = item_list(regions, lambda group: f'<a href="{html_text(group["path"])}">{html_text(group["region"])}</a> <span class="coordinates">{(html_text(group["country"]) + " · ") if group["country"] else ""}{len(group["sites"])} sites</span>')
     region_index_body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/">Regions</a></nav></header>
-<main><p class="eyebrow">Factual page pilot</p><h1>Dive Site Regions</h1><p>Browse {len(regions)} country and region groups that each contain at least {MIN_SITES_PER_REGION} generated pilot dive-site pages. Names and counts come from recorded DiveAtlas location fields.</p><ul class="site-list">{region_index_items}</ul></main>
+<main><p class="eyebrow">Factual page pilot</p><h1>Dive Site Regions</h1><p>Browse {len(regions)} country and region groups that each contain at least {MIN_SITES_PER_REGION} generated pilot dive-site pages. Names and counts come from recorded DiveAtlas location fields.</p><p><a href="/regions/browse.html">Browse every recorded area and all dive sites</a></p><ul class="site-list">{region_index_items}</ul></main>
 <footer><a href="/dive-sites/">Browse pilot dive sites</a> · <a href="/">DiveAtlas map</a></footer>'''
     write_page(REGION_OUTPUT / "index.html", page_shell("Dive Site Regions | DiveAtlas", "Browse DiveAtlas region pages grouped from recorded dive-site country and region fields.", f"{BASE_URL}/regions/", region_index_body))
+    write_page(REGION_OUTPUT / "browse.html", region_browser_page())
+    (REGION_OUTPUT / "area-index.json").write_text(
+        json.dumps(area_index, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8", newline="\n")
 
     for group in regions:
         title, content = generate_region_page(group, regions)
@@ -846,7 +880,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     xml = ET.tostring(urlset, encoding="unicode", xml_declaration=False)
     SITEMAP.write_text('<?xml version="1.0" encoding="UTF-8"?>\n' + xml + "\n", encoding="utf-8", newline="\n")
 
-    return {"site_count": len(selected), "region_count": len(regions), "candidate_count": len(candidates), "rejected": rejected, "sitemap_url_count": len(sitemap_urls), "site_urls": [f"{BASE_URL}/dive-sites/{site['slug']}/" for site in selected], "region_urls": [f"{BASE_URL}{group['path']}" for group in regions], "region_threshold": MIN_SITES_PER_REGION}
+    return {"site_count": len(selected), "region_count": len(regions), "area_count": len(area_index["areas"]), "area_site_count": area_index["site_count"], "candidate_count": len(candidates), "rejected": rejected, "sitemap_url_count": len(sitemap_urls), "site_urls": [f"{BASE_URL}/dive-sites/{site['slug']}/" for site in selected], "region_urls": [f"{BASE_URL}{group['path']}" for group in regions], "region_threshold": MIN_SITES_PER_REGION}
 
 
 def main() -> None:
