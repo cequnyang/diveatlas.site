@@ -84,3 +84,11 @@ playwright-report/
 !/tests/unit/test_dive_site_region_enrichment.py
 !/tests/unit/test_dive_site_location_enrichment.py
 !/tests/unit/dive-conditions-service-metadata.test.js
+
+# Local dive-site catalog inputs and review tooling.
+/datasets/country-boundaries-50m.geojson
+/datasets/dive-site-verified-depth-maxima.js
+/datasets/marine-regions-eez-v12-low-res.zip
+/datasets/marine-regions-eez-v12-source/
+/maintenance/build_dive_site_review_rating_inventory.py
+/tests/unit/dive-conditions-service-metadata.test.js
