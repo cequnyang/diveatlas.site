@@ -129,8 +129,8 @@
       `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${series.label} (${series.unit})</span>`).join('');
 
     // The responsive SVG keeps this 25% shorter canvas on desktop and mobile alike.
-    // Keep the three left-axis columns legible while bringing the plot closer to the section edge.
-    const width = 840, height = 277.5, left = 110, right = 90, top = 22, bottom = 58;
+    // Keep axis labels inside the SVG while using more of the section width for the plot.
+    const width = 840, height = 277.5, left = 80, right = 80, top = 22, bottom = 58;
     const innerWidth = width - left - right, innerHeight = height - top - bottom;
     const xAt = month => left + ((month - 1) / 11) * innerWidth;
     const axisBySeries = new Map(AXES.flatMap(axis => axis.series.map(series => [series.key, axis])));
@@ -176,7 +176,7 @@
         }
         series.forEach((item, seriesIndex) => {
           const seriesOffset = seriesIndex * 28;
-          const axisColumnGap = 56;
+          const axisColumnGap = onLeft ? 28 : 56;
           const x = onLeft
             ? left - 32 - column * axisColumnGap - seriesOffset
             : width - right + 32 + column * axisColumnGap + seriesOffset;
