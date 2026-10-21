@@ -323,8 +323,10 @@
       }
 
       matches.sort((a, b) => a.difference - b.difference || a.candidate.name.localeCompare(b.candidate.name));
+      const orderedMatches = window.DiveAtlasRecommendationOrdering?.spreadByPreview(matches,
+        match => match.candidate?.photo) || matches;
       const fragment = document.createDocumentFragment();
-      if (matches.length) {
+      if (orderedMatches.length) {
         const createRatingCard = ({ candidate, score }, expanded = false) => {
           const cardCandidate = {
             ...candidate,
@@ -334,13 +336,13 @@
           };
           return window.DiveAtlasRecommendationCards.create(cardCandidate, score, expanded);
         };
-        for (const match of matches.slice(0, 5)) {
+        for (const match of orderedMatches.slice(0, 5)) {
           fragment.append(createRatingCard(match));
         }
-        ratingRecommendations.recommendationTotal = matches.length;
+        ratingRecommendations.recommendationTotal = orderedMatches.length;
         ratingRecommendations.recommendationRenderMore = (start, count) => {
           const nextCards = document.createDocumentFragment();
-          for (const match of matches.slice(start, start + count)) nextCards.append(createRatingCard(match, true));
+          for (const match of orderedMatches.slice(start, start + count)) nextCards.append(createRatingCard(match, true));
           return nextCards;
         };
       } else {

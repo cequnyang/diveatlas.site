@@ -150,7 +150,9 @@
         empty.textContent = 'No recommended dive sites are available.';
         items.push(empty);
       }
-      combinedList.replaceChildren(...items);
+      const orderedItems = window.DiveAtlasRecommendationOrdering?.spreadByPreview(items,
+        item => item.querySelector('.site-recommendations__image')?.getAttribute('src') || '') || items;
+      combinedList.replaceChildren(...orderedItems);
     }
 
     const listObserver = new MutationObserver(refreshCombinedList);

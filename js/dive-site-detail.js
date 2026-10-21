@@ -69,11 +69,103 @@
     return String(value || '').split(/\s*(?:\||,|;)\s*/).map(token => token.trim()).filter(Boolean);
   }
 
+  function spreadByPreview(values, getPreview = candidate => candidate?.photo?.src || candidate?.photo) {
+    const groups = new Map();
+    values.forEach((value, index) => {
+      let preview = '';
+      try { preview = getPreview(value); } catch (_) { /* Keep malformed previews together. */ }
+      if (preview) {
+        const source = String(preview).trim();
+        try { preview = new URL(source, location.origin + '/').href; }
+        catch (_) { preview = source; }
+      } else {
+        preview = '';
+      }
+      if (!groups.has(preview)) groups.set(preview, { items:[], firstIndex:index, nextIndex:0, priority:index });
+      const group = groups.get(preview);
+      group.items.push({ value, index });
+    });
+
+    // Keep shuffling local to six ranked image groups, favor the front of that window,
+    // and discount (rather than exclude) the previous image so two-image lists can vary.
+    const randomLookahead = 6;
+    const rankWindow = 4;
+    const repeatedPreviewWeight = 0.35;
+    const heap = [];
+    const outranks = (left, right) => left.priority < right.priority
+      || (left.priority === right.priority && left.firstIndex < right.firstIndex);
+    const push = group => {
+      let index = heap.push(group) - 1;
+      while (index > 0) {
+        const parent = Math.floor((index - 1) / 2);
+        if (!outranks(heap[index], heap[parent])) break;
+        [heap[index], heap[parent]] = [heap[parent], heap[index]];
+        index = parent;
+      }
+    };
+    const pop = () => {
+      const first = heap[0];
+      const last = heap.pop();
+      if (heap.length) {
+        heap[0] = last;
+        let index = 0;
+        while (true) {
+          const left = index * 2 + 1;
+          const right = left + 1;
+          let best = index;
+          if (left < heap.length && outranks(heap[left], heap[best])) best = left;
+          if (right < heap.length && outranks(heap[right], heap[best])) best = right;
+          if (best === index) break;
+          [heap[index], heap[best]] = [heap[best], heap[index]];
+          index = best;
+        }
+      }
+      return first;
+    };
+
+    for (const group of groups.values()) push(group);
+    const ordered = [];
+    let previous = null;
+    while (heap.length) {
+      const choices = [];
+      while (heap.length && choices.length < randomLookahead) choices.push(pop());
+      const firstPriority = choices[0].priority;
+      const weights = choices.map(group => {
+        const rankWeight = 1 / (1 + (group.priority - firstPriority) / rankWindow);
+        return rankWeight * (group === previous && choices.length > 1 ? repeatedPreviewWeight : 1);
+      });
+      let target = Math.random() * weights.reduce((sum, weight) => sum + weight, 0);
+      let selected = choices.length - 1;
+      for (let index = 0; index < choices.length; index += 1) {
+        target -= weights[index];
+        if (target < 0) {
+          selected = index;
+          break;
+        }
+      }
+
+      const group = choices[selected];
+      ordered.push(group.items[group.nextIndex].value);
+      group.nextIndex += 1;
+      if (group.nextIndex < group.items.length) {
+        group.priority = group.items[group.nextIndex].index;
+        push(group);
+      }
+      previous = group;
+      choices.forEach((candidate, index) => { if (index !== selected) push(candidate); });
+    }
+    return ordered;
+  }
+
+  // Add local variety while preserving candidate order within each preview group.
+  window.DiveAtlasRecommendationOrdering = { spreadByPreview };
+
   async function renderRecommendations(site) {
     const aside = document.getElementById('relatedSites');
     if (!aside) return;
     const relatedFallback = () => {
-      const related = (site.related || []).filter(other => uuid.test(other.site_id) && other.site_id !== siteId).slice(0, 8);
+      const related = spreadByPreview((site.related || [])
+        .filter(other => uuid.test(other.site_id) && other.site_id !== siteId)).slice(0, 8);
       if (!related.length) return;
       aside.innerHTML = `<h2>More in this region</h2><ul>${related.map(other => {
         const image = safeUrl(other.photo?.src);
@@ -130,22 +222,22 @@
       const comparable = value => String(value || '').toLowerCase();
       const distanceSorted = values => values.sort((a, b) => recommendationDistance(site, a)
         - recommendationDistance(site, b) || a.name.localeCompare(b.name));
-      const nearby = distanceSorted(candidates.filter(candidate => site.region
+      const nearby = spreadByPreview(distanceSorted(candidates.filter(candidate => site.region
         ? comparable(candidate.country) === comparable(site.country)
           && comparable(candidate.region) === comparable(site.region)
-        : site.country && comparable(candidate.country) === comparable(site.country)));
+        : site.country && comparable(candidate.country) === comparable(site.country))));
       const primaryFeatures = recommendationTokens(site.categories?.features || site.characteristics).slice(0, 2);
       const primaryFeatureKeys = new Set(primaryFeatures.map(feature => feature.toLowerCase()));
-      const features = candidates.map(candidate => ({ candidate,
+      const features = spreadByPreview(candidates.map(candidate => ({ candidate,
         matches:recommendationTokens(candidate.feature_values || candidate.features)
           .filter(feature => primaryFeatureKeys.has(feature.toLowerCase())).length
       })).filter(item => item.matches > 0)
         .sort((a, b) => b.matches - a.matches
           || recommendationDistance(site, a.candidate) - recommendationDistance(site, b.candidate)
-          || a.candidate.name.localeCompare(b.candidate.name)).map(item => item.candidate);
+          || a.candidate.name.localeCompare(b.candidate.name)).map(item => item.candidate));
       const difficulty = recommendationDifficulty(site.difficulty);
-      const difficultyMatches = distanceSorted(candidates.filter(candidate => difficulty
-        && recommendationDifficulty(candidate.difficulty) === difficulty));
+      const difficultyMatches = spreadByPreview(distanceSorted(candidates.filter(candidate => difficulty
+        && recommendationDifficulty(candidate.difficulty) === difficulty)));
       // Ratings can be compared against the full catalog on demand; keep that
       // large list out of the DOM attribute so it isn't serialized twice.
       const ratingCandidates = candidates;
@@ -285,8 +377,8 @@
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=1', '/js/seo-page-controls.js?v=10',
-      '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=16',
-      '/js/dive-site-rating-card.js?v=15']) {
+      '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=17',
+      '/js/dive-site-rating-card.js?v=16']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }
