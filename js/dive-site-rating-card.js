@@ -333,7 +333,12 @@
     await import('./dive-experience-outlook-map.js?v=7');
     const outlook = window.DiveAtlasDiveExperienceMap;
     if (!outlook) throw new Error('Dive Experience Outlook module did not initialize.');
-    const baseUrl = new URL('/data/dive-experience-outlook/v3/', window.location.origin).href;
+    // Detail pages have nested URLs; resolve the release explicitly rather than
+    // relying on the map page's fetch rewrite, which uses the document directory.
+    const manifestUrl = window.DiveAtlasDataAssets?.external
+      ? window.DiveAtlasDataAssets.url('data/dive-experience-outlook/v3/manifest.json')
+      : new URL('/data/dive-experience-outlook/v3/manifest.json', window.location.origin).href;
+    const baseUrl = new URL('./', manifestUrl).href;
     const landMaskUrl = new URL('/datasets/dive-experience-land-mask-v1.bin.gz', window.location.origin).href;
     const store = outlook.createDataStore({ baseUrl, landMaskUrl });
     ratingStore = store;
