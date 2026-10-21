@@ -70,6 +70,8 @@ playwright-report/
 !/tools/
 /tools/*
 !/tools/export_dive_site_details.py
+!/tools/enrich_dive_site_regions.py
+!/tools/enrich_dive_site_locations.py
 !/docs/shared-dive-site-details.md
 !/tests/
 /tests/*
@@ -79,4 +81,6 @@ playwright-report/
 !/tests/unit/
 /tests/unit/*
 !/tests/unit/test_dive_site_details.py
+!/tests/unit/test_dive_site_region_enrichment.py
+!/tests/unit/test_dive_site_location_enrichment.py
 !/tests/unit/dive-conditions-service-metadata.test.js

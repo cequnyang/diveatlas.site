@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "build:site-details": "python tools/export_dive_site_details.py",
-    "test:unit": "python -m unittest tests.unit.test_rechunk_environmental_queries -v && node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",
+    "audit:dive-site-regions": "python tools/enrich_dive_site_regions.py",
+    "patch:dive-site-regions": "python tools/enrich_dive_site_regions.py --apply",
+    "audit:dive-site-locations": "python tools/enrich_dive_site_locations.py",
+    "patch:dive-site-locations": "python tools/enrich_dive_site_locations.py --apply",
+    "test:unit": "python -m unittest tests.unit.test_rechunk_environmental_queries tests.unit.test_dive_site_region_enrichment tests.unit.test_dive_site_location_enrichment -v && node --test tests/unit/*.test.js && node tools/test_map_marker_semantics.js",
     "test:coral-heat-stress": "python -m unittest tests.unit.test_coral_heat_stress_build tests.unit.test_coral_heat_history_build tests.unit.test_coral_heat_history_summary tests.unit.test_ocean_heat_history_publish -v && node --test tests/unit/coral-heat-stress-view.test.js tests/unit/coral-heat-history-view.test.js",
     "build:auth-preview": "python tools/prepare_pages.py --output _site --skip-external-data",
     "prepare:local-manifests": "python tools/fetch_local_startup_manifests.py",

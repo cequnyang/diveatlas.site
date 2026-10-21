@@ -69,10 +69,15 @@ function maritimeResult(zones, countries) {
   const sovereignIsos = [...new Set(exclusive.flatMap(zone => zone.properties.sovereignIsos || []))];
   if (sovereignIsos.length !== 1) return null;
   const country = countries[sovereignIsos[0]];
-  if (!country) return null;
+  // Some EEZ records include a sovereign ISO and name but no country metadata entry.
+  const sovereignNames = [...new Set(exclusive.flatMap(zone => zone.properties.sovereigns || [])
+    .map(name => String(name || '').trim()).filter(Boolean))];
+  const countryName = country?.name || (sovereignNames.length === 1 ? sovereignNames[0] : '');
+  if (!countryName) return null;
+  const properties = country?.name ? country : { ...(country || {}), name:countryName };
   const territory = [...new Set(exclusive.flatMap(zone => zone.properties.territories || []))]
-    .find(name => name !== country.name);
-  return { kind:'maritime', properties:country, territory };
+    .find(name => name !== countryName);
+  return { kind:'maritime', properties, territory };
 }
 
 export async function lookupCountryAtLocation(point) {
