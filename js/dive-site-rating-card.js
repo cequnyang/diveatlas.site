@@ -4,26 +4,142 @@
 
   const score = card.querySelector('.site-photo-gallery-rating__score');
   const trendPanel = card.querySelector('.site-photo-gallery-rating__trend');
+  const trendTitle = card.querySelector('.site-photo-gallery-rating__trend-title');
   const trendChart = card.querySelector('.site-photo-gallery-rating__trend-chart');
+  const trendHandle = document.createElement('button');
+  trendHandle.className = 'site-photo-gallery-rating__trend-handle';
+  trendHandle.type = 'button';
+  trendHandle.setAttribute('aria-label', 'Collapse monthly rating chart');
+  trendHandle.innerHTML = '<span aria-hidden="true"></span>';
+  trendPanel.append(trendHandle);
   const ratingRecommendations = document.querySelector('[data-recommendation-rating-candidates]');
   const location = { lat:Number(card.dataset.ratingLat), lng:Number(card.dataset.ratingLng) };
   if (!Number.isFinite(location.lat) || !Number.isFinite(location.lng)) return;
+
+  if (trendTitle) trendTitle.textContent = 'Monthly rating';
+
+  let trendDragStartY = null;
+  let trendHandleDragged = false;
+  let trendCollapseAnimation = null;
+  let trendReturnAnimation = null;
+  const trendClip = amount => `inset(0px 0px ${amount}px 0px)`;
+  const cancelTrendAnimation = animation => {
+    if (animation) animation.cancel();
+  };
+  const animateTrendClip = (fromClip, toClip, duration, finish) => {
+    const animation = trendPanel.animate(
+      [{ clipPath: fromClip }, { clipPath: toClip }],
+      { duration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : duration, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' }
+    );
+    animation.onfinish = () => {
+      finish();
+      animation.cancel();
+    };
+    return animation;
+  };
+  const updateTrendDrag = clientY => {
+    const distance = clientY - trendDragStartY;
+    const collapseDistance = Math.min(trendPanel.getBoundingClientRect().height, Math.max(0, -distance));
+    trendPanel.style.clipPath = trendClip(collapseDistance);
+    trendHandleDragged = Math.abs(distance) >= 8;
+    return distance;
+  };
+  trendHandle.addEventListener('pointerdown', event => {
+    const interruptedCollapse = trendPanel.classList.contains('is-collapsing');
+    cancelTrendAnimation(trendCollapseAnimation);
+    cancelTrendAnimation(trendReturnAnimation);
+    trendCollapseAnimation = null;
+    trendReturnAnimation = null;
+    if (interruptedCollapse) {
+      trendPanel.classList.remove('is-collapsing');
+      trendPanel.style.clipPath = '';
+    }
+    trendDragStartY = event.clientY;
+    trendHandleDragged = false;
+    trendPanel.classList.add('is-dragging');
+    trendHandle.setPointerCapture?.(event.pointerId);
+  });
+  trendHandle.addEventListener('pointermove', event => {
+    if (trendDragStartY == null) return;
+    updateTrendDrag(event.clientY);
+  });
+  trendHandle.addEventListener('pointerup', event => {
+    if (trendDragStartY == null) return;
+    const distance = updateTrendDrag(event.clientY);
+    trendDragStartY = null;
+    trendPanel.classList.remove('is-dragging');
+    if (distance <= -40) {
+      const currentClip = getComputedStyle(trendPanel).clipPath;
+      const panelHeight = trendPanel.getBoundingClientRect().height;
+      const fullClip = trendClip(panelHeight);
+      trendPanel.classList.add('is-collapsing');
+      // Keep the open state until the clip animation finishes; otherwise the
+      // closed-state styles replace the release frame before the upward motion can continue.
+      trendCollapseAnimation = animateTrendClip(currentClip, fullClip, 260, () => {
+        card.classList.remove('show-rating-trend');
+        trendPanel.classList.remove('is-collapsing');
+        trendPanel.style.clipPath = '';
+        trendCollapseAnimation = null;
+      });
+    } else {
+      const currentClip = getComputedStyle(trendPanel).clipPath;
+      trendReturnAnimation = animateTrendClip(currentClip, trendClip(0), 160, () => {
+        trendPanel.style.clipPath = '';
+        trendReturnAnimation = null;
+      });
+    }
+  });
+  trendHandle.addEventListener('pointercancel', () => {
+    const currentClip = getComputedStyle(trendPanel).clipPath;
+    trendDragStartY = null;
+    trendPanel.classList.remove('is-dragging');
+    trendReturnAnimation = animateTrendClip(currentClip, trendClip(0), 160, () => {
+      trendPanel.style.clipPath = '';
+      trendReturnAnimation = null;
+    });
+  });
+  trendHandle.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (trendHandleDragged) {
+      trendHandleDragged = false;
+      return;
+    }
+    card.classList.remove('show-rating-trend');
+  });
 
   const scoreLabels = Object.freeze({ Challenging:'Not ideal', Fair:'Okay', Good:'Good', Excellent:'Great' });
   const currentMonth = new Date().getMonth() + 1;
   const ratingSamples = new Map();
   let trendPromise = null;
   let ratingStore = null;
+  let trendScores = null;
 
   function renderRatingTrend(monthlyScores) {
-    const width = 300, height = 112, left = 18, right = 8, top = 8, bottom = 22;
+    trendScores = monthlyScores;
+    const width = 300;
+    const expandedBelowGallery = matchMedia('(max-width: 900px)').matches;
+    const chartBounds = trendChart.getBoundingClientRect();
+    const scale = expandedBelowGallery && chartBounds.width > 0 ? chartBounds.width / width : 1;
+    const height = expandedBelowGallery && chartBounds.height > 0 ? Math.max(112, chartBounds.height / scale) : 112;
+    const left = 18, right = 8, top = 8 / scale, bottom = 22 / scale;
+    const availableScores = monthlyScores.filter(value => value != null);
+    const minScore = availableScores.length ? Math.min(...availableScores) : 0;
+    const maxScore = availableScores.length ? Math.max(...availableScores) : 100;
+    // In the expanded desktop popover, use a bounded local range so the taller panel makes the monthly movement legible.
+    const scoreRange = expandedBelowGallery && availableScores.length ? Math.max(20, maxScore - minScore) : 100;
+    const domainMin = expandedBelowGallery && availableScores.length
+      ? Math.max(0, Math.min((minScore + maxScore - scoreRange) / 2, 100 - scoreRange))
+      : 0;
+    const domainMax = Math.min(100, domainMin + scoreRange);
     const points = monthlyScores.map((value, index) => value == null ? null : ({
       x:left + index * (width - left - right) / 11,
-      y:top + (100 - value) * (height - top - bottom) / 100,
+      y:top + (domainMax - value) * (height - top - bottom) / (domainMax - domainMin),
       value
     }));
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    if (expandedBelowGallery) svg.setAttribute('preserveAspectRatio', 'none');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'Monthly DiveAtlas rating scores from January to December');
     const ns = 'http://www.w3.org/2000/svg';
@@ -37,7 +153,7 @@
     }).join(' '));
     line.setAttribute('fill', 'none');
     line.setAttribute('stroke', 'rgb(55, 104, 213)');
-    line.setAttribute('stroke-width', '3');
+    line.setAttribute('stroke-width', String(3 / scale));
     line.setAttribute('stroke-linecap', 'round');
     line.setAttribute('stroke-linejoin', 'round');
     svg.append(line);
@@ -47,7 +163,7 @@
         const marker = document.createElementNS(ns, 'circle');
         marker.setAttribute('cx', point.x);
         marker.setAttribute('cy', point.y);
-        marker.setAttribute('r', '3.5');
+        marker.setAttribute('r', String(3.5 / scale));
         marker.setAttribute('fill', 'rgb(55, 104, 213)');
         const title = document.createElementNS(ns, 'title');
         title.textContent = `${labels[index]}: ${Math.round(point.value)}/100`;
@@ -55,20 +171,20 @@
         svg.append(marker);
         const value = document.createElementNS(ns, 'text');
         value.setAttribute('x', point.x);
-        value.setAttribute('y', Math.max(top + 10, point.y - 7));
+        value.setAttribute('y', Math.max(top + 10 / scale, point.y - 7 / scale));
         value.setAttribute('text-anchor', 'middle');
         value.setAttribute('fill', 'rgb(55, 104, 213)');
-        value.setAttribute('font-size', '13.2');
+        value.setAttribute('font-size', String(13.2 / scale));
         value.setAttribute('font-weight', '700');
         value.textContent = String(Math.round(point.value));
         svg.append(value);
       }
       const month = document.createElementNS(ns, 'text');
       month.setAttribute('x', left + index * (width - left - right) / 11);
-      month.setAttribute('y', height - 4);
+      month.setAttribute('y', height - 4 / scale);
       month.setAttribute('text-anchor', 'middle');
       month.setAttribute('fill', 'currentColor');
-      month.setAttribute('font-size', '9');
+      month.setAttribute('font-size', String(9 / scale));
       month.setAttribute('font-weight', '700');
       month.textContent = labels[index];
       svg.append(month);
@@ -77,6 +193,16 @@
     trendChart.setAttribute('aria-label', monthlyScores.some(value => value != null)
       ? 'Monthly DiveAtlas rating scores. Focus a point to read its month and score.'
       : 'Monthly DiveAtlas rating scores are unavailable.');
+  }
+
+  let trendResizeFrame = 0;
+  if ('ResizeObserver' in window) {
+    const trendChartResizeObserver = new ResizeObserver(() => {
+      if (!trendScores) return;
+      cancelAnimationFrame(trendResizeFrame);
+      trendResizeFrame = requestAnimationFrame(() => renderRatingTrend(trendScores));
+    });
+    trendChartResizeObserver.observe(trendChart);
   }
 
   async function loadRatingTrend(store) {
@@ -97,10 +223,26 @@
     return trendPromise;
   }
 
-  card.addEventListener('pointerenter', () => { void loadRatingTrend(ratingStore); });
+  const dismissedTrendClicks = new WeakSet();
+  document.addEventListener('click', event => {
+    if (trendPanel.contains(event.target) || getComputedStyle(trendPanel).visibility !== 'visible') return;
+    dismissedTrendClicks.add(event);
+    card.classList.remove('show-rating-trend');
+    card.classList.add('is-trend-dismissed');
+  }, true);
+  card.addEventListener('pointerenter', () => {
+    card.classList.remove('is-trend-dismissed');
+    void loadRatingTrend(ratingStore);
+  });
+  card.addEventListener('pointerleave', () => card.classList.remove('is-trend-dismissed'));
   card.addEventListener('focusin', () => { void loadRatingTrend(ratingStore); });
+  card.addEventListener('focusout', event => {
+    if (!card.contains(event.relatedTarget)) card.classList.remove('is-trend-dismissed');
+  });
   card.addEventListener('click', event => {
+    if (trendPanel.contains(event.target) || dismissedTrendClicks.has(event)) return;
     if (event.pointerType === 'touch' || matchMedia('(hover: none)').matches) {
+      card.classList.remove('is-trend-dismissed');
       card.classList.toggle('show-rating-trend');
       void loadRatingTrend(ratingStore);
     }

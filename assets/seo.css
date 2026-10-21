@@ -454,3 +454,6 @@ body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6
   .site-photo-gallery-rating__score[data-status="ready"] .site-photo-gallery-rating__value { position: absolute; top: 16px; right: 7px; font-size: clamp(16px, 4.8vw, 20px); }
   .site-photo-gallery-rating__score[data-status="ready"] .site-photo-gallery-rating__level { position: absolute; right: 7px; bottom: 11px; margin: 0; font-size: clamp(16px, 4.8vw, 20px); }
 }
+@media (min-width: 721px) and (max-width: 900px) {
+  .site-photo-gallery-rating__trend { height: 200%; }
+}
