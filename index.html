@@ -1650,8 +1650,16 @@
     .dive-site-popup .bio-popup-title .dive-popup-detail-link:hover,
     .dive-site-popup .bio-popup-title .dive-popup-detail-link:active,
     .dive-site-popup .bio-popup-title .dive-popup-detail-link:focus-visible {
-      color: rgb(55, 104, 213);
+      color: #000;
+      font-size: 1.35em;
       text-decoration: none;
+    }
+    html[data-theme="dark"] .dive-site-popup .bio-popup-title .dive-popup-detail-link,
+    html[data-theme="dark"] .dive-site-popup .bio-popup-title .dive-popup-detail-link:visited,
+    html[data-theme="dark"] .dive-site-popup .bio-popup-title .dive-popup-detail-link:hover,
+    html[data-theme="dark"] .dive-site-popup .bio-popup-title .dive-popup-detail-link:active,
+    html[data-theme="dark"] .dive-site-popup .bio-popup-title .dive-popup-detail-link:focus-visible {
+      color: #fff;
     }
     .dive-popup-detail-link:focus-visible { border-radius: 3px; outline: 2px solid var(--layers-focus-ring); outline-offset: 2px; }
     .dive-popup-summary .dive-popup-detail-link,
