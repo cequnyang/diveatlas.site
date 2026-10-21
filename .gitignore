@@ -60,6 +60,11 @@ playwright-report/
 # Per-site public records are generated for local previews and R2 publication.
 /data/dive-site-details/
 
+# Local research reports and profiling artifacts are not part of the published site.
+/artifacts/
+/reports/
+/uncovered-sites.txt
+
 # Keep this feature's reproducible source even in checkouts that locally ignore
 # authoring directories; continue excluding unrelated local tooling and tests.
 !/tools/
