@@ -64,8 +64,6 @@
         src: photo?.currentSrc || photo?.src,
         alt: photo?.alt || document.querySelector('[data-seo-site-name]')?.textContent || '',
         credit: photoCredit
-      }, {
-        addPhotoUrl: siteId ? `/?site=${encodeURIComponent(siteId)}&addPhoto=1` : null
       });
     });
   });

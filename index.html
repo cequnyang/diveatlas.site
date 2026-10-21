@@ -40,7 +40,7 @@
   <link rel="icon" type="image/x-icon" href="assets/favicon-brand.ico?v=7" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-brand.png?v=7" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-brand.png?v=4" />
-  <link rel="stylesheet" href="assets/dive-photo-preview.css?v=1" />
+  <link rel="stylesheet" href="assets/dive-photo-preview.css?v=6" />
 
   <link
     rel="stylesheet"
@@ -8178,7 +8178,7 @@ ZSD·2016–2025</span></span>
 <script src="/js/share-dialog.js?v=1"></script>
 <script src="js/site-photo-metadata.js"></script>
 <script src="js/auth-ui.js" defer></script>
-<script src="js/dive-photo-preview.js?v=1"></script>
+<script src="js/dive-photo-preview.js?v=5"></script>
 <script>
   // Embedders can set this before loading the page; a query override supports controlled local/staging checks.
   window.DIVEATLAS_FEATURE_FLAGS = { ...(window.DIVEATLAS_FEATURE_FLAGS || {}),
@@ -11253,8 +11253,7 @@ ZSD·2016–2025</span></span>
     }, {
       previewLabel: t('divePhotoPreview'),
       closeLabel: t('divePhotoPreviewClose'),
-      popup,
-      onAddPhoto: () => openSitePhotoUploadModal(popup?._diveAtlasSiteId || '', siteName, null)
+      popup
     });
   }
 
