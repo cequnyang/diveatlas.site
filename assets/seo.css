@@ -90,6 +90,9 @@ p { max-width: 72ch; }
 .site-recommendations__meta { display: flex; min-width: 0; align-items: baseline; justify-content: space-between; gap: 4px 8px; }
 .site-recommendations__location { overflow: hidden; color: var(--text-secondary); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
 .site-recommendations__empty { color: var(--text-secondary); font-size: 12px; }
+.site-recommendations__more { margin: 8px 0 0; padding: 0; border: 0; background: transparent; color: var(--primary); font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; }
+.site-recommendations__more:hover { text-decoration: underline; }
+.site-recommendations__more:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 3px; }
 .site-recommendations__rating { flex: 0 0 auto; color: rgb(55, 104, 213); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .site-recommendations__features { display: flex; min-width: 0; flex-wrap: nowrap; gap: 0; overflow: hidden; }
 .site-recommendations__feature { max-width: 100%; overflow: hidden; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--text-secondary); font-size: 9px; font-weight: 600; letter-spacing: .07em; line-height: 1.4; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
@@ -310,7 +313,7 @@ figure { margin: 0; }
   body.seo-site-detail-layout > .site-recommendations .site-recommendations__tabs { width: max(100%, min(125%, calc(50vw - 330px))); }
   body.seo-site-detail-layout > .site-header {    grid-column: 1 / -1;    position: absolute;    inset: 0 0 auto;    width: auto;    max-width: none;    margin: 0;    padding-inline: 0;  }
   body.seo-site-detail-layout > main {    min-height: 0;    padding-top: 18px;  }
-  body.seo-site-detail-layout > main.detail-page {    margin: 9px 0 20px;  }
+  body.seo-site-detail-layout > main.detail-page {    align-self: start;    margin: 9px 0 20px;  }
 }
 footer { display: flex; width: min(900px, 100%); flex-wrap: wrap; gap: 11px; margin: 0 auto; padding: 0 0 20px; color: var(--text-secondary); font-size: 11px; }
 footer a { color: var(--text-secondary); text-decoration: none; }

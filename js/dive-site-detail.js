@@ -2,6 +2,8 @@
   'use strict';
 
   const page = document.getElementById('detailPage');
+  // Large feature and difficulty matches stay out of the initial DOM until requested.
+  const recommendationPreviewLimit = 5;
   const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   const idValue = new URLSearchParams(location.search).get('id')?.toLowerCase() || '';
   const uuidPattern = '[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}';
@@ -145,20 +147,26 @@
       const ratingCandidates = candidates;
       const featureLabel = primaryFeatures.length
         ? `<span class="site-recommendations__feature-values"> · ${escape(primaryFeatures.join(' · '))}</span>` : '';
-      const card = candidate => {
+      const card = (candidate, expanded = false) => {
         const image = safeUrl(candidate.photo);
         const featuresMarkup = (Array.isArray(candidate.features) ? candidate.features : []).slice(0, 2).map(feature =>
           `<span class="site-recommendations__feature">${escape(feature)}</span>`).join('')
           || '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>';
-        return `<li><a class="site-recommendations__card" data-recommendation-card data-rating-lat="${candidate.lat}" data-rating-lng="${candidate.lon}" href="${detailUrl(candidate)}">${image
+        return `<li${expanded ? ' data-recommendation-expanded-item' : ''}><a class="site-recommendations__card" data-recommendation-card data-rating-lat="${candidate.lat}" data-rating-lng="${candidate.lon}" href="${detailUrl(candidate)}">${image
           ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy"${candidate.photo_credit ? ` title="${escape(candidate.photo_credit)}"` : ''}>`
           : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name" title="${escape(candidate.name)}">${escape(candidate.name)}</span><span class="site-recommendations__meta"><span class="site-recommendations__location">${escape(candidate.region || candidate.country || '')}</span><span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span><span class="site-recommendations__features" aria-label="Recorded features">${featuresMarkup}</span></span></a></li>`;
       };
       const group = (key, values, emptyText) => `<section class="site-recommendations__group" data-recommendation-group="${key}"><ul>${values.length
-        ? values.slice(0, 3).map(card).join('') : `<li class="site-recommendations__empty">${emptyText}</li>`}</ul></section>`;
+        ? values.slice(0, recommendationPreviewLimit).map(candidate => card(candidate)).join('') : `<li class="site-recommendations__empty">${emptyText}</li>`}</ul></section>`;
       const ratingGroup = '<section class="site-recommendations__group" data-recommendation-group="rating"><ul data-recommendation-rating-candidates aria-live="polite"><li class="site-recommendations__empty">Select Rating to compare this site with the full catalog.</li></ul></section>';
       aside.innerHTML = `<div class="site-recommendations__tabs" hidden><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="-1" aria-label="Scroll recommendation filters left"><span class="site-recommendations__scroll-glyph" aria-hidden="true">‹</span></button><div class="site-recommendations__tablist" role="tablist" aria-label="Recommendation filters" tabindex="0"><button type="button" role="tab" id="recommendation-tab-all" aria-controls="recommendation-panel" aria-selected="true" data-recommendation-tab="all">All</button><button type="button" role="tab" id="recommendation-tab-nearby" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="nearby" tabindex="-1">Nearby</button><button type="button" role="tab" id="recommendation-tab-rating" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="rating" tabindex="-1">Rating</button><button type="button" role="tab" id="recommendation-tab-features" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="features" tabindex="-1">Features${featureLabel}</button><button type="button" role="tab" id="recommendation-tab-difficulty" aria-controls="recommendation-panel" aria-selected="false" data-recommendation-tab="difficulty" tabindex="-1">Difficulty</button></div><button class="site-recommendations__scroll" type="button" data-recommendation-scroll="1" aria-label="Scroll recommendation filters right"><span class="site-recommendations__scroll-glyph" aria-hidden="true">›</span></button></div><div class="site-recommendations__content" id="recommendation-panel" data-recommendation-content>${group('nearby', nearby, 'No nearby sites are available in the full catalog.')}${ratingGroup}${group('features', features, primaryFeatures.length ? 'No sites match the recorded features.' : 'No primary features are recorded for this site.')}${group('difficulty', difficultyMatches, difficulty ? 'No sites with the same recorded difficulty are available.' : 'Difficulty is not recorded for this site.')}</div>`;
       aside.querySelector('[data-recommendation-rating-candidates]').recommendationCandidates = ratingCandidates;
+      for (const [key, values] of Object.entries({ nearby, features, difficulty:difficultyMatches })) {
+        const list = aside.querySelector(`[data-recommendation-group="${key}"] ul`);
+        list.recommendationTotal = values.length;
+        list.recommendationRenderMore = (start, count) => values.slice(start, start + count)
+          .map(candidate => card(candidate, true)).join('');
+      }
       aside.hidden = false;
     } catch (error) {
       console.warn('Dive-site recommendations could not be loaded; showing regional sites instead.', error);
@@ -273,8 +281,8 @@
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=1', '/js/seo-page-controls.js?v=10',
-      '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=14',
-      '/js/dive-site-rating-card.js?v=14']) {
+      '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=16',
+      '/js/dive-site-rating-card.js?v=15']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }

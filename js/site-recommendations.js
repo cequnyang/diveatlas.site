@@ -1,7 +1,58 @@
 (() => {
+  const recommendationPreviewLimit = 5;
+  const recommendationPageSize = 10;
+
+  function configureExpansion(list) {
+    const total = Number(list.recommendationTotal) || 0;
+    const renderMore = list.recommendationRenderMore;
+    let shown = [...list.children].filter(item => item.querySelector('.site-recommendations__card')).length;
+    let button = list.parentElement.querySelector('[data-recommendation-more]');
+    if (total <= shown || typeof renderMore !== 'function') {
+      button?.remove();
+      return;
+    }
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'site-recommendations__more';
+      button.dataset.recommendationMore = '';
+      list.after(button);
+    }
+    const updateButton = () => {
+      const remaining = total - shown;
+      if (remaining <= 0) {
+        button.remove();
+        return;
+      }
+      button.textContent = 'Show More';
+    };
+    updateButton();
+    button.onclick = () => {
+      const count = Math.min(recommendationPageSize, total - shown);
+      const firstNewChild = list.children.length;
+      const rendered = renderMore(shown, count);
+      if (typeof rendered === 'string') {
+        const template = document.createElement('template');
+        template.innerHTML = rendered;
+        list.append(template.content);
+      } else if (rendered instanceof DocumentFragment) {
+        list.append(rendered);
+      }
+      shown += count;
+      updateButton();
+      const cards = [...list.children].slice(firstNewChild)
+        .flatMap(item => [...item.querySelectorAll('.site-recommendations__card')]);
+      list.dispatchEvent(new CustomEvent('diveatlas:recommendations-expanded', {
+        bubbles:true, detail:{ cards }
+      }));
+    };
+  }
+
   window.DiveAtlasRecommendationCards = {
-    create(candidate, rating) {
+    configureExpansion,
+    create(candidate, rating, expanded = false) {
       const item = document.createElement('li');
+      if (expanded) item.dataset.recommendationExpandedItem = '';
       const link = document.createElement('a');
       link.className = 'site-recommendations__card';
       link.dataset.recommendationCard = '';
@@ -105,7 +156,10 @@
     const listObserver = new MutationObserver(refreshCombinedList);
     for (const group of groups) {
       const list = group.querySelector('ul');
-      if (list) listObserver.observe(list, { childList: true, subtree: true });
+      if (list) {
+        configureExpansion(list);
+        listObserver.observe(list, { childList: true, subtree: true });
+      }
     }
 
     content.setAttribute('role', 'tabpanel');

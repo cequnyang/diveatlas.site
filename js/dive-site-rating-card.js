@@ -265,8 +265,8 @@
     return ratingSamples.get(key);
   }
 
-  async function refreshStaticCardRatings(store) {
-    const cards = [...document.querySelectorAll('.site-recommendations__group .site-recommendations__card')];
+  async function refreshStaticCardRatings(store, targetCards) {
+    const cards = targetCards || [...document.querySelectorAll('.site-recommendations__group .site-recommendations__card')];
     for (const [index, card] of cards.entries()) {
       const score = card.querySelector('.site-recommendations__rating');
       const rating = await sampleRating({ lat:card.dataset.ratingLat, lon:card.dataset.ratingLng }, store);
@@ -278,6 +278,9 @@
   function showRatingRecommendations(currentScore, store) {
     if (!ratingRecommendations) return;
     if (!Number.isFinite(currentScore)) {
+      ratingRecommendations.recommendationTotal = 0;
+      ratingRecommendations.recommendationRenderMore = null;
+      window.DiveAtlasRecommendationCards?.configureExpansion(ratingRecommendations);
       const item = document.createElement('li');
       item.className = 'site-recommendations__empty';
       item.textContent = 'Current month rating is unavailable.';
@@ -316,29 +319,40 @@
           }
         }));
         matches.push(...sampled.filter(Boolean));
-        matches.sort((a, b) => a.difference - b.difference || a.candidate.name.localeCompare(b.candidate.name));
-        matches.length = Math.min(matches.length, 3);
         await new Promise(resolve => window.setTimeout(resolve, 0));
       }
 
+      matches.sort((a, b) => a.difference - b.difference || a.candidate.name.localeCompare(b.candidate.name));
       const fragment = document.createDocumentFragment();
       if (matches.length) {
-        for (const { candidate, score: candidateScore } of matches.slice(0, 3)) {
+        const createRatingCard = ({ candidate, score }, expanded = false) => {
           const cardCandidate = {
             ...candidate,
             photoCredit:candidate.photo_credit,
             features:candidate.features,
             detailUrl:`/dive-site.html?id=${encodeURIComponent(`${siteSlug(candidate.name)}-${candidate.site_id}`)}`
           };
-          fragment.append(window.DiveAtlasRecommendationCards.create(cardCandidate, candidateScore));
+          return window.DiveAtlasRecommendationCards.create(cardCandidate, score, expanded);
+        };
+        for (const match of matches.slice(0, 5)) {
+          fragment.append(createRatingCard(match));
         }
+        ratingRecommendations.recommendationTotal = matches.length;
+        ratingRecommendations.recommendationRenderMore = (start, count) => {
+          const nextCards = document.createDocumentFragment();
+          for (const match of matches.slice(start, start + count)) nextCards.append(createRatingCard(match, true));
+          return nextCards;
+        };
       } else {
+        ratingRecommendations.recommendationTotal = 0;
+        ratingRecommendations.recommendationRenderMore = null;
         const item = document.createElement('li');
         item.className = 'site-recommendations__empty';
         item.textContent = 'No sites within 5 points in the full dive-site catalog.';
         fragment.append(item);
       }
       ratingRecommendations.replaceChildren(fragment);
+      window.DiveAtlasRecommendationCards?.configureExpansion(ratingRecommendations);
       ratingRecommendations.dataset.status = 'ready';
     })().catch(error => {
       console.warn('Dive-site rating recommendations could not be calculated:', error);
@@ -349,6 +363,11 @@
       ratingRecommendations.dataset.status = 'error';
     });
   }
+
+  document.querySelector('.site-recommendations')?.addEventListener('diveatlas:recommendations-expanded', event => {
+    if (!ratingStore || event.target.closest('[data-recommendation-group="rating"]')) return;
+    refreshStaticCardRatings(ratingStore, event.detail.cards);
+  });
 
   ratingTab?.addEventListener('click', () => {
     if (ratingStore && Number.isFinite(currentRecommendationScore)) {
