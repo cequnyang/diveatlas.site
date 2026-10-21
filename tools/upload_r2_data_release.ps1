@@ -156,8 +156,18 @@ try {
                 if ($LASTEXITCODE -ne 0) { throw 'Environmental query asset batch upload failed. The release manifest was not changed.' }
             }
 
+            $siteDetailFiles = @($manifest.files | Where-Object { $_.path -like 'data/dive-site-details/v1/*.json' })
+            if ($siteDetailFiles.Count -gt 0) {
+                & aws s3 sync $release "s3://$bucket/$prefix/" --endpoint-url $endpoint `
+                    --exclude '*' --include 'data/dive-site-details/v1/*.json' `
+                    --cache-control 'public, max-age=31536000, immutable' --content-type 'application/json' --no-progress
+                if ($LASTEXITCODE -ne 0) { throw 'Dive-site detail batch upload failed. The release manifest was not changed.' }
+            }
+
             foreach ($file in $manifest.files) {
-                if ($file.path -like 'data/temperature/query/v2/*' -or $file.path -like 'data/water_clarity/query/v2/*') {
+                if ($file.path -like 'data/temperature/query/v2/*' -or
+                    $file.path -like 'data/water_clarity/query/v2/*' -or
+                    $file.path -like 'data/dive-site-details/v1/*.json') {
                     continue
                 }
                 $source = Join-Path $release ($file.path -replace '/', [IO.Path]::DirectorySeparatorChar)
