@@ -176,7 +176,7 @@ figure { margin: 0; }
 .monthly-conditions-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
 .monthly-conditions-gridline { stroke: var(--line); stroke-width: 1; }
 .monthly-conditions-axis-label, .monthly-conditions-month { fill: var(--muted); font-size: 12px; }
-.monthly-conditions-axis-label { fill: currentColor; font-size: 11px; font-weight: 600; }
+.monthly-conditions-axis-label { fill: currentColor; font-size: 13px; font-weight: 600; }
 .monthly-conditions-score-label { fill: var(--muted); font-size: 11px; font-weight: 600; }
 .monthly-conditions-bar { fill-opacity: .5; stroke: rgb(126, 87, 194); stroke-width: 1; transition: fill-opacity 140ms ease-out, stroke-width 140ms ease-out; }
 .monthly-conditions-bar.is-active { fill-opacity: .78; stroke-width: 1.8; }
@@ -191,7 +191,8 @@ figure { margin: 0; }
 .monthly-conditions-footnote { margin: 10px 0 0; color: var(--faint); font-size: 11px; }
 .monthly-conditions-section.is-unavailable .monthly-conditions-status { margin-bottom: 0; }
 @media (max-width: 600px) {  .monthly-conditions-legend { gap: 7px 12px; font-size: 11px; }
-  .monthly-conditions-axis-label, .monthly-conditions-month { font-size: 11px; }
+  .monthly-conditions-axis-label { font-size: 13px; }
+  .monthly-conditions-month { font-size: 11px; }
 }
 .fact { display: grid; min-width: 0; grid-template-columns: max-content minmax(0, 1fr); align-items: center; column-gap: 20px; padding: 3px 0; }
 .fact-coordinates, .fact-setting { grid-template-columns: 64px minmax(0, 1fr); column-gap: 20px; }

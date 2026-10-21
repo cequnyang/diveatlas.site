@@ -132,6 +132,7 @@
     // Keep axis labels inside the SVG while using more of the section width for the plot.
     const width = 840, height = 277.5, left = 80, right = 80, top = 22, bottom = 58;
     const innerWidth = width - left - right, innerHeight = height - top - bottom;
+    const axisLabelGap = 16;
     const xAt = month => left + ((month - 1) / 11) * innerWidth;
     const axisBySeries = new Map(AXES.flatMap(axis => axis.series.map(series => [series.key, axis])));
     const axes = new Map(AXES.map(axis => [axis.key, { max:axisMaxFor(axis, results) }]));
@@ -166,7 +167,7 @@
         const onLeft = side === 'left';
         if (series.length === 2) {
           const label = appendSvg(svg, 'text', {
-            x:onLeft ? left - 32 : width - right + 32, y:y + 4,
+            x:onLeft ? left - axisLabelGap : width - right + axisLabelGap, y:y + 4,
             'text-anchor':onLeft ? 'end' : 'start',
             class:'monthly-conditions-axis-label', style:`fill:url(#${key}-axis-gradient)`
           });
@@ -178,8 +179,8 @@
           const seriesOffset = seriesIndex * 28;
           const axisColumnGap = onLeft ? 28 : 56;
           const x = onLeft
-            ? left - 32 - column * axisColumnGap - seriesOffset
-            : width - right + 32 + column * axisColumnGap + seriesOffset;
+            ? left - axisLabelGap - column * axisColumnGap - seriesOffset
+            : width - right + axisLabelGap + column * axisColumnGap + seriesOffset;
           const label = appendSvg(svg, 'text', {
             x, y:y + 4, 'text-anchor':onLeft ? 'end' : 'start',
             class:'monthly-conditions-axis-label', style:`color:${item.color}`
