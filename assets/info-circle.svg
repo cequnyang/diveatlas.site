@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <mask id="info">
+    <circle cx="10" cy="10" r="10" fill="white"/>
+    <circle cx="10" cy="5.5" r="1.35" fill="black"/>
+    <path d="M7.5 8h4v6h1v1.5h-5V14h1.25V9.5H7.5z" fill="black"/>
+  </mask>
+  <circle cx="10" cy="10" r="10" fill="white" mask="url(#info)"/>
+</svg>

@@ -7140,6 +7140,16 @@
       .bio-legend-layers-inner { min-height:0; overflow:visible; }
     }
 
+    /* One silhouette for static and generated info controls; keep the summary hit areas intact. */
+    :is(.temperature-info, .dive-experience-popup-content .dive-experience-score-info) > summary > span,
+    .reef-survey-dataset-info > summary {
+      border: 0;
+      border-radius: 0;
+      background: var(--text);
+      font-size: 0;
+      -webkit-mask: url('assets/info-circle.svg') center / contain no-repeat;
+      mask: url('assets/info-circle.svg') center / contain no-repeat;
+    }
   </style>
   <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
 </head>

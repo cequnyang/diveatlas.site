@@ -712,7 +712,7 @@ def generate_site_page(
   {intro_details_markup}
   <section class="detail-section facts-section" aria-labelledby="site-details-heading"><h2 id="site-details-heading">Dive details</h2><dl class="fact-grid">{''.join(facts)}</dl></section>
   {sources_markup}
-  <aside class="data-note"><span class="note-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"></circle><path d="M10 9v4m0-7h.01"></path></svg></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>
+  <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>
 </main>
 {recommendation_markup}
 <footer class="site-detail-footer"><a class="site-footer-brand" href="/" aria-label="DiveAtlas home"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav class="site-footer-share" aria-label="Share this dive site">
