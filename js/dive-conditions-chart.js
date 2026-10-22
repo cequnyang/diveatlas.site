@@ -271,17 +271,39 @@
       tooltip.classList.remove('is-visible');
       tooltip.setAttribute('aria-hidden', 'true');
     }
-    function showTooltip(result, targetX, targetY) {
+    function showTooltip(result, targetX, targetY, pointerEvent) {
       tooltipTitle.textContent = MONTHS[result.month - 1];
       SERIES.forEach((series, index) => {
         const value = result.metrics[series.key].value;
         tooltipRows[index].textContent = `${translate(series.label)}: ${formatValue(value, series.unit)}`;
       });
       tooltipRows[SERIES.length].textContent = `${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`;
-      const x = mobile
+      let x = mobile
         ? Math.max(8, Math.min(targetX + 14, width - tooltipWidth - 8))
         : Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
-      const y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
+      let y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
+      if (mobile && pointerEvent?.pointerType === 'touch') {
+        const matrix = svg.getScreenCTM();
+        if (matrix) {
+          // Position in screen pixels so the finger clearance stays constant at any SVG scale.
+          const gap = 32;
+          const headerBottom = document.querySelector('.site-header')?.getBoundingClientRect().bottom || 0;
+          const safeTop = Math.max(8, headerBottom + 8);
+          const screenHeight = tooltipHeight * matrix.d;
+          const screenWidth = tooltipWidth * matrix.a;
+          let screenY = pointerEvent.clientY - gap - screenHeight;
+          if (screenY < safeTop) screenY = pointerEvent.clientY + gap;
+          screenY = Math.max(safeTop, Math.min(screenY, window.innerHeight - screenHeight - 8));
+          const screenX = Math.max(8, Math.min(pointerEvent.clientX - screenWidth / 2, window.innerWidth - screenWidth - 8));
+          const position = svg.createSVGPoint();
+          position.x = screenX;
+          position.y = screenY;
+          const local = position.matrixTransform(matrix.inverse());
+          x = local.x;
+          y = local.y;
+          tooltip.style.transition = 'opacity 140ms ease-out, visibility 140ms ease-out';
+        }
+      }
       tooltip.setAttribute('transform', `translate(${x} ${y})`);
       tooltip.classList.add('is-visible');
       tooltip.setAttribute('aria-hidden', 'false');
@@ -295,7 +317,7 @@
       }
     }
     const resultByMonth = new Map(results.map(result => [result.month, result]));
-    svg.addEventListener('pointermove', event => {
+    function trackPointer(event) {
       const point = svg.createSVGPoint();
       point.x = event.clientX;
       point.y = event.clientY;
@@ -308,15 +330,19 @@
       const result = resultByMonth.get(month);
       if (result) {
         setActiveMonth(month);
-        showTooltip(result, chartPoint.x, chartPoint.y);
+        showTooltip(result, chartPoint.x, chartPoint.y, event);
       }
-    });
+    }
+    svg.addEventListener('pointerdown', trackPointer);
+    svg.addEventListener('pointermove', trackPointer);
+    svg.addEventListener('pointercancel', () => { hideTooltip(); setActiveMonth(null); });
     svg.addEventListener('pointerleave', () => {
       hideTooltip();
       setActiveMonth(null);
     });
     for (const target of markTargets) {
-      target.element.addEventListener('pointerenter', () => {
+      target.element.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'touch') return;
         setActiveMonth(target.result.month);
         showTooltip(target.result, target.x, target.y);
       });
