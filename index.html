@@ -21841,12 +21841,12 @@ ZSD·2016–2025</span></span>
   function buildShareUrl(state, { previewBackground = 'map' } = {}) {
     const selectedSiteId = String(state?.selectedSiteId || '').trim().toLowerCase();
     if (selectedSiteId && SHARE_SITE_BY_ID.has(selectedSiteId)) {
-      // The Worker route already carries this UUID in its path and adds the
-      // legacy `site` key when redirecting browsers to the main application.
+      // The Worker uses this UUID to preserve the selected-site map view.
       const serializedState = serializeMapState(state, { includeSite:false });
       const url = new URL(`/share/${encodeURIComponent(selectedSiteId)}/`, SHARE_SITE_PREVIEW_ORIGIN);
       url.search = serializedState;
       url.searchParams.set('shareSiteId', selectedSiteId);
+      url.searchParams.set('shareTarget', 'map');
       const siteIndex = SHARE_SITE_BY_ID.get(selectedSiteId);
       const site = Number.isInteger(siteIndex) ? DIVE_SITES?.[siteIndex] : null;
       const reviewed = getDiveSiteReviewedCategories(site);

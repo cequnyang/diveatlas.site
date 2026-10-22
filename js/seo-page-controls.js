@@ -278,17 +278,41 @@
   });
   let siteShareDialog;
   let siteShareLoading;
-  function siteImageShareUrl() {
+  function packShareCoordinates(rawLat, rawLng) {
+    if (rawLat == null || rawLng == null || rawLat.trim() === '' || rawLng.trim() === '') return null;
+    const lat = Number(rawLat);
+    const lng = Number(rawLng);
+    if (!Number.isFinite(lat) || lat < -90 || lat > 90 || !Number.isFinite(lng)) return null;
+
+    // Match the map share parser's 1e-5-degree, fixed-width base-36 coordinate pair.
+    const scale = 100000;
+    const normalizedLng = ((lng + 180) % 360 + 360) % 360 - 180;
+    const latCode = Math.round((lat + 90) * scale).toString(36);
+    const lngCode = Math.round((normalizedLng + 180) * scale).toString(36);
+    if (latCode.length > 5 || lngCode.length > 5) return null;
+    return latCode.padStart(5, '0') + lngCode.padStart(5, '0');
+  }
+  function siteShareUrl() {
     if (!siteId) return shareUrl;
     const url = new URL(`/share/${encodeURIComponent(siteId)}/`, 'https://share.diveatlas.site');
     const mapLink = document.querySelector('.site-photo-gallery-map__mask');
     if (mapLink) {
       const state = new URL(mapLink.href);
-      for (const key of ['lat', 'lng', 'z']) {
-        if (state.searchParams.has(key)) url.searchParams.set(key, state.searchParams.get(key));
+      const packedCoordinates = state.searchParams.get('g') || packShareCoordinates(
+        state.searchParams.get('lat'),
+        state.searchParams.get('lng')
+      );
+      if (packedCoordinates) {
+        url.searchParams.set('g', packedCoordinates);
+      } else {
+        for (const key of ['lat', 'lng']) {
+          if (state.searchParams.has(key)) url.searchParams.set(key, state.searchParams.get(key));
+        }
       }
+      if (state.searchParams.has('z')) url.searchParams.set('z', state.searchParams.get('z'));
     }
     url.searchParams.set('shareSiteId', siteId);
+    url.searchParams.set('shareTarget', 'detail');
     url.searchParams.set('previewBackground', 'site');
     const photo = document.querySelector('.site-photo-gallery-main img');
     const feature = photo?.src.match(/\/features\/([^/]+)\//)?.[1];
@@ -312,7 +336,7 @@
       siteShareDialog ||= window.DiveAtlasShare.createSiteDialog({
         modal: shareModal,
         getTitle: () => document.querySelector('[data-seo-site-name]')?.textContent || shareTitle,
-        getUrl: siteImageShareUrl, copyText
+        getUrl: siteShareUrl, copyText
       });
       siteShareDialog.open();
     } catch (error) {
