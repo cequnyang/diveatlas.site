@@ -1193,20 +1193,21 @@
     }
 
     .current-location-marker,
-    .map-click-location-marker {
+    .map-click-location-marker,
+    .dive-site-jump-pointer {
       background: transparent !important;
       border: 0 !important;
       filter: drop-shadow(0 2px 3px rgba(20,35,45,.35));
       pointer-events: none !important;
     }
-    .map-click-location-pin {
+    .map-location-pin {
       position:absolute;
       inset:0;
       width:36px;
       height:42px;
       pointer-events:none;
     }
-    .map-click-location-pin::before {
+    .map-location-pin::before {
       content:'';
       position:absolute;
       top:10px;
@@ -1219,9 +1220,9 @@
       background:#e34b68;
       transform:rotate(-45deg);
     }
-    .current-location-marker .map-click-location-pin::before { background: #3887ff; }
+    .current-location-marker .map-location-pin::before { background: #3887ff; }
 
-    .map-click-location-pin::after {
+    .map-location-pin::after {
       content:'';
       position:absolute;
       top:19.5px;
@@ -9877,7 +9878,7 @@ ZSD·2016–2025</span></span>
         currentLocationMarker = L.marker(latlng, {
           icon: L.divIcon({
             className: 'current-location-marker',
-            html: '<span class="map-click-location-pin" aria-hidden="true"></span>',
+            html: '<span class="map-location-pin" aria-hidden="true"></span>',
             iconSize: [36, 42],
             iconAnchor: [18, 42]
           }),
@@ -18620,7 +18621,7 @@ ZSD·2016–2025</span></span>
     } else {
       const locationPinIcon = L.divIcon({
         className: 'map-click-location-marker',
-        html: '<span class="map-click-location-pin" aria-hidden="true"></span>',
+        html: '<span class="map-location-pin" aria-hidden="true"></span>',
         iconSize: [36, 42],
         iconAnchor: [18, 42]
       });
@@ -21306,6 +21307,33 @@ ZSD·2016–2025</span></span>
 
   map.createPane('diveSitePane');
   map.getPane('diveSitePane').style.zIndex = '630';
+
+  // Place the jump pin above dive-site circles while keeping tooltips and popups above it.
+  map.createPane('diveSiteJumpPointerPane');
+  map.getPane('diveSiteJumpPointerPane').style.zIndex = '640';
+
+  let diveSiteJumpPointer = null;
+
+  function showDiveSiteJumpPointer(latlng) {
+    if (diveSiteJumpPointer) {
+      diveSiteJumpPointer.setLatLng(latlng);
+      if (!map.hasLayer(diveSiteJumpPointer)) diveSiteJumpPointer.addTo(map);
+      return;
+    }
+
+    const icon = L.divIcon({
+      className: 'dive-site-jump-pointer',
+      html: '<span class="map-location-pin" aria-hidden="true"></span>',
+      iconSize: [36, 42],
+      iconAnchor: [18, 42]
+    });
+    diveSiteJumpPointer = L.marker(latlng, {
+      pane: 'diveSiteJumpPointerPane',
+      icon,
+      interactive: false,
+      keyboard: false
+    }).addTo(map);
+  }
 
   const diveSiteRenderer = L.svg({
     pane: 'diveSitePane',
@@ -24528,6 +24556,11 @@ function closeShareDialog() {
     const popup = marker?.getPopup?.();
     if (popup) {
       popup._diveAtlasLayerKey = 'dive';
+      const restoredSiteId = String(siteId || '').trim().toLowerCase();
+      const selectedSiteId = String(sharedMapState.selectedSiteId || '').trim().toLowerCase();
+      if (selectedSiteId && selectedSiteId === restoredSiteId) {
+        showDiveSiteJumpPointer(marker.getLatLng());
+      }
       if (openPopup) openManagedPopup(popup._diveAtlasOwnerKey, popup, marker.getLatLng());
       sharedMapState.sharedSitePopupRestored = true;
       cleanRestoredSharedUrl();
