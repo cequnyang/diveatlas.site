@@ -1457,8 +1457,10 @@
       vertical-align: middle;
     }
 
+    /* The title line-height changes on mobile, so the small badge needs responsive optical offsets. */
     .dive-site-name-draft {
       position: relative;
+      top: -2px;
       appearance: none;
       background: transparent;
       font: inherit;
@@ -2421,6 +2423,7 @@
         font-size:18px;
         line-height:16.25px;
       }
+      .dive-site-name-draft { top:3px; }
       .leaflet-popup.diveatlas-mobile-sheet.regional-currents-popup .bio-popup-title,
       .leaflet-popup.diveatlas-mobile-sheet .regional-currents-popup .bio-popup-title {
         line-height:18.75px;
