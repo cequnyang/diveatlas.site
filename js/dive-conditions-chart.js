@@ -3,7 +3,11 @@
   const details = page?.querySelector('.facts-section');
   if (!page || !details) return;
 
-  const MONTHS = Object.freeze(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+  const localizedMonths = () => Array.from({ length:12 }, (_, index) =>
+    new Intl.DateTimeFormat(document.documentElement.lang || 'en', { month:'short', timeZone:'UTC' })
+      .format(new Date(Date.UTC(2020, index, 1))));
+  let MONTHS = localizedMonths();
+  const translate = value => window.DiveAtlasSiteDetailI18n?.translate(value) || value;
   const SERIES = Object.freeze([
     { key:'clarity', label:'Water clarity', unit:'m', kind:'line', color:'rgb(230, 126, 34)' },
     { key:'temperature', label:'Water temperature · 5 m', unit:'°C', kind:'line', color:'rgb(180, 55, 65)' },
@@ -29,6 +33,7 @@
   const status = chart.querySelector('.monthly-conditions-status');
   const plot = chart.querySelector('.monthly-conditions-chart');
   let started = false;
+  let latestResults = null;
 
   function readCoordinates() {
     const schema = document.querySelector('script[type="application/ld+json"]');
@@ -110,12 +115,14 @@
   }
 
   function monthReadings(result) {
-    const readings = SERIES.map(series => `${series.label}: ${formatValue(result.metrics[series.key].value, series.unit)}`);
-    readings.push(`${OVERALL_SCORE.label}: ${result.overallScore == null ? 'No data' : `${result.overallScore}/100`}`);
+    const readings = SERIES.map(series => `${translate(series.label)}: ${formatValue(result.metrics[series.key].value, series.unit)}`);
+    readings.push(`${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`);
     return readings.join('; ');
   }
 
   function render(results) {
+    latestResults = results;
+    MONTHS = localizedMonths();
     const available = results.reduce((count, result) => count + SERIES.filter(series =>
       result.metrics[series.key].value != null && Number.isFinite(Number(result.metrics[series.key].value))).length, 0);
     if (!available) {
@@ -126,7 +133,7 @@
     status.textContent = '';
 
     chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series =>
-      `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${series.label} (${series.unit})</span>`).join('');
+      `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</span>`).join('');
 
     // Keep the outside tick columns close to the canvas edge so the plot can use more width.
     const width = 840, height = 277.5, left = 82, right = 40, top = 22, bottom = 58;
@@ -258,9 +265,9 @@
       tooltipTitle.textContent = MONTHS[result.month - 1];
       SERIES.forEach((series, index) => {
         const value = result.metrics[series.key].value;
-        tooltipRows[index].textContent = `${series.label}: ${formatValue(value, series.unit)}`;
+        tooltipRows[index].textContent = `${translate(series.label)}: ${formatValue(value, series.unit)}`;
       });
-      tooltipRows[SERIES.length].textContent = `${OVERALL_SCORE.label}: ${result.overallScore == null ? 'No data' : `${result.overallScore}/100`}`;
+      tooltipRows[SERIES.length].textContent = `${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`;
       const x = Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
       const y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
       tooltip.setAttribute('transform', `translate(${x} ${y})`);
@@ -354,6 +361,11 @@
       status.textContent = 'Monthly estimates could not be loaded. Please try again later.';
     }
   }
+
+  window.addEventListener('diveatlas:language-change', () => {
+    MONTHS = localizedMonths();
+    if (latestResults) render(latestResults);
+  });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {

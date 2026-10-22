@@ -506,7 +506,7 @@ def generate_site_page(
         facts.append(f'<div class="fact fact-features"><dt>Features</dt><dd>{html_text(feature_text)}</dd></div>')
     intro_detail_parts = []
     if site["aliases"]:
-        intro_detail_parts.append(f'<strong>Also recorded as:</strong> {html_text(site["aliases"])}.')
+        intro_detail_parts.append(f'<strong>Also recorded as:</strong> <span data-i18n-ignore>{html_text(site["aliases"])}</span>.')
     summary = site["summary"]
     if summary:
         intro_detail_parts.append(f'<span data-seo-summary>{html_text(summary["description"])}</span>')
@@ -555,7 +555,7 @@ def generate_site_page(
             f'{image}<span class="site-recommendations__card-body">'
             f'<span class="site-recommendations__name" title="{html_text(candidate["name"])}">{html_text(candidate["name"])}</span>'
             f'<span class="site-recommendations__meta"><span class="site-recommendations__location">{html_text(str(candidate["region"]))}</span>'
-            f'<span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span>'
+            f'<span class="site-recommendations__rating" aria-label="diveAtlas Rating">Rating loading</span></span>'
             f'<span class="site-recommendations__features" aria-label="Recorded features">{feature_markup}</span>'
             f'</span></a></li>'
         )
@@ -702,8 +702,8 @@ def generate_site_page(
             f'<div class="site-photo-gallery-main"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
             f'<img src="{safe_image_url}" alt="{safe_photo_alt}" loading="lazy"></button>{credit}</div>'
             f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
-            f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="DiveAtlas Rating" tabindex="0">'
-            f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span>Rating</span></div>'
+            f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
+            f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span data-i18n-ignore>Rating</span></div>'
             f'<p class="site-photo-gallery-rating__score" role="status" aria-live="polite" data-status="loading">Loading rating…</p>'
             f'<div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart" role="img" aria-label="Monthly dive-site rating scores"></div></div>'
             f'</section>'
@@ -755,7 +755,7 @@ def generate_site_page(
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=10" defer></script><script src="/js/dive-conditions-chart.js?v=34" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/dive-site-rating-card.js?v=13" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=12" defer></script><script src="/js/dive-conditions-chart.js?v=35" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/dive-site-rating-card.js?v=14" defer></script>'''
     html = page_shell(title_base, description, url, body, "seo-site-detail-layout")
     return title_base, html
 

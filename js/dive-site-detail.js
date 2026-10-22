@@ -258,7 +258,7 @@
           || '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>';
         return `<li${expanded ? ' data-recommendation-expanded-item' : ''}><a class="site-recommendations__card" data-recommendation-card data-rating-lat="${candidate.lat}" data-rating-lng="${candidate.lon}" href="${detailUrl(candidate)}">${image
           ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy"${candidate.photo_credit ? ` title="${escape(candidate.photo_credit)}"` : ''}>`
-          : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name" title="${escape(candidate.name)}">${escape(candidate.name)}</span><span class="site-recommendations__meta"><span class="site-recommendations__location">${escape(candidate.region || candidate.country || '')}</span><span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span><span class="site-recommendations__features" aria-label="Recorded features">${featuresMarkup}</span></span></a></li>`;
+          : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name" title="${escape(candidate.name)}">${escape(candidate.name)}</span><span class="site-recommendations__meta"><span class="site-recommendations__location">${escape(candidate.region || candidate.country || '')}</span><span class="site-recommendations__rating" aria-label="diveAtlas Rating">Rating loading</span></span><span class="site-recommendations__features" aria-label="Recorded features">${featuresMarkup}</span></span></a></li>`;
       };
       const group = (key, values, emptyText) => `<section class="site-recommendations__group" data-recommendation-group="${key}"><ul>${values.length
         ? values.slice(0, recommendationPreviewLimit).map(candidate => card(candidate)).join('') : `<li class="site-recommendations__empty">${emptyText}</li>`}</ul></section>`;
@@ -351,8 +351,8 @@
             ? `<button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview"><img src="${escape(photoUrl)}" alt="${escape(photo.alt || site.name)}"></button>${credit ? `<figcaption>${escape(credit)}</figcaption>` : ''}`
             : '<p>No site photo is available.</p>'}</div>
         </figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">
-          <section class="site-photo-gallery-rating" data-rating-lat="${site.lat}" data-rating-lng="${site.lon}" aria-label="DiveAtlas Rating" tabindex="0">
-            <div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"><span>Rating</span></div>
+          <section class="site-photo-gallery-rating" data-rating-lat="${site.lat}" data-rating-lng="${site.lon}" aria-label="diveAtlas Rating" tabindex="0">
+            <div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"><span data-i18n-ignore>Rating</span></div>
             <p class="site-photo-gallery-rating__score" role="status" aria-live="polite" data-status="loading">Loading rating…</p>
             <div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart" role="img" aria-label="Monthly dive-site rating scores"></div></div>
           </section>
@@ -363,7 +363,7 @@
           <p class="lead location-hierarchy" aria-label="Location hierarchy">${locationHierarchyMarkup}</p>
         </div>
       </section>
-      ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> ${escape(site.aliases)}.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}
+      ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> <span data-i18n-ignore>${escape(site.aliases)}</span>.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}
       <section class="detail-section facts-section" aria-labelledby="site-details-heading"><h2 id="site-details-heading">Dive details</h2><dl class="fact-grid">${facts.join('')}</dl></section>
       ${sources.length ? `<section class="detail-section source-section"><h2>Sources</h2><ul class="source-list">${sources.map(source => `<li><a href="${escape(safeUrl(source[1]))}" target="_blank" rel="noopener noreferrer">${escape(source[0] || 'Reference')}</a></li>`).join('')}</ul></section>` : ''}
       <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>`;
@@ -396,9 +396,9 @@
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=12',
-      '/js/dive-conditions-chart.js?v=34', '/js/site-recommendations.js?v=17',
-      '/js/dive-site-rating-card.js?v=18']) {
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=14',
+      '/js/dive-conditions-chart.js?v=35', '/js/site-recommendations.js?v=17',
+      '/js/dive-site-rating-card.js?v=19']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }

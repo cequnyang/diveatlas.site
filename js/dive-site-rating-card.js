@@ -181,7 +181,9 @@
     line.setAttribute('stroke-linecap', 'round');
     line.setAttribute('stroke-linejoin', 'round');
     svg.append(line);
-    const labels = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+    const labels = Array.from({ length:12 }, (_, index) =>
+      new Intl.DateTimeFormat(document.documentElement.lang || 'en', { month:'short', timeZone:'UTC' })
+        .format(new Date(Date.UTC(2020, index, 1))));
     points.forEach((point, index) => {
       if (point) {
         const marker = document.createElementNS(ns, 'circle');
@@ -218,6 +220,10 @@
       ? 'Monthly DiveAtlas rating scores. Focus a point to read its month and score.'
       : 'Monthly DiveAtlas rating scores are unavailable.');
   }
+
+  window.addEventListener('diveatlas:language-change', () => {
+    if (trendScores) renderRatingTrend(trendScores);
+  });
 
   let trendResizeFrame = 0;
   if ('ResizeObserver' in window) {

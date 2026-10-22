@@ -56,6 +56,14 @@ These page modules start after the record arrives because they inspect the DOM
 at startup. Missing fields are omitted, illustrative photos remain labeled, and
 failed detail requests present a retry action.
 
+The language menu localizes fixed detail-page copy, accessibility labels, rating
+and recommendation controls on both the shared page and generated SEO pages.
+The rating-card logo lockup stays exactly `diveAtlas Rating` in every language.
+Site names and summaries continue to use their separate translation catalogs;
+unrecognized site and source values stay as recorded, while known normalized
+category terms use the detail-page vocabulary. Traditional Chinese currently
+reuses the Simplified Chinese translation mapping.
+
 ## Publish cloud data before deploying the page
 
 Use the existing cloud release workflow, with its credentials in the process

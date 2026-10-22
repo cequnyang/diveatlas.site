@@ -39,15 +39,22 @@
   const suggestionButton = document.createElement('button');
   suggestionButton.className = 'dive-search-suggestion-button';
   suggestionButton.type = 'button';
-  suggestionButton.textContent = 'Suggest a missing Dive site';
   suggestion.append(suggestionButton);
 
+  function updateSuggestionLabel(query = input.value.trim()) {
+    const prompt = window.DiveAtlasSiteDetailI18n?.translate('Suggest a missing Dive site') || 'Suggest a missing Dive site';
+    suggestionButton.textContent = prompt;
+    suggestionButton.setAttribute('aria-label', query ? `${prompt}: ${query}` : prompt);
+  }
+
   function appendSuggestion(query) {
-    suggestionButton.setAttribute('aria-label', query
-      ? `Suggest a missing Dive site: ${query}`
-      : 'Suggest a missing Dive site');
+    updateSuggestionLabel(query);
     resultsScroll.append(suggestion);
   }
+
+  window.addEventListener('diveatlas:language-change', () => {
+    if (suggestion.isConnected) updateSuggestionLabel();
+  });
 
   // Keep submission and Turnstile verification on the map page's canonical form.
   suggestionButton.addEventListener('click', () => {

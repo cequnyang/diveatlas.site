@@ -44,6 +44,18 @@
   const shareModal = byId('seoShareModal');
   const contactModal = byId('seoContactModal');
   const supportedLanguages = new Set(Array.from(languageSelect?.options || [], option => option.value));
+  const detailI18nReady = (() => {
+    if (!document.body.classList.contains('seo-site-detail-layout') || window.DiveAtlasSiteDetailI18n) {
+      return Promise.resolve();
+    }
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = '/js/dive-site-detail-i18n.js?v=2';
+      script.onload = resolve;
+      script.onerror = resolve;
+      document.head.append(script);
+    });
+  })();
   const originalName = document.querySelector('[data-seo-site-name]')?.textContent || '';
   const summary = document.querySelector('[data-seo-summary]');
   const originalSummary = summary?.textContent || '';
@@ -101,6 +113,7 @@
   });
 
   async function setLanguage(language, persist = false) {
+    await detailI18nReady;
     if (!supportedLanguages.has(language)) language = 'en';
     if (languageSelect) languageSelect.value = language;
     document.documentElement.lang = language;
@@ -113,6 +126,7 @@
     const nameLocalization = window.DIVE_SITE_NAME_LOCALIZATION;
     const translationLanguage = language === 'zh-TW' ? 'zh' : language;
     if (title) title.textContent = translationLanguage === 'en' || !nameLocalization ? originalName : nameLocalization.localize(originalName, translationLanguage, siteId);
+    window.dispatchEvent(new CustomEvent('diveatlas:language-change', { detail:{ language } }));
     if (!summary) return;
     if (language === 'en' || !window.DiveAtlasSummaryTranslations) {
       summary.textContent = originalSummary;
