@@ -30585,6 +30585,23 @@ function closeShareDialog() {
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
+    if (popup._diveAtlasLayerKey === 'dive' && popup._diveAtlasMobileDetailNavigationBound !== true) {
+      const popupElement = popup.getElement();
+      if (popupElement) {
+        // The detail links keep their desktop new-tab behavior; mobile sheets
+        // should navigate in place so the detail page replaces the map view.
+        popupElement.addEventListener('click', clickEvent => {
+          if (!window.matchMedia('(max-width: 720px)').matches) return;
+          const clickTarget = clickEvent.target instanceof Element ? clickEvent.target : clickEvent.target?.parentElement;
+          const detailLink = clickTarget?.closest('.dive-popup-detail-link[href]');
+          if (!detailLink || !popupElement.contains(detailLink)) return;
+          clickEvent.preventDefault();
+          clickEvent.stopPropagation();
+          window.location.assign(detailLink.href);
+        }, true);
+        popup._diveAtlasMobileDetailNavigationBound = true;
+      }
+    }
     popup._diveAtlasShareDiscoverySession = {};
     if (popup._diveAtlasMobileSheetContentUpdate !== true) {
       popup._diveAtlasMobileSheetContentUpdate = true;
