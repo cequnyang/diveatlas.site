@@ -128,12 +128,15 @@
     chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series =>
       `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${series.label} (${series.unit})</span>`).join('');
 
-    // The responsive SVG keeps this 25% shorter canvas on desktop and mobile alike.
-    // Keep axis labels inside the SVG while using more of the section width for the plot.
-    const width = 840, height = 277.5, left = 80, right = 80, top = 22, bottom = 58;
+    // Keep the outside tick columns close to the canvas edge so the plot can use more width.
+    const width = 840, height = 277.5, left = 82, right = 40, top = 22, bottom = 58;
     const innerWidth = width - left - right, innerHeight = height - top - bottom;
-    const axisLabelGap = 16;
-    const xAt = month => left + ((month - 1) / 11) * innerWidth;
+    const axisLabelGap = 12;
+    const barWidth = Math.min(42, innerWidth / 14);
+    // Keep the first and last bars inside the plot instead of letting them cover the outer tick labels.
+    const dataLeft = left + barWidth / 2, dataRight = width - right - barWidth / 2;
+    const dataWidth = dataRight - dataLeft;
+    const xAt = month => dataLeft + ((month - 1) / 11) * dataWidth;
     const axisBySeries = new Map(AXES.flatMap(axis => axis.series.map(series => [series.key, axis])));
     const axes = new Map(AXES.map(axis => [axis.key, { max:axisMaxFor(axis, results) }]));
     const yAt = (series, value) => {
@@ -177,7 +180,7 @@
         }
         series.forEach((item, seriesIndex) => {
           const seriesOffset = seriesIndex * 28;
-          const axisColumnGap = onLeft ? 28 : 56;
+          const axisColumnGap = 38;
           const x = onLeft
             ? left - axisLabelGap - column * axisColumnGap - seriesOffset
             : width - right + axisLabelGap + column * axisColumnGap + seriesOffset;
@@ -191,7 +194,6 @@
       });
     }
 
-    const barWidth = Math.min(42, innerWidth / 14);
     const markTargets = [];
     for (const result of results) {
       const score = result.overallScore;
@@ -283,7 +285,7 @@
         hideTooltip();
         return;
       }
-      const month = Math.max(1, Math.min(12, Math.round(1 + ((chartPoint.x - left) / innerWidth) * 11)));
+      const month = Math.max(1, Math.min(12, Math.round(1 + ((chartPoint.x - dataLeft) / dataWidth) * 11)));
       const result = resultByMonth.get(month);
       if (result) {
         setActiveMonth(month);

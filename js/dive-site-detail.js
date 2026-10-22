@@ -397,7 +397,7 @@
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=11',
-      '/js/dive-conditions-chart.js?v=31', '/js/site-recommendations.js?v=17',
+      '/js/dive-conditions-chart.js?v=34', '/js/site-recommendations.js?v=17',
       '/js/dive-site-rating-card.js?v=16']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
