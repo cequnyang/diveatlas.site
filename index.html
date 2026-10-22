@@ -2060,10 +2060,12 @@
       width: 30px;
       height: 30px;
       padding: 0;
+      margin-bottom: 5px;
       border: 0;
-      border-bottom: 1px solid var(--line);
+      border-radius: 8px;
       background: var(--panel-solid);
       color: var(--text);
+      box-shadow: var(--shadow-soft);
       cursor: pointer;
     }
 
@@ -2080,22 +2082,43 @@
     .map-current-location:disabled { opacity: .55; cursor: wait; }
 
 
-    .leaflet-control-zoom {
+    .leaflet-control-zoom.leaflet-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       margin-right: 14px !important;
       margin-bottom: 28px !important;
       border: 0 !important;
-      border-radius: 13px !important;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft) !important;
+      border-radius: 0 !important;
+      overflow: visible;
+      box-shadow: none !important;
     }
 
-    .leaflet-control-zoom a {
-      width: 40px !important;
-      height: 40px !important;
-      line-height: 40px !important;
+    .map-zoom-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 30px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--panel-solid);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .leaflet-control-zoom .map-zoom-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      width: 30px !important;
+      height: 30px !important;
+      line-height: 30px !important;
       border: 0 !important;
       background: var(--panel-solid) !important;
       color: var(--text) !important;
+    }
+
+    .map-zoom-buttons .leaflet-control-zoom-in {
+      border-bottom: 1px solid var(--line-soft) !important;
     }
 
     .leaflet-control-attribution {
@@ -4094,6 +4117,7 @@
     }
 
     .top-menu-share-wrap { position: relative; flex: 0 0 36px; width: 36px; height: 36px; }
+    .top-menu-share-label { display: none; }
     .top-menu-share {
       width: 36px;
       height: 36px;
@@ -4386,6 +4410,8 @@
       fill: currentColor;
     }
 
+    .leaflet-control-zoom a svg { width: 20px; height: 20px; }
+
     .top-menu-title {
       font-size: 12px;
       line-height: 20px;
@@ -4512,6 +4538,17 @@
       display: none;
     }
 
+    .top-menu-backdrop {
+      position: fixed;
+      z-index: 2040;
+      inset: 0;
+      background: rgb(16 24 40 / .38);
+    }
+
+    .top-menu-backdrop[hidden] {
+      display: none;
+    }
+
     #topMenuDropdown {
       width: min(320px, calc(100vw - 24px));
     }
@@ -4594,12 +4631,41 @@
         border-bottom: 1px solid var(--line-soft);
       }
       #topMenuMobileSettings .unit-setting { align-items:center; }
-      #topMenuMobileSettings .top-menu-share-wrap { flex: 0 0 40px; width: 40px; height: 40px; }
-      #topMenuMobileSettings .top-menu-share { border-radius:6px; transition:background-color .16s ease; }
+      #topMenuMobileSettings .top-menu-share-wrap { grid-column: 1 / -1; justify-self: stretch; width: 100%; height: auto; }
+      #topMenuMobileSettings .top-menu-share {
+        display: grid;
+        grid-template-columns: 32px minmax(0, 1fr);
+        align-items: center;
+        justify-items: start;
+        gap: 10px;
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        min-height: 52px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 550;
+        line-height: 24px;
+        text-align: left;
+        transition: background-color .16s ease;
+      }
+      #topMenuMobileSettings .top-menu-share-label { grid-area: 1 / 2; display: block; min-width: 0; overflow-wrap: anywhere; }
+      #topMenuMobileSettings .top-menu-share > svg,
+      #topMenuMobileSettings .top-menu-share .share-discovery-mark { grid-area: 1 / 1; justify-self: center; }
+      #topMenuMobileSettings .top-menu-share .share-discovery-mark {
+        width: 31.2px;
+        min-width: 31.2px;
+        max-width: 31.2px;
+        height: 31.2px;
+        min-height: 31.2px;
+        max-height: 31.2px;
+        aspect-ratio: 1;
+      }
       #topMenuMobileSettings .top-menu-share:hover,
       #topMenuMobileSettings .top-menu-share:active { background:#f0f1f3; }
-      #topMenuMobileSettings .top-menu-share svg { width:24px; height:24px; }
-      #topMenuMobileSettings .top-menu-share svg { stroke:#6b7280; }
+      #topMenuMobileSettings .top-menu-share > svg { width:24px; height:24px; stroke:#6b7280; }
       #topMenuMobileSettings .top-menu-theme .theme-mode-icon,
       #topMenuMobileSettings .top-menu-theme .theme-mode-icon svg { width:25.41px; height:25.41px; }
       #topMenuMobileSettings .top-menu-theme .theme-mode-icon:first-child { color:#6b7280; }
@@ -5410,6 +5476,10 @@
     #themeBtn:hover { border: 0; background: color-mix(in srgb, var(--text) 6%, transparent); color: var(--text); }
     #themeBtn .theme-mode-icon { position: static; display: none; width: 16px; height: 16px; transform: none; }
     #themeBtn .theme-mode-icon svg { width: 16px; height: 16px; }
+    @media (max-width: 720px) {
+      #themeBtn .theme-mode-icon,
+      #themeBtn .theme-mode-icon svg { width: 21.6px; height: 21.6px; }
+    }
     #themeBtn .theme-mode-icon:first-child { display: block; color: var(--muted); }
     [data-theme="dark"] #themeBtn .theme-mode-icon:first-child { display: none; }
     [data-theme="dark"] #themeBtn .theme-mode-icon:last-child { display: block; color: var(--muted); }
@@ -5618,6 +5688,7 @@
 
     @media (max-width: 720px) {
       .top-menu-bar { justify-content: flex-start; }
+      .top-menu-bar > .top-menu-brand { display: none; }
       #topMenuSearchSlot .dive-search-input { font-size: 12px; }
       #topMenuSearchSlot .dive-search-box::after { right:36px; }
       #topMenuSearchSlot .dive-search-filter-toggle:not(.has-active-filters):not([aria-expanded="true"]):hover {
@@ -5765,6 +5836,29 @@
       .top-menu-controls {
         order: 3;
         margin-left: auto;
+      }
+    }
+
+    @media (350px < width <= 720px) {
+      #topMenuSearchSlot,
+      #topMenuSearchSlot:not(.is-mobile-expanded),
+      #topMenuSearchSlot.is-mobile-expanded {
+        flex: 1 1 0;
+        width: auto;
+        max-width: none;
+      }
+      #topMenuSearchSlot:not(.is-mobile-expanded) #diveSearchSection,
+      #topMenuSearchSlot.is-mobile-expanded #diveSearchSection,
+      #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+      #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-input,
+      #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-clear {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
     }
 
@@ -7088,7 +7182,6 @@
     }
     @media (max-width: 720px) {
       .top-menu-controls > .top-menu-share-wrap,
-      .top-menu-controls > #themeBtn,
       .top-menu-controls > .unit-setting,
       .top-menu-controls > #temperatureUnitSwitch { display:none; }
       .bio-legend {
@@ -7266,6 +7359,7 @@
       <div class="top-menu-share-wrap">
         <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map info" title="Share map info">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg>
+          <span class="top-menu-share-label" data-i18n="shareMap">Share map</span>
         </button>
       </div>
       <button class="top-menu-theme" id="themeBtn" type="button" title="Toggle map style" aria-label="Toggle map style" aria-pressed="false">
@@ -7331,10 +7425,6 @@
             <a class="top-menu-dropdown-item" id="googleSignInLink" hidden>Sign in with Google</a>
             <button class="top-menu-dropdown-item" id="authSignOutButton" type="button" hidden>Sign out</button>
           </section>
-          <nav class="seo-menu-summary" aria-label="Explore DiveAtlas">
-            <a class="top-menu-dropdown-item" href="/dive-sites/" data-i18n="browseDiveSites">Browse dive sites</a>
-            <a class="top-menu-dropdown-item" href="/regions/" data-i18n="browseRegions">Browse regions</a>
-          </nav>
           <div class="top-menu-about-wrap">
             <button class="top-menu-dropdown-item" id="aboutMenuItem" type="button" aria-expanded="false" aria-controls="topMenuAboutTooltip" aria-describedby="topMenuAboutTooltip">About</button>
             <div class="top-menu-about-tooltip" id="topMenuAboutTooltip" role="tooltip" hidden>
@@ -7348,6 +7438,8 @@
       </div>
     </div>
   </header>
+
+  <div class="top-menu-backdrop" id="topMenuBackdrop" aria-hidden="true" hidden></div>
 
   <div class="contact-modal" id="contactModal" hidden>
     <div class="contact-modal-backdrop" data-contact-close></div>
@@ -9888,7 +9980,17 @@ ZSD·2016–2025</span></span>
     position: 'bottomright'
   }).addTo(map);
 
-  const currentLocationButton = L.DomUtil.create('button', 'map-current-location', zoomControl.getContainer());
+  const zoomControlContainer = zoomControl.getContainer();
+  // The custom locate button must not trigger map clicks or start map gestures.
+  L.DomEvent.disableClickPropagation(zoomControlContainer);
+  // Keep the built-in zoom links together so the locate button can sit in its own card.
+  const zoomButtons = L.DomUtil.create('div', 'map-zoom-buttons', zoomControlContainer);
+  ['.leaflet-control-zoom-in', '.leaflet-control-zoom-out'].forEach(selector => {
+    const button = zoomControlContainer.querySelector(selector);
+    if (button) zoomButtons.append(button);
+  });
+
+  const currentLocationButton = L.DomUtil.create('button', 'map-current-location', zoomControlContainer);
   currentLocationButton.type = 'button';
   currentLocationButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>';
   zoomControl.getContainer().prepend(currentLocationButton);
@@ -10137,6 +10239,7 @@ ZSD·2016–2025</span></span>
     tutorialLanguageDropdown: document.getElementById('tutorialLanguageDropdown'),
     topMenuButton: document.getElementById('topMenuButton'),
     topMenuDropdown: document.getElementById('topMenuDropdown'),
+    topMenuBackdrop: document.getElementById('topMenuBackdrop'),
     topMenuPageTitle: document.getElementById('topMenuPageTitle'),
     aboutMenuItem: document.getElementById('aboutMenuItem'),
     topMenuAboutTooltip: document.getElementById('topMenuAboutTooltip'),
@@ -33002,7 +33105,6 @@ function closeShareDialog() {
   const topMenuMobileSettings = document.getElementById('topMenuMobileSettings');
   const mobileTopMenuControls = [
     document.querySelector('.top-menu-share-wrap'),
-    els.themeBtn,
     document.querySelector('.unit-setting'),
     els.temperatureUnitSwitch
   ].filter(Boolean).map(element => {
@@ -33030,6 +33132,7 @@ function closeShareDialog() {
     clearTimeout(setTopMenuOpen.closeTimer);
     els.topMenuButton.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
     if (nextOpen) {
+      els.topMenuBackdrop.hidden = !useMobilePage;
       els.topMenuDropdown.style.removeProperty('--mobile-panel-drag-y');
       els.topMenuDropdown.classList.remove('mobile-vertical-dragging');
       els.topMenuDropdown.hidden = false;
@@ -33043,6 +33146,7 @@ function closeShareDialog() {
         els.topMenuDropdown.classList.remove('is-open');
       }
     } else {
+      els.topMenuBackdrop.hidden = true;
       els.topMenuDropdown.classList.remove('is-open');
       if (useMobilePage) {
         document.body.classList.remove('menu-page-open');
@@ -33110,6 +33214,8 @@ function closeShareDialog() {
     setLanguageMenuOpen(false);
     setTopMenuOpen(els.topMenuDropdown.hidden);
   });
+
+  els.topMenuBackdrop.addEventListener('click', () => setTopMenuOpen(false));
 
   els.topMenuDropdown.addEventListener('click', event => {
     event.stopPropagation();

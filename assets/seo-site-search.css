@@ -275,6 +275,29 @@
   #seoSiteSearchResultsScroll { padding-bottom: 10px; }
 }
 
+@media (350px < width <= 720px) {
+  #seoSiteSearchSlot,
+  #seoSiteSearchSlot.is-mobile-expanded {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+  }
+  #seoSiteSearchSlot #seoSiteSearchSection,
+  #seoSiteSearchSlot.is-mobile-expanded #seoSiteSearchSection,
+  #seoSiteSearchSlot:not(.is-mobile-expanded) .dive-search-box {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  #seoSiteSearchSlot:not(.is-mobile-expanded) .dive-search-input,
+  #seoSiteSearchSlot:not(.is-mobile-expanded) .dive-search-clear {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #seoSiteSearchSection .dive-search-box,
   #seoSiteSearchSection .dive-search-filter-toggle { transition: none; }

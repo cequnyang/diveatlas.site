@@ -136,7 +136,11 @@
       `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</span>`).join('');
 
     // Keep the outside tick columns close to the canvas edge so the plot can use more width.
-    const width = 840, height = 277.5, left = 82, right = 40, top = 22, bottom = 58;
+    const mobile = window.matchMedia('(max-width: 720px)').matches;
+    // Match mobile SVG units to screen pixels so text does not shrink with the desktop canvas.
+    const width = mobile ? Math.max(280, plot.getBoundingClientRect().width || 320) : 840;
+    const height = mobile ? 250 : 277.5;
+    const left = mobile ? 76 : 82, right = mobile ? 36 : 40, top = 22, bottom = mobile ? 36 : 58;
     const innerWidth = width - left - right, innerHeight = height - top - bottom;
     const axisLabelGap = 12;
     const barWidth = Math.min(42, innerWidth / 14);
@@ -245,10 +249,16 @@
     for (let month = 1; month <= 12; month += 1) {
       const label = appendSvg(svg, 'text', { x:xAt(month), y:height - 18, 'text-anchor':'middle', class:'monthly-conditions-month' });
       label.textContent = MONTHS[month - 1];
+      if (mobile && dataWidth / 11 < 24) {
+        label.textContent = new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
+          month:'narrow', timeZone:'UTC'
+        }).format(new Date(Date.UTC(2020, month - 1, 1)));
+        label.setAttribute('aria-label', MONTHS[month - 1]);
+      }
     }
 
     const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', 'aria-hidden':'true', 'pointer-events':'none' });
-    const tooltipWidth = 286, tooltipHeight = 142;
+    const tooltipWidth = Math.min(286, width - 16), tooltipHeight = 142;
     appendSvg(tooltip, 'rect', { x:0, y:0, width:tooltipWidth, height:tooltipHeight, rx:9,
       fill:'#20252d', 'fill-opacity':'.94' });
     const tooltipTitle = appendSvg(tooltip, 'text', { x:14, y:23, class:'monthly-conditions-tooltip-title' });
@@ -268,7 +278,9 @@
         tooltipRows[index].textContent = `${translate(series.label)}: ${formatValue(value, series.unit)}`;
       });
       tooltipRows[SERIES.length].textContent = `${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`;
-      const x = Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
+      const x = mobile
+        ? Math.max(8, Math.min(targetX + 14, width - tooltipWidth - 8))
+        : Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);
       const y = Math.max(top, Math.min(targetY - 14, height - bottom - tooltipHeight));
       tooltip.setAttribute('transform', `translate(${x} ${y})`);
       tooltip.classList.add('is-visible');
@@ -366,6 +378,18 @@
     MONTHS = localizedMonths();
     if (latestResults) render(latestResults);
   });
+
+  let chartWidth = 0;
+  let resizeFrame = 0;
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      const nextWidth = plot.getBoundingClientRect().width;
+      if (!nextWidth || Math.abs(nextWidth - chartWidth) < 1) return;
+      chartWidth = nextWidth;
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => { if (latestResults) render(latestResults); });
+    }).observe(plot);
+  }
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {

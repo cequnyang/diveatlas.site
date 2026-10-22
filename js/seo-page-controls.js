@@ -334,7 +334,7 @@
     return url.href;
   }
   const openShareDialog = async () => {
-    previousFocus = document.activeElement;
+    previousFocus = document.activeElement === byId('seoMenuShareButton') ? menuButton : document.activeElement;
     setMenu(false);
     if (!shareModal) return;
     try {
@@ -360,6 +360,7 @@
     }
   };
   byId('seoShareButton')?.addEventListener('click', openShareDialog);
+  byId('seoMenuShareButton')?.addEventListener('click', openShareDialog);
   byId('siteTitleShareButton')?.addEventListener('click', openShareDialog);
   const closeShare = () => { if (shareModal) shareModal.hidden = true; previousFocus?.focus?.({ preventScroll: true }); };
   shareModal?.addEventListener('click', event => { if (event.target.closest('[data-seo-share-close]')) closeShare(); });

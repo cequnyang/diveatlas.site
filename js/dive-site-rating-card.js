@@ -184,6 +184,7 @@
     const labels = Array.from({ length:12 }, (_, index) =>
       new Intl.DateTimeFormat(document.documentElement.lang || 'en', { month:'short', timeZone:'UTC' })
         .format(new Date(Date.UTC(2020, index, 1))));
+    const monthLabels = [];
     points.forEach((point, index) => {
       if (point) {
         const marker = document.createElementNS(ns, 'circle');
@@ -213,15 +214,36 @@
       month.setAttribute('font-size', String(9 / scale));
       month.setAttribute('font-weight', '700');
       month.textContent = labels[index];
+      monthLabels.push(month);
       svg.append(month);
     });
     trendChart.replaceChildren(svg);
+    // Measure rendered text: minimum font settings and translations can widen labels.
+    const monthBounds = monthLabels.map(label => label.getBoundingClientRect());
+    const labelsOverlap = monthBounds.some((bounds, index) =>
+      index > 0 && monthBounds[index - 1].right + 2 > bounds.left);
+    if (labelsOverlap) {
+      const narrowMonth = new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
+        month:'narrow', timeZone:'UTC'
+      });
+      monthLabels.forEach((label, index) => {
+        label.textContent = Array.from(narrowMonth.format(new Date(Date.UTC(2020, index, 1))))[0];
+        label.setAttribute('aria-label', labels[index]);
+        const title = document.createElementNS(ns, 'title');
+        title.textContent = labels[index];
+        label.append(title);
+      });
+    }
     trendChart.setAttribute('aria-label', monthlyScores.some(value => value != null)
       ? 'Monthly DiveAtlas rating scores. Focus a point to read its month and score.'
       : 'Monthly DiveAtlas rating scores are unavailable.');
   }
 
   window.addEventListener('diveatlas:language-change', () => {
+    if (trendScores) renderRatingTrend(trendScores);
+  });
+
+  document.fonts?.ready.then(() => {
     if (trendScores) renderRatingTrend(trendScores);
   });
 

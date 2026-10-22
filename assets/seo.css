@@ -197,6 +197,10 @@ figure { margin: 0; }
   .monthly-conditions-axis-label { font-size: 13px; }
   .monthly-conditions-month { font-size: 11px; }
 }
+@media (max-width: 720px) {
+  .monthly-conditions-month { font-size: 12px; }
+  .monthly-conditions-axis-label { font-size: 13px; }
+}
 /* Let translated keys size to their text so the visible key/value gap stays 20px. */
 .fact { display: grid; min-width: 0; grid-template-columns: max-content minmax(0, 1fr); align-items: center; column-gap: 20px; padding: 3px 0; }
 .fact dt { color: var(--text-secondary); font-size: 12px; }
@@ -258,8 +262,10 @@ figure { margin: 0; }
 .seo-menu-dropdown nav.seo-menu-summary { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 7px 0; border-bottom: 1px solid var(--line-soft); }
 .top-menu-dropdown-item { display: flex; min-height: 42px; align-items: center; gap: 8px; padding: 9px 12px; border: 0; border-radius: 6px; background: transparent; color: var(--text); font: inherit; font-size: 14px; font-weight: 550; text-align: left; text-decoration: none; cursor: pointer; }
 .top-menu-dropdown-item:hover,.top-menu-dropdown-item:focus-visible { background: var(--panel-soft); color: var(--text); outline: none; }
+.seo-menu-share { display: none; }
 .seo-menu-dropdown .top-menu-dropdown-item { width: 100%; min-height: 32px; box-sizing: border-box; padding: 6px 9px; border-radius: 5px; font-size: 12px; font-weight: 500; line-height: 20px; }
 .seo-menu-dropdown .top-menu-dropdown-item:hover,.seo-menu-dropdown .top-menu-dropdown-item:focus-visible { background: color-mix(in srgb, var(--text) 9%, var(--panel-solid)); color: var(--text); }
+.seo-menu-share svg { display: block; width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .seo-menu-about-wrap { position: relative; padding: 0; border: 0; }
 .top-menu-about-tooltip { padding: 0 12px 10px; color: var(--muted); font-size: 12px; }
 .top-menu-about-tooltip p { margin: 6px 0; }
@@ -297,7 +303,10 @@ figure { margin: 0; }
   .seo-menu-dropdown.is-open { visibility: visible; transform: translateX(0); }
   .seo-menu-dropdown .top-menu-page-header { position: sticky; top: env(safe-area-inset-top,0px); z-index: 1; display: flex; flex: 0 0 auto; align-items: center; min-height: 52px; margin-bottom: 2px; background: var(--panel-solid); color: var(--text); font-size: 19px; font-weight: 650; }
   .seo-menu-dropdown .top-menu-dropdown-item { min-height: 52px; padding: 10px 12px; border-radius: 10px; font-size: 16px; line-height: 24px; }
+  body.seo-site-detail-layout .seo-top-menu-controls #seoShareButton { display: none; }
+  body.seo-site-detail-layout .seo-menu-dropdown #seoMenuShareButton { display: flex; }
   .seo-menu-account { padding: 10px 12px 14px; font-size: 14px; }
+  body.seo-site-detail-layout .seo-menu-dropdown #seoMenuShareButton + .seo-menu-account { border-top: 1px solid var(--line-soft); }
   .seo-menu-dropdown .top-menu-version { margin-top: auto; }
   @media (prefers-reduced-motion: reduce) { .seo-menu-dropdown { transition: none; }
  }
@@ -416,7 +425,8 @@ body.seo-site-detail-layout > .site-header .brand { flex: 0 0 auto; }
 body.seo-site-detail-layout > .site-header .seo-top-menu-controls {  width: auto;  flex: 0 0 auto;  flex-wrap: nowrap;  justify-content: flex-end;  margin-left: auto;}
 body.seo-site-detail-layout > main,body.seo-site-detail-layout > footer { position: relative; }
 @media (max-width: 720px) {  body.seo-site-detail-layout { padding: 49px 16px 0; }
-  body.seo-site-detail-layout > .site-header { padding-right: 8px; padding-left: 8px; }
+  body.seo-site-detail-layout > .site-header { z-index: 2050; padding-right: 8px; padding-left: 8px; }
+  body.seo-site-detail-layout > .site-header .brand { display: none; }
   .seo-top-menu-controls > .unit-segmented-control { display: none; }
 }
 @media (max-width: 520px) {  body.seo-site-detail-layout { padding: 49px 12px 0; }
@@ -449,7 +459,7 @@ body.seo-site-detail-layout .seo-menu-dropdown { width: min(320px, calc(100vw - 
 body.seo-site-detail-layout .seo-menu-dropdown .top-menu-page-header { display: none; }
 body.seo-site-detail-layout .seo-menu-dropdown .top-menu-dropdown-item { min-height: 32px; padding: 6px 9px; border-radius: 5px; font-size: 12px; line-height: 20px; }
 body.seo-site-detail-layout .seo-menu-account { padding: 7px 9px 6px; font-size: 12px; }
-body.seo-site-detail-layout .seo-menu-dropdown nav.seo-menu-summary { padding: 7px 9px 5px; }
+body.seo-site-detail-layout .seo-menu-dropdown nav.seo-menu-summary { display: none; padding: 7px 9px 5px; }
 body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6px 0; padding: 6px 3px 2px; font-size: 11px; line-height: 15px; }
 @media (max-width: 720px) {  body.seo-site-detail-layout .seo-language-menu { width: 40px; min-width: 40px; max-width: 40px; flex: 0 0 40px; }
   body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger { width: 40px; min-width: 40px; max-width: 40px; height: 36px; flex-basis: 40px; justify-content: center; padding: 0; }
@@ -461,6 +471,8 @@ body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6
   body.seo-site-detail-layout .seo-language-dropdown[hidden],  body.seo-site-detail-layout .seo-menu-dropdown[hidden] { display: flex; visibility: hidden; }
   body.seo-site-detail-layout .seo-language-dropdown.is-open,  body.seo-site-detail-layout .seo-menu-dropdown.is-open { visibility: visible; transform: translateX(0); }
   body.seo-site-detail-layout .seo-menu-dropdown .top-menu-page-header { position: sticky; top: env(safe-area-inset-top,0px); z-index: 1; display: flex; flex: 0 0 auto; align-items: center; min-height: 52px; margin-bottom: 2px; background: var(--panel-solid); color: var(--text); font-size: 19px; font-weight: 650; }
+  body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon,
+  body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon svg { width: 21.6px; height: 21.6px; }
   body.seo-site-detail-layout .seo-menu-dropdown .top-menu-dropdown-item { min-height: 52px; padding: 10px 12px; border-radius: 10px; font-size: 16px; line-height: 24px; }
   body.seo-site-detail-layout .seo-language-dropdown .top-menu-dropdown-item { min-height: 52px; padding: 10px 12px; border-radius: 10px; font-size: 18px; line-height: 26px; }
   body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin-top: auto; }
