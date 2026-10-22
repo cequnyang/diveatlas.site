@@ -25839,8 +25839,8 @@ function closeShareDialog() {
 
   function renderFishCache() {
     if (!fishDensityLayer) return;
-    if (shouldDeferMobileMarkerLayerRefresh('fish')) return;
 
+    preserveMobileSheetForLayerRefresh('fish');
     fishDensityLayer.clearLayers();
     fishMarkerCache.clear();
     scheduleClusterOverlapResolution();
@@ -27979,8 +27979,8 @@ function closeShareDialog() {
 
   function renderSpeciesCache() {
     if (!speciesLayer) return;
-    if (shouldDeferMobileMarkerLayerRefresh('species')) return;
 
+    preserveMobileSheetForLayerRefresh('species');
     resetBatchedSpeciesGridInteraction();
     speciesLayer.clearLayers();
     speciesMarkerCache.clear();
@@ -28931,33 +28931,47 @@ function closeShareDialog() {
       popup?.getElement?.()?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet');
   }
 
+  function detachPopupSourceCloseOnRemove(popup) {
+    const source = popup?._source;
+    if (!source?.closePopup || typeof source.off !== 'function') return false;
+    if (popup._diveAtlasDetachedSource === source) return true;
+    source.off('remove', source.closePopup, source);
+    popup._diveAtlasDetachedSource = source;
+    return true;
+  }
+
   function preserveDesktopPopupForZoom(popup) {
     if (!popup || isMobileMapSheetPopup(popup)) return;
     popup._diveAtlasDesktopZoomValidationPending = true;
-    const source = popup._source;
-    if (!source?.closePopup || typeof source.off !== 'function') return;
 
     // Viewport refresh removes and recreates marker layers after zoom. Leaflet
     // normally closes a marker's bound popup on removal, before we can check
     // whether its anchor is still visible; suspend that one removal hook.
-    source.off('remove', source.closePopup, source);
-    popup._diveAtlasZoomDetachedSource ||= source;
+    detachPopupSourceCloseOnRemove(popup);
   }
 
-  function restoreZoomDetachedPopupSource(popup) {
+  function preserveMobileSheetForLayerRefresh(layerKey) {
+    const popup = activeClickPopup;
+    if (
+      !isMobileMapSheetPopup(popup) ||
+      !popup.isOpen?.() ||
+      popup._diveAtlasLayerKey !== layerKey
+    ) return;
+
+    // Keep the fixed sheet open while its viewport-backed markers are replaced.
+    // The sheet owns the selected feature details; its marker need not remain in
+    // the newly rendered viewport for the user to keep reading those details.
+    detachPopupSourceCloseOnRemove(popup);
+  }
+
+  function restoreDetachedPopupSource(popup) {
     if (!popup) return;
     popup._diveAtlasDesktopZoomValidationPending = false;
     popup._diveAtlasDesktopZoomRetained = false;
-    const source = popup?._diveAtlasZoomDetachedSource;
+    const source = popup?._diveAtlasDetachedSource;
     if (!source?.closePopup || typeof source.on !== 'function') return;
     source.on('remove', source.closePopup, source);
-    popup._diveAtlasZoomDetachedSource = null;
-  }
-
-  function shouldDeferMobileMarkerLayerRefresh(layerKey) {
-    return isMobileMapSheetPopup(activeClickPopup) &&
-      activeClickPopup.isOpen?.() &&
-      activeClickPopup._diveAtlasLayerKey === layerKey;
+    popup._diveAtlasDetachedSource = null;
   }
 
   function scheduleActiveMapPopupValidation(delay = MAP_POPUP_REVALIDATION_DELAY_MS) {
@@ -29384,9 +29398,9 @@ function closeShareDialog() {
 
     if (!diveSiteLayer || !layerVisibility.dive) return;
     if (!diveSiteDataReady) return;
-    if (shouldDeferMobileMarkerLayerRefresh('dive')) return;
 
     const zoom = map.getZoom();
+    preserveMobileSheetForLayerRefresh('dive');
     diveSiteLayer.clearLayers();
     diveSiteMarkerCache.clear();
     scheduleClusterOverlapResolution();
@@ -31417,7 +31431,7 @@ function closeShareDialog() {
 
   map.on('popupclose', event => {
     const popup = event?.popup;
-    restoreZoomDetachedPopupSource(popup);
+    restoreDetachedPopupSource(popup);
     popup?._diveAtlasMobileSheetResizeObserver?.disconnect();
     const popupElement = popup?.getElement?.();
     popupShareDiscovery.cancelFor(popupElement);
