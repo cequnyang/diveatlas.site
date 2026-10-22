@@ -17295,6 +17295,7 @@ ZSD·2016–2025</span></span>
   let mapClickLocationStatusTimer = null;
   let mapClickLocationStatusGeneration = 0;
   let mapClickLocationStatusCentered = false;
+  let diveSiteJumpPointer = null;
   const MAP_LOCATION_STATUS_COPY = {
     en: { checking:'Checking this location…', noData:'No data is available at this location.', unavailable:'Data could not be loaded for this location.' },
     zh: { checking:'正在检查此位置…', noData:'此位置没有可用数据。', unavailable:'无法加载此位置的数据。' },
@@ -18626,6 +18627,7 @@ ZSD·2016–2025</span></span>
   }
 
   function showMapClickLocationPin(latlng) {
+    clearDiveSiteJumpPointer();
     clearMapClickLocationStatus();
     mapClickLocationStatusCentered = false;
     mapClickLocationLatLng = L.latLng(latlng);
@@ -21326,9 +21328,14 @@ ZSD·2016–2025</span></span>
   map.createPane('diveSiteJumpPointerPane');
   map.getPane('diveSiteJumpPointerPane').style.zIndex = '640';
 
-  let diveSiteJumpPointer = null;
+  function clearDiveSiteJumpPointer() {
+    if (!diveSiteJumpPointer) return;
+    map.removeLayer(diveSiteJumpPointer);
+    diveSiteJumpPointer = null;
+  }
 
   function showDiveSiteJumpPointer(latlng) {
+    clearMapClickLocationPin();
     if (diveSiteJumpPointer) {
       diveSiteJumpPointer.setLatLng(latlng);
       if (!map.hasLayer(diveSiteJumpPointer)) diveSiteJumpPointer.addTo(map);
