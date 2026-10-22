@@ -21,6 +21,8 @@ EXCLUDED_PARTS = {
     ".github",
     "docs",
     "node_modules",
+    # Cloudflare Workers deploy separately, so their source and configs stay out of Pages.
+    "workers",
     "tests",
     "tools",
     "__pycache__",
