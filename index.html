@@ -9684,7 +9684,24 @@ ZSD·2016–2025</span></span>
     }
     popup._diveAtlasMobileSheetResizeObserver.observe(popupElement);
     const content = popupElement.querySelector('.leaflet-popup-content');
-    if (content) popup._diveAtlasMobileSheetResizeObserver.observe(content);
+    if (content) {
+      popup._diveAtlasMobileSheetResizeObserver.observe(content);
+      if (typeof MutationObserver === 'function' && !popup._diveAtlasMobileSheetContentObserver) {
+        // A scroll viewport can keep the same box size while replacing its
+        // content (for example, when a temperature profile is opened). Keep
+        // the selected map point centered after those in-place panel changes.
+        popup._diveAtlasMobileSheetContentObserver = new MutationObserver(() => {
+          centerMobileMapSheetPointer(popup);
+        });
+        popup._diveAtlasMobileSheetContentObserver.observe(content, {
+          childList:true,
+          subtree:true,
+          characterData:true,
+          attributes:true,
+          attributeFilter:['class', 'hidden']
+        });
+      }
+    }
   }
 
   function openManagedPopup(ownerKey, popup, latlng = null, ownerFeature = null) {

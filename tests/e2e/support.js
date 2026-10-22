@@ -61,8 +61,13 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       const relativeAssetPath = url.pathname.slice(dataAssetBase.pathname.length).replace(/^\/+/, '');
       const localAssetUrl = new URL(`/${relativeAssetPath}${url.search}`, page.url());
       let response;
+      let body;
       try {
         response = await route.fetch({ url: localAssetUrl.href, timeout: 60_000 });
+        // Copy the body before fulfillment. Passing the APIResponse object
+        // defers reading its body until Playwright handles the route and can
+        // race with disposal of the fetched response on canceled duplicates.
+        body = await response.body();
       } catch (error) {
         if (page.isClosed()) return;
         throw error;
@@ -70,7 +75,7 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       const headers = { ...response.headers() };
       const pageOrigin = route.request().headers().origin;
       if (pageOrigin) headers['access-control-allow-origin'] = pageOrigin;
-      return route.fulfill({ response, headers });
+      return route.fulfill({ status:response.status(), headers, body });
     }
     if ((url.hostname === '127.0.0.1' || url.hostname === 'localhost') && url.pathname.startsWith('/data/')) {
       // Let test-specific routes run before the local server serves a checked-in

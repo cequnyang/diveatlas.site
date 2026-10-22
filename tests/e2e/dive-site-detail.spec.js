@@ -33,8 +33,8 @@ test('one shared shell renders two different IDs and keeps share/map links site-
   await expect(page.locator('h1')).toHaveText('Example reef');
   await expect(page.locator('.facts-section')).toContainText('12–25 m');
   await expect(page.locator('.facts-section')).toContainText('Beginner');
-  await expect(page.locator('.breadcrumbs')).toContainText('Raja Ampat');
-  await expect(page.locator('.lead')).toHaveText('Asia › South-Eastern Asia › Indonesia › Raja Ampat');
+  await expect(page.locator('.lead.location-hierarchy')).toContainText('Raja Ampat');
+  await expect(page.locator('.lead.location-hierarchy')).toHaveText('Asia › South-Eastern Asia › Indonesia › Raja Ampat');
   await expect(page.locator('.site-photo-gallery-map__cta')).toHaveAttribute('href', new RegExp(FIRST));
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://diveatlas.site/dive-site.html?id=example-reef-${FIRST}`);
   await expect(page.locator('.monthly-conditions-section')).toBeAttached();
