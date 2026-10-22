@@ -126,3 +126,83 @@ test('wrong-site responses are rejected and a retry can recover', async ({ page 
   await page.getByRole('button', { name:'Try again' }).click();
   await expect(page.locator('h1')).toHaveText('Example reef');
 });
+
+test('rating chart collapse retains the release frame without flashing back open', async ({ page, hasTouch }) => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const source = relative => fs.readFileSync(path.resolve(__dirname, '../..', relative), 'utf8');
+  await page.setViewportSize({ width:390, height:844 });
+  // Use the actual component sources; environmental data is independent of the gesture.
+  await page.route('http://rating.test/**', route => {
+    const url = route.request().url();
+    if (url.includes('dive-site-rating-card.js')) {
+      return route.fulfill({ contentType:'text/javascript', body:source('js/dive-site-rating-card.js') });
+    }
+    if (url.includes('dive-experience-outlook-map.js')) {
+      return route.fulfill({ contentType:'text/javascript', body:'window.DiveAtlasDiveExperienceMap={createDataStore(){return {sample:async()=>({score:82,label:"Good"})}}}' });
+    }
+    return route.fulfill({ contentType:'text/html', body:`
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>${source('assets/seo.css')}</style>
+      <style>.site-photo-gallery-rating{position:absolute;top:100px;left:20px;width:220px;height:108px}</style>
+      <section class="site-photo-gallery-rating" data-rating-lat="1" data-rating-lng="1" tabindex="0">
+        <div>Rating</div><div class="site-photo-gallery-rating__score">Loading</div>
+        <div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart"></div></div>
+      </section><script src="/js/dive-site-rating-card.js"></script>` });
+  });
+  await page.goto('http://rating.test/');
+  await expect(page.locator('.site-photo-gallery-rating__score')).toHaveAttribute('data-status', 'ready');
+  const touch = Boolean(hasTouch);
+  const card = page.locator('.site-photo-gallery-rating');
+  const panel = page.locator('.site-photo-gallery-rating__trend');
+  if (touch) await card.tap();
+  else await card.hover();
+  await expect(panel).toBeVisible();
+  await page.evaluate(() => {
+    const panel = document.querySelector('.site-photo-gallery-rating__trend');
+    window.ratingCollapseFrames = [];
+    panel.addEventListener('pointerup', () => {
+      const start = performance.now();
+      const sample = () => {
+        const style = getComputedStyle(panel);
+        const inset = style.clipPath.match(/inset\(([^)]+)\)/)?.[1].split(/\s+/);
+        window.ratingCollapseFrames.push(inset ? parseFloat(inset[2] || inset[0]) : 0);
+        if (performance.now() - start < 500) requestAnimationFrame(sample);
+        else window.ratingCollapseSamplingDone = true;
+      };
+      sample();
+    }, { capture:true, once:true });
+  });
+  const handle = await page.getByRole('button', { name:'Collapse monthly rating chart' }).boundingBox();
+  const x = handle.x + handle.width / 2, y = handle.y + handle.height / 2;
+  if (touch) {
+    const cdp = await page.context().newCDPSession(page);
+    const send = (type, clientY) => cdp.send('Input.dispatchTouchEvent', {
+      type, touchPoints:type === 'touchEnd' ? [] : [{ x, y:clientY, id:1 }]
+    });
+    await send('touchStart', y);
+    for (let step = 1; step <= 15; step++) await send('touchMove', y - 80 * step / 15);
+    await send('touchEnd');
+  } else {
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x, y - 80, { steps:15 });
+    await page.mouse.up();
+  }
+  await page.waitForFunction(() => window.ratingCollapseSamplingDone);
+  const frames = await page.evaluate(() => window.ratingCollapseFrames);
+  expect(frames[0]).toBeCloseTo(80, 0);
+  // Increasing bottom inset means the exposed height only shrinks, including cleanup.
+  for (let index = 1; index < frames.length; index++) {
+    expect(frames[index], `collapse frame ${index}`).toBeGreaterThanOrEqual(frames[index - 1] - 0.5);
+  }
+  await expect(panel).toBeHidden();
+  if (!touch) {
+    await page.mouse.move(x + 2, y - 80);
+    await page.mouse.move(x - 2, y - 80);
+    await expect(panel).toBeHidden();
+    await page.mouse.move(370, 700);
+    await card.hover();
+    await expect(panel).toBeVisible();
+  }
+});

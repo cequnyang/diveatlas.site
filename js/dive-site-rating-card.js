@@ -20,6 +20,9 @@
   if (trendTitle) trendTitle.textContent = 'Monthly Rating';
 
   let trendDragStartY = null;
+  let trendDragStartClip = 0;
+  let trendDragPointerId = null;
+  let trendDragStartedOnHandle = false;
   let trendHandleDragged = false;
   let trendCollapseAnimation = null;
   let trendReturnAnimation = null;
@@ -33,6 +36,9 @@
       { duration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : duration, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' }
     );
     animation.onfinish = () => {
+      // Retain the final frame before removing the animation's fill. In particular,
+      // a closed panel must stay clipped while its visibility/opacity styles settle.
+      trendPanel.style.clipPath = toClip;
       finish();
       animation.cancel();
     };
@@ -40,62 +46,75 @@
   };
   const updateTrendDrag = clientY => {
     const distance = clientY - trendDragStartY;
-    const collapseDistance = Math.min(trendPanel.getBoundingClientRect().height, Math.max(0, -distance));
+    const collapseDistance = Math.min(trendPanel.getBoundingClientRect().height, Math.max(0, trendDragStartClip - distance));
     trendPanel.style.clipPath = trendClip(collapseDistance);
-    trendHandleDragged = Math.abs(distance) >= 8;
+    trendHandleDragged = trendDragStartedOnHandle && Math.abs(distance) >= 8;
     return distance;
   };
-  trendHandle.addEventListener('pointerdown', event => {
-    const interruptedCollapse = trendPanel.classList.contains('is-collapsing');
+  // Let desktop cursors drag the narrow panel itself; touch gestures stay on the handle.
+  trendPanel.addEventListener('pointerdown', event => {
+    const startedOnHandle = trendHandle.contains(event.target);
+    if (event.pointerType === 'touch' && !startedOnHandle) return;
+    if (event.pointerType === 'mouse' && (!window.matchMedia('(max-width: 720px)').matches || event.button !== 0)) return;
+    if (!['touch', 'mouse'].includes(event.pointerType) && !startedOnHandle) return;
+    const currentClip = getComputedStyle(trendPanel).clipPath;
+    const clipValues = currentClip.match(/inset\(([^)]+)\)/)?.[1].split(/\s+/);
+    trendDragStartClip = clipValues ? parseFloat(clipValues[2] || clipValues[0]) : 0;
+    trendPanel.style.clipPath = currentClip;
     cancelTrendAnimation(trendCollapseAnimation);
     cancelTrendAnimation(trendReturnAnimation);
     trendCollapseAnimation = null;
     trendReturnAnimation = null;
-    if (interruptedCollapse) {
-      trendPanel.classList.remove('is-collapsing');
-      trendPanel.style.clipPath = '';
-    }
+    trendPanel.classList.remove('is-collapsing');
     trendDragStartY = event.clientY;
+    trendDragPointerId = event.pointerId;
+    trendDragStartedOnHandle = startedOnHandle;
     trendHandleDragged = false;
     trendPanel.classList.add('is-dragging');
-    trendHandle.setPointerCapture?.(event.pointerId);
+    const captureTarget = startedOnHandle ? trendHandle : trendPanel;
+    captureTarget.setPointerCapture?.(event.pointerId);
   });
-  trendHandle.addEventListener('pointermove', event => {
-    if (trendDragStartY == null) return;
+  trendPanel.addEventListener('pointermove', event => {
+    if (trendDragStartY == null || event.pointerId !== trendDragPointerId) return;
     updateTrendDrag(event.clientY);
   });
-  trendHandle.addEventListener('pointerup', event => {
-    if (trendDragStartY == null) return;
+  trendPanel.addEventListener('pointerup', event => {
+    if (trendDragStartY == null || event.pointerId !== trendDragPointerId) return;
     const distance = updateTrendDrag(event.clientY);
     trendDragStartY = null;
+    trendDragPointerId = null;
+    trendDragStartedOnHandle = false;
     trendPanel.classList.remove('is-dragging');
-    if (distance <= -40) {
-      const currentClip = getComputedStyle(trendPanel).clipPath;
+    // Include the preserved clip when a drag interrupts an in-progress animation.
+    if (trendDragStartClip - distance >= 40) {
+      const currentClip = trendPanel.style.clipPath;
       const panelHeight = trendPanel.getBoundingClientRect().height;
       const fullClip = trendClip(panelHeight);
       trendPanel.classList.add('is-collapsing');
       // Keep the open state until the clip animation finishes; otherwise the
       // closed-state styles replace the release frame before the upward motion can continue.
       trendCollapseAnimation = animateTrendClip(currentClip, fullClip, 260, () => {
+        card.classList.add('is-trend-dismissed');
         card.classList.remove('show-rating-trend');
         trendPanel.classList.remove('is-collapsing');
-        trendPanel.style.clipPath = '';
         trendCollapseAnimation = null;
       });
     } else {
-      const currentClip = getComputedStyle(trendPanel).clipPath;
+      const currentClip = trendPanel.style.clipPath;
       trendReturnAnimation = animateTrendClip(currentClip, trendClip(0), 160, () => {
-        trendPanel.style.clipPath = '';
         trendReturnAnimation = null;
       });
     }
   });
-  trendHandle.addEventListener('pointercancel', () => {
+  trendPanel.addEventListener('pointercancel', event => {
+    if (trendDragStartY == null || event.pointerId !== trendDragPointerId) return;
     const currentClip = getComputedStyle(trendPanel).clipPath;
     trendDragStartY = null;
+    trendDragPointerId = null;
+    trendDragStartedOnHandle = false;
+    trendHandleDragged = false;
     trendPanel.classList.remove('is-dragging');
     trendReturnAnimation = animateTrendClip(currentClip, trendClip(0), 160, () => {
-      trendPanel.style.clipPath = '';
       trendReturnAnimation = null;
     });
   });
@@ -107,6 +126,7 @@
       return;
     }
     card.classList.remove('show-rating-trend');
+    card.classList.add('is-trend-dismissed');
   });
 
   const scoreLabels = Object.freeze({ Challenging:'Not ideal', Fair:'Okay', Good:'Good', Excellent:'Great' });
@@ -234,18 +254,29 @@
     card.classList.remove('show-rating-trend');
     card.classList.add('is-trend-dismissed');
   }, true);
-  card.addEventListener('pointerenter', () => {
+  card.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'touch' || trendDragStartY != null || trendCollapseAnimation || trendReturnAnimation) return;
+    // Clipping changes hover hit testing. Only entering the rating card itself,
+    // rather than the disappearing popup's footprint, is a deliberate reopen.
+    const bounds = card.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) return;
+    trendPanel.style.clipPath = trendClip(0);
     card.classList.remove('is-trend-dismissed');
     void loadRatingTrend(ratingStore);
   });
-  card.addEventListener('pointerleave', () => card.classList.remove('is-trend-dismissed'));
-  card.addEventListener('focusin', () => { void loadRatingTrend(ratingStore); });
-  card.addEventListener('focusout', event => {
-    if (!card.contains(event.relatedTarget)) card.classList.remove('is-trend-dismissed');
+  // Closing a captured drag produces pointerleave and can leave the handle focused.
+  // Keep dismissal through those events; only a fresh pointer or keyboard entry reopens it.
+  card.addEventListener('focusin', event => {
+    if (!card.contains(event.relatedTarget) && trendDragStartY == null && !trendCollapseAnimation && !trendReturnAnimation) {
+      trendPanel.style.clipPath = trendClip(0);
+      card.classList.remove('is-trend-dismissed');
+    }
+    void loadRatingTrend(ratingStore);
   });
   card.addEventListener('click', event => {
     if (trendPanel.contains(event.target) || dismissedTrendClicks.has(event)) return;
     if (event.pointerType === 'touch' || matchMedia('(hover: none)').matches) {
+      trendPanel.style.clipPath = trendClip(0);
       card.classList.remove('is-trend-dismissed');
       card.classList.toggle('show-rating-trend');
       void loadRatingTrend(ratingStore);
