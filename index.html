@@ -9632,7 +9632,11 @@ ZSD·2016–2025</span></span>
   }
 
   function centerMobileMapSheetPointer(popup, requestedAnchor = null) {
-    if (!isMobileMapSheetPopup(popup) || !popup.isOpen?.()) return;
+    if (
+      !isMobileMapSheetPopup(popup) ||
+      !popup.isOpen?.() ||
+      popup._diveAtlasMobileSheetEntrancePending
+    ) return;
     const anchor = requestedAnchor || popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
     const popupElement = popup.getElement?.();
     if (!anchor || !popupElement) return;
@@ -9642,15 +9646,17 @@ ZSD·2016–2025</span></span>
         !popup.isOpen?.() || popup !== activeClickPopup || !map.hasLayer(popup) ||
         !isMobileMapSheetPopup(popup)
       ) return;
-      const { mapRect, safeTop, safeBottom } = getMapPopupSafeViewport();
+      const { mapRect, safeTop, safeBottom, safeLeft, safeRight } = getMapPopupSafeViewport();
       const sheetRect = popupElement.getBoundingClientRect();
       // The map container extends behind the fixed navigation bar; center in
       // the unobstructed map band between that bar and the open sheet instead.
       const visibleTop = Math.max(mapRect.top, safeTop - MAP_POPUP_SAFE_MARGIN);
       const visibleBottom = Math.min(mapRect.bottom, safeBottom + MAP_POPUP_SAFE_MARGIN, sheetRect.top);
-      if (visibleBottom <= visibleTop) return;
+      const visibleLeft = Math.max(mapRect.left, safeLeft);
+      const visibleRight = Math.min(mapRect.right, safeRight);
+      if (visibleBottom <= visibleTop || visibleRight <= visibleLeft) return;
       const targetPoint = L.point(
-        mapRect.width / 2,
+        ((visibleLeft + visibleRight) / 2) - mapRect.left,
         (visibleTop + (visibleBottom - visibleTop) / 2) - mapRect.top
       );
       const anchorPoint = map.latLngToContainerPoint(anchor);
@@ -9660,6 +9666,14 @@ ZSD·2016–2025</span></span>
         animate: !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       });
     });
+  }
+
+  function finishMobileMapSheetEntrance(popup) {
+    if (!popup?._diveAtlasMobileSheetEntrancePending) return;
+    popup._diveAtlasMobileSheetEntrancePending = false;
+    window.clearTimeout(popup._diveAtlasMobileSheetEntranceTimer);
+    popup._diveAtlasMobileSheetEntranceTimer = 0;
+    centerMobileMapSheetPointer(popup);
   }
 
   function observeMobileMapSheetSize(popup) {
@@ -29972,6 +29986,9 @@ function closeShareDialog() {
     openManagedPopup(sitePopup._diveAtlasOwnerKey, sitePopup, siteEntry.marker.getLatLng(), siteEntry.marker);
     return true;
   }
+  // The CSS entrance lasts 280ms; this fallback covers browsers that skip transitionend.
+  const MOBILE_MAP_SHEET_ENTRANCE_FALLBACK_MS = 360;
+
   function animateMobileMapSheetEntrance(popup) {
     const element = popup?.getElement?.();
     if (!element?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
@@ -29979,8 +29996,23 @@ function closeShareDialog() {
     element.classList.remove('mobile-sheet-exiting', 'mobile-vertical-dragging');
     element.style.removeProperty('--mobile-panel-drag-y');
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      popup._diveAtlasMobileSheetEntrancePending = false;
       element.classList.remove('mobile-sheet-entering');
       return;
+    }
+    popup._diveAtlasMobileSheetEntrancePending = true;
+    window.clearTimeout(popup._diveAtlasMobileSheetEntranceTimer);
+    popup._diveAtlasMobileSheetEntranceTimer = window.setTimeout(
+      () => finishMobileMapSheetEntrance(popup),
+      MOBILE_MAP_SHEET_ENTRANCE_FALLBACK_MS
+    );
+    if (!popup._diveAtlasMobileSheetEntranceCenterBound) {
+      element.addEventListener('transitionend', event => {
+        if (event.target === element && event.propertyName === 'translate') {
+          finishMobileMapSheetEntrance(popup);
+        }
+      });
+      popup._diveAtlasMobileSheetEntranceCenterBound = true;
     }
     element.classList.add('mobile-sheet-entering');
     void element.offsetHeight;
@@ -30602,6 +30634,13 @@ function closeShareDialog() {
     }
     activeClickPopupOwner =
       popup._diveAtlasOwnerKey || ('popup:' + L.stamp(popup));
+    if (popup._diveAtlasLayerKey === 'dive' && popup._diveAtlasSiteId) {
+      const siteAnchor = popup._diveAtlasAnchorLatLng || popup.getLatLng?.();
+      if (siteAnchor) {
+        clearMapClickLocationPin();
+        showDiveSiteJumpPointer(siteAnchor);
+      }
+    }
     centerMobileMapSheetPointer(popup);
     const sharedPopup = sharedMapState.popup;
     const popupLatLng = popup.getLatLng?.();
