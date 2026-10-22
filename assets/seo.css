@@ -426,7 +426,13 @@ body.seo-site-detail-layout > .site-header .seo-top-menu-controls {  width: auto
 body.seo-site-detail-layout > main,body.seo-site-detail-layout > footer { position: relative; }
 @media (max-width: 720px) {  body.seo-site-detail-layout { padding: 49px 16px 0; }
   body.seo-site-detail-layout > .site-header { z-index: 2050; padding-right: 8px; padding-left: 8px; }
-  body.seo-site-detail-layout > .site-header .brand { display: none; }
+  body.seo-site-detail-layout > .site-header .brand { display: inline-flex; }
+  body.seo-site-detail-layout > .site-header .brand img {
+    content: url('/assets/mobile-logo-cutout.svg');
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
   .seo-top-menu-controls > .unit-segmented-control { display: none; }
 }
 @media (max-width: 520px) {  body.seo-site-detail-layout { padding: 49px 12px 0; }
@@ -439,6 +445,10 @@ body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme::before,body.
 body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme:hover { background: color-mix(in srgb, var(--text) 6%, transparent); color: var(--text); }
 body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon { position: static; display: none; width: 16px; height: 16px; transform: none; }
 body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon svg { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (min-width: 721px) {
+  body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon,
+  body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon svg { width: 18.4px; height: 18.4px; }
+}
 body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon:first-child { display: block; color: var(--muted); }
 html[data-theme="dark"] body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon:first-child { display: none; }
 html[data-theme="dark"] body.seo-site-detail-layout .seo-top-menu-controls .top-menu-theme .theme-mode-icon:last-child { display: block; color: var(--muted); }
