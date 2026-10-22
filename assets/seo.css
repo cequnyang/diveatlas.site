@@ -197,8 +197,8 @@ figure { margin: 0; }
   .monthly-conditions-axis-label { font-size: 13px; }
   .monthly-conditions-month { font-size: 11px; }
 }
+/* Let translated keys size to their text so the visible key/value gap stays 20px. */
 .fact { display: grid; min-width: 0; grid-template-columns: max-content minmax(0, 1fr); align-items: center; column-gap: 20px; padding: 3px 0; }
-.fact-coordinates, .fact-setting { grid-template-columns: 64px minmax(0, 1fr); column-gap: 20px; }
 .fact dt { color: var(--text-secondary); font-size: 12px; }
 .fact dd { min-width: 0; margin: 0; color: var(--text-primary); font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
 .fact-features dd { font-size: 9px; font-weight: 600; letter-spacing: .07em; line-height: 1.4; text-transform: uppercase; }
@@ -495,8 +495,11 @@ body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6
   .site-photo-gallery-rail { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); grid-template-rows: minmax(0, 1fr); }
   .site-photo-gallery-rating { justify-content: space-between; padding-bottom: 0; }
 }
-@media (max-width: 720px) {
+@media (max-width: 1000px) {
+  /* Give each pair room before placing another key/value pair beside it. */
   .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
   .fact-coordinates { grid-column: 1 / -1; }
 }
 @media (max-width: 420px) {
