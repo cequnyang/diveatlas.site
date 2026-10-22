@@ -3,6 +3,43 @@
   if (!card) return;
 
   const score = card.querySelector('.site-photo-gallery-rating__score');
+  let scoreFitFrame = 0;
+  function fitScoreText() {
+    const parts = Array.from(score.querySelectorAll('.site-photo-gallery-rating__value, .site-photo-gallery-rating__level'));
+    if (parts.length !== 2) return;
+    // Always measure the CSS size again: a short translation or wider viewport
+    // must recover its original typography. The brand is deliberately untouched.
+    parts.forEach(part => part.style.removeProperty('font-size'));
+    score.style.removeProperty('column-gap');
+    const style = getComputedStyle(score);
+    if (style.display !== 'flex' || style.flexDirection !== 'row') return;
+    const available = score.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    if (available <= 0) return;
+    const widths = parts.map(part => {
+      const range = document.createRange();
+      range.selectNodeContents(part);
+      return range.getBoundingClientRect().width;
+    });
+    const naturalGap = parseFloat(style.columnGap) || 0;
+    const total = widths.reduce((sum, width) => sum + width, 0);
+    if (total + naturalGap <= available) return;
+    const gap = Math.min(naturalGap, 4);
+    score.style.columnGap = `${gap}px`;
+    const scale = Math.min(1, (available - gap - 1) / total);
+    parts.forEach(part => {
+      part.style.fontSize = `${parseFloat(getComputedStyle(part).fontSize) * scale}px`;
+    });
+  }
+  function scheduleScoreFit() {
+    cancelAnimationFrame(scoreFitFrame);
+    scoreFitFrame = requestAnimationFrame(fitScoreText);
+  }
+  // Translations can arrive after the language event; observe text rather than
+  // relying on event ordering. Style changes are excluded to avoid feedback.
+  new MutationObserver(scheduleScoreFit).observe(score, { childList: true, characterData: true, subtree: true });
+  if ('ResizeObserver' in window) new ResizeObserver(scheduleScoreFit).observe(score);
+  window.addEventListener('resize', scheduleScoreFit);
+  document.fonts?.ready.then(scheduleScoreFit);
   const trendPanel = card.querySelector('.site-photo-gallery-rating__trend');
   const trendTitle = card.querySelector('.site-photo-gallery-rating__trend-title');
   const trendChart = card.querySelector('.site-photo-gallery-rating__trend-chart');
