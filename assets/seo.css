@@ -3,6 +3,14 @@
 :root[data-theme="dark"] .sign-in-link { color: #102033; }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; padding: 0 24px; color: var(--text); background: var(--bg); font-size: 14px; line-height: 1.5; }
+.detail-pull-hint { display:none; }
+@media (max-width:720px) {
+  #detailPage { translate:0 var(--detail-pull-y, 0px); transition:translate .14s cubic-bezier(.2,.8,.2,1); }
+  #detailPage.detail-pull-dragging { transition:none; }
+  .detail-pull-hint:not([hidden]) { display:block; position:fixed; z-index:1000; left:50%; transform:translateX(-50%); max-width:calc(100vw - 32px); box-sizing:border-box; padding:2px 12px; border:0; background:transparent; color:var(--muted); font-size:13px; line-height:20px; font-weight:600; white-space:nowrap; pointer-events:none; }
+  .detail-pull-hint.is-ready { color:var(--primary, #3566d6); }
+}
+@media (prefers-reduced-motion:reduce) { #detailPage { transition:none; } }
 a { color: var(--primary); text-underline-offset: .18em; }
 a:hover { color: var(--primary-hover); }
 a:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }

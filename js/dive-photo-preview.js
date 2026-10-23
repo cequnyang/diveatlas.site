@@ -24,6 +24,7 @@
     imagePane.className = 'dive-photo-preview__image-pane';
     const image = document.createElement('img');
     image.className = 'dive-photo-preview__image';
+    image.draggable = false;
     imagePane.append(image);
     const rail = document.createElement('aside');
     rail.className = 'dive-photo-preview__rail';
@@ -37,21 +38,93 @@
     dialog.append(closeButton, layout);
 
     closeButton.addEventListener('click', () => dialog.close());
+    const mobilePreview = window.matchMedia('(max-width: 720px)');
+    let gesture = null;
+    let suppressClickUntil = 0;
+    let slideAnimation = null;
+    const resetDrag = () => {
+      gesture = null;
+      image.classList.remove('is-dragging');
+      image.style.removeProperty('transform');
+      image.style.removeProperty('opacity');
+    };
+    const selectPhoto = index => {
+      const photos = dialog._diveAtlasPhotos;
+      if (!photos?.length) return;
+      const nextIndex = (index + photos.length) % photos.length;
+      const photo = photos[nextIndex];
+      dialog._diveAtlasPhotoIndex = nextIndex;
+      image.src = photo.src;
+      image.alt = photo.alt;
+      credit.textContent = photo.credit;
+      rail.querySelectorAll('.dive-photo-preview__thumbnail').forEach((option, i) => {
+        option.setAttribute('aria-pressed', String(i === nextIndex));
+      });
+      rail.children[nextIndex]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    };
+    imagePane.addEventListener('pointerdown', event => {
+      if (gesture && event.pointerId !== gesture.id) {
+        resetDrag();
+        return;
+      }
+      if (!mobilePreview.matches || !event.isPrimary || event.button !== 0) return;
+      slideAnimation?.cancel();
+      gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, axis: null };
+      imagePane.setPointerCapture(event.pointerId);
+    });
+    imagePane.addEventListener('pointermove', event => {
+      if (!gesture || gesture.id !== event.pointerId) return;
+      if (!mobilePreview.matches) { resetDrag(); return; }
+      const dx = event.clientX - gesture.x;
+      const dy = event.clientY - gesture.y;
+      if (!gesture.axis && Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
+      gesture.axis ||= Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+      image.classList.add('is-dragging');
+      const horizontal = gesture.axis === 'x';
+      const distance = horizontal ? dx : dy;
+      // A single photo still responds, but resists dragging because there is no next photo.
+      const offset = horizontal && dialog._diveAtlasPhotos.length < 2 ? distance * .2 : distance;
+      image.style.transform = `translate${horizontal ? 'X' : 'Y'}(${offset}px)`;
+      image.style.opacity = String(Math.max(.4, 1 - Math.abs(distance) / (horizontal ? imagePane.clientWidth : imagePane.clientHeight)));
+    });
+    imagePane.addEventListener('pointerup', event => {
+      if (!gesture || gesture.id !== event.pointerId) return;
+      const { axis, x, y } = gesture;
+      const distance = axis === 'x' ? event.clientX - x : event.clientY - y;
+      if (axis) suppressClickUntil = performance.now() + 400;
+      resetDrag();
+      if (!mobilePreview.matches || !axis) return;
+      // Require a deliberate swipe, while keeping the threshold reachable on narrow phones.
+      const threshold = Math.min(90, (axis === 'x' ? imagePane.clientWidth : imagePane.clientHeight) * .18);
+      if (Math.abs(distance) < Math.max(48, threshold)) return;
+      if (axis === 'y') { dialog.close(); return; }
+      if (dialog._diveAtlasPhotos.length < 2) return;
+      selectPhoto(dialog._diveAtlasPhotoIndex + (distance < 0 ? 1 : -1));
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        slideAnimation = image.animate([
+          { transform: `translateX(${distance < 0 ? 45 : -45}px)`, opacity: .4 },
+          { transform: 'translateX(0)', opacity: 1 }
+        ], { duration: 180, easing: 'ease-out' });
+      }
+    });
+    imagePane.addEventListener('pointercancel', () => {
+      if (gesture?.axis) suppressClickUntil = performance.now() + 400;
+      resetDrag();
+    });
+    imagePane.addEventListener('lostpointercapture', resetDrag);
+    mobilePreview.addEventListener('change', resetDrag);
     rail.addEventListener('click', event => {
       const thumbnail = event.target.closest('.dive-photo-preview__thumbnail');
       if (!thumbnail || !rail.contains(thumbnail)) return;
       event.stopPropagation();
       const selectedPhoto = dialog._diveAtlasPhotos?.[Number(thumbnail.dataset.photoIndex)];
       if (!selectedPhoto) return;
-      image.src = selectedPhoto.src;
-      image.alt = selectedPhoto.alt;
-      credit.textContent = selectedPhoto.credit;
-      rail.querySelectorAll('.dive-photo-preview__thumbnail').forEach(option => {
-        option.setAttribute('aria-pressed', String(option === thumbnail));
-      });
+      selectPhoto(Number(thumbnail.dataset.photoIndex));
     });
     dialog.addEventListener('click', event => {
       if (!dialog.open) return;
+      // Pointer capture retargets the click after a drag; it must not act as a backdrop tap.
+      if (performance.now() < suppressClickUntil) return;
       const bounds = image.getBoundingClientRect();
       const scale = image.naturalWidth && image.naturalHeight
         ? Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight)
@@ -66,6 +139,9 @@
     });
 
     dialog.addEventListener('close', () => {
+      resetDrag();
+      slideAnimation?.cancel();
+      suppressClickUntil = 0;
       image.removeAttribute('src');
       rail.replaceChildren();
       dialog._diveAtlasPhotos = [];
@@ -113,6 +189,7 @@
         return thumbnail;
       }));
       const selectedPhoto = activeDialog._diveAtlasPhotos[initialIndex];
+      activeDialog._diveAtlasPhotoIndex = initialIndex;
       image.src = selectedPhoto.src;
       image.alt = selectedPhoto.alt;
       creditElement.textContent = selectedPhoto.credit;

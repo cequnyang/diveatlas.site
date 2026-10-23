@@ -30,6 +30,94 @@
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'dive-site';
   const detailUrl = site => `/dive-site.html?id=${encodeURIComponent(`${siteSlug(site.name)}-${site.site_id}`)}`;
 
+  function bindMobilePullToMap(mapUrl) {
+    let pull = null;
+    const isMobile = () => window.matchMedia('(max-width:720px)').matches;
+    const hint = document.createElement('div');
+    hint.className = 'detail-pull-hint';
+    hint.setAttribute('role', 'status');
+    hint.setAttribute('aria-live', 'polite');
+    hint.hidden = true;
+    document.body.append(hint);
+    const reset = () => {
+      pull = null;
+      page.classList.remove('detail-pull-dragging', 'detail-pull-ready');
+      page.style.removeProperty('--detail-pull-y');
+      hint.hidden = true;
+      hint.classList.remove('is-ready');
+    };
+    page.addEventListener('touchstart', event => {
+      reset();
+      // Photo taps still open the preview, but a downward pull on the large
+      // hero photo must be able to return to the map too.
+      if (!isMobile() || event.touches.length !== 1 ||
+          document.querySelector('dialog[open]') ||
+          event.target.closest('a, button:not(.site-photo-preview-trigger), input, select, textarea, [role="slider"], .site-photo-gallery-map')) return;
+      for (let node = event.target; node && node !== page; node = node.parentElement) {
+        const overflow = getComputedStyle(node).overflowY;
+        if (node.scrollHeight > node.clientHeight + 1 && /auto|scroll/.test(overflow)) return;
+      }
+      const touch = event.touches[0];
+      pull = { id:touch.identifier, x:touch.clientX, y:touch.clientY, axis:null };
+    }, { passive:true });
+    page.addEventListener('touchmove', event => {
+      if (!pull) return;
+      if (!isMobile() || event.touches.length !== 1) { reset(); return; }
+      const touch = Array.from(event.touches).find(item => item.identifier === pull.id);
+      if (!touch) { reset(); return; }
+      // Allow a continuous scroll back to the top, counting only the remaining
+      // overscroll toward navigation rather than the distance spent reading.
+      if (window.scrollY > 1) {
+        pull.x = touch.clientX;
+        pull.y = touch.clientY;
+        pull.axis = null;
+        return;
+      }
+      const dx = touch.clientX - pull.x;
+      const dy = touch.clientY - pull.y;
+      if (!pull.axis && Math.hypot(dx, dy) >= 10) {
+        if (dy <= 0 || dy <= Math.abs(dx) * 1.25) { reset(); return; }
+        pull.axis = 'down';
+      }
+      // Own deliberate top-edge pulls so browser refresh does not compete.
+      if (pull.axis) {
+        if (event.cancelable) event.preventDefault();
+        const distance = Math.max(0, dy);
+        const ready = distance >= 120 && dy > Math.abs(dx) * 1.25;
+        page.classList.add('detail-pull-dragging');
+        page.classList.toggle('detail-pull-ready', ready);
+        // A firm elastic pull moves the card only 36px at the 120px navigation
+        // threshold, then adds at most 12px so it never feels freely draggable.
+        const offset = distance <= 120 ? distance * .3 : 36 + 12 * (1 - Math.exp(-(distance - 120) / 120));
+        page.style.setProperty('--detail-pull-y', `${offset}px`);
+        // Mirror the map sheet's notice: text in the revealed gap, 4px clear
+        // of the card, without covering the photo or reserving resting space.
+        hint.style.top = `${page.getBoundingClientRect().top - 28}px`;
+        hint.hidden = false;
+        hint.classList.toggle('is-ready', ready);
+        const message = ready ? 'Release to return to map' : 'Pull down to return to map';
+        if (hint.textContent !== message) hint.textContent = message;
+      }
+    }, { passive:false });
+    page.addEventListener('touchend', event => {
+      if (!pull) return;
+      const origin = pull;
+      pull = null;
+      const touch = Array.from(event.changedTouches).find(item => item.identifier === origin.id);
+      if (!touch || !origin.axis || !isMobile() || window.scrollY > 1 || document.querySelector('dialog[open]')) { reset(); return; }
+      const dy = touch.clientY - origin.y;
+      const dx = touch.clientX - origin.x;
+      // Match the map sheet's intentional-navigation threshold; speed alone is insufficient.
+      if (dy >= 120 && dy > Math.abs(dx) * 1.25) {
+        hint.textContent = 'Returning to map…';
+        window.location.assign(mapUrl);
+      } else reset();
+    }, { passive:true });
+    page.addEventListener('touchcancel', reset, { passive:true });
+    window.addEventListener('pageshow', reset);
+    window.matchMedia('(max-width:720px)').addEventListener('change', reset);
+  }
+
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -302,6 +390,7 @@
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
     const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
+    bindMobilePullToMap(mapUrl);
     const locationHierarchy = Array.isArray(site.location_hierarchy) && site.location_hierarchy.length
       ? site.location_hierarchy : [site.country, site.region].filter(Boolean);
     const locationHierarchyUrls = Array.isArray(site.location_hierarchy_urls)

@@ -40,7 +40,7 @@
   <link rel="icon" type="image/x-icon" href="assets/favicon-brand.ico?v=9" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-brand.png?v=9" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-brand.png?v=6" />
-  <link rel="stylesheet" href="assets/dive-photo-preview.css?v=6" />
+  <link rel="stylesheet" href="assets/dive-photo-preview.css?v=7" />
 
   <link
     rel="stylesheet"
@@ -2615,8 +2615,8 @@
         .leaflet-popup.diveatlas-mobile-sheet,
         .leaflet-popup.dive-conditions-rating-sheet { transition:none !important; }
       }
-      /* Upward resistance translates sheets by at most 34px; extend their own
-         surface past the viewport edge so the map never shows through below. */
+      /* Cover the 48px upward pull plus rounding slack. Reset desktop arrow
+         geometry too: below-anchor popups reuse this pseudo-element. */
       .leaflet-popup.diveatlas-mobile-sheet::after,
       .leaflet-popup.dive-conditions-rating-sheet::after {
         content:"" !important;
@@ -2625,10 +2625,23 @@
         top:100%;
         right:0;
         left:0;
-        height:48px;
+        width:auto;
+        height:64px;
+        border:0;
+        transform:none;
         background:var(--panel-solid);
         pointer-events:none;
       }
+      .mobile-sheet-pull-hint:not([hidden]) {
+        display:block; position:absolute; z-index:3; top:calc(100% + 4px);
+        left:50%; transform:translateX(-50%); max-width:calc(100% - 24px); box-sizing:border-box;
+        padding:2px 12px; border:0;
+        background:transparent; color:var(--muted);
+        font-size:13px; line-height:20px; font-weight:600; white-space:nowrap; pointer-events:none;
+      }
+      .mobile-sheet-pull-hint.is-ready { color:var(--primary, #3566d6); }
+      /* The notice occupies only the area revealed by pulling the sheet up;
+         it must not reserve height or introduce scrolling in the resting sheet. */
       .diveatlas-mobile-sheet-handle {
         display:grid;
         width:100%;
@@ -8282,7 +8295,7 @@ ZSD·2016–2025</span></span>
 <script src="/js/share-dialog.js?v=1"></script>
 <script src="js/site-photo-metadata.js"></script>
 <script src="js/auth-ui.js" defer></script>
-<script src="js/dive-photo-preview.js?v=5"></script>
+<script src="js/dive-photo-preview.js?v=6"></script>
 <script>
   // Embedders can set this before loading the page; a query override supports controlled local/staging checks.
   window.DIVEATLAS_FEATURE_FLAGS = { ...(window.DIVEATLAS_FEATURE_FLAGS || {}),
@@ -30216,7 +30229,23 @@ function closeShareDialog() {
   }
 
   // Keep the content drag's close distance aligned with the sheet-handle gesture.
-  function bindMobileSheetContentPullToClose(content, surface, onDismiss, { closeDistance = 72 } = {}) {
+  function updateMobileSheetDetailPullHint(surface, distance) {
+    let hint = surface.querySelector(':scope > .mobile-sheet-pull-hint');
+    if (!hint && distance > 0) {
+      hint = document.createElement('div');
+      hint.className = 'mobile-sheet-pull-hint';
+      hint.setAttribute('role', 'status');
+      hint.setAttribute('aria-live', 'polite');
+      surface.append(hint);
+    }
+    if (!hint) return;
+    hint.hidden = distance <= 0 || !window.matchMedia('(max-width:720px)').matches;
+    hint.classList.toggle('is-ready', distance >= 120);
+    const message = distance >= 120 ? 'Release to open details' : 'Pull up to open details';
+    if (hint.textContent !== message) hint.textContent = message;
+  }
+
+  function bindMobileSheetContentPullToClose(content, surface, onDismiss, { closeDistance = 72, onUpwardSwipe = null } = {}) {
     if (!content || !surface || content._diveAtlasPullToCloseBound) return;
     content._diveAtlasPullToCloseBound = true;
     let pull = null;
@@ -30224,6 +30253,7 @@ function closeShareDialog() {
     let suppressClickTarget = null;
 
     const resetSurface = () => {
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       surface.classList.remove('mobile-vertical-dragging');
       surface.style.removeProperty('--mobile-panel-drag-y');
     };
@@ -30272,6 +30302,25 @@ function closeShareDialog() {
         pull.lastY = touch.clientY;
         return;
       }
+      if (onUpwardSwipe && pull.axis === 'vertical' && deltaY < 0 && !pull.dragging) {
+        // Count only overscroll after reaching the bottom, so reading the sheet
+        // cannot accidentally navigate to another page.
+        const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
+        if (atBottom) {
+          pull.upwardStartY ??= pull.lastY;
+          pull.upwardDistance = Math.max(0, pull.upwardStartY - touch.clientY);
+          if (event.cancelable) event.preventDefault();
+          surface.classList.add('mobile-vertical-dragging');
+          surface.style.setProperty('--mobile-panel-drag-y', `${-Math.min(48, pull.upwardDistance * .3)}px`);
+        } else {
+          pull.upwardStartY = null;
+          pull.upwardDistance = 0;
+        }
+      } else if (pull.upwardStartY != null) {
+        pull.upwardDistance = Math.max(0, pull.upwardStartY - touch.clientY);
+      }
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface,
+        !pull.dragging && (pull.upwardDistance || 0) > Math.abs(deltaX) * 1.2 ? pull.upwardDistance : 0);
       if (deltaY < 0 || content.scrollTop > 1) pull.contentScrolled = true;
       if (!pull.dragging && pull.axis === 'vertical' && touch.clientY > pull.lastY && content.scrollTop <= 1) {
         pull.dragging = true;
@@ -30287,13 +30336,24 @@ function closeShareDialog() {
     }, { passive:false });
 
     const finishPull = event => {
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       if (!pull) return;
       const touch = touchById(event.changedTouches, pull.id);
       if (!touch) return;
       const wasDragging = pull.dragging;
       const distance = wasDragging ? Math.max(0, touch.clientY - pull.dragStartY) : 0;
       const target = pull.target;
+      const hadUpwardPull = pull.upwardStartY != null;
+      const upwardDistance = pull.upwardStartY != null ? Math.max(0, pull.upwardStartY - touch.clientY) : 0;
+      const isVerticalUpwardPull = upwardDistance > Math.abs(touch.clientX - pull.startX) * 1.2;
       pull = null;
+      if (onUpwardSwipe && hadUpwardPull && !wasDragging) {
+        resetSurface();
+        suppressClickUntil = performance.now() + 350;
+        suppressClickTarget = target;
+        if (upwardDistance >= 120 && isVerticalUpwardPull && window.matchMedia('(max-width:720px)').matches) onUpwardSwipe();
+        return;
+      }
       if (!wasDragging) return;
       suppressClickUntil = performance.now() + 350;
       suppressClickTarget = target;
@@ -30309,7 +30369,7 @@ function closeShareDialog() {
     content.addEventListener('touchcancel', () => {
       const wasDragging = pull?.dragging;
       pull = null;
-      if (wasDragging) resetSurface();
+      resetSurface();
     }, { passive:true });
     content.addEventListener('click', event => {
       if (performance.now() >= suppressClickUntil || !suppressClickTarget) return;
@@ -30328,6 +30388,7 @@ function closeShareDialog() {
     expandOnUpwardDrag = false,
     upwardOnlyDrag = false,
     dismissOnUpwardDrag = false,
+    onUpwardSwipe = null,
     dismissThreshold = 72
   } = {}) {
     if (!handle || !surface || handle._diveAtlasVerticalDragBound) return;
@@ -30336,6 +30397,7 @@ function closeShareDialog() {
     let suppressClickUntil = 0;
 
     const resetSurface = () => {
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       surface.classList.remove('mobile-vertical-dragging');
       surface.style.removeProperty('--mobile-panel-drag-y');
     };
@@ -30406,6 +30468,8 @@ function closeShareDialog() {
       if (!drag || event.pointerId !== drag.id) return;
       const deltaX = event.clientX - drag.x;
       const deltaY = event.clientY - drag.y;
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface,
+        -deltaY > Math.abs(deltaX) * 1.2 ? -deltaY : 0);
       if (Math.hypot(deltaX, deltaY) < 4) return;
       if (Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
         drag.moved = true;
@@ -30437,6 +30501,10 @@ function closeShareDialog() {
       }
       if (expandOnUpwardDrag) {
         if (deltaY < 0) {
+          if (onUpwardSwipe) {
+            surface.style.setProperty('--mobile-panel-drag-y', `${-Math.min(48, -deltaY * .3)}px`);
+            return;
+          }
           // Other mobile sheets use a small elastic pull as feedback without
           // changing their content-driven resting height.
           const upwardDistance = -deltaY;
@@ -30452,6 +30520,7 @@ function closeShareDialog() {
       surface.style.setProperty('--mobile-panel-drag-y', `${offset}px`);
     });
     const finishDrag = event => {
+      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       if (!drag || event.pointerId !== drag.id) return;
       const deltaX = event.clientX - drag.x;
       const deltaY = event.clientY - drag.y;
@@ -30491,6 +30560,14 @@ function closeShareDialog() {
       }
       if (wasVerticalDrag) {
         event.preventDefault();
+        // Navigation needs a deliberate 120px pull; velocity alone never opens a page.
+        if (onUpwardSwipe && deltaY <= -120 && window.matchMedia('(max-width:720px)').matches) {
+          restoreHeight();
+          resetSurface();
+          suppressClickUntil = performance.now() + 350;
+          onUpwardSwipe();
+          return;
+        }
         if (deltaY >= closeDistance) {
           animateMobileMapSheetDismissal(surface, () => {
             restoreHeight();
@@ -30623,6 +30700,10 @@ function closeShareDialog() {
     popup._diveAtlasMapPopupPane ||= popup.getPane?.();
     if (useMobileSheet) {
       const content = element.querySelector('.leaflet-popup-content');
+      const openDiveSiteDetails = popup._diveAtlasLayerKey === 'dive' ? () => {
+        const link = element.querySelector('.dive-popup-detail-link[href]');
+        if (link) window.location.assign(link.href);
+      } : null;
       if (content && !content.querySelector('.diveatlas-mobile-sheet-handle')) {
         const handle = document.createElement('button');
         handle.type = 'button';
@@ -30632,11 +30713,15 @@ function closeShareDialog() {
         bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
           tapToDismiss:false,
           closeDistance:72,
-          expandOnUpwardDrag:true
+          expandOnUpwardDrag:true,
+          onUpwardSwipe:openDiveSiteDetails
         });
         content.prepend(handle);
       }
-      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), { closeDistance:72 });
+      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), {
+        closeDistance:72,
+        onUpwardSwipe:openDiveSiteDetails
+      });
       if (content && content._diveAtlasChildSheetSwipeBound !== true) {
         content._diveAtlasChildSheetSwipeBound = true;
         let dragStart = null;
