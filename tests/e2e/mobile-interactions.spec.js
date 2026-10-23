@@ -291,6 +291,16 @@ test('mobile theme toggle stays visible in the map top bar', async ({ page }) =>
 
 test('mobile dive-site sheet and detail page share a reversible view transition', async ({ page }) => {
   const siteId = '0000adba-c5c9-41f3-9cc0-6b525dcf959b';
+  await page.addInitScript(() => {
+    new MutationObserver(() => {
+      const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup.mobile-sheet-entering.mobile-sheet-returning-from-detail');
+      if (!surface) return;
+      sessionStorage.setItem('diveatlas-map-return-animation', JSON.stringify({
+        translate:getComputedStyle(surface).translate,
+        transition:getComputedStyle(surface).transition
+      }));
+    }).observe(document, { subtree:true, childList:true, attributes:true, attributeFilter:['class'] });
+  });
   await page.evaluate(id => {
     const marker = window.__DIVEATLAS_TEST__.addDiveSite(-5.7, 131, id, { withFallbackPhoto:true });
     marker.openPopup();
@@ -298,6 +308,8 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
 
   const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup').last();
   await expect(sheet).toBeVisible();
+  await expect.poll(() => sheet.evaluate(element => getComputedStyle(element).viewTransitionName))
+    .toBe('dive-site-surface');
   await expect.poll(() => sheet.locator('.bio-popup-title').evaluate(element => getComputedStyle(element).viewTransitionName))
     .toBe('dive-site-title');
   await expect.poll(() => sheet.locator('.dive-popup-photo-frame').evaluate(element => getComputedStyle(element).viewTransitionName))
@@ -308,6 +320,26 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
       const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup');
       sessionStorage.setItem('diveatlas-map-page-swap', JSON.stringify({
         hasViewTransition: Boolean(event.viewTransition),
+        transitionName:surface ? getComputedStyle(surface).viewTransitionName : '',
+        dragOffset:surface?.style.getPropertyValue('--mobile-panel-drag-y') || '',
+        dragging:surface?.classList.contains('mobile-vertical-dragging') || false
+      }));
+    }, { once:true });
+    window.addEventListener('pagereveal', event => {
+      const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup');
+      sessionStorage.setItem('diveatlas-map-page-reveal', JSON.stringify({
+        hasViewTransition: Boolean(event.viewTransition),
+        transitionName:surface ? getComputedStyle(surface).viewTransitionName : '',
+        dragOffset:surface?.style.getPropertyValue('--mobile-panel-drag-y') || '',
+        dragging:surface?.classList.contains('mobile-vertical-dragging') || false
+      }));
+    }, { once:true });
+    window.addEventListener('pageshow', event => {
+      if (!event.persisted) return;
+      const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup');
+      sessionStorage.setItem('diveatlas-map-page-show', JSON.stringify({
+        persisted:event.persisted,
+        transitionName:surface ? getComputedStyle(surface).viewTransitionName : '',
         dragOffset:surface?.style.getPropertyValue('--mobile-panel-drag-y') || '',
         dragging:surface?.classList.contains('mobile-vertical-dragging') || false
       }));
@@ -336,6 +368,9 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
 
   await page.waitForURL(url => url.pathname.endsWith('/dive-site.html'));
   await expect(page.locator('#site-title')).toHaveText('Punta Garbí');
+  expect(new URL(await page.evaluate(() => document.referrer)).searchParams.get('site')).toBe(siteId);
+  await expect.poll(() => page.locator('#detailPage').evaluate(element => getComputedStyle(element).viewTransitionName))
+    .toBe('dive-site-surface');
   await expect.poll(() => page.locator('#site-title').evaluate(element => getComputedStyle(element).viewTransitionName))
     .toBe('dive-site-title');
   await expect.poll(() => page.locator('.site-photo-gallery-main').evaluate(element => getComputedStyle(element).viewTransitionName))
@@ -349,6 +384,7 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
       const surface = document.querySelector('#detailPage');
       sessionStorage.setItem('diveatlas-detail-page-swap', JSON.stringify({
         hasViewTransition: Boolean(event.viewTransition),
+        transitionName:surface ? getComputedStyle(surface).viewTransitionName : '',
         dragOffset:surface?.style.getPropertyValue('--detail-pull-y') || '',
         dragging:surface?.classList.contains('detail-pull-dragging') || false
       }));
@@ -371,9 +407,22 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
 
   await page.waitForURL(url => url.pathname === '/' && url.searchParams.has('site'));
   const detailPageSwap = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-detail-page-swap')));
-  expect(detailPageSwap).toMatchObject({ hasViewTransition:true, dragging:true });
+  expect(detailPageSwap).toMatchObject({ hasViewTransition:true, transitionName:'dive-site-surface', dragging:true });
   expect(detailPageSwap.dragOffset).not.toBe('');
   await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup')).toBeVisible();
+  const mapPageReveal = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-page-reveal')));
+  if (mapPageReveal?.transitionName === 'dive-site-surface') {
+    expect(mapPageReveal).toMatchObject({ hasViewTransition:true, transitionName:'dive-site-surface', dragOffset:'', dragging:false });
+  } else {
+    const mapPageShow = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-page-show')));
+    if (mapPageShow) {
+      expect(mapPageShow).toMatchObject({ persisted:true, transitionName:'dive-site-surface', dragOffset:'', dragging:false });
+    } else {
+      const returnAnimation = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-return-animation')));
+      expect(returnAnimation).not.toBeNull();
+      expect(returnAnimation.translate).toMatch(/^0px -\d+(?:\.\d+)?px$/);
+    }
+  }
 });
 
 test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', async ({ page }) => {

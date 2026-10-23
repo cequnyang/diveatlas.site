@@ -110,7 +110,17 @@
       // Match the map sheet's intentional-navigation threshold; speed alone is insufficient.
       if (dy >= 120 && dy > Math.abs(dx) * 1.25) {
         hint.textContent = 'Returning to map…';
-        window.location.assign(mapUrl);
+        const mapTarget = new URL(mapUrl, window.location.href);
+        const previousPage = safeUrl(document.referrer);
+        let canReturnToPreviousMap = false;
+        if (previousPage && window.history.length > 1) {
+          const previousUrl = new URL(previousPage);
+          canReturnToPreviousMap = previousUrl.origin === mapTarget.origin &&
+            previousUrl.pathname === mapTarget.pathname &&
+            previousUrl.searchParams.get('site')?.toLowerCase() === siteId;
+        }
+        if (canReturnToPreviousMap) window.history.back();
+        else window.location.assign(mapTarget.href);
       } else reset();
     }, { passive:true });
     page.addEventListener('touchcancel', reset, { passive:true });

@@ -3,6 +3,11 @@
     navigation: auto;
   }
 
+  .leaflet-popup.diveatlas-mobile-sheet.dive-site-popup,
+  #detailPage {
+    view-transition-name: dive-site-surface;
+  }
+
   .leaflet-popup.diveatlas-mobile-sheet.dive-site-popup .bio-popup-title {
     view-transition-name: dive-site-title;
   }

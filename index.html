@@ -2605,6 +2605,10 @@
         opacity:0;
         transition:none !important;
       }
+      .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering.mobile-sheet-returning-from-detail {
+        translate:0 -100dvh !important;
+        opacity:1;
+      }
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-exiting,
       .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-exiting {
         translate:0 100% !important;
@@ -8465,6 +8469,7 @@ ZSD·2016–2025</span></span>
   const SHARED_POPUP_RESTORE_RETRY_MS = 500;
   const SHARED_POPUP_RESTORE_MAX_ATTEMPTS = 40;
   let SHARE_SITE_BY_ID = new Map();
+  const MOBILE_DETAIL_RETURN_STORAGE_KEY = 'diveatlas:mobile-detail-return-site';
 
   function parseMapState(url) {
     let params;
@@ -24737,6 +24742,12 @@ function closeShareDialog() {
     if (popup) {
       popup._diveAtlasLayerKey = 'dive';
       const restoredSiteId = String(siteId || '').trim().toLowerCase();
+      try {
+        if (sessionStorage.getItem(MOBILE_DETAIL_RETURN_STORAGE_KEY) === restoredSiteId) {
+          popup._diveAtlasMobileReturningFromDetail = true;
+          sessionStorage.removeItem(MOBILE_DETAIL_RETURN_STORAGE_KEY);
+        }
+      } catch (_) {}
       const selectedSiteId = String(sharedMapState.selectedSiteId || '').trim().toLowerCase();
       if (selectedSiteId && selectedSiteId === restoredSiteId) {
         showDiveSiteJumpPointer(marker.getLatLng());
@@ -30177,6 +30188,7 @@ function closeShareDialog() {
     element.style.removeProperty('--mobile-panel-drag-y');
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       popup._diveAtlasMobileSheetEntrancePending = false;
+      popup._diveAtlasMobileReturningFromDetail = false;
       element.classList.remove('mobile-sheet-entering');
       return;
     }
@@ -30194,10 +30206,16 @@ function closeShareDialog() {
       });
       popup._diveAtlasMobileSheetEntranceCenterBound = true;
     }
+    if (popup._diveAtlasMobileReturningFromDetail) {
+      element.classList.add('mobile-sheet-returning-from-detail');
+      popup._diveAtlasMobileReturningFromDetail = false;
+    }
     element.classList.add('mobile-sheet-entering');
     void element.offsetHeight;
     requestAnimationFrame(() => {
-      if (popup.isOpen?.()) element.classList.remove('mobile-sheet-entering');
+      if (popup.isOpen?.()) {
+        element.classList.remove('mobile-sheet-entering', 'mobile-sheet-returning-from-detail');
+      }
     });
   }
 
@@ -30715,6 +30733,19 @@ function closeShareDialog() {
       const openDiveSiteDetails = popup._diveAtlasLayerKey === 'dive' ? () => {
         const link = element.querySelector('.dive-popup-detail-link[href]');
         if (!link) return false;
+        const detailUrl = new URL(link.href, window.location.href);
+        const siteId = detailUrl.searchParams.get('id')?.match(/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i)?.[0];
+        if (siteId) {
+          try { sessionStorage.setItem(MOBILE_DETAIL_RETURN_STORAGE_KEY, siteId.toLowerCase()); } catch (_) {}
+          const params = new URLSearchParams(window.location.search);
+          params.set('site', siteId.toLowerCase());
+          const query = params.toString();
+          window.history.replaceState(
+            window.history.state,
+            document.title,
+            `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`
+          );
+        }
         window.location.assign(link.href);
         return true;
       } : null;
@@ -30826,6 +30857,23 @@ function closeShareDialog() {
   function syncMapPopupForViewport(popup) {
     return syncDiveRatingPopupForViewport(popup) || syncOtherMapPopupForViewport(popup);
   }
+  function resetRestoredSiteSheet() {
+    if (!new URLSearchParams(window.location.search).has('site')) return;
+    const sheet = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup');
+    if (!sheet) return;
+    // The outgoing map kept its upward-drag pose for the first transition.
+    // Return to the resting sheet position before the restored map is snapshotted.
+    sheet.classList.remove('mobile-vertical-dragging');
+    sheet.style.removeProperty('--mobile-panel-drag-y');
+  }
+  window.addEventListener('pagereveal', event => {
+    if (event.viewTransition) resetRestoredSiteSheet();
+  });
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    resetRestoredSiteSheet();
+    try { sessionStorage.removeItem(MOBILE_DETAIL_RETURN_STORAGE_KEY); } catch (_) {}
+  });
   window.addEventListener('resize', () => {
     if (activeClickPopup?.isOpen()) {
       syncMapPopupForViewport(activeClickPopup);
@@ -31726,8 +31774,8 @@ function closeShareDialog() {
     } catch (_) {}
   }
 
+  // pagehide already persists navigation state and leaves pages eligible for BFCache.
   window.addEventListener('pagehide', persistAllUiState);
-  window.addEventListener('beforeunload', persistAllUiState);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') persistAllUiState();
   });
