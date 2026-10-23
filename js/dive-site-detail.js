@@ -22,7 +22,7 @@
     if (typeof value !== 'string') return '';
     try {
       const url = new URL(value, location.origin);
-      return url.origin === location.origin && url.pathname === '/regions/browse.html'
+      return url.origin === location.origin && url.pathname === '/regions/'
         && url.searchParams.has('area') ? `${url.pathname}${url.search}` : '';
     } catch (_) { return ''; }
   };
@@ -396,7 +396,7 @@
     const locationHierarchyUrls = Array.isArray(site.location_hierarchy_urls)
       && site.location_hierarchy_urls.length === locationHierarchy.length
       ? site.location_hierarchy_urls
-      : locationHierarchy.map((_, index) => `/regions/browse.html?area=${encodeURIComponent(
+      : locationHierarchy.map((_, index) => `/regions/?area=${encodeURIComponent(
         JSON.stringify(locationHierarchy.slice(0, index + 1).map(value =>
           String(value).normalize('NFKD').toLowerCase().replace(/\p{M}/gu, ''))))}`);
     const locationHierarchyMarkup = locationHierarchy.length

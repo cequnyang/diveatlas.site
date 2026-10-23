@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dive Sites by Destination | DiveAtlas</title>
-  <meta name="description" content="Browse DiveAtlas dive-site destination pages across 461 regions, with links to mapped sites and the full area browser.">
+  <title>Dive Sites by Area | DiveAtlas</title>
+  <meta name="description" content="Browse DiveAtlas dive sites by area with distinct, source-linked photos where available.">
   <link rel="canonical" href="https://diveatlas.site/regions/">
   <link rel="icon" href="/assets/favicon-brand.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,13 +14,37 @@
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
   <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+<script>if (new URLSearchParams(location.search).has("area")) { const meta = document.createElement("meta"); meta.name = "robots"; meta.content = "noindex,follow"; document.head.append(meta); }</script>
 </head>
 <body class="region-browser-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">DiveAtlas destinations</p>
-  <h1>Dive sites by destination</h1>
-  <p class="lead">Explore destination pages grouped from recorded dive-site locations. The <a href="/regions/browse.html">area browser</a> covers more locations in the full map catalog.</p>
+  <p class="eyebrow">DiveAtlas · editorial photo collection</p>
+  <h1 id="regionPageTitle">Browse dive sites by area</h1>
+  <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
+  <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
+  <article class="region-area-feature" id="regionAreaPhoto" hidden>
+    <figure>
+      <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
+      <figcaption class="region-area-card__caption">
+        <div class="region-area-card__place-line region-area-card__title-line">
+          <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
+          <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
+        </div>
+      </figcaption>
+    </figure>
+  </article>
+  <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
+    <ul class="site-list" id="regionAreaList"></ul>
+  </section>
+  <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
+    <h2 id="regionSiteHeading">Dive sites</h2>
+    <label class="region-browser__search">Search in this area<input id="regionSiteSearch" type="search" autocomplete="off" placeholder="Search dive sites"></label>
+    <p class="coordinates" id="regionSiteCount" aria-live="polite"></p>
+    <ul class="site-list" id="regionSiteList"></ul>
+    <nav class="region-browser__pagination" id="regionPagination" aria-label="Dive-site pages"></nav>
+  </section>
+<details><summary>Destination pages</summary>
   <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations (461)</h2><ul class="site-list">      <li><a href="/regions/egypt/red-sea/">Red Sea</a><span class="coordinates"> — Egypt · 602 dive sites</span></li>
       <li><a href="/regions/honduras/roatan/">Roatan</a><span class="coordinates"> — Honduras · 460 dive sites</span></li>
       <li><a href="/regions/malta/malta-and-gozo/">Malta And Gozo</a><span class="coordinates"> — Malta · 169 dive sites</span></li>
@@ -482,8 +506,9 @@
       <li><a href="/regions/united-states-of-america/texas/">Texas</a><span class="coordinates"> — United States of America · 3 dive sites</span></li>
       <li><a href="/regions/united-states-of-america/virginia/">Virginia</a><span class="coordinates"> — United States of America · 3 dive sites</span></li>
       <li><a href="/regions/united-states-of-america/wisconsin/">Wisconsin</a><span class="coordinates"> — United States of America · 3 dive sites</span></li></ul></section>
-  <p><a href="/dive-sites/">Browse all published dive-site profiles</a></p>
+</details>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
+<script src="/js/region-browse.js?v=19" defer></script>
 </body>
 </html>

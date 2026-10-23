@@ -38,7 +38,7 @@
   }
 
   function browseUrl(key) {
-    return `/regions/browse.html?area=${encodeURIComponent(key)}`;
+    return `/regions/?area=${encodeURIComponent(key)}`;
   }
 
   function createListItem(linkText, href, detail = '') {

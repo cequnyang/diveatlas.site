@@ -123,7 +123,7 @@ def location_nodes(country: str, region: str) -> list[dict[str, str | None]]:
 
 
 def area_browse_url(node: dict[str, str | None]) -> str:
-    return "/regions/browse.html?area=" + quote(str(node["key"]), safe="")
+    return "/regions/?area=" + quote(str(node["key"]), safe="")
 
 
 def location_hierarchy(site: dict[str, object]) -> str:
@@ -431,7 +431,7 @@ def public_region_index(rows: list[list[object]]) -> dict[str, object]:
             "areas": ordered_areas, "sites": sites}
 
 
-def region_browser_page() -> str:
+def region_browser_page(groups: list[dict[str, object]]) -> str:
     body = '''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
   <p class="eyebrow">DiveAtlas · editorial photo collection</p>
@@ -461,15 +461,19 @@ def region_browser_page() -> str:
   </section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
-<script src="/js/region-browse.js?v=18" defer></script>'''
+<script src="/js/region-browse.js?v=19" defer></script>'''
     page = page_shell(
         "Dive Sites by Area | DiveAtlas",
         "Browse DiveAtlas dive sites by area with distinct, source-linked photos where available.",
-        f"{BASE_URL}/regions/browse.html",
+        f"{BASE_URL}/regions/",
         body,
         body_class="region-browser-page",
     )
-    return page.replace('  <meta name="viewport"', '  <meta name="robots" content="noindex,follow">\n  <meta name="viewport"', 1)
+    # Keep the root directory crawlable; filtered catalog views are not SEO landing pages.
+    directory = region_directory_page(groups)
+    destinations = re.search(r'  <section aria-labelledby="regions-heading">.*?</section>', directory, re.S).group(0)
+    page = page.replace('</main>', '<details><summary>Destination pages</summary>\n' + destinations + '\n</details>\n</main>', 1)
+    return page.replace('</head>', '<script>if (new URLSearchParams(location.search).has("area")) { const meta = document.createElement("meta"); meta.name = "robots"; meta.content = "noindex,follow"; document.head.append(meta); }</script>\n</head>', 1)
 
 
 def recommendation_feature_tokens(candidate: dict[str, object]) -> list[str]:
@@ -890,7 +894,7 @@ def region_directory_page(groups: list[dict[str, object]]) -> str:
 <main class="region-browser">
   <p class="eyebrow">DiveAtlas destinations</p>
   <h1>Dive sites by destination</h1>
-  <p class="lead">Explore destination pages grouped from recorded dive-site locations. The <a href="/regions/browse.html">area browser</a> covers more locations in the full map catalog.</p>
+  <p class="lead">Explore destination pages grouped from recorded dive-site locations. Use the area browser above to explore more locations in the full map catalog.</p>
   <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({len(groups)})</h2><ul class="site-list">{region_items}</ul></section>
   <p><a href="/dive-sites/">Browse all published dive-site profiles</a></p>
 </main>
@@ -996,8 +1000,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         sitemap_urls.append(canonical)
 
     write_page(SITE_OUTPUT / "index.html", site_directory_page(selected))
-    write_page(REGION_OUTPUT / "index.html", region_directory_page(regions))
-    write_page(REGION_OUTPUT / "browse.html", region_browser_page())
+    write_page(REGION_OUTPUT / "index.html", region_browser_page(regions))
     (REGION_OUTPUT / "area-index.json").write_text(
         json.dumps(area_index, ensure_ascii=False, separators=(",", ":")) + "\n",
         encoding="utf-8", newline="\n")
