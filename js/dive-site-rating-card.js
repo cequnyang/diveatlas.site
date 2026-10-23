@@ -51,6 +51,11 @@
   trendPanel.append(trendHandle);
   const ratingRecommendations = document.querySelector('[data-recommendation-rating-candidates]');
   const ratingTab = document.querySelector('[data-recommendation-tab="rating"]');
+  const currentSiteId = document.querySelector('.detail-page')?.dataset.siteId || '';
+  // Rank the full published catalog by distance, but sample at most this many
+  // sites so opening the rating tab stays responsive as the catalog grows.
+  const ratingRecommendationLimit = 512;
+  let ratingCandidatePromise = null;
   const location = { lat:Number(card.dataset.ratingLat), lng:Number(card.dataset.ratingLng) };
   if (!Number.isFinite(location.lat) || !Number.isFinite(location.lng)) return;
 
@@ -385,23 +390,59 @@
     }
     if (ratingRecommendations.dataset.status === 'loading' || ratingRecommendations.dataset.status === 'ready') return;
     ratingRecommendations.dataset.status = 'loading';
-    let candidates = [];
-    try {
-      candidates = ratingRecommendations.recommendationCandidates
-        || JSON.parse(ratingRecommendations.dataset.recommendationRatingCandidates || '[]');
-    } catch (error) {
-      console.warn('Dive-site rating recommendations could not be read:', error);
-    }
     const status = document.createElement('li');
     status.className = 'site-recommendations__empty';
-    status.textContent = 'Comparing current ratings across all dive sites…';
+    status.textContent = 'Comparing ratings among nearby published dive sites…';
     ratingRecommendations.replaceChildren(status);
 
     (async () => {
+      let candidates = ratingRecommendations.recommendationCandidates;
+      if (!Array.isArray(candidates)) {
+        const inline = ratingRecommendations.dataset.recommendationRatingCandidates;
+        if (inline) candidates = JSON.parse(inline);
+        else {
+          const source = ratingRecommendations.dataset.recommendationRatingCandidatesSrc;
+          if (!source) candidates = [];
+          else {
+            if (!ratingCandidatePromise) {
+              ratingCandidatePromise = fetch(source, { credentials:'same-origin' })
+                .then(response => {
+                  if (!response.ok) throw new Error(`Could not load published-site ratings (${response.status}).`);
+                  return response.json();
+                })
+                .then(values => {
+                  if (!Array.isArray(values)) throw new Error('Published-site rating data is invalid.');
+                  return values;
+                })
+                .catch(error => {
+                  ratingCandidatePromise = null;
+                  throw error;
+                });
+            }
+            candidates = await ratingCandidatePromise;
+            ratingRecommendations.recommendationCandidates = candidates;
+          }
+        }
+      }
+      // Each candidate triggers an environmental sample. Keep the on-demand
+      // comparison local enough to stay responsive as the published catalog grows.
+      const nearbyCandidates = candidates
+        .filter(candidate => candidate.site_id !== currentSiteId
+          && Number.isFinite(Number(candidate.lat)) && Number.isFinite(Number(candidate.lon)))
+        .sort((a, b) => {
+          const distance = candidate => {
+            const latDelta = Number(candidate.lat) - location.lat;
+            const rawLonDelta = Number(candidate.lon) - location.lng;
+            const lonDelta = ((rawLonDelta + 540) % 360) - 180;
+            return latDelta ** 2 + (lonDelta * Math.cos(location.lat * Math.PI / 180)) ** 2;
+          };
+          return distance(a) - distance(b) || a.name.localeCompare(b.name);
+        })
+        .slice(0, ratingRecommendationLimit);
       const matches = [];
       const batchSize = 128;
-      for (let start = 0; start < candidates.length; start += batchSize) {
-        const batch = candidates.slice(start, start + batchSize);
+      for (let start = 0; start < nearbyCandidates.length; start += batchSize) {
+        const batch = nearbyCandidates.slice(start, start + batchSize);
         const sampled = await Promise.all(batch.map(async candidate => {
           if (!Number.isFinite(candidate.lat) || !Number.isFinite(candidate.lon)) return null;
           try {
@@ -428,7 +469,7 @@
             ...candidate,
             photoCredit:candidate.photo_credit,
             features:candidate.features,
-            detailUrl:`/dive-site.html?id=${encodeURIComponent(`${siteSlug(candidate.name)}-${candidate.site_id}`)}`
+            detailUrl:candidate.detail_url || `/dive-site.html?id=${encodeURIComponent(`${siteSlug(candidate.name)}-${candidate.site_id}`)}`
           };
           return window.DiveAtlasRecommendationCards.create(cardCandidate, score, expanded);
         };
@@ -446,7 +487,7 @@
         ratingRecommendations.recommendationRenderMore = null;
         const item = document.createElement('li');
         item.className = 'site-recommendations__empty';
-        item.textContent = 'No sites within 5 points in the full dive-site catalog.';
+        item.textContent = 'No nearby published sites are within 5 points of this rating.';
         fragment.append(item);
       }
       ratingRecommendations.replaceChildren(fragment);

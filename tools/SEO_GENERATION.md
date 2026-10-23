@@ -2,11 +2,11 @@
 
 For the shared browser-rendered page (`dive-site.html?id=<UUID>`) and per-site R2
 data publication, see [Shared dive-site detail page](../docs/shared-dive-site-details.md).
-The generator maintains individual indexed detail pages and the complete area browser without publishing directory-level landing pages.
+The generator maintains individual indexed detail pages, crawlable site and destination directories, and the complete area browser.
 
-The generator publishes factual HTML detail pages for a capped DiveAtlas search-indexing pilot, plus a complete interactive area browser. The pilot pages are ordinary server-readable HTML with canonical URLs and useful links; the area browser uses a compact generated index so people can browse every public dive-site record without loading the map application or its large datasets.
+The generator publishes factual, server-readable HTML detail pages for every dive-site record that passes the content gate, plus destination pages and a complete interactive area browser. Each indexed page has a canonical URL and source links; the area browser uses a compact generated index so people can browse the full map catalog without loading the map application or its large datasets.
 
-## Generate the pilot
+## Generate the indexed catalog
 
 From the repository root:
 
@@ -14,7 +14,7 @@ From the repository root:
 python tools/generate_seo_pages.py
 ```
 
-The default build writes up to 100 indexed site pages and 10 pilot region pages, plus `/regions/browse.html`, `/regions/area-index.json`, and `sitemap.xml`. The area index covers every public record with a unique stable ID, valid coordinates, and a nonempty name; the pilot caps do not limit area listings. To preview a smaller SEO output, pass limits such as `--site-limit 5 --region-limit 2`. The `dive-sites/` and `regions/` trees are generator-owned and are rebuilt on every run; keep hand-authored content outside those directories. The generator writes dive-site and region detail pages, but no root `index.html` landing pages for those directories. It also replaces the root sitemap from the URLs it successfully writes.
+The default build writes every indexed site and destination page that passes the content gates, plus `/dive-sites/` and `/regions/` directories, a content-hashed `/dive-sites/recommendation-candidates-<hash>.json`, `/regions/browse.html`, `/regions/area-index.json`, and `sitemap.xml`. To preview a smaller SEO output, pass limits such as `--site-limit 5 --region-limit 2`; those limits only affect that build. The `dive-sites/` and `regions/` trees are generator-owned and are rebuilt on every run; keep hand-authored content outside those directories. Directory pages link to generated pages using ordinary HTML anchors, and both directory URLs and all generated detail and destination pages are listed in the sitemap. The homepage menu links to the site and destination directories in its static HTML. The generator replaces the root sitemap from URLs it successfully writes.
 
 ## Inputs and record fields
 
@@ -28,11 +28,11 @@ The SEO page generator itself does not call external APIs, reverse geocoding, ma
 
 ## Selection and content thresholds
 
-A site page requires a nonempty, non-corrupt name; a unique persistent UUID; valid latitude and longitude; at least country or region context; coordinates unique across the source dataset; and at least two available factual attributes among depth (range or single recorded value), difficulty, site type/reviewed categories/published summary, aliases, providers, and an exact-site photo. The default cap is 100. Selection sorts first by number of these available attributes, then by normalized name and recorded location for reproducibility.
+A site page requires a nonempty, non-corrupt name; a unique persistent UUID; valid latitude and longitude; at least country or region context; coordinates unique across the source dataset; a linked source; and at least three populated content blocks among published summary, recorded depth, difficulty, recorded site features, reviewed setting, and reviewed access. Names, coordinates, aliases, sources, and photos do not count as content blocks: they identify or support a page but do not describe the dive site. Records below this bar remain in the full interactive map catalog but are omitted from SEO detail pages, directories, and the sitemap. Missing facts are omitted from each page instead of being shown as empty fields. Selection sorts by available factual attributes, then by normalized name and recorded location for reproducibility.
 
-Region grouping uses only exact recorded `country` and `region` values. A region page requires at least 3 site pages in the current generated pilot and is capped at 10 groups. When both values exist, its stable path is `/regions/<country-slug>/<region-slug>/`; the country prefix distinguishes same-named regions. If country is absent but a region value is present, the path is `/regions/<region-slug>/`. Regions are selected by site-page count, then by country and region name.
+Region grouping uses only exact recorded `country` and `region` values. A destination page requires at least 3 site pages that pass the site content gate; smaller groups remain available in the full area browser and do not receive an indexed destination page. When both values exist, its stable path is `/regions/<country-slug>/<region-slug>/`; the country prefix distinguishes same-named regions. If country is absent but a region value is present, the path is `/regions/<region-slug>/`. Destinations are selected by site-page count, then by country and region name.
 
-The generator rejects missing or malformed IDs, invalid coordinates, all records in exact-coordinate duplicate groups, names containing Unicode replacement/control characters, missing location context and records below the factual-attribute threshold. It never infers a country or region from coordinates. Missing fields are omitted from page sections.
+The generator rejects missing or malformed IDs, invalid coordinates, all records in exact-coordinate duplicate groups, names containing Unicode replacement/control characters, missing location context, missing linked sources, and records below the substantive-content threshold. It never infers a country or region from coordinates. Preview limits do not weaken these quality gates.
 
 ## Area photo assignments
 
@@ -46,15 +46,19 @@ Slugs are lowercase ASCII produced from Unicode NFKD normalization and punctuati
 
 ## Page and sitemap output
 
-- `/dive-sites/<slug>/` contains an individual generated pilot dive-site page.
+- `/dive-sites/<slug>/` contains an individual generated dive-site page that passed the content gate.
+- `/dive-sites/` lists every generated dive-site page, sorted by recorded country, region, and site name.
+- `/regions/` links to each generated destination page and to the full area browser.
 - `/dive-sites/<slug>/` contains static title, description, canonical, one H1, recorded facts, optional verified photo, region link and coordinates that open the exact point in Google Maps.
 - `/regions/<country>/<region>/` contains an individual generated region page.
-- `/regions/<country>/<region>/` includes the generated site count, site links, calculated coordinate bounds, map link and same-country pilot region links where available.
+- `/regions/<country>/<region>/` includes the generated site count, site links, calculated coordinate bounds, map link and same-country destination links where available.
+- `/dive-sites/recommendation-candidates-<hash>.json` is a shared list used only when a visitor opens the rating recommendations. Pages reference it by URL instead of duplicating the full candidate list in every HTML file; its content hash avoids stale-cache mismatches when the published set changes.
+- Nearby, feature, and difficulty cards use exact recorded destination groups. Rating comparisons load the shared catalog on demand, then sample up to the 512 geographically closest published sites to keep the interaction bounded.
 - `/regions/browse.html?area=...` lists all public dive sites matching a recorded continent, subregion, country, or local region. The page supports search and pagination and reads its membership lists from `/regions/area-index.json`; the query-based browser is `noindex` and is not added to the SEO sitemap.
 - `sitemap.xml` contains the homepage and only the browse/detail URLs successfully generated in that run. It does not add resource files or unsupported `lastmod` values.
 
 Detail pages use the shared `/assets/seo.css` stylesheet and do not load Leaflet, MapLibre, or map data. Their typography, surface colors, blue action color, panel width, corner radius and spacing follow the tutorial dialog in `index.html`; the header uses the same DiveAtlas SVG logo and includes a language selector, persistent light/dark toggle, and Google sign-in link. Language preference is shared with the map; available localized summaries and site names use the existing translation datasets. They present the site name and recorded location, exact-site or clearly marked illustrative photo, published site summary, coordinates, recorded depth, difficulty, reviewed setting/access/features (or the source site type when reviewed categories are absent), aliases, and available linked sources. Coordinates open Google Maps at the recorded point. Missing fields are omitted; summaries are included only when published, and no current-condition claims are generated. A small Schema.org `Place` record exposes only the name and coordinates already shown on the page.
 
-## Expand after reviewing the pilot
+## Review the generated catalog
 
-Review page accuracy, source attribution, duplicate handling and search-engine indexing before expanding beyond the initial 100. The current dataset has many more records than this initial batch; having a stable ID and coordinates alone is not enough to justify publishing a thin page. Region pages remain limited to groups with at least three included site pages. Check generated output and repository/static-hosting limits before publishing a larger batch. The command-line limits avoid code edits for routine expansion.
+Review page accuracy, source attribution, duplicate handling, generated output size, and search-engine indexing before deployment. The content gate deliberately leaves sparse records out of the SEO index even when they remain visible in the interactive catalog. Region pages require at least three qualifying site pages to avoid near-empty destination pages. Command-line limits support smaller previews without code edits.

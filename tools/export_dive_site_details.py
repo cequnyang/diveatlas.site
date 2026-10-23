@@ -152,7 +152,7 @@ def export(output: Path) -> dict:
     rows, photos, summaries = load_rows(), load_photos(), load_summaries()
     records = public_records(rows, photos, summaries, base, fallback)
     candidates, _ = seo.validated_candidates(rows, photos, summaries, base, fallback)
-    selected = candidates[:seo.DEFAULT_SITE_LIMIT]
+    selected = candidates[:seo.RELATED_SITE_LIMIT]
     groups = defaultdict(list)
     for record in sorted(records, key=lambda value: (value["name"].casefold(), value["site_id"])):
         groups[(record["country"], record["region"])].append(record)
@@ -168,8 +168,8 @@ def export(output: Path) -> dict:
         ][:8] if record["region"] else []
         (destination / f"{record['site_id']}.json").write_text(
             json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    # SEO pages intentionally stay capped; recommendations use the complete
-    # public detail set so they don't inherit that search-indexing limit.
+    # Keep the optional regional related-site lists small; the shared rating
+    # catalog below still covers every public detail record.
     catalog = recommendation_catalog(records)
     catalog_manifest, shard_payloads = split_recommendation_catalog(catalog)
     recommendation_destination = output / RECOMMENDATIONS_PATH.parent

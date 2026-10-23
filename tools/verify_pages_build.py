@@ -46,10 +46,14 @@ def verify(output: Path) -> dict:
     for relative in FORBIDDEN_PATHS:
         if (output / relative).exists():
             raise ValueError(f"Non-production or retired data was copied into Pages output: {relative}")
+    # Real dive-site names can contain "Seaview"; only data and script paths
+    # identify the local-only Seaview artifacts this production guard targets.
     unexpected_seaview_paths = [
         path.relative_to(output)
         for path in output.rglob("*")
-        if path.is_file() and any("seaview" in part.casefold() for part in path.relative_to(output).parts)
+        if path.is_file()
+        and path.relative_to(output).parts[0] in {"data", "js"}
+        and any("seaview" in part.casefold() for part in path.relative_to(output).parts)
     ]
     if unexpected_seaview_paths:
         raise ValueError(f"Local-only Seaview asset was copied into Pages output: {unexpected_seaview_paths[:5]}")

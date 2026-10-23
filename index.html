@@ -4627,8 +4627,6 @@
         font-size:16px;
         line-height:24px;
       }
-      #topMenuDropdown a.top-menu-dropdown-item[href="/dive-sites/"],
-      #topMenuDropdown a.top-menu-dropdown-item[href="/regions/"] { display:none; }
       #topMenuDropdown .seo-menu-summary { display:none; }
       #topMenuDropdown .top-menu-version { margin-top:auto; }
       @media (prefers-reduced-motion:reduce) {
@@ -7449,6 +7447,8 @@
             <a class="top-menu-dropdown-item" id="googleSignInLink" hidden>Sign in with Google</a>
             <button class="top-menu-dropdown-item" id="authSignOutButton" type="button" hidden>Sign out</button>
           </section>
+          <a class="top-menu-dropdown-item" href="/dive-sites/" data-i18n="browseDiveSites">Browse dive sites</a>
+          <a class="top-menu-dropdown-item" href="/regions/" data-i18n="browseRegions">Browse regions</a>
           <div class="top-menu-about-wrap">
             <button class="top-menu-dropdown-item" id="aboutMenuItem" type="button" aria-expanded="false" aria-controls="topMenuAboutTooltip" aria-describedby="topMenuAboutTooltip">About</button>
             <div class="top-menu-about-tooltip" id="topMenuAboutTooltip" role="tooltip" hidden>

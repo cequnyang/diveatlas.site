@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import html
+import heapq
 import json
 import math
 import re
@@ -29,8 +31,8 @@ SITEMAP = ROOT / "sitemap.xml"
 SITE_OUTPUT = ROOT / "dive-sites"
 REGION_OUTPUT = ROOT / "regions"
 MIN_SITES_PER_REGION = 3
-DEFAULT_SITE_LIMIT = 100
-DEFAULT_REGION_LIMIT = 10
+MIN_SITE_CONTENT_BLOCKS = 3
+RELATED_SITE_LIMIT = 100
 UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", re.I)
 
 
@@ -309,6 +311,20 @@ def validated_candidates(
         if score < 2:
             rejected["insufficient_factual_attributes"] += 1
             continue
+        content_block_count = sum((
+            bool(summary),
+            bool(depth_min or depth_max or row_value(row, 5)),
+            bool(difficulty),
+            bool(characteristics or categories["features"]),
+            bool(categories["setting"]),
+            bool(categories["access"]),
+        ))
+        if not sources:
+            rejected["missing_linked_source"] += 1
+            continue
+        if content_block_count < MIN_SITE_CONTENT_BLOCKS:
+            rejected["insufficient_substantive_content"] += 1
+            continue
         candidates.append({
             "name": name,
             "lat": lat,
@@ -328,11 +344,12 @@ def validated_candidates(
             "summary": summary,
             "photo": page_photo,
             "score": score,
+            "content_block_count": content_block_count,
             "row": row,
         })
 
-    # Resolve collisions against the full eligible pool, not only the current cap,
-    # so raising a limit later does not rename pages already in the pilot.
+    # Resolve collisions against the full eligible pool, not only a preview cap,
+    # so adding more published records does not rename existing pages.
     slug_counts = Counter(slug_base(str(site["name"])) for site in candidates)
     used_slugs: set[str] = set()
     for site in candidates:
@@ -383,7 +400,7 @@ def item_list(items: list[dict[str, object]], render_item) -> str:
 
 
 def public_region_index(rows: list[list[object]]) -> dict[str, object]:
-    """Index every public detail record by recorded geography, outside the SEO pilot cap."""
+    """Index every public detail record by recorded geography, independent of the SEO content gate."""
     id_counts = Counter(row_value(row, 12).lower() for row in rows if row_value(row, 12))
     sites: list[dict[str, str]] = []
     for row in rows:
@@ -455,13 +472,105 @@ def region_browser_page() -> str:
     return page.replace('  <meta name="viewport"', '  <meta name="robots" content="noindex,follow">\n  <meta name="viewport"', 1)
 
 
+def recommendation_feature_tokens(candidate: dict[str, object]) -> list[str]:
+    value = str(candidate["categories"].get("features") or candidate.get("characteristics") or "")
+    return [part.strip() for part in re.split(r"\s*(?:\||,|;)\s*", value) if part.strip()]
+
+
+def recommendation_major_features(candidate: dict[str, object]) -> list[str]:
+    priority = {value: index for index, value in enumerate(FALLBACK_FEATURE_PRIORITY)}
+    indexed = list(enumerate(recommendation_feature_tokens(candidate)))
+    indexed.sort(key=lambda pair: (
+        priority.get(re.sub(r"[^a-z0-9]+", "_", pair[1].casefold()).strip("_"), len(priority)),
+        pair[0],
+    ))
+    return [value for _, value in indexed[:2]]
+
+
+def recommendation_difficulty(candidate: dict[str, object]) -> str:
+    levels = [value.strip() for value in re.split(
+        r"\s*(?:\||,|;|\bto\b)\s*", str(candidate.get("difficulty") or ""), flags=re.I
+    ) if value.strip()]
+    ranks = {"beginner": 0, "intermediate": 1, "advanced": 2, "expert": 3}
+    recognized = [value for value in levels if value.casefold() in ranks]
+    return min(recognized, key=lambda value: ranks[value.casefold()]).casefold() if recognized else ""
+
+
+def recommendation_distance(site: dict[str, object], candidate: dict[str, object]) -> float:
+    latitude_delta = float(candidate["lat"]) - float(site["lat"])
+    longitude_delta = (float(candidate["lon"]) - float(site["lon"])) * math.cos(float(site["lat"]) * math.pi / 180)
+    return latitude_delta ** 2 + longitude_delta ** 2
+
+
+def build_recommendation_index(sites: list[dict[str, object]]) -> dict[str, dict[str, object]]:
+    """Pre-index by recorded destination so full-catalog recommendations stay bounded."""
+    by_place: dict[tuple[str, str], list[dict[str, object]]] = defaultdict(list)
+    features_by_id: dict[str, list[str]] = {}
+    difficulty_by_id: dict[str, str] = {}
+
+    for candidate in sites:
+        site_id = str(candidate["site_id"])
+        region = str(candidate["region"])
+        if region:
+            by_place[(str(candidate["country"]).casefold(), region.casefold())].append(candidate)
+        features = recommendation_feature_tokens(candidate)
+        features_by_id[site_id] = features
+        difficulty_by_id[site_id] = recommendation_difficulty(candidate)
+
+    result: dict[str, dict[str, object]] = {}
+    for site in sites:
+        site_id = str(site["site_id"])
+        place_key = (str(site["country"]).casefold(), str(site["region"]).casefold())
+        nearby_pool = by_place.get(place_key, []) if site["region"] else []
+        nearest_key = lambda candidate: (
+            recommendation_distance(site, candidate),
+            str(candidate["name"]).casefold(),
+            str(candidate["site_id"]),
+        )
+        nearby = heapq.nsmallest(3, (item for item in nearby_pool if item["site_id"] != site_id), key=nearest_key)
+
+        primary_features = features_by_id[site_id][:2]
+        primary_keys = {feature.casefold() for feature in primary_features}
+        feature_matches = heapq.nsmallest(
+            3,
+            (candidate for candidate in nearby_pool
+             if candidate["site_id"] != site_id and primary_keys.intersection(
+                 value.casefold() for value in features_by_id[str(candidate["site_id"])]
+             )),
+            key=lambda candidate: (
+                -len(primary_keys.intersection(value.casefold() for value in features_by_id[str(candidate["site_id"])])),
+                recommendation_distance(site, candidate),
+                str(candidate["name"]).casefold(),
+                str(candidate["site_id"]),
+            ),
+        )
+
+        difficulty = difficulty_by_id[site_id]
+        difficulty_matches = heapq.nsmallest(
+            3,
+            (candidate for candidate in nearby_pool
+             if candidate["site_id"] != site_id and difficulty
+             and difficulty_by_id[str(candidate["site_id"])] == difficulty),
+            key=nearest_key,
+        )
+        result[site_id] = {
+            "nearby": nearby,
+            "features": feature_matches,
+            "difficulty": difficulty_matches,
+            "primary_features": primary_features,
+            "difficulty_level": difficulty,
+        }
+    return result
+
+
 def generate_site_page(
     site: dict[str, object],
     regions: dict[tuple[str, str], dict[str, object]],
-    available_sites: list[dict[str, object]],
+    recommendations: dict[str, object],
+    rating_candidates_url: str,
 ) -> tuple[str, str]:
     slug = str(site["slug"])
-    url = f"{BASE_URL}/dive-sites/{quote(slug)}/"
+    canonical_url = f"{BASE_URL}/dive-sites/{quote(slug)}/"
     name, country, region = str(site["name"]), str(site["country"]), str(site["region"])
     location = ", ".join(value for value in (region, country) if value)
     location_hierarchy_markup = location_hierarchy(site) or "Mapped dive site"
@@ -521,22 +630,6 @@ def generate_site_page(
         intro_detail_parts.append(f'<span data-seo-summary>{html_text(summary["description"])}</span>')
     intro_details_markup = f'<p class="site-intro-detail">{"<br>".join(intro_detail_parts)}</p>' if intro_detail_parts else ""
 
-    def site_distance(candidate: dict[str, object]) -> float:
-        latitude_delta = float(candidate["lat"]) - float(site["lat"])
-        longitude_delta = (float(candidate["lon"]) - float(site["lon"])) * math.cos(float(site["lat"]) * math.pi / 180)
-        return latitude_delta ** 2 + longitude_delta ** 2
-
-    def feature_tokens(candidate: dict[str, object]) -> list[str]:
-        value = str(candidate["categories"].get("features") or candidate.get("characteristics") or "")
-        return [part.strip() for part in re.split(r"\s*(?:\||,|;)\s*", value) if part.strip()]
-
-    def major_feature_tokens(candidate: dict[str, object]) -> list[str]:
-        tokens = feature_tokens(candidate)
-        priority = {value: index for index, value in enumerate(FALLBACK_FEATURE_PRIORITY)}
-        indexed = list(enumerate(tokens))
-        indexed.sort(key=lambda pair: (priority.get(re.sub(r"[^a-z0-9]+", "_", pair[1].casefold()).strip("_"), len(priority)), pair[0]))
-        return [value for _, value in indexed[:2]]
-
     def recommendation_photo_src(candidate: dict[str, object]) -> str:
         photo = candidate.get("photo")
         if not isinstance(photo, dict) or not photo.get("src"):
@@ -556,7 +649,7 @@ def generate_site_page(
         )
         feature_markup = "".join(
             f'<span class="site-recommendations__feature">{html_text(feature)}</span>'
-            for feature in major_feature_tokens(candidate)
+            for feature in recommendation_major_features(candidate)
         ) or '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>'
         return (
             f'<li><a class="site-recommendations__card" data-recommendation-card data-rating-lat="{float(candidate["lat"]):.6f}" '
@@ -569,12 +662,6 @@ def generate_site_page(
             f'</span></a></li>'
         )
 
-    def difficulty_level(candidate: dict[str, object]) -> str:
-        levels = [value.strip() for value in re.split(r"\s*(?:\||,|;|\bto\b)\s*", str(candidate.get("difficulty") or ""), flags=re.I) if value.strip()]
-        ranks = {"beginner": 0, "intermediate": 1, "advanced": 2, "expert": 3}
-        recognized = [value for value in levels if value.casefold() in ranks]
-        return min(recognized, key=lambda value: ranks[value.casefold()]).casefold() if recognized else ""
-
     def recommendation_group(key: str, candidates: list[dict[str, object]], *, empty_text: str) -> str:
         if candidates:
             items = "".join(recommendation_card(candidate) for candidate in candidates[:3])
@@ -585,45 +672,14 @@ def generate_site_page(
             f'<ul>{items}</ul></section>'
         )
 
-    nearby_sites = [
-        candidate for candidate in available_sites
-        if candidate["site_id"] != site["site_id"]
-        and str(candidate["country"]).casefold() == country.casefold()
-        and region
-        and str(candidate["region"]).casefold() == region.casefold()
-    ]
-    nearby_sites.sort(key=lambda candidate: (site_distance(candidate), str(candidate["name"]).casefold()))
-
-    primary_features = feature_tokens(site)[:2]
-    primary_feature_keys = {feature.casefold() for feature in primary_features}
-    feature_matches = []
-    if primary_feature_keys:
-        for candidate in available_sites:
-            if candidate["site_id"] == site["site_id"]:
-                continue
-            matched = primary_feature_keys.intersection(feature.casefold() for feature in feature_tokens(candidate))
-            if matched:
-                feature_matches.append((candidate, len(matched)))
-        feature_matches.sort(key=lambda pair: (-pair[1], site_distance(pair[0]), str(pair[0]["name"]).casefold()))
-
-    current_difficulty = difficulty_level(site)
-    difficulty_matches = [candidate for candidate in available_sites
-        if candidate["site_id"] != site["site_id"] and current_difficulty
-        and difficulty_level(candidate) == current_difficulty]
-    difficulty_matches.sort(key=lambda candidate: (site_distance(candidate), str(candidate["name"]).casefold()))
-
-    rating_candidates = [candidate for candidate in available_sites if candidate["site_id"] != site["site_id"]]
-    rating_candidates.sort(key=lambda candidate: (site_distance(candidate), str(candidate["name"]).casefold()))
-    rating_candidate_data = [{"name": str(candidate["name"]), "slug": str(candidate["slug"]),
-        "region": str(candidate["region"]), "lat": float(candidate["lat"]), "lon": float(candidate["lon"]),
-        "photo": recommendation_photo_src(candidate),
-        "photo_credit": str(candidate.get("photo", {}).get("credit", "")) if candidate.get("photo") else "",
-        "features": major_feature_tokens(candidate)}
-        for candidate in rating_candidates]
-    escaped_rating_candidates = html_text(json.dumps(rating_candidate_data, separators=(",", ":"), ensure_ascii=False))
+    nearby_sites = recommendations["nearby"]
+    primary_features = recommendations["primary_features"]
+    feature_matches = recommendations["features"]
+    difficulty_matches = recommendations["difficulty"]
+    current_difficulty = recommendations["difficulty_level"]
     rating_group = (
         f'<section class="site-recommendations__group" data-recommendation-group="rating">'
-        f'<ul data-recommendation-rating-candidates="{escaped_rating_candidates}" aria-live="polite">'
+        f'<ul data-recommendation-rating-candidates-src="{html_text(rating_candidates_url)}" aria-live="polite">'
         f'<li class="site-recommendations__empty">Checking this month’s ratings…</li></ul></section>'
     )
     feature_values_markup = (
@@ -633,7 +689,7 @@ def generate_site_page(
     recommendation_groups = [
         recommendation_group("nearby", nearby_sites, empty_text="No nearby sites are available in this published set."),
         rating_group,
-        recommendation_group("features", [pair[0] for pair in feature_matches],
+        recommendation_group("features", feature_matches,
             empty_text="No sites match the recorded features." if primary_features else "No primary features are recorded for this site."),
         recommendation_group("difficulty", difficulty_matches,
             empty_text="No sites with the same recorded difficulty are available." if current_difficulty else "Difficulty is not recorded for this site."),
@@ -728,7 +784,7 @@ def generate_site_page(
         "@context": "https://schema.org",
         "@type": "Place",
         "name": name,
-        "url": url,
+        "url": canonical_url,
         "geo": {"@type": "GeoCoordinates", "latitude": site["lat"], "longitude": site["lon"]},
         **({"address": {"@type": "PostalAddress", "addressCountry": country}} if country else {}),
     }, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -765,7 +821,7 @@ def generate_site_page(
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
 <script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=12" defer></script><script src="/js/dive-conditions-chart.js?v=35" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/dive-site-rating-card.js?v=21" defer></script>'''
-    html = page_shell(title_base, description, url, body, "seo-site-detail-layout")
+    html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
     return title_base, html
 
 
@@ -776,7 +832,7 @@ def generate_region_page(group: dict[str, object], groups: list[dict[str, object
     sites = list(group["sites"])
     title = f"Dive Sites in {region}, {country} | DiveAtlas" if country else f"Dive Sites in {region} | DiveAtlas"
     country_suffix = f", {country}" if country else ""
-    description = f"Browse {len(sites)} pilot dive-site pages mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
+    description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
     latitudes = [float(site["lat"]) for site in sites]
     longitudes = [float(site["lon"]) for site in sites]
     bounds = f"{min(latitudes):.5f} to {max(latitudes):.5f} latitude; {min(longitudes):.5f} to {max(longitudes):.5f} longitude"
@@ -784,19 +840,68 @@ def generate_region_page(group: dict[str, object], groups: list[dict[str, object
     related = [other for other in groups if other is not group and str(other["country"]).casefold() == country.casefold()]
     related_markup = ""
     if related:
-        related_markup = '<section aria-labelledby="related-heading"><h2 id="related-heading">Other pilot regions in this country</h2><ul>' + item_list(related, lambda other: f'<a href="{html_text(other["path"])}">{html_text(other["region"])}</a>') + '</ul></section>'
+        related_markup = '<section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>' + item_list(related, lambda other: f'<a href="{html_text(other["path"])}">{html_text(other["region"])}</a>') + '</ul></section>'
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
-  <p class="eyebrow">Region browse page</p>
+  <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in {html_text(region)}</h1>
   <p class="lead">{html_text(country)}</p>
-  <p>This pilot page lists {len(sites)} dive sites with recorded country and region fields matching this group. The coordinate range is {html_text(bounds)}.</p>
+  <p>This page lists {len(sites)} dive sites with recorded country and region fields matching this destination. The coordinate range is {html_text(bounds)}.</p>
   <p><a href="{html_text(BASE_URL)}/?lat={sum(latitudes)/len(latitudes):.5f}&amp;lng={sum(longitudes)/len(longitudes):.5f}&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
   <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(sites)})</h2><ul class="site-list">{site_items}</ul></section>
   {related_markup}
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>'''
     return title, page_shell(title, description, url, body)
+
+
+def site_directory_page(sites: list[dict[str, object]]) -> str:
+    ordered_sites = sorted(sites, key=lambda site: (
+        str(site["country"]).casefold(), str(site["region"]).casefold(),
+        str(site["name"]).casefold(), str(site["site_id"])))
+    site_items = item_list(ordered_sites, lambda site: (
+        f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a>'
+        f'<span class="coordinates"> — {html_text(", ".join(value for value in (str(site["region"]), str(site["country"])) if value))}</span>'
+    ))
+    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+<main class="region-browser">
+  <p class="eyebrow">DiveAtlas dive sites</p>
+  <h1>Explore dive sites</h1>
+  <p class="lead">Browse mapped dive sites with recorded locations and available details. Each profile links its listed facts to the available source information.</p>
+  <p><a href="/regions/">Browse dive sites by destination</a></p>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(ordered_sites)})</h2><ul class="site-list">{site_items}</ul></section>
+</main>
+<footer><a href="/">DiveAtlas map</a></footer>'''
+    return page_shell(
+        "Dive Site Directory | DiveAtlas",
+        f"Browse {len(ordered_sites)} mapped dive-site profiles with recorded locations and available details on DiveAtlas.",
+        f"{BASE_URL}/dive-sites/",
+        body,
+        body_class="region-browser-page",
+    )
+
+
+def region_directory_page(groups: list[dict[str, object]]) -> str:
+    region_items = item_list(groups, lambda group: (
+        f'<a href="{html_text(group["path"])}">{html_text(group["region"])}</a>'
+        f'<span class="coordinates"> — {html_text(group["country"])} · {len(group["sites"])} dive sites</span>'
+    ))
+    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+<main class="region-browser">
+  <p class="eyebrow">DiveAtlas destinations</p>
+  <h1>Dive sites by destination</h1>
+  <p class="lead">Explore destination pages grouped from recorded dive-site locations. The <a href="/regions/browse.html">area browser</a> covers more locations in the full map catalog.</p>
+  <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({len(groups)})</h2><ul class="site-list">{region_items}</ul></section>
+  <p><a href="/dive-sites/">Browse all published dive-site profiles</a></p>
+</main>
+<footer><a href="/">DiveAtlas map</a></footer>'''
+    return page_shell(
+        "Dive Sites by Destination | DiveAtlas",
+        f"Browse DiveAtlas dive-site destination pages across {len(groups)} regions, with links to mapped sites and the full area browser.",
+        f"{BASE_URL}/regions/",
+        body,
+        body_class="region-browser-page",
+    )
 
 
 def write_page(path: Path, content: str) -> None:
@@ -810,7 +915,30 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     area_index = public_region_index(rows)
     fallback_photo_base, fallback_photos = load_fallback_photos()
     candidates, rejected = validated_candidates(rows, photos, summaries, fallback_photo_base, fallback_photos)
-    selected = candidates[:args.site_limit]
+    selected = candidates if args.site_limit is None else candidates[:args.site_limit]
+    recommendations = build_recommendation_index(selected)
+
+    rating_candidates = []
+    for candidate in selected:
+        photo = candidate.get("photo") or {}
+        photo_src = str(photo.get("src", "")) if isinstance(photo, dict) else ""
+        if photo_src and not re.match(r"^https?://", photo_src, re.I):
+            photo_src = "/" + photo_src.lstrip("/")
+        rating_candidates.append({
+            "site_id": str(candidate["site_id"]),
+            "name": str(candidate["name"]),
+            "slug": str(candidate["slug"]),
+            "detail_url": f'/dive-sites/{quote(str(candidate["slug"]))}/',
+            "region": str(candidate["region"]),
+            "lat": float(candidate["lat"]),
+            "lon": float(candidate["lon"]),
+            "photo": photo_src,
+            "photo_credit": str(photo.get("credit", "")) if isinstance(photo, dict) else "",
+            "features": recommendation_major_features(candidate),
+        })
+    rating_payload = json.dumps(rating_candidates, ensure_ascii=False, separators=(",", ":"))
+    rating_filename = f"recommendation-candidates-{hashlib.sha256(rating_payload.encode('utf-8')).hexdigest()[:12]}.json"
+    rating_candidates_url = f"/dive-sites/{rating_filename}"
 
     buckets: dict[tuple[str, str], dict[str, object]] = {}
     for site in selected:
@@ -822,9 +950,18 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         bucket["sites"].append(site)
     eligible_regions = [group for group in buckets.values() if len(group["sites"]) >= MIN_SITES_PER_REGION]
     eligible_regions.sort(key=lambda group: (-len(group["sites"]), str(group["country"]).casefold(), str(group["region"]).casefold()))
-    regions = eligible_regions[:args.region_limit]
-    for group in regions:
-        group["path"] = region_path(str(group["country"]), str(group["region"]))
+    path_counts = Counter(region_path(str(group["country"]), str(group["region"])) for group in eligible_regions)
+    for group in eligible_regions:
+        path = region_path(str(group["country"]), str(group["region"]))
+        if path_counts[path] > 1:
+            suffix = hashlib.sha256(
+                f'{group["country"]}\0{group["region"]}'.encode("utf-8")
+            ).hexdigest()[:8]
+            path = f"{path.rstrip('/')}-{suffix}/"
+        group["path"] = path
+    if len({str(group["path"]) for group in eligible_regions}) != len(eligible_regions):
+        raise ValueError("Destination URL collision after applying deterministic suffixes")
+    regions = eligible_regions if args.region_limit is None else eligible_regions[:args.region_limit]
     region_by_place = {(str(group["country"]).casefold(), str(group["region"]).casefold()): group for group in regions}
 
     # The two output trees are generator-owned. This makes lower future limits
@@ -834,12 +971,15 @@ def build(args: argparse.Namespace) -> dict[str, object]:
             shutil.rmtree(output)
     SITE_OUTPUT.mkdir()
     REGION_OUTPUT.mkdir()
+    (SITE_OUTPUT / rating_filename).write_text(rating_payload + "\n", encoding="utf-8", newline="\n")
 
-    sitemap_urls = [f"{BASE_URL}/"]
+    sitemap_urls = [f"{BASE_URL}/", f"{BASE_URL}/dive-sites/", f"{BASE_URL}/regions/"]
     titles: set[str] = set()
     descriptions: set[str] = set()
     for site in selected:
-        title, content = generate_site_page(site, region_by_place, selected)
+        title, content = generate_site_page(
+            site, region_by_place, recommendations[str(site["site_id"])], rating_candidates_url
+        )
         if title in titles:
             place = ", ".join(value for value in (str(site["region"]), str(site["country"])) if value)
             title = f"{site['name']} in {place} ({float(site['lat']):.5f}, {float(site['lon']):.5f}) | DiveAtlas"
@@ -855,6 +995,8 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         write_page(SITE_OUTPUT / str(site["slug"]) / "index.html", content)
         sitemap_urls.append(canonical)
 
+    write_page(SITE_OUTPUT / "index.html", site_directory_page(selected))
+    write_page(REGION_OUTPUT / "index.html", region_directory_page(regions))
     write_page(REGION_OUTPUT / "browse.html", region_browser_page())
     (REGION_OUTPUT / "area-index.json").write_text(
         json.dumps(area_index, ensure_ascii=False, separators=(",", ":")) + "\n",
@@ -868,6 +1010,9 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         write_page(ROOT / str(group["path"]).lstrip("/") / "index.html", content)
         sitemap_urls.append(f"{BASE_URL}{str(group['path'])}")
 
+    if len(sitemap_urls) != len(set(sitemap_urls)):
+        raise ValueError("Duplicate URL in generated sitemap")
+
     # Build XML using the standard sitemap namespace; no fabricated freshness fields.
     namespace = "http://www.sitemaps.org/schemas/sitemap/0.9"
     ET.register_namespace("", namespace)
@@ -878,15 +1023,29 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     xml = ET.tostring(urlset, encoding="unicode", xml_declaration=False)
     SITEMAP.write_text('<?xml version="1.0" encoding="UTF-8"?>\n' + xml + "\n", encoding="utf-8", newline="\n")
 
-    return {"site_count": len(selected), "region_count": len(regions), "area_count": len(area_index["areas"]), "area_site_count": area_index["site_count"], "candidate_count": len(candidates), "rejected": rejected, "sitemap_url_count": len(sitemap_urls), "site_urls": [f"{BASE_URL}/dive-sites/{site['slug']}/" for site in selected], "region_urls": [f"{BASE_URL}{group['path']}" for group in regions], "region_threshold": MIN_SITES_PER_REGION}
+    return {
+        "site_count": len(selected),
+        "region_count": len(regions),
+        "area_count": len(area_index["areas"]),
+        "area_site_count": area_index["site_count"],
+        "candidate_count": len(candidates),
+        "rejected": rejected,
+        "content_block_threshold": MIN_SITE_CONTENT_BLOCKS,
+        "sitemap_url_count": len(sitemap_urls),
+        "first_site_url": f"{BASE_URL}/dive-sites/{selected[0]['slug']}/" if selected else None,
+        "first_region_url": f"{BASE_URL}{regions[0]['path']}" if regions else None,
+        "region_threshold": MIN_SITES_PER_REGION,
+    }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--site-limit", type=int, default=DEFAULT_SITE_LIMIT)
-    parser.add_argument("--region-limit", type=int, default=DEFAULT_REGION_LIMIT)
+    parser.add_argument("--site-limit", type=int, default=None,
+                        help="cap published site pages (default: all records passing the content gate)")
+    parser.add_argument("--region-limit", type=int, default=None,
+                        help="cap published region pages (default: all groups passing the site-count gate)")
     args = parser.parse_args()
-    if args.site_limit < 0 or args.region_limit < 0:
+    if (args.site_limit is not None and args.site_limit < 0) or (args.region_limit is not None and args.region_limit < 0):
         parser.error("limits must be zero or greater")
     print(json.dumps(build(args), ensure_ascii=False, indent=2))
 
