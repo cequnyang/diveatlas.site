@@ -5576,7 +5576,7 @@
     .leaflet-control-attribution:hover { opacity: 1; }
 
     @media (max-width: 720px) {
-      .top-menu-bar { height: 42px; min-height: 42px; max-height: 42px; padding-left: 8px; padding-right: 8px; }
+      .top-menu-bar { height: 42px; min-height: 42px; max-height: 42px; padding-left: 8px; padding-right: 2px; }
       .search-float { top: 48px; left: 8px; width: var(--search-content-width, 210px); min-width: min(210px, calc(100vw - 16px)); max-width: min(380px, calc(100vw - 16px)); }
       .search-float:focus-within { width: min(calc(var(--search-content-width, 210px) * 1.5), calc(100vw - 16px)); }
     }
@@ -5884,6 +5884,9 @@
         pointer-events: auto;
       }
     }
+
+    #topMenuSearchSlot .dive-search-box,
+    #topMenuSearchSlot:not(.is-mobile-expanded) .dive-search-box { background: #fff; }
 
     @media (max-width: 720px) and (prefers-reduced-motion: reduce) {
       #topMenuSearchSlot,
@@ -9995,7 +9998,7 @@ ZSD·2016–2025</span></span>
     closeActiveMapHoverTooltipsForLayer(layerKey);
   }
 
-  function closeMobileSheetForLayerPanelInteraction() {
+  function closeActiveMobileMapSheetForOverlay() {
     if (!compactLayersPanelQuery.matches || !activeClickPopup || !map.hasLayer(activeClickPopup)) return;
     const popupElement = activeClickPopup.getElement?.();
     if (!popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
@@ -10711,7 +10714,7 @@ ZSD·2016–2025</span></span>
     // Changing the mobile layer panel state dismisses any map sheet so both
     // surfaces never compete for the same small viewport. A sheet opening is
     // the exception: its panel collapse should preserve the newly opened sheet.
-    if (stateChanged && dismissMobileSheet) closeMobileSheetForLayerPanelInteraction();
+    if (stateChanged && dismissMobileSheet) closeActiveMobileMapSheetForOverlay();
     const animateMobileHeight = stateChanged && compactLayersPanelQuery.matches &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const startingHeight = animateMobileHeight
@@ -24415,6 +24418,15 @@ function closeShareDialog() {
     els.diveSearchResults.classList.remove('mobile-vertical-dragging');
   }
 
+  function showDiveSearchResults() {
+    // Search overlays and map detail sheets compete for the same mobile viewport.
+    if (mobileSearchQuery.matches) {
+      setMobileSearchExpanded(true);
+      closeActiveMobileMapSheetForOverlay();
+    }
+    els.diveSearchResults.classList.add('visible');
+  }
+
   function cancelDiveSearchResultsDismissal() {
     const surface = els.diveSearchResults;
     const dismissal = surface?._diveSearchDismissal;
@@ -24516,7 +24528,7 @@ function closeShareDialog() {
     // option instead of resetting the user's search state.
     if (!allowSameQueryRefresh && !forceRender && query === diveSearchQuery && diveSearchHasRenderedQuery) {
       updateDiveSearchLoadHint();
-      els.diveSearchResults.classList.add('visible');
+      showDiveSearchResults();
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       els.diveSearchInput.setAttribute('aria-expanded', 'true');
       return;
@@ -24532,7 +24544,7 @@ function closeShareDialog() {
       els.diveSearchResultsScroll.innerHTML =
         `<div class="dive-search-empty">${escapeHtml(t('diveLoading'))}</div>`;
       els.diveSearchResults.setAttribute('aria-busy', 'true');
-      els.diveSearchResults.classList.add('visible');
+      showDiveSearchResults();
       els.diveSearchInput.setAttribute('aria-expanded', 'true');
     };
     const showUnavailable = () => {
@@ -24540,7 +24552,7 @@ function closeShareDialog() {
       els.diveSearchResultsScroll.innerHTML =
         `<div class="dive-search-empty">${escapeHtml(t('divePartial'))}</div>`;
       els.diveSearchResults.setAttribute('aria-busy', 'false');
-      els.diveSearchResults.classList.add('visible');
+      showDiveSearchResults();
       els.diveSearchInput.setAttribute('aria-expanded', 'true');
     };
 
@@ -24601,7 +24613,7 @@ function closeShareDialog() {
     if (!query && !activeFilters) {
       els.diveSearchResultsScroll.innerHTML =
         `<div class="dive-search-empty">${escapeHtml(t('diveSearchFilterChoose'))}</div>`;
-      els.diveSearchResults.classList.add('visible');
+      showDiveSearchResults();
       return;
     }
 
@@ -24613,7 +24625,7 @@ function closeShareDialog() {
         `${escapeHtml(t('diveSearchEmpty'))}` +
         `</div>`;
 
-      els.diveSearchResults.classList.add('visible');
+      showDiveSearchResults();
       if (query) {
         els.diveSearchResultsScroll.append(els.diveSearchSuggestion);
         els.diveSearchSuggestion.hidden = false;
@@ -24661,7 +24673,7 @@ function closeShareDialog() {
       ? `<button class="dive-search-load-more" type="button" data-search-load-more>${escapeHtml(t('loadMore'))}</button>`
       : '');
 
-    els.diveSearchResults.classList.add('visible');
+    showDiveSearchResults();
     if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
     els.diveSearchResultsScroll.append(els.diveSearchLoadHint, els.diveSearchSuggestion);
     els.diveSearchSuggestion.hidden = false;
@@ -33202,7 +33214,6 @@ function closeShareDialog() {
 
   const topMenuMobileSettings = document.getElementById('topMenuMobileSettings');
   const mobileTopMenuControls = [
-    els.themeBtn,
     document.querySelector('.top-menu-share-wrap'),
     document.querySelector('.unit-setting'),
     els.temperatureUnitSwitch
@@ -33625,7 +33636,7 @@ function closeShareDialog() {
       const query = els.diveSearchInput.value.trim();
       if (query === diveSearchQuery && diveSearchHasRenderedQuery) {
         clearTimeout(diveSearchTimer);
-        els.diveSearchResults.classList.add('visible');
+        showDiveSearchResults();
         els.diveSearchResults.setAttribute('aria-busy', 'false');
         els.diveSearchInput.setAttribute('aria-expanded', 'true');
         syncDiveSearchWidth();
@@ -33950,7 +33961,7 @@ function closeShareDialog() {
           legendCollapseAnimation = null;
         }
         cancelLegendAutoCollapse();
-        closeMobileSheetForLayerPanelInteraction();
+        closeActiveMobileMapSheetForOverlay();
         anchorLayersContent();
         els.bioLegend.classList.add('mobile-layers-panel-dragging');
       }
@@ -34016,7 +34027,7 @@ function closeShareDialog() {
       const shouldCollapse = didMove && deltaY <= -68 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
       const draggedHeight = els.bioLegend.getBoundingClientRect().height;
       layersPanelDrag = null;
-      if (didMove) closeMobileSheetForLayerPanelInteraction();
+      if (didMove) closeActiveMobileMapSheetForOverlay();
       if (shouldCollapse) {
         els.bioLegend.classList.remove('mobile-layers-panel-dragging');
         cancelLegendAutoCollapse();
@@ -34043,7 +34054,7 @@ function closeShareDialog() {
       !compactLayersPanelQuery.matches || legendCollapsed ||
       !event.isTrusted || els.bioLegendHeading.contains(event.target)
     ) return;
-    closeMobileSheetForLayerPanelInteraction();
+    closeActiveMobileMapSheetForOverlay();
     restartLegendAutoCollapse();
   };
 
