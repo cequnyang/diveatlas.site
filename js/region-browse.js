@@ -3,6 +3,7 @@
 
   const PAGE_SIZE = 50;
   const AREA_PHOTO_R2_PREFIX = '/preview/';
+  const LOCAL_AREA_PHOTO_R2_BASE_URL = 'https://assets.diveatlas.site/preview/';
   const title = document.getElementById('regionPageTitle');
   const breadcrumbs = document.getElementById('regionPageBreadcrumbs');
   const status = document.getElementById('regionPageStatus');
@@ -61,7 +62,10 @@
 
   function areaPhotoR2BaseUrl() {
     const assets = window.DiveAtlasDataAssets;
-    if (!assets?.external || typeof assets.baseUrl !== 'string') return null;
+    if (!assets?.external || typeof assets.baseUrl !== 'string') {
+      // A plain local server has no injected production data base, but area previews are still published in R2.
+      return new URL(LOCAL_AREA_PHOTO_R2_BASE_URL);
+    }
 
     // Area photos are published under the same R2 origin as data releases, in their own preview prefix.
     const base = new URL(assets.baseUrl);
@@ -70,14 +74,9 @@
   }
 
   function areaPhotoUrl(photo, r2BaseUrl) {
-    if (r2BaseUrl) {
-      if (typeof photo.r2Key !== 'string' || !/^objects\/[a-f0-9]{64}\.webp$/.test(photo.r2Key)) return '';
-      const url = new URL(photo.r2Key, r2BaseUrl);
-      return url.origin === r2BaseUrl.origin ? url.href : '';
-    }
-    if (typeof photo.src !== 'string') return '';
-    const url = new URL(photo.src, location.origin);
-    return url.protocol === 'https:' || url.origin === location.origin ? url.href : '';
+    if (typeof photo.r2Key !== 'string' || !/^objects\/[a-f0-9]{64}\.webp$/.test(photo.r2Key)) return '';
+    const url = new URL(photo.r2Key, r2BaseUrl);
+    return url.origin === r2BaseUrl.origin ? url.href : '';
   }
 
   function renderAreaPhoto(area) {
@@ -280,9 +279,7 @@
   async function start() {
     try {
       const photoR2BaseUrl = areaPhotoR2BaseUrl();
-      const photoManifestUrl = photoR2BaseUrl
-        ? new URL('manifest.json', photoR2BaseUrl).href
-        : '/datasets/area-photos.json';
+      const photoManifestUrl = new URL('manifest.json', photoR2BaseUrl).href;
       const [response, photoResponse] = await Promise.all([
         fetch('/regions/area-index.json', { cache: 'no-store', signal: AbortSignal.timeout(20000) }),
         fetch(photoManifestUrl, { cache: 'no-store', signal: AbortSignal.timeout(20000) }).catch(() => null),
@@ -301,11 +298,10 @@
           // Area photos are optional; a bad photo manifest should not hide the area index.
         }
         const photoEntries = Array.isArray(photoPayload?.entries) ? photoPayload.entries : null;
-        const validManifest = photoEntries && (photoR2BaseUrl
-          ? photoPayload.schema === 'diveatlas-r2-area-photo-upload-v1'
-            && photoPayload.r2Prefix === 'preview/'
-            && photoPayload.readyCount === photoEntries.length
-          : photoPayload.schema === 'dive-site-area-photo-manifest-v1');
+        const validManifest = photoEntries
+          && photoPayload.schema === 'diveatlas-r2-area-photo-upload-v1'
+          && photoPayload.r2Prefix === 'preview/'
+          && photoPayload.readyCount === photoEntries.length;
         if (validManifest) {
           for (const photo of photoEntries) {
             if (photo && typeof photo.areaKey === 'string') {
