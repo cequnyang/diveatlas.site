@@ -1,0 +1,41 @@
+@media (max-width: 720px) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .leaflet-popup.diveatlas-mobile-sheet.dive-site-popup .bio-popup-title {
+    view-transition-name: dive-site-title;
+  }
+
+  .leaflet-popup.diveatlas-mobile-sheet.dive-site-popup .dive-popup-photo-frame,
+  #detailPage .site-photo-gallery-main {
+    view-transition-name: dive-site-photo;
+  }
+
+  #detailPage #site-title {
+    view-transition-name: dive-site-title;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 360ms;
+    animation-timing-function: cubic-bezier(.2, .8, .2, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-duration: 180ms;
+    animation-timing-function: cubic-bezier(.4, 0, 1, 1);
+  }
+
+  ::view-transition-new(root) {
+    animation-duration: 360ms;
+    animation-timing-function: cubic-bezier(0, 0, .2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 1ms !important;
+  }
+}

@@ -33,6 +33,7 @@
   <!-- Build: v100-wheel-zoom-sensitivity | 2026-09-24 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/map-detail-transition.css?v=1">
   <meta name="theme-color" content="#ffffff" />
   <title>DiveAtlas – Interactive Dive Site, Coral Reef &amp; Bathymetry Map</title>
   <meta name="description" content="Explore dive sites, coral records, reef extent, bathymetry and depth contours on an interactive global map for scuba divers." />
@@ -30362,10 +30363,10 @@ function closeShareDialog() {
       const isVerticalUpwardPull = upwardDistance > Math.abs(touch.clientX - pull.startX) * 1.2;
       pull = null;
       if (onUpwardSwipe && hadUpwardPull && !wasDragging) {
-        resetSurface();
         suppressClickUntil = performance.now() + 350;
         suppressClickTarget = target;
-        if (upwardDistance >= 120 && isVerticalUpwardPull && window.matchMedia('(max-width:720px)').matches) onUpwardSwipe();
+        if (upwardDistance >= 120 && isVerticalUpwardPull && window.matchMedia('(max-width:720px)').matches && onUpwardSwipe() !== false) return;
+        resetSurface();
         return;
       }
       if (!wasDragging) return;
@@ -30576,11 +30577,8 @@ function closeShareDialog() {
         event.preventDefault();
         // Navigation needs a deliberate 120px pull; velocity alone never opens a page.
         if (onUpwardSwipe && deltaY <= -120 && window.matchMedia('(max-width:720px)').matches) {
-          restoreHeight();
-          resetSurface();
           suppressClickUntil = performance.now() + 350;
-          onUpwardSwipe();
-          return;
+          if (onUpwardSwipe() !== false) return;
         }
         if (deltaY >= closeDistance) {
           animateMobileMapSheetDismissal(surface, () => {
@@ -30716,7 +30714,9 @@ function closeShareDialog() {
       const content = element.querySelector('.leaflet-popup-content');
       const openDiveSiteDetails = popup._diveAtlasLayerKey === 'dive' ? () => {
         const link = element.querySelector('.dive-popup-detail-link[href]');
-        if (link) window.location.assign(link.href);
+        if (!link) return false;
+        window.location.assign(link.href);
+        return true;
       } : null;
       if (content && !content.querySelector('.diveatlas-mobile-sheet-handle')) {
         const handle = document.createElement('button');
