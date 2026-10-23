@@ -63,19 +63,22 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       let response;
       let body;
       try {
-        response = await route.fetch({ url: localAssetUrl.href, timeout: 60_000 });
-        // Copy the body before fulfillment. Passing the APIResponse object
-        // defers reading its body until Playwright handles the route and can
-        // race with disposal of the fetched response on canceled duplicates.
-        body = await response.body();
+        // Keep the proxy read independent of Playwright's request context:
+        // canceled browser tiles can dispose route.fetch responses mid-read.
+        response = await fetch(localAssetUrl.href, { signal: AbortSignal.timeout(60_000) });
+        body = Buffer.from(await response.arrayBuffer());
       } catch (error) {
         if (page.isClosed()) return;
         throw error;
       }
-      const headers = { ...response.headers() };
+      const headers = Object.fromEntries(response.headers);
+      // Node fetch decompresses the body, so the wire encoding and size no
+      // longer describe the bytes passed to the browser.
+      delete headers['content-encoding'];
+      delete headers['content-length'];
       const pageOrigin = route.request().headers().origin;
       if (pageOrigin) headers['access-control-allow-origin'] = pageOrigin;
-      return route.fulfill({ status:response.status(), headers, body });
+      return route.fulfill({ status:response.status, headers, body });
     }
     if ((url.hostname === '127.0.0.1' || url.hostname === 'localhost') && url.pathname.startsWith('/data/')) {
       // Let test-specific routes run before the local server serves a checked-in

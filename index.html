@@ -365,7 +365,8 @@
       position: relative;
       width: 100%;
       height: 100%;
-      overflow: hidden;
+      /* Offscreen drawers must not make the map shell scroll on focus or clicks. */
+      overflow: clip;
     }
 
     #map {
@@ -33114,6 +33115,7 @@ function closeShareDialog() {
 
   const topMenuMobileSettings = document.getElementById('topMenuMobileSettings');
   const mobileTopMenuControls = [
+    els.themeBtn,
     document.querySelector('.top-menu-share-wrap'),
     document.querySelector('.unit-setting'),
     els.temperatureUnitSwitch
