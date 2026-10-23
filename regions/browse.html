@@ -5,7 +5,7 @@
   <meta name="robots" content="noindex,follow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dive Sites by Area | DiveAtlas</title>
-  <meta name="description" content="Browse all DiveAtlas dive sites by their recorded continent, country, or local area.">
+  <meta name="description" content="Browse DiveAtlas dive sites by area with distinct, source-linked photos where available.">
   <link rel="canonical" href="https://diveatlas.site/regions/browse.html">
   <link rel="icon" href="/assets/favicon-brand.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,18 +14,27 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=1">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
 </head>
 <body class="region-browser-page">
-<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/" aria-current="page">Regions</a></nav></header>
+<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">Explore DiveAtlas</p>
-  <h1 id="regionPageTitle">Browse dive sites by area</h1>
-  <p id="regionPageDescription" class="lead">Choose a continent, country, or recorded local area to see all dive sites in that part of the world.</p>
+  <p class="eyebrow">Factual area index</p>
+  <h1 id="regionPageTitle">Dive Site Regions</h1>
   <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
-  <p id="regionPageStatus" role="status" aria-live="polite">Loading recorded dive-site locations…</p>
-  <section id="regionAreaSection" aria-labelledby="regionAreaHeading" hidden>
-    <h2 id="regionAreaHeading">Explore areas</h2>
+  <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
+  <article class="region-area-feature" id="regionAreaPhoto" hidden>
+    <figure>
+      <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
+      <figcaption class="region-area-card__caption">
+        <div class="region-area-card__place-line region-area-card__title-line">
+          <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
+          <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
+        </div>
+      </figcaption>
+    </figure>
+  </article>
+  <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
     <ul class="site-list" id="regionAreaList"></ul>
   </section>
   <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
@@ -36,7 +45,7 @@
     <nav class="region-browser__pagination" id="regionPagination" aria-label="Dive-site pages"></nav>
   </section>
 </main>
-<footer><a href="/dive-sites/">Browse pilot dive sites</a> · <a href="/">DiveAtlas map</a></footer>
-<script src="/js/region-browse.js?v=1" defer></script>
+<footer><a href="/">DiveAtlas map</a></footer>
+<script src="/js/region-browse.js?v=18" defer></script>
 </body>
 </html>

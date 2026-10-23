@@ -314,7 +314,7 @@
       ? locationHierarchy.map((label, index) => {
         const destination = safeRegionBrowseUrl(locationHierarchyUrls[index]);
         const item = destination ? `<a href="${escape(destination)}">${escape(label)}</a>` : escape(label);
-        return `${index ? '<span aria-hidden="true">›</span>' : ''}${item}`;
+        return `${index ? '<span aria-hidden="true">›</span> ' : ''}${item}`;
       }).join(' ')
       : 'Mapped dive site';
     const credit = photo?.source === 'illustrative-fallback'

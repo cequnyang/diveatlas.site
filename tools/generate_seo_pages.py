@@ -368,8 +368,8 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=126">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=1">
+  <link rel="stylesheet" href="/assets/seo.css?v=145">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
 </head>
 <body{body_class_attr}>
 {body}
@@ -415,15 +415,24 @@ def public_region_index(rows: list[list[object]]) -> dict[str, object]:
 
 
 def region_browser_page() -> str:
-    body = '''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/" aria-current="page">Regions</a></nav></header>
+    body = '''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">Explore DiveAtlas</p>
+  <p class="eyebrow">DiveAtlas · editorial photo collection</p>
   <h1 id="regionPageTitle">Browse dive sites by area</h1>
-  <p id="regionPageDescription" class="lead">Choose a continent, country, or recorded local area to see all dive sites in that part of the world.</p>
   <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
-  <p id="regionPageStatus" role="status" aria-live="polite">Loading recorded dive-site locations…</p>
-  <section id="regionAreaSection" aria-labelledby="regionAreaHeading" hidden>
-    <h2 id="regionAreaHeading">Explore areas</h2>
+  <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
+  <article class="region-area-feature" id="regionAreaPhoto" hidden>
+    <figure>
+      <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
+      <figcaption class="region-area-card__caption">
+        <div class="region-area-card__place-line region-area-card__title-line">
+          <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
+          <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
+        </div>
+      </figcaption>
+    </figure>
+  </article>
+  <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
     <ul class="site-list" id="regionAreaList"></ul>
   </section>
   <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
@@ -434,11 +443,11 @@ def region_browser_page() -> str:
     <nav class="region-browser__pagination" id="regionPagination" aria-label="Dive-site pages"></nav>
   </section>
 </main>
-<footer><a href="/dive-sites/">Browse pilot dive sites</a> · <a href="/">DiveAtlas map</a></footer>
-<script src="/js/region-browse.js?v=1" defer></script>'''
+<footer><a href="/">DiveAtlas map</a></footer>
+<script src="/js/region-browse.js?v=18" defer></script>'''
     page = page_shell(
         "Dive Sites by Area | DiveAtlas",
-        "Browse all DiveAtlas dive sites by their recorded continent, country, or local area.",
+        "Browse DiveAtlas dive sites by area with distinct, source-linked photos where available.",
         f"{BASE_URL}/regions/browse.html",
         body,
         body_class="region-browser-page",
@@ -728,14 +737,14 @@ def generate_site_page(
       <button class="top-menu-theme" id="seoThemeButton" type="button" title="Toggle page theme" aria-label="Toggle page theme" aria-pressed="false"><span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.7"/><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M12.6 3.4l-.9.9M4.3 11.7l-.9.9"/></svg></span><span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M12.8 10.2A5.8 5.8 0 0 1 5.8 3.1a5.8 5.8 0 1 0 7 7.1Z"/></svg></span></button>
       <div class="seo-language-menu"><button class="top-menu-menu-button top-menu-lang-trigger" id="seoLanguageButton" type="button" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="seoLanguageDropdown"><span id="seoLanguageLabel">EN</span><svg class="language-chevron-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="language-globe-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.8 10h14.4M10 2.5c2 2 3 4.5 3 7.5s-1 5.5-3 7.5c-2-2-3-4.5-3-7.5s1-5.5 3-7.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="top-menu-dropdown seo-language-dropdown" id="seoLanguageDropdown" role="menu" aria-label="Language" hidden></div>
       <label class="sr-only" for="seoLanguageSelect">Language</label><select class="sr-only-select" id="seoLanguageSelect" aria-label="Language" tabindex="-1" aria-hidden="true"><option value="en">EN</option><option value="zh">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">ES</option><option value="de">DE</option><option value="fr">FR</option><option value="ja">日本語</option><option value="pt">PT</option><option value="it">IT</option><option value="ru">RU</option><option value="ko">한국어</option><option value="nl">NL</option><option value="id">ID</option><option value="sv">SV</option><option value="no">NO</option></select></div>
-      <div class="top-menu-menu seo-menu-wrap"><button class="top-menu-menu-button" id="seoMenuButton" type="button" title="Menu" aria-label="Menu" aria-expanded="false" aria-controls="seoMenuDropdown"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button><div class="top-menu-dropdown seo-menu-dropdown" id="seoMenuDropdown" hidden><div class="top-menu-page-header">Menu</div><div class="seo-menu-account" role="status">Account sign-in is unavailable</div><nav class="seo-menu-summary" aria-label="Explore DiveAtlas"><a class="top-menu-dropdown-item" href="/dive-sites/">Browse dive sites</a><a class="top-menu-dropdown-item" href="/regions/">Browse regions</a></nav><div class="top-menu-about-wrap seo-menu-about-wrap"><button class="top-menu-dropdown-item" id="seoAboutButton" type="button" aria-expanded="false" aria-controls="seoAboutDetails">About</button><div class="top-menu-about-tooltip" id="seoAboutDetails" hidden><p>DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean conditions.</p><p class="top-menu-about-copyright">© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p></div></div><button class="top-menu-dropdown-item" id="seoContactButton" type="button">Contact</button><div class="top-menu-version" data-version="0.0.1" aria-label="DiveAtlas version 0.0.1">v0.0.1</div></div></div>
+      <div class="top-menu-menu seo-menu-wrap"><button class="top-menu-menu-button" id="seoMenuButton" type="button" title="Menu" aria-label="Menu" aria-expanded="false" aria-controls="seoMenuDropdown"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button><div class="top-menu-dropdown seo-menu-dropdown" id="seoMenuDropdown" hidden><div class="top-menu-page-header">Menu</div><div class="seo-menu-account" role="status">Account sign-in is unavailable</div><div class="top-menu-about-wrap seo-menu-about-wrap"><button class="top-menu-dropdown-item" id="seoAboutButton" type="button" aria-expanded="false" aria-controls="seoAboutDetails">About</button><div class="top-menu-about-tooltip" id="seoAboutDetails" hidden><p>DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean conditions.</p><p class="top-menu-about-copyright">© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p></div></div><button class="top-menu-dropdown-item" id="seoContactButton" type="button">Contact</button><div class="top-menu-version" data-version="0.0.1" aria-label="DiveAtlas version 0.0.1">v0.0.1</div></div></div>
     </div>'''
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a>{controls}</header>
 <div class="seo-menu-backdrop" id="seoMenuBackdrop" hidden></div>
 <main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}">
   <section class="site-hero" aria-labelledby="site-title">
     {photo_markup}
-    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/dive-sites/">Dive sites</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div><p class="lead location-hierarchy" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
+    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div><p class="lead location-hierarchy" aria-label="Location hierarchy">{location_hierarchy_markup}</p>
     </div>
   </section>
   {intro_details_markup}
@@ -776,7 +785,7 @@ def generate_region_page(group: dict[str, object], groups: list[dict[str, object
     related_markup = ""
     if related:
         related_markup = '<section aria-labelledby="related-heading"><h2 id="related-heading">Other pilot regions in this country</h2><ul>' + item_list(related, lambda other: f'<a href="{html_text(other["path"])}">{html_text(other["region"])}</a>') + '</ul></section>'
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/">Regions</a></nav></header>
+    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Region browse page</p>
   <h1>Dive Sites in {html_text(region)}</h1>
@@ -786,7 +795,7 @@ def generate_region_page(group: dict[str, object], groups: list[dict[str, object
   <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(sites)})</h2><ul class="site-list">{site_items}</ul></section>
   {related_markup}
 </main>
-<footer><a href="/regions/">All pilot regions</a> · <a href="/">DiveAtlas map</a></footer>'''
+<footer><a href="/">DiveAtlas map</a></footer>'''
     return title, page_shell(title, description, url, body)
 
 
@@ -826,7 +835,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     SITE_OUTPUT.mkdir()
     REGION_OUTPUT.mkdir()
 
-    sitemap_urls = [f"{BASE_URL}/", f"{BASE_URL}/dive-sites/", f"{BASE_URL}/regions/"]
+    sitemap_urls = [f"{BASE_URL}/"]
     titles: set[str] = set()
     descriptions: set[str] = set()
     for site in selected:
@@ -846,17 +855,6 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         write_page(SITE_OUTPUT / str(site["slug"]) / "index.html", content)
         sitemap_urls.append(canonical)
 
-    site_index_items = item_list(selected, lambda site: f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a> <span class="coordinates">{html_text(", ".join(value for value in (str(site["region"]), str(site["country"])) if value))}</span>')
-    site_index_body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/">Regions</a></nav></header>
-<main><p class="eyebrow">Factual page pilot</p><h1>Dive Sites</h1><p>Browse {len(selected)} dive-site pages selected from DiveAtlas records with stable IDs, valid unique coordinates, recorded location context and multiple factual attributes. This is a data-completeness pilot, not a popularity ranking.</p><ul class="site-list">{site_index_items}</ul></main>
-<footer><a href="/regions/">Browse pilot regions</a> · <a href="/">DiveAtlas map</a></footer>'''
-    write_page(SITE_OUTPUT / "index.html", page_shell("Dive Sites | DiveAtlas", "Browse the DiveAtlas pilot set of mapped dive sites with recorded locations and factual site details.", f"{BASE_URL}/dive-sites/", site_index_body))
-
-    region_index_items = item_list(regions, lambda group: f'<a href="{html_text(group["path"])}">{html_text(group["region"])}</a> <span class="coordinates">{(html_text(group["country"]) + " · ") if group["country"] else ""}{len(group["sites"])} sites</span>')
-    region_index_body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav aria-label="Browse"><a href="/dive-sites/">Dive sites</a><a href="/regions/">Regions</a></nav></header>
-<main><p class="eyebrow">Factual page pilot</p><h1>Dive Site Regions</h1><p>Browse {len(regions)} country and region groups that each contain at least {MIN_SITES_PER_REGION} generated pilot dive-site pages. Names and counts come from recorded DiveAtlas location fields.</p><p><a href="/regions/browse.html">Browse every recorded area and all dive sites</a></p><ul class="site-list">{region_index_items}</ul></main>
-<footer><a href="/dive-sites/">Browse pilot dive sites</a> · <a href="/">DiveAtlas map</a></footer>'''
-    write_page(REGION_OUTPUT / "index.html", page_shell("Dive Site Regions | DiveAtlas", "Browse DiveAtlas region pages grouped from recorded dive-site country and region fields.", f"{BASE_URL}/regions/", region_index_body))
     write_page(REGION_OUTPUT / "browse.html", region_browser_page())
     (REGION_OUTPUT / "area-index.json").write_text(
         json.dumps(area_index, ensure_ascii=False, separators=(",", ":")) + "\n",

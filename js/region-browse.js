@@ -3,11 +3,13 @@
 
   const PAGE_SIZE = 50;
   const title = document.getElementById('regionPageTitle');
-  const description = document.getElementById('regionPageDescription');
   const breadcrumbs = document.getElementById('regionPageBreadcrumbs');
   const status = document.getElementById('regionPageStatus');
+  const areaHero = document.getElementById('regionAreaPhoto');
+  const areaHeroImage = document.getElementById('regionAreaPhotoImage');
+  const areaHeroContext = document.getElementById('regionAreaPhotoContext');
+  const areaHeroName = document.getElementById('regionAreaPhotoName');
   const areaSection = document.getElementById('regionAreaSection');
-  const areaHeading = document.getElementById('regionAreaHeading');
   const areaList = document.getElementById('regionAreaList');
   const siteSection = document.getElementById('regionSiteSection');
   const siteHeading = document.getElementById('regionSiteHeading');
@@ -16,11 +18,21 @@
   const siteList = document.getElementById('regionSiteList');
   const pagination = document.getElementById('regionPagination');
   const areasByKey = new Map();
+  const photosByKey = new Map();
   let areaIndex;
   let currentArea = null;
 
   function normalized(value) {
     return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase();
+  }
+
+  function safeHttpsUrl(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === 'https:' ? url.href : '';
+    } catch (_) {
+      return '';
+    }
   }
 
   function browseUrl(key) {
@@ -40,6 +52,26 @@
       item.append(metadata);
     }
     return item;
+  }
+
+  function indexedSiteCount(count) {
+    return `${count.toLocaleString()} indexed dive sites`;
+  }
+
+  function renderAreaPhoto(area) {
+    const photo = area ? photosByKey.get(area.key) : null;
+    if (!photo || !areaHero) {
+      if (areaHero) areaHero.hidden = true;
+      return;
+    }
+    const count = Array.isArray(area.site_indices) ? area.site_indices.length : 0;
+    areaHeroContext.textContent = indexedSiteCount(count);
+    areaHeroName.textContent = area.label;
+    areaHeroImage.alt = photo.alt || photo.photoDescription || photo.photoTitle || `Sourced photo for ${area.label}`;
+    areaHeroImage.removeAttribute('title');
+    areaHeroImage.src = photo.src;
+    areaHeroImage.onerror = () => { areaHero.hidden = true; };
+    areaHero.hidden = false;
   }
 
   function currentPage() {
@@ -67,8 +99,7 @@
 
     breadcrumbs.replaceChildren();
     breadcrumbs.hidden = false;
-    const regions = document.createElement('a');
-    regions.href = '/regions/';
+    const regions = document.createElement('span');
     regions.textContent = 'Regions';
     breadcrumbs.append(regions);
     for (const [index, item] of chain.entries()) {
@@ -92,10 +123,59 @@
 
   function renderAreas(items) {
     areaList.replaceChildren();
-    const ordered = [...items].sort((a, b) => a.label.localeCompare(b.label));
+    const ordered = [...items].sort((a, b) => {
+      const photoOrder = Number(photosByKey.has(b.key)) - Number(photosByKey.has(a.key));
+      return photoOrder || a.label.localeCompare(b.label);
+    });
     for (const area of ordered) {
       const count = Array.isArray(area.site_indices) ? area.site_indices.length : 0;
-      areaList.append(createListItem(area.label, browseUrl(area.key), `${count.toLocaleString()} dive sites`));
+      const photo = photosByKey.get(area.key);
+      if (!photo) {
+        const linkItem = createListItem(area.label, browseUrl(area.key), indexedSiteCount(count));
+        linkItem.classList.add('region-area-card--text-only');
+        linkItem.querySelector('.coordinates')?.classList.add('region-area-card__count');
+        areaList.append(linkItem);
+        continue;
+      }
+
+      const item = document.createElement('li');
+      item.className = 'region-area-card';
+      const article = document.createElement('article');
+      const figure = document.createElement('figure');
+      const frame = document.createElement('a');
+      frame.className = 'region-area-card__frame';
+      frame.href = browseUrl(area.key);
+      const image = document.createElement('img');
+      image.className = 'region-area-card__image';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.alt = photo.alt || photo.photoDescription || photo.photoTitle || `Sourced photo for ${area.label}`;
+      frame.setAttribute('aria-label', `Open ${area.label} area. Photo: ${image.alt}`);
+      image.src = photo.src;
+      image.addEventListener('error', () => { image.hidden = true; }, { once: true });
+      frame.append(image);
+
+      const caption = document.createElement('figcaption');
+      caption.className = 'region-area-card__caption';
+      const name = document.createElement('h3');
+      name.className = 'region-area-card__name';
+      const areaLink = document.createElement('a');
+      areaLink.href = browseUrl(area.key);
+      areaLink.textContent = area.label;
+      name.append(areaLink);
+
+      const placeLine = document.createElement('div');
+      placeLine.className = 'region-area-card__place-line';
+      const context = document.createElement('span');
+      context.className = 'region-area-card__count';
+      context.textContent = indexedSiteCount(count);
+      placeLine.append(name, context);
+
+      caption.append(placeLine);
+      figure.append(frame, caption);
+      article.append(figure);
+      item.append(article);
+      areaList.append(item);
     }
     areaSection.hidden = ordered.length === 0;
   }
@@ -147,14 +227,13 @@
     currentArea = area;
     status.hidden = true;
     breadcrumbs.hidden = true;
+    renderAreaPhoto(null);
     siteSection.hidden = true;
     areaSection.hidden = false;
 
     if (!areaKey) {
-      title.textContent = 'Browse dive sites by area';
-      document.title = 'Browse Dive Sites by Area | DiveAtlas';
-      description.textContent = 'Choose a continent or starting area to see all dive sites with matching recorded locations.';
-      areaHeading.textContent = 'Continents and starting areas';
+      title.textContent = 'Dive Site Regions';
+      document.title = 'Dive Site Regions | DiveAtlas';
       renderAreas(areaIndex.areas.filter(item => !item.parent));
       return;
     }
@@ -168,9 +247,8 @@
 
     title.textContent = `Dive Sites in ${area.label}`;
     document.title = `${title.textContent} | DiveAtlas`;
-    description.textContent = `${area.site_indices.length.toLocaleString()} dive sites have a matching recorded location in this area.`;
     showBreadcrumbs(area);
-    areaHeading.textContent = `Explore areas in ${area.label}`;
+    renderAreaPhoto(area);
     renderAreas(areaIndex.areas.filter(item => item.parent === area.key));
     siteSection.hidden = false;
     siteHeading.textContent = `Dive sites in ${area.label}`;
@@ -179,12 +257,37 @@
 
   async function start() {
     try {
-      const response = await fetch('/regions/area-index.json', { signal: AbortSignal.timeout(20000) });
+      const [response, photoResponse] = await Promise.all([
+        fetch('/regions/area-index.json', { cache: 'no-store', signal: AbortSignal.timeout(20000) }),
+        fetch('/datasets/area-photos.json', { cache: 'no-store', signal: AbortSignal.timeout(20000) }),
+      ]);
       if (!response.ok) throw new Error(`Region index request failed (${response.status})`);
       const payload = await response.json();
       if (payload?.schema !== 'dive-site-region-index-v1' || !Array.isArray(payload.areas)
         || !Array.isArray(payload.sites) || payload.site_count !== payload.sites.length) {
         throw new Error('The published region index has an unsupported format');
+      }
+      if (photoResponse.ok) {
+        const photoPayload = await photoResponse.json();
+        if (photoPayload?.schema === 'dive-site-area-photo-manifest-v1' && Array.isArray(photoPayload.entries)) {
+          for (const photo of photoPayload.entries) {
+            if (photo && typeof photo.areaKey === 'string' && typeof photo.src === 'string') {
+              try {
+                const imageUrl = new URL(photo.src, location.origin);
+                if (imageUrl.protocol === 'https:' || imageUrl.origin === location.origin) {
+                  photosByKey.set(photo.areaKey, {
+                    ...photo,
+                    src: imageUrl.href,
+                    sourcePage: safeHttpsUrl(photo.sourcePage),
+                    licenseUrl: safeHttpsUrl(photo.licenseUrl),
+                  });
+                }
+              } catch (_) {
+                // Ignore malformed image URLs while keeping text-only area links usable.
+              }
+            }
+          }
+        }
       }
       areaIndex = payload;
       for (const area of payload.areas) {
