@@ -240,8 +240,9 @@ test('main menu opens as a half-width page from the right on mobile', async ({ p
   const menuHeader = menuPage.locator('.top-menu-page-header');
   await expect(menuHeader).toBeVisible();
   await expect(menuPage.locator('.top-menu-page-back')).toHaveCount(0);
-  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/dive-sites/"]')).toBeHidden();
-  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/regions/"]')).toBeHidden();
+  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/dive-sites/"]')).toBeVisible();
+  await expect(menuPage.locator('a.top-menu-dropdown-item[href="/regions/"]')).toBeVisible();
+  await expect(menuPage.locator('.top-menu-divider')).toBeVisible();
   await expect(menuPage.locator('#aboutMenuItem')).toBeVisible();
   await expect(menuPage.locator('#contactMenuItem')).toBeVisible();
   await expectTitleAtDrawerInset(menuPage, '#topMenuPageTitle', 15);
