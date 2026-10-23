@@ -281,6 +281,14 @@ test('main menu opens as a half-width page from the right on mobile', async ({ p
   await expect(trigger).toHaveAttribute('aria-expanded', 'false');
 });
 
+test('mobile theme toggle stays visible in the map top bar', async ({ page }) => {
+  const themeButton = page.locator('#themeBtn');
+
+  await expect(themeButton).toBeVisible();
+  await expect(page.locator('#topMenuBar .top-menu-controls > #themeBtn')).toHaveCount(1);
+  await expect(page.locator('#topMenuMobileSettings #themeBtn')).toHaveCount(0);
+});
+
 test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', async ({ page }) => {
   await page.evaluate(() => {
     const marker = window.__DIVEATLAS_TEST__.addDiveSite(-5.7, 131, 'mobile-sheet-dismiss');
@@ -476,6 +484,47 @@ test('expanding the full mobile layer panel closes any open map sheet', async ({
 
   await expect(page.locator('#bioLegend')).not.toHaveClass(/is-collapsed/);
   await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
+});
+
+test('focusing mobile search without opening its menu keeps an open map sheet', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id:'sheet-before-search-focus', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-before-search-focus');
+
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
+  await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchInput').click();
+
+  await expect(page.locator('#diveSearchResults')).not.toHaveClass(/visible/);
+  await expect(sheet).toBeVisible();
+});
+
+test('showing mobile search candidates closes any open map sheet', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id:'sheet-before-search-candidates', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-before-search-candidates');
+
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
+  await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchInput').fill('Tapor Tamiyam');
+
+  await expect(page.locator('#diveSearchResults')).toHaveClass(/visible/);
+  await expect(page.locator('.dive-search-result').first()).toBeVisible();
+  await expect(sheet).toHaveCount(0);
+});
+
+test('showing the combined mobile search and filter menu closes any open map sheet', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 14);
+  await addFixture(page, 'dive-site', { id:'sheet-before-search-filters', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-before-search-filters');
+
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
+  await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+
+  await expect(page.locator('#diveSearchResults')).toHaveClass(/visible/);
+  await expect(page.locator('#diveSearchFilterControls')).toBeVisible();
+  await expect(sheet).toHaveCount(0);
 });
 
 test('Waves remains reachable on mobile, fits the panel, and follows the map theme', async ({ page }) => {
