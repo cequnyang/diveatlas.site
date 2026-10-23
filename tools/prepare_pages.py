@@ -25,6 +25,8 @@ EXCLUDED_PARTS = {
     "workers",
     "tests",
     "tools",
+    # Offline generators and test helpers are repository inputs, not browser assets.
+    "scripts",
     "__pycache__",
     "artifacts",
     "reports",

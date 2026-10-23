@@ -98,3 +98,10 @@ playwright-report/
 /docs/
 /maintenance/
 /workers/
+
+# Offline generators are local inputs; their generated browser data stays tracked.
+/scripts/build_dive_experience_land_mask.js
+/scripts/build_dive_site_fallback_photo_catalog.py
+
+# Local photo asset instructions accompany the ignored generator.
+/assets/dive-sites/README.md
