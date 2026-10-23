@@ -93,3 +93,8 @@ playwright-report/
 /datasets/marine-regions-eez-v12-source/
 /maintenance/build_dive_site_review_rating_inventory.py
 /tests/unit/dive-conditions-service-metadata.test.js
+
+# Keep authoring notes, maintenance utilities, and Worker source out of GitHub.
+/docs/
+/maintenance/
+/workers/
