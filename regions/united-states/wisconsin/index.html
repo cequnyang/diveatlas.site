@@ -13,22 +13,28 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Wisconsin</h1>
   <p class="lead">United States</p>
-  <p>This page lists 5 dive sites with recorded country and region fields matching this destination. The coordinate range is 43.02240 to 44.28980 latitude; -90.71840 to -87.84550 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/988a20d019681f00a9764ef32b216f755a38cec7fff215408171870bcc04f3bf.webp" alt="Fall Foliage a long Devil&#x27;s lake" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Fall_Foliage_a_long_Devil%27s_lake_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Fall Foliage a long Devil&#x27;s lake - panoramio</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Corey Coyle / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="license noopener noreferrer">CC BY 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 5 dive sites with recorded country and region fields matching this destination. The coordinate range is 43.02240 to 44.28980 latitude; -90.71840 to -87.84550 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=43.44624&amp;lng=-89.49460&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (5)</h2><ul class="site-list">      <li><a href="/dive-sites/devil-039-s-lake-south-shore/">Devil&amp;#039;s Lake South Shore</a> <span class="coordinates">(43.40840, -89.73070)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (5)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/devil-039-s-lake-south-shore/">Devil&amp;#039;s Lake South Shore</a> <span class="coordinates">(43.40840, -89.73070)</span></li>
       <li><a href="/dive-sites/devils-lake-north-shore/">Devils Lake North Shore</a> <span class="coordinates">(43.42580, -89.72770)</span></li>
       <li><a href="/dive-sites/lake-mendota-shorewood/">Lake Mendota - Shorewood</a> <span class="coordinates">(43.08480, -89.45070)</span></li>
       <li><a href="/dive-sites/lake-wazee-north-boat-ramp-sherwood-forest/">Lake Wazee, North Boat Ramp, Sherwood Forest</a> <span class="coordinates">(44.28980, -90.71840)</span></li>
       <li><a href="/dive-sites/prins-willem-v/">Prins Willem V</a> <span class="coordinates">(43.02240, -87.84550)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
       <li><a href="/regions/united-states/california/">California</a></li>
       <li><a href="/regions/united-states/texas/">Texas</a></li>
       <li><a href="/regions/united-states/florida/">Florida</a></li>
@@ -57,20 +63,7 @@
       <li><a href="/regions/united-states/illinois/">Illinois</a></li>
       <li><a href="/regions/united-states/iowa/">Iowa</a></li>
       <li><a href="/regions/united-states/san-diego-la-jolla/">San Diego La Jolla</a></li>
-      <li><a href="/regions/united-states/alabama/">Alabama</a></li>
-      <li><a href="/regions/united-states/new-mexico/">New Mexico</a></li>
-      <li><a href="/regions/united-states/saint-croix/">Saint Croix</a></li>
-      <li><a href="/regions/united-states/south-dakota/">South Dakota</a></li>
-      <li><a href="/regions/united-states/florida-springs/">Florida Springs</a></li>
-      <li><a href="/regions/united-states/georgia/">Georgia</a></li>
-      <li><a href="/regions/united-states/minnesota/">Minnesota</a></li>
-      <li><a href="/regions/united-states/new-hampshire/">New Hampshire</a></li>
-      <li><a href="/regions/united-states/virginia/">Virginia</a></li>
-      <li><a href="/regions/united-states/hawaii-big-island/">Hawaii Big Island</a></li>
-      <li><a href="/regions/united-states/idaho/">Idaho</a></li>
-      <li><a href="/regions/united-states/nebraska/">Nebraska</a></li>
-      <li><a href="/regions/united-states/oklahoma/">Oklahoma</a></li>
-      <li><a href="/regions/united-states/puerto-rico-u-s-virgin-islands/">Puerto Rico / U.S. Virgin Islands</a></li></ul></section>
+      <li><a href="/regions/united-states/alabama/">Alabama</a></li></ul><nav class="region-list-pagination" aria-label="Related destinations"><span aria-disabled="true">Previous</span><span aria-current="page">Page 1 of 2 · showing 1–30 of 43</span><a href="/regions/united-states/wisconsin/related/page/2/" aria-label="Next page">Next</a></nav></section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
 </body>

@@ -13,21 +13,27 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Guangdong</h1>
   <p class="lead">China</p>
-  <p>This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 21.99573 to 23.09501 latitude; 113.25272 to 113.92670 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/2775a36a901808bf4e2630fafb9893476e101ef91b507a35a70c27ef31a76cfc.webp" alt="松山湖空拍" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:%E6%9D%BE%E5%B1%B1%E6%B9%96%E7%A9%BA%E6%8B%8D_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">松山湖空拍 - panoramio</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Ethan Lee / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 21.99573 to 23.09501 latitude; 113.25272 to 113.92670 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=22.64128&amp;lng=113.70685&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list">      <li><a href="/dive-sites/divehub-46/">DiveHub 46</a> <span class="coordinates">(22.94150, 113.89150)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/divehub-46/">DiveHub 46</a> <span class="coordinates">(22.94150, 113.89150)</span></li>
       <li><a href="/dive-sites/site-22cfc7c5-guangdong-china/">中天潛水世界</a> <span class="coordinates">(22.53290, 113.92670)</span></li>
       <li><a href="/dive-sites/guangdong-wanshan-island-zhuhai/">Guangdong: Wanshan Island, Zhuhai</a> <span class="coordinates">(21.99573, 113.75648)</span></li>
       <li><a href="/dive-sites/site-07aaae87-guangdong-china/">广州市海珠区远峰大厦</a> <span class="coordinates">(23.09501, 113.25272)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/china/hebei/">Hebei</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/china/hebei/">Hebei</a></li>
       <li><a href="/regions/china/sichuan/">Sichuan</a></li></ul></section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>

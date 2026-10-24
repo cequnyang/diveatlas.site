@@ -13,21 +13,27 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Lower Austria</h1>
   <p class="lead">Austria</p>
-  <p>This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.85330 to 48.22440 latitude; 15.04390 to 16.35298 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/0fbc4a608efd97fd7e256461d6012d9ea2a29f58f504e6ae060834e3d01c191c.webp" alt="Kleinkraftwerk am Wiener Neustädter Kanal zwischen Baden und Bad Vöslau in Niederösterreich (Turbine Nr. 13)" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Neust%C3%A4dter_Kanal_2689.jpg" target="_blank" rel="noopener noreferrer">Neustädter Kanal 2689</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Karl Gruber / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" target="_blank" rel="license noopener noreferrer">CC BY-SA 3.0 at</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.85330 to 48.22440 latitude; 15.04390 to 16.35298 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=48.04825&amp;lng=15.83193&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list">      <li><a href="/dive-sites/ratzersdorfer-see/">Ratzersdorfer See</a> <span class="coordinates">(48.22440, 15.65630)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/ratzersdorfer-see/">Ratzersdorfer See</a> <span class="coordinates">(48.22440, 15.65630)</span></li>
       <li><a href="/dive-sites/seebad/">Seebad</a> <span class="coordinates">(47.85330, 15.04390)</span></li>
       <li><a href="/dive-sites/die-tauchschule/">Die Tauchschule</a> <span class="coordinates">(48.14009, 16.35298)</span></li>
       <li><a href="/dive-sites/neufeldersee/">Neufeldersee</a> <span class="coordinates">(47.97521, 16.27453)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/austria/carinthia/">Carinthia</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/austria/carinthia/">Carinthia</a></li>
       <li><a href="/regions/austria/upper-austria/">Upper Austria</a></li>
       <li><a href="/regions/austria/tyrol/">Tyrol</a></li>
       <li><a href="/regions/austria/burgenland/">Burgenland</a></li>

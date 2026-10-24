@@ -13,23 +13,29 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Hawaii Kauai</h1>
   <p class="lead">United States</p>
-  <p>This page lists 6 dive sites with recorded country and region fields matching this destination. The coordinate range is 21.85700 to 21.97870 latitude; -159.78650 to -159.45230 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/07109e7335cfe81ec17c4ec8315a1564e9f35af318f64742adfc8be788300252.webp" alt="Poipu Beach, Koloa" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Poipu_Beach,_Koloa_-_panoramio_(7).jpg" target="_blank" rel="noopener noreferrer">Poipu Beach, Koloa - panoramio (7)</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Bob Linsdell / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="license noopener noreferrer">CC BY 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 6 dive sites with recorded country and region fields matching this destination. The coordinate range is 21.85700 to 21.97870 latitude; -159.78650 to -159.45230 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=21.88628&amp;lng=-159.52097&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (6)</h2><ul class="site-list">      <li><a href="/dive-sites/brenneckes-ledge/">Brenneckes Ledge</a> <span class="coordinates">(21.87060, -159.45230)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (6)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/brenneckes-ledge/">Brenneckes Ledge</a> <span class="coordinates">(21.87060, -159.45230)</span></li>
       <li><a href="/dive-sites/fish-bowl-hawaii/">Fish Bowl - Hawaii</a> <span class="coordinates">(21.86950, -159.46960)</span></li>
       <li><a href="/dive-sites/koloa-landing/">Koloa Landing</a> <span class="coordinates">(21.87860, -159.46860)</span></li>
       <li><a href="/dive-sites/mana-crack/">Mana Crack</a> <span class="coordinates">(21.97870, -159.78650)</span></li>
       <li><a href="/dive-sites/sheraton-caverns/">Sheraton Caverns</a> <span class="coordinates">(21.86330, -159.45310)</span></li>
       <li><a href="/dive-sites/turtle-bluffs/">Turtle Bluffs</a> <span class="coordinates">(21.85700, -159.49570)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
       <li><a href="/regions/united-states/california/">California</a></li>
       <li><a href="/regions/united-states/texas/">Texas</a></li>
       <li><a href="/regions/united-states/florida/">Florida</a></li>
@@ -58,20 +64,7 @@
       <li><a href="/regions/united-states/iowa/">Iowa</a></li>
       <li><a href="/regions/united-states/san-diego-la-jolla/">San Diego La Jolla</a></li>
       <li><a href="/regions/united-states/alabama/">Alabama</a></li>
-      <li><a href="/regions/united-states/new-mexico/">New Mexico</a></li>
-      <li><a href="/regions/united-states/saint-croix/">Saint Croix</a></li>
-      <li><a href="/regions/united-states/south-dakota/">South Dakota</a></li>
-      <li><a href="/regions/united-states/wisconsin/">Wisconsin</a></li>
-      <li><a href="/regions/united-states/florida-springs/">Florida Springs</a></li>
-      <li><a href="/regions/united-states/georgia/">Georgia</a></li>
-      <li><a href="/regions/united-states/minnesota/">Minnesota</a></li>
-      <li><a href="/regions/united-states/new-hampshire/">New Hampshire</a></li>
-      <li><a href="/regions/united-states/virginia/">Virginia</a></li>
-      <li><a href="/regions/united-states/hawaii-big-island/">Hawaii Big Island</a></li>
-      <li><a href="/regions/united-states/idaho/">Idaho</a></li>
-      <li><a href="/regions/united-states/nebraska/">Nebraska</a></li>
-      <li><a href="/regions/united-states/oklahoma/">Oklahoma</a></li>
-      <li><a href="/regions/united-states/puerto-rico-u-s-virgin-islands/">Puerto Rico / U.S. Virgin Islands</a></li></ul></section>
+      <li><a href="/regions/united-states/new-mexico/">New Mexico</a></li></ul><nav class="region-list-pagination" aria-label="Related destinations"><span aria-disabled="true">Previous</span><span aria-current="page">Page 1 of 2 · showing 1–30 of 43</span><a href="/regions/united-states/hawaii-kauai/related/page/2/" aria-label="Next page">Next</a></nav></section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
 </body>

@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Vancouver Island</h1>
   <p class="lead">Canada</p>
-  <p>This page lists 11 dive sites with recorded country and region fields matching this destination. The coordinate range is 48.29790 to 50.91670 latitude; -127.76670 to -123.23330 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/b961c20e7b9de44e746b82b1ea399b95590a0d4077717be3a345abe08b9dfb0a.webp" alt="Spanish Banks Sunset." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Spanish_Banks_Sunset_(15276424686).jpg" target="_blank" rel="noopener noreferrer">Spanish Banks Sunset (15276424686)</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Jerry Meaden from Surrey, BC, Canada / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="license noopener noreferrer">CC BY 2.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 11 dive sites with recorded country and region fields matching this destination. The coordinate range is 48.29790 to 50.91670 latitude; -127.76670 to -123.23330 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=49.47310&amp;lng=-124.35367&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (11)</h2><ul class="site-list">      <li><a href="/dive-sites/browning-wall/">Browning Wall</a> <span class="coordinates">(50.91670, -127.76670)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (11)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/browning-wall/">Browning Wall</a> <span class="coordinates">(50.91670, -127.76670)</span></li>
       <li><a href="/dive-sites/dodd-narrows-vancouver-island-canada/">Dodd Narrows</a> <span class="coordinates">(49.13330, -123.81670)</span></li>
       <li><a href="/dive-sites/god-s-pocket/">God&#x27;s Pocket</a> <span class="coordinates">(50.83330, -127.68330)</span></li>
       <li><a href="/dive-sites/hmcs-annapolis-vancouver-island-canada/">HMCS Annapolis</a> <span class="coordinates">(49.63330, -124.05000)</span></li>
@@ -34,7 +40,7 @@
       <li><a href="/dive-sites/porteau-cove/">Porteau Cove</a> <span class="coordinates">(49.56039, -123.23520)</span></li>
       <li><a href="/dive-sites/race-rocks/">Race Rocks</a> <span class="coordinates">(48.29790, -123.53380)</span></li>
       <li><a href="/dive-sites/tuwanek/">Tuwanek</a> <span class="coordinates">(49.51670, -123.78330)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/canada/british-columbia/">British Columbia</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/canada/british-columbia/">British Columbia</a></li>
       <li><a href="/regions/canada/great-lakes/">Great Lakes</a></li>
       <li><a href="/regions/canada/nova-scotia/">Nova Scotia</a></li>
       <li><a href="/regions/canada/ontario/">Ontario</a></li>

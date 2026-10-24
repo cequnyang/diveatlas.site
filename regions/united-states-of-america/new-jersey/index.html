@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in New Jersey</h1>
   <p class="lead">United States of America</p>
-  <p>This page lists 11 dive sites with recorded country and region fields matching this destination. The coordinate range is 39.19170 to 40.55000 latitude; -74.35830 to -73.00000 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/0197c736a27851438f98e04c4e5b37587251e3e52e588a391b3fa0e63a49d48c.webp" alt="View north along New Jersey State Route 35 and New Jersey State Route 71 (River Road) at 11th Avenue in Belmar, Monmouth County, New Jersey" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:2018-05-25_11_54_44_View_north_along_New_Jersey_State_Route_35_and_New_Jersey_State_Route_71_(River_Road)_at_11th_Avenue_in_Belmar,_Monmouth_County,_New_Jersey.jpg" target="_blank" rel="noopener noreferrer">2018-05-25 11 54 44 View north along New Jersey State Route 35 and New Jersey State Route 71 (River Road) at 11th Avenue in Belmar, Monmouth County, New Jersey</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Famartin / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 11 dive sites with recorded country and region fields matching this destination. The coordinate range is 39.19170 to 40.55000 latitude; -74.35830 to -73.00000 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=39.75225&amp;lng=-73.60609&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (11)</h2><ul class="site-list">      <li><a href="/dive-sites/artificial-reef-site-15/">Artificial Reef Site 15</a> <span class="coordinates">(39.19170, -74.35830)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (11)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/artificial-reef-site-15/">Artificial Reef Site 15</a> <span class="coordinates">(39.19170, -74.35830)</span></li>
       <li><a href="/dive-sites/axel-carlson/">Axel Carlson</a> <span class="coordinates">(39.41670, -74.18330)</span></li>
       <li><a href="/dive-sites/great-isaac/">Great Isaac</a> <span class="coordinates">(39.78330, -73.43330)</span></li>
       <li><a href="/dive-sites/mohawk/">Mohawk</a> <span class="coordinates">(40.11500, -73.88330)</span></li>
@@ -34,7 +40,7 @@
       <li><a href="/dive-sites/u-869-wrack/">U-869 (Wrack)</a> <span class="coordinates">(39.56370, -73.03440)</span></li>
       <li><a href="/dive-sites/uss-algol-aka-54/">USS Algol (AKA-54)</a> <span class="coordinates">(39.76920, -73.47360)</span></li>
       <li><a href="/dive-sites/uss-san-diego-acr-6/">USS San Diego (ACR-6)</a> <span class="coordinates">(40.55000, -73.00800)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/united-states-of-america/florida-panhandle/">Florida Panhandle</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/united-states-of-america/florida-panhandle/">Florida Panhandle</a></li>
       <li><a href="/regions/united-states-of-america/new-england/">New England</a></li>
       <li><a href="/regions/united-states-of-america/south-florida/">South Florida</a></li>
       <li><a href="/regions/united-states-of-america/florida-keys/">Florida Keys</a></li>
@@ -63,13 +69,7 @@
       <li><a href="/regions/united-states-of-america/arkansas/">Arkansas</a></li>
       <li><a href="/regions/united-states-of-america/california/">California</a></li>
       <li><a href="/regions/united-states-of-america/florida/">Florida</a></li>
-      <li><a href="/regions/united-states-of-america/michigan/">Michigan</a></li>
-      <li><a href="/regions/united-states-of-america/new-york/">New York</a></li>
-      <li><a href="/regions/united-states-of-america/pennsylvania/">Pennsylvania</a></li>
-      <li><a href="/regions/united-states-of-america/tennessee/">Tennessee</a></li>
-      <li><a href="/regions/united-states-of-america/texas/">Texas</a></li>
-      <li><a href="/regions/united-states-of-america/virginia/">Virginia</a></li>
-      <li><a href="/regions/united-states-of-america/wisconsin/">Wisconsin</a></li></ul></section>
+      <li><a href="/regions/united-states-of-america/michigan/">Michigan</a></li></ul><nav class="region-list-pagination" aria-label="Related destinations"><span aria-disabled="true">Previous</span><span aria-current="page">Page 1 of 2 · showing 1–30 of 36</span><a href="/regions/united-states-of-america/new-jersey/related/page/2/" aria-label="Next page">Next</a></nav></section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
 </body>

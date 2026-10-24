@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in New South Wales</h1>
   <p class="lead">Australia</p>
-  <p>This page lists 23 dive sites with recorded country and region fields matching this destination. The coordinate range is -35.85850 to -28.63900 latitude; 150.18130 to 153.61370 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/c518141aa7dbe4807eb6802a8030e3154859e110dde65d8e253fc15a215cb27f.webp" alt="Byron Bay, Australia" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Byron_Bay,_Australia_(Unsplash_U6KmF4RpgiU).jpg" target="_blank" rel="noopener noreferrer">Byron Bay, Australia (Unsplash U6KmF4RpgiU)</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Amy Mackay amykatesc / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="license noopener noreferrer">CC0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 23 dive sites with recorded country and region fields matching this destination. The coordinate range is -35.85850 to -28.63900 latitude; 150.18130 to 153.61370 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=-33.02794&amp;lng=151.77272&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (23)</h2><ul class="site-list">      <li><a href="/dive-sites/avoca/">Avoca</a> <span class="coordinates">(-33.47010, 151.43660)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (23)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/avoca/">Avoca</a> <span class="coordinates">(-33.47010, 151.43660)</span></li>
       <li><a href="/dive-sites/catherine-hill-coal-loader/">Catherine Hill Coal Loader</a> <span class="coordinates">(-33.15770, 151.63040)</span></li>
       <li><a href="/dive-sites/cod-hole-new-south-wales-australia/">Cod Hole</a> <span class="coordinates">(-31.44520, 152.93460)</span></li>
       <li><a href="/dive-sites/fishermans-bay/">Fishermans Bay</a> <span class="coordinates">(-32.78930, 152.09240)</span></li>
@@ -46,7 +52,7 @@
       <li><a href="/dive-sites/magic-point-new-south-wales-australia/">Magic Point</a> <span class="coordinates">(-33.95991, 151.26443)</span></li>
       <li><a href="/dive-sites/martin-island/">Martin Island</a> <span class="coordinates">(-34.49000, 150.90000)</span></li>
       <li><a href="/dive-sites/ship-rock-aquatic-reserve/">Ship Rock Aquatic Reserve</a> <span class="coordinates">(-34.06896, 151.12983)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/australia/great-barrier-reef/">Great Barrier Reef</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/australia/great-barrier-reef/">Great Barrier Reef</a></li>
       <li><a href="/regions/australia/ningaloo-reef/">Ningaloo Reef</a></li>
       <li><a href="/regions/australia/victoria/">Victoria</a></li>
       <li><a href="/regions/australia/western-australia/">Western Australia</a></li>

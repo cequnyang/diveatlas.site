@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Thurgau</h1>
   <p class="lead">Switzerland</p>
-  <p>This page lists 10 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.55530 to 47.67490 latitude; 8.88336 to 9.22414 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/1d944bdb78b8567d1a5ceb130c8c3c982d84222c517d5faffe194f03fb95b4e4.webp" alt="Teil des Hafens in Öhningen mit Blick auf die Schweiz." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Hafen2_Oehningen.JPG" target="_blank" rel="noopener noreferrer">Hafen2 Oehningen</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Erhard Horak / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 10 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.55530 to 47.67490 latitude; 8.88336 to 9.22414 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=47.64410&amp;lng=9.08162&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (10)</h2><ul class="site-list">      <li><a href="/dive-sites/berlingen-bay-watch/">Berlingen, Bay Watch</a> <span class="coordinates">(47.67230, 9.01040)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (10)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/berlingen-bay-watch/">Berlingen, Bay Watch</a> <span class="coordinates">(47.67230, 9.01040)</span></li>
       <li><a href="/dive-sites/berlingen-kirche/">Berlingen, Kirche</a> <span class="coordinates">(47.67480, 9.01580)</span></li>
       <li><a href="/dive-sites/berlingen-wildsau/">Berlingen, Wildsau</a> <span class="coordinates">(47.67490, 9.02160)</span></li>
       <li><a href="/dive-sites/bodensee-wrack-jura/">Bodensee - Wrack Jura</a> <span class="coordinates">(47.64520, 9.22370)</span></li>
@@ -33,7 +39,7 @@
       <li><a href="/dive-sites/wrack-der-jura-bodensee/">Wrack der Jura - Bodensee</a> <span class="coordinates">(47.64767, 9.22414)</span></li>
       <li><a href="/dive-sites/hafen/">Hafen</a> <span class="coordinates">(47.65182, 8.88336)</span></li>
       <li><a href="/dive-sites/neue-rheinbrucke/">Neue Rheinbrücke</a> <span class="coordinates">(47.66929, 9.16316)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
       <li><a href="/regions/switzerland/bern/">Bern</a></li>
       <li><a href="/regions/switzerland/st-gallen/">St. Gallen</a></li>
       <li><a href="/regions/switzerland/schwyz/">Schwyz</a></li>

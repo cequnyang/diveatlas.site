@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Drenthe</h1>
   <p class="lead">Netherlands</p>
-  <p>This page lists 15 dive sites with recorded country and region fields matching this destination. The coordinate range is 52.67740 to 53.08430 latitude; 6.23230 to 6.74870 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/7073edafe3d083a458e992af68ac50ef4398fd920f3d1951d628e556a4123a7c.webp" alt="Kymmelsberg" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Kymmelsberg.jpg" target="_blank" rel="noopener noreferrer">Kymmelsberg</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">japiot / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="license noopener noreferrer">CC BY 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 15 dive sites with recorded country and region fields matching this destination. The coordinate range is 52.67740 to 53.08430 latitude; 6.23230 to 6.74870 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=52.83485&amp;lng=6.42978&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (15)</h2><ul class="site-list">      <li><a href="/dive-sites/blauwe-meer/">Blauwe meer</a> <span class="coordinates">(52.88250, 6.40840)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (15)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/blauwe-meer/">Blauwe meer</a> <span class="coordinates">(52.88250, 6.40840)</span></li>
       <li><a href="/dive-sites/bosbad/">Bosbad</a> <span class="coordinates">(52.90500, 6.38270)</span></li>
       <li><a href="/dive-sites/gasselterveld/">Gasselterveld</a> <span class="coordinates">(52.96700, 6.74870)</span></li>
       <li><a href="/dive-sites/openluchtzwembad-de-slenken/">Openluchtzwembad De Slenken</a> <span class="coordinates">(52.67740, 6.29820)</span></li>
@@ -38,7 +44,7 @@
       <li><a href="/dive-sites/divearound-dwingeloo/">divearound Dwingeloo</a> <span class="coordinates">(52.81106, 6.37207)</span></li>
       <li><a href="/dive-sites/divearound-ruinerwold/">divearound Ruinerwold</a> <span class="coordinates">(52.70645, 6.23320)</span></li>
       <li><a href="/dive-sites/veenmeer-tynaarlo/">Veenmeer Tynaarlo</a> <span class="coordinates">(53.08351, 6.63436)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
       <li><a href="/regions/netherlands/bonaire/">Bonaire</a></li>
       <li><a href="/regions/netherlands/north-brabant/">North Brabant</a></li>
       <li><a href="/regions/netherlands/south-holland/">South Holland</a></li>

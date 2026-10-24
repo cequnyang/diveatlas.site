@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in North Brabant</h1>
   <p class="lead">Netherlands</p>
-  <p>This page lists 28 dive sites with recorded country and region fields matching this destination. The coordinate range is 51.32490 to 51.81470 latitude; 4.75260 to 5.84950 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/4ea1d9d8c7fcf94281a0040e00614cd5d693fc70ea7f551509e9a158aea3b565.webp" alt="Bakel dorpspomp" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Bakel_dorpspomp.JPG" target="_blank" rel="noopener noreferrer">Bakel dorpspomp</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Havang(nl) / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="license noopener noreferrer">CC0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 28 dive sites with recorded country and region fields matching this destination. The coordinate range is 51.32490 to 51.81470 latitude; 4.75260 to 5.84950 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=51.64122&amp;lng=5.30970&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (28)</h2><ul class="site-list">      <li><a href="/dive-sites/aquabest/">Aquabest</a> <span class="coordinates">(51.49820, 5.43450)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (28)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/aquabest/">Aquabest</a> <span class="coordinates">(51.49820, 5.43450)</span></li>
       <li><a href="/dive-sites/de-baars-oostplas-tilburg/">De Baars - Oostplas Tilburg</a> <span class="coordinates">(51.53350, 5.09480)</span></li>
       <li><a href="/dive-sites/de-kuilen/">De Kuilen</a> <span class="coordinates">(51.69730, 5.74300)</span></li>
       <li><a href="/dive-sites/de-langspier/">De Langspier</a> <span class="coordinates">(51.60450, 5.30110)</span></li>
@@ -51,7 +57,7 @@
       <li><a href="/dive-sites/zwembad-feel-fit-center-vught/">Zwembad: Feel Fit Center Vught</a> <span class="coordinates">(51.64930, 5.29090)</span></li>
       <li><a href="/dive-sites/de-baars-put-van-heel/">De Baars / Put van Heel</a> <span class="coordinates">(51.53384, 5.09521)</span></li>
       <li><a href="/dive-sites/wrak-de-kiekuut/">Wrak &quot;de Kiekuut&quot;</a> <span class="coordinates">(51.73066, 5.82081)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
       <li><a href="/regions/netherlands/bonaire/">Bonaire</a></li>
       <li><a href="/regions/netherlands/south-holland/">South Holland</a></li>
       <li><a href="/regions/netherlands/gelderland/">Gelderland</a></li>

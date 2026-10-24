@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in St. Gallen</h1>
   <p class="lead">Switzerland</p>
-  <p>This page lists 15 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.11310 to 47.48550 latitude; 9.11956 to 9.51040 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/39753d8423cfb426947eb776c9e0d6ae78c900fb4d3d20e437a890e8acf5ed0e.webp" alt="NOTE: This image is a panorama consisting of multiple frames that were merged or stitched in software. As a result, this image necessarily underwent some form of digital manipulation. These manipulations may include blending, blurring, cloning, and color and perspective adjustments. As a result of these adjustments, the image content may be slightly different from reality at the points where multiple images were combined. This manipulation is often required due to lens, perspective, and parallax distortions." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Walensee_Churfirsten_Panorama.jpg" target="_blank" rel="noopener noreferrer">Walensee Churfirsten Panorama</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">böhringer friedrich / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/2.5" target="_blank" rel="license noopener noreferrer">CC BY-SA 2.5</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 15 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.11310 to 47.48550 latitude; 9.11956 to 9.51040 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=47.28828&amp;lng=9.35540&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (15)</h2><ul class="site-list">      <li><a href="/dive-sites/badhutte-rorschach-bodensee/">Badhütte Rorschach, Bodensee</a> <span class="coordinates">(47.48040, 9.48660)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (15)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/badhutte-rorschach-bodensee/">Badhütte Rorschach, Bodensee</a> <span class="coordinates">(47.48040, 9.48660)</span></li>
       <li><a href="/dive-sites/bootsrampe-rorschach/">Bootsrampe Rorschach</a> <span class="coordinates">(47.47870, 9.50230)</span></li>
       <li><a href="/dive-sites/broder-mols/">Broder, Mols</a> <span class="coordinates">(47.11430, 9.27150)</span></li>
       <li><a href="/dive-sites/hafen-mols/">Hafen Mols</a> <span class="coordinates">(47.11310, 9.27930)</span></li>
@@ -38,7 +44,7 @@
       <li><a href="/dive-sites/tiefenwinkel-murg/">Tiefenwinkel Murg</a> <span class="coordinates">(47.11548, 9.18410)</span></li>
       <li><a href="/dive-sites/walensee-hafen-mols/">Walensee Hafen Mols</a> <span class="coordinates">(47.11394, 9.28749)</span></li>
       <li><a href="/dive-sites/weesen-tunnel-1/">Weesen Tunnel 1</a> <span class="coordinates">(47.13930, 9.11956)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
       <li><a href="/regions/switzerland/bern/">Bern</a></li>
       <li><a href="/regions/switzerland/schwyz/">Schwyz</a></li>
       <li><a href="/regions/switzerland/thurgau/">Thurgau</a></li>

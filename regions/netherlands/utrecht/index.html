@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Utrecht</h1>
   <p class="lead">Netherlands</p>
-  <p>This page lists 10 dive sites with recorded country and region fields matching this destination. The coordinate range is 52.08320 to 52.24850 latitude; 4.93600 to 5.08760 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/c886b21f49bda49878070abbded4665faec083b5168e2ab0cd20f35725d22cc9.webp" alt="Haanwijkersluis , a canal lock in Harmelen , Oude Rijn river. Built 1880-1900. Its national-monument number is 517421." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Haanwijkersluis.Harmelen.jpg" target="_blank" rel="noopener noreferrer">Haanwijkersluis.Harmelen</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">China Crisis / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="license noopener noreferrer">CC BY 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 10 dive sites with recorded country and region fields matching this destination. The coordinate range is 52.08320 to 52.24850 latitude; 4.93600 to 5.08760 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=52.21396&amp;lng=4.96719&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (10)</h2><ul class="site-list">      <li><a href="/dive-sites/escapepool/">Escapepool</a> <span class="coordinates">(52.08320, 4.93600)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (10)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/escapepool/">Escapepool</a> <span class="coordinates">(52.08320, 4.93600)</span></li>
       <li><a href="/dive-sites/maarssenveenseplas/">Maarssenveenseplas</a> <span class="coordinates">(52.14140, 5.08760)</span></li>
       <li><a href="/dive-sites/zandeiland-1/">Zandeiland 1</a> <span class="coordinates">(52.24850, 4.96140)</span></li>
       <li><a href="/dive-sites/zandeiland-4/">Zandeiland 4</a> <span class="coordinates">(52.23440, 4.96000)</span></li>
@@ -33,7 +39,7 @@
       <li><a href="/dive-sites/vinkeveen/">Vinkeveen</a> <span class="coordinates">(52.23463, 4.96020)</span></li>
       <li><a href="/dive-sites/vinkeveen-zandeiland-4/">Vinkeveen Zandeiland 4</a> <span class="coordinates">(52.23325, 4.96119)</span></li>
       <li><a href="/dive-sites/vinkeveense-plassen/">Vinkeveense Plassen</a> <span class="coordinates">(52.23429, 4.96011)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
       <li><a href="/regions/netherlands/bonaire/">Bonaire</a></li>
       <li><a href="/regions/netherlands/north-brabant/">North Brabant</a></li>
       <li><a href="/regions/netherlands/south-holland/">South Holland</a></li>

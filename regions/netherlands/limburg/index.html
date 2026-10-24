@@ -13,20 +13,26 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Limburg</h1>
   <p class="lead">Netherlands</p>
-  <p>This page lists 3 dive sites with recorded country and region fields matching this destination. The coordinate range is 51.15470 to 51.19260 latitude; 5.84310 to 5.94820 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/3e8beec549ed2a2691b36a894be42842fcda71ec59329d5846157ac4f0cc29e7.webp" alt="After a weekend of non-stop rainfall the water in the river Maas near Roermond (the Netherlands) has reached a level of almost 2 metres above normal." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Hoog_water_2010.jpg" target="_blank" rel="noopener noreferrer">Hoog water 2010</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Bert Kaufmann from Roermond, Netherlands / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="license noopener noreferrer">CC BY 2.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 3 dive sites with recorded country and region fields matching this destination. The coordinate range is 51.15470 to 51.19260 latitude; 5.84310 to 5.94820 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=51.17547&amp;lng=5.88897&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (3)</h2><ul class="site-list">      <li><a href="/dive-sites/duiklocatie-boschmolenplas/">Duiklocatie Boschmolenplas</a> <span class="coordinates">(51.17910, 5.87560)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (3)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/duiklocatie-boschmolenplas/">Duiklocatie Boschmolenplas</a> <span class="coordinates">(51.17910, 5.87560)</span></li>
       <li><a href="/dive-sites/grote-hegge/">Grote Hegge</a> <span class="coordinates">(51.15470, 5.84310)</span></li>
       <li><a href="/dive-sites/zuidplas/">Zuidplas</a> <span class="coordinates">(51.19260, 5.94820)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/netherlands/zeeland/">Zeeland</a></li>
       <li><a href="/regions/netherlands/bonaire/">Bonaire</a></li>
       <li><a href="/regions/netherlands/north-brabant/">North Brabant</a></li>
       <li><a href="/regions/netherlands/south-holland/">South Holland</a></li>

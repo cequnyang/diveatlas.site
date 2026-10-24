@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Monterey Bay</h1>
   <p class="lead">United States</p>
-  <p>This page lists 9 dive sites with recorded country and region fields matching this destination. The coordinate range is 36.51950 to 36.63440 latitude; -121.95070 to -121.89380 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/798f70efc4fd714632fe3a736c952d91354be20e76c3e2a0b3d780b4c5a02611.webp" alt="People on the beach at Lovers Point Park in Pacific Grove, California." loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Lovers_Point_Park_-_December_2018_-_Stierch.jpg" target="_blank" rel="noopener noreferrer">Lovers Point Park - December 2018 - Stierch</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Missvain / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="license noopener noreferrer">CC BY 4.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 9 dive sites with recorded country and region fields matching this destination. The coordinate range is 36.51950 to 36.63440 latitude; -121.95070 to -121.89380 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=36.58781&amp;lng=-121.91773&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (9)</h2><ul class="site-list">      <li><a href="/dive-sites/aumentos-pinnacle/">Aumentos Pinnacle</a> <span class="coordinates">(36.63440, -121.92030)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (9)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/aumentos-pinnacle/">Aumentos Pinnacle</a> <span class="coordinates">(36.63440, -121.92030)</span></li>
       <li><a href="/dive-sites/breakwater-cove/">Breakwater Cove</a> <span class="coordinates">(36.60910, -121.89380)</span></li>
       <li><a href="/dive-sites/lovers-point/">Lovers Point</a> <span class="coordinates">(36.62510, -121.91600)</span></li>
       <li><a href="/dive-sites/metridium-fields/">Metridium Fields</a> <span class="coordinates">(36.61270, -121.89380)</span></li>
@@ -32,7 +38,7 @@
       <li><a href="/dive-sites/point-lobos-state-reserve/">Point Lobos State Reserve</a> <span class="coordinates">(36.52270, -121.95070)</span></li>
       <li><a href="/dive-sites/san-carlos-beach/">San Carlos Beach</a> <span class="coordinates">(36.60970, -121.89520)</span></li>
       <li><a href="/dive-sites/whalers-cove/">Whaler’s Cove</a> <span class="coordinates">(36.51950, -121.93970)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/united-states/massachusetts/">Massachusetts</a></li>
       <li><a href="/regions/united-states/california/">California</a></li>
       <li><a href="/regions/united-states/texas/">Texas</a></li>
       <li><a href="/regions/united-states/florida/">Florida</a></li>
@@ -61,20 +67,7 @@
       <li><a href="/regions/united-states/iowa/">Iowa</a></li>
       <li><a href="/regions/united-states/san-diego-la-jolla/">San Diego La Jolla</a></li>
       <li><a href="/regions/united-states/alabama/">Alabama</a></li>
-      <li><a href="/regions/united-states/new-mexico/">New Mexico</a></li>
-      <li><a href="/regions/united-states/saint-croix/">Saint Croix</a></li>
-      <li><a href="/regions/united-states/south-dakota/">South Dakota</a></li>
-      <li><a href="/regions/united-states/wisconsin/">Wisconsin</a></li>
-      <li><a href="/regions/united-states/florida-springs/">Florida Springs</a></li>
-      <li><a href="/regions/united-states/georgia/">Georgia</a></li>
-      <li><a href="/regions/united-states/minnesota/">Minnesota</a></li>
-      <li><a href="/regions/united-states/new-hampshire/">New Hampshire</a></li>
-      <li><a href="/regions/united-states/virginia/">Virginia</a></li>
-      <li><a href="/regions/united-states/hawaii-big-island/">Hawaii Big Island</a></li>
-      <li><a href="/regions/united-states/idaho/">Idaho</a></li>
-      <li><a href="/regions/united-states/nebraska/">Nebraska</a></li>
-      <li><a href="/regions/united-states/oklahoma/">Oklahoma</a></li>
-      <li><a href="/regions/united-states/puerto-rico-u-s-virgin-islands/">Puerto Rico / U.S. Virgin Islands</a></li></ul></section>
+      <li><a href="/regions/united-states/new-mexico/">New Mexico</a></li></ul><nav class="region-list-pagination" aria-label="Related destinations"><span aria-disabled="true">Previous</span><span aria-current="page">Page 1 of 2 · showing 1–30 of 43</span><a href="/regions/united-states/monterey-bay/related/page/2/" aria-label="Next page">Next</a></nav></section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
 </body>

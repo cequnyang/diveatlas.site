@@ -13,21 +13,27 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Kemerovo</h1>
   <p class="lead">Russian Federation</p>
-  <p>This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 53.12160 to 55.01860 latitude; 85.30120 to 87.35580 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/ffb7c6ac25f17712932df0f902161ef7e31198516663b636f69b90309a543158.webp" alt="река Мундыбаш в пгт Мундыбаш" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Mundybash_river_in_Mundybash,_Kuzbass,_RU.jpg" target="_blank" rel="noopener noreferrer">Mundybash river in Mundybash, Kuzbass, RU</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Pinigin / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 4.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 4 dive sites with recorded country and region fields matching this destination. The coordinate range is 53.12160 to 55.01860 latitude; 85.30120 to 87.35580 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=54.08820&amp;lng=86.64462&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list">      <li><a href="/dive-sites/krapivinskaya-hydroelectric-power-station/">Krapivinskaya hydroelectric power station</a> <span class="coordinates">(55.01860, 87.02470)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (4)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/krapivinskaya-hydroelectric-power-station/">Krapivinskaya hydroelectric power station</a> <span class="coordinates">(55.01860, 87.02470)</span></li>
       <li><a href="/dive-sites/listvyagi-quarry/">Listvyagi Quarry/Листвяги</a> <span class="coordinates">(53.61530, 86.89680)</span></li>
       <li><a href="/dive-sites/manganese-quarry/">Manganese Quarry/Марганец</a> <span class="coordinates">(54.59730, 85.30120)</span></li>
       <li><a href="/dive-sites/temir-tau-quarry/">Temir-Tau Quarry</a> <span class="coordinates">(53.12160, 87.35580)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/russian-federation/moscow/">Moscow</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/russian-federation/moscow/">Moscow</a></li>
       <li><a href="/regions/russian-federation/altai-republic/">Altai Republic</a></li>
       <li><a href="/regions/russian-federation/leningrad/">Leningrad</a></li></ul></section>
 </main>

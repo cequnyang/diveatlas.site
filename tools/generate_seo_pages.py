@@ -27,11 +27,16 @@ COUNTRY_BOUNDARIES = ROOT / "datasets" / "country-boundaries-50m.geojson"
 PHOTO_DATA = ROOT / "datasets" / "dive-site-photos.js"
 FALLBACK_PHOTO_DATA = ROOT / "datasets" / "dive-site-fallback-photos.js"
 SUMMARY_DATA = ROOT / "datasets" / "dive-site-summaries.json.gz"
+AREA_PHOTO_DATA = ROOT / "datasets" / "area-photos.json"
+DESTINATION_PHOTO_ASSIGNMENTS = ROOT / "datasets" / "destination-photo-assignments.json"
+AREA_PHOTO_R2_BASE_URL = "https://assets.diveatlas.site/preview/"
+PUBLIC_DOMAIN_LICENSE_URL = "https://commons.wikimedia.org/wiki/Commons:Licensing#Public_domain"
 SITEMAP = ROOT / "sitemap.xml"
 SITE_OUTPUT = ROOT / "dive-sites"
 REGION_OUTPUT = ROOT / "regions"
 MIN_SITES_PER_REGION = 3
 MIN_SITE_CONTENT_BLOCKS = 3
+LIST_PAGE_SIZE = 30
 RELATED_SITE_LIMIT = 100
 UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", re.I)
 
@@ -168,6 +173,93 @@ def load_photos() -> dict[str, dict[str, str]]:
         ):
             photos[match.group(1).lower()] = fields
     return photos
+
+
+def load_destination_photos(groups: list[dict[str, object]]) -> dict[str, dict[str, str]]:
+    """Resolve explicit destination assignments to their credited R2 WebP copies."""
+    assignments_payload = json.loads(DESTINATION_PHOTO_ASSIGNMENTS.read_text(encoding="utf-8"))
+    if assignments_payload.get("schema") != "diveatlas-destination-photo-assignments-v1":
+        raise ValueError("Unsupported destination photo assignment dataset")
+    assignment_rows = assignments_payload.get("entries")
+    if not isinstance(assignment_rows, list):
+        raise ValueError("Destination photo assignments must contain an entries list")
+
+    photo_payload = json.loads(AREA_PHOTO_DATA.read_text(encoding="utf-8"))
+    if photo_payload.get("schema") != "dive-site-area-photo-manifest-v1":
+        raise ValueError("Unsupported area photo manifest for destination assignments")
+    area_photos: dict[str, dict[str, str]] = {}
+    for raw_photo in photo_payload.get("entries", []):
+        if not isinstance(raw_photo, dict):
+            continue
+        key = str(raw_photo.get("areaKey", ""))
+        if key in area_photos:
+            raise ValueError(f"Duplicate area photo key in destination source manifest: {key}")
+        area_photos[key] = raw_photo
+
+    assignments: dict[str, dict[str, str]] = {}
+    for raw_assignment in assignment_rows:
+        if not isinstance(raw_assignment, dict):
+            raise ValueError("Destination photo assignment must be an object")
+        path = str(raw_assignment.get("path", ""))
+        area_key = str(raw_assignment.get("areaKey", ""))
+        source_page = str(raw_assignment.get("sourcePage", ""))
+        if not path.startswith("/regions/") or not path.endswith("/"):
+            raise ValueError(f"Invalid destination path in photo assignments: {path!r}")
+        if path in assignments:
+            raise ValueError(f"Duplicate destination photo assignment: {path}")
+        photo = area_photos.get(area_key)
+        if not photo or str(photo.get("sourcePage", "")) != source_page:
+            raise ValueError(f"Destination photo source does not match the area photo manifest: {path}")
+
+        src = str(photo.get("src", ""))
+        credit = str(photo.get("credit", "")).strip()
+        source_page = str(photo.get("sourcePage", "")).strip()
+        license_name = str(photo.get("license", "")).strip()
+        license_url = str(photo.get("licenseUrl", "")).strip()
+        if not license_url and license_name.casefold().startswith("public domain"):
+            license_url = PUBLIC_DOMAIN_LICENSE_URL
+        elif license_url.startswith("http://creativecommons.org/"):
+            license_url = "https://" + license_url.removeprefix("http://")
+        title = str(photo.get("photoTitle") or photo.get("title") or "").strip()
+        alt = str(photo.get("alt") or photo.get("photoDescription") or title).strip()
+        if not (src and title and alt and credit and license_name):
+            raise ValueError(f"Destination photo is missing title, alt text, credit, or license: {path}")
+        if not source_page.startswith("https://") or not license_url.startswith("https://"):
+            raise ValueError(f"Destination photo source and license must use HTTPS: {path}")
+
+        ai_review_status = str(photo.get("aiReviewStatus", ""))
+        if re.search(r"(?:ai[- ]generated|generated[- ]by[- ]ai)", ai_review_status, re.I):
+            raise ValueError(f"Destination photo carries an AI-generation marker: {path}")
+
+        # Match prepare_area_photos_r2.py::object_key_for so generated HTML can
+        # reference the already-published object without fetching a runtime manifest.
+        object_identity = f"{area_key}\n{src}".encode("utf-8")
+        r2_key = f"objects/{hashlib.sha256(object_identity).hexdigest()}.webp"
+        assignments[path] = {
+            "src": AREA_PHOTO_R2_BASE_URL + r2_key,
+            "alt": alt,
+            "title": title,
+            "credit": credit,
+            "source_page": source_page,
+            "license": license_name,
+            "license_url": license_url,
+            "ai_review_status": ai_review_status,
+            "selection_status": str(photo.get("selectionStatus", "")),
+            "source_provider": str(photo.get("sourceProvider", "")),
+        }
+
+    expected_paths = {str(group["path"]) for group in groups}
+    assigned_paths = set(assignments)
+    missing = sorted(expected_paths - assigned_paths)
+    stale = sorted(assigned_paths - expected_paths)
+    if missing or stale:
+        details = []
+        if missing:
+            details.append(f"missing {len(missing)} assignment(s), first: {missing[0]}")
+        if stale:
+            details.append(f"stale {len(stale)} assignment(s), first: {stale[0]}")
+        raise ValueError("Destination photo map does not cover the generated destinations: " + "; ".join(details))
+    return assignments
 
 
 def load_summaries() -> dict[str, dict[str, object]]:
@@ -371,6 +463,12 @@ def validated_candidates(
 
 def page_shell(title: str, description: str, canonical: str, body: str, body_class: str = "") -> str:
     body_class_attr = f' class="{html_text(body_class)}"' if body_class else ""
+    if "region-area-browser-page" in body_class.split():
+        region_browse_styles_version = "19"
+    elif body_class in {"region-browser-page", "region-destination-page"}:
+        region_browse_styles_version = "19"
+    else:
+        region_browse_styles_version = "9"
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -386,7 +484,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v={region_browse_styles_version}">
 </head>
 <body{body_class_attr}>
 {body}
@@ -397,6 +495,35 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
 
 def item_list(items: list[dict[str, object]], render_item) -> str:
     return "\n".join(f"      <li>{render_item(item)}</li>" for item in items)
+
+
+def list_page_count(total: int) -> int:
+    return max(1, (total + LIST_PAGE_SIZE - 1) // LIST_PAGE_SIZE)
+
+
+def pagination_nav(page: int, page_count: int, total: int, first_url: str,
+                   continuation_prefix: str, label: str) -> str:
+    if page_count <= 1:
+        return ""
+    previous_url = first_url if page == 2 else f"{continuation_prefix}/page/{page - 1}/"
+    next_url = f"{continuation_prefix}/page/{page + 1}/"
+    start = (page - 1) * LIST_PAGE_SIZE + 1
+    end = min(page * LIST_PAGE_SIZE, total)
+    previous_link = (
+        f'<a href="{html_text(previous_url)}" aria-label="Previous page">Previous</a>'
+        if page > 1 else '<span aria-disabled="true">Previous</span>'
+    )
+    next_link = (
+        f'<a href="{html_text(next_url)}" aria-label="Next page">Next</a>'
+        if page < page_count else '<span aria-disabled="true">Next</span>'
+    )
+    return (
+        f'<nav class="region-list-pagination" aria-label="{html_text(label)}">'
+        f'{previous_link}'
+        f'<span aria-current="page">Page {page:,} of {page_count:,} · '
+        f'showing {start:,}–{end:,} of {total:,}</span>'
+        f'{next_link}</nav>'
+    )
 
 
 def public_region_index(rows: list[list[object]]) -> dict[str, object]:
@@ -431,48 +558,111 @@ def public_region_index(rows: list[list[object]]) -> dict[str, object]:
             "areas": ordered_areas, "sites": sites}
 
 
-def region_browser_page(groups: list[dict[str, object]]) -> str:
-    body = '''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+def destination_photo_caption(photo: dict[str, str], compact: bool = False) -> str:
+    title_link = (
+        f'<a href="{html_text(photo["source_page"])}" target="_blank" '
+        f'rel="noopener noreferrer">{html_text(photo["title"])}</a>'
+    )
+    license_link = (
+        f'<a href="{html_text(photo["license_url"])}" target="_blank" '
+        f'rel="license noopener noreferrer">{html_text(photo["license"])}</a>'
+    )
+    if compact:
+        return (
+            f'<span class="destination-photo__title">{title_link}</span>'
+            '<span class="destination-photo__separator" aria-hidden="true"> · </span>'
+            f'<span class="destination-photo__credit">{html_text(photo["credit"])}</span>'
+            '<span class="destination-photo__separator" aria-hidden="true"> · </span>'
+            '<span class="destination-photo__change">WebP conversion</span>'
+            '<span class="destination-photo__separator" aria-hidden="true"> · </span>'
+            f'<span class="destination-photo__terms">{license_link}</span>'
+        )
+    return (
+        f'<span class="destination-photo__title">{title_link}</span>'
+        f'<span class="destination-photo__credit">{html_text(photo["credit"])}</span>'
+        f'<span class="destination-photo__terms">WebP version re-encoded for web delivery · reuse terms: {license_link}</span>'
+    )
+
+
+def destination_photo_card(group: dict[str, object], photo: dict[str, str]) -> str:
+    path = str(group["path"])
+    region = str(group["region"])
+    country = str(group["country"])
+    site_count = len(group["sites"])
+    return f'''<article class="destination-photo-card">
+  <div class="destination-photo-card__image">
+    <a class="destination-photo-card__image-link" href="{html_text(path)}" aria-label="Open {html_text(region)} destination page"><img src="{html_text(photo["src"])}" alt="{html_text(photo["alt"])}" loading="lazy" decoding="async"></a>
+  </div>
+  <div class="destination-photo-card__caption">
+    <h3><a href="{html_text(path)}">{html_text(region)}</a></h3>
+    <p class="destination-photo-card__place">{html_text(country)} · {site_count} dive sites</p>
+  </div>
+</article>'''
+
+
+def destination_photo_figure(photo: dict[str, str]) -> str:
+    return f'''<figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="{html_text(photo["src"])}" alt="{html_text(photo["alt"])}" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay">{destination_photo_caption(photo, compact=True)}</div>
+  </div>
+</figure>'''
+
+
+def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[str, dict[str, str]], page: int = 1) -> str:
+    directory = region_directory_page(groups, photos_by_path, page)
+    destination_content = re.search(r'<main class="region-browser">(.*?)</main>', directory, re.S).group(1)
+    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">DiveAtlas · editorial photo collection</p>
-  <h1 id="regionPageTitle">Browse dive sites by area</h1>
-  <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
-  <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
-  <article class="region-area-feature" id="regionAreaPhoto" hidden>
-    <figure>
-      <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
-      <figcaption class="region-area-card__caption">
-        <div class="region-area-card__place-line region-area-card__title-line">
-          <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
-          <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
-        </div>
-      </figcaption>
-    </figure>
-  </article>
-  <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
-    <ul class="site-list" id="regionAreaList"></ul>
-  </section>
-  <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
-    <h2 id="regionSiteHeading">Dive sites</h2>
-    <label class="region-browser__search">Search in this area<input id="regionSiteSearch" type="search" autocomplete="off" placeholder="Search dive sites"></label>
-    <p class="coordinates" id="regionSiteCount" aria-live="polite"></p>
-    <ul class="site-list" id="regionSiteList"></ul>
-    <nav class="region-browser__pagination" id="regionPagination" aria-label="Dive-site pages"></nav>
-  </section>
+  <section id="destinationDirectory">{destination_content}</section>
+  <details class="region-area-browser" id="regionAreaBrowser">
+    <summary>Browse dive sites by area</summary>
+    <div class="region-area-browser__content">
+      <h1 id="regionPageTitle">Browse dive sites by area</h1>
+      <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
+      <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
+      <article class="region-area-feature" id="regionAreaPhoto" hidden>
+        <figure>
+          <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
+          <figcaption class="region-area-card__caption">
+            <div class="region-area-card__place-line region-area-card__title-line">
+              <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
+              <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
+            </div>
+          </figcaption>
+        </figure>
+      </article>
+      <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
+        <ul class="site-list" id="regionAreaList"></ul>
+      </section>
+      <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
+        <h2 id="regionSiteHeading">Dive sites</h2>
+        <p class="coordinates" id="regionSiteCount" aria-live="polite"></p>
+        <ul class="site-list" id="regionSiteList"></ul>
+      </section>
+    </div>
+  </details>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>
-<script src="/js/region-browse.js?v=19" defer></script>'''
-    page = page_shell(
-        "Dive Sites by Area | DiveAtlas",
-        "Browse DiveAtlas dive sites by area with distinct, source-linked photos where available.",
-        f"{BASE_URL}/regions/",
-        body,
-        body_class="region-browser-page",
+<script src="/js/region-browse.js?v=27" defer></script>'''
+    page_title = "Dive Sites by Destination | DiveAtlas" if page == 1 else f"Dive Sites by Destination - Page {page} | DiveAtlas"
+    page_url = f"{BASE_URL}/regions/" if page == 1 else f"{BASE_URL}/regions/page/{page}/"
+    page_start = (page - 1) * LIST_PAGE_SIZE + 1
+    page_end = min(page * LIST_PAGE_SIZE, len(groups))
+    description = (
+        f"Browse DiveAtlas destination pages {page_start} to {page_end} of {len(groups)}, "
+        "with source-linked photos and recorded dive-site counts."
+        if page > 1 else
+        "Browse DiveAtlas destinations with source-linked photos and recorded dive-site counts."
     )
-    # Keep the root directory crawlable; filtered catalog views are not SEO landing pages.
-    directory = region_directory_page(groups)
-    destinations = re.search(r'  <section aria-labelledby="regions-heading">.*?</section>', directory, re.S).group(0)
-    page = page.replace('</main>', '<details><summary>Destination pages</summary>\n' + destinations + '\n</details>\n</main>', 1)
+    page = page_shell(
+        page_title,
+        description,
+        page_url,
+        body,
+        body_class="region-browser-page region-area-browser-page",
+    )
+    # The destination photo directory is the primary page; filtered area browsing remains available on demand.
     return page.replace('</head>', '<script>if (new URLSearchParams(location.search).has("area")) { const meta = document.createElement("meta"); meta.name = "robots"; meta.content = "noindex,follow"; document.head.append(meta); }</script>\n</head>', 1)
 
 
@@ -829,43 +1019,85 @@ def generate_site_page(
     return title_base, html
 
 
-def generate_region_page(group: dict[str, object], groups: list[dict[str, object]]) -> tuple[str, str]:
+def generate_region_page(
+    group: dict[str, object],
+    groups: list[dict[str, object]],
+    photo: dict[str, str],
+    site_page: int = 1,
+    related_page: int = 1,
+) -> tuple[str, str]:
     country, region = str(group["country"]), str(group["region"])
     path = region_path(country, region)
     url = f"{BASE_URL}{path}"
     sites = list(group["sites"])
-    title = f"Dive Sites in {region}, {country} | DiveAtlas" if country else f"Dive Sites in {region} | DiveAtlas"
+    title_base = f"Dive Sites in {region}, {country} | DiveAtlas" if country else f"Dive Sites in {region} | DiveAtlas"
     country_suffix = f", {country}" if country else ""
-    description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
+    site_page_count = list_page_count(len(sites))
+    site_page = min(max(site_page, 1), site_page_count)
+    site_start = (site_page - 1) * LIST_PAGE_SIZE
+    visible_sites = sites[site_start:site_start + LIST_PAGE_SIZE]
     latitudes = [float(site["lat"]) for site in sites]
     longitudes = [float(site["lon"]) for site in sites]
     bounds = f"{min(latitudes):.5f} to {max(latitudes):.5f} latitude; {min(longitudes):.5f} to {max(longitudes):.5f} longitude"
-    site_items = item_list(sites, lambda site: f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a> <span class="coordinates">({float(site["lat"]):.5f}, {float(site["lon"]):.5f})</span>')
+    site_items = item_list(visible_sites, lambda site: f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a> <span class="coordinates">({float(site["lat"]):.5f}, {float(site["lon"]):.5f})</span>')
+    site_navigation = pagination_nav(
+        site_page, site_page_count, len(sites), path,
+        f"{path.rstrip('/')}/sites", "Dive-site pages",
+    )
     related = [other for other in groups if other is not group and str(other["country"]).casefold() == country.casefold()]
+    related_page_count = list_page_count(len(related))
+    related_page = min(max(related_page, 1), related_page_count)
+    related_start = (related_page - 1) * LIST_PAGE_SIZE
+    visible_related = related[related_start:related_start + LIST_PAGE_SIZE]
     related_markup = ""
     if related:
-        related_markup = '<section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>' + item_list(related, lambda other: f'<a href="{html_text(other["path"])}">{html_text(other["region"])}</a>') + '</ul></section>'
+        related_navigation = pagination_nav(
+            related_page, related_page_count, len(related), path,
+            f"{path.rstrip('/')}/related", "Related destinations",
+        )
+        related_markup = '<section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">' + item_list(visible_related, lambda other: f'<a href="{html_text(other["path"])}">{html_text(other["region"])}</a>') + '</ul>' + related_navigation + '</section>'
+
+    if site_page > 1:
+        title = title_base.removesuffix(" | DiveAtlas") + f" - Dive sites page {site_page} | DiveAtlas"
+        canonical = f"{url.rstrip('/')}/sites/page/{site_page}/"
+        description = f"Page {site_page} of {site_page_count} lists dive-site profiles in {region}{country_suffix} on DiveAtlas."
+    elif related_page > 1:
+        title = title_base.removesuffix(" | DiveAtlas") + f" - Related destinations page {related_page} | DiveAtlas"
+        canonical = f"{url.rstrip('/')}/related/page/{related_page}/"
+        related_start = (related_page - 1) * LIST_PAGE_SIZE + 1
+        related_end = min(related_page * LIST_PAGE_SIZE, len(related))
+        description = f"Page {related_page} of {related_page_count} lists related destinations {related_start} to {related_end} in {country or region} on DiveAtlas."
+    else:
+        title = title_base
+        canonical = url
+        description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in {html_text(region)}</h1>
   <p class="lead">{html_text(country)}</p>
-  <p>This page lists {len(sites)} dive sites with recorded country and region fields matching this destination. The coordinate range is {html_text(bounds)}.</p>
+  {destination_photo_figure(photo)}
+  <p class="destination-description">This page lists {len(sites)} dive sites with recorded country and region fields matching this destination. The coordinate range is {html_text(bounds)}.</p>
   <p><a href="{html_text(BASE_URL)}/?lat={sum(latitudes)/len(latitudes):.5f}&amp;lng={sum(longitudes)/len(longitudes):.5f}&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(sites)})</h2><ul class="site-list">{site_items}</ul></section>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(sites)})</h2><ul class="site-list destination-site-list">{site_items}</ul>{site_navigation}</section>
   {related_markup}
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>'''
-    return title, page_shell(title, description, url, body)
+    return title, page_shell(title, description, canonical, body, body_class="region-destination-page")
 
 
-def site_directory_page(sites: list[dict[str, object]]) -> str:
+def site_directory_page(sites: list[dict[str, object]], page: int = 1) -> str:
     ordered_sites = sorted(sites, key=lambda site: (
         str(site["country"]).casefold(), str(site["region"]).casefold(),
         str(site["name"]).casefold(), str(site["site_id"])))
-    site_items = item_list(ordered_sites, lambda site: (
+    total = len(ordered_sites)
+    page_count = list_page_count(total)
+    page = min(max(page, 1), page_count)
+    start = (page - 1) * LIST_PAGE_SIZE
+    visible_sites = ordered_sites[start:start + LIST_PAGE_SIZE]
+    site_items = item_list(visible_sites, lambda site: (
         f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a>'
-        f'<span class="coordinates"> — {html_text(", ".join(value for value in (str(site["region"]), str(site["country"])) if value))}</span>'
+        f'<span class="coordinates"> {html_text(", ".join(value for value in (str(site["region"]), str(site["country"])) if value))}</span>'
     ))
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
@@ -873,29 +1105,39 @@ def site_directory_page(sites: list[dict[str, object]]) -> str:
   <h1>Explore dive sites</h1>
   <p class="lead">Browse mapped dive sites with recorded locations and available details. Each profile links its listed facts to the available source information.</p>
   <p><a href="/regions/">Browse dive sites by destination</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(ordered_sites)})</h2><ul class="site-list">{site_items}</ul></section>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({total})</h2><ul class="site-list dive-site-directory-list">{site_items}</ul>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>'''
+    title = "Dive Site Directory | DiveAtlas" if page == 1 else f"Dive Site Directory - Page {page} | DiveAtlas"
+    canonical = f"{BASE_URL}/dive-sites/" if page == 1 else f"{BASE_URL}/dive-sites/page/{page}/"
     return page_shell(
-        "Dive Site Directory | DiveAtlas",
-        f"Browse {len(ordered_sites)} mapped dive-site profiles with recorded locations and available details on DiveAtlas.",
-        f"{BASE_URL}/dive-sites/",
+        title,
+        f"Browse page {page} of {page_count} in the {total} mapped dive-site profiles on DiveAtlas.",
+        canonical,
         body,
         body_class="region-browser-page",
     )
 
 
-def region_directory_page(groups: list[dict[str, object]]) -> str:
-    region_items = item_list(groups, lambda group: (
-        f'<a href="{html_text(group["path"])}">{html_text(group["region"])}</a>'
-        f'<span class="coordinates"> — {html_text(group["country"])} · {len(group["sites"])} dive sites</span>'
+def region_directory_page(
+    groups: list[dict[str, object]],
+    photos_by_path: dict[str, dict[str, str]],
+    page: int = 1,
+) -> str:
+    total = len(groups)
+    page_count = list_page_count(total)
+    page = min(max(page, 1), page_count)
+    start = (page - 1) * LIST_PAGE_SIZE
+    visible_groups = groups[start:start + LIST_PAGE_SIZE]
+    region_items = item_list(visible_groups, lambda group: destination_photo_card(
+        group, photos_by_path[str(group["path"])]
     ))
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
   <p class="eyebrow">DiveAtlas destinations</p>
   <h1>Dive sites by destination</h1>
-  <p class="lead">Explore destination pages grouped from recorded dive-site locations. Use the area browser above to explore more locations in the full map catalog.</p>
-  <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({len(groups)})</h2><ul class="site-list">{region_items}</ul></section>
+  <p class="lead">Explore destination pages grouped from recorded dive-site locations. Full photo source, creator, and license details appear with each destination image.</p>
+  <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({total})</h2><ul class="destination-photo-list">{region_items}</ul>{pagination_nav(page, page_count, total, "/regions/", "/regions", "Destination pages")}</section>
   <p><a href="/dive-sites/">Browse all published dive-site profiles</a></p>
 </main>
 <footer><a href="/">DiveAtlas map</a></footer>'''
@@ -965,6 +1207,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         group["path"] = path
     if len({str(group["path"]) for group in eligible_regions}) != len(eligible_regions):
         raise ValueError("Destination URL collision after applying deterministic suffixes")
+    destination_photos_by_path = load_destination_photos(eligible_regions)
     regions = eligible_regions if args.region_limit is None else eligible_regions[:args.region_limit]
     region_by_place = {(str(group["country"]).casefold(), str(group["region"]).casefold()): group for group in regions}
 
@@ -999,19 +1242,60 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         write_page(SITE_OUTPUT / str(site["slug"]) / "index.html", content)
         sitemap_urls.append(canonical)
 
+    site_directory_pages = list_page_count(len(selected))
     write_page(SITE_OUTPUT / "index.html", site_directory_page(selected))
-    write_page(REGION_OUTPUT / "index.html", region_browser_page(regions))
+    for page in range(2, site_directory_pages + 1):
+        write_page(SITE_OUTPUT / "page" / str(page) / "index.html", site_directory_page(selected, page))
+        sitemap_urls.append(f"{BASE_URL}/dive-sites/page/{page}/")
+
+    destination_directory_pages = list_page_count(len(regions))
+    write_page(REGION_OUTPUT / "index.html", region_browser_page(regions, destination_photos_by_path))
+    for page in range(2, destination_directory_pages + 1):
+        write_page(REGION_OUTPUT / "page" / str(page) / "index.html",
+                   region_browser_page(regions, destination_photos_by_path, page))
+        sitemap_urls.append(f"{BASE_URL}/regions/page/{page}/")
     (REGION_OUTPUT / "area-index.json").write_text(
         json.dumps(area_index, ensure_ascii=False, separators=(",", ":")) + "\n",
         encoding="utf-8", newline="\n")
 
     for group in regions:
-        title, content = generate_region_page(group, regions)
+        title, content = generate_region_page(
+            group,
+            regions,
+            destination_photos_by_path[str(group["path"])],
+        )
         if title in titles:
             raise ValueError(f"Duplicate generated title: {title}")
         titles.add(title)
         write_page(ROOT / str(group["path"]).lstrip("/") / "index.html", content)
         sitemap_urls.append(f"{BASE_URL}{str(group['path'])}")
+
+        region_output = ROOT / str(group["path"]).lstrip("/")
+        site_pages = list_page_count(len(group["sites"]))
+        for page in range(2, site_pages + 1):
+            page_title, page_content = generate_region_page(
+                group, regions, destination_photos_by_path[str(group["path"])], site_page=page,
+            )
+            if page_title in titles:
+                raise ValueError(f"Duplicate generated title: {page_title}")
+            titles.add(page_title)
+            write_page(region_output / "sites" / "page" / str(page) / "index.html", page_content)
+            sitemap_urls.append(f"{BASE_URL}{str(group['path']).rstrip('/')}/sites/page/{page}/")
+
+        related_count = sum(
+            1 for other in regions if other is not group
+            and str(other["country"]).casefold() == str(group["country"]).casefold()
+        )
+        related_pages = list_page_count(related_count)
+        for page in range(2, related_pages + 1):
+            page_title, page_content = generate_region_page(
+                group, regions, destination_photos_by_path[str(group["path"])], related_page=page,
+            )
+            if page_title in titles:
+                raise ValueError(f"Duplicate generated title: {page_title}")
+            titles.add(page_title)
+            write_page(region_output / "related" / "page" / str(page) / "index.html", page_content)
+            sitemap_urls.append(f"{BASE_URL}{str(group['path']).rstrip('/')}/related/page/{page}/")
 
     if len(sitemap_urls) != len(set(sitemap_urls)):
         raise ValueError("Duplicate URL in generated sitemap")
@@ -1029,6 +1313,13 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     return {
         "site_count": len(selected),
         "region_count": len(regions),
+        "destination_photo_count": len(regions),
+        "destination_photo_unique_source_count": len({
+            destination_photos_by_path[str(group["path"])]["source_page"] for group in regions
+        }),
+        "destination_photo_review_status_counts": dict(Counter(
+            destination_photos_by_path[str(group["path"])]["ai_review_status"] for group in regions
+        )),
         "area_count": len(area_index["areas"]),
         "area_site_count": area_index["site_count"],
         "candidate_count": len(candidates),

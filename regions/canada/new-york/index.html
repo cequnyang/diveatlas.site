@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in New York</h1>
   <p class="lead">Canada</p>
-  <p>This page lists 8 dive sites with recorded country and region fields matching this destination. The coordinate range is 44.31330 to 44.89350 latitude; -75.95700 to -75.18030 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/0a429ac7a30bed66b6088cce8f6c051c7b9910e40e6d1f6504e3e47b2690b675.webp" alt="Icy Trees on Canada Island" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:Icy_Trees_on_Canada_Island_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Icy Trees on Canada Island - panoramio</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Doktor Ellis / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 8 dive sites with recorded country and region fields matching this destination. The coordinate range is 44.31330 to 44.89350 latitude; -75.95700 to -75.18030 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=44.50732&amp;lng=-75.62222&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (8)</h2><ul class="site-list">      <li><a href="/dive-sites/centeen-memorial-dive-park/">Centeen Memorial Dive Park</a> <span class="coordinates">(44.59180, -75.67730)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (8)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/centeen-memorial-dive-park/">Centeen Memorial Dive Park</a> <span class="coordinates">(44.59180, -75.67730)</span></li>
       <li><a href="/dive-sites/kinghorn-wreck/">Kinghorn (Wreck)</a> <span class="coordinates">(44.37310, -75.92310)</span></li>
       <li><a href="/dive-sites/lillie-parsons-wreck/">Lillie Parsons (Wreck)</a> <span class="coordinates">(44.33380, -75.43160)</span></li>
       <li><a href="/dive-sites/lise-cottage-private-property/">Lise Cottage (Private Property)</a> <span class="coordinates">(44.37030, -75.95700)</span></li>
@@ -31,7 +37,7 @@
       <li><a href="/dive-sites/the-daryaw-wreck/">The Daryaw Wreck</a> <span class="coordinates">(44.31330, -75.45460)</span></li>
       <li><a href="/dive-sites/centeen-park/">Centeen Park</a> <span class="coordinates">(44.59222, -75.67757)</span></li>
       <li><a href="/dive-sites/robert-gaskin/">Robert Gaskin</a> <span class="coordinates">(44.59056, -75.67627)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/canada/british-columbia/">British Columbia</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/canada/british-columbia/">British Columbia</a></li>
       <li><a href="/regions/canada/great-lakes/">Great Lakes</a></li>
       <li><a href="/regions/canada/nova-scotia/">Nova Scotia</a></li>
       <li><a href="/regions/canada/ontario/">Ontario</a></li>

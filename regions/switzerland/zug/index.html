@@ -13,24 +13,30 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=145">
-  <link rel="stylesheet" href="/assets/region-browse.css?v=9">
+  <link rel="stylesheet" href="/assets/region-browse.css?v=19">
 </head>
-<body>
+<body class="region-destination-page">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
   <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in Zug</h1>
   <p class="lead">Switzerland</p>
-  <p>This page lists 7 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.09390 to 47.14550 latitude; 8.49738 to 8.51910 longitude.</p>
+  <figure class="destination-photo-detail">
+  <div class="destination-photo-detail__frame">
+    <img src="https://assets.diveatlas.site/preview/objects/50230ced08f38fc8476a851d10d18ccba75db2309c01edf932ae385a838b33ce.webp" alt="The Zugerberg overlooking Lake Zug" loading="lazy" decoding="async">
+    <div class="destination-photo-credit-overlay"><span class="destination-photo__title"><a href="https://commons.wikimedia.org/wiki/File:The_Zugerberg_overlooking_Lake_Zug_-_panoramio_(52).jpg" target="_blank" rel="noopener noreferrer">The Zugerberg overlooking Lake Zug - panoramio (52)</a></span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__credit">Patrick Nouhailler&#x27;s… / Wikimedia Commons</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__change">WebP conversion</span><span class="destination-photo__separator" aria-hidden="true"> · </span><span class="destination-photo__terms"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="license noopener noreferrer">CC BY-SA 3.0</a></span></div>
+  </div>
+</figure>
+  <p class="destination-description">This page lists 7 dive sites with recorded country and region fields matching this destination. The coordinate range is 47.09390 to 47.14550 latitude; 8.49738 to 8.51910 longitude.</p>
   <p><a href="https://diveatlas.site/?lat=47.11604&amp;lng=8.50333&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (7)</h2><ul class="site-list">      <li><a href="/dive-sites/grafenmatteli/">Grafenmätteli</a> <span class="coordinates">(47.11240, 8.50130)</span></li>
+  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites (7)</h2><ul class="site-list destination-site-list">      <li><a href="/dive-sites/grafenmatteli/">Grafenmätteli</a> <span class="coordinates">(47.11240, 8.50130)</span></li>
       <li><a href="/dive-sites/grafstatt/">Grafstatt</a> <span class="coordinates">(47.10950, 8.50260)</span></li>
       <li><a href="/dive-sites/rigiblick/">Rigiblick</a> <span class="coordinates">(47.14550, 8.50560)</span></li>
       <li><a href="/dive-sites/rossblatten/">Rossblatten</a> <span class="coordinates">(47.09390, 8.51910)</span></li>
       <li><a href="/dive-sites/zigeunerplatzli-walchwil/">Zigeunerplätzli, Walchwil</a> <span class="coordinates">(47.11770, 8.49760)</span></li>
       <li><a href="/dive-sites/lothenbach/">Lothenbach</a> <span class="coordinates">(47.11553, 8.49975)</span></li>
       <li><a href="/dive-sites/zigeunerplatz/">Zigeunerplatz</a> <span class="coordinates">(47.11772, 8.49738)</span></li></ul></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul>      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">Other dive-site destinations in this country</h2><ul class="related-destination-list">      <li><a href="/regions/switzerland/zurich/">Zürich</a></li>
       <li><a href="/regions/switzerland/bern/">Bern</a></li>
       <li><a href="/regions/switzerland/st-gallen/">St. Gallen</a></li>
       <li><a href="/regions/switzerland/schwyz/">Schwyz</a></li>
