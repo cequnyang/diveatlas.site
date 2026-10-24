@@ -1,0 +1,2310 @@
+{
+  "schema": "diveatlas-destination-photo-assignments-v1",
+  "entries": [
+    {
+      "path": "/regions/egypt/red-sea/",
+      "areaKey": "[\"africa\",\"northern africa\",\"egypt\",\"red sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D0%BE%D0%B2%D1%8B%D0%B5_%D1%80%D0%B8%D1%84%D1%8B_%D0%B1%D1%83%D1%85%D1%82%D1%8B_%D0%9A%D0%BE%D1%80%D0%B0%D0%BB_%D0%91%D0%B5%D0%B9.jpg"
+    },
+    {
+      "path": "/regions/honduras/roatan/",
+      "areaKey": "[\"north america\",\"central america\",\"honduras\",\"roatan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:OAK_RIDGE_Fishing_Village_(32128175631).jpg"
+    },
+    {
+      "path": "/regions/malta/malta-and-gozo/",
+      "areaKey": "[\"europe\",\"southern europe\",\"malta\",\"malta and gozo\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Underwater_view_of_the_remains_of_the_Azure_Window,_at_Dwejra,_Gozo.jpg"
+    },
+    {
+      "path": "/regions/canada/british-columbia/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"british columbia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:View_from_Port_H%27Kusam_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states/massachusetts/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"massachusetts\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Stockbridge_Town_Beach_at_Stockbridge_Bowl.JPG"
+    },
+    {
+      "path": "/regions/maldives/maldives/",
+      "areaKey": "[\"asia\",\"southern asia\",\"maldives\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Banana_Reef.jpg"
+    },
+    {
+      "path": "/regions/indonesia/raja-ampat/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"raja ampat\"]",
+      "sourcePage": "https://www.flickr.com/photos/38009580@N05/5556220258"
+    },
+    {
+      "path": "/regions/united-states-of-america/florida-panhandle/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"florida panhandle\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Navarre_Beach_Wave_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/indonesia/bali/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"bali\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Balinese_Jukung_Boat.JPG"
+    },
+    {
+      "path": "/regions/israel/israel/",
+      "areaKey": "[\"asia\",\"western asia\",\"israel\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Eilat_at_Januar_2014_-_01.jpg"
+    },
+    {
+      "path": "/regions/bonaire-sint-eustatius-and-saba/bonaire/",
+      "areaKey": "[\"north america\",\"caribbean\",\"bonaire, sint eustatius and saba\",\"bonaire\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Shore_Diving_Bonaire_(223112289).jpeg"
+    },
+    {
+      "path": "/regions/canada/great-lakes/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"great lakes\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Detroit_River_Draining_Into_Lake_Erie,_Michigan_(21515756299).jpg"
+    },
+    {
+      "path": "/regions/indonesia/komodo-national-park/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"komodo national park\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beautiful_Taka_Makassar_Island.jpg"
+    },
+    {
+      "path": "/regions/france/martinique/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"martinique\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_de_Anse_Dufour.jpg"
+    },
+    {
+      "path": "/regions/spain/balearic-islands/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"balearic islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cabrera_-_Port_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/canada/nova-scotia/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"nova scotia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Peggys_Cove_Nova_Scotia_02.jpg"
+    },
+    {
+      "path": "/regions/france/guadeloupe/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"guadeloupe\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_de_Malendure_-_Flickr_-_Tiomax80.jpg"
+    },
+    {
+      "path": "/regions/japan/okinawa/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"okinawa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nishibama_Beach_2010_(7817).JPG"
+    },
+    {
+      "path": "/regions/philippines/philippines-puerto-galera/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines puerto galera\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Puerto_Galera_-_Sabang_beach_-_panoramio_(2).jpg"
+    },
+    {
+      "path": "/regions/thailand/koh-tao/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"koh tao\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Koh_Tao_(Turtle_Island),_Thailand.JPG"
+    },
+    {
+      "path": "/regions/curacao/curacao/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"curacao\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:When_Sand_is_Your_Home_(5285862938).jpg"
+    },
+    {
+      "path": "/regions/germany/bavaria/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"bavaria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Thumsee02.jpg"
+    },
+    {
+      "path": "/regions/mexico/quintana-roo/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"quintana roo\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mahahual_Beach_(http-www.bluekaymahahual.com)_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/austria/carinthia/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"carinthia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Stockenboi_-_Wasserfall.jpg"
+    },
+    {
+      "path": "/regions/croatia/croatia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_in_Jaki%C5%A1nica.jpg"
+    },
+    {
+      "path": "/regions/mexico/cozumel/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"cozumel\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Reef_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/indonesia/manado-bunaken/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"manado bunaken\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Serpent_Coral_(Pachyseris_sp.)_(8476654122).jpg"
+    },
+    {
+      "path": "/regions/united-states/california/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"california\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Digital_photograph_of_the_skyline_of_the_Financial_District_of_San_Francisco,_California_from_the_San_Francisco_%E2%80%93_Oakland_Bay_Bridge_at_1017.15_on_Saturday,_3_September_2022.jpg"
+    },
+    {
+      "path": "/regions/honduras/utila/",
+      "areaKey": "[\"north america\",\"central america\",\"honduras\",\"utila\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Utila_Hondoras_beach.jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/british-virgin-islands/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"british virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_View_from_Salt_Island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/germany/baden-wurttemberg/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"baden-wurttemberg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bodensee,_Lac_de_Constance_-_panoramio_(143).jpg"
+    },
+    {
+      "path": "/regions/new-zealand/poor-knights-islands/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"poor knights islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Diver_at_the_Northern_Arch,_Poor_Knights_Islands.jpg"
+    },
+    {
+      "path": "/regions/south-africa/cape-town/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\",\"cape town\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Laika_ac_Boulders_Beach_(8403746649).jpg"
+    },
+    {
+      "path": "/regions/netherlands/zeeland/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"zeeland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_the_coast_of_Belgium_from_Bruges_to_the_coast_of_Zeeland_in_the_Netherlands.jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-malapascua/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines malapascua\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gato_Islet.jpg"
+    },
+    {
+      "path": "/regions/spain/santa-cruz-de-tenerife/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"santa cruz de tenerife\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Moonlight_coast_(357317636).jpg"
+    },
+    {
+      "path": "/regions/spain/girona/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"girona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dangerous_Risk_Adrenaline_Suicide_by_Fear_of_Falling.jpg"
+    },
+    {
+      "path": "/regions/united-states/texas/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"texas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Travis_March_2016_1.JPG"
+    },
+    {
+      "path": "/regions/united-states-of-america/new-england/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"new england\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Boston_Light,_Little_Brewster_Island,_Boston_(493391)_(10772431386).jpg"
+    },
+    {
+      "path": "/regions/italy/sardinia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"sardinia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sos_Aranzos_beach_(Spiaggia_Sos_Aranzos),_Sardinia,_Italy.jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-anilao/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines anilao\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Plectorhinchus_polytaenia.jpg"
+    },
+    {
+      "path": "/regions/portugal/azores/",
+      "areaKey": "[\"europe\",\"southern europe\",\"portugal\",\"azores\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gabriel_at_Furna_do_Enxofre,_Caldeira,_Graciosa_Island,_Azores,_Portugal_(PPL1-Corrected)_julesvernex2.jpg"
+    },
+    {
+      "path": "/regions/thailand/thailand-similan-islands/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"thailand similan islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Similan_Island_01_(MK).jpg"
+    },
+    {
+      "path": "/regions/australia/great-barrier-reef/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"great barrier reef\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Great_Barrier_Reef_Queensland_Ank_Kumar.jpg"
+    },
+    {
+      "path": "/regions/papua-new-guinea/papua-new-guinea/",
+      "areaKey": "[\"oceania\",\"melanesia\",\"papua new guinea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS047-E-135019_-_View_of_Earth.jpg"
+    },
+    {
+      "path": "/regions/austria/upper-austria/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"upper austria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:H%C3%B6llengebirge_(NW_side)_from_Attersee.jpg"
+    },
+    {
+      "path": "/regions/marshall-islands/marshall-islands/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"marshall islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Furniture_to_Ebeye_(9478263).jpg"
+    },
+    {
+      "path": "/regions/france/reunion/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"reunion\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_on_Reunion_Island.jpg"
+    },
+    {
+      "path": "/regions/jamaica/jamaica/",
+      "areaKey": "[\"north america\",\"caribbean\",\"jamaica\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Free_wifi_in_montego_bay_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/malaysia/johor/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"malaysia\",\"johor\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Waterfall_in_Belumut_Mountain,_Kluang,_Johor,_Malaysia.jpg"
+    },
+    {
+      "path": "/regions/netherlands/bonaire/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"bonaire\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Giant_anemone_Condylactis_gigantea_(2442374391).jpg"
+    },
+    {
+      "path": "/regions/germany/north-rhine-westphalia/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"north rhine-westphalia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Lister,_Germany_(8485700848).jpg"
+    },
+    {
+      "path": "/regions/japan/okinawa-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"okinawa prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chatan_beach,_Naha,_Japan;_April_2012.jpg"
+    },
+    {
+      "path": "/regions/philippines/negros-oriental/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"negros oriental\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Laticauda_colubrina_(Zamboanguita)_3.jpg"
+    },
+    {
+      "path": "/regions/solomon-islands/solomon-islands/",
+      "areaKey": "[\"oceania\",\"melanesia\",\"solomon islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Halavo_High_School.jpg"
+    },
+    {
+      "path": "/regions/cook-islands/cook-islands-rarotonga/",
+      "areaKey": "[\"oceania\",\"polynesia\",\"cook islands\",\"cook islands rarotonga\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Vaimaaga,_Rarotonga_-_panoramio_(7).jpg"
+    },
+    {
+      "path": "/regions/netherlands/north-brabant/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"north brabant\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bakel_dorpspomp.JPG"
+    },
+    {
+      "path": "/regions/saudi-arabia/red-sea/",
+      "areaKey": "[\"asia\",\"western asia\",\"saudi arabia\",\"red sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:CIMG2928_Hawksbill_Turtle,_Woodhouse_Reef_(2693839316).jpg"
+    },
+    {
+      "path": "/regions/spain/alicante/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"alicante\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Vue_sur_mer_depuis_maryvilla_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states/florida/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"florida\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hyatt_Beach_House_Resort_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/canada/ontario/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"ontario\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_in_Barrie_(14206488144).jpg"
+    },
+    {
+      "path": "/regions/france/port-cros/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"port cros\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ile-de-Port-Cros-port-de-plaisance-relief-foret-byRundvald.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/south-florida/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"south florida\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fort_Lauderdale_beach_sunrise_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/france/pyrenees-orientales/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"pyrenees-orientales\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Quiosco_aseos_habana_-_Port_Barcar%C3%A9s.JPG"
+    },
+    {
+      "path": "/regions/the-bahamas/bahamas/",
+      "areaKey": "[\"north america\",\"caribbean\",\"the bahamas\",\"bahamas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bahamas_1989_(545)_Exuma_(25324540096).jpg"
+    },
+    {
+      "path": "/regions/new-zealand/waikato/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"waikato\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Coast_south_of_Hot_water_beach.JPG"
+    },
+    {
+      "path": "/regions/united-states-of-america/florida-keys/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"florida keys\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Boca_Chita_Miami_skyline_NPS1.jpg"
+    },
+    {
+      "path": "/regions/virgin-islands-british/british-virgin-islands/",
+      "areaKey": "[\"north america\",\"caribbean\",\"virgin islands, british\",\"british virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Karibik_-_Brit._Jungferninseln_-_Cooper_Island_and_Salt_Island_%E2%80%93_Peter_Island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/australia/new-south-wales/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"new south wales\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Byron_Bay,_Australia_(Unsplash_U6KmF4RpgiU).jpg"
+    },
+    {
+      "path": "/regions/federated-states-of-micronesia/chuuk-lagoon/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"federated states of micronesia\",\"chuuk lagoon\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chuuk_lagoon_(Unachiech_reef)_aerial_view.jpg"
+    },
+    {
+      "path": "/regions/mexico/puerto-vallarta/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"puerto vallarta\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Quimixto,_Banderas_Bay_(Puerto_Vallarta),_Mexico_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/oman/muscat/",
+      "areaKey": "[\"asia\",\"western asia\",\"oman\",\"muscat\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Al_Munassir_01.JPG"
+    },
+    {
+      "path": "/regions/united-states/florida-keys/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"florida keys\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dying_coral_Molasses_Reef_20230714.jpg"
+    },
+    {
+      "path": "/regions/barbados/barbados/",
+      "areaKey": "[\"north america\",\"caribbean\",\"barbados\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tradewinds_24_MPC_Day_2_(8217849).jpg"
+    },
+    {
+      "path": "/regions/cyprus/cyprus/",
+      "areaKey": "[\"asia\",\"western asia\",\"cyprus\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Konnos_Beach_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/germany/saxony/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"saxony\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ammelshain-Kirche.jpg"
+    },
+    {
+      "path": "/regions/italy/ustica/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"ustica\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_in_Ustica_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/spain/las-palmas/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"las palmas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:La_Canter%C3%ADa_beach.JPG"
+    },
+    {
+      "path": "/regions/red-sea/",
+      "areaKey": "[\"red sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Red_Sea_Sunrise_BWP.jpg"
+    },
+    {
+      "path": "/regions/belarus/vitebsk/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"belarus\",\"vitebsk\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chrabro%C5%ADka_-_Nabista_-_1.jpg"
+    },
+    {
+      "path": "/regions/colombia/providencia-island/",
+      "areaKey": "[\"south america\",\"colombia\",\"providencia island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tyrannus_savana_from_Providencia_Island_2.jpg"
+    },
+    {
+      "path": "/regions/germany/lower-saxony/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"lower saxony\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kastanjeboleet.JPG"
+    },
+    {
+      "path": "/regions/greece/crete/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"crete\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pilot_beach,_Georgioupoli,_Chania,_Crete,_Greece_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/netherlands/south-holland/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"south holland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Philipsdam_panorama.jpg"
+    },
+    {
+      "path": "/regions/new-zealand/auckland/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"auckland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pupuke_lakeshore.jpg"
+    },
+    {
+      "path": "/regions/panama/bocas-del-toro/",
+      "areaKey": "[\"north america\",\"central america\",\"panama\",\"bocas del toro\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bastimentos_Panama_3.jpg"
+    },
+    {
+      "path": "/regions/switzerland/zurich/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"zurich\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ZSG_-_Stadt_Z%C3%BCrich_IMG_2344.jpg"
+    },
+    {
+      "path": "/regions/united-states/new-york/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"new york\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:FloodedCrescentBeachPultneyvilleNewYork.jpg"
+    },
+    {
+      "path": "/regions/sudan/red-sea-sudan-red-sea/",
+      "areaKey": "[\"africa\",\"northern africa\",\"sudan\",\"red sea | sudan red sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:PortSudan_NCT.jpg"
+    },
+    {
+      "path": "/regions/united-republic-of-tanzania/tanzania-zanzibar/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"united republic of tanzania\",\"tanzania | zanzibar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Paje_beach_at_low_tide.jpg"
+    },
+    {
+      "path": "/regions/croatia/split-dalmatia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"split-dalmatia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Op%C4%87ina_Stari_Grad,_Croatia_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/apulia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"apulia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cala_Degli_Inglesi_(English_Cove)_-_San_Domino_Island_-_Tremiti,_Foggia,_Italy_-_August_21,_2013_04.jpg"
+    },
+    {
+      "path": "/regions/netherlands/gelderland/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"gelderland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lovely_terrace_for_dinnerpossibilities_at_the_backside_with_view_over_the_Lake_Bussloo_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/switzerland/bern/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"bern\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:SBB_RABDe_500_bei_Twann.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/british-columbia-puget-sound/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"british columbia | puget sound\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mt_Baker_through_Obstruction_Pass.jpg"
+    },
+    {
+      "path": "/regions/philippines/cebu/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"cebu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Snorkling_with_Whale_Sharks_(6997605767).jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/bermuda/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"bermuda\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_Cadet_Corps_TS_Venture,_on_Ireland_Island,_Bermuda.jpg"
+    },
+    {
+      "path": "/regions/croatia/dobruvnik-neretva/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"dobruvnik-neretva\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%D0%98%D0%B3%D0%B0%D0%BB%D0%BE._%D0%94%D0%B5%D1%82%D0%B8_%D0%BD%D0%B0_%D0%BF%D0%BB%D1%8F%D0%B6%D0%B5_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/germany/brandenburg/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"brandenburg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ausblick_aussichtsturm_senftenberger_see.JPG"
+    },
+    {
+      "path": "/regions/germany/saxony-anhalt/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"saxony-anhalt\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wittenberge_Stepenitz_Karthane_Panorama_2009-07-27.jpg"
+    },
+    {
+      "path": "/regions/indonesia/sangalaki/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"sangalaki\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Triaenodon_obesus_459652938.jpg"
+    },
+    {
+      "path": "/regions/mexico/los-cabos/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"los cabos\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Los_Cabos,_Baja_California_Sur,_Mexico_-_Hats_and_blankets_sellers,_January_2021.jpg"
+    },
+    {
+      "path": "/regions/netherlands/curacao/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"curacao\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:When_Sand_is_Your_Home_(5285862938).jpg"
+    },
+    {
+      "path": "/regions/palau/palau/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"palau\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_at_Ulong_Island,_Palau_(9757233916).jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-bohol/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines bohol\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_over_Balicasag_Island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/saint-lucia/st-lucia/",
+      "areaKey": "[\"north america\",\"caribbean\",\"saint lucia\",\"st lucia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Souffriere_Bay_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states/utah/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"utah\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Red_Cliffs_and_Pine_Valley_Mountains.JPG"
+    },
+    {
+      "path": "/regions/czechia/czech-republic/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"czechia\",\"czech republic\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Road_III-4875_and_a_house_in_Kychov%C3%A1_(Huslenky),_Vset%C3%ADn_District,_Zl%C3%ADn_Region,_Czech_Republic_15.jpg"
+    },
+    {
+      "path": "/regions/dominican-republic/dominican-republic/",
+      "areaKey": "[\"north america\",\"caribbean\",\"dominican republic\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Catalina_-_panoramio_-_patano.jpg"
+    },
+    {
+      "path": "/regions/ecuador/galapagos-islands/",
+      "areaKey": "[\"south america\",\"ecuador\",\"galapagos islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jonathan_Green_whale_shark.jpg"
+    },
+    {
+      "path": "/regions/greece/south-aegean/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"south aegean\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:TassosFaliraki01.JPG"
+    },
+    {
+      "path": "/regions/india/andaman-islands/",
+      "areaKey": "[\"asia\",\"southern asia\",\"india\",\"andaman islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Havelock_Island,_Sandy_lagoon,_Andaman_Islands.jpg"
+    },
+    {
+      "path": "/regions/indonesia/halmahera/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"halmahera\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Halmahera_Island,_North_Maluku,_Indonesia_4.jpg"
+    },
+    {
+      "path": "/regions/jordan/aqaba/",
+      "areaKey": "[\"asia\",\"western asia\",\"jordan\",\"aqaba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gulf_of_Aqaba_sunset_time.jpg"
+    },
+    {
+      "path": "/regions/mexico/cabo-pulmo/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"cabo pulmo\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pez_%C3%A1ngel_real_(Holacanthus_passer),_Cabo_Pulmo,_Baja_California,_M%C3%A9xico,_2024-12-19,_DD_25.jpg"
+    },
+    {
+      "path": "/regions/netherlands/north-holland/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"north holland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Den_Helder_-_Between_Marsdiepstraat_%26_Het_Nieuwland_-_ICE_Photocompilation_Viewing_from_NW_to_East_on_part_of_the_fortifications_around_this_naval_city.jpg"
+    },
+    {
+      "path": "/regions/new-zealand/northland/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"northland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bland_Bay.JPG"
+    },
+    {
+      "path": "/regions/united-states-of-america/alaska/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"alaska\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Parque_Eagle_River,_Anchorage,_Alaska,_Estados_Unidos,_2017-09-01,_DD_33.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/hawaii-oahu/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"hawaii oahu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:P%C5%ABp%C5%ABkea_Beach_Park.jpg"
+    },
+    {
+      "path": "/regions/canada/alaska/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"alaska\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Alaska_Highway_Scenery_en_route_from_Watson_Lake_to_Whitehorse_-_Yukon_Territory_-_Canada.jpg"
+    },
+    {
+      "path": "/regions/czechia/central-bohemian/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"czechia\",\"central bohemian\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:V%C5%A1evily_(1).JPG"
+    },
+    {
+      "path": "/regions/fiji/fiji/",
+      "areaKey": "[\"oceania\",\"melanesia\",\"fiji\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fiji_Cyclone_(3)_(25896997430).jpg"
+    },
+    {
+      "path": "/regions/france/french-polynesia/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"french polynesia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Plong%C3%A9e_sur_un_r%C3%A9cif_corallien_(Vairao,_Tahiti)_(Ifremer_00789-90106_-_50470).jpg"
+    },
+    {
+      "path": "/regions/french-polynesia/french-polynesia/",
+      "areaKey": "[\"oceania\",\"polynesia\",\"french polynesia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:A_view_from_the_AR_72_airplane_(Over_Society_Islands_-_French_Polynesia).jpg"
+    },
+    {
+      "path": "/regions/netherlands/drenthe/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"drenthe\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kymmelsberg.jpg"
+    },
+    {
+      "path": "/regions/switzerland/st-gallen/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"st. gallen\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Walensee_Churfirsten_Panorama.jpg"
+    },
+    {
+      "path": "/regions/united-states/hawaii-oahu/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"hawaii oahu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:H%C4%81lona_Cove_01.JPG"
+    },
+    {
+      "path": "/regions/vanuatu/vanuatu/",
+      "areaKey": "[\"oceania\",\"melanesia\",\"vanuatu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Oyster_Island_Walk.jpg"
+    },
+    {
+      "path": "/regions/cabo-verde/sao-vicente/",
+      "areaKey": "[\"africa\",\"western africa\",\"cabo verde\",\"sao vicente\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mindelo,_S%C3%A3o_Vicente,_Cape_Verde_(16696353652).jpg"
+    },
+    {
+      "path": "/regions/croatia/primorje-gorski/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"primorje-gorski\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:20140506_Krk_Vrbnik_view_Novi_Vinodolski.jpg"
+    },
+    {
+      "path": "/regions/croatia/split-dalmatia-county/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"split-dalmatia county\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:TonciFish.JPG"
+    },
+    {
+      "path": "/regions/france/haute-savoie/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"haute-savoie\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Avoriaz_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/indonesia/gili-islands-lombok/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"gili islands | lombok\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:East_coast,_Gili_Trawangan_2017-08-10_(2).jpg"
+    },
+    {
+      "path": "/regions/indonesia/lembeh-strait/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"lembeh strait\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Antennarius_striatus_(8492976355).jpg"
+    },
+    {
+      "path": "/regions/indonesia/sumbawa/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"sumbawa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Turqoise.jpg"
+    },
+    {
+      "path": "/regions/japan/shizuoka-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"shizuoka prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Atami_Beach_Line_20121006.jpg"
+    },
+    {
+      "path": "/regions/saint-kitts-and-nevis/st-kitts-and-nevis/",
+      "areaKey": "[\"north america\",\"caribbean\",\"saint kitts and nevis\",\"st kitts and nevis\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Saint_Kitts_at_Dawn.JPG"
+    },
+    {
+      "path": "/regions/tonga/tonga/",
+      "areaKey": "[\"oceania\",\"polynesia\",\"tonga\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Humpback_Whale-Megaptera_novaeangliae_(16632461328).jpg"
+    },
+    {
+      "path": "/regions/trinidad-and-tobago/tobago/",
+      "areaKey": "[\"north america\",\"caribbean\",\"trinidad and tobago\",\"tobago\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Osca_skipper_(Rhinthon_cubana_osca).JPG"
+    },
+    {
+      "path": "/regions/turkiye/antalya/",
+      "areaKey": "[\"turkiye\",\"antalya\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lower_Duden_Falls.jpg"
+    },
+    {
+      "path": "/regions/united-states/arizona/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"arizona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Pleasant_from_Pipeline_Canyon_Trail.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/north-carolina/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"north carolina\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:U.S._264,_Between_Belhaven_and_Swan_Quarter,_North_Carolina_(14424429666).jpg"
+    },
+    {
+      "path": "/regions/croatia/istria/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"istria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kuvi_beach_@_Rovinj_-_Croatia_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/federated-states-of-micronesia/micronesia-yap/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"federated states of micronesia\",\"micronesia yap\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:View_from_Room_@_Manta_Ray_Bay_Hotel_(2849895028).jpg"
+    },
+    {
+      "path": "/regions/germany/mecklenburg-western-pomerania/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"mecklenburg-western pomerania\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Willigrad_Schweriner_See_Insel_Rethberg_2014-04-27_2.JPG"
+    },
+    {
+      "path": "/regions/indonesia/banda-sea/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"banda sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dolphin_at_Banda_Sea_(6).jpg"
+    },
+    {
+      "path": "/regions/japan/mie-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"mie prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nambari_Coastline_Park.jpg"
+    },
+    {
+      "path": "/regions/peru/lima/",
+      "areaKey": "[\"south america\",\"peru\",\"lima\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Larosterna_inca5.jpg"
+    },
+    {
+      "path": "/regions/philippines/siquijor/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"siquijor\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Siquijor_-_Sandugan_Beach_mangroves.jpg"
+    },
+    {
+      "path": "/regions/south-africa/south-africa/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:West_Coast_National_Park_(11356319176).jpg"
+    },
+    {
+      "path": "/regions/south-africa/western-cape/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\",\"western cape\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Secluded_beach_16k_%E2%80%93_Panorama_(Greg_Zaal_and_Rico_Cilliers_via_Poly_Haven).jpg"
+    },
+    {
+      "path": "/regions/spain/gipuzkoa/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"gipuzkoa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Maro_stern.jpg"
+    },
+    {
+      "path": "/regions/spain/murcia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"murcia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Puerto_C_Palos_vista_darsena_interior.jpg"
+    },
+    {
+      "path": "/regions/thailand/phuket/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"phuket\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nai_Yang_Beach,_Phuket_(4448555072).jpg"
+    },
+    {
+      "path": "/regions/united-republic-of-tanzania/tanzania/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"united republic of tanzania\",\"tanzania\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tanzania_(Ngorongoro)_View_of_dried_salt_lake_in_Conservation_Park_from_crater_rim_(20538874493).jpg"
+    },
+    {
+      "path": "/regions/united-states/washington/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"washington\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Village_of_Manson_Washington_from_Wapato_Point.jpg"
+    },
+    {
+      "path": "/regions/australia/ningaloo-reef/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"ningaloo reef\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:00_0775_K%C3%BCste_-_Ningaloo_Reef,_Western_Australia.jpg"
+    },
+    {
+      "path": "/regions/australia/victoria/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"victoria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Point_Lonsdale_front_beach.jpg"
+    },
+    {
+      "path": "/regions/australia/western-australia/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"western australia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Montipora_aequituberculata,_Ningaloo.jpg"
+    },
+    {
+      "path": "/regions/dominica/dominica/",
+      "areaKey": "[\"north america\",\"caribbean\",\"dominica\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Soufriere_bay_1.JPG"
+    },
+    {
+      "path": "/regions/grenada/grenada/",
+      "areaKey": "[\"north america\",\"caribbean\",\"grenada\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Grenada_-_panoramio_-_georama_(1).jpg"
+    },
+    {
+      "path": "/regions/indonesia/aceh/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"aceh\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Giant_clam_in_Weh_Island,_Aceh;_prilfish;_June_2015.jpg"
+    },
+    {
+      "path": "/regions/indonesia/alor-archipelago/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"alor archipelago\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Strong_Current_at_Kalabahi_Bay_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/bari/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"bari\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_dal_lungomare_Domenico_Modugno_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/marche/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"marche\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Landscape_in_Marche,_Italy.jpg"
+    },
+    {
+      "path": "/regions/malaysia/selangor/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"malaysia\",\"selangor\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Banana_leaf_rice.jpg"
+    },
+    {
+      "path": "/regions/malaysia/sipadan/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"malaysia\",\"sipadan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sipadan_Island_Sabah_Malaysia.jpg"
+    },
+    {
+      "path": "/regions/netherlands/sint-eustatius/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"sint eustatius\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:USS_Milwaukee_Celebrates_Statia_Day,_Commemorating_American_History_(7518384).jpg"
+    },
+    {
+      "path": "/regions/panama/coiba-national-park/",
+      "areaKey": "[\"north america\",\"central america\",\"panama\",\"coiba national park\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Coiba_National_Park,_Panama_(View_from_Isla_Coiba)_(8371374375).jpg"
+    },
+    {
+      "path": "/regions/seychelles/seychelles/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"seychelles\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2006-06-23_13-34-02_Seychelles_Beau_Vallon_Beau_Vallon.jpg"
+    },
+    {
+      "path": "/regions/tanzania-united-republic-of/tanzania-zanzibar/",
+      "areaKey": "[\"tanzania, united republic of\",\"tanzania | zanzibar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Porcelain_Crab_In_An_Anenome_(132299613).jpeg"
+    },
+    {
+      "path": "/regions/united-states/florida-panhandle/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"florida panhandle\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:USS_Independence_(LCS-2)_March_11,2012.JPG"
+    },
+    {
+      "path": "/regions/united-states/missouri/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"missouri\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Branson_Belle_Table_Rock_Lake_2012.jpg"
+    },
+    {
+      "path": "/regions/canada/vancouver-island/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"vancouver island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Spanish_Banks_Sunset_(15276424686).jpg"
+    },
+    {
+      "path": "/regions/djibouti/djibouti/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"djibouti\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Go%C3%A9land_de_Hemprich,_ichthyaetus_hemprichii,_sur_la_plage_de_l%27%C3%AEle_Moucha,_Djibouti.jpg"
+    },
+    {
+      "path": "/regions/indonesia/lombok/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"lombok\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lombok,_Island_beach_in_the_bay,_Palm_trees,_Indonesia.jpg"
+    },
+    {
+      "path": "/regions/mozambique/mozambique/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"mozambique\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Heliotropium_foertherianum_at_Tofo_beach_(14734433305).jpg"
+    },
+    {
+      "path": "/regions/norway/norway-lofoten-islands/",
+      "areaKey": "[\"europe\",\"northern europe\",\"norway\",\"norway lofoten islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Svolv%C3%A6r_Harbor_(15226568739).jpg"
+    },
+    {
+      "path": "/regions/philippines/lapu-lapu/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"lapu-lapu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kon_Tiki_2025-08-16_024.jpg"
+    },
+    {
+      "path": "/regions/saint-vincent-and-the-grenadines/st-vincent-grenadines/",
+      "areaKey": "[\"north america\",\"caribbean\",\"saint vincent and the grenadines\",\"st vincent grenadines\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Clouds_Over_Palm_Island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/turkiye/mersin/",
+      "areaKey": "[\"turkiye\",\"mersin\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_-_panoramio_(5).jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/cornwall/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"cornwall\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:The_sea,_spray_and_rocks_of_a_Cornwall_beach_as_seen_from_atop_a_cliff..jpg"
+    },
+    {
+      "path": "/regions/united-states/north-carolina/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"north carolina\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Longwood_plantation_house_site.jpg"
+    },
+    {
+      "path": "/regions/united-states/south-carolina/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"south carolina\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Keowee_(reservoir)_in_South_Carolina.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/new-jersey/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"new jersey\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2018-05-25_11_54_44_View_north_along_New_Jersey_State_Route_35_and_New_Jersey_State_Route_71_(River_Road)_at_11th_Avenue_in_Belmar,_Monmouth_County,_New_Jersey.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/puget-sound/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"puget sound\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Canoe_Paddling_(31999625341).jpg"
+    },
+    {
+      "path": "/regions/antigua-and-barbuda/antigua-and-barbuda/",
+      "areaKey": "[\"north america\",\"caribbean\",\"antigua and barbuda\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Codrington,_Barbuda_from_the_air.jpg"
+    },
+    {
+      "path": "/regions/australia/queensland/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"queensland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Main_Beach,_Queensland_03.JPG"
+    },
+    {
+      "path": "/regions/belize/belize-barrier-reef/",
+      "areaKey": "[\"north america\",\"central america\",\"belize\",\"belize barrier reef\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Belize_Barrier_Reef_-_55444838217.jpg"
+    },
+    {
+      "path": "/regions/croatia/dubrovnik-neretva-county/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"dubrovnik-neretva county\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Novo_Cice_panorama.jpg"
+    },
+    {
+      "path": "/regions/french-polynesia/windward-islands/",
+      "areaKey": "[\"oceania\",\"polynesia\",\"french polynesia\",\"windward islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tahiti,_French_Polynesia_(48037582238).jpg"
+    },
+    {
+      "path": "/regions/germany/schleswig-holstein/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"schleswig-holstein\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Torpedoversuchsanstalt_Surendorf_Seebr%C3%BCcke_Wasser.jpg"
+    },
+    {
+      "path": "/regions/greece/greece/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Flickr_-_ronsaunders47_-_Not_the_most_beautiful_of_trees._The_Olive_tree..jpg"
+    },
+    {
+      "path": "/regions/greece/ionian-islands/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"ionian islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Achilles,_Corfu,_October_1990.jpg"
+    },
+    {
+      "path": "/regions/indonesia/ambon/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"ambon\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:USNS_Mercy_off_the_coast_of_Ambon,_Indonesia.jpg"
+    },
+    {
+      "path": "/regions/indonesia/triton-bay/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"triton bay\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS031-E-181837_-_View_of_Earth.jpg"
+    },
+    {
+      "path": "/regions/italy/veneto/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"veneto\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunrise_in_Jesolo_(7542440120).jpg"
+    },
+    {
+      "path": "/regions/kenya/kenya-coast/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"kenya\",\"kenya coast\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nyali_Beach_towards_the_south_from_Voyager_Beach_Resort_during_low_tide_and_still_conditions_in_Mombasa,_Kenya_4.jpg"
+    },
+    {
+      "path": "/regions/mexico/la-paz-sea-of-cortez/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"la paz sea of cortez\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Balancing_rock.jpg"
+    },
+    {
+      "path": "/regions/netherlands/aruba/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"aruba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Palm-Beach-Aruba-2013.JPG"
+    },
+    {
+      "path": "/regions/netherlands/utrecht/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"utrecht\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Haanwijkersluis.Harmelen.jpg"
+    },
+    {
+      "path": "/regions/new-zealand/canterbury/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"canterbury\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kaikoura._Looking_North_along_the_coast._-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-donsol/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines donsol\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Monreal,_Philippines_coast_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-palawan/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines palawan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Laticauda_colubrina_65811932.jpg"
+    },
+    {
+      "path": "/regions/saint-vincent-and-the-grenadines/grenadines/",
+      "areaKey": "[\"north america\",\"caribbean\",\"saint vincent and the grenadines\",\"grenadines\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Petit_St._Vincent_Island_Resort_-_The_Grenadines,_St._Vincent,_Caribbean..jpg"
+    },
+    {
+      "path": "/regions/switzerland/schwyz/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"schwyz\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:-i---i-_(37159801260).jpg"
+    },
+    {
+      "path": "/regions/switzerland/thurgau/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"thurgau\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hafen2_Oehningen.JPG"
+    },
+    {
+      "path": "/regions/united-kingdom/scapa-flow/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"scapa flow\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Scapa_Flow_-_Churchill_Barrier_1_-_kingsley_-_29-JUN-09.JPG"
+    },
+    {
+      "path": "/regions/united-kingdom/turks-and-caicos/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"turks and caicos\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Grand_Turk_(5963091243).jpg"
+    },
+    {
+      "path": "/regions/united-states/alaska/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"alaska\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Leones_marinos_de_Steller_(Eumetopias_jubatus),_Bah%C3%ADa_de_Aialik,_Seward,_Alaska,_Estados_Unidos,_2017-08-21,_DD_80.jpg"
+    },
+    {
+      "path": "/regions/united-states/arkansas/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"arkansas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Blakely_Mountain_Dam_near_Hot_Springs_and_Lake_Ouachita,_Arkansas.JPG"
+    },
+    {
+      "path": "/regions/united-states/colorado/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"colorado\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Devils_Lake,_Powderhorn_Wilderness,_Hinsdale_County,_Colorado,_USA.jpg"
+    },
+    {
+      "path": "/regions/united-states/tennessee/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"tennessee\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:First_Barn_at_the_Seven_Islands_Wildlife_Refugee_-_panoramio_-_verygreen.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/california-channel-islands/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"california channel islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Silver-Strand-Beach-California.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/hawaii-big-island/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"hawaii big island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kealakekua_Bay,_Captain_Cook_(504518)_(23939370305).jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/hawaii-maui/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"hawaii maui\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Big_Beach,_Maui,_Hawaii_(2017).jpg"
+    },
+    {
+      "path": "/regions/austria/tyrol/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"tyrol\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Achensee_Pertisau.JPG"
+    },
+    {
+      "path": "/regions/costa-rica/cocos-island/",
+      "areaKey": "[\"north america\",\"central america\",\"costa rica\",\"cocos island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hammerhead_shark,_Cocos_Island,_Costa_Rica.jpg"
+    },
+    {
+      "path": "/regions/germany/berlin/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"berlin\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cityscape_Berlin.jpg"
+    },
+    {
+      "path": "/regions/greece/attica/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"attica\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Porto_Rafti_Gr_-_panoramio_(1).jpg"
+    },
+    {
+      "path": "/regions/iceland/silfra-fissure/",
+      "areaKey": "[\"europe\",\"northern europe\",\"iceland\",\"silfra fissure\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Schnorchler_in_der_Silfra-Spalte.JPG"
+    },
+    {
+      "path": "/regions/indonesia/central-sulawesi/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"central sulawesi\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ampana,_sunset_(6970625081).jpg"
+    },
+    {
+      "path": "/regions/indonesia/east-kalimantan/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"east kalimantan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ostracion_cubicum_459834501.jpg"
+    },
+    {
+      "path": "/regions/japan/kanagawa-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"kanagawa prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wada_Beach,_Miura,_-18_Nov._2012_a.jpg"
+    },
+    {
+      "path": "/regions/mauritius/mauritius/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"mauritius\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:VIEW_ON_LE_MORNE_OF_MAURITIUS_ISLAND_9_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/norway/svalbard/",
+      "areaKey": "[\"europe\",\"northern europe\",\"norway\",\"svalbard\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Trygghamna_Bay_with_Glaciers,_Svalbard.jpg"
+    },
+    {
+      "path": "/regions/oman/musandam/",
+      "areaKey": "[\"asia\",\"western asia\",\"oman\",\"musandam\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Telegraph_Island_3.jpg"
+    },
+    {
+      "path": "/regions/philippines/philippines-tubbataha-reefs/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"philippines tubbataha reefs\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS040-E-90282_-_View_of_Earth.jpg"
+    },
+    {
+      "path": "/regions/poland/west-pomeranian-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"west pomeranian voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jezioro_Szmaragdowe._-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/russian-federation/moscow/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"russian federation\",\"moscow\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%D0%A1%D1%85%D0%BE%D0%B4%D0%BD%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B4%D0%B5%D1%80%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB_%D0%B2_%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B5._%D0%92%D0%B8%D0%B4_%D1%81_%D0%97%D0%B0%D0%BF%D0%B0%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BC%D0%BE%D1%81%D1%82%D0%B0.jpg"
+    },
+    {
+      "path": "/regions/sweden/kronoberg/",
+      "areaKey": "[\"europe\",\"northern europe\",\"sweden\",\"kronoberg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_over_lake_Madkroken_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/cayman-islands/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"cayman islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Loren_(3301445045).jpg"
+    },
+    {
+      "path": "/regions/united-states/hawaii/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"hawaii\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Manta_heaven_point_Big_island,_Hawaii_(45553370064).jpg"
+    },
+    {
+      "path": "/regions/united-states/monterey-bay/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"monterey bay\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lovers_Point_Park_-_December_2018_-_Stierch.jpg"
+    },
+    {
+      "path": "/regions/united-states/pennsylvania/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"pennsylvania\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Little_Rocky_Glen_Preserve_(9)_(8173759888).jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/dry-tortugas/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"dry tortugas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dry_Tortugas_NP.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/guam/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"guam\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:A_machine_gun_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/monterey-bay/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"monterey bay\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fish_by_Tower_of_Starfish_(16947057914).jpg"
+    },
+    {
+      "path": "/regions/australia/lord-howe-island/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"lord howe island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Drypetes_deplanchei_affinis_leaves.jpg"
+    },
+    {
+      "path": "/regions/australia/south-australia-neptune-islands/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"south australia neptune islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS016-E-15298_-_View_of_South_Australia.jpg"
+    },
+    {
+      "path": "/regions/austria/burgenland/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"burgenland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Neusiedl_am_See_01_090110.JPG"
+    },
+    {
+      "path": "/regions/belgium/namur/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"namur\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Daussois_-_Village_-_JPG_8652013.jpg"
+    },
+    {
+      "path": "/regions/canada/new-york/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"new york\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Icy_Trees_on_Canada_Island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/cayman-islands/cayman-islands/",
+      "areaKey": "[\"north america\",\"caribbean\",\"cayman islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Highway_Red_Bay_Cayman_Islands.jpg"
+    },
+    {
+      "path": "/regions/france/alpes-maritimes/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"alpes-maritimes\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_d%27Agecroft_%C3%A0_Mandelieu-la-Napoule.jpg"
+    },
+    {
+      "path": "/regions/france/la-rochelle-oleron/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"la rochelle oleron\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:PixAile3.jpg"
+    },
+    {
+      "path": "/regions/france/var/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"var\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cote_d%27azur_Beach_Cavalaire_sur_mer_(18614011752).jpg"
+    },
+    {
+      "path": "/regions/germany/thuringia/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"thuringia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lutherstein_Stotternheim_001.JPG"
+    },
+    {
+      "path": "/regions/israel/southern/",
+      "areaKey": "[\"asia\",\"western asia\",\"israel\",\"southern\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Eilat_at_Januar_2014_-_02.jpg"
+    },
+    {
+      "path": "/regions/italy/friuli-venezia-giulia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"friuli venezia giulia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dalla_laguna_di_Marano_ai_monti_della_Carnia_-_(From_the_lagoon_of_Marano_to_Carnia_mountains)_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/mexico/socorro-islands/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"socorro islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:M._Birostris_swimming_with_a_diver.jpg"
+    },
+    {
+      "path": "/regions/netherlands/saba/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"saba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Saba1807-Hawks-Mount_Scenery.jpg"
+    },
+    {
+      "path": "/regions/philippines/bohol/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"bohol\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset,_Alona_Beach,_Panglao_Island_(2052884498).jpg"
+    },
+    {
+      "path": "/regions/poland/warmian-masurian-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"warmian-masurian voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nad_Jeziorem_Wulpi%C5%84skim_w_pobli%C5%BCu_wsi_Dorotowo_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/saudi-arabia/makkah/",
+      "areaKey": "[\"asia\",\"western asia\",\"saudi arabia\",\"makkah\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jeddah_Tower_Building_Progress_2016-04-14.jpg"
+    },
+    {
+      "path": "/regions/south-africa/free-state/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\",\"free state\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sterkfontein_Dam_workshops.jpg"
+    },
+    {
+      "path": "/regions/sri-lanka/sri-lanka/",
+      "areaKey": "[\"asia\",\"southern asia\",\"sri lanka\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cymbopetalum_costaricense_(Donn._Sm.)_Saff..jpg"
+    },
+    {
+      "path": "/regions/sweden/stockholm/",
+      "areaKey": "[\"europe\",\"northern europe\",\"sweden\",\"stockholm\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Alley_in_Gamla_Stan,_Stockholm.jpg"
+    },
+    {
+      "path": "/regions/switzerland/lucerne/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"lucerne\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rigi@Switzerland.jpg"
+    },
+    {
+      "path": "/regions/switzerland/ticino/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"ticino\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Foroglio,_Ticino,_Switzerland.jpg"
+    },
+    {
+      "path": "/regions/turkey/mugla/",
+      "areaKey": "[\"asia\",\"western asia\",\"turkey\",\"mugla\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gemiler_Adas%C4%B1_2_numaral%C4%B1_kilise.jpg"
+    },
+    {
+      "path": "/regions/united-arab-emirates/uae-fujairah/",
+      "areaKey": "[\"asia\",\"western asia\",\"united arab emirates\",\"uae fujairah\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dibba_Al-Baya,_2007_(02).JPG"
+    },
+    {
+      "path": "/regions/united-states/puerto-rico/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"puerto rico\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mountains_in_Puerto_Rico.jpg"
+    },
+    {
+      "path": "/regions/united-states/south-florida/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"south florida\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Portuguese_Man_o%27_War_at_Palm_Beach_FL_by_Volkan_Yuksel_DSC05878.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/flower-garden-banks/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"flower garden banks\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:FGBNMS-sky_view_of_RV_Manta_(27124479901).jpg"
+    },
+    {
+      "path": "/regions/florida-panhandle/",
+      "areaKey": "[\"florida panhandle\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Persea_palustris_75976920.jpg"
+    },
+    {
+      "path": "/regions/australia/christmas-island/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"australia\",\"christmas island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Antigonon_leptopus_leaf_(5731633340).jpg"
+    },
+    {
+      "path": "/regions/belarus/minsk/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"belarus\",\"minsk\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Serabranka-park.jpg"
+    },
+    {
+      "path": "/regions/belgium/antwerp/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"antwerp\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wilmarsdonkbridge_Open_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/brazil/bahia/",
+      "areaKey": "[\"south america\",\"brazil\",\"bahia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Praia_farol_da_barra-4525.jpg"
+    },
+    {
+      "path": "/regions/canada/newfoundland/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"newfoundland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cedar_Cove_beach_(10716857874).jpg"
+    },
+    {
+      "path": "/regions/chile/los-rios/",
+      "areaKey": "[\"south america\",\"chile\",\"los rios\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Unnamed_Road,_Corral,_Regi%C3%B3n_de_los_R%C3%ADos,_Chile_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/france/bouches-du-rhone/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"bouches-du-rhone\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_of_Niolon_port,_Provence,_France_(6053051842).jpg"
+    },
+    {
+      "path": "/regions/greece/central-greece/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"central greece\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mazda-based_Ford_courier,_wreck,_Drymona_Evia_Greece.jpg"
+    },
+    {
+      "path": "/regions/italy/livorno/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"livorno\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Le_scogliere_del_lato_nord_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/verona/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"verona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cassone,_37018_Malcesine_VR,_Italy_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/norway/akershus/",
+      "areaKey": "[\"europe\",\"northern europe\",\"norway\",\"akershus\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:S%C3%B8ndre_Lang%C3%A5ra.jpg"
+    },
+    {
+      "path": "/regions/norway/nordland/",
+      "areaKey": "[\"europe\",\"northern europe\",\"norway\",\"nordland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Narvikbukta_Kveldssol.JPG"
+    },
+    {
+      "path": "/regions/portugal/setubal/",
+      "areaKey": "[\"europe\",\"southern europe\",\"portugal\",\"setubal\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Forte_de_S%C3%A3o_Domingos_da_Baralha_(6nov2021)_(51662514484).jpg"
+    },
+    {
+      "path": "/regions/russian-federation/altai-republic/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"russian federation\",\"altai republic\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Altai_devils_finger.jpg"
+    },
+    {
+      "path": "/regions/sweden/vastra-gotaland/",
+      "areaKey": "[\"europe\",\"northern europe\",\"sweden\",\"vastra gotaland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gullmarn_fjord_seen_from_Gullmarsskogen.jpg"
+    },
+    {
+      "path": "/regions/switzerland/baden-wurttemberg/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"baden-wurttemberg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Steckborn_-_panoramio_(62).jpg"
+    },
+    {
+      "path": "/regions/switzerland/neuchatel/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"neuchatel\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gorges_de_Areuse_20200529_3.jpg"
+    },
+    {
+      "path": "/regions/switzerland/zug/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"zug\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Zugerberg_overlooking_Lake_Zug_-_panoramio_(52).jpg"
+    },
+    {
+      "path": "/regions/united-states/new-england-massachusetts/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"new england | massachusetts\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:DSC7105-Gosnold-US.jpg"
+    },
+    {
+      "path": "/regions/united-states/southwest-florida/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"southwest florida\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Naples,_Florida_-_leaving_Royal_Harbor_into_the_Gulf_of_Mexico_at_sunset_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/hawaii/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"hawaii\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Polo_beach_AM_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/san-diego-la-jolla/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"san diego la jolla\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:San_Diego_La_Jolla_1187_1179_Coast_Blvd.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/us-virgin-islands/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"us virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Drunk-Bay-Beach_Saint-John-VI_2022-04-24_B.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/venice-beach/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"venice beach\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Venice_Beach,_Los_Angeles,_California,_USA.jpg"
+    },
+    {
+      "path": "/regions/oman/",
+      "areaKey": "[\"asia\",\"western asia\",\"oman\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fish_Souk,_Quriyat,_Muscat,_Oman_(4324883412).jpg"
+    },
+    {
+      "path": "/regions/austria/styria/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"styria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Astrantia_major_Mitterbach_01.JPG"
+    },
+    {
+      "path": "/regions/bonaire-sint-eustatius-and-saba/saba/",
+      "areaKey": "[\"north america\",\"caribbean\",\"bonaire, sint eustatius and saba\",\"saba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Saba_Corniche.jpg"
+    },
+    {
+      "path": "/regions/croatia/primorje-gorski-kotar/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"primorje-gorski kotar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Vrbnik_on_the_cliff.jpg"
+    },
+    {
+      "path": "/regions/croatia/zadar/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"zadar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Zadar_coast.jpg"
+    },
+    {
+      "path": "/regions/croatia/sibenik/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"sibenik\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rt_Opat.jpg"
+    },
+    {
+      "path": "/regions/denmark/greenland/",
+      "areaKey": "[\"europe\",\"northern europe\",\"denmark\",\"greenland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:18-03-26_ALEQA_ITTUK_-_MMSI_331011000_17-09-03.jpg"
+    },
+    {
+      "path": "/regions/italy/novara/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"novara\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Incanto_(22481417).jpeg"
+    },
+    {
+      "path": "/regions/italy/rome/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"rome\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Bracciano_from_Castello_Orsini-Odescalchi.jpg"
+    },
+    {
+      "path": "/regions/japan/wakayama-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"wakayama prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Coral_reef..._South_end_of_my_area_(14119503892).jpg"
+    },
+    {
+      "path": "/regions/jordan/jordan-aqaba/",
+      "areaKey": "[\"asia\",\"western asia\",\"jordan\",\"jordan aqaba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2005-08-17_Marina_City,_Aqaba,_Jordanien_01.jpg"
+    },
+    {
+      "path": "/regions/jordan/jordan-aqaba-red-sea/",
+      "areaKey": "[\"asia\",\"western asia\",\"jordan\",\"jordan aqaba | red sea\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_in_Aqaba.jpg"
+    },
+    {
+      "path": "/regions/maldives/male/",
+      "areaKey": "[\"asia\",\"southern asia\",\"maldives\",\"male\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:KURUMBA_ISLAND_AS_SEEN_FROM_THE_AIR_2_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/mexico/yucatan/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"yucatan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tropical_Kingbird,_Yucat%C3%A1n.jpg"
+    },
+    {
+      "path": "/regions/netherlands/overijssel/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"overijssel\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kristalbad_Panorama.jpg"
+    },
+    {
+      "path": "/regions/romania/constanta/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"romania\",\"constanta\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_-_panoramio_-_---%3DXEON%3D---.jpg"
+    },
+    {
+      "path": "/regions/spain/tarragona/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"tarragona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%C5%BD%C3%A1ba_lying_on_the_beach_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/switzerland/vaud/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"vaud\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Afterglow_in_Vevey.jpg"
+    },
+    {
+      "path": "/regions/thailand/phang-nga/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"phang nga\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A1%E0%B8%AD%E0%B9%81%E0%B8%81%E0%B8%99_,_Sea_gypsy_village_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/turkiye/izmir/",
+      "areaKey": "[\"turkiye\",\"izmir\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ephesus_beach-4.jpg"
+    },
+    {
+      "path": "/regions/united-states/hawaii-kauai/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"hawaii kauai\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Poipu_Beach,_Koloa_-_panoramio_(7).jpg"
+    },
+    {
+      "path": "/regions/united-states/illinois/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"illinois\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:20030722_21_Mermet_Lake_Convservation_Area.jpg"
+    },
+    {
+      "path": "/regions/united-states/iowa/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"iowa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Black_Hawk_County_Iowa_route_C55_flooding.jpg"
+    },
+    {
+      "path": "/regions/united-states/san-diego-la-jolla/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"san diego la jolla\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:La_Jolla_Coast_(41959830671).jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/florida-springs/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"florida springs\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lafayette_County_border_on_Frank_R._Norris_Bridge_US_27wb.JPG"
+    },
+    {
+      "path": "/regions/united-states-of-america/great-lakes/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"great lakes\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ross_Field_at_Naval_Training_Center_Great_Lakes.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/hawaii-kauai/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"hawaii kauai\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Poipu_Beach_Park,_Koloa_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/puerto-rico/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"puerto rico\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Flamenco_Beach_Puerto_Rico_Camping.jpg"
+    },
+    {
+      "path": "/regions/israel/",
+      "areaKey": "[\"asia\",\"western asia\",\"israel\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Eilat_at_Januar_2014_-_01.jpg"
+    },
+    {
+      "path": "/regions/albania/vlore/",
+      "areaKey": "[\"europe\",\"southern europe\",\"albania\",\"vlore\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Himara_Strandpromenade_Albanien.jpg"
+    },
+    {
+      "path": "/regions/belgium/liege/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"liege\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Footpath_in_Fraiture_(Sprimont)_-_Wallonia_-_Belgium.png"
+    },
+    {
+      "path": "/regions/brazil/rio-de-janeiro/",
+      "areaKey": "[\"south america\",\"brazil\",\"rio de janeiro\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ipanema_and_Leblon_as_seen_from_Morro_Dois_Irm%C3%A3os,_with_Lagoa_and_Cantagalo_in_the_background,_Rio_de_Janeiro,_Brazil.jpg"
+    },
+    {
+      "path": "/regions/canada/quebec/",
+      "areaKey": "[\"north america\",\"northern america\",\"canada\",\"quebec\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gratten_Lake_Beach_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/colombia/boyaca/",
+      "areaKey": "[\"south america\",\"colombia\",\"boyaca\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:P%C3%A1ramo_del_Consuelo_10,_Boyac%C3%A1,_Colombia.jpg"
+    },
+    {
+      "path": "/regions/east-timor/dili/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"east timor\",\"dili\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Virgin_Mary_Altar,_Dili,_East_Timor_(313433236).jpg"
+    },
+    {
+      "path": "/regions/france/new-caledonia/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"new caledonia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Collective_work_on_the_Zuanga-Yuanga_dictionary_in_Paimboa,_New_Caledonia,_2010.jpg"
+    },
+    {
+      "path": "/regions/france/val-d-oise/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"val-d'oise\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Asni%C3%A8res-sur-Oise,_place_du_village,_rue_Pierre-Brossolette.jpg"
+    },
+    {
+      "path": "/regions/greece/centre-macedonia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"centre macedonia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Plaja_Hanioti,_Kassandra,_Halkidiki_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/guam/guam/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"guam\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:War_in_the_Pacific_National_Historical_park_-_panoramio_-_hasano_jp.jpg"
+    },
+    {
+      "path": "/regions/italy/emilia-romagna/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"emilia romagna\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Seaport_in_Ravenna,_Italy.jpg"
+    },
+    {
+      "path": "/regions/italy/reggio-calabria/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"reggio calabria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pylon_of_Torre_Faro_waterfront_-_Messina,_Italy_-_30_April_2006.jpg"
+    },
+    {
+      "path": "/regions/japan/niigata-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"niigata prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sadokisen_Koganemaru_III.JPG"
+    },
+    {
+      "path": "/regions/mauritius/riviere-noire/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"mauritius\",\"riviere noire\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Image_de_Flic-en-Flac_(Maurice)_en_2018_-_15.JPG"
+    },
+    {
+      "path": "/regions/new-zealand/marlborough/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"marlborough\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:00_1134_Piccton_-_Neuseeland.jpg"
+    },
+    {
+      "path": "/regions/new-zealand/southland/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"southland\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Te_Anau_and_Murchison_Mountains.jpg"
+    },
+    {
+      "path": "/regions/philippines/batangas/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"batangas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pink_Skunk_Clown_Fish_(1_of_1)2017-02-25.jpg"
+    },
+    {
+      "path": "/regions/philippines/la-union/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"la union\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:4310Barangays_of_San_Fernando_City,_La_Union_02.jpg"
+    },
+    {
+      "path": "/regions/philippines/southern-leyte/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"southern leyte\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gymnothorax_thyrsoideus_422086442.jpg"
+    },
+    {
+      "path": "/regions/poland/greater-poland-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"greater poland voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:JezioroMikorzynskie.JPG"
+    },
+    {
+      "path": "/regions/saint-vincent-and-the-grenadines/saint-david/",
+      "areaKey": "[\"north america\",\"caribbean\",\"saint vincent and the grenadines\",\"saint david\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2016-11_Lac_Clair_Saint-David-de-Falardeau.jpg"
+    },
+    {
+      "path": "/regions/slovakia/bratislava/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"slovakia\",\"bratislava\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bratislava_Panorama_R01.jpg"
+    },
+    {
+      "path": "/regions/spain/barcelona/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"barcelona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Barco_en_barcelona_-_panoramio_(2).jpg"
+    },
+    {
+      "path": "/regions/spain/community-of-madrid/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"community of madrid\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Spain-11_-_Retiro_Park_(2218753550).jpg"
+    },
+    {
+      "path": "/regions/spain/granada/",
+      "areaKey": "[\"europe\",\"southern europe\",\"spain\",\"granada\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:La_Herradura,_beach_furniture,_Andalusia,_Spain.jpg"
+    },
+    {
+      "path": "/regions/switzerland/geneva/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"geneva\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Harbour_of_Genthod.jpg"
+    },
+    {
+      "path": "/regions/united-states/alabama/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"alabama\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:View_from_Lake.jpg"
+    },
+    {
+      "path": "/regions/united-states/new-mexico/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"new mexico\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Embudo_Creek_winds_its_way_through_the_Embudo_Box_Canyon_west_of_Dixon,_New_Mexico.jpg"
+    },
+    {
+      "path": "/regions/united-states/saint-croix/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"saint croix\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Frederiksted_Saint_Croix_Panorama_2012_Wade.jpg"
+    },
+    {
+      "path": "/regions/united-states/south-dakota/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"south dakota\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_County_Court_House,_Madison,_South_Dakota_(75660).jpg"
+    },
+    {
+      "path": "/regions/united-states/wisconsin/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"wisconsin\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fall_Foliage_a_long_Devil%27s_lake_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/crystal-river/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"crystal river\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunrise_-_panoramio_(76).jpg"
+    },
+    {
+      "path": "/regions/united-states-virgin-islands/us-virgin-islands/",
+      "areaKey": "[\"north america\",\"caribbean\",\"united states virgin islands\",\"us virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:CrequeMarineRailwayPowerHouseHasselIslandUSVI.jpg"
+    },
+    {
+      "path": "/regions/aruba/aruba/",
+      "areaKey": "[\"north america\",\"caribbean\",\"aruba\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Limestone_shore_platforms_at_Sero_Colorado,_Aruba_01.jpg"
+    },
+    {
+      "path": "/regions/austria/lower-austria/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"lower austria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Neust%C3%A4dter_Kanal_2689.jpg"
+    },
+    {
+      "path": "/regions/austria/salzburg/",
+      "areaKey": "[\"europe\",\"western europe\",\"austria\",\"salzburg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Salzburg_panorama.jpg"
+    },
+    {
+      "path": "/regions/belgium/east-flanders/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"east flanders\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Heikapel,_Sint-Niklaas_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/belgium/hainaut/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"hainaut\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Boussu-lez-Walcourt_JPG02.jpg"
+    },
+    {
+      "path": "/regions/belgium/walloon-brabant/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"walloon brabant\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Moulin_des_Roches_(Dongelberg).jpg"
+    },
+    {
+      "path": "/regions/brazil/parana/",
+      "areaKey": "[\"south america\",\"brazil\",\"parana\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ilha_Vista_da_Prainha_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/british-virgin-islands/british-virgin-islands/",
+      "areaKey": "[\"north america\",\"caribbean\",\"british virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Loblolly_Bay_Anegada_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/china/guangdong/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"china\",\"guangdong\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E6%9D%BE%E5%B1%B1%E6%B9%96%E7%A9%BA%E6%8B%8D_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/colombia/bolivar/",
+      "areaKey": "[\"south america\",\"colombia\",\"bolivar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:008_Kids_in_Boat_in_Cartagena_Bay.JPG"
+    },
+    {
+      "path": "/regions/federated-states-of-micronesia/marshall-islands/",
+      "areaKey": "[\"oceania\",\"micronesia\",\"federated states of micronesia\",\"marshall islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:US_Navy_Seabees_assigned_to_NMCB-5_volunteer_in_Marshall_Islands_(6797719).jpg"
+    },
+    {
+      "path": "/regions/finland/finland-proper/",
+      "areaKey": "[\"europe\",\"northern europe\",\"finland\",\"finland proper\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kaitaisten_silta,_Taivassalo,_22.10_(5).JPG"
+    },
+    {
+      "path": "/regions/france/corse-du-sud/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"corse-du-sud\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Corsica_Ajaccio_Golfe_Plage_du_Ricanto.jpg"
+    },
+    {
+      "path": "/regions/france/finistere/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"finistere\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lanildut_-_Port_-_Rocher_du_Crapaud_-_Vu_depuis_le_bateau_Rose_H%C3%A9r%C3%A9.jpg"
+    },
+    {
+      "path": "/regions/france/herault/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"herault\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Olargues,_H%C3%A9rault_03.jpg"
+    },
+    {
+      "path": "/regions/france/savoie/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"savoie\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tresserve_et_lac_agit%C3%A9_(2015).jpg"
+    },
+    {
+      "path": "/regions/germany/hesse/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"hesse\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2014.09.29.-01-Schloss_Waldeck--Panorama_Edersee.jpg"
+    },
+    {
+      "path": "/regions/greece/east-macedonia-and-thrace/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"east macedonia and thrace\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:20110624_Fonias_first_Waterfall_Pont_Samothrace_Thrace_Greece_Panoramic.jpg"
+    },
+    {
+      "path": "/regions/greece/peloponnese/",
+      "areaKey": "[\"europe\",\"southern europe\",\"greece\",\"peloponnese\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Polemarcha_beach_1.JPG"
+    },
+    {
+      "path": "/regions/india/tamil-nadu/",
+      "areaKey": "[\"asia\",\"southern asia\",\"india\",\"tamil nadu\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Coast_in_Thooothukudi_District.jpg"
+    },
+    {
+      "path": "/regions/international-waters/emilia-romagna/",
+      "areaKey": "[\"international waters\",\"emilia romagna\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Landscape_in_Emilia-Romagna.jpg"
+    },
+    {
+      "path": "/regions/italy/lecce/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"lecce\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Italien_360%C2%B0_Panorama_2022_Altstadt_Lecce.jpg"
+    },
+    {
+      "path": "/regions/italy/lecco/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"lecco\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lecco_dal_monte_Melma.jpg"
+    },
+    {
+      "path": "/regions/japan/ehime-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"ehime prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sotodomari_01.JPG"
+    },
+    {
+      "path": "/regions/japan/hokkaido/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"hokkaido\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fishing_Port,_Furubira,_Aug._2018.jpg"
+    },
+    {
+      "path": "/regions/japan/tokyo/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"tokyo\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kanjyumaru_%E9%82%84%E4%BD%8F%E4%B8%B8_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/madagascar/madagascar/",
+      "areaKey": "[\"africa\",\"eastern africa\",\"madagascar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Serpent_Sakatia.jpg"
+    },
+    {
+      "path": "/regions/micronesia-federated-states-of/chuuk-lagoon/",
+      "areaKey": "[\"micronesia, federated states of\",\"chuuk lagoon\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chuuk_lagoon,_Mochun_Fanananei_Pass_aerial_view_(cropped).jpg"
+    },
+    {
+      "path": "/regions/micronesia-federated-states-of/micronesia-yap/",
+      "areaKey": "[\"micronesia, federated states of\",\"micronesia yap\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rusted_Boat_in_Colonia_Harbor_(Yap)_(2849070417).jpg"
+    },
+    {
+      "path": "/regions/poland/lesser-poland-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"lesser poland voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bagry_Lake,_Krakow,_Poland.jpg"
+    },
+    {
+      "path": "/regions/poland/lower-silesian-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"lower silesian voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gorzesz%C3%B3w_-_shrine_02.jpg"
+    },
+    {
+      "path": "/regions/poland/lubusz-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"lubusz voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gorzyca_-_Obra_19.08.2013_p.jpg"
+    },
+    {
+      "path": "/regions/portugal/faro/",
+      "areaKey": "[\"europe\",\"southern europe\",\"portugal\",\"faro\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Praia_Martinhal_(Algarve)_(20332690393).jpg"
+    },
+    {
+      "path": "/regions/puerto-rico/puerto-rico/",
+      "areaKey": "[\"north america\",\"caribbean\",\"puerto rico\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Sargassum_rafts_floating_near_the_reef_crest_in_coastal_waters_of_La_Parguera,_Lajas,_Puerto_Rico.jpg"
+    },
+    {
+      "path": "/regions/romania/bucharest/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"romania\",\"bucharest\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bucharest_Business_District.jpg"
+    },
+    {
+      "path": "/regions/russian-federation/kemerovo/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"russian federation\",\"kemerovo\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mundybash_river_in_Mundybash,_Kuzbass,_RU.jpg"
+    },
+    {
+      "path": "/regions/serbia/zlatibor/",
+      "areaKey": "[\"europe\",\"southern europe\",\"serbia\",\"zlatibor\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Zaovine_-_panoramio_(13).jpg"
+    },
+    {
+      "path": "/regions/south-africa/north-west/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\",\"north west\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Marico_Oog.jpg"
+    },
+    {
+      "path": "/regions/sweden/skane/",
+      "areaKey": "[\"europe\",\"northern europe\",\"sweden\",\"skane\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:M%C3%B6lle-1.jpg"
+    },
+    {
+      "path": "/regions/switzerland/grisons/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"grisons\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fl%C3%BCelapass_im_Nebel_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/switzerland/nidwalden/",
+      "areaKey": "[\"europe\",\"western europe\",\"switzerland\",\"nidwalden\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Emmetten.jpg"
+    },
+    {
+      "path": "/regions/thailand/bangkok/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"bangkok\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Night_Panorama_of_Sukhumvit,_Bangkok.jpg"
+    },
+    {
+      "path": "/regions/turkey/antalya/",
+      "areaKey": "[\"asia\",\"western asia\",\"turkey\",\"antalya\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Scuba_dive_boat.JPG"
+    },
+    {
+      "path": "/regions/turkiye/mugla/",
+      "areaKey": "[\"turkiye\",\"mugla\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dalyan_(%C4%B0ztuzu)_temmuz%2708_faspirin_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/argyll-and-bute/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"argyll and bute\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Road_junction_Ardgartan_Forest_-_geograph.org.uk_-_1950157.jpg"
+    },
+    {
+      "path": "/regions/united-kingdom/slough/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"slough\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Business_Village,_Slough_-_geograph.org.uk_-_5625358.jpg"
+    },
+    {
+      "path": "/regions/united-states/florida-springs/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"florida springs\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS044-E-16041_-_View_of_Earth.jpg"
+    },
+    {
+      "path": "/regions/united-states/georgia/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"georgia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Atlanta,_viewed_from_Sweat_Mountain_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states/minnesota/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"minnesota\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Whipple_Lakes,_Minnesota_in_Mid-Summer.jpg"
+    },
+    {
+      "path": "/regions/united-states/new-hampshire/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"new hampshire\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Weirs_Beach_Sign_New_Hampshire.jpg"
+    },
+    {
+      "path": "/regions/united-states/virginia/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"virginia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fish_caught_at_Rudee_Inlet,_Virginia_Beach,_VA.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/arizona/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"arizona\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Willow_Beach_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/arkansas/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"arkansas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cloudy_Beaver_Lake_at_Lost_Bridge_Marina.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/california/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"california\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:The_surf_on_La_jolla_beach_California.JPG"
+    },
+    {
+      "path": "/regions/united-states-of-america/florida/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"florida\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Take_me_back_(6134166454).jpg"
+    },
+    {
+      "path": "/regions/belgium/west-flanders/",
+      "areaKey": "[\"europe\",\"western europe\",\"belgium\",\"west flanders\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Harelbeke,_Belgium_-_panoramio_(3).jpg"
+    },
+    {
+      "path": "/regions/china/hebei/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"china\",\"hebei\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:ISS026-E-24050_-_View_of_China.jpg"
+    },
+    {
+      "path": "/regions/china/sichuan/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"china\",\"sichuan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Global_center_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/croatia/istra/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"istra\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Croat_fg001.jpg"
+    },
+    {
+      "path": "/regions/croatia/sibenik-knin-county/",
+      "areaKey": "[\"europe\",\"southern europe\",\"croatia\",\"sibenik-knin county\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Zirje_Croatia.jpg"
+    },
+    {
+      "path": "/regions/cuba/matanzas/",
+      "areaKey": "[\"north america\",\"caribbean\",\"cuba\",\"matanzas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cuba_-_Matanzas_-_Matanzas_from_Ermita_de_Monserrate_church.jpg"
+    },
+    {
+      "path": "/regions/denmark/southern-denmark/",
+      "areaKey": "[\"europe\",\"northern europe\",\"denmark\",\"southern denmark\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Grenz%C3%BCbergang_Schusterkate,_Blick_von_der_d%C3%A4nischen_Seite_zur_deutschen_Seite,_2011.JPG"
+    },
+    {
+      "path": "/regions/dominican-republic/la-altagracia/",
+      "areaKey": "[\"north america\",\"caribbean\",\"dominican republic\",\"la altagracia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Loscher%27s_Club_Mate_at_Rep%C3%BAblica_Dominicana.jpg"
+    },
+    {
+      "path": "/regions/dominican-republic/samana/",
+      "areaKey": "[\"north america\",\"caribbean\",\"dominican republic\",\"samana\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Las_Terrenas_Beach,_Dominican_Republic.jpg"
+    },
+    {
+      "path": "/regions/finland/pirkanmaa/",
+      "areaKey": "[\"europe\",\"northern europe\",\"finland\",\"pirkanmaa\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tampere,_Finland_-_panoramio_(1).jpg"
+    },
+    {
+      "path": "/regions/france/haute-corse/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"haute-corse\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Haute-Corse_Bastia_Bord_De_Mer_071989_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/france/isere/",
+      "areaKey": "[\"europe\",\"western europe\",\"france\",\"isere\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pierre-chatel-2-village.jpg"
+    },
+    {
+      "path": "/regions/germany/hamburg/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"hamburg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hohendeicher_See_Tauchspot.JPG"
+    },
+    {
+      "path": "/regions/germany/rhineland-palatinate/",
+      "areaKey": "[\"europe\",\"western europe\",\"germany\",\"rhineland-palatinate\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Johann_Lafer%E2%80%99s_Stromburg_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/indian-ocean-territories/christmas-island/",
+      "areaKey": "[\"asia\",\"seven seas (open ocean)\",\"indian ocean territories\",\"christmas island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Birgus_latro_2.jpg"
+    },
+    {
+      "path": "/regions/indonesia/north-sulawesi/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"north sulawesi\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Shrimp_(Vir_philippinensis)_on_Bubble_Coral_(Plerogyra_sinuosa)_(6052688105).jpg"
+    },
+    {
+      "path": "/regions/indonesia/west-nusa-tenggara/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"indonesia\",\"west nusa tenggara\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_in_Lombok_8.jpg"
+    },
+    {
+      "path": "/regions/israel/tel-aviv/",
+      "areaKey": "[\"asia\",\"western asia\",\"israel\",\"tel aviv\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tel_Aviv_City_Beach_(7508431596).jpg"
+    },
+    {
+      "path": "/regions/italy/brescia/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"brescia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Flags_Sal%C3%B2.JPG"
+    },
+    {
+      "path": "/regions/italy/liguria/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"liguria\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cattedrale_Santuario_N._S._Dell_Orto_in_Chiavari_-_Facade.jpg"
+    },
+    {
+      "path": "/regions/italy/olbia-tempio/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"olbia-tempio\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_with_colors_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/treviso/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"treviso\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Vista_del_Massiccio_del_Grappa_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/italy/verbano-cusio-ossola/",
+      "areaKey": "[\"europe\",\"southern europe\",\"italy\",\"verbano-cusio-ossola\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cannobio_-_Church_of_Sant%27Anna_above_the_Cannobino_river_1484.jpg"
+    },
+    {
+      "path": "/regions/japan/fukui-prefecture/",
+      "areaKey": "[\"asia\",\"eastern asia\",\"japan\",\"fukui prefecture\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:The_small_beach_of_the_Mikamijima_island_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/malaysia/kuala-lumpur/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"malaysia\",\"kuala lumpur\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Istana_Negara_with_Kuala_Lumpur_skyline_in_the_background.jpg"
+    },
+    {
+      "path": "/regions/mexico/baja-california-sur/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"baja california sur\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cabo_Pulmo_BCS_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/mexico/guerrero/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"guerrero\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:CalentillaBeach.JPG"
+    },
+    {
+      "path": "/regions/mexico/sonora/",
+      "areaKey": "[\"north america\",\"central america\",\"mexico\",\"sonora\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Marina_San_Carlos_03.jpg"
+    },
+    {
+      "path": "/regions/netherlands/limburg/",
+      "areaKey": "[\"europe\",\"western europe\",\"netherlands\",\"limburg\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hoog_water_2010.jpg"
+    },
+    {
+      "path": "/regions/new-caledonia/new-caledonia/",
+      "areaKey": "[\"oceania\",\"melanesia\",\"new caledonia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Araucaria_columnaris_New_Caledonia_2.jpg"
+    },
+    {
+      "path": "/regions/new-zealand/cook-islands-rarotonga/",
+      "areaKey": "[\"oceania\",\"australia and new zealand\",\"new zealand\",\"cook islands rarotonga\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%22SOUTH_SEA_WHALERS_BOILING_BLUBBER_by_Oswald_Walters_Brierly_in_the_exhibition_of_the_society_of_painters_in_water_colours%22.jpg"
+    },
+    {
+      "path": "/regions/philippines/dinagat-islands/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"philippines\",\"dinagat islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_Front_-_panoramio_(1).jpg"
+    },
+    {
+      "path": "/regions/poland/lublin-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"lublin voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jezioro_%C5%81ukcze.jpg"
+    },
+    {
+      "path": "/regions/poland/podlaskie-voivodeship/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"poland\",\"podlaskie voivodeship\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:DSC0273_October_2015_in_Podlaskie_Voivodeship.jpg"
+    },
+    {
+      "path": "/regions/russia/moscow/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"russia\",\"moscow\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Moscow_City_landscape_july_2008.jpg"
+    },
+    {
+      "path": "/regions/russian-federation/leningrad/",
+      "areaKey": "[\"europe\",\"eastern europe\",\"russian federation\",\"leningrad\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%D0%9D%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D0%B0%D1%8F_%D0%BE%D0%B7%D0%B5%D1%80%D0%B0_%D0%A4%D0%BE%D0%BD%D1%82%D0%B0%D0%BD%D0%BA%D0%B0_%D0%B2_%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B5_%D0%91%D0%BE%D0%BA%D1%81%D0%B8%D1%82%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA.jpg"
+    },
+    {
+      "path": "/regions/senegal/dakar/",
+      "areaKey": "[\"africa\",\"western africa\",\"senegal\",\"dakar\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ngor_Beach.jpg"
+    },
+    {
+      "path": "/regions/serbia/south-banat/",
+      "areaKey": "[\"europe\",\"southern europe\",\"serbia\",\"south banat\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bela_Crkva,_katolick%C3%BD_kostel.jpg"
+    },
+    {
+      "path": "/regions/south-africa/kwazulu-natal/",
+      "areaKey": "[\"africa\",\"southern africa\",\"south africa\",\"kwazulu-natal\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Learning_to_surf_with_Ocean_Adventures,_Durban_beach_front._KwaZulu_Natal,_South_Africa_(20326830209).jpg"
+    },
+    {
+      "path": "/regions/thailand/krabi/",
+      "areaKey": "[\"asia\",\"south-eastern asia\",\"thailand\",\"krabi\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Krabi,_Karst_landscape,_Thailand.jpg"
+    },
+    {
+      "path": "/regions/turkiye/canakkale/",
+      "areaKey": "[\"turkiye\",\"canakkale\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gallipoli_ANZAC_Cove_2.JPG"
+    },
+    {
+      "path": "/regions/united-kingdom/anglesey/",
+      "areaKey": "[\"europe\",\"northern europe\",\"united kingdom\",\"anglesey\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fields_in_Anglesey.jpg"
+    },
+    {
+      "path": "/regions/united-states/hawaii-big-island/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"hawaii big island\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Kamakahonu_pier_%26_beach.JPG"
+    },
+    {
+      "path": "/regions/united-states/idaho/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"idaho\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_at_Dierkes_Lake_Park_Twin_Falls_ID_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states/nebraska/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"nebraska\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hist_Platte_Valley_(US_183)_nr_I-80_exit_257_2016-07-12_1340.jpg"
+    },
+    {
+      "path": "/regions/united-states/oklahoma/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"oklahoma\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bison_bison_Wichita_Mountain_Oklahoma.jpg"
+    },
+    {
+      "path": "/regions/united-states/puerto-rico-u-s-virgin-islands/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states\",\"puerto rico / u.s. virgin islands\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bosque_Boqueron_2018.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/michigan/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"michigan\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Gfp-michigan-twin-lakes-state-park-boat-looking-out-into-the-lake.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/new-york/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"new york\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:South_Grand_Island_Bridge_by_Niederkasseler_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/pennsylvania/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"pennsylvania\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Dutch_Springs_(Lake_Hydra)_Quarry,_Hanoverville_Road,_Bethlehem,_PA_(52403243170).jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/tennessee/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"tennessee\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Maclura_pomifera_Nashville.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/texas/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"texas\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Persicaria_Lapathifolia,_Curlytop_Knotweed,_Curl-top_Smartweed,_Pale_Smartweed_-_panoramio.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/virginia/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"virginia\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_at_Virginia_Beach_Oceanfront_-_Paragliders.jpg"
+    },
+    {
+      "path": "/regions/united-states-of-america/wisconsin/",
+      "areaKey": "[\"north america\",\"northern america\",\"united states of america\",\"wisconsin\"]",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jackson_County,_WI_-_panoramio.jpg"
+    }
+  ]
+}
