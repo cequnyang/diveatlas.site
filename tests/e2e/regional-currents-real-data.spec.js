@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const { closeTopMenu, openMap, openTopMenu } = require('./support');
+const { openMap } = require('./support');
 
 const fixtureRoot = path.resolve(__dirname, '..', 'fixtures', 'regional-currents-real');
 const samples = require('../fixtures/regional-currents-real/samples.json');
@@ -151,9 +151,7 @@ test('real GLORYS12 fixture reaches the browser with source-matched values and m
     for (let offset = 0; offset < data.length; offset += 4) if (data[offset + 3]) sum += data[offset] + data[offset + 1] + data[offset + 2];
     return sum;
   }, 0));
-  await openTopMenu(page);
-  await page.locator('#themeBtn').click();
-  await closeTopMenu(page);
+  await page.locator('#topMenuBar .top-menu-controls > #themeBtn').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect.poll(() => page.locator('.regional-current-speed-tint-tile').evaluateAll(canvases => canvases.reduce((sum, canvas) => {
     const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
