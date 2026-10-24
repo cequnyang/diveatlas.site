@@ -470,7 +470,7 @@ body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger {  display
 body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger svg { width: 12px; height: 12px; flex: 0 0 12px; }
 body.seo-site-detail-layout .seo-language-menu .language-globe-icon { display: none; }
 body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger:hover,body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger[aria-expanded="true"],body.seo-site-detail-layout .seo-menu-wrap .top-menu-menu-button:hover,body.seo-site-detail-layout .seo-menu-wrap .top-menu-menu-button[aria-expanded="true"] { background: color-mix(in srgb, var(--text) 6%, transparent); }
-body.seo-site-detail-layout .seo-menu-wrap { position: relative; display: inline-flex; height: 36px; margin-left: 2px; align-items: center; }
+body.seo-site-detail-layout .seo-menu-wrap { position: relative; display: inline-flex; height: 36px; margin-left: 2px; margin-right: -12px; align-items: center; }
 body.seo-site-detail-layout .seo-menu-wrap .top-menu-menu-button { display: inline-flex; width: 40px; height: 36px; align-items: center; justify-content: center; padding: 0; border: 1px solid transparent; border-radius: 6px; background: transparent; color: #6b7280; cursor: pointer; }
 body.seo-site-detail-layout .seo-menu-wrap .top-menu-menu-button svg { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; }
 body.seo-site-detail-layout .seo-menu-wrap .top-menu-menu-button:focus-visible,body.seo-site-detail-layout .seo-language-menu .top-menu-lang-trigger:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 52%, transparent); outline-offset: 2px; }
@@ -637,3 +637,10 @@ body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6
 .site-recommendations ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); justify-items: center; }
 .site-recommendations li { width: min(100%, 320px); min-width: min(100%, 260px); }
 .site-recommendations li a.site-recommendations__card { width: 100%; min-width: min(100%, 260px); max-width: 320px; }
+
+/* Reserve the fixed header's rail in the document scrollbar without changing
+   the document scroll owner used by detail-page navigation and touch gestures. */
+html:has(> body.seo-site-detail-layout)::-webkit-scrollbar { width: 6px; background: var(--panel-solid); }
+html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-track { margin-top: 42px; background: var(--bg); }
+html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-thumb { border: 1px solid var(--bg); border-radius: 999px; background: var(--faint); }
+html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-button { display: none; }

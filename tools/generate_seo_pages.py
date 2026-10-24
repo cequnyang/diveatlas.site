@@ -462,13 +462,27 @@ def validated_candidates(
 
 
 def page_shell(title: str, description: str, canonical: str, body: str, body_class: str = "") -> str:
-    body_class_attr = f' class="{html_text(body_class)}"' if body_class else ""
+    body_classes = body_class.split()
+    has_browse_header = bool({"region-browser-page", "region-destination-page"} & set(body_classes))
+    if has_browse_header and "seo-browse-layout" not in body_classes:
+        body_classes.append("seo-browse-layout")
+    body_class_attr = f' class="{html_text(" ".join(body_classes))}"' if body_classes else ""
     if "region-area-browser-page" in body_class.split():
         region_browse_styles_version = "19"
     elif body_class in {"region-browser-page", "region-destination-page"}:
         region_browse_styles_version = "19"
     else:
         region_browse_styles_version = "9"
+    seo_styles_version = "151" if has_browse_header else "145"
+    browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
+    <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
+''' if has_browse_header else ""
+    browse_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
+<script src="/js/data-assets.js"></script>
+<script src="/js/seo-browse-header.js?v=1" defer></script>
+<script src="/js/seo-page-controls.js?v=12" defer></script>
+<script src="/js/seo-site-search.js?v=9" defer></script>
+<script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_browse_header else ""
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -483,11 +497,11 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=1">
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=145">
+  <link rel="stylesheet" href="/assets/seo.css?v={seo_styles_version}">
   <link rel="stylesheet" href="/assets/region-browse.css?v={region_browse_styles_version}">
-</head>
+{browse_head_assets}</head>
 <body{body_class_attr}>
-{body}
+{body}{browse_body_scripts}
 </body>
 </html>
 '''
@@ -1134,7 +1148,6 @@ def region_directory_page(
     ))
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">DiveAtlas destinations</p>
   <h1>Dive sites by destination</h1>
   <p class="lead">Explore destination pages grouped from recorded dive-site locations. Full photo source, creator, and license details appear with each destination image.</p>
   <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({total})</h2><ul class="destination-photo-list">{region_items}</ul>{pagination_nav(page, page_count, total, "/regions/", "/regions", "Destination pages")}</section>

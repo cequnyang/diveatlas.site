@@ -269,8 +269,9 @@
   .seo-site-search-slot:not(.is-mobile-expanded) .dive-search-clear { opacity: 0; visibility: hidden; pointer-events: none; }
   .seo-site-search-slot.is-mobile-expanded { width: min(273px, calc(100vw - 120px)); flex: 1 1 210px; max-width: min(380px, calc(100vw - 120px)); }
   .seo-site-search-slot.is-mobile-expanded #seoSiteSearchSection { width: min(273px, 100%); }
-  #seoSiteSearchResults.visible.has-filters { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(100px, 1fr) auto; }
-  #seoSiteSearchFilterControls { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 12px 16px 18px; border-top: 1px solid var(--line); border-left: 0; }
+  /* Keep the pane divider aligned with the search-bar filter button on phones. */
+  #seoSiteSearchResults.visible.has-filters { min-height: 244px; }
+  #seoSiteSearchFilterControls { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 18px 16px 26px; }
   #seoSiteSearchFilterControls .dive-search-filter-field:first-child { grid-column: 1; }
   #seoSiteSearchResultsScroll { padding-bottom: 10px; }
 }
