@@ -413,7 +413,7 @@
       ? locationHierarchy.map((label, index) => {
         const destination = safeRegionBrowseUrl(locationHierarchyUrls[index]);
         const item = destination ? `<a href="${escape(destination)}">${escape(label)}</a>` : escape(label);
-        return `${index ? '<span aria-hidden="true">›</span> ' : ''}${item}`;
+        return `${index ? '<span aria-hidden="true">/</span> ' : ''}${item}`;
       }).join(' ')
       : 'Mapped dive site';
     const credit = photo?.source === 'illustrative-fallback'
@@ -458,12 +458,12 @@
           <div class="site-photo-gallery-map"><iframe class="site-photo-gallery-map__embed" title="Map preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q=${site.lat}%2C${site.lon}&amp;z=12&amp;output=embed"></iframe><a class="site-photo-gallery-map__mask" href="${mapUrl}" aria-label="View on the DiveAtlas map"></a><a class="site-photo-gallery-map__cta" href="${mapUrl}">View on map</a></div>
         </aside></div>
         <div class="hero-copy">
-          <div class="site-title-row"><h1 id="site-title" data-seo-site-name>${escape(site.name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
           <p class="lead location-hierarchy" aria-label="Location hierarchy">${locationHierarchyMarkup}</p>
+          <div class="site-title-row"><h1 id="site-title" data-seo-site-name>${escape(site.name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
         </div>
       </section>
       ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> <span data-i18n-ignore>${escape(site.aliases)}</span>.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}
-      <section class="detail-section facts-section" aria-labelledby="site-details-heading"><h2 id="site-details-heading">Dive details</h2><dl class="fact-grid">${facts.join('')}</dl></section>
+      <section class="detail-section facts-section" aria-label="Dive details"><dl class="fact-grid">${facts.join('')}</dl></section>
       ${sources.length ? `<section class="detail-section source-section"><h2>Sources</h2><ul class="source-list">${sources.map(source => `<li><a href="${escape(safeUrl(source[1]))}" target="_blank" rel="noopener noreferrer">${escape(source[0] || 'Reference')}</a></li>`).join('')}</ul></section>` : ''}
       <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>`;
     page.setAttribute('aria-busy', 'false');
@@ -495,8 +495,8 @@
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=15',
-      '/js/dive-conditions-chart.js?v=37', '/js/site-recommendations.js?v=17',
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=19',
+      '/js/dive-conditions-chart.js?v=51', '/js/site-recommendations.js?v=17',
       '/js/dive-site-rating-card.js?v=21']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }

@@ -72,6 +72,32 @@
     return Object.freeze({ score, level });
   }
 
+  // Compare a complete annual cycle only: missing months could hide a better season.
+  // A five-point planning tolerance includes near-peak months without fixing season length.
+  // This is a product heuristic, not a scientific or diving-safety threshold.
+  function bestOverallWindows(results) {
+    const scores = Array(12).fill(null);
+    for (const result of results) {
+      if (!Number.isInteger(result.month) || result.month < 1 || result.month > 12 ||
+          scores[result.month - 1] !== null || !Number.isFinite(result.overallScore) ||
+          result.overallScore < 0 || result.overallScore > 100) return null;
+      scores[result.month - 1] = result.overallScore;
+    }
+    if (scores.some(score => score === null)) return null;
+    const score = Math.max(...scores);
+    const threshold = score - 5;
+    const best = scores.map(value => value >= threshold);
+    if (best.every(Boolean)) return { score, threshold, windows:[{ start:1, end:12 }], allYear:true };
+    const windows = [];
+    for (let index = 0; index < 12; index++) {
+      if (!best[index] || best[(index + 11) % 12]) continue;
+      let end = index;
+      while (best[(end + 1) % 12]) end = (end + 1) % 12;
+      windows.push({ start:index + 1, end:end + 1 });
+    }
+    return { score, threshold, windows, allYear:false };
+  }
+
   function confidence(availableCount) {
     return availableCount >= 4 ? 'High' : availableCount >= 2 ? 'Moderate' : availableCount === 1 ? 'Limited' : 'Unavailable';
   }
@@ -100,5 +126,5 @@
       caveat: 'Typical historical conditions — not a live forecast.' });
   }
 
-  return Object.freeze({ METRICS, SCORE_BANDS, classify, scoreBand, metricScore, scoreSuitability, confidence, createResult });
+  return Object.freeze({ METRICS, SCORE_BANDS, classify, scoreBand, metricScore, scoreSuitability, confidence, createResult, bestOverallWindows });
 });

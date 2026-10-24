@@ -9,12 +9,12 @@
   let MONTHS = localizedMonths();
   const translate = value => window.DiveAtlasSiteDetailI18n?.translate(value) || value;
   const SERIES = Object.freeze([
-    { key:'clarity', label:'Water clarity', unit:'m', kind:'line', color:'rgb(230, 126, 34)' },
-    { key:'temperature', label:'Water temperature · 5 m', unit:'°C', kind:'line', color:'rgb(180, 55, 65)' },
-    { key:'current', label:'Current speed · 10 m', unit:'m/s', kind:'line', color:'rgb(53, 88, 166)' },
-    { key:'waves', label:'Wave height', unit:'m', kind:'line', color:'rgb(0, 158, 115)' }
+    { key:'clarity', label:'Water clarity', tooltipLabel:'Clarity', unit:'m', kind:'line', color:'rgb(230, 126, 34)' },
+    { key:'temperature', label:'Water temperature · 5 m', tooltipLabel:'Temp', unit:'°C', kind:'line', color:'rgb(180, 55, 65)' },
+    { key:'current', label:'Current speed · 10 m', tooltipLabel:'Current', unit:'m/s', kind:'line', color:'rgb(53, 88, 166)' },
+    { key:'waves', label:'Wave height', tooltipLabel:'Waves', unit:'m', kind:'line', color:'rgb(0, 158, 115)' }
   ]);
-  const OVERALL_SCORE = Object.freeze({ key:'overallScore', label:'Overall condition score', unit:'0–100', kind:'bar', color:'rgb(126, 87, 194)' });
+  const OVERALL_SCORE = Object.freeze({ key:'overallScore', label:'Overall condition score', tooltipLabel:'Score', unit:'0–100', kind:'bar', color:'rgb(126, 87, 194)' });
   const AXES = Object.freeze([
     { key:'clarity-temperature', series:[SERIES[0], SERIES[1]], side:'left', column:0 },
     { key:'current-waves', series:[SERIES[2], SERIES[3]], side:'right', column:0 },
@@ -24,8 +24,11 @@
   chart.className = 'detail-section monthly-conditions-section';
   chart.setAttribute('aria-labelledby', 'monthly-conditions-heading');
   chart.innerHTML = `
-    <h2 id="monthly-conditions-heading">Monthly dive conditions</h2>
+    <h2 id="monthly-conditions-heading">When to dive</h2>
     <p class="monthly-conditions-status" role="status" aria-live="polite">Loading monthly estimates…</p>
+    <div class="monthly-best-window" hidden>
+      <p><span class="monthly-best-window-dot" aria-hidden="true"></span><strong class="monthly-best-window-label"></strong> <span class="monthly-best-window-months"></span></p>
+    </div>
     <div class="monthly-conditions-chart" hidden></div>
     <div class="monthly-conditions-legend" aria-label="Chart legend"></div>`;
   details.after(chart);
@@ -34,6 +37,16 @@
   const plot = chart.querySelector('.monthly-conditions-chart');
   let started = false;
   let latestResults = null;
+  // Page-local only: resizing and language changes preserve choices; reload resets them.
+  const hiddenSeries = new Set();
+  chart.querySelector('.monthly-conditions-legend').addEventListener('click', event => {
+    const button = event.target.closest('button[data-series]');
+    if (!button) return;
+    const key = button.dataset.series;
+    hiddenSeries.has(key) ? hiddenSeries.delete(key) : hiddenSeries.add(key);
+    if (latestResults) render(latestResults);
+    chart.querySelector(`button[data-series="${key}"]`)?.focus({ preventScroll:true });
+  });
 
   function readCoordinates() {
     const schema = document.querySelector('script[type="application/ld+json"]');
@@ -64,7 +77,7 @@
       ['/js/waves-view.js', 'DiveAtlasWavesView'],
       ['/js/temperature-query.js', 'DiveAtlasTemperatureQuery'],
       ['/js/water-clarity-query.js', 'DiveAtlasWaterClarityQuery'],
-      ['/js/dive-conditions-model.js', 'DiveAtlasConditionsModel'],
+      ['/js/dive-conditions-model.js?v=3', 'DiveAtlasConditionsModel'],
       ['/js/dive-conditions-service.js', 'DiveAtlasConditionsService']
     ];
     for (const [src, globalName] of modules) {
@@ -116,13 +129,21 @@
 
   function monthReadings(result) {
     const readings = SERIES.map(series => `${translate(series.label)}: ${formatValue(result.metrics[series.key].value, series.unit)}`);
-    readings.push(`${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`);
+    readings.push(`${translate(OVERALL_SCORE.tooltipLabel)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`);
     return readings.join('; ');
   }
 
   function render(results) {
     latestResults = results;
     MONTHS = localizedMonths();
+    const summary = chart.querySelector('.monthly-best-window');
+    const best = window.DiveAtlasConditionsModel?.bestOverallWindows(results);
+    summary.hidden = !best;
+    if (best) {
+      summary.querySelector('.monthly-best-window-label').textContent = `${translate('Best overall window')}:`;
+      summary.querySelector('.monthly-best-window-months').textContent = best.allYear ? translate('All year') :
+        best.windows.map(({ start, end }) => start === end ? MONTHS[start - 1] : `${MONTHS[start - 1]}–${MONTHS[end - 1]}`).join(' · ');
+    }
     const available = results.reduce((count, result) => count + SERIES.filter(series =>
       result.metrics[series.key].value != null && Number.isFinite(Number(result.metrics[series.key].value))).length, 0);
     if (!available) {
@@ -133,16 +154,16 @@
     status.textContent = '';
 
     chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series =>
-      `<span class="monthly-conditions-legend-item" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</span>`).join('');
+      `<button type="button" class="monthly-conditions-legend-item" data-series="${series.key}" aria-pressed="${!hiddenSeries.has(series.key)}" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</button>`).join('');
 
     // Keep the outside tick columns close to the canvas edge so the plot can use more width.
     const mobile = window.matchMedia('(max-width: 720px)').matches;
     // Match mobile SVG units to screen pixels so text does not shrink with the desktop canvas.
     const width = mobile ? Math.max(280, plot.getBoundingClientRect().width || 320) : 840;
-    const height = mobile ? 250 : 277.5;
-    const left = mobile ? 76 : 82, right = mobile ? 36 : 40, top = 22, bottom = mobile ? 36 : 58;
+    const height = mobile ? 221 : 237.5;
+    const left = mobile ? 58 : 82, right = mobile ? 36 : 40, top = 11, bottom = mobile ? 18 : 29;
     const innerWidth = width - left - right, innerHeight = height - top - bottom;
-    const axisLabelGap = 12;
+    const axisLabelGap = mobile ? 8 : 12;
     const barWidth = Math.min(42, innerWidth / 14);
     // Keep the first and last bars inside the plot instead of letting them cover the outer tick labels.
     const dataLeft = left + barWidth / 2, dataRight = width - right - barWidth / 2;
@@ -191,7 +212,7 @@
         }
         series.forEach((item, seriesIndex) => {
           const seriesOffset = seriesIndex * 28;
-          const axisColumnGap = 38;
+          const axisColumnGap = mobile ? 28 : 38;
           const x = onLeft
             ? left - axisLabelGap - column * axisColumnGap - seriesOffset
             : width - right + axisLabelGap + column * axisColumnGap + seriesOffset;
@@ -208,10 +229,19 @@
     const markTargets = [];
     for (const result of results) {
       const score = result.overallScore;
+      if (hiddenSeries.has(OVERALL_SCORE.key)) continue;
       if (score == null || !Number.isFinite(Number(score))) continue;
       const x = xAt(result.month), y = yAt(OVERALL_SCORE, score);
       const rect = appendSvg(svg, 'rect', { x:x - barWidth / 2, y, width:barWidth, height:top + innerHeight - y,
-        rx:4, fill:OVERALL_SCORE.color, class:'monthly-conditions-bar' });
+        rx:4, fill:OVERALL_SCORE.color, class:`monthly-conditions-bar${best && score >= best.threshold ? ' is-best-window' : ''}` });
+      if (best && score >= best.threshold) {
+        // SVG strokes straddle the edge; clip the outer half to preserve bar geometry.
+        const clipId = `monthly-best-bar-${result.month}`;
+        const clip = appendSvg(defs, 'clipPath', { id:clipId, clipPathUnits:'userSpaceOnUse' });
+        appendSvg(clip, 'rect', { x:x - barWidth / 2, y, width:barWidth,
+          height:top + innerHeight - y, rx:4 });
+        rect.setAttribute('clip-path', `url(#${clipId})`);
+      }
       rect.dataset.month = String(result.month);
       rect.setAttribute('aria-label', `${MONTHS[result.month - 1]}. ${monthReadings(result)}`);
       rect.setAttribute('tabindex', '0');
@@ -219,6 +249,7 @@
     }
 
     for (const series of SERIES) {
+      if (hiddenSeries.has(series.key)) continue;
       let segment = [];
       const segments = [];
       for (const result of results) {
@@ -247,7 +278,7 @@
     }
 
     for (let month = 1; month <= 12; month += 1) {
-      const label = appendSvg(svg, 'text', { x:xAt(month), y:height - 18, 'text-anchor':'middle', class:'monthly-conditions-month' });
+      const label = appendSvg(svg, 'text', { x:xAt(month), y:height - 9, 'text-anchor':'middle', class:'monthly-conditions-month' });
       label.textContent = MONTHS[month - 1];
       if (mobile && dataWidth / 11 < 24) {
         label.textContent = new Intl.DateTimeFormat(document.documentElement.lang || 'en', {
@@ -258,11 +289,12 @@
     }
 
     const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', 'aria-hidden':'true', 'pointer-events':'none' });
-    const tooltipWidth = Math.min(286, width - 16), tooltipHeight = 142;
+    const visibleSeries = [...SERIES, OVERALL_SCORE].filter(series => !hiddenSeries.has(series.key));
+    const tooltipWidth = Math.min(286, width - 16), tooltipHeight = 42 + visibleSeries.length * 20;
     appendSvg(tooltip, 'rect', { x:0, y:0, width:tooltipWidth, height:tooltipHeight, rx:9,
       fill:'#20252d', 'fill-opacity':'.94' });
     const tooltipTitle = appendSvg(tooltip, 'text', { x:14, y:23, class:'monthly-conditions-tooltip-title' });
-    const tooltipRows = [...SERIES, OVERALL_SCORE].map((series, index) => {
+    const tooltipRows = visibleSeries.map((series, index) => {
       appendSvg(tooltip, 'rect', { x:14, y:35 + index * 20, width:13, height:13, rx:2, fill:series.color });
       return appendSvg(tooltip, 'text', { x:36, y:47 + index * 20, class:'monthly-conditions-tooltip-row' });
     });
@@ -273,11 +305,13 @@
     }
     function showTooltip(result, targetX, targetY, pointerEvent) {
       tooltipTitle.textContent = MONTHS[result.month - 1];
-      SERIES.forEach((series, index) => {
-        const value = result.metrics[series.key].value;
-        tooltipRows[index].textContent = `${translate(series.label)}: ${formatValue(value, series.unit)}`;
+      if (!visibleSeries.length) return;
+      visibleSeries.forEach((series, index) => {
+        const value = series === OVERALL_SCORE
+          ? (result.overallScore == null ? translate('No data') : `${result.overallScore}/100`)
+          : formatValue(result.metrics[series.key].value, series.unit);
+        tooltipRows[index].textContent = `${translate(series.tooltipLabel)}: ${value}`;
       });
-      tooltipRows[SERIES.length].textContent = `${translate(OVERALL_SCORE.label)}: ${result.overallScore == null ? translate('No data') : `${result.overallScore}/100`}`;
       let x = mobile
         ? Math.max(8, Math.min(targetX + 14, width - tooltipWidth - 8))
         : Math.min(Math.max(left, targetX + 14), width - right - tooltipWidth);

@@ -50,7 +50,7 @@
     }
     return new Promise(resolve => {
       const script = document.createElement('script');
-      script.src = '/js/dive-site-detail-i18n.js?v=2';
+      script.src = '/js/dive-site-detail-i18n.js?v=6';
       script.onload = resolve;
       script.onerror = resolve;
       document.head.append(script);

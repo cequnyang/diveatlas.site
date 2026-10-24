@@ -181,11 +181,11 @@ figure { margin: 0; }
 .monthly-conditions-status { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
 .monthly-conditions-status:empty { display: none; }
 .monthly-conditions-scale { margin: 0; color: var(--muted); font-size: 11px; font-weight: 600; }
-.monthly-conditions-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0 4px; color: var(--muted); font-size: 12px; }
+.monthly-conditions-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 6px 0 4px; color: var(--muted); font-size: 12px; }
 .monthly-conditions-legend-item { display: inline-flex; align-items: center; gap: 7px; }
 .monthly-conditions-legend-item i { display: inline-block; width: 13px; height: 13px; border-radius: 50%; background: var(--series-color); }
 .monthly-conditions-legend-item[data-kind="bar"] i { border-radius: 3px; }
-.monthly-conditions-chart { min-height: 0; padding: 4px 0 0; }
+.monthly-conditions-chart { min-height: 0; padding: 2px 0 0; }
 .monthly-conditions-chart, .site-photo-gallery-rating__trend-chart { touch-action: pan-y; }
 .monthly-conditions-chart[hidden] { display: none; }
 .monthly-conditions-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -644,3 +644,24 @@ html:has(> body.seo-site-detail-layout)::-webkit-scrollbar { width: 6px; backgro
 html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-track { margin-top: 42px; background: var(--bg); }
 html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-thumb { border: 1px solid var(--bg); border-radius: 999px; background: var(--faint); }
 html:has(> body.seo-site-detail-layout)::-webkit-scrollbar-button { display: none; }
+
+.monthly-best-window { display: grid; grid-template-columns: max-content; overflow-x: auto; align-items: center; gap: 5px 16px; margin: 12px 0 4px; padding: 12px 0 6px; }
+.monthly-best-window[hidden] { display: none; }
+.monthly-best-window p { display: flex; flex-wrap: nowrap; white-space: nowrap; align-items: baseline; gap: 5px; margin: 0; font-size: 13px; }
+.monthly-best-window-dot { align-self: center; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: var(--primary); }
+
+
+.hero-copy > .location-hierarchy { margin: 0 0 12px; }
+
+/* Outline the same top-scoring months used by the best-window summary. */
+/* Clipping removes the outer half of the stroke, leaving 6px inside on desktop. */
+.monthly-conditions-bar.is-best-window { stroke: #2878ed; stroke-width: 12; vector-effect: non-scaling-stroke; }
+@media (max-width: 720px) {
+  .monthly-conditions-bar.is-best-window { stroke-width: 8; }
+}
+
+button.monthly-conditions-legend-item { padding: 3px 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+button.monthly-conditions-legend-item[aria-pressed="false"] { opacity: .5; text-decoration: line-through; }
+button.monthly-conditions-legend-item:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
+
+.hero-copy .location-hierarchy a { border-bottom: 0; text-decoration: none; }

@@ -1222,14 +1222,23 @@
       'Tidak ada opsi yang cocok', 'Inga matchande alternativ',
       'Ingen treffende alternativer'
     ]],
-    ['Monthly dive conditions', [
-      '月度潜水条件', 'Condiciones mensuales de buceo',
-      'Monatliche Tauchbedingungen', 'Conditions mensuelles de plongée',
-      '月ごとのダイビング条件', 'Condições mensais de mergulho',
-      'Condizioni mensili d’immersione', 'Условия для дайвинга по месяцам',
-      '월별 다이빙 조건', 'Maandelijkse duikomstandigheden',
-      'Kondisi menyelam bulanan', 'Månatliga dykförhållanden',
-      'Månedlige dykkerforhold'
+    ["Clarity", ["能见度", "Visibilidad", "Sichtweite", "Visibilité", "透明度", "Visibilidade", "Visibilità", "Видимость", "시야", "Zicht", "Jarak pandang", "Sikt", "Sikt"]],
+    ["Temp", ["水温", "Temp", "Temp", "Temp", "水温", "Temp", "Temp", "Темп.", "수온", "Temp", "Suhu", "Temp", "Temp"]],
+    ["Current", ["流速", "Corriente", "Strömung", "Courant", "流速", "Corrente", "Corrente", "Течение", "조류", "Stroming", "Arus", "Ström", "Strøm"]],
+    ["Waves", ["浪高", "Olas", "Wellen", "Vagues", "波高", "Ondas", "Onde", "Волны", "파도", "Golven", "Gelombang", "Vågor", "Bølger"]],
+    ["Score", ["评分", "Puntuación", "Bewertung", "Score", "スコア", "Pontuação", "Punteggio", "Оценка", "점수", "Score", "Skor", "Poäng", "Poeng"]],
+    ["Best overall window", ["最佳综合时段", "Mejor periodo general", "Bester Gesamtzeitraum", "Meilleure période globale", "総合的に最適な時期", "Melhor período geral", "Periodo migliore in generale", "Лучший общий период", "종합 최적 시기", "Beste algemene periode", "Periode terbaik keseluruhan", "Bästa perioden totalt", "Beste periode samlet"]],
+    ["All year", ["全年", "Todo el año", "Ganzjährig", "Toute l’année", "通年", "O ano todo", "Tutto l’anno", "Круглый год", "연중", "Het hele jaar", "Sepanjang tahun", "Hela året", "Hele året"]],
+    ["Historical estimates", ["历史估算", "Estimaciones históricas", "Historische Schätzungen", "Estimations historiques", "過去の推定値", "Estimativas históricas", "Stime storiche", "Исторические оценки", "과거 추정치", "Historische schattingen", "Estimasi historis", "Historiska uppskattningar", "Historiske estimater"]],
+    ["Highest monthly score", ["最高月度评分", "Puntuación mensual más alta", "Höchste Monatsbewertung", "Meilleur score mensuel", "月別最高スコア", "Maior pontuação mensal", "Punteggio mensile più alto", "Наивысшая месячная оценка", "월간 최고 점수", "Hoogste maandscore", "Skor bulanan tertinggi", "Högsta månadspoäng", "Høyeste månedspoeng"]],
+    ['When to dive', [
+      '何时潜水', 'Cuándo bucear',
+      'Wann tauchen', 'Quand plonger',
+      'ダイビングに適した時期', 'Quando mergulhar',
+      'Quando immergersi', 'Когда нырять',
+      '다이빙 시기', 'Wanneer duiken',
+      'Kapan menyelam', 'När ska man dyka',
+      'Når bør man dykke'
     ]],
     ['Loading monthly estimates…', [
       '正在加载月度估算…', 'Cargando estimaciones mensuales…',
