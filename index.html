@@ -28170,13 +28170,24 @@ function closeShareDialog() {
     // translate moves only the popup body and survives Leaflet updates.
     popupElement.style.translate = 'none';
     const rect = popupElement.getBoundingClientRect();
-    const shiftX = rect.left < safeLeft
+    const edgeShiftX = rect.left < safeLeft
       ? safeLeft - rect.left
       : rect.right > safeRight
         ? safeRight - rect.right
         : 0;
+    // Map markers now retain subpixel positions while zooming. Snap the popup
+    // body to a CSS pixel after edge correction so its border stays crisp and
+    // Playwright does not alternate between 360px and 361px element clips.
+    // The arrow offset below remains fractional and keeps pointing at the exact
+    // geographic anchor.
+    const desiredLeft = rect.left + edgeShiftX;
+    const snappedLeft = Math.round(desiredLeft);
+    const left = snappedLeft >= safeLeft && snappedLeft + rect.width <= safeRight
+      ? snappedLeft
+      : desiredLeft;
+    const shiftX = left - rect.left;
     const shiftY = popup._diveAtlasVerticalShiftY || 0;
-    popupElement.style.translate = Math.abs(shiftX) < 1 && Math.abs(shiftY) < 1
+    popupElement.style.translate = Math.abs(shiftX) < 0.01 && Math.abs(shiftY) < 1
       ? 'none'
       : `${shiftX}px ${shiftY}px`;
 
