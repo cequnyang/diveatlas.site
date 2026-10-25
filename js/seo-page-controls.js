@@ -79,6 +79,12 @@
     window.addEventListener('load', syncViewportInlineSize, { once:true });
     window.addEventListener('pageshow', syncViewportInlineSize, { passive:true });
     window.addEventListener('resize', syncViewportInlineSize, { passive:true });
+
+    if (document.body.classList.contains('seo-browse-layout')) {
+      // Browse pages add their lists asynchronously, so body growth can create the vertical scrollbar after load.
+      const viewportSizeObserver = new ResizeObserver(syncViewportInlineSize);
+      viewportSizeObserver.observe(document.body);
+    }
   }
 
   const byId = id => document.getElementById(id);
