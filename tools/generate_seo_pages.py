@@ -131,11 +131,16 @@ def area_browse_url(node: dict[str, str | None]) -> str:
     return "/regions/?area=" + quote(str(node["key"]), safe="")
 
 
-def location_hierarchy(site: dict[str, object]) -> str:
-    nodes = location_nodes(str(site.get("country") or ""), str(site.get("region") or ""))
-    return " <span aria-hidden=\"true\">/</span> ".join(
-        f'<a href="{html_text(area_browse_url(node))}">{html_text(node["label"])}</a>' for node in nodes
-    )
+def destination_breadcrumbs(country: str, region: str) -> str:
+    nodes = location_nodes(country, region)
+    items = ['<a href="/regions/">Regions</a>']
+    for index, node in enumerate(nodes):
+        current = ' aria-current="page"' if index == len(nodes) - 1 else ""
+        items.append('<span aria-hidden="true">/</span>')
+        items.append(
+            f'<a href="{html_text(area_browse_url(node))}"{current}>{html_text(node["label"])}</a>'
+        )
+    return '<nav class="breadcrumbs" aria-label="Breadcrumb">' + "".join(items) + "</nav>"
 
 
 def html_text(value: object) -> str:
@@ -461,28 +466,69 @@ def validated_candidates(
     return candidates, dict(rejected)
 
 
+def seo_site_search_markup() -> str:
+    return '''<div class="top-menu-search-slot seo-site-search-slot" id="seoSiteSearchSlot">
+  <div class="search-float" id="seoSiteSearchSection">
+    <div class="dive-search">
+      <div class="dive-search-box">
+        <button class="dive-search-icon" id="seoSiteSearchToggle" type="button" aria-label="Search dive sites" title="Search dive sites" aria-controls="seoSiteSearchInput" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.75" cy="6.75" r="4.25"></circle><path d="M10.4 10.4 14 14"></path></svg></button>
+        <input class="dive-search-input" id="seoSiteSearchInput" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="seoSiteSearchResultsScroll" placeholder="Where Will You Dive Next?" aria-label="Where Will You Dive Next?">
+        <button class="dive-search-clear" id="seoSiteSearchClear" type="button" title="Clear search" aria-label="Clear search"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg></button>
+        <button class="dive-search-filter-toggle" id="seoSiteSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="seoSiteSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"></path><circle cx="16" cy="7" r="2.9"></circle><circle cx="8" cy="17" r="2.9"></circle></svg></button>
+      </div>
+      <div class="dive-search-results" id="seoSiteSearchResults" aria-busy="false">
+        <div class="dive-search-results-scroll" id="seoSiteSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
+        <div class="dive-search-filter-controls" id="seoSiteSearchFilterControls" role="group" aria-label="Dive-site filters" hidden>
+          <label class="dive-search-filter-field"><span id="seoSiteSearchCountryLabel">Country</span><select id="seoSiteSearchCountry" aria-labelledby="seoSiteSearchCountryLabel"><option value="">Any country</option></select></label>
+          <label class="dive-search-filter-field"><span id="seoSiteSearchDifficultyLabel">Difficulty</span><select id="seoSiteSearchDifficulty" aria-labelledby="seoSiteSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
+          <label class="dive-search-filter-field"><span id="seoSiteSearchFeatureLabel">Feature</span><select id="seoSiteSearchFeature" aria-labelledby="seoSiteSearchFeatureLabel"><option value="">Any feature</option></select></label>
+          <button class="dive-search-filter-clear" id="seoSiteSearchFilterClear" type="button" hidden>Clear All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>'''
+
+
+SITE_FOOTER_TEMPLATE = '''<footer class="site-detail-footer"><a class="site-footer-brand" href="/" aria-label="DiveAtlas home"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav class="site-footer-share" aria-label="{share_label}">
+  <a data-footer-share="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Copy link for Instagram" title="Instagram"><span class="share-action-icon share-action-icon--instagram" aria-hidden="true"><img src="/assets/share-platforms/instagram-glyph.png" alt=""></span></a>
+  <a data-footer-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><span class="share-action-icon share-action-icon--facebook" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg></span></a>
+  <a data-footer-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="WhatsApp"><span class="share-action-icon share-action-icon--whatsapp" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span></a>
+  <a data-footer-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="X"><span class="share-action-icon share-action-icon--x" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></span></a>
+  <a data-footer-share="reddit" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" title="Reddit"><span class="share-action-icon share-action-icon--reddit" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg></span></a>
+</nav></footer>'''
+
+
+def site_footer_markup(share_label: str = "Share this page") -> str:
+    return SITE_FOOTER_TEMPLATE.replace("{share_label}", html_text(share_label))
+
+
 def page_shell(title: str, description: str, canonical: str, body: str, body_class: str = "") -> str:
     body_classes = body_class.split()
     has_browse_header = bool({"region-browser-page", "region-destination-page"} & set(body_classes))
+    has_site_detail = "seo-site-detail-layout" in body_classes
+    has_site_directory = "site-directory-page" in body_classes
     if has_browse_header and "seo-browse-layout" not in body_classes:
         body_classes.append("seo-browse-layout")
     body_class_attr = f' class="{html_text(" ".join(body_classes))}"' if body_classes else ""
-    if "region-area-browser-page" in body_class.split():
-        region_browse_styles_version = "19"
-    elif body_class in {"region-browser-page", "region-destination-page"}:
-        region_browse_styles_version = "19"
+    if has_site_directory or "region-area-browser-page" in body_classes:
+        region_browse_styles_version = "26"
+    elif {"region-browser-page", "region-destination-page"} & set(body_classes):
+        region_browse_styles_version = "26"
     else:
         region_browse_styles_version = "9"
-    seo_styles_version = "167" if has_browse_header else "145"
+    seo_styles_version = "179"
     browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
     <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
 ''' if has_browse_header else ""
+    detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">\n' if has_site_detail else ""
     browse_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
 <script src="/js/seo-browse-header.js?v=1" defer></script>
-<script src="/js/seo-page-controls.js?v=19" defer></script>
+<script src="/js/seo-page-controls.js?v=23" defer></script>
 <script src="/js/seo-site-search.js?v=9" defer></script>
 <script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_browse_header else ""
+    directory_rating_script = '\n<script src="/js/seo-list-card-ratings.js?v=1" defer></script>' if has_site_directory else ""
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -499,9 +545,9 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
   <link rel="stylesheet" href="/assets/seo.css?v={seo_styles_version}">
   <link rel="stylesheet" href="/assets/region-browse.css?v={region_browse_styles_version}">
-{browse_head_assets}</head>
+{detail_search_head_assets}{browse_head_assets}</head>
 <body{body_class_attr}>
-{body}{browse_body_scripts}
+{body}{browse_body_scripts}{directory_rating_script}
 </body>
 </html>
 '''
@@ -543,7 +589,7 @@ def pagination_nav(page: int, page_count: int, total: int, first_url: str,
 def public_region_index(rows: list[list[object]]) -> dict[str, object]:
     """Index every public detail record by recorded geography, independent of the SEO content gate."""
     id_counts = Counter(row_value(row, 12).lower() for row in rows if row_value(row, 12))
-    sites: list[dict[str, str]] = []
+    sites: list[dict[str, object]] = []
     for row in rows:
         site_id, name = row_value(row, 12).lower(), row_value(row, 0)
         latitude, longitude = row[1:3] if len(row) > 2 else (None, None)
@@ -554,8 +600,9 @@ def public_region_index(rows: list[list[object]]) -> dict[str, object]:
                 or not -90 <= latitude <= 90 or not -180 <= longitude <= 180):
             continue
         sites.append({"site_id": site_id, "name": name,
-                      "country": row_value(row, 9), "region": row_value(row, 10)})
-    sites.sort(key=lambda site: (site["name"].casefold(), site["site_id"]))
+                      "country": row_value(row, 9), "region": row_value(row, 10),
+                      "lat": float(latitude), "lon": float(longitude)})
+    sites.sort(key=lambda site: (str(site["name"]).casefold(), str(site["site_id"])))
 
     areas: dict[str, dict[str, object]] = {}
     for index, site in enumerate(sites):
@@ -636,20 +683,19 @@ def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[st
       <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
       <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
       <article class="region-area-feature" id="regionAreaPhoto" hidden>
-        <figure>
-          <div class="region-area-card__frame"><img id="regionAreaPhotoImage" alt=""></div>
-          <figcaption class="region-area-card__caption">
-            <div class="region-area-card__place-line region-area-card__title-line">
-              <h2 class="region-area-card__name" id="regionAreaPhotoName"></h2>
-              <span class="region-area-card__count" id="regionAreaPhotoContext"></span>
-            </div>
-          </figcaption>
+        <figure class="destination-photo-detail">
+          <div class="destination-photo-detail__frame region-area-card__frame">
+            <img id="regionAreaPhotoImage" alt="">
+            <div class="destination-photo-credit-overlay" id="regionAreaPhotoAttribution" hidden></div>
+          </div>
         </figure>
+        <p class="destination-description" id="regionAreaDescription"></p>
+        <p><a id="regionAreaMapLink" href="/">View this area on the interactive map</a></p>
       </article>
       <section class="region-photo-gallery" id="regionAreaSection" aria-label="Areas" hidden>
         <ul class="site-list" id="regionAreaList"></ul>
       </section>
-      <section id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
+      <section class="site-recommendations region-site-recommendations" id="regionSiteSection" aria-labelledby="regionSiteHeading" hidden>
         <h2 id="regionSiteHeading">Dive sites</h2>
         <p class="coordinates" id="regionSiteCount" aria-live="polite"></p>
         <ul class="site-list" id="regionSiteList"></ul>
@@ -657,8 +703,8 @@ def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[st
     </div>
   </details>
 </main>
-<footer><a href="/">DiveAtlas map</a></footer>
-<script src="/js/region-browse.js?v=27" defer></script>'''
+{site_footer_markup()}
+<script src="/js/region-browse.js?v=31" defer></script>'''
     page_title = "Dive Sites by Destination | DiveAtlas" if page == 1 else f"Dive Sites by Destination - Page {page} | DiveAtlas"
     page_url = f"{BASE_URL}/regions/" if page == 1 else f"{BASE_URL}/regions/page/{page}/"
     page_start = (page - 1) * LIST_PAGE_SIZE + 1
@@ -693,6 +739,36 @@ def recommendation_major_features(candidate: dict[str, object]) -> list[str]:
         pair[0],
     ))
     return [value for _, value in indexed[:2]]
+
+
+def recommendation_card_link(candidate: dict[str, object]) -> str:
+    photo = candidate.get("photo") or {}
+    photo_src = ""
+    photo_credit = ""
+    if isinstance(photo, dict):
+        source = str(photo.get("src") or "")
+        photo_src = source if re.match(r"^https?://", source, re.I) else "/" + source.lstrip("/") if source else ""
+        photo_credit = str(photo.get("credit", ""))
+    photo_title = f' title="{html_text(photo_credit)}"' if photo_credit else ""
+    image = (
+        f'<img class="site-recommendations__image" src="{html_text(photo_src)}" alt="" loading="lazy" decoding="async"{photo_title}>'
+        if photo_src else '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'
+    )
+    feature_markup = "".join(
+        f'<span class="site-recommendations__feature">{html_text(feature)}</span>'
+        for feature in recommendation_major_features(candidate)
+    ) or '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>'
+    location = str(candidate.get("region") or candidate.get("country") or "")
+    return (
+        f'<a class="site-recommendations__card" data-recommendation-card data-rating-lat="{float(candidate["lat"]):.6f}" '
+        f'data-rating-lng="{float(candidate["lon"]):.6f}" href="/dive-sites/{quote(str(candidate["slug"]))}/">'
+        f'{image}<span class="site-recommendations__card-body">'
+        f'<span class="site-recommendations__name" title="{html_text(candidate["name"])}">{html_text(candidate["name"])}</span>'
+        f'<span class="site-recommendations__meta"><span class="site-recommendations__location">{html_text(location)}</span>'
+        f'<span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span>'
+        f'<span class="site-recommendations__features" aria-label="Recorded features">{feature_markup}</span>'
+        f'</span></a>'
+    )
 
 
 def recommendation_difficulty(candidate: dict[str, object]) -> str:
@@ -781,7 +857,7 @@ def generate_site_page(
     canonical_url = f"{BASE_URL}/dive-sites/{quote(slug)}/"
     name, country, region = str(site["name"]), str(site["country"]), str(site["region"])
     location = ", ".join(value for value in (region, country) if value)
-    location_hierarchy_markup = location_hierarchy(site) or "Mapped dive site"
+    site_breadcrumbs_markup = destination_breadcrumbs(country, region)
     coordinate_text = f"{float(site['lat']):.5f}, {float(site['lon']):.5f}"
     context = f" in {location}" if location else ""
     title_base = f"{name} Dive Site{f' in {location}' if location else ''} | DiveAtlas"
@@ -805,31 +881,32 @@ def generate_site_page(
     place_key = (country.casefold(), region.casefold())
     region_entry = regions.get(place_key)
     facts: list[str] = []
+    # Keep this order aligned with the interactive detail view: map, features, difficulty; depth, setting, access.
     # Use the Commons thumbnail rendition: the source SVG embeds 19 PNGs and is about 4.3 MB.
-    facts.append(f'<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query={float(site["lat"]):.5f}%2C{float(site["lon"]):.5f}" target="_blank" rel="noopener noreferrer" aria-label="Open coordinates {html_text(coordinate_text)} in Google Maps" title="Open in Google Maps"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Maps</span></a></dd></div>')
-    if site["depth_min"] or site["depth_max"]:
-        depth = depth_min if same_recorded_depth else "–".join(value for value in (depth_min, depth_max) if value)
-        label = "Recorded depth" if same_recorded_depth else "Recorded depth range"
-        facts.append(f'<div class="fact"><dt>{label}</dt><dd data-depth-min="{html_text(depth_min)}" data-depth-max="{html_text(depth_max)}">{html_text(depth)} m</dd></div>')
-    elif site["recorded_depth"]:
-        facts.append(f'<div class="fact"><dt>Recorded depth</dt><dd data-depth-min="{html_text(site["recorded_depth"])}" data-depth-max="{html_text(site["recorded_depth"])}">{html_text(site["recorded_depth"])} m</dd></div>')
+    facts.append(f'<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query={float(site["lat"]):.5f}%2C{float(site["lon"]):.5f}" target="_blank" rel="noopener noreferrer" aria-label="Open coordinates {html_text(coordinate_text)} in Google Maps" title="Open in Google Maps"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Google Maps</span></a></dd></div>')
+    if site["categories"]["features"]:
+        feature_tokens = [part.strip().replace("_", " ") for part in site["categories"]["features"].split("|") if part.strip()]
+        feature_text = " · ".join(feature_tokens)
+        facts.append(f'<div class="fact fact-features"><dt>Features</dt><dd>{html_text(feature_text)}</dd></div>')
     if site["difficulty"]:
         levels = [value.strip() for value in re.split(r"\s*(?:\||,|;|\bto\b)\s*", str(site["difficulty"]), flags=re.I) if value.strip()]
         ranks = {"beginner": 0, "intermediate": 1, "advanced": 2, "expert": 3}
         recognized = [value for value in levels if value.casefold() in ranks]
         difficulty = min(recognized, key=lambda value: ranks[value.casefold()]) if recognized else str(site["difficulty"])
         facts.append(f'<div class="fact"><dt>Difficulty</dt><dd>{html_text(difficulty)}</dd></div>')
+    if site["depth_min"] or site["depth_max"]:
+        depth = depth_min if same_recorded_depth else "–".join(value for value in (depth_min, depth_max) if value)
+        label = "Recorded depth" if same_recorded_depth else "Recorded depth range"
+        facts.append(f'<div class="fact"><dt>{label}</dt><dd data-depth-min="{html_text(depth_min)}" data-depth-max="{html_text(depth_max)}">{html_text(depth)} m</dd></div>')
+    elif site["recorded_depth"]:
+        facts.append(f'<div class="fact"><dt>Recorded depth</dt><dd data-depth-min="{html_text(site["recorded_depth"])}" data-depth-max="{html_text(site["recorded_depth"])}">{html_text(site["recorded_depth"])} m</dd></div>')
     def category_text(value: str) -> str:
-        return " | ".join(part.strip().replace("_", " ").capitalize() for part in value.split("|"))
+        return " · ".join(part.strip().replace("_", " ") for part in value.split("|") if part.strip())
 
     for label, key in (("Setting", "setting"), ("Access", "access")):
         if site["categories"][key]:
             fact_class = " fact-setting" if label == "Setting" else ""
             facts.append(f'<div class="fact{fact_class}"><dt>{label}</dt><dd>{html_text(category_text(site["categories"][key]))}</dd></div>')
-    if site["categories"]["features"]:
-        feature_tokens = [part.strip().replace("_", " ") for part in site["categories"]["features"].split("|") if part.strip()]
-        feature_text = " · ".join(feature_tokens)
-        facts.append(f'<div class="fact fact-features"><dt>Features</dt><dd>{html_text(feature_text)}</dd></div>')
     intro_detail_parts = []
     if site["aliases"]:
         intro_detail_parts.append(f'<strong>Also recorded as:</strong> <span data-i18n-ignore>{html_text(site["aliases"])}</span>.')
@@ -838,37 +915,8 @@ def generate_site_page(
         intro_detail_parts.append(f'<span data-seo-summary>{html_text(summary["description"])}</span>')
     intro_details_markup = f'<p class="site-intro-detail">{"<br>".join(intro_detail_parts)}</p>' if intro_detail_parts else ""
 
-    def recommendation_photo_src(candidate: dict[str, object]) -> str:
-        photo = candidate.get("photo")
-        if not isinstance(photo, dict) or not photo.get("src"):
-            return ""
-        source = str(photo["src"])
-        return source if re.match(r"^https?://", source, re.I) else "/" + source.lstrip("/")
-
     def recommendation_card(candidate: dict[str, object]) -> str:
-        photo = candidate.get("photo") or {}
-        photo_src = recommendation_photo_src(candidate)
-        photo_credit = str(photo.get("credit", "")) if isinstance(photo, dict) else ""
-        photo_title = f' title="{html_text(photo_credit)}"' if photo_credit else ""
-        image = (
-            f'<img class="site-recommendations__image" src="{html_text(photo_src)}" alt="" loading="lazy"'
-            f'{photo_title}>'
-            if photo_src else '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'
-        )
-        feature_markup = "".join(
-            f'<span class="site-recommendations__feature">{html_text(feature)}</span>'
-            for feature in recommendation_major_features(candidate)
-        ) or '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>'
-        return (
-            f'<li><a class="site-recommendations__card" data-recommendation-card data-rating-lat="{float(candidate["lat"]):.6f}" '
-            f'data-rating-lng="{float(candidate["lon"]):.6f}" href="/dive-sites/{quote(str(candidate["slug"]))}/">'
-            f'{image}<span class="site-recommendations__card-body">'
-            f'<span class="site-recommendations__name" title="{html_text(candidate["name"])}">{html_text(candidate["name"])}</span>'
-            f'<span class="site-recommendations__meta"><span class="site-recommendations__location">{html_text(str(candidate["region"]))}</span>'
-            f'<span class="site-recommendations__rating" aria-label="diveAtlas Rating">Rating loading</span></span>'
-            f'<span class="site-recommendations__features" aria-label="Recorded features">{feature_markup}</span>'
-            f'</span></a></li>'
-        )
+        return f'<li>{recommendation_card_link(candidate)}</li>'
 
     def recommendation_group(key: str, candidates: list[dict[str, object]], *, empty_text: str) -> str:
         if candidates:
@@ -968,12 +1016,26 @@ def generate_site_page(
         image_url = str(photo["src"]) if re.match(r"^https?://", str(photo["src"]), re.I) else "/" + str(photo["src"]).lstrip("/")
         credit_text = f'Illustrative image · {photo.get("credit", "")}' if photo.get("source") == "illustrative-fallback" else photo.get("credit", "")
         credit = f'<figcaption>{html_text(credit_text)}</figcaption>' if credit_text else ""
+        upload_label = ""
+        if photo.get("source") == "illustrative-fallback":
+            upload_url = f'/?addPhoto=1&amp;site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14'
+            upload_label = (
+                f'<a class="site-photo-upload-label" href="{upload_url}" target="_blank" rel="noopener noreferrer" '
+                f'aria-label="Been diving here? Share a real photo.">'
+                f'<span class="site-photo-upload-label__rest">Representative image · not this dive site</span>'
+                f'<span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a>'
+                f'<span class="site-photo-upload-label-mobile">Representative image · not this dive site</span>'
+                f'<a class="site-photo-upload-button" href="{upload_url}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo">'
+                f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
+                f'<circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>'
+            )
         safe_image_url = html_text(image_url)
         safe_photo_alt = html_text(photo["alt"])
         photo_markup = (
             f'<div class="site-photo-feature"><figure class="site-photo site-photo-gallery">'
             f'<div class="site-photo-gallery-main"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
-            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" loading="lazy"></button>{credit}</div>'
+            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" loading="lazy"></button>{upload_label}{credit}</div>'
             f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
             f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
             f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span data-i18n-ignore>Rating</span></div>'
@@ -1003,12 +1065,12 @@ def generate_site_page(
       <label class="sr-only" for="seoLanguageSelect">Language</label><select class="sr-only-select" id="seoLanguageSelect" aria-label="Language" tabindex="-1" aria-hidden="true"><option value="en">EN</option><option value="zh">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">ES</option><option value="de">DE</option><option value="fr">FR</option><option value="ja">日本語</option><option value="pt">PT</option><option value="it">IT</option><option value="ru">RU</option><option value="ko">한국어</option><option value="nl">NL</option><option value="id">ID</option><option value="sv">SV</option><option value="no">NO</option></select></div>
       <div class="top-menu-menu seo-menu-wrap"><button class="top-menu-menu-button" id="seoMenuButton" type="button" title="Menu" aria-label="Menu" aria-expanded="false" aria-controls="seoMenuDropdown"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button><div class="top-menu-dropdown seo-menu-dropdown" id="seoMenuDropdown" hidden><div class="top-menu-page-header">Menu</div><div class="seo-menu-account" role="status">Account sign-in is unavailable</div><div class="top-menu-about-wrap seo-menu-about-wrap"><button class="top-menu-dropdown-item" id="seoAboutButton" type="button" aria-expanded="false" aria-controls="seoAboutDetails">About</button><div class="top-menu-about-tooltip" id="seoAboutDetails" hidden><p>DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean conditions.</p><p class="top-menu-about-copyright">© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p></div></div><button class="top-menu-dropdown-item" id="seoContactButton" type="button">Contact</button><div class="top-menu-version" data-version="0.0.1" aria-label="DiveAtlas version 0.0.1">v0.0.1</div></div></div>
     </div>'''
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a>{controls}</header>
+    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a>{seo_site_search_markup()}{controls}</header>
 <div class="seo-menu-backdrop" id="seoMenuBackdrop" hidden></div>
 <main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}">
   <section class="site-hero" aria-labelledby="site-title">
     {photo_markup}
-    <div class="hero-copy"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a>{f'<span aria-hidden="true">›</span><a href="{html_text(region_entry["path"])}">{html_text(region)}</a>' if region_entry else ''}</nav><p class="lead location-hierarchy" aria-label="Location hierarchy">{location_hierarchy_markup}</p><div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
+    <div class="hero-copy">{site_breadcrumbs_markup}<div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
     </div>
   </section>
   {intro_details_markup}
@@ -1017,18 +1079,12 @@ def generate_site_page(
   <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>
 </main>
 {recommendation_markup}
-<footer class="site-detail-footer"><a class="site-footer-brand" href="/" aria-label="DiveAtlas home"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav class="site-footer-share" aria-label="Share this dive site">
-  <a data-footer-share="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Copy link for Instagram" title="Instagram"><span class="share-action-icon share-action-icon--instagram" aria-hidden="true"><img src="/assets/share-platforms/instagram-glyph.png" alt=""></span></a>
-  <a data-footer-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><span class="share-action-icon share-action-icon--facebook" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg></span></a>
-  <a data-footer-share="whatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="WhatsApp"><span class="share-action-icon share-action-icon--whatsapp" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span></a>
-  <a data-footer-share="x" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="X"><span class="share-action-icon share-action-icon--x" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></span></a>
-  <a data-footer-share="reddit" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" title="Reddit"><span class="share-action-icon share-action-icon--reddit" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg></span></a>
-</nav></footer>
+{site_footer_markup("Share this dive site")}
 
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=19" defer></script><script src="/js/dive-conditions-chart.js?v=51" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/dive-site-rating-card.js?v=21" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=23" defer></script><script src="/js/dive-conditions-chart.js?v=51" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=9" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=21" defer></script>'''
     html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
     return title_base, html
 
@@ -1043,6 +1099,7 @@ def generate_region_page(
     country, region = str(group["country"]), str(group["region"])
     path = region_path(country, region)
     url = f"{BASE_URL}{path}"
+    breadcrumbs = destination_breadcrumbs(country, region)
     sites = list(group["sites"])
     title_base = f"Dive Sites in {region}, {country} | DiveAtlas" if country else f"Dive Sites in {region} | DiveAtlas"
     country_suffix = f", {country}" if country else ""
@@ -1087,16 +1144,15 @@ def generate_region_page(
         description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main>
-  <p class="eyebrow">Dive-site destination</p>
   <h1>Dive Sites in {html_text(region)}</h1>
-  <p class="lead">{html_text(country)}</p>
+  {breadcrumbs}
   {destination_photo_figure(photo)}
   <p class="destination-description">This page lists {len(sites)} dive sites with recorded country and region fields matching this destination. The coordinate range is {html_text(bounds)}.</p>
   <p><a href="{html_text(BASE_URL)}/?lat={sum(latitudes)/len(latitudes):.5f}&amp;lng={sum(longitudes)/len(longitudes):.5f}&amp;z=7&amp;layers=dive">View this area on the interactive map</a></p>
   <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({len(sites)})</h2><ul class="site-list destination-site-list">{site_items}</ul>{site_navigation}</section>
   {related_markup}
 </main>
-<footer><a href="/">DiveAtlas map</a></footer>'''
+{site_footer_markup()}'''
     return title, page_shell(title, description, canonical, body, body_class="region-destination-page")
 
 
@@ -1109,19 +1165,16 @@ def site_directory_page(sites: list[dict[str, object]], page: int = 1) -> str:
     page = min(max(page, 1), page_count)
     start = (page - 1) * LIST_PAGE_SIZE
     visible_sites = ordered_sites[start:start + LIST_PAGE_SIZE]
-    site_items = item_list(visible_sites, lambda site: (
-        f'<a href="/dive-sites/{quote(str(site["slug"]))}/">{html_text(site["name"])}</a>'
-        f'<span class="coordinates"> {html_text(", ".join(value for value in (str(site["region"]), str(site["country"])) if value))}</span>'
-    ))
+    site_items = item_list(visible_sites, recommendation_card_link)
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
   <p class="eyebrow">DiveAtlas dive sites</p>
   <h1>Explore dive sites</h1>
   <p class="lead">Browse mapped dive sites with recorded locations and available details. Each profile links its listed facts to the available source information.</p>
   <p><a href="/regions/">Browse dive sites by destination</a></p>
-  <section aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({total})</h2><ul class="site-list dive-site-directory-list">{site_items}</ul>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
+  <section class="site-recommendations site-directory-recommendations" aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({total})</h2><div class="site-recommendations__content"><ul class="site-recommendations__combined dive-site-directory-list">{site_items}</ul></div>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
 </main>
-<footer><a href="/">DiveAtlas map</a></footer>'''
+{site_footer_markup()}'''
     title = "Dive Site Directory | DiveAtlas" if page == 1 else f"Dive Site Directory - Page {page} | DiveAtlas"
     canonical = f"{BASE_URL}/dive-sites/" if page == 1 else f"{BASE_URL}/dive-sites/page/{page}/"
     return page_shell(
@@ -1129,7 +1182,7 @@ def site_directory_page(sites: list[dict[str, object]], page: int = 1) -> str:
         f"Browse page {page} of {page_count} in the {total} mapped dive-site profiles on DiveAtlas.",
         canonical,
         body,
-        body_class="region-browser-page",
+        body_class="region-browser-page site-directory-page",
     )
 
 
@@ -1153,7 +1206,7 @@ def region_directory_page(
   <section aria-labelledby="regions-heading"><h2 id="regions-heading">Destinations ({total})</h2><ul class="destination-photo-list">{region_items}</ul>{pagination_nav(page, page_count, total, "/regions/", "/regions", "Destination pages")}</section>
   <p><a href="/dive-sites/">Browse all published dive-site profiles</a></p>
 </main>
-<footer><a href="/">DiveAtlas map</a></footer>'''
+{site_footer_markup()}'''
     return page_shell(
         "Dive Sites by Destination | DiveAtlas",
         f"Browse DiveAtlas dive-site destination pages across {len(groups)} regions, with links to mapped sites and the full area browser.",

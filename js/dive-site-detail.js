@@ -400,6 +400,11 @@
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
     const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
+    // The map route owns photo submission, so reuse its direct modal entry point.
+    const photoUploadUrl = `/?addPhoto=1&amp;site=${encodeURIComponent(siteId)}&amp;lat=${site.lat}&amp;lng=${site.lon}&amp;z=14`;
+    const photoUploadLabel = photo?.source === 'illustrative-fallback'
+      ? `<a class="site-photo-upload-label" href="${photoUploadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Been diving here? Share a real photo."><span class="site-photo-upload-label__rest">Representative image · not this dive site</span><span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a><span class="site-photo-upload-label-mobile">Representative image · not this dive site</span><a class="site-photo-upload-button" href="${photoUploadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>`
+      : '';
     bindMobilePullToMap(mapUrl);
     const locationHierarchy = Array.isArray(site.location_hierarchy) && site.location_hierarchy.length
       ? site.location_hierarchy : [site.country, site.region].filter(Boolean);
@@ -409,20 +414,26 @@
       : locationHierarchy.map((_, index) => `/regions/?area=${encodeURIComponent(
         JSON.stringify(locationHierarchy.slice(0, index + 1).map(value =>
           String(value).normalize('NFKD').toLowerCase().replace(/\p{M}/gu, ''))))}`);
-    const locationHierarchyMarkup = locationHierarchy.length
-      ? locationHierarchy.map((label, index) => {
-        const destination = safeRegionBrowseUrl(locationHierarchyUrls[index]);
-        const item = destination ? `<a href="${escape(destination)}">${escape(label)}</a>` : escape(label);
-        return `${index ? '<span aria-hidden="true">/</span> ' : ''}${item}`;
-      }).join(' ')
-      : 'Mapped dive site';
+    const locationHierarchyMarkup = `<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/regions/">Regions</a>${locationHierarchy.map((label, index) => {
+      const destination = safeRegionBrowseUrl(locationHierarchyUrls[index]);
+      const item = destination
+        ? `<a href="${escape(destination)}"${index === locationHierarchy.length - 1 ? ' aria-current="page"' : ''}>${escape(label)}</a>`
+        : escape(label);
+      return `<span aria-hidden="true">/</span>${item}`;
+    }).join('')}</nav>`;
     const credit = photo?.source === 'illustrative-fallback'
       ? `Illustrative image · ${photo.credit || ''}` : photo?.credit || '';
     const facts = [];
     const fact = (label, value, attributes = '', className = '') => {
       if (value !== '' && value != null) facts.push(`<div class="fact ${className}"><dt>${escape(label)}</dt><dd ${attributes}>${escape(value)}</dd></div>`);
     };
-    facts.push(`<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query=${site.lat}%2C${site.lon}" target="_blank" rel="noopener noreferrer"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Maps</span></a></dd></div>`);
+    facts.push(`<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query=${site.lat}%2C${site.lon}" target="_blank" rel="noopener noreferrer"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Google Maps</span></a></dd></div>`);
+    const category = value => String(value || '').split('|').map(part => part.trim().replaceAll('_', ' ')).filter(Boolean).join(' · ');
+    fact('Features', category(site.categories.features), '', 'fact-features');
+    const levels = String(site.difficulty || '').split(/\s*(?:\||,|;|\bto\b)\s*/i);
+    const ranks = ['beginner', 'intermediate', 'advanced', 'expert'];
+    fact('Difficulty', ranks.find(level => levels.some(value => value.toLowerCase() === level))
+      ?.replace(/^./, value => value.toUpperCase()) || site.difficulty);
     const minimum = site.depth_min || site.recorded_depth || '';
     const maximum = site.depth_max || site.recorded_depth || '';
     if (minimum || maximum) {
@@ -431,14 +442,8 @@
       fact(same || !site.depth_min && !site.depth_max ? 'Recorded depth' : 'Recorded depth range', `${value} m`,
         `data-depth-min="${escape(minimum)}" data-depth-max="${escape(maximum)}"`);
     }
-    const levels = String(site.difficulty || '').split(/\s*(?:\||,|;|\bto\b)\s*/i);
-    const ranks = ['beginner', 'intermediate', 'advanced', 'expert'];
-    fact('Difficulty', ranks.find(level => levels.some(value => value.toLowerCase() === level))
-      ?.replace(/^./, value => value.toUpperCase()) || site.difficulty);
-    const category = value => String(value || '').split('|').map(part => part.trim().replaceAll('_', ' ')).filter(Boolean).join(' · ');
     fact('Setting', category(site.categories.setting), '', 'fact-setting');
     fact('Access', category(site.categories.access));
-    fact('Features', category(site.categories.features), '', 'fact-features');
     const sources = site.sources.filter(source => Array.isArray(source) && safeUrl(source[1]));
     page.dataset.siteId = siteId;
     page.classList.toggle('has-photo', Boolean(photoUrl));
@@ -447,7 +452,7 @@
       <section class="site-hero" aria-labelledby="site-title">
         <div class="site-photo-feature"><figure class="site-photo site-photo-gallery">
           <div class="site-photo-gallery-main">${photoUrl
-            ? `<button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview"><img src="${escape(photoUrl)}" alt="${escape(photo.alt || site.name)}"></button>${credit ? `<figcaption>${escape(credit)}</figcaption>` : ''}`
+            ? `<button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview"><img src="${escape(photoUrl)}" alt="${escape(photo.alt || site.name)}"></button>${photoUploadLabel}${credit ? `<figcaption>${escape(credit)}</figcaption>` : ''}`
             : '<p>No site photo is available.</p>'}</div>
         </figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">
           <section class="site-photo-gallery-rating" data-rating-lat="${site.lat}" data-rating-lng="${site.lon}" aria-label="diveAtlas Rating" tabindex="0">
@@ -458,7 +463,7 @@
           <div class="site-photo-gallery-map"><iframe class="site-photo-gallery-map__embed" title="Map preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q=${site.lat}%2C${site.lon}&amp;z=12&amp;output=embed"></iframe><a class="site-photo-gallery-map__mask" href="${mapUrl}" aria-label="View on the DiveAtlas map"></a><a class="site-photo-gallery-map__cta" href="${mapUrl}">View on map</a></div>
         </aside></div>
         <div class="hero-copy">
-          <p class="lead location-hierarchy" aria-label="Location hierarchy">${locationHierarchyMarkup}</p>
+          ${locationHierarchyMarkup}
           <div class="site-title-row"><h1 id="site-title" data-seo-site-name>${escape(site.name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
         </div>
       </section>
@@ -495,7 +500,7 @@
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=19',
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=21',
       '/js/dive-conditions-chart.js?v=51', '/js/site-recommendations.js?v=17',
       '/js/dive-site-rating-card.js?v=21']) {
       try { await loadScript(src); }

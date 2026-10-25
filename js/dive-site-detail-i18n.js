@@ -5,6 +5,33 @@
   // Each row follows the language order above so the shared detail page can
   // localize its fixed UI without duplicating its rendering templates.
   const rows = [
+    ['Representative image · not this dive site', [
+      '示意图片 · 非该潜点实景', 'Imagen ilustrativa · no es de este sitio',
+      'Beispielbild · nicht von diesem Tauchplatz', 'Image illustrative · pas de ce site',
+      'イメージ画像 · このスポットの実景ではありません', 'Imagem ilustrativa · não é deste local',
+      'Immagine rappresentativa · non di questo sito', 'Иллюстрация · не фото этого места',
+      '예시 이미지 · 이 다이빙 장소의 실제 사진이 아닙니다', 'Voorbeeldfoto · niet van deze duiklocatie',
+      'Gambar ilustrasi · bukan foto lokasi ini', 'Illustrativ bild · inte från platsen',
+      'Illustrasjonsbilde · ikke fra stedet'
+    ]],
+    ['Been diving here? Share a real photo.', [
+      '在这里潜过水？分享你的实拍照片。', '¿Has buceado aquí? Comparte una foto real.',
+      'Hier getaucht? Teile ein echtes Foto.', 'Vous avez plongé ici ? Partagez une vraie photo.',
+      'ここでダイビングしましたか？実際の写真を共有しましょう。', 'Já mergulhou aqui? Partilhe uma foto real.',
+      'Hai fatto immersioni qui? Condividi una foto reale.', 'Вы ныряли здесь? Поделитесь настоящим фото.',
+      '이곳에서 다이빙하셨나요? 실제 사진을 공유해 주세요.', 'Hier gedoken? Deel een echte foto.',
+      'Pernah menyelam di sini? Bagikan foto asli.', 'Har du dykt här? Dela ett riktigt foto.',
+      'Har du dykket her? Del et ekte bilde.'
+    ]],
+    ['Share a real photo', [
+      '分享实拍照片', 'Compartir una foto real',
+      'Echtes Foto teilen', 'Partager une vraie photo',
+      '実際の写真を共有', 'Partilhe uma foto real',
+      'Condividi una foto reale', 'Поделиться настоящим фото',
+      '실제 사진 공유하기', 'Deel een echte foto',
+      'Bagikan foto asli', 'Dela ett riktigt foto',
+      'Del et ekte bilde'
+    ]],
     ['Dive Site', [
       '潜水点', 'Sitio de buceo',
       'Tauchplatz', 'Site de plongée',
@@ -267,14 +294,14 @@
       'Koordinat', 'Koordinater',
       'Koordinater'
     ]],
-    ['Open in Maps', [
-      '在地图中打开', 'Abrir en Maps',
-      'In Maps öffnen', 'Ouvrir dans Maps',
-      'マップで開く', 'Abrir no Maps',
-      'Apri in Maps', 'Открыть в Картах',
-      '지도 앱에서 열기', 'Openen in Maps',
-      'Buka di Maps', 'Öppna i Maps',
-      'Åpne i Maps'
+    ['Open in Google Maps', [
+      '在 Google Maps 中打开', 'Abrir en Google Maps',
+      'In Google Maps öffnen', 'Ouvrir dans Google Maps',
+      'Google Maps で開く', 'Abrir no Google Maps',
+      'Apri in Google Maps', 'Открыть в Google Maps',
+      'Google Maps에서 열기', 'Openen in Google Maps',
+      'Buka di Google Maps', 'Öppna i Google Maps',
+      'Åpne i Google Maps'
     ]],
     ['Recorded depth', [
       '记录深度', 'Profundidad registrada',

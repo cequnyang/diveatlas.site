@@ -1,4 +1,48 @@
 (() => {
+  if (document.body.classList.contains('seo-site-detail-layout') && !document.getElementById('seoSiteSearchSlot')) {
+    const header = document.querySelector('body > .site-header');
+    const controls = header?.querySelector('.seo-top-menu-controls');
+    if (header && controls) {
+      const holder = document.createElement('div');
+      holder.innerHTML = `<div class="top-menu-search-slot seo-site-search-slot" id="seoSiteSearchSlot">
+        <div class="search-float" id="seoSiteSearchSection"><div class="dive-search"><div class="dive-search-box">
+          <button class="dive-search-icon" id="seoSiteSearchToggle" type="button" aria-label="Search dive sites" title="Search dive sites" aria-controls="seoSiteSearchInput" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.75" cy="6.75" r="4.25"></circle><path d="M10.4 10.4 14 14"></path></svg></button>
+          <input class="dive-search-input" id="seoSiteSearchInput" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="seoSiteSearchResultsScroll" placeholder="Where Will You Dive Next?" aria-label="Where Will You Dive Next?">
+          <button class="dive-search-clear" id="seoSiteSearchClear" type="button" title="Clear search" aria-label="Clear search"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg></button>
+          <button class="dive-search-filter-toggle" id="seoSiteSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="seoSiteSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"></path><circle cx="16" cy="7" r="2.9"></circle><circle cx="8" cy="17" r="2.9"></circle></svg></button>
+        </div><div class="dive-search-results" id="seoSiteSearchResults" aria-busy="false">
+          <div class="dive-search-results-scroll" id="seoSiteSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
+          <div class="dive-search-filter-controls" id="seoSiteSearchFilterControls" role="group" aria-label="Dive-site filters" hidden>
+            <label class="dive-search-filter-field"><span id="seoSiteSearchCountryLabel">Country</span><select id="seoSiteSearchCountry" aria-labelledby="seoSiteSearchCountryLabel"><option value="">Any country</option></select></label>
+            <label class="dive-search-filter-field"><span id="seoSiteSearchDifficultyLabel">Difficulty</span><select id="seoSiteSearchDifficulty" aria-labelledby="seoSiteSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
+            <label class="dive-search-filter-field"><span id="seoSiteSearchFeatureLabel">Feature</span><select id="seoSiteSearchFeature" aria-labelledby="seoSiteSearchFeatureLabel"><option value="">Any feature</option></select></label>
+            <button class="dive-search-filter-clear" id="seoSiteSearchFilterClear" type="button" hidden>Clear All</button>
+          </div>
+        </div></div></div>`;
+      controls.before(holder.firstElementChild);
+
+      const stylesheet = document.createElement('link');
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = '/assets/seo-site-search.css?v=8';
+      document.head.append(stylesheet);
+
+      const loadScript = src => new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = resolve;
+        document.head.append(script);
+      });
+      const loadSearch = () => loadScript('/js/seo-site-search.js?v=9')
+        .then(() => loadScript('/js/seo-search-catalog-loader.js?v=1'));
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadSearch, { once:true });
+      } else {
+        void loadSearch();
+      }
+    }
+  }
+
   document.querySelectorAll('.site-photo-gallery-map__cta').forEach(button => {
     const label = document.createElement('span');
     button.style.display = 'inline-flex';
@@ -22,11 +66,18 @@
     fitLabel();
   });
 
-  if (document.body.classList.contains('seo-site-detail-layout')) {
+  if (document.body.classList.contains('seo-site-detail-layout')
+      || document.body.classList.contains('seo-browse-layout')) {
     const syncViewportInlineSize = () => {
+      // 100vw includes a classic scrollbar; clientWidth keeps the full-bleed divider inside the visible viewport.
       document.documentElement.style.setProperty('--viewport-inline-size', `${document.documentElement.clientWidth}px`);
     };
     syncViewportInlineSize();
+    // Re-measure after the first layout and after page resources load: the vertical scrollbar can appear after
+    // the initial measurement, making a 100vw-based full-bleed divider extend a few pixels past the viewport.
+    requestAnimationFrame(syncViewportInlineSize);
+    window.addEventListener('load', syncViewportInlineSize, { once:true });
+    window.addEventListener('pageshow', syncViewportInlineSize, { passive:true });
     window.addEventListener('resize', syncViewportInlineSize, { passive:true });
   }
 
@@ -50,7 +101,7 @@
     }
     return new Promise(resolve => {
       const script = document.createElement('script');
-      script.src = '/js/dive-site-detail-i18n.js?v=6';
+      script.src = '/js/dive-site-detail-i18n.js?v=8';
       script.onload = resolve;
       script.onerror = resolve;
       document.head.append(script);

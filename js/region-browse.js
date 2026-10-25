@@ -9,8 +9,9 @@
   const status = document.getElementById('regionPageStatus');
   const areaHero = document.getElementById('regionAreaPhoto');
   const areaHeroImage = document.getElementById('regionAreaPhotoImage');
-  const areaHeroContext = document.getElementById('regionAreaPhotoContext');
-  const areaHeroName = document.getElementById('regionAreaPhotoName');
+  const areaHeroAttribution = document.getElementById('regionAreaPhotoAttribution');
+  const areaHeroDescription = document.getElementById('regionAreaDescription');
+  const areaHeroMapLink = document.getElementById('regionAreaMapLink');
   const areaBrowser = document.getElementById('regionAreaBrowser');
   const destinationDirectory = document.getElementById('destinationDirectory');
   const areaSection = document.getElementById('regionAreaSection');
@@ -23,8 +24,26 @@
   let pagination = null;
   const areasByKey = new Map();
   const photosByKey = new Map();
+  const recommendationSitesById = new Map();
   let areaIndex;
   let currentArea = null;
+  let areaRatingStorePromise = null;
+  let ratingRenderGeneration = 0;
+
+  function setRecommendationSites(sites) {
+    recommendationSitesById.clear();
+    for (const site of sites) {
+      if (site && typeof site.site_id === 'string') recommendationSitesById.set(site.site_id, site);
+    }
+    if (currentArea) renderSites();
+  }
+
+  window.addEventListener('diveatlas:seo-search-catalog-ready', event => {
+    if (Array.isArray(event.detail?.sites)) setRecommendationSites(event.detail.sites);
+  });
+  if (Array.isArray(window.DIVE_ATLAS_SEO_SEARCH_CATALOG)) {
+    setRecommendationSites(window.DIVE_ATLAS_SEO_SEARCH_CATALOG);
+  }
 
   if (new URLSearchParams(location.search).has('area')) {
     document.documentElement.classList.add('region-area-detail-page');
@@ -45,23 +64,212 @@
     return `/regions/?area=${encodeURIComponent(key)}`;
   }
 
-  function createListItem(linkText, href, detail = '') {
+  function safeRecommendationPhoto(value) {
+    if (typeof value !== 'string' || !value) return '';
+    try {
+      const url = new URL(value, location.origin);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function createRegionSiteCard(site) {
+    const recommendation = recommendationSitesById.get(site.site_id) || {};
     const item = document.createElement('li');
     const link = document.createElement('a');
-    link.href = href;
-    link.textContent = linkText;
-    item.append(link);
-    if (detail) {
-      const metadata = document.createElement('span');
-      metadata.className = 'coordinates';
-      metadata.textContent = detail;
-      item.append(metadata);
+    link.className = 'site-recommendations__card';
+    link.dataset.recommendationCard = '';
+    link.dataset.ratingLat = String(site.lat);
+    link.dataset.ratingLng = String(site.lon);
+    link.href = `/dive-site.html?id=${encodeURIComponent(site.site_id)}`;
+
+    const photoUrl = safeRecommendationPhoto(recommendation.photo);
+    if (photoUrl) {
+      const image = document.createElement('img');
+      image.className = 'site-recommendations__image';
+      image.src = photoUrl;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      if (recommendation.photo_credit) image.title = recommendation.photo_credit;
+      image.addEventListener('error', () => image.classList.add('site-recommendations__image--placeholder'), { once: true });
+      link.append(image);
+    } else {
+      const placeholder = document.createElement('span');
+      placeholder.className = 'site-recommendations__image site-recommendations__image--placeholder';
+      placeholder.setAttribute('aria-hidden', 'true');
+      link.append(placeholder);
     }
+
+    const body = document.createElement('span');
+    body.className = 'site-recommendations__card-body';
+    const name = document.createElement('span');
+    name.className = 'site-recommendations__name';
+    name.textContent = site.name;
+    name.title = site.name;
+
+    const meta = document.createElement('span');
+    meta.className = 'site-recommendations__meta';
+    const locationLabel = document.createElement('span');
+    locationLabel.className = 'site-recommendations__location';
+    locationLabel.textContent = recommendation.region || recommendation.country || site.region || site.country || '';
+    const rating = document.createElement('span');
+    rating.className = 'site-recommendations__rating';
+    rating.setAttribute('aria-label', 'DiveAtlas rating');
+    rating.textContent = 'Rating loading';
+    meta.append(locationLabel, rating);
+
+    const features = document.createElement('span');
+    features.className = 'site-recommendations__features';
+    features.setAttribute('aria-label', 'Recorded features');
+    const featureValues = Array.isArray(recommendation.features)
+      ? recommendation.features.filter(feature => typeof feature === 'string' && feature).slice(0, 2)
+      : [];
+    for (const feature of featureValues) {
+      const badge = document.createElement('span');
+      badge.className = 'site-recommendations__feature';
+      badge.textContent = feature;
+      features.append(badge);
+    }
+    if (!features.childElementCount) {
+      const unavailable = document.createElement('span');
+      unavailable.className = 'site-recommendations__feature site-recommendations__feature--empty';
+      unavailable.textContent = 'Features unavailable';
+      features.append(unavailable);
+    }
+
+    body.append(name, meta, features);
+    link.append(body);
+    item.append(link);
     return item;
+  }
+
+  function loadAreaRatingStore() {
+    if (!areaRatingStorePromise) {
+      areaRatingStorePromise = (async () => {
+        await import('./dive-experience-outlook-map.js?v=7');
+        const outlook = window.DiveAtlasDiveExperienceMap;
+        if (!outlook) throw new Error('Dive Experience Outlook module did not initialize.');
+        const assets = window.DiveAtlasDataAssets;
+        const manifestUrl = assets?.external && typeof assets.url === 'function'
+          ? assets.url('data/dive-experience-outlook/v3/manifest.json')
+          : new URL('/data/dive-experience-outlook/v3/manifest.json', location.origin).href;
+        return outlook.createDataStore({
+          baseUrl: new URL('./', manifestUrl).href,
+          landMaskUrl: new URL('/datasets/dive-experience-land-mask-v1.bin.gz', location.origin).href,
+        });
+      })();
+      areaRatingStorePromise.catch(() => { areaRatingStorePromise = null; });
+    }
+    return areaRatingStorePromise;
+  }
+
+  function refreshRegionSiteRatings(cards) {
+    const generation = ++ratingRenderGeneration;
+    if (!cards.length) return;
+    loadAreaRatingStore().then(async store => {
+      // Use the same current-month environmental sample as detail-page recommendation cards.
+      const month = new Date().getMonth() + 1;
+      for (const [index, card] of cards.entries()) {
+        if (generation !== ratingRenderGeneration) return;
+        const rating = card.querySelector('.site-recommendations__rating');
+        const lat = Number(card.dataset.ratingLat);
+        const lng = Number(card.dataset.ratingLng);
+        if (!rating || !Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+        try {
+          const result = await store.sample({ lat, lng }, month);
+          rating.textContent = result?.score == null ? 'Rating unavailable' : `${Math.round(result.score)}/100`;
+        } catch (_) {
+          rating.textContent = 'Rating unavailable';
+        }
+        if ((index + 1) % 8 === 0) await new Promise(resolve => window.setTimeout(resolve, 0));
+      }
+    }).catch(() => {
+      if (generation !== ratingRenderGeneration) return;
+      for (const card of cards) {
+        const rating = card.querySelector('.site-recommendations__rating');
+        if (rating) rating.textContent = 'Rating unavailable';
+      }
+    });
   }
 
   function indexedSiteCount(count) {
     return `${count.toLocaleString()} indexed dive sites`;
+  }
+
+  function appendPhotoAttributionPart(container, className, value, href = '') {
+    if (!value) return;
+    if (container.childNodes.length > 0) {
+      const separator = document.createElement('span');
+      separator.className = 'destination-photo__separator';
+      separator.setAttribute('aria-hidden', 'true');
+      separator.textContent = ' · ';
+      container.append(separator);
+    }
+    const part = document.createElement(href ? 'a' : 'span');
+    part.className = className;
+    part.textContent = value;
+    if (href) {
+      part.href = href;
+      part.target = '_blank';
+      part.rel = className === 'destination-photo__terms'
+        ? 'license noopener noreferrer'
+        : 'noopener noreferrer';
+    }
+    container.append(part);
+  }
+
+  function renderPhotoAttribution(photo) {
+    areaHeroAttribution.replaceChildren();
+    if (!photo) {
+      areaHeroAttribution.hidden = true;
+      return;
+    }
+    const sourcePage = safeHttpsUrl(photo?.sourcePage);
+    appendPhotoAttributionPart(
+      areaHeroAttribution,
+      'destination-photo__title',
+      typeof photo?.photoTitle === 'string' ? photo.photoTitle : 'Photo source',
+      sourcePage,
+    );
+    appendPhotoAttributionPart(
+      areaHeroAttribution,
+      'destination-photo__credit',
+      typeof photo?.credit === 'string' ? photo.credit : '',
+    );
+    appendPhotoAttributionPart(areaHeroAttribution, 'destination-photo__change', 'WebP conversion');
+    appendPhotoAttributionPart(
+      areaHeroAttribution,
+      'destination-photo__terms',
+      typeof photo?.license === 'string' ? photo.license : '',
+      safeHttpsUrl(photo?.licenseUrl),
+    );
+    areaHeroAttribution.hidden = areaHeroAttribution.childNodes.length === 0;
+  }
+
+  function areaLocations(area) {
+    if (!Array.isArray(area?.site_indices) || !Array.isArray(areaIndex?.sites)) return [];
+    return area.site_indices
+      .map(index => areaIndex.sites[index])
+      .filter(site => Number.isFinite(site?.lat) && Number.isFinite(site?.lon));
+  }
+
+  function coordinateRange(locations) {
+    if (locations.length === 0) return '';
+    const range = locations.reduce((bounds, site) => ({
+      minLatitude: Math.min(bounds.minLatitude, site.lat),
+      maxLatitude: Math.max(bounds.maxLatitude, site.lat),
+      minLongitude: Math.min(bounds.minLongitude, site.lon),
+      maxLongitude: Math.max(bounds.maxLongitude, site.lon),
+    }), {
+      minLatitude: Infinity,
+      maxLatitude: -Infinity,
+      minLongitude: Infinity,
+      maxLongitude: -Infinity,
+    });
+    return `${range.minLatitude.toFixed(5)} to ${range.maxLatitude.toFixed(5)} latitude; `
+      + `${range.minLongitude.toFixed(5)} to ${range.maxLongitude.toFixed(5)} longitude`;
   }
 
   function areaPhotoR2BaseUrl() {
@@ -102,14 +310,28 @@
     const photo = photosByKey.get(area.key);
     const frame = areaHero.querySelector('.region-area-card__frame');
     const count = Array.isArray(area.site_indices) ? area.site_indices.length : 0;
-    areaHeroContext.textContent = indexedSiteCount(count);
-    areaHeroName.textContent = area.label;
+    const locations = areaLocations(area);
+    const bounds = coordinateRange(locations);
+    areaHeroDescription.textContent = `This page lists ${count.toLocaleString()} dive sites with recorded country and region fields matching this destination.`
+      + (bounds ? ` The coordinate range is ${bounds}.` : '');
+    if (locations.length > 0) {
+      const latitude = locations.reduce((sum, site) => sum + site.lat, 0) / locations.length;
+      const longitude = locations.reduce((sum, site) => sum + site.lon, 0) / locations.length;
+      areaHeroMapLink.href = `/?lat=${latitude.toFixed(5)}&lng=${longitude.toFixed(5)}&z=7&layers=dive`;
+      areaHeroMapLink.hidden = false;
+    } else {
+      areaHeroMapLink.hidden = true;
+    }
+    renderPhotoAttribution(photo);
     areaHeroImage.removeAttribute('title');
     if (typeof photo?.src === 'string' && photo.src.length > 0) {
       frame.classList.remove('region-area-card__frame--fallback');
       areaHeroImage.classList.remove('region-area-card__image--fallback');
       areaHeroImage.alt = photo.alt || photo.photoDescription || photo.photoTitle || `Sourced photo for ${area.label}`;
-      areaHeroImage.onerror = () => useAreaLogoFallback(areaHeroImage, frame, area.label);
+      areaHeroImage.onerror = () => {
+        useAreaLogoFallback(areaHeroImage, frame, area.label);
+        areaHeroAttribution.hidden = true;
+      };
       areaHeroImage.src = photo.src;
     } else {
       useAreaLogoFallback(areaHeroImage, frame, area.label);
@@ -162,7 +384,7 @@
     for (const [index, item] of chain.entries()) {
       const separator = document.createElement('span');
       separator.setAttribute('aria-hidden', 'true');
-      separator.textContent = '›';
+      separator.textContent = '/';
       breadcrumbs.append(separator);
       const link = document.createElement('a');
       link.href = browseUrl(item.key);
@@ -235,7 +457,7 @@
     areaPagination = null;
     if (pageCount > 1) {
       areaPagination = document.createElement('nav');
-      areaPagination.className = 'region-browser__pagination';
+      areaPagination.className = 'region-list-pagination';
       areaPagination.setAttribute('aria-label', 'Area pages');
       areaList.after(areaPagination);
       const previous = document.createElement('button');
@@ -267,8 +489,9 @@
     for (const index of visible) {
       const site = areaIndex.sites[index];
       const detail = [site.region, site.country].filter(Boolean).join(' · ');
-      siteList.append(createListItem(site.name, `/dive-site.html?id=${encodeURIComponent(site.site_id)}`, detail));
+      siteList.append(createRegionSiteCard(site));
     }
+    refreshRegionSiteRatings([...siteList.querySelectorAll('.site-recommendations__card')]);
     siteCount.textContent = siteIndices.length
       ? `Showing ${(startIndex + 1).toLocaleString()}–${(startIndex + visible.length).toLocaleString()} of ${siteIndices.length.toLocaleString()} dive sites in this area`
       : 'No dive sites are currently indexed in this area.';
@@ -277,7 +500,7 @@
     pagination = null;
     if (pageCount > 1) {
       pagination = document.createElement('nav');
-      pagination.className = 'region-browser__pagination';
+      pagination.className = 'region-list-pagination';
       pagination.setAttribute('aria-label', 'Dive-site pages');
       siteList.after(pagination);
       const previous = document.createElement('button');
@@ -286,7 +509,8 @@
       previous.disabled = page <= 1;
       previous.addEventListener('click', () => setPage(page - 1));
       const pageLabel = document.createElement('span');
-      pageLabel.textContent = `Page ${page.toLocaleString()} of ${pageCount.toLocaleString()}`;
+      const endIndex = startIndex + visible.length;
+      pageLabel.textContent = `Page ${page.toLocaleString()} of ${pageCount.toLocaleString()} · showing ${(startIndex + 1).toLocaleString()}–${endIndex.toLocaleString()} of ${siteIndices.length.toLocaleString()} dive sites`;
       const next = document.createElement('button');
       next.type = 'button';
       next.textContent = 'Next';
@@ -326,7 +550,7 @@
     renderAreaPhoto(area);
     renderAreas(areaIndex.areas.filter(item => item.parent === area.key));
     siteSection.hidden = false;
-    siteHeading.textContent = `Dive sites in ${area.label}`;
+    siteHeading.textContent = `Dive sites (${area.site_indices.length.toLocaleString()})`;
     renderSites();
   }
 
