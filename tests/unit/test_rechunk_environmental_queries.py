@@ -5,7 +5,7 @@ import struct
 import tempfile
 import unittest
 
-from scripts.rechunk_environmental_queries import clarity_v2, temperature_v2
+from tools.rechunk_environmental_queries import clarity_v2, temperature_v2
 from tools import stage_data_release
 
 

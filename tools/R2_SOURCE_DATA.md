@@ -56,7 +56,7 @@ Dive Conditions reads only the selected month and 5 m temperature slice plus the
 After building new v2 assets from the existing local production chunks, prepare an additive release extension with:
 
 ```powershell
-python scripts/rechunk_environmental_queries.py
+python tools/rechunk_environmental_queries.py
 python tools/stage_data_release.py --release <current-release-id> --environmental-query-only `
   --releases-directory $env:TEMP/diveatlas-environmental-query
 ```
