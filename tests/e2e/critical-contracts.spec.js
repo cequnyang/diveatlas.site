@@ -133,8 +133,8 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
     const initialTiles = tilesCreated;
     const initialTileLevels = [...tileLevels];
     const onEnd = () => { ends += 1; };
-    const onZoomAnim = event => zoomSamples.add(Number(event.zoom).toFixed(4));
-    map.on('zoomanim', onZoomAnim);
+    const onZoomAnim = () => zoomSamples.add(Number(map.getZoom()).toFixed(4));
+    map.on('zoom', onZoomAnim);
     map.on('zoomend', onEnd);
     const rect = map.getContainer().getBoundingClientRect();
     const point = L.point(Math.round(rect.x + rect.width * 0.65) - rect.x,
@@ -154,7 +154,7 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
     const tilesDuringGesture = tilesCreated - initialTiles;
     const tileLevelsDuringGesture = [...tileLevels];
     await settled;
-    map.off('zoomanim', onZoomAnim);
+    map.off('zoom', onZoomAnim);
     map.off('zoomend', onEnd);
     const result = { zoomSamples:zoomSamples.size, ends, tilesDuringGesture,
       cameraUpdates, initialTileLevels, tileLevelsDuringGesture, tileLevels:[...tileLevels],
@@ -166,18 +166,54 @@ test(`a wheel burst ${direction} updates continuously and settles only once`, as
   }, direction === 'in' ? -10 : 10);
   expect(result.zoomSamples).toBeGreaterThan(5);
   expect(result.ends).toBe(1);
-  // Existing tiles remain in place during fractional frames. Once settled,
-  // the final integer tile level may differ from the starting level.
-  expect(result.tilesDuringGesture).toBe(0);
+  // Zoom-out may fill newly exposed areas at the existing tile level, but
+  // fractional frames must not churn through new integer levels.
   expect(result.tileLevelsDuringGesture).toEqual(result.initialTileLevels);
   expect(result.tileLevels.every(Number.isInteger)).toBe(true);
-  expect(result.cameraUpdates).toBeLessThan(result.zoomSamples / 2);
+  // The camera must follow the view instead of freezing one texture.
+  expect(result.cameraUpdates).toBeGreaterThanOrEqual(result.zoomSamples);
   expect(result.basemapZoom).toBeCloseTo(result.zoom - 1, 6);
   expect(result.cursorDrift).toBeLessThanOrEqual(1.5);
 });
 }
 
-test('basemap stays anchored across wheel texture refreshes', async ({ page }) => {
+test('long wheel zoom-out keeps the basemap covering the viewport', async ({ page }) => {
+  const result = await page.evaluate(async () => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const layer = Object.values(map._layers).find(layer => layer.getMaplibreMap);
+    const gl = layer.getMaplibreMap();
+    const rect = map.getContainer().getBoundingClientRect();
+    let maxGap = 0;
+    let maxCameraLag = 0;
+    const sample = () => {
+      const canvas = gl.getCanvas().getBoundingClientRect();
+      maxGap = Math.max(maxGap, canvas.left - rect.left, canvas.top - rect.top,
+        rect.right - canvas.right, rect.bottom - canvas.bottom);
+      maxCameraLag = Math.max(maxCameraLag, Math.abs(gl.getZoom() + 1 - map.getZoom()));
+    };
+    map.on('zoom', sample);
+    const initialZoom = map.getZoom();
+    const settled = new Promise(resolve => map.once('zoomend', resolve));
+    for (let index = 0; index < 24; index += 1) {
+      map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+        deltaY:30, clientX:rect.left + rect.width * 0.7,
+        clientY:rect.top + rect.height * 0.4, bubbles:true, cancelable:true
+      }));
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      sample();
+    }
+    await settled;
+    sample();
+    map.off('zoom', sample);
+    return { maxGap, maxCameraLag, change:initialZoom - map.getZoom() };
+  });
+  expect(result.change).toBeGreaterThan(2);
+  // A frozen canvas shrinks to a small rectangle during this three-level burst.
+  expect(result.maxGap, JSON.stringify(result)).toBeLessThanOrEqual(1);
+  expect(result.maxCameraLag, JSON.stringify(result)).toBeLessThan(0.01);
+});
+
+test('basemap stays anchored across wheel camera updates', async ({ page }) => {
   // Odd dimensions expose fractional camera origins hidden by even viewports.
   await page.setViewportSize({ width:1281, height:901 });
   await page.waitForTimeout(1100);
@@ -225,6 +261,126 @@ test('basemap stays anchored across wheel texture refreshes', async ({ page }) =
   expect(result.maxError, JSON.stringify(result)).toBeLessThanOrEqual(1);
 });
 
+test('panned map keeps raster and GL anchors stable below one pixel during zoom reversals', async ({ page }) => {
+  await page.setViewportSize({ width:1281, height:901 });
+  await page.waitForTimeout(1100);
+  const result = await page.evaluate(async () => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    // getCenter() takes a different path after dragging offsets mapPane. The
+    // origin and tile rounding bug was hidden by tests starting with no pan.
+    map.panBy([137, 83], { animate:false });
+    const pointer = L.point(850, 430);
+    const anchor = map.containerPointToLatLng(pointer);
+    const Grid = L.GridLayer.extend({ createTile() { return document.createElement('div'); } });
+    const grid = new Grid({ updateWhenZooming:false }).addTo(map);
+    const level = grid._levels[grid._tileZoom];
+    const local = map.project(anchor, level.zoom).subtract(level.origin);
+    const gl = Object.values(map._layers).find(layer => layer.getMaplibreMap).getMaplibreMap();
+    const rect = map.getContainer().getBoundingClientRect();
+    const errors = [];
+    const sample = () => {
+      const box = level.el.getBoundingClientRect();
+      const scale = new DOMMatrix(getComputedStyle(level.el).transform).a;
+      const raster = L.point(box.left - rect.left + local.x * scale,
+        box.top - rect.top + local.y * scale);
+      const camera = gl.getCenter();
+      const canvas = gl.getCanvas().getBoundingClientRect();
+      const delta = map.project(anchor, gl.getZoom() + 1)
+        .subtract(map.project([camera.lat, camera.lng], gl.getZoom() + 1));
+      const basemap = L.point(canvas.left - rect.left + (gl.transform.width / 2 + delta.x) * canvas.width / gl.transform.width,
+        canvas.top - rect.top + (gl.transform.height / 2 + delta.y) * canvas.height / gl.transform.height);
+      errors.push(Math.max(raster.distanceTo(pointer), basemap.distanceTo(pointer), raster.distanceTo(basemap)));
+    };
+    const settled = new Promise(resolve => map.once('zoomend', resolve));
+    for (let index = 0; index < 40; index += 1) {
+      map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+        deltaY:index < 20 ? -6 : 6, clientX:rect.left + pointer.x,
+        clientY:rect.top + pointer.y, bubbles:true, cancelable:true
+      }));
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      sample();
+    }
+    await settled;
+    sample();
+    grid.remove();
+    return { samples:errors.length, maxError:Math.max(...errors) };
+  });
+  expect(result.samples).toBeGreaterThan(30);
+  // Whole-pixel rounding can pass a one-pixel tolerance yet visibly shiver.
+  // Allow only CSS transform serialization noise, including the settled frame.
+  expect(result.maxError, JSON.stringify(result)).toBeLessThan(0.05);
+});
+
+test('dive, fish and coral markers stay attached through zoom reversals and settling', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width:1281, height:901 });
+  await page.waitForTimeout(1100);
+  const result = await page.evaluate(async () => {
+    const api = window.__DIVEATLAS_TEST__;
+    const map = api.map;
+    map.panBy([137, 83], { animate:false });
+    const size = map.getSize();
+    const add = [
+      (p, id) => api.addAggregate('dive', p.lat, p.lng, 12, id),
+      (p, id) => api.addAggregate('fish', p.lat, p.lng, 12, id),
+      (p, id) => api.addAggregate('species', p.lat, p.lng, 12, id),
+      (p, id) => api.addDiveSite(p.lat, p.lng, id),
+      (p, id) => api.addFishPoint(p.lat, p.lng, id),
+      (p, id) => api.addCoralPoint(p.lat, p.lng, id)
+    ];
+    const markers = add.map((create, index) => create(map.containerPointToLatLng(
+      [size.x * (0.3 + (index % 3) * 0.2), size.y * (index < 3 ? 0.35 : 0.65)]
+    ), `motion-${index}`));
+    const gridCenter = map.containerPointToLatLng([size.x * 0.5, size.y * 0.8]);
+    api.addCoralGrid(gridCenter.lat, gridCenter.lng, 'motion-coral-grid');
+    const polygon = Object.values(map._layers).find(layer => layer instanceof L.Polygon && layer.options.pane === 'speciesGridPane');
+    const vertex = polygon.getLatLngs().flat(Infinity)[0];
+    const rect = map.getContainer().getBoundingClientRect();
+    const errors = Array.from({ length:markers.length + 1 }, () => []);
+    let frame;
+    const sample = () => {
+      markers.forEach((marker, index) => {
+        const box = marker.getElement().getBoundingClientRect();
+        const actual = L.point((box.left + box.right) / 2 - rect.left, (box.top + box.bottom) / 2 - rect.top);
+        const expected = map.project(marker.getLatLng(), map.getZoom())
+          .subtract(map.project(map.getCenter(), map.getZoom())).add(size.divideBy(2));
+        errors[index].push(actual.distanceTo(expected));
+      });
+      const renderer = polygon._renderer;
+      const box = renderer._container.getBoundingClientRect();
+      const scale = new DOMMatrix(getComputedStyle(renderer._container).transform).a;
+      const local = polygon._rings[0][0].subtract(renderer._bounds.min);
+      const actual = L.point(box.left - rect.left + local.x * scale, box.top - rect.top + local.y * scale);
+      const expected = map.project(vertex, map.getZoom())
+        .subtract(map.project(map.getCenter(), map.getZoom())).add(size.divideBy(2));
+      errors[markers.length].push(actual.distanceTo(expected));
+      frame = requestAnimationFrame(sample);
+    };
+    frame = requestAnimationFrame(sample);
+    for (let burst = 0; burst < 2; burst += 1) {
+      if (burst) {
+        // Layer toggles and cache refreshes remove/re-add markers. Their
+        // event handlers must be rebound without reviving rounded callbacks.
+        for (const marker of markers) { marker.remove(); marker.addTo(map); }
+      }
+      const settled = new Promise(resolve => map.once('zoomend', resolve));
+      for (let index = 0; index < 40; index += 1) {
+        map.getContainer().dispatchEvent(new WheelEvent('wheel', {
+          deltaY:index < 20 ? -6 : 6, clientX:rect.left + size.x * 0.6,
+          clientY:rect.top + size.y * 0.5, bubbles:true, cancelable:true
+        }));
+        await new Promise(resolve => requestAnimationFrame(resolve));
+      }
+      await settled;
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    }
+    cancelAnimationFrame(frame);
+    return { samples:errors[0].length, maxErrors:errors.map(values => Math.max(...values)) };
+  });
+  await testInfo.attach('marker-motion.json', { body:JSON.stringify(result), contentType:'application/json' });
+  expect(result.samples).toBeGreaterThan(40);
+  for (const error of result.maxErrors) expect(error, JSON.stringify(result)).toBeLessThan(0.05);
+});
+
 test('raster overlays stay aligned through fractional wheel zoom frames', async ({ page }) => {
   const result = await page.evaluate(async () => {
     const map = window.__DIVEATLAS_TEST__.map;
@@ -243,10 +399,10 @@ test('raster overlays stay aligned through fractional wheel zoom frames', async 
     let view = { center:map.getCenter(), zoom:map.getZoom() };
     let animationFrames = 0;
     const onZoomAnim = event => {
-      view = { center:event.center, zoom:event.zoom };
+      view = { center:map.getCenter(), zoom:map.getZoom() };
       animationFrames += 1;
     };
-    map.on('zoomanim', onZoomAnim);
+    map.on('zoom', onZoomAnim);
     const errors = [];
     let frame;
     let sampling = true;
@@ -285,7 +441,7 @@ test('raster overlays stay aligned through fractional wheel zoom frames', async 
     await new Promise(resolve => setTimeout(resolve, 80));
     sampling = false;
     cancelAnimationFrame(frame);
-    map.off('zoomanim', onZoomAnim);
+    map.off('zoom', onZoomAnim);
     overlay.remove();
     return { animationFrames, maxError:Math.max(...errors) };
   });
