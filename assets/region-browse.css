@@ -38,6 +38,9 @@ body.region-browser-page.site-directory-page > .region-browser {
   box-sizing: border-box;
 }
 
+/* Match the inner top inset used by the regions index. */
+.destination-directory-page #destinationDirectory { padding-top: 14px; }
+
 .region-browser-page .eyebrow {
   margin: 0 0 6px;
   color: var(--region-muted);
