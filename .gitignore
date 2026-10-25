@@ -70,7 +70,6 @@ playwright-report/
 !/tools/
 /tools/*
 !/tools/export_dive_site_details.py
-!/tools/generate_area_photo_manifest.py
 !/tools/enrich_dive_site_regions.py
 !/tools/enrich_dive_site_locations.py
 !/docs/shared-dive-site-details.md
@@ -105,3 +104,6 @@ playwright-report/
 
 # Local photo asset instructions accompany the ignored generator.
 /assets/dive-sites/README.md
+
+# Optional photo discovery stays local; publish its generated manifest instead.
+/tools/generate_area_photo_manifest.py
