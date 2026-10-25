@@ -400,10 +400,10 @@
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
     const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
-    // The map route owns photo submission, so reuse its direct modal entry point.
+    // Keep hrefs as a fallback; the contribution controller opens the form in place.
     const photoUploadUrl = `/?addPhoto=1&amp;site=${encodeURIComponent(siteId)}&amp;lat=${site.lat}&amp;lng=${site.lon}&amp;z=14`;
     const photoUploadLabel = photo?.source === 'illustrative-fallback'
-      ? `<a class="site-photo-upload-label" href="${photoUploadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Been diving here? Share a real photo."><span class="site-photo-upload-label__rest">Representative image · not this dive site</span><span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a><span class="site-photo-upload-label-mobile">Representative image · not this dive site</span><a class="site-photo-upload-button" href="${photoUploadUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>`
+      ? `<a class="site-photo-upload-label" href="${photoUploadUrl}" data-site-contribution="photo" aria-label="Been diving here? Share a real photo."><span class="site-photo-upload-label__rest">Representative image · not this dive site</span><span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a><span class="site-photo-upload-label-mobile">Representative image · not this dive site</span><a class="site-photo-upload-button" href="${photoUploadUrl}" data-site-contribution="photo" aria-label="Share a real photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>`
       : '';
     bindMobilePullToMap(mapUrl);
     const locationHierarchy = Array.isArray(site.location_hierarchy) && site.location_hierarchy.length

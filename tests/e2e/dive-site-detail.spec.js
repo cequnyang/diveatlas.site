@@ -19,6 +19,121 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
 });
 
+test('missing-site form validates, sends for review, and stays on the detail page', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.addInitScript(() => {
+    window.DIVE_ATLAS_SEO_SEARCH_CATALOG = [{ name:'Known reef', features:[] }];
+    window.turnstile = { render: (_node, options) => { options.callback('test-token'); return 1; }, reset: () => {} };
+  });
+  let submitted;
+  await page.route('**/api/site-suggestions', route => {
+    submitted = route.request().postDataJSON();
+    return route.fulfill({ json:{ success:true } });
+  });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  const trigger = page.locator('#seoSiteSearchInput');
+  await trigger.fill('Unlisted reef');
+  await page.locator('.dive-search-suggestion-button').click();
+  await page.locator('#siteSuggestionName').fill('');
+  const dialog = page.locator('#siteSuggestionDialog');
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('button', { name:'Send suggestion' }).click();
+  await expect(page.locator('#siteSuggestionStatus')).toHaveText('Enter a dive-site name.');
+  await page.locator('#siteSuggestionName').fill('Missing reef');
+  await page.locator('#siteSuggestionSource').fill('javascript:alert(1)');
+  await dialog.getByRole('button', { name:'Send suggestion' }).click();
+  await expect(page.locator('#siteSuggestionStatus')).toContainText('valid http or https');
+  await page.locator('#siteSuggestionSource').fill('https://example.com/reef');
+  await dialog.getByRole('button', { name:'Send suggestion' }).click();
+  await expect(page.locator('#siteSuggestionStatus')).toContainText('sent for review');
+  expect(submitted).toMatchObject({ siteName:'Missing reef', sourceUrl:'https://example.com/reef', turnstileToken:'test-token' });
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await expect(page).toHaveURL(new RegExp(`/dive-site.html\\?id=example-reef-${FIRST}`));
+});
+
+test('photo form previews a real image and submits the correct site and consent', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{ ...record(), photo:{ source:'illustrative-fallback', src:'/assets/diveatlas-logo.svg', alt:'Representative image' } } }));
+  await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:{ name:'Test Diver' } } }));
+  let payload = '';
+  await page.route('**/api/site-photo-submissions', route => {
+    payload = route.request().postDataBuffer().toString();
+    return route.fulfill({ json:{ success:true, status:'pending' } });
+  });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.locator('[data-site-contribution="photo"]:visible').click();
+  await expect(page.locator('#sitePhotoUploadSiteName')).toHaveText('Example reef');
+  await expect(page.locator('#sitePhotoUploadCredit')).toHaveValue('Test Diver');
+  const image = await page.evaluate(() => {
+    const canvas = document.createElement('canvas'); canvas.width = 1200; canvas.height = 900;
+    canvas.getContext('2d').fillRect(0, 0, 1200, 900);
+    return canvas.toDataURL('image/jpeg').split(',')[1];
+  });
+  await page.locator('#sitePhotoUploadFile').setInputFiles({ name:'reef.jpg', mimeType:'image/jpeg', buffer:Buffer.from(image, 'base64') });
+  await expect(page.locator('#sitePhotoUploadPreview')).toBeVisible();
+  await page.locator('#sitePhotoUploadSubmitButton').click();
+  await expect(page.locator('#sitePhotoUploadStatus')).toContainText('Confirm the photo');
+  await page.locator('#sitePhotoUploadPolicyAttestation').check();
+  await page.locator('#sitePhotoUploadSubmitButton').click();
+  await expect(page.locator('#sitePhotoUploadSuccess')).toBeVisible();
+  expect(payload).toContain(FIRST);
+  expect(payload).toContain('name="attestRealPhoto"');
+  expect(payload).toContain('name="attestRights"');
+  expect(payload).toContain('originalDimensions');
+  await page.locator('#sitePhotoUploadDoneButton').click();
+  await expect(page.locator('#sitePhotoUploadModal')).toBeHidden();
+});
+
+test('photo sign-in and account failures do not expose an upload form', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{ ...record(), photo:{ source:'illustrative-fallback', src:'/assets/diveatlas-logo.svg', alt:'Representative image' } } }));
+  await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:null } }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.locator('[data-site-contribution="photo"]:visible').click();
+  await expect(page.locator('#sitePhotoUploadSignIn')).toBeVisible();
+  await expect(page.locator('#sitePhotoUploadForm')).toBeHidden();
+  await page.keyboard.press('Escape');
+  await page.route('**/api/auth/me', route => route.fulfill({ status:503 }));
+  await page.locator('[data-site-contribution="photo"]:visible').click();
+  await expect(page.locator('#sitePhotoUploadSignInCopy')).toContainText('temporarily unavailable');
+  await expect(page.locator('#sitePhotoUploadSignIn')).toBeHidden();
+});
+
+test('search suggestion opens in place with the search text and supports keyboard dismissal', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.addInitScript(() => {
+    window.DIVE_ATLAS_SEO_SEARCH_CATALOG = [{ name:'Known reef', site_id:'1a532e42-9890-4ea9-b239-0f5fbb836317',
+      lat:-0.55, lon:130.7, features:[] }];
+  });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.locator('#seoSiteSearchInput').fill('Unlisted reef');
+  await page.locator('.dive-search-suggestion-button').click();
+  await expect(page.locator('#siteSuggestionName')).toHaveValue('Unlisted reef');
+  await expect(page.locator('#siteSuggestionName')).toBeFocused();
+  await page.locator('#siteSuggestionSubmitButton').focus();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#siteSuggestionCloseButton')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#siteSuggestionModal')).toBeHidden();
+  await expect(page.locator('#seoSiteSearchInput')).toBeFocused();
+  await expect(page).toHaveURL(new RegExp(FIRST));
+});
+
+test('signed-in return resumes the saved photo submission on the detail page', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:{ name:'Returning diver' } } }));
+  await page.addInitScript(id => {
+    sessionStorage.setItem('diveatlas:photo-upload-after-sign-in:v1', JSON.stringify({
+      siteId:id, siteName:'Example reef', createdAt:Date.now()
+    }));
+  }, FIRST);
+  await page.goto(`/dive-site.html?id=${FIRST}&auth_notice=signed-in`);
+  await expect(page.locator('#sitePhotoUploadModal')).toBeVisible();
+  await expect(page.locator('#sitePhotoUploadSiteName')).toHaveText('Example reef');
+  await expect(page.locator('#sitePhotoUploadCredit')).toHaveValue('Returning diver');
+  expect(await page.evaluate(() => sessionStorage.getItem('diveatlas:photo-upload-after-sign-in:v1'))).toBeNull();
+});
+
 test('one shared shell renders two different IDs and keeps share/map links site-specific', async ({ page, request }) => {
   const shell = await (await request.get('/dive-site.html')).text();
   expect(shell).not.toContain('Example reef');

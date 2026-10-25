@@ -1,0 +1,248 @@
+    .site-suggestion-modal[hidden] { display: none; }
+    .site-photo-upload-modal [hidden] { display: none; }
+    .site-suggestion-modal {
+      position: fixed;
+      z-index: 2201;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .site-suggestion-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(31, 35, 40, .46);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    [data-theme="dark"] .site-suggestion-backdrop { background: rgba(1, 4, 9, .66); }
+    .site-suggestion-dialog {
+      position: relative;
+      width: min(460px, calc(100vw - 28px));
+      max-height: min(680px, calc(100vh - 36px));
+      overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--faint) var(--panel-solid);
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 16px 48px rgba(31, 35, 40, .22);
+    }
+    .site-suggestion-dialog::-webkit-scrollbar { width: 8px; }
+    .site-suggestion-dialog::-webkit-scrollbar-track { border-radius: 999px; background: var(--panel-solid); }
+    .site-suggestion-dialog::-webkit-scrollbar-thumb { border: 2px solid var(--panel-solid); border-radius: 999px; background: var(--faint); }
+    .site-suggestion-dialog::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+    .site-suggestion-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .site-suggestion-modal .site-suggestion-header { padding-right: 70px; }
+    .site-suggestion-title { margin: 0; font-size: 18px; line-height: 24px; font-weight: 650; }
+    .site-suggestion-copy { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-suggestion-form { display: grid; gap: 13px; padding: 16px 20px 20px; }
+    .site-suggestion-field { display: grid; gap: 6px; }
+    .site-suggestion-field > span { font-size: 12px; line-height: 18px; font-weight: 600; }
+    .site-suggestion-field small { color: var(--muted); font-weight: 400; }
+    .site-suggestion-input {
+      width: 100%;
+      height: 36px;
+      box-sizing: border-box;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel-solid);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+    }
+    .site-suggestion-input:focus { border-color: #0969da; outline: 2px solid rgba(9, 105, 218, .2); }
+    .site-suggestion-honeypot { position: fixed !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+    .site-suggestion-turnstile { min-height: 65px; }
+    .site-suggestion-status { min-height: 18px; margin: -2px 0 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+    .site-suggestion-status.is-error { color: #cf222e; }
+    .site-suggestion-status.is-success { color: #1a7f37; }
+    [data-theme="dark"] .site-suggestion-status.is-error { color: #ff7b72; }
+    [data-theme="dark"] .site-suggestion-status.is-success { color: #3fb950; }
+    .site-suggestion-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 2px; }
+    .site-suggestion-actions .contact-button { min-height: 38px; }
+    .site-photo-upload-modal { z-index: 2202; }
+    .site-photo-upload-modal .site-suggestion-copy { font-weight: 600; }
+    .site-photo-upload-form { gap: 15px; }
+    .site-photo-upload-site {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 11px 20px 11px 17px;
+      border-inline-start: 3px solid var(--primary);
+      border-bottom: 1px solid var(--line);
+      background: var(--primary-soft);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 20px;
+    }
+    .site-photo-upload-site span { font-weight: 650; }
+    .site-photo-upload-site strong { color: var(--primary); font-size: 14px; font-weight: 750; }
+    .site-photo-upload-auth { display: grid; gap: 10px; padding: 18px 20px 20px; }
+    .site-photo-upload-auth p, .site-photo-upload-success p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .site-photo-upload-auth a { justify-self: start; text-decoration: none; }
+    .site-photo-upload-help { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .site-photo-upload-form .site-suggestion-field > span { color: var(--text); font-size: 13px; line-height: 19px; font-weight: 650; }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]) {
+      height: 44px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]):hover { border-color: var(--muted); }
+    .site-photo-upload-form .site-suggestion-input:not([type="file"]):focus { border-color: var(--primary); outline: 2px solid rgba(9, 105, 218, .18); }
+    .site-photo-upload-form .site-suggestion-input[type="file"] {
+      height: auto;
+      min-height: 58px;
+      padding: 7px 8px;
+      border-radius: 12px;
+      background: var(--panel-soft);
+      color: var(--primary);
+      cursor: pointer;
+      transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"]:hover { border-color: var(--primary); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]:focus-visible {
+      border-color: var(--primary);
+      outline: 3px solid rgba(9, 105, 218, .18);
+      outline-offset: 1px;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"][aria-invalid="true"] { border-color: #cf222e; box-shadow: 0 0 0 1px rgba(207, 34, 46, .28); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button {
+      min-height: 40px;
+      margin: 0 12px 0 0;
+      padding: 0 15px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--primary);
+      color: #fff;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      transition: filter .16s ease, transform .16s ease;
+    }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button:hover { filter: brightness(.94); }
+    .site-photo-upload-form .site-suggestion-input[type="file"]::file-selector-button:active { transform: scale(.98); }
+    .site-photo-upload-policy-label { color: var(--text); font-size: 13px; line-height: 1.5; font-weight: 700; cursor: pointer; }
+    .site-photo-upload-policy-trigger {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      margin-inline-start: .35em;
+      padding: 0 2px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
+      text-underline-offset: 4px;
+      vertical-align: baseline;
+      cursor: pointer;
+    }
+    .site-photo-upload-policy-trigger:hover,
+    .site-photo-upload-policy-trigger[aria-expanded="true"] { color: var(--primary); }
+    .site-photo-upload-policy-trigger:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+    .site-photo-upload-policy-popover {
+      position: fixed;
+      z-index: 2304;
+      width: min(420px, calc(100vw - 24px));
+      max-height: min(68vh, 440px);
+      overflow: auto;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-solid);
+      color: var(--text);
+      box-shadow: 0 12px 32px rgba(31, 35, 40, .24);
+      font-size: 12px;
+      line-height: 1.5;
+      overscroll-behavior: contain;
+    }
+    .site-photo-upload-policy-popover p { margin: 0; color: var(--muted); }
+    .site-photo-upload-policy-popover p + p { margin-top: 10px; }
+    .site-photo-upload-policy-popover strong { color: var(--text); }
+    .site-photo-upload-policy-popover:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .site-photo-upload-check { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-soft); color: var(--text); font-size: 13px; line-height: 1.5; }
+    .site-photo-upload-check.is-invalid { border-color: #cf222e; box-shadow: 0 0 0 1px rgba(207, 34, 46, .28); }
+    [data-theme="dark"] .site-photo-upload-form .site-suggestion-input[type="file"][aria-invalid="true"],
+    [data-theme="dark"] .site-photo-upload-check.is-invalid { border-color: #ff7b72; box-shadow: 0 0 0 1px rgba(255, 123, 114, .3); }
+    .site-photo-upload-check input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--primary); }
+    .site-photo-upload-check-copy { display: block; }
+    .site-photo-upload-check strong { font-weight: 700; }
+    .site-photo-upload-form .site-suggestion-actions .contact-button { min-height: 46px; border-radius: 10px; }
+    #sitePhotoUploadSubmitButton { border-color: var(--primary); background: var(--primary); }
+    #sitePhotoUploadSubmitButton:hover { background: var(--primary); filter: brightness(.94); }
+    #contactSubmitButton,
+    #siteSuggestionSubmitButton { border-color: var(--primary); background: var(--primary); }
+    #contactSubmitButton:hover,
+    #siteSuggestionSubmitButton:hover { background: var(--primary); filter: brightness(.94); }
+    .site-photo-upload-form .site-suggestion-actions .contact-button:focus-visible { outline: 3px solid rgba(9, 105, 218, .22); outline-offset: 2px; }
+    .site-photo-upload-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 220px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-soft);
+    }
+    .site-photo-upload-preview[hidden] { display: none; }
+    .site-photo-upload-file-field.has-preview > #sitePhotoUploadFile,
+    .site-photo-upload-file-field.has-preview > #sitePhotoUploadFileHelp { display: none; }
+    .site-photo-upload-preview img { display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: contain; background: transparent; }
+    .site-photo-upload-preview-remove {
+      position: absolute;
+      inset-block-start: 8px;
+      inset-inline-end: 8px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5);
+      color: #343a40;
+      box-shadow: 0 2px 8px rgba(31, 35, 40, .2);
+      cursor: pointer;
+    }
+    .site-photo-upload-preview-remove svg { display: block; width: 30px; height: 30px; }
+    .site-photo-upload-preview-remove:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+    .site-photo-upload-preview-remove:disabled { cursor: not-allowed; opacity: .65; }
+    .site-photo-upload-file-label { color: var(--text); font-size: 13px; line-height: 19px; font-weight: 650; }
+    .site-photo-upload-success { display: grid; gap: 8px; padding: 20px; }
+    .site-photo-upload-success h3 { margin: 0; font-size: 16px; line-height: 22px; }
+    @media (max-width: 520px) {
+      .site-suggestion-modal { align-items: end; padding: 8px; }
+      .site-suggestion-dialog { width: 100%; max-height: calc(100vh - 16px); border-radius: 12px; }
+      .site-suggestion-header, .site-suggestion-form { padding-left: 16px; padding-right: 16px; }
+      .site-photo-upload-site { padding-left: 13px; padding-right: 16px; }
+      .site-photo-upload-auth, .site-photo-upload-success { padding-left: 16px; padding-right: 16px; }
+    }
+.site-suggestion-modal [hidden] { display: none !important; }
+.site-suggestion-modal .contact-dialog-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 32px; height: 32px; padding: 6px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; }
+.site-suggestion-modal .contact-dialog-close svg { width: 20px; height: 20px; fill: currentColor; }
+.site-suggestion-modal .contact-button { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-solid); color: var(--text); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.site-suggestion-modal .contact-button-primary { background: var(--primary); color: white; }
+.site-suggestion-modal button:disabled { opacity: .65; cursor: wait; }
+.site-suggestion-modal .site-photo-upload-policy-popover { max-width: calc(100vw - 24px); }

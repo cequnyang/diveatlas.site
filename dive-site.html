@@ -12,10 +12,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@17..18,400..700&amp;display=swap">
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=6">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
-  <link rel="stylesheet" href="/assets/seo.css?v=179">
+  <link rel="stylesheet" href="/assets/seo.css?v=180">
   <link rel="stylesheet" href="/assets/region-browse.css?v=1">
   <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
   <link rel="stylesheet" href="/assets/map-detail-transition.css?v=1">
+  <link rel="stylesheet" href="/assets/site-contributions.css?v=3">
 </head>
 <body class="seo-site-detail-layout shared-site-detail-layout">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><div class="top-menu-search-slot seo-site-search-slot" id="seoSiteSearchSlot">
@@ -63,9 +64,106 @@
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 
+  <div class="site-suggestion-modal" id="siteSuggestionModal" hidden>
+    <div class="site-suggestion-backdrop" data-site-suggestion-close></div>
+    <section class="site-suggestion-dialog" id="siteSuggestionDialog" role="dialog" aria-modal="true" aria-labelledby="siteSuggestionTitle" aria-describedby="siteSuggestionCopy">
+      <div class="site-suggestion-header">
+        <div>
+          <h2 class="site-suggestion-title" id="siteSuggestionTitle">Suggest a dive site</h2>
+          <p class="site-suggestion-copy" id="siteSuggestionCopy">Your suggestion goes to DiveAtlas for review. It won’t be added automatically.</p>
+        </div>
+        <button class="contact-dialog-close" id="siteSuggestionCloseButton" type="button" aria-label="Close" title="Close" data-site-suggestion-close><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+      </div>
+      <form class="site-suggestion-form" id="siteSuggestionForm" novalidate>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionNameLabel">Dive-site name</span>
+          <input class="site-suggestion-input" id="siteSuggestionName" name="siteName" type="text" maxlength="120" autocomplete="off" required>
+        </label>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionRegionLabel">Region <small>(optional)</small></span>
+          <input class="site-suggestion-input" id="siteSuggestionRegion" name="region" type="text" maxlength="120" autocomplete="off">
+        </label>
+        <label class="site-suggestion-field">
+          <span id="siteSuggestionSourceLabel">Source link <small>(optional)</small></span>
+          <input class="site-suggestion-input" id="siteSuggestionSource" name="sourceUrl" type="url" maxlength="500" autocomplete="url" inputmode="url">
+        </label>
+        <label class="site-suggestion-honeypot" aria-hidden="true">Website<input id="siteSuggestionWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <div class="site-suggestion-turnstile" id="siteSuggestionTurnstile"></div>
+        <p class="site-suggestion-status" id="siteSuggestionStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-secondary" id="siteSuggestionCancelButton" type="button" data-site-suggestion-close>Cancel</button>
+          <button class="contact-button contact-button-primary" id="siteSuggestionSubmitButton" type="submit">Send suggestion</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="site-suggestion-modal site-photo-upload-modal" id="sitePhotoUploadModal" hidden>
+    <div class="site-suggestion-backdrop" data-site-photo-upload-close></div>
+    <section class="site-suggestion-dialog" id="sitePhotoUploadDialog" role="dialog" aria-modal="true" aria-labelledby="sitePhotoUploadTitle" aria-describedby="sitePhotoUploadCopy">
+      <div class="site-suggestion-header">
+        <div>
+          <h2 class="site-suggestion-title" id="sitePhotoUploadTitle">Submit a photo</h2>
+          <p class="site-suggestion-copy" id="sitePhotoUploadCopy">Your photo stays private during review.</p>
+        </div>
+        <button class="contact-dialog-close" id="sitePhotoUploadCloseButton" type="button" aria-label="Close" title="Close" data-site-photo-upload-close><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+      </div>
+      <p class="site-photo-upload-site"><span id="sitePhotoUploadSiteLabel">Dive site:</span> <strong id="sitePhotoUploadSiteName"></strong></p>
+      <div class="site-photo-upload-auth" id="sitePhotoUploadAuthRequired" hidden>
+        <p id="sitePhotoUploadSignInCopy">Sign in to continue. We’ll bring you back here to choose your photo.</p>
+        <a class="contact-button contact-button-primary" id="sitePhotoUploadSignIn">Sign in with Google</a>
+      </div>
+      <form class="site-suggestion-form site-photo-upload-form" id="sitePhotoUploadForm" novalidate hidden>
+        <div class="site-suggestion-field site-photo-upload-file-field">
+          <label class="site-photo-upload-file-label" id="sitePhotoUploadFileLabel" for="sitePhotoUploadFile">Photo</label>
+          <div class="site-photo-upload-preview" id="sitePhotoUploadPreview" hidden>
+            <button class="site-photo-upload-preview-remove" id="sitePhotoUploadPreviewRemoveButton" type="button" aria-label="Remove selected photo" title="Remove selected photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.4"/></svg></button>
+            <img id="sitePhotoUploadPreviewImage" alt="Selected photo preview">
+          </div>
+          <input class="site-suggestion-input" id="sitePhotoUploadFile" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+          <small class="site-photo-upload-help" id="sitePhotoUploadFileHelp">JPEG/PNG/WebP · optimized before upload</small>
+        </div>
+        <label class="site-suggestion-field">
+          <span id="sitePhotoUploadCreditLabel">Photo credit (optional)</span>
+          <input class="site-suggestion-input" id="sitePhotoUploadCredit" name="creditName" type="text" maxlength="80" autocomplete="name">
+        </label>
+        <div class="site-photo-upload-check">
+          <input id="sitePhotoUploadPolicyAttestation" name="policyAttestation" type="checkbox" value="yes" required>
+          <div class="site-photo-upload-check-copy">
+            <label class="site-photo-upload-policy-label" id="sitePhotoUploadPolicyAttestationCopy" for="sitePhotoUploadPolicyAttestation">Required: I confirm this is a genuine, non-AI photo taken at or near this dive site, and I have the right to let DiveAtlas use it.</label>
+            <button class="site-photo-upload-policy-trigger" id="sitePhotoUploadPolicyTrigger" type="button" aria-expanded="false" aria-controls="sitePhotoUploadPolicyPopover"><span id="sitePhotoUploadPolicyLabel">Policy details</span></button>
+          </div>
+        </div>
+        <p class="site-suggestion-status" id="sitePhotoUploadStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-secondary" id="sitePhotoUploadCancelButton" type="button" data-site-photo-upload-close>Cancel</button>
+          <button class="contact-button contact-button-primary" id="sitePhotoUploadSubmitButton" type="submit">Submit</button>
+        </div>
+      </form>
+      <div class="site-photo-upload-success" id="sitePhotoUploadSuccess" hidden>
+        <h3 id="sitePhotoUploadSuccessTitle">Photo received for review</h3>
+        <p id="sitePhotoUploadSuccessCopy">Your original is stored privately. The representative photo stays until a reviewer approves a replacement.</p>
+        <div class="site-suggestion-actions">
+          <button class="contact-button contact-button-primary" id="sitePhotoUploadDoneButton" type="button" data-site-photo-upload-close>Done</button>
+        </div>
+      </div>
+      <div class="site-photo-upload-policy-popover" id="sitePhotoUploadPolicyPopover" role="region" aria-labelledby="sitePhotoUploadPolicyLabel" tabindex="0" hidden>
+        <p><strong id="sitePhotoUploadReviewHeading">Review</strong> <span id="sitePhotoUploadReviewCopy">We automatically check file type, size, and pixel count. A reviewer checks photo clarity and whether it matches this site. We can't reliably confirm if it was made with AI or exactly where it was taken.</span></p>
+        <p><strong id="sitePhotoUploadAuthenticityHeading">Authenticity</strong> <span id="sitePhotoUploadAuthenticityCopy">The photo must be a genuine image taken at or near this dive site and must not be generated by AI.</span></p>
+        <p><strong id="sitePhotoUploadPrivacyHeading">Privacy</strong> <span id="sitePhotoUploadPrivacyCopy">GPS and capture time may help with review. We extract these details before optimizing the image and store them privately with your submission. Your original photo stays on your device.</span></p>
+        <p><strong id="sitePhotoUploadRightsHeading">Photo rights and use</strong> <span id="sitePhotoUploadRightsCopy">You must own the photo or have the owner’s permission. You grant DiveAtlas a non-exclusive, worldwide, royalty-free license to store the photo for review and, if accepted, crop, resize, and display it on DiveAtlas, including through its hosting providers. You keep the copyright and may continue to use the photo or let others use it. DiveAtlas pays no royalty for this use.</span></p>
+      </div>
+    </section>
+  </div>
+
+
+<script src="/js/site-photo-metadata.js" defer></script>
+<script src="/js/site-photo-submission.js?v=1" defer></script>
+<script src="/js/site-contribution-texts.js?v=1" defer></script>
+<script src="/js/site-contributions.js?v=2" defer></script>
 <script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
-<script src="/js/dive-site-detail.js?v=46" defer></script>
-<script src="/js/seo-site-search.js?v=9" defer></script>
+<script src="/js/dive-site-detail.js?v=48" defer></script>
+<script src="/js/seo-site-search.js?v=10" defer></script>
 </body>
 </html>

@@ -56,8 +56,13 @@
     if (suggestion.isConnected) updateSuggestionLabel();
   });
 
-  // Keep submission and Turnstile verification on the map page's canonical form.
+  // Detail pages host the same contribution flow; other browse pages keep the map fallback.
   suggestionButton.addEventListener('click', () => {
+    if (window.DiveAtlasContributions) {
+      setOpen(false);
+      window.DiveAtlasContributions.openSuggestion(input.value.trim(), input);
+      return;
+    }
     const url = new URL('/', window.location.href);
     url.searchParams.set('suggestSite', '1');
     const query = input.value.trim().slice(0, 120);
@@ -173,7 +178,7 @@
       const selectedLabel = select.selectedOptions[0]?.textContent || '';
       picker.value = select.value ? selectedLabel : '';
       picker.placeholder = selectedLabel;
-      close();
+      setOpen(false);
       syncClearButton();
       select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
       picker.focus({ preventScroll:true });
@@ -267,7 +272,7 @@
           event.stopPropagation();
           picker.value = select.value ? (select.selectedOptions[0]?.textContent || '') : '';
           syncClearButton();
-          close();
+          setOpen(false);
         }
         return;
       }
@@ -286,7 +291,7 @@
       event.stopPropagation();
       select.value = '';
       picker.value = '';
-      close();
+      setOpen(false);
       syncClearButton();
       select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
       picker.focus({ preventScroll:true });
