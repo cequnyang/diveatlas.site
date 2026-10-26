@@ -2322,6 +2322,9 @@
     .dive-experience-metric-row--linked::after { content:''; grid-column:3; grid-row:1; justify-self:center; width:6px; height:6px; border-top:1.5px solid var(--layers-legend-meta,var(--text-muted)); border-right:1.5px solid var(--layers-legend-meta,var(--text-muted)); transform:rotate(45deg); }
     .dive-experience-metric-row--linked:hover, .dive-experience-metric-row--linked:active { background:var(--panel-soft); }
     .dive-experience-metric-row--linked:focus-visible { outline:2px solid var(--accent,#2563eb); outline-offset:2px; border-radius:3px; }
+    .dive-experience-metric-row--no-detail { cursor:default; }
+    .dive-experience-metric-row--no-detail::after { visibility:hidden; }
+    .dive-experience-metric-row--no-detail:hover, .dive-experience-metric-row--no-detail:active { background:transparent; }
     .dive-conditions-confidence { display:grid; width:100%; grid-template-columns:1fr auto; align-items:center; gap:5px; margin-top:8px; padding:6px 0; border:0; background:transparent; color:var(--layers-legend-title,var(--text-secondary)); font:inherit; font-size:11px; text-align:left; cursor:pointer; }
     .dive-conditions-confidence--chart-open { border-top:0; }
     .dive-conditions-confidence:hover { color:var(--layers-legend-title,var(--text-secondary)); }
@@ -15085,13 +15088,21 @@ ZSD·2016–2025</span></span>
           (returnSitePopup._diveAtlasSiteId &&
             entry.marker?.getPopup?.()?._diveAtlasSiteId === returnSitePopup._diveAtlasSiteId)
         );
-        if (!siteEntry?.marker || !returnSitePopup._diveAtlasOwnerKey) return;
+        if (!returnSitePopup._diveAtlasOwnerKey) return;
+        const siteLocation = siteEntry?.marker?.getLatLng?.() ||
+          returnSitePopup._diveAtlasAnchorLatLng ||
+          returnSitePopup.getLatLng?.() ||
+          returnSitePopup._diveAtlasRatingLocation;
+        if (!siteLocation) return;
         returnSitePopup._diveAtlasLayerKey = 'dive';
+        // Zoom LOD can replace this site's marker with a cluster (or hide dive
+        // markers), so preserve the explicit return as a standalone popup.
+        returnSitePopup._diveAtlasRatingReturnRetained = !siteEntry?.marker;
         openManagedPopup(
           returnSitePopup._diveAtlasOwnerKey,
           returnSitePopup,
-          siteEntry.marker.getLatLng(),
-          siteEntry.marker
+          siteLocation,
+          siteEntry?.marker || null
         );
       });
       titleRow.append(backButton);
@@ -15294,7 +15305,7 @@ ZSD·2016–2025</span></span>
   }
   async function ensureDiveConditionsService() {
     diveConditionsModulePromise ||= Promise.all([
-      import('./js/dive-conditions-model.js'),
+      import('./js/dive-conditions-model.js?v=20261026-metric-detail-source-1'),
       import('./js/dive-conditions-service.js'),
       import('./js/temperature-query.js?v=20261004-temperature-retry-1'),
       import('./js/water-clarity-query.js'),
@@ -15390,7 +15401,7 @@ ZSD·2016–2025</span></span>
         : key === 'current'
           ? formatRegionalCurrentSpeed(value)
           : `${value.toFixed(2)} ${metric.unit || ''}`.trim();
-    return key === 'temperature' && metric.estimated ? `${reading} · ${t('diveExperienceNearbyEstimate')}` : reading;
+    return reading;
   }
   function formatDiveExperienceResolutionText(resolution) {
     if (resolution == null || lengthUnit !== 'ft') return resolution;
@@ -15445,11 +15456,23 @@ ZSD·2016–2025</span></span>
       metric.fallbackBehavior].filter(Boolean);
     return parts.join(' · ') || t('diveExperienceSourceDetailUnavailable');
   }
-  function diveExperienceDimensionRow(label, value, support = null, metricAction = null) {
+  function hasDiveExperienceMetricDetailSource(metric) {
+    // A chevron promises a source-backed drilldown; estimated or source-less
+    // score inputs do not have a reliable detail target.
+    return metric?.value != null && Number.isFinite(Number(metric.value)) &&
+      metric.lookupStatus === 'available' && metric.estimated !== true &&
+      Boolean(String(metric.provenance || '').trim()) &&
+      metric.sourceLatitude != null && Number.isFinite(Number(metric.sourceLatitude)) &&
+      metric.sourceLongitude != null && Number.isFinite(Number(metric.sourceLongitude));
+  }
+  function diveExperienceDimensionRow(label, value, support = null, metricAction = null, { retainMetricRowLayout = false } = {}) {
     const row = document.createElement('div');
     row.className = 'dive-experience-dimension-row';
-    if (metricAction) {
+    if (metricAction || retainMetricRowLayout) {
       row.classList.add('dive-experience-metric-row--linked');
+      if (!metricAction) row.classList.add('dive-experience-metric-row--no-detail');
+    }
+    if (metricAction) {
       row.tabIndex = 0;
       row.setAttribute('role', 'button');
       row.setAttribute('aria-label', `${label}: ${value}`);
@@ -16026,7 +16049,9 @@ ZSD·2016–2025</span></span>
     conditionsGrid.className = 'dive-conditions-grid';
     const conditionNames = { temperature:currentLang === 'en' ? 'Water temp.' : t('diveConditionsTemperature'), clarity:t('diveConditionsClarity'), current:t('diveConditionsCurrent'), waves:t('diveConditionsWaves') };
     for (const key of ['temperature','clarity','current','waves']) {
-      conditionsGrid.append(diveExperienceDimensionRow(conditionNames[key], diveExperiencePhysicalMetricText(key, result?.metrics?.[key]), null, key));
+      const metric = result?.metrics?.[key];
+      conditionsGrid.append(diveExperienceDimensionRow(conditionNames[key], diveExperiencePhysicalMetricText(key, metric), null,
+        hasDiveExperienceMetricDetailSource(metric) ? key : null, { retainMetricRowLayout:true }));
     }
     physicalSection.append(conditionsGrid);
     content.append(physicalSection);
@@ -28373,9 +28398,10 @@ function closeShareDialog() {
         return false;
       }
       if (layerKey === 'dive' && popup._diveAtlasSiteId) {
-        return Array.from(cache.values()).some(entry =>
-          entry.marker?.getPopup?.()?._diveAtlasSiteId === popup._diveAtlasSiteId
-        );
+        return popup._diveAtlasRatingReturnRetained === true ||
+          Array.from(cache.values()).some(entry =>
+            entry.marker?.getPopup?.()?._diveAtlasSiteId === popup._diveAtlasSiteId
+          );
       }
       const featureId = normalizedPopupFeatureId(popup._diveAtlasFeatureId);
       return Boolean(featureId) && Array.from(cache.values()).some(entry =>

@@ -110,6 +110,7 @@
       const value = numericValue != null && (key === 'temperature' || numericValue >= 0) ? numericValue : null;
       metrics[key] = { value, unit: sample?.unit || null, interpretation: value == null ? null : classify(key, value),
         lookupStatus: sample?.lookupStatus || (value == null ? 'no_data' : 'available'), lookupError:sample?.lookupError || null,
+        estimated:Boolean(sample?.estimated),
         provenance: sample?.provenance || null, sourceLocation: sample?.sourceLocation || null,
         sourceLatitude:sample?.sourceLatitude ?? null, sourceLongitude:sample?.sourceLongitude ?? null,
         sampleDistanceKm: sample?.sampleDistanceKm ?? null, resolution: sample?.resolution || null, period: sample?.period || null };
