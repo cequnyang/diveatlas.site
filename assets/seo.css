@@ -178,14 +178,15 @@ figure { margin: 0; }
 .site-photo-upload-label-mobile, .site-photo-upload-button { display: none; }
 @media (max-width: 720px) {
   .site-photo-upload-label-mobile { position: absolute; z-index: 2; top: 10px; left: 10px; display: inline-flex; max-width: calc(100% - 20px); align-items: center; padding: 5px 8px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 999px; background: rgba(8, 15, 25, .78); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.3; text-shadow: 0 1px 2px rgba(0, 0, 0, .5); pointer-events: none; }
-  .site-photo-upload-button { position: absolute; z-index: 3; right: 10px; bottom: 8px; display: inline-flex; max-width: calc(100% - 20px); min-height: 44px; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #fff; font-size: 11px; font-weight: 700; line-height: 1.3; text-decoration: none; white-space: nowrap; box-shadow: none; transition: transform .15s ease; }
+  .site-photo-upload-button { position: absolute; z-index: 3; right: 10px; bottom: 26px; display: inline-flex; max-width: calc(100% - 20px); min-height: 44px; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #fff; font-size: 11px; font-weight: 700; line-height: 1.3; text-decoration: none; white-space: nowrap; box-shadow: none; transition: transform .15s ease; }
   .site-photo-upload-button::before { content: ""; position: absolute; top: 50%; right: 0; left: 0; box-sizing: border-box; height: 32px; transform: translateY(-50%); border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px; background: color-mix(in srgb, var(--primary) 94%, transparent); box-shadow: 0 2px 8px rgba(0, 0, 0, .24); pointer-events: none; }
   .site-photo-upload-button:hover, .site-photo-upload-button:focus-visible { background: transparent; color: #fff; box-shadow: none; }
   .site-photo-upload-button:active { transform: scale(.98); }
   .site-photo-upload-button svg, .site-photo-upload-button span { position: relative; z-index: 1; }
   .site-photo-upload-button svg { display: block; width: 17px; height: 17px; flex: 0 0 auto; }
   .site-photo-upload-button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-  .site-photo-gallery-main.site-photo-gallery-main--photo-upload figcaption { bottom: 58px; }
+  /* Keep the contribution action above the attribution in the mobile photo corner. */
+  .site-photo-gallery-main.site-photo-gallery-main--photo-upload figcaption { z-index: 2; bottom: 6px; }
 }
 .site-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .site-photo-gallery-main .site-photo-preview-trigger img { animation: gallery-image-float 16s linear infinite; offset-path: circle(7px at 50% 50%); offset-anchor: center; offset-rotate: 0deg; transform: scale(1.04); }

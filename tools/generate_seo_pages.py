@@ -518,7 +518,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
         region_browse_styles_version = "26"
     else:
         region_browse_styles_version = "9"
-    seo_styles_version = "181"
+    seo_styles_version = "183"
     browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
     <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
 ''' if has_browse_header else ""
