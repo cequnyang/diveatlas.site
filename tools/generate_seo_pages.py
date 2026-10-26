@@ -512,8 +512,12 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
     if has_browse_header and "seo-browse-layout" not in body_classes:
         body_classes.append("seo-browse-layout")
     body_class_attr = f' class="{html_text(" ".join(body_classes))}"' if body_classes else ""
-    if has_site_directory or "region-area-browser-page" in body_classes:
-        region_browse_styles_version = "26"
+    if has_site_directory:
+        region_browse_styles_version = "28"
+    elif "region-area-browser-page" in body_classes:
+        region_browse_styles_version = "27"
+    elif "destination-directory-page" in body_classes:
+        region_browse_styles_version = "32"
     elif {"region-browser-page", "region-destination-page"} & set(body_classes):
         region_browse_styles_version = "26"
     else:
@@ -674,13 +678,20 @@ def destination_photo_figure(photo: dict[str, str]) -> str:
 def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[str, dict[str, str]], page: int = 1) -> str:
     directory = region_directory_page(groups, photos_by_path, page)
     destination_content = re.search(r'<main class="region-browser">(.*?)</main>', directory, re.S).group(1)
+    is_region_index = page == 1
+    destination_directory = (
+        f'  <section id="destinationDirectory">{destination_content}</section>'
+        if not is_region_index else ""
+    )
+    region_browser_state = " open" if is_region_index else ""
+    region_heading = "Dive Site Regions" if is_region_index else "Browse dive sites by area"
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <section id="destinationDirectory">{destination_content}</section>
-  <details class="region-area-browser" id="regionAreaBrowser">
+{destination_directory}
+  <details class="region-area-browser" id="regionAreaBrowser"{region_browser_state}>
     <summary>Browse dive sites by area</summary>
     <div class="region-area-browser__content">
-      <h1 id="regionPageTitle">Browse dive sites by area</h1>
+      <h1 id="regionPageTitle">{region_heading}</h1>
       <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
       <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
       <article class="region-area-feature" id="regionAreaPhoto" hidden>
@@ -705,26 +716,25 @@ def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[st
   </details>
 </main>
 {site_footer_markup()}
-<script src="/js/region-browse.js?v=31" defer></script>'''
-    page_title = "Dive Sites by Destination | DiveAtlas" if page == 1 else f"Dive Sites by Destination - Page {page} | DiveAtlas"
+<script src="/js/region-browse.js?v=32" defer></script>'''
+    page_title = "Dive Site Regions | DiveAtlas" if is_region_index else f"Dive Sites by Destination - Page {page} | DiveAtlas"
     page_url = f"{BASE_URL}/regions/" if page == 1 else f"{BASE_URL}/regions/page/{page}/"
     page_start = (page - 1) * LIST_PAGE_SIZE + 1
     page_end = min(page * LIST_PAGE_SIZE, len(groups))
     description = (
         f"Browse DiveAtlas destination pages {page_start} to {page_end} of {len(groups)}, "
         "with source-linked photos and recorded dive-site counts."
-        if page > 1 else
-        "Browse DiveAtlas destinations with source-linked photos and recorded dive-site counts."
+        if not is_region_index else
+        "Browse mapped dive sites by region, country, and destination using recorded location data."
     )
     page = page_shell(
         page_title,
         description,
         page_url,
         body,
-        body_class="region-browser-page region-area-browser-page",
+        body_class="region-browser-page region-area-browser-page" + (" region-index-page" if is_region_index else ""),
     )
-    # The destination photo directory is the primary page; filtered area browsing remains available on demand.
-    return page.replace('</head>', '<script>if (new URLSearchParams(location.search).has("area")) { const meta = document.createElement("meta"); meta.name = "robots"; meta.content = "noindex,follow"; document.head.append(meta); }</script>\n</head>', 1)
+    return page.replace('</head>', '<script>if (new URLSearchParams(location.search).has("area")) { document.documentElement.classList.add("region-area-detail-page"); const meta = document.createElement("meta"); meta.name = "robots"; meta.content = "noindex,follow"; document.head.append(meta); }</script>\n</head>', 1)
 
 
 def recommendation_feature_tokens(candidate: dict[str, object]) -> list[str]:

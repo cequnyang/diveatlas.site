@@ -14,6 +14,7 @@
   const areaHeroMapLink = document.getElementById('regionAreaMapLink');
   const areaBrowser = document.getElementById('regionAreaBrowser');
   const destinationDirectory = document.getElementById('destinationDirectory');
+  const isRegionIndexPage = document.body.classList.contains('region-index-page');
   const areaSection = document.getElementById('regionAreaSection');
   const areaList = document.getElementById('regionAreaList');
   let areaPagination = null;
@@ -49,6 +50,8 @@
     document.documentElement.classList.add('region-area-detail-page');
     if (areaBrowser) areaBrowser.open = true;
     if (destinationDirectory) destinationDirectory.hidden = true;
+  } else if (isRegionIndexPage && areaBrowser) {
+    areaBrowser.open = true;
   }
 
   function safeHttpsUrl(value) {
@@ -522,6 +525,7 @@
 
   function renderPage() {
     const areaKey = new URLSearchParams(location.search).get('area');
+    if (!areaKey && !isRegionIndexPage) return;
     const area = areaKey ? areasByKey.get(areaKey) : null;
     currentArea = area;
     status.hidden = true;

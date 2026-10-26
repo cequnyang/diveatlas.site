@@ -33,13 +33,21 @@
 }
 
 body.region-browser-page.site-directory-page > .region-browser {
-  width: min(900px, calc(100% - 32px));
+  width: min(900px, 100%);
   margin-inline: auto;
   box-sizing: border-box;
 }
 
-/* Match the inner top inset used by the regions index. */
-.destination-directory-page #destinationDirectory { padding-top: 14px; }
+/* Match the destination directory's title-to-content gap at desktop and mobile widths. */
+.site-directory-page .site-directory-recommendations { margin-top: 54px; }
+
+/* The regions index keeps 28px of breadcrumb margins even when the breadcrumb is empty. */
+.destination-directory-page #destinationDirectory { padding-top: 0; }
+.destination-directory-page #destinationDirectory > .region-photo-gallery { margin-top: 54px; }
+
+@media (max-width: 720px) {
+  .destination-directory-page #destinationDirectory > .region-photo-gallery { margin-top: 26px; }
+}
 
 .region-browser-page .eyebrow {
   margin: 0 0 6px;
@@ -145,6 +153,15 @@ body.region-browser-page.site-directory-page > .region-browser {
 .region-area-detail-page .region-area-browser__content { padding-top: 0; }
 
 .region-browser-page .region-area-browser__content { padding-top: 14px; }
+
+.region-index-page .region-area-browser {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.region-index-page .region-area-browser > summary { display: none; }
+.region-index-page .region-area-browser__content { padding-top: 0; }
+html.region-area-detail-page .region-index-page .region-area-browser__content { padding-top: 14px; }
 
 .region-browser-page #regionAreaList {
   display: grid;
@@ -497,6 +514,7 @@ body.region-browser-page.site-directory-page > .region-browser {
   .region-browser-page > footer { width: 100%; }
 
   .region-browser-page > .region-browser { padding-top: 24px; }
+  .site-directory-page .site-directory-recommendations { margin-top: 26px; }
   .region-browser-page #regionAreaList { grid-template-columns: 1fr; gap: 0; margin-top: 14px; }
   .region-browser-page #regionSiteSection { box-sizing: border-box; padding-inline: 16px; }
   .region-browser-page #regionSiteList,
