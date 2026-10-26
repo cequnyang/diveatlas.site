@@ -28,6 +28,7 @@
               <label class="dive-search-filter-field"><span id="seoSiteSearchFeatureLabel">Feature</span><select id="seoSiteSearchFeature" aria-labelledby="seoSiteSearchFeatureLabel"><option value="">Any feature</option></select></label>
               <button class="dive-search-filter-clear" id="seoSiteSearchFilterClear" type="button" hidden>Clear All</button>
             </div>
+            <button class="dive-search-results-handle" id="seoSiteSearchResultsHandle" type="button" aria-label="Close dive-site search" title="Drag up to close"></button>
           </div>
         </div>
       </div>

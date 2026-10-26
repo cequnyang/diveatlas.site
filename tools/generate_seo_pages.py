@@ -523,15 +523,15 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
     else:
         region_browse_styles_version = "9"
     seo_styles_version = "183"
-    browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
+    browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=9">
     <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
 ''' if has_browse_header else ""
-    detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=9">\n' if has_site_detail else ""
+    detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=10">\n' if has_site_detail else ""
     browse_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
-<script src="/js/seo-browse-header.js?v=1" defer></script>
+<script src="/js/seo-browse-header.js?v=2" defer></script>
 <script src="/js/seo-page-controls.js?v=23" defer></script>
-<script src="/js/seo-site-search.js?v=10" defer></script>
+<script src="/js/seo-site-search.js?v=11" defer></script>
 <script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_browse_header else ""
     directory_rating_script = '\n<script src="/js/seo-list-card-ratings.js?v=1" defer></script>' if has_site_directory else ""
     return f'''<!doctype html>
@@ -1098,7 +1098,7 @@ def generate_site_page(
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=23" defer></script><script src="/js/dive-conditions-chart.js?v=51" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=11" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=21" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=23" defer></script><script src="/js/dive-conditions-chart.js?v=51" defer></script><script src="/js/site-recommendations.js?v=13" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=12" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=21" defer></script>'''
     html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
     return title_base, html
 
@@ -1182,11 +1182,8 @@ def site_directory_page(sites: list[dict[str, object]], page: int = 1) -> str:
     site_items = item_list(visible_sites, recommendation_card_link)
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
 <main class="region-browser">
-  <p class="eyebrow">DiveAtlas dive sites</p>
   <h1>Explore dive sites</h1>
-  <p class="lead">Browse mapped dive sites with recorded locations and available details. Each profile links its listed facts to the available source information.</p>
-  <p><a href="/regions/">Browse dive sites by destination</a></p>
-  <section class="site-recommendations site-directory-recommendations" aria-labelledby="sites-heading"><h2 id="sites-heading">Dive sites ({total})</h2><div class="site-recommendations__content"><ul class="site-recommendations__combined dive-site-directory-list">{site_items}</ul></div>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
+  <section class="site-recommendations site-directory-recommendations" aria-label="Dive sites"><div class="site-recommendations__content"><ul class="site-recommendations__combined dive-site-directory-list">{site_items}</ul></div>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
 </main>
 {site_footer_markup()}'''
     title = "Dive Site Directory | DiveAtlas" if page == 1 else f"Dive Site Directory - Page {page} | DiveAtlas"

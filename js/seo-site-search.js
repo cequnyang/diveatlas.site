@@ -466,7 +466,7 @@
   }
 
   function bindMobileResultsHandle() {
-    if (!resultsHandle || !document.body.classList.contains('seo-site-detail-layout')) return;
+    if (!resultsHandle) return;
 
     let drag = null;
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
