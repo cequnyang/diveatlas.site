@@ -517,7 +517,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
         region_browse_styles_version = "26"
     else:
         region_browse_styles_version = "9"
-    seo_styles_version = "180"
+    seo_styles_version = "181"
     browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
     <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
 ''' if has_browse_header else ""
@@ -1023,6 +1023,9 @@ def generate_site_page(
                 f'<a class="site-photo-upload-label" href="{upload_url}" target="_blank" rel="noopener noreferrer" '
                 f'aria-label="Been diving here? Share a real photo.">'
                 f'<span class="site-photo-upload-label__rest">Representative image · not this dive site</span>'
+                f'<svg class="site-photo-upload-label__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
+                f'<circle cx="12" cy="13" r="3.25"/></svg>'
                 f'<span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a>'
                 f'<span class="site-photo-upload-label-mobile">Representative image · not this dive site</span>'
                 f'<a class="site-photo-upload-button" href="{upload_url}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo">'
@@ -1034,7 +1037,7 @@ def generate_site_page(
         safe_photo_alt = html_text(photo["alt"])
         photo_markup = (
             f'<div class="site-photo-feature"><figure class="site-photo site-photo-gallery">'
-            f'<div class="site-photo-gallery-main"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
+            f'<div class="site-photo-gallery-main{" site-photo-gallery-main--photo-upload" if upload_label else ""}"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
             f'<img src="{safe_image_url}" alt="{safe_photo_alt}" loading="lazy"></button>{upload_label}{credit}</div>'
             f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
             f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
