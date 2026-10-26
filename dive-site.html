@@ -14,7 +14,7 @@
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=181">
   <link rel="stylesheet" href="/assets/region-browse.css?v=1">
-  <link rel="stylesheet" href="/assets/seo-site-search.css?v=8">
+  <link rel="stylesheet" href="/assets/seo-site-search.css?v=9">
   <link rel="stylesheet" href="/assets/map-detail-transition.css?v=1">
   <link rel="stylesheet" href="/assets/site-contributions.css?v=3">
 </head>
@@ -36,6 +36,7 @@
               <label class="dive-search-filter-field"><span id="seoSiteSearchFeatureLabel">Feature</span><select id="seoSiteSearchFeature" aria-labelledby="seoSiteSearchFeatureLabel"><option value="">Any feature</option></select></label>
               <button class="dive-search-filter-clear" id="seoSiteSearchFilterClear" type="button" hidden>Clear All</button>
             </div>
+            <button class="dive-search-results-handle" id="seoSiteSearchResultsHandle" type="button" aria-label="Close dive-site search" title="Drag up to close"></button>
           </div>
         </div>
       </div>
@@ -164,6 +165,6 @@
 <script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
 <script src="/js/dive-site-detail.js?v=48" defer></script>
-<script src="/js/seo-site-search.js?v=10" defer></script>
+<script src="/js/seo-site-search.js?v=11" defer></script>
 </body>
 </html>

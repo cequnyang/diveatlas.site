@@ -9,6 +9,7 @@
   const clearButton = document.getElementById('seoSiteSearchClear');
   const filterToggle = document.getElementById('seoSiteSearchFilterToggle');
   const results = document.getElementById('seoSiteSearchResults');
+  const resultsHandle = document.getElementById('seoSiteSearchResultsHandle');
   const resultsScroll = document.getElementById('seoSiteSearchResultsScroll');
   const filterControls = document.getElementById('seoSiteSearchFilterControls');
   const countrySelect = document.getElementById('seoSiteSearchCountry');
@@ -34,6 +35,9 @@
   let activeIndex = -1;
   let isOpen = false;
   let filtersOpen = false;
+  let handleDismissal = null;
+  let handleResetTransition = null;
+  let handleResetMaxHeight = '';
   const suggestion = document.createElement('div');
   suggestion.className = 'dive-search-suggestion';
   const suggestionButton = document.createElement('button');
@@ -432,15 +436,198 @@
   }
 
   function setOpen(next) {
+    if (handleDismissal) {
+      clearTimeout(handleDismissal.timer);
+      results.removeEventListener('transitionend', handleDismissal.onTransitionEnd);
+      handleDismissal = null;
+      results.classList.remove('mobile-search-dismissing');
+    }
+    if (handleResetTransition) {
+      results.removeEventListener('transitionend', handleResetTransition);
+      handleResetTransition = null;
+      if (handleResetMaxHeight) results.style.maxHeight = handleResetMaxHeight;
+      else results.style.removeProperty('max-height');
+      handleResetMaxHeight = '';
+      results.classList.remove('mobile-search-restoring');
+    }
     isOpen = Boolean(next);
     if (!isOpen) filtersOpen = false;
     input.setAttribute('aria-expanded', String(isOpen));
     searchToggle?.setAttribute('aria-expanded', String(isOpen));
     results.classList.toggle('visible', isOpen);
+    if (!isOpen) {
+      results.classList.remove('mobile-vertical-dragging', 'mobile-search-dismissing', 'mobile-search-restoring');
+      results.style.removeProperty('height');
+      results.style.removeProperty('--mobile-panel-drag-y');
+    }
     updateSearchFocusLayout();
     updateFilterState();
     if (isOpen) renderResults();
   }
+
+  function bindMobileResultsHandle() {
+    if (!resultsHandle || !document.body.classList.contains('seo-site-detail-layout')) return;
+
+    let drag = null;
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const restoreMaxHeight = value => {
+      if (value) results.style.maxHeight = value;
+      else results.style.removeProperty('max-height');
+    };
+    const resetDrag = (startHeight, startMaxHeight) => {
+      if (handleResetTransition) {
+        results.removeEventListener('transitionend', handleResetTransition);
+        handleResetTransition = null;
+        restoreMaxHeight(handleResetMaxHeight);
+        handleResetMaxHeight = '';
+      }
+      results.classList.remove('mobile-vertical-dragging');
+      results.classList.add('mobile-search-restoring');
+      results.style.removeProperty('--mobile-panel-drag-y');
+      const currentHeight = results.getBoundingClientRect().height;
+      if (reducedMotionQuery.matches || Math.abs(currentHeight - startHeight) < 1) {
+        results.style.removeProperty('height');
+        restoreMaxHeight(startMaxHeight);
+        results.classList.remove('mobile-search-restoring');
+        return;
+      }
+      results.style.height = `${startHeight}px`;
+      handleResetMaxHeight = startMaxHeight;
+      handleResetTransition = event => {
+        if (event.target !== results || event.propertyName !== 'height' ||
+            results.classList.contains('mobile-vertical-dragging')) return;
+        results.removeEventListener('transitionend', handleResetTransition);
+        results.style.removeProperty('height');
+        restoreMaxHeight(handleResetMaxHeight);
+        handleResetTransition = null;
+        handleResetMaxHeight = '';
+        results.classList.remove('mobile-search-restoring');
+      };
+      results.addEventListener('transitionend', handleResetTransition);
+    };
+    const dismiss = () => {
+      results.classList.remove('mobile-vertical-dragging');
+      results.classList.add('mobile-search-dismissing');
+      results.style.removeProperty('--mobile-panel-drag-y');
+      if (reducedMotionQuery.matches) {
+        setOpen(false);
+        return;
+      }
+      void results.offsetHeight;
+      results.style.height = '0px';
+      const complete = () => {
+        if (handleDismissal !== dismissal) return;
+        clearTimeout(dismissal.timer);
+        results.removeEventListener('transitionend', dismissal.onTransitionEnd);
+        handleDismissal = null;
+        results.classList.remove('mobile-search-dismissing');
+        setOpen(false);
+      };
+      const dismissal = {
+        timer:0,
+        onTransitionEnd:event => {
+          if (event.target === results && event.propertyName === 'height') complete();
+        }
+      };
+      handleDismissal = dismissal;
+      results.addEventListener('transitionend', dismissal.onTransitionEnd);
+      dismissal.timer = window.setTimeout(complete, 280);
+    };
+
+    resultsHandle.addEventListener('pointerdown', event => {
+      if (!mobileLayoutQuery.matches || !results.classList.contains('visible') || event.button !== 0) return;
+      if (handleResetTransition) {
+        results.removeEventListener('transitionend', handleResetTransition);
+        handleResetTransition = null;
+        restoreMaxHeight(handleResetMaxHeight);
+        handleResetMaxHeight = '';
+        results.classList.remove('mobile-search-restoring');
+        results.style.removeProperty('height');
+      }
+      drag = {
+        id:event.pointerId,
+        x:event.clientX,
+        y:event.clientY,
+        startHeight:results.getBoundingClientRect().height,
+        startMaxHeight:results.style.maxHeight,
+        moved:false,
+        hasMovedUpward:false,
+        hasResizedSheet:false
+      };
+      resultsHandle.setPointerCapture?.(event.pointerId);
+    });
+    resultsHandle.addEventListener('pointermove', event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const deltaX = event.clientX - drag.x;
+      const deltaY = event.clientY - drag.y;
+      if (Math.hypot(deltaX, deltaY) < 4) return;
+      if (Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        drag.moved = true;
+        return;
+      }
+      drag.moved = true;
+      if (event.cancelable) event.preventDefault();
+      if (deltaY < 0) drag.hasMovedUpward = true;
+      drag.hasResizedSheet = true;
+      results.classList.add('mobile-vertical-dragging');
+      const downwardStretch = Math.min(
+        20 * (1 - Math.exp(-Math.max(0, deltaY) / 18)),
+        Math.max(0, window.innerHeight - results.getBoundingClientRect().top - drag.startHeight)
+      );
+      if (deltaY > 0) results.style.maxHeight = 'none';
+      else restoreMaxHeight(drag.startMaxHeight);
+      const height = deltaY < 0
+        ? Math.max(72, drag.startHeight + deltaY)
+        : drag.startHeight + downwardStretch;
+      results.style.height = `${height}px`;
+    });
+    const finishDrag = event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const deltaX = event.clientX - drag.x;
+      const deltaY = event.clientY - drag.y;
+      const didMove = drag.moved;
+      const hasMovedUpward = drag.hasMovedUpward;
+      const hasResizedSheet = drag.hasResizedSheet;
+      const finalCollapseDistance = Math.max(0, -deltaY);
+      const upwardDrag = didMove && hasMovedUpward && deltaY < 0 &&
+        Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
+      const startHeight = drag.startHeight;
+      const startMaxHeight = drag.startMaxHeight;
+      drag = null;
+      if (upwardDrag) event.preventDefault();
+      // Use the map view's deliberate upward-pull threshold for dismissal.
+      if (upwardDrag && finalCollapseDistance >= 72) {
+        dismiss();
+        return;
+      }
+      if (hasResizedSheet) resetDrag(startHeight, startMaxHeight);
+      else if (didMove) {
+        results.classList.remove('mobile-vertical-dragging');
+        results.style.removeProperty('--mobile-panel-drag-y');
+      }
+    };
+    resultsHandle.addEventListener('pointerup', finishDrag);
+    resultsHandle.addEventListener('pointercancel', event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const startHeight = drag.startHeight;
+      const startMaxHeight = drag.startMaxHeight;
+      const hasResizedSheet = drag.hasResizedSheet;
+      drag = null;
+      if (hasResizedSheet) resetDrag(startHeight, startMaxHeight);
+      else {
+        results.classList.remove('mobile-vertical-dragging');
+        results.style.removeProperty('--mobile-panel-drag-y');
+      }
+    });
+    resultsHandle.addEventListener('click', event => {
+      if (event.detail === 0 && mobileLayoutQuery.matches) {
+        setOpen(false);
+        searchToggle?.focus({ preventScroll:true });
+      }
+    });
+  }
+
+  bindMobileResultsHandle();
 
   function updateSearchFocusLayout() {
     const activeElement = document.activeElement;
