@@ -178,7 +178,7 @@ test('temperature has zero startup requests and loads only after activation', as
   await expect(page.locator('#environmentViewSelect')).toHaveValue('default');
 });
 
-test('Water Clarity loads on demand, synchronizes month selection, and reports missing assets', async ({ page }) => {
+test('Water Clarity loads on demand, preserves independent months, and reports missing assets', async ({ page }) => {
   const clarityRequests = [];
   page.on('request', request => {
     if (request.url().includes('water-clarity-view.js') || request.url().includes('/data/water_clarity/')) {
@@ -197,7 +197,8 @@ test('Water Clarity loads on demand, synchronizes month selection, and reports m
 
   const before = await page.evaluate(() => {
     const center = window.__DIVEATLAS_TEST__.map.getCenter();
-    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom() };
+    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom(),
+      temperatureMonth:document.querySelector('#temperatureMonth').value };
   });
   await page.locator('#environmentViewSelect').selectOption('water-clarity');
   await expect(page.locator('#waterClarityControls')).toBeVisible();
@@ -206,10 +207,12 @@ test('Water Clarity loads on demand, synchronizes month selection, and reports m
   expect(clarityRequests.filter(url => url.includes('/data/water_clarity/metadata.json'))).toHaveLength(1);
 
   await page.locator('#waterClarityMonth').selectOption('10');
-  await expect(page.locator('#temperatureMonth')).toHaveValue('10');
+  await expect(page.locator('#waterClarityMonth')).toHaveValue('10');
+  await expect(page.locator('#temperatureMonth')).toHaveValue(before.temperatureMonth);
   const after = await page.evaluate(() => {
     const center = window.__DIVEATLAS_TEST__.map.getCenter();
-    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom() };
+    return { lat: center.lat, lng: center.lng, zoom: window.__DIVEATLAS_TEST__.map.getZoom(),
+      temperatureMonth:document.querySelector('#temperatureMonth').value };
   });
   expect(after).toEqual(before);
 

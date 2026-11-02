@@ -8630,6 +8630,9 @@ ZSD·2016–2025</span></span>
     const params = new URLSearchParams();
     const rolloutFlag = new URL(window.location.href).searchParams.get('diveExperienceOutlook');
     if (rolloutFlag !== null) params.set('diveExperienceOutlook', rolloutFlag);
+    // Local research is a persistent feature opt-in, not transported map state.
+    // Keep the loopback-only guard so a public URL cannot enable local data.
+    if (localReefResearchRequested()) params.set('reefConditionLocalResearch', '1');
     const query = params.size ? `?${params}` : '';
     const cleanUrl = `${window.location.pathname}${query}${window.location.hash}`;
     window.history.replaceState(window.history.state, document.title, cleanUrl);

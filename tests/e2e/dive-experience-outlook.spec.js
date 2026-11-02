@@ -134,6 +134,15 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
 });
 
 test('Dive Experience popup reports the selected cell outlook and supporting evidence', async ({ page }) => {
+  // The raster's legacy physical score can be null. In that case the existing
+  // popup adapter scores service readings; use four independently known 100-point
+  // bands so the expectation does not depend on live physical-data availability.
+  await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({
+    contentType:'text/javascript', body:`window.DiveAtlasConditionsService = {
+      createDiveConditionsService: () => ({ query: async (location, month) => ({ location, month,
+        metrics:{ temperature:{value:28}, clarity:{value:35}, current:{value:0.05}, waves:{value:0.1} }
+      }) }) };`
+  }));
   await openMap(page, { url:'/?__diveatlas_test=1&lat=69.53125&lng=-23.46875&z=7' });
   await setLegendCollapsed(page, false);
   await page.locator('.environment-segment-group').evaluate(track => { track.scrollLeft = 0; });
@@ -159,7 +168,8 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
     .toHaveText(`${selectedCell.activeDimensionCount}/7`);
   await expect(popup.locator('.dive-experience-coverage-meter'))
     .toHaveAttribute('aria-label', `${selectedCell.activeDimensionCount} of 7 dimensions available`);
-  await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore} ·`);
+  await expect(popup.locator('.dive-experience-subscore').first()).toContainText(`${selectedCell.diveConditionsScore ?? 100} ·`);
+  await expect(popup.locator('.dive-experience-subscore').first()).toContainText('28 °C');
   const australiaPoint = { lat:-28.536, lng:137.505 };
   await waitForMapInteractionWindow(page);
   expect(await page.evaluate(({ lat, lng }) => window.__DIVEATLAS_TEST__.resolveMapInteraction({ lat, lng }), australiaPoint))

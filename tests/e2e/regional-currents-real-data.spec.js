@@ -15,6 +15,13 @@ async function openLayersPanel(page) {
 }
 
 async function clickCurrentSample(page, sample) {
+  // A prior mobile sheet can cover the next sample; offscreen synthetic clicks
+  // are not valid user targets. Close it and center each exact source coordinate.
+  await page.evaluate(({ latitude, longitude }) => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    map.closePopup();
+    map.setView([latitude, longitude], map.getZoom(), { animate:false });
+  }, sample);
   await page.waitForFunction(() => {
     const state = window.__DIVEATLAS_TEST__?.getState();
     return state && !state.pendingInteraction && performance.now() >= state.suppressedUntil;

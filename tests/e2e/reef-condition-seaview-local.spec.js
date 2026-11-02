@@ -69,6 +69,7 @@ if (fs.existsSync(CANONICAL_BUNDLE)) test('local Seaview metrics render site obs
   const mobile = testInfo.project.name.includes('mobile');
   const flagUrl = '/?__diveatlas_test=1&reefConditionLocalResearch=1&lat=0&lng=0&z=2';
   await openMap(page, { url: flagUrl });
+  expect(new URL(page.url()).searchParams.get('reefConditionLocalResearch')).toBe('1');
   await openReefCondition(page, mobile);
 
   const metric = page.locator('#reefSurveyMetric');
@@ -208,6 +209,12 @@ if (fs.existsSync(CANONICAL_BUNDLE)) test('local Seaview metrics render site obs
     await expect(popup).toContainText('License under clarification — local evaluation only');
     await expect(popup).toContainText('https://doi.org/10.1038/s41597-020-00698-6');
     await expect(popup).toContainText('Data age');
+    // Managed sheets place and resize after content appears; visibility alone
+    // can observe the entrance transition below the viewport.
+    await expect.poll(async () => {
+      const bounds = await popup.boundingBox();
+      return bounds ? bounds.y + bounds.height : Infinity;
+    }).toBeLessThanOrEqual(await page.evaluate(() => window.innerHeight));
     const popupBounds = await popup.boundingBox();
     expect(popupBounds.x).toBeGreaterThanOrEqual(0);
     expect(popupBounds.y).toBeGreaterThanOrEqual(0);
