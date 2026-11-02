@@ -27,6 +27,7 @@ MAX_RECOMMENDATION_SHARD_BYTES = 512 * 1024
 def public_records(rows, photos, summaries, fallback_base, fallback_photos):
     """Use an explicit public allowlist; never publish internal review notes."""
     counts = Counter(row_value(row, 12).lower() for row in rows)
+    metadata = seo.record_policy.normalize_records(rows, summaries)
     records = []
     for row in rows:
         site_id = row_value(row, 12).lower()
@@ -48,37 +49,26 @@ def public_records(rows, photos, summaries, fallback_base, fallback_photos):
         photo = photo or fallback_photo_for_site(
             site_id, categories["features"].split(" | "), fallback_base, fallback_photos)
         summary = summaries.get(site_id) or {}
-        sources = []
-        evidence = row[17] if reviewed else {}
-        labels = str(evidence.get("evidenceSource") or "").split(";")
-        for index, url in enumerate(str(evidence.get("evidenceUrlOrId") or "").split(";")):
-            if url.strip().lower().startswith(("https://", "http://")):
-                sources.append([labels[index].strip() if index < len(labels) else "Reference", url.strip()])
-        sources.extend(source[:2] for source in summary.get("sources", [])
-                       if isinstance(source, list) and len(source) >= 2)
-        if not sources:
-            providers = {"osm": "https://www.openstreetmap.org/", "padi": "https://www.padi.com/dive-sites/all/",
-                         "ssi": "https://www.divessi.com/en/locator/divesites"}
-            sources = [[token.strip().upper(), providers[token.strip().lower()]]
-                       for token in row_value(row, 8).split("|") if token.strip().lower() in providers]
+        sources = seo.record_policy.public_source_links(metadata[site_id])
         country, region = row_value(row, 9), row_value(row, 10)
         location_nodes = seo.location_nodes(country, region)
         hierarchy = [str(node["label"]) for node in location_nodes]
         hierarchy_urls = [seo.area_browse_url(node) for node in location_nodes]
         records.append({
+            **metadata[site_id],
             "schema": "dive-site-detail-v1", "site_id": site_id,
             "name": row_value(row, 0), "lat": lat, "lon": lon,
             "country": country, "region": region, "location_hierarchy": hierarchy,
             "location_hierarchy_urls": hierarchy_urls,
             "region_url": hierarchy_urls[-1] if region and hierarchy_urls else "",
             "depth_min": row_value(row, 3), "depth_max": row_value(row, 4),
-            "recorded_depth": row_value(row, 5), "difficulty": row_value(row, 6),
+            "recorded_depth": row_value(row, 5), "difficulty": " | ".join(metadata[site_id]["recorded_levels"]),
             "characteristics": row_value(row, 7),
-            "aliases": row_value(row, 11), "categories": categories,
+            "aliases": metadata[site_id]["aliases"], "categories": categories,
             "summary": summary.get("description", ""), "sources": sources,
             "photo": {key: photo.get(key, "") for key in ("src", "alt", "credit", "source")} if photo else None,
         })
-    return records
+    return seo.record_policy.canonicalize_views(records)
 
 
 def recommendation_catalog(candidates):
@@ -86,6 +76,8 @@ def recommendation_catalog(candidates):
     sites = []
     priority = {value: index for index, value in enumerate(seo.FALLBACK_FEATURE_PRIORITY)}
     for site in candidates:
+        if site.get("canonical_id", site["site_id"]) != site["site_id"]:
+            continue
         feature_values = [part.strip() for part in re.split(
             r"\s*(?:\||,|;)\s*", str(site["categories"].get("features") or site.get("characteristics") or ""))
             if part.strip()]
@@ -97,7 +89,7 @@ def recommendation_catalog(candidates):
             "lat": site["lat"], "lon": site["lon"],
             "features": features[:2], "feature_values": feature_values,
         }
-        for key in ("country", "region", "difficulty"):
+        for key in ("country", "region", "difficulty", "aliases", "canonical_id", "identity_members"):
             if site.get(key):
                 recommendation[key] = site[key]
         if isinstance(photo, dict) and photo.get("src"):
@@ -152,10 +144,14 @@ def export(output: Path) -> dict:
     rows, photos, summaries = load_rows(), load_photos(), load_summaries()
     records = public_records(rows, photos, summaries, base, fallback)
     candidates, _ = seo.validated_candidates(rows, photos, summaries, base, fallback)
-    selected = candidates[:seo.RELATED_SITE_LIMIT]
+    static_paths = {site['site_id']: f"/dive-sites/{site['slug']}/" for site in candidates}
+    for record in records:
+        record['identity_urls'] = [url for member in record['identity_members'] for url in
+                                  [f"/dive-site.html?id={member}", *([static_paths[member]] if member in static_paths else [])]]
     groups = defaultdict(list)
     for record in sorted(records, key=lambda value: (value["name"].casefold(), value["site_id"])):
-        groups[(record["country"], record["region"])].append(record)
+        if record["site_id"] == record["canonical_id"]:
+            groups[(record["country"], record["region"])].append(record)
     destination = output / DATA_PATH
     destination.mkdir(parents=True, exist_ok=True)
     for record in records:
@@ -164,7 +160,7 @@ def export(output: Path) -> dict:
         record["related"] = [
             {key: other[key] for key in ("site_id", "name", "region", "photo")}
             for other in groups[(record["country"], record["region"])][:9]
-            if other["site_id"] != record["site_id"]
+            if other.get("canonical_id", other["site_id"]) != record.get("canonical_id", record["site_id"])
         ][:8] if record["region"] else []
         (destination / f"{record['site_id']}.json").write_text(
             json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")

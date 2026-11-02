@@ -428,6 +428,8 @@
       // comparison local enough to stay responsive as the published catalog grows.
       const nearbyCandidates = candidates
         .filter(candidate => candidate.site_id !== currentSiteId
+          && !(document.querySelector('.detail-page')?.dataset.identityMembers || '').split(',').includes(candidate.site_id)
+          && (candidate.canonical_id || candidate.site_id) !== (document.querySelector('.detail-page')?.dataset.canonicalId || currentSiteId)
           && Number.isFinite(Number(candidate.lat)) && Number.isFinite(Number(candidate.lon)))
         .sort((a, b) => {
           const distance = candidate => {

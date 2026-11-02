@@ -128,3 +128,110 @@ wrong-ID responses, retry recovery and escaped content on desktop and mobile.
 They isolate record loading from environmental data availability. Verify an
 actual published record and environmental data separately before claiming live
 deployment success.
+
+
+## Conflicting records and identity reviews
+
+Detail exports and indexed-page generation use `tools/dive_site_record_policy.py`.
+The browser also enhances older indexed pages from the exported record, avoiding a
+rewrite of the entire published page tree. If that record is unavailable or from
+an older release, legacy single-level badges become explicitly unverified.
+The shared page and new static builds display all recorded experience labels;
+these labels are reports, not independently verified suitability. Difficulty
+recommendations compare complete normalized label sets, and search filters match
+any individual recorded level. No depth-based difficulty inference is made.
+
+Each public record retains structured `observations` and readable `evidence_notes`.
+Imported flattened depth fields have `meaning: "unknown"`, even if their field
+names contain min/max: that schema alone does not establish what a source measured.
+Reviewed observations may explicitly use `maximum` or `typical`. Values remain
+separate; neither conflicts nor differently defined depths are averaged. Source
+URLs and retrieval dates remain null when missing. A snapshot date is a separate
+fact and never becomes an invented retrieval date. Provider directory homepages
+are no longer manufactured as record citations. Public exports exclude internal
+review notes and source file names.
+
+`tools/dive_site_record_reviews.json` holds additive field evidence and explicit
+identity decisions, independently of raw datasets. Entries in `identities` require
+`site_ids`, `status` (`candidate`, `distinct`, or `confirmed`), and a review `reason`.
+A confirmed entry additionally requires an `evidence` list and a `canonical_id`
+that belongs to the group. Overlapping confirmed groups and missing IDs fail the
+build. Add language names to retained observations or imported aliases. Confirmed
+views retain every observation and all names as searchable aliases. Old UUID
+endpoints remain addressable with canonical metadata; existing indexed slugs stay
+available. Catalogs publish one entry per confirmed identity and recommendations
+exclude every member of the current identity, including rating candidates. The
+rating calculation is unchanged.
+
+Name similarity and proximity are review hints only. They never confirm an
+identity; the historical retired-ID field is also insufficient because earlier
+imports used heuristic deduplication. Candidate differences are explicitly labeled
+as differences between separate records, not established same-site conflicts.
+A `distinct` review keeps the records separate. Do not rewrite imported datasets
+to express any of these review decisions.
+
+The Antonio Gaudi pair remains a candidate. Local evidence in
+`artifacts/dive-site-all-source-review-evidence-v147.csv` retains SSI record 257960,
+its exact source coordinates, the 2026-06-22 third-party snapshot, `maxDepth: 26`
+and all three levels. The corresponding local harvest originals are
+`artifacts/divesites-harvest-sites_ssi.geojson` and
+`artifacts/divesites-harvest-details-sites_ssi.json`. The Japanese imported row
+retains 37 m, Advanced, cave and its romanized alias; its direct OSM identifier,
+URL, retrieval date and depth definition are absent. The checked review export
+contains no matching Japanese UUID. Shared identity, route equivalence and the
+reason for different depths require human review. The live SSI page was consulted
+but its accessible text did not expose those profile metrics, so it does not
+independently verify the snapshot or establish the relationship.
+
+Run `python -m unittest tests.unit.test_dive_site_details -v` and
+`npx playwright test dive-site-detail.spec.js` for focused regression coverage.
+`npm run test:interactions` remains the aggregate check, with
+`npm run check:dataset-paths` as the separate dataset policy gate.
+
+The importer now emits `identity_candidates` with both stable IDs for nearby
+same-name pairs and retains both complete rows. It never invokes the previous
+field-merging path. Review those hints before adding identity decisions. Existing
+published `evidenceNote` conflict text and source retrieval dates are carried into
+the public evidence section; missing dates stay unknown.
+
+
+### Provenance and compatibility validation
+
+Summary-v2 compact source arrays are `[label, url, referenceId, claims?]`.
+The third item is never a retrieval date. The decoder retains the declared
+`sourceDefaults`, explicit dictionary citations, reference IDs, claims and
+limitations in public `source_provenance`. Dates supplied by that metadata are
+labeled as recorded retrieval dates, not new fetches or independently verified
+dates. For example, the summary snapshot defaults declare 2026-06-22, while the
+separately inspected SSI observation retains that date as a snapshot date and
+leaves its own retrieval date unknown. Category references retain their scope;
+they do not authenticate the imported depth or experience fields.
+
+Review references to missing or ambiguous IDs fail closed even in the default
+repository configuration. Confirmed groups require nonempty evidence lists;
+pairwise contradictions are rejected in either order, including contradictions
+between different aliases of an already confirmed identity. Distinct decisions
+remain public. Reviewed observations and citations use explicit public field
+allowlists, and raw experience wording is retained separately from search tokens.
+Typical and maximum depths are different measurements, not a conflict merely
+because their numbers differ. Unknown depth semantics are not comparable.
+
+The exporter keeps each original source-row UUID endpoint and combines source
+citations without overwriting member observations. Shared old-UUID links render
+the confirmed canonical identity, preserve other query parameters and fragments,
+and survive reload. Canonical IDs also own map/contribution links. Unconfirmed
+metadata cannot redirect an old ID. Static aliases retain their original slugs;
+canonical and alias pages may share metadata without failing duplicate checks.
+If the canonical member is outside the SEO content gate or publication limit,
+the alias canonical points to its valid shared UUID endpoint instead of an absent
+static page. No historical retired UUID is treated as confirmed solely because
+it appears in the heuristic retired-ID field.
+
+Already generated indexed pages refresh existing evidence, category citations
+and canonical identity metadata when newer exported evidence is available.
+Explicit identity URL membership removes their old self-recommendation links,
+including cards added later. If the data request fails, existing server-rendered
+evidence is retained. These compatibility checks do not use names or coordinates
+to infer identity and do not modify the rating calculation or map failure logic.
+
+The browser presents provenance in a native, initially collapsed disclosure. A short localized source-details line stays visible, with an unresolved marker when applicable. The full explanation and source records appear inside the disclosure. Generated explanations and field labels follow Chinese/English selection; source names, raw experience labels, URLs, IDs, dates and numeric values are retained. Switching back to English restores the original notes. An untyped depth is omitted from the compact facts only when that same value has an explicitly recorded maximum or typical meaning; both observations remain in the evidence. Unknown depth meanings use the shared info icon and an overlay tooltip, without changing the fact grid layout.

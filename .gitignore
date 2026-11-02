@@ -111,3 +111,17 @@ playwright-report/
 
 # Optional photo discovery stays local; publish its generated manifest instead.
 /tools/generate_area_photo_manifest.py
+
+# Record safeguards and their reproducible generator/tests are source code.
+!/tools/dive_site_record_policy.py
+!/tools/dive_site_record_reviews.json
+
+# Preserve the conservative import boundary and its reference helper.
+!/maintenance/
+/maintenance/*
+!/maintenance/import_reviewed_dive_site_candidates.py
+!/maintenance/dive_site_references.py
+
+!/tests/unit/dive-site-record-policy.test.js
+
+!/assets/dive-sites/README.md

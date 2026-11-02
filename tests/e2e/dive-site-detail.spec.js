@@ -146,7 +146,7 @@ test('one shared shell renders two different IDs and keeps share/map links site-
   });
   await page.goto(`/dive-site.html?id=example-reef-${FIRST}`);
   await expect(page.locator('h1')).toHaveText('Example reef');
-  await expect(page.locator('.facts-section')).toContainText('12–25 m');
+  await expect(page.locator('.facts-section')).toContainText('12 / 25 m (unknown meaning)');
   await expect(page.locator('.facts-section')).toContainText('Beginner');
   const locationBreadcrumbs = page.locator('nav.breadcrumbs[aria-label="Breadcrumb"] a');
   await expect(locationBreadcrumbs).toHaveText(['Regions', 'Asia', 'South-Eastern Asia', 'Indonesia', 'Raja Ampat']);
@@ -321,4 +321,257 @@ test('rating chart collapse retains the release frame without flashing back open
     await card.hover();
     await expect(panel).toBeVisible();
   }
+});
+
+
+test('record evidence preserves multiple levels and unknown depths on shared pages', async ({ page }, testInfo) => {
+  const notes = ['Recorded experience labels are source reports, not verified suitability.',
+    'SSI snapshot: 26 m (maximum); snapshot date 2026-06-22; retrieval date unknown.',
+    'Possible related record: 日本語の名前; 37 m (unknown). Shared identity has not been established. These records remain separate.'];
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{ ...record(),
+    difficulty:'Beginner | Advanced | Expert', evidence_notes:notes,
+    observations:[{ depths:[{ value:26, meaning:'unknown' }, { value:26, meaning:'maximum' }, { value:37, meaning:'unknown' }] }] } }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('.fact').filter({ has:page.locator('dt', { hasText:'Recorded experience levels' }) })).toContainText('Beginner | Advanced | Expert');
+  await expect(page.locator('.record-evidence')).toContainText('remain separate');
+  await expect(page.locator('.fact-grid')).toContainText('26 m The source does not say whether this is the maximum depth or the usual dive depth.; 26 m (maximum); 37 m The source does not say whether this is the maximum depth or the usual dive depth.');
+  await expect(page.locator('.record-evidence')).toContainText('retrieval date unknown');
+  await expect(page.locator('.record-evidence')).toHaveCSS('overflow-wrap', 'anywhere');
+  await expect(page.locator('.fact-grid [data-depth-min="26"]')).toHaveCount(2);
+  const depthInfo = page.getByRole('button', { name:'About this depth' }).first();
+  const depthNote = page.locator('.depth-meaning-unknown').first();
+  await expect(depthNote).toBeHidden();
+  const gridBefore = await page.locator('.fact-grid').boundingBox();
+  await depthInfo.click();
+  await expect(depthNote).toBeVisible();
+  expect((await page.locator('.fact-grid').boundingBox()).height).toBe(gridBefore.height);
+  await expect(depthInfo.locator('.note-icon')).toHaveCount(1);
+  await expect(depthNote).toHaveAttribute('role', 'tooltip');
+  await expect(depthInfo).toHaveAttribute('aria-expanded', 'true');
+  await depthInfo.focus();
+  await page.keyboard.press('Escape');
+  await expect(depthNote).toBeHidden();
+  const disclosure = page.locator('.record-evidence details');
+  await expect(disclosure).toHaveCount(1);
+  await expect(page.locator('.data-note')).toHaveCount(0);
+  await expect(disclosure.locator('summary')).toHaveText('Sources and notes · unresolved records');
+  await expect(disclosure.locator('.record-evidence-summary')).toContainText('Check local guidance before diving.');
+  await expect(disclosure.locator('.record-evidence-summary')).toBeHidden();
+  await expect(disclosure).not.toHaveAttribute('open', '');
+  await expect(page.locator('.record-evidence-summary')).toContainText('kept separate');
+  await expect(disclosure.locator('ul')).toBeHidden();
+  await disclosure.locator('summary').click();
+  await expect(disclosure.locator('ul')).toBeVisible();
+  await expect(disclosure.locator('.record-evidence-summary')).toBeVisible();
+  await page.evaluate(() => document.documentElement.lang = 'zh');
+  await expect(disclosure.locator('summary')).toContainText('查看来源');
+  await expect(disclosure.locator('ul')).toContainText('经验等级来自来源记录');
+  await expect(disclosure.locator('ul')).toContainText('2026-06-22');
+  await expect(disclosure.locator('ul')).not.toContainText('Recorded experience labels are source reports');
+  await expect(page.locator('.depth-meaning-unknown').first()).toHaveText('来源未说明这是最大深度，还是通常的潜水深度。');
+  await expect(page.locator('.record-evidence-summary')).toContainText('尚未确认');
+  await page.locator('.record-evidence').scrollIntoViewIfNeeded();
+  await page.screenshot({ path:testInfo.outputPath('record-evidence.png'), fullPage:true });
+  await page.evaluate(() => localStorage.setItem('diveatlas-length-unit', 'ft'));
+  await page.reload();
+  await expect(page.locator('.fact-grid')).toContainText('85 ft The source does not say whether this is the maximum depth or the usual dive depth.; 85 ft (maximum); 121 ft The source does not say whether this is the maximum depth or the usual dive depth.');
+});
+
+test('legacy indexed pages show the same uncertainty and never retain a Beginner-only badge', async ({ page }) => {
+  const id = '40f5a479-c6e6-4cf3-9d78-4eb3a046f30a';
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{
+    ...record(id), difficulty:'Beginner | Advanced | Expert',
+    evidence_notes:['Recorded labels are not verified suitability.', 'Possible related record; identity remains unresolved.'],
+    observations:[{ depths:[{ value:26, meaning:'maximum' }] }]
+  } }));
+  await page.route('**/legacy-record.html', route => route.fulfill({ contentType:'text/html', body:`
+    <main data-site-id="${id}"><section class="facts-section"><dl class="fact-grid">
+      <div class="fact"><dt>Difficulty</dt><dd>Beginner</dd></div>
+      <div class="fact"><dt>Recorded depth</dt><dd data-depth-min="26" data-depth-max="26">26 m</dd></div>
+    </dl></section></main><script type="module">
+      import { enhanceRecordedEvidence } from '/js/dive-site-record-evidence.js';
+      enhanceRecordedEvidence();
+    </script>` }));
+  await page.goto('/legacy-record.html');
+  await expect(page.locator('.record-evidence')).toContainText('identity remains unresolved');
+  await expect(page.locator('.fact-grid')).toContainText('Beginner | Advanced | Expert');
+  await expect(page.locator('.fact-grid')).toContainText('26 m (maximum)');
+});
+
+test('confirmed identity aliases remain searchable and are excluded from recommendations', async ({ page }) => {
+  const alias = { ...record(SECOND, '日本語の名前') }; // Older catalogs may omit canonical metadata.
+  const current = { ...record(), canonical_id:FIRST, identity_status:'confirmed', identity_members:[FIRST, SECOND], aliases:'日本語の名前' };
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:current }));
+  await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({ json:{
+    schema:'dive-site-recommendations-v1', sites:[{ ...current, features:['reef'] }, { ...alias, features:['reef'] }]
+  } }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('#site-title')).toHaveText('Example reef');
+  await expect(page.locator('[data-recommendation-card]')).toHaveCount(0);
+  await page.locator('#seoSiteSearchInput').fill('日本語の名前');
+  await expect(page.locator('#seoSiteSearchResultsScroll')).toContainText('Example reef');
+  await page.locator('#seoSiteSearchFilterToggle').click();
+  await page.locator('#seoSiteSearchDifficultyPicker').click();
+  await page.locator('#seoSiteSearchDifficultyPickerOptions').getByRole('option', { name:'Advanced', exact:true }).click();
+  await expect(page.locator('#seoSiteSearchResultsScroll')).toContainText('Example reef');
+});
+
+
+test('generated Antonio profiles retain recorded labels and uncertainty without JavaScript', async ({ page }) => {
+  await page.route('**/*.js*', route => route.abort());
+  await page.goto('/dive-sites/antonio-gaudi/index.html');
+  await expect(page.locator('.fact-grid')).toContainText('Beginner | Advanced | Expert');
+  await expect(page.locator('.record-evidence')).toContainText('These records remain separate');
+  await page.goto('/dive-sites/site-89ebb901-okinawa-japan/index.html');
+  await expect(page.locator('h1')).toHaveText('アントニオガウデイ');
+  await expect(page.locator('.fact-grid')).toContainText('37 m (unknown)');
+  await expect(page.locator('.record-evidence')).toContainText('Shared site or route identity has not been established');
+});
+
+
+test('confirmed old UUID links render the canonical identity and survive reload', async ({ page }) => {
+  const canonical = { ...record(FIRST, 'Canonical reef'), canonical_id:FIRST,
+    identity_status:'confirmed', identity_members:[FIRST, SECOND], aliases:'日本語の名前',
+    evidence_notes:['Confirmed shared identity. Retained source records disagree on maximum depth.'] };
+  await page.route('**/data/dive-site-details/v1/*.json', route => {
+    const id = route.request().url().includes(SECOND) ? SECOND : FIRST;
+    return route.fulfill({ json:{ ...canonical, site_id:id } });
+  });
+  await page.goto(`/dive-site.html?id=old-name-${SECOND}&language=ja#sources`);
+  await expect(page.locator('#site-title')).toHaveText('Canonical reef');
+  await expect(page.locator('main')).toHaveAttribute('data-site-id', FIRST);
+  await expect(page).toHaveURL(new RegExp(`canonical-reef-${FIRST}.*language=ja#sources$`));
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', new RegExp(FIRST));
+  await expect(page.locator('.site-photo-gallery-map__cta')).toHaveAttribute('href', new RegExp(FIRST));
+  await page.reload();
+  await expect(page.locator('#site-title')).toHaveText('Canonical reef');
+  await expect(page.locator('.record-evidence')).toContainText('Retained source records');
+});
+
+test('indexed pages refresh existing evidence and remove confirmed identities from old recommendation links', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{
+    ...record(SECOND, 'Canonical reef'), canonical_id:FIRST, identity_status:'confirmed', identity_members:[FIRST, SECOND],
+    identity_urls:['/dive-sites/canonical-reef/', '/dive-sites/old-alias/'],
+    evidence_notes:['Confirmed shared identity; category references from both records retained.'],
+    sources:[['Source A', 'https://example.com/a'], ['Source B', 'https://example.com/b']],
+    observations:[{ depths:[{ value:26, meaning:'maximum' }, { value:18, meaning:'typical' }] }]
+  } }));
+  await page.route('**/old-alias/index.html', route => route.fulfill({ contentType:'text/html', body:`
+    <link rel="canonical" href="https://diveatlas.site/dive-sites/old-alias/">
+    <main class="detail-page" data-site-id="${SECOND}"><section class="facts-section"><dl class="fact-grid">
+      <div class="fact"><dt>Recorded experience levels</dt><dd>Beginner</dd></div>
+      <div class="fact"><dt>Source-reported depths</dt><dd>26 m</dd></div></dl></section>
+      <section class="record-evidence"><h2>Source evidence and uncertainty</h2><ul><li>Old candidate decision</li></ul></section>
+      <section class="source-section"><h2>Sources</h2><ul><li><a href="https://www.openstreetmap.org/">OSM</a></li></ul></section></main>
+    <aside class="site-recommendations"><ul>
+      <li><a href="/dive-sites/canonical-reef/">Canonical</a></li>
+      <li><a href="/dive-sites/old-alias/">Alias</a></li>
+      <li><a href="/dive-site.html?id=old-name-${FIRST}">Old UUID</a></li>
+      <li><a href="/dive-sites/distinct-reef/">Distinct site</a></li></ul></aside>
+    <script type="module">import { enhanceRecordedEvidence } from '/js/dive-site-record-evidence.js'; enhanceRecordedEvidence();</script>` }));
+  await page.goto('/old-alias/index.html');
+  await expect(page.locator('.record-evidence')).toContainText('Confirmed shared identity');
+  await expect(page.locator('.record-evidence')).not.toContainText('Old candidate');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', new RegExp(FIRST));
+  await expect(page.locator('.source-section a')).toHaveCount(2);
+  await expect(page.locator('.source-section')).not.toContainText('OSM');
+  await expect(page.locator('.fact-grid')).toContainText('26 m (maximum); 18 m (typical)');
+  await expect(page.locator('.site-recommendations a')).toHaveText(['Distinct site']);
+  await page.evaluate(() => {
+    const item = document.createElement('li');
+    item.innerHTML = '<a href="/dive-sites/old-alias/">Late alias</a>';
+    document.querySelector('.site-recommendations ul').append(item);
+  });
+  await expect(page.locator('.site-recommendations a')).toHaveText(['Distinct site']);
+});
+
+test('unavailable evidence keeps server-rendered provenance intact', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ status:404 }));
+  await page.goto('/dive-sites/antonio-gaudi/index.html');
+  await expect(page.locator('.record-evidence')).toContainText('257960');
+  await expect(page.locator('.fact-grid')).toContainText('Beginner | Advanced | Expert');
+  await expect(page.locator('.source-section')).toContainText('SSI');
+});
+
+
+test('candidate metadata cannot redirect an old UUID to a canonical identity', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{
+    ...record(SECOND, 'Unresolved candidate'), canonical_id:FIRST, identity_members:[FIRST, SECOND],
+    identity_status:'candidate'
+  } }));
+  await page.goto(`/dive-site.html?id=${SECOND}`);
+  await expect(page.locator('h1')).toHaveText('Unable to load this dive site');
+  await expect(page).toHaveURL(new RegExp(SECOND));
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+});
+
+
+test('mobile search reserves the drag handle area for short and scrollable suggestion lists', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.addInitScript(() => {
+    window.DIVE_ATLAS_SEO_SEARCH_CATALOG = Array.from({ length:40 }, (_, index) => ({
+      name:`Known reef ${index}`, site_id:'1a532e42-9890-4ea9-b239-0f5fbb836317',
+      lat:-0.55, lon:130.7, country:'Indonesia', difficulty:'Advanced', features:['reef']
+    }));
+  });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  for (const width of [320, 393]) {
+    await page.setViewportSize({ width, height:650 });
+    for (const filters of [false, true]) {
+      for (const query of ['Unlisted reef', 'Known reef']) {
+        if (!await page.locator('#seoSiteSearchInput').isVisible()) await page.locator('#seoSiteSearchToggle').click();
+        await page.locator('#seoSiteSearchInput').fill(query);
+        const toggle = page.locator('#seoSiteSearchFilterToggle');
+        if ((await toggle.getAttribute('aria-expanded') === 'true') !== filters) await toggle.click();
+        await page.locator('#seoSiteSearchResultsScroll').evaluate(element => { element.scrollTop = element.scrollHeight; });
+        const suggestion = page.locator('.dive-search-suggestion-button');
+        await expect(suggestion).toBeVisible();
+        const buttonBox = await suggestion.boundingBox();
+        const handleBox = await page.locator('#seoSiteSearchResultsHandle').boundingBox();
+        expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(handleBox.y);
+        await suggestion.click();
+        await expect(page.locator('#siteSuggestionName')).toHaveValue(query);
+        await page.keyboard.press('Escape');
+        await expect(page.locator('#siteSuggestionModal')).toBeHidden();
+      }
+    }
+  }
+});
+
+test('mobile search handle still dismisses with an upward drag and keyboard activation', async ({ page }) => {
+  await page.setViewportSize({ width:393, height:650 });
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.addInitScript(() => { window.DIVE_ATLAS_SEO_SEARCH_CATALOG = [{ name:'Known reef', features:[] }]; });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.locator('#seoSiteSearchInput').fill('Unlisted reef');
+  const handle = page.locator('#seoSiteSearchResultsHandle');
+  const box = await handle.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2 - 85, { steps:8 });
+  await page.mouse.up();
+  await expect(page.locator('#seoSiteSearchResults')).toBeHidden();
+  await page.locator('#seoSiteSearchInput').fill('Unlisted reef');
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#seoSiteSearchResults')).toBeHidden();
+});
+
+
+test('record field labels follow persisted and changed language after evidence refresh', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('global-coral-map-lang', 'zh'));
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:{ ...record(),
+    evidence_notes:['Recorded experience labels are source reports, not verified suitability.'],
+    observations:[{ depths:[{ value:25, meaning:'unknown' }] }] } }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  const depth = page.locator('[data-record-field="depth"] dt');
+  const experience = page.locator('[data-record-field="difficulty"] dt');
+  await expect(depth).toHaveText('来源记录的深度');
+  await expect(experience).toHaveText('来源记录的经验等级');
+  await page.locator('#seoLanguageSelect').selectOption('en', { force:true });
+  await expect(depth).toHaveText('Source-reported depths');
+  await expect(experience).toHaveText('Recorded experience levels');
+  await page.locator('#seoLanguageSelect').selectOption('zh', { force:true });
+  await expect(depth).toHaveText('来源记录的深度');
+  await expect(experience).toHaveText('来源记录的经验等级');
 });

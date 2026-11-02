@@ -157,6 +157,13 @@
       || !Array.isArray(record.sources) || !Array.isArray(record.related)) {
       throw new Error('Invalid dive-site record');
     }
+    const canonical = record.canonical_id || siteId;
+    const members = record.identity_members || [siteId];
+    if (!uuid.test(canonical) || !Array.isArray(members) || !members.every(id => uuid.test(id))
+      || !members.includes(siteId) || !members.includes(canonical)
+      || (canonical !== siteId || members.length > 1) && record.identity_status !== 'confirmed') {
+      throw new Error('Unconfirmed or invalid canonical identity');
+    }
     return record;
   }
 
@@ -167,8 +174,8 @@
   }
 
   function recommendationDifficulty(value) {
-    const levels = String(value || '').split(/\s*(?:\||,|;|\bto\b)\s*/i).map(level => level.toLowerCase());
-    return ['beginner', 'intermediate', 'advanced', 'expert'].find(level => levels.includes(level)) || '';
+    return [...new Set(String(value || '').normalize('NFKC').split(/\s*(?:\||,|;|\bto\b)\s*/i)
+      .map(level => level.trim().toLowerCase()).filter(Boolean))].sort().join(' | ');
   }
 
   function recommendationTokens(value) {
@@ -271,7 +278,7 @@
     if (!aside) return;
     const relatedFallback = () => {
       const related = spreadByPreview((site.related || [])
-        .filter(other => uuid.test(other.site_id) && other.site_id !== siteId)).slice(0, 8);
+        .filter(other => uuid.test(other.site_id) && !(site.identity_members || []).includes(other.site_id) && (other.canonical_id || other.site_id) !== (site.canonical_id || siteId))).slice(0, 8);
       if (!related.length) return;
       aside.innerHTML = `<h2>More in this region</h2><ul>${related.map(other => {
         const image = safeUrl(other.photo?.src);
@@ -324,7 +331,7 @@
       window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-ready', {
         detail:{ sites:window.DIVE_ATLAS_SEO_SEARCH_CATALOG }
       }));
-      const candidates = window.DIVE_ATLAS_SEO_SEARCH_CATALOG.filter(candidate => candidate.site_id !== siteId);
+      const candidates = window.DIVE_ATLAS_SEO_SEARCH_CATALOG.filter(candidate => !(site.identity_members || []).includes(candidate.site_id) && (candidate.canonical_id || candidate.site_id) !== (site.canonical_id || siteId));
       const comparable = value => String(value || '').toLowerCase();
       const distanceSorted = values => values.sort((a, b) => recommendationDistance(site, a)
         - recommendationDistance(site, b) || a.name.localeCompare(b.name));
@@ -382,7 +389,7 @@
       `Explore ${site.name}${site.region ? ` in ${site.region}` : ''}. View recorded dive-site details and mapped coordinates.`;
     const link = document.createElement('link');
     link.rel = 'canonical';
-    const canonicalId = `${siteSlug(site.name)}-${siteId}`;
+    const canonicalId = `${siteSlug(site.name)}-${site.canonical_id || siteId}`;
     const canonical = `https://diveatlas.site/dive-site.html?id=${encodeURIComponent(canonicalId)}`;
     link.href = canonical;
     const currentQuery = new URLSearchParams(location.search);
@@ -399,9 +406,9 @@
 
     const photo = site.photo;
     const photoUrl = safeUrl(photo?.src);
-    const mapUrl = `/?site=${encodeURIComponent(siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
+    const mapUrl = `/?site=${encodeURIComponent(site.canonical_id || siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
     // Keep hrefs as a fallback; the contribution controller opens the form in place.
-    const photoUploadUrl = `/?addPhoto=1&amp;site=${encodeURIComponent(siteId)}&amp;lat=${site.lat}&amp;lng=${site.lon}&amp;z=14`;
+    const photoUploadUrl = `/?addPhoto=1&amp;site=${encodeURIComponent(site.canonical_id || siteId)}&amp;lat=${site.lat}&amp;lng=${site.lon}&amp;z=14`;
     const photoUploadLabel = photo?.source === 'illustrative-fallback'
       ? `<a class="site-photo-upload-label" href="${photoUploadUrl}" data-site-contribution="photo" aria-label="Been diving here? Share a real photo."><span class="site-photo-upload-label__rest">Representative image · not this dive site</span><svg class="site-photo-upload-label__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.25"/></svg><span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a><span class="site-photo-upload-label-mobile">Representative image · not this dive site</span><a class="site-photo-upload-button" href="${photoUploadUrl}" data-site-contribution="photo" aria-label="Share a real photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>`
       : '';
@@ -430,22 +437,23 @@
     facts.push(`<div class="fact fact-coordinates"><dt>Coordinates</dt><dd><a class="coordinate-map-button" href="https://www.google.com/maps/search/?api=1&amp;query=${site.lat}%2C${site.lon}" target="_blank" rel="noopener noreferrer"><img src="/assets/google-maps-icon-2026.png?v=1" alt="" width="22" height="22"><span>Open in Google Maps</span></a></dd></div>`);
     const category = value => String(value || '').split('|').map(part => part.trim().replaceAll('_', ' ')).filter(Boolean).join(' · ');
     fact('Features', category(site.categories.features), '', 'fact-features');
-    const levels = String(site.difficulty || '').split(/\s*(?:\||,|;|\bto\b)\s*/i);
-    const ranks = ['beginner', 'intermediate', 'advanced', 'expert'];
-    fact('Difficulty', ranks.find(level => levels.some(value => value.toLowerCase() === level))
-      ?.replace(/^./, value => value.toUpperCase()) || site.difficulty);
-    const minimum = site.depth_min || site.recorded_depth || '';
-    const maximum = site.depth_max || site.recorded_depth || '';
-    if (minimum || maximum) {
-      const same = minimum !== '' && maximum !== '' && Number(minimum) === Number(maximum);
-      const value = same ? minimum : [minimum, maximum].filter(value => value !== '').join('–');
-      fact(same || !site.depth_min && !site.depth_max ? 'Recorded depth' : 'Recorded depth range', `${value} m`,
-        `data-depth-min="${escape(minimum)}" data-depth-max="${escape(maximum)}"`);
+    fact('Recorded experience levels', site.difficulty);
+    const depths = site.observations?.flatMap(observation => observation.depths || []) || [];
+    // Deduplicate identical value/meaning pairs, but keep different source meanings visible.
+    const reportedDepths = [...new Map(depths.map(depth => [`${depth.value}:${depth.meaning}`, depth])).values()];
+    if (reportedDepths.length) {
+      const values = reportedDepths.map(depth => `<span data-depth-min="${escape(depth.value)}" data-depth-max="${escape(depth.value)}">${escape(depth.value)} m</span> (${escape(depth.meaning)})`);
+      facts.push(`<div class="fact"><dt>Source-reported depths</dt><dd>${values.join('; ')}</dd></div>`);
+    } else {
+      const values = [site.depth_min, site.depth_max, site.recorded_depth].filter(value => value !== '' && value != null);
+      fact('Source-reported depths', values.length ? `${[...new Set(values)].join(' / ')} m (unknown meaning)` : '');
     }
     fact('Setting', category(site.categories.setting), '', 'fact-setting');
     fact('Access', category(site.categories.access));
     const sources = site.sources.filter(source => Array.isArray(source) && safeUrl(source[1]));
-    page.dataset.siteId = siteId;
+    page.dataset.siteId = site.canonical_id || siteId;
+    page.dataset.canonicalId = site.canonical_id || siteId;
+    page.dataset.identityMembers = (site.identity_members || [siteId]).join(',');
     page.classList.toggle('has-photo', Boolean(photoUrl));
     page.classList.toggle('no-photo', !photoUrl);
     page.innerHTML = `
@@ -469,6 +477,7 @@
       </section>
       ${site.aliases || site.summary ? `<p class="intro-details">${site.aliases ? `<strong>Also recorded as:</strong> <span data-i18n-ignore>${escape(site.aliases)}</span>.<br>` : ''}${site.summary ? `<span data-seo-summary>${escape(site.summary)}</span>` : ''}</p>` : ''}
       <section class="detail-section facts-section" aria-label="Dive details"><dl class="fact-grid">${facts.join('')}</dl></section>
+      <section class="detail-section record-evidence" data-i18n-ignore><h2>Source evidence and uncertainty</h2><ul>${(site.evidence_notes || ['Recorded experience labels are source reports, not verified suitability. Depth meaning and source provenance have not been verified.']).map(note => `<li>${escape(note)}</li>`).join('')}</ul></section>
       ${sources.length ? `<section class="detail-section source-section"><h2>Sources</h2><ul class="source-list">${sources.map(source => `<li><a href="${escape(safeUrl(source[1]))}" target="_blank" rel="noopener noreferrer">${escape(source[0] || 'Reference')}</a></li>`).join('')}</ul></section>` : ''}
       <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>`;
     page.setAttribute('aria-busy', 'false');

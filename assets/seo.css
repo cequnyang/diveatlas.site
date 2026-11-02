@@ -715,3 +715,35 @@ button.monthly-conditions-legend-item[aria-pressed="false"] { opacity: .5; text-
 button.monthly-conditions-legend-item:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
 
 .hero-copy .location-hierarchy a { border-bottom: 0; text-decoration: none; }
+
+/* Evidence URLs and original names must remain readable on narrow screens. */
+.record-evidence { overflow-wrap: anywhere; }
+.record-evidence li + li { margin-top: .75em; }
+
+/* Native disclosure keeps provenance keyboard accessible without a long audit wall. */
+.record-evidence { border-top: 1px solid var(--border-color, #64748b40); padding-top: 1rem; }
+.record-evidence-summary { margin: 0 0 .75rem; line-height: 1.6; }
+.record-evidence summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
+.record-evidence summary:focus-visible { outline: 2px solid #649cff; outline-offset: 3px; }
+.record-evidence details ul { font-size: .9rem; line-height: 1.65; padding-inline-start: 1.4rem; }
+
+.fact dd .depth-meaning-unknown { display: block; color: var(--muted); font-size: .75rem; font-weight: 400; line-height: 1.5; margin-top: .2rem; }
+
+
+
+
+.depth-info-button { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; margin-inline-start: .25rem; border: 0; border-radius: 50%; background: transparent; color: var(--muted); font: inherit; font-size: 1rem; cursor: pointer; vertical-align: middle; }
+.depth-info-button:hover { color: var(--primary); background: transparent; }
+.depth-info-button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.fact dd .depth-meaning-unknown[hidden] { display: none; }
+
+.fact dd .depth-meaning-unknown { position: fixed; z-index: 1000; box-sizing: border-box; width: max-content; max-width: min(300px, calc(100vw - 16px)); margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-solid); color: var(--text); box-shadow: var(--shadow); font-size: 12px; font-weight: 400; line-height: 1.5; }
+.depth-info-button .note-icon { display: inline-flex; margin: 0; }
+
+.record-evidence summary { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: .4rem .6rem; align-items: center; list-style: none; font-weight: 400; }
+.record-evidence summary::-webkit-details-marker { display: none; }
+.record-evidence summary .note-icon { display: inline-flex; align-items: center; margin: 0; }
+.record-evidence .record-evidence-summary { margin: .75rem 0; color: var(--muted); }
+.record-evidence-action { grid-column: 2; font-weight: 600; font-size: .8rem; color: var(--primary); }
+.record-evidence-action::after { content: ' ▸'; }
+.record-evidence details[open] .record-evidence-action::after { content: ' ▾'; }

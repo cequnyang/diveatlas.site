@@ -244,6 +244,11 @@
   let savedLength = 'm';
   try { savedLength = localStorage.getItem('diveatlas-length-unit') === 'ft' ? 'ft' : 'm'; } catch (_) {}
   renderDepth(savedLength);
+  window.addEventListener('diveatlas:record-evidence-ready', () => {
+    let unit = 'm';
+    try { unit = localStorage.getItem('diveatlas-length-unit') === 'ft' ? 'ft' : 'm'; } catch (_) {}
+    renderDepth(unit);
+  });
   lengthSwitch?.addEventListener('click', event => {
     const button = event.target.closest('[data-length-unit]');
     if (!button) return;
@@ -509,3 +514,8 @@
     else if (languageDropdown && !languageDropdown.hidden) { setLanguageMenu(false); languageButton?.focus({ preventScroll: true }); }
   });
 })();
+
+// Shared detail pages load these controls after DOMContentLoaded.
+const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js').then(module => module.enhanceRecordedEvidence());
+if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', refreshRecordEvidence, { once:true });
+else refreshRecordEvidence();

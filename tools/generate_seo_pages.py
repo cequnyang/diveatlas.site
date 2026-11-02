@@ -20,6 +20,12 @@ from pathlib import Path
 from urllib.parse import quote
 
 
+if __package__:
+    from . import dive_site_record_policy as record_policy
+else:
+    import dive_site_record_policy as record_policy
+
+
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://diveatlas.site"
 SITE_DATA = ROOT / "datasets" / "dive-sites.js"
@@ -275,6 +281,9 @@ def load_summaries() -> dict[str, dict[str, object]]:
     for site_id, raw_summary in payload.get("bySiteId", {}).items():
         defaults = payload.get("profileSnapshotDefaults", {}) if raw_summary.get("type") == "profileSnapshot" else payload.get("defaults", {})
         summary = {**defaults, **raw_summary}
+        summary["source_provenance"] = record_policy.decode_sources(
+            raw_summary.get("sources", []), defaults=payload.get("sourceDefaults", {}),
+            snapshot=raw_summary.get("type") == "profileSnapshot")
         if summary.get("status") == "published" and summary.get("description"):
             summaries[str(site_id).lower()] = summary
     return summaries
@@ -350,6 +359,11 @@ def validated_candidates(
 ) -> tuple[list[dict[str, object]], dict[str, int]]:
     id_counts = Counter(row_value(row, 12).lower() for row in rows if row_value(row, 12))
     coord_counts = Counter((row[1], row[2]) for row in rows if len(row) > 2)
+    metadata = record_policy.normalize_records(rows, summaries)
+    coordinate_identities = defaultdict(set)
+    for row in rows:
+        if len(row) > 12:
+            coordinate_identities[(row[1], row[2])].add(metadata[str(row[12]).lower()]['canonical_id'])
     rejected = Counter()
     candidates: list[dict[str, object]] = []
 
@@ -371,7 +385,7 @@ def validated_candidates(
         if not isinstance(lat, (int, float)) or not isinstance(lon, (int, float)) or not (-90 <= lat <= 90 and -180 <= lon <= 180):
             rejected["invalid_coordinates"] += 1
             continue
-        if coord_counts[(lat, lon)] != 1:
+        if coord_counts[(lat, lon)] != 1 and len(coordinate_identities[(lat, lon)]) != 1:
             rejected["duplicate_coordinates"] += 1
             continue
         if not country and not region:
@@ -445,6 +459,10 @@ def validated_candidates(
             "row": row,
         })
 
+    for site in candidates:
+        site.update(metadata[site["site_id"]])
+        site["difficulty"] = " | ".join(site["recorded_levels"])
+
     # Resolve collisions against the full eligible pool, not only a preview cap,
     # so adding more published records does not rename existing pages.
     slug_counts = Counter(slug_base(str(site["name"])) for site in candidates)
@@ -462,6 +480,12 @@ def validated_candidates(
         used_slugs.add(base)
         site["slug"] = base
 
+    record_policy.canonicalize_views(candidates, allow_missing=True)
+    by_id = {site['site_id']: site for site in candidates}
+    for site in candidates:
+        target = by_id.get(site['canonical_id'])
+        site['canonical_url'] = (f"{BASE_URL}/dive-sites/{quote(target['slug'])}/" if target else
+                                 f"{BASE_URL}/dive-site.html?id={site['canonical_id']}")
     candidates.sort(key=lambda site: (-int(site["score"]), str(site["name"]).casefold(), str(site["country"]).casefold(), str(site["region"]).casefold(), float(site["lat"]), float(site["lon"]), str(site["site_id"])))
     return candidates, dict(rejected)
 
@@ -783,12 +807,7 @@ def recommendation_card_link(candidate: dict[str, object]) -> str:
 
 
 def recommendation_difficulty(candidate: dict[str, object]) -> str:
-    levels = [value.strip() for value in re.split(
-        r"\s*(?:\||,|;|\bto\b)\s*", str(candidate.get("difficulty") or ""), flags=re.I
-    ) if value.strip()]
-    ranks = {"beginner": 0, "intermediate": 1, "advanced": 2, "expert": 3}
-    recognized = [value for value in levels if value.casefold() in ranks]
-    return min(recognized, key=lambda value: ranks[value.casefold()]).casefold() if recognized else ""
+    return record_policy.level_key(candidate.get("difficulty"))
 
 
 def recommendation_distance(site: dict[str, object], candidate: dict[str, object]) -> float:
@@ -804,6 +823,8 @@ def build_recommendation_index(sites: list[dict[str, object]]) -> dict[str, dict
     difficulty_by_id: dict[str, str] = {}
 
     for candidate in sites:
+        if candidate.get("canonical_id", candidate["site_id"]) != candidate["site_id"]:
+            continue
         site_id = str(candidate["site_id"])
         region = str(candidate["region"])
         if region:
@@ -822,14 +843,14 @@ def build_recommendation_index(sites: list[dict[str, object]]) -> dict[str, dict
             str(candidate["name"]).casefold(),
             str(candidate["site_id"]),
         )
-        nearby = heapq.nsmallest(3, (item for item in nearby_pool if item["site_id"] != site_id), key=nearest_key)
+        nearby = heapq.nsmallest(3, (item for item in nearby_pool if item.get("canonical_id", item["site_id"]) != site.get("canonical_id", site_id)), key=nearest_key)
 
-        primary_features = features_by_id[site_id][:2]
+        primary_features = features_by_id.get(site_id, recommendation_feature_tokens(site))[:2]
         primary_keys = {feature.casefold() for feature in primary_features}
         feature_matches = heapq.nsmallest(
             3,
             (candidate for candidate in nearby_pool
-             if candidate["site_id"] != site_id and primary_keys.intersection(
+             if candidate.get("canonical_id", candidate["site_id"]) != site.get("canonical_id", site_id) and primary_keys.intersection(
                  value.casefold() for value in features_by_id[str(candidate["site_id"])]
              )),
             key=lambda candidate: (
@@ -840,11 +861,11 @@ def build_recommendation_index(sites: list[dict[str, object]]) -> dict[str, dict
             ),
         )
 
-        difficulty = difficulty_by_id[site_id]
+        difficulty = difficulty_by_id.get(site_id, recommendation_difficulty(site))
         difficulty_matches = heapq.nsmallest(
             3,
             (candidate for candidate in nearby_pool
-             if candidate["site_id"] != site_id and difficulty
+             if candidate.get("canonical_id", candidate["site_id"]) != site.get("canonical_id", site_id) and difficulty
              and difficulty_by_id[str(candidate["site_id"])] == difficulty),
             key=nearest_key,
         )
@@ -865,7 +886,7 @@ def generate_site_page(
     rating_candidates_url: str,
 ) -> tuple[str, str]:
     slug = str(site["slug"])
-    canonical_url = f"{BASE_URL}/dive-sites/{quote(slug)}/"
+    canonical_url = site.get("canonical_url") or f"{BASE_URL}/dive-sites/{quote(str(site.get('canonical_slug', slug)))}/"
     name, country, region = str(site["name"]), str(site["country"]), str(site["region"])
     location = ", ".join(value for value in (region, country) if value)
     site_breadcrumbs_markup = destination_breadcrumbs(country, region)
@@ -900,17 +921,18 @@ def generate_site_page(
         feature_text = " · ".join(feature_tokens)
         facts.append(f'<div class="fact fact-features"><dt>Features</dt><dd>{html_text(feature_text)}</dd></div>')
     if site["difficulty"]:
-        levels = [value.strip() for value in re.split(r"\s*(?:\||,|;|\bto\b)\s*", str(site["difficulty"]), flags=re.I) if value.strip()]
-        ranks = {"beginner": 0, "intermediate": 1, "advanced": 2, "expert": 3}
-        recognized = [value for value in levels if value.casefold() in ranks]
-        difficulty = min(recognized, key=lambda value: ranks[value.casefold()]) if recognized else str(site["difficulty"])
-        facts.append(f'<div class="fact"><dt>Difficulty</dt><dd>{html_text(difficulty)}</dd></div>')
-    if site["depth_min"] or site["depth_max"]:
-        depth = depth_min if same_recorded_depth else "–".join(value for value in (depth_min, depth_max) if value)
-        label = "Recorded depth" if same_recorded_depth else "Recorded depth range"
-        facts.append(f'<div class="fact"><dt>{label}</dt><dd data-depth-min="{html_text(depth_min)}" data-depth-max="{html_text(depth_max)}">{html_text(depth)} m</dd></div>')
-    elif site["recorded_depth"]:
-        facts.append(f'<div class="fact"><dt>Recorded depth</dt><dd data-depth-min="{html_text(site["recorded_depth"])}" data-depth-max="{html_text(site["recorded_depth"])}">{html_text(site["recorded_depth"])} m</dd></div>')
+        facts.append(f'<div class="fact"><dt>Recorded experience levels</dt><dd>{html_text(site["difficulty"])}</dd></div>')
+    depths = list(dict.fromkeys(
+        (str(item['value']), item['meaning'])
+        for observation in site.get("observations", []) for item in observation.get("depths", [])
+    ))
+    # Deduplicate identical value/meaning pairs, but keep different source meanings visible.
+    if depths:
+        values = "; ".join(
+            f'<span data-depth-min="{html_text(value)}" data-depth-max="{html_text(value)}">{html_text(value)} m</span> ({html_text(meaning)})'
+            for value, meaning in depths
+        )
+        facts.append(f'<div class="fact"><dt>Source-reported depths</dt><dd>{values}</dd></div>')
     def category_text(value: str) -> str:
         return " · ".join(part.strip().replace("_", " ") for part in value.split("|") if part.strip())
 
@@ -980,35 +1002,7 @@ def generate_site_page(
         + "".join(recommendation_groups) + "</div></aside>"
     )
 
-    source_links: list[tuple[str, str]] = []
-    evidence = site["evidence"]
-    evidence_names = [value.strip() for value in str(evidence.get("evidenceSource", "")).split(";") if value.strip()]
-    evidence_refs = [value.strip() for value in str(evidence.get("evidenceUrlOrId", "")).split(";") if re.match(r"^https?://", value.strip(), re.I)]
-    if evidence_refs:
-        evidence_label = " · ".join(evidence_names) if len(evidence_names) != len(evidence_refs) else ""
-        source_links.extend((evidence_label or (evidence_names[index] if index < len(evidence_names) else f"Reference {index + 1}"), ref) for index, ref in enumerate(evidence_refs))
-    summary_sources = summary.get("sources", []) if summary else []
-    for source in summary_sources:
-        if isinstance(source, list) and len(source) > 1 and re.match(r"^https?://", str(source[1]), re.I):
-            source_links.append((str(source[0]), str(source[1])))
-    known_urls = {url.rstrip("/").casefold() for _, url in source_links}
-    if not source_links:
-        provider_urls = {
-            "osm": "https://www.openstreetmap.org/",
-            "padi": "https://www.padi.com/dive-sites/all/",
-            "ssi": "https://www.divessi.com/en/locator/divesites",
-        }
-        for token in str(site["sources"]).split("|"):
-            label = token.strip()
-            url = provider_urls.get(label.casefold())
-            if url and url.rstrip("/").casefold() not in known_urls:
-                source_links.append((label.upper() if label.casefold() in {"osm", "ssi"} else label.upper(), url))
-                known_urls.add(url.rstrip("/").casefold())
-    else:
-        # The popup hides generic provider links whenever record-specific references exist.
-        source_links = [(label, url) for label, url in source_links if url.rstrip("/").casefold() not in {
-            "https://www.openstreetmap.org", "https://www.padi.com/dive-sites/all", "https://www.divessi.com/en/locator/divesites"
-        }]
+    source_links = record_policy.public_source_links(site)
     unique_sources: list[tuple[str, str]] = []
     seen_source_urls: set[str] = set()
     for label, source_url in source_links:
@@ -1081,7 +1075,7 @@ def generate_site_page(
     </div>'''
     body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a>{seo_site_search_markup()}{controls}</header>
 <div class="seo-menu-backdrop" id="seoMenuBackdrop" hidden></div>
-<main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}">
+<main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}" data-canonical-id="{html_text(site.get("canonical_id", site["site_id"]))}" data-identity-members="{html_text(",".join(site.get("identity_members", [site["site_id"]])))}">
   <section class="site-hero" aria-labelledby="site-title">
     {photo_markup}
     <div class="hero-copy">{site_breadcrumbs_markup}<div class="site-title-row"><h1 id="site-title" data-seo-site-name>{html_text(name)}</h1><button class="site-title-share" id="siteTitleShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
@@ -1089,6 +1083,7 @@ def generate_site_page(
   </section>
   {intro_details_markup}
   <section class="detail-section facts-section" aria-label="Dive details"><dl class="fact-grid">{''.join(facts)}</dl></section>
+  <section class="detail-section record-evidence" data-i18n-ignore><h2>Source evidence and uncertainty</h2><ul>{"".join("<li>" + html_text(note) + "</li>" for note in site.get("evidence_notes", []))}</ul></section>
   {sources_markup}
   <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>
 </main>
@@ -1239,6 +1234,10 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     fallback_photo_base, fallback_photos = load_fallback_photos()
     candidates, rejected = validated_candidates(rows, photos, summaries, fallback_photo_base, fallback_photos)
     selected = candidates if args.site_limit is None else candidates[:args.site_limit]
+    published_ids = {site['site_id'] for site in selected}
+    for site in selected:
+        if site['canonical_id'] not in published_ids:
+            site['canonical_url'] = f"{BASE_URL}/dive-site.html?id={site['canonical_id']}"
     recommendations = build_recommendation_index(selected)
 
     rating_candidates = []
@@ -1249,6 +1248,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
             photo_src = "/" + photo_src.lstrip("/")
         rating_candidates.append({
             "site_id": str(candidate["site_id"]),
+            "canonical_id": candidate.get("canonical_id", candidate["site_id"]),
             "name": str(candidate["name"]),
             "slug": str(candidate["slug"]),
             "detail_url": f'/dive-sites/{quote(str(candidate["slug"]))}/',
@@ -1304,18 +1304,20 @@ def build(args: argparse.Namespace) -> dict[str, object]:
         title, content = generate_site_page(
             site, region_by_place, recommendations[str(site["site_id"])], rating_candidates_url
         )
-        if title in titles:
+        if title in titles and site["site_id"] == site["canonical_id"]:
             place = ", ".join(value for value in (str(site["region"]), str(site["country"])) if value)
             title = f"{site['name']} in {place} ({float(site['lat']):.5f}, {float(site['lon']):.5f}) | DiveAtlas"
             content = content.replace(re.search(r"<title>.*?</title>", content, re.S).group(0), f"<title>{html_text(title)}</title>", 1)
-        if title in titles:
+        if title in titles and site["site_id"] == site["canonical_id"]:
             raise ValueError(f"Duplicate generated title: {title}")
-        titles.add(title)
+        if site["site_id"] == site["canonical_id"]:
+            titles.add(title)
         canonical = f"{BASE_URL}/dive-sites/{quote(str(site['slug']))}/"
         description = re.search(r'<meta name="description" content="([^"]*)">', content).group(1)
-        if description in descriptions:
+        if description in descriptions and site["site_id"] == site["canonical_id"]:
             raise ValueError(f"Duplicate generated description for {canonical}")
-        descriptions.add(description)
+        if site["site_id"] == site["canonical_id"]:
+            descriptions.add(description)
         write_page(SITE_OUTPUT / str(site["slug"]) / "index.html", content)
         sitemap_urls.append(canonical)
 
@@ -1341,9 +1343,10 @@ def build(args: argparse.Namespace) -> dict[str, object]:
             regions,
             destination_photos_by_path[str(group["path"])],
         )
-        if title in titles:
+        if title in titles and site["site_id"] == site["canonical_id"]:
             raise ValueError(f"Duplicate generated title: {title}")
-        titles.add(title)
+        if site["site_id"] == site["canonical_id"]:
+            titles.add(title)
         write_page(ROOT / str(group["path"]).lstrip("/") / "index.html", content)
         sitemap_urls.append(f"{BASE_URL}{str(group['path'])}")
 

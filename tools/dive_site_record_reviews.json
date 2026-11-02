@@ -1,0 +1,41 @@
+{
+  "schema": "dive-site-record-reviews-v1",
+  "observations": {
+    "40f5a479-c6e6-4cf3-9d78-4eb3a046f30a": [
+      {
+        "source": "SSI MyDiveGuide third-party profile snapshot",
+        "url": "https://www.divessi.com/en/mydiveguide/divesite/antonio-gaudi-japan-257960",
+        "snapshot_date": "2026-06-22",
+        "retrieved_at": null,
+        "name": "Antonio Gaudi",
+        "lat": 24.8194,
+        "lon": 125.1324,
+        "difficulty": [
+          "beginner",
+          "advanced",
+          "expert"
+        ],
+        "depths": [
+          {
+            "value": 26,
+            "meaning": "maximum"
+          }
+        ],
+        "source_record_id": "257960"
+      }
+    ]
+  },
+  "identities": [
+    {
+      "status": "candidate",
+      "site_ids": [
+        "40f5a479-c6e6-4cf3-9d78-4eb3a046f30a",
+        "89ebb901-2762-4f37-98d0-dfc061c3cdbf"
+      ],
+      "reason": "Nearby records with potentially related English and Japanese names. Shared site or route identity has not been established.",
+      "evidence": [
+        "https://www.divessi.com/en/mydiveguide/divesite/antonio-gaudi-japan-257960"
+      ]
+    }
+  ]
+}

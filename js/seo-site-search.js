@@ -23,7 +23,7 @@
   // position relative to the header instead of the viewport.
   document.body.append(results);
 
-  const normalize = value => String(value || '').normalize('NFD')
+  const normalize = value => String(value || '').normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
     ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[character]);
@@ -333,7 +333,7 @@
         ...site,
         features,
         normalizedName:normalize(name),
-        normalizedSearch:normalize([name, location, site.difficulty, ...features].join(' '))
+        normalizedSearch:normalize([name, site.aliases, location, site.difficulty, ...features].join(' '))
       };
     }) : [];
     updateFilterOptions();
@@ -363,14 +363,14 @@
 
   function siteMatchesFiltersExcept(site, filters, excludedFilter) {
     if (excludedFilter !== 'country' && filters.country && normalize(site.country) !== filters.country) return false;
-    if (excludedFilter !== 'difficulty' && filters.difficulty && normalize(site.difficulty) !== filters.difficulty) return false;
+    if (excludedFilter !== 'difficulty' && filters.difficulty && !String(site.difficulty || '').split(/\s*(?:\||,|;|\bto\b)\s*/i).some(level => normalize(level) === filters.difficulty)) return false;
     if (excludedFilter !== 'feature' && filters.feature && !site.features.some(feature => normalize(feature) === filters.feature)) return false;
     return true;
   }
 
   function updateFilterOptions() {
     fillSelect(countrySelect, 'Any country', optionValues('country', 'country'));
-    fillSelect(difficultySelect, 'Any difficulty', optionValues('difficulty', 'difficulty'));
+    fillSelect(difficultySelect, 'Any difficulty', optionValues('difficulty', 'difficulty', site => String(site.difficulty || '').split(/\s*(?:\||,|;|\bto\b)\s*/i).filter(Boolean)));
     fillSelect(featureSelect, 'Any feature', optionValues('features', 'feature', site => site.features));
     filterPickers.forEach(picker => picker.sync());
   }

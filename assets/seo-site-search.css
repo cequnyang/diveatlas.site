@@ -267,7 +267,6 @@
   #seoSiteSearchResults.visible.has-filters.mobile-vertical-dragging,
   #seoSiteSearchResults.visible.has-filters.mobile-search-restoring,
   #seoSiteSearchResults.visible.has-filters.mobile-search-dismissing { min-height: 0; }
-  #seoSiteSearchResultsScroll { padding-bottom: 26px; }
   #seoSiteSearchFilterControls { min-height: 0; }
   #seoSiteSearchResults .dive-search-results-handle {
     position: absolute;
@@ -316,9 +315,11 @@
   .seo-site-search-slot.is-mobile-expanded #seoSiteSearchSection { width: min(273px, 100%); }
   /* Keep the pane divider aligned with the search-bar filter button on phones. */
   #seoSiteSearchResults.visible.has-filters { min-height: 244px; }
-  #seoSiteSearchFilterControls { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 18px 16px 26px; }
+  #seoSiteSearchFilterControls { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 18px 16px 32px; }
   #seoSiteSearchFilterControls .dive-search-filter-field:first-child { grid-column: 1; }
-  #seoSiteSearchResultsScroll { padding-bottom: 10px; }
+  /* The absolute handle occupies the bottom 30px (28px high + 2px offset).
+     Reserve its hit area so the last suggestion/control remains clickable. */
+  #seoSiteSearchResultsScroll { padding-bottom: 32px; }
 }
 
 @media (350px < width <= 720px) {

@@ -22892,7 +22892,7 @@ function closeShareDialog() {
 
   function normalizeDiveSearchText(value = '') {
     return String(value)
-      .normalize('NFD')
+      .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLocaleLowerCase()
       .replace(/[^\p{L}\p{N}]+/gu, ' ')
@@ -27699,17 +27699,8 @@ function closeShareDialog() {
       .split(/\s*(?:\||,|;|\bto\b)\s*/i)
       .map(value => value.trim())
       .filter(Boolean);
-    const rank = { beginner: 0, intermediate: 1, advanced: 2, expert: 3 };
-    const recognized = levels.filter(value => Object.hasOwn(rank, value.toLowerCase()));
-
-    // When a source lists a range, show its least demanding level as the site's entry point.
-    if (recognized.length) {
-      const lowest = recognized.reduce((best, value) =>
-        rank[value.toLowerCase()] < rank[best.toLowerCase()] ? value : best
-      );
-      return diveCategoryValue(lowest);
-    }
-    return diveCategoryValue(rawValue);
+    // A source's multiple labels are observations, not an entry requirement.
+    return [...new Set(levels.map(value => diveCategoryValue(value)))].join(' · ');
   }
 
   const DIVE_CATEGORY_COPY = {

@@ -303,6 +303,30 @@
       'Buka di Google Maps', 'Öppna i Google Maps',
       'Åpne i Google Maps'
     ]],
+    ['Source-reported depths', [
+      '来源记录的深度', 'Profundidades indicadas por las fuentes',
+      'Von Quellen gemeldete Tiefen', 'Profondeurs indiquées par les sources',
+      '出典に記載された水深', 'Profundidades informadas pelas fontes',
+      'Profondità riportate dalle fonti', 'Глубины по данным источников',
+      '출처에 기록된 수심', 'Diepten volgens bronnen',
+      'Kedalaman menurut sumber', 'Djup enligt källor', 'Dybder oppgitt av kilder'
+    ]],
+    ['Recorded experience levels', [
+      '来源记录的经验等级', 'Niveles de experiencia registrados',
+      'Erfasste Erfahrungsstufen', 'Niveaux d’expérience enregistrés',
+      '記録された経験レベル', 'Níveis de experiência registrados',
+      'Livelli di esperienza registrati', 'Указанные уровни опыта',
+      '기록된 경험 수준', 'Geregistreerde ervaringsniveaus',
+      'Tingkat pengalaman tercatat', 'Registrerade erfarenhetsnivåer', 'Registrerte erfaringsnivåer'
+    ]],
+    ['Depth (meaning unverified)', [
+      '深度（含义未核实）', 'Profundidad (significado sin verificar)',
+      'Tiefe (Bedeutung ungeprüft)', 'Profondeur (sens non vérifié)',
+      '水深（定義未確認）', 'Profundidade (significado não verificado)',
+      'Profondità (significato non verificato)', 'Глубина (значение не проверено)',
+      '수심 (의미 미확인)', 'Diepte (betekenis niet geverifieerd)',
+      'Kedalaman (makna belum diverifikasi)', 'Djup (betydelse ej verifierad)', 'Dybde (betydning ikke bekreftet)'
+    ]],
     ['Recorded depth', [
       '记录深度', 'Profundidad registrada',
       'Erfasste Tiefe', 'Profondeur enregistrée',
