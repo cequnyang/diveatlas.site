@@ -19,6 +19,7 @@ playwright-report/
 !/docs/
 /docs/*
 !/docs/dive-experience-outlook.md
+!/docs/ocean-missing-data-estimation-guide.md
 !/docs/dive-experience-score-guide.md
 !/docs/dive-experience-confidence-guide.md
 !/docs/dive-site-category-contract.md
@@ -65,14 +66,13 @@ playwright-report/
 /reports/
 /uncovered-sites.txt
 
-# Keep this feature's reproducible source even in checkouts that locally ignore
+# Keep core dive-site utilities visible in checkouts that locally ignore
 # authoring directories; continue excluding unrelated local tooling and tests.
 !/tools/
 /tools/*
 !/tools/export_dive_site_details.py
 !/tools/enrich_dive_site_regions.py
 !/tools/enrich_dive_site_locations.py
-!/docs/shared-dive-site-details.md
 !/tests/
 /tests/*
 !/tests/e2e/
@@ -97,6 +97,10 @@ playwright-report/
 /docs/
 /maintenance/
 /workers/
+
+# Keep shared detail-page documentation reviewable.
+!/docs/
+!/docs/shared-dive-site-details.md
 
 # Offline generators are local inputs; their generated browser data stays tracked.
 /scripts/build_dive_experience_land_mask.js
