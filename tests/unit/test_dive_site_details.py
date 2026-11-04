@@ -14,6 +14,13 @@ class PublicDetailRecordsTest(unittest.TestCase):
         patcher = patch.object(policy, 'read_reviews', return_value={})
         patcher.start()
         self.addCleanup(patcher.stop)
+        # CI has no ignored Natural Earth dataset. Supply the geography used by
+        # these synthetic records while keeping the real hierarchy/link logic.
+        geography = patch.object(seo, 'country_geographies', return_value={
+            'indonesia': ('Asia', 'South-Eastern Asia'),
+        })
+        geography.start()
+        self.addCleanup(geography.stop)
 
     def row(self, site_id="1a532e42-9890-4ea9-b239-0f5fbb836317"):
         return ["Example reef", -0.55, 130.7, 12, 25, None, "Beginner", "reef", "PADI",
