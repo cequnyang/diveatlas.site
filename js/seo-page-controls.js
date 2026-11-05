@@ -107,7 +107,7 @@
     }
     return new Promise(resolve => {
       const script = document.createElement('script');
-      script.src = '/js/dive-site-detail-i18n.js?v=8';
+      script.src = '/js/dive-site-detail-i18n.js?v=10';
       script.onload = resolve;
       script.onerror = resolve;
       document.head.append(script);
@@ -516,6 +516,14 @@
 })();
 
 // Shared detail pages load these controls after DOMContentLoaded.
-const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js').then(module => module.enhanceRecordedEvidence());
+const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js?v=2').then(module => module.enhanceRecordedEvidence());
 if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', refreshRecordEvidence, { once:true });
 else refreshRecordEvidence();
+
+// Permalinks bypass the dynamic loader. Use its appearance module here too;
+// the module guard prevents duplicate setup when both entry points run.
+if (document.querySelector('main.detail-page[data-site-id]:not([data-appearance-initialized])')) {
+  const appearance = document.createElement('script');
+  appearance.src = '/js/dive-site-cinematic-pilot.js?v=43';
+  document.head.append(appearance);
+}

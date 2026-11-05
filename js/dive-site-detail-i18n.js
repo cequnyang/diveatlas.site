@@ -5,6 +5,22 @@
   // Each row follows the language order above so the shared detail page can
   // localize its fixed UI without duplicating its rendering templates.
   const rows = [
+    ['Keep exploring', [
+      '继续探索', 'Sigue explorando', 'Weiter entdecken', 'Continuer à explorer',
+      '探索を続ける', 'Continue a explorar', 'Continua a esplorare', 'Продолжить исследование',
+      '계속 둘러보기', 'Verder ontdekken', 'Terus menjelajah', 'Fortsätt utforska', 'Fortsett å utforske'
+    ]],
+    ['More dive sites', [
+      '更多潜水点', 'Más sitios de buceo', 'Weitere Tauchplätze', 'Autres sites de plongée',
+      'その他のダイビングスポット', 'Mais locais de mergulho', 'Altri siti di immersione', 'Другие места для дайвинга',
+      '다른 다이빙 포인트', 'Meer duiklocaties', 'Situs selam lainnya', 'Fler dykplatser', 'Flere dykkesteder'
+    ]],
+    ['Related dive sites', [
+      '相关潜水点', 'Sitios de buceo relacionados', 'Ähnliche Tauchplätze',
+      'Sites de plongée associés', '関連するダイビングスポット', 'Locais de mergulho relacionados',
+      'Siti di immersione correlati', 'Похожие места для дайвинга', '관련 다이빙 포인트',
+      'Gerelateerde duiklocaties', 'Situs selam terkait', 'Relaterade dykplatser', 'Relaterte dykkesteder'
+    ]],
     ['Representative image · not this dive site', [
       '示意图片 · 非该潜点实景', 'Imagen ilustrativa · no es de este sitio',
       'Beispielbild · nicht von diesem Tauchplatz', 'Image illustrative · pas de ce site',

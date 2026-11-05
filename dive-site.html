@@ -13,12 +13,13 @@
   <link rel="stylesheet" href="/assets/dive-photo-preview.css?v=6">
   <script>try { if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (_) {}</script>
   <link rel="stylesheet" href="/assets/seo.css?v=183">
+  <link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=42">
   <link rel="stylesheet" href="/assets/region-browse.css?v=1">
   <link rel="stylesheet" href="/assets/seo-site-search.css?v=10">
   <link rel="stylesheet" href="/assets/map-detail-transition.css?v=1">
   <link rel="stylesheet" href="/assets/site-contributions.css?v=3">
 </head>
-<body class="seo-site-detail-layout shared-site-detail-layout">
+<body class="seo-site-detail-layout shared-site-detail-layout cinematic-pilot">
 <header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><div class="top-menu-search-slot seo-site-search-slot" id="seoSiteSearchSlot">
       <div class="search-float" id="seoSiteSearchSection">
         <div class="dive-search">
@@ -50,7 +51,13 @@
 <div class="seo-menu-backdrop" id="seoMenuBackdrop" hidden></div>
 <main class="detail-page no-photo" id="detailPage" aria-busy="true">
   <section id="detailStatus" role="status" aria-live="polite">
-    <h1>Loading dive site…</h1><p>Please wait while the site details load.</p>
+    <div class="detail-loading__hero">
+      <div class="detail-loading__title"><div class="detail-loading__line detail-loading__breadcrumb" aria-hidden="true"></div><h1>Loading dive site…</h1><p>Preparing your next dive.</p></div>
+    </div>
+    <div class="detail-loading__content" aria-hidden="true">
+      <div class="detail-loading__row"><div class="detail-loading__rating"><div class="detail-loading__line"></div><div class="detail-loading__line"></div></div><div class="detail-loading__map"></div></div>
+      <div class="detail-loading__card"><div class="detail-loading__line"></div><div class="detail-loading__line"></div><div class="detail-loading__line"></div><div class="detail-loading__facts"><span></span><span></span><span></span></div></div>
+    </div>
   </section>
   <noscript><p>This page needs JavaScript to load dive-site details.</p></noscript>
 </main>
@@ -164,7 +171,7 @@
 <script src="/js/site-contributions.js?v=2" defer></script>
 <script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
-<script src="/js/dive-site-detail.js?v=48" defer></script>
+<script src="/js/dive-site-detail.js?v=51" defer></script>
 <script src="/js/seo-site-search.js?v=12" defer></script>
 </body>
 </html>

@@ -480,6 +480,13 @@
       <section class="detail-section record-evidence" data-i18n-ignore><h2>Source evidence and uncertainty</h2><ul>${(site.evidence_notes || ['Recorded experience labels are source reports, not verified suitability. Depth meaning and source provenance have not been verified.']).map(note => `<li>${escape(note)}</li>`).join('')}</ul></section>
       ${sources.length ? `<section class="detail-section source-section"><h2>Sources</h2><ul class="source-list">${sources.map(source => `<li><a href="${escape(safeUrl(source[1]))}" target="_blank" rel="noopener noreferrer">${escape(source[0] || 'Reference')}</a></li>`).join('')}</ul></section>` : ''}
       <aside class="data-note"><span class="note-icon" aria-hidden="true"></span><p>Recorded details may not reflect current conditions. Check local guidance before diving.</p></aside>`;
+    // Establish the final layout in the same task as the markup, before an
+    // asynchronous recommendation request can expose the old nested rail.
+    const hero = page.querySelector('.site-hero');
+    if (!photoUrl) hero.classList.add('cinematic-pilot--no-photo');
+    const rail = hero.querySelector('.site-photo-gallery-rail');
+    rail.classList.add('cinematic-pilot__rail');
+    (page.querySelector('.intro-details') || page.querySelector('.facts-section')).before(rail);
     page.setAttribute('aria-busy', 'false');
     return renderRecommendations(site);
   }
@@ -505,13 +512,16 @@
       showError('Unable to load this dive site', 'Please check your connection and try again.', true);
       return;
     }
+    // Apply appearance before the chart and recommendation modules bind.
+    try { await loadScript('/js/dive-site-cinematic-pilot.js?v=43'); }
+    catch (_) { console.warn('Detail appearance could not load.'); }
     // Existing page modules inspect the DOM once at startup. Load them only
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=21',
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=24',
       '/js/dive-conditions-chart.js?v=51', '/js/site-recommendations.js?v=17',
-      '/js/dive-site-rating-card.js?v=21']) {
+      '/js/dive-site-rating-card.js?v=24']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }
     }

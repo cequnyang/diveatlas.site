@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 const FIRST = '1a532e42-9890-4ea9-b239-0f5fbb836317';
 const SECOND = '2a532e42-9890-4ea9-b239-0f5fbb836317';
+const MALPELO_PILOT = '02e2420d-02b2-4506-9725-f8be34da4c99';
 const record = (id = FIRST, name = 'Example reef') => ({
   schema:'dive-site-detail-v1', site_id:id, name, lat:-0.55, lon:130.7,
   country:'Indonesia', region:'Raja Ampat', depth_min:'12', depth_max:'25',
@@ -17,6 +18,128 @@ test.beforeEach(async ({ page }) => {
   // These tests exercise record loading and page startup, independently of the
   // environmental datasets tested by the existing chart/rating suites.
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
+});
+
+test('Malpelo cinematic pilot opens a full-page explorer with the thumbnail cards first', async ({ page }) => {
+  const pilotRecord = record(MALPELO_PILOT, 'Malpelo');
+  pilotRecord.related = Array.from({ length:4 }, (_, index) => ({
+    site_id:`${index + 2}a532e42-9890-4ea9-b239-0f5fbb836317`,
+    name:index === 0 ? 'Second reef' : `Related reef ${index + 1}`, region:'Raja Ampat', photo:{ src:`/assets/favicon-brand.ico?preview=${index}` }
+  }));
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:pilotRecord }));
+  await page.goto(`/dive-site.html?id=malpelo-${MALPELO_PILOT}`);
+  await expect(page.locator('body')).toHaveClass(/cinematic-pilot/);
+  // Conditions rely on inserting after this section in the main content.
+  await expect(page.locator('#detailPage > .facts-section')).toHaveCount(1);
+  const panel = page.locator('#cinematicRecommendations');
+  const trigger = page.getByRole('button', { name:/^Keep exploring/ });
+  await expect(panel).not.toBeVisible();
+  const previews = await trigger.locator('.cinematic-pilot__stack img').evaluateAll(images => images.map(image => image.getAttribute('src')));
+  await trigger.click();
+  await expect(panel).toBeVisible();
+  await expect(page.locator('dialog#cinematicRecommendations[open]')).toHaveCount(1);
+  await expect.poll(() => panel.evaluate(element => element.getAnimations().length)).toBe(0);
+  await expect(panel.locator('.cinematic-pilot__flying-photo')).toHaveCount(0);
+  const bounds = await panel.boundingBox();
+  expect(bounds.x).toBe(0);
+  expect(bounds.y).toBe(0);
+  expect(bounds.width).toBe(page.viewportSize().width);
+  expect(bounds.height).toBe(page.viewportSize().height);
+  await expect.poll(() => panel.locator('.site-recommendations__image').evaluateAll(images => images.slice(0, 3).map(image => image.getAttribute('src')))).toEqual(previews);
+  await expect(panel.getByRole('link', { name:/Second reef/ })).toBeVisible();
+  await expect(panel.locator('.site-recommendations__card:visible')).toHaveCount(4);
+  await expect(trigger.locator('.cinematic-pilot__stack > *')).toHaveCount(3);
+  // Simulate a late shared-module rebuild and verify the launcher selection stays first.
+  await panel.locator('ul').evaluate(list => list.replaceChildren(...[...list.children].reverse()));
+  await expect.poll(() => panel.locator('.site-recommendations__image').evaluateAll(images => images.slice(0, 3).map(image => image.getAttribute('src')))).toEqual(previews);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  await panel.getByRole('button', { name:'Close', exact:true }).focus();
+  await page.keyboard.press('Escape');
+  await expect(panel).not.toBeVisible();
+  await expect(panel.locator('.cinematic-pilot__flying-photo')).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await trigger.click();
+  await panel.getByRole('button', { name:'Close', exact:true }).click();
+  await expect(panel).not.toBeVisible();
+  await expect(trigger).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('cinematic pilot handles rapid reversals and reduced motion without stale panels', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record(MALPELO_PILOT, 'Malpelo') }));
+  await page.goto(`/dive-site.html?id=${MALPELO_PILOT}`);
+  const trigger = page.getByRole('button', { name:/^Keep exploring/ });
+  const panel = page.locator('#cinematicRecommendations');
+  await trigger.click();
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Escape');
+  await expect(panel).not.toBeVisible();
+  await trigger.click();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  await expect(panel).toBeVisible();
+  await expect.poll(() => panel.evaluate(element => element.getAnimations().length)).toBe(0);
+  await expect(panel).not.toHaveAttribute('inert', '');
+  await page.emulateMedia({ reducedMotion:'reduce' });
+  await page.keyboard.press('Escape');
+  await expect(panel).not.toBeVisible();
+  await trigger.click();
+  await expect(panel).toBeVisible();
+  expect(await panel.evaluate(element => element.getAnimations({ subtree:true }).length)).toBe(0);
+  await expect(panel.locator('.cinematic-pilot__flying-photo')).toHaveCount(0);
+  await panel.getByRole('button', { name:'Close', exact:true }).click();
+  await expect(trigger).toBeFocused();
+  await expect(panel).not.toBeVisible();
+});
+
+test('shared cinematic appearance enhances other dive sites', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('body')).toHaveClass(/cinematic-pilot/);
+  await expect(page.locator('#detailPage > .site-photo-gallery-rail')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name:'Example reef', exact:true })).toBeVisible();
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
+  await expect(page.locator('#cinematicRecommendations')).toBeVisible();
+  await expect(page.locator('#relatedSites')).toBeVisible();
+});
+
+test('shared appearance keeps long titles and empty recommendations usable', async ({ page }) => {
+  const site = record(FIRST, 'A very long dive site title with several descriptive words');
+  site.related = [];
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:site }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('.site-hero')).toHaveClass(/cinematic-pilot--no-photo/);
+  await expect(page.getByRole('heading', { name:site.name, exact:true })).toBeVisible();
+  await expect(page.locator('#detailPage > .facts-section')).toBeVisible();
+  await expect(page.getByRole('button', { name:/^Keep exploring/ })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('current appearance is visible before recommendations finish loading', async ({ page }) => {
+  let release;
+  const pending = new Promise(resolve => { release = resolve; });
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.route('**/data/dive-site-details/v2/*.json', async route => {
+    await pending;
+    await route.fulfill({ status:404 });
+  });
+  try {
+    await page.goto(`/dive-site.html?id=${FIRST}`);
+    await expect(page.getByRole('heading', { name:'Example reef', exact:true })).toBeVisible();
+    await expect(page.locator('#detailPage > .cinematic-pilot__rail')).toBeVisible();
+    await expect(page.locator('.site-hero .site-photo-gallery-rail')).toHaveCount(0);
+    expect(await page.locator('body').evaluate(body => getComputedStyle(body).paddingTop)).toBe('42px');
+  } finally { release(); }
+});
+
+test('generated permalinks use the shared detail appearance', async ({ page }) => {
+  await page.goto('/dive-sites/1-crater-de-san-andres/');
+  await expect(page.locator('body')).toHaveClass(/cinematic-pilot/);
+  await expect(page.locator('#detailPage > .site-photo-gallery-rail')).toHaveCount(1);
+  await expect(page.locator('#detailPage > .facts-section')).toBeVisible();
+  await expect(page.locator('#cinematicRecommendations')).toHaveCount(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test('missing-site form validates, sends for review, and stays on the detail page', async ({ page }) => {
@@ -157,6 +280,7 @@ test('one shared shell renders two different IDs and keeps share/map links site-
   await expect(page.locator('#seoThemeButton')).toBeVisible();
   await page.locator('#seoThemeButton').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
   await page.locator('#relatedSites a').click();
   await expect(page.locator('h1')).toHaveText('Second reef');
   await expect(page).toHaveURL(new RegExp(`second-reef-${SECOND}`));
@@ -185,6 +309,7 @@ test('matches the static detail page recommendation filters and card links', asy
     return route.fallback();
   });
   await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
   await expect(page.getByRole('tab', { name:'All' })).toBeVisible();
   await expect(page.locator('#relatedSites .site-recommendations__combined .site-recommendations__card')).toHaveCount(2);
   await page.getByRole('tab', { name:'Features' }).click();
@@ -351,27 +476,29 @@ test('record evidence preserves multiple levels and unknown depths on shared pag
   await depthInfo.focus();
   await page.keyboard.press('Escape');
   await expect(depthNote).toBeHidden();
-  const disclosure = page.locator('.record-evidence details');
+  const disclosure = page.locator('.record-evidence > details');
   await expect(disclosure).toHaveCount(1);
   await expect(page.locator('.data-note')).toHaveCount(0);
-  await expect(disclosure.locator('summary')).toHaveText('Sources and notes · unresolved records');
+  await expect(disclosure.locator(':scope > summary')).toHaveText('Sources and notes · unresolved records');
   await expect(disclosure.locator('.record-evidence-summary')).toContainText('Check local guidance before diving.');
   await expect(disclosure.locator('.record-evidence-summary')).toBeHidden();
   await expect(disclosure).not.toHaveAttribute('open', '');
   await expect(page.locator('.record-evidence-summary')).toContainText('kept separate');
-  await expect(disclosure.locator(':scope > ul')).toBeHidden();
+  await expect(disclosure.locator('.record-evidence-notes')).toBeHidden();
   await expect(disclosure.locator('.source-section')).toHaveCount(1);
   await expect(disclosure.locator('.source-list')).toBeHidden();
-  await disclosure.locator('summary').click();
-  await expect(disclosure.locator(':scope > ul')).toBeVisible();
+  await disclosure.locator(':scope > summary').click();
+  await expect(disclosure.locator('.record-evidence-notes')).toBeHidden();
+  await disclosure.locator('.record-evidence-metadata > summary').click();
+  await expect(disclosure.locator('.record-evidence-notes')).toBeVisible();
   await expect(disclosure.locator('.source-list')).toBeVisible();
   await expect(disclosure.locator('.source-list a')).toHaveAttribute('href', 'https://example.com/source');
   await expect(disclosure.locator('.record-evidence-summary')).toBeVisible();
   await page.evaluate(() => document.documentElement.lang = 'zh');
-  await expect(disclosure.locator('summary')).toContainText('查看来源');
-  await expect(disclosure.locator(':scope > ul')).toContainText('经验等级来自来源记录');
-  await expect(disclosure.locator(':scope > ul')).toContainText('2026-06-22');
-  await expect(disclosure.locator(':scope > ul')).not.toContainText('Recorded experience labels are source reports');
+  await expect(disclosure.locator(':scope > summary')).toContainText('查看来源');
+  await expect(disclosure.locator('.record-evidence-notes')).toContainText('经验等级来自来源记录');
+  await expect(disclosure.locator('.record-evidence-notes')).toContainText('2026-06-22');
+  await expect(disclosure.locator('.record-evidence-notes')).not.toContainText('Recorded experience labels are source reports');
   await expect(page.locator('.depth-meaning-unknown').first()).toHaveText('来源未说明这是最大深度，还是通常的潜水深度。');
   await expect(page.locator('.record-evidence-summary')).toContainText('尚未确认');
   await page.locator('.record-evidence').scrollIntoViewIfNeeded();

@@ -104,8 +104,9 @@ function localizedEvidence(text, zh) {
 
 // Keep the full explanation and verbatim audit trail in one optional reading layer.
 function presentEvidence(section) {
-  const list = section.querySelector('ul');
+  const list = section.querySelector('.record-evidence-notes') || section.querySelector(':scope > ul');
   if (!list) return;
+  list.classList.add('record-evidence-notes');
   let details = section.querySelector('details');
   if (!details) {
     section.querySelector('h2')?.remove();
@@ -117,12 +118,17 @@ function presentEvidence(section) {
     icon.setAttribute('aria-hidden', 'true');
     const action = document.createElement('span'); action.className = 'record-evidence-action';
     summary.append(icon, action);
-    details.append(summary, warning, list);
+    const metadata = document.createElement('details');
+    metadata.className = 'record-evidence-metadata';
+    const metadataLabel = document.createElement('summary');
+    metadata.append(metadataLabel, list);
+    details.append(summary, warning, metadata);
     section.append(details);
     // The shared notice is now part of this disclosure, rather than a second footer.
     section.closest('main')?.querySelector('.data-note')?.remove();
     const update = () => {
       const zh = document.documentElement.lang.startsWith('zh');
+      metadataLabel.textContent = zh ? '原始记录与未核实信息' : 'Original records and uncertainties';
       const originals = [...list.children].map(item => {
         if (!evidenceOriginals.has(item)) evidenceOriginals.set(item, item.textContent);
         const original = evidenceOriginals.get(item);
@@ -146,7 +152,7 @@ function presentEvidence(section) {
   // Keep publisher links in the same disclosure as their provenance notes,
   // including SSR links when the optional evidence request is unavailable.
   const sources = section.closest('main')?.querySelector('.source-section');
-  if (sources && sources.parentElement !== details) details.append(sources);
+  if (sources && sources.parentElement !== details) details.insertBefore(sources, details.querySelector('.record-evidence-metadata'));
 }
 
 export async function enhanceRecordedEvidence() {
@@ -219,7 +225,7 @@ export async function enhanceRecordedEvidence() {
       difficulty.querySelector('dt').textContent = 'Recorded experience levels';
       difficulty.querySelector('dd').textContent = record.difficulty || 'Not recorded';
     }
-    section.querySelector('ul').replaceChildren(...record.evidence_notes.map(text => {
+    section.querySelector('.record-evidence-notes').replaceChildren(...record.evidence_notes.map(text => {
       const item = document.createElement('li'); item.textContent = text; return item;
     }));
     presentEvidence(section);

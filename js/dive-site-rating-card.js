@@ -187,17 +187,20 @@
     const chartBounds = trendChart.getBoundingClientRect();
     const scale = chartBounds.width > 0 ? chartBounds.width / width : 1;
     const height = chartBounds.height > 0 ? chartBounds.height / scale : 112;
-    const left = 18, right = 8, top = 20 / scale, bottom = 22 / scale;
+    const detailScale = card.dataset.ratingTrendDetailScale === 'true';
+    const left = detailScale ? 32 / scale : 18, right = 8, top = 20 / scale, bottom = 22 / scale;
     const availableScores = monthlyScores.filter(value => value != null);
     const minScore = availableScores.length ? Math.min(...availableScores) : 0;
     const maxScore = availableScores.length ? Math.max(...availableScores) : 100;
-    // A local range reveals seasonal movement in every layout. Keep at least
-    // 20 points of range so small differences are not exaggerated.
+    // The pilot emphasizes small differences with one point of headroom on
+    // either side. Constant series still have a nonzero, labelled range.
     const scoreRange = availableScores.length ? Math.max(20, maxScore - minScore) : 100;
-    const domainMin = availableScores.length
-      ? Math.max(0, Math.min((minScore + maxScore - scoreRange) / 2, 100 - scoreRange))
-      : 0;
-    const domainMax = Math.min(100, domainMin + scoreRange);
+    const domainMin = detailScale && availableScores.length
+      ? Math.max(0, Math.floor(minScore - 1))
+      : availableScores.length
+        ? Math.max(0, Math.min((minScore + maxScore - scoreRange) / 2, 100 - scoreRange)) : 0;
+    const domainMax = detailScale && availableScores.length
+      ? Math.min(100, Math.ceil(maxScore + 1)) : Math.min(100, domainMin + scoreRange);
     const points = monthlyScores.map((value, index) => value == null ? null : ({
       x:left + index * (width - left - right) / 11,
       y:top + (domainMax - value) * (height - top - bottom) / (domainMax - domainMin),
@@ -209,6 +212,27 @@
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'Monthly DiveAtlas rating scores from January to December');
     const ns = 'http://www.w3.org/2000/svg';
+    // Label the zoomed axis explicitly so its actual range remains visible.
+    if (detailScale) {
+      for (const tick of [domainMin, (domainMin + domainMax) / 2, domainMax]) {
+        const y = top + (domainMax - tick) * (height - top - bottom) / (domainMax - domainMin);
+        const grid = document.createElementNS(ns, 'line');
+        grid.setAttribute('x1', left);
+        grid.setAttribute('x2', width - right);
+        grid.setAttribute('y1', y);
+        grid.setAttribute('y2', y);
+        grid.setAttribute('stroke', 'var(--line)');
+        grid.setAttribute('stroke-width', String(1 / scale));
+        const label = document.createElementNS(ns, 'text');
+        label.setAttribute('x', '0');
+        label.setAttribute('y', y);
+        label.setAttribute('dominant-baseline', 'middle');
+        label.setAttribute('fill', 'var(--text-secondary)');
+        label.setAttribute('font-size', String(11 / scale));
+        label.textContent = tick;
+        svg.append(grid, label);
+      }
+    }
     const line = document.createElementNS(ns, 'path');
     let penDown = false;
     line.setAttribute('d', points.map(point => {
@@ -245,7 +269,7 @@
         value.setAttribute('fill', 'rgb(55, 104, 213)');
         value.setAttribute('font-size', String(13.2 / scale));
         value.setAttribute('font-weight', '700');
-        value.textContent = String(Math.round(point.value));
+        value.textContent = String(detailScale ? Math.round(point.value * 100) / 100 : Math.round(point.value));
         svg.append(value);
       }
       const month = document.createElementNS(ns, 'text');
@@ -253,12 +277,19 @@
       month.setAttribute('y', height - 4 / scale);
       month.setAttribute('text-anchor', 'middle');
       month.setAttribute('fill', 'currentColor');
-      month.setAttribute('font-size', String(9 / scale));
+      month.setAttribute('font-size', String((detailScale ? 11 : 9) / scale));
       month.setAttribute('font-weight', '700');
       month.textContent = labels[index];
       monthLabels.push(month);
       svg.append(month);
     });
+    if (detailScale) {
+      // Shared mobile CSS magnifies all SVG text with !important. Retain this
+      // chart's pixel-normalized sizes so values and months cannot collide.
+      svg.querySelectorAll('text').forEach(text => {
+        text.style.setProperty('font-size', `${text.getAttribute('font-size')}px`, 'important');
+      });
+    }
     trendChart.replaceChildren(svg);
     // Measure rendered text: minimum font settings and translations can widen labels.
     const monthBounds = monthLabels.map(label => label.getBoundingClientRect());
