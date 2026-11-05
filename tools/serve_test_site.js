@@ -8,6 +8,17 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const port = Number(process.env.PLAYWRIGHT_PORT || process.argv.find(value => value.startsWith('--port='))?.slice('--port='.length) || 8766);
+const enrichmentRoot = path.join(root, 'data', 'content-enrichment-local', 'v1');
+function enrichmentMedia(siteId) {
+  try {
+    const manifest = JSON.parse(fs.readFileSync(path.join(enrichmentRoot, 'media', `${siteId}.json`), 'utf8'));
+    if (manifest.site_id !== siteId || !Array.isArray(manifest.items)) throw new Error('Invalid site media manifest');
+    return manifest.items;
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+}
 const configPath = path.join(root, '_site', 'js', 'data-assets-config.js');
 const configText = fs.existsSync(configPath) ? fs.readFileSync(configPath, 'utf8') : '';
 const configValue = configText.match(/^window\.DIVEATLAS_DATA_ASSET_BASE_URL = (null|"[^"\r\n]*");$/m)?.[1];
@@ -96,6 +107,45 @@ async function handle(req, res) {
     return send(res, 400, 'Bad request');
   }
   const segments = decodedPath.split('/').filter(Boolean);
+  const enrichmentChoice = requestUrl.searchParams.get('enrichment');
+  const enrichmentEnabled = enrichmentChoice === 'catalogue' || (enrichmentChoice !== 'off' &&
+    /(?:^|;\s*)diveatlas_catalogue_enrichment=1(?:;|$)/.test(req.headers.cookie || ''));
+  if (enrichmentChoice === 'catalogue' || enrichmentChoice === 'off') {
+    res.setHeader('set-cookie', `diveatlas_catalogue_enrichment=${enrichmentChoice === 'catalogue' ? '1' : ''}; Path=/; SameSite=Strict; HttpOnly${enrichmentChoice === 'off' ? '; Max-Age=0' : ''}`);
+  }
+  if (segments[0] === 'data' && segments[1] === 'content-enrichment-local') return send(res, 404, 'Not found');
+  if (segments[0] === '__local') {
+    const imageMatch = decodedPath.match(/^\/__local\/enrichment-media\/v1\/([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12})\/([a-z0-9][a-z0-9-]{0,79})\.(png|jpg)$/i);
+    if (imageMatch) {
+      if (!enrichmentEnabled) return send(res, 404, 'Not found');
+      const siteId = imageMatch[1].toLowerCase(), mediaId = imageMatch[2].toLowerCase(), format = imageMatch[3].toLowerCase();
+      try {
+        const approved = enrichmentMedia(siteId).some(item => item.media_id === mediaId && item.format === format &&
+          item.display_status === 'approved-local-preview' && (item.local_preview_approved_by_user === true || (item.license_verified === true && item.subject_review_status === 'matched')));
+        if (!approved) return send(res, 404, 'Not found');
+        // Resolve only this UUID/asset slug; the private research tree is never a
+        // static file server, and manifest paths cannot select arbitrary files.
+        const bytes = fs.readFileSync(path.join(enrichmentRoot, 'media-assets', siteId, `${mediaId}.${format}`));
+        return send(res, 200, bytes, { 'content-type':format === 'png' ? 'image/png' : 'image/jpeg', 'cache-control':'no-store', 'x-content-type-options':'nosniff' });
+      } catch (error) {
+        return send(res, error.code === 'ENOENT' ? 404 : 500, 'Local map unavailable');
+      }
+    }
+    const match = decodedPath.match(/^\/__local\/enrichment\/v1\/([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12})\.json$/i);
+    if (!enrichmentEnabled || !match) return send(res, 404, 'Not found');
+    const recordPath = path.join(root, 'data', 'content-enrichment-local', 'v1', 'sites', `${match[1].toLowerCase()}.json`);
+    let media;
+    try { media = enrichmentMedia(match[1].toLowerCase()); }
+    catch { return send(res, 500, 'Local map metadata unavailable'); }
+    try {
+      const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+      record.media = media;
+      return send(res, 200, JSON.stringify(record), { 'content-type':'application/json; charset=utf-8', 'cache-control':'no-store' });
+    } catch (error) {
+      if (error.code !== 'ENOENT') return send(res, 500, 'Local enrichment read failed');
+      return send(res, 200, JSON.stringify({ schema:'diveatlas-content-enrichment-v1', site_id:match[1], status:'not-yet-authored', publication_cleared:false, media }), { 'content-type':'application/json; charset=utf-8', 'cache-control':'no-store' });
+    }
+  }
   const isSeaviewResearchBundle = segments[0] === 'data' && segments[1] === '.build' &&
     segments[2] === 'reef_condition' && segments[3] === 'seaview';
   if (segments.some(segment => segment === '.' || segment === '..' || (segment.startsWith('.') && !isSeaviewResearchBundle)) || decodedPath.includes('\\')) {
@@ -103,8 +153,21 @@ async function handle(req, res) {
   }
 
   const relativePath = segments.length ? path.join(...segments) : 'index.html';
-  const localPath = path.resolve(root, relativePath);
+  let localPath = path.resolve(root, relativePath);
   if (!localPath.startsWith(`${root}${path.sep}`)) return send(res, 404, 'Not found');
+  // Private editorial overlays are opt-in and exist only on this loopback server.
+  // A cookie preserves the selection through normal map/search/detail navigation.
+  const pilotChoice = requestUrl.searchParams.get('pilot');
+  const pilotEnabled = pilotChoice === 'bonaire' || (pilotChoice !== 'off' &&
+    /(?:^|;\s*)diveatlas_bonaire_pilot=1(?:;|$)/.test(req.headers.cookie || ''));
+  if (pilotChoice === 'bonaire' || pilotChoice === 'off') {
+    const cookie = `diveatlas_bonaire_pilot=${pilotChoice === 'bonaire' ? '1' : ''}; Path=/; SameSite=Strict; HttpOnly${pilotChoice === 'off' ? '; Max-Age=0' : ''}`;
+    const existingCookie = res.getHeader('set-cookie');
+    res.setHeader('set-cookie', existingCookie ? [existingCookie, cookie] : cookie);
+  }
+  try {
+    if (fs.statSync(localPath).isDirectory()) localPath = path.join(localPath, 'index.html');
+  } catch (_) { /* The existing missing-file handling below applies. */ }
   const datasetRelativePath = segments[0] === 'datasets' ? segments.slice(1).join('/') : '';
   const isR2DatasetAsset = segments[0] === 'datasets' && R2_DATASET_ASSETS.has(datasetRelativePath);
 
@@ -121,6 +184,13 @@ async function handle(req, res) {
   try {
     if ((!forceR2StartupAssets || !isR2DatasetAsset) && fs.statSync(localPath).isFile()) {
       const headers = { 'content-type': contentTypes.get(path.extname(localPath).toLowerCase()) || 'application/octet-stream' };
+      if ((pilotEnabled || enrichmentEnabled) && path.extname(localPath).toLowerCase() === '.html') {
+        headers['cache-control'] = 'no-store';
+        const overlay = enrichmentEnabled
+          ? '<script src="/artifacts/catalogue-enrichment/renderer.js" defer></script>'
+          : '<script src="/artifacts/bonaire-pilot/detail-overlay.js" defer></script>';
+        return send(res, 200, fs.readFileSync(localPath, 'utf8').replace('</body>', `${overlay}</body>`), headers);
+      }
       res.writeHead(200, headers);
       return fs.createReadStream(localPath).on('error', error => {
         console.error(`Local test asset read failed for ${requestUrl.pathname}: ${error.message}`);

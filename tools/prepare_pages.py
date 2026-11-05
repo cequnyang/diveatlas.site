@@ -53,6 +53,8 @@ EXCLUDED_FILES = {
     "reef-survey-evidence-coverage-metadata.json",
 }
 EXCLUDED_PATH_PREFIXES = {
+    # Private staged guide claims are never part of the default publication build.
+    Path("data/content-enrichment-local"),
     # Editable translation dictionaries are build inputs; publish only the
     # compact locale sidecars consumed by the summary loader.
     Path("maintenance/summary-translations"),
