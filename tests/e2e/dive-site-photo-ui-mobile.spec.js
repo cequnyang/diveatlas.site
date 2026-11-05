@@ -71,7 +71,7 @@ test('mobile fallback photos invite a site-specific contribution without crowdin
   });
   expect(headingStyles).toEqual({
     titleFontSize:'18px',
-    titleLineHeight:'16.25px',
+    titleLineHeight:'23.4px',
     temperatureFontSize:'18px',
     temperatureLineHeight:'18.75px'
   });
@@ -107,3 +107,25 @@ test('Chinese fallback-photo labels shrink-wrap their translated text', async ({
   expect(labelLayout.labelWidth).toBeLessThan(labelLayout.frameWidth * 0.75);
   expect(labelLayout.labelWidth).toBeCloseTo(labelLayout.textWidth + labelLayout.horizontalChrome, 0);
 });
+
+for (const width of [320, 425]) {
+  test(`wrapped mobile dive-site titles keep readable line spacing at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height:800 });
+    const popup = await openFallbackPhotoPopup(page);
+    const title = popup.locator('.bio-popup-title');
+    await title.locator('.dive-popup-detail-link').evaluate(node => {
+      node.textContent = 'Justin’s Caves, Cape Town, South Africa';
+    });
+    const lines = await title.evaluate(node => {
+      const link = node.querySelector('.dive-popup-detail-link');
+      const range = document.createRange();
+      range.selectNodeContents(link);
+      const tops = [...new Set([...range.getClientRects()].map(rect => rect.top))].sort((a,b) => a-b);
+      return { tops, fontSize:parseFloat(getComputedStyle(node).fontSize) };
+    });
+    expect(lines.tops.length).toBeGreaterThan(1);
+    for (let i=1; i<lines.tops.length; i++) {
+      expect(lines.tops[i] - lines.tops[i-1]).toBeGreaterThanOrEqual(lines.fontSize * 1.25);
+    }
+  });
+}
