@@ -28526,6 +28526,12 @@ function closeShareDialog() {
     }, delay);
   }
 
+  // Local guide descriptions can arrive after the original popup was measured.
+  window.addEventListener('diveatlas:guide-popup-updated', event => {
+    if (activeClickPopup?.getElement() !== event.detail?.element) return;
+    const content=event.detail.element.querySelector('.bio-popup');
+    if(content)activeClickPopup.setContent(content);
+  });
   window.addEventListener('resize', scheduleMapPopupSafeOptionsRefresh, { passive: true });
   window.addEventListener('orientationchange', scheduleMapPopupSafeOptionsRefresh, { passive: true });
   window.visualViewport?.addEventListener('resize', scheduleMapPopupSafeOptionsRefresh, { passive: true });
