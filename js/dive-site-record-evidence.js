@@ -143,6 +143,10 @@ function presentEvidence(section) {
     new MutationObserver(update).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
   }
   section._updateEvidenceSummary?.();
+  // Keep publisher links in the same disclosure as their provenance notes,
+  // including SSR links when the optional evidence request is unavailable.
+  const sources = section.closest('main')?.querySelector('.source-section');
+  if (sources && sources.parentElement !== details) details.append(sources);
 }
 
 export async function enhanceRecordedEvidence() {
@@ -256,6 +260,7 @@ export async function enhanceRecordedEvidence() {
         link.target = '_blank'; link.rel = 'noopener noreferrer'; item.append(link); return item;
       }));
     }
+    presentEvidence(section);
     // Older cards may have only a URL, so use explicit identity URL membership;
     // never coordinates, distance or name similarity to remove a recommendation.
     const identityPaths = new Set((record.identity_urls || []).map(value => new URL(value, location.origin).pathname));

@@ -1939,7 +1939,10 @@
       .dive-site-popup--with-photo .dive-popup-photo-label--upload {
         display: inline-flex;
         height: auto;
-        top: 10px;
+        /* Touch input also exists above the phone breakpoint. Keep the CTA
+           below the status label on tablets and device-emulated desktops. */
+        top: auto;
+        bottom: 2px;
         right: 10px;
         left: auto;
         min-height: 44px;
@@ -2450,6 +2453,10 @@
       .leaflet-popup.diveatlas-mobile-sheet .bio-popup-title {
         font-size:18px;
         line-height:16.25px;
+      }
+      /* Wrapped site names need a line box taller than their 18px glyphs. */
+      .leaflet-popup.diveatlas-mobile-sheet.dive-site-popup .bio-popup-title {
+        line-height:1.3;
       }
       .dive-site-name-draft { top:3px; }
       .leaflet-popup.diveatlas-mobile-sheet.regional-currents-popup .bio-popup-title,

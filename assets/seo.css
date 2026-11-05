@@ -564,10 +564,12 @@ body.seo-site-detail-layout .seo-menu-dropdown .top-menu-version { margin: 3px 6
   .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
-  .fact-coordinates { grid-column: 1 / -1; }
-}
-@media (max-width: 420px) {
+  /* Two pairs cannot fit beside one another on phones, especially with
+     translated labels. Bound both tracks so a long label cannot crush its value. */
   .fact-grid { grid-template-columns: minmax(0, 1fr); }
+  .fact { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: 12px; }
+  .fact dt { min-width: 0; overflow-wrap: anywhere; }
+  .fact-coordinates { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr); }
 }
 /* On mobile, keep the rating title on the left and its score on the right.
    Hold the map at its normal rail width until those rating edges meet; then
@@ -721,9 +723,9 @@ button.monthly-conditions-legend-item:focus-visible { outline: 2px solid var(--p
 .record-evidence li + li { margin-top: .75em; }
 
 /* Native disclosure keeps provenance keyboard accessible without a long audit wall. */
-.record-evidence { border-top: 1px solid var(--border-color, #64748b40); padding-top: 1rem; }
+.record-evidence { border-top: 1px solid var(--border-color, #64748b40); padding-top: .5rem; }
 .record-evidence-summary { margin: 0 0 .75rem; line-height: 1.6; }
-.record-evidence summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
+.record-evidence summary { cursor: pointer; font-weight: 600; padding: .25rem 0; }
 .record-evidence summary:focus-visible { outline: 2px solid #649cff; outline-offset: 3px; }
 .record-evidence details ul { font-size: .9rem; line-height: 1.65; padding-inline-start: 1.4rem; }
 
@@ -744,6 +746,9 @@ button.monthly-conditions-legend-item:focus-visible { outline: 2px solid var(--p
 .record-evidence summary::-webkit-details-marker { display: none; }
 .record-evidence summary .note-icon { display: inline-flex; align-items: center; margin: 0; }
 .record-evidence .record-evidence-summary { margin: .75rem 0; color: var(--muted); }
-.record-evidence-action { grid-column: 2; font-weight: 600; font-size: .8rem; color: var(--primary); }
+.record-evidence-action { grid-column: 2; font-weight: 600; font-size: .8rem; color: var(--muted); }
 .record-evidence-action::after { content: ' ▸'; }
 .record-evidence details[open] .record-evidence-action::after { content: ' ▾'; }
+
+/* Halve the closing whitespace when the final source disclosure is collapsed. */
+.detail-page:has(> .record-evidence:last-child > details:not([open])) { padding-bottom: 11px; }
