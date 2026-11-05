@@ -333,6 +333,15 @@ test('dive, fish and coral markers stay attached through zoom reversals and sett
     const gridCenter = map.containerPointToLatLng([size.x * 0.5, size.y * 0.8]);
     api.addCoralGrid(gridCenter.lat, gridCenter.lng, 'motion-coral-grid');
     const polygon = Object.values(map._layers).find(layer => layer instanceof L.Polygon && layer.options.pane === 'speciesGridPane');
+    // Late dataset responses can clear the production layer groups mid-sample.
+    // These fixtures test production marker transforms, not data refresh timing:
+    // retain their panes/event handlers while moving ownership to the map.
+    for (const fixture of [...markers, polygon]) {
+      for (const owner of Object.values(map._layers)) {
+        if (owner instanceof L.LayerGroup && owner.hasLayer(fixture)) owner.removeLayer(fixture);
+      }
+      fixture.addTo(map);
+    }
     const vertex = polygon.getLatLngs().flat(Infinity)[0];
     const rect = map.getContainer().getBoundingClientRect();
     const errors = Array.from({ length:markers.length + 1 }, () => []);
