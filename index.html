@@ -1569,6 +1569,18 @@
       font-size: 11px;
     }
 
+    /* Match detail hero and related-card title typography at popup scale. */
+    .dive-site-popup .bio-popup-title,
+    .dive-site-popup .bio-popup-title .dive-popup-detail-link {
+      font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: -.05em;
+    }
+    .dive-hover-site-name {
+      font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: -.05em;
+    }
     .dive-popup-properties {
       display: grid;
       gap: 5px;
@@ -7336,7 +7348,7 @@
     }
   </style>
   <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
-<link rel="stylesheet" href="assets/liquid-glass.css?v=40">
+<link rel="stylesheet" href="assets/liquid-glass.css?v=41">
 <link rel="stylesheet" href="/assets/site-header.css?v=1">
 <script src="/js/site-header.js?v=1" defer></script>
 </head>
@@ -28605,7 +28617,7 @@ function closeShareDialog() {
         ? lengthReadoutMarkup(recordedDepth)
         : escapeHtml(t('diveDepthUnavailable'));
 
-    const hoverLines = [`<b>${escapeHtml(name)}</b>`];
+    const hoverLines = [`<b class="dive-hover-site-name">${escapeHtml(name)}</b>`];
     if (originalName && originalName !== name) hoverLines.push(escapeHtml(originalName));
     hoverLines.push(`${depthLabel}: ${depthValue}`);
 

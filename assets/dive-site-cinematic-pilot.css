@@ -530,7 +530,8 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
 }
 .cinematic-pilot__recommendations--immersion .site-recommendations__name {
   white-space: normal; overflow: visible; color: #fff; font-size: 20px;
-  font-weight: 750; line-height: 1.2; letter-spacing: -.025em;
+  font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
+  font-weight: 700; line-height: 1.2; letter-spacing: -.05em;
   text-shadow: 0 2px 6px rgb(0 0 0 / 45%);
 }
 .cinematic-pilot__recommendations--immersion .site-recommendations__location {
@@ -578,7 +579,10 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
   pointer-events: none; color: #eff6fb; display: flex; flex-direction: column;
   gap: 8px; transition: opacity .18s ease;
 }
-.cinematic-pilot__card-summary strong { font-size: 18px; line-height: 1.2; }
+.cinematic-pilot__card-summary strong {
+  font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
+  font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: -.05em;
+}
 .cinematic-pilot__card-summary > span {
   font-size: 12px; line-height: 1.5; display: -webkit-box;
   -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;

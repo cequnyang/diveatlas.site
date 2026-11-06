@@ -532,3 +532,8 @@ html.region-area-detail-page .region-index-page .region-area-browser__content { 
 @media (max-width: 480px) {
   .region-browser-page .region-list-pagination { gap: 8px; }
 }
+.site-directory-page .site-recommendations__name {
+  font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -.05em;
+}
