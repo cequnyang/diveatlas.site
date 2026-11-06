@@ -68,7 +68,7 @@
   let trendHandleDragged = false;
   let trendCollapseAnimation = null;
   let trendReturnAnimation = null;
-  const trendClip = amount => `inset(0px 0px ${amount}px 0px)`;
+  const trendClip = amount => amount === 0 ? 'none' : `inset(0px 0px ${amount}px 0px round 14px)`;
   const cancelTrendAnimation = animation => {
     if (animation) animation.cancel();
   };
@@ -331,6 +331,7 @@
   }
 
   async function loadRatingTrend(store) {
+    if (score.dataset.status !== 'ready') return;
     if (trendPromise) return trendPromise;
     trendPromise = (async () => {
       const values = [];
@@ -356,6 +357,7 @@
     card.classList.add('is-trend-dismissed');
   }, true);
   card.addEventListener('pointerenter', event => {
+    if (score.dataset.status !== 'ready') return;
     if (event.pointerType === 'touch' || trendDragStartY != null || trendCollapseAnimation || trendReturnAnimation) return;
     // Clipping changes hover hit testing. Only entering the rating card itself,
     // rather than the disappearing popup's footprint, is a deliberate reopen.
@@ -368,6 +370,7 @@
   // Closing a captured drag produces pointerleave and can leave the handle focused.
   // Keep dismissal through those events; only a fresh pointer or keyboard entry reopens it.
   card.addEventListener('focusin', event => {
+    if (score.dataset.status !== 'ready') return;
     if (!card.contains(event.relatedTarget) && trendDragStartY == null && !trendCollapseAnimation && !trendReturnAnimation) {
       trendPanel.style.clipPath = trendClip(0);
       card.classList.remove('is-trend-dismissed');
@@ -375,6 +378,7 @@
     void loadRatingTrend(ratingStore);
   });
   card.addEventListener('click', event => {
+    if (score.dataset.status !== 'ready') return;
     if (trendPanel.contains(event.target) || dismissedTrendClicks.has(event)) return;
     if (event.pointerType === 'touch' || matchMedia('(hover: none)').matches) {
       trendPanel.style.clipPath = trendClip(0);

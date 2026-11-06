@@ -11,7 +11,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=45';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=67';
   if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -183,6 +183,9 @@
         cardAnimations.forEach(animation => animation.cancel());
         panel.inert = false;
         document.body.classList.remove('cinematic-pilot--exploring');
+        // Restoring the vertical scrollbar narrows the viewport again. Refresh
+        // full-bleed widths measured while the modal had scrolling locked.
+        window.dispatchEvent(new Event('resize'));
         trigger.focus({ preventScroll:true });
         pinnedItems = [];
         refreshPreview();
@@ -232,6 +235,11 @@
     if (panel.open) event.viewTransition?.skipTransition();
   });
   close.addEventListener('click', () => setExpanded(false));
+  // Only the empty outer gutters dismiss; interactions within the content
+  // surface (including space between cards) remain inside the explorer.
+  panel.addEventListener('click', event => {
+    if (event.target === panel) setExpanded(false);
+  });
   panel.addEventListener('cancel', event => {
     event.preventDefault();
     setExpanded(false);

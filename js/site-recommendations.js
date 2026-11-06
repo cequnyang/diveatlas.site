@@ -6,9 +6,9 @@
     const total = Number(list.recommendationTotal) || 0;
     const renderMore = list.recommendationRenderMore;
     let shown = [...list.children].filter(item => item.querySelector('.site-recommendations__card')).length;
-    let button = list.parentElement.querySelector('[data-recommendation-more]');
+    let button = list.querySelector('[data-recommendation-more]');
     if (total <= shown || typeof renderMore !== 'function') {
-      button?.remove();
+      button?.closest('.site-recommendations__more-item')?.remove();
       return;
     }
     if (!button) {
@@ -16,27 +16,30 @@
       button.type = 'button';
       button.className = 'site-recommendations__more';
       button.dataset.recommendationMore = '';
-      list.after(button);
+      const item = document.createElement('li');
+      item.className = 'site-recommendations__more-item';
+      item.append(button);
+      list.append(item);
     }
     const updateButton = () => {
       const remaining = total - shown;
       if (remaining <= 0) {
-        button.remove();
+        button.closest('.site-recommendations__more-item').remove();
         return;
       }
-      button.textContent = 'Show More';
+      button.textContent = 'Load more';
     };
     updateButton();
     button.onclick = () => {
       const count = Math.min(recommendationPageSize, total - shown);
-      const firstNewChild = list.children.length;
+      const firstNewChild = shown;
       const rendered = renderMore(shown, count);
       if (typeof rendered === 'string') {
         const template = document.createElement('template');
         template.innerHTML = rendered;
-        list.append(template.content);
+        button.closest('li').before(template.content);
       } else if (rendered instanceof DocumentFragment) {
-        list.append(rendered);
+        button.closest('li').before(rendered);
       }
       shown += count;
       updateButton();
@@ -115,6 +118,12 @@
   for (const area of recommendationAreas) {
     const tabsContainer = area.querySelector('.site-recommendations__tabs');
     const tablist = area.querySelector('[role="tablist"]');
+    // Feature values describe the current site, unlike an empty result list
+    // which can also mean that no other sites matched its recorded features.
+    const featureTab = area.querySelector('[data-recommendation-tab="features"]');
+    if (featureTab && !featureTab.querySelector('.site-recommendations__feature-values')?.textContent.trim()) {
+      featureTab.remove();
+    }
     const tabs = [...area.querySelectorAll('[data-recommendation-tab]')];
     const content = area.querySelector('[data-recommendation-content]');
     const groups = [...area.querySelectorAll('[data-recommendation-group]')];
@@ -153,6 +162,18 @@
       const orderedItems = window.DiveAtlasRecommendationOrdering?.spreadByPreview(items,
         item => item.querySelector('.site-recommendations__image')?.getAttribute('src') || '') || items;
       combinedList.replaceChildren(...orderedItems);
+      const moreButtons = groups.flatMap(group => [...group.querySelectorAll('[data-recommendation-more]')]);
+      if (moreButtons.length) {
+        const item = document.createElement('li');
+        item.className = 'site-recommendations__more-item';
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'site-recommendations__more';
+        button.textContent = 'Load more';
+        button.addEventListener('click', () => moreButtons.forEach(source => source.click()));
+        item.append(button);
+        combinedList.append(item);
+      }
     }
 
     const listObserver = new MutationObserver(refreshCombinedList);

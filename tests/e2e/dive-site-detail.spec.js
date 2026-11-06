@@ -64,6 +64,12 @@ test('Malpelo cinematic pilot opens a full-page explorer with the thumbnail card
   await panel.getByRole('button', { name:'Close', exact:true }).click();
   await expect(panel).not.toBeVisible();
   await expect(trigger).toBeFocused();
+  await trigger.click();
+  await panel.getByRole('heading', { name:'Related dive sites', exact:true }).click();
+  await expect(panel).toBeVisible();
+  await panel.click({ position:{ x:2, y:200 } });
+  await expect(panel).not.toBeVisible();
+  await expect(trigger).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
@@ -323,6 +329,16 @@ test('matches the static detail page recommendation filters and card links', asy
     detailUrl:'/dive-site.html?id=nearby-reef-3a532e42-9890-4ea9-b239-0f5fbb836317'
   }, 87).querySelector('a').getAttribute('href'));
   expect(ratingCardHref).toBe('/dive-site.html?id=nearby-reef-3a532e42-9890-4ea9-b239-0f5fbb836317');
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({
+    json:{ ...record(), categories:{ setting:'marine', access:'boat', features:'' } }
+  }));
+  await page.reload();
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
+  await expect(page.getByRole('tab', { name:/Features/ })).toHaveCount(0);
+  await expect(page.getByRole('tab', { name:'Nearby', exact:true })).toBeVisible();
+  await page.getByRole('tab', { name:'All', exact:true }).focus();
+  await page.keyboard.press('End');
+  await expect(page.getByRole('tab', { name:'Difficulty', exact:true })).toBeFocused();
 });
 
 test('uses the configured cloud URL and treats record text as text', async ({ page }) => {

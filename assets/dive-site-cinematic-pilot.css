@@ -24,7 +24,7 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 .detail-loading__line, .detail-loading__map, .detail-loading__facts span { background: var(--line); border-radius: 6px; animation: detail-loading-pulse 1.8s ease-in-out infinite; }
 .detail-loading__breadcrumb { width: min(300px, 60%); height: 12px; }
 .detail-loading__map { border-radius: 14px; }
-.detail-loading__card { margin-top: 18px; padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel-solid); }
+.detail-loading__card { margin-top: 18px; padding: 24px; border: 0; border-radius: 14px; background: var(--panel-solid); }
 .detail-loading__card > .detail-loading__line { height: 12px; margin-bottom: 14px; }
 .detail-loading__card > .detail-loading__line:nth-child(3) { width: 70%; }
 .detail-loading__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
@@ -149,7 +149,7 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 /* Preserve type size while the flexible gap contracts. Intrinsic flex wrapping
    moves the score to the right of the second row only when both groups no longer fit. */
 .cinematic-pilot .site-photo-gallery-rating__brand img { width: 160px; }
-.cinematic-pilot .site-photo-gallery-rating__brand span { font-size: 30px; }
+.cinematic-pilot .site-photo-gallery-rating__brand span { font-size: 40px; }
 .cinematic-pilot .site-photo-gallery-rating__score[data-status="ready"] .site-photo-gallery-rating__value { font-size: 48px; }
 .cinematic-pilot .site-photo-gallery-rating__score[data-status="ready"] .site-photo-gallery-rating__level { font-size: 24px; }
 /* Only reduce the groups themselves when one group needs to fit a phone column. */
@@ -169,9 +169,9 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 .cinematic-pilot--no-photo .site-photo-feature { display: none; }
 .cinematic-pilot__recommendations {
   position: fixed; inset: 0; width: 100dvw; min-width: 0; max-width: 100dvw; height: 100dvh; max-height: none;
-  margin: 0; padding: 0; border: 0; background: var(--bg); color: var(--text); overflow-x: hidden; overflow-y: auto;
+  margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow-x: hidden; overflow-y: auto;
 }
-.cinematic-pilot__recommendations::backdrop { background: var(--bg); }
+.cinematic-pilot__recommendations::backdrop { background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(5px); }
 .cinematic-pilot__flying-photo {
   position: fixed; top: 0; left: 0; z-index: 10; object-fit: cover;
   transform-origin: top left; pointer-events: none; box-shadow: 0 12px 28px rgb(0 0 0 / 25%);
@@ -179,11 +179,11 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot__recommendations-surface {
   width: min(1120px, calc(100% - 64px)); min-height: 100%; margin: 0 auto; padding: 0 0 32px;
-  background: var(--bg); color: var(--text);
+  background: color-mix(in srgb, var(--bg) 92%, transparent); color: var(--text);
 }
-.cinematic-pilot__recommendations-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; margin-bottom: 18px; border-bottom: 1px solid var(--line); background: var(--bg); }
+.cinematic-pilot__recommendations-header { position: relative; top: auto; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; margin-bottom: 18px; border-bottom: 0; background: var(--bg); }
 .cinematic-pilot__recommendations-header h2 { margin: 0; }
-.cinematic-pilot__close { min-width: 44px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text); font: inherit; font-size: 24px; cursor: pointer; }
+.cinematic-pilot__close { display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--text); font: inherit; font-size: 36px; line-height: 1; cursor: pointer; }
 .cinematic-pilot__recommendations #relatedSites { width: 100%; margin: 0; }
 .cinematic-pilot__recommendations .site-recommendations__content,
 .cinematic-pilot__recommendations .site-recommendations__tabs { width: 100%; margin-left: 0; }
@@ -235,7 +235,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot #detailPage > .facts-section,
 .cinematic-pilot #detailPage > .monthly-conditions-section,
 .cinematic-pilot #detailPage > .record-evidence {
-  border: 1px solid var(--line); border-radius: 14px; background: var(--panel-solid);
+  border: 0; border-radius: 14px; background: var(--panel-solid);
   box-shadow: 0 2px 8px rgb(16 32 48 / 3%);
 }
 .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-rating { padding: 22px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
@@ -302,7 +302,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot .record-evidence .source-section { display: block; margin: 16px 0; padding: 0; border: 0; }
 .cinematic-pilot .record-evidence .source-section h2 { font-size: 14px; margin: 0 0 8px; }
 .cinematic-pilot .record-evidence .source-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px; padding: 0; margin: 0; list-style: none; }
-.cinematic-pilot .record-evidence .source-list li { margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; }
+.cinematic-pilot .record-evidence .source-list li { margin: 0; padding: 10px 12px; border: 0; border-radius: 8px; }
 .cinematic-pilot .record-evidence .source-list a { overflow-wrap: anywhere; }
 .cinematic-pilot .record-evidence :is(.record-evidence-metadata, .enrichment-evidence, .enrichment-planning-notes) { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
 .cinematic-pilot .record-evidence :is(.record-evidence-metadata, .enrichment-evidence) > summary { display: list-item; list-style: disclosure-closed; font-weight: 600; font-size: 14px; }
@@ -350,10 +350,10 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 
 /* Treat the logo and Rating label as one lockup. Scale both by the same
    proportion only when their combined desktop width exceeds the column. */
-@container pilot-rating (max-width: 260px) {
-  .cinematic-pilot .site-photo-gallery-rating__brand { gap: 2.65cqw; flex-wrap: nowrap; white-space: nowrap; }
-  .cinematic-pilot .site-photo-gallery-rating__brand img { width: 60cqw; }
-  .cinematic-pilot .site-photo-gallery-rating__brand span { font-size: 11.25cqw; }
+@container pilot-rating (max-width: 300px) {
+  .cinematic-pilot .site-photo-gallery-rating__brand { gap: 2.33cqw; flex-wrap: nowrap; white-space: nowrap; }
+  .cinematic-pilot .site-photo-gallery-rating__brand img { width: 53.33cqw; }
+  .cinematic-pilot .site-photo-gallery-rating__brand span { font-size: 13.33cqw; }
 }
 
 /* Overscan covers the small drift at every point, avoiding exposed image edges.
@@ -368,3 +368,119 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   0%, 100% { transform: translate3d(-.5%, .35%, 0) scale(1.04); }
   50% { transform: translate3d(.5%, -.35%, 0) scale(1.06); }
 }
+
+
+
+.cinematic-pilot__recommendations .site-recommendations__more-item { grid-column: 1 / -1; display: flex; justify-content: center; padding: 16px 0; }
+.cinematic-pilot__recommendations .site-recommendations__more { min-height: 44px; padding: 10px 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); color: var(--text); font: inherit; cursor: pointer; }
+
+:root:not([data-theme="dark"]) .cinematic-pilot .site-photo figcaption {
+  background: rgb(255 255 255 / 88%); color: #334155;
+  box-shadow: 0 1px 4px rgb(15 23 42 / 8%);
+}
+:root:not([data-theme="dark"]) .cinematic-pilot .site-photo figcaption a { color: #1d4ed8; }
+:root:not([data-theme="dark"]) .cinematic-pilot .site-photo .enrichment-credit-toggle:hover { background: rgb(15 23 42 / 8%); }
+:root:not([data-theme="dark"]) .cinematic-pilot .site-photo .enrichment-credit-toggle:focus-visible { outline-color: #1d4ed8; }
+
+/* Hover CSS must obey availability too, independently of input handlers. */
+.cinematic-pilot .site-photo-gallery-rating:has(.site-photo-gallery-rating__score:not([data-status="ready"])) .site-photo-gallery-rating__trend { display: none; }
+
+@media (min-width: 1061px) {
+  .cinematic-pilot { --detail-container-shadow: 0 5px 14px rgb(15 23 42 / 7%), 0 18px 38px rgb(15 23 42 / 10%); }
+  :root[data-theme="dark"] .cinematic-pilot { --detail-container-shadow: 0 5px 16px rgb(0 0 0 / 22%), 0 20px 42px rgb(0 0 0 / 30%); }
+  .cinematic-pilot #detailPage > :is(.facts-section, .monthly-conditions-section),
+  .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-map { box-shadow: var(--detail-container-shadow); }
+}
+
+@media (max-width: 720px) {
+  /* Keep contribution actions below the representative-image badge and away
+     from the title/explorer cluster at the foot of the hero. */
+  .cinematic-pilot .site-photo-upload-button { top: auto; right: auto; bottom: 30px; left: 22px; }
+}
+
+/* Paint the scrim across the viewport rather than on the content column, so
+   its opacity blends continuously through the dismissible side gutters. */
+.cinematic-pilot__recommendations {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 35%, transparent) 5%,
+    color-mix(in srgb, var(--bg) 78%, transparent) 14%,
+    color-mix(in srgb, var(--bg) 92%, transparent) 28%,
+    color-mix(in srgb, var(--bg) 92%, transparent) 72%,
+    color-mix(in srgb, var(--bg) 78%, transparent) 86%,
+    color-mix(in srgb, var(--bg) 35%, transparent) 95%,
+    transparent 100%);
+  background-attachment: fixed;
+}
+.cinematic-pilot__recommendations-surface { background: transparent; }
+.cinematic-pilot__recommendations-header { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(12px); }
+
+/* Contrast belongs to the overlay as well as the text: maps and photographs
+   can contain either bright or dark detail underneath the same title. */
+:root:not([data-theme="dark"]) .cinematic-pilot .site-photo-gallery-main::after {
+  background: linear-gradient(180deg, transparent 20%, rgb(255 255 255 / 42%) 45%, rgb(255 255 255 / 88%) 68%, var(--bg) 100%);
+}
+:root:not([data-theme="dark"]) .cinematic-pilot .hero-copy :is(h1, .breadcrumbs, .site-title-share, .cinematic-pilot__trigger) {
+  color: #102333; text-shadow: 0 1px 3px rgb(255 255 255 / 75%);
+}
+:root:not([data-theme="dark"]) .cinematic-pilot .cinematic-pilot__trigger-hint { color: #334155; }
+:root[data-theme="dark"] .cinematic-pilot .hero-copy :is(h1, .breadcrumbs, .site-title-share, .cinematic-pilot__trigger) {
+  color: #fff; text-shadow: 0 2px 8px rgb(0 0 0 / 65%);
+}
+:root[data-theme="dark"] .cinematic-pilot .cinematic-pilot__trigger-hint { color: #e2edf5; }
+
+.cinematic-pilot .site-photo-gallery-rating__trend {
+  border-radius: 14px; background: var(--panel-solid);
+  border: 1px solid var(--line); background-clip: padding-box;
+  clip-path: inset(0 round 14px);
+}
+
+@media (max-width: 720px) {
+  .cinematic-pilot .site-hero:has(.site-photo-upload-button) .hero-copy { bottom: 92px; }
+}
+
+.cinematic-pilot .site-photo-gallery-rating__trend {
+  border: 0; clip-path: none;
+  box-shadow: 0 4px 12px rgb(15 23 42 / 10%), 0 18px 40px rgb(15 23 42 / 18%);
+}
+:root[data-theme="dark"] .cinematic-pilot .site-photo-gallery-rating__trend {
+  box-shadow: 0 4px 14px rgb(0 0 0 / 25%), 0 20px 44px rgb(0 0 0 / 40%);
+}
+.cinematic-pilot__recommendations-header { background: color-mix(in srgb, var(--bg) 35%, transparent); }
+
+.cinematic-pilot button.monthly-conditions-legend-item:disabled {
+  opacity: .45; text-decoration: none; cursor: default;
+}
+
+.cinematic-pilot__recommendations-header {
+  background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 720px) {
+  .cinematic-pilot .site-hero,
+  .cinematic-pilot .site-photo-feature,
+  .cinematic-pilot .site-photo,
+  .cinematic-pilot .site-photo-gallery-main { border-bottom: 0; box-shadow: none; }
+  .cinematic-pilot #detailPage > .cinematic-pilot__rail { border-top: 0; }
+}
+
+/* Cover fractional-pixel seams at the animated preview's lower edge. Keep
+   this above the image but below the title and attribution controls. */
+.cinematic-pilot .site-hero:not(.cinematic-pilot--no-photo)::after {
+  content: ''; position: absolute; z-index: 2; left: 0; right: 0;
+  bottom: -1px; height: 18px; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg) 85%);
+}
+
+/* The title scrolls normally; the independent dismiss action stays reachable. */
+.cinematic-pilot__recommendations .cinematic-pilot__close {
+  position: fixed; z-index: 20; top: 24px;
+  right: max(12px, calc((100dvw - 1120px) / 2 - 56px));
+}
+.cinematic-pilot__recommendations-header { padding-right: 52px; }
+@media (max-width: 720px) {
+  .cinematic-pilot__recommendations .cinematic-pilot__close { top: 16px; right: 16px; }
+}
+
+/* Clip document-level decorative overflow, leaving nested scrollers intact. */
+html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }

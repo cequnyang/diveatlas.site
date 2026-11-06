@@ -41,7 +41,7 @@
   const hiddenSeries = new Set();
   chart.querySelector('.monthly-conditions-legend').addEventListener('click', event => {
     const button = event.target.closest('button[data-series]');
-    if (!button) return;
+    if (!button || button.disabled) return;
     const key = button.dataset.series;
     hiddenSeries.has(key) ? hiddenSeries.delete(key) : hiddenSeries.add(key);
     if (latestResults) render(latestResults);
@@ -153,8 +153,14 @@
     }
     status.textContent = '';
 
-    chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series =>
-      `<button type="button" class="monthly-conditions-legend-item" data-series="${series.key}" aria-pressed="${!hiddenSeries.has(series.key)}" data-kind="${series.kind}"><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</button>`).join('');
+    chart.querySelector('.monthly-conditions-legend').innerHTML = [...SERIES, OVERALL_SCORE].map(series => {
+      // Zero is a real measurement; only absent/non-finite readings are missing.
+      const hasData = results.some(result => {
+        const value = series === OVERALL_SCORE ? result.overallScore : result.metrics[series.key].value;
+        return value != null && Number.isFinite(Number(value));
+      });
+      return `<button type="button" class="monthly-conditions-legend-item" data-series="${series.key}" aria-pressed="${!hiddenSeries.has(series.key)}" data-kind="${series.kind}" ${hasData ? '' : `disabled title="${translate('No data')}" style="color:var(--muted);cursor:default"`}><i style="--series-color:${series.color}" aria-hidden="true"></i>${translate(series.label)} (${series.unit})</button>`;
+    }).join('');
 
     // Keep the outside tick columns close to the canvas edge so the plot can use more width.
     const mobile = window.matchMedia('(max-width: 720px)').matches;
