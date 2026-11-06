@@ -69,7 +69,7 @@ body :is(.dive-filter-options, #bioLegend, .map-zoom-buttons, .map-current-locat
    The dialog ID gives these adapters precedence over component theme rules. */
 body :is(#siteSuggestionDialog,
   .site-suggestion-dialog, .contact-dialog, .seo-dialog, .tutorial-dialog,
-  .about-info-dialog, .leaflet-popup-content-wrapper, .leaflet-tooltip,
+  .about-info-dialog, .temperature-scroll-wheel, .leaflet-popup-content-wrapper, .leaflet-tooltip,
   .depth-meaning-unknown, .temperature-info-popover,
   .dive-conditions-info-popover, .dive-experience-info-popover,
   .site-photo-upload-policy-popover, .dive-location-coordinate-tooltip,
@@ -100,6 +100,19 @@ body .leaflet-popup-content-wrapper > .leaflet-popup-content {
 }
 body .leaflet-popup-tip {
   background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+}
+/* Top-layer source panels escape the parent popup/sheet's backdrop root and
+   clipping. Their DOM stays inside details for native toggle/focus behavior. */
+body .dive-popup-sources__tooltip[popover] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+}
+/* Wheel pickers share the overlay material; an opaque selected row would
+   mask the glass beneath the control's most prominent option. */
+body .temperature-scroll-wheel-option[aria-selected="true"] {
+  background: color-mix(in srgb, var(--primary) 9%, transparent);
+  box-shadow: inset 0 0 0 1px var(--glass-border);
 }
 /* Mobile Layers paints a separate opaque heading in both expanded and
    collapsed states. Expose the outer panel's glass instead of stacking tints. */
@@ -177,22 +190,25 @@ html body.cinematic-pilot .hero-copy .site-title-share:is(:hover, :focus-visible
 }
 /* Sticky drawer headings and zoom links share their parent's backdrop rather
    than painting an opaque layer or blurring the same map twice. */
-/* A separate backing keeps the rail blurred without making it a backdrop
-   root that prevents nested menus from sampling the page. */
-body.has-shared-header .shared-site-header {
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-body.has-shared-header .shared-site-header::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(145%);
-  backdrop-filter: blur(8px) saturate(145%);
-  pointer-events: none;
-  content: '';
+@media (min-width: 721px) {
+  /* About extends outside the menu. Keep menu glass on a sibling paint layer
+     so its nested tooltip can still sample the map, rather than a backdrop root. */
+  body.has-shared-header :is(#topMenuDropdown, #seoMenuDropdown) {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  body.has-shared-header :is(#topMenuDropdown, #seoMenuDropdown)::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--glass-surface-tint);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
+    pointer-events: none;
+    content: '';
+  }
 }
 /* Rows share their shell's backdrop; a translucent highlight preserves it
    instead of masking it with panel-soft. Avoid a second, nested blur. */
@@ -233,6 +249,35 @@ body .leaflet-control-zoom .map-zoom-buttons a:is(:hover, :focus-visible) {
 }
 body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) {
   background: transparent;
+}
+/* One scrollbar material for documents, overlays, forms and horizontal lists.
+   Keep intentionally hidden gesture/scroll-snap bars hidden. Important material
+   declarations override legacy component rules, including ID-based adapters. */
+:root, body * {
+  --scrollbar-glass-thumb: color-mix(in srgb, var(--muted, #64748b) 30%, transparent);
+  --scrollbar-glass-thumb-hover: color-mix(in srgb, var(--muted, #64748b) 50%, transparent);
+  scrollbar-color: var(--scrollbar-glass-thumb) transparent !important;
+}
+:is(html, body *):not(.environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
+  scrollbar-width: thin !important;
+}
+@supports selector(::-webkit-scrollbar) {
+  :root, body * { scrollbar-color: auto !important; }
+  :is(html, body *):not(.environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
+    /* Standard properties otherwise suppress Chromium's pseudo-elements. */
+    scrollbar-width: auto !important;
+  }
+  :is(html, body *)::-webkit-scrollbar { width: 6px !important; height: 6px !important; background: transparent !important; }
+  :is(html, body *)::-webkit-scrollbar-track { background: transparent !important; }
+  :is(html, body *)::-webkit-scrollbar-thumb {
+    border: 1px solid transparent !important;
+    border-radius: 999px !important;
+    background: var(--scrollbar-glass-thumb) !important;
+    background-clip: padding-box !important;
+  }
+  :is(html, body *)::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-glass-thumb-hover) !important; }
+  :is(html, body *)::-webkit-scrollbar-button { display: none !important; width: 0 !important; height: 0 !important; }
+  :is(html, body *)::-webkit-scrollbar-corner { background: transparent !important; }
 }
 body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) :is(select, .dive-filter-picker) {
   background: color-mix(in srgb, var(--panel-solid) 55%, transparent);

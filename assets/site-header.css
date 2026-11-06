@@ -16,10 +16,22 @@ body.has-shared-header .shared-site-header {
   margin: 0;
   padding: 3px 12px;
   border-bottom: 1px solid var(--line);
-  background: var(--panel);
+  background: transparent;
   box-shadow: 0 1px 3px rgb(0 0 0 / .06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* The backing owns the rail blur so dropdowns can sample the page beyond it.
+     This stylesheet is mounted last, after the shared glass adapters. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+body.has-shared-header .shared-site-header::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(145%);
+  backdrop-filter: blur(8px) saturate(145%);
+  pointer-events: none;
+  content: '';
 }
 
 body.has-shared-header .shared-site-header .brand { flex: 0 0 auto; }

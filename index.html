@@ -6662,6 +6662,9 @@
     .environment-mode-row { margin: 0 0 24px; }
     .environment-segment-shell { position: relative; box-sizing: border-box; height: 48px; min-width: 0; overflow: hidden; border: 1px solid var(--layers-view-border); border-radius: var(--layers-control-radius); background: var(--layers-view-background); box-shadow: var(--layers-view-shadow); }
     /* Keep scroll-composited tab labels above the moving highlight on iOS. */
+    /* Clip the composited edge fades too; overflow alone can leave their
+       backdrop-filter layers painting square corners over the rounded shell. */
+    .environment-segment-shell { clip-path: inset(0 round var(--layers-view-radius, var(--layers-control-radius))); }
     .environment-segment-shell .environment-segment-group { z-index: 2; }
     .environment-segment-shell::before,
     .environment-segment-shell::after { position: absolute; z-index: 3; inset-block: 0; width: 16px; content: ''; pointer-events: none; background: var(--layers-view-background); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
@@ -9486,6 +9489,40 @@ ZSD·2016–2025</span></span>
     return markMapInfoPopup(layer.getPopup(), { uniformWidth: options.uniformWidth !== false, options });
   }
 
+  function positionDiveSourceTooltip(details) {
+    const tooltip = details.querySelector('.dive-popup-sources__tooltip');
+    if (!tooltip?.showPopover || !tooltip.matches(':popover-open')) return;
+    const anchor = details.querySelector('summary').getBoundingClientRect();
+    const bounds = tooltip.getBoundingClientRect();
+    const gap = 7;
+    const edge = 12;
+    const left = Math.max(edge, Math.min(anchor.right - bounds.width, innerWidth - bounds.width - edge));
+    const above = anchor.top - bounds.height - gap;
+    const top = above >= edge ? above : Math.max(edge, Math.min(anchor.bottom + gap, innerHeight - bounds.height - edge));
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+  }
+
+  // A nested backdrop-filter cannot sample past its popup's backdrop root.
+  // Promote only source details to the top layer; keep older-browser fallback
+  // placement and the existing details-based dismissal and link handlers.
+  document.addEventListener('toggle', event => {
+    const details = event.target;
+    if (!details.matches?.('.dive-popup-sources')) return;
+    const tooltip = details.querySelector('.dive-popup-sources__tooltip');
+    if (!tooltip?.showPopover) return;
+    if (details.open) {
+      tooltip.setAttribute('popover', 'manual');
+      if (!tooltip.matches(':popover-open')) tooltip.showPopover();
+      positionDiveSourceTooltip(details);
+    } else if (tooltip.matches(':popover-open')) tooltip.hidePopover();
+  }, true);
+  const repositionDiveSourceTooltips = () => {
+    document.querySelectorAll('.dive-popup-sources[open]').forEach(positionDiveSourceTooltip);
+  };
+  window.addEventListener('resize', repositionDiveSourceTooltips);
+  document.addEventListener('scroll', repositionDiveSourceTooltips, true);
+
   function closeOpenDiveSourceTooltips() {
     document.querySelectorAll('.dive-popup-sources[open]').forEach(details => {
       details.open = false;
@@ -9508,6 +9545,7 @@ ZSD·2016–2025</span></span>
     event.stopPropagation();
   }, true);
   window.addEventListener('blur', closeOpenDiveSourceTooltips);
+  map.on('movestart zoomstart popupclose', closeOpenDiveSourceTooltips);
 
   function createMapInfoPopup(options = {}) {
     return markMapInfoPopup(L.popup(mapInfoPopupOptions(options)), { uniformWidth: options.uniformWidth !== false, options });
@@ -27306,6 +27344,14 @@ function closeShareDialog() {
     );
   }
 
+  function eventTargetsMapPanel(event) {
+    const target = (event?.originalEvent || event)?.target;
+    return Boolean(target?.closest?.(
+      '.leaflet-popup, .leaflet-control, .shared-site-header, .dive-filter-options, ' +
+      '.temperature-scroll-wheel, .dive-conditions-sources-tooltip, .temperature-info-popover'
+    ));
+  }
+
   function reefRasterContainsPoint(latlng) {
     if (!latlng || !map.hasLayer(reefRasterLayer)) return false;
     const container = map.getContainer();
@@ -27367,6 +27413,12 @@ function closeShareDialog() {
   map.getContainer().addEventListener(
     'mousemove',
     event => {
+      // DOM events from a popup still bubble through the map container. Glass
+      // is visual only: never inspect the geographic cell behind that panel.
+      if (eventTargetsMapPanel(event)) {
+        closeBatchedSpeciesGridTooltip();
+        return;
+      }
       if (
         !layerVisibility.species ||
         !map.hasLayer(speciesLayer) ||
@@ -30236,6 +30288,12 @@ function closeShareDialog() {
   map.on('popupopen', event => {
     const popup = event?.popup;
     if (!popup) return;
+    const interactionSurface = popup.getElement();
+    if (interactionSurface && !interactionSurface._diveAtlasInteractionBoundary) {
+      L.DomEvent.disableClickPropagation(interactionSurface);
+      L.DomEvent.disableScrollPropagation(interactionSurface);
+      interactionSurface._diveAtlasInteractionBoundary = true;
+    }
     if (popup._diveAtlasLayerKey === 'dive' && popup._diveAtlasMobileDetailNavigationBound !== true) {
       const popupElement = popup.getElement();
       if (popupElement) {
@@ -30998,6 +31056,7 @@ function closeShareDialog() {
 
   function queueMapInteraction(event, feature = null, beforeOpen = null) {
     if (
+      eventTargetsMapPanel(event) ||
       !event?.latlng ||
       performance.now() < suppressedMapInteractionUntil ||
       performance.now() < suppressedMapClickUntil
@@ -31041,6 +31100,7 @@ function closeShareDialog() {
   }
 
   map.on('click', event => {
+    if (eventTargetsMapPanel(event)) return;
     if (compactLayersPanelQuery.matches && !legendCollapsed) setLegendCollapsed(true);
     queueMapInteraction(event);
   });
