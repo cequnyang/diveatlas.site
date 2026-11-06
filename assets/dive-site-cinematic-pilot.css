@@ -84,7 +84,7 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 :root:not([data-theme="dark"]) .cinematic-pilot .cinematic-pilot__trigger:hover { background: rgb(255 255 255 / 55%); }
 .cinematic-pilot__trigger {
   display: inline-flex; align-items: center; gap: 14px; min-height: 64px;
-  padding: 8px 4px 8px 14px; border: 0; border-radius: 8px;
+  padding: 8px 18px 8px 14px; border: 0; border-radius: 8px;
   background: transparent; color: #fff; font: inherit; font-size: 14px; cursor: pointer;
   transition: background-color .2s ease, transform .2s ease;
 }
@@ -101,8 +101,14 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 .cinematic-pilot__stack > :nth-child(3) { transform: rotate(12deg); }
 .cinematic-pilot__trigger-copy { display: grid; gap: 4px; text-align: left; }
 .cinematic-pilot__trigger-hint { color: #c3dce9; font-size: 11px; }
-.cinematic-pilot__trigger-hint::after { content: ' ↗'; display: inline-block; transition: transform .25s ease; }
-.cinematic-pilot__trigger[aria-expanded="true"] .cinematic-pilot__trigger-hint::after { transform: rotate(-45deg); }
+.cinematic-pilot__trigger-hint { display: inline-flex; align-items: center; gap: 8px; }
+.cinematic-pilot__trigger-hint::after {
+  content: ''; display: block; width: 6px; height: 6px; flex: 0 0 auto;
+  border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform .25s ease;
+}
+.cinematic-pilot__trigger:is(:hover, :focus-visible) .cinematic-pilot__trigger-hint::after { transform: translateX(3px) rotate(45deg); }
+.cinematic-pilot__trigger[aria-expanded="true"] .cinematic-pilot__trigger-hint::after { transform: rotate(135deg); }
 .cinematic-pilot__trigger:focus-visible .cinematic-pilot__stack > :nth-child(1),
 .cinematic-pilot__trigger[aria-expanded="true"] .cinematic-pilot__stack > :nth-child(1) { transform: translate(-5px, -4px) rotate(-19deg); }
 .cinematic-pilot__trigger:focus-visible .cinematic-pilot__stack > :nth-child(2),
@@ -348,4 +354,17 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   .cinematic-pilot .site-photo-gallery-rating__brand { gap: 2.65cqw; flex-wrap: nowrap; white-space: nowrap; }
   .cinematic-pilot .site-photo-gallery-rating__brand img { width: 60cqw; }
   .cinematic-pilot .site-photo-gallery-rating__brand span { font-size: 11.25cqw; }
+}
+
+/* Overscan covers the small drift at every point, avoiding exposed image edges.
+   Animate only transforms; attribution and interactive overlays remain still. */
+@media (prefers-reduced-motion: no-preference) {
+  .cinematic-pilot .site-photo-gallery-main .site-photo-preview-trigger img {
+    animation: detail-hero-drift 24s ease-in-out infinite;
+  }
+  .cinematic-pilot--exploring .site-photo-gallery-main .site-photo-preview-trigger img { animation-play-state: paused; }
+}
+@keyframes detail-hero-drift {
+  0%, 100% { transform: translate3d(-.5%, .35%, 0) scale(1.04); }
+  50% { transform: translate3d(.5%, -.35%, 0) scale(1.06); }
 }

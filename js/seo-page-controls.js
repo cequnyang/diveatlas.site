@@ -524,6 +524,6 @@ else refreshRecordEvidence();
 // the module guard prevents duplicate setup when both entry points run.
 if (document.querySelector('main.detail-page[data-site-id]:not([data-appearance-initialized])')) {
   const appearance = document.createElement('script');
-  appearance.src = '/js/dive-site-cinematic-pilot.js?v=43';
+  appearance.src = '/js/dive-site-cinematic-pilot.js?v=46';
   document.head.append(appearance);
 }
