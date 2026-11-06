@@ -166,11 +166,34 @@ html body.cinematic-pilot .hero-copy .site-title-share:is(:hover, :focus-visible
 }
 /* Sticky drawer headings and zoom links share their parent's backdrop rather
    than painting an opaque layer or blurring the same map twice. */
-/* A backdrop-filter on the header makes it a backdrop root: nested menus
-   cannot sample the page below it. Let the open menu own the blur instead. */
-body.has-shared-header .shared-site-header:has(:is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown):not([hidden])) {
+/* A separate backing keeps the rail blurred without making it a backdrop
+   root that prevents nested menus from sampling the page. */
+body.has-shared-header .shared-site-header {
+  background: transparent;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+}
+body.has-shared-header .shared-site-header::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(145%);
+  backdrop-filter: blur(8px) saturate(145%);
+  pointer-events: none;
+  content: '';
+}
+/* Rows share their shell's backdrop; a translucent highlight preserves it
+   instead of masking it with panel-soft. Avoid a second, nested blur. */
+body :is(#seoSiteSearchResults, #diveSearchResults) :is(.dive-search-result, .seo-search-load-more, .dive-search-suggestion-button):is(:hover, :focus-visible, .active),
+body :is(#seoMenuDropdown, #topMenuDropdown, #seoLanguageDropdown, #languageDropdown) .top-menu-dropdown-item:is(:hover, :focus-visible),
+body .dive-filter-options .dive-filter-option:is(:hover, :focus-visible, .is-active),
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-filter-toggle:is(:hover, [aria-expanded="true"]),
+body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) .dive-filter-picker-clear:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--primary) 9%, transparent);
+}
+.cinematic-pilot .site-photo-upload-button::before {
+  --glass-filter: blur(8px) saturate(145%);
 }
 body.has-shared-header :is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown) :is(.top-menu-page-header, .language-page-header),
 body .map-view-legend .map-view-legend-toggle {
@@ -251,6 +274,7 @@ body .site-photo-upload-label:is(:hover, :focus-visible) {
   /* Match the detail-page photo action's material without changing the map
      popup's placement, touch target, or upload handler. */
   body .dive-site-popup--with-photo .dive-popup-photo-label--upload::before {
+    --glass-filter: blur(8px) saturate(145%);
     --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 30%, transparent);
     --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 8%), transparent 48%);
     border: 1px solid var(--glass-border);
