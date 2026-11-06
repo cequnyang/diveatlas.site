@@ -9489,18 +9489,22 @@ ZSD·2016–2025</span></span>
     return markMapInfoPopup(layer.getPopup(), { uniformWidth: options.uniformWidth !== false, options });
   }
 
-  function positionDiveSourceTooltip(details) {
-    const tooltip = details.querySelector('.dive-popup-sources__tooltip');
+  function positionAnchoredGlassPopover(tooltip, trigger, preferAbove = true) {
     if (!tooltip?.showPopover || !tooltip.matches(':popover-open')) return;
-    const anchor = details.querySelector('summary').getBoundingClientRect();
+    const anchor = trigger.getBoundingClientRect();
     const bounds = tooltip.getBoundingClientRect();
     const gap = 7;
     const edge = 12;
     const left = Math.max(edge, Math.min(anchor.right - bounds.width, innerWidth - bounds.width - edge));
     const above = anchor.top - bounds.height - gap;
-    const top = above >= edge ? above : Math.max(edge, Math.min(anchor.bottom + gap, innerHeight - bounds.height - edge));
+    const below = anchor.bottom + gap;
+    const top = !preferAbove && below + bounds.height <= innerHeight - edge
+      ? below : above >= edge ? above : Math.max(edge, Math.min(below, innerHeight - bounds.height - edge));
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
+  }
+  function positionDiveSourceTooltip(details) {
+    positionAnchoredGlassPopover(details.querySelector('.dive-popup-sources__tooltip'), details.querySelector('summary'));
   }
 
   // A nested backdrop-filter cannot sample past its popup's backdrop root.
@@ -9519,6 +9523,10 @@ ZSD·2016–2025</span></span>
   }, true);
   const repositionDiveSourceTooltips = () => {
     document.querySelectorAll('.dive-popup-sources[open]').forEach(positionDiveSourceTooltip);
+    document.querySelectorAll('.dive-location-coordinate-tooltip[popover]').forEach(tooltip => {
+      positionAnchoredGlassPopover(tooltip, tooltip.previousElementSibling, false);
+    });
+    positionAnchoredGlassPopover(els.tutorialLanguageDropdown, els.tutorialLanguageMenuButton, false);
   };
   window.addEventListener('resize', repositionDiveSourceTooltips);
   document.addEventListener('scroll', repositionDiveSourceTooltips, true);
@@ -13703,6 +13711,7 @@ ZSD·2016–2025</span></span>
 
   async function closeTutorial() {
     if (tutorialState !== 'open' || els.tutorialBackdrop.hidden) return;
+    setTutorialLanguageMenuOpen(false);
     tutorialState = 'closing';
     cancelTutorialBackgroundPreparation();
     cancelLegendAutoCollapse();
@@ -13771,6 +13780,12 @@ ZSD·2016–2025</span></span>
   els.tutorialDialog.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.stopPropagation();
+      if (!els.tutorialLanguageDropdown.hidden) {
+        event.preventDefault();
+        setTutorialLanguageMenuOpen(false);
+        els.tutorialLanguageMenuButton.focus();
+        return;
+      }
       closeTutorial();
       return;
     }
@@ -15227,6 +15242,7 @@ ZSD·2016–2025</span></span>
     tooltip.textContent = `${latlng.lat.toFixed(3)}°, ${latlng.lng.toFixed(3)}°`;
     trigger.insertAdjacentElement('afterend', tooltip);
     const hideTooltip = () => {
+      if (tooltip.showPopover && tooltip.matches(':popover-open')) tooltip.hidePopover();
       tooltip.hidden = true;
       trigger.setAttribute('aria-expanded', 'false');
       document.removeEventListener('pointerdown', dismissOutside, true);
@@ -15241,8 +15257,14 @@ ZSD·2016–2025</span></span>
       tooltip.hidden = !tooltip.hidden;
       trigger.setAttribute('aria-expanded', String(!tooltip.hidden));
       if (tooltip.hidden) {
+        if (tooltip.showPopover && tooltip.matches(':popover-open')) tooltip.hidePopover();
         document.removeEventListener('pointerdown', dismissOutside, true);
       } else {
+        if (tooltip.showPopover) {
+          tooltip.setAttribute('popover', 'manual');
+          tooltip.showPopover();
+          positionAnchoredGlassPopover(tooltip, trigger, false);
+        }
         document.addEventListener('pointerdown', dismissOutside, true);
       }
     };
@@ -27345,6 +27367,7 @@ function closeShareDialog() {
   }
 
   function eventTargetsMapPanel(event) {
+    if (window.DiveAtlasHeader?.isOverlayTarget(event)) return true;
     const target = (event?.originalEvent || event)?.target;
     return Boolean(target?.closest?.(
       '.leaflet-popup, .leaflet-control, .shared-site-header, .dive-filter-options, ' +
@@ -30463,7 +30486,7 @@ function closeShareDialog() {
 
   const mapInteractionContainer = map.getContainer();
   mapInteractionContainer.addEventListener('pointerdown', event => {
-    if (!isTouchMapPointerType(event.pointerType) || event.target?.closest?.('.leaflet-control, .leaflet-popup')) {
+    if (!isTouchMapPointerType(event.pointerType) || eventTargetsMapPanel(event)) {
       lastMapTouchTap = null;
       return;
     }
@@ -30530,7 +30553,7 @@ function closeShareDialog() {
         !pointer.moved &&
         !pointer.multi &&
         !pointer.longPressHandled &&
-        !event.target?.closest?.('.leaflet-control, .leaflet-popup')
+        !eventTargetsMapPanel(event)
       ) {
         lastMapTouchTap = { x:pointer.x, y:pointer.y, time:performance.now() };
       }
@@ -30557,7 +30580,7 @@ function closeShareDialog() {
       markUserMapMovementIntent();
       return;
     }
-    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    if (eventTargetsMapPanel(event)) return;
     userMapMovementIntentUntil = 0;
     lastMapPointerType = event.pointerType || 'mouse';
     lastMapPointerAt = performance.now();
@@ -30635,10 +30658,11 @@ function closeShareDialog() {
   mapInteractionContainer.addEventListener('pointerup', finishMapPointer, true);
   mapInteractionContainer.addEventListener('pointercancel', finishMapPointer, true);
   mapInteractionContainer.addEventListener('wheel', event => {
-    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    if (eventTargetsMapPanel(event)) return;
     markUserMapMovementIntent();
   }, { capture: true, passive: true });
   mapInteractionContainer.addEventListener('keydown', event => {
+    if (eventTargetsMapPanel(event)) return;
     if (
       event.target?.closest?.('input, textarea, select, [contenteditable="true"]')
     ) return;
@@ -30648,7 +30672,7 @@ function closeShareDialog() {
   }, true);
 
   mapInteractionContainer.addEventListener('contextmenu', event => {
-    if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+    if (eventTargetsMapPanel(event)) return;
 
     // Mobile browsers may dispatch contextmenu while a touch is still held.
     // Suppress that native callout inside the map without changing page-wide behavior.
@@ -30721,7 +30745,7 @@ function closeShareDialog() {
       event.stopPropagation();
       return;
     }
-    if (!event.target?.closest?.('.leaflet-control, .leaflet-popup')) {
+    if (!eventTargetsMapPanel(event)) {
       markUserMapMovementIntent();
     }
     cancelPendingMapInteraction();
@@ -31693,6 +31717,13 @@ function closeShareDialog() {
   function setTutorialLanguageMenuOpen(open, { focusFirst = false } = {}) {
     const isOpen = Boolean(open);
     els.tutorialLanguageDropdown.hidden = !isOpen;
+    const dropdown = els.tutorialLanguageDropdown;
+    if (dropdown.showPopover) {
+      dropdown.setAttribute('popover', 'manual');
+      if (isOpen && !dropdown.matches(':popover-open')) dropdown.showPopover();
+      if (!isOpen && dropdown.matches(':popover-open')) dropdown.hidePopover();
+      positionAnchoredGlassPopover(dropdown, els.tutorialLanguageMenuButton, false);
+    }
     els.tutorialLanguageMenuButton.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
       setLanguageMenuOpen(false);

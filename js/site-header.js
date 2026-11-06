@@ -117,7 +117,25 @@
     decorate(header);
     return header;
   }
-  window.DiveAtlasHeader = Object.freeze({ mount });
+  // Shared by geographic hover, pointer and wheel handlers. Optical
+  // transparency must never change which surface owns an interaction.
+  const overlaySelector = [
+    '.leaflet-popup', '.leaflet-control', '.shared-site-header', '#bioLegend',
+    '#diveSearchResults', '#seoSiteSearchResults', '.top-menu-dropdown', '.tutorial-language-dropdown', '.top-menu-about-tooltip',
+    '.dive-filter-options', '.dive-layer-filter-menu', '.bio-legend-overflow-menu',
+    '.temperature-scroll-wheel', '.temperature-info-popover',
+    '.dive-conditions-info-popover', '.dive-experience-info-popover',
+    '.dive-conditions-sources-tooltip', '.dive-popup-sources__tooltip',
+    '.dive-location-coordinate-tooltip', '.depth-meaning-unknown',
+    '.site-photo-upload-policy-popover', '.site-photo-gallery-rating__trend',
+    '.share-modal', '.site-suggestion-modal', '.contact-modal',
+    '.share-dialog', '.site-suggestion-dialog', '.contact-dialog', '.seo-dialog', '.tutorial-dialog',
+    '.seo-contact-modal', '.seo-share-modal', '.tutorial-backdrop',
+    '.dive-photo-preview', '.cinematic-pilot__recommendations',
+    '.mobile-map-credits-panel'
+  ].join(', ');
+  const isOverlayTarget = event => Boolean((event?.originalEvent || event)?.target?.closest?.(overlaySelector));
+  window.DiveAtlasHeader = Object.freeze({ mount, overlaySelector, isOverlayTarget });
   const header = mount();
   // Existing page scripts own data-ready startup. Plain pages and detail
   // failures still need working navigation, even when no record can load.

@@ -634,6 +634,8 @@ test('record evidence preserves multiple levels and unknown depths on shared pag
   const gridBefore = await page.locator('.fact-grid').boundingBox();
   await depthInfo.click();
   await expect(depthNote).toBeVisible();
+  await expect(depthNote).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
+  await expect(depthNote).toHaveCSS('background-color', 'color(srgb 1 1 1 / 0.9)');
   expect((await page.locator('.fact-grid').boundingBox()).height).toBe(gridBefore.height);
   await expect(depthInfo.locator('.note-icon')).toHaveCount(1);
   await expect(depthNote).toHaveAttribute('role', 'tooltip');

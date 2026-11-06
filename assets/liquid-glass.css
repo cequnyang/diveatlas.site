@@ -67,7 +67,8 @@ body :is(.dive-filter-options, #bioLegend, .map-zoom-buttons, .map-current-locat
 /* Enumerate overlay shells rather than matching every class containing
    "popup": chart marks, previews and form fields must keep their own fills.
    The dialog ID gives these adapters precedence over component theme rules. */
-body :is(#siteSuggestionDialog,
+body .fact dd .depth-meaning-unknown,
+body :is(#siteSuggestionDialog, .tutorial-language-dropdown,
   .site-suggestion-dialog, .contact-dialog, .seo-dialog, .tutorial-dialog,
   .about-info-dialog, .temperature-scroll-wheel, .leaflet-popup-content-wrapper, .leaflet-tooltip,
   .depth-meaning-unknown, .temperature-info-popover,
@@ -103,10 +104,29 @@ body .leaflet-popup-tip {
 }
 /* Top-layer source panels escape the parent popup/sheet's backdrop root and
    clipping. Their DOM stays inside details for native toggle/focus behavior. */
-body .dive-popup-sources__tooltip[popover] {
+body :is(.dive-popup-sources__tooltip, .dive-location-coordinate-tooltip, .tutorial-language-dropdown, .site-photo-upload-policy-popover)[popover] {
   position: fixed;
   inset: auto;
   margin: 0;
+}
+/* The tutorial's full-screen dimmer must not trap the dialog's backdrop.
+   Paint it on a sibling layer instead, as with the shared header rail. */
+body .tutorial-backdrop { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+body .tutorial-backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(8 20 28 / 45%);
+  pointer-events: none;
+}
+/* Stop scroll chaining at overlay edges without disabling inner scrolling,
+   links, form controls, chart inspection or sheet dismissal gestures. */
+body :is(.leaflet-popup-content-wrapper, .leaflet-popup-content,
+  .temperature-info-popover, .dive-conditions-sources-tooltip,
+  .site-photo-upload-policy-popover, .top-menu-dropdown, .dive-filter-options,
+  .share-dialog, .site-suggestion-dialog, .contact-dialog, .seo-dialog,
+  .tutorial-dialog, .dive-photo-preview, .cinematic-pilot__recommendations) {
+  overscroll-behavior: contain;
 }
 /* Wheel pickers share the overlay material; an opaque selected row would
    mask the glass beneath the control's most prominent option. */

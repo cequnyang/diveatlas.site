@@ -155,6 +155,12 @@
       const isExpanded = Boolean(expanded);
       els.sitePhotoUploadPolicyTrigger.setAttribute('aria-expanded', String(isExpanded));
       els.sitePhotoUploadPolicyPopover.hidden = !isExpanded;
+      const popover = els.sitePhotoUploadPolicyPopover;
+      if (popover.showPopover) {
+        popover.setAttribute('popover', 'manual');
+        if (isExpanded && !popover.matches(':popover-open')) popover.showPopover();
+        if (!isExpanded && popover.matches(':popover-open')) popover.hidePopover();
+      }
       if (isExpanded) {
         positionSitePhotoUploadPolicyPopover();
         els.sitePhotoUploadPolicyPopover.focus({ preventScroll: true });

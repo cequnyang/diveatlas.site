@@ -205,7 +205,7 @@
 
     handler.disable();
     handler._onWheelScroll = function (event) {
-      if (event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
+      if (root.DiveAtlasHeader?.isOverlayTarget(event) || event.target?.closest?.('.leaflet-control, .leaflet-popup')) return;
       const delta = L.DomEvent.getWheelDelta(event);
       if (!delta) return;
       L.DomEvent.stop(event);

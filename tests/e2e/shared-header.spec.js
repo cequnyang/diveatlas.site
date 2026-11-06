@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test('glass popup interactions do not reach the map underneath', async ({ page }) => {
+test('glass popup interactions do not reach the map underneath', async ({ page, hasTouch }) => {
   const { openMap, setMapView, mapState, waitForClickResolution } = require('./support');
   await openMap(page);
   await setMapView(page, -5.7, 131, 10);
@@ -32,7 +32,7 @@ test('glass popup interactions do not reach the map underneath', async ({ page }
   const before = await mapState(page);
   await page.mouse.move(point.x, point.y);
   await expect(page.locator('.leaflet-tooltip:visible')).toHaveCount(0);
-  await button.click();
+  if (hasTouch) await button.tap(); else await button.click();
   await expect(button).toHaveAttribute('data-clicked', 'true');
   await page.mouse.wheel(0, 300);
   await waitForClickResolution(page);
@@ -56,6 +56,34 @@ test.beforeEach(async ({ page }) => {
     contentType:'text/html',
     body:'<!doctype html><html><head><title>Plain document</title><link rel="stylesheet" href="/assets/site-header.css?v=1"><script src="/js/site-header.js?v=1" defer></script></head><body><main><h1>Plain document</h1></main></body></html>'
   }));
+});
+
+test('tutorial language and photo policy popovers escape nested glass and dismiss cleanly', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.shared-site-header')).toBeVisible();
+  await page.locator('#bioLegendGuide').evaluate(el => el.click());
+  await expect(page.locator('.tutorial-dialog')).toBeVisible();
+  await page.locator('#tutorialLanguageMenuButton').click();
+  const language = page.locator('#tutorialLanguageDropdown');
+  await expect.poll(() => language.evaluate(el => el.matches(':popover-open'))).toBe(true);
+  await expect(language).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
+  await page.keyboard.press('Escape');
+  await expect(language).toBeHidden();
+  await page.locator('#tutorialClose').click();
+  await expect(page.locator('.tutorial-dialog')).toBeHidden();
+  // Open the production photo form shell without submitting or requiring an
+  // account; its policy control still uses the real shared form controller.
+  await page.locator('#sitePhotoUploadModal').evaluate(el => el.hidden = false);
+  await page.locator('#sitePhotoUploadForm').evaluate(el => el.hidden = false);
+  await page.locator('#sitePhotoUploadPolicyTrigger').click();
+  const policy = page.locator('#sitePhotoUploadPolicyPopover');
+  await expect.poll(() => policy.evaluate(el => el.matches(':popover-open'))).toBe(true);
+  await expect(policy).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
+  await page.keyboard.press('Escape');
+  await expect(policy).toBeHidden();
+  await expect(page.locator('#sitePhotoUploadPolicyTrigger')).toBeFocused();
+  await page.locator('#sitePhotoUploadCloseButton').click();
+  await expect(page.locator('#sitePhotoUploadModal')).toBeHidden();
 });
 
 for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/destinations/', '/plain-page-fixture.html']) {
@@ -90,6 +118,67 @@ for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/desti
 }
 
 for (const theme of ['light', 'dark']) {
+  test(`overlay surface inventory has visible glass and contains map input in ${theme}`, async ({ page }) => {
+    test.setTimeout(90_000);
+    const { openMap, setMapView, mapState, waitForClickResolution } = require('./support');
+    await openMap(page);
+    await setMapView(page, -5.7, 131, 10);
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.setLegendCollapsed(true));
+    await page.addStyleTag({ content: '* { animation:none !important; transition:none !important; }' });
+    await page.evaluate(theme => {
+      document.documentElement.dataset.theme = theme;
+      const backing = document.createElement('div');
+      backing.style.cssText = 'position:fixed;inset:0;z-index:4500;pointer-events:none;background:repeating-linear-gradient(90deg,#102030 0 2px,#fff 2px 4px)';
+      document.getElementById('map').append(backing);
+    }, theme);
+    // This is the shell inventory, not a replacement for real open/close and
+    // focus tests. Exercise each production adapter under the map event root.
+    const surfaces = [
+      'share-dialog', 'site-suggestion-dialog', 'contact-dialog', 'seo-dialog', 'tutorial-dialog',
+      'tutorial-language-dropdown', 'temperature-scroll-wheel', 'dive-filter-options',
+      'temperature-info-popover', 'dive-conditions-info-popover', 'dive-experience-info-popover',
+      'site-photo-upload-policy-popover', 'dive-location-coordinate-tooltip',
+      'dive-popup-sources__tooltip', 'dive-conditions-sources-tooltip',
+      'top-menu-about-tooltip', 'bio-legend-overflow-menu', 'dive-layer-filter-menu',
+      'dive-photo-preview', 'mobile-map-credits-panel'
+    ];
+    for (const className of surfaces) {
+      await page.evaluate(className => {
+        const surface = document.createElement('section');
+        surface.id = 'overlay-audit-surface';
+        surface.className = className;
+        surface.style.cssText = 'position:fixed!important;inset:160px auto auto 20px!important;width:240px!important;height:180px!important;min-width:0!important;max-height:none!important;display:block!important;visibility:visible!important;opacity:1!important;z-index:5000!important;transform:none!important;margin:0!important';
+        surface.innerHTML = '<button type="button">Overlay control</button>';
+        surface.querySelector('button').onclick = event => event.target.dataset.clicked = 'true';
+        document.getElementById('map').append(surface);
+        const api = window.__DIVEATLAS_TEST__;
+        const bounds = surface.getBoundingClientRect();
+        const mapBounds = document.getElementById('map').getBoundingClientRect();
+        const point = api.latLngAt(bounds.x + 120 - mapBounds.x, bounds.y + 90 - mapBounds.y);
+        api.addCoralGrid(point.lat, point.lng, 'under-overlay-inventory');
+        api.clearActionCount();
+      }, className);
+      const panel = page.locator('#overlay-audit-surface');
+      await expect(panel, className).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
+      const blurred = await panel.screenshot();
+      await panel.evaluate(el => el.style.setProperty('backdrop-filter', 'none', 'important'));
+      expect(blurred.equals(await panel.screenshot()), `${className} visibly blurs`).toBe(false);
+      const before = await mapState(page);
+      await panel.hover({ position:{ x:120, y:90 } });
+      await expect(page.locator('.leaflet-tooltip:visible'), className).toHaveCount(0);
+      await panel.locator('button').click();
+      await expect(panel.locator('button'), className).toHaveAttribute('data-clicked', 'true');
+      await panel.locator('button').press('ArrowDown');
+      await page.mouse.wheel(0, 100);
+      await waitForClickResolution(page);
+      const after = await mapState(page);
+      expect(after.center, className).toEqual(before.center);
+      expect(after.zoom, className).toBe(before.zoom);
+      expect(after.actionCount, className).toBe(0);
+      await panel.evaluate(el => el.remove());
+    }
+  });
+
   test(`nested source popovers visibly blur in ${theme} theme`, async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.shared-site-header')).toBeVisible();
