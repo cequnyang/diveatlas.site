@@ -14,6 +14,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
+if __package__:
+    from .site_header_assets import install_shared_header_assets
+else:
+    from site_header_assets import install_shared_header_assets
+
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED_PARTS = {
@@ -425,6 +430,9 @@ def main() -> None:
         destination = output / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / relative, destination)
+        if relative.suffix == ".html":
+            markup = destination.read_text(encoding="utf-8")
+            destination.write_text(install_shared_header_assets(markup, app_version), encoding="utf-8")
         total_bytes += destination.stat().st_size
 
     render_app_version(output / "index.html", app_version)

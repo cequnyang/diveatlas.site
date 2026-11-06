@@ -82,6 +82,8 @@ playwright-report/
 /tests/unit/*
 !/tests/unit/test_dive_site_details.py
 !/tests/unit/test_release_menu_version.py
+!/tools/site_header_assets.py
+!/tests/unit/test_site_header_assets.py
 !/tests/unit/test_dive_site_region_enrichment.py
 !/tests/unit/test_dive_site_location_enrichment.py
 !/tests/unit/dive-conditions-service-metadata.test.js
@@ -102,6 +104,7 @@ playwright-report/
 # Keep shared detail-page documentation reviewable.
 !/docs/
 !/docs/shared-dive-site-details.md
+!/docs/shared-site-header.md
 
 # Offline generators are local inputs; their generated browser data stays tracked.
 /scripts/build_dive_experience_land_mask.js
@@ -126,3 +129,5 @@ playwright-report/
 !/tests/unit/dive-site-record-policy.test.js
 
 !/assets/dive-sites/README.md
+
+!/tests/e2e/shared-header.spec.js

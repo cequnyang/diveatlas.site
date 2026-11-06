@@ -1,0 +1,78 @@
+/* Shared control material, inspired by Apple's Materials guidance:
+   https://developer.apple.com/design/human-interface-guidelines/materials
+   Add .glass-surface to new surfaces; keep geometry and focus rings with the
+   component. Existing controls are adapters so their DOM and events stay intact. */
+:root {
+  --glass-tint: rgb(255 255 255 / 25%);
+  --glass-active-tint: rgb(255 255 255 / 40%);
+  --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 50%), transparent 48%, rgb(255 255 255 / 10%));
+  --glass-border: rgb(255 255 255 / 75%);
+  --glass-active-border: rgb(255 255 255 / 95%);
+  --glass-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(100 116 139 / 14%), 0 3px 12px rgb(15 23 42 / 10%);
+  --glass-filter: blur(12px) saturate(145%);
+}
+:root[data-theme="dark"] {
+  --glass-tint: rgb(16 38 51 / 25%);
+  --glass-active-tint: rgb(16 38 51 / 40%);
+  --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 22%), transparent 48%, rgb(255 255 255 / 6%));
+  --glass-border: rgb(255 255 255 / 50%);
+  --glass-active-border: rgb(255 255 255 / 75%);
+  --glass-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), inset 0 -1px 0 rgb(255 255 255 / 8%), 0 3px 12px rgb(0 0 0 / 12%);
+}
+.cinematic-pilot .site-photo-gallery-rating__trend,
+.glass-surface,
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
+.cinematic-pilot .site-footer-share .share-action-icon,
+.cinematic-pilot .site-photo-upload-button::before {
+  border: 1px solid var(--glass-border);
+  background: var(--glass-highlight), var(--glass-surface-tint, var(--glass-tint));
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  box-shadow: var(--glass-shadow);
+}
+/* Keep detail surfaces visibly translucent without fading chart marks or
+   labels. The chart retains more tint than the small photo action. */
+.cinematic-pilot .site-photo-upload-button::before {
+  /* 70% transparency means a 30% tint, not 70% opacity. */
+  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 30%, transparent);
+  --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 8%), transparent 48%);
+}
+.cinematic-pilot .site-photo-gallery-rating__trend {
+  /* Keep the explicitly tuned chart material independent of the root's
+     reduced-transparency fallback, which otherwise hides these adjustments. */
+  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 80%, transparent);
+  --glass-filter: blur(8px) saturate(145%);
+  --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 18%), transparent 48%, rgb(255 255 255 / 4%));
+  box-shadow: var(--glass-shadow), var(--shadow);
+}
+.glass-surface,
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
+.cinematic-pilot .site-footer-share .share-action-icon,
+.cinematic-pilot .site-photo-upload-button::before {
+  transition: background-color .18s ease, border-color .18s ease;
+}
+.glass-surface:is(:hover, :focus-visible, :focus-within),
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box:is(:hover, :focus-within),
+.cinematic-pilot .site-footer-share :is(a, button):is(:hover, :focus-visible) .share-action-icon,
+.cinematic-pilot .site-photo-upload-button:is(:hover, :focus-visible)::before {
+  border-color: var(--glass-active-border);
+  background-color: var(--glass-active-tint);
+}
+.cinematic-pilot .site-photo-upload-button:is(:hover, :focus-visible)::before {
+  background-color: var(--glass-surface-tint);
+}
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box:focus-within {
+  box-shadow: 0 0 0 2px var(--primary), var(--glass-shadow);
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-surface,
+  body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
+  .cinematic-pilot .site-footer-share .share-action-icon,
+  .cinematic-pilot .site-photo-upload-button::before { transition: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root, :root[data-theme="dark"] { --glass-tint: var(--panel-solid); --glass-active-tint: var(--panel-solid); --glass-filter: none; }
+  /* Retain the explicitly requested photo tint; the preference still removes
+     blur and highlights, including when the pointer hovers over the button. */
+  .cinematic-pilot .site-photo-upload-button::before { --glass-highlight: none; }
+}

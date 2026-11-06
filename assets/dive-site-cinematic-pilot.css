@@ -404,36 +404,12 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   /* Keep contribution actions below the representative-image badge and away
      from the title/explorer cluster at the foot of the hero. */
   .cinematic-pilot .site-photo-upload-button { top: auto; right: auto; bottom: 30px; left: 22px; }
-  /* Blur only the decorative surface so the label stays crisp. The tint
-     remains a usable fallback in browsers without backdrop-filter. */
   .cinematic-pilot .site-photo-upload-button {
     padding: 0 14px; font-size: 14px; font-weight: 500;
   }
-  .cinematic-pilot .site-photo-upload-button::before {
-    height: 40px; border-color: rgb(255 255 255 / 50%);
-    background: linear-gradient(155deg, rgb(255 255 255 / 22%), transparent 48%, rgb(255 255 255 / 6%)), rgb(16 38 51 / 25%);
-    -webkit-backdrop-filter: blur(12px) saturate(145%);
-    backdrop-filter: blur(12px) saturate(145%);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), inset 0 -1px 0 rgb(255 255 255 / 8%), 0 3px 12px rgb(0 0 0 / 12%);
-    transition: background-color .18s ease, border-color .18s ease;
-  }
-  .cinematic-pilot .site-photo-upload-button:hover::before,
-  .cinematic-pilot .site-photo-upload-button:focus-visible::before {
-    border-color: rgb(255 255 255 / 75%); background-color: rgb(16 38 51 / 40%);
-  }
+  .cinematic-pilot .site-photo-upload-button::before { height: 40px; }
   :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button {
     color: #334155; text-shadow: none;
-  }
-  /* The pale hero fade provides contrast, allowing the photo to show through
-     the button without reducing the opacity of its text or outline. */
-  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button::before {
-    border-color: rgb(255 255 255 / 75%);
-    background: linear-gradient(155deg, rgb(255 255 255 / 50%), transparent 48%, rgb(255 255 255 / 10%)), rgb(255 255 255 / 25%);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(100 116 139 / 14%), 0 3px 12px rgb(15 23 42 / 10%);
-  }
-  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:hover::before,
-  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:focus-visible::before {
-    border-color: rgb(255 255 255 / 95%); background-color: rgb(255 255 255 / 40%);
   }
   :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:focus-visible {
     outline-color: #475569;
@@ -469,9 +445,8 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 :root[data-theme="dark"] .cinematic-pilot .cinematic-pilot__trigger-hint { color: #e2edf5; }
 
 .cinematic-pilot .site-photo-gallery-rating__trend {
-  border-radius: 14px; background: var(--panel-solid);
-  border: 1px solid var(--line); background-clip: padding-box;
-  clip-path: inset(0 round 14px);
+  border-radius: 14px; background-clip: padding-box;
+  clip-path: none;
 }
 
 @media (max-width: 720px) {
@@ -483,13 +458,6 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   }
 }
 
-.cinematic-pilot .site-photo-gallery-rating__trend {
-  border: 0; clip-path: none;
-  box-shadow: 0 4px 12px rgb(15 23 42 / 10%), 0 18px 40px rgb(15 23 42 / 18%);
-}
-:root[data-theme="dark"] .cinematic-pilot .site-photo-gallery-rating__trend {
-  box-shadow: 0 4px 14px rgb(0 0 0 / 25%), 0 20px 44px rgb(0 0 0 / 40%);
-}
 .cinematic-pilot__recommendations-header { background: color-mix(in srgb, var(--bg) 35%, transparent); }
 
 .cinematic-pilot button.monthly-conditions-legend-item:disabled {

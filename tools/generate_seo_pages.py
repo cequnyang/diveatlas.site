@@ -22,8 +22,10 @@ from urllib.parse import quote
 
 if __package__:
     from . import dive_site_record_policy as record_policy
+    from .site_header_assets import shared_header_assets, site_header_fallback
 else:
     import dive_site_record_policy as record_policy
+    from site_header_assets import shared_header_assets, site_header_fallback
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -490,31 +492,6 @@ def validated_candidates(
     return candidates, dict(rejected)
 
 
-def seo_site_search_markup() -> str:
-    return '''<div class="top-menu-search-slot seo-site-search-slot" id="seoSiteSearchSlot">
-  <div class="search-float" id="seoSiteSearchSection">
-    <div class="dive-search">
-      <div class="dive-search-box">
-        <button class="dive-search-icon" id="seoSiteSearchToggle" type="button" aria-label="Search dive sites" title="Search dive sites" aria-controls="seoSiteSearchInput" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.75" cy="6.75" r="4.25"></circle><path d="M10.4 10.4 14 14"></path></svg></button>
-        <input class="dive-search-input" id="seoSiteSearchInput" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="seoSiteSearchResultsScroll" placeholder="Where Will You Dive Next?" aria-label="Where Will You Dive Next?">
-        <button class="dive-search-clear" id="seoSiteSearchClear" type="button" title="Clear search" aria-label="Clear search"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg></button>
-        <button class="dive-search-filter-toggle" id="seoSiteSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="seoSiteSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"></path><circle cx="16" cy="7" r="2.9"></circle><circle cx="8" cy="17" r="2.9"></circle></svg></button>
-      </div>
-      <div class="dive-search-results" id="seoSiteSearchResults" aria-busy="false">
-        <div class="dive-search-results-scroll" id="seoSiteSearchResultsScroll" role="listbox" aria-label="Dive-site search results"></div>
-        <div class="dive-search-filter-controls" id="seoSiteSearchFilterControls" role="group" aria-label="Dive-site filters" hidden>
-          <label class="dive-search-filter-field"><span id="seoSiteSearchCountryLabel">Country</span><select id="seoSiteSearchCountry" aria-labelledby="seoSiteSearchCountryLabel"><option value="">Any country</option></select></label>
-          <label class="dive-search-filter-field"><span id="seoSiteSearchDifficultyLabel">Difficulty</span><select id="seoSiteSearchDifficulty" aria-labelledby="seoSiteSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
-          <label class="dive-search-filter-field"><span id="seoSiteSearchFeatureLabel">Feature</span><select id="seoSiteSearchFeature" aria-labelledby="seoSiteSearchFeatureLabel"><option value="">Any feature</option></select></label>
-          <button class="dive-search-filter-clear" id="seoSiteSearchFilterClear" type="button" hidden>Clear All</button>
-        </div>
-        <button class="dive-search-results-handle" id="seoSiteSearchResultsHandle" type="button" aria-label="Close dive-site search" title="Drag up to close"></button>
-      </div>
-    </div>
-  </div>
-</div>'''
-
-
 SITE_FOOTER_TEMPLATE = '''<footer class="site-detail-footer"><a class="site-footer-brand" href="/" aria-label="DiveAtlas home"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a><nav class="site-footer-share" aria-label="{share_label}">
   <a data-footer-share="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Copy link for Instagram" title="Instagram"><span class="share-action-icon share-action-icon--instagram" aria-hidden="true"><img src="/assets/share-platforms/instagram-glyph.png" alt=""></span></a>
   <a data-footer-share="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><span class="share-action-icon share-action-icon--facebook" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="share-mark" d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v1.9H7v3.1h2.7v8h3.7Z"/></svg></span></a>
@@ -530,10 +507,10 @@ def site_footer_markup(share_label: str = "Share this page") -> str:
 
 def page_shell(title: str, description: str, canonical: str, body: str, body_class: str = "") -> str:
     body_classes = body_class.split()
-    has_browse_header = bool({"region-browser-page", "region-destination-page"} & set(body_classes))
+    has_document_header = "seo-site-detail-layout" not in body_classes
     has_site_detail = "seo-site-detail-layout" in body_classes
     has_site_directory = "site-directory-page" in body_classes
-    if has_browse_header and "seo-browse-layout" not in body_classes:
+    if has_document_header and "seo-browse-layout" not in body_classes:
         body_classes.append("seo-browse-layout")
     body_class_attr = f' class="{html_text(" ".join(body_classes))}"' if body_classes else ""
     if has_site_directory:
@@ -546,17 +523,16 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
         region_browse_styles_version = "26"
     else:
         region_browse_styles_version = "9"
-    seo_styles_version = "184"
-    browse_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=9">
-    <link rel="stylesheet" href="/assets/seo-browse-header.css?v=4">
-''' if has_browse_header else ""
-    detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=10">\n' if has_site_detail else ""
-    browse_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
+    seo_styles_version = "200"
+    document_head_assets = '''  <link rel="stylesheet" href="/assets/seo-site-search.css?v=11">
+    <link rel="stylesheet" href="/assets/seo-browse-header.css?v=5">
+''' if has_document_header else ""
+    detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=11">\n' if has_site_detail else ""
+    document_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
-<script src="/js/seo-browse-header.js?v=2" defer></script>
-<script src="/js/seo-page-controls.js?v=25" defer></script>
-<script src="/js/seo-site-search.js?v=11" defer></script>
-<script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_browse_header else ""
+<script src="/js/seo-page-controls.js?v=26" defer></script>
+<script src="/js/seo-site-search.js?v=13" defer></script>
+<script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_document_header else ""
     directory_rating_script = '\n<script src="/js/seo-list-card-ratings.js?v=1" defer></script>' if has_site_directory else ""
     return f'''<!doctype html>
 <html lang="en">
@@ -574,9 +550,9 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
   <link rel="stylesheet" href="/assets/seo.css?v={seo_styles_version}">
   <link rel="stylesheet" href="/assets/region-browse.css?v={region_browse_styles_version}">
-{detail_search_head_assets}{browse_head_assets}</head>
+{detail_search_head_assets}{document_head_assets}{shared_header_assets()}</head>
 <body{body_class_attr}>
-{body}{browse_body_scripts}{directory_rating_script}
+{body}{document_body_scripts}{directory_rating_script}
 </body>
 </html>
 '''
@@ -709,7 +685,7 @@ def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[st
     )
     region_browser_state = " open" if is_region_index else ""
     region_heading = "Dive Site Regions" if is_region_index else "Browse dive sites by area"
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+    body = f'''{site_header_fallback()}
 <main class="region-browser">
 {destination_directory}
   <details class="region-area-browser" id="regionAreaBrowser"{region_browser_state}>
@@ -1066,14 +1042,7 @@ def generate_site_page(
         "geo": {"@type": "GeoCoordinates", "latitude": site["lat"], "longitude": site["lon"]},
         **({"address": {"@type": "PostalAddress", "addressCountry": country}} if country else {}),
     }, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    controls = '''<div class="top-menu-controls seo-top-menu-controls" aria-label="Page settings">
-      <button class="top-menu-share" id="seoShareButton" type="button" aria-label="Share this dive site" title="Share this dive site"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button>
-      <button class="top-menu-theme" id="seoThemeButton" type="button" title="Toggle page theme" aria-label="Toggle page theme" aria-pressed="false"><span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.7"/><path d="M8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M12.6 3.4l-.9.9M4.3 11.7l-.9.9"/></svg></span><span class="theme-mode-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M12.8 10.2A5.8 5.8 0 0 1 5.8 3.1a5.8 5.8 0 1 0 7 7.1Z"/></svg></span></button>
-      <div class="seo-language-menu"><button class="top-menu-menu-button top-menu-lang-trigger" id="seoLanguageButton" type="button" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="seoLanguageDropdown"><span id="seoLanguageLabel">EN</span><svg class="language-chevron-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="language-globe-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.8 10h14.4M10 2.5c2 2 3 4.5 3 7.5s-1 5.5-3 7.5c-2-2-3-4.5-3-7.5s1-5.5 3-7.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="top-menu-dropdown seo-language-dropdown" id="seoLanguageDropdown" role="menu" aria-label="Language" hidden></div>
-      <label class="sr-only" for="seoLanguageSelect">Language</label><select class="sr-only-select" id="seoLanguageSelect" aria-label="Language" tabindex="-1" aria-hidden="true"><option value="en">EN</option><option value="zh">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">ES</option><option value="de">DE</option><option value="fr">FR</option><option value="ja">日本語</option><option value="pt">PT</option><option value="it">IT</option><option value="ru">RU</option><option value="ko">한국어</option><option value="nl">NL</option><option value="id">ID</option><option value="sv">SV</option><option value="no">NO</option></select></div>
-      <div class="top-menu-menu seo-menu-wrap"><button class="top-menu-menu-button" id="seoMenuButton" type="button" title="Menu" aria-label="Menu" aria-expanded="false" aria-controls="seoMenuDropdown"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button><div class="top-menu-dropdown seo-menu-dropdown" id="seoMenuDropdown" hidden><div class="top-menu-page-header">Menu</div><div class="seo-menu-account" role="status">Checking account…</div><div class="top-menu-about-wrap seo-menu-about-wrap"><button class="top-menu-dropdown-item" id="seoAboutButton" type="button" aria-expanded="false" aria-controls="seoAboutDetails">About</button><div class="top-menu-about-tooltip" id="seoAboutDetails" hidden><p>DiveAtlas is an interactive map for exploring dive sites and regions alongside reef extent, coral and fish records, bathymetry, and ocean conditions.</p><p class="top-menu-about-copyright">© 2026 DiveAtlas. Original DiveAtlas code, text, and design; third-party materials remain under their own terms.</p></div></div><button class="top-menu-dropdown-item" id="seoContactButton" type="button">Contact</button><div class="top-menu-version" data-version="0.0.1" aria-label="DiveAtlas version 0.0.1">v0.0.1</div></div></div>
-    </div>'''
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a>{seo_site_search_markup()}{controls}</header>
+    body = f'''{site_header_fallback()}
 <div class="seo-menu-backdrop" id="seoMenuBackdrop" hidden></div>
 <main class="detail-page {photo_class}" data-site-id="{html_text(site["site_id"])}" data-canonical-id="{html_text(site.get("canonical_id", site["site_id"]))}" data-identity-members="{html_text(",".join(site.get("identity_members", [site["site_id"]])))}">
   <section class="site-hero" aria-labelledby="site-title">
@@ -1093,7 +1062,7 @@ def generate_site_page(
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=25" defer></script><script src="/js/dive-conditions-chart.js?v=53" defer></script><script src="/js/site-recommendations.js?v=19" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=12" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=27" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=26" defer></script><script src="/js/dive-conditions-chart.js?v=53" defer></script><script src="/js/site-recommendations.js?v=19" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=13" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=28" defer></script>'''
     html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
     return title_base, html
 
@@ -1151,7 +1120,7 @@ def generate_region_page(
         title = title_base
         canonical = url
         description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+    body = f'''{site_header_fallback()}
 <main>
   <h1>Dive Sites in {html_text(region)}</h1>
   {breadcrumbs}
@@ -1175,7 +1144,7 @@ def site_directory_page(sites: list[dict[str, object]], page: int = 1) -> str:
     start = (page - 1) * LIST_PAGE_SIZE
     visible_sites = ordered_sites[start:start + LIST_PAGE_SIZE]
     site_items = item_list(visible_sites, recommendation_card_link)
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+    body = f'''{site_header_fallback()}
 <main class="region-browser">
   <h1>Explore dive sites</h1>
   <section class="site-recommendations site-directory-recommendations" aria-label="Dive sites"><div class="site-recommendations__content"><ul class="site-recommendations__combined dive-site-directory-list">{site_items}</ul></div>{pagination_nav(page, page_count, total, "/dive-sites/", "/dive-sites", "Dive-site pages")}</section>
@@ -1205,7 +1174,7 @@ def region_directory_page(
     region_items = item_list(visible_groups, lambda group: destination_photo_card(
         group, photos_by_path[str(group["path"])]
     ))
-    body = f'''<header class="site-header"><a href="/" class="brand"><img src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"></a></header>
+    body = f'''{site_header_fallback()}
 <main class="region-browser">
   <h1>Dive sites by destination</h1>
   <p class="lead">Explore destination pages grouped from recorded dive-site locations. Full photo source, creator, and license details appear with each destination image.</p>

@@ -304,7 +304,8 @@ test('one shared shell renders two different IDs and keeps share/map links site-
   });
   await page.goto(`/dive-site.html?id=example-reef-${FIRST}`);
   await expect(page.locator('h1')).toHaveText('Example reef');
-  await expect(page.locator('.facts-section')).toContainText('12 / 25 m (unknown meaning)');
+  await expect(page.locator('.facts-section')).toContainText('12 / 25 m');
+  await expect(page.locator('.facts-section .depth-info-button')).toBeVisible();
   await expect(page.locator('.facts-section')).toContainText('Beginner');
   const locationBreadcrumbs = page.locator('nav.breadcrumbs[aria-label="Breadcrumb"] a');
   await expect(locationBreadcrumbs).toHaveText(['Regions', 'Asia', 'South-Eastern Asia', 'Indonesia', 'Raja Ampat']);

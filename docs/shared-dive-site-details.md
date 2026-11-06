@@ -235,3 +235,13 @@ evidence is retained. These compatibility checks do not use names or coordinates
 to infer identity and do not modify the rating calculation or map failure logic.
 
 The browser presents provenance in a native, initially collapsed disclosure. A short localized source-details line stays visible, with an unresolved marker when applicable. The full explanation and source records appear inside the disclosure. Generated explanations and field labels follow Chinese/English selection; source names, raw experience labels, URLs, IDs, dates and numeric values are retained. Switching back to English restores the original notes. An untyped depth is omitted from the compact facts only when that same value has an explicitly recorded maximum or typical meaning; both observations remain in the evidence. Unknown depth meanings use the shared info icon and an overlay tooltip, without changing the fact grid layout.
+
+## Shared glass controls
+
+`assets/liquid-glass.css` owns the translucent material for header search, mobile photo upload, footer social buttons, and the monthly-rating popup in both themes. `assets/seo.css` imports it for generated and shared detail pages and browse headers; the map entry point loads it directly. All use the same tokens. Component styles retain sizing, placement, icons, and focus behavior.
+
+To reuse the material, add `class="glass-surface"` to a control or its decorative surface, then supply its dimensions, radius, text color, and keyboard focus indicator in the component stylesheet. For example: `<button class="glass-surface my-control">Explore</button>`. Keep labels fully opaque; apply glass to the surface rather than setting opacity on the whole control. Current legacy controls are explicitly mapped in the shared stylesheet so their markup and event handlers remain intact.
+
+Adjust the `--glass-*` tokens there to refine the material across controls. The tint remains when backdrop blur is unsupported. Default controls use opaque panels and no blur under reduced-transparency preferences. The explicitly tuned detail photo and chart surfaces retain their requested tint, and the chart retains its requested blur. Reduced-motion preferences disable material transitions. This is a CSS interpretation of Apple’s material guidance, not native optical refraction.
+
+The shared top-bar layout, lifecycle, and build coverage are documented in [Shared site header](shared-site-header.md).

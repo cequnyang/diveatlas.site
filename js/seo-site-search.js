@@ -1,5 +1,7 @@
-(() => {
+(async () => {
   'use strict';
+  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=1');
+  window.DiveAtlasHeader.mount();
 
   const slot = document.getElementById('seoSiteSearchSlot');
   const section = document.getElementById('seoSiteSearchSection');
