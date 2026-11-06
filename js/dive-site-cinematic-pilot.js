@@ -11,7 +11,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=93';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=97';
   if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -75,6 +75,43 @@
   panel.append(surface);
   document.body.append(panel);
   trigger.setAttribute('aria-haspopup', 'dialog');
+
+  // Fetch only the inspected site's published summary, not every card's full
+  // record. Cache across cloned/filter-rebuilt cards and preserve link clicks.
+  const summaryCache = new Map();
+  async function revealSummary(event) {
+    if (!immersionPilot || (event.type === 'pointerover' && event.pointerType !== 'mouse')) return;
+    const card = event.target.closest('a.site-recommendations__card');
+    if (!card || !panel.contains(card) || card.querySelector('.cinematic-pilot__card-summary')) return;
+    const url = new URL(card.href, location.href);
+    if (url.origin !== location.origin) return;
+    if (!summaryCache.has(url.href)) {
+      summaryCache.set(url.href, (async () => {
+        const id = (url.searchParams.get('id') || url.pathname).match(/[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/i)?.[0];
+        const recordUrl = id && window.DiveAtlasDataAssets?.url(`data/dive-site-details/v1/${id.toLowerCase()}.json`);
+        const response = await fetch(recordUrl || url.href, { signal: AbortSignal.timeout(8000) });
+        if (!response.ok) return '';
+        if (recordUrl) {
+          const record = await response.json();
+          return record.site_id?.toLowerCase() === id.toLowerCase() && typeof record.summary === 'string' ? record.summary : '';
+        }
+        const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+        return doc.querySelector('[data-seo-summary], .intro-details, .site-intro-detail')?.textContent?.trim() || '';
+      })().catch(() => ''));
+    }
+    const text = await summaryCache.get(url.href);
+    if (!text || !card.isConnected || card.querySelector('.cinematic-pilot__card-summary')) return;
+    const summary = document.createElement('span');
+    summary.className = 'cinematic-pilot__card-summary';
+    const name = document.createElement('strong');
+    name.textContent = card.querySelector('.site-recommendations__name')?.textContent || '';
+    const copy = document.createElement('span');
+    copy.textContent = text;
+    summary.append(name, copy);
+    card.append(summary);
+  }
+  panel.addEventListener('pointerover', revealSummary);
+  panel.addEventListener('focusin', revealSummary);
 
   let expandedState = false;
   let previewItems = [];

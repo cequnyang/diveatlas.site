@@ -529,10 +529,25 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
   position: static; z-index: 2; width: 100%; padding: 54px 16px 16px; gap: 6px;
 }
 .cinematic-pilot__recommendations--immersion .site-recommendations__name {
-  white-space: normal; overflow: visible; color: #f0f7fc; font-size: 18px; line-height: 1.3;
+  white-space: normal; overflow: visible; color: #fff; font-size: 20px;
+  font-weight: 750; line-height: 1.2; letter-spacing: -.025em;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 45%);
 }
-.cinematic-pilot__recommendations--immersion .site-recommendations__location,
-.cinematic-pilot__recommendations--immersion .site-recommendations__feature { color: #c4d5e1; }
+.cinematic-pilot__recommendations--immersion .site-recommendations__location {
+  color: #d1dfe9; font-size: 12px; font-weight: 400; line-height: 1.4;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+}
+.cinematic-pilot__recommendations--immersion .site-recommendations__features {
+  gap: 6px; margin-top: 2px;
+}
+.cinematic-pilot__recommendations--immersion .site-recommendations__feature {
+  padding: 3px 7px; border: 0; border-radius: 5px;
+  background: rgb(125 222 218 / 14%); color: #b8eeeb;
+  font-size: 10px; font-weight: 650; letter-spacing: .06em; line-height: 1.3;
+}
+.cinematic-pilot__recommendations--immersion .site-recommendations__feature + .site-recommendations__feature::before {
+  content: none;
+}
 .cinematic-pilot__recommendations--immersion .site-recommendations__rating {
   /* The font's numeral ink sits below its line-box center. Shift the ink up
      2px while preserving the badge's total height and outer position. */
@@ -553,7 +568,29 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
 .cinematic-pilot__recommendations--immersion li a.site-recommendations__card:is(:hover, :focus-visible) {
   background: #102a3b; box-shadow: 0 16px 32px rgb(0 0 0 / 28%);
 }
-.cinematic-pilot__recommendations--immersion li a.site-recommendations__card:is(:hover, :focus-visible) .site-recommendations__name { color: #a3eeeb; }
+.cinematic-pilot__recommendations--immersion li a.site-recommendations__card:is(:hover, :focus-visible) .site-recommendations__name { color: #b8d4ff; }
 @media (prefers-reduced-motion: reduce) {
   .cinematic-pilot__recommendations--immersion li a.site-recommendations__card { transition: none; transform: none; }
 }
+/* Summaries are an inspection layer; touch retains the direct card link. */
+.cinematic-pilot__card-summary {
+  position: absolute; z-index: 2; inset: 72px 16px 14px; opacity: 0;
+  pointer-events: none; color: #eff6fb; display: flex; flex-direction: column;
+  gap: 8px; transition: opacity .18s ease;
+}
+.cinematic-pilot__card-summary strong { font-size: 18px; line-height: 1.2; }
+.cinematic-pilot__card-summary > span {
+  font-size: 12px; line-height: 1.5; display: -webkit-box;
+  -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):focus::after {
+  background: linear-gradient(180deg, rgb(6 18 27 / 45%), rgb(6 18 27 / 96%));
+}
+.cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):focus .site-recommendations__card-body { opacity: 0; }
+.cinematic-pilot__recommendations--immersion .site-recommendations__card:focus .cinematic-pilot__card-summary { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):hover::after { background: linear-gradient(180deg, rgb(6 18 27 / 45%), rgb(6 18 27 / 96%)); }
+  .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):hover .site-recommendations__card-body { opacity: 0; }
+  .cinematic-pilot__recommendations--immersion .site-recommendations__card:hover .cinematic-pilot__card-summary { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .cinematic-pilot__card-summary { transition: none; } }

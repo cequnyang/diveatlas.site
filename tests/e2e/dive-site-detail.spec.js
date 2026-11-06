@@ -74,6 +74,30 @@ test('detail menu hides sign-in when session lookup fails', async ({ page }) => 
   await expect(page.locator('#authSignOutButton')).toBeHidden();
 });
 
+test('related card inspection loads and caches the linked site summary', async ({ page, hasTouch }) => {
+  let inspectedRequests = 0;
+  await page.route('**/data/dive-site-details/v1/*.json', route => {
+    const inspected = route.request().url().includes(SECOND);
+    if (inspected) inspectedRequests++;
+    return route.fulfill({ json:record(inspected ? SECOND : FIRST, inspected ? 'Second reef' : 'Example reef') });
+  });
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  expect(inspectedRequests).toBe(0);
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
+  const card = page.locator('#cinematicRecommendations a.site-recommendations__card').first();
+  if (hasTouch) await card.focus(); else await card.hover();
+  const summary = card.locator('.cinematic-pilot__card-summary');
+  await expect(summary).toContainText('A published description.');
+  await expect(summary).toHaveCSS('opacity', '1');
+  await card.blur();
+  await page.mouse.move(0, 0);
+  await expect(summary).toHaveCSS('opacity', '0');
+  await card.focus();
+  await expect(summary).toHaveCSS('opacity', '1');
+  expect(inspectedRequests).toBe(1);
+  await expect(card).toHaveAttribute('href', new RegExp(SECOND));
+});
+
 test('Malpelo cinematic pilot opens a full-page explorer with the thumbnail cards first', async ({ page }) => {
   const pilotRecord = record(MALPELO_PILOT, 'Malpelo');
   pilotRecord.related = Array.from({ length:4 }, (_, index) => ({
