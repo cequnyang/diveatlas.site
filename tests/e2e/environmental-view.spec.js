@@ -285,7 +285,8 @@ test('Layers palette follows the active site theme without changing its layout',
   const popover = page.locator('#temperatureInfoPopover');
   await expect(popover).toBeVisible();
   await expect(popover).toHaveAttribute('data-theme', 'light');
-  await expect(popover).toHaveCSS('background-color', 'rgb(247, 249, 252)');
+  await expect(popover).toHaveCSS('background-color', 'color(srgb 1 1 1 / 0.9)');
+  await expect(popover).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
 
   const light = await page.evaluate(() => {
     const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
@@ -295,7 +296,7 @@ test('Layers palette follows the active site theme without changing its layout',
     });
     const panel = document.querySelector('#bioLegend');
     const style = getComputedStyle(panel);
-    return { geometry, primary: style.getPropertyValue('--text-primary').trim(), scheme: style.colorScheme, surface: style.backgroundImage };
+    return { geometry, primary: style.getPropertyValue('--text-primary').trim(), scheme: style.colorScheme, surface: getComputedStyle(panel, '::before').backgroundColor };
   });
   expect(light.primary).toBe('#202b3a');
   expect(light.scheme).toBe('light');
@@ -305,7 +306,8 @@ test('Layers palette follows the active site theme without changing its layout',
   await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
   await page.locator('#temperatureInfoAbout').click();
   await expect(popover).toHaveAttribute('data-theme', 'dark');
-  await expect(popover).toHaveCSS('background-color', 'rgb(22, 27, 34)');
+  await expect(popover).toHaveCSS('background-color', 'color(srgb 0.0862745 0.105882 0.133333 / 0.9)');
+  await expect(popover).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
   const dark = await page.evaluate(() => {
     const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
     const geometry = selectors.map(selector => {
@@ -319,7 +321,7 @@ test('Layers palette follows the active site theme without changing its layout',
       geometry,
       primary: style.getPropertyValue('--text-primary').trim(),
       scheme: style.colorScheme,
-      surface: style.backgroundImage,
+      surface: getComputedStyle(panel, '::before').backgroundColor,
       panelBackground: style.getPropertyValue('--layers-panel-background').trim(),
       menuBackground: style.getPropertyValue('--layers-menu-background').trim(),
       selectorBackground: selector.backgroundColor,

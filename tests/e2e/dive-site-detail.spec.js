@@ -392,7 +392,12 @@ test('uses the configured cloud URL and treats record text as text', async ({ pa
 
 test('invalid IDs do not request a record', async ({ page }) => {
   let requests = 0;
-  page.on('request', request => { if (request.url().includes('/data/dive-site-details/')) requests++; });
+  page.on('request', request => {
+    const pathname = new URL(request.url()).pathname;
+    // Error pages still initialize navigation, which loads the shared catalog.
+    // That catalog is not a per-site record derived from the invalid ID.
+    if (pathname.includes('/data/dive-site-details/') && pathname !== '/data/dive-site-details/v2/recommendations.json') requests++;
+  });
   await page.goto('/dive-site.html?id=../../private');
   await expect(page.locator('h1')).toHaveText('Choose a dive site');
   expect(requests).toBe(0);
