@@ -519,7 +519,7 @@
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=24',
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=25',
       '/js/dive-conditions-chart.js?v=53', '/js/site-recommendations.js?v=19',
       '/js/dive-site-rating-card.js?v=27']) {
       try { await loadScript(src); }

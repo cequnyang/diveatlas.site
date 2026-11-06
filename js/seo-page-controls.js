@@ -1,4 +1,13 @@
 (() => {
+  // Detail and browse headers historically shipped a static unavailable label.
+  // Reuse the map's session handling so all entry points report real state.
+  const account = document.querySelector('.seo-menu-account');
+  if (account && !document.getElementById('authMenuStatus')) {
+    account.innerHTML = '<div id="authMenuStatus" role="status" aria-live="polite">Checking account…</div><a class="top-menu-dropdown-item" id="googleSignInLink" hidden>Sign in with Google</a><button class="top-menu-dropdown-item" id="authSignOutButton" type="button" hidden>Sign out</button>';
+    const auth = document.createElement('script');
+    auth.src = '/js/auth-ui.js';
+    document.head.append(auth);
+  }
   if (document.body.classList.contains('seo-site-detail-layout') && !document.getElementById('seoSiteSearchSlot')) {
     const header = document.querySelector('body > .site-header');
     const controls = header?.querySelector('.seo-top-menu-controls');
@@ -107,7 +116,7 @@
     }
     return new Promise(resolve => {
       const script = document.createElement('script');
-      script.src = '/js/dive-site-detail-i18n.js?v=10';
+      script.src = '/js/dive-site-detail-i18n.js?v=11';
       script.onload = resolve;
       script.onerror = resolve;
       document.head.append(script);

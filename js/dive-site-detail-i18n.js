@@ -5,6 +5,10 @@
   // Each row follows the language order above so the shared detail page can
   // localize its fixed UI without duplicating its rendering templates.
   const rows = [
+    ['Checking account…', ['正在检查账户…', 'Comprobando cuenta…', 'Konto wird geprüft…', 'Vérification du compte…', 'アカウントを確認中…', 'Verificando conta…', 'Verifica account…', 'Проверка аккаунта…', '계정 확인 중…', 'Account controleren…', 'Memeriksa akun…', 'Kontrollerar konto…', 'Kontrollerer konto…']],
+    ['Not signed in', ['未登录', 'Sin sesión iniciada', 'Nicht angemeldet', 'Non connecté', '未ログイン', 'Não conectado', 'Accesso non effettuato', 'Вход не выполнен', '로그인하지 않음', 'Niet ingelogd', 'Belum masuk', 'Inte inloggad', 'Ikke pålogget']],
+    ['Sign in with Google', ['使用 Google 登录', 'Iniciar sesión con Google', 'Mit Google anmelden', 'Se connecter avec Google', 'Google でログイン', 'Entrar com Google', 'Accedi con Google', 'Войти через Google', 'Google로 로그인', 'Inloggen met Google', 'Masuk dengan Google', 'Logga in med Google', 'Logg på med Google']],
+    ['Sign out', ['退出登录', 'Cerrar sesión', 'Abmelden', 'Se déconnecter', 'ログアウト', 'Sair', 'Esci', 'Выйти', '로그아웃', 'Uitloggen', 'Keluar', 'Logga ut', 'Logg ut']],
     ['Keep exploring', [
       '继续探索', 'Sigue explorando', 'Weiter entdecken', 'Continuer à explorer',
       '探索を続ける', 'Continue a explorar', 'Continua a esplorare', 'Продолжить исследование',

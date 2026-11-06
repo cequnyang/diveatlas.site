@@ -81,6 +81,7 @@ playwright-report/
 !/tests/unit/
 /tests/unit/*
 !/tests/unit/test_dive_site_details.py
+!/tests/unit/test_release_menu_version.py
 !/tests/unit/test_dive_site_region_enrichment.py
 !/tests/unit/test_dive_site_location_enrichment.py
 !/tests/unit/dive-conditions-service-metadata.test.js

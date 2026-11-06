@@ -308,7 +308,7 @@ def normalize_app_version(value: str | None) -> str:
     return version
 
 
-def render_app_version(index_path: Path, version: str) -> None:
+def render_app_version(index_path: Path, version: str, *, required: bool = True) -> None:
     """Write the release version into the menu label in the deployable copy."""
     index = index_path.read_text(encoding="utf-8")
     pattern = re.compile(
@@ -319,9 +319,10 @@ def render_app_version(index_path: Path, version: str) -> None:
         rf'\g<1>{version}\g<2>{version}\g<3>v{version}\g<4>',
         index,
     )
-    if replacements != 1:
-        raise SystemExit("Expected exactly one top-menu version label in index.html")
-    index_path.write_text(rendered, encoding="utf-8")
+    if replacements != 1 and (required or replacements):
+        raise SystemExit(f"Expected exactly one top-menu version label in {index_path}")
+    if replacements:
+        index_path.write_text(rendered, encoding="utf-8")
 
 
 def render_r2_startup_manifests(index_path: Path, data_asset_base_url: str | None) -> None:
@@ -427,6 +428,11 @@ def main() -> None:
         total_bytes += destination.stat().st_size
 
     render_app_version(output / "index.html", app_version)
+    # Static detail/permalink menus and the JS-created browse header must show
+    # the same release as the map, rather than their source-template baseline.
+    for relative in paths:
+        if (relative.suffix == ".html" and relative != Path("index.html")) or relative == Path("js/seo-browse-header.js"):
+            render_app_version(output / relative, app_version, required=False)
     render_r2_startup_manifests(output / "index.html", data_asset_base_url)
     copy_seconds = time.perf_counter() - copy_started
 

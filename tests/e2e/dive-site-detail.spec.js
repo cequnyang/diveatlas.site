@@ -20,6 +20,35 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
 });
 
+test('detail menu uses real session state and supports sign out', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:null } }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('#authMenuStatus')).toHaveText('Not signed in');
+  await page.locator('#seoMenuButton').click();
+  await expect(page.locator('#googleSignInLink')).toBeVisible();
+  await expect(page.locator('#googleSignInLink')).toHaveAttribute('href', '/api/auth/google');
+  await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:{ name:'Test Diver', email:'diver@example.com' } } }));
+  await page.route('**/api/auth/logout', route => route.fulfill({ json:{ success:true } }));
+  await page.reload();
+  await expect(page.locator('#authMenuStatus')).toContainText('Test Diver');
+  await page.locator('#seoMenuButton').click();
+  await expect(page.locator('#googleSignInLink')).toBeHidden();
+  await page.locator('#authSignOutButton').click();
+  await expect(page.locator('#authMenuStatus')).toHaveText('Not signed in');
+  await expect(page.locator('#googleSignInLink')).toBeVisible();
+});
+
+test('detail menu hides sign-in when session lookup fails', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.route('**/api/auth/me', route => route.fulfill({ status:503 }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('#authMenuStatus')).toHaveText('Account sign-in is unavailable');
+  await page.locator('#seoMenuButton').click();
+  await expect(page.locator('#googleSignInLink')).toBeHidden();
+  await expect(page.locator('#authSignOutButton')).toBeHidden();
+});
+
 test('Malpelo cinematic pilot opens a full-page explorer with the thumbnail cards first', async ({ page }) => {
   const pilotRecord = record(MALPELO_PILOT, 'Malpelo');
   pilotRecord.related = Array.from({ length:4 }, (_, index) => ({
