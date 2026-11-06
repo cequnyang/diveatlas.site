@@ -68,11 +68,13 @@
   close.textContent = '×';
   close.setAttribute('aria-label', 'Close');
   close.className = 'cinematic-pilot__close';
-  header.append(title, close);
+  header.append(title);
   const surface = document.createElement('div');
   surface.className = 'cinematic-pilot__recommendations-surface';
   surface.append(header, recommendations);
-  panel.append(surface);
+  // Keep dismissal outside the scroller. The dialog's glass creates a fixed
+  // containing block, so a fixed child of a scrolling dialog can still move.
+  panel.append(surface, close);
   document.body.append(panel);
   trigger.setAttribute('aria-haspopup', 'dialog');
 
@@ -211,7 +213,7 @@
       refreshPreview();
       panel.inert = false;
       panel.showModal();
-      panel.scrollTop = 0;
+      surface.scrollTop = 0;
       document.body.classList.add('cinematic-pilot--exploring');
       window.dispatchEvent(new Event('resize'));
     } else {

@@ -171,6 +171,36 @@ test('Malpelo cinematic pilot opens a full-page explorer with the thumbnail card
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
+test('recommendations close button stays in the visible top-right while scrolling', async ({ page }) => {
+  // A short viewport forces overflow even before desktop's Load more action.
+  await page.setViewportSize({ ...page.viewportSize(), height:400 });
+  const data = record(MALPELO_PILOT, 'Malpelo');
+  data.related = Array.from({ length:12 }, (_, index) => ({
+    site_id:`${index + 2}a532e42-9890-4ea9-b239-0f5fbb836317`,
+    name:`Related reef ${index}`, region:'Raja Ampat', photo:{ src:'/assets/favicon-brand.ico' }
+  }));
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:data }));
+  await page.goto(`/dive-site.html?id=${MALPELO_PILOT}`);
+  const trigger = page.getByRole('button', { name:/^Keep exploring/ });
+  await trigger.click();
+  const panel = page.locator('#cinematicRecommendations');
+  await expect.poll(() => panel.evaluate(el => el.getAnimations().length)).toBe(0);
+  const close = panel.getByRole('button', { name:'Close', exact:true });
+  const before = await close.boundingBox();
+  expect(before.x + before.width).toBeGreaterThan(page.viewportSize().width - 60);
+  const scroll = panel.locator('.cinematic-pilot__recommendations-surface');
+  await expect(scroll).toHaveCSS('scrollbar-width', 'none');
+  expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar').display)).toBe('none');
+  await scroll.evaluate(el => el.scrollTop = el.scrollHeight);
+  expect(await scroll.evaluate(el => el.scrollTop)).toBeGreaterThan(100);
+  const after = await close.boundingBox();
+  expect(after.x).toBeCloseTo(before.x, 0);
+  expect(after.y).toBeCloseTo(before.y, 0);
+  await close.click();
+  await expect(panel).toBeHidden();
+  await expect(trigger).toBeFocused();
+});
+
 test('cinematic pilot handles rapid reversals and reduced motion without stale panels', async ({ page }) => {
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record(MALPELO_PILOT, 'Malpelo') }));
   await page.goto(`/dive-site.html?id=${MALPELO_PILOT}`);

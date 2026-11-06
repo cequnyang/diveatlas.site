@@ -170,7 +170,7 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 .cinematic-pilot--no-photo .site-photo-feature { display: none; }
 .cinematic-pilot__recommendations {
   position: fixed; inset: 0; width: 100dvw; min-width: 0; max-width: 100dvw; height: 100dvh; max-height: none;
-  margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow-x: hidden; overflow-y: auto;
+  margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow: hidden;
   overscroll-behavior: contain;
 }
 .cinematic-pilot__recommendations::backdrop { background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(5px); }
@@ -182,7 +182,7 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 html:has(body.cinematic-pilot--exploring),
 body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot__recommendations-surface {
-  width: min(1120px, calc(100% - 64px)); min-height: 100%; margin: 0 auto; padding: 0 0 32px;
+  width: min(1120px, calc(100% - 64px)); height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; overscroll-behavior: contain; margin: 0 auto; padding: 0 0 32px;
   background: color-mix(in srgb, var(--bg) 92%, transparent); color: var(--text);
 }
 .cinematic-pilot__recommendations-header { position: relative; top: auto; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; margin-bottom: 18px; border-bottom: 0; background: var(--bg); }
@@ -503,9 +503,13 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 /* The title scrolls normally; the independent dismiss action stays reachable. */
 .cinematic-pilot__recommendations .cinematic-pilot__close {
   position: fixed; z-index: 20; top: 24px;
-  right: max(12px, calc((100dvw - 1120px) / 2 - 56px));
+  right: max(16px, env(safe-area-inset-right));
 }
 .cinematic-pilot__recommendations-header { padding-right: 52px; }
+/* Keep the full-page explorer visually quiet without disabling wheel, touch
+   or keyboard scrolling. Override the site's shared visible-scrollbar style. */
+body .cinematic-pilot__recommendations-surface { scrollbar-width: none !important; }
+body .cinematic-pilot__recommendations-surface::-webkit-scrollbar { display: none !important; }
 @media (max-width: 720px) {
   .cinematic-pilot__recommendations .cinematic-pilot__close { top: 16px; right: 16px; }
 }

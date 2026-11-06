@@ -278,12 +278,12 @@ body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) {
   --scrollbar-glass-thumb-hover: color-mix(in srgb, var(--muted, #64748b) 50%, transparent);
   scrollbar-color: var(--scrollbar-glass-thumb) transparent !important;
 }
-:is(html, body *):not(.environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
+:is(html, body *):not(.cinematic-pilot__recommendations-surface, .environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
   scrollbar-width: thin !important;
 }
 @supports selector(::-webkit-scrollbar) {
   :root, body * { scrollbar-color: auto !important; }
-  :is(html, body *):not(.environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
+  :is(html, body *):not(.cinematic-pilot__recommendations-surface, .environment-segment-group, .temperature-scroll-wheel-list, .bio-legend-layers, .site-recommendations__tablist, .leaflet-popup.dive-conditions-popup:has(.dive-experience-popup-content) .leaflet-popup-content) {
     /* Standard properties otherwise suppress Chromium's pseudo-elements. */
     scrollbar-width: auto !important;
   }
