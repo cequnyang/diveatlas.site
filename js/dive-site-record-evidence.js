@@ -155,6 +155,10 @@ function presentEvidence(section) {
   // including SSR links when the optional evidence request is unavailable.
   const sources = section.closest('main')?.querySelector('.source-section');
   if (sources && sources.parentElement !== details) details.insertBefore(sources, details.querySelector('.record-evidence-metadata'));
+  // Indexed pages and the live shell initialize in different orders. Keep the
+  // disclosure last in main; the conditions module inserts after the facts.
+  const page = section.closest('main');
+  if (page && page.lastElementChild !== section) page.append(section);
 }
 
 export async function enhanceRecordedEvidence() {

@@ -483,7 +483,7 @@
 })();
 
 // Shared detail pages load these controls after DOMContentLoaded.
-const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js?v=2').then(module => module.enhanceRecordedEvidence());
+const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js?v=3').then(module => module.enhanceRecordedEvidence());
 if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', refreshRecordEvidence, { once:true });
 else refreshRecordEvidence();
 

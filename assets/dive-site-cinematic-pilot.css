@@ -129,7 +129,7 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 .cinematic-pilot #detailPage > :not(.site-hero) { width: calc(100% - 80px); max-width: 980px; margin-inline: auto; }
 body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)); margin-inline: auto; margin-top: 18px; }
 .cinematic-pilot > .site-detail-footer::before { inset: 0 auto auto 50%; width: var(--viewport-inline-size, 100vw); transform: translateX(-50%); }
-.cinematic-pilot #detailPage > .intro-details { margin-top: 28px; margin-bottom: 24px; font-size: 16px; line-height: 1.8; }
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail) { margin-top: 28px; margin-bottom: 24px; font-size: 16px; line-height: 1.8; }
 .cinematic-pilot .facts-section { padding: 22px 0; border-top: 0; }
 .cinematic-pilot .fact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; }
 .cinematic-pilot .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
@@ -210,7 +210,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
   .cinematic-pilot__trigger { font-size: 12px; }
   .cinematic-pilot #detailPage > :not(.site-hero) { width: calc(100% - 40px); }
   body.cinematic-pilot > .site-detail-footer { width: calc(100% - 40px); }
-  .cinematic-pilot #detailPage > .intro-details { font-size: 15px; }
+  .cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail) { font-size: 15px; }
   .cinematic-pilot .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
   .cinematic-pilot .site-photo-gallery-rail { grid-template-columns: minmax(0, 1fr) clamp(88px, 26%, 140px); grid-template-rows: minmax(110px, auto); gap: 14px; }
   .cinematic-pilot .site-photo-gallery-rating__trend { left: 0; right: auto; width: min(560px, calc(100vw - 40px)); height: 260px; padding: 18px 18px 30px; }
@@ -232,13 +232,15 @@ body.cinematic-pilot--exploring { overflow: hidden; }
   .cinematic-pilot__trigger:active { transform: none; }
 }
 
+/* Generated permalinks use site-intro-detail; the live shell uses intro-details.
+   Keep both in the same surface rules so source summaries align with facts. */
 /* Each meaningful section owns a surface; the hero and page remain unframed.
    Keep the original nodes/parents so chart and evidence modules still bind. */
 .cinematic-pilot .site-photo-gallery-rail {
   gap: 18px; margin-block: 8px 0; padding-bottom: 0; border-bottom: 0; grid-template-rows: minmax(122px, auto);
 }
 .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-map,
-.cinematic-pilot #detailPage > .intro-details,
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail),
 .cinematic-pilot #detailPage > .enrichment-guide,
 .cinematic-pilot #detailPage > .facts-section,
 .cinematic-pilot #detailPage > .monthly-conditions-section,
@@ -248,7 +250,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 }
 .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-rating { padding: 22px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-map { border-radius: 14px; }
-.cinematic-pilot #detailPage > .intro-details,
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail),
 .cinematic-pilot #detailPage > .enrichment-guide,
 .cinematic-pilot #detailPage > .facts-section,
 .cinematic-pilot #detailPage > .monthly-conditions-section,
@@ -260,12 +262,12 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 /* Keep the intro anchor and facts parent intact for enrichment/chart modules,
    while presenting their adjacent surfaces as one continuous card. */
 .cinematic-pilot #detailPage > .enrichment-guide:has(+ .facts-section),
-.cinematic-pilot #detailPage > .intro-details:not([hidden]):has(+ .facts-section) {
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail):not([hidden]):has(+ .facts-section) {
   margin-bottom: 0; padding-bottom: 12px; border-bottom: 0;
   border-radius: 14px 14px 0 0; box-shadow: none;
 }
 .cinematic-pilot #detailPage > .enrichment-guide + .facts-section,
-.cinematic-pilot #detailPage > .intro-details:not([hidden]) + .facts-section {
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail):not([hidden]) + .facts-section {
   margin-top: 0; padding-top: 12px; border-top: 0; border-radius: 0 0 14px 14px;
 }
 .cinematic-pilot #detailPage.detail-page > .record-evidence {
@@ -275,21 +277,21 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 @media (max-width: 720px) {
   .cinematic-pilot .site-photo-gallery-rail { gap: 12px; }
   .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-rating { padding: 16px 12px; }
-  .cinematic-pilot #detailPage > .intro-details,
+  .cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail),
   .cinematic-pilot #detailPage > .enrichment-guide,
   .cinematic-pilot #detailPage > .facts-section,
   .cinematic-pilot #detailPage > .monthly-conditions-section,
   .cinematic-pilot #detailPage > .record-evidence { padding: 18px; }
   .cinematic-pilot #detailPage > .enrichment-guide:has(+ .facts-section),
-  .cinematic-pilot #detailPage > .intro-details:not([hidden]):has(+ .facts-section) { padding-bottom: 10px; }
+  .cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail):not([hidden]):has(+ .facts-section) { padding-bottom: 10px; }
   .cinematic-pilot #detailPage > .enrichment-guide + .facts-section,
-  .cinematic-pilot #detailPage > .intro-details:not([hidden]) + .facts-section { padding-top: 10px; }
+  .cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail):not([hidden]) + .facts-section { padding-top: 10px; }
 }
 
 /* 980px content plus 40px gutters: below this, card frames consume reading
    space without providing separation from a surrounding desktop canvas. */
 @media (max-width: 1060px) {
-  .cinematic-pilot #detailPage.detail-page > :is(.intro-details, .enrichment-guide, .facts-section, .monthly-conditions-section, .record-evidence) {
+  .cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail, .enrichment-guide, .facts-section, .monthly-conditions-section, .record-evidence) {
     border: 0; border-radius: 0; background: transparent; box-shadow: none;
     padding: 0; margin-block: 16px 0;
   }
@@ -339,7 +341,21 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 .cinematic-pilot #detailPage.detail-page > .record-evidence { margin-top: 8px; }
 
 .cinematic-pilot #detailPage.detail-page > .record-evidence > details { margin: 0; }
-.cinematic-pilot #detailPage.detail-page > .record-evidence > details > summary { padding-block: 0; }
+.cinematic-pilot #detailPage.detail-page > .record-evidence > details > summary {
+  min-height: 44px; box-sizing: border-box; padding: 10px 0;
+  grid-template-columns: 16px minmax(0, 1fr); gap: 10px;
+  border: 0; border-radius: 0; background: transparent;
+}
+.cinematic-pilot .record-evidence > details > summary .record-evidence-action {
+  font-size: 14px; color: var(--text); justify-content: flex-start;
+}
+.cinematic-pilot .record-evidence > details > summary:hover .record-evidence-action { color: var(--primary); }
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail) {
+  line-height: 1.7; overflow-wrap: anywhere;
+}
+.cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail) > [data-seo-summary] {
+  display: inline-block; max-width: 80ch;
+}
 
 @media (max-width: 720px) {
   /* The rating may wrap into two rows; do not stretch the map with that row. */
