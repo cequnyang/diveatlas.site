@@ -1,4 +1,6 @@
 const { test, expect } = require('@playwright/test');
+// Headless Chromium normally hides native scrollbars, masking header gaps.
+test.use({ launchOptions:{ ignoreDefaultArgs:['--hide-scrollbars'] } });
 
 test('glass popup interactions do not reach the map underneath', async ({ page, hasTouch }) => {
   const { openMap, setMapView, mapState, waitForClickResolution } = require('./support');
@@ -116,6 +118,44 @@ for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/desti
     await expect(page.locator('.shared-site-header')).toHaveCount(1);
   });
 }
+
+test.describe('shared header native scrollbar edge', () => {
+  for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/destinations/', '/plain-page-fixture.html']) {
+    test(`header fills the scrollbar edge on ${path}`, async ({ page }) => {
+      await page.goto(path);
+      await expect(page.locator('.shared-site-header')).toBeVisible();
+      await page.addStyleTag({ content:'html { overflow-y:scroll !important; } * { transition:none !important; }' });
+      for (const theme of ['light', 'dark']) {
+        const geometry = await page.evaluate(theme => {
+          document.documentElement.dataset.theme = theme;
+          const root = document.documentElement;
+          const header = document.querySelector('.shared-site-header').getBoundingClientRect();
+          return {
+            gutter:innerWidth - root.clientWidth,
+            clientWidth:root.clientWidth,
+            header:{ left:header.left, right:header.right, top:header.top, height:header.height },
+            background:getComputedStyle(root, '::-webkit-scrollbar').backgroundImage,
+            offset:getComputedStyle(root, '::-webkit-scrollbar-track').marginTop
+          };
+        }, theme);
+        expect(geometry.header.left).toBe(0);
+        expect(geometry.header.top).toBe(0);
+        expect(geometry.header.right).toBeCloseTo(geometry.clientWidth, 0);
+        expect(geometry.header.height).toBe(42);
+        expect(geometry.background).toContain('linear-gradient');
+        expect(geometry.background).toContain('42px');
+        expect(geometry.offset).toBe('42px');
+        if (geometry.gutter > 0) {
+          const clip = { x:geometry.clientWidth, y:0, width:geometry.gutter, height:40 };
+          const painted = await page.screenshot({ clip });
+          const override = await page.addStyleTag({ content:'html:has(> body.has-shared-header)::-webkit-scrollbar { background:magenta !important; }' });
+          expect(painted.equals(await page.screenshot({ clip })), 'native gutter paints the header material').toBe(false);
+          await override.evaluate(el => el.remove());
+        }
+      }
+    });
+  }
+});
 
 for (const theme of ['light', 'dark']) {
   test(`overlay surface inventory has visible glass and contains map input in ${theme}`, async ({ page }) => {

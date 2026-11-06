@@ -1,6 +1,18 @@
 /* One fixed rail for map, detail, directory and document pages. */
 body.shared-header-document { padding-top: 49px; }
 
+@supports selector(::-webkit-scrollbar) {
+  /* Fixed rails stop at the native scrollbar gutter. Continue their material
+     there on every shared-header page, including standalone documents that
+     have not loaded the glass stylesheet. The track begins below the rail. */
+  html:has(> body.has-shared-header)::-webkit-scrollbar {
+    background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--panel-solid, #fff) 90%, var(--bg, #fff)) 0 42px,
+      transparent 42px) !important;
+  }
+  html:has(> body.has-shared-header)::-webkit-scrollbar-track { margin-top: 42px; }
+}
+
 body.has-shared-header .shared-site-header {
   position: fixed;
   z-index: 1300;
