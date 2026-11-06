@@ -195,6 +195,15 @@ body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) .dive-filter-p
 .cinematic-pilot .site-photo-upload-button::before {
   --glass-filter: blur(8px) saturate(145%);
 }
+/* Keep explicitly requested control glass independent of the OS fallback,
+   including hover fills; otherwise the search capsule becomes fully solid. */
+.glass-surface,
+body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
+.cinematic-pilot .site-footer-share .share-action-icon {
+  --glass-filter: blur(8px) saturate(145%);
+  --glass-tint: color-mix(in srgb, var(--panel-solid) 25%, transparent);
+  --glass-active-tint: color-mix(in srgb, var(--panel-solid) 40%, transparent);
+}
 body.has-shared-header :is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown) :is(.top-menu-page-header, .language-page-header),
 body .map-view-legend .map-view-legend-toggle {
   background: transparent;
@@ -210,9 +219,17 @@ body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) {
   background: transparent;
 }
 body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) :is(select, .dive-filter-picker) {
-  background: color-mix(in srgb, var(--panel-solid) 40%, transparent);
-  border-color: var(--glass-border);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%);
+  background: color-mix(in srgb, var(--panel-solid) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
+  border-radius: 10px;
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%), 0 1px 3px rgb(15 23 42 / 6%);
+}
+/* Give selectors a visible edge against their glass shell without adding
+   another backdrop root that would trap the option-list blur. */
+body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) :is(select, .dive-filter-picker):is(:hover, :focus-visible, [aria-expanded="true"]) {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border-color: var(--primary);
 }
 .glass-surface,
 body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
