@@ -156,6 +156,13 @@ html body.cinematic-pilot .hero-copy .site-title-share {
 }
 /* The icon sits on a theme-tinted surface, so use theme text rather than the
    hero's photo-overlay white. Keep the fill stable during hover as well. */
+html body.cinematic-pilot .hero-copy .site-title-share {
+  /* Compact controls over photos need the lighter photo-action tint; the
+     dense menu tint masks almost all of the image at this size. */
+  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 30%, transparent);
+  --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 8%), transparent 48%);
+  border-radius: 8px;
+}
 html[data-theme] body.cinematic-pilot .hero-copy .site-title-share {
   color: var(--text);
   text-shadow: none;
