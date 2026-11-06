@@ -431,7 +431,8 @@ test('rating chart collapse retains the release frame without flashing back open
     return route.fulfill({ contentType:'text/html', body:`
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <style>${source('assets/seo.css')}</style>
-      <style>.site-photo-gallery-rating{position:absolute;top:100px;left:20px;width:220px;height:108px}</style>
+      <style>.site-photo-gallery-rating{position:absolute;top:100px;left:20px;width:220px;height:108px}.site-photo-gallery-rating__trend{height:260px}</style>
+      <body class="cinematic-pilot">
       <section class="site-photo-gallery-rating" data-rating-lat="1" data-rating-lng="1" tabindex="0">
         <div>Rating</div><div class="site-photo-gallery-rating__score">Loading</div>
         <div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart"></div></div>
@@ -494,6 +495,50 @@ test('rating chart collapse retains the release frame without flashing back open
   }
 });
 
+
+for (const theme of ['light', 'dark']) {
+  test(`rating popup visibly blurs the background in ${theme} theme`, async ({ page, hasTouch }) => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const source = relative => fs.readFileSync(path.resolve(__dirname, '../..', relative), 'utf8');
+    await page.setViewportSize({ width:390, height:844 });
+    await page.emulateMedia({ reducedMotion:'reduce' });
+    await page.route('http://rating-glass.test/**', route => {
+      const url = route.request().url();
+      if (url.includes('dive-site-rating-card.js')) return route.fulfill({ contentType:'text/javascript', body:source('js/dive-site-rating-card.js') });
+      if (url.includes('dive-experience-outlook-map.js')) return route.fulfill({ contentType:'text/javascript', body:'window.DiveAtlasDiveExperienceMap={createDataStore(){return {sample:async()=>({score:82,label:"Good"})}}}' });
+      return route.fulfill({ contentType:'text/html', body:`
+        <html data-theme="${theme}"><meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>${source('assets/seo.css')}</style><style>${source('assets/liquid-glass.css')}</style>
+        <style>.site-photo-gallery-rating{position:absolute;top:100px;left:20px;width:220px;height:108px;container-type:inline-size}
+        .site-photo-gallery-rating__trend{height:260px}
+        .backing{position:absolute;top:208px;left:0;width:100%;height:1200px;background:repeating-linear-gradient(90deg,#102030 0 2px,#fff 2px 4px)}</style>
+        <body class="cinematic-pilot"><section class="site-photo-gallery-rating" data-rating-lat="1" data-rating-lng="1" tabindex="0">
+        <div>Rating</div><div class="site-photo-gallery-rating__score">Loading</div>
+        <div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart"></div></div>
+        </section><div class="backing"></div><script src="/js/dive-site-rating-card.js"></script></body></html>` });
+    });
+    await page.goto('http://rating-glass.test/');
+    const card = page.locator('.site-photo-gallery-rating');
+    const panel = page.locator('.site-photo-gallery-rating__trend');
+    await expect(card.locator('.site-photo-gallery-rating__score')).toHaveAttribute('data-status', 'ready');
+    if (hasTouch) await card.tap(); else await card.hover();
+    await expect(panel.locator('svg')).toBeVisible();
+    expect(await panel.evaluate(el => el.matches(':popover-open'))).toBe(true);
+    const blurred = await panel.screenshot({ animations:'disabled' });
+    await panel.evaluate(el => el.style.setProperty('backdrop-filter', 'none', 'important'));
+    const unblurred = await panel.screenshot({ animations:'disabled' });
+    // Computed backdrop-filter alone missed the original compositing failure.
+    // Rendering the same fixed backing must actually produce different pixels.
+    expect(blurred.equals(unblurred)).toBe(false);
+    expect(unblurred.equals(await panel.screenshot({ animations:'disabled' }))).toBe(true);
+    await panel.evaluate(el => el.style.removeProperty('backdrop-filter'));
+    expect(blurred.equals(await panel.screenshot({ animations:'disabled' }))).toBe(true);
+    const before = await panel.boundingBox();
+    await page.evaluate(() => window.scrollBy(0, 25));
+    await expect.poll(async () => (await panel.boundingBox()).y).toBeCloseTo(before.y - 25, 0);
+  });
+}
 
 test('record evidence preserves multiple levels and unknown depths on shared pages', async ({ page }, testInfo) => {
   const notes = ['Recorded experience labels are source reports, not verified suitability.',

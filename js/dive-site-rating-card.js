@@ -43,6 +43,35 @@
   const trendPanel = card.querySelector('.site-photo-gallery-rating__trend');
   const trendTitle = card.querySelector('.site-photo-gallery-rating__trend-title');
   const trendChart = card.querySelector('.site-photo-gallery-rating__trend-chart');
+  const useGlassLayer = document.body.classList.contains('cinematic-pilot') && typeof trendPanel.showPopover === 'function';
+  function positionGlassLayer() {
+    if (!useGlassLayer || !trendPanel.matches(':popover-open')) return;
+    const anchor = card.getBoundingClientRect();
+    const mobile = matchMedia('(max-width: 720px)').matches;
+    const width = Math.min(560, mobile ? innerWidth - 40 : anchor.width);
+    Object.assign(trendPanel.style, {
+      left: `${mobile ? anchor.left : anchor.right - width}px`,
+      top: `${anchor.bottom}px`, width: `${width}px`
+    });
+  }
+  function openGlassLayer() {
+    if (!useGlassLayer) return;
+    // A nested panel can report backdrop-filter while sampling only its card's
+    // paint group. The native top layer samples the page beneath it, while the
+    // unchanged DOM parent preserves hover, focus, and drag event delegation.
+    if (!trendPanel.matches(':popover-open')) {
+      const height = trendPanel.getBoundingClientRect().height || parseFloat(trendPanel.style.height) || 260;
+      trendPanel.setAttribute('popover', 'manual');
+      Object.assign(trendPanel.style, { position:'fixed', inset:'auto', margin:'0', height:`${height}px` });
+      trendPanel.showPopover();
+    }
+    positionGlassLayer();
+  }
+  if (useGlassLayer) {
+    window.addEventListener('scroll', positionGlassLayer, { passive:true });
+    window.addEventListener('resize', positionGlassLayer, { passive:true });
+    if ('ResizeObserver' in window) new ResizeObserver(positionGlassLayer).observe(card);
+  }
   const trendHandle = document.createElement('button');
   trendHandle.className = 'site-photo-gallery-rating__trend-handle';
   trendHandle.type = 'button';
@@ -365,7 +394,18 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) return;
     trendPanel.style.clipPath = trendClip(0);
     card.classList.remove('is-trend-dismissed');
+    if (useGlassLayer) card.classList.add('show-rating-trend');
+    openGlassLayer();
     void loadRatingTrend(ratingStore);
+  });
+  const leaveGlassLayer = event => {
+    if (!useGlassLayer || event.pointerType !== 'mouse' || trendDragStartY != null || trendCollapseAnimation || trendReturnAnimation) return;
+    if (!card.contains(event.relatedTarget)) card.classList.remove('show-rating-trend');
+  };
+  card.addEventListener('pointerleave', leaveGlassLayer);
+  trendPanel.addEventListener('pointerleave', leaveGlassLayer);
+  card.addEventListener('focusout', event => {
+    if (useGlassLayer && !card.contains(event.relatedTarget)) card.classList.remove('show-rating-trend');
   });
   // Closing a captured drag produces pointerleave and can leave the handle focused.
   // Keep dismissal through those events; only a fresh pointer or keyboard entry reopens it.
@@ -374,6 +414,10 @@
     if (!card.contains(event.relatedTarget) && trendDragStartY == null && !trendCollapseAnimation && !trendReturnAnimation) {
       trendPanel.style.clipPath = trendClip(0);
       card.classList.remove('is-trend-dismissed');
+      // Touch focuses the card before its click toggles the panel; setting the
+      // open class here would make that first tap immediately close it again.
+      if (useGlassLayer && matchMedia('(hover: hover)').matches) card.classList.add('show-rating-trend');
+      openGlassLayer();
     }
     void loadRatingTrend(ratingStore);
   });
@@ -384,6 +428,7 @@
       trendPanel.style.clipPath = trendClip(0);
       card.classList.remove('is-trend-dismissed');
       card.classList.toggle('show-rating-trend');
+      if (card.classList.contains('show-rating-trend')) openGlassLayer();
       void loadRatingTrend(ratingStore);
     }
   });

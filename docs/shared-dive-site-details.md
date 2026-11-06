@@ -245,3 +245,5 @@ To reuse the material, add `class="glass-surface"` to a control or its decorativ
 Adjust the `--glass-*` tokens there to refine the material across controls. The tint remains when backdrop blur is unsupported. Default controls use opaque panels and no blur under reduced-transparency preferences. The explicitly tuned detail photo and chart surfaces retain their requested tint, and the chart retains its requested blur. Reduced-motion preferences disable material transitions. This is a CSS interpretation of Apple’s material guidance, not native optical refraction.
 
 The shared top-bar layout, lifecycle, and build coverage are documented in [Shared site header](shared-site-header.md).
+
+The monthly-rating popup uses the browser top layer when available so its backdrop blur can sample page sections outside the rating card. It stays in the original DOM subtree to preserve focus and drag handlers, and tracks the card on scroll and resize. Browsers without the popover API retain the inline popup. Rendering regressions compare blurred/unblurred pixels as well as computed styles.
