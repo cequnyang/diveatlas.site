@@ -39,6 +39,31 @@ test('detail menu uses real session state and supports sign out', async ({ page 
   await expect(page.locator('#googleSignInLink')).toBeVisible();
 });
 
+test('photo immersion pilot is visible by default and retains card links and credits', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  const panel = page.locator('#cinematicRecommendations');
+  await expect(panel).toHaveClass(/recommendations--immersion/);
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
+  const card = panel.locator('a.site-recommendations__card').first();
+  await expect(card).toBeVisible();
+  const href = await card.getAttribute('href');
+  expect(href).toContain(SECOND);
+  await expect(card).toHaveCSS('border-top-width', '0px');
+  await expect(card).toHaveCSS('height', '198px');
+  await expect(card).toHaveCSS('border-radius', '13px');
+  await card.evaluate(el => {
+    const image = document.createElement('img');
+    image.className = 'site-recommendations__image';
+    image.title = 'Example photographer · CC BY 3.0';
+    el.prepend(image);
+  });
+  await expect(card.locator('img.site-recommendations__image')).toHaveAttribute('title', 'Example photographer · CC BY 3.0');
+  await expect(card.locator('.cinematic-pilot__card-credit')).toHaveCount(0);
+  await page.goto(`/dive-site.html?id=${FIRST}&relatedStyle=classic`);
+  await expect(page.locator('#cinematicRecommendations')).not.toHaveClass(/recommendations--immersion/);
+});
+
 test('detail menu hides sign-in when session lookup fails', async ({ page }) => {
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
   await page.route('**/api/auth/me', route => route.fulfill({ status:503 }));

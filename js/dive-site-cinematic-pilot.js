@@ -11,7 +11,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=78';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=93';
   if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -54,6 +54,9 @@
   const panel = document.createElement('dialog');
   panel.id = 'cinematicRecommendations';
   panel.className = 'cinematic-pilot__recommendations';
+  // Show the selected pilot on ordinary detail links; retain a comparison URL.
+  const immersionPilot = new URLSearchParams(location.search).get('relatedStyle') !== 'classic';
+  panel.classList.toggle('cinematic-pilot__recommendations--immersion', immersionPilot);
   panel.setAttribute('aria-labelledby', 'cinematicRecommendationsTitle');
   const header = document.createElement('div');
   header.className = 'cinematic-pilot__recommendations-header';
