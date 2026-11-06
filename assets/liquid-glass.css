@@ -20,7 +20,12 @@
   --glass-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), inset 0 -1px 0 rgb(255 255 255 / 8%), 0 3px 12px rgb(0 0 0 / 12%);
 }
 .cinematic-pilot .site-photo-gallery-rating__trend,
+body .share-dialog,
+body .site-photo-upload-modal .site-suggestion-dialog,
+html body.cinematic-pilot .hero-copy .site-title-share,
 body :is(#seoSiteSearchResults, #diveSearchResults),
+body.has-shared-header :is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown),
+body :is(.dive-filter-options, #bioLegend, .map-zoom-buttons, .map-current-location, .map-view-legend, .map-view-legend-collapsed-button),
 .glass-surface,
 body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
 .cinematic-pilot .site-footer-share .share-action-icon,
@@ -46,12 +51,137 @@ body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
   --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 18%), transparent 48%, rgb(255 255 255 / 4%));
   box-shadow: var(--glass-shadow), var(--shadow);
 }
-/* One backdrop for both search columns: an opaque filter column would hide
-   the material. Cap the tint at 90% and keep highlights below that cap. */
-body :is(#seoSiteSearchResults, #diveSearchResults) {
+/* Dense navigation surfaces share a 90% tint and 8px blur for legibility.
+   Disable highlight overlays so their combined opacity cannot exceed the cap. */
+body :is(#seoSiteSearchResults, #diveSearchResults),
+body.has-shared-header :is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown),
+body :is(.dive-filter-options, #bioLegend, .map-zoom-buttons, .map-current-location, .map-view-legend, .map-view-legend-collapsed-button) {
   --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
   --glass-filter: blur(8px) saturate(145%);
   --glass-highlight: none;
+}
+/* Enumerate overlay shells rather than matching every class containing
+   "popup": chart marks, previews and form fields must keep their own fills.
+   The dialog ID gives these adapters precedence over component theme rules. */
+body :is(#siteSuggestionDialog,
+  .site-suggestion-dialog, .contact-dialog, .seo-dialog, .tutorial-dialog,
+  .about-info-dialog, .leaflet-popup-content-wrapper, .leaflet-tooltip,
+  .depth-meaning-unknown, .temperature-info-popover,
+  .dive-conditions-info-popover, .dive-experience-info-popover,
+  .site-photo-upload-policy-popover, .dive-location-coordinate-tooltip,
+  .dive-popup-sources__tooltip, .dive-conditions-sources-tooltip,
+  .dive-conditions-reef-sources-tooltip, .dive-experience-month-inspection-tooltip,
+  .monthly-conditions-tooltip,
+  .top-menu-about-tooltip, .bio-legend-overflow-menu, .dive-layer-filter-menu,
+  .cinematic-pilot__recommendations, .dive-photo-preview,
+  .site-photo-gallery-rating__trend,
+  .mobile-map-credits-button, .mobile-map-credits-panel) {
+  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  --glass-filter: blur(8px) saturate(145%);
+  --glass-highlight: none;
+  background: var(--glass-surface-tint);
+  border-color: var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  box-shadow: var(--glass-shadow);
+  color: var(--text);
+}
+/* These surfaces are already inside a glass shell; a second fill would make
+   the sheet opaque, and a second blur would hide the requested 8px effect. */
+body .cinematic-pilot__recommendations :is(.cinematic-pilot__recommendations-surface, .cinematic-pilot__recommendations-header),
+body .leaflet-popup-content-wrapper > .leaflet-popup-content {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body .leaflet-popup-tip {
+  background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+}
+/* Mobile Layers paints a separate opaque heading in both expanded and
+   collapsed states. Expose the outer panel's glass instead of stacking tints. */
+body #bioLegend .bio-legend-heading {
+  background: transparent;
+}
+/* Put panel glass on a sibling paint layer, not an ancestor backdrop root.
+   The overflow menu can then sample the map without turning off title blur. */
+body #bioLegend {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body #bioLegend::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass-surface-tint);
+  -webkit-backdrop-filter: blur(8px) saturate(145%);
+  backdrop-filter: blur(8px) saturate(145%);
+  pointer-events: none;
+  content: '';
+}
+/* Highlight interactive sheet rows without replacing the sheet's sampled
+   backdrop with a solid panel-soft fill. The outer sheet owns the 8px blur. */
+body .leaflet-popup :is(.dive-popup-rating, .dive-experience-metric-row--linked):is(:hover, :active, :focus-visible) {
+  background: color-mix(in srgb, var(--primary) 9%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+body .leaflet-popup .dive-experience-metric-row--no-detail:is(:hover, :active) {
+  background: transparent;
+  box-shadow: none;
+}
+/* Mobile sheets keep the requested 90% tint on the inner wrapper while the
+   outer viewport surface owns the blur. */
+@media (max-width: 720px) {
+  /* Blur at the viewport sheet boundary, outside Leaflet's clipped content
+     wrapper, so the backdrop includes map controls beneath the whole sheet. */
+  body .leaflet-popup:is(.diveatlas-mobile-sheet, .dive-conditions-rating-sheet) {
+    -webkit-backdrop-filter: blur(8px) saturate(145%);
+    backdrop-filter: blur(8px) saturate(145%);
+    border-radius: 18px 18px 0 0;
+  }
+  body :is(#map, .diveatlas-mobile-sheet, .dive-conditions-rating-sheet) > .leaflet-popup-content-wrapper {
+    --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+    background: var(--glass-surface-tint);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+body .share-dialog,
+body .site-photo-upload-modal .site-suggestion-dialog,
+html body.cinematic-pilot .hero-copy .site-title-share {
+  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  --glass-filter: blur(8px) saturate(145%);
+  --glass-highlight: none;
+}
+/* The icon sits on a theme-tinted surface, so use theme text rather than the
+   hero's photo-overlay white. Keep the fill stable during hover as well. */
+html[data-theme] body.cinematic-pilot .hero-copy .site-title-share {
+  color: var(--text);
+  text-shadow: none;
+}
+html body.cinematic-pilot .hero-copy .site-title-share:is(:hover, :focus-visible) {
+  border-color: var(--glass-active-border);
+  background: var(--glass-surface-tint);
+}
+/* Sticky drawer headings and zoom links share their parent's backdrop rather
+   than painting an opaque layer or blurring the same map twice. */
+/* A backdrop-filter on the header makes it a backdrop root: nested menus
+   cannot sample the page below it. Let the open menu own the blur instead. */
+body.has-shared-header .shared-site-header:has(:is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown):not([hidden])) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+body.has-shared-header :is(#topMenuDropdown, #languageDropdown, #seoMenuDropdown, #seoLanguageDropdown) :is(.top-menu-page-header, .language-page-header),
+body .map-view-legend .map-view-legend-toggle {
+  background: transparent;
+}
+body .leaflet-control-zoom .map-zoom-buttons a {
+  /* Leaflet's existing zoom-link fill is important in the map stylesheet. */
+  background: transparent !important;
+}
+body .leaflet-control-zoom .map-zoom-buttons a:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--primary) 12%, transparent) !important;
 }
 body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) {
   background: transparent;
@@ -85,6 +215,26 @@ body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box:focus-withi
   body :is(#seoSiteSearchSection, #diveSearchSection) .dive-search-box,
   .cinematic-pilot .site-footer-share .share-action-icon,
   .cinematic-pilot .site-photo-upload-button::before { transition: none; }
+}
+@media (hover: none) and (pointer: coarse), (max-width: 720px) {
+  /* Match the detail-page photo action's material without changing the map
+     popup's placement, touch target, or upload handler. */
+  body .dive-site-popup--with-photo .dive-popup-photo-label--upload::before {
+    --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 30%, transparent);
+    --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 8%), transparent 48%);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-highlight), var(--glass-surface-tint);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
+    box-shadow: var(--glass-shadow);
+  }
+  :root:not([data-theme="dark"]) body .dive-site-popup--with-photo .dive-popup-photo-label--upload {
+    color: #334155;
+    text-shadow: none;
+  }
+  :root:not([data-theme="dark"]) body .dive-site-popup--with-photo .dive-popup-photo-label--upload:focus-visible {
+    outline-color: #475569;
+  }
 }
 @media (prefers-reduced-transparency: reduce) {
   :root, :root[data-theme="dark"] { --glass-tint: var(--panel-solid); --glass-active-tint: var(--panel-solid); --glass-filter: none; }

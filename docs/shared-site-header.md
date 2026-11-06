@@ -4,6 +4,17 @@ The map, detail pages, directories, regions, destinations, and plain documents u
 the same desktop/mobile header rail. Change its layout once in
 `assets/site-header.css`; change document header markup once in `js/site-header.js`.
 The shared Liquid Glass material remains in `assets/liquid-glass.css`.
+Header menu drawers and dropdowns, custom filter option lists, and floating map
+controls use a 90% theme tint with 8px backdrop blur. Apply the material to the
+outer surface; keep drawer headings and zoom links transparent to avoid covering
+or blurring the backdrop twice. These explicitly tuned surfaces retain their
+requested tint and blur under reduced-transparency preferences, like the rating
+popup; the root fallback still applies to other shared glass controls.
+The same dense material covers dialog and popover shells and mobile map credits.
+Mobile sheets blur at the outer viewport surface and tint the inner wrapper;
+the Layers panel uses a separate backing layer so its overflow menu can blur the
+map independently. Interactive sheet rows use a translucent blue highlight.
+Photo-upload actions retain the detail page's lighter 30% tint.
 
 ## Use on a page
 
