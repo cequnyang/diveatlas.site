@@ -69,9 +69,10 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 .cinematic-pilot .site-title-row h1 { flex: 0 1 auto; }
 .cinematic-pilot .site-title-row > .cinematic-pilot__trigger { margin-left: auto; }
 .cinematic-pilot .site-title-share { color: #fff; }
-/* Light mode blends the hero into the page instead of retaining a dark scrim. */
+/* Keep the light scrim translucent through the title area so photo detail
+   survives; reserve the opaque page-color blend for the bottom edge. */
 :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-gallery-main::after {
-  background: linear-gradient(180deg, transparent 25%, rgb(255 255 255 / 18%) 48%, rgb(255 255 255 / 90%) 82%, var(--bg) 100%);
+  background: linear-gradient(180deg, transparent 28%, rgb(255 255 255 / 12%) 48%, rgb(255 255 255 / 38%) 72%, rgb(255 255 255 / 68%) 90%, var(--bg) 100%);
 }
 :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-gallery-main {
   background: radial-gradient(ellipse at 50% 20%, rgb(115 207 221 / 24%), transparent 75%), var(--bg);
@@ -170,12 +171,15 @@ body.cinematic-pilot > .site-detail-footer { width: min(980px, calc(100% - 80px)
 .cinematic-pilot__recommendations {
   position: fixed; inset: 0; width: 100dvw; min-width: 0; max-width: 100dvw; height: 100dvh; max-height: none;
   margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow-x: hidden; overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .cinematic-pilot__recommendations::backdrop { background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(5px); }
 .cinematic-pilot__flying-photo {
   position: fixed; top: 0; left: 0; z-index: 10; object-fit: cover;
   transform-origin: top left; pointer-events: none; box-shadow: 0 12px 28px rgb(0 0 0 / 25%);
 }
+/* The document root owns page scrolling; locking only body can leave it scrollable. */
+html:has(body.cinematic-pilot--exploring),
 body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot__recommendations-surface {
   width: min(1120px, calc(100% - 64px)); min-height: 100%; margin: 0 auto; padding: 0 0 32px;
@@ -215,7 +219,11 @@ body.cinematic-pilot--exploring { overflow: hidden; }
   .cinematic-pilot__recommendations-surface { width: calc(100% - 32px); padding: 0 0 24px; }
   .cinematic-pilot__recommendations-header { padding: 16px 0; }
   .cinematic-pilot__recommendations .site-recommendations__content ul { grid-template-columns: minmax(0, 1fr); }
-  .cinematic-pilot__trigger { gap: 12px; min-height: 60px; }
+  .cinematic-pilot__recommendations li a.site-recommendations__card { gap: 10px; padding: 10px; }
+  .cinematic-pilot__recommendations .site-recommendations__image { aspect-ratio: 2 / 1; max-height: 160px; }
+  .cinematic-pilot__recommendations .site-recommendations__card-body { gap: 6px; padding: 0 2px 4px; }
+  .cinematic-pilot__trigger { gap: 0; min-height: 44px; padding: 0 6px; }
+  .cinematic-pilot__trigger-copy { display: none; }
   .cinematic-pilot__stack > * { flex-basis: 34px; width: 34px; height: 44px; }
   .cinematic-pilot--no-photo .hero-copy { padding: 32px 22px; }
 }
@@ -314,7 +322,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
 .cinematic-pilot .record-evidence :is(.record-evidence-metadata, .enrichment-evidence) li { padding-bottom: 10px; }
 .cinematic-pilot .record-evidence .enrichment-evidence h4 { font-size: 14px; margin: 18px 0 8px; }
 
-.cinematic-pilot .record-evidence-action { display: inline-flex; align-items: center; gap: 6px; }
+.cinematic-pilot .record-evidence-action { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
 .cinematic-pilot .record-evidence-action::after {
   content: ''; flex: 0 0 auto; width: 0; height: 0;
   /* Optical alignment with the font's visible letters, below line-box center. */
@@ -396,6 +404,40 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   /* Keep contribution actions below the representative-image badge and away
      from the title/explorer cluster at the foot of the hero. */
   .cinematic-pilot .site-photo-upload-button { top: auto; right: auto; bottom: 30px; left: 22px; }
+  /* Blur only the decorative surface so the label stays crisp. The tint
+     remains a usable fallback in browsers without backdrop-filter. */
+  .cinematic-pilot .site-photo-upload-button {
+    padding: 0 14px; font-size: 14px; font-weight: 500;
+  }
+  .cinematic-pilot .site-photo-upload-button::before {
+    height: 40px; border-color: rgb(255 255 255 / 50%);
+    background: linear-gradient(155deg, rgb(255 255 255 / 22%), transparent 48%, rgb(255 255 255 / 6%)), rgb(16 38 51 / 25%);
+    -webkit-backdrop-filter: blur(12px) saturate(145%);
+    backdrop-filter: blur(12px) saturate(145%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), inset 0 -1px 0 rgb(255 255 255 / 8%), 0 3px 12px rgb(0 0 0 / 12%);
+    transition: background-color .18s ease, border-color .18s ease;
+  }
+  .cinematic-pilot .site-photo-upload-button:hover::before,
+  .cinematic-pilot .site-photo-upload-button:focus-visible::before {
+    border-color: rgb(255 255 255 / 75%); background-color: rgb(16 38 51 / 40%);
+  }
+  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button {
+    color: #334155; text-shadow: none;
+  }
+  /* The pale hero fade provides contrast, allowing the photo to show through
+     the button without reducing the opacity of its text or outline. */
+  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button::before {
+    border-color: rgb(255 255 255 / 75%);
+    background: linear-gradient(155deg, rgb(255 255 255 / 50%), transparent 48%, rgb(255 255 255 / 10%)), rgb(255 255 255 / 25%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(100 116 139 / 14%), 0 3px 12px rgb(15 23 42 / 10%);
+  }
+  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:hover::before,
+  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:focus-visible::before {
+    border-color: rgb(255 255 255 / 95%); background-color: rgb(255 255 255 / 40%);
+  }
+  :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:focus-visible {
+    outline-color: #475569;
+  }
 }
 
 /* Paint the scrim across the viewport rather than on the content column, so
@@ -417,9 +459,6 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 
 /* Contrast belongs to the overlay as well as the text: maps and photographs
    can contain either bright or dark detail underneath the same title. */
-:root:not([data-theme="dark"]) .cinematic-pilot .site-photo-gallery-main::after {
-  background: linear-gradient(180deg, transparent 20%, rgb(255 255 255 / 42%) 45%, rgb(255 255 255 / 88%) 68%, var(--bg) 100%);
-}
 :root:not([data-theme="dark"]) .cinematic-pilot .hero-copy :is(h1, .breadcrumbs, .site-title-share, .cinematic-pilot__trigger) {
   color: #102333; text-shadow: 0 1px 3px rgb(255 255 255 / 75%);
 }
@@ -437,6 +476,11 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 
 @media (max-width: 720px) {
   .cinematic-pilot .site-hero:has(.site-photo-upload-button) .hero-copy { bottom: 92px; }
+  /* The title stays above the action row: 92px - 62px aligns the stack with
+     the upload button's 30px bottom inset, without moving either control. */
+  .cinematic-pilot .site-hero:has(.site-photo-upload-button) .cinematic-pilot__trigger {
+    position: absolute; right: 0; bottom: -62px;
+  }
 }
 
 .cinematic-pilot .site-photo-gallery-rating__trend {

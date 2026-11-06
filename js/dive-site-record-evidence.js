@@ -11,8 +11,10 @@ const safeUrl = value => {
 function presentDepthNotes(page) {
   page.querySelectorAll('.fact dd').forEach(value => {
     for (const node of [...value.childNodes]) {
-      if (node.nodeType !== Node.TEXT_NODE || !node.textContent.includes('(unknown)')) continue;
-      const parts = node.textContent.split('(unknown)');
+      // Live detail fallbacks use the longer label; generated pages use the
+      // short one. Both describe the same missing source definition.
+      if (node.nodeType !== Node.TEXT_NODE || !/\(unknown(?: meaning)?\)/.test(node.textContent)) continue;
+      const parts = node.textContent.split(/\(unknown(?: meaning)?\)/);
       const fragment = document.createDocumentFragment();
       parts.forEach((part, index) => {
         if (index) {

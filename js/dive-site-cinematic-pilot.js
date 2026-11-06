@@ -11,7 +11,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=68';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=75';
   if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -33,6 +33,7 @@
   const trigger = document.createElement('button');
   trigger.type = 'button';
   trigger.className = 'cinematic-pilot__trigger';
+  trigger.setAttribute('aria-label', 'Keep exploring. More dive sites');
   trigger.setAttribute('aria-controls', 'cinematicRecommendations');
   trigger.setAttribute('aria-expanded', 'false');
   const thumbnails = document.createElement('span');

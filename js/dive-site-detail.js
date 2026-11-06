@@ -513,7 +513,7 @@
       return;
     }
     // Apply appearance before the chart and recommendation modules bind.
-    try { await loadScript('/js/dive-site-cinematic-pilot.js?v=52'); }
+    try { await loadScript('/js/dive-site-cinematic-pilot.js?v=53'); }
     catch (_) { console.warn('Detail appearance could not load.'); }
     // Existing page modules inspect the DOM once at startup. Load them only
     // after the record is rendered so they bind to the correct site and title.
