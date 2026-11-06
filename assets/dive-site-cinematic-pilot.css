@@ -484,3 +484,15 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 
 /* Clip document-level decorative overflow, leaving nested scrollers intact. */
 html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
+
+/* Shared card hover/focus transitions can start as the modal opens on touch
+   devices, even when the explorer's scripted motion is disabled. Respect the
+   preference throughout the modal, including those inherited transitions. */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-pilot__recommendations,
+  .cinematic-pilot__recommendations *,
+  .cinematic-pilot__recommendations *::before,
+  .cinematic-pilot__recommendations *::after {
+    animation: none !important; transition: none !important;
+  }
+}
