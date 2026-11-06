@@ -700,6 +700,12 @@
 
   function navigateTo(site) {
     if (!site) return;
+    // Detail-page search continues browsing records; directory/document search
+    // retains its existing map destination. MapView owns its separate search.
+    if (document.querySelector('main.detail-page')) {
+      window.location.href = `/dive-site.html?id=${encodeURIComponent(site.canonical_id || site.site_id)}`;
+      return;
+    }
     const params = new URLSearchParams({
       site:site.site_id,
       lat:String(site.lat),

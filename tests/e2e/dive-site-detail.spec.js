@@ -74,6 +74,26 @@ test('detail menu hides sign-in when session lookup fails', async ({ page }) => 
   await expect(page.locator('#authSignOutButton')).toBeHidden();
 });
 
+for (const selection of ['click', 'Enter']) {
+  test(`detail search opens the selected record with ${selection}`, async ({ page }) => {
+    await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({
+      json:route.request().url().includes(SECOND) ? record(SECOND, 'Second reef') : record()
+    }));
+    await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
+      json:{ schema:'dive-site-recommendations-v1', sites:[record(SECOND, 'Second reef')] }
+    }));
+    await page.goto(`/dive-site.html?id=${FIRST}`);
+    const input = page.locator('#seoSiteSearchInput');
+    await input.fill('Second reef');
+    const result = page.locator('#seoSiteSearchResults .dive-search-result').first();
+    await expect(result).toContainText('Second reef');
+    if (selection === 'click') await result.click();
+    else { await input.press('ArrowDown'); await input.press('Enter'); }
+    await expect(page).toHaveURL(new RegExp(`/dive-site\\.html\\?id=${SECOND}$`));
+    await expect(page.locator('#site-title')).toHaveText('Second reef');
+  });
+}
+
 test('related card inspection loads and caches the linked site summary', async ({ page, hasTouch }) => {
   let inspectedRequests = 0;
   await page.route('**/data/dive-site-details/v1/*.json', route => {
