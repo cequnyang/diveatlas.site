@@ -607,6 +607,51 @@ test('individual Fish feature opens details without aggregate zoom', async ({ pa
   expect(after.popup.type).toBe('fish');
 });
 
+for (const type of ['fish-point', 'coral-point', 'coral-grid', 'dive-site']) {
+  test(`${type} keeps its pointer when the safe area displaces its popup`, async ({ page }) => {
+    await setMapView(page, -5.7, 131, 14);
+    // A larger inset deterministically exercises vertical correction without
+    // depending on translated control widths or the legend's collapsed state.
+    await page.addStyleTag({ content: ':root { --map-safe-area-top:180px !important; }' });
+    const location = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const point = map.containerPointToLatLng([700, 68]);
+      return { lat: point.lat, lng: point.lng };
+    });
+    await addFixture(page, type, { id: 'displaced-popup', ...location });
+    await clickFixture(page, 'displaced-popup');
+    const popup = page.locator('.leaflet-popup');
+    await expect(popup).toBeVisible();
+    await expect(popup).toHaveClass(/diveatlas-popup-offset/);
+    await expect(popup).toHaveClass(/diveatlas-popup-below/);
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
+      // Inspect the painted surface, rather than the legacy transparent tip:
+      // its mask must include both the body and a visible pointer outside it.
+      const material = await popup.locator('.leaflet-popup-content-wrapper').evaluate(element => {
+        const body = getComputedStyle(element);
+        const surface = getComputedStyle(element, '::before');
+        return {
+          background: body.backgroundColor,
+          masks: surface.maskImage,
+          surfaceBackground: surface.backgroundColor,
+          surfaceDisplay: surface.display,
+          surfaceTop: parseFloat(surface.top),
+          surfaceHeight: parseFloat(surface.height),
+          bodyHeight: element.clientHeight
+        };
+      });
+      expect(material.background).toBe('rgba(0, 0, 0, 0)');
+      await expect(popup.locator('.leaflet-popup-content-wrapper')).toHaveCSS('box-shadow', 'none');
+      expect(material.masks.match(/url\(/g)).toHaveLength(2);
+      expect(material.surfaceBackground).not.toBe('rgba(0, 0, 0, 0)');
+      expect(material.surfaceDisplay).not.toBe('none');
+      expect(material.surfaceTop).toBeLessThan(0);
+      expect(material.surfaceHeight).toBeGreaterThan(material.bodyHeight);
+    }
+  });
+}
+
 test('hidden Coral grid geometry is not clickable after its layer is turned off', async ({ page }) => {
   await addFixture(page, 'coral-grid', { id: 'hidden-grid', lat: -5.7, lng: 131 });
   const point = await fixturePoint(page, 'hidden-grid');

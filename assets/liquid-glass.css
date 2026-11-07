@@ -152,6 +152,58 @@ body .leaflet-popup.diveatlas-popup-below::after {
   -webkit-backdrop-filter:var(--map-popup-filter);
   backdrop-filter:var(--map-popup-filter);
 }
+/* Paint connected map popups once. Separate translucent body/tip paints
+   expose the body's rectangular shadow and independently blurred edges at
+   the join. The mask combines a rounded body with its geographic pointer;
+   keeping it on a pseudo-element leaves content and source popovers unclipped. */
+@media (min-width: 721px) {
+  body #map .leaflet-popup {
+    --map-popup-body-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='6' fill='black'/%3E%3C/svg%3E");
+    --map-popup-pointer-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 12'%3E%3Cpath d='M0 0H24L12 12Z'/%3E%3C/svg%3E");
+    --map-popup-pointer-position: bottom;
+    --map-popup-pointer-size: 24px 12px;
+  }
+  body #map .leaflet-popup.diveatlas-popup-below {
+    --map-popup-pointer-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'%3E%3Cpath d='M0 10L10 0L20 10Z'/%3E%3C/svg%3E");
+    --map-popup-pointer-position: top;
+    --map-popup-pointer-size: 20px 10px;
+  }
+  body #map .leaflet-popup > .leaflet-popup-content-wrapper {
+    position: relative;
+    isolation: isolate;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  :root[data-theme="dark"] body #map .leaflet-popup > .leaflet-popup-content-wrapper {
+    box-shadow: none;
+  }
+  body #map .leaflet-popup > .leaflet-popup-content-wrapper::before {
+    content: '';
+    position: absolute;
+    /* Reserve 10px above and 12px below for the two pointer orientations,
+       plus the wrapper's 1px border on each side. */
+    inset: -11px -1px -13px;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--map-popup-tint);
+    -webkit-backdrop-filter: var(--map-popup-filter);
+    backdrop-filter: var(--map-popup-filter);
+    /* The wrapper's transparent 1px border is included in the body mask.
+       Both masks meet exactly; overlapping tinted elements darken the join. */
+    mask-image: var(--map-popup-body-mask), var(--map-popup-pointer-mask);
+    mask-size: 100% calc(100% - 22px), var(--map-popup-pointer-size);
+    mask-position: center 10px, calc(50% + var(--diveatlas-popup-arrow-offset-x, 0px)) var(--map-popup-pointer-position);
+    mask-repeat: no-repeat;
+  }
+  body #map .leaflet-popup .leaflet-popup-tip,
+  body #map .leaflet-popup.diveatlas-popup-below::after {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 /* Top-layer source panels escape the parent popup/sheet's backdrop root and
    clipping. Their DOM stays inside details for native toggle/focus behavior. */
 body :is(.dive-popup-sources__tooltip, .dive-location-coordinate-tooltip, .tutorial-language-dropdown, .site-photo-upload-policy-popover)[popover] {

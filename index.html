@@ -1366,9 +1366,9 @@
     .leaflet-popup.diveatlas-popup-below .leaflet-popup-tip-container {
       display: none;
     }
-    .leaflet-popup.diveatlas-popup-offset .leaflet-popup-tip-container,
-    .leaflet-popup.diveatlas-popup-offset::before,
-    .leaflet-popup.diveatlas-popup-offset::after { display: none; }
+    /* Safe-area shifts may separate the body from its marker. Keep the
+       directional pointer visible so fish, coral, and other map popups still
+       identify their anchor; mobile sheets suppress pointers separately. */
     .leaflet-popup.diveatlas-popup-below::before,
     .leaflet-popup.diveatlas-popup-below::after {
       content: '';
@@ -2530,7 +2530,8 @@
       }
       .dive-conditions-rating-sheet .leaflet-popup-tip-container,
       .dive-conditions-rating-sheet .leaflet-popup-tip { display:none !important; }
-      .dive-conditions-rating-sheet.diveatlas-popup-below::before { display:none !important; }
+      .dive-conditions-rating-sheet.diveatlas-popup-below::before,
+      .dive-conditions-rating-sheet.diveatlas-popup-below::after { display:none !important; }
       .dive-conditions-rating-sheet .dive-conditions-popup-back {
         position:relative;
         width:28px;
@@ -2619,6 +2620,7 @@
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip-container,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .leaflet-popup-tip,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::before,
+      .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet)::after,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) > .leaflet-popup-close-button,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering,
