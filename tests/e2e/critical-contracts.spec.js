@@ -705,10 +705,14 @@ test('hover tooltip near top edge appears below and never moves the map', async 
   const afterHover = await mapState(page);
   expect(afterHover.center).toEqual(before.center);
   expect(afterHover.zoom).toBe(before.zoom);
-  await expect(tooltip).toHaveScreenshot('hover-tooltip-below-top-edge.png', {
-    animations: 'disabled',
-    maxDiffPixelRatio: 0.12
-  });
+  // Placement is the contract here. Tight text screenshots differ by a pixel
+  // between Chromium/font builds even when the tooltip is positioned correctly.
+  const bounds = await tooltip.boundingBox();
+  expect(bounds.y).toBeGreaterThanOrEqual(point.y);
+  expect(bounds.x).toBeGreaterThanOrEqual(map.x);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(map.x + map.width);
+  expect(bounds.y + bounds.height).toBeLessThanOrEqual(map.y + map.height);
+  await expect(tooltip).toContainText('hover-top');
   await page.mouse.move(map.x + map.width - 40, map.y + map.height - 45);
   await expect(tooltip).toHaveCount(0);
   expect((await mapState(page)).center).toEqual(before.center);

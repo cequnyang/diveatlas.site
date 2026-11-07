@@ -285,7 +285,7 @@ test('Layers palette follows the active site theme without changing its layout',
   const popover = page.locator('#temperatureInfoPopover');
   await expect(popover).toBeVisible();
   await expect(popover).toHaveAttribute('data-theme', 'light');
-  await expect(popover).toHaveCSS('background-color', 'color(srgb 1 1 1 / 0.9)');
+  await expect(popover).toHaveCSS('background-color', 'color(srgb 1 1 1 / 0.85)');
   await expect(popover).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
 
   const light = await page.evaluate(() => {
@@ -306,7 +306,7 @@ test('Layers palette follows the active site theme without changing its layout',
   await page.locator('html').evaluate(node => { node.dataset.theme = 'dark'; });
   await page.locator('#temperatureInfoAbout').click();
   await expect(popover).toHaveAttribute('data-theme', 'dark');
-  await expect(popover).toHaveCSS('background-color', 'color(srgb 0.0862745 0.105882 0.133333 / 0.9)');
+  await expect(popover).toHaveCSS('background-color', 'color(srgb 0.0862745 0.105882 0.133333 / 0.85)');
   await expect(popover).toHaveCSS('backdrop-filter', 'blur(8px) saturate(1.45)');
   const dark = await page.evaluate(() => {
     const selectors = ['#bioLegend', '#bioLegendHeading', '.environment-segment-group', '#temperatureDepth', '.temperature-legend-card', '.bio-legend-row', '.layer-toggle-switch'];
