@@ -146,6 +146,38 @@ test.describe('shared header native scrollbar edge', () => {
         expect(geometry.background).toContain('42px');
         expect(geometry.offset).toBe('42px');
         if (geometry.gutter > 0) {
+          // Verify where the native track/thumb actually paint, rather than
+          // only checking their computed margin. The photo remains full bleed.
+          const markerStyle = await page.addStyleTag({ content:`
+            html:has(> body.has-shared-header)::-webkit-scrollbar-thumb {
+              background:rgb(255 0 0) !important; border:0 !important; border-radius:0 !important;
+            }
+            html:has(> body.has-shared-header)::-webkit-scrollbar-track {
+              background:rgb(0 0 255) !important;
+            }` });
+          const rail = await page.screenshot({ clip:{ x:geometry.clientWidth, y:0,
+            width:geometry.gutter, height:page.viewportSize().height } });
+          const firstPaintedRow = await page.evaluate(async base64 => {
+            const image = new Image();
+            image.src = `data:image/png;base64,${base64}`;
+            await image.decode();
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width; canvas.height = image.height;
+            const context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+            const pixels = context.getImageData(0, 0, image.width, image.height).data;
+            for (let y = 0; y < image.height; y += 1) {
+              for (let x = 0; x < image.width; x += 1) {
+                const offset = (y * image.width + x) * 4;
+                if (pixels[offset + 1] < 10 &&
+                    ((pixels[offset] > 245 && pixels[offset + 2] < 10) ||
+                     (pixels[offset + 2] > 245 && pixels[offset] < 10))) return y;
+              }
+            }
+            return -1;
+          }, rail.toString('base64'));
+          expect(firstPaintedRow, 'native scrolling controls begin below the fixed bar').toBeGreaterThanOrEqual(42);
+          await markerStyle.evaluate(node => node.remove());
           const clip = { x:geometry.clientWidth, y:0, width:geometry.gutter, height:40 };
           const painted = await page.screenshot({ clip });
           const override = await page.addStyleTag({ content:'html:has(> body.has-shared-header)::-webkit-scrollbar { background:magenta !important; }' });

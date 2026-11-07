@@ -1,5 +1,16 @@
 /* One fixed rail for map, detail, directory and document pages. */
 body.shared-header-document { padding-top: 49px; }
+/* The detail page keeps window scrolling, but paints its native scrollbar in
+   a sibling rail below the header rather than reserving a top-bar gutter. */
+html.has-detail-scroll-rail:has(#detailPage) { scrollbar-width: none !important; }
+html.has-detail-scroll-rail::-webkit-scrollbar { display: none !important; width: 0 !important; }
+body.has-shared-header > .detail-scroll-rail {
+  position: fixed; z-index: 1290; top: 42px; right: 0; bottom: 0;
+  width: 6px; overflow-x: hidden; overflow-y: scroll;
+  overscroll-behavior: contain; background: transparent;
+}
+body.has-shared-header > .detail-scroll-rail[hidden] { display: none; }
+.detail-scroll-rail > div { width: 1px; pointer-events: none; }
 
 /* These views provide their own full-bleed backdrop. Reserve space only for
    a text-only hero, so its title remains readable on first load. */
@@ -19,7 +30,7 @@ html:has(> body.cinematic-pilot) { scroll-padding-top: 54px; }
       color-mix(in srgb, var(--panel-solid, #fff) 90%, var(--bg, #fff)) 0 42px,
       transparent 42px) !important;
   }
-  html:has(> body.has-shared-header)::-webkit-scrollbar-track { margin-top: 42px; }
+  html:has(> body.has-shared-header)::-webkit-scrollbar-track { margin-top: 42px !important; margin-bottom: 0 !important; }
 }
 
 body.has-shared-header .shared-site-header {

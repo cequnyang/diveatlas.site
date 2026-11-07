@@ -15,13 +15,63 @@
     header.classList.add('shared-site-header');
     header.dataset.sharedHeaderReady = 'true';
     document.body.classList.add('has-shared-header');
+    if (!map && document.body.classList.contains('seo-site-detail-layout') &&
+        !document.querySelector('.detail-scroll-rail')) {
+      // A document scrollbar reserves a full-height gutter even when its track
+      // has a top margin. Mirror its position into a separate native rail so
+      // the glass header can cover the complete viewport. Window scrolling
+      // remains authoritative for pull gestures and history restoration.
+      const rail = document.createElement('div');
+      rail.className = 'detail-scroll-rail';
+      rail.tabIndex = 0;
+      rail.setAttribute('aria-label', 'Page scroll');
+      const extent = document.createElement('div');
+      extent.setAttribute('aria-hidden', 'true');
+      rail.append(extent);
+      document.body.append(rail);
+      document.documentElement.classList.add('has-detail-scroll-rail');
+      let forwardedScroll = null;
+      let mirroredScroll = null;
+      const updateRail = () => {
+        const headerBottom = Math.max(0, header.getBoundingClientRect().bottom);
+        rail.style.top = `${headerBottom}px`;
+        const height = document.documentElement.scrollHeight;
+        extent.style.height = `${Math.max(0, height - headerBottom)}px`;
+        rail.hidden = height <= innerHeight + 1;
+        // A rail-originated scroll may be a native keyboard/wheel animation.
+        // Echoing it back into scrollTop cancels that animation mid-flight.
+        const fromRail = forwardedScroll != null && Math.abs(scrollY - forwardedScroll) < 0.5;
+        forwardedScroll = null;
+        if (!fromRail && Math.abs(rail.scrollTop - scrollY) >= 0.5) {
+          mirroredScroll = scrollY;
+          rail.scrollTop = scrollY;
+        }
+      };
+      rail.addEventListener('scroll', () => {
+        const fromPage = mirroredScroll != null && Math.abs(rail.scrollTop - mirroredScroll) < 0.5;
+        mirroredScroll = null;
+        if (fromPage) return;
+        if (Math.abs(scrollY - rail.scrollTop) >= 0.5) {
+          forwardedScroll = rail.scrollTop;
+          window.scrollTo({ top:rail.scrollTop, behavior:'instant' });
+        }
+      }, { passive:true });
+      window.addEventListener('scroll', updateRail, { passive:true });
+      window.addEventListener('resize', updateRail);
+      window.addEventListener('pageshow', updateRail);
+      const resize = new ResizeObserver(updateRail);
+      resize.observe(document.documentElement);
+      resize.observe(document.body);
+      resize.observe(header);
+      updateRail();
+    }
     if (map) {
       // Retain native map nodes and IDs: map search and settings own their state.
       for (const [selector, name] of [['.top-menu-brand','brand'],['.top-menu-controls','seo-top-menu-controls'],['.top-menu-lang','seo-language-menu'],['.top-menu-menu','seo-menu-wrap'],['#languageDropdown','seo-language-dropdown'],['#topMenuDropdown','seo-menu-dropdown']]) {
         header.querySelector(selector)?.classList.add(name);
       }
     }
-    stylesheet('/assets/site-header.css?v=6');
+    stylesheet('/assets/site-header.css?v=10');
     window.dispatchEvent(new CustomEvent('diveatlas:header-ready', { detail:{ map } }));
     return header;
   }
@@ -146,7 +196,7 @@
       if (!window.DiveAtlasDataAssets) {
         await loadScript('/js/data-assets-config.js'); await loadScript('/js/data-assets.js');
       }
-      await loadScript('/js/seo-page-controls.js?v=28');
+      await loadScript('/js/seo-page-controls.js?v=29');
       if (!document.querySelector('script[src*="seo-site-search.js"]')) await loadScript('/js/seo-site-search.js?v=14');
       await loadScript('/js/seo-search-catalog-loader.js?v=1');
     })().catch(error => console.error('Shared header could not initialize.', error));

@@ -66,6 +66,13 @@ reuses the Simplified Chinese translation mapping.
 
 ## Verify the mobile map/detail gesture flow
 
+Detail pages keep `window` as the scroll owner for gestures and browser history.
+Their visible scrollbar is a synchronized native rail below the fixed header:
+the document scrollbar is hidden only after that rail is installed. This avoids
+a full-height scrollbar gutter cutting through the glass header while allowing
+the hero photo to scroll behind it. Keep both directions synchronized when
+changing page height, header height or history restoration.
+
 The map sheet grows upward from the viewport bottom while its glass background
 remains on one paint layer. A deliberate 120px pull opens details; pulling down
 at the top of the detail page returns to the map. Short pulls settle back, and

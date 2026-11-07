@@ -20,6 +20,50 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
 });
 
+test('detail scrollbar starts below the header without reserving a header gutter', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await expect(page.locator('.shared-site-header')).toBeVisible();
+  await expect(page.locator('.detail-scroll-rail')).toBeAttached();
+  // Ensure both a narrow and a wide viewport have real overflow to exercise.
+  await page.locator('#detailPage').evaluate(node => { node.style.minHeight = '2400px'; });
+  for (const width of [390, 1280]) {
+    await page.setViewportSize({ width, height:800 });
+    for (const theme of ['light', 'dark']) {
+      await page.locator('html').evaluate((node, theme) => { node.dataset.theme = theme; }, theme);
+      const rail = page.locator('.detail-scroll-rail');
+      await expect(rail).toBeVisible();
+      await expect.poll(() => page.evaluate(() => {
+        const header = document.querySelector('.shared-site-header').getBoundingClientRect();
+        const rail = document.querySelector('.detail-scroll-rail').getBoundingClientRect();
+        const edge = document.elementFromPoint(innerWidth - 1, header.height / 2);
+        return { gutter:innerWidth - document.documentElement.clientWidth,
+          headerRight:header.right, viewport:innerWidth,
+          railTop:rail.top, headerBottom:header.bottom,
+          edgeOwnedByHeader:Boolean(edge?.closest('.shared-site-header')) };
+      })).toEqual({ gutter:0, headerRight:width, viewport:width, railTop:42, headerBottom:42, edgeOwnedByHeader:true });
+      await page.evaluate(() => window.scrollTo({ top:200, behavior:'instant' }));
+      await expect.poll(() => rail.evaluate(node => node.scrollTop)).toBe(200);
+      await rail.evaluate(node => { node.scrollTop = 400; });
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(400);
+      await page.evaluate(() => window.scrollTo({ top:600, behavior:'smooth' }));
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(600);
+      await rail.focus();
+      await page.keyboard.press('End');
+      await expect.poll(() => page.evaluate(() =>
+        Math.abs(scrollY - (document.documentElement.scrollHeight - innerHeight)))).toBeLessThanOrEqual(1);
+      await page.keyboard.press('Home');
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+      await page.evaluate(() => window.scrollTo({ top:0, behavior:'instant' }));
+      await expect.poll(() => page.locator('.site-hero').evaluate(node => node.getBoundingClientRect().top)).toBe(0);
+    }
+  }
+  await page.setViewportSize({ width:1280, height:5000 });
+  await expect(page.locator('.detail-scroll-rail')).toBeHidden();
+  await page.setViewportSize({ width:390, height:800 });
+  await expect(page.locator('.detail-scroll-rail')).toBeVisible();
+});
+
 test('detail menu uses real session state and supports sign out', async ({ page }) => {
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
   await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:null } }));
