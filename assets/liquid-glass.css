@@ -3,6 +3,7 @@
    Add .glass-surface to new surfaces; keep geometry and focus rings with the
    component. Existing controls are adapters so their DOM and events stay intact. */
 :root {
+  --popup-glass-tint: color-mix(in srgb, var(--panel-solid) 85%, transparent);
   --glass-tint: rgb(255 255 255 / 25%);
   --glass-active-tint: rgb(255 255 255 / 40%);
   --glass-highlight: linear-gradient(155deg, rgb(255 255 255 / 28%), transparent 46%, rgb(255 255 255 / 6%));
@@ -81,7 +82,7 @@ body :is(#siteSuggestionDialog, .tutorial-language-dropdown,
   .cinematic-pilot__recommendations, .dive-photo-preview,
   .site-photo-gallery-rating__trend,
   .mobile-map-credits-button, .mobile-map-credits-panel) {
-  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  --glass-surface-tint: var(--popup-glass-tint);
   --glass-filter: blur(8px) saturate(145%);
   --glass-highlight: none;
   background: var(--glass-surface-tint);
@@ -102,7 +103,7 @@ body .leaflet-popup-content-wrapper > .leaflet-popup-content {
 /* Put the material on the common owner: the body and pointer are siblings,
    so variables defined only on the body cannot reach the pointer. */
 body .leaflet-popup {
-  --map-popup-tint: color-mix(in srgb, var(--panel-solid) 70%, transparent);
+  --map-popup-tint: var(--popup-glass-tint);
   --map-popup-filter: blur(8px) saturate(145%);
 }
 body :is(#map, .leaflet-pane) .leaflet-popup > .leaflet-popup-content-wrapper {
@@ -128,7 +129,7 @@ body #map :is(.leaflet-popup-content-wrapper, .leaflet-tooltip) {
    instead, retaining Leaflet's arrow positioning and horizontal offsets. */
 body #map .leaflet-tooltip::before {
   border: 0;
-  background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  background: var(--popup-glass-tint);
   -webkit-backdrop-filter: blur(8px) saturate(145%);
   backdrop-filter: blur(8px) saturate(145%);
 }
@@ -269,7 +270,7 @@ body .leaflet-popup .dive-experience-metric-row--no-detail:is(:hover, :active) {
   background: transparent;
   box-shadow: none;
 }
-/* Mobile sheets keep the requested 90% tint on the inner wrapper while the
+/* Mobile sheets keep the shared popup tint on the inner wrapper while the
    outer viewport surface owns the blur. */
 @media (max-width: 720px) {
   /* Blur at the viewport sheet boundary, outside Leaflet's clipped content
@@ -280,7 +281,7 @@ body .leaflet-popup .dive-experience-metric-row--no-detail:is(:hover, :active) {
     border-radius: 18px 18px 0 0;
   }
   body :is(#map, .diveatlas-mobile-sheet, .dive-conditions-rating-sheet) > .leaflet-popup-content-wrapper {
-    --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+    --glass-surface-tint: var(--popup-glass-tint);
     background: var(--glass-surface-tint);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -289,7 +290,7 @@ body .leaflet-popup .dive-experience-metric-row--no-detail:is(:hover, :active) {
 body .share-dialog,
 body .site-photo-upload-modal .site-suggestion-dialog,
 html body.cinematic-pilot .hero-copy .site-title-share {
-  --glass-surface-tint: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  --glass-surface-tint: var(--popup-glass-tint);
   --glass-filter: blur(8px) saturate(145%);
   --glass-highlight: none;
 }
