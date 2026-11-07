@@ -504,14 +504,19 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   }
   body.cinematic-pilot #detailPage.detail-page > .monthly-conditions-section {
     padding-top: 8px;
-    padding-bottom: 8px;
-  }
-  body.cinematic-pilot #detailPage.detail-page > .record-evidence {
-    padding-top: 0;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
     border-radius: 0 0 14px 14px;
   }
-  body.cinematic-pilot #detailPage.detail-page > .record-evidence::before {
+  /* Provenance is a separate disclosure below the reading surface. Keep its
+     existing node so enrichment and localization continue to bind normally. */
+  body.cinematic-pilot #detailPage.detail-page > .record-evidence {
+    width: calc(100% - 40px);
+    margin-top: 12px;
+    padding: 0;
+    border-radius: 0;
+  }
+  body.cinematic-pilot #detailPage.detail-page > .record-evidence::before { content: none; }
+  body.cinematic-pilot #detailPage.detail-page > .monthly-conditions-section::before {
     box-shadow: inset 0 -1px var(--glass-border), inset 1px 0 var(--glass-border), inset -1px 0 var(--glass-border);
   }
 }
