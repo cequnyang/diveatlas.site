@@ -11,7 +11,7 @@ const dataAssetConfig = fs.existsSync(dataAssetConfigPath)
 const dataAssetBaseUrl = dataAssetConfig && dataAssetConfig !== 'null' ? JSON.parse(dataAssetConfig) : null;
 const dataAssetBase = dataAssetBaseUrl ? new URL(dataAssetBaseUrl) : null;
 
-async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets = false, disableLegendAutoCollapse = true } = {}) {
+async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets = false, disableLegendAutoCollapse = true, theme = 'light' } = {}) {
   // Most interaction tests need stable panel geometry; the dedicated mobile
   // panel test covers the real idle-collapse timer and its 48px affordance.
   await page.addInitScript(disabled => {
@@ -23,7 +23,7 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
       for (const [key, value] of Object.entries(initialStorage)) {
         localStorage.setItem(key, String(value));
       }
-      localStorage.setItem('global-coral-map-theme', 'light');
+      localStorage.setItem('global-coral-map-theme', initialStorage['global-coral-map-theme'] || 'light');
     } catch (_) {}
     window.__firstVisiblePopup = null;
     new MutationObserver(() => {
@@ -38,7 +38,7 @@ async function openMap(page, { url = MAP_URL, localStorage = {}, externalAssets 
         top: rect.top
       };
     }).observe(document, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'style', 'data-arrow-side'] });
-  }, localStorage);
+  }, { ...localStorage, 'global-coral-map-theme':theme });
   await page.route('**/*', async route => {
     const url = new URL(route.request().url());
     if ((url.hostname === '127.0.0.1' || url.hostname === 'localhost') && url.pathname.startsWith('/data/tests/fixtures/')) {

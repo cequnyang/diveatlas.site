@@ -1,5 +1,5 @@
 (async () => {
-  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=1');
+  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=2');
   window.DiveAtlasHeader.mount();
   // Detail and browse headers historically shipped a static unavailable label.
   // Reuse the map's session handling so all entry points report real state.
@@ -74,7 +74,7 @@
     }
     return new Promise(resolve => {
       const script = document.createElement('script');
-      script.src = '/js/dive-site-detail-i18n.js?v=11';
+      script.src = '/js/dive-site-detail-i18n.js?v=12';
       script.onload = resolve;
       script.onerror = resolve;
       document.head.append(script);
@@ -483,7 +483,7 @@
 })();
 
 // Shared detail pages load these controls after DOMContentLoaded.
-const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js?v=3').then(module => module.enhanceRecordedEvidence());
+const refreshRecordEvidence = () => import('/js/dive-site-record-evidence.js?v=4').then(module => module.enhanceRecordedEvidence());
 if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', refreshRecordEvidence, { once:true });
 else refreshRecordEvidence();
 
@@ -491,6 +491,6 @@ else refreshRecordEvidence();
 // the module guard prevents duplicate setup when both entry points run.
 if (document.querySelector('main.detail-page[data-site-id]:not([data-appearance-initialized])')) {
   const appearance = document.createElement('script');
-  appearance.src = '/js/dive-site-cinematic-pilot.js?v=57';
+  appearance.src = '/js/dive-site-cinematic-pilot.js?v=58';
   document.head.append(appearance);
 }

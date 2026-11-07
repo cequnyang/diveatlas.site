@@ -5,11 +5,32 @@
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; padding: 0 24px; color: var(--text); background: var(--bg); font-size: 14px; line-height: 1.5; }
 .detail-pull-hint { display:none; }
+/* The pull notice can overlay a full-bleed photo; give its text a readable
+   surface without reserving space when the gesture is inactive. */
+body .detail-pull-hint {
+  width: max-content; white-space: normal; text-align: center;
+  background: var(--popup-glass-tint, var(--panel-solid));
+  border-radius: 999px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+}
 @media (max-width:720px) {
   #detailPage { translate:0 var(--detail-pull-y, 0px); transition:translate .14s cubic-bezier(.2,.8,.2,1); }
   #detailPage.detail-pull-dragging { transition:none; }
   .detail-pull-hint:not([hidden]) { display:block; position:fixed; z-index:1000; left:50%; transform:translateX(-50%); max-width:calc(100vw - 32px); box-sizing:border-box; padding:2px 12px; border:0; background:transparent; color:var(--muted); font-size:13px; line-height:20px; font-weight:600; white-space:nowrap; pointer-events:none; }
-  .detail-pull-hint.is-ready { color:var(--primary, #3566d6); }
+  /* Photo-independent contrast: theme-blue text on translucent blue water
+     was unreadable. Use a dark waiting state and a blue/white release state. */
+  body .detail-pull-hint:not([hidden]) {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 40px; padding: 8px 16px;
+    border: 1px solid rgb(255 255 255 / 55%);
+    background: rgb(17 30 48 / 94%); color: #fff;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 30%), inset 0 1px rgb(255 255 255 / 18%);
+    font-size: 14px; line-height: 20px; font-weight: 700;
+    white-space: normal;
+  }
+  body .detail-pull-hint.is-ready:not([hidden]) { background: #2456bc; color: #fff; }
 }
 @media (prefers-reduced-motion:reduce) { #detailPage { transition:none; } }
 a { color: var(--primary); text-underline-offset: .18em; }
@@ -231,6 +252,23 @@ figure { margin: 0; }
 .monthly-conditions-tooltip.is-visible { visibility: visible; opacity: 1; }
 .monthly-conditions-tooltip-title { fill: #fff; font-size: 15px; font-weight: 700; }
 .monthly-conditions-tooltip-row { fill: #fff; font-size: 12px; }
+.monthly-conditions-chart { position: relative; }
+body .monthly-conditions-tooltip.monthly-conditions-tooltip-html {
+  position: absolute; z-index: 2; pointer-events: none;
+  box-sizing: border-box; padding: 10px 14px; border-radius: 9px;
+  transform-origin: top left;
+  background: var(--popup-glass-tint, var(--panel-solid));
+  border: 1px solid var(--glass-border); color: var(--text);
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  box-shadow: var(--glass-shadow);
+}
+.monthly-conditions-tooltip-html-title { display: block; font-size: 15px; line-height: 22px; margin-bottom: 3px; }
+.monthly-conditions-tooltip-html-row { display: flex; align-items: center; gap: 9px; font-size: 12px; line-height: 20px; white-space: nowrap; }
+.monthly-conditions-tooltip-html-row i { flex: 0 0 13px; height: 13px; border-radius: 2px; }
+@media (prefers-reduced-transparency: reduce) {
+  body .monthly-conditions-tooltip.monthly-conditions-tooltip-html { background: var(--panel-solid); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
 .monthly-conditions-chart [tabindex="0"]:focus { outline: none; filter: drop-shadow(0 0 3px var(--text)); }
 .monthly-conditions-footnote { margin: 10px 0 0; color: var(--faint); font-size: 11px; }
 .monthly-conditions-section.is-unavailable .monthly-conditions-status { margin-bottom: 0; }

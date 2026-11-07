@@ -11,7 +11,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=101';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=103';
   if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -26,6 +26,31 @@
   // before that anchor also keeps asynchronously loaded descriptions below it.
   const intro = page.querySelector('.intro-details,.site-intro-detail');
   (intro || page.querySelector('.enrichment-guide') || facts).before(rail);
+
+  // Keep the original sibling structure: chart insertion and enrichment rely
+  // on it. A single decorative shadow spans the measured intro and facts.
+  const desktopCard = window.matchMedia('(min-width: 1061px)');
+  let shadowIntro;
+  const shadowResize = new ResizeObserver(updateSharedShadow);
+  function updateSharedShadow() {
+    const previous = facts.previousElementSibling;
+    const candidate = previous?.matches('.intro-details:not([hidden]), .site-intro-detail:not([hidden]), .enrichment-guide') ? previous : null;
+    if (candidate !== shadowIntro) {
+      if (shadowIntro) shadowResize.unobserve(shadowIntro);
+      shadowIntro = candidate;
+      if (shadowIntro) shadowResize.observe(shadowIntro);
+    }
+    if (desktopCard.matches && shadowIntro) {
+      facts.dataset.sharedCardShadow = '';
+      facts.style.setProperty('--shared-card-intro-height', `${facts.getBoundingClientRect().top - shadowIntro.getBoundingClientRect().top}px`);
+    } else {
+      delete facts.dataset.sharedCardShadow;
+      facts.style.removeProperty('--shared-card-intro-height');
+    }
+  }
+  desktopCard.addEventListener('change', updateSharedShadow);
+  new MutationObserver(updateSharedShadow).observe(page, { childList: true, subtree: true });
+  updateSharedShadow();
 
   const recommendations = document.getElementById('relatedSites') || document.querySelector('.site-recommendations');
   if (!recommendations || recommendations.hidden) return;

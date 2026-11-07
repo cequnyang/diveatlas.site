@@ -414,6 +414,23 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   :root[data-theme="dark"] .cinematic-pilot { --detail-container-shadow: 0 5px 16px rgb(0 0 0 / 22%), 0 20px 42px rgb(0 0 0 / 30%); }
   .cinematic-pilot #detailPage > :is(.facts-section, .monthly-conditions-section),
   .cinematic-pilot .cinematic-pilot__rail .site-photo-gallery-map { box-shadow: var(--detail-container-shadow); }
+
+  /* One shadow spans both siblings without moving the nodes used by chart
+     and enrichment discovery. The measured intro height follows translations. */
+  .cinematic-pilot #detailPage > .facts-section[data-shared-card-shadow] {
+    position: relative;
+    isolation: isolate;
+    box-shadow: none;
+  }
+  .cinematic-pilot #detailPage > .facts-section[data-shared-card-shadow]::before {
+    content: '';
+    position: absolute;
+    inset: calc(-1 * var(--shared-card-intro-height)) 0 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 14px;
+    box-shadow: var(--detail-container-shadow);
+  }
 }
 
 @media (max-width: 720px) {
@@ -429,6 +446,73 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
   }
   :root:not([data-theme="dark"]) .cinematic-pilot .site-photo-upload-button:focus-visible {
     outline-color: #475569;
+  }
+}
+
+/* Mobile reading surface: extend into the existing gutters instead of nesting
+   a padded card, preserving chart width and leaving the hero/action rail alone.
+   Keep the section parents intact for enrichment, chart and evidence modules. */
+@media (max-width: 720px) {
+  body.cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail, .enrichment-guide, .facts-section, .monthly-conditions-section, .record-evidence) {
+    box-sizing: border-box;
+    width: calc(100% - 16px);
+    margin: 0 auto;
+    padding: 16px 12px;
+    position: relative;
+    isolation: isolate;
+    background: transparent;
+    border-radius: 0;
+  }
+  /* Paint glass behind the content, rather than filtering the section itself:
+     backdrop-filter on a section would re-anchor its fixed depth tooltip.
+     Side reflections join without a separate card edge at every section. */
+  /* Each glass section is an isolated stacking context. Lift the facts only
+     while its tooltip is open, so later sections cannot paint over the note. */
+  body.cinematic-pilot #detailPage.detail-page > .facts-section:has(.depth-meaning-unknown:not([hidden])) {
+    z-index: 3;
+  }
+  body.cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail, .enrichment-guide, .facts-section, .monthly-conditions-section, .record-evidence)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: var(--glass-tint, var(--panel-solid));
+    -webkit-backdrop-filter: var(--glass-filter, none);
+    backdrop-filter: var(--glass-filter, none);
+    box-shadow: inset 1px 0 var(--glass-border), inset -1px 0 var(--glass-border);
+  }
+  body.cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail, .enrichment-guide) {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-radius: 14px 14px 0 0;
+  }
+  body.cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail, .enrichment-guide)::before {
+    /* A gradient confined to the intro ends abruptly at the facts seam.
+       Match the shared tint; only the outer top edge gets a reflection. */
+    box-shadow: inset 0 1px var(--glass-border), inset 1px 0 var(--glass-border), inset -1px 0 var(--glass-border);
+  }
+  body.cinematic-pilot #detailPage.detail-page > :is(.intro-details, .site-intro-detail):not([hidden]) + .facts-section,
+  body.cinematic-pilot #detailPage.detail-page > .enrichment-guide + .facts-section {
+    border-radius: 0;
+  }
+  .cinematic-pilot #detailPage.detail-page > .facts-section .fact-grid {
+    padding-block: 16px;
+    border-block: 1px solid var(--line);
+    gap: 16px;
+  }
+  body.cinematic-pilot #detailPage.detail-page > .monthly-conditions-section {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  body.cinematic-pilot #detailPage.detail-page > .record-evidence {
+    padding-top: 0;
+    padding-bottom: 8px;
+    border-radius: 0 0 14px 14px;
+  }
+  body.cinematic-pilot #detailPage.detail-page > .record-evidence::before {
+    box-shadow: inset 0 -1px var(--glass-border), inset 1px 0 var(--glass-border), inset -1px 0 var(--glass-border);
   }
 }
 

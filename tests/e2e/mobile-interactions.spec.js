@@ -14,6 +14,7 @@ const {
 const depthSampleFixture = gzipSync(Buffer.from(new Int16Array(225 * 225).fill(-500).buffer));
 
 test.beforeEach(async ({ page }, testInfo) => openMap(page, {
+  theme: testInfo.project.metadata.pullTheme || 'light',
   disableLegendAutoCollapse: testInfo.title !== 'mobile layer rows toggle across the row and the collapsed bar shrinks after idle'
 }));
 
@@ -289,7 +290,9 @@ test('mobile theme toggle stays visible in the map top bar', async ({ page }) =>
   await expect(page.locator('#topMenuMobileSettings #themeBtn')).toHaveCount(0);
 });
 
-test('mobile dive-site sheet and detail page share a reversible view transition', async ({ page }) => {
+test('mobile dive-site sheet and detail page share a reversible view transition', async ({ page }, testInfo) => {
+  const expectedTheme = testInfo.project.metadata.pullTheme || 'light';
+  await expect(page.locator('html')).toHaveAttribute('data-theme', expectedTheme);
   const siteId = '0000adba-c5c9-41f3-9cc0-6b525dcf959b';
   await page.addInitScript(() => {
     new MutationObserver(() => {
@@ -363,11 +366,21 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
     }));
     dispatch('pointerdown', y);
     dispatch('pointermove', y - 144);
-    dispatch('pointerup', y - 144);
+    dispatch('pointermove', y - 124);
+    const popup = handle.closest('.leaflet-popup');
+    const rect = popup.getBoundingClientRect();
+    const glass = getComputedStyle(popup, '::after');
+    sessionStorage.setItem('diveatlas-roundtrip-pull', JSON.stringify({
+      bottom:rect.bottom, viewport:innerHeight, glassTop:glass.top,
+      glassBottom:glass.bottom, blur:glass.backdropFilter,
+      hintHidden:popup.querySelector('.mobile-sheet-pull-hint').hidden
+    }));
+    dispatch('pointerup', y - 124);
   });
 
   await page.waitForURL(url => url.pathname.endsWith('/dive-site.html'));
   await expect(page.locator('#site-title')).toHaveText('Punta Garbí');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', expectedTheme);
   expect(new URL(await page.evaluate(() => document.referrer)).searchParams.get('site')).toBe(siteId);
   await expect.poll(() => page.locator('#detailPage').evaluate(element => getComputedStyle(element).viewTransitionName))
     .toBe('dive-site-surface');
@@ -378,6 +391,32 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
   const mapPageSwap = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-page-swap')));
   expect(mapPageSwap).toMatchObject({ hasViewTransition:true, dragging:true });
   expect(mapPageSwap.dragOffset).not.toBe('');
+  const pullState = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-roundtrip-pull')));
+  expect(Math.abs(pullState.bottom - pullState.viewport)).toBeLessThanOrEqual(1);
+  expect(pullState).toMatchObject({ glassTop:'0px', glassBottom:'0px', blur:'blur(8px) saturate(1.45)', hintHidden:false });
+
+  // A short downward pull must expose a readable hint without navigating.
+  await page.evaluate(() => {
+    scrollTo(0, 0);
+    const target = document.querySelector('#detailPage');
+    const dispatch = (type, y) => {
+      const touch = new Touch({ identifier:81, target, clientX:innerWidth / 2, clientY:y });
+      target.dispatchEvent(new TouchEvent(type, { bubbles:true, cancelable:true,
+        touches:type === 'touchend' ? [] : [touch], changedTouches:[touch] }));
+    };
+    dispatch('touchstart', 250);
+    dispatch('touchmove', 310);
+  });
+  const hint = page.locator('.detail-pull-hint');
+  await expect(hint).toBeVisible();
+  expect(await hint.evaluate(node => node.getBoundingClientRect().top >= document.querySelector('.shared-site-header').getBoundingClientRect().bottom + 8)).toBe(true);
+  await page.evaluate(() => {
+    const target = document.querySelector('#detailPage');
+    const touch = new Touch({ identifier:81, target, clientX:innerWidth / 2, clientY:310 });
+    target.dispatchEvent(new TouchEvent('touchend', { bubbles:true, touches:[], changedTouches:[touch] }));
+  });
+  await expect(hint).toBeHidden();
+  expect(new URL(page.url()).pathname).toBe('/dive-site.html');
 
   await page.evaluate(() => {
     window.addEventListener('pageswap', event => {
@@ -406,10 +445,17 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
   });
 
   await page.waitForURL(url => url.pathname === '/' && url.searchParams.has('site'));
+  await expect(page.locator('html')).toHaveAttribute('data-theme', expectedTheme);
   const detailPageSwap = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-detail-page-swap')));
   expect(detailPageSwap).toMatchObject({ hasViewTransition:true, transitionName:'dive-site-surface', dragging:true });
   expect(detailPageSwap.dragOffset).not.toBe('');
   await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup')).toBeVisible();
+  const returnedSheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup');
+  await expect(returnedSheet.locator('.mobile-sheet-pull-hint')).toBeHidden();
+  await expect(page.locator('.detail-pull-hint')).toBeHidden();
+  await expect(returnedSheet).not.toHaveClass(/mobile-sheet-entering|mobile-vertical-dragging/);
+  await expect.poll(() => returnedSheet.evaluate(node => Math.abs(node.getBoundingClientRect().bottom - innerHeight))).toBeLessThanOrEqual(1);
+  expect(await returnedSheet.evaluate(node => node.style.getPropertyValue('--mobile-panel-drag-y'))).toBe('');
   const mapPageReveal = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-page-reveal')));
   if (mapPageReveal?.transitionName === 'dive-site-surface') {
     expect(mapPageReveal).toMatchObject({ hasViewTransition:true, transitionName:'dive-site-surface', dragOffset:'', dragging:false });

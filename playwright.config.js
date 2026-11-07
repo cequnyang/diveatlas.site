@@ -21,7 +21,17 @@ module.exports = defineConfig({
     video: 'retain-on-failure',
     actionTimeout: 8_000
   },
-  projects: [
+  // Opt-in matrix keeps routine map suites small while making the complete
+  // mobile gesture flow reproducible across themes and viewport geometries.
+  projects: process.env.PULL_FLOW_MATRIX === '1' ? [320, 390, 430, 720].flatMap(width =>
+    ['light', 'dark'].map(theme => ({
+      name: `pull-${width}-${theme}`,
+      metadata: { pullTheme:theme },
+      testMatch: ['dive-site-photo-ui-mobile.spec.js', 'mobile-interactions.spec.js'],
+      use: { ...devices['Pixel 7'], browserName:'chromium', colorScheme:theme,
+        viewport:{ width, height:width === 720 ? 1024 : 844 } }
+    }))
+  ) : [
     {
       name: 'desktop-chromium',
       testMatch: ['shared-header.spec.js', 'dive-site-detail.spec.js', 'critical-contracts.spec.js', 'environmental-view.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'dive-site-photo-ui-desktop.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-flow.spec.js'],

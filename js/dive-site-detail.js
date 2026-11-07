@@ -39,6 +39,15 @@
     hint.setAttribute('aria-live', 'polite');
     hint.hidden = true;
     document.body.append(hint);
+    let hintMessage = '';
+    const setHintMessage = (message, language = document.documentElement.lang) => {
+      hintMessage = message;
+      const translated = window.DiveAtlasSiteDetailI18n?.translate(message, language) || message;
+      if (hint.textContent !== translated) hint.textContent = translated;
+    };
+    window.addEventListener('diveatlas:language-change', event => {
+      if (hintMessage) setHintMessage(hintMessage, event.detail?.language);
+    });
     const reset = () => {
       pull = null;
       page.classList.remove('detail-pull-dragging', 'detail-pull-ready');
@@ -90,13 +99,15 @@
         // threshold, then adds at most 12px so it never feels freely draggable.
         const offset = distance <= 120 ? distance * .3 : 36 + 12 * (1 - Math.exp(-(distance - 120) / 120));
         page.style.setProperty('--detail-pull-y', `${offset}px`);
-        // Mirror the map sheet's notice: text in the revealed gap, 4px clear
-        // of the card, without covering the photo or reserving resting space.
-        hint.style.top = `${page.getBoundingClientRect().top - 28}px`;
+        // Full-bleed photos start behind the fixed glass header, so the
+        // revealed gap alone may still be covered by the rail. Keep the hint
+        // below its actual bottom without changing the photo's resting layout.
+        const headerBottom = document.querySelector('.shared-site-header, .site-header')?.getBoundingClientRect().bottom || 0;
+        hint.style.top = `${Math.max(headerBottom + 8, page.getBoundingClientRect().top - 28)}px`;
         hint.hidden = false;
         hint.classList.toggle('is-ready', ready);
         const message = ready ? 'Release to return to map' : 'Pull down to return to map';
-        if (hint.textContent !== message) hint.textContent = message;
+        setHintMessage(message);
       }
     }, { passive:false });
     page.addEventListener('touchend', event => {
@@ -109,7 +120,7 @@
       const dx = touch.clientX - origin.x;
       // Match the map sheet's intentional-navigation threshold; speed alone is insufficient.
       if (dy >= 120 && dy > Math.abs(dx) * 1.25) {
-        hint.textContent = 'Returning to map…';
+        setHintMessage('Returning to map…');
         const mapTarget = new URL(mapUrl, window.location.href);
         const previousPage = safeUrl(document.referrer);
         let canReturnToPreviousMap = false;
@@ -519,8 +530,8 @@
     // after the record is rendered so they bind to the correct site and title.
     for (const src of ['/datasets/dive-site-name-translations.js?v=1',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
-      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=26',
-      '/js/dive-conditions-chart.js?v=53', '/js/site-recommendations.js?v=19',
+      '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=28',
+      '/js/dive-conditions-chart.js?v=56', '/js/site-recommendations.js?v=19',
       '/js/dive-site-rating-card.js?v=28']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }

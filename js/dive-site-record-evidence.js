@@ -48,8 +48,17 @@ function presentDepthNotes(page) {
         // Fixed positioning keeps the fact grid unchanged and fits narrow screens.
         const anchor = button.getBoundingClientRect();
         const box = note.getBoundingClientRect();
-        note.style.left = `${Math.max(8, Math.min(anchor.left, innerWidth - box.width - 8))}px`;
-        note.style.top = `${anchor.bottom + box.height + 8 <= innerHeight ? anchor.bottom + 8 : Math.max(8, anchor.top - box.height - 8)}px`;
+        const left = Math.max(8, Math.min(anchor.left, innerWidth - box.width - 8));
+        const top = anchor.bottom + box.height + 8 <= innerHeight ? anchor.bottom + 8 : Math.max(8, anchor.top - box.height - 8);
+        note.style.left = `${left}px`;
+        note.style.top = `${top}px`;
+        // The mobile pull gesture gives #detailPage a translate, making it a
+        // containing block for fixed descendants even at translate: 0 0.
+        // Correct against the rendered viewport position so scrolling is not
+        // subtracted twice. This also leaves normal desktop positioning intact.
+        const positioned = note.getBoundingClientRect();
+        note.style.left = `${left + left - positioned.left}px`;
+        note.style.top = `${top + top - positioned.top}px`;
       };
       button.addEventListener('click', event => show(event.detail > 0 && matchMedia('(hover: hover)').matches ? true : note.hidden));
       button.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) show(true); });

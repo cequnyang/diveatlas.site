@@ -21,7 +21,7 @@
         header.querySelector(selector)?.classList.add(name);
       }
     }
-    stylesheet('/assets/site-header.css?v=1');
+    stylesheet('/assets/site-header.css?v=6');
     window.dispatchEvent(new CustomEvent('diveatlas:header-ready', { detail:{ map } }));
     return header;
   }
@@ -146,7 +146,7 @@
       if (!window.DiveAtlasDataAssets) {
         await loadScript('/js/data-assets-config.js'); await loadScript('/js/data-assets.js');
       }
-      await loadScript('/js/seo-page-controls.js?v=26');
+      await loadScript('/js/seo-page-controls.js?v=28');
       if (!document.querySelector('script[src*="seo-site-search.js"]')) await loadScript('/js/seo-site-search.js?v=14');
       await loadScript('/js/seo-search-catalog-loader.js?v=1');
     })().catch(error => console.error('Shared header could not initialize.', error));

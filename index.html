@@ -2646,8 +2646,8 @@
       }
       /* Cover the 48px upward pull plus rounding slack. Reset desktop arrow
          geometry too: below-anchor popups reuse this pseudo-element. */
-      .leaflet-popup.diveatlas-mobile-sheet::after,
-      .leaflet-popup.dive-conditions-rating-sheet::after {
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet::after,
+      body.has-shared-header > .leaflet-popup.dive-conditions-rating-sheet::after {
         content:"" !important;
         display:block !important;
         position:absolute;
@@ -2658,17 +2658,64 @@
         height:64px;
         border:0;
         transform:none;
+        /* The glass adapter's desktop pointer must not clip this bottom
+           overscroll filler into a triangle or move it above the sheet. */
+        clip-path:none;
+        -webkit-backdrop-filter:none;
+        backdrop-filter:none;
         background:var(--panel-solid);
         pointer-events:none;
       }
       .mobile-sheet-pull-hint:not([hidden]) {
         display:block; position:absolute; z-index:3; top:calc(100% + 4px);
         left:50%; transform:translateX(-50%); max-width:calc(100% - 24px); box-sizing:border-box;
-        padding:2px 12px; border:0;
-        background:transparent; color:var(--muted);
-        font-size:13px; line-height:20px; font-weight:600; white-space:nowrap; pointer-events:none;
+        width:max-content; min-height:40px; padding:8px 16px;
+        border:1px solid rgb(255 255 255 / 55%); border-radius:999px;
+        background:rgb(17 30 48 / 94%); color:#fff;
+        box-shadow:0 4px 16px rgb(0 0 0 / 30%), inset 0 1px rgb(255 255 255 / 18%);
+        -webkit-backdrop-filter:blur(8px) saturate(145%);
+        backdrop-filter:blur(8px) saturate(145%);
+        font-size:14px; line-height:20px; font-weight:700;
+        white-space:normal; text-align:center; pointer-events:none;
       }
-      .mobile-sheet-pull-hint.is-ready { color:var(--primary, #3566d6); }
+      .mobile-sheet-pull-hint.is-ready:not([hidden]) { background:#2456bc; color:#fff; }
+      /* Grow the sheet from its anchored bottom during the detail-opening
+         pull. Translating the whole sheet exposes the map below its edge. */
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet:has(> .mobile-sheet-pull-hint:not([hidden])) {
+        --sheet-upward-extension: max(0px, calc(-1 * var(--mobile-panel-drag-y, 0px)));
+        translate: 0 max(0px, var(--mobile-panel-drag-y, 0px)) !important;
+        padding-bottom: var(--sheet-upward-extension);
+        max-height: calc(min(78dvh, 720px) + var(--sheet-upward-extension)) !important;
+        isolation: isolate;
+        transition: padding-bottom .28s cubic-bezier(.22,1,.36,1), max-height .28s cubic-bezier(.22,1,.36,1);
+      }
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet { isolation: isolate; }
+      /* Keep one material owner at rest and during pulls; swapping backdrop
+         layers when the hint hides produces a compositing flash.
+         Paint the complete expanded sheet once. Separate wrapper and filler
+         materials produce an opacity seam and blur discontinuity at the join. */
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet::after {
+        inset: 0;
+        height: auto;
+        border-radius: 18px 18px 0 0;
+        background: var(--popup-glass-tint);
+        -webkit-backdrop-filter: blur(8px) saturate(145%);
+        backdrop-filter: blur(8px) saturate(145%);
+        box-shadow: var(--glass-shadow);
+        z-index: -1;
+      }
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet > .leaflet-popup-content-wrapper {
+        /* Shared glass adapters include ID selectors; override their material
+           here so the wrapper does not tint/blur the same backing twice. */
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet > .mobile-sheet-pull-hint:not([hidden]) {
+        top: auto;
+        bottom: 4px;
+      }
       /* The notice occupies only the area revealed by pulling the sheet up;
          it must not reserve height or introduce scrolling in the resting sheet. */
       .diveatlas-mobile-sheet-handle {
@@ -7354,8 +7401,8 @@
   </style>
   <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=41">
-<link rel="stylesheet" href="/assets/site-header.css?v=1">
-<script src="/js/site-header.js?v=1" defer></script>
+<link rel="stylesheet" href="/assets/site-header.css?v=6">
+<script src="/js/site-header.js?v=2" defer></script>
 </head>
 
 <body>
@@ -12843,6 +12890,29 @@ ZSD·2016–2025</span></span>
     return I18N[currentLang]?.[key] ?? SHARE_I18N[currentLang]?.[key] ?? SITE_SUGGESTION_I18N[currentLang]?.[key] ?? WAVES_I18N[currentLang]?.[key] ?? I18N.en[key] ?? SHARE_I18N.en[key] ?? SITE_SUGGESTION_I18N.en[key] ?? key;
   }
   window.DiveAtlasTranslate = t;
+
+  // Keep gesture copy in the map's selected-language dictionaries, including
+  // its existing Traditional Chinese conversion and English fallback.
+  for (const [language, messages] of Object.entries({
+    en: ['Pull up to open details', 'Release to open details'],
+    zh: ['上拉查看详情', '松开查看详情'],
+    es: ['Desliza hacia arriba para ver los detalles', 'Suelta para ver los detalles'],
+    de: ['Nach oben ziehen, um Details zu öffnen', 'Loslassen, um Details zu öffnen'],
+    fr: ['Tirez vers le haut pour voir les détails', 'Relâchez pour voir les détails'],
+    ja: ['上に引いて詳細を表示', '指を離して詳細を表示'],
+    pt: ['Puxe para cima para ver os detalhes', 'Solte para ver os detalhes'],
+    it: ['Trascina verso l’alto per vedere i dettagli', 'Rilascia per vedere i dettagli'],
+    ru: ['Потяните вверх, чтобы открыть подробности', 'Отпустите, чтобы открыть подробности'],
+    ko: ['위로 당겨 상세 정보 보기', '손을 놓아 상세 정보 보기'],
+    nl: ['Trek omhoog om details te openen', 'Laat los om details te openen'],
+    id: ['Tarik ke atas untuk membuka detail', 'Lepaskan untuk membuka detail'],
+    sv: ['Dra uppåt för att öppna detaljer', 'Släpp för att öppna detaljer'],
+    no: ['Trekk opp for å åpne detaljer', 'Slipp for å åpne detaljer']
+  })) {
+    if (I18N[language]) Object.assign(I18N[language], {
+      sheetPullUpDetails: messages[0], sheetReleaseDetails: messages[1]
+    });
+  }
 
   Object.assign(I18N.en, {
     currentsTitle: 'Regional Currents',
@@ -29693,7 +29763,10 @@ function closeShareDialog() {
   }
 
   // Keep the content drag's close distance aligned with the sheet-handle gesture.
+  const mobileSheetPullSettlements = new WeakMap();
   function updateMobileSheetDetailPullHint(surface, distance) {
+    clearTimeout(mobileSheetPullSettlements.get(surface));
+    mobileSheetPullSettlements.delete(surface);
     let hint = surface.querySelector(':scope > .mobile-sheet-pull-hint');
     if (!hint && distance > 0) {
       hint = document.createElement('div');
@@ -29703,11 +29776,38 @@ function closeShareDialog() {
       surface.append(hint);
     }
     if (!hint) return;
+    hint.style.removeProperty('opacity');
     hint.hidden = distance <= 0 || !window.matchMedia('(max-width:720px)').matches;
     hint.classList.toggle('is-ready', distance >= 120);
-    const message = distance >= 120 ? 'Release to open details' : 'Pull up to open details';
+    hint.dataset.translationKey = distance >= 120 ? 'sheetReleaseDetails' : 'sheetPullUpDetails';
+    const message = t(hint.dataset.translationKey);
     if (hint.textContent !== message) hint.textContent = message;
   }
+
+  function settleMobileSheetDetailPull(surface) {
+    const hint = surface.querySelector(':scope > .mobile-sheet-pull-hint');
+    if (!hint || hint.hidden) return false;
+    // Keep the expansion rule active until padding has returned to zero.
+    // Hiding the hint first removes that rule and snaps the sheet closed.
+    surface.classList.remove('mobile-vertical-dragging');
+    void surface.offsetHeight;
+    hint.style.opacity = '0';
+    surface.style.setProperty('--mobile-panel-drag-y', '0px');
+    clearTimeout(mobileSheetPullSettlements.get(surface));
+    // Allow the 280ms padding transition to finish before removing its rule.
+    mobileSheetPullSettlements.set(surface, setTimeout(() => {
+      updateMobileSheetDetailPullHint(surface, 0);
+      surface.style.removeProperty('--mobile-panel-drag-y');
+      mobileSheetPullSettlements.delete(surface);
+    }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300));
+    return true;
+  }
+
+  window.addEventListener('diveatlas:language-change', () => {
+    document.querySelectorAll('.mobile-sheet-pull-hint[data-translation-key]').forEach(hint => {
+      hint.textContent = t(hint.dataset.translationKey);
+    });
+  });
 
   function bindMobileSheetContentPullToClose(content, surface, onDismiss, { closeDistance = 72, onUpwardSwipe = null } = {}) {
     if (!content || !surface || content._diveAtlasPullToCloseBound) return;
@@ -29766,25 +29866,30 @@ function closeShareDialog() {
         pull.lastY = touch.clientY;
         return;
       }
-      if (onUpwardSwipe && pull.axis === 'vertical' && deltaY < 0 && !pull.dragging) {
-        // Count only overscroll after reaching the bottom, so reading the sheet
-        // cannot accidentally navigate to another page.
+      if (onUpwardSwipe && pull.axis === 'vertical' && !pull.dragging) {
         const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
-        if (atBottom) {
+        if (pull.upwardStartY != null || (deltaY < 0 && atBottom)) {
+          // Once overscroll owns the gesture, a slight reversal unwinds that
+          // pull. Do not hand it to native scrolling or downward dismissal
+          // until the finger returns to the overscroll origin.
           pull.upwardStartY ??= pull.lastY;
           pull.upwardDistance = Math.max(0, pull.upwardStartY - touch.clientY);
           if (event.cancelable) event.preventDefault();
           surface.classList.add('mobile-vertical-dragging');
           surface.style.setProperty('--mobile-panel-drag-y', `${-Math.min(48, pull.upwardDistance * .3)}px`);
-        } else {
-          pull.upwardStartY = null;
-          pull.upwardDistance = 0;
+          updateMobileSheetDetailPullHint(surface,
+            pull.upwardDistance > Math.abs(deltaX) * 1.2 ? pull.upwardDistance : 0);
+          pull.lastY = touch.clientY;
+          if (pull.upwardDistance === 0) {
+            pull.upwardStartY = null;
+            pull.startY = touch.clientY;
+            pull.contentScrolled = content.scrollTop > 1;
+            surface.classList.remove('mobile-vertical-dragging');
+            surface.style.removeProperty('--mobile-panel-drag-y');
+          }
+          return;
         }
-      } else if (pull.upwardStartY != null) {
-        pull.upwardDistance = Math.max(0, pull.upwardStartY - touch.clientY);
       }
-      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface,
-        !pull.dragging && (pull.upwardDistance || 0) > Math.abs(deltaX) * 1.2 ? pull.upwardDistance : 0);
       if (deltaY < 0 || content.scrollTop > 1) pull.contentScrolled = true;
       if (!pull.dragging && pull.axis === 'vertical' && touch.clientY > pull.lastY && content.scrollTop <= 1) {
         pull.dragging = true;
@@ -29800,7 +29905,6 @@ function closeShareDialog() {
     }, { passive:false });
 
     const finishPull = event => {
-      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       if (!pull) return;
       const touch = touchById(event.changedTouches, pull.id);
       if (!touch) return;
@@ -29815,7 +29919,7 @@ function closeShareDialog() {
         suppressClickUntil = performance.now() + 350;
         suppressClickTarget = target;
         if (upwardDistance >= 120 && isVerticalUpwardPull && window.matchMedia('(max-width:720px)').matches && onUpwardSwipe() !== false) return;
-        resetSurface();
+        if (!settleMobileSheetDetailPull(surface)) resetSurface();
         return;
       }
       if (!wasDragging) return;
@@ -29984,7 +30088,6 @@ function closeShareDialog() {
       surface.style.setProperty('--mobile-panel-drag-y', `${offset}px`);
     });
     const finishDrag = event => {
-      if (onUpwardSwipe) updateMobileSheetDetailPullHint(surface, 0);
       if (!drag || event.pointerId !== drag.id) return;
       const deltaX = event.clientX - drag.x;
       const deltaY = event.clientY - drag.y;
@@ -30039,7 +30142,7 @@ function closeShareDialog() {
       }
       restoreHeight();
       if (didMove) suppressClickUntil = performance.now() + 350;
-      resetSurface();
+      if (!onUpwardSwipe || !settleMobileSheetDetailPull(surface)) resetSurface();
     };
     handle.addEventListener('pointerup', finishDrag);
     handle.addEventListener('pointercancel', event => {
@@ -30296,9 +30399,12 @@ function closeShareDialog() {
     // Return to the resting sheet position before the restored map is snapshotted.
     sheet.classList.remove('mobile-vertical-dragging');
     sheet.style.removeProperty('--mobile-panel-drag-y');
+    clearTimeout(mobileSheetPullSettlements.get(sheet));
+    mobileSheetPullSettlements.delete(sheet);
+    updateMobileSheetDetailPullHint(sheet, 0);
   }
   window.addEventListener('pagereveal', event => {
-    if (event.viewTransition) resetRestoredSiteSheet();
+    resetRestoredSiteSheet();
   });
   window.addEventListener('pageshow', event => {
     if (!event.persisted) return;

@@ -294,15 +294,27 @@
       }
     }
 
-    const tooltip = appendSvg(svg, 'g', { class:'monthly-conditions-tooltip', 'aria-hidden':'true', 'pointer-events':'none' });
+    // An HTML sibling samples the rendered chart behind it. A foreignObject
+    // inside SVG can report backdrop-filter while leaving SVG marks unblurred.
+    const tooltip = document.createElement('div');
+    tooltip.className = 'monthly-conditions-tooltip monthly-conditions-tooltip-html';
+    tooltip.setAttribute('aria-hidden', 'true');
     const visibleSeries = [...SERIES, OVERALL_SCORE].filter(series => !hiddenSeries.has(series.key));
     const tooltipWidth = Math.min(286, width - 16), tooltipHeight = 42 + visibleSeries.length * 20;
-    appendSvg(tooltip, 'rect', { x:0, y:0, width:tooltipWidth, height:tooltipHeight, rx:9,
-      fill:'#20252d', 'fill-opacity':'.94' });
-    const tooltipTitle = appendSvg(tooltip, 'text', { x:14, y:23, class:'monthly-conditions-tooltip-title' });
-    const tooltipRows = visibleSeries.map((series, index) => {
-      appendSvg(tooltip, 'rect', { x:14, y:35 + index * 20, width:13, height:13, rx:2, fill:series.color });
-      return appendSvg(tooltip, 'text', { x:36, y:47 + index * 20, class:'monthly-conditions-tooltip-row' });
+    tooltip.style.width = `${tooltipWidth}px`;
+    tooltip.style.height = `${tooltipHeight}px`;
+    const tooltipTitle = document.createElement('strong');
+    tooltipTitle.className = 'monthly-conditions-tooltip-html-title';
+    tooltip.append(tooltipTitle);
+    const tooltipRows = visibleSeries.map(series => {
+      const row = document.createElement('div');
+      row.className = 'monthly-conditions-tooltip-html-row';
+      const swatch = document.createElement('i');
+      swatch.style.background = series.color;
+      const text = document.createElement('span');
+      row.append(swatch, text);
+      tooltip.append(row);
+      return text;
     });
 
     function hideTooltip() {
@@ -344,7 +356,12 @@
           tooltip.style.transition = 'opacity 140ms ease-out, visibility 140ms ease-out';
         }
       }
-      tooltip.setAttribute('transform', `translate(${x} ${y})`);
+      const svgBox = svg.getBoundingClientRect();
+      const plotBox = plot.getBoundingClientRect();
+      const scale = svgBox.width / width;
+      tooltip.style.left = `${svgBox.left - plotBox.left + x * scale}px`;
+      tooltip.style.top = `${svgBox.top - plotBox.top + y * scale}px`;
+      tooltip.style.transform = `scale(${scale})`;
       tooltip.classList.add('is-visible');
       tooltip.setAttribute('aria-hidden', 'false');
     }
@@ -396,7 +413,7 @@
       });
     }
 
-    plot.replaceChildren(svg);
+    plot.replaceChildren(svg, tooltip);
     plot.hidden = false;
   }
 

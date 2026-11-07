@@ -64,6 +64,31 @@ unrecognized site and source values stay as recorded, while known normalized
 category terms use the detail-page vocabulary. Traditional Chinese currently
 reuses the Simplified Chinese translation mapping.
 
+## Verify the mobile map/detail gesture flow
+
+The map sheet grows upward from the viewport bottom while its glass background
+remains on one paint layer. A deliberate 120px pull opens details; pulling down
+at the top of the detail page returns to the map. Short pulls settle back, and
+restoring the map clears its previous gesture pose and hint.
+
+Run the focused regression matrix in PowerShell:
+
+```powershell
+$env:PULL_FLOW_MATRIX = '1'
+npx playwright test --grep 'reversing an upward|returning to the map clears|detail-opening pull hints|upward detail pull|share a reversible view transition' --workers=2
+Remove-Item Env:PULL_FLOW_MATRIX
+```
+
+This covers 320px, 390px, 430px and 720px viewports in light and dark themes,
+including English/Chinese hints, reversals, release settling and the full round
+trip. Frame sampling checks bottom anchoring and stable glass material; it does
+not replace checking animation on physical mobile browsers.
+
+Mobile popups are mounted directly under `body`, outside the transformed map
+panes. Keep their surface rules scoped to that actual parent. The main content
+wrapper stays transparent because the popup's backing paints both the resting
+sheet and its expanded hint area; painting both layers introduces a seam.
+
 ## Publish cloud data before deploying the page
 
 Use the existing cloud release workflow, with its credentials in the process
