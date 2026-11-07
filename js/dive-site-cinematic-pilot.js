@@ -11,7 +11,7 @@
 
   const stylesheet = document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]') || document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=111';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=117';
   if (!stylesheet.isConnected) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
@@ -144,6 +144,19 @@
   // Fetch only the inspected site's published summary, not every card's full
   // record. Cache across cloned/filter-rebuilt cards and preserve link clicks.
   const summaryCache = new Map();
+  // Follow the actual title layout rather than a fixed inset: translated or
+  // wrapped names and viewport changes must not jump when inspection opens.
+  function alignSummary(card) {
+    const title = card.querySelector('.site-recommendations__name');
+    const summary = card.querySelector('.cinematic-pilot__card-summary');
+    if (!title || !summary) return;
+    let top = 0;
+    for (let node = title; node && node !== card; node = node.offsetParent) top += node.offsetTop;
+    summary.style.top = `${top}px`;
+  }
+  const summaryLayout = new ResizeObserver(entries => {
+    for (const entry of entries) alignSummary(entry.target);
+  });
   async function revealSummary(event) {
     if (!immersionPilot || (event.type === 'pointerover' && event.pointerType !== 'mouse')) return;
     const card = event.target.closest('a.site-recommendations__card');
@@ -174,6 +187,8 @@
     copy.textContent = text;
     summary.append(name, copy);
     card.append(summary);
+    alignSummary(card);
+    summaryLayout.observe(card);
   }
   panel.addEventListener('pointerover', revealSummary);
   panel.addEventListener('focusin', revealSummary);

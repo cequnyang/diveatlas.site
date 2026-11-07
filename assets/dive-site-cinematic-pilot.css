@@ -677,7 +677,7 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
   position: static; z-index: 2; width: 100%; padding: 54px 16px 16px; gap: 6px;
 }
 .cinematic-pilot__recommendations--immersion .site-recommendations__name {
-  white-space: normal; overflow: visible; color: #fff; font-size: 20px;
+  white-space: normal; overflow: visible; color: #fff; font-size: 26px;
   font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
   font-weight: 700; line-height: 1.2; letter-spacing: -.05em;
   text-shadow: 0 2px 6px rgb(0 0 0 / 45%);
@@ -729,7 +729,7 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
 }
 .cinematic-pilot__card-summary strong {
   font-family: "Google Sans Flex", "Segoe UI", Arial, sans-serif;
-  font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: -.05em;
+  font-size: 26px; font-weight: 700; line-height: 1.2; letter-spacing: -.05em;
 }
 .cinematic-pilot__card-summary > span {
   font-size: 12px; line-height: 1.5; display: -webkit-box;
@@ -738,11 +738,11 @@ html:has(body.cinematic-pilot), body.cinematic-pilot { overflow-x: clip; }
 .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):focus::after {
   background: linear-gradient(180deg, rgb(6 18 27 / 45%), rgb(6 18 27 / 96%));
 }
-.cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):focus .site-recommendations__card-body { opacity: 0; }
+.cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):focus .site-recommendations__card-body :is(.site-recommendations__name, .site-recommendations__location, .site-recommendations__features) { opacity: 0; }
 .cinematic-pilot__recommendations--immersion .site-recommendations__card:focus .cinematic-pilot__card-summary { opacity: 1; }
 @media (hover: hover) and (pointer: fine) {
   .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):hover::after { background: linear-gradient(180deg, rgb(6 18 27 / 45%), rgb(6 18 27 / 96%)); }
-  .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):hover .site-recommendations__card-body { opacity: 0; }
+  .cinematic-pilot__recommendations--immersion .site-recommendations__card:has(.cinematic-pilot__card-summary):hover .site-recommendations__card-body :is(.site-recommendations__name, .site-recommendations__location, .site-recommendations__features) { opacity: 0; }
   .cinematic-pilot__recommendations--immersion .site-recommendations__card:hover .cinematic-pilot__card-summary { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .cinematic-pilot__card-summary { transition: none; } }

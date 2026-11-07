@@ -184,10 +184,28 @@ test('related card inspection loads and caches the linked site summary', async (
   expect(inspectedRequests).toBe(0);
   await page.getByRole('button', { name:/^Keep exploring/ }).click();
   const card = page.locator('#cinematicRecommendations a.site-recommendations__card').first();
+  // The record fixture has no rating data; reproduce the nested production badge.
+  await card.evaluate(el => {
+    const meta = document.createElement('span');
+    meta.className = 'site-recommendations__meta';
+    meta.style.position = 'absolute';
+    const badge = document.createElement('span');
+    badge.className = 'site-recommendations__rating';
+    badge.textContent = '88/100';
+    meta.append(badge);
+    el.querySelector('.site-recommendations__card-body').append(meta);
+  });
   if (hasTouch) await card.focus(); else await card.hover();
   const summary = card.locator('.cinematic-pilot__card-summary');
   await expect(summary).toContainText('A published description.');
   await expect(summary).toHaveCSS('opacity', '1');
+  const rating = card.locator('.site-recommendations__rating');
+  await expect(rating).toHaveCSS('opacity', '1');
+  await expect(card.locator('.site-recommendations__card-body')).toHaveCSS('opacity', '1');
+  await expect(card.locator('.site-recommendations__meta')).toHaveCSS('opacity', '1');
+  const titleTop = await card.locator('.site-recommendations__name').evaluate(el => el.getBoundingClientRect().top);
+  const hoverTitleTop = await summary.locator('strong').evaluate(el => el.getBoundingClientRect().top);
+  expect(Math.abs(hoverTitleTop - titleTop)).toBeLessThan(1);
   await card.blur();
   await page.mouse.move(0, 0);
   await expect(summary).toHaveCSS('opacity', '0');
