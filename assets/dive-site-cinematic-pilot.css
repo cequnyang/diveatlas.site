@@ -1,4 +1,29 @@
 /* Shared detail appearance, promoted from the Malpelo pilot. Content and data stay authoritative. */
+.cinematic-pilot__page-flight {
+  position: fixed; z-index: 22; overflow: hidden; pointer-events: none;
+  background: #071923; box-shadow: 0 24px 100px rgb(0 0 0 / 35%);
+}
+.cinematic-pilot__page-flight > img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.cinematic-pilot__page-flight > span {
+  position: absolute; inset: auto 24px 24px; color: white;
+  font-size: clamp(24px, 4vw, 48px); font-weight: 700;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 80%);
+}
+.cinematic-pilot__flight-shade { position: absolute; inset: 0; pointer-events: none; }
+.cinematic-pilot__departure-scrim {
+  position: fixed; inset: 0; z-index: 21; background: var(--bg); pointer-events: none;
+}
+.cinematic-pilot__flight-card { position: absolute; inset: 0; list-style: none; }
+.cinematic-pilot__recommendations li.cinematic-pilot__flight-card > a.site-recommendations__card {
+  width: 100%; height: 100%; min-height: 0; margin: 0;
+  border-radius: 0; box-shadow: none; transform: none; transition: none;
+}
+.cinematic-pilot .site-photo-gallery-main > .cinematic-pilot__arrival {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1; pointer-events: none;
+}
 body.cinematic-pilot {
   /* Match the fixed header rail so the hero starts immediately beneath it. */
   display: block; width: 100%; max-width: none; margin: 0; padding: 42px 0 0;

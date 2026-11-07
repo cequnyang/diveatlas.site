@@ -20,6 +20,41 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
 });
 
+test('explorer card expansion aligns with the real permalink preview on arrival', async ({ page }) => {
+  // Keep the generated page and production styles; only replace remote image
+  // bytes so geometry checks do not depend on a third-party asset connection.
+  await page.route('https://assets.diveatlas.site/**', route => route.fulfill({
+    contentType:'image/svg+xml',
+    body:'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="teal"/></svg>'
+  }));
+  await page.goto('/dive-sites/twins-koh-tao/');
+  await page.getByRole('button', { name:/^Keep exploring/ }).click();
+  const card = page.locator('#cinematicRecommendations .site-recommendations__card:visible').first();
+  await expect.poll(() => card.locator('img').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+  const href = await card.getAttribute('href');
+  const flight = page.locator('.cinematic-pilot__page-flight');
+  // Freeze immediately before navigation to compare the expanded rectangle
+  // with the destination. This catches the former hard-coded 42px offset.
+  await card.evaluate(node => {
+    node.click();
+    for (const animation of document.querySelector('.cinematic-pilot__page-flight').getAnimations({ subtree:true })) {
+      animation.pause();
+      animation.currentTime = 559;
+    }
+  });
+  await expect(flight).toBeVisible();
+  const expanded = await flight.boundingBox();
+  await flight.evaluate(node => node.getAnimations({ subtree:true }).forEach(animation => animation.finish()));
+  await page.waitForURL(url => url.pathname === href);
+  await expect(page.locator('body')).toHaveClass(/cinematic-pilot/);
+  await expect(page.locator('.cinematic-pilot__arrival')).toHaveCount(0);
+  const arrived = await page.locator('.site-photo-gallery-main').boundingBox();
+  for (const dimension of ['x', 'y', 'width', 'height']) {
+    expect(Math.abs(expanded[dimension] - arrived[dimension])).toBeLessThanOrEqual(1);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('detail scrollbar starts below the header without reserving a header gutter', async ({ page }) => {
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({ json:record() }));
   await page.goto(`/dive-site.html?id=${FIRST}`);

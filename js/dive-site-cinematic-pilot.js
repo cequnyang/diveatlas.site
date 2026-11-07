@@ -9,12 +9,50 @@
   // Generated permalinks share the structure but historically had no main ID.
   if (!page.id) page.id = 'detailPage';
 
-  const stylesheet = document.createElement('link');
+  const stylesheet = document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]') || document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=105';
-  if (!document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]')) document.head.append(stylesheet);
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=107';
+  if (!stylesheet.isConnected) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');
+
+  const arrivalKey = 'diveatlas-explorer-arrival';
+  // Carry only a short-lived visual across native navigation. No fetched page
+  // replaces the document, so history, localization and detail initialization
+  // continue to use their normal lifecycle.
+  try {
+    const arrival = JSON.parse(sessionStorage.getItem(arrivalKey) || 'null');
+    sessionStorage.removeItem(arrivalKey);
+    if (arrival && arrival.url === location.href && Date.now() - arrival.time < 15000 &&
+        !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const preview = hero.querySelector('.site-photo-gallery-main');
+      if (preview) {
+        const cover = document.createElement('img');
+        cover.src = arrival.image;
+        cover.alt = '';
+        cover.className = 'cinematic-pilot__arrival';
+        preview.append(cover);
+        const image = preview.querySelector('.site-photo-preview-trigger img');
+        const reveal = () => {
+          cover.animate([{ opacity:1 }, { opacity:0 }], { duration:280, fill:'forwards' })
+            .finished.catch(() => {}).finally(() => cover.remove());
+        };
+        // Decoding can fail offline; the bounded fallback must still reveal
+        // the authoritative destination, including its no-photo state.
+        Promise.race([
+          image?.decode().catch(() => {}),
+          new Promise(resolve => setTimeout(resolve, 1200))
+        ]).then(() => {
+          const ready = stylesheet.sheet ? Promise.resolve() : new Promise(resolve => {
+            stylesheet.addEventListener('load', resolve, { once:true });
+            stylesheet.addEventListener('error', resolve, { once:true });
+            setTimeout(resolve, 1200);
+          });
+          ready.then(() => requestAnimationFrame(reveal));
+        });
+      }
+    }
+  } catch (_) { /* Storage restrictions must never prevent navigation. */ }
 
   // Move existing nodes rather than recreate them: retain provenance, map URLs,
   // localized fields, photo preview and rating hooks owned by the shared modules.
@@ -296,9 +334,99 @@
     clearFlights();
   });
   trigger.addEventListener('click', () => setExpanded(true));
+  let departing = false;
+  panel.addEventListener('click', async event => {
+    const card = event.target.closest('a.site-recommendations__card');
+    if (!card || event.defaultPrevented || event.button !== 0 || event.metaKey ||
+        event.ctrlKey || event.shiftKey || event.altKey || card.hasAttribute('download') ||
+        (card.target && card.target !== '_self') || reducedMotion.matches) return;
+    const destination = new URL(card.href, location.href);
+    const image = card.querySelector('img');
+    if (destination.origin !== location.origin || !image?.complete || !image.naturalWidth) return;
+    event.preventDefault();
+    if (departing) return;
+    departing = true;
+    clearFlights();
+    cardAnimations.forEach(animation => animation.cancel());
+    const start = card.getBoundingClientRect();
+    const target = hero.querySelector('.site-photo-gallery-main')?.getBoundingClientRect();
+    // The current site may have no photo and therefore a collapsed gallery.
+    // Match the destination's responsive preview reservation in that case.
+    const targetWidth = target?.width || document.documentElement.clientWidth;
+    const targetHeight = target?.height || (innerWidth <= 720 ? 440 : Math.min(500, Math.max(380, innerWidth * .42)));
+    const flight = document.createElement('div');
+    flight.className = 'cinematic-pilot__page-flight';
+    flight.setAttribute('aria-hidden', 'true');
+    const photo = image.cloneNode();
+    photo.className = '';
+    photo.loading = 'eager';
+    const cardShade = document.createElement('div');
+    cardShade.className = 'cinematic-pilot__flight-shade';
+    cardShade.style.background = getComputedStyle(card, '::after').backgroundImage;
+    const heroShade = cardShade.cloneNode();
+    heroShade.style.background = getComputedStyle(hero.querySelector('.site-photo-gallery-main'), '::after').backgroundImage;
+    const cardTitle = card.querySelector('.site-recommendations__name');
+    const titleRect = cardTitle.getBoundingClientRect();
+    const titleStyle = getComputedStyle(cardTitle);
+    const heading = hero.querySelector('h1');
+    const headingStyle = getComputedStyle(heading);
+    const heroRect = hero.getBoundingClientRect();
+    const targetTop = target?.height ? target.top + window.scrollY : 0;
+    const headingRect = heading.getBoundingClientRect();
+    const name = document.createElement('span');
+    name.textContent = cardTitle.textContent || '';
+    Object.assign(name.style, { fontFamily:titleStyle.fontFamily, fontSize:titleStyle.fontSize,
+      fontWeight:titleStyle.fontWeight, lineHeight:titleStyle.lineHeight,
+      textShadow:titleStyle.textShadow, letterSpacing:titleStyle.letterSpacing,
+      color:titleStyle.color, left:`${titleRect.left - start.left}px`,
+      bottom:`${start.bottom - titleRect.bottom}px`, width:`${titleRect.width}px` });
+    // Preserve the real card's initial layout (including the rating and image
+    // credit) instead of reconstructing metadata with different containing blocks.
+    const snapshot = document.createElement('li');
+    snapshot.className = 'cinematic-pilot__flight-card';
+    const cardCopy = card.cloneNode(true);
+    cardCopy.removeAttribute('href');
+    cardCopy.removeAttribute('id');
+    cardCopy.tabIndex = -1;
+    snapshot.append(cardCopy);
+    flight.append(photo, cardShade, heroShade, name, snapshot);
+    // A child of the modal stays above its top-layer backdrop.
+    panel.append(flight);
+    const scrim = document.createElement('div');
+    scrim.className = 'cinematic-pilot__departure-scrim';
+    panel.insertBefore(scrim, flight);
+    const timing = { duration:560, easing:'cubic-bezier(.22,1,.36,1)', fill:'forwards' };
+    scrim.animate([{ opacity:0 }, { opacity:1 }], timing);
+    cardShade.animate([{ opacity:1 }, { opacity:0 }], timing);
+    heroShade.animate([{ opacity:0 }, { opacity:1 }], timing);
+    snapshot.animate([{ opacity:1 }, { opacity:0 }], { duration:160, fill:'forwards' });
+    name.animate([{}, { fontSize:headingStyle.fontSize, lineHeight:headingStyle.lineHeight,
+      color:headingStyle.color, left:`${headingRect.left - heroRect.left}px`,
+      bottom:`${heroRect.bottom - headingRect.bottom}px`,
+      width:`${innerWidth <= 720 ? targetWidth - 100 : targetWidth - 80}px`, textShadow:headingStyle.textShadow }], timing);
+    Object.assign(flight.style, { left:`${start.left}px`, top:`${start.top}px`,
+      width:`${start.width}px`, height:`${start.height}px` });
+    try {
+      await flight.animate([
+        { borderRadius:getComputedStyle(card).borderRadius },
+        { left:`${target?.width ? target.left : 0}px`, top:`${targetTop}px`, width:`${targetWidth}px`,
+          height:`${targetHeight}px`, borderRadius:'0px', boxShadow:'0 0 0 transparent' }
+      ], timing).finished;
+    } catch (_) { /* A canceled animation still follows the activated link. */ }
+    try {
+      sessionStorage.setItem(arrivalKey, JSON.stringify({ url:destination.href,
+        image:image.currentSrc || image.src, time:Date.now() }));
+    } catch (_) {}
+    location.assign(destination.href);
+  });
+  // BFCache restores the outgoing DOM, including its completed animation.
+  window.addEventListener('pageshow', () => {
+    departing = false;
+    panel.querySelectorAll('.cinematic-pilot__page-flight, .cinematic-pilot__departure-scrim').forEach(node => node.remove());
+  });
   // A modal locks page scrolling, while the destination restores it. Chromium's
   // cross-document snapshot can reject that viewport change on mobile. Keep
-  // navigation native and reserve the photo transition for opening the explorer.
+  // navigation native; the explorer uses its own card expansion above.
   window.addEventListener('pageswap', event => {
     if (panel.open) event.viewTransition?.skipTransition();
   });
