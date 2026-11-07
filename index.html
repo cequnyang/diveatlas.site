@@ -9982,6 +9982,7 @@ ZSD·2016–2025</span></span>
     ratingPopup._diveAtlasReturnDiveSitePopup = sitePopup;
     setDiveConditionsLocation(location, {
       forcePopup:true,
+      popupLocation:sitePopup.getLatLng(),
       month:sitePopup._diveAtlasRatingMonth || diveSiteRatingMonth()
     });
   }
@@ -15341,7 +15342,7 @@ ZSD·2016–2025</span></span>
     if (!popup.isOpen()) openManagedPopup('dive-conditions', popup, anchor);
     popup.update();
   }
-  function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth } = {}) {
+  function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth, popupLocation = latlng } = {}) {
     if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng) || Math.abs(latlng.lat) > 90) return;
     const popup = ensureDiveConditionsPopup();
     const keepOpenWhileLoading = window.matchMedia('(max-width:720px)').matches &&
@@ -15353,9 +15354,10 @@ ZSD·2016–2025</span></span>
     }
     const normalizedLongitude = normalizeBaseLongitude(latlng.lng);
     // Preserve Leaflet's unwrapped longitude so the pin and popup stay on the world copy clicked.
-    const clickedLongitude = Number(latlng.lng);
     diveConditionsLocation = L.latLng(latlng.lat, normalizedLongitude);
-    diveConditionsPopupLocation = L.latLng(latlng.lat, clickedLongitude);
+    // A site's lookup coordinates may be normalized independently of its visible
+    // marker. Keep the rating view attached to the popup's actual world copy.
+    diveConditionsPopupLocation = L.latLng(popupLocation.lat, popupLocation.lng);
     const openDiveSitePopup = activeClickPopup;
     if (openDiveSitePopup?._diveAtlasRatingLocation && openDiveSitePopup.isOpen()) {
       requestDiveSiteRating(openDiveSitePopup, openDiveSitePopup._diveAtlasRatingLocation);

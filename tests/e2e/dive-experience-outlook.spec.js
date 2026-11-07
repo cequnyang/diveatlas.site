@@ -362,3 +362,41 @@ test('expanded Dive Experience month chart stays inside safe area and previews o
     expect(bounds.bounds.bottom).toBeLessThanOrEqual(bounds.safeBounds.bottom + 1);
   }
 });
+
+test('site rating retains the site popup geographic anchor', async ({ page }, testInfo) => {
+  await openMap(page);
+  for (const lng of [131, 491]) {
+    await setMapView(page, -5.7, lng, 8);
+    await page.evaluate(lng => {
+      const api = window.__DIVEATLAS_TEST__;
+      api.map.closePopup();
+      const marker = api.addDiveSite(-5.7, lng, `rating-anchor-${lng}`);
+      marker.openPopup();
+    }, lng);
+    await expect(page.locator('.dive-site-popup')).toBeVisible();
+    await waitForMapMovementToSettle(page);
+    const before = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const anchor = map._popup.getLatLng();
+      const point = map.latLngToContainerPoint(anchor);
+      document.querySelector('.dive-popup-rating').click();
+      return {lat:anchor.lat, lng:anchor.lng, x:point.x, y:point.y};
+    });
+    await expect(page.locator('.dive-conditions-popup')).toBeVisible();
+    await waitForMapMovementToSettle(page);
+    const after = await page.evaluate(() => {
+      const map = window.__DIVEATLAS_TEST__.map;
+      const anchor = map._popup.getLatLng();
+      const point = map.latLngToContainerPoint(anchor);
+      return {lat:anchor.lat, lng:anchor.lng, x:point.x, y:point.y};
+    });
+    expect(after.lat).toBe(before.lat);
+    expect(after.lng).toBe(before.lng);
+    if (testInfo.project.name === 'desktop-chromium') {
+      expect(after.x).toBeCloseTo(before.x, 0);
+      expect(after.y).toBeCloseTo(before.y, 0);
+    }
+    console.log(JSON.stringify({lng, before, after}));
+    await page.screenshot({path:testInfo.outputPath(`rating-anchor-${lng}.png`)});
+  }
+});
