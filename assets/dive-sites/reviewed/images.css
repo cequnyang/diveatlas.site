@@ -1,0 +1,18 @@
+/* Use the ordinary hero unchanged; picture merely fills its existing button. */
+.site-photo-gallery-main > .reviewed-image-trigger > picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.reviewed-credit a { color: inherit; text-decoration: underline; }
+/* Supporting photos stay in the normal content flow, never the hero frame. */
+.reviewed-support .reviewed-figure { width: min(100%, 560px); margin: 16px 0; }
+.reviewed-support .reviewed-image-trigger {
+  display: block; position: relative; width: 100%; padding: 0;
+  border: 0; background: transparent; cursor: zoom-in;
+}
+.reviewed-support picture, .reviewed-support .reviewed-photo { display: block; width: 100%; height: auto; }
+.reviewed-support figcaption { margin-top: 8px; font-size: 12px; line-height: 1.5; color: var(--text-secondary); overflow-wrap: anywhere; }
+.reviewed-support .reviewed-image-trigger:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+.reviewed-surface-label { pointer-events: none; }

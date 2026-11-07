@@ -1,3 +1,10 @@
+// Both generated and shared detail pages load these controls. Keep reviewed
+// context photos in one component so static exports cannot diverge from the shell.
+if (['24578a6d-215e-4d04-8c74-334bddbc60d7', '5e646533-e7d6-4205-9a94-fa82a4c78204',
+  'f24f8645-7d94-4878-a0c5-270b45d51d60'].includes(document.querySelector('main.detail-page')?.dataset.siteId)) {
+  import('/js/dive-site-reviewed-images.js?v=4').catch(error => console.error('Reviewed image component unavailable:', error));
+}
+
 (async () => {
   if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=3');
   window.DiveAtlasHeader.mount();
