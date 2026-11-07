@@ -11,7 +11,7 @@
 
   const stylesheet = document.querySelector('link[href*="/assets/dive-site-cinematic-pilot.css"]') || document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=107';
+  stylesheet.href = '/assets/dive-site-cinematic-pilot.css?v=111';
   if (!stylesheet.isConnected) document.head.append(stylesheet);
   document.body.classList.add('cinematic-pilot');
   if (!hero.querySelector('.site-photo-preview-trigger img')) hero.classList.add('cinematic-pilot--no-photo');

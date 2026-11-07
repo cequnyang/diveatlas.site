@@ -125,8 +125,17 @@ body.cinematic-pilot > .site-recommendations { visibility: hidden; }
 }
 .cinematic-pilot__stack > :nth-child(2) { transform: rotate(0); }
 .cinematic-pilot__stack > :nth-child(3) { transform: rotate(12deg); }
-.cinematic-pilot__trigger-copy { display: grid; gap: 4px; text-align: left; }
-.cinematic-pilot__trigger-hint { color: #c3dce9; font-size: 11px; }
+.cinematic-pilot__trigger-copy { display: grid; gap: 6px; text-align: left; }
+/* An italic serif gives this invitation character while keeping navigation easy to scan. */
+.cinematic-pilot__trigger-copy > :first-child {
+  font-family: Georgia, "Palatino Linotype", serif;
+  font-size: clamp(18px, 1.5vw, 22px); font-style: italic; font-weight: 400;
+  line-height: 1.2; letter-spacing: -.02em;
+}
+.cinematic-pilot__trigger-hint {
+  color: #c3dce9; font-size: 10px; font-weight: 600;
+  line-height: 1.5; letter-spacing: .08em; text-transform: uppercase;
+}
 .cinematic-pilot__trigger-hint { display: inline-flex; align-items: center; gap: 8px; }
 .cinematic-pilot__trigger-hint::after {
   content: ''; display: block; width: 6px; height: 6px; flex: 0 0 auto;
