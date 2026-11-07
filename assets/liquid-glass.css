@@ -99,8 +99,58 @@ body .leaflet-popup-content-wrapper > .leaflet-popup-content {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
+/* Put the material on the common owner: the body and pointer are siblings,
+   so variables defined only on the body cannot reach the pointer. */
+body .leaflet-popup {
+  --map-popup-tint: color-mix(in srgb, var(--panel-solid) 70%, transparent);
+  --map-popup-filter: blur(8px) saturate(145%);
+}
+body :is(#map, .leaflet-pane) .leaflet-popup > .leaflet-popup-content-wrapper {
+  --glass-surface-tint: var(--map-popup-tint);
+  --glass-filter: var(--map-popup-filter);
+}
 body .leaflet-popup-tip {
+  -webkit-backdrop-filter: var(--map-popup-filter);
+  backdrop-filter: var(--map-popup-filter);
+  background: var(--map-popup-tint);
+}
+/* A border or inset reflection on the rectangular body crosses the arrow's
+   base. Use only an outer shadow for these connected map surfaces so the
+   body and pointer share one tint without a horizontal seam. */
+body #map :is(.leaflet-popup-content-wrapper, .leaflet-tooltip) {
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 12%), 0 1px 3px rgb(15 23 42 / 6%);
+}
+:root[data-theme="dark"] body #map :is(.leaflet-popup-content-wrapper, .leaflet-tooltip) {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 28%), 0 1px 3px rgb(0 0 0 / 18%);
+}
+/* Border triangles cannot blur their backdrop. Clip a real glass surface
+   instead, retaining Leaflet's arrow positioning and horizontal offsets. */
+body #map .leaflet-tooltip::before {
+  border: 0;
   background: color-mix(in srgb, var(--panel-solid) 90%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(145%);
+  backdrop-filter: blur(8px) saturate(145%);
+}
+body #map .leaflet-tooltip-top::before {
+  margin-bottom:-6px; width:12px; height:6px; clip-path:polygon(0 0, 100% 0, 50% 100%);
+}
+body #map .leaflet-tooltip-bottom::before {
+  margin-top:-6px; width:12px; height:6px; clip-path:polygon(50% 0, 100% 100%, 0 100%);
+}
+body #map .leaflet-tooltip-left::before {
+  margin-right:-6px; width:6px; height:12px; clip-path:polygon(0 0, 100% 50%, 0 100%);
+}
+body #map .leaflet-tooltip-right::before {
+  margin-left:-6px; width:6px; height:12px; clip-path:polygon(100% 0, 100% 100%, 0 50%);
+}
+body .leaflet-popup.diveatlas-popup-below::before { border-bottom-color:transparent; }
+body .leaflet-popup.diveatlas-popup-below::after {
+  top:-10px; width:20px; height:10px; border:0;
+  clip-path:polygon(50% 0, 100% 100%, 0 100%);
+  background:var(--map-popup-tint);
+  -webkit-backdrop-filter:var(--map-popup-filter);
+  backdrop-filter:var(--map-popup-filter);
 }
 /* Top-layer source panels escape the parent popup/sheet's backdrop root and
    clipping. Their DOM stays inside details for native toggle/focus behavior. */
@@ -360,6 +410,34 @@ body .site-photo-upload-label:is(:hover, :focus-visible) {
     background: linear-gradient(155deg, rgb(255 255 255 / 18%), transparent 55%), rgb(8 20 32 / 75%);
     border-color: var(--glass-active-border);
     color: #fff;
+  }
+}
+/* Keep the shared unit controls on their existing sliding indicator: applying
+   glass to each button would produce two competing selected surfaces. */
+body.has-shared-header .unit-segmented-control {
+  border-color: var(--glass-border);
+  background: var(--glass-highlight), var(--glass-tint);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 22%), inset 0 -1px 0 rgb(0 0 0 / 8%), 0 2px 6px rgb(0 0 0 / 10%);
+}
+body.has-shared-header .unit-segmented-control::before {
+  border-color: var(--glass-active-border);
+  background: var(--glass-highlight), var(--glass-active-tint);
+  box-shadow: inset 1px 1px 0 rgb(255 255 255 / 35%), inset -1px -1px 0 rgb(255 255 255 / 8%), 0 2px 5px rgb(0 0 0 / 16%);
+}
+body.has-shared-header .unit-segmented-control > button[aria-pressed="true"] {
+  color: var(--primary);
+}
+/* Document headers use a button background instead of the map's indicator. */
+body.has-shared-header .unit-segmented-control:not([data-unit-segmented]) > button[aria-pressed="true"] {
+  border-color: var(--glass-active-border);
+  background: var(--glass-highlight), var(--glass-active-tint);
+  box-shadow: inset 1px 1px 0 rgb(255 255 255 / 35%), 0 2px 5px rgb(0 0 0 / 16%);
+}
+@media (hover: hover) {
+  body.has-shared-header .unit-segmented-control > button:hover {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
   }
 }
 @media (prefers-reduced-motion: reduce) {
