@@ -410,6 +410,11 @@ body.cinematic-pilot > .site-detail-footer { margin-top: 8px; }
 .cinematic-pilot .site-photo-gallery-rating:has(.site-photo-gallery-rating__score:not([data-status="ready"])) .site-photo-gallery-rating__trend { display: none; }
 
 @media (min-width: 1061px) {
+  .cinematic-pilot #detailPage > .enrichment-guide + .facts-section > .fact-grid,
+  .cinematic-pilot #detailPage > :is(.intro-details, .site-intro-detail):not([hidden]) + .facts-section > .fact-grid {
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
   .cinematic-pilot { --detail-container-shadow: 0 5px 14px rgb(15 23 42 / 7%), 0 18px 38px rgb(15 23 42 / 10%); }
   :root[data-theme="dark"] .cinematic-pilot { --detail-container-shadow: 0 5px 16px rgb(0 0 0 / 22%), 0 20px 42px rgb(0 0 0 / 30%); }
   .cinematic-pilot #detailPage > :is(.facts-section, .monthly-conditions-section),
