@@ -15,10 +15,10 @@ test('reviewed thumbnails follow stable permalinks across initial, dynamic and c
   }
   document.body.append(list);
  },photos);
- await expect(page.locator('#thumbnail-regression img[data-reviewed-thumbnail]')).toHaveCount(40);
- for(const p of photos){const card=page.locator('#thumbnail-regression a[data-reviewed-thumbnail="'+p.site_id+'"]');const img=card.locator('img');await expect(img).toHaveAttribute('src',new RegExp(p.site_id+'-thumbnail.jpg$'));await expect(img).toHaveAttribute('title',new RegExp(p.licence.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));await expect(card.locator('[data-reviewed-thumbnail-tag]').first()).toContainText(/Surface|Underwater|Context|Nearby|Cavern/);}
+ await expect(page.locator('#thumbnail-regression img[data-reviewed-thumbnail]')).toHaveCount(photos.length);
+ for(const p of photos){const card=page.locator('#thumbnail-regression a[data-reviewed-thumbnail="'+p.site_id+'"]');const img=card.locator('img');await expect(img).toHaveAttribute('src',new RegExp(p.site_id+'-thumbnail.jpg$'));await expect(img).toHaveAttribute('title',new RegExp(p.licence.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));await expect(card.locator('[data-reviewed-thumbnail-tag]').first()).toContainText(/Surface|Underwater|Context|Nearby|Cavern|Above/);}
  await page.evaluate(()=>{const card=document.querySelector('#thumbnail-regression li');document.querySelector('#thumbnail-regression').append(card.cloneNode(true));});
- await expect(page.locator('#thumbnail-regression img[data-reviewed-thumbnail]')).toHaveCount(41);
+ await expect(page.locator('#thumbnail-regression img[data-reviewed-thumbnail]')).toHaveCount(photos.length + 1);
  // A later catalog render may reuse the image node and assign its old URL.
  await page.locator('#thumbnail-regression img').first().evaluate(image=>{image.src='/assets/diveatlas-logo.svg'});
  await expect(page.locator('#thumbnail-regression img').first()).toHaveAttribute('src',new RegExp(photos[0].site_id+'-thumbnail.jpg$'));
@@ -38,7 +38,7 @@ test('unavailable reviewed thumbnail retains the existing card image',async({pag
 
 test('map popup and enlarged preview use the assigned photo with context and linked attribution',async({page})=>{
  await openMap(page,{localStorage:{'global-coral-map-lang':'en'}});await page.waitForFunction(()=>Boolean(window.DiveAtlasReviewedPhotos));
- for(const p of [photos[3],photos[4]]){
+ for(const p of [photos[3],photos[4],photos.find(p=>p.review_id==='c089'),photos.at(-1)]){
   await setMapView(page,-5.7,131,14);
   await page.evaluate(p=>{window.__DIVEATLAS_TEST__.map.closePopup();window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,p.site_id,{withFallbackPhoto:true}).openPopup()},p);
   const popup=page.locator('.leaflet-popup.dive-site-popup--with-photo').filter({has:page.locator('img.dive-popup-photo[src*="'+p.site_id+'"]')});await expect(popup).toBeVisible();
@@ -59,7 +59,7 @@ test('published directory cards show the same real thumbnail without changing th
  await card.scrollIntoViewIfNeeded();await expect(card.locator('img')).toHaveAttribute('src',/4be432e2-22d5-4c5f-8cb2-609d61b15e68-thumbnail.jpg$/);
  await expect(card.locator('[data-reviewed-thumbnail-tag]').first()).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
- await page.screenshot({path:'data/image-thumbnail-integration-20261108/directory-'+testInfo.project.name+'.png'});
+ await page.screenshot({path:'data/image-application-additional-20261108/directory-'+testInfo.project.name+'.png'});
 });
 
 test('a failing old image cannot discard a reviewed thumbnail while it decodes',async({page})=>{

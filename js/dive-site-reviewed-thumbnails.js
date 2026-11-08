@@ -54,7 +54,7 @@ function labelThumbnail(card, image, photo) {
     const frame = card.getBoundingClientRect();
     const box = image.getBoundingClientRect();
     label.textContent = box.width < 120
-      ? (photo.label.includes('Underwater') ? 'Underwater' : photo.label.includes('context') || photo.label.includes('Nearby') ? 'Context' : 'Surface')
+      ? (photo.label.includes('Above/below') ? 'Above/below' : photo.label.includes('Underwater') ? 'Underwater' : photo.label.includes('context') || photo.label.includes('Nearby') ? 'Context' : 'Surface')
       : photo.label;
     for (const node of [label, credit]) {
       node.style.left = `${box.left - frame.left + 2}px`;

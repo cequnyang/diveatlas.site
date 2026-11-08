@@ -36,7 +36,10 @@ def build():
             {'label': 'Source', 'url': entry['source_page']},
             {'label': licence, 'url': entry['licence_url']},
         ]
-        if 'Diego Delso' in creator:
+        for item in entry.get('creator_links', []):
+            if item not in links:
+                links.insert(0, item)
+        if 'Diego Delso' in creator and not any(item['url'] == 'http://delso.photo' for item in links):
             links.insert(0, {'label': 'delso.photo', 'url': 'http://delso.photo'})
         catalog.append({
             'siteId': site_id, 'slug': entry['slug'],

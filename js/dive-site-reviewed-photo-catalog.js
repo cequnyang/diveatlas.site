@@ -1047,5 +1047,1551 @@ export const reviewedPhotos = [
     ],
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2d597fa8-e87b-4bb2-9894-31bf18d4174d",
+    "slug": "kalk-bay-harbour-wall",
+    "src": "/assets/dive-sites/reviewed-discovery/2d597fa8-e87b-4bb2-9894-31bf18d4174d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2d597fa8-e87b-4bb2-9894-31bf18d4174d-desktop.jpg",
+    "alt": "Kalk Bay Harbour Wall — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Carosaun · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Carosaun",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:1._The_harbour_at_Kalk_Bay_02_-_A_boat_heads_out_to_catch_fish.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:1._The_harbour_at_Kalk_Bay_02_-_A_boat_heads_out_to_catch_fish.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "4810bcf9-33ee-4e24-9716-b850d9e70b5f",
+    "slug": "outer-castle",
+    "src": "/assets/dive-sites/reviewed-discovery/4810bcf9-33ee-4e24-9716-b850d9e70b5f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/4810bcf9-33ee-4e24-9716-b850d9e70b5f-desktop.jpg",
+    "alt": "Outer Castle — underwater view, as described by the source.",
+    "label": "Underwater view",
+    "credit": "Underwater view · Peter Southwood · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Peter Southwood",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Reef_invertebrates_at_Outer_Castle_PA055890.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Reef_invertebrates_at_Outer_Castle_PA055890.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "6d8f7bc4-6edd-4766-9a05-bf6c38647e84",
+    "slug": "langebaan-main-beach-cuttle-fish-alley",
+    "src": "/assets/dive-sites/reviewed-discovery/6d8f7bc4-6edd-4766-9a05-bf6c38647e84-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/6d8f7bc4-6edd-4766-9a05-bf6c38647e84-desktop.jpg",
+    "alt": "Langebaan Main Beach - Cuttle Fish Alley — nearby surface context · langebaan lagoon, as described by the source.",
+    "label": "Nearby surface context · Langebaan Lagoon",
+    "credit": "Nearby surface context · Langebaan Lagoon · Winfried Bruenken ( Amrum ) · CC BY-SA 2.5 · Cropped/resized",
+    "creator": "Winfried Bruenken ( Amrum )",
+    "license": "CC BY-SA 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Langebaan_lagoon,_West_Coast_National_Park.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Langebaan_lagoon,_West_Coast_National_Park.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.5",
+        "url": "https://creativecommons.org/licenses/by-sa/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "6c6e7d33-1e6c-4600-994e-54a4fc8b418e",
+    "slug": "la-jolla-cove",
+    "src": "/assets/dive-sites/reviewed-discovery/6c6e7d33-1e6c-4600-994e-54a4fc8b418e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/6c6e7d33-1e6c-4600-994e-54a4fc8b418e-desktop.jpg",
+    "alt": "La Jolla Cove — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Charles Edward · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Charles Edward",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:A_tidal_pool_at_la_jolla_cove.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:A_tidal_pool_at_la_jolla_cove.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9d160013-e2fe-4b88-bae0-7a94a33358ad",
+    "slug": "mala-wharf",
+    "src": "/assets/dive-sites/reviewed-discovery/9d160013-e2fe-4b88-bae0-7a94a33358ad-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/9d160013-e2fe-4b88-bae0-7a94a33358ad-desktop.jpg",
+    "alt": "Mala Wharf — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Peaceray · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Peaceray",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Mala_Wharf.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Mala_Wharf.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "bdd18f35-6c48-46f3-9222-a81fd923c5d9",
+    "slug": "yonaguni-monument",
+    "src": "/assets/dive-sites/reviewed-discovery/bdd18f35-6c48-46f3-9222-a81fd923c5d9-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/bdd18f35-6c48-46f3-9222-a81fd923c5d9-desktop.jpg",
+    "alt": "Yonaguni Monument — underwater view, as described by the source.",
+    "label": "Underwater view",
+    "credit": "Underwater view · Melkov · CC0 1.0 · Cropped/resized",
+    "creator": "Melkov",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:At_the_Yonaguni_Monument.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:At_the_Yonaguni_Monument.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d03769fb-34d7-4c70-842a-01c2f225a31f",
+    "slug": "lake-motosu",
+    "src": "/assets/dive-sites/reviewed-discovery/d03769fb-34d7-4c70-842a-01c2f225a31f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/d03769fb-34d7-4c70-842a-01c2f225a31f-desktop.jpg",
+    "alt": "Lake Motosu — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Alpsdake · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Alpsdake",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Motosu_from_Panoramadai.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Motosu_from_Panoramadai.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "fee3f7b3-db83-43b2-a2e7-81c03149de8e",
+    "slug": "apo-island",
+    "src": "/assets/dive-sites/reviewed-discovery/fee3f7b3-db83-43b2-a2e7-81c03149de8e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/fee3f7b3-db83-43b2-a2e7-81c03149de8e-desktop.jpg",
+    "alt": "Apo Island — underwater view, as described by the source.",
+    "label": "Underwater view",
+    "credit": "Underwater view · Wellbeach Dive Resort · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Wellbeach Dive Resort",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2Apo_Island_scuba_diving.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:2Apo_Island_scuba_diving.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "00c57173-cf2e-4194-87e6-e010edefedf3",
+    "slug": "balicasag-island",
+    "src": "/assets/dive-sites/reviewed-discovery/00c57173-cf2e-4194-87e6-e010edefedf3-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/00c57173-cf2e-4194-87e6-e010edefedf3-desktop.jpg",
+    "alt": "Balicasag Island — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Ric V Obedencio · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Ric V Obedencio",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Balicasag_Island,_Panglao,_Bohol_1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Balicasag_Island,_Panglao,_Bohol_1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "af586cff-f433-4890-b51f-e2830baacd92",
+    "slug": "malapascua",
+    "src": "/assets/dive-sites/reviewed-discovery/af586cff-f433-4890-b51f-e2830baacd92-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/af586cff-f433-4890-b51f-e2830baacd92-desktop.jpg",
+    "alt": "Malapascua — surface view · bounty beach, malapascua, as described by the source.",
+    "label": "Surface view · Bounty Beach, Malapascua",
+    "credit": "Surface view · Bounty Beach, Malapascua · Vyacheslav Argenberg · CC BY 4.0 · Cropped/resized",
+    "creator": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Malapascua_(island),_Bounty_Beach,_Bungalow,_Philippines.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Malapascua_(island),_Bounty_Beach,_Bungalow,_Philippines.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "aac0fac0-0a81-4b56-8990-1c560b8154fe",
+    "slug": "gili-meno-harbour",
+    "src": "/assets/dive-sites/reviewed-discovery/aac0fac0-0a81-4b56-8990-1c560b8154fe-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/aac0fac0-0a81-4b56-8990-1c560b8154fe-desktop.jpg",
+    "alt": "Gili Meno Harbour — nearby surface context · gili meno beach, as described by the source.",
+    "label": "Nearby surface context · Gili Meno beach",
+    "credit": "Nearby surface context · Gili Meno beach · Vyacheslav Argenberg · CC BY 4.0 · Cropped/resized",
+    "creator": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach,_Gili_Meno_Island,_Indonesia.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach,_Gili_Meno_Island,_Indonesia.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2bcad926-3c2a-4232-944e-61ddaa058344",
+    "slug": "isla-grosa",
+    "src": "/assets/dive-sites/reviewed-discovery/2bcad926-3c2a-4232-944e-61ddaa058344-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2bcad926-3c2a-4232-944e-61ddaa058344-desktop.jpg",
+    "alt": "Isla Grosa — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Diego Delso · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Isla_Grosa,_Murcia,_Espa%C3%B1a,_2022-07-16,_DD_05.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isla_Grosa,_Murcia,_Espa%C3%B1a,_2022-07-16,_DD_05.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "06ef750a-df23-49a6-a113-f84cf3fc8e20",
+    "slug": "arrecifes-artificiales-tabarca",
+    "src": "/assets/dive-sites/reviewed-discovery/06ef750a-df23-49a6-a113-f84cf3fc8e20-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/06ef750a-df23-49a6-a113-f84cf3fc8e20-desktop.jpg",
+    "alt": "Arrecifes Artificiales Tabarca — surface context · tabarca coast, as described by the source.",
+    "label": "Surface context · Tabarca coast",
+    "credit": "Surface context · Tabarca coast · Carlos Ramón Bonilla… · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Carlos Ramón Bonilla…",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Costa_de_Tabarca_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Costa_de_Tabarca_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "33bcd6f6-6151-4510-a364-95efff41563d",
+    "slug": "cenote-el-pit",
+    "src": "/assets/dive-sites/reviewed-discovery/33bcd6f6-6151-4510-a364-95efff41563d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/33bcd6f6-6151-4510-a364-95efff41563d-desktop.jpg",
+    "alt": "Cenote El Pit — above/below-water view, as described by the source.",
+    "label": "Above/below-water view",
+    "credit": "Above/below-water view · Diego Delso · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cenote_El_Pit,_Yucat%C3%A1n,_M%C3%A9xico,_2025-12-23,_DD_01.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cenote_El_Pit,_Yucat%C3%A1n,_M%C3%A9xico,_2025-12-23,_DD_01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "446cda4d-38bf-4608-a949-418836837a87",
+    "slug": "poor-knights-island-nz",
+    "src": "/assets/dive-sites/reviewed-discovery/446cda4d-38bf-4608-a949-418836837a87-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/446cda4d-38bf-4608-a949-418836837a87-desktop.jpg",
+    "alt": "Poor Knights Island NZ — underwater view, as described by the source.",
+    "label": "Underwater view",
+    "credit": "Underwater view · Anna Barnett · CC BY 2.0 · Cropped/resized",
+    "creator": "Anna Barnett",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Diver_at_the_Northern_Arch,_Poor_Knights_Islands.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Diver_at_the_Northern_Arch,_Poor_Knights_Islands.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2cf77557-0073-49d0-9440-d6d4f20d80ac",
+    "slug": "blue-grotto-malta-and-gozo-malta",
+    "src": "/assets/dive-sites/reviewed-discovery/2cf77557-0073-49d0-9440-d6d4f20d80ac-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2cf77557-0073-49d0-9440-d6d4f20d80ac-desktop.jpg",
+    "alt": "Blue Grotto — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Plutoworld · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Plutoworld",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Blue_Grotto_-_South_Coast_Malta.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Blue_Grotto_-_South_Coast_Malta.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "885a192e-00c1-478e-a9fa-0c583249e609",
+    "slug": "marico-oog",
+    "src": "/assets/dive-sites/reviewed-discovery/885a192e-00c1-478e-a9fa-0c583249e609-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/885a192e-00c1-478e-a9fa-0c583249e609-desktop.jpg",
+    "alt": "Marico Oog — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Ossewa · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Ossewa",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Marico_Oog.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Marico_Oog.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "91f44959-817a-40c8-a8ba-f4910c0f8309",
+    "slug": "dierkes-lake-twin-falls-idaho",
+    "src": "/assets/dive-sites/reviewed-discovery/91f44959-817a-40c8-a8ba-f4910c0f8309-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/91f44959-817a-40c8-a8ba-f4910c0f8309-desktop.jpg",
+    "alt": "Dierkes Lake, Twin Falls, Idaho — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Chanilim714 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Chanilim714",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_at_Dierkes_Lake_Park_Twin_Falls_ID_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach_at_Dierkes_Lake_Park_Twin_Falls_ID_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "279845c6-91f6-49d9-bcb2-7effe4e6d0ef",
+    "slug": "sand-harbor",
+    "src": "/assets/dive-sites/reviewed-discovery/279845c6-91f6-49d9-bcb2-7effe4e6d0ef-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/279845c6-91f6-49d9-bcb2-7effe4e6d0ef-desktop.jpg",
+    "alt": "Sand Harbor — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Ken Lund from Reno, Nevada, USA · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Sand_Harbor,_Lake_Tahoe_State_Park,_Near_Incline_Village,_Nevada_(16959191082).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sand_Harbor,_Lake_Tahoe_State_Park,_Near_Incline_Village,_Nevada_(16959191082).jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "99aad3e0-bf05-4b45-b881-ff427d46c659",
+    "slug": "stockbridge-bowl",
+    "src": "/assets/dive-sites/reviewed-discovery/99aad3e0-bf05-4b45-b881-ff427d46c659-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/99aad3e0-bf05-4b45-b881-ff427d46c659-desktop.jpg",
+    "alt": "Stockbridge Bowl — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Chamberednautilus · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Chamberednautilus",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Stockbridge_Town_Beach_at_Stockbridge_Bowl.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Stockbridge_Town_Beach_at_Stockbridge_Bowl.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2d39ce2d-a74c-425d-973c-fc4833f9d301",
+    "slug": "baia-da-ribeira-brava",
+    "src": "/assets/dive-sites/reviewed-discovery/2d39ce2d-a74c-425d-973c-fc4833f9d301-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2d39ce2d-a74c-425d-973c-fc4833f9d301-desktop.jpg",
+    "alt": "Baía da Ribeira Brava — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Photo: Anton Zelenov · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Photo: Anton Zelenov",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ribeira_Brava_dock.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ribeira_Brava_dock.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "677fe412-e0d1-430e-8d3a-e199698f232e",
+    "slug": "btc-baie-ternay-center",
+    "src": "/assets/dive-sites/reviewed-discovery/677fe412-e0d1-430e-8d3a-e199698f232e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/677fe412-e0d1-430e-8d3a-e199698f232e-desktop.jpg",
+    "alt": "BTC (Baie Ternay Center) — surface view · baie ternay beach, as described by the source.",
+    "label": "Surface view · Baie Ternay beach",
+    "credit": "Surface view · Baie Ternay beach · So Seychelles · CC BY 2.0 · Cropped/resized",
+    "creator": "So Seychelles",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Baie_Ternay,_Mahe,_Seychelles.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baie_Ternay,_Mahe,_Seychelles.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "adf4bfd8-6c63-4f64-980e-7e178a7c2320",
+    "slug": "punta-veleros",
+    "src": "/assets/dive-sites/reviewed-discovery/adf4bfd8-6c63-4f64-980e-7e178a7c2320-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/adf4bfd8-6c63-4f64-980e-7e178a7c2320-desktop.jpg",
+    "alt": "Punta Veleros — surface view · punta veleros beach, as described by the source.",
+    "label": "Surface view · Punta Veleros beach",
+    "credit": "Surface view · Punta Veleros beach · Melissamarzo · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Melissamarzo",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Punta_Veleros_2.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Punta_Veleros_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "45d46fff-cf41-4922-868d-74d099780137",
+    "slug": "barcazas-bahia-de-santa-marta",
+    "src": "/assets/dive-sites/reviewed-discovery/45d46fff-cf41-4922-868d-74d099780137-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/45d46fff-cf41-4922-868d-74d099780137-desktop.jpg",
+    "alt": "Barcazas, Bahía de Santa Marta — surface view · santa marta bay, as described by the source.",
+    "label": "Surface view · Santa Marta Bay",
+    "credit": "Surface view · Santa Marta Bay · User:Oliver H · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "User:Oliver H",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunshine_at_Santa_Marta_beach_Colombia.jpeg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sunshine_at_Santa_Marta_beach_Colombia.jpeg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9a102a79-92fc-4524-9fe5-b27e7b1d50da",
+    "slug": "rhodos-kalithea-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/9a102a79-92fc-4524-9fe5-b27e7b1d50da-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/9a102a79-92fc-4524-9fe5-b27e7b1d50da-desktop.jpg",
+    "alt": "Rhodos Kalithea Bay — surface context · kallithea shoreline, as described by the source.",
+    "label": "Surface context · Kallithea shoreline",
+    "credit": "Surface context · Kallithea shoreline · Böhringer Friedrich · CC BY-SA 2.5 · Cropped/resized",
+    "creator": "Böhringer Friedrich",
+    "license": "CC BY-SA 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:TassosFaliraki01.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:TassosFaliraki01.JPG"
+      },
+      {
+        "label": "CC BY-SA 2.5",
+        "url": "https://creativecommons.org/licenses/by-sa/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "bd4e6bad-22b8-454c-be75-8e9d4d1d1917",
+    "slug": "listertalsperre-kalberschnacke",
+    "src": "/assets/dive-sites/reviewed-discovery/bd4e6bad-22b8-454c-be75-8e9d4d1d1917-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/bd4e6bad-22b8-454c-be75-8e9d4d1d1917-desktop.jpg",
+    "alt": "Listertalsperre - Kalberschnacke — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Thomas Depenbusch · CC BY 2.0 · Cropped/resized",
+    "creator": "Thomas Depenbusch",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Lister,_Germany_(8485700848).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Lister,_Germany_(8485700848).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "e5806ad9-d858-46cd-b6ec-fab950d7ede0",
+    "slug": "la-jetee-carriacou",
+    "src": "/assets/dive-sites/reviewed-discovery/e5806ad9-d858-46cd-b6ec-fab950d7ede0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/e5806ad9-d858-46cd-b6ec-fab950d7ede0-desktop.jpg",
+    "alt": "La Jetée, Carriacou — surface context · hillsborough beach, as described by the source.",
+    "label": "Surface context · Hillsborough beach",
+    "credit": "Surface context · Hillsborough beach · FishSpeaker · CC BY 3.0 · Cropped/resized",
+    "creator": "FishSpeaker",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_at_Hillsborough_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach_at_Hillsborough_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "da802fc8-a0f3-443d-b51b-eeb21c200b56",
+    "slug": "hohendeicher-see",
+    "src": "/assets/dive-sites/reviewed-discovery/da802fc8-a0f3-443d-b51b-eeb21c200b56-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/da802fc8-a0f3-443d-b51b-eeb21c200b56-desktop.jpg",
+    "alt": "Hohendeicher See — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Wusel007 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Wusel007",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hohendeicher_See_Tauchspot.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Hohendeicher_See_Tauchspot.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d48769ea-2df3-4531-9241-a4409e025ea8",
+    "slug": "similan-islands",
+    "src": "/assets/dive-sites/reviewed-discovery/d48769ea-2df3-4531-9241-a4409e025ea8-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/d48769ea-2df3-4531-9241-a4409e025ea8-desktop.jpg",
+    "alt": "Similan Islands — surface view · ao kuerk, ko similan, as described by the source.",
+    "label": "Surface view · Ao Kuerk, Ko Similan",
+    "credit": "Surface view · Ao Kuerk, Ko Similan · Mathias Krumbholz · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Mathias Krumbholz",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Similan_Island_01_(MK).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Similan_Island_01_(MK).jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c173df1b-7518-4ef2-9683-2e1cc8e93441",
+    "slug": "epava-evangelia",
+    "src": "/assets/dive-sites/reviewed-discovery/c173df1b-7518-4ef2-9683-2e1cc8e93441-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/c173df1b-7518-4ef2-9683-2e1cc8e93441-desktop.jpg",
+    "alt": "Epava Evangelia — surface wreck view · 2014, as described by the source.",
+    "label": "Surface wreck view · 2014",
+    "credit": "Surface wreck view · 2014 · Razvan Socol · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Razvan Socol",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Costine%C8%99ti_-_aug_2014_(2).JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Costine%C8%99ti_-_aug_2014_(2).JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c9faad8f-b396-46bc-b74e-4f4a03b83c09",
+    "slug": "telegraph-wall",
+    "src": "/assets/dive-sites/reviewed-discovery/c9faad8f-b396-46bc-b74e-4f4a03b83c09-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/c9faad8f-b396-46bc-b74e-4f4a03b83c09-desktop.jpg",
+    "alt": "Telegraph Wall — surface context · telegraph island, as described by the source.",
+    "label": "Surface context · Telegraph Island",
+    "credit": "Surface context · Telegraph Island · mccaffrey_uk · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "mccaffrey_uk",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Telegraph_Island_3.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Photographer",
+        "url": "https://www.flickr.com/photos/mccaffrey_uk/"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Telegraph_Island_3.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "68a24075-2bca-48fe-875f-55048e9c2e85",
+    "slug": "mercers-lake-redhill",
+    "src": "/assets/dive-sites/reviewed-discovery/68a24075-2bca-48fe-875f-55048e9c2e85-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/68a24075-2bca-48fe-875f-55048e9c2e85-desktop.jpg",
+    "alt": "Mercers Lake - Redhill — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Peter Trimming · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Peter Trimming",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_at_Mercers_Country_Park,_Nutfield_Marsh,_Surrey_-_geograph.org.uk_-_3774307.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_at_Mercers_Country_Park,_Nutfield_Marsh,_Surrey_-_geograph.org.uk_-_3774307.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0fe9f189-8ee9-4fdf-8040-e5cd782c9031",
+    "slug": "vevey-quai-perdonnet",
+    "src": "/assets/dive-sites/reviewed-discovery/0fe9f189-8ee9-4fdf-8040-e5cd782c9031-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/0fe9f189-8ee9-4fdf-8040-e5cd782c9031-desktop.jpg",
+    "alt": "Vevey - Quai Perdonnet — surface view · lake geneva, vevey, as described by the source.",
+    "label": "Surface view · Lake Geneva, Vevey",
+    "credit": "Surface view · Lake Geneva, Vevey · Sabrina Schreiber · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Sabrina Schreiber",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Afterglow_in_Vevey.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Afterglow_in_Vevey.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "7aaf44ab-8df9-48be-9888-ccea798c06d2",
+    "slug": "port-lac-de-nantua",
+    "src": "/assets/dive-sites/reviewed-discovery/7aaf44ab-8df9-48be-9888-ccea798c06d2-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/7aaf44ab-8df9-48be-9888-ccea798c06d2-desktop.jpg",
+    "alt": "Port, Lac de Nantua — surface context · lac de nantua, as described by the source.",
+    "label": "Surface context · Lac de Nantua",
+    "credit": "Surface context · Lac de Nantua · Florian Pépellin · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Florian Pépellin",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Nantua_(lac,_ville,_viaduc).JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Nantua_(lac,_ville,_viaduc).JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "fd7f27bc-7045-4d68-b6f5-5a0ba580ee0f",
+    "slug": "mahahual-reef",
+    "src": "/assets/dive-sites/reviewed-discovery/fd7f27bc-7045-4d68-b6f5-5a0ba580ee0f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/fd7f27bc-7045-4d68-b6f5-5a0ba580ee0f-desktop.jpg",
+    "alt": "Mahahual Reef — nearby surface context · mahahual beach, as described by the source.",
+    "label": "Nearby surface context · Mahahual Beach",
+    "credit": "Nearby surface context · Mahahual Beach · Juan Ortega · CC BY 3.0 · Cropped/resized",
+    "creator": "Juan Ortega",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Mahahual_Beach_(http-www.bluekaymahahual.com)_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Mahahual_Beach_(http-www.bluekaymahahual.com)_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "654134e3-772e-4b0c-a62c-3c0f1e7b04a1",
+    "slug": "sabang-point",
+    "src": "/assets/dive-sites/reviewed-discovery/654134e3-772e-4b0c-a62c-3c0f1e7b04a1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/654134e3-772e-4b0c-a62c-3c0f1e7b04a1-desktop.jpg",
+    "alt": "Sabang Point — nearby surface context · sabang beach, as described by the source.",
+    "label": "Nearby surface context · Sabang beach",
+    "credit": "Nearby surface context · Sabang beach · Andrea Albini · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Andrea Albini",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Puerto_Galera_-_Sabang_beach_-_panoramio_(2).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Puerto_Galera_-_Sabang_beach_-_panoramio_(2).jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d8dec0bf-191c-4e07-9866-ccc8bce5f136",
+    "slug": "kovalam",
+    "src": "/assets/dive-sites/reviewed-discovery/d8dec0bf-191c-4e07-9866-ccc8bce5f136-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/d8dec0bf-191c-4e07-9866-ccc8bce5f136-desktop.jpg",
+    "alt": "KOVALAM — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Sravanbaddi · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Sravanbaddi",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Sunset_at_Kovalam_beach.1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sunset_at_Kovalam_beach.1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "f828d497-18f1-445b-ba3c-09519f42b0e9",
+    "slug": "lonsdale-wall",
+    "src": "/assets/dive-sites/reviewed-discovery/f828d497-18f1-445b-ba3c-09519f42b0e9-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/f828d497-18f1-445b-ba3c-09519f42b0e9-desktop.jpg",
+    "alt": "Lonsdale Wall — nearby surface context · point lonsdale beach, as described by the source.",
+    "label": "Nearby surface context · Point Lonsdale beach",
+    "credit": "Nearby surface context · Point Lonsdale beach · Stephen Bain · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Stephen Bain",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Point_Lonsdale_front_beach.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Point_Lonsdale_front_beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2fe11afc-05ce-5521-9310-cbbd8d5d1aa6",
+    "slug": "opat",
+    "src": "/assets/dive-sites/reviewed-discovery/2fe11afc-05ce-5521-9310-cbbd8d5d1aa6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2fe11afc-05ce-5521-9310-cbbd8d5d1aa6-desktop.jpg",
+    "alt": "Opat — surface context · cape opat, as described by the source.",
+    "label": "Surface context · Cape Opat",
+    "credit": "Surface context · Cape Opat · ANDREJ NEUHERZ · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "ANDREJ NEUHERZ",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Rt_Opat.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Rt_Opat.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ad14a8a9-f1a1-4dbf-b27f-15582b173a4d",
+    "slug": "jezioro-bagry",
+    "src": "/assets/dive-sites/reviewed-discovery/ad14a8a9-f1a1-4dbf-b27f-15582b173a4d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/ad14a8a9-f1a1-4dbf-b27f-15582b173a4d-desktop.jpg",
+    "alt": "Jezioro Bagry — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Zygmunt Put Zetpe0202 · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Zygmunt Put Zetpe0202",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bagry_Lake,_Krakow,_Poland.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bagry_Lake,_Krakow,_Poland.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "e289b380-1a40-401d-b021-a4fd1a289ce4",
+    "slug": "bracciano",
+    "src": "/assets/dive-sites/reviewed-discovery/e289b380-1a40-401d-b021-a4fd1a289ce4-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/e289b380-1a40-401d-b021-a4fd1a289ce4-desktop.jpg",
+    "alt": "Bracciano — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Computerjoe · CC BY 3.0 · Cropped/resized",
+    "creator": "Computerjoe",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Bracciano_from_Castello_Orsini-Odescalchi.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Bracciano_from_Castello_Orsini-Odescalchi.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "7f1de30f-c581-46d9-a783-e1a39819e011",
+    "slug": "windmill-beach",
+    "src": "/assets/dive-sites/reviewed-discovery/7f1de30f-c581-46d9-a783-e1a39819e011-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/7f1de30f-c581-46d9-a783-e1a39819e011-desktop.jpg",
+    "alt": "Windmill Beach — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Peter Southwood · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Peter Southwood",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Entry_point_at_East_cove_at_CT_dive_site_Windmill_beach.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Entry_point_at_East_cove_at_CT_dive_site_Windmill_beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c32c30cf-dec7-4bdb-a7c3-9b1fd14411c0",
+    "slug": "point-lobos-whalers-cove",
+    "src": "/assets/dive-sites/reviewed-discovery/c32c30cf-dec7-4bdb-a7c3-9b1fd14411c0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/c32c30cf-dec7-4bdb-a7c3-9b1fd14411c0-desktop.jpg",
+    "alt": "Point Lobos - Whalers Cove — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Eugene Zelenko · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Eugene Zelenko",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:USA-Point_Lobos_State_Reserve-Whalers_Cove-1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:USA-Point_Lobos_State_Reserve-Whalers_Cove-1.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "03c3669d-f7de-4e05-bcba-3cbf97734fff",
+    "slug": "zamami-island",
+    "src": "/assets/dive-sites/reviewed-discovery/03c3669d-f7de-4e05-bcba-3cbf97734fff-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/03c3669d-f7de-4e05-bcba-3cbf97734fff-desktop.jpg",
+    "alt": "Zamami Island — surface view · ama beach, zamami, as described by the source.",
+    "label": "Surface view · Ama Beach, Zamami",
+    "credit": "Surface view · Ama Beach, Zamami · Hashi photo · CC BY 3.0 · Cropped/resized",
+    "creator": "Hashi photo",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ama_beach_in_Zamami_Island.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ama_beach_in_Zamami_Island.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "11157989-005e-40b7-acfd-f39126d628c0",
+    "slug": "stoney-cove",
+    "src": "/assets/dive-sites/reviewed-discovery/11157989-005e-40b7-acfd-f39126d628c0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/11157989-005e-40b7-acfd-f39126d628c0-desktop.jpg",
+    "alt": "Stoney Cove — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Mat Fascione · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Mat Fascione",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Stoney_Cove,_The_National_Diving_Centre_-_geograph.org.uk_-_2875724.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Stoney_Cove,_The_National_Diving_Centre_-_geograph.org.uk_-_2875724.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9076d6f8-2fc9-4a8b-98a3-546c06cd7eaf",
+    "slug": "ponta-da-piedade-caves",
+    "src": "/assets/dive-sites/reviewed-discovery/9076d6f8-2fc9-4a8b-98a3-546c06cd7eaf-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/9076d6f8-2fc9-4a8b-98a3-546c06cd7eaf-desktop.jpg",
+    "alt": "Ponta da Piedade Caves — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Brigitte from Österreich · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Brigitte from Österreich",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:40_Ponta_de_Piedade_(26470591961).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:40_Ponta_de_Piedade_(26470591961).jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "953a54b8-f737-486f-aa76-9ddd0c6517cf",
+    "slug": "tavolara-island",
+    "src": "/assets/dive-sites/reviewed-discovery/953a54b8-f737-486f-aa76-9ddd0c6517cf-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/953a54b8-f737-486f-aa76-9ddd0c6517cf-desktop.jpg",
+    "alt": "Tavolara Island — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Bärwinkel,Klaus · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Bärwinkel,Klaus",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2018_Insel_Tavolara_1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:2018_Insel_Tavolara_1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "24c23e75-4b81-42e2-84a4-23477ef16d5f",
+    "slug": "leon-dormido-kicker-rock",
+    "src": "/assets/dive-sites/reviewed-discovery/24c23e75-4b81-42e2-84a4-23477ef16d5f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/24c23e75-4b81-42e2-84a4-23477ef16d5f-desktop.jpg",
+    "alt": "Leon Dormido - Kicker Rock — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Murray Foubister · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Murray Foubister",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dry_landing_excursion_to_Isla_Lobos_-_Leon_Dormido_(Kicker_rock)_looms_far_off_shore_(16483679247).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dry_landing_excursion_to_Isla_Lobos_-_Leon_Dormido_(Kicker_rock)_looms_far_off_shore_(16483679247).jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "bc0f62da-c072-4a11-853f-eae324742b50",
+    "slug": "isla-bartolome",
+    "src": "/assets/dive-sites/reviewed-discovery/bc0f62da-c072-4a11-853f-eae324742b50-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/bc0f62da-c072-4a11-853f-eae324742b50-desktop.jpg",
+    "alt": "Isla Bartolome — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · putneymark · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "putneymark",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bartolome_Island_-_panorama_2.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bartolome_Island_-_panorama_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "27bbdc7d-5953-4786-b0ce-147bf3758d10",
+    "slug": "playa-kalki-alice-in-wonderland",
+    "src": "/assets/dive-sites/reviewed-discovery/27bbdc7d-5953-4786-b0ce-147bf3758d10-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/27bbdc7d-5953-4786-b0ce-147bf3758d10-desktop.jpg",
+    "alt": "Playa Kalki / Alice in Wonderland — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · dronepicr · CC BY 2.0 · Cropped/resized",
+    "creator": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playa_Kalki_beach_Westpunt_Curacao_(36304705360).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_Kalki_beach_Westpunt_Curacao_(36304705360).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3b78bd71-014c-458f-a77c-9a344d1411b6",
+    "slug": "grote-knip",
+    "src": "/assets/dive-sites/reviewed-discovery/3b78bd71-014c-458f-a77c-9a344d1411b6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/3b78bd71-014c-458f-a77c-9a344d1411b6-desktop.jpg",
+    "alt": "Grote Knip — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · dronepicr · CC BY 2.0 · Cropped/resized",
+    "creator": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Curacao_Grote_Knip_Kenepa_Grandi_beach_(36530701322).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Curacao_Grote_Knip_Kenepa_Grandi_beach_(36530701322).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c2332b87-e906-4427-9bd7-580c304561f3",
+    "slug": "playa-cas-abao",
+    "src": "/assets/dive-sites/reviewed-discovery/c2332b87-e906-4427-9bd7-580c304561f3-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/c2332b87-e906-4427-9bd7-580c304561f3-desktop.jpg",
+    "alt": "Playa Cas Abao — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · dronepicr · CC BY 2.0 · Cropped/resized",
+    "creator": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playa_Cas_Abao_beach_(35864844114).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_Cas_Abao_beach_(35864844114).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8c018025-9c57-419d-be26-22b4aa45d79c",
+    "slug": "gili-air-slope",
+    "src": "/assets/dive-sites/reviewed-discovery/8c018025-9c57-419d-be26-22b4aa45d79c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/8c018025-9c57-419d-be26-22b4aa45d79c-desktop.jpg",
+    "alt": "Gili Air Slope — surface context · gili air west-side beach, as described by the source.",
+    "label": "Surface context · Gili Air west-side beach",
+    "credit": "Surface context · Gili Air west-side beach · Felix Dance · CC BY 2.0 · Cropped/resized",
+    "creator": "Felix Dance",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:20160316145630_-_Gili_Air_beach,_West_side,_towards_Lombok_(25736339441).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:20160316145630_-_Gili_Air_beach,_West_side,_towards_Lombok_(25736339441).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9ff9c7d7-059c-4a73-b67e-4499ae436b61",
+    "slug": "bare-island-west",
+    "src": "/assets/dive-sites/reviewed-discovery/9ff9c7d7-059c-4a73-b67e-4499ae436b61-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/9ff9c7d7-059c-4a73-b67e-4499ae436b61-desktop.jpg",
+    "alt": "Bare Island West — surface context · bare island bridge, as described by the source.",
+    "label": "Surface context · Bare Island bridge",
+    "credit": "Surface context · Bare Island bridge · Lenny K Photography from Sydney, Australia · CC BY 2.0 · Cropped/resized",
+    "creator": "Lenny K Photography from Sydney, Australia",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bare_Island_Sydney_(20824365932).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bare_Island_Sydney_(20824365932).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "63c8e94b-eece-4f53-88fd-cb60de5183b9",
+    "slug": "calanque-de-niolon",
+    "src": "/assets/dive-sites/reviewed-discovery/63c8e94b-eece-4f53-88fd-cb60de5183b9-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/63c8e94b-eece-4f53-88fd-cb60de5183b9-desktop.jpg",
+    "alt": "Calanque de Niolon — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Michal Osmenda from Brussels, Belgium · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Michal Osmenda from Brussels, Belgium",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_of_Niolon_port,_Provence,_France_(6053051842).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Panorama_of_Niolon_port,_Provence,_France_(6053051842).jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2a3d4fb7-f14e-440d-ae89-35cd28fd4d7e",
+    "slug": "amadee-island-reef",
+    "src": "/assets/dive-sites/reviewed-discovery/2a3d4fb7-f14e-440d-ae89-35cd28fd4d7e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/2a3d4fb7-f14e-440d-ae89-35cd28fd4d7e-desktop.jpg",
+    "alt": "Amadee Island Reef — surface context · amedee island, as described by the source.",
+    "label": "Surface context · Amedee Island",
+    "credit": "Surface context · Amedee Island · Eustaquio Santimano from Singapore · CC BY 2.0 · Cropped/resized",
+    "creator": "Eustaquio Santimano from Singapore",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Amedee_Lighthouse_New_Caledonia.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Amedee_Lighthouse_New_Caledonia.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "16fa2a17-218a-48ba-95e1-5233de80108c",
+    "slug": "barrage-de-l-039-eau-d-039-heure",
+    "src": "/assets/dive-sites/reviewed-discovery/16fa2a17-218a-48ba-95e1-5233de80108c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/16fa2a17-218a-48ba-95e1-5233de80108c-desktop.jpg",
+    "alt": "Barrage de l&#039;Eau d&#039;Heure — surface context · platte-taille lake/dam, as described by the source.",
+    "label": "Surface context · Platte-Taille lake/dam",
+    "credit": "Surface context · Platte-Taille lake/dam · Jean-Pol GRANDMONT · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Jean-Pol GRANDMONT",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Boussu-lez-Walcourt_JPG02.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Boussu-lez-Walcourt_JPG02.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0fbab33b-ddb4-483c-ab24-b7848f4e46fc",
+    "slug": "areuse-schlucht",
+    "src": "/assets/dive-sites/reviewed-discovery/0fbab33b-ddb4-483c-ab24-b7848f4e46fc-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/0fbab33b-ddb4-483c-ab24-b7848f4e46fc-desktop.jpg",
+    "alt": "Areuse Schlucht — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Daniel Kraft · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Daniel Kraft",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Gorges_de_Areuse_20200529_3.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Gorges_de_Areuse_20200529_3.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "24824860-2b8c-40d0-9ede-fb8f07d62e95",
+    "slug": "svolvr-harbor",
+    "src": "/assets/dive-sites/reviewed-discovery/24824860-2b8c-40d0-9ede-fb8f07d62e95-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-20261108/24824860-2b8c-40d0-9ede-fb8f07d62e95-desktop.jpg",
+    "alt": "Svolvær Harbor — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Christoph Strässler from Oberdorf BL, Schweiz · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Christoph Strässler from Oberdorf BL, Schweiz",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Svolv%C3%A6r_Harbor_(15226568739).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Svolv%C3%A6r_Harbor_(15226568739).jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
   }
 ];
