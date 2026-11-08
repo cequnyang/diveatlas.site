@@ -7403,6 +7403,7 @@
 <link rel="stylesheet" href="assets/liquid-glass.css?v=41">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
 <script src="/js/site-header.js?v=3" defer></script>
+<script type="module" src="/js/dive-site-reviewed-thumbnails.js"></script>
 </head>
 
 <body>
@@ -11438,13 +11439,14 @@ ZSD·2016–2025</span></span>
     const siteId = getDiveSiteStableId(site);
     if (!siteId) return null;
 
+    const reviewed = window.DiveAtlasReviewedPhotos?.get(siteId);
     const photos = window.DIVE_SITE_PHOTOS || {};
     // Merged rows retain retired UUIDs in field [13] so older photo metadata
     // remains addressable without changing the current canonical siteId.
     const legacySiteIds = Array.isArray(site) && Array.isArray(site[13]) ? site[13] : [];
     const photoId = [siteId, ...legacySiteIds]
       .find(id => Object.prototype.hasOwnProperty.call(photos, id) && photos[id]?.siteId === id);
-    if (!photoId) return null;
+    if (!photoId) return reviewed || null;
     const photo = photos[photoId];
     const src = String(photo?.src || '').trim();
     const alt = String(photo?.alt || '').trim();
@@ -11460,7 +11462,7 @@ ZSD·2016–2025</span></span>
       !isLocalWebp ||
       !alt ||
       !credit
-    ) return null;
+    ) return reviewed || null;
 
     return photo;
   }
@@ -11522,7 +11524,7 @@ ZSD·2016–2025</span></span>
 
   function openDivePhotoPreview(photo, siteName, popup) {
     window.DiveAtlasPhotoPreview?.open({
-      src: photo.src,
+      src: photo.fullSrc || photo.src,
       alt: photo.alt || siteName,
       credit: `${t('divePhotoCredit')}: ${photo.credit}`
     }, {
@@ -11530,6 +11532,10 @@ ZSD·2016–2025</span></span>
       closeLabel: t('divePhotoPreviewClose'),
       popup
     });
+    if (photo.source === 'reviewed-context') {
+      const credit = document.querySelector('.dive-photo-preview__credit');
+      if (credit) window.DiveAtlasReviewedPhotos.appendCredit(credit, photo);
+    }
   }
 
   const OBIS_CORAL_TAXA = [
@@ -20189,6 +20195,7 @@ ZSD·2016–2025</span></span>
       loadLocalScript('datasets/dive-site-depth-overrides.js?v=1'),
       loadLocalScript('datasets/dive-site-depth-range-supplement.js?v=4'),
       loadLocalScript('datasets/dive-site-photos.js?v=2'),
+      import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Reviewed previews unavailable:', error)),
       loadLocalScript('datasets/dive-site-fallback-photos.js?v=1'),
       loadLocalScript('datasets/dive-site-name-translations.js?v=1')
     ])
@@ -22120,7 +22127,7 @@ ZSD·2016–2025</span></span>
       siteImage = new Image();
       // The R2 fallback host is cross-origin; CORS keeps its pixels exportable to the share JPEG.
       siteImage.crossOrigin = 'anonymous';
-      siteImage.src = new URL(photo.src, window.location.href).href;
+      siteImage.src = new URL(photo.fullSrc || photo.src, window.location.href).href;
       await siteImage.decode();
       if (!siteImage.naturalWidth || !siteImage.naturalHeight) throw new Error('The dive site image is not available');
     } else if (!els.sharePreviewMapSnapshot.firstElementChild) {
@@ -22312,6 +22319,8 @@ ZSD·2016–2025</span></span>
     if (useSitePhoto) {
       if (photo.source === 'illustrative-fallback') {
         drawPhotoCaption(t('divePhotoIllustrative'), 12, 12, width * .48);
+      } else if (photo.source === 'reviewed-context') {
+        drawPhotoCaption(photo.label, 12, 12, width * .48);
       }
       if (photo.credit) {
         const creditText = `${t('divePhotoCredit')}: ${photo.credit}`;
@@ -22617,15 +22626,16 @@ ZSD·2016–2025</span></span>
     });
 
     image.hidden = !useSiteImage || !sharePreviewSitePhoto;
-    label.hidden = !useSiteImage || !sharePreviewSitePhoto || sharePreviewSitePhoto.source !== 'illustrative-fallback';
+    label.hidden = !useSiteImage || !sharePreviewSitePhoto || !['illustrative-fallback', 'reviewed-context'].includes(sharePreviewSitePhoto.source);
     credit.hidden = !useSiteImage || !sharePreviewSitePhoto?.credit;
     if (useSiteImage && sharePreviewSitePhoto) {
       const photo = sharePreviewSitePhoto;
-      const source = new URL(photo.src, window.location.href).href;
-      image.alt = '';
+      const source = new URL(photo.fullSrc || photo.src, window.location.href).href;
+      image.alt = photo.alt || '';
       if (image.src !== source) image.src = source;
-      label.textContent = t('divePhotoIllustrative');
+      label.textContent = photo.source === 'reviewed-context' ? photo.label : t('divePhotoIllustrative');
       credit.textContent = `${t('divePhotoCredit')}: ${photo.credit}`;
+      if (photo.source === 'reviewed-context') window.DiveAtlasReviewedPhotos.appendCredit(credit, photo);
       els.sharePreviewPopupPointer.hidden = true;
       if (image.complete && image.naturalWidth) {
         els.sharePreviewPlaceholder.hidden = true;
@@ -28812,7 +28822,9 @@ function closeShareDialog() {
                 `<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>` +
                 `<circle cx="12" cy="13" r="3.25"/></svg>${escapeHtml(t('divePhotoUploadMobileCta'))}</span></button>`
               : '')
-          : '') +
+          : photo.source === 'reviewed-context'
+            ? `<span class="dive-popup-photo-label dive-popup-photo-label--reviewed" style="display:block;top:10px;left:10px;pointer-events:none">${escapeHtml(photo.label)}</span>`
+            : '') +
         `</div>`,
         `<div class="dive-popup-body">`
       );
@@ -28932,6 +28944,7 @@ function closeShareDialog() {
       footerItems.push(
         `<div class="dive-popup-photo-credit">` +
         `${t('divePhotoCredit')}: ${escapeHtml(photo.credit)}` +
+        (photo.source === 'reviewed-context' ? photo.links.map(item => ` · <a href="${escapeHtml(item.url)}" rel="noreferrer">${escapeHtml(item.label)}</a>`).join('') : '') +
         `</div>`
       );
     }

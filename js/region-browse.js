@@ -1,3 +1,4 @@
+import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Reviewed previews unavailable:', error));
 (() => {
   'use strict';
 

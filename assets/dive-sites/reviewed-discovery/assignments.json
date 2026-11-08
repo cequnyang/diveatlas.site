@@ -1,0 +1,1630 @@
+[
+  {
+    "site_id": "9869acd0-1a28-4e88-b91f-e588eb28fb29",
+    "name": "Richelieu Rock",
+    "country": "Thailand",
+    "slug": "richelieu-rock",
+    "review_id": "c008",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Magnificent_Sea_Anemone,_Richelieu_Rock,_Thailand_imported_from_iNaturalist_photo_353418711.jpg",
+    "creator": "(c) nbasargin, some rights reserved (CC BY)",
+    "creator_links": [],
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "Richelieu Rock — underwater view, as described by the source.",
+    "source_description": "English: Photo of Magnificent Sea Anemone (Radianthus magnifica) uploaded from iNaturalist .",
+    "identity_status": "Visible reef/anemone habitat; source title names Richelieu Rock and recorded camera is 0.174 km from site. Same-source location evidence, not independent geolocation; human check import provenance.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2048,
+      2048
+    ],
+    "original_sha256": "fd214eadc23c1de6d1ab53702ccf812b1028b263c2b61167ea9d8f96031bf008",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        448,
+        2048,
+        1600
+      ],
+      "mobile": [
+        0,
+        256,
+        2048,
+        1792
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/9869acd0-1a28-4e88-b91f-e588eb28fb29-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/9869acd0-1a28-4e88-b91f-e588eb28fb29-mobile.jpg"
+  },
+  {
+    "site_id": "4be432e2-22d5-4c5f-8cb2-609d61b15e68",
+    "name": "Xlendi Bay",
+    "country": "Malta",
+    "slug": "xlendi-bay",
+    "review_id": "c014",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Malta_Gozo_Xlendi_BW_2011-10-08_12-41-57_1_2_fused.jpg",
+    "creator": "Berthold Werner",
+    "creator_links": [],
+    "licence": "CC BY-SA 1.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "role": "main",
+    "label": "Nearby surface context",
+    "alt": "Xlendi Bay — nearby surface context, as described by the source.",
+    "source_description": "Malta, Gozo, Xlendi",
+    "identity_status": "Rocky cave-lined water edge of Xlendi Bay. Caption Gozo/Xlendi plus camera 0.229 km from bay record support this shore-context use. Not the separate MV Xlendi wreck 6.284 km away.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3613,
+      2794
+    ],
+    "original_sha256": "e32468955b673c5d6ba10ee0a267a77873ae2b46053705b77f31f383ec78480c",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        381,
+        3613,
+        2413
+      ],
+      "mobile": [
+        0,
+        42,
+        3613,
+        2752
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 1.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/4be432e2-22d5-4c5f-8cb2-609d61b15e68-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/4be432e2-22d5-4c5f-8cb2-609d61b15e68-mobile.jpg"
+  },
+  {
+    "site_id": "27be99a9-c41a-40a6-93de-9796de8a2a27",
+    "name": "Wied il-Ghasri",
+    "country": "Malta",
+    "slug": "wied-il-ghasri",
+    "review_id": "c018",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ghasri_Valley_also_known_as_Wied_il-G%C4%A7asri.jpg",
+    "creator": "Bellina 09",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Wied il-Ghasri — surface view, as described by the source.",
+    "source_description": "English: Wied il-Għasri is a scenic valley and secluded cove on the northern coast of Gozo, Malta, known for its dramatic cliffs, crystal-clear waters, and tranquil pebble beach.",
+    "identity_status": "Source explicitly describes Wied il-Ghasri cove on northern Gozo; visible enclosed rocky inlet matches subject description and record geography. No source GPS; caption-supported, not independently verified.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3264,
+      2178
+    ],
+    "original_sha256": "9360ac4a9fdbaa340382b91cfddb85b89229137ff127580f87dabe4af4a9d10b",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        171,
+        3264,
+        2007
+      ],
+      "mobile": [
+        180,
+        0,
+        3084,
+        2178
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/27be99a9-c41a-40a6-93de-9796de8a2a27-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/27be99a9-c41a-40a6-93de-9796de8a2a27-mobile.jpg"
+  },
+  {
+    "site_id": "43dbddd3-da86-468f-9654-19c497b35bc2",
+    "name": "Ghar Lapsi",
+    "country": "Malta",
+    "slug": "ghar-lapsi",
+    "review_id": "c024",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G%C4%A7ar_Lapsi_beach_01.jpg",
+    "creator": "Kritzolina",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Ghar Lapsi — surface view, as described by the source.",
+    "source_description": "English: Għar Lapsi beach",
+    "identity_status": "Named Ghar Lapsi beach; visible rocky water-entry steps and sea. Caption supports site, not independent location verification.",
+    "rights_status": "Current Commons creator and exact licence metadata recorded; ownership and upstream rights not independently guaranteed. Human clearance pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      5472,
+      3648
+    ],
+    "original_sha256": "67efd874c43110bc69ce0008988a8c1bae3cfcffdf23e96495dcb89bf449b663",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        285,
+        5472,
+        3363
+      ],
+      "mobile": [
+        304,
+        0,
+        5168,
+        3648
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/43dbddd3-da86-468f-9654-19c497b35bc2-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/43dbddd3-da86-468f-9654-19c497b35bc2-mobile.jpg"
+  },
+  {
+    "site_id": "a428a9e1-8096-457d-b285-5b11abbe10f9",
+    "name": "PARADISE BAY, Cirkewwa (Norte)",
+    "country": "Malta",
+    "slug": "paradise-bay-cirkewwa-norte",
+    "review_id": "c028",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Malta_-_Mellieha_-_Triq_il-Latnija_-_Paradise_Bay_%2B_Cirkewwa_01_ies.jpg",
+    "creator": "Frank Vincentz",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "PARADISE BAY, Cirkewwa (Norte) — surface view, as described by the source.",
+    "source_description": "English: Paradise Bay at Triq il-Latnija and the Ċirkewwa peninsula in Mellieħa , Malta",
+    "identity_status": "Source explicitly identifies Paradise Bay and Cirkewwa peninsula; visible bay/beach/coast useful for Paradise Bay record. No measured subject distance.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      5616,
+      3744
+    ],
+    "original_sha256": "2024e0555c361e355fac53edbb76d8bc23df432491e4ec612c6b67ce06bab6ea",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        292,
+        5616,
+        3451
+      ],
+      "mobile": [
+        312,
+        0,
+        5304,
+        3744
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/a428a9e1-8096-457d-b285-5b11abbe10f9-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/a428a9e1-8096-457d-b285-5b11abbe10f9-mobile.jpg"
+  },
+  {
+    "site_id": "9956a341-da73-4195-8a4f-fd506132e0a1",
+    "name": "Cirkewwa Reef",
+    "country": "Malta",
+    "slug": "cirkewwa-reef",
+    "review_id": "c029",
+    "source_page": "https://commons.wikimedia.org/wiki/File:%C4%8Airkewwa_Blues.jpg",
+    "creator": "Julianportelli",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby surface context",
+    "alt": "Cirkewwa Reef — nearby surface context, as described by the source.",
+    "source_description": "English: Admiring the blue sea and sky off of the cliffs of Ċirkewwa",
+    "identity_status": "Source names Cirkewwa cliffs; visible rocky sea access/coast supports Cirkewwa reef setting. Does not depict the underwater reef or verify record point.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      4608,
+      3456
+    ],
+    "original_sha256": "f656960576d28567a012a4b83ab805257004ce4296887b90c074c44fbeb3ac56",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        432,
+        4608,
+        3024
+      ],
+      "mobile": [
+        0,
+        0,
+        4608,
+        3456
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/9956a341-da73-4195-8a4f-fd506132e0a1-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/9956a341-da73-4195-8a4f-fd506132e0a1-mobile.jpg"
+  },
+  {
+    "site_id": "ab193cb3-9a81-4f47-99d9-3ce1309a3f54",
+    "name": "Mgarr ix-Xini",
+    "country": "Malta",
+    "slug": "mgarr-ix-xini",
+    "review_id": "c033",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mgarr_ix-Xini_bay_and_coastal_tower.jpeg",
+    "creator": "Continentaleurope",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Mgarr ix-Xini — surface view, as described by the source.",
+    "source_description": "English: Mgarr ix-Xini bay and coastal tower",
+    "identity_status": "Source identifies Mgarr ix-Xini bay/coastal tower; visible shore and enclosed bay provide setting for same named record. People visible; human review privacy/editorial suitability. No source GPS.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2592,
+      1936
+    ],
+    "original_sha256": "68b43a1c2a3dedb7bfdbcfb87772ef2f287645c633d682f7736e44c18aa7e6e8",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        239,
+        2592,
+        1697
+      ],
+      "mobile": [
+        5,
+        0,
+        2586,
+        1936
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/ab193cb3-9a81-4f47-99d9-3ce1309a3f54-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/ab193cb3-9a81-4f47-99d9-3ce1309a3f54-mobile.jpg"
+  },
+  {
+    "site_id": "957d81b9-eaec-4458-9006-209f2ae8a67a",
+    "name": "Marsalforn Bay (Il-Bajja ta’ Marsalforn)",
+    "country": "Malta",
+    "slug": "marsalforn-bay-il-bajja-ta-marsalforn",
+    "review_id": "c036",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Marsalforn_Coastal_Line.jpg",
+    "creator": "Paultrahearn at English Wikipedia",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface context",
+    "alt": "Marsalforn Bay (Il-Bajja ta’ Marsalforn) — nearby surface context, as described by the source.",
+    "source_description": "Marsalforn Coastal Line == Licensing ==",
+    "identity_status": "Source Marsalforn Coastal Line; visible coastal bay provides relevant surface setting for Marsalforn Bay. Caption-supported; no precise distance or independent location check.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2080,
+      1544
+    ],
+    "original_sha256": "1a1b98dcc24c9aafe560dfea93281ae5ce289009e4c375c74d6b91071a95d528",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        187,
+        2080,
+        1357
+      ],
+      "mobile": [
+        10,
+        0,
+        2069,
+        1544
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/957d81b9-eaec-4458-9006-209f2ae8a67a-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/957d81b9-eaec-4458-9006-209f2ae8a67a-mobile.jpg"
+  },
+  {
+    "site_id": "7418d959-8d05-4969-91d4-3d4b139673d7",
+    "name": "Xatt I-Ahmar",
+    "country": "Malta",
+    "slug": "xatt-i-ahmar",
+    "review_id": "c039",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Salt_pans-Xatt_l-Ahmar.jpg",
+    "creator": "RomanoPhileas",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view · Xatt l-Ahmar salt pans",
+    "alt": "Xatt I-Ahmar — surface view · xatt l-ahmar salt pans, as described by the source.",
+    "source_description": "English: Salt pans at Xatt l-Ahmar, Gozo.",
+    "identity_status": "Source explicitly locates salt pans at Xatt l-Ahmar, Gozo; visible rocky shoreline and sea. Useful surface context, not submerged reef. No source GPS; separate neighbouring reef assignment not automatically approved.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2821,
+      1878
+    ],
+    "original_sha256": "165cc5819227a7d3ad2f9db145356b1584fa4a8582071569282b22bad65056d5",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        145,
+        2821,
+        1732
+      ],
+      "mobile": [
+        158,
+        0,
+        2662,
+        1878
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/7418d959-8d05-4969-91d4-3d4b139673d7-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/7418d959-8d05-4969-91d4-3d4b139673d7-mobile.jpg"
+  },
+  {
+    "site_id": "63d5e1b3-562c-4cef-bc32-f7b9a2625e5b",
+    "name": "Mellieha bay",
+    "country": "Malta",
+    "slug": "mellieha-bay",
+    "review_id": "c042",
+    "source_page": "https://commons.wikimedia.org/wiki/File:20180918-7016-Mellieha_Bay.jpg",
+    "creator": "(nob)",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby surface context",
+    "alt": "Mellieha bay — nearby surface context, as described by the source.",
+    "source_description": "Deutsch: Blick auf Mellieha Bay, aufgenommen vom Aussichtspunkt an der Triq ta' Ghollieqa in Mellieha.",
+    "identity_status": "Source describes view of Mellieha Bay from Triq ta Ghollieqa; panorama shows bay and beach setting. Only Mellieha Bay record, not the separate Anchor Bay/Popeye site.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3888,
+      2592
+    ],
+    "original_sha256": "464d807efa585ce69e69b84dcb7f920aa36629e8c7763e81c2708dc97e1b84b6",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        202,
+        3888,
+        2389
+      ],
+      "mobile": [
+        216,
+        0,
+        3672,
+        2592
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/63d5e1b3-562c-4cef-bc32-f7b9a2625e5b-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/63d5e1b3-562c-4cef-bc32-f7b9a2625e5b-mobile.jpg"
+  },
+  {
+    "site_id": "30b42d08-f12c-4ca9-9809-3699f6c2f8b5",
+    "name": "Balluta Bay/Reef",
+    "country": "Malta",
+    "slug": "balluta-bay-reef",
+    "review_id": "c045",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Across_Balluta_Bay_-_panoramio.jpg",
+    "creator": "Tim Tregenza",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface context",
+    "alt": "Balluta Bay/Reef — nearby surface context, as described by the source.",
+    "source_description": "Balluta Bay in the town of St. Julian's, Northern Harbour District, on Malta Island Malta",
+    "identity_status": "Balluta Bay waterfront and water visible; source specifies St Julians Malta and camera is 0.107 km from reef record. Useful urban-bay setting, not a generic town street or underwater reef.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1600,
+      1144
+    ],
+    "original_sha256": "4e2b48bcda4606a5982d1caf1fb69ab08ac1f398423f6ddd44e81ee949094927",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        122,
+        1600,
+        1022
+      ],
+      "mobile": [
+        37,
+        0,
+        1562,
+        1144
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/30b42d08-f12c-4ca9-9809-3699f6c2f8b5-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/30b42d08-f12c-4ca9-9809-3699f6c2f8b5-mobile.jpg"
+  },
+  {
+    "site_id": "11c482f6-d19e-448f-b051-fd0ea12360db",
+    "name": "Xemxija Bay",
+    "country": "Malta",
+    "slug": "xemxija-bay",
+    "review_id": "c047",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Malta_-_St._Paul%27s_Bay_-_Triq_San_Pawl_-_Ghajn_Rasul_Harbour_%2B_Xemxija_01_ies.jpg",
+    "creator": "Frank Vincentz",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface context · Ghajn Rasul Harbour",
+    "alt": "Xemxija Bay — surface context · ghajn rasul harbour, as described by the source.",
+    "source_description": "English: Għajn Rasul Harbour at Triq San Pawl with Xemxija in background in St. Paul's Bay , Malta",
+    "identity_status": "Source identifies Ghajn Rasul Harbour with Xemxija in the background, St Pauls Bay. Visible harbour and bay provide labelled wider context only; exact dive point and distance unverified.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      5616,
+      3744
+    ],
+    "original_sha256": "58999dca37f81b93d54d826902df18938cf4e56d3f57612793f662dc157c2d55",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        292,
+        5616,
+        3451
+      ],
+      "mobile": [
+        312,
+        0,
+        5304,
+        3744
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/11c482f6-d19e-448f-b051-fd0ea12360db-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/11c482f6-d19e-448f-b051-fd0ea12360db-mobile.jpg"
+  },
+  {
+    "site_id": "3c352615-440a-4334-af73-a0b00a9626aa",
+    "name": "Filfla",
+    "country": "Malta",
+    "slug": "filfla",
+    "review_id": "c051",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Filfla_Islet_-_South_Coast_Malta.jpg",
+    "creator": "Plutoworld",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Filfla — surface view, as described by the source.",
+    "source_description": "English: Filfla Islet - South Coast Malta",
+    "identity_status": "Distinctive Filfla islet and sea; source explicitly names Filfla south Malta, camera 0.207 km from island record. Surface view, not underwater dive point.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3656,
+      2053
+    ],
+    "original_sha256": "5ebdf925de42d654dbca74dfb0f62fda9ba2a89039203bee9fb8c96f5d683075",
+    "crop_boxes": {
+      "desktop": [
+        3,
+        0,
+        3653,
+        2053
+      ],
+      "mobile": [
+        459,
+        0,
+        3196,
+        2053
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/3c352615-440a-4334-af73-a0b00a9626aa-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/3c352615-440a-4334-af73-a0b00a9626aa-mobile.jpg"
+  },
+  {
+    "site_id": "ec04a8d4-0095-4c1d-907c-2e35593e31ef",
+    "name": "HMS Maori",
+    "country": "Malta",
+    "slug": "hms-maori",
+    "review_id": "c057",
+    "source_page": "https://commons.wikimedia.org/wiki/File:HMS_Maori_Wreck,_Velletta.jpg",
+    "creator": "Joebob724",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "HMS Maori — underwater view, as described by the source.",
+    "source_description": "English: Freediving picture of the HMS Maori Wreck in the waters near Valletta. October 2019.",
+    "identity_status": "Source freediving photograph of HMS Maori wreck near Valletta October 2019. Visible encrusted wreck beams support subject; haze limits contrast. Caption/context supported, no source GPS or independent identification.",
+    "rights_status": "Current Commons creator/exact licence metadata recorded; chain of title and upstream rights not independently guaranteed.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      6000,
+      4000
+    ],
+    "original_sha256": "6aa3e3b1d4b242d49f6dfbf07a841c9ab51ea82fc66949130b2c0e42cb5e65ec",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        312,
+        6000,
+        3687
+      ],
+      "mobile": [
+        333,
+        0,
+        5666,
+        4000
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/ec04a8d4-0095-4c1d-907c-2e35593e31ef-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/ec04a8d4-0095-4c1d-907c-2e35593e31ef-mobile.jpg"
+  },
+  {
+    "site_id": "676bd0ef-f206-487a-bae6-f886fabd6774",
+    "name": "Blue Hole",
+    "country": "Egypt",
+    "slug": "blue-hole-red-sea-egypt",
+    "review_id": "c078",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dahab_Egypt_The_Blue_Hole_Plong%C3%A9e_sous_marine_Diving_Picture_Image_Photo_(12859990773).jpg",
+    "creator": "Grand Parc - Bordeaux, France from France",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Blue Hole — surface view, as described by the source.",
+    "source_description": "Le Blue Hole de Mer Rouge est un trou bleu d'environ 130 mètres de profondeur. Il est situé en Égypte, à l'est du Sinaï, à 8 km au nord de Dahab. C'est un site de plongée sous-marine aussi réputé que dangereux. The Blue Hole, Red Sea is a blue hole about 130 meters deep. It is located in Egypt, east Sinai, 8 km north of Dahab. This is a site of scuba diving as famous as dangerous. الأزرق هول، البحر الأحمر هي عبارة عن ثقب الأزرق العميق نحو 130 متر. وهو موجود في مصر والشرق سيناء، على بعد 8 كم من شمال دهب. هذا هو موقع الغوص الشهيرة مثل خطرة. Голубая дыра, Красное море является голубая дыра около 130 метров в глубину. Он расположен в Египте, востоке Синая, в 8 км к северу от Дахаба. Это сайт, подводного плавания так знаменит, как опасно. El Agujero Azul, Mar Rojo es un agujero azul de unos 130 metros de profundidad. Se encuentra en Egipto, al este del Sinaí, a 8 km al norte de Dahab. Este es un sitio de buceo tan famoso como peligroso.",
+    "identity_status": "Blue Hole shore/entry environment visible. Source explicitly locates hole north of Dahab, east Sinai, Egypt, consistent with record. Source/context evidence, no source GPS.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      5277,
+      3194
+    ],
+    "original_sha256": "b8d9480dcdc224c643f2ee9564b14f53c5441e9ae1f64d2e596a37d0242208f7",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        113,
+        5277,
+        3081
+      ],
+      "mobile": [
+        509,
+        0,
+        4768,
+        3194
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/676bd0ef-f206-487a-bae6-f886fabd6774-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/676bd0ef-f206-487a-bae6-f886fabd6774-mobile.jpg"
+  },
+  {
+    "site_id": "f209b364-79e5-49d2-bfe5-f506a9f05578",
+    "name": "Lundy Island",
+    "country": "United Kingdom",
+    "slug": "lundy-island",
+    "review_id": "c082",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Beach_Road,_Lundy_-_geograph.org.uk_-_3950594.jpg",
+    "creator": "Stephen McKay",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Surface view · Lundy landing",
+    "alt": "Lundy Island — surface view · lundy landing, as described by the source.",
+    "source_description": "English: Beach Road, Lundy",
+    "identity_status": "Lundy Beach Road and rocky landing coastline; source explicitly Lundy, geotag 2.025 km from broad island record. Label the south-island shoreline, not the recorded dive point or northern seal site.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1280,
+      852
+    ],
+    "original_sha256": "42171e4e3e8f56bfc9195cf728de8fc36a2e3162f204cf99d09a6eb068bb7f2a",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        66,
+        1280,
+        786
+      ],
+      "mobile": [
+        72,
+        0,
+        1208,
+        852
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/f209b364-79e5-49d2-bfe5-f506a9f05578-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/f209b364-79e5-49d2-bfe5-f506a9f05578-mobile.jpg"
+  },
+  {
+    "site_id": "70522311-3758-4e75-bddb-e669970ca507",
+    "name": "Tangalooma Wrecks",
+    "country": "Australia",
+    "slug": "tangalooma-wrecks",
+    "review_id": "c091",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Tangalooma_Wreck_at_Sunset_2004_-_panoramio.jpg",
+    "creator": "ogwen",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view · 2004",
+    "alt": "Tangalooma Wrecks — surface view · 2004, as described by the source.",
+    "source_description": "Tangalooma Wreck at Sunset 2004",
+    "identity_status": "Source Tangalooma wreck at sunset 2004; visible beached/protruding wreck and water, camera 0.183 km from record. Label historic 2004 surface photo; not present-day condition evidence.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2048,
+      1536
+    ],
+    "original_sha256": "0a2daf42af3729325d11d5bbb2765cc9463d4ac789465d036995969347309b67",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        192,
+        2048,
+        1344
+      ],
+      "mobile": [
+        0,
+        0,
+        2048,
+        1536
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/70522311-3758-4e75-bddb-e669970ca507-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/70522311-3758-4e75-bddb-e669970ca507-mobile.jpg"
+  },
+  {
+    "site_id": "22d584d6-ec67-4f33-a9c8-11fea992d629",
+    "name": "Molokini Crater",
+    "country": "United States",
+    "slug": "molokini-crater",
+    "review_id": "c096",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Molokini_Aerial.jpg",
+    "creator": "Forest & Kim Starr",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Molokini Crater — surface view, as described by the source.",
+    "source_description": "Deutsch: Luftaufnahme der Insel Molokini, Hawaii English: Aerial view of Molokini Island, Hawaii",
+    "identity_status": "Source aerial view of Molokini Island Hawaii; distinctive crescent crater and water visible, matching crater dive-destination record. No source GPS; same-source subject identification.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1632,
+      1224
+    ],
+    "original_sha256": "591c7f8ae04a09e7eff8e3090efd313b3a66d5440d8d1e2a8f3e5667cf0c49cb",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        153,
+        1632,
+        1071
+      ],
+      "mobile": [
+        0,
+        0,
+        1632,
+        1224
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/22d584d6-ec67-4f33-a9c8-11fea992d629-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/22d584d6-ec67-4f33-a9c8-11fea992d629-mobile.jpg"
+  },
+  {
+    "site_id": "f1410b06-e188-404b-aff3-0d8d97a4c69f",
+    "name": "Molokini Back Wall",
+    "country": "United States of America",
+    "slug": "molokini-back-wall",
+    "review_id": "c097",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Molokini,_Maui,_Hawaii_(25266602460).jpg",
+    "creator": "Tony Webster from San Francisco, California",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Surface context · Molokini Island",
+    "alt": "Molokini Back Wall — surface context · molokini island, as described by the source.",
+    "source_description": "Boating away from Molokini Island - Maui, Hawaii",
+    "identity_status": "Source departing Molokini Island Maui Hawaii, camera 0.445 km from Back Wall record. Surface island/rim context only, not a photo of the submerged Back Wall or proof of facing that side.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2572,
+      1929
+    ],
+    "original_sha256": "dbed06cd682fea21569f163e2cd203d3dde9849cca39bb9850ad53026623ff19",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        241,
+        2572,
+        1688
+      ],
+      "mobile": [
+        0,
+        0,
+        2572,
+        1929
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/f1410b06-e188-404b-aff3-0d8d97a4c69f-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/f1410b06-e188-404b-aff3-0d8d97a4c69f-mobile.jpg"
+  },
+  {
+    "site_id": "69252d1e-74f8-4e02-ab5f-e7624d7bf8e0",
+    "name": "Sipadan",
+    "country": "Malaysia",
+    "slug": "sipadan",
+    "review_id": "c105",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Beneath_Sipadan_Island.jpeg",
+    "creator": "Johnny Chen",
+    "creator_links": [],
+    "licence": "CC0 1.0",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "Sipadan — underwater view, as described by the source.",
+    "source_description": "English: View in the sea of Sipadan Island, Malaysia",
+    "identity_status": "Source explicitly View in the sea of Sipadan Island Malaysia; visible reef with fish is useful for the broad Sipadan record. No claim of Barracuda Point; distant Sarawak homonym excluded.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      6000,
+      4000
+    ],
+    "original_sha256": "961605ae6412aac616afa0ab09a2490d37bbd4989d6fb4dca1a1df24b64e2e56",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        312,
+        6000,
+        3687
+      ],
+      "mobile": [
+        333,
+        0,
+        5666,
+        4000
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC0 1.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/69252d1e-74f8-4e02-ab5f-e7624d7bf8e0-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/69252d1e-74f8-4e02-ab5f-e7624d7bf8e0-mobile.jpg"
+  },
+  {
+    "site_id": "30238a34-8a22-4915-95b6-db5f0043b367",
+    "name": "Carnatic",
+    "country": "Egypt",
+    "slug": "carnatic",
+    "review_id": "c114",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ship_wreck_Carnatic_2017-04-22_Egypt-7947.jpg",
+    "creator": "W.Strickling",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "Carnatic — underwater view, as described by the source.",
+    "source_description": "Deutsch: Schiffswrack Carnatic , Rotes Meer, Ägypten English: Wreck of the SS Carnatic (built 1862) in the Red Sea, Egypt.",
+    "identity_status": "Source SS Carnatic built 1862 in Red Sea Egypt; distinctive exposed wreck ribs and divers visible. Camera 0.810 km from record indicates approximate coordinate disagreement; do not move coordinates or treat camera as exact point. Identity source-backed, coordinate accuracy pending.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2954,
+      2214
+    ],
+    "original_sha256": "27d41cfb4b260936b2245d38e736c9c76b569729d425b154d1077dbf9ca76069",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        276,
+        2954,
+        1938
+      ],
+      "mobile": [
+        1,
+        0,
+        2953,
+        2214
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/30238a34-8a22-4915-95b6-db5f0043b367-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/30238a34-8a22-4915-95b6-db5f0043b367-mobile.jpg"
+  },
+  {
+    "site_id": "51166586-b3c9-4f81-9860-6a15545314d5",
+    "name": "Giannis D",
+    "country": "Egypt",
+    "slug": "giannis-d",
+    "review_id": "c118",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Giannis_D_Deck.JPG",
+    "creator": "Wusel007",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "Giannis D — underwater view, as described by the source.",
+    "source_description": "Deutsch: Deck der Giannis D im April 2015 in einer Wassertiefe zwischen 7 und 25 Metern im Roten Meer bei Hurgada English: Shipwreck Giannis D in the Red Sea off Hurgada in a depth between 7 and 25 meters",
+    "identity_status": "Source specifically Giannis D shipwreck deck in Red Sea off Hurghada at 7–25 m. Visible submerged deck structure, geography consistent with record. Haze/softness; source-caption identification, no GPS.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2592,
+      1944
+    ],
+    "original_sha256": "76e8b7fe5106ce581615a03ac6d4443c2e0b453f03f9af347c469f8e7dbb05a6",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        243,
+        2592,
+        1701
+      ],
+      "mobile": [
+        0,
+        0,
+        2592,
+        1944
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/51166586-b3c9-4f81-9860-6a15545314d5-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/51166586-b3c9-4f81-9860-6a15545314d5-mobile.jpg"
+  },
+  {
+    "site_id": "4a15e151-4471-4322-9465-30aa06ed1fb7",
+    "name": "Dunraven",
+    "country": "Egypt",
+    "slug": "dunraven",
+    "review_id": "c120",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dunraven_interior_2017-04-22_14-26-24_Sinai-8046.jpg",
+    "creator": "W.Strickling",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "Dunraven — underwater view, as described by the source.",
+    "source_description": "English: Shipwreck Dunraven (1873), interior",
+    "identity_status": "Source Dunraven shipwreck interior, diver inside wreck ribs visible; camera 0.332 km from record supports general reef area. Approximate camera/record positions, no independent location verification.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3528,
+      2160
+    ],
+    "original_sha256": "8abd951e4025680e076795da6d3f6152c57ed518c2e5c626b1f46101a73658d1",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        88,
+        3528,
+        2072
+      ],
+      "mobile": [
+        324,
+        0,
+        3204,
+        2160
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/4a15e151-4471-4322-9465-30aa06ed1fb7-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/4a15e151-4471-4322-9465-30aa06ed1fb7-mobile.jpg"
+  },
+  {
+    "site_id": "a98c44b7-c297-4d20-a9db-47b087a0b6f7",
+    "name": "USS Oriskany",
+    "country": "United States of America",
+    "slug": "uss-oriskany",
+    "review_id": "c121",
+    "source_page": "https://commons.wikimedia.org/wiki/File:USS_Oriskany_Ship_Wreck_Artificial_Reef_Dive_Underwater.jpg",
+    "creator": "Greg Grimes",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Underwater view",
+    "alt": "USS Oriskany — underwater view, as described by the source.",
+    "source_description": "English: Top of the conning tower of the USS Oriskany at about 80fsw.",
+    "identity_status": "Source conning-tower top of USS Oriskany at about 80 fsw; visible encrusted carrier structure. Vessel/context match, source GPS absent; candidate, not navigational evidence.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      4344,
+      3258
+    ],
+    "original_sha256": "a816cc3ea4a81b5df4a97b0df2a419712f4bcd39f24c4e5a9f2a18470dd1e666",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        407,
+        4344,
+        2851
+      ],
+      "mobile": [
+        0,
+        0,
+        4344,
+        3258
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/a98c44b7-c297-4d20-a9db-47b087a0b6f7-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/a98c44b7-c297-4d20-a9db-47b087a0b6f7-mobile.jpg"
+  },
+  {
+    "site_id": "593e81e7-2241-4259-a3be-3a1318fc95e5",
+    "name": "Cenote Angelita",
+    "country": "Mexico",
+    "slug": "cenote-angelita",
+    "review_id": "c124",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Cenote_Angelita.jpg",
+    "creator": "Offthebeatonpath",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Cenote Angelita — surface view, as described by the source.",
+    "source_description": "English: Cenote Angelita is located in the state of Quintana Roo, in the Yucatan Peninsula of Mexico. It is a sinkhole (i.e., cenote). This picture represents the surface of the cenote as taken from the shoreline.",
+    "identity_status": "Source explicitly the shoreline surface of Cenote Angelita Quintana Roo Mexico. Visible sinkhole water and shore, camera 0.024 km from record. Strong source/coordinate consistency, not independent identity verification.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3872,
+      2592
+    ],
+    "original_sha256": "e4bc8297f99a51a51e46ef312d31683a45d7f0a226c89274b9e6ad936bbb81c2",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        207,
+        3872,
+        2385
+      ],
+      "mobile": [
+        208,
+        0,
+        3664,
+        2592
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/593e81e7-2241-4259-a3be-3a1318fc95e5-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/593e81e7-2241-4259-a3be-3a1318fc95e5-mobile.jpg"
+  },
+  {
+    "site_id": "fc9af958-bae8-4a42-bdf1-4eeb22068f15",
+    "name": "Porthoustock",
+    "country": "United Kingdom",
+    "slug": "porthoustock",
+    "review_id": "c138",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Beach_at_Porthoustock,_Cornwall_-_geograph.org.uk_-_5571151.jpg",
+    "creator": "Derek Voller",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Porthoustock — surface view, as described by the source.",
+    "source_description": "English: Beach at Porthoustock, Cornwall",
+    "identity_status": "Source Beach at Porthoustock Cornwall; shore, water, boats and quay visible. Camera 0.026 km from site record; actual dive shore context, no underwater claim.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1600,
+      1069
+    ],
+    "original_sha256": "a3b28163c949f0652b38546725d5c781919507e4c87ca3136a74d67921e0030b",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        84,
+        1600,
+        984
+      ],
+      "mobile": [
+        87,
+        0,
+        1512,
+        1069
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/fc9af958-bae8-4a42-bdf1-4eeb22068f15-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/fc9af958-bae8-4a42-bdf1-4eeb22068f15-mobile.jpg"
+  },
+  {
+    "site_id": "67d17973-093f-4f9b-848e-c0b859ae9105",
+    "name": "Edithburgh Jetty",
+    "country": "Australia",
+    "slug": "edithburgh-jetty",
+    "review_id": "c140",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Edithburgh-jetty-sunset.jpg",
+    "creator": "Dreamofthedolphin",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Edithburgh Jetty — surface view, as described by the source.",
+    "source_description": "English: Edithburgh jetty approaching sunset",
+    "identity_status": "Source Edithburgh jetty approaching sunset; clearly photographed pier and surrounding sea are relevant to named jetty dive site, South Australia. No source GPS; source-caption/context supported.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1400,
+      1050
+    ],
+    "original_sha256": "acfb9942e4d5bbb4c3c794dc9e8dd809d277e5c2663af45d3f219f0d42998f76",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        131,
+        1400,
+        919
+      ],
+      "mobile": [
+        0,
+        0,
+        1400,
+        1050
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/67d17973-093f-4f9b-848e-c0b859ae9105-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/67d17973-093f-4f9b-848e-c0b859ae9105-mobile.jpg"
+  },
+  {
+    "site_id": "a02c1cf8-95e4-4246-8b0a-b41d6af4e4f4",
+    "name": "Blairgowrie Pier",
+    "country": "Australia",
+    "slug": "blairgowrie-pier",
+    "review_id": "c142",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Blairgowrie_beach_at_Port_Phillip_Bay,_Victoria_03.jpg",
+    "creator": "Kgbo",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby beach · Blairgowrie",
+    "alt": "Blairgowrie Pier — nearby beach · blairgowrie, as described by the source.",
+    "source_description": "English: Blairgowrie beach at Port Phillip Bay, Victoria",
+    "identity_status": "Source Blairgowrie Beach at Port Phillip Bay Victoria, camera 0.766 km from pier record. Label nearby beach, not the pier or underwater scene. People visible; human editorial/privacy review pending.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      4032,
+      3024
+    ],
+    "original_sha256": "a9383cba32df1133e58482f74cf9ac752cd6c608ff3a2ff749f4220e049f8f0f",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        378,
+        4032,
+        2646
+      ],
+      "mobile": [
+        0,
+        0,
+        4032,
+        3024
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/a02c1cf8-95e4-4246-8b0a-b41d6af4e4f4-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/a02c1cf8-95e4-4246-8b0a-b41d6af4e4f4-mobile.jpg"
+  },
+  {
+    "site_id": "4f085bb4-ddc7-4569-b791-2a0a1538f4fc",
+    "name": "Terrigal Haven",
+    "country": "Australia",
+    "slug": "terrigal-haven",
+    "review_id": "c148",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Terrigal_Haven_NSW.jpg",
+    "creator": "Glen MacLarty from Sydney, Australia",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Terrigal Haven — surface view, as described by the source.",
+    "source_description": "Terrigal Haven",
+    "identity_status": "Source Terrigal Haven NSW, visible bay/beach/coast. Assigned to actual Terrigal Haven record rather than The Slide sub-site merely sharing Terrigal. Same-source caption/context, no GPS.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1600,
+      1200
+    ],
+    "original_sha256": "fa46cb850422f2ce769c1757237dcaab4336a27a51420f1b357d1313c3542e0f",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        150,
+        1600,
+        1050
+      ],
+      "mobile": [
+        0,
+        0,
+        1600,
+        1200
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/4f085bb4-ddc7-4569-b791-2a0a1538f4fc-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/4f085bb4-ddc7-4569-b791-2a0a1538f4fc-mobile.jpg"
+  },
+  {
+    "site_id": "ec0c5efd-0e4d-4b53-ac46-c19e1970e51c",
+    "name": "Boulders Beach",
+    "country": "South Africa",
+    "slug": "boulders-beach",
+    "review_id": "c161",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Boulders-Beach.jpg",
+    "creator": "Octagon",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Boulders Beach — surface view, as described by the source.",
+    "source_description": "English: Boulders Beach in Simons Town, South Africa Deutsch: Boulders Beach in Simons Town, Südafrika",
+    "identity_status": "Source Boulders Beach Simons Town South Africa; distinctive granite-boulder beach/water visible. People visible; no underwater or release claim, human editorial review pending.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      5774,
+      3850
+    ],
+    "original_sha256": "7d51b11bc31005589862c7181f72f4d1b855e14a57b004c5756f83230baba24f",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        301,
+        5774,
+        3549
+      ],
+      "mobile": [
+        320,
+        0,
+        5453,
+        3850
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/ec0c5efd-0e4d-4b53-ac46-c19e1970e51c-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/ec0c5efd-0e4d-4b53-ac46-c19e1970e51c-mobile.jpg"
+  },
+  {
+    "site_id": "654ab657-8d47-4088-ae96-879425a318b0",
+    "name": "The Farne Islands",
+    "country": "United Kingdom",
+    "slug": "the-farne-islands",
+    "review_id": "c166",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Farne_Islands_Coastline.JPG",
+    "creator": "Vanellus Foto",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface context · Staple Island",
+    "alt": "The Farne Islands — surface context · staple island, as described by the source.",
+    "source_description": "View at the Pinnacles on Staple Island, Outer Group of Farne Islands",
+    "identity_status": "Source Pinnacles on Staple Island, Outer Farne Islands. Named rocky island coast provides wider context for broad Farne Islands record; not the particular marker or all dive points.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      2175,
+      1416
+    ],
+    "original_sha256": "ae4323bd161bd5d1a40c9f4972bb8d8f7ea181cd4aa2c84338ace6b555ee4211",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        96,
+        2175,
+        1319
+      ],
+      "mobile": [
+        143,
+        0,
+        2031,
+        1416
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/654ab657-8d47-4088-ae96-879425a318b0-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/654ab657-8d47-4088-ae96-879425a318b0-mobile.jpg"
+  },
+  {
+    "site_id": "5f54cb63-7b0f-44a8-b763-0541619a7388",
+    "name": "Portsea Pier",
+    "country": "Australia",
+    "slug": "portsea-pier",
+    "review_id": "c172",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Portsea_pier_Victoria.jpg",
+    "creator": "Aenneken from Kaarst, Germany",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Portsea Pier — surface view, as described by the source.",
+    "source_description": "Portsea pier",
+    "identity_status": "Source title Portsea pier Victoria and caption Portsea pier; visible pier/sea, regional context distinguishes Portsea England. No source GPS; source-backed surface candidate.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1600,
+      1200
+    ],
+    "original_sha256": "b05d7940a9ef4ba8cea107cc995e69567772b1d5094ebafc81e3d16608fc3583",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        150,
+        1600,
+        1050
+      ],
+      "mobile": [
+        0,
+        0,
+        1600,
+        1200
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/5f54cb63-7b0f-44a8-b763-0541619a7388-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/5f54cb63-7b0f-44a8-b763-0541619a7388-mobile.jpg"
+  },
+  {
+    "site_id": "8272fd6d-044a-46c0-88cf-7028cbd40bf2",
+    "name": "Camp Cove",
+    "country": "Australia",
+    "slug": "camp-cove",
+    "review_id": "c173",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Watsons_Bay_-_Camp_Cove_Beach,_Sydney_-_Nov_2008.jpg",
+    "creator": "Diliff",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Camp Cove — surface view, as described by the source.",
+    "source_description": "English: A panoramic view of Camp Cove beach in Watson's Bay, Sydney, Australia. Taken by myself with a Canon 5D and 24-105mm f/4L IS lens.",
+    "identity_status": "Source panorama Camp Cove beach Watsons Bay Sydney Australia; actual shore and bay visible, camera 0.006 km from record. Panorama/native framing needs crop review; not underwater.",
+    "rights_status": "Current Commons creator/exact licence evidence recorded. Upstream/ownership not independently guaranteed; human review pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      8496,
+      3540
+    ],
+    "original_sha256": "0efe74fa3147f3fdb9f3fe794c62e6c597a044ec9c76d0ae47f7e3480d03a721",
+    "crop_boxes": {
+      "desktop": [
+        1101,
+        0,
+        7394,
+        3540
+      ],
+      "mobile": [
+        1888,
+        0,
+        6608,
+        3540
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 3.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/8272fd6d-044a-46c0-88cf-7028cbd40bf2-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/8272fd6d-044a-46c0-88cf-7028cbd40bf2-mobile.jpg"
+  },
+  {
+    "site_id": "b96022d9-95a2-4969-91a3-cd788f2bddcf",
+    "name": "Oak Park",
+    "country": "Australia",
+    "slug": "oak-park",
+    "review_id": "c182",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2020-08-30_Oak_Park_Beach,_Cronulla.jpg",
+    "creator": "Maksym Kozlenko",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Oak Park — surface view, as described by the source.",
+    "source_description": "English: Cronulla, NSW",
+    "identity_status": "Oak Park Beach filename and Cronulla NSW caption agree with published location; aerial rock pool and shore, not underwater terrain.",
+    "rights_status": "Current Commons creator and exact licence metadata recorded; ownership and upstream rights not independently guaranteed. Human clearance pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3951,
+      2963
+    ],
+    "original_sha256": "ae68a9e9af7b558abd6afa03a761a69f437fb6eb610810de4580d21fef082ab4",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        370,
+        3951,
+        2592
+      ],
+      "mobile": [
+        0,
+        0,
+        3951,
+        2963
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/b96022d9-95a2-4969-91a3-cd788f2bddcf-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/b96022d9-95a2-4969-91a3-cd788f2bddcf-mobile.jpg"
+  },
+  {
+    "site_id": "a1fac657-c231-4a30-852a-cef2d006c573",
+    "name": "Cenote Dos Ojos",
+    "country": "Mexico",
+    "slug": "cenote-dos-ojos",
+    "review_id": "c188",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dos_Ojos_Cenote_-_Bat_Cave_(4313935250).jpg",
+    "creator": "Serge Melki from Indianapolis, USA",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Cavern surface view",
+    "alt": "Cenote Dos Ojos — cavern surface view, as described by the source.",
+    "source_description": "This is the first line we did at Dos Ojos Cenotes - Bat Cave. this is the top of the cave. If you go to Akumal for Diving, use the Akumal Dive Shop. Best people I dove with. Nice, courteous, generous and fun.",
+    "identity_status": "Source explicitly identifies Dos Ojos Bat Cave; actual cavern water and formations visible. Camera point 0.662 km from catalogue point; approximate site extent requires human check.",
+    "rights_status": "Current Commons creator and exact licence metadata recorded; ownership and upstream rights not independently guaranteed. Human clearance pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      1280,
+      960
+    ],
+    "original_sha256": "5d2e4e0f593ea0eb619ee27c169f082f745aba15978da04c8969815e5d9091f3",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        120,
+        1280,
+        840
+      ],
+      "mobile": [
+        0,
+        0,
+        1280,
+        960
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/a1fac657-c231-4a30-852a-cef2d006c573-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/a1fac657-c231-4a30-852a-cef2d006c573-mobile.jpg"
+  },
+  {
+    "site_id": "12e6d261-9b9a-4fe1-86a0-155bf09b658f",
+    "name": "Swanage Pier",
+    "country": "United Kingdom",
+    "slug": "swanage-pier",
+    "review_id": "c215",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Swanage_Pier_(2679).jpg",
+    "creator": "Nilfanion",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view",
+    "alt": "Swanage Pier — surface view, as described by the source.",
+    "source_description": "English: Swanage Pier",
+    "identity_status": "Swanage Pier caption; visible pier and water from beach. Source-supported identity; no independent coordinate proof.",
+    "rights_status": "Current Commons creator and exact licence metadata recorded; ownership and upstream rights not independently guaranteed. Human clearance pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      4288,
+      2848
+    ],
+    "original_sha256": "09efb743250abd562f2584c64506f1fbfd827d3c751de1395bfd4cdfd1b71288",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        218,
+        4288,
+        2630
+      ],
+      "mobile": [
+        245,
+        0,
+        4042,
+        2848
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY-SA 4.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/12e6d261-9b9a-4fe1-86a0-155bf09b658f-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/12e6d261-9b9a-4fe1-86a0-155bf09b658f-mobile.jpg"
+  },
+  {
+    "site_id": "29fbf75b-158c-4123-b8d1-bc9c9df49ac0",
+    "name": "Jellyfish Lake - Ongeim’l Tketau",
+    "country": "Palau",
+    "slug": "jellyfish-lake-ongeiml-tketau",
+    "review_id": "c265",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Jellyfish_Lake_aerial_(March_2008).jpg",
+    "creator": "Lukas from Munich, Germany",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface aerial view · 2008",
+    "alt": "Jellyfish Lake - Ongeim’l Tketau — surface aerial view · 2008, as described by the source.",
+    "source_description": "English: Jellyfish Lake on Eil Malk Island, Palau . Looking west-northwest with some coral and rock islets in the background. The Seventy Island Preserve is just visible in the upper left on the horizon. At the bottom of the image, in the lake, the numerous bright dots are the jellyfish. Français : Le Lac aux Méduses , dans l' Île Chelbacheb , aux Palaos . Vue prise vers l'ouest-nord-ouest, avec des îlots isolés en arrière plan. A l'horizon, on peut voir la Seventy Island Preserve sur la gauche. Les point clairs visibles dans le lac sont les méduses qui lui donnent son nom.",
+    "identity_status": "Caption explicitly identifies Jellyfish Lake on Eil Malk Palau with west-northwest view; camera 0.314 km from record. Actual lake visible, not Kakaban homonym; historical March 2008.",
+    "rights_status": "Current Commons creator and exact licence metadata recorded; ownership and upstream rights not independently guaranteed. Human clearance pending.",
+    "human_review_status": "pending; owner requested integration of candidate set, not independent identity/rights verification",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner requested local hero replacement; not deployed",
+    "original_dimensions": [
+      3456,
+      2304
+    ],
+    "original_sha256": "925ec5c8a8ca348e54168791215774181cba9840fbec1107c39bad4379f28207",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        180,
+        3456,
+        2124
+      ],
+      "mobile": [
+        192,
+        0,
+        3264,
+        2304
+      ]
+    },
+    "change_notice": "Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Adaptations retain CC BY 2.0.",
+    "source_review_manifest": "data/image-discovery-hour-20261107/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-discovery/29fbf75b-158c-4123-b8d1-bc9c9df49ac0-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-discovery/29fbf75b-158c-4123-b8d1-bc9c9df49ac0-mobile.jpg"
+  }
+]

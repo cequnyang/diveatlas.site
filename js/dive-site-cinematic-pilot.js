@@ -236,6 +236,7 @@
   // Shared rating and filter modules rebuild the combined list after startup.
   // Observe child changes only: our visibility attributes cannot trigger a loop.
   new MutationObserver(refreshPreview).observe(recommendations, { childList:true, subtree:true });
+  recommendations.addEventListener('diveatlas:reviewed-thumbnail-updated', refreshPreview);
   refreshPreview();
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let revealAnimation;

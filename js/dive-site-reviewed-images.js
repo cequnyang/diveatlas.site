@@ -1,17 +1,14 @@
 // Context photos deliberately bypass the exact-site photo registry: their
 // source captions support a surface/context label, not underwater verification.
 const page = document.querySelector('main.detail-page');
-const supported = new Set([
-  '24578a6d-215e-4d04-8c74-334bddbc60d7',
-  '5e646533-e7d6-4205-9a94-fa82a4c78204',
-  'f24f8645-7d94-4878-a0c5-270b45d51d60'
-]);
+import {reviewedSiteIds} from './dive-site-reviewed-image-sites.js';
+const supported = new Set(reviewedSiteIds);
 
 async function apply() {
   if (!page || !supported.has(page.dataset.siteId) || page.dataset.reviewedImages) return;
   // Preserve the historical opt-in preview's own composition and review panel.
   if (new URL(location.href).searchParams.get('imageReview') === 'three') return;
-  const response = await fetch('/assets/dive-sites/reviewed/assignments.json?v=3');
+  const response = await fetch('/assets/dive-sites/reviewed-discovery/combined-assignments.json?v=1');
   if (!response.ok) throw new Error(`Reviewed image assignments: HTTP ${response.status}`);
   const assignments = await response.json();
   const entry = assignments.find(item => item.site_id === page.dataset.siteId);
@@ -38,8 +35,11 @@ async function apply() {
     if (entry.creator.includes('Woodym555')) {
       node.append(link('https://commons.wikimedia.org/wiki/User:Woodym555', 'Woodym555'),
         ', edited by ', link('https://commons.wikimedia.org/wiki/User:Fir0002', 'Fir0002'));
-    } else {
+    } else if (entry.creator.includes('Diego Delso')) {
       node.append('Diego Delso, ', link('http://delso.photo', 'delso.photo'));
+    } else {
+      node.append(entry.creator);
+      for (const item of entry.creator_links || []) node.append(', ', link(item.url, item.label));
     }
     node.append(' · ', link(entry.source_page, 'Source'), ' · ',
       link(entry.licence_url, entry.licence), ' · Cropped/resized');
@@ -56,9 +56,9 @@ async function apply() {
   document.head.append(styles);
   const image = element('img', 'reviewed-photo');
   image.src = entry.desktop;
-  image.alt = entry.label === 'Surface view'
+  image.alt = entry.alt || (entry.label === 'Surface view'
     ? `${entry.name} — surface view, as described by the source; not an underwater view.`
-    : 'Winch and associated parts on the deck of SS Thistlegorm, as described by the source.';
+    : 'Winch and associated parts on the deck of SS Thistlegorm, as described by the source.');
   const picture = element('picture');
   const source = element('source');
   source.media = '(max-width:720px)';
