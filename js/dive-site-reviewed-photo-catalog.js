@@ -3425,5 +3425,3383 @@ export const reviewedPhotos = [
     ],
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "7599cbe2-56ba-4a2c-8d37-26d5fb35158d",
+    "slug": "tauchbasis-olbasee",
+    "src": "/assets/dive-sites/reviewed-discovery/7599cbe2-56ba-4a2c-8d37-26d5fb35158d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/7599cbe2-56ba-4a2c-8d37-26d5fb35158d-desktop.jpg",
+    "alt": "Tauchbasis Olbasee — nearby surface scenery · olbasee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Olbasee",
+    "credit": "Nearby surface scenery · Olbasee · Fuxxtech · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Fuxxtech",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Oberlausitzer_Heide-_und_Teichlandschaft_-_Guttauer_Teiche_-_Olbasee.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Fuxxtech",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Fuxxtech&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Oberlausitzer_Heide-_und_Teichlandschaft_-_Guttauer_Teiche_-_Olbasee.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "98ac9c89-ba27-42a7-bd0b-1bd2b3510f23",
+    "slug": "tegernsee",
+    "src": "/assets/dive-sites/reviewed-discovery/98ac9c89-ba27-42a7-bd0b-1bd2b3510f23-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/98ac9c89-ba27-42a7-bd0b-1bd2b3510f23-desktop.jpg",
+    "alt": "Tegernsee — nearby surface scenery · tegernsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Tegernsee",
+    "credit": "Nearby surface scenery · Tegernsee · Sebastian.sauer · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Sebastian.sauer",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Tegernsee_on_a_sunny_winter_day_viewed_from_the_Wallberg.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Sebastian.sauer",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Sebastian.sauer&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Tegernsee_on_a_sunny_winter_day_viewed_from_the_Wallberg.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0df66191-9a16-4a7e-aa86-1f99ba1539c1",
+    "slug": "vorderer-langbathsee",
+    "src": "/assets/dive-sites/reviewed-discovery/0df66191-9a16-4a7e-aa86-1f99ba1539c1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/0df66191-9a16-4a7e-aa86-1f99ba1539c1-desktop.jpg",
+    "alt": "Vorderer Langbathsee — nearby surface scenery · langbathsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Langbathsee",
+    "credit": "Nearby surface scenery · Langbathsee · Dimitry Anikin · CC0 1.0 · Cropped/resized",
+    "creator": "Dimitry Anikin",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Vorderer_Langbathsee_1.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Dimitry Anikin",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Anikinearthwalker&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vorderer_Langbathsee_1.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c5ee4893-42b6-4f8b-acce-0f578231993c",
+    "slug": "wambachsee-duisburg-wedau",
+    "src": "/assets/dive-sites/reviewed-discovery/c5ee4893-42b6-4f8b-acce-0f578231993c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/c5ee4893-42b6-4f8b-acce-0f578231993c-desktop.jpg",
+    "alt": "Wambachsee Duisburg Wedau — nearby surface scenery · wambachsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Wambachsee",
+    "credit": "Nearby surface scenery · Wambachsee · Matt.smz86 · CC BY 4.0 · Cropped/resized",
+    "creator": "Matt.smz86",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Wambachsee_Duisburg_S%C3%BCd.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Matt.smz86",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Matt.smz86&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Wambachsee_Duisburg_S%C3%BCd.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ff9c5318-7692-4bb0-8c87-2325ad895331",
+    "slug": "kreidesee-hemmoor-einstieg-1",
+    "src": "/assets/dive-sites/reviewed-discovery/ff9c5318-7692-4bb0-8c87-2325ad895331-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/ff9c5318-7692-4bb0-8c87-2325ad895331-desktop.jpg",
+    "alt": "Kreidesee Hemmoor - Einstieg 1 — underwater view · kreidesee, as described by the source; not independently verified.",
+    "label": "Underwater view · Kreidesee",
+    "credit": "Underwater view · Kreidesee · Dr. W. Strickling · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Dr. W. Strickling",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Strasse_Kreidesee_2017-10-25_Hemmoor-1763.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Strasse_Kreidesee_2017-10-25_Hemmoor-1763.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "655dbb14-5af4-4e9e-828c-f1cdb7d6b1f1",
+    "slug": "tauchbasis-goitzschesee",
+    "src": "/assets/dive-sites/reviewed-discovery/655dbb14-5af4-4e9e-828c-f1cdb7d6b1f1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/655dbb14-5af4-4e9e-828c-f1cdb7d6b1f1-desktop.jpg",
+    "alt": "Tauchbasis Goitzschesee — nearby scenery · pegelturm, goitzschesee, as described by the source; not independently verified.",
+    "label": "Nearby scenery · Pegelturm, Goitzschesee",
+    "credit": "Nearby scenery · Pegelturm, Goitzschesee · Michimaya · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Michimaya",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Pegelturm_Goitzschesee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Michimaya",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Michimaya&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pegelturm_Goitzschesee.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "894b74b2-8b3f-4910-8269-780c006acf5e",
+    "slug": "dankernsee",
+    "src": "/assets/dive-sites/reviewed-discovery/894b74b2-8b3f-4910-8269-780c006acf5e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/894b74b2-8b3f-4910-8269-780c006acf5e-desktop.jpg",
+    "alt": "Dankernsee — nearby surface scenery · dankernsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Dankernsee",
+    "credit": "Nearby surface scenery · Dankernsee · Hagar66 · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Hagar66",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Haren_%28Ems%29_Dankernsee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Hagar66",
+        "url": "https://commons.wikimedia.org/wiki/User:Hagar66"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Haren_%28Ems%29_Dankernsee.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0f91ffcb-683d-42d7-9bd2-dd9d3d91af92",
+    "slug": "erlaufsee-schwabbelland",
+    "src": "/assets/dive-sites/reviewed-discovery/0f91ffcb-683d-42d7-9bd2-dd9d3d91af92-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/0f91ffcb-683d-42d7-9bd2-dd9d3d91af92-desktop.jpg",
+    "alt": "Erlaufsee Schwabbelland — nearby surface scenery · erlaufsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Erlaufsee",
+    "credit": "Nearby surface scenery · Erlaufsee · Henry Kellner · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Henry Kellner",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Erlaufsee_8414.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Henry Kellner",
+        "url": "https://commons.wikimedia.org/wiki/User:Hamster28"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Erlaufsee_8414.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8a0bcd1f-e64b-4284-9fae-3fb44ae3ee48",
+    "slug": "rothsee-sudufer",
+    "src": "/assets/dive-sites/reviewed-discovery/8a0bcd1f-e64b-4284-9fae-3fb44ae3ee48-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8a0bcd1f-e64b-4284-9fae-3fb44ae3ee48-desktop.jpg",
+    "alt": "Rothsee, Südufer — nearby surface scenery · rothsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Rothsee",
+    "credit": "Nearby surface scenery · Rothsee · Derzno · CC BY 3.0 · Cropped/resized",
+    "creator": "Derzno",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_Rothsee_01.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Derzno",
+        "url": "https://commons.wikimedia.org/wiki/User:Derzno"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Panorama_Rothsee_01.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "39182122-93e2-433b-b4dc-c99c655f7603",
+    "slug": "tauchausbildungsanlage-singliser-see",
+    "src": "/assets/dive-sites/reviewed-discovery/39182122-93e2-433b-b4dc-c99c655f7603-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/39182122-93e2-433b-b4dc-c99c655f7603-desktop.jpg",
+    "alt": "Tauchausbildungsanlage - Singliser See — nearby surface scenery · singliser see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Singliser See",
+    "credit": "Nearby surface scenery · Singliser See · Oliver Deisenroth · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Oliver Deisenroth",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_Singliser_See.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Oliver Deisenroth",
+        "url": "https://commons.wikimedia.org/wiki/User:Oliver_Deisenroth"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Panorama_Singliser_See.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d3cc7c4c-10ae-4a18-8f12-500652b0b95f",
+    "slug": "walchensee-steinbruch",
+    "src": "/assets/dive-sites/reviewed-discovery/d3cc7c4c-10ae-4a18-8f12-500652b0b95f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/d3cc7c4c-10ae-4a18-8f12-500652b0b95f-desktop.jpg",
+    "alt": "Walchensee, Steinbruch — nearby surface scenery · walchensee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Walchensee",
+    "credit": "Nearby surface scenery · Walchensee · Berggfex · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Berggfex",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Walchensee%2C_Bayern.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Berggfex",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Berggfex&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Walchensee%2C_Bayern.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "a81a6c19-dff8-46f2-a6c1-138375bb4024",
+    "slug": "murner-see",
+    "src": "/assets/dive-sites/reviewed-discovery/a81a6c19-dff8-46f2-a6c1-138375bb4024-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/a81a6c19-dff8-46f2-a6c1-138375bb4024-desktop.jpg",
+    "alt": "Murner See — nearby surface scenery · murner see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Murner See",
+    "credit": "Nearby surface scenery · Murner See · W. Bulach · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "W. Bulach",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:00_3142_Oberpf%C3%A4lzer_Seenland_-_Murner_See.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "W. Bulach",
+        "url": "https://commons.wikimedia.org/wiki/User:W._Bulach"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:00_3142_Oberpf%C3%A4lzer_Seenland_-_Murner_See.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "50cb3c0b-3741-4685-adc4-9b53b1263759",
+    "slug": "sundhauser-see",
+    "src": "/assets/dive-sites/reviewed-discovery/50cb3c0b-3741-4685-adc4-9b53b1263759-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/50cb3c0b-3741-4685-adc4-9b53b1263759-desktop.jpg",
+    "alt": "Sundhäuser See — underwater view · sundhäuser see, as described by the source; not independently verified.",
+    "label": "Underwater view · Sundhäuser See",
+    "credit": "Underwater view · Sundhäuser See · Lorenz Seebauer · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Lorenz Seebauer",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Karpfen_im_Sundh%C3%A4user_See.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Lorenz Seebauer",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Lorenz_Seebauer&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Karpfen_im_Sundh%C3%A4user_See.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "bb86f3c1-7336-4398-a054-022516e0eef8",
+    "slug": "worthersee-atlantis",
+    "src": "/assets/dive-sites/reviewed-discovery/bb86f3c1-7336-4398-a054-022516e0eef8-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/bb86f3c1-7336-4398-a054-022516e0eef8-desktop.jpg",
+    "alt": "Wörthersee Atlantis — nearby surface scenery · wörthersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Wörthersee",
+    "credit": "Nearby surface scenery · Wörthersee · Johann Jaritz · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Johann Jaritz",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Klagenfurt_W%C3%B6rthersee_Strandbad_Cafe_Sunset_Bar_11102008_72.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Johann Jaritz",
+        "url": "https://commons.wikimedia.org/wiki/User:Johann_Jaritz"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Klagenfurt_W%C3%B6rthersee_Strandbad_Cafe_Sunset_Bar_11102008_72.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "fba163cc-317c-40cf-8c58-08965ae69806",
+    "slug": "gansedrecksee",
+    "src": "/assets/dive-sites/reviewed-discovery/fba163cc-317c-40cf-8c58-08965ae69806-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/fba163cc-317c-40cf-8c58-08965ae69806-desktop.jpg",
+    "alt": "Gänsedrecksee — nearby surface scenery · gänsedrecksee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Gänsedrecksee",
+    "credit": "Nearby surface scenery · Gänsedrecksee · Claus Ableiter · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Claus Ableiter",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:G%C3%A4nsedrecksee%2C_Blick_auf_das_Nordufer.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Claus Ableiter",
+        "url": "https://commons.wikimedia.org/wiki/User:Claus_Ableiter"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:G%C3%A4nsedrecksee%2C_Blick_auf_das_Nordufer.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b4932324-4f4d-43dc-bf7b-6fe162263262",
+    "slug": "hennesee",
+    "src": "/assets/dive-sites/reviewed-discovery/b4932324-4f4d-43dc-bf7b-6fe162263262-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/b4932324-4f4d-43dc-bf7b-6fe162263262-desktop.jpg",
+    "alt": "Hennesee — nearby surface scenery · hennesee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Hennesee",
+    "credit": "Nearby surface scenery · Hennesee · Nize · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Nize",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hennesee2009.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Nize",
+        "url": "https://commons.wikimedia.org/wiki/User:Nize"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Hennesee2009.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d3ee5c11-5096-4415-92c4-4abe440c1fca",
+    "slug": "attersee-upper-austria-austria-d3ee5c11",
+    "src": "/assets/dive-sites/reviewed-discovery/d3ee5c11-5096-4415-92c4-4abe440c1fca-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/d3ee5c11-5096-4415-92c4-4abe440c1fca-desktop.jpg",
+    "alt": "Attersee — nearby surface scenery · attersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Attersee",
+    "credit": "Nearby surface scenery · Attersee · Aconcagua ( talk ) · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Aconcagua ( talk )",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Attersee_Panorama.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "talk",
+        "url": "https://commons.wikimedia.org/wiki/User_talk:Aconcagua"
+      },
+      {
+        "label": "Aconcagua",
+        "url": "https://commons.wikimedia.org/wiki/User:Aconcagua"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Attersee_Panorama.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c8b63bd5-9fc5-44d2-a3fe-df868b8e8bd8",
+    "slug": "waidsee",
+    "src": "/assets/dive-sites/reviewed-discovery/c8b63bd5-9fc5-44d2-a3fe-df868b8e8bd8-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/c8b63bd5-9fc5-44d2-a3fe-df868b8e8bd8-desktop.jpg",
+    "alt": "Waidsee — nearby surface scenery · waidsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Waidsee",
+    "credit": "Nearby surface scenery · Waidsee · Fdeyhim · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Fdeyhim",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Waidsee_Weinheim.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Fdeyhim",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Fdeyhim&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Waidsee_Weinheim.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0e7acb70-5e8b-4f52-8a74-5ca0d7ba0f46",
+    "slug": "helenesee",
+    "src": "/assets/dive-sites/reviewed-discovery/0e7acb70-5e8b-4f52-8a74-5ca0d7ba0f46-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/0e7acb70-5e8b-4f52-8a74-5ca0d7ba0f46-desktop.jpg",
+    "alt": "Helenesee — nearby surface scenery · helenesee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Helenesee",
+    "credit": "Nearby surface scenery · Helenesee · Janfortytwo · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Janfortytwo",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Helenesee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Janfortytwo",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Janfortytwo&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Helenesee.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "315cd1de-83e7-4790-8a5c-2af9e7001c23",
+    "slug": "edersee-tauchzone-2-sitte",
+    "src": "/assets/dive-sites/reviewed-discovery/315cd1de-83e7-4790-8a5c-2af9e7001c23-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/315cd1de-83e7-4790-8a5c-2af9e7001c23-desktop.jpg",
+    "alt": "Edersee, Tauchzone 2„ Sitte — nearby surface scenery · edersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Edersee",
+    "credit": "Nearby surface scenery · Edersee · Alexander Dreyer · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Alexander Dreyer",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Edersee_Panorama.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Edersee_Panorama.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "13843b72-fe4b-4a65-9f6d-e557d6047386",
+    "slug": "twann-bielersee",
+    "src": "/assets/dive-sites/reviewed-discovery/13843b72-fe4b-4a65-9f6d-e557d6047386-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/13843b72-fe4b-4a65-9f6d-e557d6047386-desktop.jpg",
+    "alt": "Twann, Bielersee — nearby surface scenery · erlach, lake biel, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Erlach, Lake Biel",
+    "credit": "Nearby surface scenery · Erlach, Lake Biel · JoachimKohler-HB · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "JoachimKohler-HB",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Altstadth%C3%BCgel_Erlach_am_Bielersee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "JoachimKohler-HB",
+        "url": "https://commons.wikimedia.org/wiki/User:JoachimKohler-HB"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Altstadth%C3%BCgel_Erlach_am_Bielersee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "91e9139a-8fff-4853-9053-d02b01f78faa",
+    "slug": "ratzersdorfer-see",
+    "src": "/assets/dive-sites/reviewed-discovery/91e9139a-8fff-4853-9053-d02b01f78faa-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/91e9139a-8fff-4853-9053-d02b01f78faa-desktop.jpg",
+    "alt": "Ratzersdorfer See — nearby surface scenery · ratzersdorfer see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Ratzersdorfer See",
+    "credit": "Nearby surface scenery · Ratzersdorfer See · Peter300 · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Peter300",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ratzersdorfersee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Peter300",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Peter300&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ratzersdorfersee.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8ab60e69-f58d-4b6a-9e2a-f3891e7c023e",
+    "slug": "achensee-tci-parcours",
+    "src": "/assets/dive-sites/reviewed-discovery/8ab60e69-f58d-4b6a-9e2a-f3891e7c023e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8ab60e69-f58d-4b6a-9e2a-f3891e7c023e-desktop.jpg",
+    "alt": "Achensee, TCI Parcours — nearby surface scenery · achensee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Achensee",
+    "credit": "Nearby surface scenery · Achensee · ArticCynda · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "ArticCynda",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Achensee_panorama.png",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "ArticCynda",
+        "url": "https://commons.wikimedia.org/wiki/User:ArticCynda"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Achensee_panorama.png"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "1f51f19b-e4c2-49dd-8008-b1484bbeed9c",
+    "slug": "schloss-heroldeck-millstatter-see",
+    "src": "/assets/dive-sites/reviewed-discovery/1f51f19b-e4c2-49dd-8008-b1484bbeed9c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/1f51f19b-e4c2-49dd-8008-b1484bbeed9c-desktop.jpg",
+    "alt": "Schloss Heroldeck, Millstätter See — nearby surface scenery · seeboden, millstätter see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Seeboden, Millstätter See",
+    "credit": "Nearby surface scenery · Seeboden, Millstätter See · Naturpuur · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Naturpuur",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Seeboden_am_Millst%C3%A4tter_See%2C_S%C3%BCdufer%2C_K%C3%A4rnten.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Naturpuur",
+        "url": "https://commons.wikimedia.org/wiki/User:Naturpuur"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Seeboden_am_Millst%C3%A4tter_See%2C_S%C3%BCdufer%2C_K%C3%A4rnten.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c6a9d8fe-1cd3-4604-839c-f80242f44e04",
+    "slug": "steilwand-starnberger-see-allmannshausen",
+    "src": "/assets/dive-sites/reviewed-discovery/c6a9d8fe-1cd3-4604-839c-f80242f44e04-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/c6a9d8fe-1cd3-4604-839c-f80242f44e04-desktop.jpg",
+    "alt": "Steilwand, Starnberger See, Allmannshausen — nearby surface scenery · starnberger see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Starnberger See",
+    "credit": "Nearby surface scenery · Starnberger See · Slashme · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Slashme",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Starnberger_See_Beach.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Slashme",
+        "url": "https://commons.wikimedia.org/wiki/User:Slashme"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Starnberger_See_Beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8246f938-345f-4b64-a00a-7f54ebf9c253",
+    "slug": "neufelder-see-einstieg-tauch-sport-vienna",
+    "src": "/assets/dive-sites/reviewed-discovery/8246f938-345f-4b64-a00a-7f54ebf9c253-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8246f938-345f-4b64-a00a-7f54ebf9c253-desktop.jpg",
+    "alt": "Neufelder See, Einstieg Tauch-Sport-Vienna — nearby surface scenery · neufelder see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Neufelder See",
+    "credit": "Nearby surface scenery · Neufelder See · No machine-readable author provided. Kleinehexe28 assumed (based on copyright claims). · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "No machine-readable author provided. Kleinehexe28 assumed (based on copyright claims).",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Neufeldersee.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Kleinehexe28",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Kleinehexe28&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Neufeldersee.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "37e3a7c1-88af-418c-975f-d13a47360355",
+    "slug": "hausriff-tauchbasis-geiseltalsee",
+    "src": "/assets/dive-sites/reviewed-discovery/37e3a7c1-88af-418c-975f-d13a47360355-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/37e3a7c1-88af-418c-975f-d13a47360355-desktop.jpg",
+    "alt": "Hausriff Tauchbasis Geiseltalsee — nearby surface scenery · geiseltalsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Geiseltalsee",
+    "credit": "Nearby surface scenery · Geiseltalsee · Jwaller · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Jwaller",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Geiseltalsee-N1.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Jwaller",
+        "url": "https://commons.wikimedia.org/wiki/User:Jwaller"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Geiseltalsee-N1.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "db3587ab-2624-4e12-8b34-87024fdb2cfa",
+    "slug": "fernsteinsee",
+    "src": "/assets/dive-sites/reviewed-discovery/db3587ab-2624-4e12-8b34-87024fdb2cfa-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/db3587ab-2624-4e12-8b34-87024fdb2cfa-desktop.jpg",
+    "alt": "Fernsteinsee — nearby surface scenery · fernsteinsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Fernsteinsee",
+    "credit": "Nearby surface scenery · Fernsteinsee · qwesy qwesy · CC BY 3.0 · Cropped/resized",
+    "creator": "qwesy qwesy",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Fernsteinsee_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "qwesy qwesy",
+        "url": "https://web.archive.org/web/20161028045024/http://www.panoramio.com/user/596286?with_photo_id=92454140"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Fernsteinsee_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "79580a06-d09e-4acc-9938-9b7a49ea7ec7",
+    "slug": "taucherbucht-mohnesee",
+    "src": "/assets/dive-sites/reviewed-discovery/79580a06-d09e-4acc-9938-9b7a49ea7ec7-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/79580a06-d09e-4acc-9938-9b7a49ea7ec7-desktop.jpg",
+    "alt": "Taucherbucht Möhnesee — nearby scenery · torhaus, möhnesee, as described by the source; not independently verified.",
+    "label": "Nearby scenery · Torhaus, Möhnesee",
+    "credit": "Nearby scenery · Torhaus, Möhnesee · MGHI · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "MGHI",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Torhaus_M%C3%B6hnesee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "MGHI",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:MGHI&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Torhaus_M%C3%B6hnesee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "cc08e180-dd85-4628-b270-ba72bb0a6f07",
+    "slug": "blausee",
+    "src": "/assets/dive-sites/reviewed-discovery/cc08e180-dd85-4628-b270-ba72bb0a6f07-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/cc08e180-dd85-4628-b270-ba72bb0a6f07-desktop.jpg",
+    "alt": "Blausee — nearby surface scenery · blausee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Blausee",
+    "credit": "Nearby surface scenery · Blausee · Aydanjaf · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Aydanjaf",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Blausee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Aydanjaf",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Aydanjaf&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Blausee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ed453e7f-4c00-4434-bfb1-b80a0535e86d",
+    "slug": "stechlinsee",
+    "src": "/assets/dive-sites/reviewed-discovery/ed453e7f-4c00-4434-bfb1-b80a0535e86d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/ed453e7f-4c00-4434-bfb1-b80a0535e86d-desktop.jpg",
+    "alt": "Stechlinsee — nearby surface scenery · stechlinsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Stechlinsee",
+    "credit": "Nearby surface scenery · Stechlinsee · MarcusFourmont · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "MarcusFourmont",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Blick_vom_Ostufer_%C3%BCber_den_Stechlinsee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "MarcusFourmont",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:MarcusFourmont&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Blick_vom_Ostufer_%C3%BCber_den_Stechlinsee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "14c0aa96-659a-460d-b2ad-516703b16ba6",
+    "slug": "banter-see",
+    "src": "/assets/dive-sites/reviewed-discovery/14c0aa96-659a-460d-b2ad-516703b16ba6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/14c0aa96-659a-460d-b2ad-516703b16ba6-desktop.jpg",
+    "alt": "Banter See — nearby surface scenery · banter see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Banter See",
+    "credit": "Nearby surface scenery · Banter See · Gerd Fahrenhorst · CC BY 4.0 · Cropped/resized",
+    "creator": "Gerd Fahrenhorst",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Banter_See_westlich_Strandcaf%C3%A9_F%C3%A4hrhaus.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Gerd Fahrenhorst",
+        "url": "https://commons.wikimedia.org/wiki/User:Gerd_Fahrenhorst"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Banter_See_westlich_Strandcaf%C3%A9_F%C3%A4hrhaus.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8d6c9b4e-a0db-4eb3-9c20-017260ed9ab7",
+    "slug": "silsersee-plaun-da-lej",
+    "src": "/assets/dive-sites/reviewed-discovery/8d6c9b4e-a0db-4eb3-9c20-017260ed9ab7-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8d6c9b4e-a0db-4eb3-9c20-017260ed9ab7-desktop.jpg",
+    "alt": "Silsersee / Plaun Da Lej — nearby surface scenery · silsersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Silsersee",
+    "credit": "Nearby surface scenery · Silsersee · Roland Zumbuehl · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Roland Zumbuehl",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2004-Silsersee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Roland Zumbuehl",
+        "url": "https://commons.wikimedia.org/wiki/User:Roland_Zumbuehl"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:2004-Silsersee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "88ec066d-4848-43ce-8c91-0c7dc918a437",
+    "slug": "auesee",
+    "src": "/assets/dive-sites/reviewed-discovery/88ec066d-4848-43ce-8c91-0c7dc918a437-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/88ec066d-4848-43ce-8c91-0c7dc918a437-desktop.jpg",
+    "alt": "Auesee — nearby surface scenery · auesee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Auesee",
+    "credit": "Nearby surface scenery · Auesee · Kerstin Voß · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Kerstin Voß",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Auesee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Kerstin Voß",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Kerstin_Vo%C3%9F&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Auesee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "02287b46-bdf7-4c9a-89bc-f7e3587886b1",
+    "slug": "tollensesee-neubrandenburg",
+    "src": "/assets/dive-sites/reviewed-discovery/02287b46-bdf7-4c9a-89bc-f7e3587886b1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/02287b46-bdf7-4c9a-89bc-f7e3587886b1-desktop.jpg",
+    "alt": "Tollensesee / Neubrandenburg — nearby surface scenery · alt rehser shore, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Alt Rehser shore",
+    "credit": "Nearby surface scenery · Alt Rehser shore · RaSlaMa · CC BY 3.0 · Cropped/resized",
+    "creator": "RaSlaMa",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tollensesee_am_Alt_Rehser_Ufer.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "RaSlaMa",
+        "url": "https://commons.wikimedia.org/wiki/User:RaSlaMa"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tollensesee_am_Alt_Rehser_Ufer.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2d920824-c006-4bde-aa9f-bc30dc52bb99",
+    "slug": "hitdorfer-see-leverkusen",
+    "src": "/assets/dive-sites/reviewed-discovery/2d920824-c006-4bde-aa9f-bc30dc52bb99-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/2d920824-c006-4bde-aa9f-bc30dc52bb99-desktop.jpg",
+    "alt": "Hitdorfer See, Leverkusen — nearby surface scenery · hitdorfer see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Hitdorfer See",
+    "credit": "Nearby surface scenery · Hitdorfer See · DiAuras · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "DiAuras",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hitdorfer_See_%28Leverkusen%29_%281%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "DiAuras",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:DiAuras&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Hitdorfer_See_%28Leverkusen%29_%281%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "6822f5a8-f0e0-4222-a314-4a307dc9731d",
+    "slug": "hotel-das-traunsee",
+    "src": "/assets/dive-sites/reviewed-discovery/6822f5a8-f0e0-4222-a314-4a307dc9731d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/6822f5a8-f0e0-4222-a314-4a307dc9731d-desktop.jpg",
+    "alt": "Hotel Das Traunsee — nearby surface scenery · traunsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Traunsee",
+    "credit": "Nearby surface scenery · Traunsee · Linie29 · CC BY 4.0 · Cropped/resized",
+    "creator": "Linie29",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Traunsee_Panorama_Gr%C3%BCnberg.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Linie29",
+        "url": "https://commons.wikimedia.org/wiki/User:Linie29"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Traunsee_Panorama_Gr%C3%BCnberg.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b056b22f-fa3a-4685-b927-eeb96bb7ce23",
+    "slug": "langsee-strandbad",
+    "src": "/assets/dive-sites/reviewed-discovery/b056b22f-fa3a-4685-b927-eeb96bb7ce23-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/b056b22f-fa3a-4685-b927-eeb96bb7ce23-desktop.jpg",
+    "alt": "Längsee Strandbad — nearby surface scenery · längsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Längsee",
+    "credit": "Nearby surface scenery · Längsee · Niki.L · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Niki.L",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Strandbad_L%C3%A4ngsee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Niki.L",
+        "url": "https://commons.wikimedia.org/wiki/User:Niki.L"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Strandbad_L%C3%A4ngsee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "f7d6a9a1-19c6-4412-9fab-03bf4ad4e142",
+    "slug": "langwieder-see",
+    "src": "/assets/dive-sites/reviewed-discovery/f7d6a9a1-19c6-4412-9fab-03bf4ad4e142-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/f7d6a9a1-19c6-4412-9fab-03bf4ad4e142-desktop.jpg",
+    "alt": "Langwieder See — nearby surface scenery · langwieder see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Langwieder See",
+    "credit": "Nearby surface scenery · Langwieder See · Carsten Steger · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Carsten Steger",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_the_Langwieder_lake_district_(view_from_the_south).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Carsten Steger",
+        "url": "https://commons.wikimedia.org/wiki/User:Carsten_Steger"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_the_Langwieder_lake_district_(view_from_the_south).jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "97520572-d6f2-472c-a0ca-e6435641b836",
+    "slug": "dreetzsee",
+    "src": "/assets/dive-sites/reviewed-discovery/97520572-d6f2-472c-a0ca-e6435641b836-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/97520572-d6f2-472c-a0ca-e6435641b836-desktop.jpg",
+    "alt": "Dreetzsee — nearby surface scenery · dreetzsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Dreetzsee",
+    "credit": "Nearby surface scenery · Dreetzsee · Linear77 · CC0 1.0 · Cropped/resized",
+    "creator": "Linear77",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dreetzsee.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Linear77",
+        "url": "https://commons.wikimedia.org/wiki/User:Linear77"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dreetzsee.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2e68a593-0b93-4f94-b981-ff1a49e9e5e0",
+    "slug": "salzgittersee",
+    "src": "/assets/dive-sites/reviewed-discovery/2e68a593-0b93-4f94-b981-ff1a49e9e5e0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/2e68a593-0b93-4f94-b981-ff1a49e9e5e0-desktop.jpg",
+    "alt": "Salzgittersee — nearby surface scenery · salzgittersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Salzgittersee",
+    "credit": "Nearby surface scenery · Salzgittersee · Hasbro2582 · CC BY 4.0 · Cropped/resized",
+    "creator": "Hasbro2582",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Promenade_am_Salzgittersee_(Nordostufer).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Hasbro2582",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Hasbro2582&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Promenade_am_Salzgittersee_(Nordostufer).jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3ff25b5a-decf-45d8-b9a1-474014159934",
+    "slug": "freibacher-stausee",
+    "src": "/assets/dive-sites/reviewed-discovery/3ff25b5a-decf-45d8-b9a1-474014159934-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/3ff25b5a-decf-45d8-b9a1-474014159934-desktop.jpg",
+    "alt": "Freibacher Stausee — nearby surface scenery · freibacher stausee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Freibacher Stausee",
+    "credit": "Nearby surface scenery · Freibacher Stausee · Naturpuur · CC BY 4.0 · Cropped/resized",
+    "creator": "Naturpuur",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Freibacher_Stausee%2C_S%C3%BCdk%C3%A4rnten.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Naturpuur",
+        "url": "https://commons.wikimedia.org/wiki/User:Naturpuur"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Freibacher_Stausee%2C_S%C3%BCdk%C3%A4rnten.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b6bc397d-448d-4d65-9fb9-a566c383107a",
+    "slug": "tauchbasis-florian-kulkwitzer-see",
+    "src": "/assets/dive-sites/reviewed-discovery/b6bc397d-448d-4d65-9fb9-a566c383107a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/b6bc397d-448d-4d65-9fb9-a566c383107a-desktop.jpg",
+    "alt": "Tauchbasis Florian, Kulkwitzer See — nearby surface scenery · kulkwitzer see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Kulkwitzer See",
+    "credit": "Nearby surface scenery · Kulkwitzer See · Jwaller · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Jwaller",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:KulkwitzerSeeS.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Jwaller",
+        "url": "https://commons.wikimedia.org/wiki/User:Jwaller"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:KulkwitzerSeeS.JPG"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "92faf70f-38e7-4ebc-9356-a3b546b0b1d1",
+    "slug": "schladitzer-see",
+    "src": "/assets/dive-sites/reviewed-discovery/92faf70f-38e7-4ebc-9356-a3b546b0b1d1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/92faf70f-38e7-4ebc-9356-a3b546b0b1d1-desktop.jpg",
+    "alt": "Schladitzer See — nearby surface scenery · schladitzer see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Schladitzer See",
+    "credit": "Nearby surface scenery · Schladitzer See · Grüner Ring leipzig · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Grüner Ring leipzig",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Schladitzer-Bucht.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Schladitzer-Bucht.JPG"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "708a11d9-b277-4042-99af-782404d86312",
+    "slug": "bruckelsee",
+    "src": "/assets/dive-sites/reviewed-discovery/708a11d9-b277-4042-99af-782404d86312-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/708a11d9-b277-4042-99af-782404d86312-desktop.jpg",
+    "alt": "Brückelsee — underwater view · brückelsee, as described by the source; not independently verified.",
+    "label": "Underwater view · Brückelsee",
+    "credit": "Underwater view · Brückelsee · Softintelli · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Softintelli",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tauchen_im_Br%C3%BCckelsee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Softintelli",
+        "url": "https://commons.wikimedia.org/wiki/User:Softintelli"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tauchen_im_Br%C3%BCckelsee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2adaef50-8ebe-4525-b6d4-81e1538ef5ca",
+    "slug": "wintertauchplatz-sorpesee",
+    "src": "/assets/dive-sites/reviewed-discovery/2adaef50-8ebe-4525-b6d4-81e1538ef5ca-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/2adaef50-8ebe-4525-b6d4-81e1538ef5ca-desktop.jpg",
+    "alt": "Wintertauchplatz Sorpesee — nearby surface scenery · sorpesee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Sorpesee",
+    "credit": "Nearby surface scenery · Sorpesee · Jörg Braukmann · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Jörg Braukmann",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_von_Langscheid_am_Sorpesee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Jörg Braukmann",
+        "url": "https://commons.wikimedia.org/wiki/User:Milseburg"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Panorama_von_Langscheid_am_Sorpesee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "f9a05c16-7fe4-4eb4-91b4-115ae3405632",
+    "slug": "echinger-see",
+    "src": "/assets/dive-sites/reviewed-discovery/f9a05c16-7fe4-4eb4-91b4-115ae3405632-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/f9a05c16-7fe4-4eb4-91b4-115ae3405632-desktop.jpg",
+    "alt": "Echinger See — nearby surface scenery · echinger see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Echinger See",
+    "credit": "Nearby surface scenery · Echinger See · Jan Harenburg · CC BY 4.0 · Cropped/resized",
+    "creator": "Jan Harenburg",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Echinger_see_web.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Echinger_see_web.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8cf3371d-7597-4643-97bd-82c77bd953ae",
+    "slug": "strandbad-neufeldersee",
+    "src": "/assets/dive-sites/reviewed-discovery/8cf3371d-7597-4643-97bd-82c77bd953ae-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8cf3371d-7597-4643-97bd-82c77bd953ae-desktop.jpg",
+    "alt": "Strandbad Neufeldersee — nearby surface scenery · neufeldersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Neufeldersee",
+    "credit": "Nearby surface scenery · Neufeldersee · bob ich · CC BY 3.0 · Cropped/resized",
+    "creator": "bob ich",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Neufeldersee_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "bob ich",
+        "url": "https://web.archive.org/web/20161029182256/http://www.panoramio.com/user/7832509?with_photo_id=94351657"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Neufeldersee_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "79148836-7c13-4ff0-9be4-61550710536a",
+    "slug": "klopeinersee-strandbad-sud",
+    "src": "/assets/dive-sites/reviewed-discovery/79148836-7c13-4ff0-9be4-61550710536a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/79148836-7c13-4ff0-9be4-61550710536a-desktop.jpg",
+    "alt": "Klopeinersee Strandbad Süd — nearby surface scenery · klopeinersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Klopeinersee",
+    "credit": "Nearby surface scenery · Klopeinersee · User:Otberg · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "User:Otberg",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Klopeinersee07-2013.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "User:Otberg",
+        "url": "https://commons.wikimedia.org/wiki/User:Otberg"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Klopeinersee07-2013.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ac10d707-d96a-4410-8480-1c100e9b22b2",
+    "slug": "blankenburger-see-oldenburg",
+    "src": "/assets/dive-sites/reviewed-discovery/ac10d707-d96a-4410-8480-1c100e9b22b2-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/ac10d707-d96a-4410-8480-1c100e9b22b2-desktop.jpg",
+    "alt": "Blankenburger See (Oldenburg) — nearby surface scenery · blankenburger see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Blankenburger See",
+    "credit": "Nearby surface scenery · Blankenburger See · Schnussel · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Schnussel",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Blankenburger-See.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Schnussel",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Schnussel&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Blankenburger-See.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "671de725-84cd-4c63-9a5e-71c0d93403c6",
+    "slug": "friedberger-see",
+    "src": "/assets/dive-sites/reviewed-discovery/671de725-84cd-4c63-9a5e-71c0d93403c6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/671de725-84cd-4c63-9a5e-71c0d93403c6-desktop.jpg",
+    "alt": "Friedberger See — nearby surface scenery · friedberger see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Friedberger See",
+    "credit": "Nearby surface scenery · Friedberger See · Carsten Steger · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Carsten Steger",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Friedberger_Baggersee_(view_from_the_southeast).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Carsten Steger",
+        "url": "https://commons.wikimedia.org/wiki/User:Carsten_Steger"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Friedberger_Baggersee_(view_from_the_southeast).jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "4769ba32-7d86-4d60-b554-660eb33573d4",
+    "slug": "tunisee-freiburg-im-breisgau",
+    "src": "/assets/dive-sites/reviewed-discovery/4769ba32-7d86-4d60-b554-660eb33573d4-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/4769ba32-7d86-4d60-b554-660eb33573d4-desktop.jpg",
+    "alt": "Tunisee - Freiburg im Breisgau — nearby surface scenery · tunisee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Tunisee",
+    "credit": "Nearby surface scenery · Tunisee · Norbert Blau (= user Luftfahrer ) – Weitere Luftbilder vom Tunisee · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Norbert Blau (= user Luftfahrer ) – Weitere Luftbilder vom Tunisee",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tunisee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Weitere Luftbilder vom Tunisee",
+        "url": "http://www.luft-bild.com/Seiten/benzhausen.htm"
+      },
+      {
+        "label": "Luftfahrer",
+        "url": "https://de.wikipedia.org/wiki/Benutzer:Luftfahrer"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tunisee.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8fbdcac2-df22-4996-b3a9-e915c8eb8f39",
+    "slug": "waller-feldmarksee",
+    "src": "/assets/dive-sites/reviewed-discovery/8fbdcac2-df22-4996-b3a9-e915c8eb8f39-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8fbdcac2-df22-4996-b3a9-e915c8eb8f39-desktop.jpg",
+    "alt": "Waller Feldmarksee — nearby surface scenery · feldmarksee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Feldmarksee",
+    "credit": "Nearby surface scenery · Feldmarksee · Daveblack · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Daveblack",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:WallerFeldmarksee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Daveblack",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Daveblack&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:WallerFeldmarksee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "42693e86-1d61-4f0a-a19c-ef0e79156646",
+    "slug": "landeinstieg-cospudener-see",
+    "src": "/assets/dive-sites/reviewed-discovery/42693e86-1d61-4f0a-a19c-ef0e79156646-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/42693e86-1d61-4f0a-a19c-ef0e79156646-desktop.jpg",
+    "alt": "Landeinstieg, Cospudener See — nearby surface scenery · cospudener see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Cospudener See",
+    "credit": "Nearby surface scenery · Cospudener See · Falk2 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Falk2",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:J39_670_Cospudener_See%2C_Nordufer.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Falk2",
+        "url": "https://de.wikipedia.org/wiki/User:Falk2"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:J39_670_Cospudener_See%2C_Nordufer.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0dd48b76-8186-42e5-9143-23a6a3ac321f",
+    "slug": "blausteinsee-eschweiler",
+    "src": "/assets/dive-sites/reviewed-discovery/0dd48b76-8186-42e5-9143-23a6a3ac321f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/0dd48b76-8186-42e5-9143-23a6a3ac321f-desktop.jpg",
+    "alt": "Blausteinsee, Eschweiler — nearby surface scenery · blausteinsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Blausteinsee",
+    "credit": "Nearby surface scenery · Blausteinsee · Peter Tritthart · CC BY 3.0 · Cropped/resized",
+    "creator": "Peter Tritthart",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Blausteinsee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Peter Tritthart",
+        "url": "https://commons.wikimedia.org/wiki/User:Peter_Tritthart"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Blausteinsee.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c482572d-c5a2-4b61-94c4-3330af4848ef",
+    "slug": "schwarzlsee",
+    "src": "/assets/dive-sites/reviewed-discovery/c482572d-c5a2-4b61-94c4-3330af4848ef-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/c482572d-c5a2-4b61-94c4-3330af4848ef-desktop.jpg",
+    "alt": "Schwarzlsee — nearby surface scenery · schwarzlsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Schwarzlsee",
+    "credit": "Nearby surface scenery · Schwarzlsee · Clemens Stockner · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Clemens Stockner",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Schwarzlsee_Panorama.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Clemens Stockner",
+        "url": "https://commons.wikimedia.org/wiki/User:Clemens_Stockner"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Schwarzlsee_Panorama.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "4e74b1eb-6e60-40dd-971c-72b291863f0d",
+    "slug": "messinghausen-see-im-berg",
+    "src": "/assets/dive-sites/reviewed-discovery/4e74b1eb-6e60-40dd-971c-72b291863f0d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/4e74b1eb-6e60-40dd-971c-72b291863f0d-desktop.jpg",
+    "alt": "Messinghausen, See im Berg — nearby surface scenery · messinghausen, see im berg, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Messinghausen, See im Berg",
+    "credit": "Nearby surface scenery · Messinghausen, See im Berg · Falkmart · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Falkmart",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Steinbruchsee_(Messinghausen).JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Falkmart",
+        "url": "https://commons.wikimedia.org/wiki/User:Falkmart"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Steinbruchsee_(Messinghausen).JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "77a9ec24-fce3-4a1c-bd29-76b131a28303",
+    "slug": "blindsee",
+    "src": "/assets/dive-sites/reviewed-discovery/77a9ec24-fce3-4a1c-bd29-76b131a28303-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/77a9ec24-fce3-4a1c-bd29-76b131a28303-desktop.jpg",
+    "alt": "Blindsee — nearby surface scenery · blindsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Blindsee",
+    "credit": "Nearby surface scenery · Blindsee · Tiia Monto · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Tiia Monto",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Blindsee_beach.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Tiia Monto",
+        "url": "https://commons.wikimedia.org/wiki/User:Kulmalukko"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Blindsee_beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "99fb08ed-6539-4909-9b98-bbe669722cb1",
+    "slug": "senftenberger-see",
+    "src": "/assets/dive-sites/reviewed-discovery/99fb08ed-6539-4909-9b98-bbe669722cb1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/99fb08ed-6539-4909-9b98-bbe669722cb1-desktop.jpg",
+    "alt": "Senftenberger See — nearby surface scenery · senftenberger see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Senftenberger See",
+    "credit": "Nearby surface scenery · Senftenberger See · Z thomas mit Cousin · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Z thomas mit Cousin",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Senftenberger_See.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Z thomas",
+        "url": "https://commons.wikimedia.org/wiki/User:Z_thomas"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Senftenberger_See.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "e749183f-5d0e-49b7-80bd-ae7e15cb458f",
+    "slug": "tuttenbrocksee",
+    "src": "/assets/dive-sites/reviewed-discovery/e749183f-5d0e-49b7-80bd-ae7e15cb458f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/e749183f-5d0e-49b7-80bd-ae7e15cb458f-desktop.jpg",
+    "alt": "Tuttenbrocksee — nearby surface scenery · tuttenbrocksee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Tuttenbrocksee",
+    "credit": "Nearby surface scenery · Tuttenbrocksee · qwesy qwesy · CC BY 3.0 · Cropped/resized",
+    "creator": "qwesy qwesy",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tuttenbrocksee_Beckum_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "qwesy qwesy",
+        "url": "https://web.archive.org/web/20161013155327/http://www.panoramio.com/user/596286?with_photo_id=22992526"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tuttenbrocksee_Beckum_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "db71c5b7-3d15-4efc-bf17-9eee17c20d89",
+    "slug": "pot-island-lake-winnisquam",
+    "src": "/assets/dive-sites/reviewed-discovery/db71c5b7-3d15-4efc-bf17-9eee17c20d89-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/db71c5b7-3d15-4efc-bf17-9eee17c20d89-desktop.jpg",
+    "alt": "Pot Island, Lake Winnisquam — nearby surface scenery · lake winnisquam, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Winnisquam",
+    "credit": "Nearby surface scenery · Lake Winnisquam · NewtonCourt · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "NewtonCourt",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Winnisquam_P1020242.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "NewtonCourt",
+        "url": "https://commons.wikimedia.org/wiki/User:NewtonCourt"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Winnisquam_P1020242.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "77843f5d-8898-4b6e-97d3-cc7bdb5bd08c",
+    "slug": "cultus-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/77843f5d-8898-4b6e-97d3-cc7bdb5bd08c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/77843f5d-8898-4b6e-97d3-cc7bdb5bd08c-desktop.jpg",
+    "alt": "Cultus Lake — nearby scenery · cultus lake waterpark, as described by the source; not independently verified.",
+    "label": "Nearby scenery · Cultus Lake Waterpark",
+    "credit": "Nearby scenery · Cultus Lake Waterpark · The High Fin Sperm Whale · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "The High Fin Sperm Whale",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cultus_Lake_Waterpark_panorama.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "The High Fin Sperm Whale",
+        "url": "https://commons.wikimedia.org/wiki/User:The_High_Fin_Sperm_Whale"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cultus_Lake_Waterpark_panorama.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3788f611-cd19-4779-904a-69c5d44e0ee1",
+    "slug": "keuka-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/3788f611-cd19-4779-904a-69c5d44e0ee1-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/3788f611-cd19-4779-904a-69c5d44e0ee1-desktop.jpg",
+    "alt": "Keuka Lake — nearby surface scenery · keuka lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Keuka Lake",
+    "credit": "Nearby surface scenery · Keuka Lake · Theghostofmojo · CC BY 4.0 · Cropped/resized",
+    "creator": "Theghostofmojo",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Keuka_Lake.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Theghostofmojo",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Theghostofmojo&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Keuka_Lake.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "39e673c4-233f-4b0f-a7e3-f202d4754dd6",
+    "slug": "barracuda-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/39e673c4-233f-4b0f-a7e3-f202d4754dd6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/39e673c4-233f-4b0f-a7e3-f202d4754dd6-desktop.jpg",
+    "alt": "Barracuda Lake — nearby surface scenery · barracuda lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Barracuda Lake",
+    "credit": "Nearby surface scenery · Barracuda Lake · Madcel · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Madcel",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Barracuda_Lake.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Madcel",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Madcel&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Barracuda_Lake.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "e1f9e26c-74e8-4d45-87b8-5179e02aae32",
+    "slug": "ramsey-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/e1f9e26c-74e8-4d45-87b8-5179e02aae32-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/e1f9e26c-74e8-4d45-87b8-5179e02aae32-desktop.jpg",
+    "alt": "Ramsey Lake — nearby surface scenery · ramsey lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Ramsey Lake",
+    "credit": "Nearby surface scenery · Ramsey Lake · Platttenbau · CC0 1.0 · Cropped/resized",
+    "creator": "Platttenbau",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ramsey_Lake_2025.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Platttenbau",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Platttenbau&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ramsey_Lake_2025.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "72c7d0d9-ae3b-4e96-b404-1b10006ded48",
+    "slug": "folsom-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/72c7d0d9-ae3b-4e96-b404-1b10006ded48-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/72c7d0d9-ae3b-4e96-b404-1b10006ded48-desktop.jpg",
+    "alt": "Folsom Lake — nearby surface scenery · folsom lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Folsom Lake",
+    "credit": "Nearby surface scenery · Folsom Lake · UncleVinny · CC BY 3.0 · Cropped/resized",
+    "creator": "UncleVinny",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Folsom_Lake_south_shore_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "UncleVinny",
+        "url": "https://web.archive.org/web/20161012132220/http://www.panoramio.com/user/2366317?with_photo_id=15163183"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Folsom_Lake_south_shore_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b827eec1-ee31-4134-80a4-bd6d38c19a59",
+    "slug": "lake-chelan-state-park",
+    "src": "/assets/dive-sites/reviewed-discovery/b827eec1-ee31-4134-80a4-bd6d38c19a59-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/b827eec1-ee31-4134-80a4-bd6d38c19a59-desktop.jpg",
+    "alt": "Lake Chelan State Park — nearby surface scenery · lake chelan state park, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Chelan State Park",
+    "credit": "Nearby surface scenery · Lake Chelan State Park · Mr.B · CC BY 3.0 · Cropped/resized",
+    "creator": "Mr.B",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:LK_Chelan_State_Park_Campground_At_Sunrise_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Mr.B",
+        "url": "https://web.archive.org/web/20161017091922/http://www.panoramio.com/user/5473980?with_photo_id=47751158"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:LK_Chelan_State_Park_Campground_At_Sunrise_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2c191ce4-e88f-4a5b-9dc6-11c88532e2a5",
+    "slug": "tarbet-isle-loch-lomond",
+    "src": "/assets/dive-sites/reviewed-discovery/2c191ce4-e88f-4a5b-9dc6-11c88532e2a5-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/2c191ce4-e88f-4a5b-9dc6-11c88532e2a5-desktop.jpg",
+    "alt": "Tarbet Isle - Loch Lomond — nearby surface scenery · lochan maol dhuinne beach, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lochan Maol Dhuinne beach",
+    "credit": "Nearby surface scenery · Lochan Maol Dhuinne beach · GeographUser · CC0 1.0 · Cropped/resized",
+    "creator": "GeographUser",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach%2C_Loch_Lomond.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "GeographUser",
+        "url": "https://commons.wikimedia.org/wiki/User:GeographUser"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach%2C_Loch_Lomond.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "738a2855-0859-4ce8-b666-9ba097d2dba5",
+    "slug": "yellowstone-lake-lodge",
+    "src": "/assets/dive-sites/reviewed-discovery/738a2855-0859-4ce8-b666-9ba097d2dba5-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/738a2855-0859-4ce8-b666-9ba097d2dba5-desktop.jpg",
+    "alt": "Yellowstone Lake Lodge — nearby scenery · lake lodge grounds, 2011, as described by the source; not independently verified.",
+    "label": "Nearby scenery · Lake Lodge grounds, 2011",
+    "credit": "Nearby scenery · Lake Lodge grounds, 2011 · Yellowstone National Park from Yellowstone NP, USA; photograph by Davey Wyatt · CC BY 2.0 · Cropped/resized",
+    "creator": "Yellowstone National Park from Yellowstone NP, USA; photograph by Davey Wyatt",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Lodge_(8577965181).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Yellowstone National Park",
+        "url": "https://www.flickr.com/people/80223459@N05"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Lodge_(8577965181).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "785be0f8-2109-4882-b5e5-2d185bd9ec67",
+    "slug": "lakeside",
+    "src": "/assets/dive-sites/reviewed-discovery/785be0f8-2109-4882-b5e5-2d185bd9ec67-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/785be0f8-2109-4882-b5e5-2d185bd9ec67-desktop.jpg",
+    "alt": "Lakeside — surface view · lakeside beach, ningaloo, as described by the source; not independently verified.",
+    "label": "Surface view · Lakeside Beach, Ningaloo",
+    "credit": "Surface view · Lakeside Beach, Ningaloo · Philarazzi · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Philarazzi",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lakeside_Beach_campsite%2C_Cape_Range_NP.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Philarazzi",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Philarazzi&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lakeside_Beach_campsite%2C_Cape_Range_NP.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "a01687e4-c691-4300-8a8d-582700502a10",
+    "slug": "greers-ferry-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/a01687e4-c691-4300-8a8d-582700502a10-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/a01687e4-c691-4300-8a8d-582700502a10-desktop.jpg",
+    "alt": "Greers Ferry Lake — nearby surface scenery · greers ferry lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Greers Ferry Lake",
+    "credit": "Nearby surface scenery · Greers Ferry Lake · Brandonrush · CC0 1.0 · Cropped/resized",
+    "creator": "Brandonrush",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Greers_Ferry_Lake_007.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Brandonrush",
+        "url": "https://commons.wikimedia.org/wiki/User:Brandonrush"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Greers_Ferry_Lake_007.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3d101b2c-e858-435e-a6a0-aa14d85229ff",
+    "slug": "buntzen-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/3d101b2c-e858-435e-a6a0-aa14d85229ff-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/3d101b2c-e858-435e-a6a0-aa14d85229ff-desktop.jpg",
+    "alt": "Buntzen Lake — nearby surface scenery · buntzen lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Buntzen Lake",
+    "credit": "Nearby surface scenery · Buntzen Lake · Nihilmeister · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Nihilmeister",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Buntzen_Lake.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Nihilmeister",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Nihilmeister&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Buntzen_Lake.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3d536ac4-d102-4a60-81e3-1a1ebb23781a",
+    "slug": "lake-pupuke-pumphouse",
+    "src": "/assets/dive-sites/reviewed-discovery/3d536ac4-d102-4a60-81e3-1a1ebb23781a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/3d536ac4-d102-4a60-81e3-1a1ebb23781a-desktop.jpg",
+    "alt": "Lake Pupuke - Pumphouse — nearby surface scenery · lake pupuke, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Pupuke",
+    "credit": "Nearby surface scenery · Lake Pupuke · Avenue · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Avenue",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Pupuke_lakeshore_and_hospital.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Avenue",
+        "url": "https://commons.wikimedia.org/wiki/User:Avenue"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pupuke_lakeshore_and_hospital.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2b009ac8-8796-434a-85e1-7f58a333ebfa",
+    "slug": "butgenbach-stausee",
+    "src": "/assets/dive-sites/reviewed-discovery/2b009ac8-8796-434a-85e1-7f58a333ebfa-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/2b009ac8-8796-434a-85e1-7f58a333ebfa-desktop.jpg",
+    "alt": "Bütgenbach Stausee — surface view · bütgenbach reservoir, as described by the source; not independently verified.",
+    "label": "Surface view · Bütgenbach reservoir",
+    "credit": "Surface view · Bütgenbach reservoir · G. Friedrich · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "G. Friedrich",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Stausee_B%C3%BCtgenbach.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "G. Friedrich",
+        "url": "https://commons.wikimedia.org/wiki/User:Duhon"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Stausee_B%C3%BCtgenbach.JPG"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0611a370-3b5e-4311-92c6-4ab627cd5b58",
+    "slug": "lake-kleifarvatn",
+    "src": "/assets/dive-sites/reviewed-discovery/0611a370-3b5e-4311-92c6-4ab627cd5b58-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/0611a370-3b5e-4311-92c6-4ab627cd5b58-desktop.jpg",
+    "alt": "Lake Kleifarvatn — nearby surface scenery · lake kleifarvatn, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Kleifarvatn",
+    "credit": "Nearby surface scenery · Lake Kleifarvatn · Alexander Grebenkov · CC BY 3.0 · Cropped/resized",
+    "creator": "Alexander Grebenkov",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Shore_of_lake_Kleifarvatn_in_Iceland.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Alexander Grebenkov",
+        "url": "https://commons.wikimedia.org/wiki/User:Grebenkov"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Shore_of_lake_Kleifarvatn_in_Iceland.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "af1c2c48-dca1-494c-84ff-d9eb38ed93ca",
+    "slug": "table-rock-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/af1c2c48-dca1-494c-84ff-d9eb38ed93ca-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/af1c2c48-dca1-494c-84ff-d9eb38ed93ca-desktop.jpg",
+    "alt": "Table Rock Lake — nearby surface scenery · table rock lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Table Rock Lake",
+    "credit": "Nearby surface scenery · Table Rock Lake · Teeks99 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Teeks99",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Table_Rock_Lake_Shoreline_Trail.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Teeks99",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Teeks99&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Table_Rock_Lake_Shoreline_Trail.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "065d0ca9-879f-499d-926d-cfedc343212d",
+    "slug": "bob-wentz-park-lake-travis-texas",
+    "src": "/assets/dive-sites/reviewed-discovery/065d0ca9-879f-499d-926d-cfedc343212d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/065d0ca9-879f-499d-926d-cfedc343212d-desktop.jpg",
+    "alt": "Bob Wentz Park, Lake Travis, Texas — nearby surface scenery · lake travis aerial, 2018, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Travis aerial, 2018",
+    "credit": "Nearby surface scenery · Lake Travis aerial, 2018 · Antony-22 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Antony-22",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Travis_aerial_2018.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Antony-22",
+        "url": "https://commons.wikimedia.org/wiki/User:Antony-22"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Travis_aerial_2018.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8bf9bd1f-408e-4f38-907b-6e03bec7747d",
+    "slug": "bear-lake-cisco-beach",
+    "src": "/assets/dive-sites/reviewed-discovery/8bf9bd1f-408e-4f38-907b-6e03bec7747d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/8bf9bd1f-408e-4f38-907b-6e03bec7747d-desktop.jpg",
+    "alt": "Bear Lake Cisco Beach — nearby surface scenery · bear lake off cisco beach, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Bear Lake off Cisco Beach",
+    "credit": "Nearby surface scenery · Bear Lake off Cisco Beach · JF Hobbs · CC BY 3.0 · Cropped/resized",
+    "creator": "JF Hobbs",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Off_Cisco_Beach_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "JF Hobbs",
+        "url": "https://web.archive.org/web/20161025213028/http://www.panoramio.com/user/4805004?with_photo_id=77184330"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Off_Cisco_Beach_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "5f82a1c6-5e41-4e04-917f-75a1daee7f71",
+    "slug": "fallen-leaf-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/5f82a1c6-5e41-4e04-917f-75a1daee7f71-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/5f82a1c6-5e41-4e04-917f-75a1daee7f71-desktop.jpg",
+    "alt": "Fallen Leaf Lake — nearby surface scenery · fallen leaf lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Fallen Leaf Lake",
+    "credit": "Nearby surface scenery · Fallen Leaf Lake · Jonathan Cook-Fisher · CC BY 2.0 · Cropped/resized",
+    "creator": "Jonathan Cook-Fisher",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Fallen_Leaf_Lake%2C_Mt._Tallac.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Fallen_Leaf_Lake%2C_Mt._Tallac.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "f6d13b7c-d863-41c1-8a44-0ea321989ea0",
+    "slug": "bass-lake-california-united-states",
+    "src": "/assets/dive-sites/reviewed-discovery/f6d13b7c-d863-41c1-8a44-0ea321989ea0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/f6d13b7c-d863-41c1-8a44-0ea321989ea0-desktop.jpg",
+    "alt": "Bass Lake — nearby surface scenery · bass lake, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Bass Lake",
+    "credit": "Nearby surface scenery · Bass Lake · Guywelch2000 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Guywelch2000",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bass_Lake_California_Panorama_Summer.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Guywelch2000",
+        "url": "https://commons.wikimedia.org/wiki/User:Guywelch2000"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bass_Lake_California_Panorama_Summer.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "aa8efa8d-d656-4bed-bcd0-57ecb8acde6d",
+    "slug": "spring-lakes",
+    "src": "/assets/dive-sites/reviewed-discovery/aa8efa8d-d656-4bed-bcd0-57ecb8acde6d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/aa8efa8d-d656-4bed-bcd0-57ecb8acde6d-desktop.jpg",
+    "alt": "Spring Lakes — nearby surface scenery · spring lakes, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Spring Lakes",
+    "credit": "Nearby surface scenery · Spring Lakes · Andrew Abbott · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Andrew Abbott",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Spring_Lakes_-_geograph.org.uk_-_6484533.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "",
+        "url": "https://commons.wikimedia.org/wiki/File:Spring_Lakes_-_geograph.org.uk_-_6484533.jpg#P170"
+      },
+      {
+        "label": "Andrew Abbott",
+        "url": "https://www.geograph.org.uk/profile/45714"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Spring_Lakes_-_geograph.org.uk_-_6484533.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "105744a7-cca4-464c-b384-2f82b5b2f78a",
+    "slug": "lake-mendota-shorewood",
+    "src": "/assets/dive-sites/reviewed-discovery/105744a7-cca4-464c-b384-2f82b5b2f78a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/105744a7-cca4-464c-b384-2f82b5b2f78a-desktop.jpg",
+    "alt": "Lake Mendota - Shorewood — nearby surface scenery · lake mendota, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Mendota",
+    "credit": "Nearby surface scenery · Lake Mendota · Corey Coyle · CC BY 3.0 · Cropped/resized",
+    "creator": "Corey Coyle",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Mendota_Panorama_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Corey Coyle",
+        "url": "https://web.archive.org/web/20161028161731/http://www.panoramio.com/user/2184098?with_photo_id=108106384"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Mendota_Panorama_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "05c9db0b-8616-4a77-8383-6ee5151c326f",
+    "slug": "kealakekua-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/05c9db0b-8616-4a77-8383-6ee5151c326f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/05c9db0b-8616-4a77-8383-6ee5151c326f-desktop.jpg",
+    "alt": "Kealakekua Bay — nearby surface scenery · kealakekua bay, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Kealakekua Bay",
+    "credit": "Nearby surface scenery · Kealakekua Bay · travisthurston + · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "travisthurston +",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:KealakekuaBay.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "travisthurston",
+        "url": "https://en.wikipedia.org/wiki/User:Travisthurston"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:KealakekuaBay.JPG"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ad161272-cc43-4ce3-99d7-083ff6e208e7",
+    "slug": "erlichsee",
+    "src": "/assets/dive-sites/reviewed-discovery/ad161272-cc43-4ce3-99d7-083ff6e208e7-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/ad161272-cc43-4ce3-99d7-083ff6e208e7-desktop.jpg",
+    "alt": "Erlichsee — nearby surface scenery · erlichsee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Erlichsee",
+    "credit": "Nearby surface scenery · Erlichsee · AnRo0002 · CC0 1.0 · Cropped/resized",
+    "creator": "AnRo0002",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:20121201Erlichsee1.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "AnRo0002",
+        "url": "https://commons.wikimedia.org/wiki/User:AnRo0002"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:20121201Erlichsee1.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "78588e39-3c3c-4f10-9266-3de50826369a",
+    "slug": "obersee",
+    "src": "/assets/dive-sites/reviewed-discovery/78588e39-3c3c-4f10-9266-3de50826369a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v3-20261108/78588e39-3c3c-4f10-9266-3de50826369a-desktop.jpg",
+    "alt": "Obersee — nearby surface scenery · obersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Obersee",
+    "credit": "Nearby surface scenery · Obersee · Doris Antony , Berlin · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Doris Antony , Berlin",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lanke_Obersee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Doris Antony",
+        "url": "https://commons.wikimedia.org/wiki/User:DorisAntony"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lanke_Obersee.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c7c66544-03e3-4312-b707-e6485776a0e4",
+    "slug": "bodensee-wrack-jura",
+    "src": "/assets/dive-sites/reviewed-discovery/c7c66544-03e3-4312-b707-e6485776a0e4-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/c7c66544-03e3-4312-b707-e6485776a0e4-desktop.jpg",
+    "alt": "Bodensee - Wrack Jura — nearby surface scenery · mannenbach, lake constance, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Mannenbach, Lake Constance",
+    "credit": "Nearby surface scenery · Mannenbach, Lake Constance · Brian Kelley · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Brian Kelley",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bodensee_from_Mannenbach.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Brian Kelley",
+        "url": "https://flickr.com/people/39727414@N00"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bodensee_from_Mannenbach.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ab08d7ae-642b-46b8-bee2-2dbf3bbc8886",
+    "slug": "attersee-marias-weg",
+    "src": "/assets/dive-sites/reviewed-discovery/ab08d7ae-642b-46b8-bee2-2dbf3bbc8886-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/ab08d7ae-642b-46b8-bee2-2dbf3bbc8886-desktop.jpg",
+    "alt": "Attersee, Marias Weg — nearby surface scenery · attersee outflow weir, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Attersee outflow weir",
+    "credit": "Nearby surface scenery · Attersee outflow weir · AtterseeMM · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "AtterseeMM",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Attersee_Wehr_1_29082026.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "AtterseeMM",
+        "url": "https://commons.wikimedia.org/wiki/User:AtterseeMM"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Attersee_Wehr_1_29082026.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "50587719-92db-4f05-bb66-2e4a1baa4400",
+    "slug": "neufelder-see",
+    "src": "/assets/dive-sites/reviewed-discovery/50587719-92db-4f05-bb66-2e4a1baa4400-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/50587719-92db-4f05-bb66-2e4a1baa4400-desktop.jpg",
+    "alt": "Neufelder See — nearby surface scenery · neufelder see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Neufelder See",
+    "credit": "Nearby surface scenery · Neufelder See · RHOCHR · CC0 1.0 · Cropped/resized",
+    "creator": "RHOCHR",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Neufelder_See.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "RHOCHR",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:RHOCHR&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Neufelder_See.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "201745a0-c721-4242-ace4-8ca3ddf66be9",
+    "slug": "maria-loretto-worthersee",
+    "src": "/assets/dive-sites/reviewed-discovery/201745a0-c721-4242-ace4-8ca3ddf66be9-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/201745a0-c721-4242-ace4-8ca3ddf66be9-desktop.jpg",
+    "alt": "Maria Loretto, Wörthersee — nearby surface scenery · wörthersee aerial, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Wörthersee aerial",
+    "credit": "Nearby surface scenery · Wörthersee aerial · Carsten Steger · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Carsten Steger",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_W%C3%B6rthersee_%28view_from_the_southeast%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Carsten Steger",
+        "url": "https://commons.wikimedia.org/wiki/User:Carsten_Steger"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_W%C3%B6rthersee_%28view_from_the_southeast%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0d88c5bb-41b1-4d09-8e13-b99a2e05517d",
+    "slug": "singliser-see",
+    "src": "/assets/dive-sites/reviewed-discovery/0d88c5bb-41b1-4d09-8e13-b99a2e05517d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/0d88c5bb-41b1-4d09-8e13-b99a2e05517d-desktop.jpg",
+    "alt": "Singliser See — nearby surface scenery · singliser see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Singliser See",
+    "credit": "Nearby surface scenery · Singliser See · Markus Schulenburg · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Markus Schulenburg",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Singliser_See_Richtung_Borken.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Markus Schulenburg",
+        "url": "https://commons.wikimedia.org/wiki/User:Markus_Schulenburg"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Singliser_See_Richtung_Borken.jpg"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "1bf3df33-f90a-49c2-a585-7687e0378925",
+    "slug": "attersee-upper-austria-austria",
+    "src": "/assets/dive-sites/reviewed-discovery/1bf3df33-f90a-49c2-a585-7687e0378925-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/1bf3df33-f90a-49c2-a585-7687e0378925-desktop.jpg",
+    "alt": "Attersee — nearby surface scenery · attersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Attersee",
+    "credit": "Nearby surface scenery · Attersee · Acediscovery · CC BY 4.0 · Cropped/resized",
+    "creator": "Acediscovery",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:View-of-Attersee-Seewalchen.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Acediscovery",
+        "url": "https://commons.wikimedia.org/wiki/User:Acediscovery"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:View-of-Attersee-Seewalchen.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "210d9c2f-fa1c-41b9-a741-6e47e6cd80dc",
+    "slug": "versunkener-wald-cospudener-see",
+    "src": "/assets/dive-sites/reviewed-discovery/210d9c2f-fa1c-41b9-a741-6e47e6cd80dc-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/210d9c2f-fa1c-41b9-a741-6e47e6cd80dc-desktop.jpg",
+    "alt": "Versunkener Wald, Cospudener See — nearby surface scenery · cospudener see, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Cospudener See",
+    "credit": "Nearby surface scenery · Cospudener See · Ansgar Koreng · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Ansgar Koreng",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Boot_auf_dem_Cospudener_See%2C_1707292120%2C_ako.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Ansgar Koreng",
+        "url": "https://commons.wikimedia.org/wiki/User:Code"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Boot_auf_dem_Cospudener_See%2C_1707292120%2C_ako.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9d89db22-d6ed-4816-9f4c-5f76be3960e0",
+    "slug": "bodensee-marienschlucht",
+    "src": "/assets/dive-sites/reviewed-discovery/9d89db22-d6ed-4816-9f4c-5f76be3960e0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/9d89db22-d6ed-4816-9f4c-5f76be3960e0-desktop.jpg",
+    "alt": "Bodensee - Marienschlucht — nearby surface scenery · meersburg, lake constance, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Meersburg, Lake Constance",
+    "credit": "Nearby surface scenery · Meersburg, Lake Constance · Roland.h.bueb · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Roland.h.bueb",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Meersburg-seepromenade-bodensee-alpen.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Roland.h.bueb",
+        "url": "https://commons.wikimedia.org/wiki/User:Roland.h.bueb"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Meersburg-seepromenade-bodensee-alpen.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b465b742-da85-4483-9ec9-619f7f99f959",
+    "slug": "megawand-weiensee",
+    "src": "/assets/dive-sites/reviewed-discovery/b465b742-da85-4483-9ec9-619f7f99f959-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/b465b742-da85-4483-9ec9-619f7f99f959-desktop.jpg",
+    "alt": "Megawand, Weißensee — nearby surface scenery · weissensee aerial, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Weissensee aerial",
+    "credit": "Nearby surface scenery · Weissensee aerial · Carsten Steger · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Carsten Steger",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Wei%C3%9Fensee%2C_Carinthia_%28view_from_the_southeast%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Carsten Steger",
+        "url": "https://commons.wikimedia.org/wiki/User:Carsten_Steger"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Wei%C3%9Fensee%2C_Carinthia_%28view_from_the_southeast%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ef0f0c39-899b-4417-bb43-5cf8ae2623d6",
+    "slug": "edersee",
+    "src": "/assets/dive-sites/reviewed-discovery/ef0f0c39-899b-4417-bb43-5cf8ae2623d6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/ef0f0c39-899b-4417-bb43-5cf8ae2623d6-desktop.jpg",
+    "alt": "Edersee — nearby surface scenery · bringhausen, edersee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Bringhausen, Edersee",
+    "credit": "Nearby surface scenery · Bringhausen, Edersee · Andreas Eichler · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Andreas Eichler",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2014.10.01.-04-Edertal_Bringhausen--Edersee.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Andreas Eichler",
+        "url": "https://commons.wikimedia.org/wiki/User:Hockei"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:2014.10.01.-04-Edertal_Bringhausen--Edersee.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0e14e820-92c8-46e9-b0d5-6cdca1c1389f",
+    "slug": "sandbar-at-lake-winnisquam",
+    "src": "/assets/dive-sites/reviewed-discovery/0e14e820-92c8-46e9-b0d5-6cdca1c1389f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/0e14e820-92c8-46e9-b0d5-6cdca1c1389f-desktop.jpg",
+    "alt": "Sandbar at Lake Winnisquam — surface view · lake winnisquam in winter, as described by the source; not independently verified.",
+    "label": "Surface view · Lake Winnisquam in winter",
+    "credit": "Surface view · Lake Winnisquam in winter · John Phelan · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "John Phelan",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Winnisquam_Lake%2C_Winnisquam_NH.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "John Phelan",
+        "url": "https://commons.wikimedia.org/wiki/User:Faolin42"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Winnisquam_Lake%2C_Winnisquam_NH.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8cc17828-50dd-41f5-8582-6dd7b4dac217",
+    "slug": "hot-hole-lake-keowee",
+    "src": "/assets/dive-sites/reviewed-discovery/8cc17828-50dd-41f5-8582-6dd7b4dac217-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/8cc17828-50dd-41f5-8582-6dd7b4dac217-desktop.jpg",
+    "alt": "Hot Hole -  Lake Keowee — nearby surface scenery · northern lake keowee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · northern Lake Keowee",
+    "credit": "Nearby surface scenery · northern Lake Keowee · DXR · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "DXR",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:View_of_Lake_Keowee%2C_Pickens_County%2C_SC_20160701_1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "DXR",
+        "url": "https://commons.wikimedia.org/wiki/User:DXR"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:View_of_Lake_Keowee%2C_Pickens_County%2C_SC_20160701_1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "5e3410af-e80a-4728-b4dd-248879e2873e",
+    "slug": "gilboa-quarry",
+    "src": "/assets/dive-sites/reviewed-discovery/5e3410af-e80a-4728-b4dd-248879e2873e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/5e3410af-e80a-4728-b4dd-248879e2873e-desktop.jpg",
+    "alt": "Gilboa Quarry — surface view · gilboa quarry, as described by the source; not independently verified.",
+    "label": "Surface view · Gilboa Quarry",
+    "credit": "Surface view · Gilboa Quarry · w_lemay · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "w_lemay",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Gilboa_Quarry%2C_Gilboa%2C_OH_-_51441492604.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Gilboa_Quarry%2C_Gilboa%2C_OH_-_51441492604.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "51a919ac-e494-4528-968e-378ae4628698",
+    "slug": "cenote-nohoch-nah-chich",
+    "src": "/assets/dive-sites/reviewed-discovery/51a919ac-e494-4528-968e-378ae4628698-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/51a919ac-e494-4528-968e-378ae4628698-desktop.jpg",
+    "alt": "Cenote Nohoch Nah Chich — surface view · cenote entrance, as described by the source; not independently verified.",
+    "label": "Surface view · cenote entrance",
+    "credit": "Surface view · cenote entrance · Offthebeatonpath · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Offthebeatonpath",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cenote_Nohoch_Nah_Chich.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Offthebeatonpath",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Offthebeatonpath&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cenote_Nohoch_Nah_Chich.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "255fa9d1-eae1-49f5-8c42-b58e5ff5a425",
+    "slug": "heron-island-blue-pools",
+    "src": "/assets/dive-sites/reviewed-discovery/255fa9d1-eae1-49f5-8c42-b58e5ff5a425-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/255fa9d1-eae1-49f5-8c42-b58e5ff5a425-desktop.jpg",
+    "alt": "Heron Island - Blue Pools — nearby surface scenery · heron island sunset, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Heron Island sunset",
+    "credit": "Nearby surface scenery · Heron Island sunset · Navid C. Constantinou · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Navid C. Constantinou",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Heron-island-sunset.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Navid C. Constantinou",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Navidcy&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Heron-island-sunset.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d1284146-0a4e-4c22-b3e0-49b612ac19c4",
+    "slug": "sutil-island",
+    "src": "/assets/dive-sites/reviewed-discovery/d1284146-0a4e-4c22-b3e0-49b612ac19c4-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/d1284146-0a4e-4c22-b3e0-49b612ac19c4-desktop.jpg",
+    "alt": "Sutil Island — surface view · sutil island, as described by the source; not independently verified.",
+    "label": "Surface view · Sutil Island",
+    "credit": "Surface view · Sutil Island · Brian MacIntosh · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Brian MacIntosh",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Sutil_Island_-_Santa_Barbara_Island.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Brian MacIntosh",
+        "url": "https://commons.wikimedia.org/wiki/User:BMacZero"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sutil_Island_-_Santa_Barbara_Island.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d05d7b79-f792-4a4d-8db1-d579c9aa2adc",
+    "slug": "aldermen-islands",
+    "src": "/assets/dive-sites/reviewed-discovery/d05d7b79-f792-4a4d-8db1-d579c9aa2adc-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/d05d7b79-f792-4a4d-8db1-d579c9aa2adc-desktop.jpg",
+    "alt": "Aldermen Islands — surface view · aldermen islands (distant), as described by the source; not independently verified.",
+    "label": "Surface view · Aldermen Islands (distant)",
+    "credit": "Surface view · Aldermen Islands (distant) · Krzysztof Golik · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Krzysztof Golik",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Aldermen_Islands_01.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Krzysztof Golik",
+        "url": "https://commons.wikimedia.org/wiki/User:Tournasol7"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Aldermen_Islands_01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9474af24-8275-4781-95cd-6fdd4b157647",
+    "slug": "lundy-island-gannet-s-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/9474af24-8275-4781-95cd-6fdd4b157647-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/9474af24-8275-4781-95cd-6fdd4b157647-desktop.jpg",
+    "alt": "Lundy Island - Gannet's Bay — nearby surface scenery · lundy coast, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lundy coast",
+    "credit": "Nearby surface scenery · Lundy coast · Lewis Clarke · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Lewis Clarke",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lundy_Island_%2C_Coastal_Scenery_-_geograph.org.uk_-_6254444.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "",
+        "url": "https://commons.wikimedia.org/wiki/File:Lundy_Island_,_Coastal_Scenery_-_geograph.org.uk_-_6254444.jpg#P170"
+      },
+      {
+        "label": "Lewis Clarke",
+        "url": "https://www.geograph.org.uk/profile/11775"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lundy_Island_%2C_Coastal_Scenery_-_geograph.org.uk_-_6254444.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8e94586a-c8b8-47fd-8f0d-c41fda020273",
+    "slug": "tokara-islands",
+    "src": "/assets/dive-sites/reviewed-discovery/8e94586a-c8b8-47fd-8f0d-c41fda020273-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/8e94586a-c8b8-47fd-8f0d-c41fda020273-desktop.jpg",
+    "alt": "Tokara Islands — nearby surface scenery · tairajima harbour, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Tairajima harbour",
+    "credit": "Nearby surface scenery · Tairajima harbour · tsuda · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "tsuda",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tokara_islands_-_Taira_island_-_5273418459.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tokara_islands_-_Taira_island_-_5273418459.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "4604a88c-d07a-4c2b-bc42-02be910b3e85",
+    "slug": "karg-island",
+    "src": "/assets/dive-sites/reviewed-discovery/4604a88c-d07a-4c2b-bc42-02be910b3e85-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/4604a88c-d07a-4c2b-bc42-02be910b3e85-desktop.jpg",
+    "alt": "Kargı Island — surface view · kargı island rocks, as described by the source; not independently verified.",
+    "label": "Surface view · Kargı Island rocks",
+    "credit": "Surface view · Kargı Island rocks · Tamer BÜKE · CC BY 3.0 · Cropped/resized",
+    "creator": "Tamer BÜKE",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Karg%C4%B1_Adas%C4%B1_Kayal%C4%B1klar_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Tamer BÜKE",
+        "url": "https://web.archive.org/web/20161012235700/http://www.panoramio.com/user/213543?with_photo_id=14110495"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Karg%C4%B1_Adas%C4%B1_Kayal%C4%B1klar_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0b6f3b71-6715-4606-b2d1-71129a73df65",
+    "slug": "fannette-island",
+    "src": "/assets/dive-sites/reviewed-discovery/0b6f3b71-6715-4606-b2d1-71129a73df65-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/0b6f3b71-6715-4606-b2d1-71129a73df65-desktop.jpg",
+    "alt": "Fannette Island — surface view · fannette island, lake tahoe, as described by the source; not independently verified.",
+    "label": "Surface view · Fannette Island, Lake Tahoe",
+    "credit": "Surface view · Fannette Island, Lake Tahoe · SamRushing · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "SamRushing",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Fannette_Island%2C_Emerald_Bay%2C_South_Lake_Tahoe.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "SamRushing",
+        "url": "https://en.wikipedia.org/wiki/User:SamRushing"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Fannette_Island%2C_Emerald_Bay%2C_South_Lake_Tahoe.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "2116ca0d-362c-4c88-8675-f51857138205",
+    "slug": "shark-island",
+    "src": "/assets/dive-sites/reviewed-discovery/2116ca0d-362c-4c88-8675-f51857138205-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/2116ca0d-362c-4c88-8675-f51857138205-desktop.jpg",
+    "alt": "Shark Island — surface view · shark island, koh tao, as described by the source; not independently verified.",
+    "label": "Surface view · Shark Island, Koh Tao",
+    "credit": "Surface view · Shark Island, Koh Tao · Nick Steemans · CC BY 3.0 · Cropped/resized",
+    "creator": "Nick Steemans",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Koh_Tao_%28Shark_Island%29_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Nick Steemans",
+        "url": "https://web.archive.org/web/20161011134626/http://www.panoramio.com/user/467989?with_photo_id=2219497"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Koh_Tao_%28Shark_Island%29_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3f3e1d38-5747-4dd9-b65d-c253a933c29c",
+    "slug": "maria-worth-worthersee",
+    "src": "/assets/dive-sites/reviewed-discovery/3f3e1d38-5747-4dd9-b65d-c253a933c29c-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/3f3e1d38-5747-4dd9-b65d-c253a933c29c-desktop.jpg",
+    "alt": "Maria Wörth, Wörthersee — nearby surface scenery · hohe gloriette viewpoint, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Hohe Gloriette viewpoint",
+    "credit": "Nearby surface scenery · Hohe Gloriette viewpoint · Johann Jaritz · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Johann Jaritz",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:P%C3%B6rtschach_Gloriette-Blick_auf_W%C3%B6rther_See_und_Blumeninsel_30012022_2084.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Johann Jaritz",
+        "url": "https://commons.wikimedia.org/wiki/User:Johann_Jaritz"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:P%C3%B6rtschach_Gloriette-Blick_auf_W%C3%B6rther_See_und_Blumeninsel_30012022_2084.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "bcdbe3bb-7337-4364-8ced-4f1f13e728e5",
+    "slug": "attersee-schwarze-brucke",
+    "src": "/assets/dive-sites/reviewed-discovery/bcdbe3bb-7337-4364-8ced-4f1f13e728e5-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/bcdbe3bb-7337-4364-8ced-4f1f13e728e5-desktop.jpg",
+    "alt": "Attersee - Schwarze Brücke — nearby surface scenery · attersee from hochleckenhaus, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Attersee from Hochleckenhaus",
+    "credit": "Nearby surface scenery · Attersee from Hochleckenhaus · C.Stadler/Bwag · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "C.Stadler/Bwag",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Attersee_-_S%C3%BCdostansicht.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "C.Stadler/Bwag",
+        "url": "https://commons.wikimedia.org/wiki/User:Bwag"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Attersee_-_S%C3%BCdostansicht.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "dca952a6-d4b8-4752-9c08-33b59ef5af8a",
+    "slug": "wort-des-lebens-starnberger-see-assenhausen",
+    "src": "/assets/dive-sites/reviewed-discovery/dca952a6-d4b8-4752-9c08-33b59ef5af8a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/dca952a6-d4b8-4752-9c08-33b59ef5af8a-desktop.jpg",
+    "alt": "Wort des Lebens, Starnberger See, Assenhausen — nearby surface scenery · lake starnberg, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Lake Starnberg",
+    "credit": "Nearby surface scenery · Lake Starnberg · Schlaier · CC BY 3.0 · Cropped/resized",
+    "creator": "Schlaier",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Starnberger_See_mit_Alpenpanorama.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Schlaier",
+        "url": "https://commons.wikimedia.org/wiki/User:Schlaier"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Starnberger_See_mit_Alpenpanorama.JPG"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "3b1c8aed-1068-4076-a74d-3829ea235249",
+    "slug": "paradies-starnberger-see",
+    "src": "/assets/dive-sites/reviewed-discovery/3b1c8aed-1068-4076-a74d-3829ea235249-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/3b1c8aed-1068-4076-a74d-3829ea235249-desktop.jpg",
+    "alt": "Paradies Starnberger See — nearby surface scenery · starnberg waterfront, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Starnberg waterfront",
+    "credit": "Nearby surface scenery · Starnberg waterfront · digital cat · CC BY 2.0 · Cropped/resized",
+    "creator": "digital cat",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Starnberger-See.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "digital cat",
+        "url": "https://www.flickr.com/photos/14646075@N03"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Starnberger-See.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "c5e41b4f-88fc-40f8-9651-96230d5a7846",
+    "slug": "walchensee-am-hackl-vw-kafer",
+    "src": "/assets/dive-sites/reviewed-discovery/c5e41b4f-88fc-40f8-9651-96230d5a7846-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/c5e41b4f-88fc-40f8-9651-96230d5a7846-desktop.jpg",
+    "alt": "Walchensee, Am Hackl (VW  Käfer) — nearby surface scenery · zwergern, walchensee, as described by the source; not independently verified.",
+    "label": "Nearby surface scenery · Zwergern, Walchensee",
+    "credit": "Nearby surface scenery · Zwergern, Walchensee · Heribert Pohl --- Thanks for half  a million clicks! from Germering bei München, Bayern · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Heribert Pohl --- Thanks for half  a million clicks! from Germering bei München, Bayern",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Walchensee_%287567527578%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Heribert Pohl --- Thanks for half  a million clicks!",
+        "url": "https://www.flickr.com/people/69460501@N04"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Walchensee_%287567527578%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "fc268ccc-b101-4162-9f66-485c6d447d24",
+    "slug": "achensee",
+    "src": "/assets/dive-sites/reviewed-discovery/fc268ccc-b101-4162-9f66-485c6d447d24-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v4-20261108/fc268ccc-b101-4162-9f66-485c6d447d24-desktop.jpg",
+    "alt": "Achensee — surface view · achensee from pertisau, as described by the source; not independently verified.",
+    "label": "Surface view · Achensee from Pertisau",
+    "credit": "Surface view · Achensee from Pertisau · ArticCynda · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "ArticCynda",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Achen_Lake%2C_Austria.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "ArticCynda",
+        "url": "https://commons.wikimedia.org/wiki/User:ArticCynda"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Achen_Lake%2C_Austria.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
   }
 ];
