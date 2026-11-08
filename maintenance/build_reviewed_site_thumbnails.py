@@ -31,7 +31,8 @@ def build():
         with Image.open(source) as original:
             thumbnail = ImageOps.fit(original.convert('RGB'), (480, 270), method=Image.Resampling.LANCZOS)
             thumbnail.save(target, quality=85, optimize=True)
-        creator, licence, label = entry['creator'], entry['licence'], entry['label']
+        creator, licence = entry['creator'], entry['licence']
+        label = '' if entry.get('hide_context_label') else entry['label']
         links = [
             {'label': 'Source', 'url': entry['source_page']},
             {'label': licence, 'url': entry['licence_url']},
@@ -45,7 +46,7 @@ def build():
             'siteId': site_id, 'slug': entry['slug'],
             'src': '/' + target.relative_to(ROOT).as_posix(), 'fullSrc': entry['desktop'],
             'alt': entry.get('alt', entry['name'] + ' — ' + label.lower() + ', as described by the source.'),
-            'label': label, 'credit': f'{label} · {creator} · {licence} · Cropped/resized',
+            'label': label, 'credit': (f'{label} · ' if label else '') + f'{creator} · {licence} · Cropped/resized',
             'creator': creator, 'license': licence, 'source': 'reviewed-context',
             'sourcePage': entry['source_page'], 'licenceUrl': entry['licence_url'], 'links': links,
             'locationConfidence': 'source-supported; not independently verified',

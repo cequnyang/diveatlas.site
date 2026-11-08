@@ -82,8 +82,8 @@ async function apply() {
     const surfaceLabel = element('span', 'site-photo-upload-label reviewed-surface-label');
     surfaceLabel.append(element('span', 'site-photo-upload-label__rest', entry.label));
     main.replaceChildren(button,
-      surfaceLabel,
-      element('span', 'site-photo-upload-label-mobile reviewed-surface-label', entry.label),
+      ...(entry.hide_context_label ? [] : [surfaceLabel,
+        element('span', 'site-photo-upload-label-mobile reviewed-surface-label', entry.label)]),
       caption);
     if (contribution) main.append(contribution);
   } else {
