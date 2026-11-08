@@ -1,0 +1,1965 @@
+[
+  {
+    "site_id": "c2a3acb2-3f17-4640-be2d-3f48afbfd478",
+    "name": "Duden Waterfall",
+    "country": "Turkey",
+    "slug": "duden-waterfall",
+    "review_id": 1,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lower_Duden_Falls.jpg",
+    "creator": "Saffron Blaze",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Surface view · Lower Düden Waterfall",
+    "alt": "Duden Waterfall — Surface view · Lower Düden Waterfall, as described by the source.",
+    "source_description": "English: Lower Duden Waterfall, Antalya, Turkey.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/3.0 CC BY 3.0 Creative Commons Attribution 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Lower Duden Waterfall Antalya Turkey and camera108m support same named waterfall/coastal site. Visible falls entering sea, surface view; portrait needs careful crop. Not underwater or independent coordinate verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2832,
+      3540
+    ],
+    "original_sha256": "039c8ba51aa03ea909f9c256eebf8c642558480cadcf3e5350b4f8a1c4d205de",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\770a852c65b13eb7bf39.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        1682,
+        2832,
+        3275
+      ],
+      "mobile": [
+        0,
+        1416,
+        2832,
+        3540
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/c2a3acb2-3f17-4640-be2d-3f48afbfd478-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/c2a3acb2-3f17-4640-be2d-3f48afbfd478-mobile.jpg"
+  },
+  {
+    "site_id": "3a3cff3e-2980-49b4-b710-2cab269305a8",
+    "name": "Lighthouse Bommie - Lady Elliot Island",
+    "country": "Australia",
+    "slug": "lighthouse-bommie-lady-elliot-island",
+    "review_id": 6,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lady_Elliot_Island_Lighthouse_and_Coral_Reef.jpg",
+    "creator": "Holobionics",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Above/below-water context · Lady Elliot Island lighthouse and reef",
+    "alt": "Lighthouse Bommie - Lady Elliot Island — Above/below-water context · Lady Elliot Island lighthouse and reef, as described by the source.",
+    "source_description": "English: Under / Over image of Lady Elliot Island lighthouse and fringing coral reef",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption explicitly under/over Lady Elliot Island lighthouse and fringing coral reef; camera82m from Lighthouse Bommie record. Visible lighthouse, waterline and nearby coral. Above/below-water environment view, not proof photographed coral is the named bommie. Portrait crop must retain waterline/subjects.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2848,
+      4288
+    ],
+    "original_sha256": "56bbf2c9c2d0b9ba67fe4fe96b503a36065362a4b99302ec5a8b1493cb8cc9f8",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\ca34fe3c258b0138692f.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        1043,
+        2848,
+        2645
+      ],
+      "mobile": [
+        0,
+        776,
+        2848,
+        2912
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/3a3cff3e-2980-49b4-b710-2cab269305a8-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/3a3cff3e-2980-49b4-b710-2cab269305a8-mobile.jpg"
+  },
+  {
+    "site_id": "741df9e4-117d-45d5-8844-901c4cddeb44",
+    "name": "Manta Ray Heaven, Garden Eel Cove",
+    "country": "United States",
+    "slug": "manta-ray-heaven-garden-eel-cove",
+    "review_id": 7,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Manta_heaven_point_Big_island,_Hawaii_(45553370064).jpg",
+    "creator": "dronepicr",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface scenery · Garden Eel Cove coast",
+    "alt": "Manta Ray Heaven, Garden Eel Cove — Surface scenery · Garden Eel Cove coast, as described by the source.",
+    "source_description": "Manta heaven point Big island, Hawaii",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Manta heaven point Big island, Hawaii",
+    "identity_status": "Caption Manta heaven point Big Island Hawaii and camera91m support same named coastal destination. Visible shore/sea near Garden Eel Cove, labelled surface context; no manta or underwater claim.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      6168,
+      4112
+    ],
+    "original_sha256": "d6756872f6e1fa2ea5d8e579d9694776ee9798bdb6fd00f4a4296dc4bf73406d",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\97c3b89f701f3f447d8f.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        321,
+        6168,
+        3791
+      ],
+      "mobile": [
+        342,
+        0,
+        5825,
+        4112
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/741df9e4-117d-45d5-8844-901c4cddeb44-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/741df9e4-117d-45d5-8844-901c4cddeb44-mobile.jpg"
+  },
+  {
+    "site_id": "1fe0651c-41c6-4917-81e8-378905e87729",
+    "name": "Sudden Valley Marina",
+    "country": "United States",
+    "slug": "sudden-valley-marina",
+    "review_id": 13,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lake_Whatcom.jpg",
+    "creator": "Dicklyon",
+    "creator_links": [
+      {
+        "label": "Dicklyon",
+        "url": "https://commons.wikimedia.org/wiki/User:Dicklyon"
+      }
+    ],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Lake Whatcom, Sudden Valley",
+    "alt": "Sudden Valley Marina — Nearby surface scenery · Lake Whatcom, Sudden Valley, as described by the source.",
+    "source_description": "English: Lake Whatcom golden-hour view from a home in the Sudden Valley development",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Lake Whatcom from home in Sudden Valley development and Washington categories; camera885m from Sudden Valley Marina. Visible lake/wooded shore, relevant nearby surface context, not marina itself. Portrait crop review needed.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3024,
+      4032
+    ],
+    "original_sha256": "6245d28a5b0ddd81076bd45fe9bd69620fbe945c74f211ab906aeeb7ab89cb29",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\6245d28a5b0ddd81076bd45fe9bd69620fbe945c74f211ab906aeeb7ab89cb29.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        1165,
+        3024,
+        2866
+      ],
+      "mobile": [
+        0,
+        882,
+        3024,
+        3150
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/1fe0651c-41c6-4917-81e8-378905e87729-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/1fe0651c-41c6-4917-81e8-378905e87729-mobile.jpg"
+  },
+  {
+    "site_id": "27e1c976-140b-456b-a3b4-a71fbf1b9335",
+    "name": "Whaler’s Cove",
+    "country": "United States",
+    "slug": "whalers-cove",
+    "review_id": 18,
+    "source_page": "https://commons.wikimedia.org/wiki/File:USA-Point_Lobos_State_Reserve-Whalers_Cove-18.jpg",
+    "creator": "Eugene Zelenko",
+    "creator_links": [],
+    "licence": "CC BY-SA 1.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "role": "main",
+    "label": "Surface view · Whalers Cove",
+    "alt": "Whaler’s Cove — Surface view · Whalers Cove, as described by the source.",
+    "source_description": "English: Whalers Cove. Point Lobos State Reserve . California , USA",
+    "licence_evidence_text": "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International , 3.0 Unported , 2.5 Generic , 2.0 Generic and 1.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Whalers Cove Point Lobos State Reserve California and camera262m agree named cove. Visible rocky shore/sea, labelled surface view, not exact underwater point; source-supported not independently verified.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3008,
+      2000
+    ],
+    "original_sha256": "eda966172cab28f045c5edefb0a80b41450f2d72c01332f097c0daf1749213ca",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\e645af32180bbc9d4214.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        154,
+        3008,
+        1846
+      ],
+      "mobile": [
+        170,
+        0,
+        2837,
+        2000
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/27e1c976-140b-456b-a3b4-a71fbf1b9335-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/27e1c976-140b-456b-a3b4-a71fbf1b9335-mobile.jpg"
+  },
+  {
+    "site_id": "e3dfd53f-4a2f-48da-92cc-fa73ec9a7b2b",
+    "name": "Cenote Car Wash (Aktun Ha)",
+    "country": "Mexico",
+    "slug": "cenote-car-wash-aktun-ha",
+    "review_id": 21,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Diving_in_Cenote_Car_Wash_-_panoramio.jpg",
+    "creator": "Eduardo Manchon",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface entrance · Cenote Car Wash",
+    "alt": "Cenote Car Wash (Aktun Ha) — Surface entrance · Cenote Car Wash, as described by the source.",
+    "source_description": "Diving in Cenote Car Wash",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: Eduardo Manchon You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161012152216/http://www.panoramio.com/photo/16477797",
+    "identity_status": "Filename Cenote Car Wash, legible Carwash entrance sign and camera31m support Aktun Ha record. Visible entrance signage/building/trees; label surface entrance view, not underwater despite filename Diving.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      1600,
+      1200
+    ],
+    "original_sha256": "d45a291c98cb56b096cc93ef1d826337d03f6271c0480751e0f587c82faf863c",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\61f5284d8c0d305cf6a0.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        150,
+        1600,
+        1050
+      ],
+      "mobile": [
+        0,
+        0,
+        1600,
+        1200
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/e3dfd53f-4a2f-48da-92cc-fa73ec9a7b2b-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/e3dfd53f-4a2f-48da-92cc-fa73ec9a7b2b-mobile.jpg"
+  },
+  {
+    "site_id": "15e02bdb-f84f-43d1-925a-a11ff06388de",
+    "name": "Frederiksted Pier",
+    "country": "United States",
+    "slug": "frederiksted-pier",
+    "review_id": 23,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Relax_...._you_are_in_Island_Time_right_now_..._(23140533689).jpg",
+    "creator": "Prayitno / Thank you for (12 millions +) view from Los Angeles, USA",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby scenery · Frederiksted streetscape",
+    "alt": "Frederiksted Pier — Nearby scenery · Frederiksted streetscape, as described by the source.",
+    "source_description": "Frederiksted ~ St Croix U.S, Virgin Islands",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Relax .... you are in Island Time right now ...",
+    "identity_status": "Caption Frederiksted St Croix US Virgin Islands and camera101m from pier; visible town streetscape, appropriate nearby destination context under broader standard. Label Frederiksted streetscape, not pier or underwater view.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      5184,
+      3123
+    ],
+    "original_sha256": "1772d0b1e3ebb6b42e9fbfbb58d255a13d2f06ac821d1afdd37e1c8600257bfc",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\f20b2df54b5b1cbc0daf.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        103,
+        5184,
+        3019
+      ],
+      "mobile": [
+        510,
+        0,
+        4674,
+        3123
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/15e02bdb-f84f-43d1-925a-a11ff06388de-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/15e02bdb-f84f-43d1-925a-a11ff06388de-mobile.jpg"
+  },
+  {
+    "site_id": "984dc938-8611-4ad2-9f2b-34108375d5db",
+    "name": "Cala Galiota",
+    "country": "Spain",
+    "slug": "cala-galiota",
+    "review_id": 26,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Cala_Galiota.jpg",
+    "creator": "Adgrant96",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view · Cala Galiota",
+    "alt": "Cala Galiota — Surface view · Cala Galiota, as described by the source.",
+    "source_description": "Català: Cala Galiota Wikidata has entry Cala Galiota (Q11910841) with data related to this item.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Source caption Cala Galiota and geotag22m support Spain beach record rather than the Cabrera namesake19km away. Visible beach/sea/village, surface view; no underwater claim.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4000,
+      2256
+    ],
+    "original_sha256": "8f4c6e80a9c4139c676b48777ba3fbb9b90c8981a6e0a0d87bb3cf2a4c5b43c4",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\b97a5814e9d7d28217ce.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        3,
+        4000,
+        2253
+      ],
+      "mobile": [
+        496,
+        0,
+        3504,
+        2256
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/984dc938-8611-4ad2-9f2b-34108375d5db-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/984dc938-8611-4ad2-9f2b-34108375d5db-mobile.jpg"
+  },
+  {
+    "site_id": "f29a3cf2-b2c5-4566-8936-3e34cbf65e12",
+    "name": "Casa Cenote",
+    "country": "Mexico",
+    "slug": "casa-cenote-quintana-roo-mexico",
+    "review_id": 27,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Diving_in_the_Casa_Cenote_in_Mexico_Casa_Cenote_in_Mexico_(41787128060).jpg",
+    "creator": "dronepicr",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Surface view · Casa Cenote",
+    "alt": "Casa Cenote — Surface view · Casa Cenote, as described by the source.",
+    "source_description": "Caribbean Sea in Mexico",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Diving in the Casa Cenote in Mexico Casa Cenote in Mexico",
+    "identity_status": "Filename explicitly Casa Cenote Mexico, geotag28m at correct named cenote, visible mangrove channel/water support actual site surface environment. Broad source description Caribbean Sea Mexico is less specific than filename/geography; not independently verified.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      6240,
+      4160
+    ],
+    "original_sha256": "6a6273e00000b78090f36fc043debd5927a55bf6bcf29fb0f01a42dc4826c765",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\6a9aacd0fc53d3ea065f.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        325,
+        6240,
+        3835
+      ],
+      "mobile": [
+        346,
+        0,
+        5893,
+        4160
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/f29a3cf2-b2c5-4566-8936-3e34cbf65e12-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/f29a3cf2-b2c5-4566-8936-3e34cbf65e12-mobile.jpg"
+  },
+  {
+    "site_id": "54d2e715-eee5-458c-be4c-51d38fddff2f",
+    "name": "Makassar Reef (Manta Point)",
+    "country": "Indonesia",
+    "slug": "makassar-reef-manta-point",
+    "review_id": 29,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Beautiful_Taka_Makassar_Island.jpg",
+    "creator": "Nickoasmara",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Taka Makassar",
+    "alt": "Makassar Reef (Manta Point) — Nearby surface scenery · Taka Makassar, as described by the source.",
+    "source_description": "English: Taka Makassar, one of the destinations that you must visit if you visit the Komodo National Park. A tiny island that looks out to her beauty with white and pink sand, and looks like a Manta",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Taka Makassar Komodo National Park, source geotag1.939km from Makassar Reef record. Visible named sandbar/island and surrounding sea; label nearby Taka Makassar surface destination, not underwater Manta Point or exact reef.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2114,
+      3759
+    ],
+    "original_sha256": "dcc662abdba980cfe1a94ddc8dda80e6a83bceed9b4782ae2b4a94d5943a1ff0",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\6e0a1170f21cf7627b06.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        1285,
+        2114,
+        2474
+      ],
+      "mobile": [
+        0,
+        1086,
+        2114,
+        2672
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/54d2e715-eee5-458c-be4c-51d38fddff2f-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/54d2e715-eee5-458c-be4c-51d38fddff2f-mobile.jpg"
+  },
+  {
+    "site_id": "918cd187-9b17-4221-8028-cca0ba774e2a",
+    "name": "Xlendi Tunnel",
+    "country": "Malta",
+    "slug": "xlendi-tunnel",
+    "review_id": 31,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Malta_Gozo_Xlendi_BW_2011-10-08_12-44-37.JPG",
+    "creator": "Berthold Werner",
+    "creator_links": [],
+    "licence": "CC BY-SA 1.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Xlendi waterfront",
+    "alt": "Xlendi Tunnel — Nearby surface scenery · Xlendi waterfront, as described by the source.",
+    "source_description": "Malta, Gozo, Xlendi",
+    "licence_evidence_text": "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported , 2.5 Generic , 2.0 Generic and 1.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Source title/caption Malta Gozo Xlendi and camera185m from Xlendi Tunnel identify same bay. Visible village waterfront/bay, nearby surface context; not tunnel interior or MV Xlendi shipwreck.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3748,
+      2520
+    ],
+    "original_sha256": "60678b43b2d0334f4091f2c3a04a038c327c5804f61005c513330b01233e5be5",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\49749c3a4118a06fd89c.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        206,
+        3748,
+        2314
+      ],
+      "mobile": [
+        194,
+        0,
+        3554,
+        2520
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/918cd187-9b17-4221-8028-cca0ba774e2a-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/918cd187-9b17-4221-8028-cca0ba774e2a-mobile.jpg"
+  },
+  {
+    "site_id": "fc3785a6-4c6b-4459-9a66-dff8a8e6878b",
+    "name": "Camp Cove South",
+    "country": "Australia",
+    "slug": "camp-cove-south",
+    "review_id": 33,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Watsons_Bay_-_Camp_Cove_Beach,_Sydney_2_-_Nov_2008.jpg",
+    "creator": "Diliff",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view · Camp Cove beach",
+    "alt": "Camp Cove South — Surface view · Camp Cove beach, as described by the source.",
+    "source_description": "English: A panoramic view of Camp Cove beach in Watson's Bay, Sydney, Australia. Taken by myself with a Canon 5D and 100mm f/2.8 macro lens.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption explicitly Camp Cove beach Watsons Bay Sydney Australia; camera195m from Camp Cove South. Visible beach/boats/coast panorama, labelled surface context rather than underwater.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      7842,
+      2434
+    ],
+    "original_sha256": "daf50d63e9b72945a67729864e7c55a829fdedc0df1a1230a085ece41addd615",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\ac20c21fe4e7deddacc1.jpg",
+    "crop_boxes": {
+      "desktop": [
+        1757,
+        0,
+        6084,
+        2434
+      ],
+      "mobile": [
+        2298,
+        0,
+        5543,
+        2434
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/fc3785a6-4c6b-4459-9a66-dff8a8e6878b-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/fc3785a6-4c6b-4459-9a66-dff8a8e6878b-mobile.jpg"
+  },
+  {
+    "site_id": "40b7fb2c-5380-4b54-baa2-16fc09f3a6b4",
+    "name": "A-frame Cape Town",
+    "country": "South Africa",
+    "slug": "a-frame-cape-town",
+    "review_id": 37,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Kelp_forest_at_A-Frame_DSC06023.JPG",
+    "creator": "Peter Southwood",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Underwater view · A-Frame kelp forest",
+    "alt": "A-frame Cape Town — Underwater view · A-Frame kelp forest, as described by the source.",
+    "source_description": "English: Simon's Town, Cape Peninsula.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: User: (WT-shared) Pbsouthwood at  wts wikivoyage You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Filename Kelp forest at A-Frame and caption Simons Town Cape Peninsula locate underwater kelp/rock scene at named A-frame Cape Town site. Not Long Beach merely because kelp forest tokens match. Source Own work Peter Southwood, exact CC BY-SA3 recorded; no source GPS/independent verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2048,
+      1536
+    ],
+    "original_sha256": "b646f8396293b63d95d3778f19922d86c4958169ec131f444334cceedefb9499",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\e81fca2c807795a7cfdd.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        192,
+        2048,
+        1344
+      ],
+      "mobile": [
+        0,
+        0,
+        2048,
+        1536
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/40b7fb2c-5380-4b54-baa2-16fc09f3a6b4-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/40b7fb2c-5380-4b54-baa2-16fc09f3a6b4-mobile.jpg"
+  },
+  {
+    "site_id": "5fa8ec71-4931-4727-b14f-6e93222de5bc",
+    "name": "Baie de N’Gor",
+    "country": "Senegal",
+    "slug": "baie-de-ngor",
+    "review_id": 39,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ngor_Beach.jpg",
+    "creator": "Jeff Attaway from Abuja, Nigeria",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Ngor beach",
+    "alt": "Baie de N’Gor — Nearby surface scenery · Ngor beach, as described by the source.",
+    "source_description": "La plage de Ngor (Dakar, Sénégal). We spent a Saturday afternoon here. Image was captured by a camera suspended by a kite line. Kite Aerial Photography (KAP) Flow Form 16",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Beach @ Ngor",
+    "identity_status": "Caption Ngor beach Dakar Senegal and kite-aerial description, geotag549m from Baie de NGor. Visible beachfront/settlement, nearby bay surface context; not Shark Reef underwater photo.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3475,
+      2606
+    ],
+    "original_sha256": "b3887ebab3e071d3a30d2355d81b330ca8076bc93651e08b21bad67378bf3780",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\1dcedea10b8a5ff0fbfb.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        325,
+        3475,
+        2280
+      ],
+      "mobile": [
+        0,
+        0,
+        3475,
+        2606
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/5fa8ec71-4931-4727-b14f-6e93222de5bc-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/5fa8ec71-4931-4727-b14f-6e93222de5bc-mobile.jpg"
+  },
+  {
+    "site_id": "4a845ac0-5829-48f5-8f5f-56ca0cbb6b67",
+    "name": "Lake Nagawicka",
+    "country": "United States of America",
+    "slug": "lake-nagawicka",
+    "review_id": 40,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Nagawicka_Lake.jpg",
+    "creator": "Awkwafaba",
+    "creator_links": [
+      {
+        "label": "Awkwafaba",
+        "url": "https://commons.wikimedia.org/wiki/User:Awkwafaba"
+      }
+    ],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view · Lake Nagawicka",
+    "alt": "Lake Nagawicka — Surface view · Lake Nagawicka, as described by the source.",
+    "source_description": "Nagawicka Lake",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption/title Nagawicka Lake with source geotag657m from Lake Nagawicka Wisconsin record. Visible lake/shore panorama, same named body, surface context; wide crop review remains.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      11450,
+      3810
+    ],
+    "original_sha256": "a34c2eeb2860e257651caa02e51f85f5f3fdebc1ad703f290fa0c19c701b4960",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\a34c2eeb2860e257651caa02e51f85f5f3fdebc1ad703f290fa0c19c701b4960.jpg",
+    "crop_boxes": {
+      "desktop": [
+        2338,
+        0,
+        9111,
+        3810
+      ],
+      "mobile": [
+        3185,
+        0,
+        8265,
+        3810
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/4a845ac0-5829-48f5-8f5f-56ca0cbb6b67-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/4a845ac0-5829-48f5-8f5f-56ca0cbb6b67-mobile.jpg"
+  },
+  {
+    "site_id": "a71541a3-7348-4a1f-bb8a-6acf5b60c2e7",
+    "name": "Genève-Plage",
+    "country": "Switzerland",
+    "slug": "geneve-plage",
+    "review_id": 41,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lake_Geneva_panorama.jpg",
+    "creator": "Tiia Monto",
+    "creator_links": [
+      {
+        "label": "Tiia Monto",
+        "url": "https://commons.wikimedia.org/wiki/User:Kulmalukko"
+      }
+    ],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Geneva waterfront",
+    "alt": "Genève-Plage — Nearby surface scenery · Geneva waterfront, as described by the source.",
+    "source_description": "English: Panoramic view of Lake Geneva from the Promenade du Lac. This photograph was taken with a Sony ILCE-5000",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: Tiia Monto You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Lake Geneva from Promenade du Lac, visible Geneva waterfront/Jet dEau; geotag1.998km from Geneve-Plage. Same named Swiss lake/city, nearby waterfront context, not the bathing/diving entry itself.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      10532,
+      2773
+    ],
+    "original_sha256": "a4b42a7acf4ae42796c07f8565398b29821b493739a782f918c0243326c39b93",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\a4b42a7acf4ae42796c07f8565398b29821b493739a782f918c0243326c39b93.jpg",
+    "crop_boxes": {
+      "desktop": [
+        2801,
+        0,
+        7731,
+        2773
+      ],
+      "mobile": [
+        3417,
+        0,
+        7114,
+        2773
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/a71541a3-7348-4a1f-bb8a-6acf5b60c2e7-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/a71541a3-7348-4a1f-bb8a-6acf5b60c2e7-mobile.jpg"
+  },
+  {
+    "site_id": "d110a5e4-713b-4791-9eea-06e07d0a338f",
+    "name": "Culebra Reef",
+    "country": "United States of America",
+    "slug": "culebra-reef",
+    "review_id": 48,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Flamenco_Beach_Puerto_Rico_Camping.jpg",
+    "creator": "Efeliciano ms",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby scenery · Flamenco Beach campsite, Culebra",
+    "alt": "Culebra Reef — Nearby scenery · Flamenco Beach campsite, Culebra, as described by the source.",
+    "source_description": "English: Camping Area in Flamenco Beach on the Island of Culebra. Flamenco Beach",
+    "licence_evidence_text": "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Local Visit",
+    "identity_status": "Caption camping area Flamenco Beach on Culebra Puerto Rico; geotag1.182km from Culebra Reef. Visible beachfront campsite/trees/sand is relevant island destination scenery under broader standard. Label Flamenco Beach campsite, not reef or underwater view.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      7274,
+      2488
+    ],
+    "original_sha256": "8f9774c200c760a5fa127ee7a6ed4cfe1b5c0286a78a56fe6e81e3f48fa785c7",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\f7ca64bbb96accebfb87.jpg",
+    "crop_boxes": {
+      "desktop": [
+        1425,
+        0,
+        5848,
+        2488
+      ],
+      "mobile": [
+        1978,
+        0,
+        5295,
+        2488
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/d110a5e4-713b-4791-9eea-06e07d0a338f-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/d110a5e4-713b-4791-9eea-06e07d0a338f-mobile.jpg"
+  },
+  {
+    "site_id": "41c6748c-b744-4336-a43f-7c23e5ec6417",
+    "name": "Lovers Point",
+    "country": "United States",
+    "slug": "lovers-point",
+    "review_id": 52,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lovers_Point_Park_-_December_2018_-_Stierch.jpg",
+    "creator": "Missvain",
+    "creator_links": [],
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+    "role": "main",
+    "label": "Surface view · Lovers Point Park",
+    "alt": "Lovers Point — Surface view · Lovers Point Park, as described by the source.",
+    "source_description": "English: People on the beach at Lovers Point Park in Pacific Grove, California.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/4.0 CC BY 4.0 Creative Commons Attribution 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Lovers Point Park Pacific Grove California beach and camera80m from Lovers Point. Visible coast/beach/park, actual named destination surface context, portrait/crop review pending.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3024,
+      4032
+    ],
+    "original_sha256": "f95281b01063a33c25bbd30878cd6528c79c572e6461317b5be5c9e90cffc378",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\a81901920cc0d63f9cfa.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        1165,
+        3024,
+        2866
+      ],
+      "mobile": [
+        0,
+        882,
+        3024,
+        3150
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/41c6748c-b744-4336-a43f-7c23e5ec6417-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/41c6748c-b744-4336-a43f-7c23e5ec6417-mobile.jpg"
+  },
+  {
+    "site_id": "8a7bb98b-97e0-4c6c-995f-d4b5abdb69cb",
+    "name": "Nahsholim -נחשולים",
+    "country": "Israel",
+    "slug": "nahsholim",
+    "review_id": 53,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dor_Beach_near_Haifa_(14751032495).jpg",
+    "creator": "Jesse Davis from Kingston, Canada",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Dor Beach",
+    "alt": "Nahsholim -נחשולים — Nearby surface scenery · Dor Beach, as described by the source.",
+    "source_description": "Spent the day at this nice beach, this photo is taken from a small island you can walk out too through shallow water, the photo looking back towards the beach.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Dor Beach near Haifa",
+    "identity_status": "Title Dor Beach near Haifa, caption describes viewpoint from small shallow-water island looking back at beach; camera437m from Nahsholim Israel record. Precisely labelled nearby Dor Beach coastal context, not proof of exact Nahsholim underwater point. Source location remains AI-assessed.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      5184,
+      3456
+    ],
+    "original_sha256": "04a59c8aa110ce13b979f60aaaf09e2d0f346777acd0faf9a4a14d076a642c3d",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\b09782905e3c73329997.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        270,
+        5184,
+        3186
+      ],
+      "mobile": [
+        288,
+        0,
+        4896,
+        3456
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/8a7bb98b-97e0-4c6c-995f-d4b5abdb69cb-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/8a7bb98b-97e0-4c6c-995f-d4b5abdb69cb-mobile.jpg"
+  },
+  {
+    "site_id": "25bea9d3-61af-45c3-b040-2903028c2d96",
+    "name": "Dahlet Qorrot",
+    "country": "Malta",
+    "slug": "dahlet-qorrot",
+    "review_id": 61,
+    "source_page": "https://commons.wikimedia.org/wiki/File:GozoDahletQorrot.jpg",
+    "creator": "The original uploader was Yoruno at Italian Wikipedia .",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface view · Dahlet Qorrot",
+    "alt": "Dahlet Qorrot — Surface view · Dahlet Qorrot, as described by the source.",
+    "source_description": "it:Gozo , Dahlet Qorrot Foto scattata da Stefano Trezzi e rilasciata sotto Creative Commons.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Transferred from it.wikipedia to Commons.",
+    "identity_status": "Caption Gozo Dahlet Qorrot and visible rocky inlet/sea establish named Maltese bay context.1264x712 limited crop headroom; surface landscape, not underwater or independent coordinate verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      1264,
+      712
+    ],
+    "original_sha256": "944ec00324a9d1fadc3eafb7ad5bc4c247a58cf998af5e4f853ec7193a7dca86",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\9a6624d2ebf50355e42c.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        0,
+        1264,
+        711
+      ],
+      "mobile": [
+        157,
+        0,
+        1106,
+        712
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/25bea9d3-61af-45c3-b040-2903028c2d96-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/25bea9d3-61af-45c3-b040-2903028c2d96-mobile.jpg"
+  },
+  {
+    "site_id": "4ec5c056-4746-4d56-8607-6fccbe9e5ab8",
+    "name": "Steckborn, Feldbach",
+    "country": "Switzerland",
+    "slug": "steckborn-feldbach",
+    "review_id": 64,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Steckborn_-_panoramio_(62).jpg",
+    "creator": "Patrick Nouhailler's…",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Steckborn lakeshore",
+    "alt": "Steckborn, Feldbach — Nearby surface scenery · Steckborn lakeshore, as described by the source.",
+    "source_description": "Steckborn",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: Patrick Nouhailler's… You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161029062308/http://www.panoramio.com/photo/101890905",
+    "identity_status": "Title/caption Steckborn, source geotag21m from Feldbach entry in Thurgau Switzerland. Visible lake/shore park in named town, nearby Lake Constance surface context, not Feldbach underwater feature.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4272,
+      2848
+    ],
+    "original_sha256": "7d2462e1554f278ba9635d1525616f4bbf04b2c86ef266b0e9ce43f7cfa445ca",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\eae404fa6c64ecd05508.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        222,
+        4272,
+        2625
+      ],
+      "mobile": [
+        237,
+        0,
+        4034,
+        2848
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/4ec5c056-4746-4d56-8607-6fccbe9e5ab8-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/4ec5c056-4746-4d56-8607-6fccbe9e5ab8-mobile.jpg"
+  },
+  {
+    "site_id": "478ad4a9-0815-44e4-9f9d-e157495a193a",
+    "name": "Genthod Hollow",
+    "country": "Switzerland",
+    "slug": "genthod-hollow",
+    "review_id": 65,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Harbour_of_Genthod.jpg",
+    "creator": "Laszlo Daroczy from Miskolc, Hungary",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Genthod harbour",
+    "alt": "Genthod Hollow — Nearby surface scenery · Genthod harbour, as described by the source.",
+    "source_description": "Harbour of Genthod English: Harbor of Genthod, GE, Switzerland",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/2.0 CC BY-SA 2.0 Creative Commons Attribution-Share Alike 2.0 true true",
+    "source_credit": "Harbour of Genthod Uploaded by tobyc75",
+    "identity_status": "Caption harbour of Genthod GE Switzerland, source camera245m from Genthod Hollow. Visible harbour/lake/boats, named-town surface context, not precise underwater hollow.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2304,
+      1728
+    ],
+    "original_sha256": "f0d31be5a79bd4fb402369effba5927e9c20dd933e8de3f7c7f388016382035a",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\df1273fd462f720be8e4.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        432,
+        2304,
+        1728
+      ],
+      "mobile": [
+        0,
+        0,
+        2304,
+        1728
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/478ad4a9-0815-44e4-9f9d-e157495a193a-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/478ad4a9-0815-44e4-9f9d-e157495a193a-mobile.jpg"
+  },
+  {
+    "site_id": "2cb988fd-75bc-4bbd-927d-65c07f36a212",
+    "name": "Mnemba Atoll",
+    "country": "United Republic of Tanzania",
+    "slug": "mnemba-atoll",
+    "review_id": 68,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mnemba.jpg",
+    "creator": "Oogstweg",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface scenery · Mnemba Island",
+    "alt": "Mnemba Atoll — Surface scenery · Mnemba Island, as described by the source.",
+    "source_description": "Nederlands: Mnemba eiland bij Zanzibar",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Mnemba island by Zanzibar and source camera2.806km from atoll record support named island/atoll destination. Visible offshore wooded island/sea, surface context, not exact reef point.4032x1054 wide crop review needed.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4032,
+      1054
+    ],
+    "original_sha256": "6ff2a249cebdfde2205aeff948f856a70dbad02ba96fbd8e5d89f73726443f75",
+    "original_archive": "data\\image-search-source-evaluation-20261108\\assets\\6ff2a249cebdfde2205aeff948f856a70dbad02ba96fbd8e5d89f73726443f75.jpg",
+    "crop_boxes": {
+      "desktop": [
+        1079,
+        0,
+        2953,
+        1054
+      ],
+      "mobile": [
+        1313,
+        0,
+        2718,
+        1054
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/2cb988fd-75bc-4bbd-927d-65c07f36a212-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/2cb988fd-75bc-4bbd-927d-65c07f36a212-mobile.jpg"
+  },
+  {
+    "site_id": "d1b816f9-6aa1-4690-8758-7c6adab8bbe3",
+    "name": "Kleine Knip",
+    "country": "Curaçao",
+    "slug": "kleine-knip",
+    "review_id": 69,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Grote_Knip_Kenepa_Grandi_beach_(34933031995).jpg",
+    "creator": "dronepicr",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Grote Knip, not Kleine Knip",
+    "alt": "Kleine Knip — Nearby surface scenery · Grote Knip, not Kleine Knip, as described by the source.",
+    "source_description": "Grote Knip Kenepa Grandi beach Curacao",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Grote Knip Kenepa Grandi beach",
+    "identity_status": "Caption Grote Knip/Kenepa Grandi Curacao; source camera1.201km from Kleine Knip record. These are different named beaches: retain exact subject label nearby Grote Knip surface scenery, not Kleine Knip itself. Named local coastal destination/short distance support context under broader landscape standard; no independent location proof.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3641,
+      2045
+    ],
+    "original_sha256": "fd00eed01c59a4c4e35d5a9a16b6c2489af0ea012dff42d1ccc172ce955f93ee",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\e0ba29e95007ff922bd0.jpg",
+    "crop_boxes": {
+      "desktop": [
+        2,
+        0,
+        3638,
+        2045
+      ],
+      "mobile": [
+        457,
+        0,
+        3184,
+        2045
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/d1b816f9-6aa1-4690-8758-7c6adab8bbe3-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/d1b816f9-6aa1-4690-8758-7c6adab8bbe3-mobile.jpg"
+  },
+  {
+    "site_id": "52f06fe7-931a-42d0-bc4d-0bea538154a8",
+    "name": "Bussloo",
+    "country": "Netherlands",
+    "slug": "bussloo",
+    "review_id": 70,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lovely_terrace_for_dinnerpossibilities_at_the_backside_with_view_over_the_Lake_Bussloo_-_panoramio.jpg",
+    "creator": "Henk Monster",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Nearby scenery · Lake Bussloo terrace",
+    "alt": "Bussloo — Nearby scenery · Lake Bussloo terrace, as described by the source.",
+    "source_description": "Lovely terrace for dinnerpossibilities at the backside with view over the Lake Bussloo",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 3.0 Unported license. Attribution: Henk Monster You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/3.0 CC BY 3.0 Creative Commons Attribution 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161028150731/http://www.panoramio.com/photo/95054783",
+    "identity_status": "Caption explicitly restaurant terrace with view over Lake Bussloo; camera282m from Bussloo record. Visible visitor-facility terrace/building/garden is relevant nearby destination architecture under broader standard. Label lakeside terrace, not lake or underwater view.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3552,
+      2368
+    ],
+    "original_sha256": "af8d56d944cbd81fea569b420d119ed8696a8119cf37249f444cd77e3a9afa83",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\91ccfa434198052c5511.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        185,
+        3552,
+        2183
+      ],
+      "mobile": [
+        197,
+        0,
+        3354,
+        2368
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/52f06fe7-931a-42d0-bc4d-0bea538154a8-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/52f06fe7-931a-42d0-bc4d-0bea538154a8-mobile.jpg"
+  },
+  {
+    "site_id": "4686b433-02d5-44f9-ad8b-0d96c785f803",
+    "name": "Weeki Wachee Spring",
+    "country": "United States",
+    "slug": "weeki-wachee-spring",
+    "review_id": 74,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Weeki_Wachee_Springs_State_Park_001.jpg",
+    "creator": "Leonard J. DeFrancisci",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface entrance · Weeki Wachee Springs State Park",
+    "alt": "Weeki Wachee Spring — Surface entrance · Weeki Wachee Springs State Park, as described by the source.",
+    "source_description": "English: Entrance to the Weeki Wachee Springs State Park , 6131 Commercial Way , Weeki Wachee , Florida .",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: Leonard J. DeFrancisci You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption entrance Weeki Wachee Springs State Park with exact Florida address; visible park entrance/mermaid landmark, correct named destination for Weeki Wachee Spring. Label surface entrance, not spring water or underwater.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3648,
+      2736
+    ],
+    "original_sha256": "f0f204fd21013c485e0e50bbe3724ef9cfcbcb715ecf56f3f3a1dc625d41006a",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\f82a03001b807c796115.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        342,
+        3648,
+        2394
+      ],
+      "mobile": [
+        0,
+        0,
+        3648,
+        2736
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/4686b433-02d5-44f9-ad8b-0d96c785f803-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/4686b433-02d5-44f9-ad8b-0d96c785f803-mobile.jpg"
+  },
+  {
+    "site_id": "fed60743-f829-4c84-92c5-f70747f9e2c5",
+    "name": "Devil&#039;s Lake South Shore",
+    "country": "United States",
+    "slug": "devil-039-s-lake-south-shore",
+    "review_id": 80,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fall_Foliage_a_long_Devil's_lake_-_panoramio.jpg",
+    "creator": "Corey Coyle",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Surface scenery · Devils Lake autumn shoreline",
+    "alt": "Devil&#039;s Lake South Shore — Surface scenery · Devils Lake autumn shoreline, as described by the source.",
+    "source_description": "Fall Foliage  a long Devil's lake",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 3.0 Unported license. Attribution: Corey Coyle You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/3.0 CC BY 3.0 Creative Commons Attribution 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161028210635/http://www.panoramio.com/photo/98557123",
+    "identity_status": "Caption fall foliage along Devils Lake and source geotag108m from Wisconsin south-shore record support same lake/region. Visible autumn shore/water, labelled surface context; source geotag and name do not independently verify entry point.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4000,
+      3000
+    ],
+    "original_sha256": "90ca4ca0d35bf05198fd4c35421e80b960801fe41eb8179c5a736d961a39fbb1",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\5c9d7a8c2a8ec3c3b4de.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        375,
+        4000,
+        2625
+      ],
+      "mobile": [
+        0,
+        0,
+        4000,
+        3000
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/fed60743-f829-4c84-92c5-f70747f9e2c5-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/fed60743-f829-4c84-92c5-f70747f9e2c5-mobile.jpg"
+  },
+  {
+    "site_id": "9419b697-958a-4d2e-bbd6-5975f787cd8e",
+    "name": "Sharm rocks",
+    "country": "United Arab Emirates",
+    "slug": "sharm-rocks",
+    "review_id": 82,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aqah_In_Fujairah_-_United_Arab_Emirates_-_panoramio.jpg",
+    "creator": "Bin Al Stroker",
+    "creator_links": [],
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Al Aqah beach",
+    "alt": "Sharm rocks — Nearby surface scenery · Al Aqah beach, as described by the source.",
+    "source_description": "Aqah In Fujairah - United Arab Emirates",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 3.0 Unported license. Attribution: Bin Al Stroker You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/3.0 CC BY 3.0 Creative Commons Attribution 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161017035512/http://www.panoramio.com/photo/44944717",
+    "identity_status": "Caption Al Aqah Fujairah UAE, source camera403m from Sharm Rocks. Visible beach/sea/offshore land, relevant specifically named nearby coastal scenery. Label Al Aqah beach, not a photo of underwater Sharm Rocks or an independently identified islet.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2592,
+      1944
+    ],
+    "original_sha256": "5b71d8c6d7a912ebe650cdbddc7ae8d3b0bd500f6693d81cfc558b7caaa840c3",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\dccf3646a9293fa382f5.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        243,
+        2592,
+        1701
+      ],
+      "mobile": [
+        0,
+        0,
+        2592,
+        1944
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/9419b697-958a-4d2e-bbd6-5975f787cd8e-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/9419b697-958a-4d2e-bbd6-5975f787cd8e-mobile.jpg"
+  },
+  {
+    "site_id": "0a8f16c3-06a1-4081-a715-09ced4bc8c20",
+    "name": "Half Moon Caye Wall",
+    "country": "Belize",
+    "slug": "half-moon-caye-wall",
+    "review_id": 84,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Half_moon_caye,_belize_-_Flickr_-_dsasso.jpg",
+    "creator": "dsasso",
+    "creator_links": [],
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "role": "main",
+    "label": "Surface scenery · Half Moon Caye",
+    "alt": "Half Moon Caye Wall — Surface scenery · Half Moon Caye, as described by the source.",
+    "source_description": "half moon caye, belize",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/2.0 CC BY-SA 2.0 Creative Commons Attribution-Share Alike 2.0 true true",
+    "source_credit": "half moon caye, belize",
+    "identity_status": "Caption Half Moon Caye Belize, visible palm-lined caye/lighthouse/shore; precisely named island/country matches parent caye of Half Moon Caye Wall. Surface destination context, not underwater wall.1200x791 limited crop headroom; distinct stronger photo than unresolved path image4.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      1200,
+      791
+    ],
+    "original_sha256": "6728bbc93670141b127fe73ac5742a29b192e46e949098992b7b847de31ee9c0",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\c2f46a97f20da09e1dde.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        58,
+        1200,
+        733
+      ],
+      "mobile": [
+        72,
+        0,
+        1127,
+        791
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/0a8f16c3-06a1-4081-a715-09ced4bc8c20-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/0a8f16c3-06a1-4081-a715-09ced4bc8c20-mobile.jpg"
+  },
+  {
+    "site_id": "66aa6576-36c4-42f2-8ae5-8ffcc934dafa",
+    "name": "The Marine Room",
+    "country": "United States",
+    "slug": "the-marine-room",
+    "review_id": 85,
+    "source_page": "https://commons.wikimedia.org/wiki/File:La_Jolla_Coast_(41959830671).jpg",
+    "creator": "Kevin Gill from Los Angeles, CA, United States",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · La Jolla coast",
+    "alt": "The Marine Room — Nearby surface scenery · La Jolla coast, as described by the source.",
+    "source_description": "La Jolla Coast",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "La Jolla Coast",
+    "identity_status": "Caption La Jolla Coast, source geotag245m from The Marine Room San Diego. Visible coast/sea/sunset provides nearby La Jolla shoreline context for that distinct entry. Not the restaurant itself or underwater site; source location AI-assessed.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      5184,
+      3456
+    ],
+    "original_sha256": "82833e354958cafe4836c1fad7351aacf1f1c373758517846861759bba584984",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\a1c1652447c77c5685fc.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        270,
+        5184,
+        3186
+      ],
+      "mobile": [
+        288,
+        0,
+        4896,
+        3456
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/66aa6576-36c4-42f2-8ae5-8ffcc934dafa-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/66aa6576-36c4-42f2-8ae5-8ffcc934dafa-mobile.jpg"
+  },
+  {
+    "site_id": "6878f515-6d73-407c-82fd-eb1f0948c101",
+    "name": "Meno Wall",
+    "country": "Indonesia",
+    "slug": "meno-wall",
+    "review_id": 88,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Gili_Meno.jpg",
+    "creator": "Flickr user: yeowatzup https://www.flickr.com/photos/yeowatzup/",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Gili Meno coast",
+    "alt": "Meno Wall — Nearby surface scenery · Gili Meno coast, as described by the source.",
+    "source_description": "English: Gili Meno, Indonesia, Gili Meno, Lombok, Indonesia Location: Lombok",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Flickr: https://www.flickr.com/photos/yeowatzup/933858514/",
+    "identity_status": "Caption Gili Meno Lombok Indonesia; visible beach/island coast. Named parent island for Meno Wall, labelled Gili Meno surface destination context, not actual underwater wall or a precise shore-side claim. Source GPS absent.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2977,
+      2233
+    ],
+    "original_sha256": "f11cb7008d1209215650a826eca5b4c8c03eaded2e7768236e5267f5b7501460",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\b075a581c38eb444adbb.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        279,
+        2977,
+        1954
+      ],
+      "mobile": [
+        0,
+        0,
+        2977,
+        2233
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/6878f515-6d73-407c-82fd-eb1f0948c101-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/6878f515-6d73-407c-82fd-eb1f0948c101-mobile.jpg"
+  },
+  {
+    "site_id": "6df5c614-e8d0-4503-aa73-ed56bb127556",
+    "name": "The Pump House",
+    "country": "New Zealand",
+    "slug": "the-pump-house",
+    "review_id": 91,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pupuke_lakeshore.jpg",
+    "creator": "Avenue",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface scenery · Lake Pupuke shore and jetty",
+    "alt": "The Pump House — Surface scenery · Lake Pupuke shore and jetty, as described by the source.",
+    "source_description": "English: The shore of Lake Pupuke and the jetty near the Pumphouse, Takapuna, Auckland, New Zealand.",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License , Version 1.2 or any later version published by the Free Software Foundation ; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License . http://www.gnu.org/copyleft/fdl.html GFDL GNU Free Documentation License true true",
+    "source_credit": "Own work",
+    "identity_status": "Caption Lake Pupuke shore and jetty near Pumphouse Takapuna Auckland; camera114m from The Pump House NZ record. Visible same named lake/jetty/shore, source-supported surface context; not independently verified dive entry.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2672,
+      1904
+    ],
+    "original_sha256": "65bc4a1909819d04ed02144f235c53e8027a1e39ae7d9c763c69ac65948cc4ef",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\2ff39ce40a7b053855d8.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        200,
+        2672,
+        1703
+      ],
+      "mobile": [
+        66,
+        0,
+        2605,
+        1904
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/6df5c614-e8d0-4503-aa73-ed56bb127556-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/6df5c614-e8d0-4503-aa73-ed56bb127556-mobile.jpg"
+  },
+  {
+    "site_id": "7054b3c4-5d6e-44f5-9bab-e20741c1149a",
+    "name": "Yunnan: Fuxian Lake",
+    "country": "China",
+    "slug": "yunnan-fuxian-lake",
+    "review_id": 104,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Black-headed_Gulls_in_Fuxian_Lake%2C_Yunnan%2C_China.jpg",
+    "creator": "Zhangmoon618",
+    "creator_links": [
+      {
+        "label": "Zhangmoon618",
+        "url": "https://commons.wikimedia.org/wiki/User:Zhangmoon618"
+      }
+    ],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Surface scenery · Fuxian Lake",
+    "alt": "Yunnan: Fuxian Lake — Surface scenery · Fuxian Lake, as described by the source.",
+    "source_description": "中文： ​在云南省抚仙湖过冬的红嘴鸥，拍摄于江川县境内。",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Chinese caption explicitly wintering gulls on Fuxian Lake Yunnan, photographed in Jiangchuan. Visible lake/mountain shore and birds, correct named Chinese lake destination. Surface landscape, no specific underwater-point verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      3651,
+      2296
+    ],
+    "original_sha256": "da4a5a2192785ec8c05d897ae5a22f773984c7624faa4f6aad076dc6db840288",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\da4a5a2192785ec8c05d897ae5a22f773984c7624faa4f6aad076dc6db840288.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        121,
+        3651,
+        2175
+      ],
+      "mobile": [
+        295,
+        0,
+        3356,
+        2296
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/7054b3c4-5d6e-44f5-9bab-e20741c1149a-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/7054b3c4-5d6e-44f5-9bab-e20741c1149a-mobile.jpg"
+  },
+  {
+    "site_id": "dd54338b-7bff-4401-bcb5-9bee2599d9a2",
+    "name": "Hermance, Genfersee (Lac Leman)",
+    "country": "Switzerland",
+    "slug": "hermance-genfersee-lac-leman",
+    "review_id": 107,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fr%C3%BChsommer_bei_Hermance_am_Genfersee.jpg",
+    "creator": "Barbara Steinemann",
+    "creator_links": [
+      {
+        "label": "Barbara Steinemann",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:Barbara_Steinemann&action=edit&redlink=1"
+      }
+    ],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Hermance, Lake Geneva",
+    "alt": "Hermance, Genfersee (Lac Leman) — Nearby surface scenery · Hermance, Lake Geneva, as described by the source.",
+    "source_description": "Deutsch: Grenzdorf im Kanton Genf",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Title early summer Hermance at Lake Geneva and caption Geneva canton border village identify named Swiss Hermance destination. Visible countryside/field/lake panorama is relevant surface landscape under broader standard; no exact dive entry claim.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      6016,
+      4000
+    ],
+    "original_sha256": "125a6331a202f15c86a66302ce8988a66643b024c4f65bda59c700883ca4cdb8",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\125a6331a202f15c86a66302ce8988a66643b024c4f65bda59c700883ca4cdb8.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        308,
+        6016,
+        3692
+      ],
+      "mobile": [
+        341,
+        0,
+        5674,
+        4000
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/dd54338b-7bff-4401-bcb5-9bee2599d9a2-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/dd54338b-7bff-4401-bcb5-9bee2599d9a2-mobile.jpg"
+  },
+  {
+    "site_id": "63e1eaec-3787-4f8d-b965-4f09cfb72a10",
+    "name": "Aride Bank",
+    "country": "Seychelles",
+    "slug": "aride-bank",
+    "review_id": 119,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Seychelles_Aride_Island_Beach_-_panoramio.jpg",
+    "creator": "Colin J Taylor",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Aride Island beach",
+    "alt": "Aride Bank — Nearby surface scenery · Aride Island beach, as described by the source.",
+    "source_description": "Seychelles Aride Island Beach",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: Colin J Taylor You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161019205253/http://www.panoramio.com/photo/55510775",
+    "identity_status": "Caption Aride Island Beach Seychelles and source camera687m from Aride Bank record support named island/bank destination. Visible beach/coast/hills, nearby surface scenery, not underwater bank. Original tint/monochrome appearance retained; no colour edit by this run.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4921,
+      3245
+    ],
+    "original_sha256": "bd4aa79a05120e05cda43bfe476c1c0ad61b819a750d277abaa2ca7a8d24a7e0",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\979e6bf814f28edee85c.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        238,
+        4921,
+        3006
+      ],
+      "mobile": [
+        297,
+        0,
+        4624,
+        3245
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/63e1eaec-3787-4f8d-b965-4f09cfb72a10-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/63e1eaec-3787-4f8d-b965-4f09cfb72a10-mobile.jpg"
+  },
+  {
+    "site_id": "a85fb720-0886-4609-be98-a5bcef82c3ea",
+    "name": "Lago di Capodacqua",
+    "country": "Italy",
+    "slug": "lago-di-capodacqua",
+    "review_id": 124,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Vegetazione_sul_Tirino_presso_Capodacqua%2C_Capestrano_%28AQ%29_-_panoramio.jpg",
+    "creator": "paulox_net",
+    "creator_links": [
+      {
+        "label": "paulox_net",
+        "url": "https://web.archive.org/web/20161013075443/http://www.panoramio.com/user/1364892?with_photo_id=14250445"
+      }
+    ],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Tirino river, Capodacqua",
+    "alt": "Lago di Capodacqua — Nearby surface scenery · Tirino river, Capodacqua, as described by the source.",
+    "source_description": "Italiano: Vegetazione sul Tirino presso Capodacqua, Capestrano (AQ)",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: paulox_net You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161013075442/http://www.panoramio.com/photo/14250445",
+    "identity_status": "Caption Tirino vegetation near Capodacqua Capestrano Aquila Italy; camera739m from Lago di Capodacqua. Visible named nearby riverbank/wetland, precisely labelled Tirino surface environment, not the reservoir's underwater mills.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2592,
+      1944
+    ],
+    "original_sha256": "4763d6a86b05e9e193ab5fb50de40d38fdbbb1854ece3df26c8fe7ff42f3d7b6",
+    "original_archive": "data\\image-discovery-hour-20261108-v2\\assets\\4763d6a86b05e9e193ab5fb50de40d38fdbbb1854ece3df26c8fe7ff42f3d7b6.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        243,
+        2592,
+        1701
+      ],
+      "mobile": [
+        0,
+        0,
+        2592,
+        1944
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/a85fb720-0886-4609-be98-a5bcef82c3ea-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/a85fb720-0886-4609-be98-a5bcef82c3ea-mobile.jpg"
+  },
+  {
+    "site_id": "e1a58242-c282-453a-8b6a-b77e1902224b",
+    "name": "Dolphin House Moalboal",
+    "country": "Philippines",
+    "slug": "dolphin-house-moalboal",
+    "review_id": 134,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Basdako_Beach_Moalboal.jpg",
+    "creator": "George Parrilla",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Basdako Beach, Moalboal",
+    "alt": "Dolphin House Moalboal — Nearby surface scenery · Basdako Beach, Moalboal, as described by the source.",
+    "source_description": "Basdako Beach, Moalboal, Cebu, Philippines",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Flickr: Basdako Beach, Moalboal",
+    "identity_status": "Caption Basdako Beach Moalboal Cebu Philippines; camera2.643km from Dolphin House Moalboal. Same explicitly named coastal destination, visible beach/sea; label nearby Basdako surface scenery, not Dolphin House underwater feature.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      2938,
+      1888
+    ],
+    "original_sha256": "0252de964add137bcc3c4885d1e215339a2b436f4a5112d2fba672852f01176e",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\eedcbf3e089f500b7837.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        117,
+        2938,
+        1770
+      ],
+      "mobile": [
+        210,
+        0,
+        2727,
+        1888
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/e1a58242-c282-453a-8b6a-b77e1902224b-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/e1a58242-c282-453a-8b6a-b77e1902224b-mobile.jpg"
+  },
+  {
+    "site_id": "ec63eba8-d8c1-4216-9f77-9c4a1c62b48b",
+    "name": "Sec du Gendarme, Porquerolles",
+    "country": "France",
+    "slug": "sec-du-gendarme-porquerolles",
+    "review_id": 135,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Alycastre_Bay_on_Porquerolles_Island,_France_(53697926673).jpg",
+    "creator": "\"dronepicr\"",
+    "creator_links": [],
+    "licence": "CC BY 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by/2.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Alycastre Bay, Porquerolles",
+    "alt": "Sec du Gendarme, Porquerolles — Nearby surface scenery · Alycastre Bay, Porquerolles, as described by the source.",
+    "source_description": "France",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution 2.0 Generic license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. https://creativecommons.org/licenses/by/2.0 CC BY 2.0 Creative Commons Attribution 2.0 true true",
+    "source_credit": "Aerial view of Alycastre Bay on Porquerolles Island, France",
+    "identity_status": "Filename aerial Alycastre Bay Porquerolles Island France and source geotag2.636km from Sec du Gendarme Porquerolles. Visible same named parent island cove/coast, nearby destination surface context, not underwater rock.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      5464,
+      3640
+    ],
+    "original_sha256": "8cd51499115fa52b1fb61fba70ed599fdcdf47b897a73fdc7afeb178a3f7a46c",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\3f40b62fb1722e04738d.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        283,
+        5464,
+        3357
+      ],
+      "mobile": [
+        305,
+        0,
+        5158,
+        3640
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/ec63eba8-d8c1-4216-9f77-9c4a1c62b48b-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/ec63eba8-d8c1-4216-9f77-9c4a1c62b48b-mobile.jpg"
+  },
+  {
+    "site_id": "ae0258b2-c7de-4a34-b700-3844f158293a",
+    "name": "Navarre Gulf-Side Reef",
+    "country": "United States of America",
+    "slug": "navarre-gulf-side-reef",
+    "review_id": 142,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Navarre_Beach_Wave_-_panoramio.jpg",
+    "creator": "j2003af",
+    "creator_links": [],
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "role": "main",
+    "label": "Nearby surface scenery · Navarre Beach wave",
+    "alt": "Navarre Gulf-Side Reef — Nearby surface scenery · Navarre Beach wave, as described by the source.",
+    "source_description": "Navarre Beach Wave",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: j2003af You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Creative Commons Attribution-Share Alike 3.0 true true",
+    "source_credit": "https://web.archive.org/web/20161014091601/http://www.panoramio.com/photo/25988200",
+    "identity_status": "Caption Navarre Beach Wave, source camera570m from Navarre Gulf-Side Reef Florida Panhandle. Visible breaking surface wave at specifically named nearby beach, useful coastal setting; not underwater reef or independent marker verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      4000,
+      3000
+    ],
+    "original_sha256": "577eae4d99607c13f7d0237c1439b886830a04e6067bec10cd4e221b9501ecc9",
+    "original_archive": "data\\image-discovery-hour-20261108\\assets\\c38b586b0a473d9d2aa7.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        375,
+        4000,
+        2625
+      ],
+      "mobile": [
+        0,
+        0,
+        4000,
+        3000
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/ae0258b2-c7de-4a34-b700-3844f158293a-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/ae0258b2-c7de-4a34-b700-3844f158293a-mobile.jpg"
+  },
+  {
+    "site_id": "dbf712fb-82bc-462d-a5e1-8aa914f1084c",
+    "name": "ROZI, Cirkewwa (Norte)",
+    "country": "Malta",
+    "slug": "rozi-cirkewwa-norte",
+    "review_id": 149,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Remolcador_Rozi,_%C4%8Airkewwa,_Malta,_Malta,_2021-08-24,_DD_18.jpg",
+    "creator": "Diego Delso",
+    "creator_links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      }
+    ],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Underwater view · Rozi wreck",
+    "alt": "ROZI, Cirkewwa (Norte) — Underwater view · Rozi wreck, as described by the source.",
+    "source_description": "English: Shipwreck Rozi, Ċirkewwa, Malta, Malta Español: Remolcador Rozi, Ċirkewwa, Malta, Malta",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. Attribution: Diego Delso You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Source caption Shipwreck Rozi Cirkewwa Malta explicitly identifies actual named wreck; visible underwater tug and divers. High-resolution main candidate with crop review pending. Credit Diego Delso and required delso.photo link, exact CC BY-SA version; no fresh source/ownership verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      7385,
+      4923
+    ],
+    "original_sha256": "893fcb8213e06746d21a1ec6d09aaafb56361c87a3e8e6382bf575dde602a743",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\ee253ab355b6df21b8e8.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        384,
+        7385,
+        4538
+      ],
+      "mobile": [
+        410,
+        0,
+        6974,
+        4923
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/dbf712fb-82bc-462d-a5e1-8aa914f1084c-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/dbf712fb-82bc-462d-a5e1-8aa914f1084c-mobile.jpg",
+    "creator_source_metadata": "Diego Delso (1974–) Alternative names Poco a poco Description Spanish free-license photographer and Wikimedian Date of birth 19 May 1974 Location of birth Alicante Authority file : Q28147777 VIAF : 3616170939435815660001 creator QS:P170,Q28147777"
+  },
+  {
+    "site_id": "b0be2cdd-007f-417b-a362-2bd968a7f3fd",
+    "name": "Anchor Bay",
+    "country": "Malta",
+    "slug": "anchor-bay-malta-and-gozo-malta",
+    "review_id": 165,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lara_Calleja_06_-_Popeye%27s_Village.jpg",
+    "creator": "LaraCalleja",
+    "creator_links": [],
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "role": "main",
+    "label": "Surface view · Popeye Village, Anchor Bay",
+    "alt": "Anchor Bay — Surface view · Popeye Village, Anchor Bay, as described by the source.",
+    "source_description": "English: Popeye Village, Mellieħa",
+    "licence_evidence_text": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license. You are free: to share – to copy, distribute and transmit the work to remix – to adapt the work Under the following conditions: attribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. share alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original. https://creativecommons.org/licenses/by-sa/4.0 CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 true true",
+    "source_credit": "Own work",
+    "identity_status": "Source explicitly identifies Popeye Village, Mellieha. The published Anchor Bay record names Popeye Village in its local context. Visible subject is the village and bay shoreline: Surface view, not underwater site. Caption and distinctive landmark support the association, not independent location verification.",
+    "rights_status": "Inherited exact-source CC licence/version and creator evidence; source was not freshly checked this run. Not proof of ownership. Human rights review PENDING.",
+    "human_review_status": "Owner authorized suitable local assignments; AI identity/crop assessment, not independent human verification.",
+    "publication_status": "NOT_AUTHORIZED",
+    "editorial_status": "Owner-authorized local assignment; not deployed",
+    "original_dimensions": [
+      6000,
+      4000
+    ],
+    "original_sha256": "e95dab865d6bb303dcee880768d183cc2601c09f02e01ab1aed4e7453b45778f",
+    "original_archive": "data\\image-discovery-hour-20261107\\assets\\63a60558049186590c83.jpg",
+    "crop_boxes": {
+      "desktop": [
+        0,
+        312,
+        6000,
+        3687
+      ],
+      "mobile": [
+        333,
+        0,
+        5666,
+        4000
+      ]
+    },
+    "change_notice": "Cropped/resized from EXIF-oriented original; JPEG re-encoded. No colour or sharpness edits. Preserve source, creator and exact licence; applicable ShareAlike retained.",
+    "source_review_manifest": "data/image-discovery-hour-20261108-v5/review-package/manifest.json",
+    "desktop": "/assets/dive-sites/reviewed-hour-v5-20261108/b0be2cdd-007f-417b-a362-2bd968a7f3fd-desktop.jpg",
+    "mobile": "/assets/dive-sites/reviewed-hour-v5-20261108/b0be2cdd-007f-417b-a362-2bd968a7f3fd-mobile.jpg"
+  }
+]
