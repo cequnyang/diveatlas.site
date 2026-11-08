@@ -2593,5 +2593,837 @@ export const reviewedPhotos = [
     ],
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "396a5e11-75dd-48fd-8e85-5f5b0cb4c356",
+    "slug": "aliwal-shoal-south-africa-south-africa",
+    "src": "/assets/dive-sites/reviewed-discovery/396a5e11-75dd-48fd-8e85-5f5b0cb4c356-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-dbpedia-20261108/396a5e11-75dd-48fd-8e85-5f5b0cb4c356-desktop.jpg",
+    "alt": "Aliwal Shoal — underwater view · cathedral, aliwal shoal, as described by the source.",
+    "label": "Underwater view · Cathedral, Aliwal Shoal",
+    "credit": "Underwater view · Cathedral, Aliwal Shoal · Peter Southwood (Pbsouthwood) · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Peter Southwood (Pbsouthwood)",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Arch_at_Cathedral_DSC05788a.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Arch_at_Cathedral_DSC05788a.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "fccefd75-96be-47f0-8e56-d93aec516f46",
+    "slug": "cozumel",
+    "src": "/assets/dive-sites/reviewed-discovery/fccefd75-96be-47f0-8e56-d93aec516f46-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-dbpedia-20261108/fccefd75-96be-47f0-8e56-d93aec516f46-desktop.jpg",
+    "alt": "Cozumel — underwater view · cozumel marine park, as described by the source.",
+    "label": "Underwater view · Cozumel marine park",
+    "credit": "Underwater view · Cozumel marine park · Matthew T Rader · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Matthew T Rader",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Arrecifes_de_Cozumel_National_Park.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "matthewtrader.com",
+        "url": "https://matthewtrader.com"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Arrecifes_de_Cozumel_National_Park.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "8d2e1a65-423c-4563-8cd7-72eb194ab2cb",
+    "slug": "loch-long",
+    "src": "/assets/dive-sites/reviewed-discovery/8d2e1a65-423c-4563-8cd7-72eb194ab2cb-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-dbpedia-20261108/8d2e1a65-423c-4563-8cd7-72eb194ab2cb-desktop.jpg",
+    "alt": "Loch Long — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Balon Greyjoy · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Balon Greyjoy",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:20210815_Loch_Long-8813.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:20210815_Loch_Long-8813.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "d14262e9-bc86-4394-9032-7a57a85df8e6",
+    "slug": "narqin-island",
+    "src": "/assets/dive-sites/reviewed-discovery/d14262e9-bc86-4394-9032-7a57a85df8e6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/d14262e9-bc86-4394-9032-7a57a85df8e6-desktop.jpg",
+    "alt": "Narqin Island — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Photographer: Mosbatho · CC BY 4.0 · Cropped/resized",
+    "creator": "Photographer: Mosbatho",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Nargin_island,_B%C3%B6y%C3%BCk_Zir%C9%99_in_2018.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Mosbatho",
+        "url": "https://commons.wikimedia.org/wiki/User:Mosbatho"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Nargin_island,_B%C3%B6y%C3%BCk_Zir%C9%99_in_2018.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "29a022d7-116e-4057-88ac-07c3ddce6693",
+    "slug": "bovisand-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/29a022d7-116e-4057-88ac-07c3ddce6693-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/29a022d7-116e-4057-88ac-07c3ddce6693-desktop.jpg",
+    "alt": "Bovisand Bay — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Glen Denny · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Glen Denny",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bovisand_Bay_-_geograph.org.uk_-_1735329.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Glen Denny",
+        "url": "https://www.geograph.org.uk/profile/23336"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bovisand_Bay_-_geograph.org.uk_-_1735329.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "b9f1bf82-75aa-4df5-bd8f-d4f7c086d272",
+    "slug": "lake-flint-creek",
+    "src": "/assets/dive-sites/reviewed-discovery/b9f1bf82-75aa-4df5-bd8f-d4f7c086d272-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/b9f1bf82-75aa-4df5-bd8f-d4f7c086d272-desktop.jpg",
+    "alt": "Lake Flint Creek — surface view · lake and power plant, as described by the source.",
+    "label": "Surface view · lake and power plant",
+    "credit": "Surface view · lake and power plant · Brandonrush · CC0 1.0 · Cropped/resized",
+    "creator": "Brandonrush",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Flint_Creek_and_Flint_Creek_Power_Plant.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Brandonrush",
+        "url": "https://commons.wikimedia.org/wiki/User:Brandonrush"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Flint_Creek_and_Flint_Creek_Power_Plant.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "61edb1d8-02c6-4cbe-991d-cb94d94cf512",
+    "slug": "lake-pleasant-arizona",
+    "src": "/assets/dive-sites/reviewed-discovery/61edb1d8-02c6-4cbe-991d-cb94d94cf512-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/61edb1d8-02c6-4cbe-991d-cb94d94cf512-desktop.jpg",
+    "alt": "Lake Pleasant, Arizona — surface view · lake pleasant, as described by the source.",
+    "label": "Surface view · Lake Pleasant",
+    "credit": "Surface view · Lake Pleasant · Shereth · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Shereth",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Pleasant_Arizona.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Shereth",
+        "url": "https://commons.wikimedia.org/wiki/User:Shereth"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Pleasant_Arizona.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "696bbc2f-3664-4541-abf8-27c43bd0068e",
+    "slug": "lake-bullen-merri-camperdown",
+    "src": "/assets/dive-sites/reviewed-discovery/696bbc2f-3664-4541-abf8-27c43bd0068e-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/696bbc2f-3664-4541-abf8-27c43bd0068e-desktop.jpg",
+    "alt": "Lake Bullen Merri, Camperdown — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · 1geel0ng1 · CC BY 4.0 · Cropped/resized",
+    "creator": "1geel0ng1",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Bullen_Merri.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "1geel0ng1",
+        "url": "https://commons.wikimedia.org/wiki/User:1geel0ng1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Bullen_Merri.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "23d08ce7-bb98-4b28-a10b-f844b7a02788",
+    "slug": "rabac-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/23d08ce7-bb98-4b28-a10b-f844b7a02788-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/23d08ce7-bb98-4b28-a10b-f844b7a02788-desktop.jpg",
+    "alt": "Rabac bay — nearby surface view · rabac beach, as described by the source.",
+    "label": "Nearby surface view · Rabac beach",
+    "credit": "Nearby surface view · Rabac beach · Finox · CC BY 3.0 · Cropped/resized",
+    "creator": "Finox",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beach_Rabac_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Finox",
+        "url": "https://web.archive.org/web/20161024193948/http://www.panoramio.com/user/5973193?with_photo_id=76041047"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach_Rabac_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "90eddb5c-a440-408f-99aa-dc231963f3f7",
+    "slug": "cenote-yaal-utzil",
+    "src": "/assets/dive-sites/reviewed-discovery/90eddb5c-a440-408f-99aa-dc231963f3f7-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/90eddb5c-a440-408f-99aa-dc231963f3f7-desktop.jpg",
+    "alt": "Cenote Yaal Utzil — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Codas · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Codas",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cenote_Yaal_Utzil_04.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Codas",
+        "url": "https://commons.wikimedia.org/wiki/User:Codas"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cenote_Yaal_Utzil_04.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "52c26f46-4285-4149-aa2f-d836d38b7e4b",
+    "slug": "lake-ouachita",
+    "src": "/assets/dive-sites/reviewed-discovery/52c26f46-4285-4149-aa2f-d836d38b7e4b-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/52c26f46-4285-4149-aa2f-d836d38b7e4b-desktop.jpg",
+    "alt": "Lake Ouachita — surface view · lake ouachita state park, as described by the source.",
+    "label": "Surface view · Lake Ouachita State Park",
+    "credit": "Surface view · Lake Ouachita State Park · Timothy Holdiness · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Timothy Holdiness",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Ouachita_State_Park%2C_Arkansas%2C_United_States_06.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Timothy Holdiness",
+        "url": "https://commons.wikimedia.org/wiki/User:Ktkvtsh"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Ouachita_State_Park%2C_Arkansas%2C_United_States_06.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "a7793040-4225-4a66-ad5c-afd20e79ff1f",
+    "slug": "lake-rotoma",
+    "src": "/assets/dive-sites/reviewed-discovery/a7793040-4225-4a66-ad5c-afd20e79ff1f-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/a7793040-4225-4a66-ad5c-afd20e79ff1f-desktop.jpg",
+    "alt": "Lake Rotoma — surface view · lake rotomā, as described by the source.",
+    "label": "Surface view · Lake Rotomā",
+    "credit": "Surface view · Lake Rotomā · Phillip Capper · CC BY 2.0 · Cropped/resized",
+    "creator": "Phillip Capper",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Rotoma_02%2C_Bay_of_Plenty%2C_New_Zealand%2C_3_April_2008.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Phillip Capper",
+        "url": "https://www.flickr.com/people/42033648@N00"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Rotoma_02%2C_Bay_of_Plenty%2C_New_Zealand%2C_3_April_2008.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9f6885d9-375e-42c9-bca1-935504128015",
+    "slug": "lake-hydra",
+    "src": "/assets/dive-sites/reviewed-discovery/9f6885d9-375e-42c9-bca1-935504128015-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/9f6885d9-375e-42c9-bca1-935504128015-desktop.jpg",
+    "alt": "Lake Hydra — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Warren LeMay from Chicago, IL, United States · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Warren LeMay from Chicago, IL, United States",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dutch_Springs_%28Lake_Hydra%29_Quarry%2C_Hanoverville_Road%2C_Bethlehem%2C_PA_%2852403094274%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Warren LeMay",
+        "url": "https://www.flickr.com/people/59081381@N03"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dutch_Springs_%28Lake_Hydra%29_Quarry%2C_Hanoverville_Road%2C_Bethlehem%2C_PA_%2852403094274%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "f039efa1-b38d-4c72-9894-9aa5b2755910",
+    "slug": "taupiri-bay",
+    "src": "/assets/dive-sites/reviewed-discovery/f039efa1-b38d-4c72-9894-9aa5b2755910-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/f039efa1-b38d-4c72-9894-9aa5b2755910-desktop.jpg",
+    "alt": "Taupiri Bay — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Sids1 from New Zealand · CC BY 2.0 · Cropped/resized",
+    "creator": "Sids1 from New Zealand",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Taupiri_Bay_(3387881153).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Sids1",
+        "url": "https://www.flickr.com/people/11803513@N06"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Taupiri_Bay_(3387881153).jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "80094668-34c3-4fac-b9ee-baa537ba3d2d",
+    "slug": "strongyli-island",
+    "src": "/assets/dive-sites/reviewed-discovery/80094668-34c3-4fac-b9ee-baa537ba3d2d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/80094668-34c3-4fac-b9ee-baa537ba3d2d-desktop.jpg",
+    "alt": "Strongyli island — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Ввласенко · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Ввласенко",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Strongyli_%28Strogyli%29_Island_from_the_west._Greece.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Ввласенко",
+        "url": "https://commons.wikimedia.org/wiki/User:%D0%92%D0%B2%D0%BB%D0%B0%D1%81%D0%B5%D0%BD%D0%BA%D0%BE"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Strongyli_%28Strogyli%29_Island_from_the_west._Greece.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "50e51e89-7430-48ba-967f-18e7afe46b91",
+    "slug": "porer-island",
+    "src": "/assets/dive-sites/reviewed-discovery/50e51e89-7430-48ba-967f-18e7afe46b91-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/50e51e89-7430-48ba-967f-18e7afe46b91-desktop.jpg",
+    "alt": "Porer Island — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · m.prinke · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "m.prinke",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Porer_Lighthouse.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "m.prinke",
+        "url": "https://www.flickr.com/photos/54851755@N00"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Porer_Lighthouse.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "0ad9401a-ea28-4d34-adfa-b889c2520da6",
+    "slug": "naroch-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/0ad9401a-ea28-4d34-adfa-b889c2520da6-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/0ad9401a-ea28-4d34-adfa-b889c2520da6-desktop.jpg",
+    "alt": "Нарочь / Naroch lake — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Szeder László · CC BY-SA 1.0 · Cropped/resized",
+    "creator": "Szeder László",
+    "license": "CC BY-SA 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Naroch.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Naroch.JPG"
+      },
+      {
+        "label": "CC BY-SA 1.0",
+        "url": "https://creativecommons.org/licenses/by-sa/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "15547bdf-28a1-47ba-8f4d-e5a3a19c020a",
+    "slug": "lake-insko",
+    "src": "/assets/dive-sites/reviewed-discovery/15547bdf-28a1-47ba-8f4d-e5a3a19c020a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/15547bdf-28a1-47ba-8f4d-e5a3a19c020a-desktop.jpg",
+    "alt": "Lake Insko — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · MOs810 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "MOs810",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Insko_Lake_%281%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "MOs810",
+        "url": "https://commons.wikimedia.org/wiki/User:MOs810"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Insko_Lake_%281%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "086b61c3-2b04-4d01-9c5b-74abad4920fc",
+    "slug": "bikini-beach",
+    "src": "/assets/dive-sites/reviewed-discovery/086b61c3-2b04-4d01-9c5b-74abad4920fc-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/086b61c3-2b04-4d01-9c5b-74abad4920fc-desktop.jpg",
+    "alt": "Bikini Beach — surface view, as described by the source.",
+    "label": "Surface view",
+    "credit": "Surface view · Lenilda Duarte · CC0 1.0 · Cropped/resized",
+    "creator": "Lenilda Duarte",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bikini_Beach_-_Ilha_do_Sal.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Lenilda Duarte",
+        "url": "https://commons.wikimedia.org/wiki/User:Lenilda_Duarte"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bikini_Beach_-_Ilha_do_Sal.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "47f5c8f6-2f75-4993-b6ed-ff8d64de6412",
+    "slug": "dolly-beach",
+    "src": "/assets/dive-sites/reviewed-discovery/47f5c8f6-2f75-4993-b6ed-ff8d64de6412-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-hour-v2-20261108/47f5c8f6-2f75-4993-b6ed-ff8d64de6412-desktop.jpg",
+    "alt": "Dolly Beach — surface view · dolly beach, as described by the source.",
+    "label": "Surface view · Dolly Beach",
+    "credit": "Surface view · Dolly Beach · ChrisBrayPhotography · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "ChrisBrayPhotography",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dolly_Beach%2C_Christmas_Island.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "ChrisBrayPhotography",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:ChrisBrayPhotography&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dolly_Beach%2C_Christmas_Island.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "da7bbbe4-9292-4efc-b749-fbcf70629912",
+    "slug": "tent-reef-deep",
+    "src": "/assets/dive-sites/reviewed-discovery/da7bbbe4-9292-4efc-b749-fbcf70629912-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/da7bbbe4-9292-4efc-b749-fbcf70629912-desktop.jpg",
+    "alt": "Tent Reef Deep — nearby scenery · windwardside, saba, as described by the source.",
+    "label": "Nearby scenery · Windwardside, Saba",
+    "credit": "Nearby scenery · Windwardside, Saba · Photocapy · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "Photocapy",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playground_on_Saba.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "Photocapy",
+        "url": "https://flickr.com/people/81635051@N00"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playground_on_Saba.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "670fbce5-8ac3-40b7-b5b5-52aa699cfb6a",
+    "slug": "hateruma-island",
+    "src": "/assets/dive-sites/reviewed-discovery/670fbce5-8ac3-40b7-b5b5-52aa699cfb6a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/670fbce5-8ac3-40b7-b5b5-52aa699cfb6a-desktop.jpg",
+    "alt": "Hateruma Island — nearby scenery · hateruma island landscape, as described by the source.",
+    "label": "Nearby scenery · Hateruma island landscape",
+    "credit": "Nearby scenery · Hateruma island landscape · ブルーノ・プラス · CC BY 4.0 · Cropped/resized",
+    "creator": "ブルーノ・プラス",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aerial_photo_of_the_Hateruma_Island_village.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "ブルーノ・プラス",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:%E3%83%96%E3%83%AB%E3%83%BC%E3%83%8E%E3%83%BB%E3%83%97%E3%83%A9%E3%82%B9&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerial_photo_of_the_Hateruma_Island_village.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "286f120e-a6a9-4c29-90cd-3cc2b9062b90",
+    "slug": "kohamajima-island",
+    "src": "/assets/dive-sites/reviewed-discovery/286f120e-a6a9-4c29-90cd-3cc2b9062b90-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/286f120e-a6a9-4c29-90cd-3cc2b9062b90-desktop.jpg",
+    "alt": "Kohamajima Island — nearby scenery · mount ufu-daki, kohamajima, as described by the source.",
+    "label": "Nearby scenery · Mount Ufu-daki, Kohamajima",
+    "credit": "Nearby scenery · Mount Ufu-daki, Kohamajima · 663highland · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "663highland",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ufu-daki_Kohamajima_Okinawa_Japan01s3s4440.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "663highland",
+        "url": "https://ja.wikipedia.org/wiki/user:663highland"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ufu-daki_Kohamajima_Okinawa_Japan01s3s4440.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "1b91cbe4-910a-4e97-a314-1035a1713fb0",
+    "slug": "stoke-beach",
+    "src": "/assets/dive-sites/reviewed-discovery/1b91cbe4-910a-4e97-a314-1035a1713fb0-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/1b91cbe4-910a-4e97-a314-1035a1713fb0-desktop.jpg",
+    "alt": "Stoke Beach — nearby scenery · burgh island from near stoke beach, as described by the source.",
+    "label": "Nearby scenery · Burgh Island from near Stoke Beach",
+    "credit": "Nearby scenery · Burgh Island from near Stoke Beach · Nilfanion · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Nilfanion",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Burgh_Island_from_near_Stoke_Beach_(2331).jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Nilfanion",
+        "url": "https://commons.wikimedia.org/wiki/User:Nilfanion"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Burgh_Island_from_near_Stoke_Beach_(2331).jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "6cb3bb69-7cad-4f51-913c-d6f6d93b723d",
+    "slug": "saint-prex-genfersee-lac-leman",
+    "src": "/assets/dive-sites/reviewed-discovery/6cb3bb69-7cad-4f51-913c-d6f6d93b723d-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/6cb3bb69-7cad-4f51-913c-d6f6d93b723d-desktop.jpg",
+    "alt": "Saint-Prex, Genfersee (Lac Leman) — nearby scenery · saint-prex village, as described by the source.",
+    "label": "Nearby scenery · Saint-Prex village",
+    "credit": "Nearby scenery · Saint-Prex village · Jérémy Toma · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Jérémy Toma",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Saint-Prex_%28VD%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Jérémy Toma",
+        "url": "https://commons.wikimedia.org/wiki/User:Jeremy.toma"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Saint-Prex_%28VD%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "9d257922-8368-4828-a7ec-93073b97c910",
+    "slug": "marble-quarry",
+    "src": "/assets/dive-sites/reviewed-discovery/9d257922-8368-4828-a7ec-93073b97c910-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/9d257922-8368-4828-a7ec-93073b97c910-desktop.jpg",
+    "alt": "Мраморный карьер/Marble Quarry — nearby scenery · ruskeala quarry shaft entrance, as described by the source.",
+    "label": "Nearby scenery · Ruskeala quarry shaft entrance",
+    "credit": "Nearby scenery · Ruskeala quarry shaft entrance · GAlexandrova · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "GAlexandrova",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:9805._Former_marble_quarry_in_Ruskeala.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "GAlexandrova",
+        "url": "https://commons.wikimedia.org/w/index.php?title=User:GAlexandrova&action=edit&redlink=1"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:9805._Former_marble_quarry_in_Ruskeala.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "ae3abc57-9fdb-41dc-aa65-cc27e32b4992",
+    "slug": "portroe-quarry",
+    "src": "/assets/dive-sites/reviewed-discovery/ae3abc57-9fdb-41dc-aa65-cc27e32b4992-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/ae3abc57-9fdb-41dc-aa65-cc27e32b4992-desktop.jpg",
+    "alt": "Portroe Quarry — nearby scenery · fields near portroe quarry, as described by the source.",
+    "label": "Nearby scenery · fields near Portroe Quarry",
+    "credit": "Nearby scenery · fields near Portroe Quarry · David P Howard · CC BY-SA 2.0 · Cropped/resized",
+    "creator": "David P Howard",
+    "license": "CC BY-SA 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:View_west_near_Portroe_Quarry_-_geograph.org.uk_-_5142015.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "links": [
+      {
+        "label": "",
+        "url": "https://commons.wikimedia.org/wiki/File:View_west_near_Portroe_Quarry_-_geograph.org.uk_-_5142015.jpg#P170"
+      },
+      {
+        "label": "David P Howard",
+        "url": "https://www.geograph.org.uk/profile/43368"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:View_west_near_Portroe_Quarry_-_geograph.org.uk_-_5142015.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
+  },
+  {
+    "siteId": "e4d785e2-8f77-4f7f-ad06-f4f4dc30578a",
+    "slug": "shikotsu-lake",
+    "src": "/assets/dive-sites/reviewed-discovery/e4d785e2-8f77-4f7f-ad06-f4f4dc30578a-thumbnail.jpg",
+    "fullSrc": "/assets/dive-sites/reviewed-landscapes-20261108/e4d785e2-8f77-4f7f-ad06-f4f4dc30578a-desktop.jpg",
+    "alt": "Shikotsu Lake — nearby scenery · lake shikotsu park, as described by the source.",
+    "label": "Nearby scenery · Lake Shikotsu park",
+    "credit": "Nearby scenery · Lake Shikotsu park · 663highland · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "663highland",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu%2C_Chitose%2C_Hokkaido_prefecture%2C_Japan.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "663highland",
+        "url": "https://ja.wikipedia.org/wiki/user:663highland"
+      },
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Lake_Shikotsu%2C_Chitose%2C_Hokkaido_prefecture%2C_Japan.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED"
   }
 ];

@@ -38,7 +38,7 @@ test('unavailable reviewed thumbnail retains the existing card image',async({pag
 
 test('map popup and enlarged preview use the assigned photo with context and linked attribution',async({page})=>{
  await openMap(page,{localStorage:{'global-coral-map-lang':'en'}});await page.waitForFunction(()=>Boolean(window.DiveAtlasReviewedPhotos));
- for(const p of [photos[3],photos[4],photos.find(p=>p.review_id==='c089'),photos.at(-1)]){
+ for(const p of [photos[3],photos[4],photos.find(p=>p.review_id==='c089'),...photos.slice(-3)]){
   await setMapView(page,-5.7,131,14);
   await page.evaluate(p=>{window.__DIVEATLAS_TEST__.map.closePopup();window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,p.site_id,{withFallbackPhoto:true}).openPopup()},p);
   const popup=page.locator('.leaflet-popup.dive-site-popup--with-photo').filter({has:page.locator('img.dive-popup-photo[src*="'+p.site_id+'"]')});await expect(popup).toBeVisible();
