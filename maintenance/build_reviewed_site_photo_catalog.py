@@ -6,6 +6,7 @@ Requires existing reviewed hero assignments/assets; no network access.
 from pathlib import Path
 import json
 import re
+from photo_assignment_publication import public_assignment
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'assets/dive-sites'
@@ -16,6 +17,8 @@ def build():
     catalog = []
     seen = set()
     for entry in assignments:
+        if public_assignment(entry) != entry:
+            raise ValueError('Private evidence paths belong in local review records, not published assignments')
         site_id = entry['site_id']
         if not re.fullmatch(r'[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}', site_id) or site_id in seen:
             raise ValueError(f'Invalid or duplicate stable site UUID: {site_id}')

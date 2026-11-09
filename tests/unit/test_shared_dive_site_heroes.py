@@ -4,11 +4,13 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import sys
 import unittest
 from unittest.mock import patch
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'maintenance'))
 SID = '11111111-2222-3333-4444-555555555555'
 
 
@@ -25,6 +27,22 @@ def dump(path, value):
 
 
 class SharedHeroTests(unittest.TestCase):
+    def test_publication_keeps_rights_evidence_and_filters_nested_private_locators(self):
+        publication = module('photo_assignment_publication')
+        entry = {'source_review_manifest': 'data/private/review.json',
+                 'original_archive': r'data\private\original.jpg',
+                 'source_page': 'https://example.org/data/photo',
+                 'previous_review_assessment': {'source_provenance': r'data\private\run', 'identity': 'uncertain'},
+                 'rights_status': 'Human review pending'}
+        result = publication.public_assignment(entry)
+        self.assertNotIn('source_review_manifest', result)
+        self.assertNotIn('original_archive', result)
+        self.assertEqual(result['previous_review_assessment'], {'identity': 'uncertain'})
+        self.assertEqual(result['source_page'], entry['source_page'])
+        self.assertEqual(result['rights_status'], entry['rights_status'])
+        self.assertIn('source_provenance', entry['previous_review_assessment'])
+        with self.assertRaises(ValueError):
+            publication.public_assignment({'unexpected_field': 'data/private/file'})
     def test_existing_shared_hero_is_reused_when_removing_its_thumbnail(self):
         migration = module('use_shared_dive_site_heroes')
         with tempfile.TemporaryDirectory() as directory:
@@ -53,6 +71,8 @@ class SharedHeroTests(unittest.TestCase):
                 (site / (name + '.jpg')).write_bytes(name.encode())
             entry = {'site_id': SID, 'desktop': f'/assets/dive-sites/{SID}/desktop.jpg',
                      'mobile': f'/assets/dive-sites/{SID}/mobile.jpg', 'creator': 'Fixture',
+                     'original_archive': 'data/private/original.jpg',
+                     'source_review_manifest': 'data/private/review.json',
                      'licence_url': 'https://creativecommons.org/licenses/by/4.0/',
                      'crop_boxes': {'desktop': [0, 0, 1600, 900], 'mobile': [0, 0, 900, 675]}}
             dump(base / 'assignments.json', [entry])
@@ -68,6 +88,8 @@ class SharedHeroTests(unittest.TestCase):
             self.assertEqual(result['hero_crop_box'], entry['crop_boxes']['desktop'])
             self.assertEqual(result['creator'], entry['creator'])
             self.assertEqual(result['licence_url'], entry['licence_url'])
+            self.assertNotIn('original_archive', result)
+            self.assertNotIn('source_review_manifest', result)
             self.assertEqual(json.loads(catalog.read_text(encoding='utf-8'))['fullSrc'], result['hero'])
 
     def test_import_and_catalog_builder_use_only_one_full_composition_image(self):
@@ -104,6 +126,10 @@ class SharedHeroTests(unittest.TestCase):
             self.assertNotIn('thumbnail.jpg',catalog)
             self.assertIn(entry['hero'],catalog)
             self.assertNotIn('mobile', entry); self.assertNotIn('desktop', entry)
+            self.assertNotIn('source_review_manifest', entry)
+            self.assertNotIn('original_archive', entry)
+            private_entry = json.loads((work/'assignments.json').read_text(encoding='utf-8'))[0]
+            self.assertEqual(private_entry['source_review_manifest'], 'data/run/review/manifest.json')
             with Image.open(base / SID / 'hero.jpg') as image: self.assertEqual(image.size, (1600, 1200))
             self.assertEqual(sorted(p.name for p in (base / SID).iterdir()), ['hero.jpg'])
 

@@ -145,3 +145,4 @@ playwright-report/
 !/maintenance/use_shared_dive_site_heroes.py
 !/tests/unit/test_shared_dive_site_heroes.py
 !/maintenance/build_reviewed_site_photo_catalog.py
+!/maintenance/photo_assignment_publication.py

@@ -6,6 +6,7 @@ The desktop composition is retained byte-for-byte; no source download is needed.
 from pathlib import Path
 import json
 import re
+from photo_assignment_publication import public_assignment
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'assets/dive-sites'
@@ -60,6 +61,7 @@ def migrate():
         content = content.replace(json.dumps(old), json.dumps(new))
     # Validate every source before moving anything. The only deletions are the
     # redundant mobile files and UID-local thumbnails in the validated site folders.
+    rows = [public_assignment(entry) for entry in rows]
     for source, target in moves:
         source.rename(target)
     manifest.write_text(json.dumps(rows, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

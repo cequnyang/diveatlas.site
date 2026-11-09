@@ -8,6 +8,20 @@ const base = path.join(root, 'assets/dive-sites');
 const uid = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
 const assignments = JSON.parse(fs.readFileSync(path.join(base, 'assignments.json'), 'utf8'));
 
+test('public assignments exclude private research paths while retaining public provenance', () => {
+  const localData = /(?:^|[^A-Za-z0-9_.:/-])(?:\.\/|\/)?data[\\/][A-Za-z0-9_.-]/i;
+  function inspect(value) {
+    if (typeof value === 'string') assert.ok(!localData.test(value), value);
+    else if (value && typeof value === 'object') Object.values(value).forEach(inspect);
+  }
+  for (const entry of assignments) {
+    assert.ok(!Object.hasOwn(entry, 'source_review_manifest'), entry.site_id);
+    assert.ok(!Object.hasOwn(entry, 'original_archive'), entry.site_id);
+    assert.ok(entry.creator && entry.licence_url && entry.source_page, entry.site_id);
+    inspect(entry);
+  }
+});
+
 test('all photo files live directly under their stable site UID', () => {
   for (const entry of fs.readdirSync(base, {withFileTypes: true})) {
     if (!entry.isDirectory()) continue;

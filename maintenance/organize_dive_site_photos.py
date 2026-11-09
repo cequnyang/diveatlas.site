@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 import subprocess
+from photo_assignment_publication import public_assignment
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'assets/dive-sites'
@@ -18,6 +19,8 @@ def organize():
     combined = BASE / 'reviewed-discovery/combined-assignments.json'
     if not combined.exists():
         raise ValueError('Legacy combined manifest missing; migration already applied or inputs unavailable')
+    for entry in json.loads(combined.read_text(encoding='utf-8')):
+        public_assignment(entry)  # Reject unexpected private paths before moving files.
     batches = sorted(p for p in BASE.iterdir() if p.is_dir() and p.name.startswith('reviewed'))
     moves = {}
     claimed = {}
@@ -89,6 +92,11 @@ def organize():
                        lambda m: replacements.get('/' + m[0].lstrip('/'), '/' + m[0].lstrip('/'))[0 if m[0].startswith('/') else 1:], before)
         if after != before:
             path.write_text(after, encoding='utf-8')
+    # The browser manifest keeps public provenance, not private archive locators.
+    manifest = BASE / 'assignments.json'
+    entries = json.loads(manifest.read_text(encoding='utf-8'))
+    public = [public_assignment(entry) for entry in entries]
+    manifest.write_text(json.dumps(public, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     for source in obsolete:
         if not source.is_relative_to(BASE.resolve()):
             raise ValueError('Obsolete metadata escaped assets/dive-sites')

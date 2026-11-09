@@ -7,6 +7,7 @@ Context photographs stay separate from the registry that asserts exact identity.
 from pathlib import Path
 import argparse, hashlib, json, re, shutil
 from PIL import Image, ImageOps, ImageDraw
+from photo_assignment_publication import public_assignment
 ROOT = Path(__file__).resolve().parents[1]
 def load(p): return json.loads(p.read_text(encoding='utf-8'))
 def dump(p, value): p.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
@@ -96,7 +97,11 @@ def main():
         # A resumed, explicitly selected batch may correct credits for the SAME original.
         # Other batches remain byte-for-byte values; different originals were rejected above.
         refreshed={e['site_id']:e for e in entries}
-        combined=[refreshed.get(e['site_id'],e) for e in existing]+[e for e in entries if e['site_id'] not in by_id];dump(combined_path,combined)
+        combined=[refreshed.get(e['site_id'],e) for e in existing]+[e for e in entries if e['site_id'] not in by_id]
+        # Local evidence paths remain in work/assignments.json. Published assets
+        # cannot reference the ignored research tree; retain public source/rights evidence.
+        public=[public_assignment(e) for e in combined]
+        dump(combined_path,public)
         (ROOT/'js/dive-site-reviewed-image-sites.js').write_text('// Generated from combined-assignments.json; context photos stay outside the exact-site registry.\nexport const reviewedSiteIds = '+json.dumps([e['site_id'] for e in combined],indent=2)+';\n',encoding='utf-8')
     print(json.dumps({'staged':len(entries),'applied':bool(args.apply)}))
 if __name__=='__main__':main()
