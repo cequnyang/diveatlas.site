@@ -131,3 +131,12 @@ playwright-report/
 !/assets/dive-sites/README.md
 
 !/tests/e2e/shared-header.spec.js
+
+# Reviewable image-discovery code; results, caches and private inventory remain under ignored data/.
+!/tools/discover_site_images.py
+!/tools/image_discovery/
+/tools/image_discovery/*
+!/tools/image_discovery/*.py
+!/tools/image_discovery/*.md
+!/tools/image_discovery/*.json
+!/tools/image_discovery/requirements.txt

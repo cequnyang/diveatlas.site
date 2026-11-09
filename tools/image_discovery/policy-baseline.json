@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-11-08T02:51:17.622014+00:00",
+  "user_agent": "DiveAtlasImageCoverage/0.1 (+https://diveatlas.site; AI-assisted local metadata review)",
+  "documents": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",
+      "status": "retrieved",
+      "sha256": "c98bac1edabe255569ffe4da8e29071196d57045cabd58dc7cae0ca597ef70d4",
+      "content_fingerprint": {
+        "version": "wikimedia-policy-content-v1",
+        "sha256": "29ef76210368f7ead69a8f6e92a41418436e4d869e183180f03ae365938a32b3",
+        "revision": "1295098097",
+        "text_characters": 14753,
+        "links": 202,
+        "images": 13
+      }
+    },
+    {
+      "url": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+      "status": "retrieved",
+      "sha256": "a0255ec39386f0c65c67066bb79725ed3d47df69c301e0d30abeefe529ef641c",
+      "content_fingerprint": {
+        "version": "wikimedia-policy-content-v1",
+        "sha256": "912d7c57cba3bc2cdf0661af64179f65b56e752c0bb422db2367cc4e0e7ddee4",
+        "revision": "598588",
+        "text_characters": 50347,
+        "links": 170,
+        "images": 10
+      }
+    },
+    {
+      "url": "https://foundation.wikimedia.org/wiki/Policy:User-Agent_policy",
+      "status": "retrieved",
+      "sha256": "f06df17deac8b64d27a1bdc59074824450479497e816988e8fd3f64de890bcf8",
+      "content_fingerprint": {
+        "version": "wikimedia-policy-content-v1",
+        "sha256": "31a95b0e0ce23159a0bc12f6f951f33db62932e0bfcf6afb3fcafd3e1ff217bd",
+        "revision": "564705",
+        "text_characters": 8304,
+        "links": 108,
+        "images": 3
+      }
+    }
+  ],
+  "limits": "Historical raw hashes plus reviewed article/links/revision fingerprints. Generated HTML differences alone do not grant or deny permission. Substantive changes, unavailable bodies and uncertain robots remain blocked."
+}
