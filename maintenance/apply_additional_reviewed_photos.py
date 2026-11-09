@@ -49,14 +49,15 @@ def main():
         sites={s['site_id']:s for s in packet['sites']}
         candidates={r['review_id']:r for r in packet['candidates']}
     staged=work/'assets';staged.mkdir(exist_ok=True)
-    target=(ROOT/decisions.get('asset_directory','assets/dive-sites/reviewed-20261108')).resolve()
-    if not target.is_relative_to((ROOT/'assets/dive-sites').resolve()):raise ValueError('Asset target must stay under assets/dive-sites')
-    combined_path=ROOT/'assets/dive-sites/reviewed-discovery/combined-assignments.json'
+    # Batch evidence stays beside the private decision file, outside published assets.
+    target=ROOT/'assets/dive-sites'
+    combined_path=ROOT/'assets/dive-sites/assignments.json'
     existing=load(combined_path); by_id={e['site_id']:e for e in existing}; entries=[]
     exact=(ROOT/'datasets/dive-site-photos.js').read_text(encoding='utf-8')
     for decision in decisions['decisions']:
         if decision['role']!='hero':continue
         r=candidates[decision['review_id']]; sid=decision['site_id'];a=r['assessment'];site=sites[sid]
+        if not re.fullmatch(r'[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}',sid):raise ValueError('Invalid stable site UUID')
         assert sid==a['site_id'] and sid not in exact
         assert 'supporting' not in a['visual_type'] and r['dimensions'][0]>=1200 and r['dimensions'][1]>=675
         slug=site['slug']; page=ROOT/'dive-sites'/slug/'index.html'
@@ -78,7 +79,7 @@ def main():
             im=ImageOps.exif_transpose(image).convert('RGB');w,h=im.size
             for variant,size in [('desktop',(1600,900)),('mobile',(900,675))]:
                 ratio=size[0]/size[1];cw=min(w,round(h*ratio));ch=min(h,round(w/ratio));left=(w-cw)//2;top=(h-ch)//2;box=[left,top,left+cw,top+ch];boxes[variant]=box
-                crop=im.crop(box);crop.thumbnail(size,Image.Resampling.LANCZOS);name=sid+'-'+variant+'.jpg';crop.save(staged/name,quality=88,optimize=True);paths[variant]='/'+(target/name).relative_to(ROOT).as_posix()
+                crop=im.crop(box);crop.thumbnail(size,Image.Resampling.LANCZOS);name=sid+'-'+variant+'.jpg';crop.save(staged/name,quality=88,optimize=True);paths[variant]='/'+(target/sid/(variant+'.jpg')).relative_to(ROOT).as_posix()
         entries.append({'site_id':sid,'name':site['name'],'country':site['country'],'slug':slug,'review_id':r['review_id'],'source_page':r['source_page'],'creator':creator,'creator_links':links,'licence':license_name,'licence_url':licence,'role':'main','label':label,'alt':site['name']+' — '+label.lower()+', as described by the source.','source_description':r['description'],'licence_evidence_text':r.get('licence_evidence_text'),'identity_status':a['evidence'],'rights_status':a['licence_review'],'human_review_status':'Owner requests suitable local assignments; AI source/crop assessment, not independent human identity or ownership verification.','publication_status':'NOT_AUTHORIZED','editorial_status':'Owner-authorized local assignment; not deployed','original_dimensions':r['dimensions'],'original_sha256':sha,'crop_boxes':boxes,'change_notice':'Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Preserve credit, source and exact licence; applicable ShareAlike conditions remain.','source_review_manifest':decisions['source_manifest'],**paths})
     dump(work/'assignments.json',entries)
     for variant in ['desktop','mobile']:
@@ -89,10 +90,9 @@ def main():
             sheet.save(work/'crops'/f'{variant}-{offset//12+1}.jpg',quality=90)
     if args.apply:
         preserve_explicit_photo_priority()
-        target.mkdir(exist_ok=True)
         for e in entries:
-            for variant in ['desktop','mobile']:shutil.copy2(staged/(e['site_id']+'-'+variant+'.jpg'),target)
-        dump(target/'assignments.json',entries)
+            site_target=target/e['site_id'];site_target.mkdir(exist_ok=True)
+            for variant in ['desktop','mobile']:shutil.copy2(staged/(e['site_id']+'-'+variant+'.jpg'),site_target/(variant+'.jpg'))
         # A resumed, explicitly selected batch may correct credits for the SAME original.
         # Other batches remain byte-for-byte values; different originals were rejected above.
         refreshed={e['site_id']:e for e in entries}

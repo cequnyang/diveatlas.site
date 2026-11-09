@@ -47,7 +47,7 @@ def prepare(a):
     from matching import norm
     if H.exists():raise ValueError('Output directory already exists; use run/status/gallery to resume, never reset a pilot.')
     if not(1<=a.limit<=200 and 1<=a.minutes<=60 and 16<=a.requests<=650 and 0<=a.assets<=170):raise ValueError('Bounds:1..200 sites,1..60 minutes,16..650 requests,0..170 originals')
-    sites,inventory=published_inventory();assigned=load(ROOT/'assets/dive-sites/reviewed-discovery/combined-assignments.json')
+    sites,inventory=published_inventory();assigned=load(ROOT/'assets/dive-sites/assignments.json')
     exact=set(re.findall(r'"([a-f0-9-]{36})"\s*:',(ROOT/'datasets/dive-site-photos.js').read_text(encoding='utf-8')));excluded=exact|{e['site_id'] for e in assigned}
     available=[s for s in sites if s['site_id'] not in excluded];by_id={s['site_id']:s for s in available}
     by_name={}

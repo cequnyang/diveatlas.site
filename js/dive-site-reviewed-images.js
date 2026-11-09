@@ -8,7 +8,7 @@ async function apply() {
   if (!page || !supported.has(page.dataset.siteId) || page.dataset.reviewedImages) return;
   // Preserve the historical opt-in preview's own composition and review panel.
   if (new URL(location.href).searchParams.get('imageReview') === 'three') return;
-  const response = await fetch('/assets/dive-sites/reviewed-discovery/combined-assignments.json?v=1');
+  const response = await fetch('/assets/dive-sites/assignments.json?v=2');
   if (!response.ok) throw new Error(`Reviewed image assignments: HTTP ${response.status}`);
   const assignments = await response.json();
   const entry = assignments.find(item => item.site_id === page.dataset.siteId);
@@ -48,7 +48,7 @@ async function apply() {
 
   const styles = element('link');
   styles.rel = 'stylesheet';
-  styles.href = '/assets/dive-sites/reviewed/images.css?v=2';
+  styles.href = '/assets/dive-sites/images.css?v=3';
   const stylesReady = new Promise((resolve, reject) => {
     styles.addEventListener('load', resolve, {once: true});
     styles.addEventListener('error', () => reject(new Error('Reviewed image styles unavailable')), {once: true});

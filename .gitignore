@@ -140,3 +140,5 @@ playwright-report/
 !/tools/image_discovery/*.md
 !/tools/image_discovery/*.json
 !/tools/image_discovery/requirements.txt
+!/maintenance/organize_dive_site_photos.py
+!/tests/unit/dive-site-photo-storage.test.js

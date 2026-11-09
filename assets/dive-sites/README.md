@@ -1,6 +1,17 @@
 # Dive-site photos
 
-Store optimized WebP images under `assets/dive-sites/<siteId>/hero.webp`. Keep the original files elsewhere. A photo is requested only when its dive-site popup opens.
+All photos live under `assets/dive-sites/<siteId>/`, using the stable DiveAtlas UID. Keep original source archives outside this directory. Changing storage paths does not change photo identity, rights or approval status.
+
+- `hero.webp`: verified user-provided photo, registered in `datasets/dive-site-photos.js`.
+- `desktop.jpg`, `mobile.jpg`: reviewed detail-page hero derivatives; both variants may reference the same file when the composition is shared.
+- `thumbnail.jpg`: map, directory and related-card preview.
+- Other derivative names, optionally with a content-hash suffix: retained earlier compositions; do not overwrite them when adding a new image.
+
+`assignments.json` at this directory root is the active reviewed-photo manifest and retains current credits and review metadata. `images.css` is shared presentation. Only UID photo folders belong here; historical batch records stay outside the published assets. Preserve creator, source, exact licence, crop notices and review caveats when changing an assignment.
+
+Run `python maintenance/build_reviewed_site_thumbnails.py` to rebuild thumbnails and the browser catalog from active assignments. Apply additional explicitly selected images with `maintenance/apply_additional_reviewed_photos.py`; it writes directly to UID directories. Historical private batch scripts target the old layout and must be ported before reuse. `maintenance/organize_dive_site_photos.py` records the one-time migration; it refuses an already migrated tree.
+
+A photo is requested only when its dive-site popup opens.
 
 When a site has no verified user-provided photo, the popup uses an illustrative fallback from the public R2 feature-image catalog. It prefers a matching reviewed feature, then a matching legacy type; a stable site UUID selects among images of that type so the choice is consistent across visits. Sites without a matching type use a reef image as the general fallback. A verified user-provided photo always takes precedence. Fallback alt text and visible credits identify the image as illustrative and retain its source and license attribution.
 
