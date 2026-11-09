@@ -37,6 +37,27 @@ The generator rejects missing or malformed IDs, invalid coordinates, all records
 
 ## Area photo assignments
 
+Detail-photo first-paint rollout is controlled by `datasets/detail-photo-rollout.json`.
+The shared loader normalizes those sites' main-photo assignments from
+`assets/dive-sites/assignments.json` into the photo fields consumed by both the
+static generator and `export_dive_site_details.py`. The `all-main-assignments`
+selection includes every assigned main photo, including surface/context photos
+with their existing labels and visibility choices. Renderers contain no site-specific selection or assignment fetch.
+The selection retains the existing identity/rights caveats and does not authorize
+publication. Regenerate the detail JSON alongside the static pages when changing
+rollout membership; deploy those data artifacts together with renderer changes.
+
+Applying a reviewed photo batch with `maintenance/apply_additional_reviewed_photos.py --apply`
+now rebuilds the reviewed catalog, refreshes assigned photos in both existing
+detail-page outputs, and rebuilds `photo-dive-sites.html`. Running
+`python maintenance/build_reviewed_site_photo_catalog.py` does the same after
+other assignment edits. Staging without `--apply` does not refresh public outputs.
+The refresh preserves facts, map controls, recommendations and identity URLs;
+unchanged outputs are not rewritten. It validates the entire batch before writing
+detail outputs and fails visibly on missing/invalid pages or records. Run the
+normal initial detail exporters first in a clean checkout. For repair without
+rebuilding the browser catalog, use `python tools/refresh_detail_photos.py`.
+
 Openverse searches default to two result pages; `--openverse-pages 3` searches a third page only when page two is full. The option accepts 1–5 pages and preserves the same license, place-evidence, and duplicate-photo filters.
 
 Run `python tools/generate_area_photo_manifest.py --geo-anchors 10 --expand-existing --broad-title-search --site-name-search --openverse-search` to expand the current 1,620-area photo manifest. The script searches Wikimedia Commons by area and dive-site names, searches near recorded dive-site coordinates, and can query multiple pages of larger Openverse photos under CC BY, CC BY-SA, CC0 or public-domain licenses. It requires location evidence from an exact area-name phrase, a named dive-site phrase, a human-applied Openverse title/tag matching a named part of the area, or a Commons geotag within 10 km of a listed dive site. Generic or homonymous place components require a second local phrase. Openverse-indexed Commons files have their Commons page hashes resolved so duplicates across catalogs are removed. `--no-geotagged` skips coordinate search, `--geo-anchors` accepts 1–10 spatially spread locations per area (default 2), `--broad-title-search` searches area names without a parent qualifier, `--site-name-search` searches listed dive sites (up to 10 per area; default 5), `--openverse-search` adds large-photo searches by area-name components, `--expand-existing` preserves current assignments and searches only areas without photos, and `--refresh` ignores the temporary candidate and geotag caches. Requests use descriptive User-Agents and cache files in the operating system temporary directory so interrupted runs can resume. The manifest stores source-linked thumbnail URLs, creators and per-file licenses without adding image binaries to the repository. Candidates must have an accepted reuse license and attribution, adequate dimensions and an aesthetic-proxy score, and no explicit AI-generation marker. Clear off-topic subjects remain excluded. Underwater and marine-life photos rank ahead of coast and water landscapes, which rank ahead of other regional landscapes and wildlife. The selector tries each area's next-best qualifying image when its top choice is already assigned elsewhere, keeping source photos unique. Unmatched areas stay photo-free rather than inheriting a generic parent image. The aesthetic score is a shortlist proxy, not visual editorial approval; automated candidates still need inspection for beauty, exact subject relevance, and AI-generation indicators. Absence of an AI marker does not prove a file was human-made.

@@ -16,6 +16,21 @@ import stage_data_release
 
 
 class R2SourcePolicyTests(unittest.TestCase):
+    def test_verified_photo_copies_are_omitted_but_local_holds_remain(self):
+        import json
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'datasets').mkdir()
+            src = '/assets/dive-sites/example/hero.jpg'
+            digest = 'a' * 64
+            (root / 'datasets/dive-site-photo-r2.json').write_text(json.dumps({
+                'assets': {src: {'sha256': digest,
+                    'url': f'https://assets.diveatlas.site/site-photos/v1/{digest}.jpg'}}
+            }), encoding='utf-8')
+            with patch.object(prepare_pages, 'ROOT', root):
+                self.assertTrue(prepare_pages.is_excluded_path(Path(src.lstrip('/'))))
+                self.assertFalse(prepare_pages.is_excluded_path(Path('assets/dive-sites/held/hero.jpg')))
+
     def test_pages_builder_bundles_snapshots_only_for_local_builds(self) -> None:
         local_paths = {
             Path("data/coral_records_snapshot.js"),

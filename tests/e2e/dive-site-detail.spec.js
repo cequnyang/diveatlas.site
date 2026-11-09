@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const {displayURL,mockR2Images}=require('./photo-assets.cjs');
 
 const FIRST = '1a532e42-9890-4ea9-b239-0f5fbb836317';
 const SECOND = '2a532e42-9890-4ea9-b239-0f5fbb836317';
@@ -15,9 +16,59 @@ const record = (id = FIRST, name = 'Example reef') => ({
 
 test.beforeEach(async ({ page }) => {
   await page.route('https://**', route => route.abort());
+  await mockR2Images(page);
   // These tests exercise record loading and page startup, independently of the
   // environmental datasets tested by the existing chart/rating suites.
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
+});
+
+test('Dolphins Reef shared pilot renders its exported photo without an assignment lookup', async ({ page }) => {
+  const { execFileSync } = require('node:child_process');
+  const id = '95b478be-2487-49dc-81dd-46e553f54935';
+  const photos = JSON.parse(execFileSync('python', ['-c', 'import json; from pathlib import Path; from tools.detail_photo_data import load_detail_photos; print(json.dumps(load_detail_photos(Path.cwd())))'], {encoding:'utf8'}));
+  const exported = {...record(id, 'Dolphins Reef'), photo:photos[id]};
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:exported}));
+  // Disable the old post-render enhancement: initial photo and linked credit
+  // must come entirely from the record, even when assignments are unavailable.
+  await page.route('**/assets/dive-sites/assignments.json*', route => route.abort());
+  await page.goto(`/dive-site.html?id=dolphins-reef-${id}`);
+  const image = page.locator('.site-photo-gallery-main img');
+  await expect(image).toHaveAttribute('src', exported.photo.src);
+  await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
+  await expect(page.locator('.site-photo-gallery-main figcaption a', {hasText:'Source'})).toHaveAttribute('href', exported.photo.source_page);
+  await expect(page.locator('.site-photo-gallery-main figcaption a', {hasText:'CC BY-SA'})).toHaveAttribute('href', exported.photo.licence_url);
+  await expect(page.locator('.site-photo-gallery-main')).not.toContainText('Representative image');
+});
+
+test('catalog photos render initially on shared and static detail pages', async ({ page, browser }) => {
+  const { execFileSync } = require('node:child_process');
+  const assignments = require('../../assets/dive-sites/assignments.json');
+  const photos = JSON.parse(execFileSync('python', ['-c', 'import json; from pathlib import Path; from tools.detail_photo_data import load_detail_photos; print(json.dumps(load_detail_photos(Path.cwd())))'], {encoding:'utf8'}));
+  const samples = [assignments[0], assignments.find(entry => entry.hide_context_label),
+    assignments.find(entry => !entry.alt), assignments.find(entry => (entry.creator_links || []).length)];
+  await page.route('**/assets/dive-sites/assignments.json*', route => route.abort());
+  const noScripts = await browser.newContext({javaScriptEnabled:false, viewport:page.viewportSize()});
+  const staticPage = await noScripts.newPage();
+  await mockR2Images(staticPage);
+  try {
+    for (const entry of samples) {
+      await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:{...record(entry.site_id, entry.name), photo:photos[entry.site_id]}}));
+      await page.goto(`/dive-site.html?id=${entry.site_id}`);
+      await staticPage.goto(new URL(`/dive-sites/${entry.slug}/`, page.url()).href);
+      for (const target of [page, staticPage]) {
+        const hero = target.locator('.site-photo-gallery-main');
+        await expect.poll(() => hero.locator('img').evaluate(image => image.src))
+          .toBe(new URL(displayURL(entry.hero), target.url()).href);
+        await expect.poll(() => hero.locator('img').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+        await expect(hero.locator('figcaption')).toContainText(entry.creator);
+        await expect(hero.locator('figcaption a', {hasText:'Source'})).toHaveAttribute('href', entry.source_page);
+        for (const link of entry.creator_links || []) {
+          await expect.poll(() => hero.locator('figcaption a').filter({hasText:link.label}).first().evaluate(node => node.href)).toBe(new URL(link.url).href);
+        }
+        await expect(hero.locator('.site-photo-upload-label')).toHaveCount(0);
+      }
+    }
+  } finally { await noScripts.close(); }
 });
 
 test('explorer card expansion aligns with the real permalink preview on arrival', async ({ page }) => {

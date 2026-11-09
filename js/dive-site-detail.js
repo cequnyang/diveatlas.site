@@ -441,6 +441,10 @@
     }).join('')}</nav>`;
     const credit = photo?.source === 'illustrative-fallback'
       ? `Illustrative image · ${photo.credit || ''}` : photo?.credit || '';
+    const creatorLinks = Array.isArray(photo?.creator_links) ? photo.creator_links.map(link => safeUrl(link.url) ? ` · <a href="${escape(safeUrl(link.url))}" rel="noreferrer">${escape(link.label)}</a>` : '').join('') : '';
+    const creditMarkup = photo?.source_page
+      ? `${escape(credit)} · <a href="${escape(safeUrl(photo.source_page))}" rel="noreferrer">Source</a> · <a href="${escape(safeUrl(photo.licence_url))}" rel="noreferrer">${escape(photo.licence)}</a> · Cropped/resized${creatorLinks}`
+      : escape(credit);
     const facts = [];
     const fact = (label, value, attributes = '', className = '') => {
       if (value !== '' && value != null) facts.push(`<div class="fact ${className}"><dt>${escape(label)}</dt><dd ${attributes}>${escape(value)}</dd></div>`);
@@ -471,7 +475,7 @@
       <section class="site-hero" aria-labelledby="site-title">
         <div class="site-photo-feature"><figure class="site-photo site-photo-gallery">
           <div class="site-photo-gallery-main${photoUploadLabel ? ' site-photo-gallery-main--photo-upload' : ''}">${photoUrl
-            ? `<button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview"><img src="${escape(photoUrl)}" alt="${escape(photo.alt || site.name)}"></button>${photoUploadLabel}${credit ? `<figcaption>${escape(credit)}</figcaption>` : ''}`
+            ? `<button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview"><img src="${escape(photoUrl)}" alt="${escape(photo.alt || site.name)}"${photo?.source_page ? ' loading="eager" fetchpriority="high"' : ''}></button>${photoUploadLabel}${credit ? `<figcaption>${creditMarkup}</figcaption>` : ''}`
             : '<p>No site photo is available.</p>'}</div>
         </figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">
           <section class="site-photo-gallery-rating" data-rating-lat="${site.lat}" data-rating-lng="${site.lon}" aria-label="diveAtlas Rating" tabindex="0">

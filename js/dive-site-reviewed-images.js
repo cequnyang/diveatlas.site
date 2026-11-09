@@ -2,6 +2,7 @@
 // source captions support a surface/context label, not underwater verification.
 const page = document.querySelector('main.detail-page');
 import {reviewedSiteIds} from './dive-site-reviewed-image-sites.js';
+import {photoAssetUrl} from './dive-site-photo-asset-urls.js';
 const supported = new Set(reviewedSiteIds);
 
 async function apply() {
@@ -54,7 +55,7 @@ async function apply() {
   });
   document.head.append(styles);
   const image = element('img', 'reviewed-photo');
-  image.src = entry.hero;
+  image.src = photoAssetUrl(entry.hero);
   image.alt = entry.alt || (entry.label === 'Surface view'
     ? `${entry.name} — surface view, as described by the source; not an underwater view.`
     : 'Winch and associated parts on the deck of SS Thistlegorm, as described by the source.');
@@ -73,12 +74,7 @@ async function apply() {
     const caption = element('figcaption');
     caption.append(credit());
     const contribution = main.querySelector('.site-photo-upload-button');
-    const surfaceLabel = element('span', 'site-photo-upload-label reviewed-surface-label');
-    surfaceLabel.append(element('span', 'site-photo-upload-label__rest', entry.label));
-    main.replaceChildren(button,
-      ...(entry.hide_context_label ? [] : [surfaceLabel,
-        element('span', 'site-photo-upload-label-mobile reviewed-surface-label', entry.label)]),
-      caption);
+    main.replaceChildren(button, caption);
     if (contribution) main.append(contribution);
   } else {
     const section = element('section', 'site-intro-detail reviewed-support detail-section');
@@ -91,15 +87,30 @@ async function apply() {
   }
   page.dataset.reviewedImages = entry.role;
   page.dataset.imagePublicationStatus = 'not-authorized';
-  button.addEventListener('click', event => {
-    event.preventDefault();
-    event.stopImmediatePropagation();
+  const openPreview = () => {
+    const reviewed = window.DiveAtlasReviewedPhotos?.get(entry.site_id);
+    if (reviewed && window.DiveAtlasReviewedPhotos.openPreview(reviewed)) return;
     const content = credit(true);
     // This enlarges the authored derivative; originals remain in the review
     // archive and are reachable through the exact Commons source link.
     window.DiveAtlasPhotoPreview?.open({src: image.currentSrc, alt: image.alt, credit: content.textContent});
     document.querySelector('.dive-photo-preview__credit')?.replaceChildren(content);
+  };
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    openPreview();
   }, true);
+  // Long hero titles can cover the underlying image button on small screens.
+  // Keep those non-interactive overlay pixels usable without stealing actual
+  // navigation/share controls or opening the viewer during text selection.
+  hero.addEventListener('click', event => {
+    const target = event.target;
+    if (!(target instanceof Element) || !target.closest('.hero-copy') ||
+        target.closest('a, button, input, select, textarea, [role="button"]') ||
+        window.getSelection()?.toString()) return;
+    openPreview();
+  });
 
 }
 

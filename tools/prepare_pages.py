@@ -16,8 +16,10 @@ from urllib.parse import urlsplit, urlunsplit
 
 if __package__:
     from .site_header_assets import install_shared_header_assets
+    from .photo_asset_urls import migrated_photo_paths, rollback_photo_files
 else:
     from site_header_assets import install_shared_header_assets
+    from photo_asset_urls import migrated_photo_paths, rollback_photo_files
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -155,6 +157,8 @@ def is_curated_ocean_heat_asset(relative: Path) -> bool:
 
 
 def is_excluded_path(relative: Path) -> bool:
+    if '/' + relative.as_posix() in migrated_photo_paths(ROOT):
+        return True
     return any(relative == prefix or prefix in relative.parents for prefix in EXCLUDED_PATH_PREFIXES)
 
 
@@ -269,6 +273,7 @@ def tracked_and_untracked_site_files(*, externalize_tides: bool = False, externa
             paths.append(relative)
     if not externalize_data:
         paths.extend(path for path in local_external_data_files() if path not in paths)
+    paths.extend(Path(path) for path in rollback_photo_files(ROOT) if Path(path) not in paths)
     return paths
 
 

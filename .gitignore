@@ -146,3 +146,17 @@ playwright-report/
 !/tests/unit/test_shared_dive_site_heroes.py
 !/maintenance/build_reviewed_site_photo_catalog.py
 !/maintenance/photo_assignment_publication.py
+
+# Shared detail-photo normalization is source, not generated tooling.
+!tools/detail_photo_data.py
+!tools/refresh_detail_photos.py
+!/maintenance/build_photo_site_directory.py
+!/tests/unit/additional-preview-options.test.js
+!/maintenance/deduplicate_site_photos.py
+!/maintenance/upload_dive_site_photos_r2.py
+!tools/photo_asset_urls.py
+!/tests/unit/test_photo_asset_urls.py
+!/tests/unit/photo-asset-urls.test.js
+!/tests/e2e/photo-assets.cjs
+!/tests/unit/test_photo_asset_upload_plan.py
+!/assets/dive-sites/.gitignore

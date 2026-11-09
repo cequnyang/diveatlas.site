@@ -1,4 +1,15 @@
 import {reviewedPhotos} from './dive-site-reviewed-photo-catalog.js';
+import {additionalPreviewPhotos} from './dive-site-additional-preview-photos.js';
+import {photoAssetUrl} from './dive-site-photo-asset-urls.js';
+
+// Preview-only selections must never enter byId/bySlug: those maps also drive
+// hero precedence, directory thumbnails and marker imagery.
+const additionalById = new Map();
+for (const photo of additionalPreviewPhotos) {
+  photo.src = photoAssetUrl(photo.src);
+  if (!additionalById.has(photo.siteId)) additionalById.set(photo.siteId, []);
+  additionalById.get(photo.siteId).push(photo);
+}
 
 const byId = new Map(reviewedPhotos.map(photo => [photo.siteId, photo]));
 const bySlug = new Map(reviewedPhotos.map(photo => [photo.slug, photo]));
@@ -17,8 +28,28 @@ export function photoForLink(href) {
 // A stable UUID or the existing published permalink is required; names and
 // proximity must never propagate an assignment to a different site.
 window.DiveAtlasReviewedPhotos = {
+  assetUrl: photoAssetUrl,
+  // The same original may have been promoted from an extra option to the hero.
+  // Keep its evidence/asset record, but show that photograph only once.
+  additionalForSite: id => (additionalById.get(id) || []).filter(photo =>
+    photo.originalSha256 !== byId.get(id)?.originalSha256),
   get: id => byId.get(id) || null,
   photoForLink,
+  openPreview(photo, options = {}) {
+    if (!photo || !window.DiveAtlasPhotoPreview) return false;
+    const photos = Array.isArray(photo.photos) && photo.photos.length ? photo.photos : [photo];
+    window.DiveAtlasPhotoPreview.open({
+      photos: photos.map(item => ({
+        src: item.fullSrc || item.src,
+        alt: item.alt,
+        credit: [item.role === 'supporting' ? 'Supporting photo' : '', item.label, item.creator].filter(Boolean).join(' · '),
+        creditLinks: item.links,
+        creditSuffix: item.role === 'additional' ? 'Resized' : 'Cropped/resized',
+        attributionDetail: item.attributionDetail
+      }))
+    }, options);
+    return true;
+  },
   appendCredit(node, photo) {
     node.replaceChildren(document.createTextNode(photo.label + ' · ' + photo.creator + ' · '));
     for (const [index, item] of photo.links.entries()) {
@@ -40,27 +71,22 @@ document.head.append(style);
 function labelThumbnail(card, image, photo) {
   card.querySelectorAll('[data-reviewed-thumbnail-tag]').forEach(node => node.remove());
   card.classList.add('reviewed-thumbnail-card');
-  const label = document.createElement('span');
   const credit = document.createElement('span');
-  for (const node of [label, credit]) {
+  for (const node of [credit]) {
     node.dataset.reviewedThumbnailTag = '';
     node.className = 'reviewed-thumbnail-tag';
     node.setAttribute('aria-hidden', 'true');
   }
   credit.classList.add('reviewed-thumbnail-tag--credit');
   credit.textContent = `${photo.creator} · ${photo.license}`;
-  card.append(label, credit);
+  card.append(credit);
   const position = () => {
     const frame = card.getBoundingClientRect();
     const box = image.getBoundingClientRect();
-    label.textContent = box.width < 120
-      ? (photo.label.includes('Above/below') ? 'Above/below' : photo.label.includes('Underwater') ? 'Underwater' : photo.label.includes('context') || photo.label.includes('Nearby') ? 'Context' : 'Surface')
-      : photo.label;
-    for (const node of [label, credit]) {
+    for (const node of [credit]) {
       node.style.left = `${box.left - frame.left + 2}px`;
       node.style.width = `${Math.max(0, box.width - 4)}px`;
     }
-    label.style.top = `${box.top - frame.top + 2}px`;
     credit.style.top = `${box.bottom - frame.top - 14}px`;
   };
   position();

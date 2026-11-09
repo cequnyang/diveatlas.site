@@ -11523,6 +11523,9 @@ ZSD·2016–2025</span></span>
   }
 
   function openDivePhotoPreview(photo, siteName, popup) {
+    if (photo.source === 'reviewed-context' && window.DiveAtlasReviewedPhotos?.openPreview(photo, {
+      previewLabel: t('divePhotoPreview'), closeLabel: t('divePhotoPreviewClose'), popup
+    })) return;
     window.DiveAtlasPhotoPreview?.open({
       src: photo.fullSrc || photo.src,
       alt: photo.alt || siteName,
@@ -20200,6 +20203,10 @@ ZSD·2016–2025</span></span>
       loadLocalScript('datasets/dive-site-name-translations.js?v=1')
     ])
       .then(() => {
+        for (const photo of Object.values(window.DIVE_SITE_PHOTOS || {})) {
+          photo.src = window.DiveAtlasReviewedPhotos?.assetUrl(photo.src) || photo.src;
+          if (photo.fullSrc) photo.fullSrc = window.DiveAtlasReviewedPhotos?.assetUrl(photo.fullSrc) || photo.fullSrc;
+        }
         const sites = window.DIVE_SITES_DATA;
         if (!Array.isArray(sites)) {
           throw new Error('Dive-site dataset did not expose an array.');
@@ -22319,8 +22326,6 @@ ZSD·2016–2025</span></span>
     if (useSitePhoto) {
       if (photo.source === 'illustrative-fallback') {
         drawPhotoCaption(t('divePhotoIllustrative'), 12, 12, width * .48);
-      } else if (photo.source === 'reviewed-context') {
-        drawPhotoCaption(photo.label, 12, 12, width * .48);
       }
       if (photo.credit) {
         const creditText = `${t('divePhotoCredit')}: ${photo.credit}`;
@@ -22626,14 +22631,14 @@ ZSD·2016–2025</span></span>
     });
 
     image.hidden = !useSiteImage || !sharePreviewSitePhoto;
-    label.hidden = !useSiteImage || !sharePreviewSitePhoto || !['illustrative-fallback', 'reviewed-context'].includes(sharePreviewSitePhoto.source);
+    label.hidden = !useSiteImage || !sharePreviewSitePhoto || sharePreviewSitePhoto.source !== 'illustrative-fallback';
     credit.hidden = !useSiteImage || !sharePreviewSitePhoto?.credit;
     if (useSiteImage && sharePreviewSitePhoto) {
       const photo = sharePreviewSitePhoto;
       const source = new URL(photo.fullSrc || photo.src, window.location.href).href;
       image.alt = photo.alt || '';
       if (image.src !== source) image.src = source;
-      label.textContent = photo.source === 'reviewed-context' ? photo.label : t('divePhotoIllustrative');
+      label.textContent = t('divePhotoIllustrative');
       credit.textContent = `${t('divePhotoCredit')}: ${photo.credit}`;
       if (photo.source === 'reviewed-context') window.DiveAtlasReviewedPhotos.appendCredit(credit, photo);
       els.sharePreviewPopupPointer.hidden = true;
@@ -28822,9 +28827,7 @@ function closeShareDialog() {
                 `<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>` +
                 `<circle cx="12" cy="13" r="3.25"/></svg>${escapeHtml(t('divePhotoUploadMobileCta'))}</span></button>`
               : '')
-          : photo.source === 'reviewed-context'
-            ? `<span class="dive-popup-photo-label dive-popup-photo-label--reviewed" style="display:block;top:10px;left:10px;pointer-events:none">${escapeHtml(photo.label)}</span>`
-            : '') +
+          : '') +
         `</div>`,
         `<div class="dive-popup-body">`
       );

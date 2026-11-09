@@ -66,7 +66,7 @@ def public_records(rows, photos, summaries, fallback_base, fallback_photos):
             "characteristics": row_value(row, 7),
             "aliases": metadata[site_id]["aliases"], "categories": categories,
             "summary": summary.get("description", ""), "sources": sources,
-            "photo": {key: photo.get(key, "") for key in ("src", "alt", "credit", "source")} if photo else None,
+            "photo": {key: photo.get(key, "") for key in ("src", "alt", "credit", "source", "source_page", "licence", "licence_url", "label", "hide_context_label", "creator_links")} if photo else None,
         })
     return seo.record_policy.canonicalize_views(records)
 

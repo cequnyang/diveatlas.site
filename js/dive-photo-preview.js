@@ -34,6 +34,30 @@
     credit.setAttribute('aria-live', 'polite');
     credit.setAttribute('aria-atomic', 'true');
     credit.addEventListener('click', event => event.stopPropagation());
+    const renderCredit = photo => {
+      // One inline container lets the outer flex layout wrap the entire credit;
+      // separate flex children squeeze source/licence links into narrow columns.
+      const content = document.createElement('div');
+      content.textContent = photo.credit;
+      for (const item of photo.creditLinks || []) {
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.label;
+        link.rel = 'noreferrer';
+        content.append(' · ', link);
+      }
+      if (photo.creditSuffix) content.append(' · ', photo.creditSuffix);
+      if (photo.attributionDetail) {
+        // Some collections require an exact acknowledgement beyond the artist.
+        // Keep it available per image without restoring a long licence paragraph.
+        const detail = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = 'Collection credit';
+        detail.append(summary, document.createTextNode(photo.attributionDetail));
+        content.append(detail);
+      }
+      credit.replaceChildren(content);
+    };
     layout.append(imagePane, credit, rail);
     dialog.append(closeButton, layout);
 
@@ -56,7 +80,7 @@
       dialog._diveAtlasPhotoIndex = nextIndex;
       image.src = photo.src;
       image.alt = photo.alt;
-      credit.textContent = photo.credit;
+      renderCredit(photo);
       rail.querySelectorAll('.dive-photo-preview__thumbnail').forEach((option, i) => {
         option.setAttribute('aria-pressed', String(i === nextIndex));
       });
@@ -149,6 +173,7 @@
       dialog._diveAtlasBackgroundPopup = null;
     });
     document.body.append(dialog);
+    dialog._diveAtlasRenderCredit = renderCredit;
     return dialog;
   }
 
@@ -159,10 +184,20 @@
     ) {
       const photoOptions = (Array.isArray(photos) && photos.length ? photos : [{ src, alt, credit }])
         .filter(photo => photo && typeof photo.src === 'string' && photo.src);
+      // A detail page supplies the stable UUID. Never infer an assignment from
+      // a name, a coordinate, or the currently open map popup.
+      const siteId = document.querySelector('main.detail-page')?.dataset.siteId;
+      const additions = window.DiveAtlasReviewedPhotos?.additionalForSite?.(siteId) || [];
+      const seen = new Set(photoOptions.map(photo => new URL(photo.src, location.href).href));
+      for (const photo of additions) {
+        const url = new URL(photo.src, location.href).href;
+        if (seen.has(url)) continue;
+        seen.add(url);
+        photoOptions.push({...photo, credit: [photo.label, photo.credit].filter(Boolean).join(' · ')});
+      }
       if (!photoOptions.length) return;
       const activeDialog = getDialog({ preview: previewLabel, close: closeLabel });
       const image = activeDialog.querySelector('.dive-photo-preview__image');
-      const creditElement = activeDialog.querySelector('.dive-photo-preview__credit');
       const rail = activeDialog.querySelector('.dive-photo-preview__rail');
       const initialIndex = Number.isInteger(selectedPhotoIndex)
         ? Math.max(0, Math.min(selectedPhotoIndex, photoOptions.length - 1))
@@ -171,7 +206,13 @@
         src: photo.src,
         thumbnailSrc: typeof photo.thumbnailSrc === 'string' && photo.thumbnailSrc ? photo.thumbnailSrc : photo.src,
         alt: typeof photo.alt === 'string' ? photo.alt : '',
-        credit: typeof photo.credit === 'string' ? photo.credit : ''
+        credit: typeof photo.credit === 'string' ? photo.credit : '',
+        // Per-image links must survive both thumbnail selection and touch swipes.
+        // Plain-credit callers retain the original single-image behavior.
+        creditLinks: (Array.isArray(photo.creditLinks) ? photo.creditLinks : []).filter(item =>
+          item && typeof item.label === 'string' && /^https?:\/\//i.test(item.url)),
+        creditSuffix: typeof photo.creditSuffix === 'string' ? photo.creditSuffix : '',
+        attributionDetail: typeof photo.attributionDetail === 'string' ? photo.attributionDetail : ''
       }));
       rail.replaceChildren(...activeDialog._diveAtlasPhotos.map((photo, index) => {
         const thumbnail = document.createElement('button');
@@ -192,7 +233,7 @@
       activeDialog._diveAtlasPhotoIndex = initialIndex;
       image.src = selectedPhoto.src;
       image.alt = selectedPhoto.alt;
-      creditElement.textContent = selectedPhoto.credit;
+      activeDialog._diveAtlasRenderCredit(selectedPhoto);
       if (!activeDialog.open) {
         activeDialog.showModal();
         const backgroundPopup = popup?.getElement?.();

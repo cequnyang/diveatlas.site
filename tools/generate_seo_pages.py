@@ -23,9 +23,13 @@ from urllib.parse import quote
 if __package__:
     from . import dive_site_record_policy as record_policy
     from .site_header_assets import shared_header_assets, site_header_fallback
+    from .detail_photo_data import load_detail_photos
+    from .photo_asset_urls import photo_asset_url, photo_asset_available
 else:
     import dive_site_record_policy as record_policy
     from site_header_assets import shared_header_assets, site_header_fallback
+    from detail_photo_data import load_detail_photos
+    from photo_asset_urls import photo_asset_url, photo_asset_available
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -182,9 +186,10 @@ def load_photos() -> dict[str, dict[str, str]]:
             and fields.get("alt")
             and fields.get("credit")
             and local_webp
-            and image_path.is_file()
+            and photo_asset_available(ROOT,image)
         ):
-            photos[match.group(1).lower()] = fields
+            photos[match.group(1).lower()] = {**fields, "src": photo_asset_url(ROOT, image)}
+    photos.update(load_detail_photos(ROOT))
     return photos
 
 
@@ -997,6 +1002,15 @@ def generate_site_page(
         image_url = str(photo["src"]) if re.match(r"^https?://", str(photo["src"]), re.I) else "/" + str(photo["src"]).lstrip("/")
         credit_text = f'Illustrative image · {photo.get("credit", "")}' if photo.get("source") == "illustrative-fallback" else photo.get("credit", "")
         credit = f'<figcaption>{html_text(credit_text)}</figcaption>' if credit_text else ""
+        if photo.get("source_page"):
+            credit = (f'<figcaption>{html_text(photo["credit"])} · '
+                      f'<a href="{html_text(photo["source_page"])}" rel="noreferrer">Source</a> · '
+                      f'<a href="{html_text(photo["licence_url"])}" rel="noreferrer">{html_text(photo["licence"])}</a>'
+                      ' · Cropped/resized</figcaption>')
+        if photo.get("creator_links"):
+            creator_links = "".join(f' · <a href="{html_text(link["url"])}" rel="noreferrer">{html_text(link["label"])}</a>' for link in photo["creator_links"])
+            credit = credit.replace("</figcaption>", creator_links + "</figcaption>")
+        image_loading = 'loading="eager" fetchpriority="high"' if photo.get("source_page") else 'loading="lazy"'
         upload_label = ""
         if photo.get("source") == "illustrative-fallback":
             upload_url = f'/?addPhoto=1&amp;site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14'
@@ -1019,7 +1033,7 @@ def generate_site_page(
         photo_markup = (
             f'<div class="site-photo-feature"><figure class="site-photo site-photo-gallery">'
             f'<div class="site-photo-gallery-main{" site-photo-gallery-main--photo-upload" if upload_label else ""}"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
-            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" loading="lazy"></button>{upload_label}{credit}</div>'
+            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" {image_loading}></button>{upload_label}{credit}</div>'
             f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
             f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
             f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span data-i18n-ignore>Rating</span></div>'

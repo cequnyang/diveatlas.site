@@ -60,7 +60,9 @@ def main():
         r=candidates[decision['review_id']]; sid=decision['site_id'];a=r['assessment'];site=sites[sid]
         if not re.fullmatch(r'[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}',sid):raise ValueError('Invalid stable site UUID')
         assert sid==a['site_id'] and sid not in exact
-        assert 'supporting' not in a['visual_type'] and r['dimensions'][0]>=1200 and r['dimensions'][1]>=675
+        # The owner accepts small real photos. Dimensions establish a valid
+        # source, not editorial eligibility; identity/rights decisions stay separate.
+        assert 'supporting' not in a['visual_type'] and min(r['dimensions'])>0
         slug=site['slug']; page=ROOT/'dive-sites'/slug/'index.html'
         assert 'data-site-id="'+sid+'"' in page.read_text(encoding='utf-8'),(sid,slug)
         original=source_run/state['files'][r['file_id']]['asset'];sha=hashlib.sha256(original.read_bytes()).hexdigest()
@@ -103,5 +105,9 @@ def main():
         public=[public_assignment(e) for e in combined]
         dump(combined_path,public)
         (ROOT/'js/dive-site-reviewed-image-sites.js').write_text('// Generated from combined-assignments.json; context photos stay outside the exact-site registry.\nexport const reviewedSiteIds = '+json.dumps([e['site_id'] for e in combined],indent=2)+';\n',encoding='utf-8')
+        # Applying a batch must update first-render records/pages as well as the
+        # delayed browser enhancement. Staging remains free of public writes.
+        from build_reviewed_site_photo_catalog import build
+        build()
     print(json.dumps({'staged':len(entries),'applied':bool(args.apply)}))
 if __name__=='__main__':main()

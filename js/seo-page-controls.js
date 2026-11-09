@@ -3,7 +3,7 @@ import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Revi
 // context photos in one component so static exports cannot diverge from the shell.
 import('/js/dive-site-reviewed-image-sites.js').then(({reviewedSiteIds}) => {
   if (reviewedSiteIds.includes(document.querySelector('main.detail-page')?.dataset.siteId)) {
-    return import('/js/dive-site-reviewed-images.js?v=5');
+    return import('/js/dive-site-reviewed-images.js?v=6');
   }
 }).catch(error => console.error('Reviewed image component unavailable:', error));
 

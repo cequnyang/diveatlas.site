@@ -152,6 +152,36 @@ class PublicDetailRecordsTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             policy.normalize_records(self.identity_rows(), {}, reviews)
 
+    def test_rollout_photo_is_shared_by_json_and_static_export(self):
+        from tools.detail_photo_data import load_detail_photos
+        from tools.photo_asset_urls import photo_asset_url
+        photos = load_detail_photos(seo.ROOT)
+        self.assertGreater(len(photos), 1)
+        import json
+        assignments = json.loads((seo.ROOT / "assets/dive-sites/assignments.json").read_text(encoding="utf-8"))
+        self.assertEqual(set(photos), {entry["site_id"] for entry in assignments if entry["role"] == "main"})
+        for entry in assignments:
+            if entry["role"] != "main":
+                continue
+            photo = photos[entry["site_id"]]
+            self.assertEqual(photo["src"], photo_asset_url(seo.ROOT, entry["hero"]))
+            self.assertEqual(photo["hide_context_label"], entry.get("hide_context_label", False))
+            for link in entry.get("creator_links", []):
+                self.assertIn(link, photo["creator_links"])
+        row = self.row()
+        row[12] = next(iter(photos))
+        summaries = {row[12]: {"description": "A published pilot description"}}
+        exported = public_records([row], photos, summaries, "", {})[0]
+        candidates, _ = seo.validated_candidates([row], photos, summaries, "", {})
+        site = candidates[0]
+        recommendations = seo.build_recommendation_index(candidates)[row[12]]
+        _, markup = seo.generate_site_page(site, {}, recommendations, "/candidates.json")
+        self.assertEqual(exported["photo"], photos[row[12]])
+        for key in ("src", "source_page", "licence_url"):
+            self.assertIn(exported["photo"][key], markup)
+        self.assertIn('loading="eager" fetchpriority="high"', markup)
+        self.assertNotIn("Representative image", markup)
+
     def test_static_page_renders_the_same_evidence_and_all_levels(self):
         row = self.row(); row[5] = 26; row[6] = "Beginner | Advanced | Expert"
         records, _ = seo.validated_candidates([row], {}, {row[12]: {"description": "A summary"}}, "", {})
@@ -343,6 +373,46 @@ class PublicDetailRecordsTest(unittest.TestCase):
         self.assertEqual(catalog["sites"][0]["features"], ["wall", "reef"])
         self.assertEqual(catalog["sites"][0]["feature_values"], ["reef", "wall"])
         self.assertEqual(catalog["sites"][0]["photo"], "/reef.webp")
+
+
+class DetailPhotoRefreshTest(unittest.TestCase):
+    def test_refresh_preserves_unrelated_content_and_is_repeatable(self):
+        import json
+        import tempfile
+        from tools import refresh_detail_photos as refresh_module
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            assignments = root / "assets/dive-sites/assignments.json"
+            assignments.parent.mkdir(parents=True)
+            assignments.write_text(json.dumps([{"site_id": "example", "slug": "example"}]))
+            page = root / "dive-sites/example/index.html"
+            page.parent.mkdir(parents=True)
+            page.write_text('<main data-site-id="example"><div class="site-photo-feature"><figure>old</figure><aside>map</aside></div><p>facts</p></main>')
+            record_path = root / refresh_module.details.DATA_PATH / "example.json"
+            record_path.parent.mkdir(parents=True)
+            record_path.write_text(json.dumps({"site_id": "example", "photo": {}, "related": ["keep"], "identity_urls": ["keep"]}))
+            photo = {"source": "reviewed-assignment", "src": "/hero.jpg"}
+            with patch.object(seo, 'load_photos', return_value={"example": photo}), \
+                 patch.object(seo, 'load_rows', return_value=[]), \
+                 patch.object(seo, 'load_summaries', return_value={}), \
+                 patch.object(seo, 'load_fallback_photos', return_value=("", {})), \
+                 patch.object(seo, 'validated_candidates', return_value=([{"site_id": "example"}], {})), \
+                 patch.object(seo, 'generate_site_page', return_value=("title", '<div class="site-photo-feature"><figure>new</figure>')):
+                result = refresh_module.refresh(root)
+                self.assertEqual(result["static_updated"], 1)
+                self.assertEqual(result["shared_updated"], 1)
+                self.assertIn('<aside>map</aside></div><p>facts</p>', page.read_text())
+                record = json.loads(record_path.read_text())
+                self.assertEqual(record["photo"], photo)
+                self.assertEqual(record["related"], ["keep"])
+                self.assertEqual(record["identity_urls"], ["keep"])
+                self.assertEqual(refresh_module.refresh(root), {"sites": 1, "static_updated": 0, "shared_updated": 0})
+                # An incomplete batch must fail before writing an earlier page.
+                before = page.read_bytes()
+                assignments.write_text(json.dumps([{"site_id": "example", "slug": "example"}, {"site_id": "example", "slug": "missing"}]))
+                with self.assertRaises(FileNotFoundError):
+                    refresh_module.refresh(root)
+                self.assertEqual(page.read_bytes(), before)
 
 
 if __name__ == "__main__":
