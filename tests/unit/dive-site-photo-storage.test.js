@@ -45,7 +45,13 @@ test('active references resolve to canonical UUID assets without orphaned JPEGs'
       assert.ok(uid.test(entry.site_id));
       assert.equal(entry.desktop, undefined);
       assert.equal(entry.mobile, undefined);
-      assert.match(entry.hero, /^\/assets\/dive-sites\/[a-f0-9-]{36}\/hero\.jpg$/);
+      // Reuse a selected preview's canonical bytes when promoting it; the role
+      // belongs to the assignment, avoiding a duplicate hero.jpg payload.
+      assert.match(entry.hero, /^\/assets\/dive-sites\/[a-f0-9-]{36}\/(?:hero|preview-option-[a-f0-9]+)\.jpg$/);
+      if (entry.hero.includes('/preview-option-')) {
+        assert.ok(previewOnly.some(photo => photo.siteId === entry.site_id &&
+          photo.src === entry.hero && photo.originalSha256 === entry.original_sha256));
+      }
       expected.add(entry.hero);
       const additional = entry.additional_photos || [];
       assert.ok(available(entry.hero), entry.hero);

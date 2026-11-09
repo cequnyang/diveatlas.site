@@ -34185,5 +34185,1321 @@ export const reviewedPhotos = [
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED",
     "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "1c18f082-0907-4fbf-b4ae-047deb90230a",
+    "slug": "playa-la-bombilla",
+    "src": "https://assets.diveatlas.site/site-photos/v1/001860cd03d7d54433ab4f05922de34b5364d806f80fd049d0ad7f1f65e26a36.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/001860cd03d7d54433ab4f05922de34b5364d806f80fd049d0ad7f1f65e26a36.jpg",
+    "originalSha256": "65bcef6a450cb436e8c0e458d23eaeb6a6e7c5dba53dd0e53bc9e23b059222dc",
+    "alt": "Playa La Bombilla surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Ozonski / Wikimedia Commons / CC BY 3.0 · CC BY 3.0 · Cropped/resized",
+    "creator": "Ozonski / Wikimedia Commons / CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playa_el_Charcon_-_panoramio_%282%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_el_Charcon_-_panoramio_%282%29.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY3.0, attribution Ozonski. Commons Panoramio upload bot verified licence21 March2017. No external Panoramio or archive accessed. Preserve attribution, source, licence and change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "60d50d4f-e1ec-40df-a4b6-8a2e1dcd8549",
+    "slug": "cala-calella",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8100016500cbe84053b2dcab5fa4f4d301071565cfea535a74387073177d0a2d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8100016500cbe84053b2dcab5fa4f4d301071565cfea535a74387073177d0a2d.jpg",
+    "originalSha256": "a60716ecb94d2f670d97b9bd889f6253619b7ef4c805995e296a65317b40fc56",
+    "alt": "Cala Calella surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Franpivi / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Franpivi / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cala_Calella.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Calella.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA 4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "d756deae-fdca-42f8-98c5-650510c3a034",
+    "slug": "bahia-alcala",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cc9a99d240e37d465d79737d7aac15764bea5b45c518bd3d8a10fd840691bbf5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cc9a99d240e37d465d79737d7aac15764bea5b45c518bd3d8a10fd840691bbf5.jpg",
+    "originalSha256": "747fdfac7ad6fba6a03bbbf3518f1d3a51b4fb26cd868d891a100dc5c094d925",
+    "alt": "Bahia Alcalá surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Falk2 / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Falk2 / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:J00_778_Playa_de_Alcal%C3%A1.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:J00_778_Playa_de_Alcal%C3%A1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0; Commons retains original Falk2 upload provenance from German Wikipedia. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "673088dc-750d-4fbd-8afd-cb34fae5d59a",
+    "slug": "playa-chica",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b98cc04eef48cec1d77a9057c5316e8b4890c9d553d503ef536f18496727201c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b98cc04eef48cec1d77a9057c5316e8b4890c9d553d503ef536f18496727201c.jpg",
+    "originalSha256": "40546f02fa17014f93edaec1069c1df33310ab6e08e3ed80229d5f01e5c835a5",
+    "alt": "Playa Chica surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Bthv / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Bthv / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playa_Chica_Water_Clarity.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_Chica_Water_Clarity.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "51e47628-012d-4569-aef6-4314c0e9dccf",
+    "slug": "cala-egos-north",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5f74b8659814177f006709c9091446d4d5579436fbfed7a4c59db4576dd148c6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5f74b8659814177f006709c9091446d4d5579436fbfed7a4c59db4576dd148c6.jpg",
+    "originalSha256": "ba396508de11680d435ee5522c9c16c775e241938a32b4fc7cfc200ac3057f1b",
+    "alt": "Cala Egos North surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Xxlstier / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Xxlstier / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cala_Egos_06.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Egos_06.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "0db7e088-c57f-412e-a193-5a4937a1685f",
+    "slug": "kerveli-scouba-diving",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1258c53d3fdca184f446d350d15637bc69a360700f4e00eb16d4d0c56537e832.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1258c53d3fdca184f446d350d15637bc69a360700f4e00eb16d4d0c56537e832.jpg",
+    "originalSha256": "ee4178288fad4b14e3c3eb0d4b8cee7c777e6db47088cb2dbfd6520df552424a",
+    "alt": "Kerveli scouba diving surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Robert Powell / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Robert Powell / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Kerveli%2C_Samos._-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kerveli%2C_Samos._-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA3.0, attribution Robert Powell; Commons Panoramio upload bot licence verification3 December2016 retained, no external archive/source visited. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "1157a0ae-9a16-4247-9732-afc392b790b5",
+    "slug": "castle-toroni",
+    "src": "https://assets.diveatlas.site/site-photos/v1/04341cb89cdbf17a0994caed43290d32714677edd70e55fb148ca288343ba16a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/04341cb89cdbf17a0994caed43290d32714677edd70e55fb148ca288343ba16a.jpg",
+    "originalSha256": "4f86357182aa421184a7e69d530b6d0fe5f65a91803d672d4bebcb489a690b8a",
+    "alt": "Castle Toroni surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Bukvoed / Wikimedia Commons / CC BY 4.0 · CC BY 4.0 · Cropped/resized",
+    "creator": "Bukvoed / Wikimedia Commons / CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Toroni-castle-1212.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Toroni-castle-1212.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0; preserve creator, source, licence and change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "09ea5851-6db8-4f1f-9a8a-74ba68ba8c57",
+    "slug": "pirgo",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e4d0a04e208b8918ce48faef0fa4fd66fc1c9b0b41628f9a0025a809e22d71eb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e4d0a04e208b8918ce48faef0fa4fd66fc1c9b0b41628f9a0025a809e22d71eb.jpg",
+    "originalSha256": "b3bff7dc5df3790f92779499b55f46838c6a6d10bd761fbb85e26acd717e4a48",
+    "alt": "Pirgo surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Mstyslav Chernov / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Mstyslav Chernov / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Il_Pirgo%2C_the_ornate_pier_leading_from_the_port_of_Civitavecchia%2C_over_coast_waters_of_the_Tyrrhenian_Sea%2C_Lazio%2C_Italy.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Il_Pirgo%2C_the_ornate_pier_leading_from_the_port_of_Civitavecchia%2C_over_coast_waters_of_the_Tyrrhenian_Sea%2C_Lazio%2C_Italy.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Self-photographed CC BY-SA3.0, Mstyslav Chernov, mstyslav-chernov.com. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "48b9d6fa-bc9d-4a2c-9c2c-d21aee1291d2",
+    "slug": "assenza",
+    "src": "https://assets.diveatlas.site/site-photos/v1/31db070492c6ee710c888ef01b354aefaa12c648a2b818a4a105b1234329c3b3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/31db070492c6ee710c888ef01b354aefaa12c648a2b818a4a105b1234329c3b3.jpg",
+    "originalSha256": "4596e28070de85ee808d5cd73c27bad0093a043e2e3a5f48817923c491079098",
+    "alt": "Assenza surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · © Friedrich Haag / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "© Friedrich Haag / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:001_1999_09_09_Wassersport.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:001_1999_09_09_Wassersport.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Self-photographed CC BY-SA4.0. Explicit requested credit: © Friedrich Haag / Wikimedia Commons / CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "5c282fd5-0f08-4034-89ce-d3b7fc8a4012",
+    "slug": "isola-delle-femmine",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0efc85857abfd8ea82add821ceaed20f0c9ace154a6fd1a48298f1c323636f4d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0efc85857abfd8ea82add821ceaed20f0c9ace154a6fd1a48298f1c323636f4d.jpg",
+    "originalSha256": "55c153ef583cfbc3210d1c63f60a5eb9e0f3afdf85fba4fc495d590052aef1d0",
+    "alt": "Isola delle Femmine surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Effems / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Effems / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Isola_delle_Femmine_%28Palermo%29_22_10_2023_04.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isola_delle_Femmine_%28Palermo%29_22_10_2023_04.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "3e19655b-5a0a-4903-bf12-c46842f1db5d",
+    "slug": "scoglio-delleremita-parete-sud",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b385082b9170b6e303a30cc932d0521f61480b1fc89bc79ba2710c8b1c2fc640.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b385082b9170b6e303a30cc932d0521f61480b1fc89bc79ba2710c8b1c2fc640.jpg",
+    "originalSha256": "b2f5997074eedc6c59fb3b4d14c40451da5ac545c70c66c23be72855c644fac3",
+    "alt": "Scoglio dell’Eremita Parete Sud surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Enniocusano / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Enniocusano / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Scoglio_dell%27Eremita_2.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Scoglio_dell%27Eremita_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "4d128d70-131e-42d6-a466-9d563c586d09",
+    "slug": "cigliata-di-punta-papa",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a54b0be3cfd95ba39207168fba19bd44b97ff1782046f75713262117ce5de20f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a54b0be3cfd95ba39207168fba19bd44b97ff1782046f75713262117ce5de20f.jpg",
+    "originalSha256": "04b87dd1807400f5b724f98a07bf0e5f494a33cc24bf333167e871f0127f03d9",
+    "alt": "Cigliata di Punta Papa surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Ita01 / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Ita01 / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Ponza_punta_papa7.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ponza_punta_papa7.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA 3.0 selected from offered alternatives, alongside GFDL. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "11e5a318-432a-4cbc-9e6e-5d92f6b6bc59",
+    "slug": "la-palud",
+    "src": "https://assets.diveatlas.site/site-photos/v1/eaa0c96fa7da5a0d8c5f2cca7ee3cdfb4ff066908413f6f24d1ff3177f29635a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/eaa0c96fa7da5a0d8c5f2cca7ee3cdfb4ff066908413f6f24d1ff3177f29635a.jpg",
+    "originalSha256": "27be545fa15cb14f317a4f1ab9914078e058cfff73d426148a2477691fba63c9",
+    "alt": "La Palud surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Rémih / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Rémih / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Baie_de_la_Palud_Port-Cros.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baie_de_la_Palud_Port-Cros.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work Creative Commons licence verified. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "10ef54fb-c6a6-49a9-8c5c-ccd0dd55e66e",
+    "slug": "la-conque",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0799e2a19840be4beb18df0cfaa6f060efee560a5557008b56295b78eaee29fb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0799e2a19840be4beb18df0cfaa6f060efee560a5557008b56295b78eaee29fb.jpg",
+    "originalSha256": "a6066a896f4e2db69f557ec5b24feef6861779fb5654edd9455d52f62c4437f5",
+    "alt": "La Conque surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Francois Polito / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Francois Polito / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_d%27Agde%2C_Plage_de_La_Conque.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_d%27Agde%2C_Plage_de_La_Conque.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work Creative Commons licence verified. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "125009cc-6afa-4fd5-9589-f56f0b88e0b1",
+    "slug": "calvi-plage",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7ac02b890df5834464edf6c954f88afe5983115518d4f098d6d5bb84be7e6bd7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7ac02b890df5834464edf6c954f88afe5983115518d4f098d6d5bb84be7e6bd7.jpg",
+    "originalSha256": "392912cfc39bfe258024a3322d040308fda95503d949d221b6763769bc76af70",
+    "alt": "Calvi plage surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Chabe01 / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Chabe01 / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_-_Calvi_%28FR2B%29_-_2021-09-11_-_2.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_-_Calvi_%28FR2B%29_-_2021-09-11_-_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "82c53a1b-3fdd-4542-9cfe-a7067a86cdf4",
+    "slug": "isola-dell-olivo",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0169e6a94cba10db813788e31eeafde338fe7b169edb46b3180b7a406456090b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0169e6a94cba10db813788e31eeafde338fe7b169edb46b3180b7a406456090b.jpg",
+    "originalSha256": "804b1892f05b9df0af6313652042ebd1eda7739d09057d379aded376b8b49094",
+    "alt": "Isola dell'Olivo surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Syrio / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Syrio / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Isola_dell%27Olivo_01.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isola_dell%27Olivo_01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "d0cbc4bb-467d-4175-a8e2-0cb2edec16b9",
+    "slug": "anse-dufour",
+    "src": "https://assets.diveatlas.site/site-photos/v1/398470d26bfa7b05abc084c41622e3c83479b14efd524b373d1c52563e32d687.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/398470d26bfa7b05abc084c41622e3c83479b14efd524b373d1c52563e32d687.jpg",
+    "originalSha256": "23ae30f2d03b6ca13254ae20dde3d428effc181c9f109ff48ac9ce239f9e5637",
+    "alt": "Anse Dufour surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Patrice78500 / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Patrice78500 / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Anse_Dufour.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_Dufour.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "de4062c3-085b-453c-a51d-0837291cd537",
+    "slug": "anse-noire",
+    "src": "https://assets.diveatlas.site/site-photos/v1/99aa2501a4ca47464a3955881b48cec35e98dd719bb48647189fef1aacb90275.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/99aa2501a4ca47464a3955881b48cec35e98dd719bb48647189fef1aacb90275.jpg",
+    "originalSha256": "aa31302740d5847963085d342a7f036acfd8080f42ae2dcd52a8f04fb6a329be",
+    "alt": "Anse Noire surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Patrice78500 / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Patrice78500 / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Anse_Noire-_vue_depuis_le_ponton.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_Noire-_vue_depuis_le_ponton.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "176b5cff-98ff-4eca-9b2a-1c96efd75aa4",
+    "slug": "plage-du-conguel",
+    "src": "https://assets.diveatlas.site/site-photos/v1/176e180e565490d8745ef38c19f2a2baa95e5b96476cbbd234204955c4022d78.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/176e180e565490d8745ef38c19f2a2baa95e5b96476cbbd234204955c4022d78.jpg",
+    "originalSha256": "14bab7e7532565a44d6b3539a76178b4e2659d5d39cf3bee593a075023102beb",
+    "alt": "Plage du Conguel surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · rene boulay / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "rene boulay / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Morbihan_Quiberon_Pointe_Conguel_Plage_Baie_27052014_-_panoramio.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Morbihan_Quiberon_Pointe_Conguel_Plage_Baie_27052014_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA3.0 with explicit rene boulay attribution; Commons Panoramio license review6 May2017. Only Commons and current upload host accessed, no archived/Panoramio route. Preserve source, license and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "e6651a1d-196d-491d-bff8-0360475ddc33",
+    "slug": "plage-de-ty-bihan",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8bd4968a7da047a062945beeb9ccbcc92e02826b556b624b29077f8d06a7d66f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8bd4968a7da047a062945beeb9ccbcc92e02826b556b624b29077f8d06a7d66f.jpg",
+    "originalSha256": "af7d43ca080b6efd94db73eb951480a16dbffcce8857492e66bcba86637ed6f4",
+    "alt": "Plage de Ty Bihan surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Moreau.henri / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Moreau.henri / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:133_Carnac_Plage_de_Ty_Bihan.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:133_Carnac_Plage_de_Ty_Bihan.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "c91bbad0-2528-45a7-8587-3261b50b472a",
+    "slug": "pampelonne-plage",
+    "src": "https://assets.diveatlas.site/site-photos/v1/135fc5ed60f3554fd76c289256380880e62604bc6e393e60dea34e06517c38c0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/135fc5ed60f3554fd76c289256380880e62604bc6e393e60dea34e06517c38c0.jpg",
+    "originalSha256": "6374e25a554c2c4abd9360c079922ba5aabe07b51fb4d56807b1c9fbda069679",
+    "alt": "Pampelonne Plage surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Thérèse Gaigé / Wikimedia Commons / CC0 1.0 · CC0 1.0 · Cropped/resized",
+    "creator": "Thérèse Gaigé / Wikimedia Commons / CC0 1.0",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_de_Pampelonne_%28Ramatuelle%2C_83%29_-_02.jpg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_de_Pampelonne_%28Ramatuelle%2C_83%29_-_02.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC0 1.0 public-domain dedication verified. Creator and source retained for provenance; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "e1dfbdc3-4e9e-48f3-a767-be3cd8871f27",
+    "slug": "sagone-plage",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6d27c61852599f0ba5e77368a2f3eff5b328abaa3a0369b9409c49896b0f12db.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6d27c61852599f0ba5e77368a2f3eff5b328abaa3a0369b9409c49896b0f12db.jpg",
+    "originalSha256": "0a9a1a2ec578822c1192a28e5ec83b8b202338028447fd5d2952a1f25a49c445",
+    "alt": "Sagone plage surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Pierre Bona / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Pierre Bona / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Vico_plage_Sagone.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vico_plage_Sagone.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0 selected from offered licenses. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "623b85cb-8af0-462f-aeee-0cfd904f8418",
+    "slug": "ilot-du-cap-taillat",
+    "src": "https://assets.diveatlas.site/site-photos/v1/657d8279acce26dbeb924d61c8cbc37594dce400baaa5db6fc21131603f40a42.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/657d8279acce26dbeb924d61c8cbc37594dce400baaa5db6fc21131603f40a42.jpg",
+    "originalSha256": "4620906c7e6431cfd0d8a94c7139d1718ffda84e363ba20a5cca60561b3c9f4d",
+    "alt": "Îlot du Cap Taillat surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Manutux / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Manutux / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_Taillat-Cartaya.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Taillat-Cartaya.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "3e6c7d48-8008-4fd6-ac6c-d63815c9fef3",
+    "slug": "la-pointe-au-sel",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f36cce9d34ffae42b4fe0f8d2eac4853d0d7efa336822f4618fda4cff9dfe16e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f36cce9d34ffae42b4fe0f8d2eac4853d0d7efa336822f4618fda4cff9dfe16e.jpg",
+    "originalSha256": "97aabd44ea316451adc3e2ae327b7488e5b82e5932622e0cc5f238b750be6a94",
+    "alt": "La Pointe au Sel surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Olaf2 / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Olaf2 / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Pointe_au_Sel_2024.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pointe_au_Sel_2024.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "686e063e-e583-4b2a-bf43-ecc354103768",
+    "slug": "cap-homard",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fc5cf171840dfdb2165776617226a3a3d5c8dde47d8bb3baa0d541bbd1b251ec.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fc5cf171840dfdb2165776617226a3a3d5c8dde47d8bb3baa0d541bbd1b251ec.jpg",
+    "originalSha256": "91f5c8c8f06ec3a00f7f0a1d701570053f987a14ce844246ed1d2a89e38908da",
+    "alt": "Cap Homard surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Clémenceau Lauret / Wikimedia Commons / CC BY 4.0 · CC BY 4.0 · Cropped/resized",
+    "creator": "Clémenceau Lauret / Wikimedia Commons / CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_Homard_-_R%C3%A9cif_et_bord_de_mer_depuis_la_falaise_-_Saint-Paul_La_R%C3%A9union.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Homard_-_R%C3%A9cif_et_bord_de_mer_depuis_la_falaise_-_Saint-Paul_La_R%C3%A9union.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0. Preserve creator, source, license and change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "1b8e9cc7-237f-42e2-a26e-a259bf678ed5",
+    "slug": "tiki-plage",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6808c9996057dc1e44254dfaba8174f61a64e27bceea3cc01197d4dd87702350.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6808c9996057dc1e44254dfaba8174f61a64e27bceea3cc01197d4dd87702350.jpg",
+    "originalSha256": "83438284d5145e8638ad6744ca8407f501b015dbb17e756d5943fe5affbac515",
+    "alt": "Tiki Plage surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · qwesy qwesy / Wikimedia Commons / CC BY 3.0 · CC BY 3.0 · Cropped/resized",
+    "creator": "qwesy qwesy / Wikimedia Commons / CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tiki_Plage_-_panoramio_%281%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tiki_Plage_-_panoramio_%281%29.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY3.0 with required qwesy qwesy attribution; Commons license review16 February2017. No external Panoramio/Wayback source accessed. Preserve creator/source/license/change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "7c95c750-d9a7-4558-9a15-564bb22b9f19",
+    "slug": "anse-a-la-barque",
+    "src": "https://assets.diveatlas.site/site-photos/v1/10f9b42d6934db02a3c464a47bc2da9dc73ca100d54f56ad27550c9c6bff0d52.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/10f9b42d6934db02a3c464a47bc2da9dc73ca100d54f56ad27550c9c6bff0d52.jpg",
+    "originalSha256": "2865bf72d3aec6af7db4ac4bf0ed8a4952e3f98e5cbb5b99ade9a45d703430b0",
+    "alt": "Anse à La Barque surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Patrice78500 / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Patrice78500 / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Anse_%C3%A0_la_Barque.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_%C3%A0_la_Barque.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "7761b3eb-c98b-4ea4-abe0-74a8b3bb7422",
+    "slug": "la-plage-du-souffleur",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9831d32e3459a4f9956fba75e8ee06187cd4ccedf8318293469a7d8287f48be5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9831d32e3459a4f9956fba75e8ee06187cd4ccedf8318293469a7d8287f48be5.jpg",
+    "originalSha256": "45b0428eadc2c12fbe88855fb2692a24d26117e091572c8a1266ddef0463053b",
+    "alt": "La Plage du Souffleur surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Enrevseluj / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Enrevseluj / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_du_Souffleur_%C3%A0_Port-Louis.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_du_Souffleur_%C3%A0_Port-Louis.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "afff88e5-587d-4abd-a3a3-11d01b86451c",
+    "slug": "crique-de-la-pointe-de-laiguille",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4fb09522ec183e722c42b1923a0ee43307a104a9dfd67b7c0ea319a21f8ccdbc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4fb09522ec183e722c42b1923a0ee43307a104a9dfd67b7c0ea319a21f8ccdbc.jpg",
+    "originalSha256": "bfaf993f24b0bb1e431feceaeff2db8c994a24f0a1b8e3420a3d8455f0d46e6d",
+    "alt": "Crique de la Pointe de l’Aiguille surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Moreau.henri / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Moreau.henri / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:558_Th%C3%A9oule.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:558_Th%C3%A9oule.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "50936480-832c-43d3-945d-3059e4df14b1",
+    "slug": "cap-bear",
+    "src": "https://assets.diveatlas.site/site-photos/v1/62fcdfbc04ce0134306a0fdb4b9fb5f8e8b48efc1eec585a1857d2f57ce7c842.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/62fcdfbc04ce0134306a0fdb4b9fb5f8e8b48efc1eec585a1857d2f57ce7c842.jpg",
+    "originalSha256": "c416b16c279d3261132ccba33e779014b0718d2420d9599fa95ce319fd5d2d4b",
+    "alt": "Cap Béar surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Artico2 / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Artico2 / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_B%C3%A9ar.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_B%C3%A9ar.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license source; CC BY-SA3.0 selected rather than GFDL. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "0538e431-f53b-46de-b9fd-b81c9ae1a2e0",
+    "slug": "rocher-creole",
+    "src": "https://assets.diveatlas.site/site-photos/v1/007e64c9f413e5b7f8591e73d069aed2bfbabde9285bb2ae85cc1a5fe326130e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/007e64c9f413e5b7f8591e73d069aed2bfbabde9285bb2ae85cc1a5fe326130e.jpg",
+    "originalSha256": "312a70fcdab431e858d7f22f63529113d37513fca03687595d3af9ed3495edb7",
+    "alt": "rocher creole surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Florian-Zet / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Florian-Zet / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Rocher_Creole.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Rocher_Creole.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "e10574b3-02fe-42d7-a91f-8e01d6263430",
+    "slug": "cap-estel",
+    "src": "https://assets.diveatlas.site/site-photos/v1/71617b943f4ea60209f5d1f526986c3e7f928e0467de4f009ea91bed04370017.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/71617b943f4ea60209f5d1f526986c3e7f928e0467de4f009ea91bed04370017.jpg",
+    "originalSha256": "ec98a352c742992e95fb7ab39b3d9ac334c48baad7a1e0a65ae408f8991a1497",
+    "alt": "Cap Estel surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Serein / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Serein / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_Estel_-_Eze_bord_de_mer.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Estel_-_Eze_bord_de_mer.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "2053d02e-7a86-4258-ada2-8ade4cd3da00",
+    "slug": "baignoire-de-josephine",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9c2be8b9b7b4fdadae624c0126f33c0a8ab1f181d20c64478765af58d25d0a10.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9c2be8b9b7b4fdadae624c0126f33c0a8ab1f181d20c64478765af58d25d0a10.jpg",
+    "originalSha256": "2fec8219829b410dab78acd5a966e5f554ceb8a6871d80601b5b7a62f1281049",
+    "alt": "Baignoire de Joséphine surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Patrifor / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Patrifor / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Baignoire_de_Jos%C3%A9phine.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baignoire_de_Jos%C3%A9phine.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "040ec8f8-5b05-4ac6-a66e-ec692906df20",
+    "slug": "ilot-bandrele-1",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2d213758d351cea6b618e3fe7376c4541f08f125a1d0573a02414ab43f8482b8.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2d213758d351cea6b618e3fe7376c4541f08f125a1d0573a02414ab43f8482b8.jpg",
+    "originalSha256": "2fab76ff2de16d1d912f1378b7088906336f64f4b3a8c1bdfba37f871ef583f9",
+    "alt": "Îlot Bandrelé  #1 surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Frédéric Ducarme / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Frédéric Ducarme / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Vue_de_l%27%C3%AElot_Bandr%C3%A9l%C3%A9.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vue_de_l%27%C3%AElot_Bandr%C3%A9l%C3%A9.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "f0819532-bc2e-4172-9595-a95a0b35f75b",
+    "slug": "cap-lardier",
+    "src": "https://assets.diveatlas.site/site-photos/v1/91f65a87195cce488a267b0b3ce46f62163ac91955b7f31b07a804759c66007c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/91f65a87195cce488a267b0b3ce46f62163ac91955b7f31b07a804759c66007c.jpg",
+    "originalSha256": "50d1f6209148dcca29a729733af568e9d90f0363ad9fb8000d7c160f8cf77168",
+    "alt": "Cap Lardier surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Johan N / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Johan N / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cap_Lardier_001.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Lardier_001.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license; CC BY-SA3.0 selected rather than GFDL. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "5c5d7147-18cd-4a53-b77d-f53a74ab636f",
+    "slug": "la-pointe-de-la-chiappa",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c18b853c8452388909a4d73da502343ab3caa0f4b5a192c16ce7a61bde1c02df.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c18b853c8452388909a4d73da502343ab3caa0f4b5a192c16ce7a61bde1c02df.jpg",
+    "originalSha256": "13a51c204110543c11d17a153d0f8641b8212123deb06ffab01dd6a96d9a08cc",
+    "alt": "La pointe de la Chiappa surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Telperion / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Telperion / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Punta_di_a_Chiappa.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Punta_di_a_Chiappa.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "4e3f9266-0955-402f-9a4e-d54f250311c6",
+    "slug": "la-calanque-de-mejean",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4f7c3e4838f0290512c3ca2bfe2eae83f47bf5bf7d163110dc3255bff382f41a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4f7c3e4838f0290512c3ca2bfe2eae83f47bf5bf7d163110dc3255bff382f41a.jpg",
+    "originalSha256": "148f756d92b68c36ce78700a2c88a94c1bd1b19ee3aa6a3656a9ec6d7850e0d2",
+    "alt": "La calanque de Méjean surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Benjamin Smith / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Benjamin Smith / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:C%C3%B4te_Bleue_-_09.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:C%C3%B4te_Bleue_-_09.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license; CC BY-SA4.0 selected. Required credit Benjamin Smith / Wikimedia Commons. Optional creator notification was not sent. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "609e782a-bc99-4fc8-9a03-82ae167720c1",
+    "slug": "pointe-de-campomoro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/aa44807edd4e28b30e908882ae1ffc0fe324f358b432c68f3095088b179bdcd3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/aa44807edd4e28b30e908882ae1ffc0fe324f358b432c68f3095088b179bdcd3.jpg",
+    "originalSha256": "7e26a6c80bbc92a254a16201e3e71b0f17283b8f63861229d29b49a7ade88686",
+    "alt": "Pointe de campomoro surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Myrabella / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Photo: Myrabella / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Corse_Punta_di_Campomoro_tour_genoise.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Corse_Punta_di_Campomoro_tour_genoise.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Required attribution: Photo: Myrabella / Wikimedia Commons / CC BY-SA3.0. Preserve source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "a3bc682d-5033-4bdb-914d-6efbc0133af3",
+    "slug": "pointe-escampobariou",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9d0986ba160f996e6e1934cdcfb5e772b4d949ecd31256a562708e52eec45d12.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9d0986ba160f996e6e1934cdcfb5e772b4d949ecd31256a562708e52eec45d12.jpg",
+    "originalSha256": "278f5e7bfc0b29424320980fb705f2c6a4b667938c99911c6cdcf41c3985513e",
+    "alt": "Pointe Escampobariou surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Gnrc / Wikimedia Commons / CC BY 4.0 · CC BY 4.0 · Cropped/resized",
+    "creator": "Photo: Gnrc / Wikimedia Commons / CC BY 4.0",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Giens_%28Hy%C3%A8res%29%2C_France_-_Pointe_d%27Escampobariou.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Giens_%28Hy%C3%A8res%29%2C_France_-_Pointe_d%27Escampobariou.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0. Preserve Gnrc attribution, source/license/change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "eda68b4d-d5a5-4241-a8f3-26fbe6b0328d",
+    "slug": "pointe-borgnese",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c9eb55d0d570d0d6a6e315d8eb22d5dd843b563aa84bf33661134a4cdaadc225.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c9eb55d0d570d0d6a6e315d8eb22d5dd843b563aa84bf33661134a4cdaadc225.jpg",
+    "originalSha256": "320a87d714cc52281599fb587c674009e3c8a8a1ac9d4ebba1b78fc496efcd09",
+    "alt": "Pointe  Borgnèse surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Mickaël BRUNO / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Photo: Mickaël BRUNO / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Pointe_borgnese.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pointe_borgnese.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve Mickaël BRUNO attribution, source/license/change notices and share-alike for adaptations. Creator signature retained.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "0d9d3033-9595-438d-a8a4-251022c4817a",
+    "slug": "hallsands",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9fa3efe646a9b68f703855fcd6d95a340e9f6d0decf2b28a30f96594bc402a5b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9fa3efe646a9b68f703855fcd6d95a340e9f6d0decf2b28a30f96594bc402a5b.jpg",
+    "originalSha256": "3153f579b74490be56aebe7d991fe45e3cd679e57414a5ec864f9397148206b5",
+    "alt": "Hallsands surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Mark.murphy at English Wikipedia / Wikimedia Commons / CC BY 2.5 · CC BY 2.5 · Cropped/resized",
+    "creator": "Photo: Mark.murphy at English Wikipedia / Wikimedia Commons / CC BY 2.5",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Start_bay_devon.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Start_bay_devon.jpg"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Multi-license source; CC BY2.5 selected. Required credit Mark.murphy at English Wikipedia. Preserve source/license/change notices; no share-alike requirement under selected license.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "61e2bebf-5ce3-4c0f-bd22-7f0d60f7c5ac",
+    "slug": "ellerton-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fabc81a8c465008d87cfcd4ff0f901e0bc712518c74b11841a2744a8875b5591.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fabc81a8c465008d87cfcd4ff0f901e0bc712518c74b11841a2744a8875b5591.jpg",
+    "originalSha256": "cfc693c4a9957c2b939f0b997ea55afcaa26655d68ffaa28de2bfaccc7ebbd32",
+    "alt": "Ellerton Park surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Photographer not named on Commons source; imported from 500px / Wikimedia Commons / CC0 1.0 · CC0 1.0 · Cropped/resized",
+    "creator": "Photo: Photographer not named on Commons source; imported from 500px / Wikimedia Commons / CC0 1.0",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Early_Morning_Reflections_%28261400861%29.jpeg",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Early_Morning_Reflections_%28261400861%29.jpeg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Individual Commons file explicitly declares CC0 1.0. Imported from 500px by Archive Team; photographer not named on page. No external 500px or archive route accessed. Watermark preserved; importer is not credited as photographer.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "4f08519f-ada5-4453-a8d5-db0833931137",
+    "slug": "mewstone-east",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2a3273337db0bfc1f8380652f5f0885cc42c1669c881de0f6ddb5e4b8e25172f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2a3273337db0bfc1f8380652f5f0885cc42c1669c881de0f6ddb5e4b8e25172f.jpg",
+    "originalSha256": "00797ce6053b7827bae5961eab95a9b1357ef85613bdb4a641899b83734454b2",
+    "alt": "Mewstone East surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Nilfanion / Wikimedia Commons / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Photo: Nilfanion / Wikimedia Commons / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Mewstone_off_Wembury_%280999%29.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Mewstone_off_Wembury_%280999%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA4.0, author Nilfanion; source states production supported by Wikimedia UK. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "48c1e9a9-c6ce-4a9c-b355-2b370dfb12da",
+    "slug": "the-caves-at-norman-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a8702aea4f52594d18942abb4b5100fbe18d026b4e854ac77eb79e0ad42c606d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a8702aea4f52594d18942abb4b5100fbe18d026b4e854ac77eb79e0ad42c606d.jpg",
+    "originalSha256": "90f9aad5b851ef1588f394504c740d1b29257c6266c9801562ec32d2404869db",
+    "alt": "The Caves at Norman Island surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Matt & Nayoung / Wikimedia Commons / CC BY 2.0 · CC BY 2.0 · Cropped/resized",
+    "creator": "Photo: Matt & Nayoung / Wikimedia Commons / CC BY 2.0",
+    "license": "CC BY 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Caves_%40_Treasure_Point_on_Norman_Island.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Caves_%40_Treasure_Point_on_Norman_Island.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY2.0, Matt & Nayoung. Commons Flickr upload bot confirmed license31 July2013. Only Commons/current upload accessed; no Flickr/staticflickr/archive routes. Preserve attribution/source/license/change notices, no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "3724ff6b-6ee2-4429-b7d2-84921368e752",
+    "slug": "dead-chest",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ef30089678f71620c6935f4b608dd68e84fbb50f93dc661b4e09e896a2e1368c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ef30089678f71620c6935f4b608dd68e84fbb50f93dc661b4e09e896a2e1368c.jpg",
+    "originalSha256": "2de7a430528e0e7c34ffc5a2d63a0187787c8747e35bed7eb900f89ba42854c6",
+    "alt": "Dead Chest surface context — nearby context photo",
+    "label": "nearby context photo",
+    "credit": "nearby context photo · Photo: Legis / Wikimedia Commons / Public domain author release · Public domain author release · Cropped/resized",
+    "creator": "Photo: Legis / Wikimedia Commons / Public domain author release",
+    "license": "Public domain author release",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island%2C_BVI.jpg",
+    "licenceUrl": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island,_BVI.jpg",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island%2C_BVI.jpg"
+      },
+      {
+        "label": "Public domain author release",
+        "url": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island,_BVI.jpg"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Legis at English Wikipedia explicitly released this own-work photograph into the public domain worldwide; fallback grants use for any purpose without conditions except legally required ones. Commons records transfer of original English Wikipedia upload. Credit retained as good practice.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "62ee3e9c-7ddb-4817-925c-4bd451d524bd",
+    "slug": "playa-san-juan-gym",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f0865933982e96fc2740251052e8beda6caa506e6a56b9f892af69f717ae25eb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f0865933982e96fc2740251052e8beda6caa506e6a56b9f892af69f717ae25eb.jpg",
+    "originalSha256": "b1750ee6e4a80bb41295bb64c67ad03065389986a6ca5f4cc1dce7cf85a3d759",
+    "alt": "Playa San Juan, Gym surface context — nearby context photo · source identity/context review pending",
+    "label": "nearby context photo · source identity/context review pending",
+    "credit": "nearby context photo · source identity/context review pending · Kvdrgeus / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Kvdrgeus / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Playa_San_Juan-1%2C_Tenerife.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_San_Juan-1%2C_Tenerife.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
+  },
+  {
+    "siteId": "0a17dce9-3090-448b-9491-5616141ff992",
+    "slug": "tiboulene-du-frioul",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f2740606b170f83fe243a2b7ca158c74f699da8bd12d322c5197ad80972fd044.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f2740606b170f83fe243a2b7ca158c74f699da8bd12d322c5197ad80972fd044.jpg",
+    "originalSha256": "1f76307fbe176ecc75cbd7705b91d6b562ad7f96fbfda744606bfdbba5917bc4",
+    "alt": "Rocky islet photograph, Frioul versus Maire identity unresolved — nearby context photo · source identity/context review pending",
+    "label": "nearby context photo · source identity/context review pending",
+    "credit": "nearby context photo · source identity/context review pending · Remi Mathis / Wikimedia Commons / CC BY-SA 3.0 · CC BY-SA 3.0 · Cropped/resized",
+    "creator": "Remi Mathis / Wikimedia Commons / CC BY-SA 3.0",
+    "license": "CC BY-SA 3.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:%C3%8Eles_du_Frioul_-_%C3%AElot_Tiboulen.JPG",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:%C3%8Eles_du_Frioul_-_%C3%AElot_Tiboulen.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized."
   }
 ];

@@ -9943,5 +9943,1505 @@ export const additionalPreviewPhotos = [
     "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
     "publication": "NOT_AUTHORIZED",
     "label": "nearby context photo"
+  },
+  {
+    "siteId": "1c18f082-0907-4fbf-b4ae-047deb90230a",
+    "slug": "playa-la-bombilla",
+    "photoNo": 1,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/1c18f082-0907-4fbf-b4ae-047deb90230a/preview-option-65bcef6a450cb436.jpg",
+    "alt": "Playa La Bombilla surface context — nearby context photo",
+    "credit": "Ozonski / Wikimedia Commons / CC BY 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_el_Charcon_-_panoramio_%282%29.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY3.0, attribution Ozonski. Commons Panoramio upload bot verified licence21 March2017. No external Panoramio or archive accessed. Preserve attribution, source, licence and change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "65bcef6a450cb436e8c0e458d23eaeb6a6e7c5dba53dd0e53bc9e23b059222dc",
+    "originalDimensions": [
+      3648,
+      2736
+    ],
+    "identityStatus": "Commons caption names Playa el Charcon, with original La Bombilla tag and source camera28.593161,-17.920997 approximately160m from Playa La Bombilla inventory28.5923,-17.9197. Supports immediate coastal context, not an exact underwater boundary.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "60d50d4f-e1ec-40df-a4b6-8a2e1dcd8549",
+    "slug": "cala-calella",
+    "photoNo": 2,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/60d50d4f-e1ec-40df-a4b6-8a2e1dcd8549/preview-option-a60716ecb94d2f67.jpg",
+    "alt": "Cala Calella surface context — nearby context photo",
+    "credit": "Franpivi / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Calella.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA 4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "a60716ecb94d2f670d97b9bd889f6253619b7ef4c805995e296a65317b40fc56",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Own-work caption identifies Cala Calella seen from land; saved Commons category identifies this as the L Estartit cove with coordinates42.059575,3.212383, consistent with inventory42.0598,3.2129 (approximately50m). Category coordinates describe destination, not camera GPS.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "d756deae-fdca-42f8-98c5-650510c3a034",
+    "slug": "bahia-alcala",
+    "photoNo": 3,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/d756deae-fdca-42f8-98c5-650510c3a034/preview-option-747fdfac7ad6fba6.jpg",
+    "alt": "Bahia Alcalá surface context — nearby context photo",
+    "credit": "Falk2 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:J00_778_Playa_de_Alcal%C3%A1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0; Commons retains original Falk2 upload provenance from German Wikipedia. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "747fdfac7ad6fba6a03bbbf3518f1d3a51b4fb26cd868d891a100dc5c094d925",
+    "originalDimensions": [
+      5931,
+      3954
+    ],
+    "identityStatus": "Source title identifies Playa de Alcalá; caption describes southeast-facing view from sports grounds north of southwest-open bay. Supports Bahia Alcalá inventory28.2008,-16.8296 as bay-level context. No camera GPS or exact underwater boundary established; nearby Alcala Reef UUID not automatically mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "673088dc-750d-4fbd-8afd-cb34fae5d59a",
+    "slug": "playa-chica",
+    "photoNo": 4,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/673088dc-750d-4fbd-8afd-cb34fae5d59a/preview-option-40546f02fa17014f.jpg",
+    "alt": "Playa Chica surface context — nearby context photo",
+    "credit": "Bthv / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_Chica_Water_Clarity.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "40546f02fa17014f93edaec1069c1df33310ab6e08e3ed80229d5f01e5c835a5",
+    "originalDimensions": [
+      3488,
+      2616
+    ],
+    "identityStatus": "Source title Playa Chica Water Clarity and source camera28.919201,-13.668427 locate the photograph about45m from Playa Chica inventory28.9188,-13.6685 in Puerto del Carmen, Lanzarote. Nearby Muellito UUID not automatically mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "51e47628-012d-4569-aef6-4314c0e9dccf",
+    "slug": "cala-egos-north",
+    "photoNo": 5,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/51e47628-012d-4569-aef6-4314c0e9dccf/preview-option-5eef6bb88671c8aa.jpg",
+    "alt": "Cala Egos North surface context — nearby context photo · source identity/context review pending",
+    "credit": "Xxlstier / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Egos_01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "5eef6bb88671c8aa83509f135c22805422a7da3f285a94fa572cde4452543e7c",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "Own-work source names Cala Egos bay in Cala d Or, Santanyi, not western Mallorca homonym. Source camera39.361066,3.224322 approximately272m from inventory39.3589,3.2258; bay-level context only, no precise northern underwater boundary.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo · source identity/context review pending"
+  },
+  {
+    "siteId": "51e47628-012d-4569-aef6-4314c0e9dccf",
+    "slug": "cala-egos-north",
+    "photoNo": 6,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/51e47628-012d-4569-aef6-4314c0e9dccf/preview-option-ba396508de11680d.jpg",
+    "alt": "Cala Egos North surface context — nearby context photo",
+    "credit": "Xxlstier / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Egos_06.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "ba396508de11680d435ee5522c9c16c775e241938a32b4fc7cfc200ac3057f1b",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "Own-work source names Cala Egos bay in Cala d Or, Santanyi, not western Mallorca homonym. Source camera39.361066,3.224322 approximately272m from inventory39.3589,3.2258; bay-level context only, no precise northern underwater boundary.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "62ee3e9c-7ddb-4817-925c-4bd451d524bd",
+    "slug": "playa-san-juan-gym",
+    "photoNo": 7,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/62ee3e9c-7ddb-4817-925c-4bd451d524bd/preview-option-b1750ee6e4a80bb4.jpg",
+    "alt": "Playa San Juan, Gym surface context — nearby context photo · source identity/context review pending",
+    "credit": "Kvdrgeus / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_San_Juan-1%2C_Tenerife.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "b1750ee6e4a80bb41295bb64c67ad03065389986a6ca5f4cc1dce7cf85a3d759",
+    "originalDimensions": [
+      4176,
+      2784
+    ],
+    "identityStatus": "Generic source title and caption identify Playa San Juan town only. No GPS or distinctive evidence connects this scene to the specific Gym dive-site inventory point28.182,-16.8195. Empty ready IDs; no coverage credit.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo · source identity/context review pending"
+  },
+  {
+    "siteId": "62ee3e9c-7ddb-4817-925c-4bd451d524bd",
+    "slug": "playa-san-juan-gym",
+    "photoNo": 8,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/62ee3e9c-7ddb-4817-925c-4bd451d524bd/preview-option-d01092909cdcda8e.jpg",
+    "alt": "Playa San Juan, Gym surface context — nearby context photo · source identity/context review pending",
+    "credit": "Kvdrgeus / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_San_Juan-2%2C_Tenerife.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Image-specific own-work licence verified; preserve creator/source/licence/change notices and share-alike.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "d01092909cdcda8e780e719d14af4c4923e7ca77342265c906a5049bccfe9600",
+    "originalDimensions": [
+      4176,
+      2784
+    ],
+    "identityStatus": "Generic source title and caption identify Playa San Juan town only. No GPS or distinctive evidence connects this scene to the specific Gym dive-site inventory point28.182,-16.8195. Empty ready IDs; no coverage credit.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo · source identity/context review pending"
+  },
+  {
+    "siteId": "0db7e088-c57f-412e-a193-5a4937a1685f",
+    "slug": "kerveli-scouba-diving",
+    "photoNo": 9,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/0db7e088-c57f-412e-a193-5a4937a1685f/preview-option-ee4178288fad4b14.jpg",
+    "alt": "Kerveli scouba diving surface context — nearby context photo",
+    "credit": "Robert Powell / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kerveli%2C_Samos._-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA3.0, attribution Robert Powell; Commons Panoramio upload bot licence verification3 December2016 retained, no external archive/source visited. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "ee4178288fad4b14e3c3eb0d4b8cee7c777e6db47088cb2dbfd6520df552424a",
+    "originalDimensions": [
+      2272,
+      1704
+    ],
+    "identityStatus": "Source explicitly names Kerveli, Samos, with camera37.728939,27.035795 about402m south of inventory37.7325497,27.0360789. This is nearby bay context for Kerveli scouba diving, not an image of the operator premises, boat or precise dive route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "1157a0ae-9a16-4247-9732-afc392b790b5",
+    "slug": "castle-toroni",
+    "photoNo": 10,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/1157a0ae-9a16-4247-9732-afc392b790b5/preview-option-4f86357182aa4211.jpg",
+    "alt": "Castle Toroni surface context — nearby context photo",
+    "credit": "Bukvoed / Wikimedia Commons / CC BY 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Toroni-castle-1212.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0; preserve creator, source, licence and change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "4f86357182aa421184a7e69d530b6d0fe5f65a91803d672d4bebcb489a690b8a",
+    "originalDimensions": [
+      4608,
+      3083
+    ],
+    "identityStatus": "Source explicitly identifies Lekythos castle at Toroni, matching the named Castle Toroni destination. This is an above-water landmark/context photograph, not evidence of exact underwater route or inventory coordinate39.9778,23.9007.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "09ea5851-6db8-4f1f-9a8a-74ba68ba8c57",
+    "slug": "pirgo",
+    "photoNo": 11,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/09ea5851-6db8-4f1f-9a8a-74ba68ba8c57/preview-option-b3bff7dc5df3790f.jpg",
+    "alt": "Pirgo surface context — nearby context photo",
+    "credit": "Mstyslav Chernov / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Il_Pirgo%2C_the_ornate_pier_leading_from_the_port_of_Civitavecchia%2C_over_coast_waters_of_the_Tyrrhenian_Sea%2C_Lazio%2C_Italy.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Self-photographed CC BY-SA3.0, Mstyslav Chernov, mstyslav-chernov.com. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "b3bff7dc5df3790f92779499b55f46838c6a6d10bd761fbb85e26acd717e4a48",
+    "originalDimensions": [
+      3000,
+      1995
+    ],
+    "identityStatus": "Self-photographed source explicitly identifies Il Pirgo pier, Civitavecchia, matching named Pirgo destination. Landmark context only; no camera GPS or precise underwater coordinate established. Nearby Pirgo Sud inventory is not automatically mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "48b9d6fa-bc9d-4a2c-9c2c-d21aee1291d2",
+    "slug": "assenza",
+    "photoNo": 12,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/48b9d6fa-bc9d-4a2c-9c2c-d21aee1291d2/preview-option-4596e28070de85ee.jpg",
+    "alt": "Assenza surface context — nearby context photo",
+    "credit": "© Friedrich Haag / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:001_1999_09_09_Wassersport.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Self-photographed CC BY-SA4.0. Explicit requested credit: © Friedrich Haag / Wikimedia Commons / CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "4596e28070de85ee808d5cd73c27bad0093a043e2e3a5f48817923c491079098",
+    "originalDimensions": [
+      2107,
+      2846
+    ],
+    "identityStatus": "Self-photographed source explicitly places the scene at Assenza, Brenzone, Lake Garda; source camera45.726458,10.781353 approximately92m from inventory45.72569,10.78092. Shore/lake context only, not exact underwater route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "5c282fd5-0f08-4034-89ce-d3b7fc8a4012",
+    "slug": "isola-delle-femmine",
+    "photoNo": 13,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/5c282fd5-0f08-4034-89ce-d3b7fc8a4012/preview-option-55c153ef583cfbc3.jpg",
+    "alt": "Isola delle Femmine surface context — nearby context photo",
+    "credit": "Effems / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isola_delle_Femmine_%28Palermo%29_22_10_2023_04.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "55c153ef583cfbc3210d1c63f60a5eb9e0f3afdf85fba4fc495d590052aef1d0",
+    "originalDimensions": [
+      4608,
+      3456
+    ],
+    "identityStatus": "Source explicitly identifies the Isola delle Femmine islet and Torre di fuori viewed from Scogliera Azzurra. Island-level landmark context for inventory38.2105,13.2412, not the similarly named mainland town or exact underwater route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "3e19655b-5a0a-4903-bf12-c46842f1db5d",
+    "slug": "scoglio-delleremita-parete-sud",
+    "photoNo": 14,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/3e19655b-5a0a-4903-bf12-c46842f1db5d/preview-option-b2f5997074eedc6c.jpg",
+    "alt": "Scoglio dell’Eremita Parete Sud surface context — nearby context photo",
+    "credit": "Enniocusano / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Scoglio_dell%27Eremita_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "b2f5997074eedc6c59fb3b4d14c40451da5ac545c70c66c23be72855c644fac3",
+    "originalDimensions": [
+      3119,
+      2079
+    ],
+    "identityStatus": "Source explicitly names Scoglio dell Eremita at Polignano; source camera40.993059,17.235312 about223m southwest of southern-wall inventory40.9946,17.237. Island/coastal context only, not proof of exact underwater south wall. Northern-wall UUID not automatically mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "4d128d70-131e-42d6-a466-9d563c586d09",
+    "slug": "cigliata-di-punta-papa",
+    "photoNo": 15,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/4d128d70-131e-42d6-a466-9d563c586d09/preview-option-04b87dd1807400f5.jpg",
+    "alt": "Cigliata di Punta Papa surface context — nearby context photo",
+    "credit": "Ita01 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ponza_punta_papa7.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA 3.0 selected from offered alternatives, alongside GFDL. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "04b87dd1807400f5b724f98a07bf0e5f494a33cc24bf333167e871f0127f03d9",
+    "originalDimensions": [
+      2240,
+      1680
+    ],
+    "identityStatus": "Source explicitly names Punta del Papa on Ponza, matching named headland for Cigliata di Punta Papa. Headland/bay context only, not exact underwater ledge inventory40.9297,12.9656. Nearby LST wreck UUIDs are not mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "11e5a318-432a-4cbc-9e6e-5d92f6b6bc59",
+    "slug": "la-palud",
+    "photoNo": 16,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/11e5a318-432a-4cbc-9e6e-5d92f6b6bc59/preview-option-27be545fa15cb14f.jpg",
+    "alt": "La Palud surface context — nearby context photo",
+    "credit": "Rémih / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baie_de_la_Palud_Port-Cros.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work Creative Commons licence verified. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "27be545fa15cb14f317a4f1ab9914078e058cfff73d426148a2477691fba63c9",
+    "originalDimensions": [
+      4502,
+      3377
+    ],
+    "identityStatus": "Source explicitly names Baie de la Palud, Port-Cros; camera43.011936,6.386060 is approximately760m west of inventory43.01,6.395, consistent with broad hillside view of bay. Not exact entry/location evidence.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "10ef54fb-c6a6-49a9-8c5c-ccd0dd55e66e",
+    "slug": "la-conque",
+    "photoNo": 17,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/10ef54fb-c6a6-49a9-8c5c-ccd0dd55e66e/preview-option-a6066a896f4e2db6.jpg",
+    "alt": "La Conque surface context — nearby context photo",
+    "credit": "Francois Polito / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_d%27Agde%2C_Plage_de_La_Conque.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Image-specific own-work Creative Commons licence verified. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "a6066a896f4e2db69f557ec5b24feef6861779fb5654edd9455d52f62c4437f5",
+    "originalDimensions": [
+      6111,
+      1982
+    ],
+    "identityStatus": "Source explicitly names La Conque, Cap d Agde, camera43.274822,3.515164 about150m from inventory43.2759,3.5163. Distinguishes similarly named Sete cove.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "125009cc-6afa-4fd5-9589-f56f0b88e0b1",
+    "slug": "calvi-plage",
+    "photoNo": 18,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/125009cc-6afa-4fd5-9589-f56f0b88e0b1/preview-option-392912cfc39bfe25.jpg",
+    "alt": "Calvi plage surface context — nearby context photo",
+    "credit": "Chabe01 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_-_Calvi_%28FR2B%29_-_2021-09-11_-_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "392912cfc39bfe258024a3322d040308fda95503d949d221b6763769bc76af70",
+    "originalDimensions": [
+      4032,
+      3024
+    ],
+    "identityStatus": "Source explicitly captions Plage de Calvi. Source camera42.555911,8.766564 lies about600m west of inventory42.5559,8.7739 along the same beach. Broad coastal context, not exact underwater location or entry proof.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "0a17dce9-3090-448b-9491-5616141ff992",
+    "slug": "tiboulene-du-frioul",
+    "photoNo": 19,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/0a17dce9-3090-448b-9491-5616141ff992/preview-option-1f76307fbe176ecc.jpg",
+    "alt": "Rocky islet photograph, Frioul versus Maire identity unresolved — nearby context photo · source identity/context review pending",
+    "credit": "Remi Mathis / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:%C3%8Eles_du_Frioul_-_%C3%AElot_Tiboulen.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "1f76307fbe176ecc75cbd7705b91d6b562ad7f96fbfda744606bfdbba5917bc4",
+    "originalDimensions": [
+      2560,
+      1920
+    ],
+    "identityStatus": "SUPERSEDED: Conflicting Commons captions from the same photographer and date label visually closely matching islet/beacon Frioul versus Maire. Independent view inconclusive. No confirmed inventory mapping. See batch125 identity research.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo · source identity/context review pending"
+  },
+  {
+    "siteId": "82c53a1b-3fdd-4542-9cfe-a7067a86cdf4",
+    "slug": "isola-dell-olivo",
+    "photoNo": 20,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/82c53a1b-3fdd-4542-9cfe-a7067a86cdf4/preview-option-804b1892f05b9df0.jpg",
+    "alt": "Isola dell'Olivo surface context — nearby context photo",
+    "credit": "Syrio / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isola_dell%27Olivo_01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "804b1892f05b9df0af6313652042ebd1eda7739d09057d379aded376b8b49094",
+    "originalDimensions": [
+      4858,
+      3644
+    ],
+    "identityStatus": "Individual source explicitly names Isola dell Olivo on Lake Garda at Malcesine, Veneto. Saved category destination45.754167,10.795833 is about145m south of inventory45.75544,10.79544 at northern side. Island-level context only, not exact underwater route. Category coordinates are destination coordinates, not camera GPS.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "220ebbea-d252-4d13-8b86-257151b1fe3f",
+    "slug": "cala-paura-parete-sud",
+    "photoNo": 21,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/220ebbea-d252-4d13-8b86-257151b1fe3f/preview-option-07bd3036c5901796.jpg",
+    "alt": "Cala Paura (Parete Sud) surface context — nearby context photo · source identity/context review pending",
+    "credit": "MargusBarnes / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cala_Paura.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: HELD. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0 copyright license verified. Separate Italian cultural-heritage/WLM authorization link remains unverified: workspace.wikimedia.it robots denies all automated access. No attempt to fetch authorization or bypass. Retain hold before publication; CC license alone does not resolve that separate notice.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "07bd3036c5901796972951e647b022e683f073f7f897cc315da047c9355c3c8b",
+    "originalDimensions": [
+      4032,
+      1960
+    ],
+    "identityStatus": "Individual source names Cala Paura, source camera40.998611,17.214167 about88m southwest of inventory40.9991,17.215. Coastal bay context, not proof of exact underwater south wall.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo · source identity/context review pending"
+  },
+  {
+    "siteId": "d0cbc4bb-467d-4175-a8e2-0cb2edec16b9",
+    "slug": "anse-dufour",
+    "photoNo": 22,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/d0cbc4bb-467d-4175-a8e2-0cb2edec16b9/preview-option-23ae30f2d03b6ca1.jpg",
+    "alt": "Anse Dufour surface context — nearby context photo",
+    "credit": "Patrice78500 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_Dufour.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "23ae30f2d03b6ca13254ae20dde3d428effc181c9f109ff48ac9ce239f9e5637",
+    "originalDimensions": [
+      4320,
+      3240
+    ],
+    "identityStatus": "Individual source explicitly captions Anse Dufour, Les Anses-d Arlet, Martinique. Saved category destination14.5256,-61.09 is about270m east of offshore inventory14.5259,-61.0925. Bay context only, not exact underwater route; category point is not camera GPS. Nearby Anse Noire is not automatically mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "de4062c3-085b-453c-a51d-0837291cd537",
+    "slug": "anse-noire",
+    "photoNo": 23,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/de4062c3-085b-453c-a51d-0837291cd537/preview-option-aa31302740d58479.jpg",
+    "alt": "Anse Noire surface context — nearby context photo",
+    "credit": "Patrice78500 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_Noire-_vue_depuis_le_ponton.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "aa31302740d5847963085d342a7f036acfd8080f42ae2dcd52a8f04fb6a329be",
+    "originalDimensions": [
+      4032,
+      2016
+    ],
+    "identityStatus": "Individual source names Anse Noire, Les Anses-d Arlet, Martinique, view from pontoon. Source camera14.528170,-61.087786 is about205m south of offshore inventory14.53,-61.088. Bay/pontoon context only, not exact underwater route. Nearby Anse Dufour not mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "176b5cff-98ff-4eca-9b2a-1c96efd75aa4",
+    "slug": "plage-du-conguel",
+    "photoNo": 24,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/176b5cff-98ff-4eca-9b2a-1c96efd75aa4/preview-option-14bab7e7532565a4.jpg",
+    "alt": "Plage du Conguel surface context — nearby context photo",
+    "credit": "rene boulay / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Morbihan_Quiberon_Pointe_Conguel_Plage_Baie_27052014_-_panoramio.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA3.0 with explicit rene boulay attribution; Commons Panoramio license review6 May2017. Only Commons and current upload host accessed, no archived/Panoramio route. Preserve source, license and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "14bab7e7532565a44d6b3539a76178b4e2659d5d39cf3bee593a075023102beb",
+    "originalDimensions": [
+      1600,
+      1200
+    ],
+    "identityStatus": "Individual source explicitly names Conguel beach bay side at Quiberon. Source camera47.473025,-3.089733 is about105m northwest of inventory47.4724,-3.0887. Same beach context, not exact underwater route or entry.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "e6651a1d-196d-491d-bff8-0360475ddc33",
+    "slug": "plage-de-ty-bihan",
+    "photoNo": 25,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/e6651a1d-196d-491d-bff8-0360475ddc33/preview-option-af7d43ca080b6efd.jpg",
+    "alt": "Plage de Ty Bihan surface context — nearby context photo",
+    "credit": "Moreau.henri / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:133_Carnac_Plage_de_Ty_Bihan.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "af7d43ca080b6efd94db73eb951480a16dbffcce8857492e66bcba86637ed6f4",
+    "originalDimensions": [
+      3072,
+      2304
+    ],
+    "identityStatus": "Individual source explicitly names Carnac plage de Ty Bihan; inventory names same beach at47.565,-3.0904. Saved category also identifies this beach. No source camera GPS established; mapping is named-beach level rather than exact underwater route or entry.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "c91bbad0-2528-45a7-8587-3261b50b472a",
+    "slug": "pampelonne-plage",
+    "photoNo": 26,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/c91bbad0-2528-45a7-8587-3261b50b472a/preview-option-6374e25a554c2c4a.jpg",
+    "alt": "Pampelonne Plage surface context — nearby context photo",
+    "credit": "Thérèse Gaigé / Wikimedia Commons / CC0 1.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_de_Pampelonne_%28Ramatuelle%2C_83%29_-_02.jpg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC0 1.0 public-domain dedication verified. Creator and source retained for provenance; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "6374e25a554c2c4abd9360c079922ba5aabe07b51fb4d56807b1c9fbda069679",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Individual source explicitly names 4.5km Pampelonne beach in Ramatuelle, matching inventory Pampelonne Plage at43.2363,6.6644. Saved category corroborates beach, not inland Pampelonne homonym. No camera GPS or exact section established; mapping is broad named-beach context, not precise dive entry/underwater route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "e1dfbdc3-4e9e-48f3-a767-be3cd8871f27",
+    "slug": "sagone-plage",
+    "photoNo": 27,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/e1dfbdc3-4e9e-48f3-a767-be3cd8871f27/preview-option-0a9a1a2ec578822c.jpg",
+    "alt": "Sagone plage surface context — nearby context photo",
+    "credit": "Pierre Bona / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vico_plage_Sagone.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0 selected from offered licenses. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "0a9a1a2ec578822c1192a28e5ec83b8b202338028447fd5d2952a1f25a49c445",
+    "originalDimensions": [
+      4032,
+      3024
+    ],
+    "identityStatus": "Individual source explicitly names Plage de Sagone, Vico, Corsica, viewed from the Genoese tower. Inventory Sagone plage42.1135,8.6956 is mapped at named-beach/bay level. No camera GPS established or exact underwater entry/route claim.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "623b85cb-8af0-462f-aeee-0cfd904f8418",
+    "slug": "ilot-du-cap-taillat",
+    "photoNo": 28,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/623b85cb-8af0-462f-aeee-0cfd904f8418/preview-option-4620906c7e6431cf.jpg",
+    "alt": "Îlot du Cap Taillat surface context — nearby context photo",
+    "credit": "Manutux / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Taillat-Cartaya.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "4620906c7e6431cfd0d8a94c7139d1718ffda84e363ba20a5cca60561b3c9f4d",
+    "originalDimensions": [
+      5312,
+      2988
+    ],
+    "identityStatus": "Individual source explicitly names Cap Taillat viewed from developed path. Category places cape43.168211,6.646019 about210m northwest of inventory Ilot du Cap Taillat43.1667,6.6476. Nearby headland/site context only, not proof of a separate offshore islet or exact underwater route. No source camera GPS established.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "3e6c7d48-8008-4fd6-ac6c-d63815c9fef3",
+    "slug": "la-pointe-au-sel",
+    "photoNo": 29,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/3e6c7d48-8008-4fd6-ac6c-d63815c9fef3/preview-option-97aabd44ea316451.jpg",
+    "alt": "La Pointe au Sel surface context — nearby context photo",
+    "credit": "Olaf2 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pointe_au_Sel_2024.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator, source, licence and share-alike/change notices.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "97aabd44ea316451adc3e2ae327b7488e5b82e5932622e0cc5f238b750be6a94",
+    "originalDimensions": [
+      2924,
+      1968
+    ],
+    "identityStatus": "Source explicitly names Pointe au Sel with camera-21.204642,55.282100 in Saint-Leu, Reunion, about715m east of offshore inventory-21.2035,55.2753. Nearby coast context, not exact underwater site. Do not map Seychelles homonym or inventory Tombant de la Pointe au Sel at-21.272,55.283, roughly7.5km south.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "686e063e-e583-4b2a-bf43-ecc354103768",
+    "slug": "cap-homard",
+    "photoNo": 30,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/686e063e-e583-4b2a-bf43-ecc354103768/preview-option-91f5c8c8f06ec3a0.jpg",
+    "alt": "Cap Homard surface context — nearby context photo",
+    "credit": "Clémenceau Lauret / Wikimedia Commons / CC BY 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Homard_-_R%C3%A9cif_et_bord_de_mer_depuis_la_falaise_-_Saint-Paul_La_R%C3%A9union.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0. Preserve creator, source, license and change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "91f5c8c8f06ec3a00f7f0a1d701570053f987a14ce844246ed1d2a89e38908da",
+    "originalDimensions": [
+      3162,
+      2372
+    ],
+    "identityStatus": "Individual source explicitly identifies view downward from Cap Homard, Saint-Paul, Reunion. Source camera-21.032581,55.221639 about475m northeast of offshore inventory-21.0354,55.2183. Nearby coastal context, not exact underwater dive location or route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "1b8e9cc7-237f-42e2-a26e-a259bf678ed5",
+    "slug": "tiki-plage",
+    "photoNo": 31,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/1b8e9cc7-237f-42e2-a26e-a259bf678ed5/preview-option-83438284d5145e86.jpg",
+    "alt": "Tiki Plage surface context — nearby context photo",
+    "credit": "qwesy qwesy / Wikimedia Commons / CC BY 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tiki_Plage_-_panoramio_%281%29.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY3.0 with required qwesy qwesy attribution; Commons license review16 February2017. No external Panoramio/Wayback source accessed. Preserve creator/source/license/change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "83438284d5145e8638ad6744ca8407f501b015dbb17e756d5943fe5affbac515",
+    "originalDimensions": [
+      3008,
+      1651
+    ],
+    "identityStatus": "Individual source names Tiki Plage with camera43.419770,6.858312 about65m southeast of inventory43.4202,6.8578 at Le Dramont. Supports local beach context, not current operator affiliation or exact underwater route.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "7c95c750-d9a7-4558-9a15-564bb22b9f19",
+    "slug": "anse-a-la-barque",
+    "photoNo": 32,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/7c95c750-d9a7-4558-9a15-564bb22b9f19/preview-option-2865bf72d3aec6af.jpg",
+    "alt": "Anse à La Barque surface context — nearby context photo",
+    "credit": "Patrice78500 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Anse_%C3%A0_la_Barque.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "2865bf72d3aec6af7db4ac4bf0ed8a4952e3f98e5cbb5b99ade9a45d703430b0",
+    "originalDimensions": [
+      4320,
+      3240
+    ],
+    "identityStatus": "Individual source explicitly identifies Anse à la Barque between Bouillante and Vieux-Habitants, Guadeloupe, consistent with inventory16.0896,-61.773. Source categories corroborate the two municipalities. No camera GPS supplied; bay-level match only, not exact underwater wreck or route. Not the Saint-François or Canadian homonyms.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "7761b3eb-c98b-4ea4-abe0-74a8b3bb7422",
+    "slug": "la-plage-du-souffleur",
+    "photoNo": 33,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/7761b3eb-c98b-4ea4-abe0-74a8b3bb7422/preview-option-45b0428eadc2c12f.jpg",
+    "alt": "La Plage du Souffleur surface context — nearby context photo",
+    "credit": "Enrevseluj / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Plage_du_Souffleur_%C3%A0_Port-Louis.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "45b0428eadc2c12fbe88855fb2692a24d26117e091572c8a1266ddef0463053b",
+    "originalDimensions": [
+      4032,
+      3024
+    ],
+    "identityStatus": "Individual source names Plage du Souffleur at Port-Louis. Saved Commons category places the named beach16.422980,-61.533340, about147m south of inventory16.4243,-61.5333. This is a destination coordinate, not camera GPS; exact section and underwater route unverified. Nearby Aquarium Anse du Souffleur and Le Souffleur are not mapped, nor La Désirade homonym.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "afff88e5-587d-4abd-a3a3-11d01b86451c",
+    "slug": "crique-de-la-pointe-de-laiguille",
+    "photoNo": 34,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/afff88e5-587d-4abd-a3a3-11d01b86451c/preview-option-bfaf993f24b0bb1e.jpg",
+    "alt": "Crique de la Pointe de l’Aiguille surface context — nearby context photo",
+    "credit": "Moreau.henri / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:558_Th%C3%A9oule.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "bfaf993f24b0bb1e431feceaeff2db8c994a24f0a1b8e3420a3d8455f0d46e6d",
+    "originalDimensions": [
+      4314,
+      3230
+    ],
+    "identityStatus": "Individual source explicitly describes the beach at Pointe de l’Aiguille, Théoule-sur-Mer, and its natural Gardanne arch, matching the named inventory cove43.5064,6.9529. No camera GPS supplied; exact submerged route unverified. Historical source calls the beach difficult to access, not a current access assessment.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "50936480-832c-43d3-945d-3059e4df14b1",
+    "slug": "cap-bear",
+    "photoNo": 35,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/50936480-832c-43d3-945d-3059e4df14b1/preview-option-c416b16c279d3261.jpg",
+    "alt": "Cap Béar surface context — nearby context photo",
+    "credit": "Artico2 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_B%C3%A9ar.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license source; CC BY-SA3.0 selected rather than GFDL. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "c416b16c279d3261132ccba33e779014b0718d2420d9599fa95ce319fd5d2d4b",
+    "originalDimensions": [
+      4608,
+      3072
+    ],
+    "identityStatus": "Individual source identifies Cap Béar near Port-Vendres between Port-Vendres and Banyuls-sur-Mer, consistent with inventory42.5154,3.1424. Lighthouse/headland context only; no camera GPS supplied and exact submerged route unverified. Not the Algeria filename homonym.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "0538e431-f53b-46de-b9fd-b81c9ae1a2e0",
+    "slug": "rocher-creole",
+    "photoNo": 36,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/0538e431-f53b-46de-b9fd-b81c9ae1a2e0/preview-option-312a70fcdab431e8.jpg",
+    "alt": "rocher creole surface context — nearby context photo",
+    "credit": "Florian-Zet / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Rocher_Creole.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "312a70fcdab431e858d7f22f63529113d37513fca03687595d3af9ed3495edb7",
+    "originalDimensions": [
+      2773,
+      1640
+    ],
+    "identityStatus": "Individual source identifies Creol Rock in Grand Case Bay, Saint-Martin, with Anguilla behind. Saved category locates rock18.12194,-63.05522, about510m north of offshore inventory18.1175,-63.0565. This is a destination coordinate, not camera GPS; nearby rock context only, not exact submerged route. Creole Reef in the Dominican Republic is unrelated.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "e10574b3-02fe-42d7-a91f-8e01d6263430",
+    "slug": "cap-estel",
+    "photoNo": 37,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/e10574b3-02fe-42d7-a91f-8e01d6263430/preview-option-ec98a352c742992e.jpg",
+    "alt": "Cap Estel surface context — nearby context photo",
+    "credit": "Serein / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Estel_-_Eze_bord_de_mer.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "ec98a352c742992e95fb7ab39b3d9ac334c48baad7a1e0a65ae408f8991a1497",
+    "originalDimensions": [
+      3072,
+      2304
+    ],
+    "identityStatus": "Individual source names Cap Estel viewed from Èze-bord-de-Mer. Source camera43.719628,7.373714 lies about222m north-northwest of offshore inventory43.7177,7.3746. Supports nearby cape/coast context, not operator premises, exact underwater route or access.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "2053d02e-7a86-4258-ada2-8ade4cd3da00",
+    "slug": "baignoire-de-josephine",
+    "photoNo": 38,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/2053d02e-7a86-4258-ada2-8ade4cd3da00/preview-option-2fec8219829b410d.jpg",
+    "alt": "Baignoire de Joséphine surface context — nearby context photo",
+    "credit": "Patrifor / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baignoire_de_Jos%C3%A9phine.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "2fec8219829b410dab78acd5a966e5f554ceb8a6871d80601b5b7a62f1281049",
+    "originalDimensions": [
+      4608,
+      3456
+    ],
+    "identityStatus": "Individual source explicitly identifies the shoal in François Bay called Baignoire de Joséphine, consistent with the Martinique inventory14.6284876,-60.8495339. No camera GPS supplied; exact camera position and underwater route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "040ec8f8-5b05-4ac6-a66e-ec692906df20",
+    "slug": "ilot-bandrele-1",
+    "photoNo": 39,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/040ec8f8-5b05-4ac6-a66e-ec692906df20/preview-option-2fab76ff2de16d1d.jpg",
+    "alt": "Îlot Bandrelé  #1 surface context — nearby context photo",
+    "credit": "Frédéric Ducarme / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vue_de_l%27%C3%AElot_Bandr%C3%A9l%C3%A9.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "2fab76ff2de16d1d912f1378b7088906336f64f4b3a8c1bdfba37f871ef583f9",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Individual source explicitly locates camera on west beach of Îlot Bandrélé, Mayotte, looking south toward Mont Choungui. Supports island-level context for inventory Îlot Bandrelé #1 at-12.8958,45.2298, not confirmation of the numbered underwater subsite or route. No camera GPS supplied.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "f0819532-bc2e-4172-9595-a95a0b35f75b",
+    "slug": "cap-lardier",
+    "photoNo": 40,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/f0819532-bc2e-4172-9595-a95a0b35f75b/preview-option-50d1f6209148dcca.jpg",
+    "alt": "Cap Lardier surface context — nearby context photo",
+    "credit": "Johan N / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_Lardier_001.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license; CC BY-SA3.0 selected rather than GFDL. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "50d1f6209148dcca29a729733af568e9d90f0363ad9fb8000d7c160f8cf77168",
+    "originalDimensions": [
+      1549,
+      1162
+    ],
+    "identityStatus": "Individual source explicitly names Cap Lardier, Var, France, consistent with inventory43.1606,6.6223. No camera GPS supplied; exact submerged route or entry unverified. Broad Gigaro category is not used as an exact camera locator.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "5c5d7147-18cd-4a53-b77d-f53a74ab636f",
+    "slug": "la-pointe-de-la-chiappa",
+    "photoNo": 41,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/5c5d7147-18cd-4a53-b77d-f53a74ab636f/preview-option-13a51c204110543c.jpg",
+    "alt": "La pointe de la Chiappa surface context — nearby context photo",
+    "credit": "Telperion / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Punta_di_a_Chiappa.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "13a51c204110543c11d17a153d0f8641b8212123deb06ffab01dd6a96d9a08cc",
+    "originalDimensions": [
+      1621,
+      559
+    ],
+    "identityStatus": "Source explicitly identifies Cape Chiappa near Porto-Vecchio; object41.595194,9.365480 lies about176m southeast of inventory41.5966,9.3645. Camera41.608056,9.366389 is about1.28km north of inventory, distinct from object coordinate. Exact submerged route unverified; nearby Anse de la Chiappa is not mapped.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "4e3f9266-0955-402f-9a4e-d54f250311c6",
+    "slug": "la-calanque-de-mejean",
+    "photoNo": 42,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/4e3f9266-0955-402f-9a4e-d54f250311c6/preview-option-148f756d92b68c36.jpg",
+    "alt": "La calanque de Méjean surface context — nearby context photo",
+    "credit": "Benjamin Smith / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:C%C3%B4te_Bleue_-_09.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work multi-license; CC BY-SA4.0 selected. Required credit Benjamin Smith / Wikimedia Commons. Optional creator notification was not sent. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "148f756d92b68c36ce78700a2c88a94c1bd1b19ee3aa6a3656a9ec6d7850e0d2",
+    "originalDimensions": [
+      5496,
+      3670
+    ],
+    "identityStatus": "Individual source explicitly names Calanque de Méjean on Côte Bleue west of Marseille, consistent with inventory43.32917,5.21885. Saved category corroborates locality, not a camera coordinate. No camera GPS or exact submerged route established.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "609e782a-bc99-4fc8-9a03-82ae167720c1",
+    "slug": "pointe-de-campomoro",
+    "photoNo": 43,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/609e782a-bc99-4fc8-9a03-82ae167720c1/preview-option-7e26a6c80bbc92a2.jpg",
+    "alt": "Pointe de campomoro surface context — nearby context photo",
+    "credit": "Photo: Myrabella / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Corse_Punta_di_Campomoro_tour_genoise.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA3.0. Required attribution: Photo: Myrabella / Wikimedia Commons / CC BY-SA3.0. Preserve source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "7e26a6c80bbc92a254a16201e3e71b0f17283b8f63861229d29b49a7ade88686",
+    "originalDimensions": [
+      4120,
+      1373
+    ],
+    "identityStatus": "Individual source explicitly identifies Punta di Campomoro and its Genoese tower, Belvédère-Campomoro, Corsica. Source camera41.647170,8.810260 is about790m northeast of inventory41.6423,8.8034, looking southwest toward headland. No exact submerged route or access assertion.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "a3bc682d-5033-4bdb-914d-6efbc0133af3",
+    "slug": "pointe-escampobariou",
+    "photoNo": 44,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/a3bc682d-5033-4bdb-914d-6efbc0133af3/preview-option-278f5e7bfc0b2942.jpg",
+    "alt": "Pointe Escampobariou surface context — nearby context photo",
+    "credit": "Photo: Gnrc / Wikimedia Commons / CC BY 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Giens_%28Hy%C3%A8res%29%2C_France_-_Pointe_d%27Escampobariou.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY4.0. Preserve Gnrc attribution, source/license/change notices; no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "278f5e7bfc0b29424320980fb705f2c6a4b667938c99911c6cdcf41c3985513e",
+    "originalDimensions": [
+      2848,
+      2136
+    ],
+    "identityStatus": "Individual source names battery at Pointe d’Escampobariou, Giens. Saved category destination43.02763,6.09723 about63m north of inventory43.0271,6.0975. Destination coordinate is not camera GPS; exact underwater route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "eda68b4d-d5a5-4241-a8f3-26fbe6b0328d",
+    "slug": "pointe-borgnese",
+    "photoNo": 45,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/eda68b4d-d5a5-4241-a8f3-26fbe6b0328d/preview-option-320a87d714cc5228.jpg",
+    "alt": "Pointe  Borgnèse surface context — nearby context photo",
+    "credit": "Photo: Mickaël BRUNO / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Pointe_borgnese.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own-work CC BY-SA4.0. Preserve Mickaël BRUNO attribution, source/license/change notices and share-alike for adaptations. Creator signature retained.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "320a87d714cc52281599fb587c674009e3c8a8a1ac9d4ebba1b78fc496efcd09",
+    "originalDimensions": [
+      5464,
+      3070
+    ],
+    "identityStatus": "Individual source explicitly identifies aerial Pointe Borgnese, Martinique, categorized Le Marin, consistent with inventory14.448,-60.8998. No camera GPS supplied on source; exact underwater route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "0d9d3033-9595-438d-a8a4-251022c4817a",
+    "slug": "hallsands",
+    "photoNo": 46,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/0d9d3033-9595-438d-a8a4-251022c4817a/preview-option-3153f579b74490be.jpg",
+    "alt": "Hallsands surface context — nearby context photo",
+    "credit": "Photo: Mark.murphy at English Wikipedia / Wikimedia Commons / CC BY 2.5",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Start_bay_devon.jpg"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Multi-license source; CC BY2.5 selected. Required credit Mark.murphy at English Wikipedia. Preserve source/license/change notices; no share-alike requirement under selected license.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "3153f579b74490be56aebe7d991fe45e3cd679e57414a5ec864f9397148206b5",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "Individual source explicitly identifies Hallsands village and remaining beach within view of Start Bay from southwest, consistent with inventory50.2312,-3.8482. No camera GPS supplied; nearby Beesands/Slapton Sands in distance are not mapped and exact dive route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "61e2bebf-5ce3-4c0f-bd22-7f0d60f7c5ac",
+    "slug": "ellerton-park",
+    "photoNo": 47,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/61e2bebf-5ce3-4c0f-bd22-7f0d60f7c5ac/preview-option-cfc693c4a9957c2b.jpg",
+    "alt": "Ellerton Park surface context — nearby context photo",
+    "credit": "Photo: Photographer not named on Commons source; imported from 500px / Wikimedia Commons / CC0 1.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Early_Morning_Reflections_%28261400861%29.jpeg"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Individual Commons file explicitly declares CC0 1.0. Imported from 500px by Archive Team; photographer not named on page. No external 500px or archive route accessed. Watermark preserved; importer is not credited as photographer.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "cfc693c4a9957c2b939f0b997ea55afcaa26655d68ffaa28de2bfaccc7ebbd32",
+    "originalDimensions": [
+      2048,
+      1303
+    ],
+    "identityStatus": "Source description tags explicitly name Ellerton Park, Yorkshire. Camera54.378931,-1.610618 about342m north of inventory54.3759,-1.6097, consistent with lake-wide context; exact dive route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "4f08519f-ada5-4453-a8d5-db0833931137",
+    "slug": "mewstone-east",
+    "photoNo": 48,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/4f08519f-ada5-4453-a8d5-db0833931137/preview-option-00797ce6053b7827.jpg",
+    "alt": "Mewstone East surface context — nearby context photo",
+    "credit": "Photo: Nilfanion / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Mewstone_off_Wembury_%280999%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA4.0, author Nilfanion; source states production supported by Wikimedia UK. Preserve creator/source/license/change notices and share-alike for adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "00797ce6053b7827bae5961eab95a9b1357ef85613bdb4a641899b83734454b2",
+    "originalDimensions": [
+      4288,
+      2848
+    ],
+    "identityStatus": "Individual source names Mewstone off Wembury. Saved category locates Great Mew Stone50.30732,-4.10769, about240m west of Mewstone East inventory50.3076,-4.1046. Island destination coordinate is not camera GPS; exact east-side underwater route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "48c1e9a9-c6ce-4a9c-b355-2b370dfb12da",
+    "slug": "the-caves-at-norman-island",
+    "photoNo": 49,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/48c1e9a9-c6ce-4a9c-b355-2b370dfb12da/preview-option-90f9aad5b851ef15.jpg",
+    "alt": "The Caves at Norman Island surface context — nearby context photo",
+    "credit": "Photo: Matt & Nayoung / Wikimedia Commons / CC BY 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Caves_%40_Treasure_Point_on_Norman_Island.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY2.0, Matt & Nayoung. Commons Flickr upload bot confirmed license31 July2013. Only Commons/current upload accessed; no Flickr/staticflickr/archive routes. Preserve attribution/source/license/change notices, no share-alike requirement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "90f9aad5b851ef1588f394504c740d1b29257c6266c9801562ec32d2404869db",
+    "originalDimensions": [
+      3072,
+      2304
+    ],
+    "identityStatus": "Individual source explicitly names The Caves at Treasure Point on Norman Island, British Virgin Islands, matching inventory The Caves at Norman Island18.3167,-64.6167. No camera GPS supplied; exact individual cave/underwater route unverified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "3724ff6b-6ee2-4429-b7d2-84921368e752",
+    "slug": "dead-chest",
+    "photoNo": 50,
+    "batch": "group005-20261109",
+    "src": "/assets/dive-sites/3724ff6b-6ee2-4429-b7d2-84921368e752/preview-option-2de7a430528e0e7c.jpg",
+    "alt": "Dead Chest surface context — nearby context photo",
+    "credit": "Photo: Legis / Wikimedia Commons / Public domain author release",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island%2C_BVI.jpg"
+      },
+      {
+        "label": "Public domain author release",
+        "url": "https://commons.wikimedia.org/wiki/File:Dead_Chest_Island,_BVI.jpg"
+      }
+    ],
+    "creditSuffix": "Resized; local review only",
+    "attributionDetail": "Owner-selected additional local preview; identity and reuse evidence have NOT been newly verified. Supplied review status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Legis at English Wikipedia explicitly released this own-work photograph into the public domain worldwide; fallback grants use for any purpose without conditions except legally required ones. Commons records transfer of original English Wikipedia upload. Credit retained as good practice.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Applicable ShareAlike conditions remain. Not publication-authorized.",
+    "originalSha256": "2de7a430528e0e7c34ffc5a2d63a0187787c8747e35bed7eb900f89ba42854c6",
+    "originalDimensions": [
+      3072,
+      2304
+    ],
+    "identityStatus": "Individual description explicitly identifies Dead Chest Island, British Virgin Islands, matching inventory Dead Chest18.366889,-64.566493. Island-level context only; no camera GPS or exact underwater subsite established.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
   }
 ];
