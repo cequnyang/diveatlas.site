@@ -8,7 +8,7 @@ async function apply() {
   if (!page || !supported.has(page.dataset.siteId) || page.dataset.reviewedImages) return;
   // Preserve the historical opt-in preview's own composition and review panel.
   if (new URL(location.href).searchParams.get('imageReview') === 'three') return;
-  const response = await fetch('/assets/dive-sites/assignments.json?v=2');
+  const response = await fetch('/assets/dive-sites/assignments.json?v=3');
   if (!response.ok) throw new Error(`Reviewed image assignments: HTTP ${response.status}`);
   const assignments = await response.json();
   const entry = assignments.find(item => item.site_id === page.dataset.siteId);
@@ -29,7 +29,6 @@ async function apply() {
     node.rel = 'noreferrer';
     return node;
   };
-  const mobile = matchMedia('(max-width:720px)');
   function credit(full = false) {
     const node = element(full ? 'p' : 'span', 'reviewed-credit');
     if (entry.creator.includes('Woodym555')) {
@@ -48,26 +47,21 @@ async function apply() {
 
   const styles = element('link');
   styles.rel = 'stylesheet';
-  styles.href = '/assets/dive-sites/images.css?v=3';
+  styles.href = '/assets/dive-sites/images.css?v=4';
   const stylesReady = new Promise((resolve, reject) => {
     styles.addEventListener('load', resolve, {once: true});
     styles.addEventListener('error', () => reject(new Error('Reviewed image styles unavailable')), {once: true});
   });
   document.head.append(styles);
   const image = element('img', 'reviewed-photo');
-  image.src = entry.desktop;
+  image.src = entry.hero;
   image.alt = entry.alt || (entry.label === 'Surface view'
     ? `${entry.name} — surface view, as described by the source; not an underwater view.`
     : 'Winch and associated parts on the deck of SS Thistlegorm, as described by the source.');
-  const picture = element('picture');
-  const source = element('source');
-  source.media = '(max-width:720px)';
-  source.srcset = entry.mobile;
-  picture.append(source, image);
   const button = element('button', `reviewed-image-trigger${entry.role === 'main' ? ' site-photo-preview-trigger' : ''}`);
   button.type = 'button';
   button.setAttribute('aria-label', `Enlarge ${entry.label.toLowerCase()}`);
-  button.append(picture);
+  button.append(image);
 
   // Decode before replacing the existing image, so a missing asset preserves
   // the previous working page rather than leaving an empty hero.

@@ -93,7 +93,7 @@ async function updateCard(card) {
   image.title = `${photo.label} · ${photo.credit}\n${photo.sourcePage}\n${photo.licenceUrl}`;
   image.dataset.reviewedThumbnail = photo.siteId;
   try {
-    // An unavailable derivative leaves the previous working preview intact.
+    // A missing shared image leaves the previous working preview intact.
     await image.decode();
     if (!card.isConnected || photoForLink(card.href)?.siteId !== photo.siteId) return;
     // An old CDN image can fail while this local derivative is decoding and

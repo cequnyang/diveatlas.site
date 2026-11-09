@@ -142,3 +142,6 @@ playwright-report/
 !/tools/image_discovery/requirements.txt
 !/maintenance/organize_dive_site_photos.py
 !/tests/unit/dive-site-photo-storage.test.js
+!/maintenance/use_shared_dive_site_heroes.py
+!/tests/unit/test_shared_dive_site_heroes.py
+!/maintenance/build_reviewed_site_photo_catalog.py

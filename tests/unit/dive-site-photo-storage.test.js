@@ -23,23 +23,23 @@ test('all photo files live directly under their stable site UID', () => {
 test('active photo references resolve within their assigned UID', () => {
     for (const entry of assignments) {
       assert.ok(uid.test(entry.site_id));
-      for (const role of ['desktop', 'mobile']) {
-        if (!entry[role]) continue;
-        assert.ok(entry[role].startsWith(`/assets/dive-sites/${entry.site_id}/`), entry[role]);
-        assert.ok(fs.statSync(path.join(root, entry[role])).isFile(), entry[role]);
-      }
+      assert.equal(entry.desktop, undefined);
+      assert.equal(entry.mobile, undefined);
+      assert.equal(entry.hero, `/assets/dive-sites/${entry.site_id}/hero.jpg`);
+      assert.deepEqual(fs.readdirSync(path.join(base, entry.site_id)).sort(), ['hero.jpg']);
+      assert.ok(fs.statSync(path.join(root, entry.hero)).isFile(), entry.hero);
     }
 });
 
-test('preview catalog matches active heroes and UID thumbnails', () => {
+test('all preview catalog images use the same shared hero as full previews', () => {
   const script = fs.readFileSync(path.join(root, 'js/dive-site-reviewed-photo-catalog.js'), 'utf8');
   const catalog = JSON.parse(script.slice(script.indexOf('=') + 1).trim().replace(/;$/, ''));
   assert.equal(catalog.length, assignments.length);
   assert.equal(new Set(assignments.map(p => p.site_id)).size, assignments.length);
   for (const entry of assignments) {
     const preview = catalog.find(p => p.siteId === entry.site_id);
-    assert.equal(preview.fullSrc, entry.desktop);
-    assert.equal(preview.src, `/assets/dive-sites/${entry.site_id}/thumbnail.jpg`);
+    assert.equal(preview.fullSrc, entry.hero);
+    assert.equal(preview.src, entry.hero);
     assert.ok(fs.statSync(path.join(root, preview.src)).isFile());
   }
 });

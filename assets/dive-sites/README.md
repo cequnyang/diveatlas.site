@@ -3,13 +3,13 @@
 All photos live under `assets/dive-sites/<siteId>/`, using the stable DiveAtlas UID. Keep original source archives outside this directory. Changing storage paths does not change photo identity, rights or approval status.
 
 - `hero.webp`: verified user-provided photo, registered in `datasets/dive-site-photos.js`.
-- `desktop.jpg`, `mobile.jpg`: reviewed detail-page hero derivatives; both variants may reference the same file when the composition is shared.
-- `thumbnail.jpg`: map, directory and related-card preview.
-- Other derivative names, optionally with a content-hash suffix: retained earlier compositions; do not overwrite them when adding a new image.
+- `hero.jpg`: one reviewed image shared by desktop/mobile heroes, map popups, directory cards and related cards. The browser crops it to the existing frame using centered `object-fit: cover`; the enlarged preview shows the full stored composition.
 
 `assignments.json` at this directory root is the active reviewed-photo manifest and retains current credits and review metadata. `images.css` is shared presentation. Only UID photo folders belong here; historical batch records stay outside the published assets. Preserve creator, source, exact licence, crop notices and review caveats when changing an assignment.
 
-Run `python maintenance/build_reviewed_site_thumbnails.py` to rebuild thumbnails and the browser catalog from active assignments. Apply additional explicitly selected images with `maintenance/apply_additional_reviewed_photos.py`; it writes directly to UID directories. Historical private batch scripts target the old layout and must be ported before reuse. `maintenance/organize_dive_site_photos.py` records the one-time migration; it refuses an already migrated tree.
+Run `python maintenance/build_reviewed_site_photo_catalog.py` to rebuild the browser catalog without generating image derivatives from active assignments. Apply additional explicitly selected images with `maintenance/apply_additional_reviewed_photos.py`; it writes directly to UID directories. Historical private batch scripts target the old layout and must be ported before reuse. `maintenance/organize_dive_site_photos.py` records the one-time migration; it refuses an already migrated tree.
+
+Reviewed assignments use a single `hero` URL. Existing heroes preserve the former desktop composition byte-for-byte; separate mobile crops were removed by `maintenance/use_shared_dive_site_heroes.py`. Future imports resize the full EXIF-oriented source composition to fit within 1600×1600 without pre-cropping. Cards and map popups use that same hero URL and crop it within their frames; no separate thumbnail file is generated. This reduces stored derivatives but makes small previews download the full image. Browser cropping changes presentation, not downloaded file size. Preserve the recorded source crop evidence for older heroes; browser cropping cannot restore content outside those stored images.
 
 A photo is requested only when its dive-site popup opens.
 

@@ -74,15 +74,15 @@ def main():
         if 'Diego Delso' in creator:creator='Diego Delso';links=[{'label':'delso.photo','url':'http://delso.photo'}]
         if 'Anton Zelenov' in creator:creator='Photo: Anton Zelenov'
         if 'mccaffrey_uk' in creator:creator='mccaffrey_uk';links=[{'label':'Photographer','url':'https://www.flickr.com/photos/mccaffrey_uk/'}]
-        boxes={};paths={}
         with Image.open(original) as image:
-            im=ImageOps.exif_transpose(image).convert('RGB');w,h=im.size
-            for variant,size in [('desktop',(1600,900)),('mobile',(900,675))]:
-                ratio=size[0]/size[1];cw=min(w,round(h*ratio));ch=min(h,round(w/ratio));left=(w-cw)//2;top=(h-ch)//2;box=[left,top,left+cw,top+ch];boxes[variant]=box
-                crop=im.crop(box);crop.thumbnail(size,Image.Resampling.LANCZOS);name=sid+'-'+variant+'.jpg';crop.save(staged/name,quality=88,optimize=True);paths[variant]='/'+(target/sid/(variant+'.jpg')).relative_to(ROOT).as_posix()
-        entries.append({'site_id':sid,'name':site['name'],'country':site['country'],'slug':slug,'review_id':r['review_id'],'source_page':r['source_page'],'creator':creator,'creator_links':links,'licence':license_name,'licence_url':licence,'role':'main','label':label,'alt':site['name']+' — '+label.lower()+', as described by the source.','source_description':r['description'],'licence_evidence_text':r.get('licence_evidence_text'),'identity_status':a['evidence'],'rights_status':a['licence_review'],'human_review_status':'Owner requests suitable local assignments; AI source/crop assessment, not independent human identity or ownership verification.','publication_status':'NOT_AUTHORIZED','editorial_status':'Owner-authorized local assignment; not deployed','original_dimensions':r['dimensions'],'original_sha256':sha,'crop_boxes':boxes,'change_notice':'Cropped and resized from EXIF-oriented original; JPEG re-encoded; no colour/sharpness edits. Preserve credit, source and exact licence; applicable ShareAlike conditions remain.','source_review_manifest':decisions['source_manifest'],**paths})
+            hero=ImageOps.exif_transpose(image).convert('RGB')
+            # Preserve the source composition: responsive hero frames crop in CSS.
+            hero.thumbnail((1600,1600),Image.Resampling.LANCZOS)
+            hero.save(staged/(sid+'-hero.jpg'),quality=88,optimize=True)
+        hero_path='/'+(target/sid/'hero.jpg').relative_to(ROOT).as_posix()
+        entries.append({'site_id':sid,'name':site['name'],'country':site['country'],'slug':slug,'review_id':r['review_id'],'source_page':r['source_page'],'creator':creator,'creator_links':links,'licence':license_name,'licence_url':licence,'role':'main','label':label,'alt':site['name']+' — '+label.lower()+', as described by the source.','source_description':r['description'],'licence_evidence_text':r.get('licence_evidence_text'),'identity_status':a['evidence'],'rights_status':a['licence_review'],'human_review_status':'Owner requests suitable local assignments; AI source/crop assessment, not independent human identity or ownership verification.','publication_status':'NOT_AUTHORIZED','editorial_status':'Owner-authorized local assignment; not deployed','original_dimensions':r['dimensions'],'original_sha256':sha,'change_notice':'Full EXIF-oriented composition resized and JPEG re-encoded; no colour/sharpness edits. Hero frames crop in the browser. Preserve credit, source and exact licence; applicable ShareAlike conditions remain.','source_review_manifest':decisions['source_manifest'],'hero':hero_path})
     dump(work/'assignments.json',entries)
-    for variant in ['desktop','mobile']:
+    for variant in ['hero']:
         for offset in range(0,len(entries),12):
             batch=entries[offset:offset+12];sheet=Image.new('RGB',(1600,((len(batch)+3)//4)*300),'#edf3f5');draw=ImageDraw.Draw(sheet)
             for j,e in enumerate(batch):
@@ -92,7 +92,7 @@ def main():
         preserve_explicit_photo_priority()
         for e in entries:
             site_target=target/e['site_id'];site_target.mkdir(exist_ok=True)
-            for variant in ['desktop','mobile']:shutil.copy2(staged/(e['site_id']+'-'+variant+'.jpg'),site_target/(variant+'.jpg'))
+            shutil.copy2(staged/(e['site_id']+'-hero.jpg'),site_target/'hero.jpg')
         # A resumed, explicitly selected batch may correct credits for the SAME original.
         # Other batches remain byte-for-byte values; different originals were rejected above.
         refreshed={e['site_id']:e for e in entries}
