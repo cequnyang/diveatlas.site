@@ -43,11 +43,15 @@ test('unavailable reviewed thumbnail retains the existing card image',async({pag
 
 test('map popup and enlarged preview use the assigned photo with context and linked attribution',async({page})=>{
  await openMap(page,{localStorage:{'global-coral-map-lang':'en'}});await page.waitForFunction(()=>Boolean(window.DiveAtlasReviewedPhotos));
+ // Register after openMap's external-request blocker so migrated images decode offline.
+ await mockR2Images(page);
  for(const p of [photos[3],photos[4],photos.find(p=>p.name==='Ashos Gap (Shark Cleaning Station)'),photos.find(p=>p.review_id==='c089'),...photos.slice(-3)]){
   await setMapView(page,-5.7,131,14);
   await page.evaluate(p=>{window.__DIVEATLAS_TEST__.map.closePopup();window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,p.site_id,{withFallbackPhoto:true}).openPopup()},p);
-  const popup=page.locator('.leaflet-popup.dive-site-popup--with-photo').filter({has:page.locator('img.dive-popup-photo[src*="'+p.site_id+'"]')});await expect(popup).toBeVisible();
+  // R2 filenames are content hashes, so identify the assigned image by its resolved URL.
+  const popup=page.locator('.leaflet-popup.dive-site-popup--with-photo').filter({has:page.locator('img.dive-popup-photo').and(page.locator('[src="'+displayURL(p.hero)+'"]'))});await expect(popup).toBeVisible();
   await expect(popup.locator('.dive-popup-photo')).toHaveAttribute('src',displayURL(p.hero));
+  await expect.poll(()=>popup.locator('.dive-popup-photo').evaluate(image=>image.complete&&image.naturalWidth>0)).toBe(true);
   await expect(popup.locator('.dive-popup-photo-label--reviewed')).toHaveCount(0);
   await expect(popup.locator('a[href="'+p.source_page+'"]')).toHaveCount(1);
   await expect(popup.locator('a[href="'+p.licence_url+'"]')).toHaveCount(1);
@@ -165,6 +169,7 @@ test('additional preview options preserve the hero and change linked credits on 
 test('map photo preview includes the same additional options with individual source links',async({page})=>{
  const p=photos.find(entry=>entry.additional_photos?.length);
  await openMap(page,{localStorage:{'global-coral-map-lang':'en'}});
+ await mockR2Images(page);
  await page.waitForFunction(()=>Boolean(window.DiveAtlasReviewedPhotos));
  await setMapView(page,-5.7,131,14);
  await page.evaluate(p=>window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,p.site_id,{withFallbackPhoto:true}).openPopup(),p);
@@ -175,6 +180,7 @@ test('map photo preview includes the same additional options with individual sou
  await expect(dialog.locator('.dive-photo-preview__thumbnail')).toHaveCount(p.additional_photos.length+1);
  await dialog.locator('.dive-photo-preview__thumbnail').nth(1).click();
  await expect(dialog.locator('.dive-photo-preview__image')).toHaveAttribute('src',displayURL(p.additional_photos[0].src));
+ await expect.poll(()=>dialog.locator('.dive-photo-preview__image').evaluate(image=>image.complete&&image.naturalWidth>0)).toBe(true);
  await expect(dialog.locator('.dive-photo-preview__credit a[href="'+p.additional_photos[0].source_page+'"]')).toHaveCount(1);
 });
 
