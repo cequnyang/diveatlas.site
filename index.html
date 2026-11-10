@@ -411,6 +411,8 @@
         display:grid;
         width:max-content;
         max-width:calc(100vw - 20px);
+        /* Match the zoom stack's inset so all three controls share a centerline. */
+        margin-right:14px !important;
       }
       .mobile-map-credits-button,
       .mobile-map-credits-panel {
@@ -5429,6 +5431,16 @@
       transition: opacity .15s ease;
     }
     .leaflet-control-attribution:hover { opacity: 1; }
+
+    /* Keep desktop credits and the mobile credits button below zoom even when
+       controls rejoin this corner after the welcome sheet closes. */
+    .leaflet-bottom.leaflet-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .leaflet-bottom.leaflet-right .leaflet-control-attribution,
+    .leaflet-bottom.leaflet-right .mobile-map-credits-control { order: 1; }
 
     @media (max-width: 720px) {
       .top-menu-bar { height: 42px; min-height: 42px; max-height: 42px; padding-left: 8px; padding-right: 2px; }
