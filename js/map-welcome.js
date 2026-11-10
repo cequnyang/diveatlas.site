@@ -52,7 +52,25 @@
     no: ['Søk etter et sted eller flytt og zoom kartet. Fortsett med området du vil utforske.', 'Bruk dette kartområdet'],
     id: ['Cari tempat atau geser dan perbesar peta. Lanjutkan dengan area yang ingin dijelajahi.', 'Gunakan area peta ini']
   };
-  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMonth, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onFocusMap, onMapControls, suppressedKey }) {
+  // Navigation uses compact labels; headings and field labels keep their
+  // descriptive copy so shortening the tabs does not remove context.
+  const stepLabels = {
+    en: ['Destination', 'Month', 'Explore'],
+    zh: ['目的地', '月份', '探索'],
+    ja: ['目的地', '旅行月', '探索'],
+    fr: ['Destination', 'Mois', 'Explorer'],
+    de: ['Reiseziel', 'Monat', 'Erkunden'],
+    es: ['Destino', 'Mes', 'Explorar'],
+    it: ['Destinazione', 'Mese', 'Esplora'],
+    pt: ['Destino', 'Mês', 'Explorar'],
+    ru: ['Место', 'Месяц', 'Обзор'],
+    ko: ['목적지', '여행 월', '탐색'],
+    nl: ['Bestemming', 'Maand', 'Verkennen'],
+    sv: ['Resmål', 'Månad', 'Utforska'],
+    no: ['Reisemål', 'Måned', 'Utforsk'],
+    id: ['Destinasi', 'Bulan', 'Jelajahi']
+  };
+  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onFocusMap, onMapControls, suppressedKey }) {
     const section = document.createElement('section');
     section.id = 'mapWelcome';
     section.className = 'map-welcome tutorial-dialog glass-surface';
@@ -66,10 +84,19 @@
         <section id="mapWelcomeMonthPanel" class="map-welcome-step" hidden aria-labelledby="mapWelcomeMonthTitle"><div><h3 id="mapWelcomeMonthTitle" data-copy="4" tabindex="-1"></h3><p data-copy="5"></p><label class="map-welcome-field" for="mapWelcomeMonth" data-copy="4"></label><div class="temperature-select-hit-area"><select id="mapWelcomeMonth"></select></div><p class="map-welcome-note" data-copy="13"></p></div><div class="map-welcome-context"><span class="map-welcome-context-label" data-copy="2"></span><strong class="map-welcome-destination-value"></strong></div></section>
         <section id="mapWelcomeReviewPanel" class="map-welcome-step" hidden aria-labelledby="mapWelcomeReviewTitle"><div><h3 id="mapWelcomeReviewTitle" tabindex="-1"></h3><dl class="map-welcome-summary"><div><dt data-copy="2"></dt><dd class="map-welcome-destination-value"></dd></div><div id="mapWelcomeMonthSummary"><dt data-copy="4"></dt><dd id="mapWelcomeMonthValue"></dd></div></dl><p data-copy="7"></p></div></section>
       </div>
-      <footer class="tutorial-footer map-welcome-footer"><div class="map-welcome-navigation"><button type="button" class="tutorial-button" data-action="back" data-copy="11"></button><button type="button" class="tutorial-button primary tutorial-cta" data-action="next"></button><button type="button" class="tutorial-button primary tutorial-cta" data-action="apply" hidden></button></div><div class="map-welcome-utilities"><button type="button" class="map-welcome-link" data-action="browse"></button><button type="button" class="map-welcome-link" data-action="guide" data-copy="8"></button></div><label class="tutorial-suppress-label"><input type="checkbox" id="mapWelcomeSuppress"><span data-copy="10"></span></label></footer>`;
+      <footer class="tutorial-footer map-welcome-footer"><div class="map-welcome-navigation"><button type="button" class="tutorial-button" data-action="back" data-copy="11"></button><button type="button" class="tutorial-button primary tutorial-cta" data-action="next"></button><button type="button" class="tutorial-button primary tutorial-cta" data-action="apply" hidden></button></div><div class="map-welcome-utilities"><button type="button" class="map-welcome-link" data-action="guide" data-copy="8"></button></div><label class="tutorial-suppress-label"><input type="checkbox" id="mapWelcomeSuppress"><span data-copy="10"></span></label></footer>`;
     const steps = monthEnabled ? ['destination', 'month', 'review'] : ['destination', 'review'];
     let step = 0;
     const action = name => section.querySelector(`[data-action="${name}"]`);
+    function setActionLabel(name, text) {
+      const label = document.createElement('span');
+      label.className = 'tutorial-cta__label';
+      label.textContent = text;
+      // Reuse the tutorial's SVG and hover/focus animation rather than a
+      // font-dependent arrow glyph that varies across operating systems.
+      const icon = document.querySelector('#tutorialStart .tutorial-cta__icon').cloneNode(true);
+      action(name).replaceChildren(label, icon);
+    }
     const picker = section.querySelector('#mapWelcomeMonth');
     const suppress = section.querySelector('#mapWelcomeSuppress');
     const searchInput = section.querySelector('#mapWelcomeSearch');
@@ -94,13 +121,30 @@
     });
     searchInput.addEventListener('keydown',event => onSearchKey(event,searchInput));
 
-    function syncMapArea() {
+    let areaNameRequest = 0;
+    let selectedDestination = null;
+    async function syncMapArea() {
       // The live viewport is the only source of geographic state. Search,
       // dragging and zooming all update this same area; no second picker/index.
       const {lat,lng} = getMapArea();
-      const formatter = new Intl.NumberFormat(getLanguage(), { minimumFractionDigits:2, maximumFractionDigits:2, useGrouping:false });
-      const label = `${flow()[1]} · ${formatter.format(lat)}°, ${formatter.format(lng)}°`;
-      section.querySelectorAll('.map-welcome-destination-value').forEach(el => { el.textContent = label; });
+      const request = ++areaNameRequest;
+      const values = section.querySelectorAll('.map-welcome-destination-value');
+      // Preserve the actual search choice across steps, but do not label a
+      // different map center with the previous destination after panning.
+      const destination = selectedDestination && selectedDestination.lat === lat && selectedDestination.lng === lng
+        ? selectedDestination.name : '';
+      if (!destination) selectedDestination = null;
+      values.forEach(el => { el.textContent = destination || flow()[1]; });
+      // Use the same geographic labels as the conditions popup. A newer
+      // viewport or language wins if the local lookup completes out of order.
+      const name = await getMapAreaName({lat, lng}).catch(() => '');
+      if (request !== areaNameRequest) return;
+      // Country searches already contain their own name; avoid repeating it
+      // when adding the broader geographic context to a selected area.
+      const parts = [destination, ...(name || '').split(' · ')]
+        .map(part => part.trim()).filter(Boolean);
+      const label = [...new Set(parts)].join(' · ') || flow()[1];
+      values.forEach(el => { el.textContent = label; });
     }
     function syncStep({ focus = false } = {}) {
       const current = steps[step];
@@ -111,10 +155,11 @@
         action(name).setAttribute('aria-current', index === step ? 'step' : 'false');
         action(name).dataset.complete = String(index < step);
         action(name).querySelector('.map-welcome-number').textContent = String(index + 1);
+        action(name).querySelector('[data-copy]').textContent = (stepLabels[getLanguage()] || stepLabels.en)[['destination', 'month', 'review'].indexOf(name)];
       });
       action('back').hidden = step === 0;
       action('next').hidden = step === steps.length - 1;
-      action('next').textContent = (step === 0 ? mapText()[1] : flow()[0]) + ' →';
+      setActionLabel('next', step === 0 ? mapText()[1] : flow()[0]);
       action('apply').hidden = step !== steps.length - 1;
       syncMapArea();
       section.querySelector('#mapWelcomeMonthValue').textContent = picker.selectedOptions[0]?.textContent || '';
@@ -129,12 +174,25 @@
         title.replaceChildren(document.createTextNode(titleText.slice(0,brandIndex)),logo,document.createTextNode(titleText.slice(brandIndex + 9)));
       } else title.textContent = titleText;
       action('close').setAttribute('aria-label',text[9]);
-      action('language').textContent = getLanguage().toUpperCase() + ' ▾';
+      const languageButton = action('language');
+      languageButton.className = 'top-menu-menu-button top-menu-lang-trigger';
+      languageButton.setAttribute('aria-controls', 'tutorialLanguageDropdown');
+      const languageLabel = document.querySelector('#langSelect option:checked');
+      languageButton.replaceChildren();
+      const label = document.createElement('span');
+      label.textContent = languageLabel?.textContent || getLanguage().toUpperCase();
+      languageButton.append(label, document.querySelector('#tutorialLanguageMenuButton svg').cloneNode(true));
+      if (!languageButton.parentElement.classList.contains('tutorial-language-menu')) {
+        const menu = document.createElement('div');
+        menu.className = 'top-menu-lang tutorial-language-menu';
+        languageButton.before(menu);
+        menu.append(languageButton);
+      }
       searchInput.placeholder = getSearchLabel();searchInput.setAttribute('aria-label',getSearchLabel());
       section.querySelector('#mapWelcomeMapHint').textContent = mapText()[0];
       section.querySelector('#mapWelcomeIntro').textContent = monthEnabled ? labels[4] : text[3];
       section.querySelector('#mapWelcomeReviewTitle').textContent = labels[2];
-      action('apply').textContent = labels[3] + ' →';action('browse').textContent = labels[5];
+      setActionLabel('apply', labels[3]);
       // Layers owns the saved month. Rebuilding localized options must not
       // revive a stale guide-only selection after settings changed elsewhere.
       const selected = String(getMonth());
@@ -182,13 +240,29 @@
       } else if (name === 'apply') {
         if (monthEnabled && onMonth(Number(picker.value)) === false) return;
         dismiss();
-      } else if (name === 'browse' || name === 'close') dismiss();
+      } else if (name === 'close') dismiss();
     });
     section.addEventListener('keydown',event => { if (event.key === 'Escape') { event.stopPropagation();dismiss(); } });
     return {render,dismiss,syncMapArea,
       syncMonth(month) { picker.value = String(month);syncStep(); },
-      syncDestination(name) { searchInput.value = name; },
+      syncDestination(name) {
+        searchInput.value = name;
+        selectedDestination = { name, ...getMapArea() };
+        syncMapArea();
+      },
       open({restore = false} = {}) {
+      // A manual reopening begins a new flow; a guide detour resumes it.
+      // Suppression remains saved; month changes use the map's shared state.
+      if (!restore) {
+        step = 0;
+        searchInput.value = '';
+        selectedDestination = null;
+        onMonthChange(new Date().getMonth() + 1);
+        closeSearch();
+        onCloseMonth();
+        section.scrollTop = 0;
+        section.querySelector('.map-welcome-content').scrollTop = 0;
+      }
       syncSuppression();render();section.hidden = false;placeMapControls();if (restore) action('guide').focus();
     }};
   };

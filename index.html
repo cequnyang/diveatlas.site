@@ -5841,7 +5841,7 @@
       padding: 0;
       border: 0;
       border-radius: var(--radius-control);
-      background: var(--surface-elevated);
+      background: transparent;
       color: var(--text-secondary);
       font-size: 0;
       line-height: 1;
@@ -5916,7 +5916,7 @@
     .tutorial-context-copy p { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
     .tutorial-tip { margin: 0; color: var(--text-secondary); text-align: left; font-size: 12px; line-height: 1.35; }
     .tutorial-footer { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .tutorial-footer-actions { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .tutorial-footer-actions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
     .tutorial-suppress-label { display: flex; min-height: 34px; align-items: center; gap: 7px; color: var(--text-secondary); font-size: 13px; line-height: 1.35; cursor: pointer; }
     .tutorial-suppress-label input { width: 16px; height: 16px; flex: 0 0 16px; margin: 0; accent-color: var(--primary); }
     .tutorial-suppress-label span { min-width: 0; overflow-wrap: anywhere; }
@@ -7522,6 +7522,10 @@
       <details class="bio-legend-overflow" id="bioLegendOverflow">
         <summary aria-label="More layer options" title="More layer options">•••</summary>
         <div class="bio-legend-overflow-menu">
+          <button class="bio-legend-guide" id="bioLegendWelcome" type="button">
+            <svg class="bio-legend-guide-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="5.75" stroke="currentColor" stroke-width="1.6"/><path d="m10.5 5.5-1.4 3.6-3.6 1.4 1.4-3.6 3.6-1.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <span class="bio-legend-welcome-label">Welcome</span>
+          </button>
           <button class="bio-legend-guide" id="bioLegendGuide" type="button">
             <svg class="bio-legend-guide-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 3.25C6.65 2.4 4.55 2.2 2.25 2.7v10.05c2.3-.5 4.4-.3 5.75.55m0-10.05c1.35-.85 3.45-1.05 5.75-.55v10.05c-2.3-.5-4.4-.3-5.75.55m0-10.05v10.05" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="bio-legend-guide-label">Layer guide</span>
@@ -8079,10 +8083,6 @@ ZSD·2016–2025</span></span>
       <div class="tutorial-footer">
         <p class="tutorial-tip" id="tutorialTip">Drag to explore · Scroll to zoom · Toggle layers</p>
         <div class="tutorial-footer-actions">
-          <label class="tutorial-suppress-label" for="tutorialSuppressInput">
-            <input id="tutorialSuppressInput" type="checkbox">
-            <span id="tutorialSuppressLabel">Don't show this tutorial again</span>
-          </label>
           <div class="tutorial-actions">
             <button class="tutorial-button primary tutorial-cta" id="tutorialStart" type="button">
               <span class="tutorial-cta__label" id="tutorialStartLabel">Start exploring</span>
@@ -9314,7 +9314,7 @@ ZSD·2016–2025</span></span>
     document.querySelectorAll('.dive-location-coordinate-tooltip[popover]').forEach(tooltip => {
       positionAnchoredGlassPopover(tooltip, tooltip.previousElementSibling, false);
     });
-    positionAnchoredGlassPopover(els.tutorialLanguageDropdown, els.tutorialLanguageMenuButton, false);
+    positionAnchoredGlassPopover(els.tutorialLanguageDropdown, tutorialLanguageAnchor || els.tutorialLanguageMenuButton, false);
   };
   window.addEventListener('resize', repositionDiveSourceTooltips);
   document.addEventListener('scroll', repositionDiveSourceTooltips, true);
@@ -10176,8 +10176,6 @@ ZSD·2016–2025</span></span>
     tutorialTip: document.getElementById('tutorialTip'),
     tutorialStart: document.getElementById('tutorialStart'),
     tutorialStartLabel: document.getElementById('tutorialStartLabel'),
-    tutorialSuppressInput: document.getElementById('tutorialSuppressInput'),
-    tutorialSuppressLabel: document.getElementById('tutorialSuppressLabel'),
     contactModal: document.getElementById('contactModal'),
     contactDialog: document.getElementById('contactDialog'),
     contactDialogTitle: document.getElementById('contactDialogTitle'),
@@ -10461,7 +10459,9 @@ ZSD·2016–2025</span></span>
   const SEARCH_QUERY_STORAGE_KEY = 'global-coral-map-dive-search-v1';
   const LEGEND_COLLAPSED_STORAGE_KEY = 'global-coral-map-legend-collapsed-v1';
   const TUTORIAL_SEEN_STORAGE_KEY = 'diveatlas-tutorial-seen-v1';
-  const TUTORIAL_SUPPRESSED_STORAGE_KEY = 'global-coral-map-tutorial-suppressed-v1';
+  const WELCOME_SUPPRESSED_STORAGE_KEY = 'global-coral-map-welcome-suppressed-v1';
+  // Retire the guide preference; the welcome keeps its independent setting.
+  try { localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'); } catch (_) {}
   const ENVIRONMENT_VIEW_STORAGE_KEY = 'global-coral-map-environment-view-v1';
   const ENVIRONMENT_MONTH_STORAGE_KEY = 'global-coral-map-environment-month-v1';
   const ENVIRONMENT_MONTH_STORAGE_KEYS = Object.freeze({
@@ -13045,7 +13045,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Map context', tutorialTerrainTitle: 'Terrain', tutorialTerrainCopy: 'Seafloor relief and underwater terrain structure.', tutorialDepthContoursTitle: 'Depth contours', tutorialDepthContoursCopy: 'Seafloor depth lines. Visible only at supported zoom levels.',
       tutorialTipDesktop: 'Drag to explore · Scroll to zoom · Toggle layers · Right-click for depth',
       tutorialTipMobile: 'Tap a location · Drag to explore · Pinch to zoom · Toggle layers · Press and hold for depth',
-      tutorialStart: 'Start exploring →', tutorialSuppress: 'Don\'t show this tutorial again', tutorialClose: 'Close tutorial'
+      tutorialStart: 'Start exploring →', tutorialClose: 'Close tutorial'
     },
     zh: {
       tutorialEyebrow: 'DiveAtlas 使用指南', tutorialTitle: '探索 DiveAtlas',
@@ -13059,7 +13059,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: '地图背景', tutorialTerrainTitle: '地形', tutorialTerrainCopy: '海底起伏与水下地形结构。', tutorialDepthContoursTitle: '深度等深线', tutorialDepthContoursCopy: '海底深度线。仅在支持的缩放级别显示。',
       tutorialTipDesktop: '拖动探索 · 滚动缩放 · 切换图层 · 右键查看水深',
       tutorialTipMobile: '点按地点 · 拖动探索 · 双指缩放 · 切换图层 · 长按查看水深',
-      tutorialStart: '开始探索　→', tutorialSuppress: '不再显示此教程', tutorialClose: '关闭教程'
+      tutorialStart: '开始探索　→', tutorialClose: '关闭教程'
     },
     ja: {
       tutorialEyebrow: 'DiveAtlas ガイド', tutorialTitle: 'DiveAtlas を探索',
@@ -13073,7 +13073,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: '地図の背景', tutorialTerrainTitle: '地形', tutorialTerrainCopy: '海底の起伏と水中の地形構造です。', tutorialDepthContoursTitle: '水深等深線', tutorialDepthContoursCopy: '海底の水深線です。対応するズームレベルでのみ表示されます。',
       tutorialTipDesktop: 'ドラッグで探索 · スクロールで拡大 · レイヤー切替 · 右クリックで水深を確認',
       tutorialTipMobile: '場所をタップ · ドラッグで探索 · ピンチで拡大 · レイヤー切替 · 長押しで水深を確認',
-      tutorialStart: '探索を始める　→', tutorialSuppress: 'このチュートリアルを今後表示しない', tutorialClose: 'チュートリアルを閉じる'
+      tutorialStart: '探索を始める　→', tutorialClose: 'チュートリアルを閉じる'
     },
     fr: {
       tutorialEyebrow: 'Guide DiveAtlas', tutorialTitle: 'Explorer DiveAtlas',
@@ -13087,7 +13087,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Contexte cartographique', tutorialTerrainTitle: 'Terrain', tutorialTerrainCopy: 'Relief des fonds marins et structure sous-marine.', tutorialDepthContoursTitle: 'Courbes bathymétriques', tutorialDepthContoursCopy: 'Lignes de profondeur des fonds marins. Visibles uniquement aux niveaux de zoom pris en charge.',
       tutorialTipDesktop: 'Glissez pour explorer · Défilez pour zoomer · Couches · Clic droit pour la profondeur',
       tutorialTipMobile: 'Touchez un lieu · Glissez pour explorer · Pincez pour zoomer · Couches · Maintenez pour voir la profondeur',
-      tutorialStart: 'Commencer à explorer　→', tutorialSuppress: 'Ne plus afficher ce guide', tutorialClose: 'Fermer le tutoriel'
+      tutorialStart: 'Commencer à explorer　→', tutorialClose: 'Fermer le tutoriel'
     },
     de: {
       tutorialEyebrow: 'DiveAtlas Leitfaden', tutorialTitle: 'DiveAtlas erkunden',
@@ -13101,7 +13101,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Kartenkontext', tutorialTerrainTitle: 'Gelände', tutorialTerrainCopy: 'Relief des Meeresbodens und Unterwasserstruktur.', tutorialDepthContoursTitle: 'Tiefenlinien', tutorialDepthContoursCopy: 'Tiefenlinien des Meeresbodens. Nur in unterstützten Zoomstufen sichtbar.',
       tutorialTipDesktop: 'Ziehen zum Erkunden · Scrollen zum Zoomen · Ebenen · Rechtsklick für die Wassertiefe',
       tutorialTipMobile: 'Ort antippen · Ziehen zum Erkunden · Zum Zoomen auseinanderziehen · Ebenen · Gedrückt halten für die Wassertiefe',
-      tutorialStart: 'Jetzt entdecken　→', tutorialSuppress: 'Diese Anleitung nicht mehr anzeigen', tutorialClose: 'Einführung schließen'
+      tutorialStart: 'Jetzt entdecken　→', tutorialClose: 'Einführung schließen'
     },
     es: {
       tutorialEyebrow: 'Guía de DiveAtlas', tutorialTitle: 'Explora DiveAtlas',
@@ -13115,7 +13115,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Contexto del mapa', tutorialTerrainTitle: 'Terreno', tutorialTerrainCopy: 'Relieve del fondo marino y estructura submarina.', tutorialDepthContoursTitle: 'Curvas de profundidad', tutorialDepthContoursCopy: 'Líneas de profundidad del fondo marino. Solo visibles en los niveles de zoom compatibles.',
       tutorialTipDesktop: 'Arrastra para explorar · Desplázate para ampliar · Capas · Clic derecho para ver la profundidad',
       tutorialTipMobile: 'Toca un lugar · Arrastra para explorar · Pellizca para ampliar · Capas · Mantén pulsado para ver la profundidad',
-      tutorialStart: 'Empezar a explorar　→', tutorialSuppress: 'No volver a mostrar este tutorial', tutorialClose: 'Cerrar tutorial'
+      tutorialStart: 'Empezar a explorar　→', tutorialClose: 'Cerrar tutorial'
     },
     it: {
       tutorialEyebrow: 'Guida DiveAtlas', tutorialTitle: 'Esplora DiveAtlas',
@@ -13129,7 +13129,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Contesto della mappa', tutorialTerrainTitle: 'Terreno', tutorialTerrainCopy: 'Rilievo dei fondali e struttura del paesaggio sottomarino.', tutorialDepthContoursTitle: 'Isobate', tutorialDepthContoursCopy: 'Linee di profondità dei fondali. Visibili solo ai livelli di zoom supportati.',
       tutorialTipDesktop: 'Trascina per esplorare · Scorri per zoomare · Livelli · Clic destro per la profondità',
       tutorialTipMobile: 'Tocca un luogo · Trascina per esplorare · Pizzica per zoomare · Livelli · Tieni premuto per la profondità',
-      tutorialStart: 'Inizia a esplorare　→', tutorialSuppress: 'Non mostrare più questo tutorial', tutorialClose: 'Chiudi il tutorial'
+      tutorialStart: 'Inizia a esplorare　→', tutorialClose: 'Chiudi il tutorial'
     },
     pt: {
       tutorialEyebrow: 'Guia DiveAtlas', tutorialTitle: 'Explore o DiveAtlas',
@@ -13143,7 +13143,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Contexto do mapa', tutorialTerrainTitle: 'Terreno', tutorialTerrainCopy: 'Relevo do fundo do mar e estrutura do terreno subaquático.', tutorialDepthContoursTitle: 'Curvas de profundidade', tutorialDepthContoursCopy: 'Linhas de profundidade do fundo do mar. Visíveis apenas nos níveis de zoom compatíveis.',
       tutorialTipDesktop: 'Arraste para explorar · Role para ampliar · Camadas · Clique direito para ver a profundidade',
       tutorialTipMobile: 'Toque em um local · Arraste para explorar · Belisque para ampliar · Camadas · Toque e segure para ver a profundidade',
-      tutorialStart: 'Começar a explorar　→', tutorialSuppress: 'Não mostrar este tutorial novamente', tutorialClose: 'Fechar tutorial'
+      tutorialStart: 'Começar a explorar　→', tutorialClose: 'Fechar tutorial'
     },
     ru: {
       tutorialEyebrow: 'Гид DiveAtlas', tutorialTitle: 'Исследуйте DiveAtlas',
@@ -13157,7 +13157,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Контекст карты', tutorialTerrainTitle: 'Рельеф', tutorialTerrainCopy: 'Рельеф морского дна и структура подводного ландшафта.', tutorialDepthContoursTitle: 'Линии глубин', tutorialDepthContoursCopy: 'Линии глубин морского дна. Видны только на поддерживаемых уровнях масштаба.',
       tutorialTipDesktop: 'Перемещайте карту · Масштабируйте колёсиком · Слои · Щёлкните правой кнопкой для глубины',
       tutorialTipMobile: 'Нажмите на место · Перемещайте карту · Масштабируйте щипком · Слои · Нажмите и удерживайте для просмотра глубины',
-      tutorialStart: 'Начать исследование　→', tutorialSuppress: 'Больше не показывать эту инструкцию', tutorialClose: 'Закрыть обучение'
+      tutorialStart: 'Начать исследование　→', tutorialClose: 'Закрыть обучение'
     },
     ko: {
       tutorialEyebrow: 'DiveAtlas 안내', tutorialTitle: 'DiveAtlas 둘러보기',
@@ -13171,7 +13171,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: '지도 맥락', tutorialTerrainTitle: '지형', tutorialTerrainCopy: '해저 기복과 수중 지형 구조입니다.', tutorialDepthContoursTitle: '수심 등고선', tutorialDepthContoursCopy: '해저 수심선입니다. 지원되는 확대 수준에서만 표시됩니다.',
       tutorialTipDesktop: '드래그하여 탐색 · 스크롤하여 확대 · 레이어 전환 · 우클릭하여 수심 확인',
       tutorialTipMobile: '위치 탭하기 · 드래그하여 탐색 · 핀치하여 확대 · 레이어 전환 · 길게 눌러 수심 확인',
-      tutorialStart: '탐색 시작　→', tutorialSuppress: '이 튜토리얼 다시 표시 안 함', tutorialClose: '튜토리얼 닫기'
+      tutorialStart: '탐색 시작　→', tutorialClose: '튜토리얼 닫기'
     },
     nl: {
       tutorialEyebrow: 'DiveAtlas-gids', tutorialTitle: 'Ontdek DiveAtlas',
@@ -13185,7 +13185,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Kaartcontext', tutorialTerrainTitle: 'Terrein', tutorialTerrainCopy: 'Reliëf van de zeebodem en structuur van het onderwaterlandschap.', tutorialDepthContoursTitle: 'Dieptelijnen', tutorialDepthContoursCopy: 'Dieptelijnen van de zeebodem. Alleen zichtbaar op ondersteunde zoomniveaus.',
       tutorialTipDesktop: 'Sleep om te verkennen · Scroll om te zoomen · Lagen · Rechtsklik voor diepte',
       tutorialTipMobile: 'Tik op een locatie · Sleep om te verkennen · Knijp om te zoomen · Lagen · Houd ingedrukt voor diepte',
-      tutorialStart: 'Begin met verkennen　→', tutorialSuppress: 'Deze handleiding niet meer tonen', tutorialClose: 'Tutorial sluiten'
+      tutorialStart: 'Begin met verkennen　→', tutorialClose: 'Tutorial sluiten'
     },
     sv: {
       tutorialEyebrow: 'DiveAtlas-guide', tutorialTitle: 'Utforska DiveAtlas',
@@ -13199,7 +13199,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Kartkontext', tutorialTerrainTitle: 'Terräng', tutorialTerrainCopy: 'Havsbottnens relief och undervattensstruktur.', tutorialDepthContoursTitle: 'Djupkurvor', tutorialDepthContoursCopy: 'Djupkurvor på havsbotten. Visas endast vid zoomnivåer som stöds.',
       tutorialTipDesktop: 'Dra för att utforska · Scrolla för att zooma · Lager · Högerklicka för djup',
       tutorialTipMobile: 'Tryck på en plats · Dra för att utforska · Nyp för att zooma · Lager · Håll ned för djup',
-      tutorialStart: 'Börja utforska　→', tutorialSuppress: 'Visa inte den här guiden igen', tutorialClose: 'Stäng guiden'
+      tutorialStart: 'Börja utforska　→', tutorialClose: 'Stäng guiden'
     },
     no: {
       tutorialEyebrow: 'DiveAtlas-veiledning', tutorialTitle: 'Utforsk DiveAtlas',
@@ -13213,7 +13213,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Kartkontekst', tutorialTerrainTitle: 'Terreng', tutorialTerrainCopy: 'Havbunnens relieff og undervannsstruktur.', tutorialDepthContoursTitle: 'Dybdekoter', tutorialDepthContoursCopy: 'Dybdelinjer på havbunnen. Vises bare ved zoomnivåer som støttes.',
       tutorialTipDesktop: 'Dra for å utforske · Rull for å zoome · Lag · Høyreklikk for dybde',
       tutorialTipMobile: 'Trykk på et sted · Dra for å utforske · Knip for å zoome · Lag · Trykk og hold for dybde',
-      tutorialStart: 'Begynn å utforske　→', tutorialSuppress: 'Ikke vis denne veiledningen igjen', tutorialClose: 'Lukk veiledningen'
+      tutorialStart: 'Begynn å utforske　→', tutorialClose: 'Lukk veiledningen'
     },
     id: {
       tutorialEyebrow: 'Panduan DiveAtlas', tutorialTitle: 'Jelajahi DiveAtlas',
@@ -13227,7 +13227,7 @@ ZSD·2016–2025</span></span>
       tutorialMapContextTitle: 'Konteks peta', tutorialTerrainTitle: 'Medan', tutorialTerrainCopy: 'Relief dasar laut dan struktur medan bawah air.', tutorialDepthContoursTitle: 'Garis kontur kedalaman', tutorialDepthContoursCopy: 'Garis kedalaman dasar laut. Hanya terlihat pada tingkat zoom yang didukung.',
       tutorialTipDesktop: 'Seret untuk menjelajah · Gulir untuk memperbesar · Lapisan · Klik kanan untuk melihat kedalaman',
       tutorialTipMobile: 'Ketuk lokasi · Seret untuk menjelajah · Cubit untuk memperbesar · Lapisan · Tekan dan tahan untuk melihat kedalaman',
-      tutorialStart: 'Mulai menjelajah　→', tutorialSuppress: 'Jangan tampilkan tutorial ini lagi', tutorialClose: 'Tutup tutorial'
+      tutorialStart: 'Mulai menjelajah　→', tutorialClose: 'Tutup tutorial'
     }
   };
 
@@ -13283,7 +13283,11 @@ ZSD·2016–2025</span></span>
     els.tutorialLegendFish.textContent = t('fishLegend');
     els.tutorialLegendDive.textContent = t('diveLegend');
     updateTutorialTip();
-    els.tutorialSuppressLabel.textContent = tutorialText('tutorialSuppress');
+    document.querySelector('#bioLegendWelcome .bio-legend-welcome-label').textContent = ({
+      en:'Welcome', zh:'欢迎窗口', ja:'ウェルカム', fr:'Bienvenue', de:'Willkommen',
+      es:'Bienvenida', it:'Benvenuto', pt:'Boas-vindas', ru:'Приветствие',
+      ko:'환영 화면', nl:'Welkom', sv:'Välkommen', no:'Velkommen', id:'Selamat datang'
+    })[currentLang] || 'Welcome';
     els.bioLegendGuide.querySelector('.bio-legend-guide-label').textContent =
       tutorialText('tutorialLayerGuide').replace(/[\s　]*→\s*$/, '');
     els.tutorialStartLabel.textContent = tutorialText('tutorialStart').replace(/[\s　]*→\s*$/, '');
@@ -13459,28 +13463,6 @@ ZSD·2016–2025</span></span>
     tutorialBackgroundPreparationState = 'uninitialized';
   }
 
-  function isTutorialSuppressed() {
-    try {
-      return localStorage.getItem(TUTORIAL_SUPPRESSED_STORAGE_KEY) === '1';
-    } catch (_) {
-      return false;
-    }
-  }
-
-  function syncTutorialSuppressionCheckbox() {
-    els.tutorialSuppressInput.checked = isTutorialSuppressed();
-  }
-
-  function persistTutorialSuppression() {
-    try {
-      if (els.tutorialSuppressInput.checked) {
-        localStorage.setItem(TUTORIAL_SUPPRESSED_STORAGE_KEY, '1');
-      } else {
-        localStorage.removeItem(TUTORIAL_SUPPRESSED_STORAGE_KEY);
-      }
-    } catch (_) {}
-  }
-
   function tutorialMotionPreferences() {
     return {
       reduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -13518,7 +13500,7 @@ ZSD·2016–2025</span></span>
 
   async function openTutorial({ automatic = false, origin = 'map', returnFocusTo = null } = {}) {
     if (tutorialState !== 'closed' || !els.tutorialBackdrop.hidden) return;
-    if (automatic && (sharedMapState.hasValidState || isTutorialSuppressed())) return;
+    if (automatic && (sharedMapState.hasValidState)) return;
     mapWelcome.dismiss({ focus: false });
 
     const fromLegend = !automatic && origin === 'legend';
@@ -13531,7 +13513,6 @@ ZSD·2016–2025</span></span>
     // Keep the map legend steady behind the first-visit guide; its auto-collapse
     // animation was the largest initial-load layout-shift source.
 
-    syncTutorialSuppressionCheckbox();
     renderTutorialTexts();
     els.tutorialBackdrop.hidden = false;
     activateTutorialImages();
@@ -13579,7 +13560,6 @@ ZSD·2016–2025</span></span>
     tutorialState = 'closing';
     cancelTutorialBackgroundPreparation();
     cancelLegendAutoCollapse();
-    persistTutorialSuppression();
     try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
 
     els.bioLegend.classList.add('is-tutorial-handoff');
@@ -13680,9 +13660,14 @@ ZSD·2016–2025</span></span>
     getTitle: () => tutorialText('tutorialTitle'),
     getSearchLabel: () => areaSearchText()[6],
     getMapArea: () => ({ lat: map.getCenter().lat, lng: map.getCenter().lng }),
+    getMapAreaName: async latlng => {
+      const label = document.createElement('span');
+      await updateDiveConditionsRegionLabel(label, latlng);
+      return label.hidden ? '' : label.textContent;
+    },
     getMonth: () => document.getElementById('diveExperienceMonth').value || new Date().getMonth() + 1,
     monthEnabled: DIVE_EXPERIENCE_OUTLOOK_ENABLED,
-    suppressedKey: TUTORIAL_SUPPRESSED_STORAGE_KEY,
+    suppressedKey: WELCOME_SUPPRESSED_STORAGE_KEY,
     onDismiss: () => {
       try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
     },
@@ -13692,10 +13677,11 @@ ZSD·2016–2025</span></span>
     onMapControls: aboveSheet => map.getContainer().querySelector(
       aboveSheet ? '.leaflet-top.leaflet-right' : '.leaflet-bottom.leaflet-right'
     ).append(zoomControlContainer),
-    onLanguage: () => setLanguageMenuOpen(true, { focusFirst: true, anchor: document.querySelector('#mapWelcome [data-action="language"]') }),
-    onGuide: () => {
-      // The reference guide is a detour, not the end of the planning flow.
-      returnToWelcomeAfterTutorial = true;
+    onLanguage: () => setTutorialLanguageMenuOpen(els.tutorialLanguageDropdown.hidden, { focusFirst: true, anchor: document.querySelector('#mapWelcome [data-action="language"]') }),
+    onGuide: ({ afterWelcome = false } = {}) => {
+      // An in-flow visit returns to the plan; the optional final handoff
+      // completes onboarding and returns to the map when the guide closes.
+      returnToWelcomeAfterTutorial = !afterWelcome;
       openTutorial({ returnFocusTo: els.bioLegendTitle });
     },
     // Reuse the header's data readiness, ranking, filters and map handoff.
@@ -13724,7 +13710,19 @@ ZSD·2016–2025</span></span>
   // Opening Layers is also a deliberate choice to explore the map. Avoid
   // stacking its expanded controls underneath the welcome invitation.
   els.bioLegendTitle.addEventListener('click', () => mapWelcome.dismiss({ focus: false }));
-  if (!sharedMapState.hasValidState && !isTutorialSuppressed()) {
+  document.getElementById('bioLegendWelcome').addEventListener('click', () => {
+    els.bioLegendOverflow.open = false;
+    returnToWelcomeAfterTutorial = false;
+    closeTutorial();
+    cancelLegendAutoCollapse();
+    setLegendCollapsed(true, { persist: false });
+    mapWelcome.open();
+  });
+  function isWelcomeSuppressed() {
+    try { return localStorage.getItem(WELCOME_SUPPRESSED_STORAGE_KEY) === '1'; }
+    catch (_) { return false; }
+  }
+  if (!sharedMapState.hasValidState && !isWelcomeSuppressed()) {
     const openWelcome = () => {
       cancelLegendAutoCollapse();
       setLegendCollapsed(true, { persist: false });
@@ -23750,7 +23748,6 @@ function closeShareDialog() {
     cancelDiveSearchPopup();
     map.stop();
     currentDiveSearchInput().value = match.name;
-    mapWelcome.syncDestination(match.name);
     hideDiveSearchResults();
     map.closePopup();
     // Area exploration changes only the viewport: never invoke marker/popup
@@ -23768,6 +23765,7 @@ function closeShareDialog() {
       map.fitBounds(window.DiveAtlasAreaSearch.bounds(match.points),{...padding,maxZoom:9,animate:false});
       map.setMinZoom(Math.min(defaultSearchMinZoom,map.getZoom()));
     });
+    mapWelcome.syncDestination(match.name);
   }
 
   function scheduleDiveSearch() {
@@ -31334,17 +31332,23 @@ function closeShareDialog() {
     }
   });
 
-  function setTutorialLanguageMenuOpen(open, { focusFirst = false } = {}) {
+  let tutorialLanguageAnchor = null;
+  function setTutorialLanguageMenuOpen(open, { focusFirst = false, anchor = els.tutorialLanguageMenuButton } = {}) {
     const isOpen = Boolean(open);
+    if (isOpen) tutorialLanguageAnchor = anchor;
     els.tutorialLanguageDropdown.hidden = !isOpen;
     const dropdown = els.tutorialLanguageDropdown;
+    // The welcome stays visible while the detailed tutorial is hidden.
+    // Mount the shared popover outside that hidden ancestor when reused.
+    if (isOpen) (anchor === els.tutorialLanguageMenuButton ? els.tutorialLanguageMenu : document.body).append(dropdown);
     if (dropdown.showPopover) {
       dropdown.setAttribute('popover', 'manual');
       if (isOpen && !dropdown.matches(':popover-open')) dropdown.showPopover();
       if (!isOpen && dropdown.matches(':popover-open')) dropdown.hidePopover();
-      positionAnchoredGlassPopover(dropdown, els.tutorialLanguageMenuButton, false);
+      positionAnchoredGlassPopover(dropdown, tutorialLanguageAnchor || els.tutorialLanguageMenuButton, false);
     }
     els.tutorialLanguageMenuButton.setAttribute('aria-expanded', String(isOpen));
+    document.querySelector('#mapWelcome [data-action="language"]')?.setAttribute('aria-expanded', String(isOpen && tutorialLanguageAnchor !== els.tutorialLanguageMenuButton));
     if (isOpen) {
       setLanguageMenuOpen(false);
       if (focusFirst) {
@@ -31365,7 +31369,7 @@ function closeShareDialog() {
     els.langSelect.value = item.dataset.language;
     els.langSelect.dispatchEvent(new Event('change', { bubbles: true }));
     setTutorialLanguageMenuOpen(false);
-    els.tutorialLanguageMenuButton.focus();
+    (tutorialLanguageAnchor || els.tutorialLanguageMenuButton).focus();
   });
 
   els.tutorialLanguageDropdown.addEventListener('keydown', event => {
@@ -31380,7 +31384,7 @@ function closeShareDialog() {
       event.preventDefault();
       event.stopPropagation();
       setTutorialLanguageMenuOpen(false);
-      els.tutorialLanguageMenuButton.focus();
+      (tutorialLanguageAnchor || els.tutorialLanguageMenuButton).focus();
       return;
     } else return;
     event.preventDefault();
@@ -31395,6 +31399,14 @@ function closeShareDialog() {
 
   els.tutorialDialog.addEventListener('click', event => {
     if (!event.target.closest('#tutorialLanguageMenu')) {
+      setTutorialLanguageMenuOpen(false);
+    }
+  });
+
+  document.addEventListener('click', event => {
+    if (!els.tutorialLanguageDropdown.hidden &&
+        !els.tutorialLanguageDropdown.contains(event.target) &&
+        !tutorialLanguageAnchor?.contains(event.target)) {
       setTutorialLanguageMenuOpen(false);
     }
   });
