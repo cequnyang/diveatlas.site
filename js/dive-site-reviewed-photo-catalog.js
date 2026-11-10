@@ -45941,5 +45941,2693 @@ export const reviewedPhotos = [
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED",
     "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b87c0127-e97d-4af0-9152-a647dfc20b0e\", \"relationship\": \"RLS photographic filename 14SI7m220809FishSoup-RSS (4).JPG identifies the named station, consistent with Fish Soup N/W Rock and its catalogue geography. Survey position -29.909977500000004, 153.38. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey deployment ID\": \"2934\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 157, \\\"name\\\": \\\"RLS_Solitary Islands_2009\\\"}, \\\"color\\\": \\\"#5eb546\\\", \\\"created_at\\\": \\\"2019-11-21T06:19:55.175234\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 2934, \\\"is_valid\\\": true, \\\"key\\\": \\\"2000947\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"2000947_SI14_2009-08-22\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -29.909977500000004, \\\"lon\\\": 153.38, \\\"timestamp\\\": \\\"Sat, 22 Aug 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2009-08-22T00:00:19\\\", \\\"timestamp_start\\\": \\\"2009-08-22T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7dcfe861-ac03-4a8d-9ff1-42080bbfc69a",
+    "slug": "buchanan-s-wall-south-solitary-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5e9d79f5c29aebdc585dd03f7f2e57ea5c3416dadc78e314672788ba45d28725.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5e9d79f5c29aebdc585dd03f7f2e57ea5c3416dadc78e314672788ba45d28725.jpg",
+    "originalSha256": "55b73b380b3656ac677f02a220304c83a6d71afc6725515a185da4761c637c92",
+    "alt": "Buchanan's Wall South Solitary Island underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5340819",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5340819"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7dcfe861-ac03-4a8d-9ff1-42080bbfc69a\", \"relationship\": \"RLS photographic filename 8SI_JWG11m100608BuchanansWallSI (4).JPG identifies the named station, consistent with Buchanan's Wall South Solitary Island and its catalogue geography. Survey position -30.2099775, 153.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey deployment ID\": \"3154\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 162, \\\"name\\\": \\\"RLS_Solitary Islands_2008\\\"}, \\\"color\\\": \\\"#45707f\\\", \\\"created_at\\\": \\\"2019-11-21T06:27:23.743353\\\", \\\"dep_max\\\": 11.0, \\\"dep_min\\\": 11.0, \\\"id\\\": 3154, \\\"is_valid\\\": true, \\\"key\\\": \\\"2001301\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"2001301_SI8_2008-06-10\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 11.0, \\\"lat\\\": -30.2099775, \\\"lon\\\": 153.27, \\\"timestamp\\\": \\\"Tue, 10 Jun 2008 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2008-06-10T00:00:19\\\", \\\"timestamp_start\\\": \\\"2008-06-10T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "d5103c38-c2a7-4632-bbff-ebef8d3ed6e6",
+    "slug": "middle-arch",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8784d92cdf1aa0ee1b6d58d2376752b99fe8a8db4b991c4e100dc33181f30b74.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8784d92cdf1aa0ee1b6d58d2376752b99fe8a8db4b991c4e100dc33181f30b74.jpg",
+    "originalSha256": "9b923e0235ac9245780133c06393ae3b9de25ce97b1d63c6bd6c08f56ae62314",
+    "alt": "Middle Arch underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5367719",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5367719"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"d5103c38-c2a7-4632-bbff-ebef8d3ed6e6\", \"relationship\": \"RLS photographic filename 1NZPKAJG15m190409MiddleArchSE(5).jpg identifies the named station, consistent with Middle Arch and its catalogue geography. Survey position -35.4599775, 174.73. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-04-19\", \"Source metadata created\": \"2019-11-21T07:36:07.039428\", \"Survey deployment ID\": \"4578\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 246, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2009\\\"}, \\\"color\\\": \\\"#18c41b\\\", \\\"created_at\\\": \\\"2019-11-21T07:36:06.972167\\\", \\\"dep_max\\\": 15.0, \\\"dep_min\\\": 15.0, \\\"id\\\": 4578, \\\"is_valid\\\": true, \\\"key\\\": \\\"64003734\\\", \\\"media_count\\\": 10, \\\"name\\\": \\\"64003734_NZ1_2009-04-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 15.0, \\\"lat\\\": -35.4599775, \\\"lon\\\": 174.73, \\\"timestamp\\\": \\\"Sun, 19 Apr 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 10, \\\"timestamp_end\\\": \\\"2009-04-19T00:00:09\\\", \\\"timestamp_start\\\": \\\"2009-04-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "2a0c8696-1ee0-4dbc-a595-8d2f6d59b110",
+    "slug": "gotta-kebira",
+    "src": "https://assets.diveatlas.site/site-photos/v1/443888315b96ec9d794dffdb393c3c931e27bdc01fcbb6b802f3910ef1a3c511.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/443888315b96ec9d794dffdb393c3c931e27bdc01fcbb6b802f3910ef1a3c511.jpg",
+    "originalSha256": "f09747994221099f011584e017d7c8676b5e0845a3884d3466b4abe6e631481a",
+    "alt": "Gotta Kebira underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365114",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365114"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"2a0c8696-1ee0-4dbc-a595-8d2f6d59b110\", \"relationship\": \"RLS photographic filename RED6_6m020811BigGotta_RSS (5).JPG identifies the named station, consistent with Gotta Kebira and its catalogue geography. Survey position 23.4100225, 35.93. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Big Gotta is the source station name at the Gotta Kebira catalogue position.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-08-02\", \"Source metadata created\": \"2019-11-21T07:25:59.957873\", \"Survey deployment ID\": \"4442\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 235, \\\"name\\\": \\\"RLS_Red Sea_2011\\\"}, \\\"color\\\": \\\"#155e1d\\\", \\\"created_at\\\": \\\"2019-11-21T07:25:59.875976\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4442, \\\"is_valid\\\": true, \\\"key\\\": \\\"20003010\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"20003010_RED6_2011-08-02\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 23.4100225, \\\"lon\\\": 35.93, \\\"timestamp\\\": \\\"Tue, 02 Aug 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-08-02T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-08-02T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "3818b2e6-52a9-4cd7-b156-25626632b836",
+    "slug": "ship-rock-aquatic-reserve",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a422271c818670b45cc4b1547e5d64c830ceb5cac922f42572582477f303d573.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a422271c818670b45cc4b1547e5d64c830ceb5cac922f42572582477f303d573.jpg",
+    "originalSha256": "e795c73f5250171b56ff8514b57e7476acaee43567dbb9ff69070233e601272e",
+    "alt": "Ship Rock Aquatic Reserve underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6577883",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6577883"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"3818b2e6-52a9-4cd7-b156-25626632b836\", \"relationship\": \"RLS photographic filename SYD14JT8m290129Shiprock-03.jpg identifies the named station, consistent with Ship Rock Aquatic Reserve and its catalogue geography. Survey position -34.0699775, 151.13. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Survey timestamp is 2020-02-29; filename contains the ambiguous token 290129. The source media record was created on 2021-06-29, within historical licence coverage. Exact capture date is not reconciled.\", \"Survey date\": \"2020-02-29\", \"Source metadata created\": \"2021-06-29T07:21:01.474770\", \"Survey deployment ID\": \"11472\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 508, \\\"name\\\": \\\"RLS_Sydney_2020\\\"}, \\\"color\\\": \\\"#feffe5\\\", \\\"created_at\\\": \\\"2021-06-29T07:21:00.266281\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 11472, \\\"is_valid\\\": true, \\\"key\\\": \\\"912353418\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912353418_SYD14_2020-02-29\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -34.0699775, \\\"lon\\\": 151.13, \\\"timestamp\\\": \\\"Sat, 29 Feb 2020 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2020-02-29T00:06:40\\\", \\\"timestamp_start\\\": \\\"2020-02-29T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "327363fa-ffab-45c1-8744-488cbfcdbe6d",
+    "slug": "west-white-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3b34f50efb90e052c0748fe0fc8545266842451170d108e66667780c6801aa5b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3b34f50efb90e052c0748fe0fc8545266842451170d108e66667780c6801aa5b.jpg",
+    "originalSha256": "ef0e52c04d452a46b306ae6ae411132987bf5d32db18f509564244f06c436afd",
+    "alt": "West White Beach underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5360235",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5360235"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"327363fa-ffab-45c1-8744-488cbfcdbe6d\", \"relationship\": \"RLS photographic filename CI6MLD12m260910WWhiteBch (5).jpg identifies the named station, consistent with West White Beach and its catalogue geography. Survey position -10.459977499999999, 105.58. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-09-26\", \"Source metadata created\": \"2019-11-21T07:16:40.897696\", \"Survey deployment ID\": \"4186\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 215, \\\"name\\\": \\\"RLS_Christmas Island_2010\\\"}, \\\"color\\\": \\\"#42515e\\\", \\\"created_at\\\": \\\"2019-11-21T07:16:40.818660\\\", \\\"dep_max\\\": 12.0, \\\"dep_min\\\": 12.0, \\\"id\\\": 4186, \\\"is_valid\\\": true, \\\"key\\\": \\\"6003298\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"6003298_CI6_2010-09-26\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.0, \\\"lat\\\": -10.459977499999999, \\\"lon\\\": 105.58, \\\"timestamp\\\": \\\"Sun, 26 Sep 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2010-09-26T00:00:19\\\", \\\"timestamp_start\\\": \\\"2010-09-26T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "2b65ffb4-6bc7-494b-9e01-f2c2b68f91b7",
+    "slug": "lankan-manta-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ad4a09c20bef8b9ed4c2240bfa9615405217b4f99c6a48feb8df2e594671d6a9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ad4a09c20bef8b9ed4c2240bfa9615405217b4f99c6a48feb8df2e594671d6a9.jpg",
+    "originalSha256": "1351251ff8a35e009020564b2e87758b75cfa08c95f47da870595950db26d3b9",
+    "alt": "Lankan Manta Point underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376021",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376021"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"2b65ffb4-6bc7-494b-9e01-f2c2b68f91b7\", \"relationship\": \"RLS photographic filename Mal2_11m080512MantaPt_RSS (5).JPG identifies the named station, consistent with Lankan Manta Point and its catalogue geography. Survey position 4.2800225, 73.56. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-08\", \"Source metadata created\": \"2019-11-21T08:06:01.910321\", \"Survey deployment ID\": \"4972\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 270, \\\"name\\\": \\\"RLS_Maldives_2012\\\"}, \\\"color\\\": \\\"#cae496\\\", \\\"created_at\\\": \\\"2019-11-21T08:06:01.812087\\\", \\\"dep_max\\\": 11.0, \\\"dep_min\\\": 11.0, \\\"id\\\": 4972, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340365\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912340365_MAL2_2012-05-08\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 11.0, \\\"lat\\\": 4.2800225, \\\"lon\\\": 73.56, \\\"timestamp\\\": \\\"Tue, 08 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-05-08T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-05-08T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "d25fb9b6-bf5e-4fa8-b484-1da3fd6b5e2b",
+    "slug": "le-troc",
+    "src": "https://assets.diveatlas.site/site-photos/v1/dab5a05883478dd55c9b86523046e430bfa0a4d164a74cc4e9611de20c50a76d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/dab5a05883478dd55c9b86523046e430bfa0a4d164a74cc4e9611de20c50a76d.jpg",
+    "originalSha256": "dd67946e9341ef3d3eeb3d9fa514223e23f317a53e83402f59019b584d06f193",
+    "alt": "Le Troc underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365508",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365508"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"d25fb9b6-bf5e-4fa8-b484-1da3fd6b5e2b\", \"relationship\": \"RLS photographic filename Med21_8m210711CapLeTroc_RSS (4).JPG identifies the named station, consistent with Le Troc and its catalogue geography. Survey position 42.4800225, 3.15. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Cap Le Troc is the named source headland station corresponding to Le Troc.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-07-21\", \"Source metadata created\": \"2019-11-21T07:28:30.584624\", \"Survey deployment ID\": \"4460\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 236, \\\"name\\\": \\\"RLS_Banyuls Marine Reserve_2011\\\"}, \\\"color\\\": \\\"#5191f5\\\", \\\"created_at\\\": \\\"2019-11-21T07:28:30.500511\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4460, \\\"is_valid\\\": true, \\\"key\\\": \\\"33003072\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"33003072_MED21_2011-07-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": 42.4800225, \\\"lon\\\": 3.15, \\\"timestamp\\\": \\\"Thu, 21 Jul 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-07-21T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-07-21T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "3dacd28f-b744-46f1-a108-92a2edf58640",
+    "slug": "isla-del-sec",
+    "src": "https://assets.diveatlas.site/site-photos/v1/44aa126ee37fa3a3d8dbe183706508e865d749e41cc5538d487b910cd59af057.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/44aa126ee37fa3a3d8dbe183706508e865d749e41cc5538d487b910cd59af057.jpg",
+    "originalSha256": "ccbac035be29c69ae8fb750f653470a0cc82c7c1d4514fa24e7d29c61e483bbe",
+    "alt": "Isla del Sec underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365927",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365927"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"3dacd28f-b744-46f1-a108-92a2edf58640\", \"relationship\": \"RLS photographic filename Med26_6m190811ElSech_RSS (4).JPG identifies the named station, consistent with Isla del Sec and its catalogue geography. Survey position 39.4800225, 2.54. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. El Sech is the source spelling for the Isla del Sec station in the Balearics.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-08-19\", \"Source metadata created\": \"2019-11-21T07:30:53.243268\", \"Survey deployment ID\": \"4479\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 238, \\\"name\\\": \\\"RLS_Mallorca_2011\\\"}, \\\"color\\\": \\\"#7c8680\\\", \\\"created_at\\\": \\\"2019-11-21T07:30:53.161965\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4479, \\\"is_valid\\\": true, \\\"key\\\": \\\"34003020\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"34003020_MED26_2011-08-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 39.4800225, \\\"lon\\\": 2.54, \\\"timestamp\\\": \\\"Fri, 19 Aug 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-08-19T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-08-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a70210ec-8b1b-41d7-bd32-c36d1f5e493c",
+    "slug": "bendinat",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9bc38d50452bd26e3c3f15926f7aae3b3e21dbac9a535d2352861ce7799e6a8d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9bc38d50452bd26e3c3f15926f7aae3b3e21dbac9a535d2352861ce7799e6a8d.jpg",
+    "originalSha256": "b57255aa41b62104d865d03abb5ba5e05d4eda64148250c1f22032eb70b4c37d",
+    "alt": "Bendinat underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6575925",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6575925"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"a70210ec-8b1b-41d7-bd32-c36d1f5e493c\", \"relationship\": \"RLS photographic filename BAL19_LPF5,6m170915Bendinat (5).JPG identifies the named station, consistent with Bendinat and its catalogue geography. Survey position 39.5300225, 2.58. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Survey timestamp is 2015-10-17; filename contains 170915, indicating 2015-09-17. Exact capture date is unresolved; both dates are within licensed coverage.\", \"Survey date\": \"2015-10-17\", \"Source metadata created\": \"2021-06-29T07:11:37.967607\", \"Survey deployment ID\": \"11392\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 504, \\\"name\\\": \\\"RLS_Mallorca_2015\\\"}, \\\"color\\\": \\\"#498f35\\\", \\\"created_at\\\": \\\"2021-06-29T07:11:36.870309\\\", \\\"dep_max\\\": 5.0, \\\"dep_min\\\": 5.0, \\\"id\\\": 11392, \\\"is_valid\\\": true, \\\"key\\\": \\\"912349242\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912349242_BAL19_2015-10-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.0, \\\"lat\\\": 39.5300225, \\\"lon\\\": 2.58, \\\"timestamp\\\": \\\"Sat, 17 Oct 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2015-10-17T00:08:00\\\", \\\"timestamp_start\\\": \\\"2015-10-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "f8b8fb38-dd7e-48c3-ae1c-e3412d0ea96f",
+    "slug": "agincourt-reef-no-4-the-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/701337f1e13b73e7249b64e590a78521dcaf6bdb4aa86ec1d8fd9cf4fec37e40.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/701337f1e13b73e7249b64e590a78521dcaf6bdb4aa86ec1d8fd9cf4fec37e40.jpg",
+    "originalSha256": "d1c6163f625c07ef84ecd0a610577ffc2679622bde2f63a9a1d36db2c48ec550",
+    "alt": "Agincourt Reef No. 4 - The Point underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5349827",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5349827"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"f8b8fb38-dd7e-48c3-ae1c-e3412d0ea96f\", \"relationship\": \"RLS photographic filename G3_KHVT4_6m04072010AgincourtReef-ThePoint (4).JPG identifies the named station, consistent with Agincourt Reef No. 4 - The Point and its catalogue geography. Survey position -15.969977499999999, 145.82. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-07-04\", \"Source metadata created\": \"2019-11-21T06:54:44.183950\", \"Survey deployment ID\": \"3624\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 179, \\\"name\\\": \\\"RLS_Great Barrier Reef_2010\\\"}, \\\"color\\\": \\\"#cc7856\\\", \\\"created_at\\\": \\\"2019-11-21T06:54:44.087859\\\", \\\"dep_max\\\": 4.6, \\\"dep_min\\\": 4.6, \\\"id\\\": 3624, \\\"is_valid\\\": true, \\\"key\\\": \\\"4000717\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"4000717_COR13_2010-07-04\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 4.6, \\\"lat\\\": -15.969977499999999, \\\"lon\\\": 145.82, \\\"timestamp\\\": \\\"Sun, 04 Jul 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2010-07-04T00:00:19\\\", \\\"timestamp_start\\\": \\\"2010-07-04T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b56f57bb-9b1c-4234-b880-dad97ced72e7",
+    "slug": "canyon-poor-knights-islands-new-zealand",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d6eb4e7c7d14c0f861f5935e89967234be1f0d5a0e1294e4d5d60f37f5362150.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d6eb4e7c7d14c0f861f5935e89967234be1f0d5a0e1294e4d5d60f37f5362150.jpg",
+    "originalSha256": "7a9ef9414ab4911d99b8ff495c5330a3d5034d136418b2813d53214c968a62c1",
+    "alt": "Canyon underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5367699",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5367699"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b56f57bb-9b1c-4234-b880-dad97ced72e7\", \"relationship\": \"RLS photographic filename 10NZPKAJG8m230409TheCanyons(5).jpg identifies the named station, consistent with Canyon and its catalogue geography. Survey position -35.4699775, 174.73. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. The Canyons is the source station label in the Poor Knights Islands, consistent with the catalogue Canyon site.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-04-23\", \"Source metadata created\": \"2019-11-21T07:36:05.951433\", \"Survey deployment ID\": \"4576\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 246, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2009\\\"}, \\\"color\\\": \\\"#18c41b\\\", \\\"created_at\\\": \\\"2019-11-21T07:36:05.882706\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4576, \\\"is_valid\\\": true, \\\"key\\\": \\\"64003163\\\", \\\"media_count\\\": 10, \\\"name\\\": \\\"64003163_NZ10_2009-04-23\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -35.4699775, \\\"lon\\\": 174.73, \\\"timestamp\\\": \\\"Thu, 23 Apr 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 10, \\\"timestamp_end\\\": \\\"2009-04-23T00:00:09\\\", \\\"timestamp_start\\\": \\\"2009-04-23T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "d6f3e687-94e5-42e5-93e9-e7483e377ba8",
+    "slug": "canadell",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fc26fdc83bf11874d585e11662b634494de3c575270aa602774b406c62f78f43.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fc26fdc83bf11874d585e11662b634494de3c575270aa602774b406c62f78f43.jpg",
+    "originalSha256": "fe414d2852df2389fb350dcce3ae60d6acd08b61223368cd5d3ed9cb7921884d",
+    "alt": "Canadell underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365486",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365486"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"d6f3e687-94e5-42e5-93e9-e7483e377ba8\", \"relationship\": \"RLS photographic filename Med20_9m210711Canadells_RSS (4).JPG identifies the named station, consistent with Canadell and its catalogue geography. Survey position 42.450022499999996, 3.17. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Canadells is the source station spelling corresponding to Canadell.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-07-21\", \"Source metadata created\": \"2019-11-21T07:28:25.043495\", \"Survey deployment ID\": \"4459\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 236, \\\"name\\\": \\\"RLS_Banyuls Marine Reserve_2011\\\"}, \\\"color\\\": \\\"#5191f5\\\", \\\"created_at\\\": \\\"2019-11-21T07:28:24.944425\\\", \\\"dep_max\\\": 9.0, \\\"dep_min\\\": 9.0, \\\"id\\\": 4459, \\\"is_valid\\\": true, \\\"key\\\": \\\"33003071\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"33003071_MED20_2011-07-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 9.0, \\\"lat\\\": 42.450022499999996, \\\"lon\\\": 3.17, \\\"timestamp\\\": \\\"Thu, 21 Jul 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-07-21T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-07-21T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "285f987e-ee17-4d95-ad9b-58c30081d56b",
+    "slug": "petaj",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1adc816862cc925c338c096e15041c539580563c153a669df32f373de82fa325.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1adc816862cc925c338c096e15041c539580563c153a669df32f373de82fa325.jpg",
+    "originalSha256": "3f846d5851eab427092211a7747870d386b4f8faf827b734e5b071e0fce6b947",
+    "alt": "Petaj underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5349486",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5349486"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"285f987e-ee17-4d95-ad9b-58c30081d56b\", \"relationship\": \"RLS photographic filename CPD1WCB5.8MPetajBommie030710 (4).JPG identifies the named station, consistent with Petaj and its catalogue geography. Survey position -16.7899775, 146.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-07-03\", \"Source metadata created\": \"2019-11-21T06:54:19.624380\", \"Survey deployment ID\": \"3608\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 179, \\\"name\\\": \\\"RLS_Great Barrier Reef_2010\\\"}, \\\"color\\\": \\\"#cc7856\\\", \\\"created_at\\\": \\\"2019-11-21T06:54:19.523957\\\", \\\"dep_max\\\": 5.8, \\\"dep_min\\\": 5.8, \\\"id\\\": 3608, \\\"is_valid\\\": true, \\\"key\\\": \\\"4000692\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"4000692_COR4_2010-07-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.8, \\\"lat\\\": -16.7899775, \\\"lon\\\": 146.27, \\\"timestamp\\\": \\\"Sat, 03 Jul 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2010-07-03T00:00:19\\\", \\\"timestamp_start\\\": \\\"2010-07-03T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b29f1338-66ff-42f0-a03b-337a736505f1",
+    "slug": "cap-peyrefite",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e95d1a24b96f447dbe0749a1c04c643f2473885504ae8583d5b5fa81603a6141.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e95d1a24b96f447dbe0749a1c04c643f2473885504ae8583d5b5fa81603a6141.jpg",
+    "originalSha256": "91848d2101409e26a18b21e569e8aafaf2c0bac2db0ccb8ed91995e3e20e09d5",
+    "alt": "Cap Peyrefite underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365530",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365530"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b29f1338-66ff-42f0-a03b-337a736505f1\", \"relationship\": \"RLS photographic filename Med22_7mCapdePeyrefite_RSS (4).JPG identifies the named station, consistent with Cap Peyrefite and its catalogue geography. Survey position 42.4600225, 3.17. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-07-22\", \"Source metadata created\": \"2019-11-21T07:28:41.864158\", \"Survey deployment ID\": \"4461\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 236, \\\"name\\\": \\\"RLS_Banyuls Marine Reserve_2011\\\"}, \\\"color\\\": \\\"#5191f5\\\", \\\"created_at\\\": \\\"2019-11-21T07:28:41.781161\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 4461, \\\"is_valid\\\": true, \\\"key\\\": \\\"33003073\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"33003073_MED22_2011-07-22\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": 42.4600225, \\\"lon\\\": 3.17, \\\"timestamp\\\": \\\"Fri, 22 Jul 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2011-07-22T00:00:22\\\", \\\"timestamp_start\\\": \\\"2011-07-22T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "826dde6d-c5b1-4fef-9130-021c1a0fefa9",
+    "slug": "st-john-s-um-arouk",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8e041f34bc22cffeb978796d5823b44dffde9cea88451bda24388188c0395ec6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8e041f34bc22cffeb978796d5823b44dffde9cea88451bda24388188c0395ec6.jpg",
+    "originalSha256": "5ade5c6e2dee2dd65836f9d9b8091997bcbac95dda5ec592b156cb20249eaee6",
+    "alt": "St John's Um Arouk underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365092",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365092"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"826dde6d-c5b1-4fef-9130-021c1a0fefa9\", \"relationship\": \"RLS photographic filename RED5_6m010811OmOroug_RSS (5).JPG identifies the named station, consistent with St John's Um Arouk and its catalogue geography. Survey position 23.4300225, 35.86. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Om Oroug is the source spelling of the Um Arouk reef in the St Johns region.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-08-01\", \"Source metadata created\": \"2019-11-21T07:25:50.316311\", \"Survey deployment ID\": \"4441\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 235, \\\"name\\\": \\\"RLS_Red Sea_2011\\\"}, \\\"color\\\": \\\"#155e1d\\\", \\\"created_at\\\": \\\"2019-11-21T07:25:50.220646\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4441, \\\"is_valid\\\": true, \\\"key\\\": \\\"20003009\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"20003009_RED5_2011-08-01\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 23.4300225, \\\"lon\\\": 35.86, \\\"timestamp\\\": \\\"Mon, 01 Aug 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-08-01T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-08-01T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "9227089f-b12a-42c2-b07b-2d859ac90b2f",
+    "slug": "ethel-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/536e6b9debed5475b051c524d6c9c0e874347c377c3c55932ce8b92703e3a885.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/536e6b9debed5475b051c524d6c9c0e874347c377c3c55932ce8b92703e3a885.jpg",
+    "originalSha256": "7626417661d1360affa7765ddb782ceba065bce079f88c53946fd59cb96ed1df",
+    "alt": "Ethel Beach underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5360297",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5360297"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"9227089f-b12a-42c2-b07b-2d859ac90b2f\", \"relationship\": \"RLS photographic filename CI9MLD14m300910EthelBeach (5).jpg identifies the named station, consistent with Ethel Beach and its catalogue geography. Survey position -10.459977499999999, 105.71. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-09-30\", \"Source metadata created\": \"2019-11-21T07:16:53.889847\", \"Survey deployment ID\": \"4189\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 215, \\\"name\\\": \\\"RLS_Christmas Island_2010\\\"}, \\\"color\\\": \\\"#42515e\\\", \\\"created_at\\\": \\\"2019-11-21T07:16:53.804391\\\", \\\"dep_max\\\": 14.0, \\\"dep_min\\\": 14.0, \\\"id\\\": 4189, \\\"is_valid\\\": true, \\\"key\\\": \\\"6003301\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"6003301_CI9_2010-09-30\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 14.0, \\\"lat\\\": -10.459977499999999, \\\"lon\\\": 105.71, \\\"timestamp\\\": \\\"Thu, 30 Sep 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2010-09-30T00:00:20\\\", \\\"timestamp_start\\\": \\\"2010-09-30T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "9769492b-25bf-48a2-9c83-c9fa188f20e6",
+    "slug": "ammo-jetty",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3b6cc4e0401a95d188a6661c8071b064b31335798e89899dfe5d21710bf009b7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3b6cc4e0401a95d188a6661c8071b064b31335798e89899dfe5d21710bf009b7.jpg",
+    "originalSha256": "013036a5b2f9619fd52cef3cb31c89807cfb793a86d4c02f2647d0d7161b0d86",
+    "alt": "Ammo Jetty underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5359396",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5359396"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"9769492b-25bf-48a2-9c83-c9fa188f20e6\", \"relationship\": \"RLS photographic filename PD2_TRD6_8m190408AmmunitionJettyCoogee (4).JPG identifies the named station, consistent with Ammo Jetty and its catalogue geography. Survey position -32.119977500000005, 115.76. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2008-04-19\", \"Source metadata created\": \"2019-11-21T07:15:03.489060\", \"Survey deployment ID\": \"4139\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 207, \\\"name\\\": \\\"RLS_Perth_2008\\\"}, \\\"color\\\": \\\"#5de460\\\", \\\"created_at\\\": \\\"2019-11-21T07:15:03.418329\\\", \\\"dep_max\\\": 6.8, \\\"dep_min\\\": 6.8, \\\"id\\\": 4139, \\\"is_valid\\\": true, \\\"key\\\": \\\"6002224\\\", \\\"media_count\\\": 11, \\\"name\\\": \\\"6002224_WA31_2008-04-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.8, \\\"lat\\\": -32.119977500000005, \\\"lon\\\": 115.76, \\\"timestamp\\\": \\\"Sat, 19 Apr 2008 00:00:00 GMT\\\"}, \\\"pose_count\\\": 11, \\\"timestamp_end\\\": \\\"2008-04-19T00:00:10\\\", \\\"timestamp_start\\\": \\\"2008-04-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "72514d2e-fdd6-4c8d-95aa-2e2ca92f2679",
+    "slug": "dangerous-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ddd5bc622ef8fedb0d2b81efedeb52b85d7435342da4de61ff944cf820954d42.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ddd5bc622ef8fedb0d2b81efedeb52b85d7435342da4de61ff944cf820954d42.jpg",
+    "originalSha256": "76296bbcce7ecdfb26dd3f5afe10f59e01fdeba9d9bfb2d95565137d0a3d911b",
+    "alt": "Dangerous Reef underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365024",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365024"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"72514d2e-fdd6-4c8d-95aa-2e2ca92f2679\", \"relationship\": \"RLS photographic filename RED2_9m310711DangerousReef_RSS (4).JPG identifies the named station, consistent with Dangerous Reef and its catalogue geography. Survey position 23.3400225, 35.85. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. \", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-07-31\", \"Source metadata created\": \"2019-11-21T07:25:20.981568\", \"Survey deployment ID\": \"4438\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 235, \\\"name\\\": \\\"RLS_Red Sea_2011\\\"}, \\\"color\\\": \\\"#155e1d\\\", \\\"created_at\\\": \\\"2019-11-21T07:25:20.897697\\\", \\\"dep_max\\\": 9.0, \\\"dep_min\\\": 9.0, \\\"id\\\": 4438, \\\"is_valid\\\": true, \\\"key\\\": \\\"20003006\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"20003006_RED2_2011-07-31\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 9.0, \\\"lat\\\": 23.3400225, \\\"lon\\\": 35.85, \\\"timestamp\\\": \\\"Sun, 31 Jul 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2011-07-31T00:00:23\\\", \\\"timestamp_start\\\": \\\"2011-07-31T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "452baedb-7144-45f0-aa4b-4f23534deb69",
+    "slug": "lilot",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c0c9b2871b61b948d936d36f36c188024c559675ce69148be3a93028bb6aca48.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c0c9b2871b61b948d936d36f36c188024c559675ce69148be3a93028bb6aca48.jpg",
+    "originalSha256": "f9ba7f1858d9dc6b3816426e5894ad27926c8de4ada670babc5f2b88e9168bac",
+    "alt": "L’Ilot underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376179",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376179"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"452baedb-7144-45f0-aa4b-4f23534deb69\", \"relationship\": \"RLS photographic filename Sey1_6m160512LIlot_RSS (5).JPG identifies the named station, consistent with L’Ilot and its catalogue geography. Survey position -4.5599775000000005, 55.43. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-16\", \"Source metadata created\": \"2019-11-21T08:06:54.165943\", \"Survey deployment ID\": \"4979\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 271, \\\"name\\\": \\\"RLS_Seychelles_2012\\\"}, \\\"color\\\": \\\"#a1ad4a\\\", \\\"created_at\\\": \\\"2019-11-21T08:06:54.068918\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4979, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340372\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912340372_SEY1_2012-05-16\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": -4.5599775000000005, \\\"lon\\\": 55.43, \\\"timestamp\\\": \\\"Wed, 16 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-05-16T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-05-16T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "66f47a24-bbe4-4b89-aac0-8ef152122792",
+    "slug": "jeff-davis-memorial-18",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5bf4da0ba5c8b0597181bdc383cca75cc4b9d319c592e65f2dec57d7f404720a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5bf4da0ba5c8b0597181bdc383cca75cc4b9d319c592e65f2dec57d7f404720a.jpg",
+    "originalSha256": "5353372286f29cfeb7cbfc26954cbb387e5d22f4d92993d2fe5d80cfb20649f8",
+    "alt": "Jeff Davis Memorial (18) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376805",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376805"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"66f47a24-bbe4-4b89-aac0-8ef152122792\", \"relationship\": \"RLS photographic filename BON3_7.5mJeffDavis_RSS (5).JPG identifies the named station, consistent with Jeff Davis Memorial (18) and its catalogue geography. Survey position 12.200022500000001, -68.31. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-11\", \"Source metadata created\": \"2019-11-21T08:10:13.709653\", \"Survey deployment ID\": \"5007\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:13.608689\\\", \\\"dep_max\\\": 7.5, \\\"dep_min\\\": 7.5, \\\"id\\\": 5007, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340401\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340401_BON3_2012-06-11\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.5, \\\"lat\\\": 12.200022500000001, \\\"lon\\\": -68.31, \\\"timestamp\\\": \\\"Mon, 11 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-11T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-11T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "198a2ff6-8c06-44de-b1ab-df821012d8bc",
+    "slug": "whale-rock-seychelles",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5e2e5ba4f22da59050ee88ab35f94b619a9bcc5fa821070a38282489ba447332.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5e2e5ba4f22da59050ee88ab35f94b619a9bcc5fa821070a38282489ba447332.jpg",
+    "originalSha256": "b95fa66f8c17ddf964e174a1701993784ea881bae07d0daa09970f335f1aafde",
+    "alt": "Whale Rock, Seychelles underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376426",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376426"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"198a2ff6-8c06-44de-b1ab-df821012d8bc\", \"relationship\": \"RLS photographic filename SEY12_8m190512WhaleRock_RSS (5).JPG identifies the named station, consistent with Whale Rock, Seychelles and its catalogue geography. Survey position -4.6199775, 55.39. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-19\", \"Source metadata created\": \"2019-11-21T08:08:02.973478\", \"Survey deployment ID\": \"4990\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 271, \\\"name\\\": \\\"RLS_Seychelles_2012\\\"}, \\\"color\\\": \\\"#a1ad4a\\\", \\\"created_at\\\": \\\"2019-11-21T08:08:02.892707\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4990, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340384\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912340384_SEY12_2012-05-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -4.6199775, \\\"lon\\\": 55.39, \\\"timestamp\\\": \\\"Sat, 19 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-05-19T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-05-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "bb26f7f0-4776-4e09-93ce-c84549cff71b",
+    "slug": "otdima-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/516daeb2549bc80cf66de4bbf9701f6bdb3487033be1e833c6e76d35335f79a7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/516daeb2549bc80cf66de4bbf9701f6bdb3487033be1e833c6e76d35335f79a7.jpg",
+    "originalSha256": "6cf2d282a9d99c7c1a3d39c3360fe152bb2fcb723831b9e13e283f365c863ac5",
+    "alt": "Otdima Reef underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5416547",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5416547"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"bb26f7f0-4776-4e09-93ce-c84549cff71b\", \"relationship\": \"RLS photographic filename Raja Ampat8 GJE 8m 220814 Otdima Reef (6).JPG identifies the named station, consistent with Otdima Reef and its catalogue geography. Survey position -0.5399775, 130.63. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-22\", \"Source metadata created\": \"2019-11-21T11:09:33.629340\", \"Survey deployment ID\": \"6715\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:09:33.532620\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 6715, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344525\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912344525_RAJA8_2014-08-22\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -0.5399775, \\\"lon\\\": 130.63, \\\"timestamp\\\": \\\"Fri, 22 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2014-08-22T00:00:23\\\", \\\"timestamp_start\\\": \\\"2014-08-22T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "39f717cb-690f-4127-a7da-fe0e513a37c9",
+    "slug": "sorido-wall",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d4ff2265f7c4464fe47d8f4b6a6cf1eb1e9557ed8df3e60889d516a571358f0f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d4ff2265f7c4464fe47d8f4b6a6cf1eb1e9557ed8df3e60889d516a571358f0f.jpg",
+    "originalSha256": "818fc51b684e7cf279bdca11a2495ca26b067694dfd984a110388bf0c14472e3",
+    "alt": "Sorido Wall underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5415538",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5415538"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"39f717cb-690f-4127-a7da-fe0e513a37c9\", \"relationship\": \"RLS photographic filename RajaAmpat15_5m270814SoridoWall_RSS (5).JPG identifies the named station, consistent with Sorido Wall and its catalogue geography. Survey position -0.5499775, 130.69. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-27\", \"Source metadata created\": \"2019-11-21T11:01:47.493636\", \"Survey deployment ID\": \"6670\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:01:47.392129\\\", \\\"dep_max\\\": 5.0, \\\"dep_min\\\": 5.0, \\\"id\\\": 6670, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344478\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912344478_RAJA15_2014-08-27\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.0, \\\"lat\\\": -0.5499775, \\\"lon\\\": 130.69, \\\"timestamp\\\": \\\"Wed, 27 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2014-08-27T00:00:21\\\", \\\"timestamp_start\\\": \\\"2014-08-27T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "f4bfa66e-f254-42dd-923f-9cbe4d3ef5ba",
+    "slug": "thousand-steps-16",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3ad45a308d677039138fbbfc0724b29474ce98b1ec250d1d0efb05d5ad9f0b9d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3ad45a308d677039138fbbfc0724b29474ce98b1ec250d1d0efb05d5ad9f0b9d.jpg",
+    "originalSha256": "91bf264c52b00b88afd7dfc25c48d483dd61ff9f534e683b0b98cdb245ea09db",
+    "alt": "Thousand Steps (16) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376759",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376759"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"f4bfa66e-f254-42dd-923f-9cbe4d3ef5ba\", \"relationship\": \"RLS photographic filename BON14_6.5m140612_1000Steps_RSS (5).JPG identifies the named station, consistent with Thousand Steps (16) and its catalogue geography. Survey position 12.2100225, -68.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}, {\"site_id\": \"42b4a729-b55a-4ea1-b18c-d56e5409bbe7\", \"relationship\": \"Same named Thousand/1000 Steps reef in Bonaire; catalogue pins approximately64m apart. Both names explicitly match source filename1000Steps.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-14\", \"Source metadata created\": \"2019-11-21T08:10:09.531634\", \"Survey deployment ID\": \"5005\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:09.433738\\\", \\\"dep_max\\\": 6.5, \\\"dep_min\\\": 6.5, \\\"id\\\": 5005, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340399\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340399_BON14_2012-06-14\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.5, \\\"lat\\\": 12.2100225, \\\"lon\\\": -68.32, \\\"timestamp\\\": \\\"Thu, 14 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-14T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-14T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "42b4a729-b55a-4ea1-b18c-d56e5409bbe7",
+    "slug": "1000-steps",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3ad45a308d677039138fbbfc0724b29474ce98b1ec250d1d0efb05d5ad9f0b9d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3ad45a308d677039138fbbfc0724b29474ce98b1ec250d1d0efb05d5ad9f0b9d.jpg",
+    "originalSha256": "91bf264c52b00b88afd7dfc25c48d483dd61ff9f534e683b0b98cdb245ea09db",
+    "alt": "Thousand Steps (16) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376759",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376759"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"f4bfa66e-f254-42dd-923f-9cbe4d3ef5ba\", \"relationship\": \"RLS photographic filename BON14_6.5m140612_1000Steps_RSS (5).JPG identifies the named station, consistent with Thousand Steps (16) and its catalogue geography. Survey position 12.2100225, -68.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}, {\"site_id\": \"42b4a729-b55a-4ea1-b18c-d56e5409bbe7\", \"relationship\": \"Same named Thousand/1000 Steps reef in Bonaire; catalogue pins approximately64m apart. Both names explicitly match source filename1000Steps.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-14\", \"Source metadata created\": \"2019-11-21T08:10:09.531634\", \"Survey deployment ID\": \"5005\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:09.433738\\\", \\\"dep_max\\\": 6.5, \\\"dep_min\\\": 6.5, \\\"id\\\": 5005, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340399\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340399_BON14_2012-06-14\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.5, \\\"lat\\\": 12.2100225, \\\"lon\\\": -68.32, \\\"timestamp\\\": \\\"Thu, 14 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-14T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-14T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "103792ba-4d36-4952-8cf5-c67307fc707d",
+    "slug": "chimney-niue",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2d8bcc0d111980a78d0de042844cea5fe95a5041a090c8131478c0c376586189.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2d8bcc0d111980a78d0de042844cea5fe95a5041a090c8131478c0c376586189.jpg",
+    "originalSha256": "fa754c6f6bbfe7e5ce6fc04b65bc1b4d9d05c0f9a0548022f474c4822d7382ea",
+    "alt": "Chimney underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5373157",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5373157"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"103792ba-4d36-4952-8cf5-c67307fc707d\", \"relationship\": \"RLS photographic filename Niue6GJE10m150911 Chimney Cave Alofi (4).JPG identifies the named station, consistent with Chimney and its catalogue geography. Survey position -19.0599775, -169.93. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-09-15\", \"Source metadata created\": \"2019-11-21T07:58:37.329443\", \"Survey deployment ID\": \"4835\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 259, \\\"name\\\": \\\"RLS_Niue_2011\\\"}, \\\"color\\\": \\\"#956c35\\\", \\\"created_at\\\": \\\"2019-11-21T07:58:37.236218\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 4835, \\\"is_valid\\\": true, \\\"key\\\": \\\"683003152\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"683003152_NIUE6_2011-09-15\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": -19.0599775, \\\"lon\\\": -169.93, \\\"timestamp\\\": \\\"Thu, 15 Sep 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2011-09-15T00:00:20\\\", \\\"timestamp_start\\\": \\\"2011-09-15T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "aa8ff57e-eb71-4fed-8364-4b586ce4ccf9",
+    "slug": "invisibles-51",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e01aa1a781bf546c2fd5a122e627aa65a845f2bc7a0ac7320632d8ba4ee36803.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e01aa1a781bf546c2fd5a122e627aa65a845f2bc7a0ac7320632d8ba4ee36803.jpg",
+    "originalSha256": "8c18c13b2ac8169aa993fa4ab358634862df1cde4ed33a03f67c1b70f17e299f",
+    "alt": "Invisibles (51) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376691",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376691"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"aa8ff57e-eb71-4fed-8364-4b586ce4ccf9\", \"relationship\": \"RLS photographic filename BON11_12.5m130612InvisiblesN_RSS (5).JPG identifies the named station, consistent with Invisibles (51) and its catalogue geography. Survey position 12.0700225, -68.28. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-13\", \"Source metadata created\": \"2019-11-21T08:09:41.040160\", \"Survey deployment ID\": \"5002\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:09:40.940128\\\", \\\"dep_max\\\": 12.5, \\\"dep_min\\\": 12.5, \\\"id\\\": 5002, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340396\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912340396_BON11_2012-06-13\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.5, \\\"lat\\\": 12.0700225, \\\"lon\\\": -68.28, \\\"timestamp\\\": \\\"Wed, 13 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-06-13T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-06-13T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "458db12d-9b74-4a18-baf4-3cc678db51e3",
+    "slug": "kuburan",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6d8ac71dce9e48618f716ed78b731e41892c9b324c5b807c2042ab1f85d92234.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6d8ac71dce9e48618f716ed78b731e41892c9b324c5b807c2042ab1f85d92234.jpg",
+    "originalSha256": "65fc4acb7137e457e0b2d4ae22a9706e6ac69932add593d508f15dfd216da452",
+    "alt": "Kuburan underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5415226",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5415226"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"458db12d-9b74-4a18-baf4-3cc678db51e3\", \"relationship\": \"RLS photographic filename Raja Ampat1 GJE 9m 170814 Kaburan (6).JPG identifies the named station, consistent with Kuburan and its catalogue geography. Survey position -0.5599775, 130.67. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-17\", \"Source metadata created\": \"2019-11-21T11:00:04.652277\", \"Survey deployment ID\": \"6656\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:00:04.555530\\\", \\\"dep_max\\\": 9.0, \\\"dep_min\\\": 9.0, \\\"id\\\": 6656, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344464\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912344464_RAJA1_2014-08-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 9.0, \\\"lat\\\": -0.5599775, \\\"lon\\\": 130.67, \\\"timestamp\\\": \\\"Sun, 17 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2014-08-17T00:00:21\\\", \\\"timestamp_start\\\": \\\"2014-08-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "3e1ce1cf-90c1-4220-84c5-40a6b21cd0b3",
+    "slug": "rangali-madivaru",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fcaed613c762d9265d70287650b45dabe8e3908290afca3ffa2d039de8d0cf25.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fcaed613c762d9265d70287650b45dabe8e3908290afca3ffa2d039de8d0cf25.jpg",
+    "originalSha256": "910f4906fd041d755fac1fc216c2ebf39dac286eef2207ac97dbe79bcd23380b",
+    "alt": "Rangali Madivaru underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376156",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376156"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"3e1ce1cf-90c1-4220-84c5-40a6b21cd0b3\", \"relationship\": \"RLS photographic filename Mal9_8m110512Maldivaru_RSS (5).JPG identifies the named station, consistent with Rangali Madivaru and its catalogue geography. Survey position 3.5900225, 72.72. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-11\", \"Source metadata created\": \"2019-11-21T08:06:44.802252\", \"Survey deployment ID\": \"4978\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 270, \\\"name\\\": \\\"RLS_Maldives_2012\\\"}, \\\"color\\\": \\\"#cae496\\\", \\\"created_at\\\": \\\"2019-11-21T08:06:44.713426\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4978, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340371\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340371_MAL9_2012-05-11\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": 3.5900225, \\\"lon\\\": 72.72, \\\"timestamp\\\": \\\"Fri, 11 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-05-11T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-05-11T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "473fdd5b-b61f-40df-945b-74ab7e38a62b",
+    "slug": "hafsa-thila",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3b1631459364bffafa24767bfcfb9b189a4cdcedd44b9be0edc7ae964819e6df.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3b1631459364bffafa24767bfcfb9b189a4cdcedd44b9be0edc7ae964819e6df.jpg",
+    "originalSha256": "4f481baeb5fbf37a760645a99994f6dc2c42fbc9868af1749c7f905f35fb7f8e",
+    "alt": "Hafsa Thila underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376043",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376043"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"473fdd5b-b61f-40df-945b-74ab7e38a62b\", \"relationship\": \"RLS photographic filename Mal3_12m090512HafsaThila_RSS (5).JPG identifies the named station, consistent with Hafsa Thila and its catalogue geography. Survey position 4.1300225, 72.84. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-09\", \"Source metadata created\": \"2019-11-21T08:06:03.508970\", \"Survey deployment ID\": \"4973\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 270, \\\"name\\\": \\\"RLS_Maldives_2012\\\"}, \\\"color\\\": \\\"#cae496\\\", \\\"created_at\\\": \\\"2019-11-21T08:06:03.425735\\\", \\\"dep_max\\\": 12.0, \\\"dep_min\\\": 12.0, \\\"id\\\": 4973, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340366\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912340366_MAL3_2012-05-09\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.0, \\\"lat\\\": 4.1300225, \\\"lon\\\": 72.84, \\\"timestamp\\\": \\\"Wed, 09 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2012-05-09T00:00:20\\\", \\\"timestamp_start\\\": \\\"2012-05-09T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ad6c6015-3d3e-4b3e-8e14-1a40a3a5943c",
+    "slug": "digu-kuda-giri",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d5ce04a5a35dfce71e7649138de703c4d9fd3e500f4263db0baa91fcb941ceea.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d5ce04a5a35dfce71e7649138de703c4d9fd3e500f4263db0baa91fcb941ceea.jpg",
+    "originalSha256": "934b5294766b46615bb8c1b6a8d3a6ac1391776608059c6c9380fb6c64c78bf7",
+    "alt": "Digu Kuda Giri underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5375998",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5375998"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ad6c6015-3d3e-4b3e-8e14-1a40a3a5943c\", \"relationship\": \"RLS photographic filename Mal12_6m120512KudaGiri_RSS (5).JPG identifies the named station, consistent with Digu Kuda Giri and its catalogue geography. Survey position 3.9700225, 73.49. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-12\", \"Source metadata created\": \"2019-11-21T08:06:00.288778\", \"Survey deployment ID\": \"4971\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 270, \\\"name\\\": \\\"RLS_Maldives_2012\\\"}, \\\"color\\\": \\\"#cae496\\\", \\\"created_at\\\": \\\"2019-11-21T08:06:00.182128\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4971, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340364\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340364_MAL12_2012-05-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 3.9700225, \\\"lon\\\": 73.49, \\\"timestamp\\\": \\\"Sat, 12 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-05-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-05-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "e5a2c83e-736e-49bb-8c97-c669d767c840",
+    "slug": "the-lake-42",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a6d06ecadfa9ee0cf4234dc9935b4032c73b96914f9c5e6063dff5a5fbad01a0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a6d06ecadfa9ee0cf4234dc9935b4032c73b96914f9c5e6063dff5a5fbad01a0.jpg",
+    "originalSha256": "f118365c38c4f7e807b8fa04a71fef6f6f3a34db54b280cbeb64dd0387a7dfcd",
+    "alt": "The Lake (42) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376920",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376920"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"e5a2c83e-736e-49bb-8c97-c669d767c840\", \"relationship\": \"RLS photographic filename BON8_5.5m120612TheLake_RSS (5).JPG identifies the named station, consistent with The Lake (42) and its catalogue geography. Survey position 12.110022500000001, -68.29. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-12\", \"Source metadata created\": \"2019-11-21T08:10:28.517172\", \"Survey deployment ID\": \"5012\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:28.435816\\\", \\\"dep_max\\\": 5.5, \\\"dep_min\\\": 5.5, \\\"id\\\": 5012, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340406\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340406_BON8_2012-06-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.5, \\\"lat\\\": 12.110022500000001, \\\"lon\\\": -68.29, \\\"timestamp\\\": \\\"Tue, 12 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "4b7b01ce-96dc-4551-948f-e3ab877cb053",
+    "slug": "angel-city-44",
+    "src": "https://assets.diveatlas.site/site-photos/v1/76c0e759d6c6efe57b2493386423ddac25f810d3c887512b2ba0969344e38869.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/76c0e759d6c6efe57b2493386423ddac25f810d3c887512b2ba0969344e38869.jpg",
+    "originalSha256": "897f1b6de4427b82a60e7c9c1e61d35b9fd93b49b8081a9ae45590948712da96",
+    "alt": "Angel City (44) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376669",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376669"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"4b7b01ce-96dc-4551-948f-e3ab877cb053\", \"relationship\": \"RLS photographic filename BON10_14.5m130612AngelCitySouth_RSS (5).JPG identifies the named station, consistent with Angel City (44) and its catalogue geography. Survey position 12.100022500000001, -68.29. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-13\", \"Source metadata created\": \"2019-11-21T08:09:33.595892\", \"Survey deployment ID\": \"5001\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:09:33.510463\\\", \\\"dep_max\\\": 14.5, \\\"dep_min\\\": 14.5, \\\"id\\\": 5001, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340395\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912340395_BON10_2012-06-13\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 14.5, \\\"lat\\\": 12.100022500000001, \\\"lon\\\": -68.29, \\\"timestamp\\\": \\\"Wed, 13 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-06-13T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-06-13T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7fa95382-58de-4a2a-a6c7-b8a6a26c51a4",
+    "slug": "granito-de-oro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ec3abb4828c1fca7976b9713aab8fa14d4c31d505d4d7cf4db6e2affe474cae5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ec3abb4828c1fca7976b9713aab8fa14d4c31d505d4d7cf4db6e2affe474cae5.jpg",
+    "originalSha256": "2cfc2a8b686fde9809f114dc52389e379ad278512dad27e5e883c94c963ef2e8",
+    "alt": "Granito de Oro underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5371448",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5371448"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7fa95382-58de-4a2a-a6c7-b8a6a26c51a4\", \"relationship\": \"RLS photographic filename ETP83_GJE10m310511GranitodelOro (5).JPG identifies the named station, consistent with Granito de Oro and its catalogue geography. Survey position 7.590022500000001, -81.71. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-05-31\", \"Source metadata created\": \"2019-11-21T07:52:17.103458\", \"Survey deployment ID\": \"4753\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 254, \\\"name\\\": \\\"RLS_Coiba_2011\\\"}, \\\"color\\\": \\\"#761533\\\", \\\"created_at\\\": \\\"2019-11-21T07:52:17.009844\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 4753, \\\"is_valid\\\": true, \\\"key\\\": \\\"507003207\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"507003207_ETP83_2011-05-31\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": 7.590022500000001, \\\"lon\\\": -81.71, \\\"timestamp\\\": \\\"Tue, 31 May 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2011-05-31T00:00:19\\\", \\\"timestamp_start\\\": \\\"2011-05-31T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ea576fe4-9efa-49f5-93d6-619b12778145",
+    "slug": "twin-barges",
+    "src": "https://assets.diveatlas.site/site-photos/v1/44b8c55a353aceb6044b99b8435dd02fe628fa39415a89f8ee49312b2d5a39d0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/44b8c55a353aceb6044b99b8435dd02fe628fa39415a89f8ee49312b2d5a39d0.jpg",
+    "originalSha256": "e78a61140d737a8a13a381bf9cfa517fd0660741afedee72757df78222caaea2",
+    "alt": "Twin Barges underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376245",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376245"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ea576fe4-9efa-49f5-93d6-619b12778145\", \"relationship\": \"RLS photographic filename SEY5_8m170512TwinBarges_RSS (5).JPG identifies the named station, consistent with Twin Barges and its catalogue geography. Survey position -4.6199775, 55.41. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-17\", \"Source metadata created\": \"2019-11-21T08:07:15.534577\", \"Survey deployment ID\": \"4982\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 271, \\\"name\\\": \\\"RLS_Seychelles_2012\\\"}, \\\"color\\\": \\\"#a1ad4a\\\", \\\"created_at\\\": \\\"2019-11-21T08:07:15.430887\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4982, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340376\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340376_SEY5_2012-05-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -4.6199775, \\\"lon\\\": 55.41, \\\"timestamp\\\": \\\"Thu, 17 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-05-17T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-05-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7aefc99d-187c-4e2b-9870-2ebc4d3d3a72",
+    "slug": "sardine-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a0b84586bcf6f801453945aeb8acf669544ce6ce13da336d8b533d89a5e2c62b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a0b84586bcf6f801453945aeb8acf669544ce6ce13da336d8b533d89a5e2c62b.jpg",
+    "originalSha256": "fee3f348e368c225477d940c7c59292f42771ccf43e4c8ec92a28b722eb14099",
+    "alt": "Sardine Reef underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5416614",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5416614"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7aefc99d-187c-4e2b-9870-2ebc4d3d3a72\", \"relationship\": \"RLS photographic filename RajaAmpat16_18m280814Sardines_RSS (5).JPG identifies the named station, consistent with Sardine Reef and its catalogue geography. Survey position -0.5299775, 130.72. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-28\", \"Source metadata created\": \"2019-11-21T11:10:16.097185\", \"Survey deployment ID\": \"6718\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:10:16.015578\\\", \\\"dep_max\\\": 18.0, \\\"dep_min\\\": 18.0, \\\"id\\\": 6718, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344528\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912344528_RAJA16_2014-08-28\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 18.0, \\\"lat\\\": -0.5299775, \\\"lon\\\": 130.72, \\\"timestamp\\\": \\\"Thu, 28 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2014-08-28T00:00:20\\\", \\\"timestamp_start\\\": \\\"2014-08-28T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7acd8a36-75a2-46d8-82ec-74a0144001ec",
+    "slug": "mikes-point-raja-ampat-indonesia",
+    "src": "https://assets.diveatlas.site/site-photos/v1/350eaac49f1528bf8f08c2532cb2e3e641fbe24e7ad39bf253e9169f6ee097de.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/350eaac49f1528bf8f08c2532cb2e3e641fbe24e7ad39bf253e9169f6ee097de.jpg",
+    "originalSha256": "e00c6b3f66c4f69d8969ef8d3c5746dc688aa3969c8fbadf691d97af26bbdde5",
+    "alt": "Mike’s Point underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5415454",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5415454"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7acd8a36-75a2-46d8-82ec-74a0144001ec\", \"relationship\": \"RLS photographic filename RajaAmpat13_4m270814MikesPt_RSS (5).JPG identifies the named station, consistent with Mike’s Point and its catalogue geography. Survey position -0.5199775, 130.67. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-27\", \"Source metadata created\": \"2019-11-21T11:00:59.550161\", \"Survey deployment ID\": \"6666\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:00:59.469183\\\", \\\"dep_max\\\": 4.0, \\\"dep_min\\\": 4.0, \\\"id\\\": 6666, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344474\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912344474_RAJA13_2014-08-27\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 4.0, \\\"lat\\\": -0.5199775, \\\"lon\\\": 130.67, \\\"timestamp\\\": \\\"Wed, 27 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2014-08-27T00:00:21\\\", \\\"timestamp_start\\\": \\\"2014-08-27T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "19e2eedc-5728-4224-af20-487f74a5d8b2",
+    "slug": "sauwandarek",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b0ac5375808f555118b2ea2ca427c5144b97a8fec4869e95cb0b1c0f047cc6ed.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b0ac5375808f555118b2ea2ca427c5144b97a8fec4869e95cb0b1c0f047cc6ed.jpg",
+    "originalSha256": "b930c86e73b58c088e641bdb9bec08e3257fb71b9c896a6ae6bf74ba7ec2c04f",
+    "alt": "Sauwandarek underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5415646",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5415646"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"19e2eedc-5728-4224-af20-487f74a5d8b2\", \"relationship\": \"RLS photographic filename RajaAmpat18_9m280814Sauandarek_AJG(4).JPG identifies the named station, consistent with Sauwandarek and its catalogue geography. Survey position -0.5899774999999999, 130.6. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-28\", \"Source metadata created\": \"2019-11-21T11:02:37.191616\", \"Survey deployment ID\": \"6675\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:02:37.098649\\\", \\\"dep_max\\\": 9.0, \\\"dep_min\\\": 9.0, \\\"id\\\": 6675, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344483\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912344483_RAJA18_2014-08-28\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 9.0, \\\"lat\\\": -0.5899774999999999, \\\"lon\\\": 130.6, \\\"timestamp\\\": \\\"Thu, 28 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2014-08-28T00:00:20\\\", \\\"timestamp_start\\\": \\\"2014-08-28T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "8a8b287a-a086-4b1e-9942-a179c22c3c08",
+    "slug": "g-spot-turks-and-caicos-united-kingdom",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3c1c7d693a4ba2ea048facb980b3416bc29eb869aa8ecad78a20df6ec2603168.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3c1c7d693a4ba2ea048facb980b3416bc29eb869aa8ecad78a20df6ec2603168.jpg",
+    "originalSha256": "64607babf2861502860fdf5dda32a0a499a3da362e7385a03b2bd9ffd837b729",
+    "alt": "G-Spot underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5423220",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5423220"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"8a8b287a-a086-4b1e-9942-a179c22c3c08\", \"relationship\": \"RLS photographic filename TCI3_15m300415G-Spot_RSS (4).JPG identifies the named station, consistent with G-Spot and its catalogue geography. Survey position 21.4904725, -72.22. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Source survey timestamp is 2015-05-02; filename states 300415 (2015-04-30). Both are within licence coverage. Exact capture date unresolved.\", \"Survey date\": \"2015-05-02\", \"Source metadata created\": \"2019-11-21T11:28:03.698387\", \"Survey deployment ID\": \"6994\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 367, \\\"name\\\": \\\"RLS_Turks and Caicos Islands_2015\\\"}, \\\"color\\\": \\\"#b51bad\\\", \\\"created_at\\\": \\\"2019-11-21T11:28:03.621382\\\", \\\"dep_max\\\": 15.0, \\\"dep_min\\\": 15.0, \\\"id\\\": 6994, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345037\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912345037_TCI3_2015-05-02\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 15.0, \\\"lat\\\": 21.4904725, \\\"lon\\\": -72.22, \\\"timestamp\\\": \\\"Sat, 02 May 2015 00:00:20 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2015-05-02T00:00:20\\\", \\\"timestamp_start\\\": \\\"2015-05-02T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "d24ae3a3-ee15-49e2-a94c-7ff88999d6e9",
+    "slug": "la-muladera-roca-del-moro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3714fb5ab938dac28cc43875779c7a1e3cea6ca3bc2bb744ac0f0230b6f2dcd3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3714fb5ab938dac28cc43875779c7a1e3cea6ca3bc2bb744ac0f0230b6f2dcd3.jpg",
+    "originalSha256": "7a1c43dd8acac529c93f46458de1ec877bbb162d1708edd7c5b1f57554f99822",
+    "alt": "La Muladera / Roca del Moro underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5424357",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5424357"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"d24ae3a3-ee15-49e2-a94c-7ff88999d6e9\", \"relationship\": \"RLS photographic filename CAT8_18m070615Mulladera_RSS (5).JPG identifies the named station, consistent with La Muladera / Roca del Moro and its catalogue geography. Survey position 41.7100225, 2.91. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-06-07\", \"Source metadata created\": \"2019-11-21T11:32:19.358050\", \"Survey deployment ID\": \"7040\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2019-11-21T11:32:19.273842\\\", \\\"dep_max\\\": 18.0, \\\"dep_min\\\": 18.0, \\\"id\\\": 7040, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345280\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912345280_CAT8_2015-06-07\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 18.0, \\\"lat\\\": 41.7100225, \\\"lon\\\": 2.91, \\\"timestamp\\\": \\\"Sun, 07 Jun 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2015-06-07T00:00:20\\\", \\\"timestamp_start\\\": \\\"2015-06-07T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "359dcaf3-6a32-4f9f-b901-cdbcdb8a3010",
+    "slug": "els-bullents",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9f91252b6f1c88b1f7ba1790df5f66d428a8b7245836ba9d0e70d271870881b5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9f91252b6f1c88b1f7ba1790df5f66d428a8b7245836ba9d0e70d271870881b5.jpg",
+    "originalSha256": "f450118f93ef4e376530b931e0604ba98e649e0c9186b03b1528e29ad36c7845",
+    "alt": "Els Bullents underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5424378",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5424378"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"359dcaf3-6a32-4f9f-b901-cdbcdb8a3010\", \"relationship\": \"RLS photographic filename CAT9_6m070615CuevaBullents_RSS (5).JPG identifies the named station, consistent with Els Bullents and its catalogue geography. Survey position 41.700022499999996, 2.89. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-06-07\", \"Source metadata created\": \"2019-11-21T11:32:39.523913\", \"Survey deployment ID\": \"7041\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2019-11-21T11:32:39.421989\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 7041, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345281\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912345281_CAT9_2015-06-07\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 41.700022499999996, \\\"lon\\\": 2.89, \\\"timestamp\\\": \\\"Sun, 07 Jun 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2015-06-07T00:00:21\\\", \\\"timestamp_start\\\": \\\"2015-06-07T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a45320b6-ba07-48c1-8f34-999d6268cbac",
+    "slug": "sagulla",
+    "src": "https://assets.diveatlas.site/site-photos/v1/34fe03122230cb3f75564bf46214475caaae280e56c141251b3e42b3c7699a0b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/34fe03122230cb3f75564bf46214475caaae280e56c141251b3e42b3c7699a0b.jpg",
+    "originalSha256": "07e722df4cc1aafaf5554a9f8d0c19253e1a1a417af4e3f7b293164a7eba1a31",
+    "alt": "S’Agulla underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5424418",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5424418"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"a45320b6-ba07-48c1-8f34-999d6268cbac\", \"relationship\": \"RLS photographic filename CAT5_7m050615SAgulla_RSS (5).JPG identifies the named station, consistent with S’Agulla and its catalogue geography. Survey position 41.6800225, 2.82. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-06-05\", \"Source metadata created\": \"2019-11-21T11:33:01.642600\", \"Survey deployment ID\": \"7043\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2019-11-21T11:33:01.559754\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 7043, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345289\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"912345289_CAT5_2015-06-05\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": 41.6800225, \\\"lon\\\": 2.82, \\\"timestamp\\\": \\\"Fri, 05 Jun 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2015-06-05T00:00:19\\\", \\\"timestamp_start\\\": \\\"2015-06-05T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b2d9e52a-47f5-4025-bd9e-e865fccfc408",
+    "slug": "gordons-mooring",
+    "src": "https://assets.diveatlas.site/site-photos/v1/edda2b3f430d2289e565869a172904377603bef538b941d2f36ff5d72ab20174.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/edda2b3f430d2289e565869a172904377603bef538b941d2f36ff5d72ab20174.jpg",
+    "originalSha256": "edc83dc689ced8b01e4b5d43bdb008b44ccc75e35879cf628c5a8c389aee734a",
+    "alt": "Gordons Mooring underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5426456",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5426456"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"b2d9e52a-47f5-4025-bd9e-e865fccfc408\", \"relationship\": \"RLS photographic filename COR8_JEL_050720015_5_GordMoorFlynnRf796.jpg identifies the named station, consistent with Gordons Mooring and its catalogue geography. Survey position -16.7299775, 146.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Source survey timestamp is 2015-07-05; filename contains 050720015 with an extra digit in the year. No reconciliation of the filename is assumed; source survey date remains recorded.\", \"Survey date\": \"2015-07-05\", \"Source metadata created\": \"2019-11-21T11:37:06.750578\", \"Survey deployment ID\": \"7123\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 377, \\\"name\\\": \\\"RLS_Great Barrier Reef_2015\\\"}, \\\"color\\\": \\\"#e4608d\\\", \\\"created_at\\\": \\\"2019-11-21T11:37:06.671589\\\", \\\"dep_max\\\": 5.0, \\\"dep_min\\\": 5.0, \\\"id\\\": 7123, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345425\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912345425_COR8_2015-07-05\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.0, \\\"lat\\\": -16.7299775, \\\"lon\\\": 146.27, \\\"timestamp\\\": \\\"Sun, 05 Jul 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2015-07-05T00:00:21\\\", \\\"timestamp_start\\\": \\\"2015-07-05T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "49f832f0-e96b-4be4-aa89-36411b94f289",
+    "slug": "tennis-courts",
+    "src": "https://assets.diveatlas.site/site-photos/v1/25ded82c807bdd28eadf7b3951fd15455114a89511b9ef49bba653341bf98d0f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/25ded82c807bdd28eadf7b3951fd15455114a89511b9ef49bba653341bf98d0f.jpg",
+    "originalSha256": "360bf3594bcf364393131f74638dd729e615183d5781cd40e0d3d6c7be8a34b5",
+    "alt": "Tennis courts underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5426478",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5426478"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"49f832f0-e96b-4be4-aa89-36411b94f289\", \"relationship\": \"RLS photographic filename COR7_JEL_06072015_7m_TenCrtFlynnRf20.jpg identifies the named station, consistent with Tennis courts and its catalogue geography. Survey position -16.7299775, 146.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-07-06\", \"Source metadata created\": \"2019-11-21T11:37:07.716900\", \"Survey deployment ID\": \"7124\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 377, \\\"name\\\": \\\"RLS_Great Barrier Reef_2015\\\"}, \\\"color\\\": \\\"#e4608d\\\", \\\"created_at\\\": \\\"2019-11-21T11:37:07.606803\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 7124, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345426\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912345426_COR7_2015-07-06\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -16.7299775, \\\"lon\\\": 146.27, \\\"timestamp\\\": \\\"Mon, 06 Jul 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2015-07-06T00:00:21\\\", \\\"timestamp_start\\\": \\\"2015-07-06T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "65d33c29-763d-4bcd-a25c-7357b9edc743",
+    "slug": "broughton-island-the-looking-glass",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ddfbdc4b42ba1482cdca0855c20d07eb4865fe28ac0f625d5985e0cddee7d5ed.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ddfbdc4b42ba1482cdca0855c20d07eb4865fe28ac0f625d5985e0cddee7d5ed.jpg",
+    "originalSha256": "526461156214cb4baff68c3b38fc4577da31927bf9a28d80edabc362488a39d9",
+    "alt": "Broughton  Island  The Looking Glass underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5453903",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5453903"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"65d33c29-763d-4bcd-a25c-7357b9edc743\", \"relationship\": \"RLS photographic filename PS53_TRD_10m_250417_Looking_Glass (5).JPG identifies the named station, consistent with Broughton  Island  The Looking Glass and its catalogue geography. Survey position -32.6299775, 152.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2017-04-25\", \"Source metadata created\": \"2019-11-21T12:50:42.739715\", \"Survey deployment ID\": \"8296\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 423, \\\"name\\\": \\\"RLS_Port Stephens_2017\\\"}, \\\"color\\\": \\\"#1533a1\\\", \\\"created_at\\\": \\\"2019-11-21T12:50:42.651294\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 8296, \\\"is_valid\\\": true, \\\"key\\\": \\\"912347604\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912347604_PS53_2017-04-25\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": -32.6299775, \\\"lon\\\": 152.32, \\\"timestamp\\\": \\\"Tue, 25 Apr 2017 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2017-04-25T00:00:24\\\", \\\"timestamp_start\\\": \\\"2017-04-25T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "4fc83bd0-211f-4d9d-a399-e124ef2306b7",
+    "slug": "cleaner-station-south-solitary-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/493ed25ef80fc59076b0c1e7fd64e81867648fd83f3c9ceb7c278eeb81e34ec9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/493ed25ef80fc59076b0c1e7fd64e81867648fd83f3c9ceb7c278eeb81e34ec9.jpg",
+    "originalSha256": "b0b73bc3d805edd085680564ea3344a5c28fbbc054a816ebedc99001c11201f2",
+    "alt": "Cleaner Station South Solitary Island underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5462615",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5462615"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"4fc83bd0-211f-4d9d-a399-e124ef2306b7\", \"relationship\": \"RLS photographic filename SI17-trd-8m-050517-cleaner station (5).JPG identifies the named station, consistent with Cleaner Station South Solitary Island and its catalogue geography. Survey position -30.199977500000003, 153.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2017-05-05\", \"Source metadata created\": \"2019-11-21T13:25:52.913987\", \"Survey deployment ID\": \"8665\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 431, \\\"name\\\": \\\"RLS_Solitary Islands_2017\\\"}, \\\"color\\\": \\\"#59d919\\\", \\\"created_at\\\": \\\"2019-11-21T13:25:52.819206\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 8665, \\\"is_valid\\\": true, \\\"key\\\": \\\"912347800\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912347800_SI17_2017-05-05\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -30.199977500000003, \\\"lon\\\": 153.27, \\\"timestamp\\\": \\\"Fri, 05 May 2017 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2017-05-05T00:00:24\\\", \\\"timestamp_start\\\": \\\"2017-05-05T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "4602c9df-8e3a-44b2-8585-369df2693e98",
+    "slug": "anita-s-garden",
+    "src": "https://assets.diveatlas.site/site-photos/v1/92db890aa556a2f38e7b2e3e28c62c171306a96e44280a89729d5b17029ce2ed.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/92db890aa556a2f38e7b2e3e28c62c171306a96e44280a89729d5b17029ce2ed.jpg",
+    "originalSha256": "13bd279128395bd6339ecd34d675f9833caac1854d56799759679e3dbdf3730f",
+    "alt": "Anita's Garden underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5476871",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5476871"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"4602c9df-8e3a-44b2-8585-369df2693e98\", \"relationship\": \"RLS photographic filename Raja19_6m210318AnitasGardenAJG(4).JPG identifies the named station, consistent with Anita's Garden and its catalogue geography. Survey position -0.5399775, 130.25. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2018-03-21\", \"Source metadata created\": \"2019-11-21T13:59:39.540757\", \"Survey deployment ID\": \"9278\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 456, \\\"name\\\": \\\"RLS_Raja Ampat_2018\\\"}, \\\"color\\\": \\\"#b1493f\\\", \\\"created_at\\\": \\\"2019-11-21T13:59:39.457334\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 9278, \\\"is_valid\\\": true, \\\"key\\\": \\\"912350311\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912350311_RAJA19_2018-03-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": -0.5399775, \\\"lon\\\": 130.25, \\\"timestamp\\\": \\\"Wed, 21 Mar 2018 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2018-03-21T00:00:20\\\", \\\"timestamp_start\\\": \\\"2018-03-21T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b5dbe6f5-23fe-49d8-9083-7f0bbf295f73",
+    "slug": "mangrove-ridge",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f2644b25e4629ba1c4af207905a8d02380d96f76afb5978849fbf9a276429aae.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f2644b25e4629ba1c4af207905a8d02380d96f76afb5978849fbf9a276429aae.jpg",
+    "originalSha256": "6693e2be04964454affb0ea54ac96f11bb5001ee17812d68bfa2a47d228544a6",
+    "alt": "Mangrove Ridge underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5477139",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5477139"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b5dbe6f5-23fe-49d8-9083-7f0bbf295f73\", \"relationship\": \"RLS photographic filename Raja39_7m230318MangroveRidgeAJG(4).JPG identifies the named station, consistent with Mangrove Ridge and its catalogue geography. Survey position -0.5099775, 130.46. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2018-03-23\", \"Source metadata created\": \"2019-11-21T14:00:18.802055\", \"Survey deployment ID\": \"9290\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 456, \\\"name\\\": \\\"RLS_Raja Ampat_2018\\\"}, \\\"color\\\": \\\"#b1493f\\\", \\\"created_at\\\": \\\"2019-11-21T14:00:18.706071\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 9290, \\\"is_valid\\\": true, \\\"key\\\": \\\"912350323\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912350323_RAJA39_2018-03-23\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -0.5099775, \\\"lon\\\": 130.46, \\\"timestamp\\\": \\\"Fri, 23 Mar 2018 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2018-03-23T00:00:20\\\", \\\"timestamp_start\\\": \\\"2018-03-23T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "2c652dd2-f075-45d2-847c-60f0e5ff906a",
+    "slug": "love-potion-no-9",
+    "src": "https://assets.diveatlas.site/site-photos/v1/da2932ec4357fbcf9022bedd80fd86cd01a603df0106d46476b544c44f5fec37.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/da2932ec4357fbcf9022bedd80fd86cd01a603df0106d46476b544c44f5fec37.jpg",
+    "originalSha256": "2f27587aa1d17847e20b972670adfea9ef45d949799ff5be734d85537e6d94ce",
+    "alt": "Love Potion No 9 underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5477864",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5477864"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"2c652dd2-f075-45d2-847c-60f0e5ff906a\", \"relationship\": \"RLS photographic filename RAJA53MFL6M290318 LOVE POTION (5).JPG identifies the named station, consistent with Love Potion No 9 and its catalogue geography. Survey position -2.0199775, 130.69. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2018-03-29\", \"Source metadata created\": \"2019-11-21T14:04:08.113951\", \"Survey deployment ID\": \"9321\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 456, \\\"name\\\": \\\"RLS_Raja Ampat_2018\\\"}, \\\"color\\\": \\\"#b1493f\\\", \\\"created_at\\\": \\\"2019-11-21T14:04:08.007085\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 9321, \\\"is_valid\\\": true, \\\"key\\\": \\\"912350355\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912350355_RAJA53_2018-03-29\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": -2.0199775, \\\"lon\\\": 130.69, \\\"timestamp\\\": \\\"Thu, 29 Mar 2018 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2018-03-29T00:00:24\\\", \\\"timestamp_start\\\": \\\"2018-03-29T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ebd2b89d-d213-44f2-b14e-de88e477e8c9",
+    "slug": "anemone-bay-north-solitary-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4a097f9784f2d740c0d766b647c6881986e73260bfd035021c7d6d13bff2d332.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4a097f9784f2d740c0d766b647c6881986e73260bfd035021c7d6d13bff2d332.jpg",
+    "originalSha256": "893cbc0732186c914b5c17a6ae0c7133eee8cb6647103f42c0e71922e19daebd",
+    "alt": "Anemone Bay North Solitary Island underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5494924",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5494924"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ebd2b89d-d213-44f2-b14e-de88e477e8c9\", \"relationship\": \"RLS photographic filename SI2-180519-TRD-12m-anemone bay (5).JPG identifies the named station, consistent with Anemone Bay North Solitary Island and its catalogue geography. Survey position -29.9199775, 153.39. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2019-05-18\", \"Source metadata created\": \"2019-11-21T14:40:20.548178\", \"Survey deployment ID\": \"10074\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 488, \\\"name\\\": \\\"RLS_Solitary Islands_2019\\\"}, \\\"color\\\": \\\"#93fd19\\\", \\\"created_at\\\": \\\"2019-11-21T14:40:20.448145\\\", \\\"dep_max\\\": 12.0, \\\"dep_min\\\": 12.0, \\\"id\\\": 10074, \\\"is_valid\\\": true, \\\"key\\\": \\\"912352291\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912352291_SI2_2019-05-18\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.0, \\\"lat\\\": -29.9199775, \\\"lon\\\": 153.39, \\\"timestamp\\\": \\\"Sat, 18 May 2019 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2019-05-18T00:00:23\\\", \\\"timestamp_start\\\": \\\"2019-05-18T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "66617a88-6b11-4476-8448-fb35fd67fc2a",
+    "slug": "chileno",
+    "src": "https://assets.diveatlas.site/site-photos/v1/515f8fe567831b8b3319271e9230523ec8fc38224ebf145cebb9662907e54f1e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/515f8fe567831b8b3319271e9230523ec8fc38224ebf145cebb9662907e54f1e.jpg",
+    "originalSha256": "729645580fc56015693a4c6ad993495553aad65da1c96e7e1150243cd6ee04aa",
+    "alt": "Chileno underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5497865",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5497865"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"66617a88-6b11-4476-8448-fb35fd67fc2a\", \"relationship\": \"RLS photographic filename GCO21_6m_SDL_10102018_Chelino Bay North (5).JPG identifies the named station, consistent with Chileno and its catalogue geography. Survey position 22.9500225, -109.8. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Source survey timestamp is 2018-10-08; filename states 10102018 (2018-10-10). Both dates are within licence coverage. Exact capture date unresolved.\", \"Survey date\": \"2018-10-08\", \"Source metadata created\": \"2020-04-20T04:15:48.278749\", \"Survey deployment ID\": \"10200\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 494, \\\"name\\\": \\\"RLS_Gulf of California_2018\\\"}, \\\"color\\\": \\\"#d13acc\\\", \\\"created_at\\\": \\\"2020-04-20T04:15:47.775395\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 10200, \\\"is_valid\\\": true, \\\"key\\\": \\\"912353301\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912353301_GOC21_2018-10-08\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 22.9500225, \\\"lon\\\": -109.8, \\\"timestamp\\\": \\\"Mon, 08 Oct 2018 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2018-10-08T00:00:20\\\", \\\"timestamp_start\\\": \\\"2018-10-08T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "cbaa8c01-84d8-42e4-973c-26640a26ade6",
+    "slug": "cottage-by-the-sea",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9e8834ef2b4b0bf7c1459f6557c2c621017fcfb587cb23be67e076c123c8041c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9e8834ef2b4b0bf7c1459f6557c2c621017fcfb587cb23be67e076c123c8041c.jpg",
+    "originalSha256": "1382e29a15b1f0ffdd9c2f2e4a7fe7e47f14b453ee6102cda325fb6ff40e96cb",
+    "alt": "Cottage By The Sea underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5498229",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5498229"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"cbaa8c01-84d8-42e4-973c-26640a26ade6\", \"relationship\": \"RLS photographic filename PPB5_ATC6m070220CottagebytheSea (5).JPG identifies the named station, consistent with Cottage By The Sea and its catalogue geography. Survey position -38.2699775, 144.65. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Source survey timestamp is 2020-02-06; filename states 070220 (2020-02-07). Both dates are within licence coverage. Exact capture date unresolved.\", \"Survey date\": \"2020-02-06\", \"Source metadata created\": \"2020-05-25T03:57:51.405568\", \"Survey deployment ID\": \"10216\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 496, \\\"name\\\": \\\"RLS_Port Phillip Bay_2020\\\"}, \\\"color\\\": \\\"#fda7ee\\\", \\\"created_at\\\": \\\"2020-05-25T03:57:50.954433\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 10216, \\\"is_valid\\\": true, \\\"key\\\": \\\"912353230\\\", \\\"media_count\\\": 33, \\\"name\\\": \\\"912353230_PPB5_2020-02-06\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": -38.2699775, \\\"lon\\\": 144.65, \\\"timestamp\\\": \\\"Thu, 06 Feb 2020 13:00:00 GMT\\\"}, \\\"pose_count\\\": 33, \\\"timestamp_end\\\": \\\"2020-02-06T13:00:32\\\", \\\"timestamp_start\\\": \\\"2020-02-06T13:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "f441cdd2-0d72-4131-ad52-ebd59fc16c54",
+    "slug": "las-eras",
+    "src": "https://assets.diveatlas.site/site-photos/v1/aba3f8cb2d192986a45378d0567da9fcf5877566af710bbbeb3e5d5c13560ecf.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/aba3f8cb2d192986a45378d0567da9fcf5877566af710bbbeb3e5d5c13560ecf.jpg",
+    "originalSha256": "8e1e126341b5ddb63a061dad5ce7d8af550e3c591cd95679282891c00ff58b41",
+    "alt": "Las Eras underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5736265",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5736265"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"f441cdd2-0d72-4131-ad52-ebd59fc16c54\", \"relationship\": \"RLS photographic filename CAN13_13.5m121211LasEras_RSS (4).JPG identifies the named station, consistent with Las Eras and its catalogue geography. Survey position 28.190022499999998, -16.42. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-12-12\", \"Source metadata created\": \"2020-11-12T06:03:13.470372\", \"Survey deployment ID\": \"10695\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 276, \\\"name\\\": \\\"RLS_Tenerife_2011\\\"}, \\\"color\\\": \\\"#a3ba04\\\", \\\"created_at\\\": \\\"2020-11-12T06:03:13.298031\\\", \\\"dep_max\\\": 13.5, \\\"dep_min\\\": 13.5, \\\"id\\\": 10695, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340443\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912340443_CAN13_2011-12-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 13.5, \\\"lat\\\": 28.190022499999998, \\\"lon\\\": -16.42, \\\"timestamp\\\": \\\"Mon, 12 Dec 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2011-12-12T00:00:23\\\", \\\"timestamp_start\\\": \\\"2011-12-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7b3d26ef-9d97-4de7-ab44-13fcda452c74",
+    "slug": "observatory",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d1e508cd0fa916b8725aa9b6619009456eeb10f71bdeff088a44434b0d39312a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d1e508cd0fa916b8725aa9b6619009456eeb10f71bdeff088a44434b0d39312a.jpg",
+    "originalSha256": "ef4a8a704ed19b807469930e64bdb5c0f28c625577a7f427cb1851af3da85502",
+    "alt": "Observatory underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6075603",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6075603"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7b3d26ef-9d97-4de7-ab44-13fcda452c74\", \"relationship\": \"RLS photographic filename QLD10_2.3m121220ObservatoryEast_RSS (3).JPG identifies the named station, consistent with Observatory and its catalogue geography. Survey position -23.169977499999998, 150.92. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2020-12-12\", \"Source metadata created\": \"2021-03-29T09:24:29.167478\", \"Survey deployment ID\": \"11043\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 511, \\\"name\\\": \\\"RLS_Great Barrier Reef_2020\\\"}, \\\"color\\\": \\\"#4cb644\\\", \\\"created_at\\\": \\\"2021-03-29T09:24:26.499673\\\", \\\"dep_max\\\": 2.3, \\\"dep_min\\\": 2.3, \\\"id\\\": 11043, \\\"is_valid\\\": true, \\\"key\\\": \\\"912354417\\\", \\\"media_count\\\": 42, \\\"name\\\": \\\"912354417_QLD10_2020-12-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 2.3, \\\"lat\\\": -23.169977499999998, \\\"lon\\\": 150.92, \\\"timestamp\\\": \\\"Sat, 12 Dec 2020 00:00:00 GMT\\\"}, \\\"pose_count\\\": 42, \\\"timestamp_end\\\": \\\"2020-12-12T00:13:40\\\", \\\"timestamp_start\\\": \\\"2020-12-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "12593a97-b03f-4b0c-bff1-a1c3cba0f58a",
+    "slug": "kewalo-pipe",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4b1a5ab07dbed9a047eade66a31039cf18247bdb3bd919e958aac390b7aa9d64.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4b1a5ab07dbed9a047eade66a31039cf18247bdb3bd919e958aac390b7aa9d64.jpg",
+    "originalSha256": "673b30096536b29947289359d23e170deca0af549e05c23aa4ac9aca3eada3eb",
+    "alt": "Kewalo Pipe underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/7959092",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/7959092"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"12593a97-b03f-4b0c-bff1-a1c3cba0f58a\", \"relationship\": \"RLS photographic filename HAWAII4_GJE11m030512KewaloPipe  (5).JPG identifies the named station, consistent with Kewalo Pipe and its catalogue geography. Survey position 21.2900225, -157.86. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-03\", \"Source metadata created\": \"2023-01-13T04:47:34.406415\", \"Survey deployment ID\": \"13459\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 737, \\\"name\\\": \\\"RLS_Hawaii_2012\\\"}, \\\"color\\\": \\\"#e3a221\\\", \\\"created_at\\\": \\\"2023-01-13T04:47:32.901682\\\", \\\"dep_max\\\": 11.0, \\\"dep_min\\\": 11.0, \\\"id\\\": 13459, \\\"is_valid\\\": true, \\\"key\\\": \\\"912341822\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912341822_HAWAII4_2012-05-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 11.0, \\\"lat\\\": 21.2900225, \\\"lon\\\": -157.86, \\\"timestamp\\\": \\\"Thu, 03 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-05-03T00:07:00\\\", \\\"timestamp_start\\\": \\\"2012-05-03T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "698376f4-7c3a-4214-a8e3-aecbd257384f",
+    "slug": "aroa-raui",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7e664ba7b4dcdc3ff5c301671655c256a9b147c63d56c60fe38b97618b5d2c43.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7e664ba7b4dcdc3ff5c301671655c256a9b147c63d56c60fe38b97618b5d2c43.jpg",
+    "originalSha256": "a27cdbccafe58d9f27e17f00f670a58a41bd161bb68498093763ebe4f3c9bf0c",
+    "alt": "Aroa Rā’ui underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5482373",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5482373"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"698376f4-7c3a-4214-a8e3-aecbd257384f\", \"relationship\": \"RLS photographic filename cook5_TRD_1p5m_170618_Aroa-marine-reserve (5).JPG identifies the named station, consistent with Aroa Rā’ui and its catalogue geography. Survey position -21.259977499999998, -159.82. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Genuine underwater habitat photoquadrat with survey tape. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2018-06-17\", \"Source metadata created\": \"2019-11-21T14:10:38.689410\", \"Survey deployment ID\": \"9522\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 464, \\\"name\\\": \\\"RLS_Cook Islands_2018\\\"}, \\\"color\\\": \\\"#0936b3\\\", \\\"created_at\\\": \\\"2019-11-21T14:10:38.609702\\\", \\\"dep_max\\\": 1.5, \\\"dep_min\\\": 1.5, \\\"id\\\": 9522, \\\"is_valid\\\": true, \\\"key\\\": \\\"912350687\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912350687_COOK5_2018-06-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 1.5, \\\"lat\\\": -21.259977499999998, \\\"lon\\\": -159.82, \\\"timestamp\\\": \\\"Sun, 17 Jun 2018 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2018-06-17T00:00:23\\\", \\\"timestamp_start\\\": \\\"2018-06-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "e4e96f3a-a8bc-4684-897c-649581c0b939",
+    "slug": "south-boulder-south-solitary-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d007f9c777e490a23db1929433b4fdef09394b8b37801f59a7e91b9fe1d13c21.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d007f9c777e490a23db1929433b4fdef09394b8b37801f59a7e91b9fe1d13c21.jpg",
+    "originalSha256": "5752a95237487688a0c118e82a9ab4c37b3d8b1aec3a476bfb3116afe446ecd2",
+    "alt": "South Boulder South Solitary Island underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/7970926",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/7970926"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"e4e96f3a-a8bc-4684-897c-649581c0b939\", \"relationship\": \"RLS photographic filename SI7_IVS12m291020SthBoulderWall  (5).jpg identifies the named station, consistent with South Boulder South Solitary Island and its catalogue geography. Survey position -30.1999775, 153.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2020-10-29\", \"Source metadata created\": \"2023-01-31T05:42:04.846652\", \"Survey deployment ID\": \"14096\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 520, \\\"name\\\": \\\"RLS_Solitary Islands_2020\\\"}, \\\"color\\\": \\\"#6d7d40\\\", \\\"created_at\\\": \\\"2023-01-31T05:42:03.435446\\\", \\\"dep_max\\\": 12.0, \\\"dep_min\\\": 12.0, \\\"id\\\": 14096, \\\"is_valid\\\": true, \\\"key\\\": \\\"912354048\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912354048_SI7_2020-10-29\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.0, \\\"lat\\\": -30.1999775, \\\"lon\\\": 153.27, \\\"timestamp\\\": \\\"Thu, 29 Oct 2020 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2020-10-29T00:07:20\\\", \\\"timestamp_start\\\": \\\"2020-10-29T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "8af92b1d-7e61-4113-8945-c255033f0e8e",
+    "slug": "north-solitary-islands",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a3d4a1239ae9a3f04f77a990fedfa11666d37ec8a5c88d0ad8fd1fb4908828ca.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a3d4a1239ae9a3f04f77a990fedfa11666d37ec8a5c88d0ad8fd1fb4908828ca.jpg",
+    "originalSha256": "7353c78fb5abad9f505ab83c6c3f9069564ce7d1269b29346d7349e7ea80ef03",
+    "alt": "North Solitary Island underwater survey scene — named destination context",
+    "label": "named destination context",
+    "credit": "named destination context · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/7964177",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/7964177"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"8af92b1d-7e61-4113-8945-c255033f0e8e\", \"relationship\": \"RLS photographic filename SI1_TRD6m070516ElbowCaveNSol  (31).JPG identifies the named station, consistent with North Solitary Islands and its catalogue geography. Survey position -29.9299775, 153.39. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear wider underwater reef scene with a diver, fish and a survey tape. Source filename identifies Elbow Cave on North Solitary Island; assigned only to the broader North Solitary Islands inventory destination. Supplied geographic/date/survey evidence: {\"Survey date\": \"2016-05-07\", \"Source metadata created\": \"2023-01-13T05:02:42.532205\", \"Survey deployment ID\": \"13732\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 406, \\\"name\\\": \\\"RLS_Solitary Islands_2016\\\"}, \\\"color\\\": \\\"#9c32f4\\\", \\\"created_at\\\": \\\"2023-01-13T05:02:40.634548\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 13732, \\\"is_valid\\\": true, \\\"key\\\": \\\"912346534\\\", \\\"media_count\\\": 27, \\\"name\\\": \\\"912346534_SI1_2016-05-07\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": -29.9299775, \\\"lon\\\": 153.39, \\\"timestamp\\\": \\\"Sat, 07 May 2016 00:00:00 GMT\\\"}, \\\"pose_count\\\": 27, \\\"timestamp_end\\\": \\\"2016-05-07T00:08:40\\\", \\\"timestamp_start\\\": \\\"2016-05-07T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "bb59737f-3ce7-4989-9f5d-fdf735d15442",
+    "slug": "guerrilla-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4c1f3e29b5499886c1f2535e4afb15e742b1e76e7f7a784def7c4666c775ea49.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4c1f3e29b5499886c1f2535e4afb15e742b1e76e7f7a784def7c4666c775ea49.jpg",
+    "originalSha256": "61e0ff2adef02b7c20e697dbdc48b990dcd6edc0250667e00730510a28212833",
+    "alt": "Guerrilla Bay underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/8228408",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/8228408"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"bb59737f-3ce7-4989-9f5d-fdf735d15442\", \"relationship\": \"RLS photographic filename BMP1_WCB6.1m190512GuerillaBayislandS  (5).JPG identifies the named station, consistent with Guerrilla Bay and its catalogue geography. Survey position -35.8299775, 150.23. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-19\", \"Source metadata created\": \"2023-08-10T02:50:53.114710\", \"Survey deployment ID\": \"15523\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 266, \\\"name\\\": \\\"RLS_Batemans Marine Park_2012\\\"}, \\\"color\\\": \\\"#fa6789\\\", \\\"created_at\\\": \\\"2023-08-10T02:50:51.516532\\\", \\\"dep_max\\\": 6.1, \\\"dep_min\\\": 6.1, \\\"id\\\": 15523, \\\"is_valid\\\": true, \\\"key\\\": \\\"923402098\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"923402098_BMP1_2012-05-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.1, \\\"lat\\\": -35.8299775, \\\"lon\\\": 150.23, \\\"timestamp\\\": \\\"Sat, 19 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2012-05-19T00:06:40\\\", \\\"timestamp_start\\\": \\\"2012-05-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "cfa0102e-6c9b-45c8-9f50-f36562b5d2d5",
+    "slug": "erscott-s-hole",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3d98fb047c45117451044b56e2f8b3ede34b9fd71e66a130e24614ac483fbb3a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3d98fb047c45117451044b56e2f8b3ede34b9fd71e66a130e24614ac483fbb3a.jpg",
+    "originalSha256": "c1ec83f35b332c8b971d14deaa4432d282a02085a60fe17bbff58f3d45c8c4af",
+    "alt": "Erscott's Hole underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/9929055",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/9929055"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"cfa0102e-6c9b-45c8-9f50-f36562b5d2d5\", \"relationship\": \"RLS photographic filename LHI49AJG4m190210ErscottsHole(5).jpg identifies the named station, consistent with Erscott's Hole and its catalogue geography. Survey position -31.5499775, 159.06. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-02-19\", \"Source metadata created\": \"2024-10-15T06:11:20.075391\", \"Survey deployment ID\": \"17639\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 171, \\\"name\\\": \\\"RLS_Lord Howe Island_2010\\\"}, \\\"color\\\": \\\"#720066\\\", \\\"created_at\\\": \\\"2024-10-15T06:11:18.557734\\\", \\\"dep_max\\\": 4.0, \\\"dep_min\\\": 4.0, \\\"id\\\": 17639, \\\"is_valid\\\": true, \\\"key\\\": \\\"2001765\\\", \\\"media_count\\\": 10, \\\"name\\\": \\\"2001765_LHI49_2010-02-19\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 4.0, \\\"lat\\\": -31.5499775, \\\"lon\\\": 159.06, \\\"timestamp\\\": \\\"Fri, 19 Feb 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 10, \\\"timestamp_end\\\": \\\"2010-02-19T00:00:00\\\", \\\"timestamp_start\\\": \\\"2010-02-19T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "39e23346-16f7-4caa-96b4-4c367086d924",
+    "slug": "rubiah-sea-garden",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d74371adb484e58d5dace8415456d022baf7fed6ea8be70974cc62fa0d3f4ba4.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d74371adb484e58d5dace8415456d022baf7fed6ea8be70974cc62fa0d3f4ba4.jpg",
+    "originalSha256": "7f29410104a0e871a61e68a5b3a5e02e7701bf367c968d5fed2dfaecb9330e0e",
+    "alt": "Rubiah Sea Garden underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5366977",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5366977"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"39e23346-16f7-4caa-96b4-4c367086d924\", \"relationship\": \"RLS photographic filename 2Aceh3m220209SeaGarden_IVS (5).jpg identifies the named station, consistent with Rubiah Sea Garden and its catalogue geography. Survey position 5.8800225, 95.26. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-02-22\", \"Source metadata created\": \"2019-11-21T07:34:35.220881\", \"Survey deployment ID\": \"4533\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 242, \\\"name\\\": \\\"RLS_Aceh_2009\\\"}, \\\"color\\\": \\\"#fc6f87\\\", \\\"created_at\\\": \\\"2019-11-21T07:34:35.127563\\\", \\\"dep_max\\\": 3.0, \\\"dep_min\\\": 3.0, \\\"id\\\": 4533, \\\"is_valid\\\": true, \\\"key\\\": \\\"62003714\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"62003714_ACEH2_2009-02-22\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 3.0, \\\"lat\\\": 5.8800225, \\\"lon\\\": 95.26, \\\"timestamp\\\": \\\"Sun, 22 Feb 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2009-02-22T00:00:19\\\", \\\"timestamp_start\\\": \\\"2009-02-22T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "406cc8dc-62cf-4f05-bc04-77ade4c30a74",
+    "slug": "oil-slick-leap-20",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2caef5f524bef9ed6a9255c22cd3957cad716c4d1b20bdbeb3f8dc00ce614e2c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2caef5f524bef9ed6a9255c22cd3957cad716c4d1b20bdbeb3f8dc00ce614e2c.jpg",
+    "originalSha256": "888eef409acf028be57d882c364f8605850f8442a0e97736a86ab137e84c797a",
+    "alt": "Oil Slick Leap (20) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376943",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376943"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"406cc8dc-62cf-4f05-bc04-77ade4c30a74\", \"relationship\": \"RLS photographic filename BON9_8.5m130612OilSlick_RSS (5).JPG identifies the named station, consistent with Oil Slick Leap (20) and its catalogue geography. Survey position 12.200022500000001, -68.31. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-13\", \"Source metadata created\": \"2019-11-21T08:10:32.679109\", \"Survey deployment ID\": \"5013\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:32.596908\\\", \\\"dep_max\\\": 8.5, \\\"dep_min\\\": 8.5, \\\"id\\\": 5013, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340407\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340407_BON9_2012-06-13\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.5, \\\"lat\\\": 12.200022500000001, \\\"lon\\\": -68.31, \\\"timestamp\\\": \\\"Wed, 13 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-13T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-13T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ab38266c-9371-426b-b2a6-d45b2cce7049",
+    "slug": "jocker-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5a760bbbbee2b10ed6a11cbd0a1b2c862a4ba1be77c438047e28738df7436459.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5a760bbbbee2b10ed6a11cbd0a1b2c862a4ba1be77c438047e28738df7436459.jpg",
+    "originalSha256": "8036ff886d7e3fca8f91ebb7adba62013c7aa28ebc2650914e0fb77326ea4056",
+    "alt": "Jocker Reef underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376290",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376290"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ab38266c-9371-426b-b2a6-d45b2cce7049\", \"relationship\": \"RLS photographic filename SEY7_10.5m180512JokerReef_RSS (5).JPG identifies the named station, consistent with Jocker Reef and its catalogue geography. Survey position -4.5999775000000005, 55.42. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-18\", \"Source metadata created\": \"2019-11-21T08:07:22.608923\", \"Survey deployment ID\": \"4984\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 271, \\\"name\\\": \\\"RLS_Seychelles_2012\\\"}, \\\"color\\\": \\\"#a1ad4a\\\", \\\"created_at\\\": \\\"2019-11-21T08:07:22.520897\\\", \\\"dep_max\\\": 10.5, \\\"dep_min\\\": 10.5, \\\"id\\\": 4984, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340378\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912340378_SEY7_2012-05-18\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.5, \\\"lat\\\": -4.5999775000000005, \\\"lon\\\": 55.42, \\\"timestamp\\\": \\\"Fri, 18 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2012-05-18T00:00:23\\\", \\\"timestamp_start\\\": \\\"2012-05-18T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "6e500be1-1dba-490b-819f-94b815ce5995",
+    "slug": "labrid-channel-poor-knights",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3d27a0a0aecc8ea408d6727360ce480dff3295f9af4430254d60babe3a572f21.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3d27a0a0aecc8ea408d6727360ce480dff3295f9af4430254d60babe3a572f21.jpg",
+    "originalSha256": "412c7bcb803090e4f093b0e3ee3c87310828af21b1e7212587c8ad402dc01f65",
+    "alt": "Labrid Channel Poor Knights underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5396095",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5396095"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"6e500be1-1dba-490b-819f-94b815ce5995\", \"relationship\": \"RLS photographic filename PAC98RJE8m171012LabridPassageNorth-14.jpg identifies the named station, consistent with Labrid Channel Poor Knights and its catalogue geography. Survey position -35.4899775, 174.74. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-10-17\", \"Source metadata created\": \"2019-11-21T09:15:29.458128\", \"Survey deployment ID\": \"5849\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 317, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2012\\\"}, \\\"color\\\": \\\"#38ed5e\\\", \\\"created_at\\\": \\\"2019-11-21T09:15:29.329200\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 5849, \\\"is_valid\\\": true, \\\"key\\\": \\\"912342779\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912342779_PAC98_2012-10-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -35.4899775, \\\"lon\\\": 174.74, \\\"timestamp\\\": \\\"Wed, 17 Oct 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2012-10-17T00:00:24\\\", \\\"timestamp_start\\\": \\\"2012-10-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "96839e09-611f-445a-a549-07884f57eef6",
+    "slug": "riko-riko-cave",
+    "src": "https://assets.diveatlas.site/site-photos/v1/dc5e9cd4f05bf4591a2bb93049be033f6fd26426214e58372838846bc42503af.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/dc5e9cd4f05bf4591a2bb93049be033f6fd26426214e58372838846bc42503af.jpg",
+    "originalSha256": "6fad19b264c70367d1242fcda82f32aae544b2127c6c298c1a00db2dbc08fef5",
+    "alt": "Riko Riko cave underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5367671",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5367671"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"96839e09-611f-445a-a549-07884f57eef6\", \"relationship\": \"RLS photographic filename 7NZPKAJG10m210409RikoRikoMouthW(7).jpg identifies the named station, consistent with Riko Riko cave and its catalogue geography. Survey position -35.479977500000004, 174.74. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-04-21\", \"Source metadata created\": \"2019-11-21T07:36:04.185088\", \"Survey deployment ID\": \"4573\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 246, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2009\\\"}, \\\"color\\\": \\\"#18c41b\\\", \\\"created_at\\\": \\\"2019-11-21T07:36:04.120926\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 4573, \\\"is_valid\\\": true, \\\"key\\\": \\\"64003160\\\", \\\"media_count\\\": 8, \\\"name\\\": \\\"64003160_NZ7_2009-04-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": -35.479977500000004, \\\"lon\\\": 174.74, \\\"timestamp\\\": \\\"Tue, 21 Apr 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 8, \\\"timestamp_end\\\": \\\"2009-04-21T00:00:07\\\", \\\"timestamp_start\\\": \\\"2009-04-21T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a5bf40a7-4a55-47b6-b00e-c5968b933d36",
+    "slug": "koh",
+    "src": "https://assets.diveatlas.site/site-photos/v1/25bcf1da2d101a4af96dc5257f3960ec9f3656fb042621f0910b5c2304d5be72.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/25bcf1da2d101a4af96dc5257f3960ec9f3656fb042621f0910b5c2304d5be72.jpg",
+    "originalSha256": "904e78eeb8f7ab6228e6e1485eb0e55bdb7fb418e7f7552856315849ca8f5539",
+    "alt": "Koh underwater habitat photoquadrat — named site with coordinate uncertainty · supplied review hold",
+    "label": "named site with coordinate uncertainty · supplied review hold",
+    "credit": "named site with coordinate uncertainty · supplied review hold · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5416525",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5416525"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  [{\"site_id\": \"a5bf40a7-4a55-47b6-b00e-c5968b933d36\", \"relationship\": \"RLS photographic filename Raja Ampat7 GJE 7m 210814 Koh Reef (6).JPG identifies the named station, consistent with Koh and its catalogue geography. Survey position -0.5499775, 130.69. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"HELD_LOCATION_RECONCILIATION\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied hold: HELD_LOCATION_RECONCILIATION Reason: Source filename explicitly names Koh, but its station location is 0.950 km from the inventory point. Name-level match is retained pending human reconciliation; no precise site assignment or ready coverage claimed. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-08-21\", \"Source metadata created\": \"2019-11-21T11:09:31.301727\", \"Survey deployment ID\": \"6714\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:09:31.220032\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 6714, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344524\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912344524_RAJA7_2014-08-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -0.5499775, \\\"lon\\\": 130.69, \\\"timestamp\\\": \\\"Thu, 21 Aug 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2014-08-21T00:00:21\\\", \\\"timestamp_start\\\": \\\"2014-08-21T00:00:00\\\"}\", \"Hold status\": \"HELD_LOCATION_RECONCILIATION\", \"Hold reason\": \"Source filename explicitly names Koh, but its station location is 0.950 km from the inventory point. Name-level match is retained pending human reconciliation; no precise site assignment or ready coverage claimed.\"}"
+  },
+  {
+    "siteId": "3d4dff04-8a6e-455f-80f7-feee1abab1a6",
+    "slug": "el-palmer",
+    "src": "https://assets.diveatlas.site/site-photos/v1/550441091807c5104f79fc91359f017c43b03a9bae696d6e51d59e819ede9f2f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/550441091807c5104f79fc91359f017c43b03a9bae696d6e51d59e819ede9f2f.jpg",
+    "originalSha256": "94b87116997b188c25c89bc1b3815db9a63fe8e33fce109a090f82a0a6cc497d",
+    "alt": "El Palmer underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5417642",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5417642"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"3d4dff04-8a6e-455f-80f7-feee1abab1a6\", \"relationship\": \"RLS photographic filename AND15_JASF5.0m030714ElPalmerAguadulce (5).JPG identifies the named station, consistent with El Palmer and its catalogue geography. Survey position 36.8200225, -2.53. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-07-03\", \"Source metadata created\": \"2019-11-21T11:12:09.198976\", \"Survey deployment ID\": \"6754\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 358, \\\"name\\\": \\\"RLS_Andalusia_2014\\\"}, \\\"color\\\": \\\"#09b3de\\\", \\\"created_at\\\": \\\"2019-11-21T11:12:09.099571\\\", \\\"dep_max\\\": 5.0, \\\"dep_min\\\": 5.0, \\\"id\\\": 6754, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344587\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912344587_AND15_2014-07-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.0, \\\"lat\\\": 36.8200225, \\\"lon\\\": -2.53, \\\"timestamp\\\": \\\"Thu, 03 Jul 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2014-07-03T00:00:23\\\", \\\"timestamp_start\\\": \\\"2014-07-03T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "2f2a4411-4a24-4ede-847a-004be2d62933",
+    "slug": "cala-margarita",
+    "src": "https://assets.diveatlas.site/site-photos/v1/21735586acdd123682e2d8c7f0a3a84aaa3db6cccac586212246c9962615623c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/21735586acdd123682e2d8c7f0a3a84aaa3db6cccac586212246c9962615623c.jpg",
+    "originalSha256": "a5397098397be9fc5cd769f8849a1d43330952c23ec229f1d4d9af8c4fe3e4e0",
+    "alt": "Cala Margarita underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6573857",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6573857"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"2f2a4411-4a24-4ede-847a-004be2d62933\", \"relationship\": \"RLS photographic filename CAT42_NDL7,2m101115Calamargarita (5).JPG identifies the named station, consistent with Cala Margarita and its catalogue geography. Survey position 41.850022499999994, 3.14. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-11-10\", \"Source metadata created\": \"2021-06-29T07:03:11.427011\", \"Survey deployment ID\": \"11303\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2021-06-29T07:03:10.259537\\\", \\\"dep_max\\\": 7.3, \\\"dep_min\\\": 7.3, \\\"id\\\": 11303, \\\"is_valid\\\": true, \\\"key\\\": \\\"912349389\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912349389_CAT42_2015-11-10\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.3, \\\"lat\\\": 41.850022499999994, \\\"lon\\\": 3.14, \\\"timestamp\\\": \\\"Tue, 10 Nov 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2015-11-10T00:07:40\\\", \\\"timestamp_start\\\": \\\"2015-11-10T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "1f35026f-a94c-458a-a55c-ab1feab89229",
+    "slug": "pink-beach-53",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ee35bc29aadfe1bb01949520f5d22ab65d4e1ea7ecd4175ee3bef9c2bd9fff71.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ee35bc29aadfe1bb01949520f5d22ab65d4e1ea7ecd4175ee3bef9c2bd9fff71.jpg",
+    "originalSha256": "d2a1803674fdcdd8ac00015353fa51fd280dcb28ab2314fe26b556302039e738",
+    "alt": "Pink Beach (53) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376782",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376782"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"1f35026f-a94c-458a-a55c-ab1feab89229\", \"relationship\": \"RLS photographic filename BON2_8.5mPinkBeach_RSS (5).JPG identifies the named station, consistent with Pink Beach (53) and its catalogue geography. Survey position 12.0600225, -68.28. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-11\", \"Source metadata created\": \"2019-11-21T08:10:11.886581\", \"Survey deployment ID\": \"5006\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:11.794482\\\", \\\"dep_max\\\": 8.5, \\\"dep_min\\\": 8.5, \\\"id\\\": 5006, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340400\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340400_BON2_2012-06-11\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.5, \\\"lat\\\": 12.0600225, \\\"lon\\\": -68.28, \\\"timestamp\\\": \\\"Mon, 11 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-11T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-11T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "c89d036d-e2f3-45bb-8c66-edbe741c18ab",
+    "slug": "les-ferranelles",
+    "src": "https://assets.diveatlas.site/site-photos/v1/de625486b03a9b4290c0f9f33dd900f497cc37b0494e95b53802333857b97e98.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/de625486b03a9b4290c0f9f33dd900f497cc37b0494e95b53802333857b97e98.jpg",
+    "originalSha256": "a54d9d7bff22b20dd439d1367de517408171e3f45f5653aac405907cad77edb8",
+    "alt": "Les Ferranelles underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6573546",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6573546"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"c89d036d-e2f3-45bb-8c66-edbe741c18ab\", \"relationship\": \"RLS photographic filename CAT30_NDL8,9m250715Ferranelles (5).JPG identifies the named station, consistent with Les Ferranelles and its catalogue geography. Survey position 42.0400225, 3.23. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-07-25\", \"Source metadata created\": \"2021-06-29T07:02:40.029805\", \"Survey deployment ID\": \"11291\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2021-06-29T07:02:38.782554\\\", \\\"dep_max\\\": 8.9, \\\"dep_min\\\": 8.9, \\\"id\\\": 11291, \\\"is_valid\\\": true, \\\"key\\\": \\\"912349367\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912349367_CAT30_2015-07-25\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.9, \\\"lat\\\": 42.0400225, \\\"lon\\\": 3.23, \\\"timestamp\\\": \\\"Sat, 25 Jul 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2015-07-25T00:07:40\\\", \\\"timestamp_start\\\": \\\"2015-07-25T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "6eb99b5b-46c6-456b-8d11-5562be332314",
+    "slug": "vista-blue-58",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9e91e3b4f7c137e224e356ccf1d0c39e84733c99886a8ee6927e2805cd4a1017.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9e91e3b4f7c137e224e356ccf1d0c39e84733c99886a8ee6927e2805cd4a1017.jpg",
+    "originalSha256": "d60bc514312f205c899676f88e82ae97685a26feb280caa520d4ef2fcd524bda",
+    "alt": "Vista Blue (58) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376646",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376646"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"6eb99b5b-46c6-456b-8d11-5562be332314\", \"relationship\": \"RLS photographic filename BON1_8m110612VistaBlue_RSS (6).JPG identifies the named station, consistent with Vista Blue (58) and its catalogue geography. Survey position 12.030022500000001, -68.26. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-11\", \"Source metadata created\": \"2019-11-21T08:09:26.255999\", \"Survey deployment ID\": \"5000\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:09:26.160105\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 5000, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340394\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340394_BON1_2012-06-11\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": 12.030022500000001, \\\"lon\\\": -68.26, \\\"timestamp\\\": \\\"Mon, 11 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-11T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-11T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "e9c787fb-78f7-43de-a3a5-7f5d9cdd4a4d",
+    "slug": "shilineat",
+    "src": "https://assets.diveatlas.site/site-photos/v1/39cd045daa3f9f77d85735d1ef89c4f8b116076f3159597fca5855cbbe9a20c0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/39cd045daa3f9f77d85735d1ef89c4f8b116076f3159597fca5855cbbe9a20c0.jpg",
+    "originalSha256": "099e0a52114cffc2bd0a31571e0a497872dba176154f35132d2c03b6dbb88f4c",
+    "alt": "Shilineat underwater habitat photoquadrat — named site candidate · supplied review hold",
+    "label": "named site candidate · supplied review hold",
+    "credit": "named site candidate · supplied review hold · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365202",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365202"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  [{\"site_id\": \"e9c787fb-78f7-43de-a3a5-7f5d9cdd4a4d\", \"relationship\": \"RLS photographic filename RED11_6m030811ElSheliniat_RSS (5).JPG identifies the named station, consistent with Shilineat and its catalogue geography. Survey position 24.6700225, 35.13. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Filename ElSheliniat and inventory Shilineat are plausible transliteration variants, not independently verified.\", \"status\": \"HELD_IDENTITY_RECONCILIATION\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied hold: HELD_IDENTITY_RECONCILIATION Reason: Filename ElSheliniat and inventory Shilineat are plausible transliteration variants, not independently verified. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-08-03\", \"Source metadata created\": \"2019-11-21T07:26:30.981817\", \"Survey deployment ID\": \"4446\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 235, \\\"name\\\": \\\"RLS_Red Sea_2011\\\"}, \\\"color\\\": \\\"#155e1d\\\", \\\"created_at\\\": \\\"2019-11-21T07:26:30.897380\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 4446, \\\"is_valid\\\": true, \\\"key\\\": \\\"20003014\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"20003014_RED11_2011-08-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 24.6700225, \\\"lon\\\": 35.13, \\\"timestamp\\\": \\\"Wed, 03 Aug 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-08-03T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-08-03T00:00:00\\\"}\", \"Hold status\": \"HELD_IDENTITY_RECONCILIATION\", \"Hold reason\": \"Filename ElSheliniat and inventory Shilineat are plausible transliteration variants, not independently verified.\"}"
+  },
+  {
+    "siteId": "8e5969fc-6785-4eb0-b0b8-656878bab5d2",
+    "slug": "st-john-s-small-gota",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5ae5b51ced1b5fa6000babe2f3abcd58606bf799663c3a090f05e9a005fa53fc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5ae5b51ced1b5fa6000babe2f3abcd58606bf799663c3a090f05e9a005fa53fc.jpg",
+    "originalSha256": "2aaf70e97c3f7ed239095613018b75fbe1de5a2ea106aa7537e14f87bab55cb2",
+    "alt": "St John's Small Gota underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5365070",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5365070"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"8e5969fc-6785-4eb0-b0b8-656878bab5d2\", \"relationship\": \"RLS photographic filename RED4_15m010811SmallGotta_RSS (5).JPG identifies the named station, consistent with St John's Small Gota and its catalogue geography. Survey position 23.4300225, 35.9. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-08-01\", \"Source metadata created\": \"2019-11-21T07:25:41.127505\", \"Survey deployment ID\": \"4440\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 235, \\\"name\\\": \\\"RLS_Red Sea_2011\\\"}, \\\"color\\\": \\\"#155e1d\\\", \\\"created_at\\\": \\\"2019-11-21T07:25:41.043934\\\", \\\"dep_max\\\": 15.0, \\\"dep_min\\\": 15.0, \\\"id\\\": 4440, \\\"is_valid\\\": true, \\\"key\\\": \\\"20003008\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"20003008_RED4_2011-08-01\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 15.0, \\\"lat\\\": 23.4300225, \\\"lon\\\": 35.9, \\\"timestamp\\\": \\\"Mon, 01 Aug 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2011-08-01T00:00:21\\\", \\\"timestamp_start\\\": \\\"2011-08-01T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "f3a14a6b-d35e-458e-924a-2ea6d1685824",
+    "slug": "la-cala-del-penon",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ce104ab6409d081c1adf3bf7aeeda432dcf1f5748d3f98b0334cd2037e77f80d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ce104ab6409d081c1adf3bf7aeeda432dcf1f5748d3f98b0334cd2037e77f80d.jpg",
+    "originalSha256": "00af7479b509c1826d7b16ed8f849180666f4a8bfb6653004622bc0ff6217719",
+    "alt": "La Cala del Peñon underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5417533",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5417533"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded [{\"site_id\": \"f3a14a6b-d35e-458e-924a-2ea6d1685824\", \"relationship\": \"RLS photographic filename AND11_JASF5.1m200714AguadulceCalaPeñon (5).JPG identifies the named station, consistent with La Cala del Peñon and its catalogue geography. Survey position 36.8200225, -2.54. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Capture-date uncertainty\": \"Filename appears to encode 20 July 2014; media/deployment timestamp is 2 July 2014. Exact capture day unresolved, both fall within historical licence coverage.\", \"Survey date\": \"2014-07-02\", \"Source metadata created\": \"2019-11-21T11:12:04.545767\", \"Survey deployment ID\": \"6750\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 358, \\\"name\\\": \\\"RLS_Andalusia_2014\\\"}, \\\"color\\\": \\\"#09b3de\\\", \\\"created_at\\\": \\\"2019-11-21T11:12:04.460747\\\", \\\"dep_max\\\": 5.1, \\\"dep_min\\\": 5.1, \\\"id\\\": 6750, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344583\\\", \\\"media_count\\\": 27, \\\"name\\\": \\\"912344583_AND11_2014-07-02\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.1, \\\"lat\\\": 36.8200225, \\\"lon\\\": -2.54, \\\"timestamp\\\": \\\"Wed, 02 Jul 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 27, \\\"timestamp_end\\\": \\\"2014-07-02T00:00:26\\\", \\\"timestamp_start\\\": \\\"2014-07-02T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "c9bfc1af-afb3-4f93-949d-fd316504ecbc",
+    "slug": "la-pota-del-llop",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4cdb03b166506f989e29d32f2ef8d652f6979a58b698bdd4c76895f4b26ff54a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4cdb03b166506f989e29d32f2ef8d652f6979a58b698bdd4c76895f4b26ff54a.jpg",
+    "originalSha256": "7248f1c57a6bc4b778806c831ea994146dc559f44db26aac23e4e0e6ae9a310d",
+    "alt": "La Pota del Llop underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6573643",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6573643"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"c9bfc1af-afb3-4f93-949d-fd316504ecbc\", \"relationship\": \"RLS photographic filename CAT34_JPP10m260715PotadelLlop (5).JPG identifies the named station, consistent with La Pota del Llop and its catalogue geography. Survey position 42.0500225, 3.23. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-07-26\", \"Source metadata created\": \"2021-06-29T07:02:51.578065\", \"Survey deployment ID\": \"11295\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2021-06-29T07:02:50.376598\\\", \\\"dep_max\\\": 10.4, \\\"dep_min\\\": 10.4, \\\"id\\\": 11295, \\\"is_valid\\\": true, \\\"key\\\": \\\"912349373\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912349373_CAT34_2015-07-26\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.4, \\\"lat\\\": 42.0500225, \\\"lon\\\": 3.23, \\\"timestamp\\\": \\\"Sun, 26 Jul 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2015-07-26T00:08:00\\\", \\\"timestamp_start\\\": \\\"2015-07-26T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "182c6705-2fd2-4966-8c73-7d14c46da3e3",
+    "slug": "puerto-naos-playa-chica",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3bb7c204a320c474263c8577a131955473dc6dd7380f88648c36529d27b4a6c5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3bb7c204a320c474263c8577a131955473dc6dd7380f88648c36529d27b4a6c5.jpg",
+    "originalSha256": "8b90b7840f27d7b7c9b595674a9d19e7b78ddb688db054fc18d45bf7cc11d68f",
+    "alt": "Puerto Naos - Playa Chica underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5377026",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5377026"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"182c6705-2fd2-4966-8c73-7d14c46da3e3\", \"relationship\": \"RLS photographic filename CAN37_DHP6m06082012_PuertoNaos (4).JPG identifies the named station, consistent with Puerto Naos - Playa Chica and its catalogue geography. Survey position 28.590022499999996, -17.91. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-08-06\", \"Source metadata created\": \"2019-11-21T08:10:38.398739\", \"Survey deployment ID\": \"5019\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 275, \\\"name\\\": \\\"RLS_La Palma_2012\\\"}, \\\"color\\\": \\\"#652ec8\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:38.298711\\\", \\\"dep_max\\\": 6.0, \\\"dep_min\\\": 6.0, \\\"id\\\": 5019, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340416\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"912340416_CAN37_2012-08-06\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 6.0, \\\"lat\\\": 28.590022499999996, \\\"lon\\\": -17.91, \\\"timestamp\\\": \\\"Mon, 06 Aug 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2012-08-06T00:00:23\\\", \\\"timestamp_start\\\": \\\"2012-08-06T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "15738a4e-f0fc-42ab-a6ed-0604073c43b0",
+    "slug": "punta-santa-anna-la-seca",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7271ff0ad3810260aad79deaf1818262a8ce4baf41202088a0283e96777c85bd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7271ff0ad3810260aad79deaf1818262a8ce4baf41202088a0283e96777c85bd.jpg",
+    "originalSha256": "2ab4a13636b07f8e7c0f59a398fe8c9239eece96c7a7f7bcb1b6f42371e56294",
+    "alt": "Punta Santa Anna - La Seca underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5424237",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5424237"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"15738a4e-f0fc-42ab-a6ed-0604073c43b0\", \"relationship\": \"RLS photographic filename CAT1_8m030615LaSeca_RSS (5).JPG identifies the named station, consistent with Punta Santa Anna - La Seca and its catalogue geography. Survey position 41.670022499999995, 2.8. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-06-03\", \"Source metadata created\": \"2019-11-21T11:31:13.486213\", \"Survey deployment ID\": \"7035\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 374, \\\"name\\\": \\\"RLS_Girona_2015\\\"}, \\\"color\\\": \\\"#8a5d09\\\", \\\"created_at\\\": \\\"2019-11-21T11:31:13.405096\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 7035, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345275\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"912345275_CAT1_2015-06-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": 41.670022499999995, \\\"lon\\\": 2.8, \\\"timestamp\\\": \\\"Wed, 03 Jun 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2015-06-03T00:00:20\\\", \\\"timestamp_start\\\": \\\"2015-06-03T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "0c7bc2dc-f022-4fbe-b767-6e7a8557bcda",
+    "slug": "quiquere-wrecks",
+    "src": "https://assets.diveatlas.site/site-photos/v1/00c7899c2b5bfc872eeeb2a0a3316f35d540706d03c5bc946a0405b74e8c59c3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/00c7899c2b5bfc872eeeb2a0a3316f35d540706d03c5bc946a0405b74e8c59c3.jpg",
+    "originalSha256": "711ecff2a53cd46f8150cde6cff6908233fd1e97a62dea00469ec6ceae99ff54",
+    "alt": "Quiquere Wrecks underwater habitat photoquadrat — named site candidate · supplied review hold",
+    "label": "named site candidate · supplied review hold",
+    "credit": "named site candidate · supplied review hold · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5385899",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5385899"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  [{\"site_id\": \"0c7bc2dc-f022-4fbe-b767-6e7a8557bcda\", \"relationship\": \"RLS photographic filename CAN46_RH18m290412BcoKikere 2 (5).jpg identifies the named station, consistent with Quiquere Wrecks and its catalogue geography. Survey position 28.920022499999998, -13.69. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned. Source abbreviated BcoKikere 2 plausibly refers to Quiquere wrecks, but alias and wreck identity require reconciliation.\", \"status\": \"HELD_IDENTITY_RECONCILIATION\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied hold: HELD_IDENTITY_RECONCILIATION Reason: Source abbreviated BcoKikere 2 plausibly refers to Quiquere wrecks, but alias and wreck identity require reconciliation. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-04-29\", \"Source metadata created\": \"2019-11-21T08:34:12.470043\", \"Survey deployment ID\": \"5401\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 296, \\\"name\\\": \\\"RLS_Lanzarote_2012\\\"}, \\\"color\\\": \\\"#c616bf\\\", \\\"created_at\\\": \\\"2019-11-21T08:34:12.388174\\\", \\\"dep_max\\\": 18.0, \\\"dep_min\\\": 18.0, \\\"id\\\": 5401, \\\"is_valid\\\": true, \\\"key\\\": \\\"912342089\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912342089_CAN46_2012-04-29\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 18.0, \\\"lat\\\": 28.920022499999998, \\\"lon\\\": -13.69, \\\"timestamp\\\": \\\"Sun, 29 Apr 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-04-29T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-04-29T00:00:00\\\"}\", \"Hold status\": \"HELD_IDENTITY_RECONCILIATION\", \"Hold reason\": \"Source abbreviated BcoKikere 2 plausibly refers to Quiquere wrecks, but alias and wreck identity require reconciliation.\"}"
+  },
+  {
+    "siteId": "2be66442-1595-492e-96e5-c49c189fc35b",
+    "slug": "pozo-negro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/72fb5170fb4497389b41180e761387bc61e0911fcd2c2f0b86e9ccce0af62a71.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/72fb5170fb4497389b41180e761387bc61e0911fcd2c2f0b86e9ccce0af62a71.jpg",
+    "originalSha256": "f352d833e322cb95e3f8f5c597481a1981c80a132ed9be1fbdf40e926b586186",
+    "alt": "Pozo Negro underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/6572403",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/6572403"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"2be66442-1595-492e-96e5-c49c189fc35b\", \"relationship\": \"RLS photographic filename CAN106_NDL3,5m280515PozoNegro (5).JPG identifies the named station, consistent with Pozo Negro and its catalogue geography. Survey position 28.320022499999997, -13.89. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied geographic/date/survey evidence: {\"Survey date\": \"2015-05-28\", \"Source metadata created\": \"2021-06-29T07:01:14.092892\", \"Survey deployment ID\": \"11239\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 543, \\\"name\\\": \\\"RLS_La Palma_2015\\\"}, \\\"color\\\": \\\"#91e136\\\", \\\"created_at\\\": \\\"2021-06-29T07:01:12.515500\\\", \\\"dep_max\\\": 3.5, \\\"dep_min\\\": 3.5, \\\"id\\\": 11239, \\\"is_valid\\\": true, \\\"key\\\": \\\"912345083\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912345083_CAN106_2015-05-28\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 3.5, \\\"lat\\\": 28.320022499999997, \\\"lon\\\": -13.89, \\\"timestamp\\\": \\\"Thu, 28 May 2015 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2015-05-28T00:07:20\\\", \\\"timestamp_start\\\": \\\"2015-05-28T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a196670d-b987-4608-97f3-378d010dff6a",
+    "slug": "isleta-del-moro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5460ea38a531638316e34a83d3ca2999ce27759cbcc1ed5f624d97fbf4db3005.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5460ea38a531638316e34a83d3ca2999ce27759cbcc1ed5f624d97fbf4db3005.jpg",
+    "originalSha256": "9f9dc621da74f263bf60a7e1397cfb22a0c5fcb65738ab60e449610614342b45",
+    "alt": "Isleta del Moro underwater habitat photoquadrat — named site candidate · supplied review hold",
+    "label": "named site candidate · supplied review hold",
+    "credit": "named site candidate · supplied review hold · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5417589",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5417589"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  [{\"site_id\": \"a196670d-b987-4608-97f3-378d010dff6a\", \"relationship\": \"RLS photographic filename AND13_JASF3.4m020714Laisletadel Moro (5).JPG identifies the named station, consistent with Isleta del Moro and its catalogue geography. Survey position 36.810022499999995, -2.04. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.  Source coordinates differ from inventory point by 0.973 km, exceeding prior 0.85 km screen.\", \"status\": \"HELD_IDENTITY_RECONCILIATION\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Manually inspected: discernible underwater benthic habitat detail. Documentary quadrat, not a polished wide-angle site portrait. Supplied hold: HELD_IDENTITY_RECONCILIATION Reason:  Source coordinates differ from inventory point by 0.973 km, exceeding prior 0.85 km screen. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-07-02\", \"Source metadata created\": \"2019-11-21T11:12:06.880445\", \"Survey deployment ID\": \"6752\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 358, \\\"name\\\": \\\"RLS_Andalusia_2014\\\"}, \\\"color\\\": \\\"#09b3de\\\", \\\"created_at\\\": \\\"2019-11-21T11:12:06.794487\\\", \\\"dep_max\\\": 3.4, \\\"dep_min\\\": 3.4, \\\"id\\\": 6752, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344585\\\", \\\"media_count\\\": 25, \\\"name\\\": \\\"912344585_AND13_2014-07-02\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 3.4, \\\"lat\\\": 36.810022499999995, \\\"lon\\\": -2.04, \\\"timestamp\\\": \\\"Wed, 02 Jul 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 25, \\\"timestamp_end\\\": \\\"2014-07-02T00:00:24\\\", \\\"timestamp_start\\\": \\\"2014-07-02T00:00:00\\\"}\", \"Hold status\": \"HELD_IDENTITY_RECONCILIATION\", \"Hold reason\": \" Source coordinates differ from inventory point by 0.973 km, exceeding prior 0.85 km screen.\"}"
+  },
+  {
+    "siteId": "910319c4-78fd-4911-b1f7-d17ade51b037",
+    "slug": "landing-bay-pinnacle",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7b093eca538151ba7ee0eb3065f116012215ed96327b231820816fae586c4c07.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7b093eca538151ba7ee0eb3065f116012215ed96327b231820816fae586c4c07.jpg",
+    "originalSha256": "2b5e5fc4362892f8a55a7155092ef9a4dd119ed067da9f76a984ca37e9c10196",
+    "alt": "Landing Bay Pinnacle underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5367709",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5367709"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"910319c4-78fd-4911-b1f7-d17ade51b037\", \"relationship\": \"RLS photographic filename 11PKNZAJG14m230409LandingBayPinnacle(5).jpg identifies the named station, consistent with Landing Bay Pinnacle and its catalogue geography. Survey position -35.4699775, 174.73. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-04-23\", \"Source metadata created\": \"2019-11-21T07:36:06.490200\", \"Survey deployment ID\": \"4577\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 246, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2009\\\"}, \\\"color\\\": \\\"#18c41b\\\", \\\"created_at\\\": \\\"2019-11-21T07:36:06.419214\\\", \\\"dep_max\\\": 14.0, \\\"dep_min\\\": 14.0, \\\"id\\\": 4577, \\\"is_valid\\\": true, \\\"key\\\": \\\"64003164\\\", \\\"media_count\\\": 10, \\\"name\\\": \\\"64003164_NZ11_2009-04-23\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 14.0, \\\"lat\\\": -35.4699775, \\\"lon\\\": 174.73, \\\"timestamp\\\": \\\"Thu, 23 Apr 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 10, \\\"timestamp_end\\\": \\\"2009-04-23T00:00:09\\\", \\\"timestamp_start\\\": \\\"2009-04-23T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7f2cbdb6-c554-4c23-90af-24bc8fad3b24",
+    "slug": "serpent-rock",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c017cf4c9eda12822de1427cd18c752d6377faee72c8e187912de6b35be2574e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c017cf4c9eda12822de1427cd18c752d6377faee72c8e187912de6b35be2574e.jpg",
+    "originalSha256": "69d73900cca886b65c6bdfe538a4f569cb7f58e180d3126219af752513dc9c77",
+    "alt": "Serpent Rock underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5396262",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5396262"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7f2cbdb6-c554-4c23-90af-24bc8fad3b24\", \"relationship\": \"RLS photographic filename PAC118 Serpent Rock S 21m 01112012 PBSJPG (5).JPG identifies the named station, consistent with Serpent Rock and its catalogue geography. Survey position -35.4699775, 174.73. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-11-01\", \"Source metadata created\": \"2019-11-21T09:15:36.518471\", \"Survey deployment ID\": \"5856\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 317, \\\"name\\\": \\\"RLS_Poor Knights Island Marine Reserve_2012\\\"}, \\\"color\\\": \\\"#38ed5e\\\", \\\"created_at\\\": \\\"2019-11-21T09:15:36.436059\\\", \\\"dep_max\\\": 21.0, \\\"dep_min\\\": 21.0, \\\"id\\\": 5856, \\\"is_valid\\\": true, \\\"key\\\": \\\"912342817\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912342817_PAC118_2012-11-01\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 21.0, \\\"lat\\\": -35.4699775, \\\"lon\\\": 174.73, \\\"timestamp\\\": \\\"Thu, 01 Nov 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-11-01T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-11-01T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "accc8316-7afc-4e5a-82a5-d2f278fff77f",
+    "slug": "matapalo-rock",
+    "src": "https://assets.diveatlas.site/site-photos/v1/94bfc0110c53243a9cfc2df5d7c67a9343ea917da34111db4cabfdb755864c74.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/94bfc0110c53243a9cfc2df5d7c67a9343ea917da34111db4cabfdb755864c74.jpg",
+    "originalSha256": "375097ebb41b5e02984de95efb5c4819426cfcf475a41d67645475b9d925ef76",
+    "alt": "Matapalo Rock underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5370209",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5370209"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"accc8316-7afc-4e5a-82a5-d2f278fff77f\", \"relationship\": \"RLS photographic filename ETP56_12.5m170511RocaMatapalo_ESO (5).JPG identifies the named station, consistent with Matapalo Rock and its catalogue geography. Survey position 8.370022500000001, -83.29. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-05-17\", \"Source metadata created\": \"2019-11-21T07:46:49.854146\", \"Survey deployment ID\": \"4695\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 251, \\\"name\\\": \\\"RLS_Costa Rica_2011\\\"}, \\\"color\\\": \\\"#c4d47d\\\", \\\"created_at\\\": \\\"2019-11-21T07:46:49.766836\\\", \\\"dep_max\\\": 12.5, \\\"dep_min\\\": 12.5, \\\"id\\\": 4695, \\\"is_valid\\\": true, \\\"key\\\": \\\"506003846\\\", \\\"media_count\\\": 24, \\\"name\\\": \\\"506003846_ETP56_2011-05-17\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 12.5, \\\"lat\\\": 8.370022500000001, \\\"lon\\\": -83.29, \\\"timestamp\\\": \\\"Tue, 17 May 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 24, \\\"timestamp_end\\\": \\\"2011-05-17T00:00:23\\\", \\\"timestamp_start\\\": \\\"2011-05-17T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b9bb39a5-8c95-47f1-b306-eefad885ed3a",
+    "slug": "santa-cruz-coiba-national-park-panama",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9d32f32f346ae3225928a249202963f6215452b90c7a0f27de922bb767df97a9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9d32f32f346ae3225928a249202963f6215452b90c7a0f27de922bb767df97a9.jpg",
+    "originalSha256": "577ec49784aac66256e147cdf214da4025e74f030541a5cef63aa64631477db9",
+    "alt": "Santa Cruz underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5371511",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5371511"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b9bb39a5-8c95-47f1-b306-eefad885ed3a\", \"relationship\": \"RLS photographic filename ETP86GJE11m010611 Coiba Islote Santa Cruz (4).JPG identifies the named station, consistent with Santa Cruz and its catalogue geography. Survey position 7.630022500000001, -81.78. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-06-01\", \"Source metadata created\": \"2019-11-21T07:52:22.844069\", \"Survey deployment ID\": \"4756\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 254, \\\"name\\\": \\\"RLS_Coiba_2011\\\"}, \\\"color\\\": \\\"#761533\\\", \\\"created_at\\\": \\\"2019-11-21T07:52:22.768238\\\", \\\"dep_max\\\": 11.0, \\\"dep_min\\\": 11.0, \\\"id\\\": 4756, \\\"is_valid\\\": true, \\\"key\\\": \\\"507003210\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"507003210_ETP86_2011-06-01\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 11.0, \\\"lat\\\": 7.630022500000001, \\\"lon\\\": -81.78, \\\"timestamp\\\": \\\"Wed, 01 Jun 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2011-06-01T00:00:20\\\", \\\"timestamp_start\\\": \\\"2011-06-01T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "114799c8-8600-4495-8ab0-a43dd96812e9",
+    "slug": "south-sunk",
+    "src": "https://assets.diveatlas.site/site-photos/v1/768a6cec56acc30aade958b4776cb5996d56b3bd9079082892128d033ccbe6fc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/768a6cec56acc30aade958b4776cb5996d56b3bd9079082892128d033ccbe6fc.jpg",
+    "originalSha256": "81d1734e9d832e99a7f43072543d6459e26d936c6dd3491c303bb7b191a0cdcf",
+    "alt": "South Sunk underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5397496",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5397496"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"114799c8-8600-4495-8ab0-a43dd96812e9\", \"relationship\": \"RLS photographic filename PAC164GJE10m141212 Sth Sunk Rock (5).JPG identifies the named station, consistent with South Sunk and its catalogue geography. Survey position -36.8199775, 175.82. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-12-14\", \"Source metadata created\": \"2019-11-21T09:18:04.950534\", \"Survey deployment ID\": \"5909\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 324, \\\"name\\\": \\\"RLS_Cathedral Cove Marine Reserve_2012\\\"}, \\\"color\\\": \\\"#6dc2be\\\", \\\"created_at\\\": \\\"2019-11-21T09:18:04.856574\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 5909, \\\"is_valid\\\": true, \\\"key\\\": \\\"912342910\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912342910_PAC164_2012-12-14\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": -36.8199775, \\\"lon\\\": 175.82, \\\"timestamp\\\": \\\"Fri, 14 Dec 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-12-14T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-12-14T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "45048c28-a3df-4799-a4ed-8c0bbe7d806f",
+    "slug": "p-47-plane-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ca9956dfb58918220990d99ff2319560a2647110998cd8802242af0ec2dd3735.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ca9956dfb58918220990d99ff2319560a2647110998cd8802242af0ec2dd3735.jpg",
+    "originalSha256": "4909823da82496ae6d91dccaf7ea22e8da5be01e80f72535df452c2ceceab1d1",
+    "alt": "P-47 Plane Wreck underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5416305",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5416305"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"45048c28-a3df-4799-a4ed-8c0bbe7d806f\", \"relationship\": \"RLS photographic filename RajaAmpat30_10m040914P-47Wreck_RSS (5).JPG identifies the named station, consistent with P-47 Plane Wreck and its catalogue geography. Survey position -0.6999774999999999, 130.71. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2014-09-04\", \"Source metadata created\": \"2019-11-21T11:07:41.297973\", \"Survey deployment ID\": \"6704\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 353, \\\"name\\\": \\\"RLS_Raja Ampat_2014\\\"}, \\\"color\\\": \\\"#a29dd0\\\", \\\"created_at\\\": \\\"2019-11-21T11:07:41.201759\\\", \\\"dep_max\\\": 10.0, \\\"dep_min\\\": 10.0, \\\"id\\\": 6704, \\\"is_valid\\\": true, \\\"key\\\": \\\"912344513\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912344513_RAJA30_2014-09-04\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 10.0, \\\"lat\\\": -0.6999774999999999, \\\"lon\\\": 130.71, \\\"timestamp\\\": \\\"Thu, 04 Sep 2014 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2014-09-04T00:00:21\\\", \\\"timestamp_start\\\": \\\"2014-09-04T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "7ea08fd0-ff4e-4ef9-9dab-26c0932f862f",
+    "slug": "red-slave-60",
+    "src": "https://assets.diveatlas.site/site-photos/v1/847598c5108ac6af8c97b19193cd27ba694eff7ea4191337b991f19e43d356f7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/847598c5108ac6af8c97b19193cd27ba694eff7ea4191337b991f19e43d356f7.jpg",
+    "originalSha256": "b33401ebda501e2f7f9082dc5023650526cf25f452e4e55525ff4d705209d90f",
+    "alt": "Red Slave (60) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376713",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376713"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"7ea08fd0-ff4e-4ef9-9dab-26c0932f862f\", \"relationship\": \"RLS photographic filename BON12_14.5m130612RedSlave_RSS (5).JPG identifies the named station, consistent with Red Slave (60) and its catalogue geography. Survey position 12.030022500000001, -68.25. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-13\", \"Source metadata created\": \"2019-11-21T08:09:54.372015\", \"Survey deployment ID\": \"5003\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:09:54.268132\\\", \\\"dep_max\\\": 14.5, \\\"dep_min\\\": 14.5, \\\"id\\\": 5003, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340397\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340397_BON12_2012-06-13\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 14.5, \\\"lat\\\": 12.030022500000001, \\\"lon\\\": -68.25, \\\"timestamp\\\": \\\"Wed, 13 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-13T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-13T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "f17fee31-395a-4509-a668-558bd24a09cb",
+    "slug": "rainbow-warrior",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0e517522bd736030cafb82bb430c2d69154a6b1d8609d8ff73bef8f46eb3690f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0e517522bd736030cafb82bb430c2d69154a6b1d8609d8ff73bef8f46eb3690f.jpg",
+    "originalSha256": "88458c8a2dfcd36f9c16d7f29b2f17792dbf1b634b42ac233122cb460fcc1933",
+    "alt": "Rainbow Warrior underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5389628",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5389628"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"f17fee31-395a-4509-a668-558bd24a09cb\", \"relationship\": \"RLS photographic filename PAC83GJE19m071012 Rainbow Warrior wreck (5).JPG identifies the named station, consistent with Rainbow Warrior and its catalogue geography. Survey position -34.9699775, 173.94. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-10-07\", \"Source metadata created\": \"2019-11-21T08:50:12.801279\", \"Survey deployment ID\": \"5569\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 308, \\\"name\\\": \\\"RLS_Northland_2012\\\"}, \\\"color\\\": \\\"#af7de1\\\", \\\"created_at\\\": \\\"2019-11-21T08:50:12.718151\\\", \\\"dep_max\\\": 19.0, \\\"dep_min\\\": 19.0, \\\"id\\\": 5569, \\\"is_valid\\\": true, \\\"key\\\": \\\"912342751\\\", \\\"media_count\\\": 22, \\\"name\\\": \\\"912342751_PAC83_2012-10-07\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 19.0, \\\"lat\\\": -34.9699775, \\\"lon\\\": 173.94, \\\"timestamp\\\": \\\"Sun, 07 Oct 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 22, \\\"timestamp_end\\\": \\\"2012-10-07T00:00:21\\\", \\\"timestamp_start\\\": \\\"2012-10-07T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a9320e65-2a2a-430b-974f-8c170b23817a",
+    "slug": "fisherman-s-cove-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c9bb0549c76df26c495c0e94dfc60f8acdc43df0d86753b02a81cd9e3eb72cc9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c9bb0549c76df26c495c0e94dfc60f8acdc43df0d86753b02a81cd9e3eb72cc9.jpg",
+    "originalSha256": "b242d772b1fed726c73ddfe475647ef4688c72a33ac081c495c4e22c3aaf7be2",
+    "alt": "Fisherman's Cove Reef underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376360",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376360"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"a9320e65-2a2a-430b-974f-8c170b23817a\", \"relationship\": \"RLS photographic filename SEY9_8m180512FishermansCove_RSS (5).JPG identifies the named station, consistent with Fisherman's Cove Reef and its catalogue geography. Survey position -4.6099775, 55.42. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-05-18\", \"Source metadata created\": \"2019-11-21T08:07:42.005988\", \"Survey deployment ID\": \"4987\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 271, \\\"name\\\": \\\"RLS_Seychelles_2012\\\"}, \\\"color\\\": \\\"#a1ad4a\\\", \\\"created_at\\\": \\\"2019-11-21T08:07:41.900638\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4987, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340381\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340381_SEY9_2012-05-18\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -4.6099775, \\\"lon\\\": 55.42, \\\"timestamp\\\": \\\"Fri, 18 May 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-05-18T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-05-18T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ee6cb8eb-35a6-4d1f-b1d6-b104b8ac915a",
+    "slug": "the-whale",
+    "src": "https://assets.diveatlas.site/site-photos/v1/331b591802cf2ad3317be77f938044a50983fbf131039a8cbdfd114781f993bf.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/331b591802cf2ad3317be77f938044a50983fbf131039a8cbdfd114781f993bf.jpg",
+    "originalSha256": "3f06bc55cfe9bf6c458746192f314af9a2dfd6c8c81dfc457c772bf159380a99",
+    "alt": "The Whale underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5349641",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5349641"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ee6cb8eb-35a6-4d1f-b1d6-b104b8ac915a\", \"relationship\": \"RLS photographic filename CPD3WCB7MWhaleBommie040710 (4).JPG identifies the named station, consistent with The Whale and its catalogue geography. Survey position -16.7799775, 146.27. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Dim blue-green survey image, but distinct coral and bottom features remain visible. Documentary suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2010-07-04\", \"Source metadata created\": \"2019-11-21T06:54:26.145598\", \"Survey deployment ID\": \"3615\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 179, \\\"name\\\": \\\"RLS_Great Barrier Reef_2010\\\"}, \\\"color\\\": \\\"#cc7856\\\", \\\"created_at\\\": \\\"2019-11-21T06:54:26.055758\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 3615, \\\"is_valid\\\": true, \\\"key\\\": \\\"4000700\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"4000700_COR6_2010-07-04\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": -16.7799775, \\\"lon\\\": 146.27, \\\"timestamp\\\": \\\"Sun, 04 Jul 2010 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2010-07-04T00:00:19\\\", \\\"timestamp_start\\\": \\\"2010-07-04T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "a7d44352-e25b-4312-a952-43aeb67f1448",
+    "slug": "windsock-36",
+    "src": "https://assets.diveatlas.site/site-photos/v1/45f8d5b954d3b0184312aad26675ac6586aeda121e640353c32008c418743dbf.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/45f8d5b954d3b0184312aad26675ac6586aeda121e640353c32008c418743dbf.jpg",
+    "originalSha256": "026980bac9fcee5d7fda279bed3588a7ebcb0af7b905f2d59577c67f14d3d8d7",
+    "alt": "Windsock (36) underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376897",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376897"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"a7d44352-e25b-4312-a952-43aeb67f1448\", \"relationship\": \"RLS photographic filename BON7_9m120612Windsock_RSS (5).JPG identifies the named station, consistent with Windsock (36) and its catalogue geography. Survey position 12.1300225, -68.29. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-12\", \"Source metadata created\": \"2019-11-21T08:10:26.236558\", \"Survey deployment ID\": \"5011\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:26.152942\\\", \\\"dep_max\\\": 9.0, \\\"dep_min\\\": 9.0, \\\"id\\\": 5011, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340405\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340405_BON7_2012-06-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 9.0, \\\"lat\\\": 12.1300225, \\\"lon\\\": -68.29, \\\"timestamp\\\": \\\"Tue, 12 Jun 2012 00:00:00 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "ebb80452-be19-4c67-9567-5f2c1f8439e9",
+    "slug": "jicarita-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/26c92164c0f821a5c2dc5d67d86a3426adb08d7af4642fbbe915f2ce13a747ff.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/26c92164c0f821a5c2dc5d67d86a3426adb08d7af4642fbbe915f2ce13a747ff.jpg",
+    "originalSha256": "ed680f25a4e93c9fa1647de2a585c98d4eecadba13b195cdccb2d04861ee3ef6",
+    "alt": "Jicarita Island underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5371613",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5371613"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"ebb80452-be19-4c67-9567-5f2c1f8439e9\", \"relationship\": \"RLS photographic filename ETP91GJE5m030611  Jicarita E (4).JPG identifies the named station, consistent with Jicarita Island and its catalogue geography. Survey position 7.210022500000001, -81.8. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-06-03\", \"Source metadata created\": \"2019-11-21T07:52:48.170884\", \"Survey deployment ID\": \"4761\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 254, \\\"name\\\": \\\"RLS_Coiba_2011\\\"}, \\\"color\\\": \\\"#761533\\\", \\\"created_at\\\": \\\"2019-11-21T07:52:48.073158\\\", \\\"dep_max\\\": 5.0, \\\"dep_min\\\": 5.0, \\\"id\\\": 4761, \\\"is_valid\\\": true, \\\"key\\\": \\\"507003215\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"507003215_ETP91_2011-06-03\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 5.0, \\\"lat\\\": 7.210022500000001, \\\"lon\\\": -81.8, \\\"timestamp\\\": \\\"Fri, 03 Jun 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2011-06-03T00:00:20\\\", \\\"timestamp_start\\\": \\\"2011-06-03T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "e2d6a981-665c-41f8-9bb2-c1e5ed4fca0c",
+    "slug": "la-montanita",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b8a819050981f1a7a8d524b63e3c6d0a9d91e1a63e812ed8e26b09af5708e870.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b8a819050981f1a7a8d524b63e3c6d0a9d91e1a63e812ed8e26b09af5708e870.jpg",
+    "originalSha256": "98872dca8784dfa1e3d697ce365197cb902d7e7b5df334a3379b30ddf2bb9f56",
+    "alt": "La montañita underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5327189",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5327189"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"e2d6a981-665c-41f8-9bb2-c1e5ed4fca0c\", \"relationship\": \"RLS photographic filename CAR17_13.4m210311Montanita_njm (5).JPG identifies the named station, consistent with La montañita and its catalogue geography. Survey position 12.5900225, -81.72. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2011-03-21\", \"Source metadata created\": \"2019-11-21T06:06:29.674948\", \"Survey deployment ID\": \"2411\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 146, \\\"name\\\": \\\"RLS_Seaflower Marine Reserve_2011\\\"}, \\\"color\\\": \\\"#566f02\\\", \\\"created_at\\\": \\\"2019-11-21T06:06:29.593812\\\", \\\"dep_max\\\": 13.4, \\\"dep_min\\\": 13.4, \\\"id\\\": 2411, \\\"is_valid\\\": true, \\\"key\\\": \\\"1003677\\\", \\\"media_count\\\": 21, \\\"name\\\": \\\"1003677_CAR17_2011-03-21\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 13.4, \\\"lat\\\": 12.5900225, \\\"lon\\\": -81.72, \\\"timestamp\\\": \\\"Mon, 21 Mar 2011 00:00:00 GMT\\\"}, \\\"pose_count\\\": 21, \\\"timestamp_end\\\": \\\"2011-03-21T00:00:20\\\", \\\"timestamp_start\\\": \\\"2011-03-21T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "c6283f59-b9db-4236-b594-fce684ce5a7f",
+    "slug": "te-ava-piti",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e076afab5ce1e0d33206f5076b4e704d5e6f3a59341731d86d3d1e9081734631.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e076afab5ce1e0d33206f5076b4e704d5e6f3a59341731d86d3d1e9081734631.jpg",
+    "originalSha256": "8b9bb2d96fea680f55cc70a6730e6a3a2ed5678bdd7e5813bdea1402329d66e2",
+    "alt": "Te Ava Piti underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5373775",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5373775"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"c6283f59-b9db-4236-b594-fce684ce5a7f\", \"relationship\": \"RLS photographic filename 14FP8m100709TeavapitiPass (5).JPG identifies the named station, consistent with Te Ava Piti and its catalogue geography. Survey position -16.7399775, -151.42. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2009-07-10\", \"Source metadata created\": \"2019-11-21T08:00:24.173184\", \"Survey deployment ID\": \"4866\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 261, \\\"name\\\": \\\"RLS_Society Islands_2009\\\"}, \\\"color\\\": \\\"#b2b3d1\\\", \\\"created_at\\\": \\\"2019-11-21T08:00:24.094993\\\", \\\"dep_max\\\": 8.0, \\\"dep_min\\\": 8.0, \\\"id\\\": 4866, \\\"is_valid\\\": true, \\\"key\\\": \\\"689003058\\\", \\\"media_count\\\": 20, \\\"name\\\": \\\"689003058_FP14_2009-07-10\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 8.0, \\\"lat\\\": -16.7399775, \\\"lon\\\": -151.42, \\\"timestamp\\\": \\\"Fri, 10 Jul 2009 00:00:00 GMT\\\"}, \\\"pose_count\\\": 20, \\\"timestamp_end\\\": \\\"2009-07-10T00:00:19\\\", \\\"timestamp_start\\\": \\\"2009-07-10T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "b4506921-c7eb-422e-8c43-30a1b8b78a5b",
+    "slug": "weber-s-joy",
+    "src": "https://assets.diveatlas.site/site-photos/v1/36b1a4aa4653b2f07597459f35f97968a5d6b323479e13e0f09d137538b54117.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/36b1a4aa4653b2f07597459f35f97968a5d6b323479e13e0f09d137538b54117.jpg",
+    "originalSha256": "3a58f878bcf758324fd138f5a48ece80f419582a95df9d529507036658847841",
+    "alt": "Weber's Joy underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376851",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376851"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b4506921-c7eb-422e-8c43-30a1b8b78a5b\", \"relationship\": \"RLS photographic filename BON5_7m120612WebersJoy_RSS (5).JPG identifies the named station, consistent with Weber's Joy and its catalogue geography. Survey position 12.21, -68.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}, {\"site_id\": \"129ea9a9-1166-430a-a5d5-189b34c7a129\", \"relationship\": \"The source filename explicitly names WebersJoy. Both inventory records name Weber’s Joy and their points are 0.535/0.553 km from the source station. One unchanged original supports these duplicate named catalogue entries; it remains one photograph.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-12\", \"Source metadata created\": \"2019-11-21T08:10:18.392283\", \"Survey deployment ID\": \"5009\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:18.291155\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 5009, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340403\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340403_BON5_2012-06-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": 12.21, \\\"lon\\\": -68.32, \\\"timestamp\\\": \\\"Tue, 12 Jun 2012 00:00:01 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "129ea9a9-1166-430a-a5d5-189b34c7a129",
+    "slug": "webers-joy-17-bonaire-bonaire-sint-eustatius-and-saba",
+    "src": "https://assets.diveatlas.site/site-photos/v1/36b1a4aa4653b2f07597459f35f97968a5d6b323479e13e0f09d137538b54117.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/36b1a4aa4653b2f07597459f35f97968a5d6b323479e13e0f09d137538b54117.jpg",
+    "originalSha256": "3a58f878bcf758324fd138f5a48ece80f419582a95df9d529507036658847841",
+    "alt": "Weber's Joy underwater habitat photoquadrat — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7. · CC BY 3.0 AU · Cropped/resized",
+    "creator": "Reef Life Survey Foundation Inc. / IMAS, CC BY 3.0 AU. Dataset: Edgar, GJ and Stuart-Smith, RD (2026), Reef Life Survey (RLS): Habitat Quadrats. Data paper: doi:10.1038/sdata.2014.7.",
+    "license": "CC BY 3.0 AU",
+    "source": "reviewed-context",
+    "sourcePage": "https://squidle.org/api/media/5376851",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://squidle.org/api/media/5376851"
+      },
+      {
+        "label": "CC BY 3.0 AU",
+        "url": "https://creativecommons.org/licenses/by/3.0/au/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b4506921-c7eb-422e-8c43-30a1b8b78a5b\", \"relationship\": \"RLS photographic filename BON5_7m120612WebersJoy_RSS (5).JPG identifies the named station, consistent with Weber's Joy and its catalogue geography. Survey position 12.21, -68.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}, {\"site_id\": \"129ea9a9-1166-430a-a5d5-189b34c7a129\", \"relationship\": \"The source filename explicitly names WebersJoy. Both inventory records name Weber’s Joy and their points are 0.535/0.553 km from the source station. One unchanged original supports these duplicate named catalogue entries; it remains one photograph.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-12\", \"Source metadata created\": \"2019-11-21T08:10:18.392283\", \"Survey deployment ID\": \"5009\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:18.291155\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 5009, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340403\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340403_BON5_2012-06-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": 12.21, \\\"lon\\\": -68.32, \\\"timestamp\\\": \\\"Tue, 12 Jun 2012 00:00:01 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-12T00:00:00\\\"}\"}"
   }
 ];
