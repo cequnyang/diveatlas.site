@@ -13670,6 +13670,9 @@ ZSD·2016–2025</span></span>
   // Reuse the existing suppression preference and shared-link bypass. The
   // detailed layer tutorial remains manual; first visits get a nonmodal guide.
   const mapWelcome = window.createDiveAtlasWelcome({
+    // Opening welcome must dismiss a mobile sheet even if Layers is already
+    // collapsed, so this cannot rely on a legend state change to close it.
+    onOpen: closeActiveMobileMapSheetForOverlay,
     getLanguage: () => currentLang,
     getTitle: () => tutorialText('tutorialTitle'),
     getSearchLabel: () => areaSearchText()[6],

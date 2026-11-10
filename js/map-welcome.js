@@ -70,7 +70,7 @@
     no: ['Reisemål', 'Måned', 'Utforsk'],
     id: ['Destinasi', 'Bulan', 'Jelajahi']
   };
-  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onAnimateClose, onFocusMap, onMapControls, suppressedKey }) {
+  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onOpen = () => {}, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onAnimateClose, onFocusMap, onMapControls, suppressedKey }) {
     const section = document.createElement('section');
     section.id = 'mapWelcome';
     section.className = 'map-welcome tutorial-dialog glass-surface';
@@ -329,6 +329,7 @@
         syncMapArea();
       },
       open({restore = false} = {}) {
+      onOpen();
       ++closeGeneration;
       closing = false;
       section.getAnimations().forEach(animation => animation.cancel());
