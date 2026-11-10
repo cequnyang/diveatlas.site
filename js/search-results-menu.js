@@ -85,7 +85,7 @@
     surface.addEventListener("click", (event) => {
       const mode = event.target.closest("[data-search-mode]");
       if (mode) {
-        onMode(mode.dataset.searchMode);
+        onMode?.(mode.dataset.searchMode);
         return;
       }
       if (event.target.closest("[data-search-load-more]")) {
@@ -98,7 +98,9 @@
         onSelect(Number(button.dataset.resultIndex));
     });
 
-    function updateModes({ mode, labels, areasOnly = false }) {
+    function updateModes({ mode, labels, areasOnly = false, grouped = false }) {
+      modes.hidden = grouped || areasOnly;
+      surface.classList.toggle("is-grouped-search", grouped);
       modes.setAttribute("aria-label", labels.join(" / "));
       if (!modes.children.length)
         modes.innerHTML =
@@ -115,6 +117,8 @@
     }
 
     function empty(message, busy = false) {
+      renderedQuery = "";
+      scroll.removeAttribute("aria-setsize");
       scroll.innerHTML = `<div class="dive-search-empty" role="status">${escapeHtml(message)}</div>`;
       surface.setAttribute("aria-busy", String(busy));
       getInput().removeAttribute("aria-activedescendant");
@@ -134,10 +138,26 @@
       scroll.innerHTML =
         items
           .map((item, index) => {
+            const groupStart = item.group && item.group !== items[index - 1]?.group;
+            const groupEnd = item.group && item.group !== items[index + 1]?.group;
+            const icon = item.kind === "destination"
+              ? '<span class="dive-search-result-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 5 6-2 6 3 6-2v15l-6 2-6-3-6 2Z M9 3v15M15 6v15"/></svg></span>'
+              : "";
+            const prefix = groupStart ? `<div role="group" aria-label="${escapeHtml(item.group)}">` : "";
             const attributes = Object.entries(item.attributes || {})
               .map(([name, value]) => ` data-${name}="${escapeHtml(value)}"`)
               .join("");
-            return `<button type="button" class="dive-search-result" role="option" id="${surface.id}-option-${index}" data-result-index="${index}" data-match-index="${index}" data-search-query="${escapeHtml(query)}"${attributes} aria-selected="${index === activeIndex}" aria-posinset="${index + 1}" aria-setsize="${total}"><div class="dive-search-result-name">${highlight(item.name, queries)}${item.badgeHtml || ""}</div>${item.originalName ? `<div class="dive-search-result-original">${highlight(item.originalName, queries)}</div>` : ""}${item.meta ? `<div class="dive-search-result-meta">${highlight(item.meta, queries)}</div>` : ""}</button>`;
+            const description = item.description ? ` aria-description="${escapeHtml(item.description)}"` : "";
+            const meta = [
+              item.meta ? highlight(item.meta, queries) : "",
+              item.count ? `<span class="dive-search-result-count">${escapeHtml(item.count)}</span>` : "",
+            ].filter(Boolean).join(" · ");
+            const content = [
+              `<span class="dive-search-result-name"><span class="dive-search-result-title">${highlight(item.name, queries)}</span>${item.badgeHtml || ""}</span>`,
+              item.originalName ? `<span class="dive-search-result-original">${highlight(item.originalName, queries)}</span>` : "",
+              meta ? `<span class="dive-search-result-meta">${meta}</span>` : "",
+            ].join("");
+            return `${prefix}<button type="button" class="dive-search-result${item.kind ? ' has-result-kind' : ''}" role="option" id="${surface.id}-option-${index}" data-result-index="${index}" data-match-index="${index}" data-search-query="${escapeHtml(query)}"${item.kind ? ` data-result-kind="${escapeHtml(item.kind)}"` : ''}${attributes}${description} aria-selected="${index === activeIndex}" aria-posinset="${index + 1}" aria-setsize="${total}">${icon}<span class="dive-search-result-copy">${content}</span></button>${groupEnd ? '</div>' : ''}`;
           })
           .join("") +
         (items.length < total
@@ -199,7 +219,7 @@
       if (focused)
         (
           scroll.querySelector("[data-search-load-more]") ||
-          scroll.querySelector(".dive-search-result:last-of-type")
+          [...scroll.querySelectorAll(".dive-search-result")].at(-1)
         )?.focus({ preventScroll: true });
       scroll.scrollTop = top;
     }

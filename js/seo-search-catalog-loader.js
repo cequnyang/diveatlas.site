@@ -48,10 +48,14 @@
       && typeof site.name === 'string' && Number.isFinite(site.lat) && Number.isFinite(site.lon));
   }
 
+  window.DIVE_ATLAS_SEO_SEARCH_STATUS = 'loading';
   loadCatalog().then(sites => {
+    window.DIVE_ATLAS_SEO_SEARCH_STATUS = 'ready';
     window.DIVE_ATLAS_SEO_SEARCH_CATALOG = sites;
     window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-ready', { detail:{ sites } }));
   }).catch(error => {
+    window.DIVE_ATLAS_SEO_SEARCH_STATUS = 'error';
+    window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-error'));
     console.error('Dive-site search catalog could not be loaded.', error);
   });
 })();

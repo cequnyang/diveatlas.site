@@ -1,6 +1,6 @@
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
-const {build,search,bounds} = require('../../js/area-search');
+const {build,search,bounds,destinations,resultsText,context} = require('../../js/area-search');
 const site = (id,name,country,lat,lng,region = '') => {
   const row = [];row[0]=name;row[1]=lat;row[2]=lng;row[9]=country;row[10]=region;row[12]=id;return row;
 };
@@ -35,4 +35,38 @@ test('invalid or missing locations do not become area results at the equator',()
   const areas = build([site('a','A','Invalid',null,10),site('b','B','Invalid','',10),site('c','C','Invalid',95,10),site('d','D','Valid',0,0)],{});
   assert.equal(search(areas,'Invalid').length,0);
   assert.equal(search(areas,'Valid')[0].siteIndices.length,1);
+});
+
+test('destination suggestions keep counts and extents aligned with filtered sites', () => {
+  const areas = build([site('a','A','Indonesia',-1,130,'Raja Ampat'),site('b','B','Indonesia',-2,131,'Raja Ampat')],{});
+  const [area] = destinations(areas,'Raja Ampat',index => index === 1);
+  assert.deepEqual(area.siteIndices,[1]);
+  assert.deepEqual(area.points,[[-2,131]]);
+  assert.equal(search(areas,'Raja Ampat')[0].siteIndices.length,2);
+  assert.deepEqual(destinations(areas,'Raja Ampat',() => false),[]);
+  assert.deepEqual(destinations(areas,''),[]);
+});
+
+test('broad destination queries leave room for sites and keep the exact country first', () => {
+  const areas = build(Array.from({length:8},(_,i) => site(String(i),'Site','Indonesia',i,100+i,`Region ${i}`)),{});
+  const matches = destinations(areas,'Indonesia');
+  assert.equal(matches.length,3);
+  assert.equal(matches[0].type,'country');
+  assert.equal(resultsText('en').explore(matches[0].name),'Explore Indonesia');
+  assert.equal(resultsText('en').count(8),'8 dive sites');
+});
+
+test('same-name ocean and regional destinations have distinct contexts without merging their sites', () => {
+  const areas = build([
+    site('a','Reef A','Egypt',27,34,'Red Sea'),
+    site('b','Reef B','',26,35,'Red Sea'),
+    site('c','Reef C','Israel',29,35,'Red Sea')
+  ],{bySiteId:{a:{oceanArea:['Red Sea','Red Sea'],commonArea:['Red Sea']}}});
+  const all = search(areas,'Red Sea');
+  assert.equal(all.length,4);
+  assert.equal(new Set(all.map(area => area.key)).size,4);
+  assert.deepEqual(all.map(area => context(area,'en')),['Ocean area','Region · Country not recorded','Region · Egypt','Region · Israel']);
+  assert.deepEqual(all.map(area => area.siteIndices.length),[1,1,1,1]);
+  assert.equal(context(all[2],'zh'),'地区 · Egypt');
+  assert.equal(context(all[1],'zh'),'地区 · 未记录国家');
 });

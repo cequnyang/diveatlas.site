@@ -22,23 +22,22 @@
   if (!slot || !section || !searchBox || !input || !results || !resultsScroll || !filterControls) return;
   if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=1');
   if (!window.DiveAtlasSearchResultsMenu) await import('/js/search-results-menu.js?v=1');
-  let searchMode = 'sites';
   let areas = [];
   const areaText = () => window.DiveAtlasAreaSearch.text(document.documentElement.lang.split('-')[0]);
+  const groupedText = () => window.DiveAtlasAreaSearch.resultsText(document.documentElement.lang.split('-')[0]);
   const menu = window.DiveAtlasSearchResultsMenu.create({
     surface:results, scroll:resultsScroll, getInput:() => input, filterToggle, slot,
     onSelect:index => navigateTo(matches[index]),
     onLoadMore:() => menu.loadMore(() => {
       visibleResultCount = Math.min(visibleResultCount + initialResultCount,matches.length);
       drawVisibleResults();
-    }),
-    onMode:mode => {
-      searchMode = mode; filtersOpen = false;
-      updateFilterState(); renderResults();
-    }
+    })
   });
   menu.bindPullPagination(() => visibleResultCount < matches.length);
-  function updateModes() { menu.updateModes({mode:searchMode,labels:areaText().slice(0,2)}); }
+  function updateModes() {
+    menu.updateModes({grouped:true,labels:areaText().slice(0,2)});
+    resultsScroll.setAttribute('aria-label', `${groupedText().destinations} / ${groupedText().sites}`);
+  }
 
   // The header uses backdrop-filter, which would otherwise make fixed results
   // position relative to the header instead of the viewport.
@@ -48,6 +47,7 @@
     .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
   const valuesFor = (site, key) => Array.isArray(site[key]) ? site[key].filter(Boolean) : [];
   let searchSites = [];
+  let catalogReady = false;
   const initialResultCount = window.DiveAtlasSearchResultsMenu.pageSize;
   let visibleResultCount = initialResultCount;
   let matches = [];
@@ -138,6 +138,7 @@
   filterPickers = [countrySelect, difficultySelect, featureSelect].filter(Boolean).map(createFilterPicker);
 
   function setCatalog(rawSites) {
+    catalogReady = true;
     searchSites = Array.isArray(rawSites) ? rawSites.map(site => {
       const features = valuesFor(site, 'feature_values').length
         ? valuesFor(site, 'feature_values') : valuesFor(site, 'features');
@@ -166,6 +167,7 @@
     setCatalog(window.DIVE_ATLAS_SEO_SEARCH_CATALOG);
   }
   window.addEventListener('diveatlas:seo-search-catalog-ready', event => setCatalog(event.detail?.sites));
+  window.addEventListener('diveatlas:seo-search-catalog-error', () => { if (isOpen) renderResults(); });
 
   function activeFilters() {
     return {
@@ -198,10 +200,6 @@
   }
 
   function siteMeta(site) {
-    if (searchMode === 'areas') {
-      const text = areaText();
-      return [text[site.type === 'country' ? 2 : site.type === 'region' ? 3 : 4], site.country, `${site.siteIndices.length} ${text[7]}`].filter(Boolean).join(' · ');
-    }
     return [
       [site.region, site.country].filter(Boolean).join(', '),
       site.difficulty,
@@ -267,7 +265,7 @@
 
   function renderResults() {
     updateModes();
-    const state = JSON.stringify([searchMode,input.value.trim(),activeFilters()]);
+    const state = JSON.stringify([input.value.trim(),activeFilters()]);
     const preserve = state === renderedState;
     const selected = preserve ? matches[activeIndex] : null;
     const identity = item => item && `${item.key || item.site_id || ''}:${item.name}`;
@@ -281,34 +279,28 @@
       visibleResultCount = Math.max(visibleResultCount, activeIndex + 1);
       if (activeIndex < 0) input.removeAttribute('aria-activedescendant');
     }
-    if (searchMode === 'areas') {
-      const text = areaText();
-      commitMatches(window.DiveAtlasAreaSearch.search(areas, input.value.trim()));
-      if (matches.length) drawVisibleResults();
-      else {
-        menu.empty(text[input.value.trim() ? 5 : 6]);
-        repositionResults();
-      }
-      return;
-    }
-    if (!searchSites.length) {
+    if (!catalogReady) {
       commitMatches([]);
-      menu.empty('Dive-site search is unavailable right now.');
+      const failed = window.DIVE_ATLAS_SEO_SEARCH_STATUS === 'error';
+      menu.empty(failed ? 'Destination and dive-site search is unavailable right now.' : groupedText().loading, !failed);
       repositionResults();
       return;
     }
 
     const query = input.value.trim();
     const filtersApplied = hasActiveFilters();
-    commitMatches(findMatches(query));
+    const filters = activeFilters();
+    const destinations = window.DiveAtlasAreaSearch.destinations(areas,query,
+      index => siteMatchesFilters(searchSites[index],filters));
+    commitMatches([...destinations, ...findMatches(query)]);
 
     if (!query && !filtersApplied) {
-      menu.empty('Search by dive-site name or location, or choose a filter.');
+      menu.empty(groupedText().prompt);
       repositionResults();
       return;
     }
     if (!matches.length) {
-      menu.empty('No dive sites match your search.');
+      menu.empty(groupedText().empty);
       if (query) appendSuggestion(query);
       repositionResults();
       return;
@@ -318,14 +310,19 @@
 
   function drawVisibleResults() {
     menu.render({query:input.value.trim(),total:matches.length,activeIndex,moreLabel:'Load more',
-      items:matches.slice(0,visibleResultCount).map(site => ({name:site.name,meta:siteMeta(site)}))});
-    if (searchMode === 'sites') appendSuggestion(input.value.trim());
+      items:matches.slice(0,visibleResultCount).map(site => {
+        const text = groupedText();
+        return site.siteIndices
+          ? {name:text.explore(site.name),group:text.destinations,kind:'destination',meta:window.DiveAtlasAreaSearch.context(site,document.documentElement.lang.split('-')[0]),count:text.count(site.siteIndices.length),attributes:{'area-key':site.key}}
+          : {name:site.name,group:text.sites,kind:'site',meta:siteMeta(site),attributes:{'site-id':site.site_id}};
+      })});
+    appendSuggestion(input.value.trim());
     repositionResults();
   }
 
   function navigateTo(site) {
     if (!site) return;
-    if (searchMode === 'areas') {
+    if (site.siteIndices) {
       const bounds = window.DiveAtlasAreaSearch.bounds(site.points);
       if (!bounds) return;
       const [[south, west], [north, east]] = bounds;
@@ -382,7 +379,6 @@
     const preserveSearchFocus = event.detail > 0 && searchInputFocusedBeforeFilterPointer;
     searchInputFocusedBeforeFilterPointer = false;
     event.stopPropagation();
-    searchMode = 'sites';
     filtersOpen = !filtersOpen;
     setOpen(true);
     if (preserveSearchFocus) input.focus({ preventScroll:true });

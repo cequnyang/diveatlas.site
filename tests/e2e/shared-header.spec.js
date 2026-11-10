@@ -51,6 +51,7 @@ test.beforeEach(async ({ page }) => {
     localStorage.setItem('global-coral-map-tutorial-suppressed-v1', '1');
     localStorage.setItem('diveatlas-tutorial-seen-v1', '1');
     localStorage.setItem('global-coral-map-theme', 'light');
+    localStorage.setItem('global-coral-map-lang', 'en');
   });
   await page.route('https://**', route => route.abort());
   await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:null } }));
@@ -212,7 +213,6 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   if (areaInput === 'guide') await guide.fill('Raja Ampat');
   else {
     await header.fill('Raja Ampat');
-    await page.locator('#diveSearchResults [data-search-mode="areas"]').click();
   }
   await page.locator('#diveSearchResults [data-area-key]').first().click();
   const selectedView = await page.evaluate(() => {
@@ -243,7 +243,8 @@ async function recordedAreaExtent(page,name) {
     const map = window.__DIVEATLAS_TEST__.map, center = map.getCenter(), size = map.getSize();
     const locations = window.DIVE_SITE_SEARCH_LOCATIONS.bySiteId;
     const rows = window.DIVE_SITES_DATA.filter(site => name === 'Pacific Ocean'
-      ? (locations[String(site[12])]?.oceanArea || []).includes(name) : site[9] === name);
+      ? (locations[String(site[12])]?.oceanArea || []).includes(name)
+      : site[9] === name || site[10] === name || (locations[String(site[12])]?.commonArea || []).includes(name));
     const outside = rows.filter(site => {
       const lng = Number(site[2]) + 360*Math.round((center.lng-Number(site[2]))/360);
       const point = map.latLngToContainerPoint([Number(site[1]),lng]);
@@ -294,8 +295,7 @@ test('top site selection still opens details and restores normal zoom limits aft
   await page.locator('#diveSearchInput').fill('Bali');
   await page.locator('#diveSearchInput').press('ArrowDown');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:15000});
-  await page.locator('#diveSearchInput').press('ArrowDown');
-  await page.locator('#diveSearchInput').press('Enter');
+  await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getMinZoom())).toBe(2);
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBeGreaterThanOrEqual(12);
@@ -400,7 +400,7 @@ test('header destination selection keeps native site details separate from guide
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
   await header.fill('Bali');
-  await page.locator('#diveSearchResults [role="option"]').first().click();
+  await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('#mapWelcomeSearch')).toHaveValue('');
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
   await expect(header).toBeFocused();
@@ -408,7 +408,7 @@ test('header destination selection keeps native site details separate from guide
 });
 
 for (const viewport of [{width:1280,height:900},{width:900,height:700},{width:681,height:866},{width:390,height:844}]) {
-test(`search mode bar stays compact above the left results pane at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+test(`grouped search and filters fit their panes at ${viewport.width}x${viewport.height}`, async ({ page }) => {
   await page.setViewportSize(viewport);
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
@@ -417,14 +417,12 @@ test(`search mode bar stays compact above the left results pane at ${viewport.wi
   await page.locator('#diveSearchFilterToggle').click();
   const panel = page.locator('#diveSearchResults');
   await expect(page.locator('#diveSearchFilterControls')).toBeVisible();
-  const bar = await panel.locator('.dive-search-modes').boundingBox();
+  await expect(panel.locator('.dive-search-modes')).toBeHidden();
   const results = await page.locator('#diveSearchResultsScroll').boundingBox();
   const filters = await page.locator('#diveSearchFilterControls').boundingBox();
   const shell = await panel.boundingBox();
-  // Visibility alone misses grid items overflowing a collapsed first row.
-  expect(results.y).toBeGreaterThanOrEqual(bar.y + bar.height - 1);
-  expect(bar.height).toBeLessThanOrEqual(42);
-  for (const box of [bar,results,filters]) {
+  // Check the actual grid geometry: visibility alone misses overflowing rows.
+  for (const box of [results,filters]) {
     expect(box.x).toBeGreaterThanOrEqual(shell.x);
     expect(box.x + box.width).toBeLessThanOrEqual(shell.x + shell.width + 1);
     expect(box.y + box.height).toBeLessThanOrEqual(shell.y + shell.height + 1);
@@ -433,28 +431,26 @@ test(`search mode bar stays compact above the left results pane at ${viewport.wi
   if (stacked) expect(filters.y).toBeGreaterThanOrEqual(results.y + results.height - 1);
   else {
     expect(filters.x).toBeGreaterThanOrEqual(results.x + results.width - 1);
-    expect(bar.x + bar.width).toBeLessThanOrEqual(filters.x + 1);
-    expect(filters.y).toBeLessThanOrEqual(bar.y + 1);
+    expect(filters.y).toBeLessThanOrEqual(results.y + 1);
   }
-  await panel.locator('[data-search-mode="areas"]').click();
-  await expect(page.locator('#diveSearchFilterControls')).toBeHidden();
+  await expect(panel.getByRole('group',{name:'Destinations',exact:true})).toBeVisible();
+  await expect(panel.getByRole('group',{name:'Dive sites',exact:true})).toBeVisible();
   await expect(panel.locator('[data-area-key]').first()).toBeVisible();
-  await panel.locator('[data-search-mode="sites"]').click();
   await expect(panel.locator('[data-site-index]').first()).toBeVisible();
 });
 }
 
-test('header offers area search with pagination and keeps ordinary site search available', async ({ page }) => {
+test('grouped header puts destinations first and paginates individual sites', async ({ page }) => {
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const input = page.locator('#diveSearchInput');
   await input.fill('Indonesia');
   const options = page.locator('#diveSearchResults [role="option"]');
-  await expect(options.first()).toHaveAttribute('data-site-index',/\d+/,{timeout:15000});
-  await page.locator('#diveSearchResults [data-search-mode="areas"]').click();
-  await expect(options.first()).toHaveAttribute('data-area-key',/^country:/);
-  await expect(page.locator('#diveSearchSuggestButton')).toBeHidden();
+  await expect(options.first()).toHaveAttribute('data-area-key',/^country:/,{timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible();
+  expect(await page.locator('#diveSearchResults [data-area-key]').count()).toBeLessThanOrEqual(3);
+  await expect(page.locator('#diveSearchResults .dive-search-modes')).toBeHidden();
   const count = await options.count();
   const more = page.locator('#diveSearchResults [data-search-load-more]');
   if (await more.isVisible()) await more.click();
@@ -465,8 +461,7 @@ test('header offers area search with pagination and keeps ordinary site search a
   await expect(page.locator('#mapWelcome')).toBeVisible();
   await input.fill('Bali');
   await expect(options.first()).toHaveAttribute('data-area-key',/.+/,{timeout:15000});
-  await page.locator('#diveSearchResults [data-search-mode="sites"]').click();
-  await expect(options.first()).toHaveAttribute('data-site-index',/\d+/,{timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible();
 });
 
 test('welcome and header hand the same results menu between their inputs', async ({ page }) => {
@@ -489,6 +484,109 @@ test('welcome and header hand the same results menu between their inputs', async
   await expect(guideInput).toBeFocused();
   await expect(page.locator('#diveSearchResults')).toHaveCount(1);
 });
+
+test('automatic translation results keep one compact selectable row', async ({ page }) => {
+  await page.goto('/?__diveatlas_test=1');
+  const input = page.locator('#diveSearchInput');
+  if (!(await input.isVisible())) await page.locator('#diveSearchToggle').click();
+  for (const action of ['badge click','keyboard']) {
+    await input.fill('');
+    await input.fill('百福湾');
+    const row = page.locator('#diveSearchResults .dive-search-result').filter({has:page.locator('.dive-search-name-auto')}).first();
+    await expect(row).toBeVisible({timeout:15000});
+    const badge = row.locator('.dive-search-name-auto');
+    await expect(row.locator('button')).toHaveCount(0);
+    await expect(row.locator('.dive-search-result-original')).toHaveText('百福湾');
+    await expect(row).toHaveAttribute('aria-description',/automatic translation draft/);
+    await expect(badge).toHaveAttribute('title',/automatic translation draft/);
+    const titleBox = await row.locator('.dive-search-result-title').boundingBox();
+    const badgeBox = await badge.boundingBox();
+    expect(badgeBox.y).toBeGreaterThanOrEqual(titleBox.y);
+    expect(badgeBox.y + badgeBox.height).toBeLessThanOrEqual(titleBox.y + titleBox.height + 1);
+    expect((await row.boundingBox()).height).toBeLessThanOrEqual(64);
+    if (action === 'badge click') await badge.click();
+    else { await input.press('ArrowDown'); await input.press('Enter'); }
+    await expect(page.locator('#diveSearchResults')).toBeHidden();
+    await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
+  }
+});
+
+for (const host of ['map','document']) {
+test(`grouped ${host} search uses destination and site keyboard actions`, async ({ page }) => {
+  await page.goto(host === 'map' ? '/?__diveatlas_test=1' : '/plain-page-fixture.html');
+  const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';
+  const input = page.locator(`#${prefix}Input`);
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  await input.fill('Raja Ampat');
+  const options = page.locator(`#${prefix}Results [role="option"]`);
+  await expect(options.first()).toContainText('Explore Raja Ampat',{timeout:15000});
+  await expect(options.first()).toContainText('134 dive sites');
+  await expect(options.nth(1)).toHaveAttribute('data-result-kind','site');
+  await input.press('ArrowDown');
+  await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-0`);
+  await input.press('ArrowDown');
+  await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-1`);
+  await input.press('ArrowUp');
+  await input.press('Enter');
+  if (host === 'map') {
+    await expect(page.locator(`#${prefix}Results`)).toBeHidden();
+    await expect(page.locator('.leaflet-popup')).toHaveCount(0);
+    const extent = await recordedAreaExtent(page,'Raja Ampat');
+    expect(extent.total).toBeGreaterThan(0);
+    expect(extent.outside).toBe(0);
+  } else {
+    await expect(page).toHaveURL(/\/\?lat=.*lng=/);
+    expect(new URL(page.url()).searchParams.has('site')).toBe(false);
+    await page.goto('/plain-page-fixture.html');
+    if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  }
+  await input.fill('Blue Magic');
+  await expect(options.first()).toHaveAttribute('data-result-kind','site',{timeout:15000});
+  await input.press('ArrowDown');
+  await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-0`);
+  await input.press('Escape');
+  await expect(page.locator(`#${prefix}Results`)).toBeHidden();
+  await input.focus();
+  await input.press('ArrowDown');
+  await input.press('Enter');
+  if (host === 'map') await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
+  else await expect(page).toHaveURL(/\/\?site=.*lat=.*lng=.*z=14/);
+});
+
+test(`grouped ${host} search announces loading and discards obsolete query results`, async ({ page }) => {
+  let release;
+  const held = new Promise(resolve => { release=resolve; });
+  const catalog = host === 'map' ? '**/*dive-site-search-locations*.json.gz*' : '**/recommendations.json*';
+  await page.route(catalog,async route => { await held; await route.continue(); });
+  await page.goto(host === 'map' ? '/' : '/plain-page-fixture.html',{waitUntil:'domcontentloaded'});
+  const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';
+  const input = page.locator(`#${prefix}Input`), surface=page.locator(`#${prefix}Results`);
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  await input.fill('Raja Ampat');
+  await expect(surface).toHaveAttribute('aria-busy','true');
+  await expect(surface.getByRole('status')).toContainText('Loading destinations and dive sites');
+  await input.fill('zzzxqvnomatch987654321');
+  release();
+  await expect(surface.getByRole('status')).toHaveText('No destinations or dive sites match your search.',{timeout:15000});
+  await expect(surface).toHaveAttribute('aria-busy','false');
+  await expect(surface.getByRole('option')).toHaveCount(0);
+  await expect(input).not.toHaveAttribute('aria-activedescendant',/.+/);
+  await expect(input).toBeFocused();
+});
+
+test(`grouped ${host} search exits loading when catalog loading fails`, async ({ page }) => {
+  const catalog = host === 'map' ? '**/*dive-site-search-locations*.json.gz*' : '**/recommendations.json*';
+  await page.route(catalog,route => route.fulfill({status:503,body:'Unavailable'}));
+  await page.goto(host === 'map' ? '/' : '/plain-page-fixture.html');
+  const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';
+  const input = page.locator(`#${prefix}Input`), surface=page.locator(`#${prefix}Results`);
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  await input.fill('Raja Ampat');
+  await expect(surface.getByRole('status')).toContainText(/unavailable/i,{timeout:15000});
+  await expect(surface).toHaveAttribute('aria-busy','false');
+  await expect(surface.getByRole('option')).toHaveCount(0);
+});
+}
 
 test('welcome inline search handles empty and cleared queries locally', async ({ page }) => {
   await page.addInitScript(() => {

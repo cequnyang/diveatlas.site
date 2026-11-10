@@ -340,6 +340,10 @@ body :is(#seoSiteSearchResults, #diveSearchResults) .dive-search-result-name {
   font-weight: 700;
   letter-spacing: -.05em;
 }
+body :is(#seoSiteSearchResults, #diveSearchResults).is-grouped-search .dive-search-result-name {
+  font-weight: 500;
+  letter-spacing: 0;
+}
 body :is(#seoSiteSearchResults, #diveSearchResults) :is(.dive-search-result, .seo-search-load-more, .dive-search-suggestion-button):is(:hover, :focus-visible, .active),
 body :is(#seoMenuDropdown, #topMenuDropdown, #seoLanguageDropdown, #languageDropdown) .top-menu-dropdown-item:is(:hover, :focus-visible),
 body .dive-filter-options .dive-filter-option:is(:hover, :focus-visible, .is-active),

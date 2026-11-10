@@ -231,21 +231,21 @@ for (const [kind, bodyClass] of [['document', ''], ['directory', 'site-directory
     await input.press('ArrowDown');
     await expect(menu.locator('[aria-selected="true"]')).toHaveCount(1);
     await page.locator('#seoSiteSearchFilterToggle').click();
-    const bar = await menu.locator('.dive-search-modes').boundingBox();
-    expect(bar.height).toBeLessThanOrEqual(42);
+    await expect(menu.locator('.dive-search-modes')).toBeHidden();
     const picker = page.locator('#seoSiteSearchCountryPicker');
     await picker.click();
     await page.locator('#seoSiteSearchCountryPickerOptions').getByRole('option',{name:'Indonesia',exact:true}).click();
     await expect(picker).toHaveValue('Indonesia');
-    await menu.locator('[data-search-mode="areas"]').click();
     await input.fill('Raja Ampat');
     await expect(menu.locator('.dive-search-result').first()).toContainText('Raja Ampat');
+    await expect(menu.locator('[data-result-kind="destination"]').first()).toBeVisible();
+    await expect(menu.locator('[data-result-kind="site"]').first()).toBeVisible();
     await input.press('Escape');
     await expect(menu).toBeHidden();
   });
 }
 
-test('shared document search switches between areas and filtered dive sites', async ({ page }) => {
+test('shared document search groups destinations above filtered dive sites', async ({ page }) => {
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:record()}));
   await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
     json:{schema:'dive-site-recommendations-v1', sites:[record(SECOND, 'Second reef')]}
@@ -254,15 +254,14 @@ test('shared document search switches between areas and filtered dive sites', as
   const input = page.locator('#seoSiteSearchInput');
   await input.fill('Second reef');
   await expect(page.locator('#seoSiteSearchResults .dive-search-result').first()).toContainText('Second reef');
-  await page.locator('[data-search-mode="areas"]').click();
-  await expect(page.locator('#seoSiteSearchResults .dive-search-result')).toHaveCount(0);
+  await expect(page.locator('#seoSiteSearchResults [data-result-kind="destination"]')).toHaveCount(0);
   await input.fill(record().country);
   await expect(page.locator('#seoSiteSearchResults .dive-search-result').first()).toContainText(record().country);
   await page.locator('#seoSiteSearchFilterToggle').click();
-  await expect(page.locator('[data-search-mode="sites"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#seoSiteSearchResults .dive-search-modes')).toBeHidden();
   await expect(page.locator('#seoSiteSearchFilterControls')).toBeVisible();
-  await page.locator('[data-search-mode="areas"]').click();
-  await expect(page.locator('#seoSiteSearchFilterControls')).toBeHidden();
+  await expect(page.locator('#seoSiteSearchResults [data-result-kind="site"]').first()).toBeVisible();
+  await expect(page.locator('#seoSiteSearchResults [data-result-kind="destination"]').first()).toContainText('1 dive site');
   await input.press('ArrowDown');
   await input.press('Enter');
   await expect(page).toHaveURL(/\/?\?lat=.*&lng=.*&z=/);

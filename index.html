@@ -11314,10 +11314,10 @@ ZSD·2016–2025</span></span>
     cancelPendingDiveSearchPopup = null;
     cancel?.();
   }
-  let headerSearchMode = 'sites';
   let diveSearchAreaCatalog = null;
-  const currentDiveSearchMode = () => currentDiveSearchInput().id === 'mapWelcomeSearch' ? 'areas' : headerSearchMode;
+  const currentDiveSearchMode = () => currentDiveSearchInput().id === 'mapWelcomeSearch' ? 'areas' : 'grouped';
   const areaSearchText = () => window.DiveAtlasAreaSearch.text(currentLang);
+  const groupedSearchText = () => window.DiveAtlasAreaSearch.resultsText(currentLang);
   const currentDiveSearchInput = () => activeDiveSearchInput || els.diveSearchInput;
   function activateDiveSearchInput(input) {
     // Starting an area lookup is already a new navigation intent. Do not let
@@ -23002,7 +23002,7 @@ function closeShareDialog() {
     diveSiteNameAutoExplanation: '这是自动翻译草稿，原始潜点名称显示在下方。'
   });
 
-  function diveSiteNameBadge(localizedName) {
+  function diveSiteNameBadge(localizedName, { interactive = true } = {}) {
     if (!localizedName.isLocalized) return '';
     if (localizedName.isVerified) {
       const source = localizedName.verificationSource
@@ -23011,6 +23011,9 @@ function closeShareDialog() {
       return `<span class="dive-site-name-verified" title="${escapeHtml(source)}">✓</span>`;
     }
     const explanation = t('diveSiteNameAutoExplanation');
+    // Search options are already buttons. A nested badge button breaks their
+    // DOM and click target; keep provenance inline and select the whole row.
+    if (!interactive) return `<span class="dive-search-name-auto" title="${escapeHtml(explanation)}">AUTO</span>`;
     return `<button class="dive-site-name-draft" type="button" title="${escapeHtml(explanation)}" aria-label="AUTO: ${escapeHtml(explanation)}" aria-expanded="false">AUTO</button>`;
   }
 
@@ -23294,14 +23297,7 @@ function closeShareDialog() {
     filterToggle:els.diveSearchFilterToggle, slot:topMenuSearchSlot,
     getInput:currentDiveSearchInput,
     onSelect:index => { const match = diveSearchMatches[index]; if (match != null) selectDiveSearchMatch(match); },
-    onLoadMore:() => loadMoreDiveSearchResults(),
-    onMode:mode => {
-      if (currentDiveSearchInput().id === 'mapWelcomeSearch') return;
-      headerSearchMode = mode; diveSearchFiltersOpen = false;
-      if (mode === 'areas') cancelDiveSearchPopup();
-      hideDiveSearchResults(); currentDiveSearchInput().focus({preventScroll:true});
-      renderDiveSearchResults({allowSameQueryRefresh:true});
-    }
+    onLoadMore:() => loadMoreDiveSearchResults()
   });
   const searchMenuMotion = searchResultsMenu.bindMobileHandle({
     resultsHandle:els.diveSearchResultsHandle,
@@ -23612,8 +23608,8 @@ function closeShareDialog() {
       els.diveSearchInput.placeholder = areaMode ? text[6] : t('diveSearchPlaceholder');
       els.diveSearchInput.setAttribute('aria-label',els.diveSearchInput.placeholder);
     }
-    els.diveSearchResultsScroll.setAttribute('aria-label',areaMode ? text[0] : t('diveSearchResults'));
-    searchResultsMenu.updateModes({mode:currentDiveSearchMode(), labels:text.slice(0,2), areasOnly:currentDiveSearchInput().id === 'mapWelcomeSearch'});
+    els.diveSearchResultsScroll.setAttribute('aria-label',areaMode ? text[0] : `${groupedSearchText().destinations} / ${groupedSearchText().sites}`);
+    searchResultsMenu.updateModes({mode:currentDiveSearchMode(), labels:text.slice(0,2), areasOnly:areaMode, grouped:!areaMode});
     const renderRequest = ++diveSearchRenderRequest;
 
     const query =
@@ -23658,7 +23654,7 @@ function closeShareDialog() {
     els.diveSearchLoadHint.hidden = true;
 
     const showLoading = () => {
-      searchResultsMenu.empty(t('diveLoading'), true);
+      searchResultsMenu.empty(areaMode ? t('diveLoading') : groupedSearchText().loading, true);
       els.diveSearchResults.setAttribute('aria-busy', 'true');
       showDiveSearchResults();
       currentDiveSearchInput().setAttribute('aria-expanded', 'true');
@@ -23691,7 +23687,7 @@ function closeShareDialog() {
       return;
     }
 
-    if (!DIVE_SEARCH_INDEX && currentDiveSearchMode() === 'sites') {
+    if (!DIVE_SEARCH_INDEX && !areaMode) {
       showLoading();
       void ensureDiveSearchIndex()
         .then(() => {
@@ -23711,9 +23707,13 @@ function closeShareDialog() {
       : activeFilters
         ? DIVE_SITES.map((_, index) => index)
         : [];
-    const nextMatches = baseMatches.filter(siteIndex =>
+    const siteMatches = baseMatches.filter(siteIndex =>
       diveSiteMatchesSearchFilters(DIVE_SITES[siteIndex])
     );
+    diveSearchAreaCatalog ||= window.DiveAtlasAreaSearch.build(DIVE_SITES,DIVE_SITE_SEARCH_LOCATIONS);
+    const destinations = window.DiveAtlasAreaSearch.destinations(diveSearchAreaCatalog, query,
+      siteIndex => diveSiteMatchesSearchFilters(DIVE_SITES[siteIndex]));
+    const nextMatches = [...destinations, ...siteMatches];
     if (query !== diveSearchQuery || allowSameQueryRefresh) {
       diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
       diveSearchActiveIndex = -1;
@@ -23728,7 +23728,7 @@ function closeShareDialog() {
     els.diveSearchResultsScroll.setAttribute('aria-setsize', String(diveSearchMatches.length));
 
     if (!query && !activeFilters) {
-      searchResultsMenu.empty(t('diveSearchFilterChoose'));
+      searchResultsMenu.empty(groupedSearchText().prompt);
       showDiveSearchResults();
       return;
     }
@@ -23736,7 +23736,7 @@ function closeShareDialog() {
     if (!diveSearchMatches.length) {
       diveSearchActiveIndex = -1;
       currentDiveSearchInput().removeAttribute('aria-activedescendant');
-      searchResultsMenu.empty(t('diveSearchEmpty'));
+      searchResultsMenu.empty(groupedSearchText().empty);
 
       showDiveSearchResults();
       if (query) {
@@ -23752,8 +23752,14 @@ function closeShareDialog() {
       query, total:diveSearchMatches.length, activeIndex:diveSearchActiveIndex,
       moreLabel:t('loadMore'), queries:[query, ...diveSearchFilterDrafts()],
       items:diveSearchMatches.slice(0,diveSearchVisibleCount).map(siteIndex => {
+        const text = groupedSearchText();
+        if (typeof siteIndex !== 'number') return {
+          name:text.explore(siteIndex.name), group:text.destinations, kind:'destination',
+          meta:window.DiveAtlasAreaSearch.context(siteIndex,currentLang),
+          count:text.count(siteIndex.siteIndices.length), attributes:{'area-key':siteIndex.key}
+        };
         const site = DIVE_SITES[siteIndex], localized = getDiveSiteDisplayName(site);
-        return {name:localized.displayName, originalName:localized.originalName !== localized.displayName ? localized.originalName : '', badgeHtml:diveSiteNameBadge(localized), meta:diveSearchMeta(site), attributes:{'site-index':siteIndex}};
+        return {name:localized.displayName, group:text.sites, kind:'site', originalName:localized.originalName !== localized.displayName ? localized.originalName : '', badgeHtml:diveSiteNameBadge(localized,{interactive:false}), description:localized.isLocalized && !localized.isVerified ? t('diveSiteNameAutoExplanation') : '', meta:diveSearchMeta(site), attributes:{'site-index':siteIndex}};
       })
     });
 
@@ -32313,7 +32319,7 @@ function closeShareDialog() {
       }
       if (diveLayerFiltersOpen) closeDiveLayerFilterMenu();
       setDiveSearchFocusRetained(false);
-      if (hasActiveDiveSearchFilters() && currentDiveSearchMode() === 'sites') {
+      if (hasActiveDiveSearchFilters() && currentDiveSearchMode() !== 'areas') {
         diveSearchFiltersOpen = true;
         setMobileSearchExpanded(true);
         renderDiveSearchResults({ allowSameQueryRefresh:true });
@@ -32369,7 +32375,6 @@ function closeShareDialog() {
 
   els.diveSearchFilterToggle.addEventListener('click', event => {
     activateDiveSearchInput(els.diveSearchInput);
-    headerSearchMode = 'sites';
     const preserveSearchFocus = event.detail > 0 && diveSearchInputFocusedBeforeFilterPointer;
     diveSearchInputFocusedBeforeFilterPointer = false;
     event.stopPropagation();
