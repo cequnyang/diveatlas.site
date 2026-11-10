@@ -8,7 +8,9 @@
   });
   function stylesheet(href) {
     let link = [...document.querySelectorAll('link[rel="stylesheet"]')].find(node => node.getAttribute('href')?.split('?')[0] === href.split('?')[0]);
-    if (!link) { link = document.createElement('link'); link.rel = 'stylesheet'; link.href = href; }
+    if (!link) { link = document.createElement('link'); link.rel = 'stylesheet'; }
+    // Cached generated HTML may still name an older component stylesheet.
+    link.href = href;
     document.head.append(link);
   }
   function decorate(header, map = false) {
@@ -89,7 +91,8 @@
     const detail = document.body.classList.contains('seo-site-detail-layout');
     if (!detail) document.body.classList.add('seo-browse-layout', 'shared-header-document');
     if (!document.querySelector('link[href*="/assets/seo.css"]')) stylesheet('/assets/seo.css?v=200');
-    stylesheet('/assets/seo-site-search.css?v=11');
+    stylesheet('/assets/seo-site-search.css?v=13');
+    stylesheet('/assets/search-results-menu.css?v=1');
     const fallback = current;
     // Keep a logo-only server-rendered header for no-JavaScript users, then replace it
     // with the shared detail-page controls once their dependencies can run.
@@ -197,7 +200,7 @@
         await loadScript('/js/data-assets-config.js'); await loadScript('/js/data-assets.js');
       }
       await loadScript('/js/seo-page-controls.js?v=29');
-      if (!document.querySelector('script[src*="seo-site-search.js"]')) await loadScript('/js/seo-site-search.js?v=14');
+      if (!document.querySelector('script[src*="seo-site-search.js"]')) await loadScript('/js/seo-site-search.js?v=16');
       await loadScript('/js/seo-search-catalog-loader.js?v=1');
     })().catch(error => console.error('Shared header could not initialize.', error));
   }

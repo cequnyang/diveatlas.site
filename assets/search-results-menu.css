@@ -1,0 +1,538 @@
+/* Shared search menu: edit here for every page, including the map welcome guide. */
+.dive-search-filter-controls {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-content: start;
+  padding: 16px;
+  border-left: 1px solid var(--line);
+  background: var(--panel-solid);
+}
+.dive-search-filter-controls[hidden] {
+  display: none;
+}
+.dive-search-filter-field {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+}
+.dive-search-filter-field:first-child {
+  grid-column: 1 / -1;
+}
+.dive-search-filter-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+}
+/* Native dropdown scrollbars need an explicit scheme to follow the site's theme. */
+.dive-search-filter-field select {
+  color-scheme: light;
+  scrollbar-width: thin;
+  scrollbar-color: var(--faint) var(--panel-solid);
+}
+[data-theme="dark"] .dive-search-filter-field select {
+  color-scheme: dark;
+}
+.dive-search-filter-field select option {
+  background: var(--panel-solid);
+  color: var(--text);
+}
+.dive-search-filter-field select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+.dive-filter-picker-wrap {
+  position: relative;
+  min-width: 0;
+}
+.dive-filter-picker {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 0 28px 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+}
+.dive-filter-picker-wrap.has-clear .dive-filter-picker {
+  padding-right: 54px;
+}
+.dive-filter-picker-clear {
+  position: absolute;
+  top: 50%;
+  right: 27px;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.dive-filter-picker-clear:hover {
+  background: var(--panel-soft);
+  color: var(--text);
+}
+.dive-filter-picker-clear:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+.dive-filter-picker-clear[hidden] {
+  display: none;
+}
+.dive-filter-picker-clear svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.dive-filter-picker-wrap::after {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid var(--text);
+  border-bottom: 1.5px solid var(--text);
+  content: "";
+  pointer-events: none;
+  transform: rotate(45deg);
+}
+.dive-filter-picker:focus-visible,
+.dive-filter-picker[aria-expanded="true"] {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+.dive-filter-options {
+  position: fixed;
+  z-index: 1500;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 6px 3px 6px 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel-solid);
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font: inherit;
+  font-size: 12px;
+}
+.dive-filter-options[hidden] {
+  display: none;
+}
+.dive-filter-options-scroll {
+  position: relative;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--faint) var(--panel-solid);
+}
+.dive-filter-options-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.dive-filter-options-scroll::-webkit-scrollbar-track {
+  background: var(--panel-solid);
+  border-radius: 999px;
+}
+.dive-filter-options-scroll::-webkit-scrollbar-thumb {
+  background: var(--faint);
+  border: 2px solid var(--panel-solid);
+  border-radius: 999px;
+}
+.dive-filter-option {
+  padding: 8px;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.dive-filter-option:hover,
+.dive-filter-option.is-active {
+  background: var(--panel-soft);
+  color: var(--primary);
+}
+.dive-filter-option[aria-selected="true"] {
+  font-weight: 700;
+}
+.dive-search-filter-clear {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.dive-search-filter-clear[hidden] {
+  display: none;
+}
+.dive-search-results {
+  display: none;
+  position: fixed;
+  z-index: 1400;
+  box-sizing: border-box;
+  width: min(780px, calc(100vw - 24px));
+  max-height: min(440px, calc(100vh - 24px));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel-solid);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+}
+
+.dive-search-results-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  margin-right: 6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: pan-y;
+  padding: 10px 6px 10px 10px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 52%, transparent) transparent;
+}
+
+.dive-search-results-scroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.dive-search-results-scroll::-webkit-scrollbar-track {
+  margin: 8px 0;
+  background: transparent;
+}
+
+.dive-search-results-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 52%, transparent);
+  background-clip: content-box;
+}
+
+.dive-search-results.visible {
+  display: flex;
+  flex-direction: column;
+}
+.dive-search-results.mobile-search-collapsed {
+  display: none !important;
+}
+.dive-search-results-handle {
+  display: none;
+}
+
+.dive-search-results.visible.has-filters {
+  display: grid;
+  grid-template-columns: minmax(
+      0,
+      var(--search-results-candidate-width, 1fr)
+    ) minmax(0, var(--search-results-filter-width, 1fr));
+  /* Reserve the mode row above results; the adjacent filters span both
+         rows so the compact switch does not add empty space above them. */
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.dive-search-results.has-filters > .dive-search-modes {
+  grid-column: 1;
+  grid-row: 1;
+}
+.dive-search-results.has-filters > .dive-search-results-scroll {
+  grid-column: 1;
+  grid-row: 2;
+}
+.dive-search-results.has-filters > .dive-search-filter-controls {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.dive-search-result {
+  width: 100%;
+  display: block;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.dive-search-result:hover,
+.dive-search-result.active {
+  background: var(--panel-soft);
+}
+
+.dive-search-result:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.dive-search-load-more {
+  display: block;
+  width: 100%;
+  padding: 9px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dive-search-load-more:hover,
+.dive-search-load-more:focus-visible {
+  background: var(--panel-soft);
+  color: var(--primary);
+}
+.dive-search-load-more:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+@media (max-width: 720px) {
+  .dive-search-load-more {
+    display: none;
+  }
+  .dive-search-load-hint:not([hidden]) {
+    display: block;
+    padding: 6px 8px 8px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+.dive-search-load-hint {
+  display: none;
+}
+
+.dive-search-result-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12.5px;
+  font-weight: 760;
+  line-height: 1.3;
+}
+
+.dive-search-result-original {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.dive-search-result-meta {
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.3;
+}
+
+.dive-search-empty {
+  padding: 11px 10px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.dive-search-suggestion[hidden] {
+  display: none;
+}
+.dive-search-suggestion {
+  padding: 2px 10px 3px;
+  border-top: 1px solid var(--line);
+}
+.dive-search-suggestion-button {
+  width: 100%;
+  min-height: 19px;
+  padding: 2px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dive-search-suggestion-button {
+  font-weight: 300;
+  font-style: italic;
+}
+.dive-search-suggestion-button:hover {
+  background: var(--panel-soft);
+  color: var(--primary);
+}
+.dive-search-suggestion-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  outline-offset: -2px;
+}
+
+.dive-search-results.visible.has-filters.is-stacked {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+}
+.dive-search-results.has-filters.is-stacked > .dive-search-filter-controls {
+  grid-column: 1;
+  grid-row: 3;
+}
+.dive-search-results.is-stacked .dive-search-filter-controls {
+  border-left: 0;
+  border-top: 1px solid var(--line);
+}
+.dive-search-results.is-filter-compact .dive-search-filter-controls {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+  .search-results-menu {
+    transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .search-results-menu.mobile-vertical-dragging {
+    transition: none;
+  }
+  .search-results-menu.mobile-search-dismissing {
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .dive-search-results-scroll,
+  .dive-search-filter-controls {
+    padding-bottom: 26px;
+  }
+  .dive-search-results-handle {
+    position: absolute;
+    z-index: 4;
+    bottom: 2px;
+    left: 50%;
+    display: grid;
+    width: 72px;
+    height: 28px;
+    place-items: center;
+    padding: 0;
+    transform: translateX(-50%);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    cursor: grab;
+    pointer-events: auto;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .dive-search-results-handle::before {
+    content: "";
+    width: 36px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--muted);
+    /* Reduce the visual gap while preserving the handle's full touch target. */
+    transform: translateY(5px);
+    pointer-events: none;
+  }
+  .dive-search-results-handle:active {
+    cursor: grabbing;
+  }
+}
+.dive-search-modes {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  padding: 2px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.dive-search-modes button {
+  min-height: 28px;
+  padding: 2px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+@media (pointer: coarse) {
+  .dive-search-modes button {
+    min-height: 32px;
+  }
+}
+.dive-search-modes button[aria-pressed="true"] {
+  background: var(--panel-soft);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.dive-search-modes button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+.dive-search-results.visible.is-area-search {
+  display: flex;
+  flex-direction: column;
+}
+.dive-search-results.is-area-search .dive-search-filter-controls {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .search-results-menu.visible.has-filters {
+    /* min-height wins over max-height, so cap it by the measured viewport space. */
+    min-height: min(244px, var(--search-results-available-height, 244px));
+  }
+  .search-results-menu.visible.has-filters:is(
+      .mobile-vertical-dragging,
+      .mobile-search-restoring,
+      .mobile-search-dismissing
+    ) {
+    min-height: 0;
+  }
+  .search-results-menu .dive-search-filter-controls {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 16px 32px;
+  }
+  .search-results-menu .dive-search-filter-field:first-child {
+    grid-column: 1;
+  }
+  .search-results-menu .dive-search-results-scroll {
+    padding-bottom: 32px;
+  }
+}

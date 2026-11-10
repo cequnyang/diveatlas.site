@@ -14,7 +14,8 @@ def site_header_fallback() -> str:
 def shared_header_assets(version: str | None = None) -> str:
     release = f' data-app-version="{escape(version, quote=True)}"' if version else ''
     return ('<link rel="stylesheet" href="/assets/site-header.css?v=10">\n'
-            f'<script src="/js/site-header.js?v=3"{release} defer></script>\n')
+            '<link rel="stylesheet" href="/assets/search-results-menu.css?v=1">\n'
+            f'<script src="/js/site-header.js?v=5"{release} defer></script>\n')
 
 
 def install_shared_header_assets(markup: str, version: str) -> str:
@@ -22,6 +23,7 @@ def install_shared_header_assets(markup: str, version: str) -> str:
     # Replace only our tags so repeated assembly is idempotent and carries the
     # current release into pages that never had a version label in their HTML.
     markup = re.sub(r'<link\b[^>]*href=["\']/assets/site-header\.css[^"\']*["\'][^>]*>\s*', '', markup)
+    markup = re.sub(r'<link\b[^>]*href=["\']/?assets/search-results-menu\.css[^"\']*["\'][^>]*>\s*', '', markup)
     markup = re.sub(r'<script\b[^>]*src=["\']/js/site-header\.js[^"\']*["\'][^>]*>\s*</script>\s*', '', markup)
     # Cached generated trees must use the current renderer/controller contract
     # too; retaining the old renderer could replace newly bound header nodes.
@@ -29,7 +31,8 @@ def install_shared_header_assets(markup: str, version: str) -> str:
     markup = re.sub(r'(/js/seo-page-controls\.js)\?v=\d+', r'\1?v=29', markup)
     markup = re.sub(r'(/assets/seo\.css)\?v=\d+', r'\1?v=207', markup)
     markup = re.sub(r'(/js/dive-conditions-chart\.js)\?v=\d+', r'\1?v=56', markup)
-    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=13', markup)
+    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=16', markup)
+    markup = re.sub(r'(/assets/seo-site-search\.css)\?v=\d+', r'\1?v=13', markup)
     assets = shared_header_assets(version)
     if re.search(r'</head\s*>', markup, flags=re.I):
         return re.sub(r'</head\s*>', lambda match: assets + match.group(), markup, count=1, flags=re.I)

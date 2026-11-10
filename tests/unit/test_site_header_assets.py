@@ -12,8 +12,9 @@ class SharedHeaderAssetsTests(unittest.TestCase):
             with self.subTest(document=document):
                 result = install_shared_header_assets(document, '1.2.3')
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
-                self.assertEqual(result.count('/js/site-header.js?v=3'), 1)
+                self.assertEqual(result.count('/js/site-header.js?v=5'), 1)
                 self.assertEqual(result.count('/assets/site-header.css?v=10'), 1)
+                self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
                 self.assertIn('data-app-version="2.0.0"', upgraded)
                 self.assertNotIn('data-app-version="1.2.3"', upgraded)
@@ -23,21 +24,25 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                      'site-directory-page', 'destination-directory-page']:
             with self.subTest(kind=kind):
                 result = page_shell('Test', 'Description', 'https://diveatlas.site/test/', '<main>Body</main>', kind)
-                self.assertIn('/js/site-header.js?v=3', result)
+                self.assertIn('/js/site-header.js?v=5', result)
                 self.assertIn('/assets/site-header.css?v=10', result)
                 if kind != 'seo-site-detail-layout':
                     self.assertIn('/js/seo-page-controls.js?v=29', result)
 
     def test_cached_generated_pages_upgrade_controller_contract(self):
-        old = ('<html><head></head><body>'
+        old = ('<html><head><link rel="stylesheet" href="/assets/seo-site-search.css?v=11">'
+               '<link rel="stylesheet" href="/assets/search-results-menu.css?v=0"></head><body>'
                '<script src="/js/seo-browse-header.js?v=2" defer></script>'
                '<script src="/js/seo-page-controls.js?v=24" defer></script>'
                '<script src="/js/seo-site-search.js?v=11" defer></script></body></html>')
         result = install_shared_header_assets(old, '1.2.3')
         self.assertNotIn('seo-browse-header.js', result)
         self.assertIn('seo-page-controls.js?v=29', result)
-        self.assertIn('seo-site-search.js?v=13', result)
-        self.assertEqual(result.count('/js/site-header.js?v=3'), 1)
+        self.assertIn('seo-site-search.js?v=16', result)
+        self.assertIn('seo-site-search.css?v=13', result)
+        self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
+        self.assertNotIn('search-results-menu.css?v=0', result)
+        self.assertEqual(result.count('/js/site-header.js?v=5'), 1)
 
     def test_cached_detail_pages_upgrade_glass_and_chart_assets(self):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo.css?v=200"></head>'

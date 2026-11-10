@@ -32,12 +32,6 @@
 .map-welcome-search:focus-within { outline: 2px solid var(--primary); outline-offset: -2px; }
 .map-welcome-search input { width: 100%; min-width: 0; min-height: 40px; padding: 8px 0; border: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; }
 .map-welcome .map-welcome-search input:focus-visible { outline: none; }
-.dive-search-modes { display: flex; flex: 0 0 auto; gap: 4px; padding: 8px; border-bottom: 1px solid var(--border-subtle); grid-column: 1 / -1; }
-.dive-search-modes button { min-height: 36px; padding: 6px 14px; border: 1px solid transparent; border-radius: var(--radius-control); background: transparent; color: var(--text-secondary); font: inherit; font-size: 13px; cursor: pointer; }
-.dive-search-modes button[aria-pressed="true"] { background: var(--panel-soft); border-color: var(--border-subtle); color: var(--text-primary); font-weight: 600; }
-.dive-search-modes button:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
-.dive-search-results.visible.is-area-search { display: flex; flex-direction: column; }
-.dive-search-results.is-area-search .dive-search-filter-controls { display: none !important; }
 .map-welcome-search { box-sizing: border-box; min-height: 44px; transition: border-color 160ms ease, background-color 160ms ease; }
 .map-welcome .temperature-select-hit-area { width: 100%; }
 .map-welcome .temperature-select-hit-area::after { right: 16px; color: var(--text-secondary); }

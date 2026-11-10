@@ -54,6 +54,7 @@
     href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css"
   />
 
+  <link rel="stylesheet" href="assets/search-results-menu.css?v=1">
   <style>
     :root {
       --map-safe-area-top: env(safe-area-inset-top, 0px);
@@ -3390,51 +3391,7 @@
       transform:translateY(-50%);
     }
 
-    .dive-search-filter-controls {
-      box-sizing:border-box;
-      min-width:0;
-      min-height:0;
-      max-height:100%;
-      overflow:auto;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      align-content:start;
-      padding:16px;
-      border-left:1px solid var(--line);
-      background:var(--panel-solid);
-    }
-    .dive-search-filter-controls[hidden] { display:none; }
-    .dive-search-filter-field { display:grid; min-width:0; gap:4px; color:var(--muted); font-size:10px; font-weight:650; }
-    .dive-search-filter-field:first-child { grid-column:1 / -1; }
-    .dive-search-filter-field select { box-sizing:border-box; width:100%; min-width:0; height:34px; padding:0 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); font:inherit; font-size:11px; }
-    /* Native dropdown scrollbars need an explicit scheme to follow the site's theme. */
-    .dive-search-filter-field select { color-scheme:light; scrollbar-width:thin; scrollbar-color:var(--faint) var(--panel-solid); }
-    [data-theme="dark"] .dive-search-filter-field select { color-scheme:dark; }
-    .dive-search-filter-field select option { background:var(--panel-solid); color:var(--text); }
-    .dive-search-filter-field select:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
-    .dive-filter-picker-wrap { position:relative; min-width:0; }
-    .dive-filter-picker { box-sizing:border-box; display:block; width:100%; min-width:0; height:34px; padding:0 28px 0 8px; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); font:inherit; font-size:11px; text-align:left; }
-    .dive-filter-picker-wrap.has-clear .dive-filter-picker { padding-right:54px; }
-    .dive-filter-picker-clear { position:absolute; top:50%; right:27px; display:grid; width:22px; height:22px; padding:0; place-items:center; transform:translateY(-50%); border:0; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
-    .dive-filter-picker-clear:hover { background:var(--panel-soft); color:var(--text); }
-    .dive-filter-picker-clear:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
-    .dive-filter-picker-clear[hidden] { display:none; }
-    .dive-filter-picker-clear svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
-    .dive-filter-picker-wrap::after { position:absolute; top:13px; right:10px; width:6px; height:6px; border-right:1.5px solid var(--text); border-bottom:1.5px solid var(--text); content:''; pointer-events:none; transform:rotate(45deg); }
-    .dive-filter-picker:focus-visible, .dive-filter-picker[aria-expanded="true"] { outline:2px solid var(--primary); outline-offset:1px; }
-    .dive-filter-options { position:fixed; z-index:1500; box-sizing:border-box; overflow:hidden; padding:6px 3px 6px 6px; border:1px solid var(--line); border-radius:10px; background:var(--panel-solid); color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,.2); font:inherit; font-size:12px; }
-    .dive-filter-options[hidden] { display:none; }
-    .dive-filter-options-scroll { position:relative; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--faint) var(--panel-solid); }
-    .dive-filter-options-scroll::-webkit-scrollbar { width:8px; }
-    .dive-filter-options-scroll::-webkit-scrollbar-track { background:var(--panel-solid); border-radius:999px; }
-    .dive-filter-options-scroll::-webkit-scrollbar-thumb { background:var(--faint); border:2px solid var(--panel-solid); border-radius:999px; }
-    .dive-filter-option { padding:8px; border-radius:6px; overflow-wrap:anywhere; cursor:pointer; }
-    .dive-filter-option:hover, .dive-filter-option.is-active { background:var(--panel-soft); color:var(--primary); }
-    .dive-filter-option[aria-selected="true"] { font-weight:700; }
-    .dive-search-filter-clear { grid-column:1 / -1; justify-self:start; padding:4px 0; border:0; background:transparent; color:var(--primary); font:inherit; font-size:10px; font-weight:700; cursor:pointer; }
-    .dive-search-filter-clear[hidden] { display:none; }
-    .dive-layer-filter-menu {
+    .dive-layer-filter-menu.dive-search-filter-controls {
       position:fixed;
       z-index:1450;
       width:min(180px, calc(100vw - 16px));
@@ -3452,188 +3409,6 @@
     .dive-layer-filter-close svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
     .dive-layer-filter-close:hover { background:var(--panel-soft); color:var(--text); }
     .dive-layer-filter-close:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
-
-    .dive-search-results {
-      display: none;
-      position:fixed;
-      z-index:1400;
-      box-sizing:border-box;
-      width:min(780px, calc(100vw - 24px));
-      max-height:min(440px, calc(100vh - 24px));
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel-solid);
-      box-shadow: 0 16px 44px rgba(0,0,0,.24);
-    }
-
-    .dive-search-results-scroll {
-      flex: 1 1 auto;
-      min-height: 0;
-      max-height: none;
-      margin-right: 6px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      touch-action: pan-y;
-      padding: 10px 6px 10px 10px;
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-      scrollbar-color: color-mix(in srgb, var(--muted) 52%, transparent) transparent;
-    }
-
-    .dive-search-results-scroll::-webkit-scrollbar {
-      width: 9px;
-    }
-
-    .dive-search-results-scroll::-webkit-scrollbar-track {
-      margin: 8px 0;
-      background: transparent;
-    }
-
-    .dive-search-results-scroll::-webkit-scrollbar-thumb {
-      border: 2px solid transparent;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--muted) 52%, transparent);
-      background-clip: content-box;
-    }
-
-    .dive-search-results.visible {
-      display: flex;
-      flex-direction:column;
-    }
-    .dive-search-results.mobile-search-collapsed { display:none !important; }
-    .dive-search-results-handle { display:none; }
-
-    .dive-search-results.visible.has-filters {
-      display:grid;
-      grid-template-columns:minmax(0, var(--search-results-candidate-width, 1fr)) minmax(0, var(--search-results-filter-width, 1fr));
-      /* The mode switch owns a real header row. Letting it consume the old
-         flexible body row collapses that row and paints it over the results. */
-      grid-template-rows:auto minmax(0, 1fr);
-    }
-    .dive-search-results.has-filters > .dive-search-modes { grid-column:1 / -1; grid-row:1; }
-    .dive-search-results.has-filters > .dive-search-results-scroll { grid-column:1; grid-row:2; }
-    .dive-search-results.has-filters > .dive-search-filter-controls { grid-column:2; grid-row:2; }
-
-    .dive-search-result {
-      width: 100%;
-      display: block;
-      padding: 10px 12px;
-      border: 0;
-      border-radius: 10px;
-      background: transparent;
-      color: var(--text);
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .dive-search-result:hover,
-    .dive-search-result.active {
-      background: var(--panel-soft);
-    }
-
-    .dive-search-result:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
-
-    .dive-search-load-more {
-      display: block;
-      width: 100%;
-      padding: 9px;
-      border: 0;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--muted);
-      font: inherit;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .dive-search-load-more:hover,
-    .dive-search-load-more:focus-visible {
-      background: var(--panel-soft);
-      color: var(--primary);
-    }
-    .dive-search-load-more:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
-
-    @media (max-width:720px) {
-      .dive-search-load-more { display:none; }
-      .dive-search-load-hint:not([hidden]) {
-        display:block;
-        padding:6px 8px 8px;
-        color:var(--muted);
-        font-size:10px;
-        font-weight:600;
-        text-align:center;
-      }
-    }
-    .dive-search-load-hint { display:none; }
-
-    .dive-search-result-name {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 12.5px;
-      font-weight: 760;
-      line-height: 1.3;
-    }
-
-    .dive-search-result-original {
-      overflow: hidden;
-      color: var(--muted);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 10px;
-      line-height: 1.25;
-    }
-
-    .dive-search-result-meta {
-      margin-top: 3px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: var(--muted);
-      font-size: 10.5px;
-      line-height: 1.3;
-    }
-
-    .dive-search-empty {
-      padding: 11px 10px;
-      color: var(--muted);
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .dive-search-suggestion[hidden] { display: none; }
-    .dive-search-suggestion {
-      padding: 2px 10px 3px;
-      border-top: 1px solid var(--line);
-    }
-    .dive-search-suggestion-button {
-      width: 100%;
-      min-height: 19px;
-      padding: 2px 8px;
-      border: 0;
-      border-radius: 7px;
-      background: transparent;
-      color: var(--muted);
-      font: inherit;
-      font-size: 11px;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .dive-search-suggestion-button {
-      font-weight: 300;
-      font-style: italic;
-    }
-    .dive-search-suggestion-button:hover {
-      background: var(--panel-soft);
-      color: var(--primary);
-    }
-    .dive-search-suggestion-button:focus-visible {
-      outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
-      outline-offset: -2px;
-    }
 
     .site-suggestion-modal[hidden] { display: none; }
     .site-photo-upload-modal [hidden] { display: none; }
@@ -5334,7 +5109,6 @@
       box-shadow: 0 0 0 2px rgba(47,129,247,.24);
     }
     .dive-search-input { font-size: 13px; font-weight: 400; }
-    .dive-search-result-name { font-weight: 600; }
 
     .bio-legend-title,
     .legend-label,
@@ -5780,11 +5554,6 @@
       margin: 0;
     }
 
-    .dive-search-results.visible.has-filters.is-stacked { grid-template-columns:minmax(0, 1fr); grid-template-rows:auto minmax(0, 1fr) minmax(0, 1fr); }
-    .dive-search-results.has-filters.is-stacked > .dive-search-filter-controls { grid-column:1; grid-row:3; }
-    .dive-search-results.is-stacked .dive-search-filter-controls { border-left:0; border-top:1px solid var(--line); }
-    .dive-search-results.is-filter-compact .dive-search-filter-controls { grid-template-columns:minmax(0, 1fr); }
-
     @media (max-width: 720px) {
       .top-menu-bar { justify-content: flex-start; }
       .top-menu-bar > .top-menu-brand { display: contents; }
@@ -5801,47 +5570,6 @@
         color:var(--muted);
         scale:1;
       }
-      #diveSearchResults {
-        transition:height .22s cubic-bezier(.22,1,.36,1);
-      }
-      #diveSearchResults.mobile-vertical-dragging { transition:none; }
-      #diveSearchResults.mobile-search-dismissing {
-        overflow:hidden;
-        pointer-events:none;
-      }
-      #diveSearchResultsScroll,
-      #diveSearchFilterControls { padding-bottom:26px; }
-      .dive-search-results-handle {
-        position:absolute;
-        z-index:4;
-        bottom:2px;
-        left:50%;
-        display:grid;
-        width:72px;
-        height:28px;
-        place-items:center;
-        padding:0;
-        transform:translateX(-50%);
-        border:0;
-        border-radius:999px;
-        background:transparent;
-        cursor:grab;
-        pointer-events:auto;
-        touch-action:none;
-        -webkit-tap-highlight-color:transparent;
-        user-select:none;
-      }
-      .dive-search-results-handle::before {
-        content:'';
-        width:36px;
-        height:4px;
-        border-radius:999px;
-        background:var(--muted);
-        /* Reduce the visual gap while preserving the handle's full touch target. */
-        transform:translateY(5px);
-        pointer-events:none;
-      }
-      .dive-search-results-handle:active { cursor:grabbing; }
       #topMenuSearchSlot {
         transition: width 400ms cubic-bezier(.4, 0, .2, 1), flex-basis 400ms cubic-bezier(.4, 0, .2, 1), flex-grow 400ms cubic-bezier(.4, 0, .2, 1);
       }
@@ -7408,8 +7136,8 @@
   <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=41">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
-<link rel="stylesheet" href="assets/map-welcome.css?v=1">
-<script src="/js/site-header.js?v=3" defer></script>
+<link rel="stylesheet" href="assets/map-welcome.css?v=2">
+<script src="/js/site-header.js?v=5" defer></script>
 <script type="module" src="/js/dive-site-reviewed-thumbnails.js"></script>
 </head>
 
@@ -7455,7 +7183,6 @@
             <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
-            <div class="dive-search-modes" role="group" aria-label="Search type"><button type="button" data-search-mode="areas"></button><button type="button" data-search-mode="sites"></button></div>
             <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"><div class="dive-search-load-hint" id="diveSearchLoadHint" hidden></div></div>
             <div class="dive-search-filter-controls" id="diveSearchFilterControls" hidden>
               <label class="dive-search-filter-field"><span id="diveSearchCountryLabel">Country</span><select id="diveSearchCountryFilter" aria-labelledby="diveSearchCountryLabel"><option value="">Any country</option></select></label>
@@ -8373,6 +8100,7 @@ ZSD·2016–2025</span></span>
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
     <script src="js/area-search.js?v=1"></script>
+    <script src="js/search-results-menu.js?v=1"></script>
     <script src="js/map-welcome.js?v=1"></script>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
@@ -11564,7 +11292,7 @@ ZSD·2016–2025</span></span>
   let diveSearchActiveIndex = -1;
   let diveSearchMatches = [];
   let diveSearchVisibleCount = 20;
-  const DIVE_SEARCH_PAGE_SIZE = 20;
+  const DIVE_SEARCH_PAGE_SIZE = window.DiveAtlasSearchResultsMenu.pageSize;
   let diveSearchRenderRequest = 0;
   // Both inputs share one results menu, renderer, pagination and keyboard state.
   let activeDiveSearchInput = null;
@@ -23507,218 +23235,37 @@ function closeShareDialog() {
 
   // Keep the hidden selects as the single filter data model and let both menus
   // render matching editors from those same options and selected values.
+  const searchResultsMenu = window.DiveAtlasSearchResultsMenu.create({
+    surface:els.diveSearchResults, scroll:els.diveSearchResultsScroll,
+    filterToggle:els.diveSearchFilterToggle, slot:topMenuSearchSlot,
+    getInput:currentDiveSearchInput,
+    onSelect:index => { const match = diveSearchMatches[index]; if (match != null) selectDiveSearchMatch(match); },
+    onLoadMore:() => loadMoreDiveSearchResults(),
+    onMode:mode => {
+      if (currentDiveSearchInput().id === 'mapWelcomeSearch') return;
+      headerSearchMode = mode; diveSearchFiltersOpen = false;
+      if (mode === 'areas') cancelDiveSearchPopup();
+      hideDiveSearchResults(); currentDiveSearchInput().focus({preventScroll:true});
+      renderDiveSearchResults({allowSameQueryRefresh:true});
+    }
+  });
+  const searchMenuMotion = searchResultsMenu.bindMobileHandle({
+    resultsHandle:els.diveSearchResultsHandle,
+    returnFocus:els.diveSearchToggle,
+    onDismiss:() => {
+      diveSearchFiltersOpen = false; updateDiveSearchFilterControls();
+      dismissDiveSearchResults(); setMobileSearchExpanded(false);
+    }
+  });
   let diveAllFilterPickers = [];
-  function createDiveFilterPicker(select, { id, labelledBy, mount = null, hideSelect = false }) {
-    const source = mount ? 'layer' : 'search';
-    const button = document.createElement('input');
-    button.type = 'text';
-    button.id = id;
-    button.className = 'dive-filter-picker';
-    button.autocomplete = 'off';
-    button.spellcheck = false;
-    button.setAttribute('role', 'combobox');
-    button.setAttribute('aria-haspopup', 'listbox');
-    button.setAttribute('aria-autocomplete', 'list');
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-labelledby', labelledBy);
-    button.setAttribute('placeholder', select.options[0]?.textContent || '');
-    const list = document.createElement('div');
-    list.id = `${id}Options`;
-    list.className = 'dive-filter-options';
-    list.dataset.filterSource = source;
-    const scroll = document.createElement('div');
-    scroll.className = 'dive-filter-options-scroll';
-    list.append(scroll);
-    list.hidden = true;
-    list.setAttribute('role', 'listbox');
-    list.setAttribute('aria-labelledby', labelledBy);
-    button.setAttribute('aria-controls', list.id);
-    const wrapper = document.createElement('div');
-    wrapper.className = 'dive-filter-picker-wrap';
-    if (hideSelect) {
-      select.hidden = true;
-      select.after(wrapper);
-    } else {
-      mount.append(wrapper);
-    }
-    const clearButton = document.createElement('button');
-    clearButton.type = 'button';
-    clearButton.className = 'dive-filter-picker-clear';
-    clearButton.setAttribute('aria-label', t('diveSearchFilterClear'));
-    clearButton.title = t('diveSearchFilterClear');
-    clearButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 4 8 8M12 4l-8 8"/></svg>';
-    clearButton.hidden = true;
-    wrapper.append(button, clearButton);
-    function syncClearButton() {
-      const hasContent = Boolean(button.value.trim() || select.value);
-      const clearLabel = t('diveSearchFilterClear');
-      clearButton.hidden = !hasContent;
-      clearButton.setAttribute('aria-label', clearLabel);
-      clearButton.title = clearLabel;
-      wrapper.classList.toggle('has-clear', hasContent);
-    }
-    // A body-level options popup avoids clipping in either filter-menu layout.
-    document.body.append(list);
-    let activeIndex = 0;
-    let visibleIndexes = [];
-    function close() {
-      list.hidden = true;
-      button.setAttribute('aria-expanded', 'false');
-      button.removeAttribute('aria-activedescendant');
-    }
-    function highlight(visibleIndex) {
-      activeIndex = Math.max(0, Math.min(visibleIndexes.length - 1, visibleIndex));
-      Array.from(scroll.children).forEach(option => option.classList.toggle('is-active', Number(option.dataset.optionIndex) === visibleIndexes[activeIndex]));
-      const option = scroll.querySelector(`[data-option-index="${visibleIndexes[activeIndex]}"]`);
-      if (option) {
-        button.setAttribute('aria-activedescendant', option.id);
-        // scrollIntoView also scrolls ancestors, which closes the popup.
-        const top = option.offsetTop;
-        if (top < scroll.scrollTop) scroll.scrollTop = top;
-        else if (top + option.offsetHeight > scroll.scrollTop + scroll.clientHeight) {
-          scroll.scrollTop = top + option.offsetHeight - scroll.clientHeight;
-        }
-      }
-    }
-    function choose(index) {
-      if (!Number.isInteger(index) || index < 0) return;
-      select.selectedIndex = index;
-      const selectedLabel = select.selectedOptions[0]?.textContent || '';
-      button.value = select.value ? selectedLabel : '';
-      button.placeholder = selectedLabel;
-      close();
-      syncClearButton();
-      select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
-      button.focus({ preventScroll:true });
-    }
-    function renderOptions(query = '') {
-      const normalizedQuery = query.trim().toLocaleLowerCase();
-      const matches = Array.from(select.options, (option, index) => ({
-        option,
-        index,
-        label: option.textContent.toLocaleLowerCase()
-      })).filter(({label}) => !normalizedQuery || label.includes(normalizedQuery));
-      if (normalizedQuery) {
-        matches.sort((a, b) => {
-          const aStartsWithQuery = a.label.startsWith(normalizedQuery);
-          const bStartsWithQuery = b.label.startsWith(normalizedQuery);
-          return Number(bStartsWithQuery) - Number(aStartsWithQuery) ||
-            a.option.textContent.localeCompare(b.option.textContent, currentLang, { sensitivity:'base' }) ||
-            a.index - b.index;
-        });
-      }
-      visibleIndexes = matches.map(({index}) => index);
-      scroll.replaceChildren(...visibleIndexes.map(index => {
-        const option = select.options[index];
-        const item = document.createElement('div');
-        item.id = `${list.id}-${index}`;
-        item.className = 'dive-filter-option';
-        item.dataset.optionIndex = String(index);
-        item.setAttribute('role', 'option');
-        item.setAttribute('aria-selected', String(option.selected));
-        const label = option.textContent;
-        if (normalizedQuery) {
-          const lowerLabel = label.toLocaleLowerCase();
-          let offset = 0;
-          let matchAt = lowerLabel.indexOf(normalizedQuery, offset);
-          while (matchAt !== -1) {
-            item.append(document.createTextNode(label.slice(offset, matchAt)));
-            const match = document.createElement('strong');
-            match.textContent = label.slice(matchAt, matchAt + normalizedQuery.length);
-            item.append(match);
-            offset = matchAt + normalizedQuery.length;
-            matchAt = lowerLabel.indexOf(normalizedQuery, offset);
-          }
-          item.append(document.createTextNode(label.slice(offset)));
-        } else {
-          item.textContent = label;
-        }
-        item.addEventListener('click', () => choose(index));
-        return item;
-      }));
-      if (!visibleIndexes.length) {
-        const empty = document.createElement('div');
-        empty.className = 'dive-filter-option';
-        empty.setAttribute('aria-disabled', 'true');
-        empty.textContent = 'No matching options';
-        scroll.append(empty);
-      }
-    }
-    function positionList() {
-      const rect = button.getBoundingClientRect();
-      const below = window.innerHeight - rect.bottom - 12;
-      const above = rect.top - 12;
-      const upwards = below < 160 && above > below;
-      const height = Math.min(280, Math.max(40, upwards ? above : below));
-      list.style.width = `${Math.min(Math.max(rect.width, 180), window.innerWidth - 16)}px`;
-      list.style.left = `${Math.max(8, Math.min(rect.left, window.innerWidth - parseFloat(list.style.width) - 8))}px`;
-      list.style.maxHeight = `${height}px`;
-      // Reserve the shell's padding and border so the scrollbar stays inside its corners.
-      scroll.style.maxHeight = `${height - 14}px`;
-      list.style.top = upwards ? 'auto' : `${rect.bottom + 4}px`;
-      list.style.bottom = upwards ? `${window.innerHeight - rect.top + 4}px` : 'auto';
-    }
-    function open() {
-      diveAllFilterPickers.forEach(picker => picker.close());
-      renderOptions(button.value);
-      positionList();
-      list.hidden = false;
-      button.setAttribute('aria-expanded', 'true');
-      const selectedVisibleIndex = visibleIndexes.indexOf(Math.max(0, select.selectedIndex));
-      highlight(selectedVisibleIndex >= 0 ? selectedVisibleIndex : 0);
-    }
-    button.addEventListener('click', open);
-    button.addEventListener('input', () => {
-      syncClearButton();
-      if (list.hidden) open();
-      else { renderOptions(button.value); positionList(); highlight(0); }
-      if (source === 'layer') updateDiveSearchFilterControls();
-      else renderDiveSearchResults({ allowSameQueryRefresh:true });
+  function createDiveFilterPicker(select, options) {
+    return window.DiveAtlasSearchResultsMenu.createFilterPicker(select, {
+      ...options,
+      getPeers:() => diveAllFilterPickers,
+      getClearLabel:() => t('diveSearchFilterClear'),
+      getLanguage:() => currentLang,
+      onDraft:source => source === 'layer' ? updateDiveSearchFilterControls() : renderDiveSearchResults({allowSameQueryRefresh:true})
     });
-    button.addEventListener('focus', () => button.select());
-    button.addEventListener('keydown', event => {
-      if (event.key === 'Tab') { close(); return; }
-      if (event.key === 'Escape') {
-        if (!list.hidden) {
-          event.preventDefault(); event.stopPropagation();
-          button.value = select.value ? (select.selectedOptions[0]?.textContent || '') : '';
-          syncClearButton();
-          close();
-        }
-        return;
-      }
-      if (['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter'].includes(event.key)) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (list.hidden) { open(); return; }
-        if (event.key === 'Enter' && visibleIndexes.length) choose(visibleIndexes[activeIndex]);
-        else highlight(event.key === 'Home' ? 0 : event.key === 'End' ? visibleIndexes.length - 1 : activeIndex + (event.key === 'ArrowDown' ? 1 : -1));
-      }
-    });
-    button.addEventListener('blur', () => close());
-    clearButton.addEventListener('mousedown', event => event.preventDefault());
-    clearButton.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopPropagation();
-      select.value = '';
-      button.value = '';
-      close();
-      syncClearButton();
-      select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
-      button.focus({ preventScroll:true });
-    });
-    // Retain combobox focus while clicking or dragging inside its popup.
-    list.addEventListener('mousedown', event => {
-      if (event.target.closest('.dive-filter-option')) event.preventDefault();
-    });
-    document.addEventListener('pointerdown', event => {
-      if (!button.contains(event.target) && !list.contains(event.target)) close();
-    });
-    window.addEventListener('resize', close);
-    document.addEventListener('scroll', event => {
-      if (!list.contains(event.target)) close();
-    }, true);
-    return { select, input:button, close, sync() { const selected = select.selectedOptions[0]?.textContent || ''; if (document.activeElement !== button) button.value = select.value ? selected : ''; button.placeholder = selected; syncClearButton(); } };
   }
 
   const diveFilterSelects = [els.diveSearchCountryFilter, els.diveSearchDifficultyFilter, els.diveSearchFeatureFilter];
@@ -23833,9 +23380,7 @@ function closeShareDialog() {
 
   function updateDiveSearchFilterControls() {
     diveAllFilterPickers.forEach(picker => picker.sync());
-    diveFilterPickers.forEach(picker => {
-      if (!diveSearchFiltersOpen) picker.close();
-    });
+    searchResultsMenu.syncFilters({open:diveSearchFiltersOpen,active:hasActiveDiveSearchFilters(),pickers:diveFilterPickers});
     diveLayerFilterPickers.forEach(picker => {
       if (!diveLayerFiltersOpen) picker.close();
     });
@@ -23850,14 +23395,8 @@ function closeShareDialog() {
     els.diveLegendFilterClear.title = clearLabel;
     els.diveLegendFilterClear.setAttribute('aria-label', clearLabel);
     els.diveLayerFilterMenu.setAttribute('aria-label', t('diveSearchFilters'));
-    els.diveSearchFilterToggle.setAttribute('aria-expanded', String(diveSearchFiltersOpen));
     els.diveLegendFilterToggle.setAttribute('aria-expanded', String(diveLayerFiltersOpen));
-    els.diveSearchFilterControls.hidden = !diveSearchFiltersOpen;
     els.diveLayerFilterMenu.hidden = !diveLayerFiltersOpen;
-    els.diveSearchResults.classList.toggle('has-filters', diveSearchFiltersOpen);
-    // The search popup is portaled outside :focus-within; retain its anchor while open.
-    topMenuSearchSlot.classList.toggle('has-search-filters', diveSearchFiltersOpen);
-    els.diveSearchFilterClear.hidden = !active;
     els.diveLayerFilterClear.hidden = !active;
   }
 
@@ -23901,57 +23440,14 @@ function closeShareDialog() {
   }
 
   function positionDiveSearchFlyout() {
-    if (currentDiveSearchInput() !== els.diveSearchInput) {
-      const rect = currentDiveSearchInput().closest('.map-welcome-search').getBoundingClientRect();
-      const below = window.innerHeight - rect.bottom - 20, above = rect.top - 20;
-      const opensBelow = below >= 180 || below >= above;
-      Object.assign(els.diveSearchResults.style, {
-        left:`${Math.max(8,rect.left)}px`,width:`${Math.min(rect.width,window.innerWidth - 16)}px`,
-        top:opensBelow ? `${rect.bottom + 8}px` : 'auto',
-        bottom:opensBelow ? 'auto' : `${window.innerHeight - rect.top + 8}px`,
-        maxHeight:`${Math.max(60,Math.min(440,opensBelow ? below : above))}px`
-      });
-      els.diveSearchResults.style.removeProperty('height');return;
-    }
-    els.diveSearchResults.style.bottom = 'auto';
-    const rect = els.diveSearchBox.getBoundingClientRect();
-    const filtersOpen = diveSearchFiltersOpen;
-    const boxStyle = getComputedStyle(els.diveSearchBox);
-    const searchDividerStyle = getComputedStyle(els.diveSearchBox, '::after');
-    const mobileLayout = mobileSearchQuery.matches;
+    const inline = currentDiveSearchInput() !== els.diveSearchInput;
     updateDiveSearchLoadHint();
-    const dividerOffset = Math.max(0,
-      rect.width - parseFloat(boxStyle.borderRightWidth) - parseFloat(searchDividerStyle.right) - parseFloat(searchDividerStyle.width)
-    );
-    const availableFilterWidth = Math.max(0, window.innerWidth - rect.left - dividerOffset - 12);
-    const filterWidth = mobileLayout
-      ? availableFilterWidth
-      : Math.min(360, availableFilterWidth) * 0.6;
-    const stacked = filtersOpen && filterWidth < 200 && !mobileLayout;
-    const minimumMobileCandidateWidth = 250;
-    const candidateBaseWidth = filtersOpen ? dividerOffset : rect.width;
-    const candidateExpansion = mobileLayout && (!filtersOpen || !stacked)
-      ? Math.min(Math.max(0, minimumMobileCandidateWidth - candidateBaseWidth), Math.max(0, rect.left - 12))
-      : 0;
-    const candidatePaneWidth = candidateBaseWidth + candidateExpansion;
-    els.diveSearchResults.classList.toggle('is-stacked', stacked);
-    els.diveSearchResults.classList.toggle('is-filter-compact', filtersOpen && !stacked && filterWidth < 300);
-    const top = Math.max(12, Math.min(rect.bottom + 8, window.innerHeight - 180));
-    if (filtersOpen && !stacked) {
-      // On phones, widen candidates to the left while keeping the divider anchored to the search bar.
-      els.diveSearchResults.style.setProperty('--search-results-candidate-width', `${Math.max(0, candidatePaneWidth - 1)}px`);
-      els.diveSearchResults.style.setProperty('--search-results-filter-width', `${filterWidth}px`);
-      els.diveSearchResults.style.width = `${candidatePaneWidth + filterWidth + 1}px`;
-    } else {
-      els.diveSearchResults.style.removeProperty('--search-results-candidate-width');
-      els.diveSearchResults.style.removeProperty('--search-results-filter-width');
-      els.diveSearchResults.style.width = `${mobileLayout ? candidatePaneWidth : rect.width}px`;
-    }
-    els.diveSearchResults.style.left = `${rect.left - candidateExpansion}px`;
-    els.diveSearchResults.style.top = `${top}px`;
-    const availableHeight = Math.max(0, window.innerHeight - top - 12);
-    els.diveSearchResults.style.maxHeight = `${Math.min(440, availableHeight)}px`;
-    els.diveSearchResults.style.removeProperty('height');
+    searchResultsMenu.position({
+      anchor:inline ? currentDiveSearchInput().closest('.map-welcome-search') : els.diveSearchBox,
+      inline,
+      filtersOpen:diveSearchFiltersOpen,
+      focused:topMenuSearchSlot.contains(document.activeElement) || els.diveSearchResults.contains(document.activeElement) || topMenuSearchSlot.classList.contains('is-search-focus-retained')
+    });
   }
 
   function diveSearchFilterDrafts() {
@@ -23964,32 +23460,7 @@ function closeShareDialog() {
     });
   }
 
-  function highlightDiveSearchText(value, queries) {
-    const text = String(value || '');
-    const terms = queries.map(query => query.trim()).filter(Boolean);
-    if (!terms.length) return escapeHtml(text);
-    const lowerText = text.toLocaleLowerCase();
-    const matches = [];
-    terms.forEach(term => {
-      const lowerTerm = term.toLocaleLowerCase();
-      let fromIndex = 0;
-      let matchAt = lowerText.indexOf(lowerTerm, fromIndex);
-      while (matchAt !== -1) {
-        matches.push({ start:matchAt, end:matchAt + lowerTerm.length });
-        fromIndex = matchAt + lowerTerm.length;
-        matchAt = lowerText.indexOf(lowerTerm, fromIndex);
-      }
-    });
-    matches.sort((a, b) => a.start - b.start || b.end - a.end);
-    let html = '';
-    let offset = 0;
-    matches.forEach(({start, end}) => {
-      if (start < offset) return;
-      html += `${escapeHtml(text.slice(offset, start))}<strong>${escapeHtml(text.slice(start, end))}</strong>`;
-      offset = end;
-    });
-    return html + escapeHtml(text.slice(offset));
-  }
+  const highlightDiveSearchText = window.DiveAtlasSearchResultsMenu.highlight;
 
   function diveSiteMatchesActiveFilters(site) {
     const country = els.diveSearchCountryFilter.value;
@@ -24061,56 +23532,8 @@ function closeShareDialog() {
     els.diveSearchResults.classList.add('visible');
   }
 
-  function cancelDiveSearchResultsDismissal() {
-    const surface = els.diveSearchResults;
-    const dismissal = surface?._diveSearchDismissal;
-    if (dismissal) {
-      clearTimeout(dismissal.timer);
-      surface.removeEventListener('transitionend', dismissal.onTransitionEnd);
-      surface.style.height = dismissal.previousHeight;
-      surface.style.maxHeight = dismissal.previousMaxHeight;
-      delete surface._diveSearchDismissal;
-    }
-    surface?.classList.remove('mobile-search-dismissing');
-  }
-
-  function animateDiveSearchResultsDismissal(onDismiss) {
-    const surface = els.diveSearchResults;
-    if (surface._diveSearchDismissal) return;
-    if (!surface.classList.contains('visible') ||
-        !window.matchMedia('(max-width:720px)').matches ||
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      onDismiss();
-      return;
-    }
-
-    const previousHeight = surface.style.height;
-    const previousMaxHeight = surface.style.maxHeight;
-    const startHeight = surface.getBoundingClientRect().height;
-    cancelDiveSearchResultsDismissal();
-    surface.classList.remove('mobile-vertical-dragging');
-    surface.style.maxHeight = 'none';
-    surface.style.height = `${startHeight}px`;
-    // Keep the flyout visible while its height contracts; removing `visible`
-    // first would skip the transition and make outside taps feel abrupt.
-    void surface.offsetHeight;
-    surface.classList.add('mobile-search-dismissing');
-    surface.style.height = '0px';
-
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      cancelDiveSearchResultsDismissal();
-      onDismiss();
-    };
-    const onTransitionEnd = event => {
-      if (event.target === surface && event.propertyName === 'height') finish();
-    };
-    const timer = window.setTimeout(finish, 300);
-    surface._diveSearchDismissal = { timer, onTransitionEnd, previousHeight, previousMaxHeight };
-    surface.addEventListener('transitionend', onTransitionEnd);
-  }
+  function cancelDiveSearchResultsDismissal() { searchMenuMotion.cancel(); }
+  function animateDiveSearchResultsDismissal(onDismiss) { searchMenuMotion.dismiss(onDismiss); }
 
   function clearDiveSearch({ focus = false } = {}) {
     clearTimeout(diveSearchTimer);
@@ -24136,13 +23559,7 @@ function closeShareDialog() {
       els.diveSearchInput.setAttribute('aria-label',els.diveSearchInput.placeholder);
     }
     els.diveSearchResultsScroll.setAttribute('aria-label',areaMode ? text[0] : t('diveSearchResults'));
-    els.diveSearchResults.querySelector('.dive-search-modes').setAttribute('aria-label',`${text[0]} / ${text[1]}`);
-    els.diveSearchResults.querySelectorAll('[data-search-mode]').forEach(button => {
-      button.textContent = text[button.dataset.searchMode === 'areas' ? 0 : 1];
-      button.setAttribute('aria-pressed',String(button.dataset.searchMode === currentDiveSearchMode()));
-      button.hidden = currentDiveSearchInput().id === 'mapWelcomeSearch' && button.dataset.searchMode === 'sites';
-    });
-    els.diveSearchResults.classList.toggle('is-area-search',areaMode);
+    searchResultsMenu.updateModes({mode:currentDiveSearchMode(), labels:text.slice(0,2), areasOnly:currentDiveSearchInput().id === 'mapWelcomeSearch'});
     const renderRequest = ++diveSearchRenderRequest;
 
     const query =
@@ -24187,16 +23604,14 @@ function closeShareDialog() {
     els.diveSearchLoadHint.hidden = true;
 
     const showLoading = () => {
-      els.diveSearchResultsScroll.innerHTML =
-        `<div class="dive-search-empty">${escapeHtml(t('diveLoading'))}</div>`;
+      searchResultsMenu.empty(t('diveLoading'), true);
       els.diveSearchResults.setAttribute('aria-busy', 'true');
       showDiveSearchResults();
       currentDiveSearchInput().setAttribute('aria-expanded', 'true');
     };
     const showUnavailable = () => {
       if (renderRequest !== diveSearchRenderRequest) return;
-      els.diveSearchResultsScroll.innerHTML =
-        `<div class="dive-search-empty">${escapeHtml(t('divePartial'))}</div>`;
+      searchResultsMenu.empty(t('divePartial'));
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       showDiveSearchResults();
       currentDiveSearchInput().setAttribute('aria-expanded', 'true');
@@ -24259,8 +23674,7 @@ function closeShareDialog() {
     els.diveSearchResultsScroll.setAttribute('aria-setsize', String(diveSearchMatches.length));
 
     if (!query && !activeFilters) {
-      els.diveSearchResultsScroll.innerHTML =
-        `<div class="dive-search-empty">${escapeHtml(t('diveSearchFilterChoose'))}</div>`;
+      searchResultsMenu.empty(t('diveSearchFilterChoose'));
       showDiveSearchResults();
       return;
     }
@@ -24268,10 +23682,7 @@ function closeShareDialog() {
     if (!diveSearchMatches.length) {
       diveSearchActiveIndex = -1;
       currentDiveSearchInput().removeAttribute('aria-activedescendant');
-      els.diveSearchResultsScroll.innerHTML =
-        `<div class="dive-search-empty">` +
-        `${escapeHtml(t('diveSearchEmpty'))}` +
-        `</div>`;
+      searchResultsMenu.empty(t('diveSearchEmpty'));
 
       showDiveSearchResults();
       if (query) {
@@ -24283,43 +23694,14 @@ function closeShareDialog() {
       return;
     }
 
-    const visibleMatches = diveSearchMatches.slice(0, diveSearchVisibleCount);
-    const resultHighlightQueries = [query, ...diveSearchFilterDrafts()];
-    els.diveSearchResultsScroll.innerHTML =
-      visibleMatches.map((siteIndex, resultIndex) => {
-        const site = DIVE_SITES[siteIndex];
-        const localizedName = getDiveSiteDisplayName(site);
-        const name = localizedName.displayName;
-        const meta = diveSearchMeta(site);
-
-        return (
-          `<button class="dive-search-result" ` +
-          `type="button" ` +
-          `id="dive-search-result-${resultIndex}" ` +
-          `data-site-index="${siteIndex}" ` +
-          `data-result-index="${resultIndex}" ` +
-          `data-search-query="${escapeHtml(query)}" ` +
-          `aria-posinset="${resultIndex + 1}" ` +
-          `aria-setsize="${diveSearchMatches.length}" ` +
-          `aria-selected="${resultIndex === diveSearchActiveIndex}" ` +
-          `role="option">` +
-            `<div class="dive-search-result-name">` +
-              `${highlightDiveSearchText(name, resultHighlightQueries)}` +
-              diveSiteNameBadge(localizedName) +
-            `</div>` +
-            (localizedName.originalName && localizedName.originalName !== name
-              ? `<div class="dive-search-result-original">${highlightDiveSearchText(localizedName.originalName, resultHighlightQueries)}</div>`
-              : '') +
-            (meta
-              ? `<div class="dive-search-result-meta">` +
-                `${highlightDiveSearchText(meta, resultHighlightQueries)}` +
-                `</div>`
-              : '') +
-          `</button>`
-        );
-    }).join('') + (diveSearchMatches.length > diveSearchVisibleCount
-      ? `<button class="dive-search-load-more" type="button" data-search-load-more>${escapeHtml(t('loadMore'))}</button>`
-      : '');
+    searchResultsMenu.render({
+      query, total:diveSearchMatches.length, activeIndex:diveSearchActiveIndex,
+      moreLabel:t('loadMore'), queries:[query, ...diveSearchFilterDrafts()],
+      items:diveSearchMatches.slice(0,diveSearchVisibleCount).map(siteIndex => {
+        const site = DIVE_SITES[siteIndex], localized = getDiveSiteDisplayName(site);
+        return {name:localized.displayName, originalName:localized.originalName !== localized.displayName ? localized.originalName : '', badgeHtml:diveSiteNameBadge(localized), meta:diveSearchMeta(site), attributes:{'site-index':siteIndex}};
+      })
+    });
 
     showDiveSearchResults();
     if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
@@ -24342,10 +23724,11 @@ function closeShareDialog() {
     els.diveSearchResults.setAttribute('aria-busy','false');
     currentDiveSearchInput().setAttribute('aria-expanded','true');
     els.diveSearchResultsScroll.setAttribute('aria-setsize',String(diveSearchMatches.length));
-    els.diveSearchResultsScroll.innerHTML = diveSearchMatches.slice(0,diveSearchVisibleCount).map((area,index) =>
-      `<button type="button" class="dive-search-result" role="option" id="dive-search-result-${index}" data-result-index="${index}" data-search-query="${escapeHtml(query)}" data-area-key="${escapeHtml(area.key)}" aria-selected="${index === diveSearchActiveIndex}" aria-posinset="${index + 1}" aria-setsize="${diveSearchMatches.length}"><div class="dive-search-result-name">${highlightDiveSearchText(area.name,[query])}</div><div class="dive-search-result-meta">${escapeHtml([text[area.type === 'country' ? 2 : area.type === 'ocean' ? 4 : 3],area.country,`${text[7]}: ${new Intl.NumberFormat(currentLang).format(area.siteIndices.length)}`].filter(Boolean).join(' · '))}</div></button>`
-    ).join('') || `<div class="dive-search-empty">${escapeHtml(text[5])}</div>`;
-    if (diveSearchMatches.length > diveSearchVisibleCount) els.diveSearchResultsScroll.insertAdjacentHTML('beforeend',`<button class="dive-search-load-more" type="button" data-search-load-more>${escapeHtml(t('loadMore'))}</button>`);
+    if (!diveSearchMatches.length) searchResultsMenu.empty(text[5]);
+    else searchResultsMenu.render({
+      query, total:diveSearchMatches.length, activeIndex:diveSearchActiveIndex, moreLabel:t('loadMore'),
+      items:diveSearchMatches.slice(0,diveSearchVisibleCount).map(area => ({name:area.name, meta:[text[area.type === 'country' ? 2 : area.type === 'ocean' ? 4 : 3],area.country,`${text[7]}: ${new Intl.NumberFormat(currentLang).format(area.siteIndices.length)}`].filter(Boolean).join(' · '), attributes:{'area-key':area.key}}))
+    });
     els.diveSearchSuggestion.hidden = true;
     els.diveSearchResultsScroll.append(els.diveSearchLoadHint);
     updateDiveSearchLoadHint();showDiveSearchResults();
@@ -24540,37 +23923,7 @@ function closeShareDialog() {
   }
 
   function setDiveSearchActive(next) {
-    const availableCount = Math.min(diveSearchVisibleCount, diveSearchMatches.length);
-    if (!availableCount) {
-      diveSearchActiveIndex = -1;
-      currentDiveSearchInput().removeAttribute('aria-activedescendant');
-      return;
-    }
-
-    diveSearchActiveIndex = Math.max(
-      0,
-      Math.min(next, availableCount - 1)
-    );
-
-    const buttons =
-      els.diveSearchResults
-        .querySelectorAll('.dive-search-result');
-
-    buttons.forEach((button, index) => {
-      const selected = Number(button.dataset.resultIndex) === diveSearchActiveIndex;
-      button.classList.toggle('active', selected);
-      button.setAttribute('aria-selected', String(selected));
-    });
-
-    const activeOption = els.diveSearchResults.querySelector(
-      `[data-result-index="${diveSearchActiveIndex}"]`
-    );
-    if (activeOption) {
-      currentDiveSearchInput().setAttribute('aria-activedescendant', activeOption.id);
-      activeOption.scrollIntoView({ block: 'nearest' });
-    } else {
-      currentDiveSearchInput().removeAttribute('aria-activedescendant');
-    }
+    diveSearchActiveIndex = searchResultsMenu.setActive(next);
   }
 
   let diveSearchQuery = '';
@@ -24578,84 +23931,14 @@ function closeShareDialog() {
 
   function loadMoreDiveSearchResults() {
     if (diveSearchVisibleCount >= diveSearchMatches.length) return;
-    const resultsScrollTop = els.diveSearchResultsScroll.scrollTop;
-    const preserveLoadMoreFocus =
-      document.activeElement ===
-      els.diveSearchResults.querySelector('[data-search-load-more]');
-    diveSearchVisibleCount = Math.min(
-      diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,
-      diveSearchMatches.length
-    );
-    // Rebuild the current query's list while retaining the larger visible count.
-    renderDiveSearchResults({ forceRender:true });
-    if (preserveLoadMoreFocus) {
-      const nextFocusTarget =
-        els.diveSearchResults.querySelector('[data-search-load-more]') ||
-        els.diveSearchResults.querySelector(
-          `[data-result-index="${diveSearchVisibleCount - 1}"]`
-        );
-      nextFocusTarget?.focus({ preventScroll: true });
-    }
-    if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
-    // Re-rendering replaces the list contents, which otherwise resets the
-    // scroll container even though the user's current results remain valid.
-    els.diveSearchResultsScroll.scrollTop = resultsScrollTop;
+    searchResultsMenu.loadMore(() => {
+      diveSearchVisibleCount = Math.min(diveSearchVisibleCount + DIVE_SEARCH_PAGE_SIZE,diveSearchMatches.length);
+      renderDiveSearchResults({forceRender:true});
+    });
   }
 
-  let diveSearchPullLastY = null;
-  let diveSearchPullDistance = 0;
-  let diveSearchPullLoaded = false;
-  const DIVE_SEARCH_PULL_LOAD_DISTANCE = 96;
 
-  els.diveSearchResultsScroll.addEventListener('touchstart', event => {
-    if (
-      window.innerWidth > 720 ||
-      !els.diveSearchResults.classList.contains('visible') ||
-      event.touches.length !== 1 ||
-      diveSearchVisibleCount >= diveSearchMatches.length
-    ) {
-      diveSearchPullLastY = null;
-      return;
-    }
-    diveSearchPullLastY = event.touches[0].clientY;
-    diveSearchPullDistance = 0;
-    diveSearchPullLoaded = false;
-  }, { passive:true });
-
-  els.diveSearchResultsScroll.addEventListener('touchmove', event => {
-    if (diveSearchPullLastY === null || diveSearchPullLoaded || event.touches.length !== 1) return;
-    const currentY = event.touches[0].clientY;
-    const upwardMovement = diveSearchPullLastY - currentY;
-    diveSearchPullLastY = currentY;
-    if (upwardMovement <= 0) {
-      diveSearchPullDistance = 0;
-      return;
-    }
-
-    const atBottom =
-      els.diveSearchResultsScroll.scrollTop + els.diveSearchResultsScroll.clientHeight >=
-      els.diveSearchResultsScroll.scrollHeight - 2;
-    if (!atBottom) {
-      diveSearchPullDistance = 0;
-      return;
-    }
-
-    // Count only the extra upward drag after the scroll area reaches its end,
-    // so a normal long swipe through the results does not page unexpectedly.
-    diveSearchPullDistance += upwardMovement;
-    if (diveSearchPullDistance >= DIVE_SEARCH_PULL_LOAD_DISTANCE) {
-      diveSearchPullLoaded = true;
-      loadMoreDiveSearchResults();
-    }
-  }, { passive:true });
-
-  const resetDiveSearchPull = () => {
-    diveSearchPullLastY = null;
-    diveSearchPullDistance = 0;
-    diveSearchPullLoaded = false;
-  };
-  els.diveSearchResultsScroll.addEventListener('touchend', resetDiveSearchPull, { passive:true });
-  els.diveSearchResultsScroll.addEventListener('touchcancel', resetDiveSearchPull, { passive:true });
+  searchResultsMenu.bindPullPagination(() => diveSearchVisibleCount < diveSearchMatches.length);
 
   /* ---------- place selection ---------- */
 
@@ -30415,25 +29698,7 @@ function closeShareDialog() {
     });
   }
 
-  bindMobileVerticalDragHandle(
-    els.diveSearchResultsHandle,
-    els.diveSearchResults,
-    () => {
-      if (diveSearchFiltersOpen) {
-        diveSearchFiltersOpen = false;
-        updateDiveSearchFilterControls();
-      }
-      dismissDiveSearchResults();
-      setMobileSearchExpanded(false);
-    },
-    {
-      tapToDismiss:false,
-      upwardOnlyDrag:true,
-      dismissOnUpwardDrag:true,
-      // Require a deliberate upward pull before closing the results sheet.
-      dismissThreshold:72
-    }
-  );
+
 
   function syncDiveRatingPopupForViewport(popup) {
     // The same reusable rating popup is tagged differently when opened from a
@@ -33001,84 +32266,18 @@ function closeShareDialog() {
         renderDiveSearchResults();
         if (currentDiveSearchInput().value.trim() !== diveSearchQuery) return;
       }
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-
-        if (
-          !els.diveSearchResults.classList
-            .contains('visible')
-        ) {
-          renderDiveSearchResults();
-        }
-
-        if (!diveSearchMatches.length) {
-          return;
-        }
-        const visibleMatchCount = Math.min(diveSearchVisibleCount, diveSearchMatches.length);
-        if (diveSearchActiveIndex < visibleMatchCount - 1) {
-          setDiveSearchActive(diveSearchActiveIndex + 1);
-        } else if (diveSearchVisibleCount < diveSearchMatches.length) {
-          const previousActive = diveSearchActiveIndex;
-          loadMoreDiveSearchResults();
-          setDiveSearchActive(previousActive + 1);
-        }
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        if (diveSearchActiveIndex > 0) setDiveSearchActive(diveSearchActiveIndex - 1);
-      } else if (
-        event.key === 'Enter' &&
-        diveSearchActiveIndex >= 0
-      ) {
-        event.preventDefault();
-
-        const siteIndex =
-          diveSearchMatches[diveSearchActiveIndex];
-
-        if (siteIndex != null) selectDiveSearchMatch(siteIndex);
-      } else if (event.key === 'Escape') {
-        if (els.diveSearchResults.classList.contains('visible')) {
-          event.preventDefault();event.stopPropagation();
-          clearTimeout(diveSearchTimer);diveSearchRenderRequest++;
+      searchResultsMenu.keydown(event, {
+        activeIndex:diveSearchActiveIndex, visibleCount:Math.min(diveSearchVisibleCount,diveSearchMatches.length), total:diveSearchMatches.length,
+        setActive:setDiveSearchActive,
+        open:() => { if (!els.diveSearchResults.classList.contains('visible')) renderDiveSearchResults(); },
+        dismiss:() => {
+          clearTimeout(diveSearchTimer); diveSearchRenderRequest++;
           dismissDiveSearchResults();
           if (currentDiveSearchInput() === els.diveSearchInput) els.diveSearchInput.blur();
         }
-      }
+      });
   }
   els.diveSearchInput.addEventListener('keydown',handleDiveSearchKey);
-
-  // Result selection should not transfer DOM focus away from the search input.
-  // Filter controls are intentionally excluded so native and custom selectors remain usable.
-  els.diveSearchResults.addEventListener('mousedown', event => {
-    if (event.target.closest('.dive-search-result, [data-search-load-more]')) {
-      event.preventDefault();
-    }
-  });
-
-  els.diveSearchResults.addEventListener(
-    'click',
-    event => {
-      const mode = event.target.closest('[data-search-mode]')?.dataset.searchMode;
-      if (mode) {
-        if (currentDiveSearchInput().id === 'mapWelcomeSearch') return;
-        headerSearchMode = mode;diveSearchFiltersOpen = false;
-        if (mode === 'areas') cancelDiveSearchPopup();
-        hideDiveSearchResults();currentDiveSearchInput().focus({preventScroll:true});
-        renderDiveSearchResults({allowSameQueryRefresh:true});return;
-      }
-      if (event.target.closest('[data-search-load-more]')) {
-        loadMoreDiveSearchResults();
-        return;
-      }
-      const button =
-        event.target.closest('.dive-search-result');
-
-      if (!button) return;
-      if (button.dataset.searchQuery !== currentDiveSearchInput().value.trim()) return;
-
-      const match = diveSearchMatches[Number(button.dataset.resultIndex)];
-      if (match != null) selectDiveSearchMatch(match);
-    }
-  );
 
   els.diveSearchClear.addEventListener(
     'click',

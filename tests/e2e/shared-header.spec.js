@@ -181,7 +181,7 @@ test(`welcome searches inline and selects on the real map with ${selection}`, as
     await expect(page.locator('#diveSearchResults')).toBeHidden();
     await expect(page.locator('#mapWelcome')).toBeVisible();
     await input.press('ArrowDown');
-    await expect(input).toHaveAttribute('aria-activedescendant','dive-search-result-0');
+    await expect(input).toHaveAttribute('aria-activedescendant','diveSearchResults-option-0');
     await input.press('Enter');
   } else await first.click();
   await expect(page.locator('#diveSearchResults')).toBeHidden();
@@ -408,7 +408,7 @@ test('header destination selection keeps native site details separate from guide
 });
 
 for (const viewport of [{width:1280,height:900},{width:900,height:700},{width:681,height:866},{width:390,height:844}]) {
-test(`search mode bar stays above results and filters at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+test(`search mode bar stays compact above the left results pane at ${viewport.width}x${viewport.height}`, async ({ page }) => {
   await page.setViewportSize(viewport);
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
@@ -423,7 +423,7 @@ test(`search mode bar stays above results and filters at ${viewport.width}x${vie
   const shell = await panel.boundingBox();
   // Visibility alone misses grid items overflowing a collapsed first row.
   expect(results.y).toBeGreaterThanOrEqual(bar.y + bar.height - 1);
-  expect(filters.y).toBeGreaterThanOrEqual(bar.y + bar.height - 1);
+  expect(bar.height).toBeLessThanOrEqual(42);
   for (const box of [bar,results,filters]) {
     expect(box.x).toBeGreaterThanOrEqual(shell.x);
     expect(box.x + box.width).toBeLessThanOrEqual(shell.x + shell.width + 1);
@@ -431,7 +431,11 @@ test(`search mode bar stays above results and filters at ${viewport.width}x${vie
   }
   const stacked = await panel.evaluate(element => element.classList.contains('is-stacked'));
   if (stacked) expect(filters.y).toBeGreaterThanOrEqual(results.y + results.height - 1);
-  else expect(filters.x).toBeGreaterThanOrEqual(results.x + results.width - 1);
+  else {
+    expect(filters.x).toBeGreaterThanOrEqual(results.x + results.width - 1);
+    expect(bar.x + bar.width).toBeLessThanOrEqual(filters.x + 1);
+    expect(filters.y).toBeLessThanOrEqual(bar.y + 1);
+  }
   await panel.locator('[data-search-mode="areas"]').click();
   await expect(page.locator('#diveSearchFilterControls')).toBeHidden();
   await expect(panel.locator('[data-area-key]').first()).toBeVisible();
@@ -487,7 +491,10 @@ test('welcome and header hand the same results menu between their inputs', async
 });
 
 test('welcome inline search handles empty and cleared queries locally', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => {
+    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.setItem('global-coral-map-lang','en');
+  });
   await page.goto('/');
   const input = page.locator('#mapWelcomeSearch');
   await input.fill('zzzxqvnomatch987654321');
@@ -499,7 +506,10 @@ test('welcome inline search handles empty and cleared queries locally', async ({
 });
 
 test('welcome inline search reports unavailable data without moving focus', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => {
+    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.setItem('global-coral-map-lang','en');
+  });
   await page.route('**/*dive-site-search-locations*.json.gz*', route => route.fulfill({status:503,body:'Unavailable'}));
   await page.goto('/');
   await page.locator('#mapWelcomeSearch').fill('Raja Ampat');

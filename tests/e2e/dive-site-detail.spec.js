@@ -204,6 +204,103 @@ test('detail menu hides sign-in when session lookup fails', async ({ page }) => 
   await expect(page.locator('#authSignOutButton')).toBeHidden();
 });
 
+for (const [kind, bodyClass] of [['document', ''], ['directory', 'site-directory-page']]) {
+  test(`shared results component mounts on generated ${kind} pages`, async ({ page }) => {
+    let releaseComponent;
+    if (kind === 'directory') {
+      const held = new Promise(resolve => { releaseComponent = resolve; });
+      await page.route('**/js/search-results-menu.js*', async route => { await held; await route.continue(); });
+    }
+    const {execFileSync} = require('node:child_process');
+    const html = execFileSync('python', ['-c',
+      'import sys; from tools.generate_seo_pages import page_shell; print(page_shell("Menu test", "Test", "https://diveatlas.site/", "<main>Content</main>", sys.argv[1]))', bodyClass
+    ], {encoding:'utf8'});
+    await page.route(`**/__search-menu-${kind}/`, route => route.fulfill({contentType:'text/html',body:html}));
+    await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
+      json:{schema:'dive-site-recommendations-v1',sites:Array.from({length:45}, (_, index) => ({...record(),name:`Reef ${index}`}))}
+    }));
+    await page.goto(`/__search-menu-${kind}/`, {waitUntil:'domcontentloaded'});
+    const input = page.locator('#seoSiteSearchInput');
+    if (!await input.isVisible()) await page.locator('#seoSiteSearchToggle').click();
+    await input.fill('Reef');
+    // Typing remains valid even when the menu module finishes loading later.
+    releaseComponent?.();
+    const menu = page.locator('#seoSiteSearchResults');
+    await expect(menu).toHaveClass(/search-results-menu/);
+    await expect(menu.locator('.dive-search-result')).toHaveCount(20);
+    await input.press('ArrowDown');
+    await expect(menu.locator('[aria-selected="true"]')).toHaveCount(1);
+    await page.locator('#seoSiteSearchFilterToggle').click();
+    const bar = await menu.locator('.dive-search-modes').boundingBox();
+    expect(bar.height).toBeLessThanOrEqual(42);
+    const picker = page.locator('#seoSiteSearchCountryPicker');
+    await picker.click();
+    await page.locator('#seoSiteSearchCountryPickerOptions').getByRole('option',{name:'Indonesia',exact:true}).click();
+    await expect(picker).toHaveValue('Indonesia');
+    await menu.locator('[data-search-mode="areas"]').click();
+    await input.fill('Raja Ampat');
+    await expect(menu.locator('.dive-search-result').first()).toContainText('Raja Ampat');
+    await input.press('Escape');
+    await expect(menu).toBeHidden();
+  });
+}
+
+test('shared document search switches between areas and filtered dive sites', async ({ page }) => {
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:record()}));
+  await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
+    json:{schema:'dive-site-recommendations-v1', sites:[record(SECOND, 'Second reef')]}
+  }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  const input = page.locator('#seoSiteSearchInput');
+  await input.fill('Second reef');
+  await expect(page.locator('#seoSiteSearchResults .dive-search-result').first()).toContainText('Second reef');
+  await page.locator('[data-search-mode="areas"]').click();
+  await expect(page.locator('#seoSiteSearchResults .dive-search-result')).toHaveCount(0);
+  await input.fill(record().country);
+  await expect(page.locator('#seoSiteSearchResults .dive-search-result').first()).toContainText(record().country);
+  await page.locator('#seoSiteSearchFilterToggle').click();
+  await expect(page.locator('[data-search-mode="sites"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#seoSiteSearchFilterControls')).toBeVisible();
+  await page.locator('[data-search-mode="areas"]').click();
+  await expect(page.locator('#seoSiteSearchFilterControls')).toBeHidden();
+  await input.press('ArrowDown');
+  await input.press('Enter');
+  await expect(page).toHaveURL(/\/?\?lat=.*&lng=.*&z=/);
+});
+
+test('catalog refresh keeps a keyboard-selected record visible after reordering', async ({ page }) => {
+  const target = record(SECOND, 'Reef Z target');
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:record()}));
+  await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
+    json:{schema:'dive-site-recommendations-v1',sites:[target]}
+  }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  const input = page.locator('#seoSiteSearchInput');
+  await input.fill('Reef');
+  await expect(page.locator('#seoSiteSearchResults .dive-search-result').first()).toContainText(target.name);
+  await input.press('ArrowDown');
+  await page.evaluate(target => window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-ready', {
+    detail:{sites:[...Array.from({length:40},(_, index) => ({...target,name:`Reef A ${index}`})),target]}
+  })),target);
+  const selected = page.locator('#seoSiteSearchResults .dive-search-result[aria-selected="true"]');
+  await expect(selected).toContainText(target.name);
+  await expect(input).toHaveAttribute('aria-activedescendant',await selected.getAttribute('id'));
+});
+
+test('filtered search stays inside a short mobile viewport', async ({ page }) => {
+  await page.setViewportSize({width:568,height:280});
+  await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:record()}));
+  await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({
+    json:{schema:'dive-site-recommendations-v1',sites:[record()]}
+  }));
+  await page.goto(`/dive-site.html?id=${FIRST}`);
+  await page.locator('#seoSiteSearchInput').fill('Reef');
+  await page.locator('#seoSiteSearchFilterToggle').click();
+  await expect(page.locator('#seoSiteSearchFilterControls')).toBeVisible();
+  const menu = await page.locator('#seoSiteSearchResults').boundingBox();
+  expect(menu.y + menu.height).toBeLessThanOrEqual(280);
+});
+
 for (const selection of ['click', 'Enter']) {
   test(`detail search opens the selected record with ${selection}`, async ({ page }) => {
     await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({
@@ -218,7 +315,15 @@ for (const selection of ['click', 'Enter']) {
     const result = page.locator('#seoSiteSearchResults .dive-search-result').first();
     await expect(result).toContainText('Second reef');
     if (selection === 'click') await result.click();
-    else { await input.press('ArrowDown'); await input.press('Enter'); }
+    else {
+      await input.press('ArrowDown');
+      // A late catalog notification must not discard the user's keyboard choice.
+      await page.evaluate(() => window.dispatchEvent(new CustomEvent('diveatlas:seo-search-catalog-ready', {
+        detail:{sites:window.DIVE_ATLAS_SEO_SEARCH_CATALOG}
+      })));
+      await expect(input).toHaveAttribute('aria-activedescendant','seoSiteSearchResults-option-0');
+      await input.press('Enter');
+    }
     await expect(page).toHaveURL(new RegExp(`/dive-site\\.html\\?id=${SECOND}$`));
     await expect(page.locator('#site-title')).toHaveText('Second reef');
   });

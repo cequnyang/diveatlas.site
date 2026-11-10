@@ -27,6 +27,7 @@ playwright-report/
 !/docs/dive-site-summary-descriptions.md
 !/docs/country-boundaries.md
 !/docs/map-welcome.md
+!/docs/shared-search-menu.md
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py

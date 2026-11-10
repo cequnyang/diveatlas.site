@@ -1,6 +1,6 @@
 (async () => {
   'use strict';
-  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=1');
+  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=5');
   window.DiveAtlasHeader.mount();
 
   const slot = document.getElementById('seoSiteSearchSlot');
@@ -20,6 +20,25 @@
   const filterClear = document.getElementById('seoSiteSearchFilterClear');
   const mobileLayoutQuery = window.matchMedia('(max-width: 720px)');
   if (!slot || !section || !searchBox || !input || !results || !resultsScroll || !filterControls) return;
+  if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=1');
+  if (!window.DiveAtlasSearchResultsMenu) await import('/js/search-results-menu.js?v=1');
+  let searchMode = 'sites';
+  let areas = [];
+  const areaText = () => window.DiveAtlasAreaSearch.text(document.documentElement.lang.split('-')[0]);
+  const menu = window.DiveAtlasSearchResultsMenu.create({
+    surface:results, scroll:resultsScroll, getInput:() => input, filterToggle, slot,
+    onSelect:index => navigateTo(matches[index]),
+    onLoadMore:() => menu.loadMore(() => {
+      visibleResultCount = Math.min(visibleResultCount + initialResultCount,matches.length);
+      drawVisibleResults();
+    }),
+    onMode:mode => {
+      searchMode = mode; filtersOpen = false;
+      updateFilterState(); renderResults();
+    }
+  });
+  menu.bindPullPagination(() => visibleResultCount < matches.length);
+  function updateModes() { menu.updateModes({mode:searchMode,labels:areaText().slice(0,2)}); }
 
   // The header uses backdrop-filter, which would otherwise make fixed results
   // position relative to the header instead of the viewport.
@@ -27,19 +46,15 @@
 
   const normalize = value => String(value || '').normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
-  const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
-    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[character]);
   const valuesFor = (site, key) => Array.isArray(site[key]) ? site[key].filter(Boolean) : [];
   let searchSites = [];
-  const initialResultCount = 30;
+  const initialResultCount = window.DiveAtlasSearchResultsMenu.pageSize;
   let visibleResultCount = initialResultCount;
   let matches = [];
   let activeIndex = -1;
+  let renderedState = '';
   let isOpen = false;
   let filtersOpen = false;
-  let handleDismissal = null;
-  let handleResetTransition = null;
-  let handleResetMaxHeight = '';
   const suggestion = document.createElement('div');
   suggestion.className = 'dive-search-suggestion';
   const suggestionButton = document.createElement('button');
@@ -60,6 +75,8 @@
 
   window.addEventListener('diveatlas:language-change', () => {
     if (suggestion.isConnected) updateSuggestionLabel();
+    updateModes();
+    if (isOpen) renderResults();
   });
 
   // Detail pages host the same contribution flow; other browse pages keep the map fallback.
@@ -110,217 +127,12 @@
   // Hidden selects remain the selected-value model; picker text only narrows candidates.
   let filterPickers = [];
   function createFilterPicker(select) {
-    const label = select.closest('.dive-search-filter-field')?.querySelector('span');
-    const source = 'search';
-    const picker = document.createElement('input');
-    picker.type = 'text';
-    picker.id = `${select.id}Picker`;
-    picker.className = 'dive-filter-picker';
-    picker.autocomplete = 'off';
-    picker.spellcheck = false;
-    picker.setAttribute('role', 'combobox');
-    picker.setAttribute('aria-haspopup', 'listbox');
-    picker.setAttribute('aria-autocomplete', 'list');
-    picker.setAttribute('aria-expanded', 'false');
-    picker.setAttribute('aria-labelledby', label?.id || '');
-    picker.setAttribute('placeholder', select.options[0]?.textContent || '');
-
-    const list = document.createElement('div');
-    list.id = `${picker.id}Options`;
-    list.className = 'dive-filter-options';
-    list.dataset.filterSource = source;
-    list.setAttribute('role', 'listbox');
-    list.setAttribute('aria-labelledby', label?.id || '');
-    list.hidden = true;
-    picker.setAttribute('aria-controls', list.id);
-    const scroll = document.createElement('div');
-    scroll.className = 'dive-filter-options-scroll';
-    list.append(scroll);
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'dive-filter-picker-wrap';
-    select.hidden = true;
-    select.after(wrapper);
-
-    const clearButton = document.createElement('button');
-    clearButton.type = 'button';
-    clearButton.className = 'dive-filter-picker-clear';
-    clearButton.setAttribute('aria-label', 'Clear selection');
-    clearButton.title = 'Clear selection';
-    clearButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 4 8 8M12 4l-8 8"/></svg>';
-    clearButton.hidden = true;
-    wrapper.append(picker, clearButton);
-    document.body.append(list);
-
-    let activeIndex = 0;
-    let visibleIndexes = [];
-    function syncClearButton() {
-      const hasContent = Boolean(picker.value.trim() || select.value);
-      clearButton.hidden = !hasContent;
-      wrapper.classList.toggle('has-clear', hasContent);
-    }
-    function close() {
-      list.hidden = true;
-      picker.setAttribute('aria-expanded', 'false');
-      picker.removeAttribute('aria-activedescendant');
-    }
-    function highlight(visibleIndex) {
-      activeIndex = Math.max(0, Math.min(visibleIndexes.length - 1, visibleIndex));
-      Array.from(scroll.children).forEach(option => {
-        option.classList.toggle('is-active', Number(option.dataset.optionIndex) === visibleIndexes[activeIndex]);
-      });
-      const option = scroll.querySelector(`[data-option-index="${visibleIndexes[activeIndex]}"]`);
-      if (!option) return;
-      picker.setAttribute('aria-activedescendant', option.id);
-      const top = option.offsetTop;
-      if (top < scroll.scrollTop) scroll.scrollTop = top;
-      else if (top + option.offsetHeight > scroll.scrollTop + scroll.clientHeight) {
-        scroll.scrollTop = top + option.offsetHeight - scroll.clientHeight;
-      }
-    }
-    function choose(index) {
-      if (!Number.isInteger(index) || index < 0) return;
-      select.selectedIndex = index;
-      const selectedLabel = select.selectedOptions[0]?.textContent || '';
-      picker.value = select.value ? selectedLabel : '';
-      picker.placeholder = selectedLabel;
-      setOpen(false);
-      syncClearButton();
-      select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
-      picker.focus({ preventScroll:true });
-    }
-    function renderOptions(query = '') {
-      const normalizedQuery = query.trim().toLocaleLowerCase();
-      const matches = Array.from(select.options, (option, index) => ({
-        option,
-        index,
-        label:option.textContent.toLocaleLowerCase()
-      })).filter(({label:optionLabel}) => !normalizedQuery || optionLabel.includes(normalizedQuery));
-      if (normalizedQuery) {
-        matches.sort((a, b) => {
-          const aStartsWithQuery = a.label.startsWith(normalizedQuery);
-          const bStartsWithQuery = b.label.startsWith(normalizedQuery);
-          return Number(bStartsWithQuery) - Number(aStartsWithQuery) ||
-            a.option.textContent.localeCompare(b.option.textContent) || a.index - b.index;
-        });
-      }
-      visibleIndexes = matches.map(({index}) => index);
-      scroll.replaceChildren(...visibleIndexes.map(index => {
-        const option = select.options[index];
-        const item = document.createElement('div');
-        item.id = `${list.id}-${index}`;
-        item.className = 'dive-filter-option';
-        item.dataset.optionIndex = String(index);
-        item.setAttribute('role', 'option');
-        item.setAttribute('aria-selected', String(option.selected));
-        const optionLabel = option.textContent;
-        if (normalizedQuery) {
-          const lowerLabel = optionLabel.toLocaleLowerCase();
-          let offset = 0;
-          let matchAt = lowerLabel.indexOf(normalizedQuery, offset);
-          while (matchAt !== -1) {
-            item.append(document.createTextNode(optionLabel.slice(offset, matchAt)));
-            const match = document.createElement('strong');
-            match.textContent = optionLabel.slice(matchAt, matchAt + normalizedQuery.length);
-            item.append(match);
-            offset = matchAt + normalizedQuery.length;
-            matchAt = lowerLabel.indexOf(normalizedQuery, offset);
-          }
-          item.append(document.createTextNode(optionLabel.slice(offset)));
-        } else item.textContent = optionLabel;
-        item.addEventListener('click', () => choose(index));
-        return item;
-      }));
-      if (!visibleIndexes.length) {
-        const empty = document.createElement('div');
-        empty.className = 'dive-filter-option';
-        empty.setAttribute('aria-disabled', 'true');
-        empty.textContent = 'No matching options';
-        scroll.append(empty);
-      }
-    }
-    function positionList() {
-      const rect = picker.getBoundingClientRect();
-      const below = window.innerHeight - rect.bottom - 12;
-      const above = rect.top - 12;
-      const upwards = below < 160 && above > below;
-      const height = Math.min(280, Math.max(40, upwards ? above : below));
-      const width = Math.min(Math.max(rect.width, 180), Math.max(0, window.innerWidth - 16));
-      list.style.width = `${width}px`;
-      list.style.left = `${Math.max(8, Math.min(rect.left, window.innerWidth - width - 8))}px`;
-      list.style.maxHeight = `${height}px`;
-      scroll.style.maxHeight = `${height - 14}px`;
-      list.style.top = upwards ? 'auto' : `${rect.bottom + 4}px`;
-      list.style.bottom = upwards ? `${window.innerHeight - rect.top + 4}px` : 'auto';
-    }
-    function open() {
-      filterPickers.forEach(other => other.close());
-      renderOptions(picker.value);
-      positionList();
-      list.hidden = false;
-      picker.setAttribute('aria-expanded', 'true');
-      const selectedVisibleIndex = visibleIndexes.indexOf(Math.max(0, select.selectedIndex));
-      highlight(selectedVisibleIndex >= 0 ? selectedVisibleIndex : 0);
-    }
-
-    picker.addEventListener('click', open);
-    picker.addEventListener('focus', () => picker.select());
-    picker.addEventListener('input', () => {
-      syncClearButton();
-      if (list.hidden) open();
-      else { renderOptions(picker.value); positionList(); highlight(0); }
+    return window.DiveAtlasSearchResultsMenu.createFilterPicker(select, {
+      id:`${select.id}Picker`, labelledBy:select.getAttribute('aria-labelledby'), hideSelect:true,
+      getPeers:() => filterPickers, getClearLabel:() => filterClear.textContent || 'Clear All',
+      getLanguage:() => document.documentElement.lang,
+      onDraft:() => renderResults()
     });
-    picker.addEventListener('keydown', event => {
-      if (event.key === 'Tab') { close(); return; }
-      if (event.key === 'Escape') {
-        if (!list.hidden) {
-          event.preventDefault();
-          event.stopPropagation();
-          picker.value = select.value ? (select.selectedOptions[0]?.textContent || '') : '';
-          syncClearButton();
-          setOpen(false);
-        }
-        return;
-      }
-      if (['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter'].includes(event.key)) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (list.hidden) { open(); return; }
-        if (event.key === 'Enter' && visibleIndexes.length) choose(visibleIndexes[activeIndex]);
-        else highlight(event.key === 'Home' ? 0 : event.key === 'End' ? visibleIndexes.length - 1 : activeIndex + (event.key === 'ArrowDown' ? 1 : -1));
-      }
-    });
-    picker.addEventListener('blur', close);
-    clearButton.addEventListener('mousedown', event => event.preventDefault());
-    clearButton.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopPropagation();
-      select.value = '';
-      picker.value = '';
-      setOpen(false);
-      syncClearButton();
-      select.dispatchEvent(new CustomEvent('change', { bubbles:true, detail:{ source } }));
-      picker.focus({ preventScroll:true });
-    });
-    list.addEventListener('mousedown', event => {
-      if (event.target.closest('.dive-filter-option')) event.preventDefault();
-    });
-    document.addEventListener('pointerdown', event => {
-      if (!picker.contains(event.target) && !list.contains(event.target)) close();
-    });
-    window.addEventListener('resize', close);
-    document.addEventListener('scroll', event => {
-      if (!list.contains(event.target)) close();
-    }, true);
-    return {
-      close,
-      sync() {
-        const selected = select.selectedOptions[0]?.textContent || '';
-        if (document.activeElement !== picker) picker.value = select.value ? selected : '';
-        picker.placeholder = selected;
-        syncClearButton();
-      }
-    };
   }
 
   filterPickers = [countrySelect, difficultySelect, featureSelect].filter(Boolean).map(createFilterPicker);
@@ -338,6 +150,14 @@
         normalizedSearch:normalize([name, site.aliases, location, site.difficulty, ...features].join(' '))
       };
     }) : [];
+    // Adapt the shared catalog to the map's geographic grouping contract.
+    // Labels and extents come from mapped sites, rather than inferred borders.
+    areas = window.DiveAtlasAreaSearch.build(searchSites.map(site => {
+      const row = [];
+      row[1] = site.lat; row[2] = site.lon; row[9] = site.country;
+      row[10] = site.region; row[12] = site.site_id;
+      return row;
+    }), {});
     updateFilterOptions();
     if (isOpen) renderResults();
   }
@@ -378,6 +198,10 @@
   }
 
   function siteMeta(site) {
+    if (searchMode === 'areas') {
+      const text = areaText();
+      return [text[site.type === 'country' ? 2 : site.type === 'region' ? 3 : 4], site.country, `${site.siteIndices.length} ${text[7]}`].filter(Boolean).join(' · ');
+    }
     return [
       [site.region, site.country].filter(Boolean).join(', '),
       site.difficulty,
@@ -386,72 +210,16 @@
   }
 
   function updateFilterState() {
-    filterPickers.forEach(picker => picker.sync());
-    if (!filtersOpen) filterPickers.forEach(picker => picker.close());
-    const hasFilters = hasActiveFilters();
-    filterToggle?.classList.toggle('has-active-filters', hasFilters);
-    filterClear.hidden = !hasFilters;
-    results.classList.toggle('has-filters', filtersOpen);
-    slot.classList.toggle('has-search-filters', filtersOpen);
-    filterToggle?.setAttribute('aria-expanded', String(filtersOpen));
-    filterControls.hidden = !filtersOpen;
+    menu.syncFilters({open:filtersOpen, active:hasActiveFilters(), pickers:filterPickers});
   }
 
   function repositionResults() {
     if (!isOpen || !results.classList.contains('visible')) return;
-    const rect = searchBox.getBoundingClientRect();
-    const boxStyle = getComputedStyle(searchBox);
-    const dividerStyle = getComputedStyle(searchBox, '::after');
-    const mobileLayout = mobileLayoutQuery.matches;
-    const dividerOffset = Math.max(0,
-      rect.width - parseFloat(boxStyle.borderRightWidth) - parseFloat(dividerStyle.right) - parseFloat(dividerStyle.width)
-    );
-    const availableFilterWidth = Math.max(0, window.innerWidth - rect.left - dividerOffset - 12);
-    const filterWidth = mobileLayout
-      ? availableFilterWidth
-      : Math.min(360, availableFilterWidth) * 0.6;
-    const stacked = filtersOpen && filterWidth < 200 && !mobileLayout;
-    const candidateBaseWidth = filtersOpen ? dividerOffset : rect.width;
-    const searchUiFocused = slot.contains(document.activeElement) || results.contains(document.activeElement) ||
-      slot.classList.contains('is-search-focus-retained');
-    const candidateExpansion = mobileLayout && searchUiFocused && (!filtersOpen || !stacked)
-      ? Math.min(Math.max(0, 250 - candidateBaseWidth), Math.max(0, rect.left - 12))
-      : 0;
-    const candidatePaneWidth = candidateBaseWidth + candidateExpansion;
-    const top = Math.max(12, Math.min(rect.bottom + 8, window.innerHeight - 180));
-
-    results.classList.toggle('is-stacked', stacked);
-    results.classList.toggle('is-filter-compact', filtersOpen && !stacked && filterWidth < 300);
-    if (filtersOpen && !stacked) {
-      results.style.setProperty('--search-results-candidate-width', `${Math.max(0, candidatePaneWidth - 1)}px`);
-      results.style.setProperty('--search-results-filter-width', `${filterWidth}px`);
-      results.style.width = `${candidatePaneWidth + filterWidth + 1}px`;
-    } else {
-      results.style.removeProperty('--search-results-candidate-width');
-      results.style.removeProperty('--search-results-filter-width');
-      results.style.width = `${mobileLayout ? candidatePaneWidth : rect.width}px`;
-    }
-    results.style.left = `${rect.left - candidateExpansion}px`;
-    results.style.top = `${top}px`;
-    results.style.maxHeight = `${Math.max(0, Math.min(440, window.innerHeight - top - 12))}px`;
-    results.style.removeProperty('height');
+    menu.position({anchor:searchBox,filtersOpen,focused:slot.contains(document.activeElement) || results.contains(document.activeElement) || slot.classList.contains('is-search-focus-retained')});
   }
 
   function setOpen(next) {
-    if (handleDismissal) {
-      clearTimeout(handleDismissal.timer);
-      results.removeEventListener('transitionend', handleDismissal.onTransitionEnd);
-      handleDismissal = null;
-      results.classList.remove('mobile-search-dismissing');
-    }
-    if (handleResetTransition) {
-      results.removeEventListener('transitionend', handleResetTransition);
-      handleResetTransition = null;
-      if (handleResetMaxHeight) results.style.maxHeight = handleResetMaxHeight;
-      else results.style.removeProperty('max-height');
-      handleResetMaxHeight = '';
-      results.classList.remove('mobile-search-restoring');
-    }
+    menuMotion.cancel();
     isOpen = Boolean(next);
     if (!isOpen) filtersOpen = false;
     input.setAttribute('aria-expanded', String(isOpen));
@@ -467,169 +235,8 @@
     if (isOpen) renderResults();
   }
 
-  function bindMobileResultsHandle() {
-    if (!resultsHandle) return;
 
-    let drag = null;
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const restoreMaxHeight = value => {
-      if (value) results.style.maxHeight = value;
-      else results.style.removeProperty('max-height');
-    };
-    const resetDrag = (startHeight, startMaxHeight) => {
-      if (handleResetTransition) {
-        results.removeEventListener('transitionend', handleResetTransition);
-        handleResetTransition = null;
-        restoreMaxHeight(handleResetMaxHeight);
-        handleResetMaxHeight = '';
-      }
-      results.classList.remove('mobile-vertical-dragging');
-      results.classList.add('mobile-search-restoring');
-      results.style.removeProperty('--mobile-panel-drag-y');
-      const currentHeight = results.getBoundingClientRect().height;
-      if (reducedMotionQuery.matches || Math.abs(currentHeight - startHeight) < 1) {
-        results.style.removeProperty('height');
-        restoreMaxHeight(startMaxHeight);
-        results.classList.remove('mobile-search-restoring');
-        return;
-      }
-      results.style.height = `${startHeight}px`;
-      handleResetMaxHeight = startMaxHeight;
-      handleResetTransition = event => {
-        if (event.target !== results || event.propertyName !== 'height' ||
-            results.classList.contains('mobile-vertical-dragging')) return;
-        results.removeEventListener('transitionend', handleResetTransition);
-        results.style.removeProperty('height');
-        restoreMaxHeight(handleResetMaxHeight);
-        handleResetTransition = null;
-        handleResetMaxHeight = '';
-        results.classList.remove('mobile-search-restoring');
-      };
-      results.addEventListener('transitionend', handleResetTransition);
-    };
-    const dismiss = () => {
-      results.classList.remove('mobile-vertical-dragging');
-      results.classList.add('mobile-search-dismissing');
-      results.style.removeProperty('--mobile-panel-drag-y');
-      if (reducedMotionQuery.matches) {
-        setOpen(false);
-        return;
-      }
-      void results.offsetHeight;
-      results.style.height = '0px';
-      const complete = () => {
-        if (handleDismissal !== dismissal) return;
-        clearTimeout(dismissal.timer);
-        results.removeEventListener('transitionend', dismissal.onTransitionEnd);
-        handleDismissal = null;
-        results.classList.remove('mobile-search-dismissing');
-        setOpen(false);
-      };
-      const dismissal = {
-        timer:0,
-        onTransitionEnd:event => {
-          if (event.target === results && event.propertyName === 'height') complete();
-        }
-      };
-      handleDismissal = dismissal;
-      results.addEventListener('transitionend', dismissal.onTransitionEnd);
-      dismissal.timer = window.setTimeout(complete, 280);
-    };
-
-    resultsHandle.addEventListener('pointerdown', event => {
-      if (!mobileLayoutQuery.matches || !results.classList.contains('visible') || event.button !== 0) return;
-      if (handleResetTransition) {
-        results.removeEventListener('transitionend', handleResetTransition);
-        handleResetTransition = null;
-        restoreMaxHeight(handleResetMaxHeight);
-        handleResetMaxHeight = '';
-        results.classList.remove('mobile-search-restoring');
-        results.style.removeProperty('height');
-      }
-      drag = {
-        id:event.pointerId,
-        x:event.clientX,
-        y:event.clientY,
-        startHeight:results.getBoundingClientRect().height,
-        startMaxHeight:results.style.maxHeight,
-        moved:false,
-        hasMovedUpward:false,
-        hasResizedSheet:false
-      };
-      resultsHandle.setPointerCapture?.(event.pointerId);
-    });
-    resultsHandle.addEventListener('pointermove', event => {
-      if (!drag || event.pointerId !== drag.id) return;
-      const deltaX = event.clientX - drag.x;
-      const deltaY = event.clientY - drag.y;
-      if (Math.hypot(deltaX, deltaY) < 4) return;
-      if (Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-        drag.moved = true;
-        return;
-      }
-      drag.moved = true;
-      if (event.cancelable) event.preventDefault();
-      if (deltaY < 0) drag.hasMovedUpward = true;
-      drag.hasResizedSheet = true;
-      results.classList.add('mobile-vertical-dragging');
-      const downwardStretch = Math.min(
-        20 * (1 - Math.exp(-Math.max(0, deltaY) / 18)),
-        Math.max(0, window.innerHeight - results.getBoundingClientRect().top - drag.startHeight)
-      );
-      if (deltaY > 0) results.style.maxHeight = 'none';
-      else restoreMaxHeight(drag.startMaxHeight);
-      const height = deltaY < 0
-        ? Math.max(72, drag.startHeight + deltaY)
-        : drag.startHeight + downwardStretch;
-      results.style.height = `${height}px`;
-    });
-    const finishDrag = event => {
-      if (!drag || event.pointerId !== drag.id) return;
-      const deltaX = event.clientX - drag.x;
-      const deltaY = event.clientY - drag.y;
-      const didMove = drag.moved;
-      const hasMovedUpward = drag.hasMovedUpward;
-      const hasResizedSheet = drag.hasResizedSheet;
-      const finalCollapseDistance = Math.max(0, -deltaY);
-      const upwardDrag = didMove && hasMovedUpward && deltaY < 0 &&
-        Math.abs(deltaY) > Math.abs(deltaX) * 1.2;
-      const startHeight = drag.startHeight;
-      const startMaxHeight = drag.startMaxHeight;
-      drag = null;
-      if (upwardDrag) event.preventDefault();
-      // Use the map view's deliberate upward-pull threshold for dismissal.
-      if (upwardDrag && finalCollapseDistance >= 72) {
-        dismiss();
-        return;
-      }
-      if (hasResizedSheet) resetDrag(startHeight, startMaxHeight);
-      else if (didMove) {
-        results.classList.remove('mobile-vertical-dragging');
-        results.style.removeProperty('--mobile-panel-drag-y');
-      }
-    };
-    resultsHandle.addEventListener('pointerup', finishDrag);
-    resultsHandle.addEventListener('pointercancel', event => {
-      if (!drag || event.pointerId !== drag.id) return;
-      const startHeight = drag.startHeight;
-      const startMaxHeight = drag.startMaxHeight;
-      const hasResizedSheet = drag.hasResizedSheet;
-      drag = null;
-      if (hasResizedSheet) resetDrag(startHeight, startMaxHeight);
-      else {
-        results.classList.remove('mobile-vertical-dragging');
-        results.style.removeProperty('--mobile-panel-drag-y');
-      }
-    });
-    resultsHandle.addEventListener('click', event => {
-      if (event.detail === 0 && mobileLayoutQuery.matches) {
-        setOpen(false);
-        searchToggle?.focus({ preventScroll:true });
-      }
-    });
-  }
-
-  bindMobileResultsHandle();
+  const menuMotion = menu.bindMobileHandle({resultsHandle,onDismiss:() => setOpen(false),returnFocus:searchToggle});
 
   function updateSearchFocusLayout() {
     const activeElement = document.activeElement;
@@ -659,26 +266,49 @@
   }
 
   function renderResults() {
+    updateModes();
+    const state = JSON.stringify([searchMode,input.value.trim(),activeFilters()]);
+    const preserve = state === renderedState;
+    const selected = preserve ? matches[activeIndex] : null;
+    const identity = item => item && `${item.key || item.site_id || ''}:${item.name}`;
+    renderedState = state;
+    function commitMatches(next) {
+      matches = next;
+      activeIndex = selected ? matches.findIndex(item => identity(item) === identity(selected)) : -1;
+      if (!preserve) visibleResultCount = initialResultCount;
+      // The active record may move past the current page after a catalog refresh.
+      // Keep its visible option aligned with the record Enter will select.
+      visibleResultCount = Math.max(visibleResultCount, activeIndex + 1);
+      if (activeIndex < 0) input.removeAttribute('aria-activedescendant');
+    }
+    if (searchMode === 'areas') {
+      const text = areaText();
+      commitMatches(window.DiveAtlasAreaSearch.search(areas, input.value.trim()));
+      if (matches.length) drawVisibleResults();
+      else {
+        menu.empty(text[input.value.trim() ? 5 : 6]);
+        repositionResults();
+      }
+      return;
+    }
     if (!searchSites.length) {
-      matches = [];
-      resultsScroll.innerHTML = '<div class="dive-search-empty" role="status">Dive-site search is unavailable right now.</div>';
+      commitMatches([]);
+      menu.empty('Dive-site search is unavailable right now.');
       repositionResults();
       return;
     }
 
     const query = input.value.trim();
     const filtersApplied = hasActiveFilters();
-    matches = findMatches(query);
-    activeIndex = -1;
-    visibleResultCount = initialResultCount;
+    commitMatches(findMatches(query));
 
     if (!query && !filtersApplied) {
-      resultsScroll.innerHTML = '<div class="dive-search-empty" role="status">Search by dive-site name or location, or choose a filter.</div>';
+      menu.empty('Search by dive-site name or location, or choose a filter.');
       repositionResults();
       return;
     }
     if (!matches.length) {
-      resultsScroll.innerHTML = '<div class="dive-search-empty" role="status">No dive sites match your search.</div>';
+      menu.empty('No dive sites match your search.');
       if (query) appendSuggestion(query);
       repositionResults();
       return;
@@ -687,21 +317,25 @@
   }
 
   function drawVisibleResults() {
-    const visible = matches.slice(0, visibleResultCount);
-    const resultsMarkup = visible.map((site, index) =>
-      `<button class="dive-search-result" type="button" id="seo-site-search-result-${index}" role="option" aria-selected="false" aria-posinset="${index + 1}" aria-setsize="${matches.length}" data-match-index="${index}"><div class="dive-search-result-name">${escapeHtml(site.name)}</div>${siteMeta(site) ? `<div class="dive-search-result-meta">${escapeHtml(siteMeta(site))}</div>` : ''}</button>`
-    ).join('');
-    const more = matches.length > visibleResultCount
-      ? '<button class="seo-search-load-more" type="button" data-search-load-more>Load more</button>' : '';
-    resultsScroll.innerHTML = resultsMarkup + more;
-    appendSuggestion(input.value.trim());
+    menu.render({query:input.value.trim(),total:matches.length,activeIndex,moreLabel:'Load more',
+      items:matches.slice(0,visibleResultCount).map(site => ({name:site.name,meta:siteMeta(site)}))});
+    if (searchMode === 'sites') appendSuggestion(input.value.trim());
     repositionResults();
   }
 
   function navigateTo(site) {
     if (!site) return;
+    if (searchMode === 'areas') {
+      const bounds = window.DiveAtlasAreaSearch.bounds(site.points);
+      if (!bounds) return;
+      const [[south, west], [north, east]] = bounds;
+      const span = Math.max(east - west, (north - south) * 2, 0.5);
+      const params = new URLSearchParams({lat:String((south + north) / 2), lng:String(((west + east) / 2 + 540) % 360 - 180), z:String(Math.max(1, Math.min(9, Math.floor(Math.log2(360 / span)))))});
+      window.location.href = `/?${params}`;
+      return;
+    }
     // Detail-page search continues browsing records; directory/document search
-    // retains its existing map destination. MapView owns its separate search.
+    // retains its existing map destination. The shared menu never navigates.
     if (document.querySelector('main.detail-page')) {
       window.location.href = `/dive-site.html?id=${encodeURIComponent(site.canonical_id || site.site_id)}`;
       return;
@@ -715,21 +349,7 @@
     window.location.href = `/?${params}`;
   }
 
-  function setActive(nextIndex) {
-    const visibleCount = Math.min(visibleResultCount, matches.length);
-    if (!visibleCount) return;
-    activeIndex = Math.max(0, Math.min(nextIndex, visibleCount - 1));
-    resultsScroll.querySelectorAll('[data-match-index]').forEach(button => {
-      const active = Number(button.dataset.matchIndex) === activeIndex;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-selected', String(active));
-    });
-    const activeResult = document.getElementById(`seo-site-search-result-${activeIndex}`);
-    if (activeResult) {
-      input.setAttribute('aria-activedescendant', activeResult.id);
-      activeResult.scrollIntoView({ block:'nearest' });
-    }
-  }
+  function setActive(nextIndex) { activeIndex = menu.setActive(nextIndex); }
 
   searchToggle?.addEventListener('click', () => {
     setOpen(true);
@@ -762,6 +382,7 @@
     const preserveSearchFocus = event.detail > 0 && searchInputFocusedBeforeFilterPointer;
     searchInputFocusedBeforeFilterPointer = false;
     event.stopPropagation();
+    searchMode = 'sites';
     filtersOpen = !filtersOpen;
     setOpen(true);
     if (preserveSearchFocus) input.focus({ preventScroll:true });
@@ -778,35 +399,11 @@
     renderResults();
   });
 
-  input.addEventListener('keydown', event => {
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (!isOpen) setOpen(true);
-      setActive(activeIndex < 0 ? 0 : activeIndex + 1);
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      setActive(activeIndex < 0 ? 0 : activeIndex - 1);
-    } else if (event.key === 'Enter' && activeIndex >= 0) {
-      event.preventDefault();
-      navigateTo(matches[activeIndex]);
-    } else if (event.key === 'Escape' && isOpen) {
-      event.preventDefault();
-      setOpen(false);
-      input.removeAttribute('aria-activedescendant');
-      input.blur();
-    }
-  });
-
-  resultsScroll.addEventListener('click', event => {
-    const more = event.target.closest('[data-search-load-more]');
-    if (more) {
-      visibleResultCount = Math.min(visibleResultCount + initialResultCount, matches.length);
-      drawVisibleResults();
-      return;
-    }
-    const result = event.target.closest('[data-match-index]');
-    if (result) navigateTo(matches[Number(result.dataset.matchIndex)]);
-  });
+  input.addEventListener('keydown', event => menu.keydown(event, {
+    activeIndex,visibleCount:Math.min(visibleResultCount,matches.length),total:matches.length,setActive,
+    open:() => { if (!isOpen) setOpen(true); },
+    dismiss:() => { setOpen(false); input.removeAttribute('aria-activedescendant'); input.blur(); }
+  }));
 
   document.addEventListener('pointerdown', event => {
     if (!slot.contains(event.target) && !results.contains(event.target) &&
@@ -814,5 +411,9 @@
   });
   window.addEventListener('resize', repositionResults);
   window.addEventListener('scroll', repositionResults, true);
-  setOpen(false);
+  // The input is usable while the shared module imports. Recover any focus or
+  // typing that arrived before its listeners were installed.
+  clearButton?.classList.toggle('visible', Boolean(input.value));
+  searchBox.classList.toggle('has-query', Boolean(input.value.trim()));
+  setOpen(document.activeElement === input);
 })();
