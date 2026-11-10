@@ -70,7 +70,7 @@
     no: ['Reisemål', 'Måned', 'Utforsk'],
     id: ['Destinasi', 'Bulan', 'Jelajahi']
   };
-  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onFocusMap, onMapControls, suppressedKey }) {
+  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onAnimateClose, onFocusMap, onMapControls, suppressedKey }) {
     const section = document.createElement('section');
     section.id = 'mapWelcome';
     section.className = 'map-welcome tutorial-dialog glass-surface';
@@ -278,10 +278,18 @@
       } catch (_) {}
     }
     function hide() { onCloseMonth();closeSearch();section.hidden = true;placeMapControls(); }
-    function dismiss({focus = true} = {}) {
+    let closing = false;
+    let closeGeneration = 0;
+    async function dismiss({focus = true} = {}) {
       if (section.hidden) return;
-      hide();
+      if (closing && focus) return;
+      const generation = ++closeGeneration;
+      closing = true;
       persistSuppression();
+      if (focus) await onAnimateClose(section);
+      if (generation !== closeGeneration) return;
+      hide();
+      closing = false;
       onDismiss();if (focus) onFocusMap();
     }
     picker.addEventListener('change',() => {
@@ -298,9 +306,12 @@
       if (name === 'next' || name === 'back') { step += name === 'next' ? 1 : -1;step = Math.max(0,Math.min(steps.length - 1,step));syncStep({focus:true}); }
       else if (steps.includes(name)) { step = steps.indexOf(name);syncStep({focus:true}); }
       else if (name === 'guide') {
-        // The reference reads the same preference. Carry pending changes into
-        // the detour, then read back any edits when the welcome is restored.
-        persistSuppression();hide();onGuide();
+        // Help on the final step completes onboarding; earlier steps remain
+        // resumable so a guide visit does not discard an unfinished plan.
+        const afterWelcome = steps[step] === 'review';
+        if (afterWelcome) dismiss({focus: false});
+        else { persistSuppression(); }
+        onGuide({ afterWelcome });
       }
       else if (name === 'language') {
         event.stopPropagation();onLanguage();
@@ -318,6 +329,9 @@
         syncMapArea();
       },
       open({restore = false} = {}) {
+      ++closeGeneration;
+      closing = false;
+      section.getAnimations().forEach(animation => animation.cancel());
       // A manual reopening begins a new flow; a guide detour resumes it.
       // Suppression remains saved; month changes use the map's shared state.
       if (!restore) {

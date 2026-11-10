@@ -80,7 +80,7 @@
 .map-welcome-preview { min-width: 0; margin: 0; padding: 0; border: 0; }
 .map-welcome-preview legend { margin-bottom: 7px; padding: 0; color: var(--text-secondary); font-size: 12px; }
 .map-welcome-preview-choices { display: flex; flex-wrap: wrap; gap: 6px; }
-.map-welcome-preview button { min-height: 32px; padding: 5px 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--panel-soft); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease; }
+.map-welcome-preview button { min-height: 32px; padding: 5px 10px; border: 1px solid var(--border-subtle); border-radius: 14px; background: var(--panel-soft); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease; }
 .map-welcome-preview button[aria-pressed="true"] { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, var(--panel-soft)); }
 .map-welcome-preview[data-kind="overlays"] button::before { content: none; }
 .map-welcome-preview button:disabled { opacity: .5; cursor: default; }
@@ -117,26 +117,18 @@
 .map-welcome-link { color: var(--primary); border: 0; padding: 6px 0; min-height: 36px; background: transparent; font: inherit; font-size: 13px; text-decoration: none; cursor: pointer; }
 .map-welcome-link:hover { text-decoration: underline; }
 .map-welcome [data-action="guide"] { border-radius: 12px; }
-/* Briefly draw attention to optional help without competing indefinitely
-   with the primary action or changing the footer's geometry. */
-.map-welcome.is-review-step [data-action="guide"] { position: relative; isolation: isolate; }
-.map-welcome.is-review-step [data-action="guide"]::before,
-.map-welcome.is-review-step [data-action="guide"]::after { content: ''; position: absolute; inset: 2px -6px; border-radius: 12px; pointer-events: none; opacity: 0; animation: welcome-guide-pulse 2.4s cubic-bezier(.4, 0, .2, 1) .4s 3; }
-.map-welcome.is-review-step [data-action="guide"]::before { z-index: -1; background: color-mix(in srgb, var(--primary) 14%, transparent); animation-name: welcome-guide-glow; }
-.map-welcome.is-review-step [data-action="guide"]::after { border: 1px solid var(--primary); }
-@keyframes welcome-guide-pulse {
-  0% { opacity: 0; transform: scale(.75); }
-  35% { opacity: .4; }
-  100% { opacity: 0; transform: scale(1.12, 1.2); }
+/* Match the optional-help cue to the map-detail controls. */
+.map-welcome.is-review-step [data-action="guide"] { position: relative; }
+.map-welcome.is-review-step [data-action="guide"]::after { content: ''; position: absolute; inset: 6px -5px; border-radius: 8px; pointer-events: none; animation: welcome-guide-label-hint 2.6s cubic-bezier(.4, 0, .2, 1) .5s 2; }
+@keyframes welcome-guide-label-hint {
+  0%, 100% { opacity: 0; box-shadow: 0 0 0 0 transparent; }
+  35% { opacity: 1; box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 28%, transparent); }
+  70% { opacity: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 8%, transparent); }
 }
-@keyframes welcome-guide-glow {
-  0%, 100% { opacity: 0; transform: scale(.85); }
-  45% { opacity: 1; transform: scale(1.04, 1.08); }
-}
-.map-welcome.is-review-step [data-action="guide"]:is(:hover, :focus-visible)::before,
+.map-welcome.is-review-step [data-action="guide"]:is(:hover, :focus-visible) { animation: none; }
 .map-welcome.is-review-step [data-action="guide"]:is(:hover, :focus-visible)::after { animation: none; }
 @media (prefers-reduced-motion: reduce) {
-  .map-welcome.is-review-step [data-action="guide"]::before,
+  .map-welcome.is-review-step [data-action="guide"] { animation: none; }
   .map-welcome.is-review-step [data-action="guide"]::after { animation: none; }
 }
 .map-welcome .tutorial-suppress-label { grid-column: 1; grid-row: 2; margin-top: 0; min-height: 28px; }

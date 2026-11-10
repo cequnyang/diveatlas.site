@@ -13501,7 +13501,7 @@ ZSD·2016–2025</span></span>
   async function openTutorial({ automatic = false, origin = 'map', returnFocusTo = null } = {}) {
     if (tutorialState !== 'closed' || !els.tutorialBackdrop.hidden) return;
     if (automatic && (sharedMapState.hasValidState)) return;
-    mapWelcome.dismiss({ focus: false });
+    if (!returnToWelcomeAfterTutorial) mapWelcome.dismiss({ focus: false });
 
     const fromLegend = !automatic && origin === 'legend';
     tutorialCloseAfterOpen = false;
@@ -13562,10 +13562,12 @@ ZSD·2016–2025</span></span>
     cancelLegendAutoCollapse();
     try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
 
-    els.bioLegend.classList.add('is-tutorial-handoff');
-    // A standalone reference hands control back to Layers. A planning detour
-    // must not overwrite the visitor's saved layer-panel preference.
-    setLegendCollapsed(false, { persist: !returnToWelcomeAfterTutorial });
+    // Only a completed flow hands control to Layers. Earlier-step help is a
+    // detour and must leave the panel untouched while returning to Welcome.
+    if (!returnToWelcomeAfterTutorial) {
+      els.bioLegend.classList.add('is-tutorial-handoff');
+      setLegendCollapsed(false);
+    }
 
     els.tutorialBackdrop.classList.add('is-spatial');
     const motion = tutorialMotionPreferences();
@@ -13573,7 +13575,7 @@ ZSD·2016–2025</span></span>
     let dialogFrames;
     let backdropFrames;
 
-    if (motion.reduced) {
+    if (motion.reduced || returnToWelcomeAfterTutorial) {
       dialogFrames = [{ opacity: 1, transform: 'translate(0, 0) scale(1)' }, { opacity: 0, transform: 'translate(0, 0) scale(1)' }];
       backdropFrames = [{ opacity: 1 }, { opacity: 0 }];
     } else {
@@ -13683,7 +13685,34 @@ ZSD·2016–2025</span></span>
     onDismiss: () => {
       try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
     },
-    onFocusMap: () => els.bioLegendTitle.focus(),
+    onAnimateClose: async dialog => {
+      cancelLegendAutoCollapse();
+      els.bioLegend.classList.add('is-tutorial-handoff');
+      setLegendCollapsed(false);
+      const motion = tutorialMotionPreferences();
+      const point = tutorialOriginPoint(els.bioLegendTitle, dialog.getBoundingClientRect(), motion);
+      const frames = motion.reduced ? [{ opacity: 1 }, { opacity: 0 }] : [
+        { transform: 'translate(0, 0) scale(1)', opacity: 1, offset: 0 },
+        { transform: `translate(${point.x * .55}px, ${point.y * .55}px) scale(.52)`, opacity: .82, offset: .6 },
+        { transform: `translate(${point.x * .9}px, ${point.y * .9}px) scale(.26)`, opacity: .4, offset: .82 },
+        { transform: `translate(${point.x}px, ${point.y}px) scale(.26)`, opacity: 0, offset: 1 }
+      ];
+      const animation = dialog.animate(frames, {
+        duration: motion.reduced ? 120 : 400, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards'
+      });
+      await animation.finished.catch(() => null);
+      // Hide before clearing the final frame to avoid a one-frame flash.
+      if (animation.playState === 'finished') dialog.hidden = true;
+      animation.cancel();
+      els.bioLegend.classList.remove('is-tutorial-handoff');
+    },
+    onFocusMap: () => {
+      // A completed or explicitly closed welcome hands control to Layers,
+      // like the standalone tutorial. Guide detours bypass this callback.
+      cancelLegendAutoCollapse();
+      setLegendCollapsed(false);
+      els.bioLegendTitle.focus({ preventScroll: true });
+    },
     // Move the existing control between Leaflet corners: setPosition() rebuilds
     // its DOM and would discard the custom locate button and event bindings.
     onMapControls: aboveSheet => map.getContainer().querySelector(
