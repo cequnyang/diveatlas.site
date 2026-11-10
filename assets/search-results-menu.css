@@ -502,6 +502,54 @@
 .dive-search-result[data-result-kind="destination"] {
   border-bottom: 1px solid var(--line-soft, var(--line));
 }
+.dive-search-result[data-result-kind="expand-destinations"] {
+  color: var(--primary);
+  border-bottom: 1px solid var(--line);
+}
+.dive-search-result[data-result-kind="back-to-results"] {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel-solid);
+  color: var(--primary);
+  border-bottom: 1px solid var(--line);
+  min-height: 44px;
+  padding: 8px 14px;
+  margin-bottom: 6px;
+}
+/* Navigation stays visually separate from the blue result-selection state,
+   including when the pointer rests here after opening the destination view. */
+body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive-search-result[data-result-kind="back-to-results"] {
+  background: var(--panel-solid);
+}
+body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive-search-result[data-result-kind="back-to-results"]:hover .dive-search-result-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--primary-hover, var(--primary));
+}
+.dive-search-result[data-result-kind="back-to-results"] .dive-search-result-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dive-search-result[data-result-kind="back-to-results"] .dive-search-result-name {
+  font-size: 11px;
+}
+.dive-search-back-arrow {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transform: rotate(180deg);
+}
+.dive-search-result[data-result-kind="back-to-results"] .dive-search-result-meta {
+  margin-top: 0;
+  font-size: 10px;
+}
+.dive-search-result[data-result-kind="back-to-results"].active {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
 .has-result-kind .dive-search-result-name {
   display: flex;
   align-items: center;

@@ -36,7 +36,9 @@
   function resultsText(lang) {
     const text = resultCopy[lang] || resultCopy.en;
     const value = index => text[index] || resultCopy.en[index];
-    return {destinations:value(0),sites:value(1),explore:name => value(2).replace('{name}',name),count:count => (text === resultCopy.en && count === 1 ? '{count} dive site' : value(3)).replace('{count}',new Intl.NumberFormat(lang).format(count)),destination:value(4),site:value(5),prompt:value(6),empty:value(7),loading:value(8)};
+    const showAll = {en:'Show all {count} destinations',zh:'显示全部 {count} 个目的地',ja:'目的地をすべて表示（{count}件）',fr:'Afficher les {count} destinations',de:'Alle {count} Reiseziele anzeigen',es:'Mostrar los {count} destinos',it:'Mostra tutte le {count} destinazioni',pt:'Mostrar todos os {count} destinos',ru:'Показать все направления: {count}',ko:'목적지 {count}곳 모두 보기',nl:'Alle {count} bestemmingen tonen',sv:'Visa alla {count} resmål',no:'Vis alle {count} reisemål',id:'Tampilkan semua {count} destinasi'};
+    const back = {en:'Back to results',zh:'返回搜索结果',ja:'検索結果に戻る',fr:'Retour aux résultats',de:'Zurück zu den Ergebnissen',es:'Volver a los resultados',it:'Torna ai risultati',pt:'Voltar aos resultados',ru:'Назад к результатам',ko:'검색 결과로 돌아가기',nl:'Terug naar resultaten',sv:'Tillbaka till resultaten',no:'Tilbake til resultatene',id:'Kembali ke hasil'};
+    return {destinations:value(0),sites:value(1),explore:name => value(2).replace('{name}',name),count:count => (text === resultCopy.en && count === 1 ? '{count} dive site' : value(3)).replace('{count}',new Intl.NumberFormat(lang).format(count)),showAll:count => (showAll[lang] || showAll.en).replace('{count}',new Intl.NumberFormat(lang).format(count)),back:back[lang] || back.en,destination:value(4),site:value(5),prompt:value(6),empty:value(7),loading:value(8)};
   }
   function context(area, lang) {
     const text = copy[lang] || copy.en;
@@ -53,12 +55,12 @@
     ].filter(Boolean).join(' · ');
   }
   function destinations(areas, query, acceptsSite = () => true) {
-    // Bound area suggestions so broad country queries still expose individual
-    // sites on the first page. Counts and extents honor the same active filters.
+    // Keep the complete set for expansion. The menu controls the initial preview;
+    // counts and extents honor the same active filters.
     return search(areas,query).map(area => {
       const positions = area.siteIndices.map((index,at) => acceptsSite(index) ? at : -1).filter(at => at >= 0);
       return {...area, siteIndices:positions.map(at => area.siteIndices[at]), points:positions.map(at => area.points[at])};
-    }).filter(area => area.siteIndices.length).slice(0,3);
+    }).filter(area => area.siteIndices.length);
   }
   function build(sites, locations) {
     const groups = new Map();

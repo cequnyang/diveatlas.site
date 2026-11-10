@@ -47,10 +47,10 @@ test('destination suggestions keep counts and extents aligned with filtered site
   assert.deepEqual(destinations(areas,''),[]);
 });
 
-test('broad destination queries leave room for sites and keep the exact country first', () => {
+test('broad destination queries retain all matches and keep the exact country first', () => {
   const areas = build(Array.from({length:8},(_,i) => site(String(i),'Site','Indonesia',i,100+i,`Region ${i}`)),{});
   const matches = destinations(areas,'Indonesia');
-  assert.equal(matches.length,3);
+  assert.equal(matches.length,9);
   assert.equal(matches[0].type,'country');
   assert.equal(resultsText('en').explore(matches[0].name),'Explore Indonesia');
   assert.equal(resultsText('en').count(8),'8 dive sites');

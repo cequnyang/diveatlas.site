@@ -23296,7 +23296,18 @@ function closeShareDialog() {
     surface:els.diveSearchResults, scroll:els.diveSearchResultsScroll,
     filterToggle:els.diveSearchFilterToggle, slot:topMenuSearchSlot,
     getInput:currentDiveSearchInput,
-    onSelect:index => { const match = diveSearchMatches[index]; if (match != null) selectDiveSearchMatch(match); },
+    onSelect:index => {
+      const match = diveSearchMatches[index];
+      if (match?.expandDestinations || match?.backToResults) {
+        const current = {visibleCount:diveSearchVisibleCount,activeIndex:diveSearchActiveIndex};
+        const view = match.backToResults ? searchResultsMenu.collapseDestinations(current) : searchResultsMenu.expandDestinations(current);
+        diveSearchVisibleCount = view.visibleCount;
+        diveSearchActiveIndex = -1;
+        renderDiveSearchResults({forceRender:true});
+        setDiveSearchActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
+        els.diveSearchResultsScroll.scrollTop = view.scrollTop;
+      } else if (match != null) selectDiveSearchMatch(match);
+    },
     onLoadMore:() => loadMoreDiveSearchResults()
   });
   const searchMenuMotion = searchResultsMenu.bindMobileHandle({
@@ -23713,7 +23724,9 @@ function closeShareDialog() {
     diveSearchAreaCatalog ||= window.DiveAtlasAreaSearch.build(DIVE_SITES,DIVE_SITE_SEARCH_LOCATIONS);
     const destinations = window.DiveAtlasAreaSearch.destinations(diveSearchAreaCatalog, query,
       siteIndex => diveSiteMatchesSearchFilters(DIVE_SITES[siteIndex]));
-    const nextMatches = [...destinations, ...siteMatches];
+    const destinationState = JSON.stringify([query,els.diveSearchCountryFilter.value,els.diveSearchDifficultyFilter.value,els.diveSearchFeatureFilter.value,diveSearchFilterDrafts()]);
+    const nextMatches = searchResultsMenu.groupDestinations(destinations,siteMatches,destinationState,groupedSearchText().showAll,groupedSearchText().back);
+    els.diveSearchResultsScroll.setAttribute('aria-label',searchResultsMenu.isDestinationView() ? groupedSearchText().destinations : `${groupedSearchText().destinations} / ${groupedSearchText().sites}`);
     if (query !== diveSearchQuery || allowSameQueryRefresh) {
       diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
       diveSearchActiveIndex = -1;
@@ -23753,6 +23766,8 @@ function closeShareDialog() {
       moreLabel:t('loadMore'), queries:[query, ...diveSearchFilterDrafts()],
       items:diveSearchMatches.slice(0,diveSearchVisibleCount).map(siteIndex => {
         const text = groupedSearchText();
+        if (siteIndex?.expandDestinations) return {name:siteIndex.name,group:text.destinations,kind:'expand-destinations'};
+        if (siteIndex?.backToResults) return {name:siteIndex.name,meta:`${text.destinations}: ${new Intl.NumberFormat(currentLang).format(siteIndex.totalDestinations)}`,group:text.destinations,kind:'back-to-results'};
         if (typeof siteIndex !== 'number') return {
           name:text.explore(siteIndex.name), group:text.destinations, kind:'destination',
           meta:window.DiveAtlasAreaSearch.context(siteIndex,currentLang),
@@ -23766,7 +23781,7 @@ function closeShareDialog() {
     showDiveSearchResults();
     if (diveSearchActiveIndex >= 0) setDiveSearchActive(diveSearchActiveIndex);
     els.diveSearchResultsScroll.append(els.diveSearchLoadHint, els.diveSearchSuggestion);
-    els.diveSearchSuggestion.hidden = false;
+    els.diveSearchSuggestion.hidden = searchResultsMenu.isDestinationView();
     els.diveSearchSuggestButton.textContent = t('siteSuggestionCta');
     els.diveSearchSuggestButton.setAttribute('aria-label', `${t('siteSuggestionCta')}: ${query}`);
   }

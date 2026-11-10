@@ -13,11 +13,13 @@ Search for `Raja Ampat` to see an `Explore Raja Ampat` result and its current ma
 
 ## Design constraints
 
-Show at most three destination suggestions before site results. Broad country queries can match many regions; without this bound, individual sites disappear beyond the first page. The existing site pagination continues after these suggestions. Counts and destination extents use the same filtered site indices, and never imply administrative boundaries. Counts are derived at runtime rather than hard-coded from a design sample.
+Show three destination suggestions initially, then a “Show all N destinations” option when more match. Activating it opens a separate destination-only view with the normal 20-option pagination, rather than rendering thousands of destinations above individual sites. A sticky “Back to results” option restores the mixed list. Both actions participate in arrow-key navigation: entering the destination view highlights its first destination, and returning highlights the expansion action. A new query or changed filters resets the preview. Counts and destination extents use the same filtered site indices, and never imply administrative boundaries. Counts are derived at runtime rather than hard-coded from a design sample.
 
 Same-name destinations retain their geographic scope. For example, `Red Sea` can be an ocean area, an Egyptian region, or a region whose country was not recorded. The subtitle distinguishes these using area type and recorded country; missing countries are explicitly labeled. Memberships and counts are not merged merely because names match. Repeated source labels for the same type, country and normalized name are already deduplicated by the area catalog.
 
 Automatically translated site names keep a small inline AUTO label and the original name below. In search, this is a noninteractive label inside the selectable result, with its explanation exposed through a hover title and the option's accessible description. A nested badge button would cause the browser to split the outer result button, disrupting layout and navigation. Clicking anywhere on the result selects the site; popup translation badges retain their existing independent interaction.
+
+Mixed results and the destination-only view retain independent scroll offsets and loaded-page counts for the current query and filters. A new query, changed filters, or a switch between header and onboarding search starts at the top; pagination and same-query data refreshes retain the current list's position.
 
 `js/area-search.js` owns geographic matching and result copy. `js/search-results-menu.js` owns grouped markup, focus and geometry. The map and SEO search adapters own data readiness, filters and navigation. The onboarding area field keeps its existing area-only behavior; it reuses the same menu without adding site results to that flow.
 

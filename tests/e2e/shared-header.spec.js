@@ -512,6 +512,87 @@ test('automatic translation results keep one compact selectable row', async ({ p
 });
 
 for (const host of ['map','document']) {
+test(`grouped ${host} search keeps independent scroll positions and resets new queries`, async ({ page }) => {
+  await page.goto(host === 'map' ? '/' : '/plain-page-fixture.html');
+  const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';
+  const input = page.locator(`#${prefix}Input`), surface = page.locator(`#${prefix}Results`);
+  const scroll = page.locator(`#${prefix}ResultsScroll`);
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  await input.fill('United');
+  const expand = surface.locator('[data-result-kind="expand-destinations"]');
+  await expect(expand).toHaveAttribute('data-search-query','United',{timeout:15000});
+  await scroll.evaluate(el => { el.scrollTop=40; });
+  await expand.click();
+  await expect(surface.locator('[data-result-kind="back-to-results"]')).toBeVisible();
+  expect(await scroll.evaluate(el=>el.scrollTop)).toBe(0);
+  await scroll.evaluate(el => { el.scrollTop=180; });
+  await surface.locator('[data-result-kind="back-to-results"]').click();
+  await expect(expand).toBeVisible();
+  expect(await scroll.evaluate(el=>el.scrollTop)).toBe(40);
+  await expand.click();
+  await expect(surface.locator('[data-result-kind="back-to-results"]')).toBeVisible();
+  expect(await scroll.evaluate(el=>el.scrollTop)).toBe(180);
+  await input.fill('r');
+  await expect(surface.locator('[role="option"]').first()).toHaveAttribute('data-search-query','r');
+  expect(await scroll.evaluate(el=>el.scrollTop)).toBe(0);
+  await expand.click();
+  await expect(surface.locator('[data-result-kind="back-to-results"]')).toBeVisible();
+  expect(await scroll.evaluate(el=>el.scrollTop)).toBe(0);
+});
+
+test(`grouped ${host} search opens a separate paginated destination view`, async ({ page }) => {
+  await page.goto(host === 'map' ? '/' : '/plain-page-fixture.html');
+  const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';
+  const input = page.locator(`#${prefix}Input`), surface = page.locator(`#${prefix}Results`);
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
+  await input.fill('United');
+  const expand = surface.locator('[data-result-kind="expand-destinations"]');
+  await expect(expand).toHaveText(/^Show all [\d,]+ destinations$/,{timeout:15000});
+  const total = Number((await expand.textContent()).match(/[\d,]+/)[0].replaceAll(',',''));
+  expect(total).toBeGreaterThan(3);
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(3);
+  const sites = surface.locator('[data-result-kind="site"]');
+  const siteCount = await sites.count();
+  expect(siteCount).toBeGreaterThan(0);
+  // Expansion is an option in the same arrow-key sequence, not a pointer-only control.
+  for (let i=0;i<4;i++) await input.press('ArrowDown');
+  await expect(expand).toHaveAttribute('aria-selected','true');
+  await input.press('Enter');
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(19);
+  await expect(expand).toHaveCount(0);
+  await expect(sites).toHaveCount(0);
+  await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-1`);
+  const back = surface.locator('[data-result-kind="back-to-results"]');
+  await expect(back).toContainText('Back to results');
+  await expect(back).toContainText(new Intl.NumberFormat('en').format(total));
+  const more = surface.locator('[data-search-load-more]');
+  if (await more.isVisible()) await more.click();
+  else for (let i=0;i<20;i++) await input.press('ArrowDown');
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(39);
+  await expect(sites).toHaveCount(0);
+  await back.click();
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(3);
+  await expect(sites).toHaveCount(siteCount);
+  // A changed query restores the preview; returning to the old query must also
+  // require an explicit expansion rather than inheriting its previous state.
+  await input.fill('Blue Magic');
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(0);
+  await input.fill('United');
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(3);
+  await expect(expand).toBeVisible();
+  await expand.click();
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(19);
+  await input.press('ArrowUp');
+  await input.press('Enter');
+  await expect(surface.locator('[data-result-kind="destination"]')).toHaveCount(3);
+  await expect(sites).toHaveCount(siteCount);
+  await input.fill('r');
+  await expect(expand).toHaveAttribute('data-search-query','r');
+  await expand.click();
+  await expect(surface.locator('[role="option"]')).toHaveCount(20);
+  await expect(sites).toHaveCount(0);
+});
+
 test(`grouped ${host} search uses destination and site keyboard actions`, async ({ page }) => {
   await page.goto(host === 'map' ? '/?__diveatlas_test=1' : '/plain-page-fixture.html');
   const prefix = host === 'map' ? 'diveSearch' : 'seoSiteSearch';

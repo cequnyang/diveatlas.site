@@ -27,7 +27,18 @@
   const groupedText = () => window.DiveAtlasAreaSearch.resultsText(document.documentElement.lang.split('-')[0]);
   const menu = window.DiveAtlasSearchResultsMenu.create({
     surface:results, scroll:resultsScroll, getInput:() => input, filterToggle, slot,
-    onSelect:index => navigateTo(matches[index]),
+    onSelect:index => {
+      const match = matches[index];
+      if (match?.expandDestinations || match?.backToResults) {
+        const current = {visibleCount:visibleResultCount,activeIndex};
+        const view = match.backToResults ? menu.collapseDestinations(current) : menu.expandDestinations(current);
+        visibleResultCount = view.visibleCount;
+        activeIndex = -1;
+        renderResults();
+        setActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
+        resultsScroll.scrollTop = view.scrollTop;
+      } else navigateTo(match);
+    },
     onLoadMore:() => menu.loadMore(() => {
       visibleResultCount = Math.min(visibleResultCount + initialResultCount,matches.length);
       drawVisibleResults();
@@ -292,7 +303,7 @@
     const filters = activeFilters();
     const destinations = window.DiveAtlasAreaSearch.destinations(areas,query,
       index => siteMatchesFilters(searchSites[index],filters));
-    commitMatches([...destinations, ...findMatches(query)]);
+    commitMatches(menu.groupDestinations(destinations,findMatches(query),state,groupedText().showAll,groupedText().back));
 
     if (!query && !filtersApplied) {
       menu.empty(groupedText().prompt);
@@ -309,14 +320,17 @@
   }
 
   function drawVisibleResults() {
+    resultsScroll.setAttribute('aria-label',menu.isDestinationView() ? groupedText().destinations : `${groupedText().destinations} / ${groupedText().sites}`);
     menu.render({query:input.value.trim(),total:matches.length,activeIndex,moreLabel:'Load more',
       items:matches.slice(0,visibleResultCount).map(site => {
         const text = groupedText();
+        if (site.expandDestinations) return {name:site.name,group:text.destinations,kind:'expand-destinations'};
+        if (site.backToResults) return {name:site.name,meta:`${text.destinations}: ${new Intl.NumberFormat(document.documentElement.lang).format(site.totalDestinations)}`,group:text.destinations,kind:'back-to-results'};
         return site.siteIndices
           ? {name:text.explore(site.name),group:text.destinations,kind:'destination',meta:window.DiveAtlasAreaSearch.context(site,document.documentElement.lang.split('-')[0]),count:text.count(site.siteIndices.length),attributes:{'area-key':site.key}}
           : {name:site.name,group:text.sites,kind:'site',meta:siteMeta(site),attributes:{'site-id':site.site_id}};
       })});
-    appendSuggestion(input.value.trim());
+    if (!menu.isDestinationView()) appendSuggestion(input.value.trim());
     repositionResults();
   }
 

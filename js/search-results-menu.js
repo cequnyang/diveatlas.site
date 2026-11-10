@@ -3,6 +3,7 @@
    interaction and geometry. It deliberately knows nothing about Leaflet or URLs. */
 (function (root) {
   "use strict";
+  const PAGE_SIZE = 20;
   const escapeHtml = (value) =>
     String(value ?? "").replace(
       /[&<>"']/g,
@@ -65,6 +66,35 @@
     }
     modes.setAttribute("role", "group");
     let renderedQuery = "";
+    let destinationState = null;
+    let destinationsExpanded = false;
+    let viewPositions = {mixed:null,destinations:null};
+    let resetScrollOnRender = false;
+    let renderedMode = null;
+    function switchDestinationView(next, current) {
+      viewPositions[destinationsExpanded ? 'destinations' : 'mixed'] = {...current,scrollTop:scroll.scrollTop};
+      destinationsExpanded = next;
+      return viewPositions[next ? 'destinations' : 'mixed'] || {
+        visibleCount:PAGE_SIZE,activeIndex:next ? 1 : 3,scrollTop:0,
+      };
+    }
+    function groupDestinations(destinations, sites, state, showAllLabel, backLabel) {
+      if (state !== destinationState) {
+        destinationState = state;
+        destinationsExpanded = false;
+        viewPositions = {mixed:null,destinations:null};
+        resetScrollOnRender = true;
+      }
+      surface.classList.toggle('is-destination-results', destinationsExpanded);
+      // Large result sets use their own paginated view, so they never create
+      // thousands of DOM options or bury individual sites in the mixed list.
+      if (destinationsExpanded) return [{backToResults:true,name:backLabel,totalDestinations:destinations.length}, ...destinations];
+      if (destinations.length <= 3) return [...destinations, ...sites];
+      return [...destinations.slice(0, 3), {
+        expandDestinations:true, totalDestinations:destinations.length,
+        name:showAllLabel(destinations.length),
+      }, ...sites];
+    }
     function syncFilters({ open, active, pickers }) {
       pickers.forEach((picker) => {
         picker.sync();
@@ -99,6 +129,9 @@
     });
 
     function updateModes({ mode, labels, areasOnly = false, grouped = false }) {
+      const nextMode = grouped ? 'grouped' : mode;
+      if (nextMode !== renderedMode) resetScrollOnRender = true;
+      renderedMode = nextMode;
       modes.hidden = grouped || areasOnly;
       surface.classList.toggle("is-grouped-search", grouped);
       modes.setAttribute("aria-label", labels.join(" / "));
@@ -122,6 +155,7 @@
       scroll.innerHTML = `<div class="dive-search-empty" role="status">${escapeHtml(message)}</div>`;
       surface.setAttribute("aria-busy", String(busy));
       getInput().removeAttribute("aria-activedescendant");
+      scroll.scrollTop = 0;
     }
 
     function render({
@@ -132,7 +166,9 @@
       moreLabel,
       queries = [query],
     }) {
+      const resetScroll = resetScrollOnRender || query !== renderedQuery;
       renderedQuery = query;
+      resetScrollOnRender = false;
       surface.setAttribute("aria-busy", "false");
       scroll.setAttribute("aria-setsize", String(total));
       scroll.innerHTML =
@@ -148,12 +184,15 @@
               .map(([name, value]) => ` data-${name}="${escapeHtml(value)}"`)
               .join("");
             const description = item.description ? ` aria-description="${escapeHtml(item.description)}"` : "";
+            const backArrow = item.kind === 'back-to-results'
+              ? '<svg class="dive-search-back-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" stroke="currentColor" stroke-width="0.13" d="m12.57 4.205 7.477 7.75.043.045-.043.045-7.478 7.75-.046.047-.046-.045-.734-.71-.046-.044.045-.047 6.195-6.42H3.935v-1.151h14.003l-6.196-6.421-.045-.047.046-.045.734-.709.046-.045z"/></svg>'
+              : '';
             const meta = [
               item.meta ? highlight(item.meta, queries) : "",
               item.count ? `<span class="dive-search-result-count">${escapeHtml(item.count)}</span>` : "",
             ].filter(Boolean).join(" · ");
             const content = [
-              `<span class="dive-search-result-name"><span class="dive-search-result-title">${highlight(item.name, queries)}</span>${item.badgeHtml || ""}</span>`,
+              `<span class="dive-search-result-name">${backArrow}<span class="dive-search-result-title">${highlight(item.name, queries)}</span>${item.badgeHtml || ""}</span>`,
               item.originalName ? `<span class="dive-search-result-original">${highlight(item.originalName, queries)}</span>` : "",
               meta ? `<span class="dive-search-result-meta">${meta}</span>` : "",
             ].join("");
@@ -165,6 +204,9 @@
           : "");
       if (activeIndex >= 0) setActive(activeIndex);
       else getInput().removeAttribute("aria-activedescendant");
+      // DOM replacement retains scrollTop; a new query/filter/input must not
+      // inherit an unrelated list's offset. Same-list pagination retains it.
+      if (resetScroll) scroll.scrollTop = 0;
     }
 
     function setActive(next) {
@@ -371,6 +413,10 @@
     }
 
     return {
+      groupDestinations,
+      expandDestinations: current => switchDestinationView(true,current),
+      collapseDestinations: current => switchDestinationView(false,current),
+      isDestinationView: () => destinationsExpanded,
       updateModes,
       syncFilters,
       empty,
@@ -910,5 +956,5 @@
     return { cancel, dismiss };
   }
 
-  root.DiveAtlasSearchResultsMenu = { create, highlight, createFilterPicker, pageSize:20 };
+  root.DiveAtlasSearchResultsMenu = { create, highlight, createFilterPicker, pageSize:PAGE_SIZE };
 })(window);
