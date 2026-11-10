@@ -6766,6 +6766,481 @@
       "url": "https://assets.diveatlas.site/site-photos/v1/635ca8bdefc5a0e1e9ee5bf56491712bb680d135acf9e485784d3a5f6d774b10.jpg",
       "sha256": "635ca8bdefc5a0e1e9ee5bf56491712bb680d135acf9e485784d3a5f6d774b10",
       "bytes": 116011
+    },
+    "/assets/dive-sites/05b00f8e-f4cb-46a0-a56f-eaa108c53483/preview-option-a7c4758ba1b16594.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d735e7a7050e5889b8ea0c20ef28ea40d21186510eb0a9c8903d342f62d6bed6.jpg",
+      "sha256": "d735e7a7050e5889b8ea0c20ef28ea40d21186510eb0a9c8903d342f62d6bed6",
+      "bytes": 236590
+    },
+    "/assets/dive-sites/0955a70d-931b-4b1b-8e5f-acc7b2596da0/preview-option-bb6b848f125db5ff.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/71c8056adf63f92624e3a758230e402cdcaa2b3772411ee4670c607b0429252c.jpg",
+      "sha256": "71c8056adf63f92624e3a758230e402cdcaa2b3772411ee4670c607b0429252c",
+      "bytes": 356220
+    },
+    "/assets/dive-sites/0c9951b7-9865-43eb-8e2a-ea1087da5075/preview-option-d201fec84a69a77e.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/50eae3e926038c2eeba8bba7f6627ddf379f5fc63af93083e1eb6125fd875feb.jpg",
+      "sha256": "50eae3e926038c2eeba8bba7f6627ddf379f5fc63af93083e1eb6125fd875feb",
+      "bytes": 427887
+    },
+    "/assets/dive-sites/0cfd63d9-af2a-4f4c-9a92-815b8a8c4610/preview-option-49e42ba17e4a51f7.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d7dfea03ef8f6963b9fe209cb039e6f3d1a4d26eea2dd8e6668aee52ea903a01.jpg",
+      "sha256": "d7dfea03ef8f6963b9fe209cb039e6f3d1a4d26eea2dd8e6668aee52ea903a01",
+      "bytes": 149603
+    },
+    "/assets/dive-sites/0ea38ae1-542d-43cc-8346-6c7098e82baa/preview-option-159738a6815c85e1.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/84218e07109390c0ecea7eef35ce6e2788b3909ba70058fa67e32ed7f30b3949.jpg",
+      "sha256": "84218e07109390c0ecea7eef35ce6e2788b3909ba70058fa67e32ed7f30b3949",
+      "bytes": 210640
+    },
+    "/assets/dive-sites/1152ffcd-fd42-4ce2-a11b-2605e2a26fba/preview-option-9b053422e775b1ff.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/a7ea47af7b3eaead900c91addf1c30714b069a786adcbdaae93f207d5a0d128f.jpg",
+      "sha256": "a7ea47af7b3eaead900c91addf1c30714b069a786adcbdaae93f207d5a0d128f",
+      "bytes": 381339
+    },
+    "/assets/dive-sites/19ecf390-e464-4bc6-8c6d-5dc0ad181bad/preview-option-a1663816d4787e77.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/556c279001c25165d5d9091f78dea5e88f83e95bc63b692490425f741f553943.jpg",
+      "sha256": "556c279001c25165d5d9091f78dea5e88f83e95bc63b692490425f741f553943",
+      "bytes": 104143
+    },
+    "/assets/dive-sites/1d2deead-8059-47de-90fe-1b87d722d9f8/preview-option-6ff744c4ba1a83dc.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d0433bb737ea0eb84ca65e5400bcee7e747ededd2e2baef38d7ca5cfe1a8332e.jpg",
+      "sha256": "d0433bb737ea0eb84ca65e5400bcee7e747ededd2e2baef38d7ca5cfe1a8332e",
+      "bytes": 637286
+    },
+    "/assets/dive-sites/1eff0142-7485-4507-8c1b-8a9d760c7e36/preview-option-2e2029d9dcfc5d3a.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/2e1e2b6c1539e221836230c0cfb46b8450c0c3649f25bd0577eec86e379fd531.jpg",
+      "sha256": "2e1e2b6c1539e221836230c0cfb46b8450c0c3649f25bd0577eec86e379fd531",
+      "bytes": 66567
+    },
+    "/assets/dive-sites/2494a36e-31aa-4232-91b7-7392e63df872/preview-option-6dcb667dc850115d.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/eb02e333d888198ba4161a3c317865c0934eee464226f213e1025592de6af180.jpg",
+      "sha256": "eb02e333d888198ba4161a3c317865c0934eee464226f213e1025592de6af180",
+      "bytes": 585608
+    },
+    "/assets/dive-sites/2c013d2e-cf77-4132-b1a2-cfcb4d2031f1/preview-option-0cfc834c0d6189ff.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/711d98056591b7473444b636eed2a3964a801a1ce5dd1914ebf4139688f2b59d.jpg",
+      "sha256": "711d98056591b7473444b636eed2a3964a801a1ce5dd1914ebf4139688f2b59d",
+      "bytes": 377863
+    },
+    "/assets/dive-sites/2fcfaf7e-9a57-4946-b388-5427dc1135ef/preview-option-c9477e84ada85977.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/66dc43b36a7c916f57fe8eca5b2e041578b9dd3a3721dd2ed1458cb1e72b7c47.jpg",
+      "sha256": "66dc43b36a7c916f57fe8eca5b2e041578b9dd3a3721dd2ed1458cb1e72b7c47",
+      "bytes": 500581
+    },
+    "/assets/dive-sites/369622b3-1870-428e-b2e1-0c9b41bf696c/preview-option-3ef55de781461e2f.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/a2b1d839bb9090b643a8731c950e943bd090319933f915338c85a2991a1f48f0.jpg",
+      "sha256": "a2b1d839bb9090b643a8731c950e943bd090319933f915338c85a2991a1f48f0",
+      "bytes": 413566
+    },
+    "/assets/dive-sites/45c54084-5929-4334-8219-e4021476d465/preview-option-74cb820967103cf7.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c93e9c55c2e12d83a0245e5e0b7103ba4edb73dac8d81b6cb84522513b8b6b02.jpg",
+      "sha256": "c93e9c55c2e12d83a0245e5e0b7103ba4edb73dac8d81b6cb84522513b8b6b02",
+      "bytes": 383115
+    },
+    "/assets/dive-sites/4ca0b6b5-57d4-491a-b8ea-f3271a661bf9/preview-option-88b9d54d1a5bf631.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/690aa60d4d726d956dd747b6e16fcae4a39f908dd4455ee433e421f7ec57b7b1.jpg",
+      "sha256": "690aa60d4d726d956dd747b6e16fcae4a39f908dd4455ee433e421f7ec57b7b1",
+      "bytes": 307554
+    },
+    "/assets/dive-sites/4da929b6-f860-4f53-8664-d679e6ef0d2a/preview-option-2458d817fd6eba8b.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/3288e461c560b70394bceccfae478a97f620681f3931b558bd80cc9b6d60cddc.jpg",
+      "sha256": "3288e461c560b70394bceccfae478a97f620681f3931b558bd80cc9b6d60cddc",
+      "bytes": 586787
+    },
+    "/assets/dive-sites/53169b0d-20fb-4e16-b24b-a0bc89fb2bca/preview-option-df296e6f74672c34.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/cec0466f249bfc59d711cf52f61653a7b5df832fc2a322c8e2bd308ab415bb24.jpg",
+      "sha256": "cec0466f249bfc59d711cf52f61653a7b5df832fc2a322c8e2bd308ab415bb24",
+      "bytes": 503467
+    },
+    "/assets/dive-sites/636bbc4b-7a63-4c8b-9aa4-19961f6a6d80/preview-option-2e675d6c7c598891.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/13ad6af4542f60d40234c870c0adccf0aa2dbb66b9d746919d9455b2516d5d39.jpg",
+      "sha256": "13ad6af4542f60d40234c870c0adccf0aa2dbb66b9d746919d9455b2516d5d39",
+      "bytes": 209637
+    },
+    "/assets/dive-sites/649802bd-e5ca-4eaa-acfa-41653379e5f8/preview-option-bf76fcda9bebc5d1.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/f825833452e941011f00c9f87d0627075a7a0e28afc1a63026e3f9db4f12bd4c.jpg",
+      "sha256": "f825833452e941011f00c9f87d0627075a7a0e28afc1a63026e3f9db4f12bd4c",
+      "bytes": 715475
+    },
+    "/assets/dive-sites/651bfdac-9fdb-4e75-8fad-3e41b3caa409/preview-option-8d070755b981176c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/354f7aa9583d09d2d96acbe515747d7c1a14167facce9c7d75fafc21c7c1a15c.jpg",
+      "sha256": "354f7aa9583d09d2d96acbe515747d7c1a14167facce9c7d75fafc21c7c1a15c",
+      "bytes": 563063
+    },
+    "/assets/dive-sites/654fb529-b94c-47ee-843d-ebb9c280ca77/preview-option-8deee22b559b60af.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/f769e7ade1cd83a4cc6a3164e3e6638a02bbf9e8cb1ece777c3490e7fbcba4f4.jpg",
+      "sha256": "f769e7ade1cd83a4cc6a3164e3e6638a02bbf9e8cb1ece777c3490e7fbcba4f4",
+      "bytes": 670784
+    },
+    "/assets/dive-sites/65e47523-1325-492e-8b9b-bd4f7d730608/preview-option-b43680102cd9512e.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/bc302297a5445cba2c30294a51ec53bacfe4874c97b92645797725014d0bf1fe.jpg",
+      "sha256": "bc302297a5445cba2c30294a51ec53bacfe4874c97b92645797725014d0bf1fe",
+      "bytes": 356300
+    },
+    "/assets/dive-sites/6af3b17f-3689-45e2-b5a9-2ab5290f7dee/preview-option-6bf1fcff9bbd8004.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/9619af9685a38a309ffb68f09b81d25bde119d2025654a450486c75f3bcf2ee5.jpg",
+      "sha256": "9619af9685a38a309ffb68f09b81d25bde119d2025654a450486c75f3bcf2ee5",
+      "bytes": 240040
+    },
+    "/assets/dive-sites/6b1051d9-edb0-4527-8ce8-f25f3b00ec11/preview-option-619f1d7d0896723b.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/72b648344812fa255a893066c28ab5114ff2e5f20752326856b07815ce49b264.jpg",
+      "sha256": "72b648344812fa255a893066c28ab5114ff2e5f20752326856b07815ce49b264",
+      "bytes": 634474
+    },
+    "/assets/dive-sites/7000e998-4df2-40cc-8f6f-2845d230e668/preview-option-076d3bb02ab00da9.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/08813a60bb063122ff3852908f1f24f52a3f4d2b1b3e6518b87916e1a347085d.jpg",
+      "sha256": "08813a60bb063122ff3852908f1f24f52a3f4d2b1b3e6518b87916e1a347085d",
+      "bytes": 281634
+    },
+    "/assets/dive-sites/7722fd90-9d5a-45c7-8cf1-0d651fa93b9c/preview-option-5bd9d2c6af44ca50.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/07300f642b42a286d27e7b71d71cad0f39a5a7f629e293392be56ddc663919b7.jpg",
+      "sha256": "07300f642b42a286d27e7b71d71cad0f39a5a7f629e293392be56ddc663919b7",
+      "bytes": 257443
+    },
+    "/assets/dive-sites/7f7aa837-aeca-4ea9-969c-3d3f545cd88b/preview-option-4ac9e07812938011.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/ff2001029b728807491878fbc31601ce38abb81f07cb4f3f639c9eeee0c22742.jpg",
+      "sha256": "ff2001029b728807491878fbc31601ce38abb81f07cb4f3f639c9eeee0c22742",
+      "bytes": 254021
+    },
+    "/assets/dive-sites/81635e66-6f75-42a4-ae2e-a9a7d18d5d02/preview-option-d05cb95fd2cc3787.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/8f0b26990f1720de95c63eac75197c5f1e1a147af40e43c2ae40830a6ad88224.jpg",
+      "sha256": "8f0b26990f1720de95c63eac75197c5f1e1a147af40e43c2ae40830a6ad88224",
+      "bytes": 251020
+    },
+    "/assets/dive-sites/84ae0cba-f54a-456c-981c-e2e5d8b8d751/preview-option-9c2807641cc32017.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/606966dde280f687b91086531aa56a4a90fcdc8599e4e8d03b34373526134fb4.jpg",
+      "sha256": "606966dde280f687b91086531aa56a4a90fcdc8599e4e8d03b34373526134fb4",
+      "bytes": 537373
+    },
+    "/assets/dive-sites/8ce8d1ab-64ec-49ee-a3be-eb984dcabea6/preview-option-efd6cf010e2d9ed1.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/9322f7888aefeb1e7f51872dac91258e24a89f5ddb5ed0088626c1d3ccc81505.jpg",
+      "sha256": "9322f7888aefeb1e7f51872dac91258e24a89f5ddb5ed0088626c1d3ccc81505",
+      "bytes": 460145
+    },
+    "/assets/dive-sites/90e6c284-8af8-4bdd-acd9-5c49fa78fc2e/preview-option-d1623065b6d000d6.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/b093239bb048c69ebdd3cc1562df099512d1c2a41542696224a909f8003528f4.jpg",
+      "sha256": "b093239bb048c69ebdd3cc1562df099512d1c2a41542696224a909f8003528f4",
+      "bytes": 484619
+    },
+    "/assets/dive-sites/94b20f8f-e51f-4608-92be-a15df54ce226/preview-option-5459c8f1c98b9e4d.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/0990916ce063e650a161fc414cb01119a0a1ebe4a3d1fb4de9ce94ae47351e75.jpg",
+      "sha256": "0990916ce063e650a161fc414cb01119a0a1ebe4a3d1fb4de9ce94ae47351e75",
+      "bytes": 316123
+    },
+    "/assets/dive-sites/9a44b2d3-96fc-4a20-8e8a-ff6d12338815/preview-option-ab390a2b5b0bd291.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/33c947034d50578cd28d2a7e27bbefdb6780648c27fab4296463ab5772978f2b.jpg",
+      "sha256": "33c947034d50578cd28d2a7e27bbefdb6780648c27fab4296463ab5772978f2b",
+      "bytes": 250108
+    },
+    "/assets/dive-sites/a3ecfe66-1402-42b8-990a-e7784fd72b5a/preview-option-7896051a081637ae.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/e95c826b58ad6a19be29684b7c0f89ec58ab037a81db234569237148bf2c9d58.jpg",
+      "sha256": "e95c826b58ad6a19be29684b7c0f89ec58ab037a81db234569237148bf2c9d58",
+      "bytes": 520428
+    },
+    "/assets/dive-sites/a4e92425-ac68-442a-97aa-8029912103a9/preview-option-dbc0ea077ca0bec0.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/b4024bddff74d43b8ab7ebadf41f8965340832836e8e6dfb91dfe4621b0f8bdc.jpg",
+      "sha256": "b4024bddff74d43b8ab7ebadf41f8965340832836e8e6dfb91dfe4621b0f8bdc",
+      "bytes": 698705
+    },
+    "/assets/dive-sites/a567d315-419e-4139-8db8-e94140490d28/preview-option-01bae93fba314f4d.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/fff32774321b571aed1960332beab97c9f9f8efd6d857f18ee01b929a85d901b.jpg",
+      "sha256": "fff32774321b571aed1960332beab97c9f9f8efd6d857f18ee01b929a85d901b",
+      "bytes": 417752
+    },
+    "/assets/dive-sites/b3fa52b9-a67a-49c9-9fca-ab2eef9f6ccc/preview-option-1c954f2bb0ecc2f0.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7f105fe4b7e451f2361148f8214950e8edab1f52601f9729275beb4184be65a8.jpg",
+      "sha256": "7f105fe4b7e451f2361148f8214950e8edab1f52601f9729275beb4184be65a8",
+      "bytes": 401837
+    },
+    "/assets/dive-sites/ba99c308-a7cb-492b-bf5e-380d73263c89/preview-option-6bb43b6f3d383a34.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/ff204e144f9e27c06723c547c3af05e020e0f06b7770ac0296adcbcad2359924.jpg",
+      "sha256": "ff204e144f9e27c06723c547c3af05e020e0f06b7770ac0296adcbcad2359924",
+      "bytes": 587308
+    },
+    "/assets/dive-sites/bad5c1ba-e3e1-485f-8e43-e3eed8f32385/preview-option-5f02cd37df4ccfd0.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/ba8510966bc9e8cd021d2fb0866c491e92f54202313c7d60c503ed124d313b7b.jpg",
+      "sha256": "ba8510966bc9e8cd021d2fb0866c491e92f54202313c7d60c503ed124d313b7b",
+      "bytes": 310564
+    },
+    "/assets/dive-sites/bf143d68-59d7-4664-bd51-ea6c80a7f91f/preview-option-52dada67764410d8.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d74727cbd7071096ccebbd85d1677fb7e37179b9939056a371714c5c14b912f6.jpg",
+      "sha256": "d74727cbd7071096ccebbd85d1677fb7e37179b9939056a371714c5c14b912f6",
+      "bytes": 416480
+    },
+    "/assets/dive-sites/dc17f872-f660-4a24-b1a7-4cd36993c540/preview-option-9aa6675328a38ea4.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/b797667d770a3febbb94129d51f7009038bc709b1714ff2706ff8f394d2697d2.jpg",
+      "sha256": "b797667d770a3febbb94129d51f7009038bc709b1714ff2706ff8f394d2697d2",
+      "bytes": 224932
+    },
+    "/assets/dive-sites/e5804792-deda-4b83-9618-80fe714166b6/preview-option-eaa5eb70c2fcce35.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/20d280cf7365366406ba49bea3f43da317a8cab1c5931ad8908791706309b8d4.jpg",
+      "sha256": "20d280cf7365366406ba49bea3f43da317a8cab1c5931ad8908791706309b8d4",
+      "bytes": 482843
+    },
+    "/assets/dive-sites/ed881db2-13c8-46d5-8a61-eb4be435e587/preview-option-e95d1766e32cbe58.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/06014179c8d93f3c885484e36ee347d4df495fea1dab01360686206f1358b29e.jpg",
+      "sha256": "06014179c8d93f3c885484e36ee347d4df495fea1dab01360686206f1358b29e",
+      "bytes": 390049
+    },
+    "/assets/dive-sites/fb9b5128-58cd-4123-a40a-0d10b01904e0/preview-option-467a4a8ce0a99520.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/bfcb92640b3a6d75b4b7aa088f595487e737930c70eb5de16bda69013bfa7807.jpg",
+      "sha256": "bfcb92640b3a6d75b4b7aa088f595487e737930c70eb5de16bda69013bfa7807",
+      "bytes": 641163
+    },
+    "/assets/dive-sites/fd154b93-bc5e-4ac8-9e73-aafc7a396c3d/preview-option-5b74c7c273312a86.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c3af9251a3941ab9f13fd9cb8f42196524f4f6ac66135e30179a9903bfc09b97.jpg",
+      "sha256": "c3af9251a3941ab9f13fd9cb8f42196524f4f6ac66135e30179a9903bfc09b97",
+      "bytes": 442139
+    },
+    "/assets/dive-sites/06506552-f91c-4c64-bd4e-e0dd24a54e6a/preview-option-641a308e8db37326.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7a688c14caa36884b603e7bb87d695748847a5a91f2b974fab2605189be1f44c.jpg",
+      "sha256": "7a688c14caa36884b603e7bb87d695748847a5a91f2b974fab2605189be1f44c",
+      "bytes": 288948
+    },
+    "/assets/dive-sites/1185ecfe-dd87-46c8-9ed0-bf5574d8d028/preview-option-cd192f3e04292c12.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c31b3f2b27beb14e9d879063920150a226319764f82e0db7220a77d86601a43b.jpg",
+      "sha256": "c31b3f2b27beb14e9d879063920150a226319764f82e0db7220a77d86601a43b",
+      "bytes": 395527
+    },
+    "/assets/dive-sites/15088c64-63e6-4fda-a4d9-3350bf4d4590/preview-option-85b875727a31d591.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c51fe7d2a91d62af034dbc9dd2fcc0cca5b09fbc5248f6f00322517d1587d27d.jpg",
+      "sha256": "c51fe7d2a91d62af034dbc9dd2fcc0cca5b09fbc5248f6f00322517d1587d27d",
+      "bytes": 475463
+    },
+    "/assets/dive-sites/152c3873-ea31-43cd-8b85-e7caa19cfcbb/preview-option-172c117f17b35aaa.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/33ea25ccaee207753ad69815eb7a3fa657ca3f7217103a12bf86a485a43d4ba2.jpg",
+      "sha256": "33ea25ccaee207753ad69815eb7a3fa657ca3f7217103a12bf86a485a43d4ba2",
+      "bytes": 415031
+    },
+    "/assets/dive-sites/16aa1729-4f40-4cfc-89bc-58a84c5deba4/preview-option-be26bdcb6f1742d8.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/950a1bbe76285908ed2883d305c498caecfc363c11329f91144998a8c735fec2.jpg",
+      "sha256": "950a1bbe76285908ed2883d305c498caecfc363c11329f91144998a8c735fec2",
+      "bytes": 258717
+    },
+    "/assets/dive-sites/1c3b611e-eb40-4962-bea6-004609f8bb27/preview-option-a0fa054d59d387be.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/b9a105af99ba8237269c7c2b9ee9a99e728499333b6f5323f4f94a159e8e7f45.jpg",
+      "sha256": "b9a105af99ba8237269c7c2b9ee9a99e728499333b6f5323f4f94a159e8e7f45",
+      "bytes": 375168
+    },
+    "/assets/dive-sites/2281b504-0110-469e-a7c9-429dbd5aac98/preview-option-49e413d38300ac0f.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/f63be59c135ce3efd915609f0d9292c735c0aa4017b8ea6a8a5db63e7f14fa21.jpg",
+      "sha256": "f63be59c135ce3efd915609f0d9292c735c0aa4017b8ea6a8a5db63e7f14fa21",
+      "bytes": 391744
+    },
+    "/assets/dive-sites/2530d886-a453-4491-b870-8c3a31d6df90/preview-option-1ad84eb66b00ca35.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c4f1ab4835c3f824ce713043cd86f4ff3313f5fe99316b59d1288c45cb29b420.jpg",
+      "sha256": "c4f1ab4835c3f824ce713043cd86f4ff3313f5fe99316b59d1288c45cb29b420",
+      "bytes": 167506
+    },
+    "/assets/dive-sites/26916182-e0a9-4da8-ada2-f259ec67df77/preview-option-b48396d6dacebb99.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/fd3439023bb253bffebf076fec5201f7ed8c5a4f9642fd880bcbedab58ced04e.jpg",
+      "sha256": "fd3439023bb253bffebf076fec5201f7ed8c5a4f9642fd880bcbedab58ced04e",
+      "bytes": 316860
+    },
+    "/assets/dive-sites/2b2a4b1c-8f9f-407d-b9ed-98c001ba9b5e/preview-option-b6cfc77f1f4b5cf7.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/22b766c1f6f8fb49a5d3635bc7316f16d6095dae8ba1dfec3b025b16ff13fb76.jpg",
+      "sha256": "22b766c1f6f8fb49a5d3635bc7316f16d6095dae8ba1dfec3b025b16ff13fb76",
+      "bytes": 566351
+    },
+    "/assets/dive-sites/2d5b497e-3f27-46c1-a596-b49f9fae9846/preview-option-4573e3aa7eedc26a.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7acf5e307828eaa1f69840a86a02afe0d82442cfa7ffbb90fccdec62ecbb98ec.jpg",
+      "sha256": "7acf5e307828eaa1f69840a86a02afe0d82442cfa7ffbb90fccdec62ecbb98ec",
+      "bytes": 193595
+    },
+    "/assets/dive-sites/3608535f-b0fc-481b-8698-5750c412e5aa/preview-option-a91babc8c87e83a4.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c59a6ba955d1a39e244d20a3a407fa71fe4a6d3a4fbabddc621e1bfb6028c4ad.jpg",
+      "sha256": "c59a6ba955d1a39e244d20a3a407fa71fe4a6d3a4fbabddc621e1bfb6028c4ad",
+      "bytes": 441043
+    },
+    "/assets/dive-sites/37ffb544-7497-491c-9728-59c8aa20df87/preview-option-5ba945490efa9e8c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7247346b18687a532ccb51abf03fcee550bc7d4a9c0534a8c33a5e31d4979b81.jpg",
+      "sha256": "7247346b18687a532ccb51abf03fcee550bc7d4a9c0534a8c33a5e31d4979b81",
+      "bytes": 543981
+    },
+    "/assets/dive-sites/3839363b-fa36-42c7-b412-964cbc484f2d/preview-option-696349c6d3d55751.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7e38036ac7371a94fe4113fa1da7309cb288799294bae54c7815bd203e9195a0.jpg",
+      "sha256": "7e38036ac7371a94fe4113fa1da7309cb288799294bae54c7815bd203e9195a0",
+      "bytes": 358718
+    },
+    "/assets/dive-sites/3a5fdfbd-352f-4615-99c0-ef4ca682a495/preview-option-ee39b5396cd99919.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/23335f1462683f515f2bf149911031f8727dd86f7715f9ef25b27882e26a82f3.jpg",
+      "sha256": "23335f1462683f515f2bf149911031f8727dd86f7715f9ef25b27882e26a82f3",
+      "bytes": 822883
+    },
+    "/assets/dive-sites/3b0951af-6a52-45b9-aad3-b092bd19f237/preview-option-7e719a312edea1f7.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/059e39caf24b95ea6881dcef7a5bc7bd2a3d2481eda68d9de932acd6bfcc86ab.jpg",
+      "sha256": "059e39caf24b95ea6881dcef7a5bc7bd2a3d2481eda68d9de932acd6bfcc86ab",
+      "bytes": 365580
+    },
+    "/assets/dive-sites/43248cc9-5772-469f-ba96-482535b557f5/preview-option-dcc527b331378e18.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/189f6dcf7bf510efa5dce05886695567c7372c4176f651d6bc817e633fafc734.jpg",
+      "sha256": "189f6dcf7bf510efa5dce05886695567c7372c4176f651d6bc817e633fafc734",
+      "bytes": 196258
+    },
+    "/assets/dive-sites/4eca1ead-fa8c-4fcb-ae24-368cf3193a2e/preview-option-923c792dd0ecfe96.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/6799d30fa057427369deb0e72905977eef20705a688662eb67561bada9620dc7.jpg",
+      "sha256": "6799d30fa057427369deb0e72905977eef20705a688662eb67561bada9620dc7",
+      "bytes": 194430
+    },
+    "/assets/dive-sites/52f9e7e9-5036-4710-8ab3-db1367916ff4/preview-option-c0ad613ea61e97c5.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/555bb1fdd277f87eb2061ea1cd4202b9a4389218ad09d52471a9666d526244b3.jpg",
+      "sha256": "555bb1fdd277f87eb2061ea1cd4202b9a4389218ad09d52471a9666d526244b3",
+      "bytes": 228596
+    },
+    "/assets/dive-sites/535829d6-3761-482b-ac4a-141132a3bbdc/preview-option-0a4fcf4fc7a5bfa1.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/065cdc56645f7f5232340259847892acc689ae61572068b23e4ae21c4ede41f7.jpg",
+      "sha256": "065cdc56645f7f5232340259847892acc689ae61572068b23e4ae21c4ede41f7",
+      "bytes": 546406
+    },
+    "/assets/dive-sites/587723f6-e219-450c-a50b-2f11be13f66e/preview-option-641ef0c8a772adc8.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7c7932e6456abd28b316d733d7457c100eeac883794c4a6d327dec16dd9be915.jpg",
+      "sha256": "7c7932e6456abd28b316d733d7457c100eeac883794c4a6d327dec16dd9be915",
+      "bytes": 73942
+    },
+    "/assets/dive-sites/62f58ec9-af1f-44f1-ac7f-11e639d7b659/preview-option-2d330c63ac52a6f5.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/e13c2e5849c14f4e5e22ce045a1d57512f66defafe255cb8a74d831934c7d9ad.jpg",
+      "sha256": "e13c2e5849c14f4e5e22ce045a1d57512f66defafe255cb8a74d831934c7d9ad",
+      "bytes": 426789
+    },
+    "/assets/dive-sites/65388b7d-3548-4d2f-9cb9-1ee7e4c65bd6/preview-option-9df05e32c751c20a.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/ff0a126cabc3fcc8bc9a0cfadc57e813700b06830646843fd7d7b1fcb13998fd.jpg",
+      "sha256": "ff0a126cabc3fcc8bc9a0cfadc57e813700b06830646843fd7d7b1fcb13998fd",
+      "bytes": 406346
+    },
+    "/assets/dive-sites/6d7d7db7-b85a-424a-a8ff-9bc623de5bbc/preview-option-69834b00bf111faa.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/564c659df3070e8e5755d1cb71280c492db006c316602d80808a841059b24118.jpg",
+      "sha256": "564c659df3070e8e5755d1cb71280c492db006c316602d80808a841059b24118",
+      "bytes": 305655
+    },
+    "/assets/dive-sites/7598489f-313b-44ad-bd23-c6a65cffe936/preview-option-f5710b2843331a6b.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/0f67804600974b16ff154b7b603203426606651cb83d3d8fbfd1ce69bbe90c4f.jpg",
+      "sha256": "0f67804600974b16ff154b7b603203426606651cb83d3d8fbfd1ce69bbe90c4f",
+      "bytes": 324348
+    },
+    "/assets/dive-sites/7bd21943-f6c0-4ef0-a9cb-3176703c5e62/preview-option-603b5577471e1ae8.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/dd1a6c65ff467d33a00dcfe65cb97414dc42c65f40a30e7c6059ec2ca7b59d81.jpg",
+      "sha256": "dd1a6c65ff467d33a00dcfe65cb97414dc42c65f40a30e7c6059ec2ca7b59d81",
+      "bytes": 561998
+    },
+    "/assets/dive-sites/7fc88114-9814-4d5a-ad7f-7a1023377666/preview-option-c5951a4d5632385e.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/fdc3c4a2dd6974d540ba31bbea1ea1bc64693fc993bdfe8f634f59342a96f25c.jpg",
+      "sha256": "fdc3c4a2dd6974d540ba31bbea1ea1bc64693fc993bdfe8f634f59342a96f25c",
+      "bytes": 472107
+    },
+    "/assets/dive-sites/8b71d365-5f2a-4611-b375-9773fcbc002a/preview-option-8e6282f2aecb0f2c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/fef506593151428f26c283d692c53b113d0d11925b83454fef69d8824f37db3d.jpg",
+      "sha256": "fef506593151428f26c283d692c53b113d0d11925b83454fef69d8824f37db3d",
+      "bytes": 452525
+    },
+    "/assets/dive-sites/8c196225-fc5e-43b7-b627-b41da4675d1d/preview-option-36536678101d091d.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/23d627644db2bfd588003ea080c85d4f24a38c80defae7fdf973f35149df9afb.jpg",
+      "sha256": "23d627644db2bfd588003ea080c85d4f24a38c80defae7fdf973f35149df9afb",
+      "bytes": 358391
+    },
+    "/assets/dive-sites/9111b93b-763e-4a78-bdbb-40eba179926e/preview-option-c2de720fbc2fb763.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/dc7b070b639463731809ddb94abd9e86af17ce73d25a394bd2a8e280b17e391e.jpg",
+      "sha256": "dc7b070b639463731809ddb94abd9e86af17ce73d25a394bd2a8e280b17e391e",
+      "bytes": 411273
+    },
+    "/assets/dive-sites/9112b1d4-4344-46ea-80c4-7bb0ffc58504/preview-option-24c4231304dbd180.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/140d00722925aa29dff86163e689ef2f83901cf90bbbdcacda4c1ff14221a3d0.jpg",
+      "sha256": "140d00722925aa29dff86163e689ef2f83901cf90bbbdcacda4c1ff14221a3d0",
+      "bytes": 72697
+    },
+    "/assets/dive-sites/92364fff-a353-4e3a-bfc7-6714decc06a1/preview-option-81d5a871f93da73d.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/9736eee0477448c7a3c4604444bd1a6e44daf51126bb7c5bc38eee8256ef8916.jpg",
+      "sha256": "9736eee0477448c7a3c4604444bd1a6e44daf51126bb7c5bc38eee8256ef8916",
+      "bytes": 330351
+    },
+    "/assets/dive-sites/a2d3c696-02c4-4621-ae1e-1f1a06e87b7f/preview-option-f96e71df46355e0e.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d950183c3737f5f5b56644e2ad9487177c432711225bf802a5e94d8ff84953cc.jpg",
+      "sha256": "d950183c3737f5f5b56644e2ad9487177c432711225bf802a5e94d8ff84953cc",
+      "bytes": 43418
+    },
+    "/assets/dive-sites/ae6fc972-dd01-410b-be6b-649b7d2b8582/preview-option-0ec4d3e3b1138187.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/71ad2bb84047c0c4f9827c58d1704ad2ab773e09144526a595ce527acdd7bfdd.jpg",
+      "sha256": "71ad2bb84047c0c4f9827c58d1704ad2ab773e09144526a595ce527acdd7bfdd",
+      "bytes": 250492
+    },
+    "/assets/dive-sites/b6b532f8-5984-428c-ba36-9ec6b94b0cce/preview-option-d90d7f24ac21c082.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/395ac2bd76eb786338decebfd5b8efd93b9c6359c193d135dcb8c2e5c6dea574.jpg",
+      "sha256": "395ac2bd76eb786338decebfd5b8efd93b9c6359c193d135dcb8c2e5c6dea574",
+      "bytes": 477730
+    },
+    "/assets/dive-sites/b6c1a9bc-9e90-49dd-bdc5-29e3882b8367/preview-option-a8552440cc394352.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/cba6e1ccbbd5a5d2cf590f08d14101a2e2e6bfad6c5fa1cd50f02c8e76ca9cad.jpg",
+      "sha256": "cba6e1ccbbd5a5d2cf590f08d14101a2e2e6bfad6c5fa1cd50f02c8e76ca9cad",
+      "bytes": 182695
+    },
+    "/assets/dive-sites/be0e956f-2f73-4675-a9d6-b6b561d9528d/preview-option-6f047f391f00563c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/bbc8feaa9d1590f477742041205c5576fbcfbb0c0e8b865e98c88efb6c5b3764.jpg",
+      "sha256": "bbc8feaa9d1590f477742041205c5576fbcfbb0c0e8b865e98c88efb6c5b3764",
+      "bytes": 907788
+    },
+    "/assets/dive-sites/be41f825-a1de-49ac-9d3d-662d8f6ed6aa/preview-option-5549b21ebcbb59b3.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/1848bc3f5d969f4b52b4c87c8eab55fb59d399804acfa002e464ecd88ec25bbc.jpg",
+      "sha256": "1848bc3f5d969f4b52b4c87c8eab55fb59d399804acfa002e464ecd88ec25bbc",
+      "bytes": 225518
+    },
+    "/assets/dive-sites/ced1e1cf-ea1f-4693-a47c-cfb7238d1c10/preview-option-93d1f556a86c2d49.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/165879eaf2df240b53cd85202452c89baaad51518532b7df15188b6e80a8d5b7.jpg",
+      "sha256": "165879eaf2df240b53cd85202452c89baaad51518532b7df15188b6e80a8d5b7",
+      "bytes": 361618
+    },
+    "/assets/dive-sites/cff5ef65-c11b-4961-8c4f-304c3f6f44e9/preview-option-8e6f507720401a0f.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/c9ae2c56bab4703bfc75531080d59fa9d0773d05f9ae06d3ae5749d7f1477f2f.jpg",
+      "sha256": "c9ae2c56bab4703bfc75531080d59fa9d0773d05f9ae06d3ae5749d7f1477f2f",
+      "bytes": 385334
+    },
+    "/assets/dive-sites/d0317650-5043-434e-a9d6-9958553f61ea/preview-option-ca1454b40f053693.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/f4e2c165e617867c5e97003cb31395ee3cec36ed416d80281b8d7d5be76ebd37.jpg",
+      "sha256": "f4e2c165e617867c5e97003cb31395ee3cec36ed416d80281b8d7d5be76ebd37",
+      "bytes": 454809
+    },
+    "/assets/dive-sites/d2411710-2126-41dc-bf1a-174eafb2a43f/preview-option-7b93324fbb2a799c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/74b6bf2605e9b1d4c985503d3328c13022759dd26b08eb01539d141f0ca3b827.jpg",
+      "sha256": "74b6bf2605e9b1d4c985503d3328c13022759dd26b08eb01539d141f0ca3b827",
+      "bytes": 217434
+    },
+    "/assets/dive-sites/da05784a-f320-4003-96c7-ea4d059d93bf/preview-option-a8acf96220d8e14a.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/079e3252eb35de9f612a5af72443e3818df23981bd71fe09506d52f7520b62bd.jpg",
+      "sha256": "079e3252eb35de9f612a5af72443e3818df23981bd71fe09506d52f7520b62bd",
+      "bytes": 618840
+    },
+    "/assets/dive-sites/e4b437af-dd72-4f83-b1fb-008ccc0ab104/preview-option-dba01d666df2959f.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/5752225a9912582e3bff5ed009159a73583d31d42fd9edc3b5915dbc21baf129.jpg",
+      "sha256": "5752225a9912582e3bff5ed009159a73583d31d42fd9edc3b5915dbc21baf129",
+      "bytes": 539905
+    },
+    "/assets/dive-sites/e61a533b-a010-5a48-b582-75bff9762270/preview-option-112ac9ab758bd87b.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/7134e2e85630708c96b7255688b1b7dc67788fd35d85dc399501d361fd00ef4e.jpg",
+      "sha256": "7134e2e85630708c96b7255688b1b7dc67788fd35d85dc399501d361fd00ef4e",
+      "bytes": 683420
+    },
+    "/assets/dive-sites/ef443278-c828-4274-91b7-3640d3e4fdda/preview-option-61cba62d96d71c6f.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d3c4ae6858ccf10c151453a76898d844ecfde9d73bc2bed174a082bb5000137b.jpg",
+      "sha256": "d3c4ae6858ccf10c151453a76898d844ecfde9d73bc2bed174a082bb5000137b",
+      "bytes": 320000
+    },
+    "/assets/dive-sites/f631dd77-7238-4220-ab33-e0aaa0936fb3/preview-option-e0727a2be118c10c.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/56e132c7b5f7ef2009bb524fac4855f41578a9f688833e56defc97debcd9bc8d.jpg",
+      "sha256": "56e132c7b5f7ef2009bb524fac4855f41578a9f688833e56defc97debcd9bc8d",
+      "bytes": 520602
+    },
+    "/assets/dive-sites/f8f7fecd-8bad-4b5b-86b6-b22ae9b0cd43/preview-option-5853af9ecb4ede17.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/69be8c4de2c75bfc0c1ba5f94923c5e157a34015dbb383b6658d496a173e6e9f.jpg",
+      "sha256": "69be8c4de2c75bfc0c1ba5f94923c5e157a34015dbb383b6658d496a173e6e9f",
+      "bytes": 336814
+    },
+    "/assets/dive-sites/fd99c8d4-a4c5-45a1-acc1-a46c3b0aab11/preview-option-426a627080de6c99.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/b3e4aa9cde2795dbf36739feaaca57221fab2c97cac0f74d6d95dea98ce2ae13.jpg",
+      "sha256": "b3e4aa9cde2795dbf36739feaaca57221fab2c97cac0f74d6d95dea98ce2ae13",
+      "bytes": 253980
+    },
+    "/assets/dive-sites/fdf2c823-264c-41c2-87ec-9f5de10d4234/preview-option-53070db3da8b8228.jpg": {
+      "url": "https://assets.diveatlas.site/site-photos/v1/d8852cf34672fb68cc281c84f3e96dda050461ebca78731ea0f037cea4fc9357.jpg",
+      "sha256": "d8852cf34672fb68cc281c84f3e96dda050461ebca78731ea0f037cea4fc9357",
+      "bytes": 303938
     }
   },
   "enabled": true,
@@ -7159,6 +7634,115 @@
         "/assets/dive-sites/f93dd168-b1b3-454f-abbe-a8d2b9b913a5/preview-option-315bf5f5c522f30c.jpg",
         "/assets/dive-sites/fa69ee23-d6e6-477b-90a2-07365399d6b2/preview-option-38a071b00f16f471.jpg",
         "/assets/dive-sites/fe35c20b-eb65-4db5-b937-043b58ee9c01/preview-option-ea7ddd8792b322fe.jpg"
+      ],
+      "statement": "Owner selected photos and explicitly requested public R2 hosting. Supplied identity/rights warnings are retained, not freshly verified."
+    },
+    {
+      "date": "2026-11-10",
+      "batch": "group010",
+      "assets": [
+        "/assets/dive-sites/05b00f8e-f4cb-46a0-a56f-eaa108c53483/preview-option-a7c4758ba1b16594.jpg",
+        "/assets/dive-sites/0955a70d-931b-4b1b-8e5f-acc7b2596da0/preview-option-bb6b848f125db5ff.jpg",
+        "/assets/dive-sites/0c9951b7-9865-43eb-8e2a-ea1087da5075/preview-option-d201fec84a69a77e.jpg",
+        "/assets/dive-sites/0cfd63d9-af2a-4f4c-9a92-815b8a8c4610/preview-option-49e42ba17e4a51f7.jpg",
+        "/assets/dive-sites/0ea38ae1-542d-43cc-8346-6c7098e82baa/preview-option-159738a6815c85e1.jpg",
+        "/assets/dive-sites/1152ffcd-fd42-4ce2-a11b-2605e2a26fba/preview-option-9b053422e775b1ff.jpg",
+        "/assets/dive-sites/19ecf390-e464-4bc6-8c6d-5dc0ad181bad/preview-option-a1663816d4787e77.jpg",
+        "/assets/dive-sites/1d2deead-8059-47de-90fe-1b87d722d9f8/preview-option-6ff744c4ba1a83dc.jpg",
+        "/assets/dive-sites/1eff0142-7485-4507-8c1b-8a9d760c7e36/preview-option-2e2029d9dcfc5d3a.jpg",
+        "/assets/dive-sites/2494a36e-31aa-4232-91b7-7392e63df872/preview-option-6dcb667dc850115d.jpg",
+        "/assets/dive-sites/2c013d2e-cf77-4132-b1a2-cfcb4d2031f1/preview-option-0cfc834c0d6189ff.jpg",
+        "/assets/dive-sites/2fcfaf7e-9a57-4946-b388-5427dc1135ef/preview-option-c9477e84ada85977.jpg",
+        "/assets/dive-sites/369622b3-1870-428e-b2e1-0c9b41bf696c/preview-option-3ef55de781461e2f.jpg",
+        "/assets/dive-sites/45c54084-5929-4334-8219-e4021476d465/preview-option-74cb820967103cf7.jpg",
+        "/assets/dive-sites/4ca0b6b5-57d4-491a-b8ea-f3271a661bf9/preview-option-88b9d54d1a5bf631.jpg",
+        "/assets/dive-sites/4da929b6-f860-4f53-8664-d679e6ef0d2a/preview-option-2458d817fd6eba8b.jpg",
+        "/assets/dive-sites/53169b0d-20fb-4e16-b24b-a0bc89fb2bca/preview-option-df296e6f74672c34.jpg",
+        "/assets/dive-sites/636bbc4b-7a63-4c8b-9aa4-19961f6a6d80/preview-option-2e675d6c7c598891.jpg",
+        "/assets/dive-sites/649802bd-e5ca-4eaa-acfa-41653379e5f8/preview-option-bf76fcda9bebc5d1.jpg",
+        "/assets/dive-sites/651bfdac-9fdb-4e75-8fad-3e41b3caa409/preview-option-8d070755b981176c.jpg",
+        "/assets/dive-sites/654fb529-b94c-47ee-843d-ebb9c280ca77/preview-option-8deee22b559b60af.jpg",
+        "/assets/dive-sites/65e47523-1325-492e-8b9b-bd4f7d730608/preview-option-b43680102cd9512e.jpg",
+        "/assets/dive-sites/6af3b17f-3689-45e2-b5a9-2ab5290f7dee/preview-option-6bf1fcff9bbd8004.jpg",
+        "/assets/dive-sites/6b1051d9-edb0-4527-8ce8-f25f3b00ec11/preview-option-619f1d7d0896723b.jpg",
+        "/assets/dive-sites/7000e998-4df2-40cc-8f6f-2845d230e668/preview-option-076d3bb02ab00da9.jpg",
+        "/assets/dive-sites/7722fd90-9d5a-45c7-8cf1-0d651fa93b9c/preview-option-5bd9d2c6af44ca50.jpg",
+        "/assets/dive-sites/7f7aa837-aeca-4ea9-969c-3d3f545cd88b/preview-option-4ac9e07812938011.jpg",
+        "/assets/dive-sites/81635e66-6f75-42a4-ae2e-a9a7d18d5d02/preview-option-d05cb95fd2cc3787.jpg",
+        "/assets/dive-sites/84ae0cba-f54a-456c-981c-e2e5d8b8d751/preview-option-9c2807641cc32017.jpg",
+        "/assets/dive-sites/8ce8d1ab-64ec-49ee-a3be-eb984dcabea6/preview-option-efd6cf010e2d9ed1.jpg",
+        "/assets/dive-sites/90e6c284-8af8-4bdd-acd9-5c49fa78fc2e/preview-option-d1623065b6d000d6.jpg",
+        "/assets/dive-sites/94b20f8f-e51f-4608-92be-a15df54ce226/preview-option-5459c8f1c98b9e4d.jpg",
+        "/assets/dive-sites/9a44b2d3-96fc-4a20-8e8a-ff6d12338815/preview-option-ab390a2b5b0bd291.jpg",
+        "/assets/dive-sites/a3ecfe66-1402-42b8-990a-e7784fd72b5a/preview-option-7896051a081637ae.jpg",
+        "/assets/dive-sites/a4e92425-ac68-442a-97aa-8029912103a9/preview-option-dbc0ea077ca0bec0.jpg",
+        "/assets/dive-sites/a567d315-419e-4139-8db8-e94140490d28/preview-option-01bae93fba314f4d.jpg",
+        "/assets/dive-sites/b3fa52b9-a67a-49c9-9fca-ab2eef9f6ccc/preview-option-1c954f2bb0ecc2f0.jpg",
+        "/assets/dive-sites/ba99c308-a7cb-492b-bf5e-380d73263c89/preview-option-6bb43b6f3d383a34.jpg",
+        "/assets/dive-sites/bad5c1ba-e3e1-485f-8e43-e3eed8f32385/preview-option-5f02cd37df4ccfd0.jpg",
+        "/assets/dive-sites/bf143d68-59d7-4664-bd51-ea6c80a7f91f/preview-option-52dada67764410d8.jpg",
+        "/assets/dive-sites/dc17f872-f660-4a24-b1a7-4cd36993c540/preview-option-9aa6675328a38ea4.jpg",
+        "/assets/dive-sites/e5804792-deda-4b83-9618-80fe714166b6/preview-option-eaa5eb70c2fcce35.jpg",
+        "/assets/dive-sites/ed881db2-13c8-46d5-8a61-eb4be435e587/preview-option-e95d1766e32cbe58.jpg",
+        "/assets/dive-sites/fb9b5128-58cd-4123-a40a-0d10b01904e0/preview-option-467a4a8ce0a99520.jpg",
+        "/assets/dive-sites/fd154b93-bc5e-4ac8-9e73-aafc7a396c3d/preview-option-5b74c7c273312a86.jpg"
+      ],
+      "statement": "Owner selected photos and explicitly requested public R2 hosting. Supplied identity/rights warnings are retained, not freshly verified."
+    },
+    {
+      "date": "2026-11-10",
+      "batch": "group011",
+      "assets": [
+        "/assets/dive-sites/06506552-f91c-4c64-bd4e-e0dd24a54e6a/preview-option-641a308e8db37326.jpg",
+        "/assets/dive-sites/1185ecfe-dd87-46c8-9ed0-bf5574d8d028/preview-option-cd192f3e04292c12.jpg",
+        "/assets/dive-sites/15088c64-63e6-4fda-a4d9-3350bf4d4590/preview-option-85b875727a31d591.jpg",
+        "/assets/dive-sites/152c3873-ea31-43cd-8b85-e7caa19cfcbb/preview-option-172c117f17b35aaa.jpg",
+        "/assets/dive-sites/16aa1729-4f40-4cfc-89bc-58a84c5deba4/preview-option-be26bdcb6f1742d8.jpg",
+        "/assets/dive-sites/1c3b611e-eb40-4962-bea6-004609f8bb27/preview-option-a0fa054d59d387be.jpg",
+        "/assets/dive-sites/2281b504-0110-469e-a7c9-429dbd5aac98/preview-option-49e413d38300ac0f.jpg",
+        "/assets/dive-sites/2530d886-a453-4491-b870-8c3a31d6df90/preview-option-1ad84eb66b00ca35.jpg",
+        "/assets/dive-sites/26916182-e0a9-4da8-ada2-f259ec67df77/preview-option-b48396d6dacebb99.jpg",
+        "/assets/dive-sites/2b2a4b1c-8f9f-407d-b9ed-98c001ba9b5e/preview-option-b6cfc77f1f4b5cf7.jpg",
+        "/assets/dive-sites/2d5b497e-3f27-46c1-a596-b49f9fae9846/preview-option-4573e3aa7eedc26a.jpg",
+        "/assets/dive-sites/3608535f-b0fc-481b-8698-5750c412e5aa/preview-option-a91babc8c87e83a4.jpg",
+        "/assets/dive-sites/37ffb544-7497-491c-9728-59c8aa20df87/preview-option-5ba945490efa9e8c.jpg",
+        "/assets/dive-sites/3839363b-fa36-42c7-b412-964cbc484f2d/preview-option-696349c6d3d55751.jpg",
+        "/assets/dive-sites/3a5fdfbd-352f-4615-99c0-ef4ca682a495/preview-option-ee39b5396cd99919.jpg",
+        "/assets/dive-sites/3b0951af-6a52-45b9-aad3-b092bd19f237/preview-option-7e719a312edea1f7.jpg",
+        "/assets/dive-sites/43248cc9-5772-469f-ba96-482535b557f5/preview-option-dcc527b331378e18.jpg",
+        "/assets/dive-sites/4eca1ead-fa8c-4fcb-ae24-368cf3193a2e/preview-option-923c792dd0ecfe96.jpg",
+        "/assets/dive-sites/52f9e7e9-5036-4710-8ab3-db1367916ff4/preview-option-c0ad613ea61e97c5.jpg",
+        "/assets/dive-sites/535829d6-3761-482b-ac4a-141132a3bbdc/preview-option-0a4fcf4fc7a5bfa1.jpg",
+        "/assets/dive-sites/587723f6-e219-450c-a50b-2f11be13f66e/preview-option-641ef0c8a772adc8.jpg",
+        "/assets/dive-sites/62f58ec9-af1f-44f1-ac7f-11e639d7b659/preview-option-2d330c63ac52a6f5.jpg",
+        "/assets/dive-sites/65388b7d-3548-4d2f-9cb9-1ee7e4c65bd6/preview-option-9df05e32c751c20a.jpg",
+        "/assets/dive-sites/6d7d7db7-b85a-424a-a8ff-9bc623de5bbc/preview-option-69834b00bf111faa.jpg",
+        "/assets/dive-sites/7598489f-313b-44ad-bd23-c6a65cffe936/preview-option-f5710b2843331a6b.jpg",
+        "/assets/dive-sites/7bd21943-f6c0-4ef0-a9cb-3176703c5e62/preview-option-603b5577471e1ae8.jpg",
+        "/assets/dive-sites/7fc88114-9814-4d5a-ad7f-7a1023377666/preview-option-c5951a4d5632385e.jpg",
+        "/assets/dive-sites/8b71d365-5f2a-4611-b375-9773fcbc002a/preview-option-8e6282f2aecb0f2c.jpg",
+        "/assets/dive-sites/8c196225-fc5e-43b7-b627-b41da4675d1d/preview-option-36536678101d091d.jpg",
+        "/assets/dive-sites/9111b93b-763e-4a78-bdbb-40eba179926e/preview-option-c2de720fbc2fb763.jpg",
+        "/assets/dive-sites/9112b1d4-4344-46ea-80c4-7bb0ffc58504/preview-option-24c4231304dbd180.jpg",
+        "/assets/dive-sites/92364fff-a353-4e3a-bfc7-6714decc06a1/preview-option-81d5a871f93da73d.jpg",
+        "/assets/dive-sites/a2d3c696-02c4-4621-ae1e-1f1a06e87b7f/preview-option-f96e71df46355e0e.jpg",
+        "/assets/dive-sites/ae6fc972-dd01-410b-be6b-649b7d2b8582/preview-option-0ec4d3e3b1138187.jpg",
+        "/assets/dive-sites/b6b532f8-5984-428c-ba36-9ec6b94b0cce/preview-option-d90d7f24ac21c082.jpg",
+        "/assets/dive-sites/b6c1a9bc-9e90-49dd-bdc5-29e3882b8367/preview-option-a8552440cc394352.jpg",
+        "/assets/dive-sites/be0e956f-2f73-4675-a9d6-b6b561d9528d/preview-option-6f047f391f00563c.jpg",
+        "/assets/dive-sites/be41f825-a1de-49ac-9d3d-662d8f6ed6aa/preview-option-5549b21ebcbb59b3.jpg",
+        "/assets/dive-sites/ced1e1cf-ea1f-4693-a47c-cfb7238d1c10/preview-option-93d1f556a86c2d49.jpg",
+        "/assets/dive-sites/cff5ef65-c11b-4961-8c4f-304c3f6f44e9/preview-option-8e6f507720401a0f.jpg",
+        "/assets/dive-sites/d0317650-5043-434e-a9d6-9958553f61ea/preview-option-ca1454b40f053693.jpg",
+        "/assets/dive-sites/d2411710-2126-41dc-bf1a-174eafb2a43f/preview-option-7b93324fbb2a799c.jpg",
+        "/assets/dive-sites/da05784a-f320-4003-96c7-ea4d059d93bf/preview-option-a8acf96220d8e14a.jpg",
+        "/assets/dive-sites/e4b437af-dd72-4f83-b1fb-008ccc0ab104/preview-option-dba01d666df2959f.jpg",
+        "/assets/dive-sites/e61a533b-a010-5a48-b582-75bff9762270/preview-option-112ac9ab758bd87b.jpg",
+        "/assets/dive-sites/ef443278-c828-4274-91b7-3640d3e4fdda/preview-option-61cba62d96d71c6f.jpg",
+        "/assets/dive-sites/f631dd77-7238-4220-ab33-e0aaa0936fb3/preview-option-e0727a2be118c10c.jpg",
+        "/assets/dive-sites/f8f7fecd-8bad-4b5b-86b6-b22ae9b0cd43/preview-option-5853af9ecb4ede17.jpg",
+        "/assets/dive-sites/fd99c8d4-a4c5-45a1-acc1-a46c3b0aab11/preview-option-426a627080de6c99.jpg",
+        "/assets/dive-sites/fdf2c823-264c-41c2-87ec-9f5de10d4234/preview-option-53070db3da8b8228.jpg"
       ],
       "statement": "Owner selected photos and explicitly requested public R2 hosting. Supplied identity/rights warnings are retained, not freshly verified."
     }

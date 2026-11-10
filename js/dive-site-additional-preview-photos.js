@@ -17537,5 +17537,3853 @@ export const additionalPreviewPhotos = [
     "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
     "publication": "NOT_AUTHORIZED",
     "label": "historical surface site context"
+  },
+  {
+    "siteId": "1d2deead-8059-47de-90fe-1b87d722d9f8",
+    "slug": "saint-aubin-sauges",
+    "photoNo": 1,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/1d2deead-8059-47de-90fe-1b87d722d9f8/preview-option-6ff744c4ba1a83dc.jpg",
+    "alt": "Saint-Aubin-Sauges waterfront and harbour on Lake Neuchâtel, photographed 15 May 2000. — historical surface site context",
+    "credit": "Heinz Leuenberger / ETH Library Zurich, Image Archive / DES_00-0046-07 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Saint-Aubin-Sauges&main-search-mode=and&detail-asset=3604a7e8-88ed-4648-b1b0-25a146a86be7"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-001471311"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6ff744c4ba1a83dc4984dbd88304f6fa1a27621ecc7f3a60013cf5c194ba6455",
+    "originalDimensions": [
+      5436,
+      4369
+    ],
+    "identityStatus": "Official corrected title explicitly identifies St-Aubin-Sauges overview looking NNW, with town and harbour visible. Source original title Vaumarcus is superseded by corrected title and explanatory archive comment. Official camera geolocation 46.8886191297041,6.78145545853789 is about 521 m south of inventory 46.8932,6.78, consistent with northward aerial view of this shoreline. Harbour foreground and named settlement are local surface context only; no exact underwater entry or present condition asserted.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "bad5c1ba-e3e1-485f-8e43-e3eed8f32385",
+    "slug": "pointe-du-grain",
+    "photoNo": 2,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/bad5c1ba-e3e1-485f-8e43-e3eed8f32385/preview-option-5f02cd37df4ccfd0.jpg",
+    "alt": "Pointe du Grain and the adjoining Lake Neuchâtel shoreline near Bevaix, photographed 3 September 1954. — historical surface site context",
+    "credit": "Werner Friedli (1910–1996) / ETH Library Zurich, Image Archive / LBS_H1-017745 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Pointe%20du%20Grain&main-search-mode=and&detail-asset=2ba49afd-a041-4c17-b94a-cea6edad3c47"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000359720"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "5f02cd37df4ccfd0dc7c3d1585a11601c20fa1e1dd84d18bd183df3c49cb6f32",
+    "originalDimensions": [
+      6878,
+      4835
+    ],
+    "identityStatus": "Official title and original German title explicitly name Pointe du Grain near Bevaix. Low oblique view shows the projecting wooded headland and adjoining shoreline. Camera location 46.9143327536076,6.80641283143473 is roughly 2.6 km southwest of inventory 46.9257,6.837, consistent with longshore view toward the named point. Camera coordinates are not entry coordinates. Surface destination context only; not exact dive entry or underwater geography.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "e5804792-deda-4b83-9618-80fe714166b6",
+    "slug": "richterswil-horn",
+    "photoNo": 3,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/e5804792-deda-4b83-9618-80fe714166b6/preview-option-eaa5eb70c2fcce35.jpg",
+    "alt": "Richterswil and the Horn peninsula on Lake Zurich, photographed 29 May 2005. — historical surface site context",
+    "credit": "Heinz Leuenberger / ETH Library Zurich, Image Archive / DES_05-0071-03 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Richterswil%20Horn&main-search-mode=and&detail-asset=cb285d41-6430-4591-95a9-985e32fab2e5"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "https://doi.org/10.3932/ethz-a-100020200"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "eaa5eb70c2fcce35efc54924103702135082282fee7a9e0a571c2889aed6b7a9",
+    "originalDimensions": [
+      10591,
+      8420
+    ],
+    "identityStatus": "Official title and original German title explicitly name Richterswil, town and Horn. The projecting park peninsula is visible prominently in the foreground, with town to left and Lake Zurich to right. Source camera location 47.20483700084161,8.713947464082612 is about 1.1 km southeast of inventory 47.212,8.704, consistent with aerial view northwest along shore. Camera position is not a dive entry. Local surface context only.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "fd154b93-bc5e-4ac8-9e73-aafc7a396c3d",
+    "slug": "kornhaus-rorschach-bodensee",
+    "photoNo": 4,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/fd154b93-bc5e-4ac8-9e73-aafc7a396c3d/preview-option-5b74c7c273312a86.jpg",
+    "alt": "Kornhaus and harbour at Rorschach on Lake Constance, photographed 8 July 1964. — historical surface site context",
+    "credit": "Comet Photo AG (Zürich) / ETH Library Zurich, Image Archive / Com_F64-03383 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Rorschach%20Kornhaus&main-search-mode=and&detail-asset=5ad4883d-0b2a-44d8-b26e-bf8a2f4d7481"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000025634"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "5b74c7c273312a860b07c66ae469ee6ba6a6ca82936c8a714420e2507dd7e66d",
+    "originalDimensions": [
+      4961,
+      3467
+    ],
+    "identityStatus": "Corrected official title identifies Rorschach harbour and granary; archive comments expressly identify Rorschach Kornhaus and boat placements beside it. Kornhaus is the prominent waterfront building in the image centre. Official camera geolocation 47.481271689831416,9.490251926241053 lies about 201 m northwest of inventory 47.4799,9.492, consistent with view southeast to immediate named harbour. Original broader catalogue title retained in evidence. Local historical surface context, not underwater view or exact entry guidance.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "84ae0cba-f54a-456c-981c-e2e5d8b8d751",
+    "slug": "vaumarcus",
+    "photoNo": 5,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/84ae0cba-f54a-456c-981c-e2e5d8b8d751/preview-option-9c2807641cc32017.jpg",
+    "alt": "Vaumarcus and its Lake Neuchâtel shoreline, photographed 30 May 1997. — historical surface site context",
+    "credit": "Photoramacolor AG / ETH Library Zurich, Image Archive / AIC_02-0N-412120-008 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Vaumarcus&main-search-mode=and&detail-asset=dd0afb92-9f20-450a-98fa-1b6fd1a85c46"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-001327847"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "9c2807641cc32017a02d0c48f4eeaa3f941a4fba36cf5ccacbea65487f683286",
+    "originalDimensions": [
+      7020,
+      4724
+    ],
+    "identityStatus": "Both official title and original title name Vaumarcus. Source geolocation 46.869453,6.760412 is about 873 m south of inventory 46.8773,6.7609, consistent with northward view from lake to village and its shore. Official Swissnames list Vaumarcus and Lake Neuchâtel. Foreground is this named shoreline, with village and castle above it. Local surface context only; camera position is not entry coordinates and no underwater match asserted.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "b3fa52b9-a67a-49c9-9fca-ab2eef9f6ccc",
+    "slug": "berlingen-kirche",
+    "photoNo": 6,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/b3fa52b9-a67a-49c9-9fca-ab2eef9f6ccc/preview-option-1c954f2bb0ecc2f0.jpg",
+    "alt": "Berlingen church and Untersee shoreline, historical low-altitude aerial photograph, 17 May 1976. — historical surface site context",
+    "credit": "Swissair Photo AG / ETH Library Zurich, Image Archive / LBS_L1-769220 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Berlingen%20Kirche&main-search-mode=and&w-title=Berlingen&detail-asset=7b45ea78-789c-4636-8d0d-a546a479e96c"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000344166"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "1c954f2bb0ecc2f0b9b2576b3011f1f6c2a2c622cabba00663d0d22259b142fe",
+    "originalDimensions": [
+      4961,
+      3905
+    ],
+    "identityStatus": "ETH titles the asset Berlingen and dates it 17.05.1976. Its georeferenced camera location 47.6726672681038,9.02532285565034 lies approximately 750 m east-southeast of inventory Berlingen, Kirche (47.6748,9.0158). The church tower and immediate lakeside church grounds are plainly visible along the village shoreline. Named village, church landmark and camera geometry support historical surface-context identity, not an exact underwater view.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "0c9951b7-9865-43eb-8e2a-ea1087da5075",
+    "slug": "lopper-acheregg",
+    "photoNo": 12,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0c9951b7-9865-43eb-8e2a-ea1087da5075/preview-option-d201fec84a69a77e.jpg",
+    "alt": "Lopper and Acheregg bridge shoreline, 21 July 1990. Historical aerial surface context for Lopper Acheregg. — historical surface site context",
+    "credit": "Swissair Photo AG / ETH Library Zurich, Image Archive / LBS_L1-901032 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-mode=and&w-title=Acheregg&detail-asset=85c79449-a4af-46b0-a2bd-120bb90d6309"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000331379"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "d201fec84a69a77efeeb95937dc3fc3ba1604adb23499e63e36dc251f0f0c7b5",
+    "originalDimensions": [
+      4956,
+      6331
+    ],
+    "identityStatus": "Exact ETH title 'Lopper, Acheregg bridge'; original title 'Lopper, Achereggbrücke'. Camera geolocation 46.9801139614359,8.34247906432906 is about 865 m east of inventory Lopper Acheregg (46.97928,8.33113). Image looks west across Stansstad to the Acheregg bridge and Lopper's rocky eastern lakeshore. The target shoreline near the Lopper end of the bridge is clearly visible. This supports named historical surface context, not an underwater or current access view.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "2fcfaf7e-9a57-4946-b388-5427dc1135ef",
+    "slug": "halbinsel-au-vordere-au",
+    "photoNo": 13,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/2fcfaf7e-9a57-4946-b388-5427dc1135ef/preview-option-c9477e84ada85977.jpg",
+    "alt": "Au peninsula shoreline, 12 May 1966. Historical aerial surface context, not a current access or underwater view. — historical surface site context",
+    "credit": "Comet Photo AG (Zürich) / ETH Library Zurich, Image Archive / Com_F66-07635 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Halbinsel%20Au&main-search-mode=and&detail-asset=b703ed47-3951-4d87-9976-0974634f4e2b"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000705176"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "c9477e84ada85977675bcddef419b35e440c8d10cd851cca7d019f89bef48a86",
+    "originalDimensions": [
+      8462,
+      5796
+    ],
+    "identityStatus": "Exact original title Halbinsel Au. Archive georeferencing explicitly lists Halbinsel Au and Vorder Au among visible places; camera 47.254928,8.647585 is northwest of inventory 47.24901,8.65156. Oblique aerial shows peninsula shoreline, landing jetty, wooded bank, fields and buildings. Named peninsula context is supported, but exact underwater entry point is not identified.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "4da929b6-f860-4f53-8664-d679e6ef0d2a",
+    "slug": "hilterfingen-hotel-bellevue",
+    "photoNo": 14,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/4da929b6-f860-4f53-8664-d679e6ef0d2a/preview-option-2458d817fd6eba8b.jpg",
+    "alt": "Hotel Bellevue waterfront at Hilterfingen, 13 August 1952. Historical surface context only. — historical surface site context",
+    "credit": "Werner Friedli (1910–1996) · Werner Friedli / ETH Library Zurich, Image Archive / LBS_H1-014239 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#w-title=Hilterfingen&main-search-text=Bellevue&main-search-mode=and&detail-asset=2d833b62-3b59-4697-a58b-31e6f3819bd5"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000356302"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "2458d817fd6eba8bc667172b5b917090af7ad19e7dcc150507619c2da9f19f27",
+    "originalDimensions": [
+      6641,
+      4523
+    ],
+    "identityStatus": "Exact archive title Hilterfingen, Hotel Bellevue matches named inventory site. Archive camera 46.732445,7.659746 is approximately 134 m southwest of inventory 46.7335,7.6606. Close low-oblique aerial shows Hotel Bellevue directly on the lake, its lake terrace and jetty. Strong named landmark and shoreline match, without claiming present-day access or underwater conditions.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "ba99c308-a7cb-492b-bf5e-380d73263c89",
+    "slug": "glasi-hergiswil",
+    "photoNo": 15,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/ba99c308-a7cb-492b-bf5e-380d73263c89/preview-option-6bb43b6f3d383a34.jpg",
+    "alt": "Glasi glassworks and harbor shoreline at Hergiswil, 15 June 2002. Historical surface context, not an underwater or current access view. — historical surface site context",
+    "credit": "Heinz Leuenberger / ETH Library Zurich, Image Archive / DES_02-0138-01 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Glasi%20Hergiswil&main-search-mode=and&detail-asset=2762ac39-c68e-46a0-92f7-49f4fad896a7"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-001519436"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6bb43b6f3d383a34f2b4f61a44d82e241b8751c71e86a73b733e39a8e854212f",
+    "originalDimensions": [
+      9668,
+      7701
+    ],
+    "identityStatus": "Archive title explicitly Hergiswil (NW), Harbor, Glasi, and Train Station; contributor Anton Heer identifies the same three landmarks. Inventory Glasi Hergiswil at 46.9822,8.3125 lies on the pictured waterfront beside the harbor. Camera geolocation 46.979458,8.320730 is approximately 695 m southeast, consistent with the photograph looking northwest onto the glassworks, harbor and railway. Named glassworks and adjacent shoreline are prominent, rather than a generic nearest-town view.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "a567d315-419e-4139-8db8-e94140490d28",
+    "slug": "zollbruecke",
+    "photoNo": 16,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/a567d315-419e-4139-8db8-e94140490d28/preview-option-01bae93fba314f4d.jpg",
+    "alt": "Rheinau Zollbrücke and Rhine during bridge refurbishment, 17 November 1988. Historical construction-era surface context only. — historical surface site context",
+    "credit": "Gary Kammerhuber / ETH Library Zurich, Image Archive / Com_L37-0301-0001-0003 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Rheinau%20Zollbr%C3%BCcke&main-search-mode=and&detail-asset=545739df-94b2-4eb9-9a51-abb03e1dfbe1"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-001456617"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "01bae93fba314f4d3bc21563ea1a2e49294952f709e999bde38524d43dfeee4b",
+    "originalDimensions": [
+      5404,
+      3611
+    ],
+    "identityStatus": "Exact archive title Rheinau, Zollbrücke, Sanierung matches the two near-coincident inventory Zollbruecke/Zollbrücke Rheinau points (47.64706,8.60314 and 47.6475,8.6032). The photograph shows the distinctive covered wooden Rhine bridge, masonry river pier and water beneath. No geolocation field is supplied by archive, so identity rests on the exact named bridge and visible structure, not camera coordinates.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "e323d460-e83a-414a-8e67-7b8d40dc3158",
+    "slug": "zollbrucke-rheinau",
+    "photoNo": 16,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/a567d315-419e-4139-8db8-e94140490d28/preview-option-01bae93fba314f4d.jpg",
+    "alt": "Rheinau Zollbrücke and Rhine during bridge refurbishment, 17 November 1988. Historical construction-era surface context only. — historical surface site context",
+    "credit": "Gary Kammerhuber / ETH Library Zurich, Image Archive / Com_L37-0301-0001-0003 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Rheinau%20Zollbr%C3%BCcke&main-search-mode=and&detail-asset=545739df-94b2-4eb9-9a51-abb03e1dfbe1"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-001456617"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "01bae93fba314f4d3bc21563ea1a2e49294952f709e999bde38524d43dfeee4b",
+    "originalDimensions": [
+      5404,
+      3611
+    ],
+    "identityStatus": "Exact archive title Rheinau, Zollbrücke, Sanierung matches the two near-coincident inventory Zollbruecke/Zollbrücke Rheinau points (47.64706,8.60314 and 47.6475,8.6032). The photograph shows the distinctive covered wooden Rhine bridge, masonry river pier and water beneath. No geolocation field is supplied by archive, so identity rests on the exact named bridge and visible structure, not camera coordinates.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "a3ecfe66-1402-42b8-990a-e7784fd72b5a",
+    "slug": "kloster",
+    "photoNo": 17,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/a3ecfe66-1402-42b8-990a-e7784fd72b5a/preview-option-7896051a081637ae.jpg",
+    "alt": "Rheinau monastery island and surrounding Rhine channels, 17 July 2006. Historical above-water context for Kloster; not a present-day access or underwater photograph. — historical surface site context",
+    "credit": "Heinz Leuenberger / ETH Library Zurich, Image Archive / DES_06-0154-01 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Rheinau%20Kloster&main-search-mode=and&detail-asset=7dd89b93-7253-475c-b46d-70471b5776b6"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "https://doi.org/10.3932/ethz-a-100023051"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "7896051a081637aea6365994d16285d192d95deaac6632f6c3b5be05ac5de98a",
+    "originalDimensions": [
+      10257,
+      8106
+    ],
+    "identityStatus": "Archive title explicitly Rheinau, Insel, Ehemaliges Kloster Rheinau. Inventory Kloster river site at 47.64281,8.60528 lies beside this distinctive monastery island. Image shows complete island, twin-tower monastery, bridge, branching Rhine channels and surrounding banks; camera east at 47.6454269,8.6235906 gives west-facing view consistent with geometry. Named Chloster and Rhine also listed by archive georeferencing. Exact landmark, not generic town substitution.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "53169b0d-20fb-4e16-b24b-a0bc89fb2bca",
+    "slug": "balmholz",
+    "photoNo": 18,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/53169b0d-20fb-4e16-b24b-a0bc89fb2bca/preview-option-df296e6f74672c34.jpg",
+    "alt": "Balmholz quarry and Lake Thun shoreline, 30 August 1999. Historical above-water context only, not current access or underwater conditions. — historical surface site context",
+    "credit": "Swissair Photo AG / ETH Library Zurich, Image Archive / LBS_R1-992951 / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Balmholz&main-search-mode=and&detail-asset=0c9daebd-a82d-4241-8355-30a7fc011768"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000288428"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "df296e6f74672c343b6daee34391cb1c290db3c87b90b5b31efca47b0769d842",
+    "originalDimensions": [
+      5403,
+      4991
+    ],
+    "identityStatus": "Exact original title Steinbruch, Balmholz. Low oblique aerial from south at 46.6499455,7.7440054 looks north to named quarry and continuous lake edge; inventory Balmholz 46.6944,7.7419 matches target shoreline below quarry. Whole quarry, loading frontage, wooded shoreline edges and lake water visible. Archive georeferencing names Balmholz and Lake Thun, consistent with target approximately 4.9km north of camera.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "94b20f8f-e51f-4608-92be-a15df54ce226",
+    "slug": "cyclops-islands",
+    "photoNo": 19,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/94b20f8f-e51f-4608-92be-a15df54ce226/preview-option-5459c8f1c98b9e4d.jpg",
+    "alt": "Cyclops Islands (Isole dei Ciclopi), June 1930. Historical sea-level surface photograph of the rock stacks; not underwater or present-day access guidance. — historical surface site context",
+    "credit": "Immanuel Friedlaender (1871–1948) · Immanuel Friedlaender / ETH Library Zurich, Image Archive / Hs_1309-0009-164 / Public Domain Mark",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Zyklopen&main-search-mode=and&detail-asset=44a1557e-2c70-4781-bde1-b8a6286a947c"
+      },
+      {
+        "label": "Public Domain Mark",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000053833"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Exact asset metadata states Public Domain Mark and Free download and use, including commercial purposes. Public-domain status is the archive declaration; preserve archival credit and date. No CC BY-SA condition applied to this asset.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "5459c8f1c98b9e4d1afa62f3af9a97256d73694a9bfa65a2e21e1597daf66c96",
+    "originalDimensions": [
+      4929,
+      4961
+    ],
+    "identityStatus": "Exact source title Cyclops Islands [Isole dei Ciclopi], original Zyklopeninseln, and description Three peaks rising from the water. Inventory Cyclops Islands is at37.5585,15.1625 off Aci Trezza. Visible three basalt rock stacks and surrounding water are the named coastal landmark, with no nearby-town substitution. Source series Etna II1928–1931 is consistent with eastern Sicily. No source camera geotag provided; no exact dive-entry or underwater route asserted.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Exact asset metadata states Public Domain Mark and Free download and use, including commercial purposes. Public-domain status is the archive declaration; preserve archival credit and date. No CC BY-SA condition applied to this asset.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "8ce8d1ab-64ec-49ee-a3be-eb984dcabea6",
+    "slug": "grand-cap-roux",
+    "photoNo": 20,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/8ce8d1ab-64ec-49ee-a3be-eb984dcabea6/preview-option-efd6cf010e2d9ed1.jpg",
+    "alt": "Cap Roux, Esterel coastline, 31 August1957. Historical above-water coastal context only. HELD for geographic scope review: neither Grand nor Petit submerged dive site is verified by image footprint. Not current access or underwater conditions. — historical surface coastal context held · source identity/context review pending",
+    "credit": "Werner Friedli (1910–1996) · Werner Friedli / ETH Library Zurich, Image Archive / LBS_H1-020710 / CC BY-SA4.0 · CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Cap%20Roux&main-search-mode=and&detail-asset=7d9bf16b-7b80-4567-a552-baa2f87d4db3"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000446321"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "efd6cf010e2d9ed1a3edeee475e37d92b30bb98c0748e03478acc394c1132829",
+    "originalDimensions": [
+      6175,
+      4918
+    ],
+    "identityStatus": "Exact archive title Esterel, Cap Roux; rocky shoreline below massif clearly visible. Both Grand and Petit dive sites documented opposite Cap Roux but neither submerged location distinguishable in photograph. Inventory pins differ from corroborating descriptions by approximately542m and3121m respectively. No camera GPS or verified footprint. See cap-roux-relationship.json. Potential site_ids only; ready_site_ids empty.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface coastal context held · source identity/context review pending"
+  },
+  {
+    "siteId": "cc05548e-19db-40a3-bae4-771aab055051",
+    "slug": "le-petit-cap-roux",
+    "photoNo": 20,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/8ce8d1ab-64ec-49ee-a3be-eb984dcabea6/preview-option-efd6cf010e2d9ed1.jpg",
+    "alt": "Cap Roux, Esterel coastline, 31 August1957. Historical above-water coastal context only. HELD for geographic scope review: neither Grand nor Petit submerged dive site is verified by image footprint. Not current access or underwater conditions. — historical surface coastal context held · source identity/context review pending",
+    "credit": "Werner Friedli (1910–1996) · Werner Friedli / ETH Library Zurich, Image Archive / LBS_H1-020710 / CC BY-SA4.0 · CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://ba.e-pics.ethz.ch/#main-search-text=Cap%20Roux&main-search-mode=and&detail-asset=7d9bf16b-7b80-4567-a552-baa2f87d4db3"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      },
+      {
+        "label": "Archive record / DOI",
+        "url": "http://doi.org/10.3932/ethz-a-000446321"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending. Direct original URL unavailable; acquired via public interface. Source page and hash retained.  Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "efd6cf010e2d9ed1a3edeee475e37d92b30bb98c0748e03478acc394c1132829",
+    "originalDimensions": [
+      6175,
+      4918
+    ],
+    "identityStatus": "Exact archive title Esterel, Cap Roux; rocky shoreline below massif clearly visible. Both Grand and Petit dive sites documented opposite Cap Roux but neither submerged location distinguishable in photograph. Inventory pins differ from corroborating descriptions by approximately542m and3121m respectively. No camera GPS or verified footprint. See cap-roux-relationship.json. Potential site_ids only; ready_site_ids empty.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Official per-image metadata explicitly Creative Commons BY-SA4.0 and Free download and use. Official terms confirm commercial/editorial use with credit and share-alike for adaptations. Preserve credit, licence link and modifications notice. No publication or contact undertaken.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface coastal context held · source identity/context review pending"
+  },
+  {
+    "siteId": "651bfdac-9fdb-4e75-8fad-3e41b3caa409",
+    "slug": "devils-lake-north-shore",
+    "photoNo": 21,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/651bfdac-9fdb-4e75-8fad-3e41b3caa409/preview-option-8d070755b981176c.jpg",
+    "alt": "Devils Lake North Shore beach and lakeside facilities, Wisconsin. Above-water location context; capture date unverified. — surface site context candidate · source identity/context review pending",
+    "credit": "GoodFreePhotos (embedded Artist and dc:creator); individual photographer unverified · GoodFreePhotos.com; individual photographer not verified · Source-declared CC0 / Public Domain; legacy Creative Commons public-domain link",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.goodfreephotos.com/united-states/wisconsin/devil-s-lake-state-park/north-shore-and-picnic-area-at-devils-lake.jpg.php"
+      },
+      {
+        "label": "Source-declared CC0 / Public Domain; legacy Creative Commons public-domain link",
+        "url": "https://creativecommons.org/licenses/publicdomain/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending. photo date missing or unresolved Individual original photographer is unverified.  Item specifically labels this original public domain. Source terms explicitly permit commercial use. Retained as review candidate, not publication-cleared: embedded author identifies source website only; mixed photographer repository. No contrary rights or held-provider origin found in inspected page/EXIF/XMP.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "8d070755b981176c4b1b2693beeea384c166f9c132f90c56f0577a74bef17602",
+    "originalDimensions": [
+      6016,
+      4016
+    ],
+    "identityStatus": "Exact item title North Shore and Picnic Area at Devils Lake matches inventory Devils Lake North Shore. Image visibly shows lake beach, lakeside lodge, small launching area and surrounding woodland. No South Shore assignment made.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item specifically labels this original public domain. Source terms explicitly permit commercial use. Retained as review candidate, not publication-cleared: embedded author identifies source website only; mixed photographer repository. No contrary rights or held-provider origin found in inspected page/EXIF/XMP.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context candidate · source identity/context review pending"
+  },
+  {
+    "siteId": "649802bd-e5ca-4eaa-acfa-41653379e5f8",
+    "slug": "wes-skiles-peacock-springs-state-park",
+    "photoNo": 22,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/649802bd-e5ca-4eaa-acfa-41653379e5f8/preview-option-bf76fcda9bebc5d1.jpg",
+    "alt": "Peacock Spring 1 at Wes Skiles Peacock Springs State Park, Florida, 23 July 2022. Above-water pool context. — surface site context",
+    "credit": "Michael Rivera / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Wes_Skiles_Peacock_Springs_Peacock_Spring_1.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own work, explicit CC BY-SA 4.0; preserve creator, licence link, and adaptation notice/share-alike if subsequently modified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "bf76fcda9bebc5d1dfe7c95f929d483cc333c94bcd94a38d25d48009ea4799d1",
+    "originalDimensions": [
+      5184,
+      3456
+    ],
+    "identityStatus": "Exact file title names Peacock Spring 1; description names the park and geotag30.122586,-83.132337. Original depicts wooded blue spring pool and rocky shoreline.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Own work, explicit CC BY-SA 4.0; preserve creator, licence link, and adaptation notice/share-alike if subsequently modified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "fb9b5128-58cd-4123-a40a-0d10b01904e0",
+    "slug": "de-leon-springs",
+    "photoNo": 23,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/fb9b5128-58cd-4123-a40a-0d10b01904e0/preview-option-467a4a8ce0a99520.jpg",
+    "alt": "Spring outflow at De Leon Springs State Park, Florida, 1 March 2008. Historical surface detail, not current diving/access conditions. — surface site context",
+    "credit": "Ebyabe (John Bradley, as identified in upload history) / Wikimedia Commons / CC BY 2.5",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:De_Leon_Springs_State_Park_springs01.jpg"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Own work, record permits license choice including explicit CC BY 2.5. Earlier permission prose says CC-By-SA2.5, but current template and structured data explicitly CC BY 2.5; alternatively CC BY-SA 3.0 is available.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "467a4a8ce0a9952046b28b9c0bbd3238ee42f597b2fd3f050a72e1d53672abd1",
+    "originalDimensions": [
+      3264,
+      2448
+    ],
+    "identityStatus": "Description explicitly identifies outflow at DeLeon Springs State Park. Original depicts clear spring water flowing across a low rock barrier.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Own work, record permits license choice including explicit CC BY 2.5. Earlier permission prose says CC-By-SA2.5, but current template and structured data explicitly CC BY 2.5; alternatively CC BY-SA 3.0 is available.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "9a44b2d3-96fc-4a20-8e8a-ff6d12338815",
+    "slug": "conception-island",
+    "photoNo": 24,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/9a44b2d3-96fc-4a20-8e8a-ff6d12338815/preview-option-ab390a2b5b0bd291.jpg",
+    "alt": "Conception Island: Entire green island across ocean; sharp genuine camera photograph. Source date 2024-10-12. — surface site context · source identity/context review pending",
+    "credit": "A.Savin / Wikimedia Commons / Free Art License",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Conception_Island_asv2024-10.jpg"
+      },
+      {
+        "label": "Free Art License",
+        "url": "http://artlibre.org/licence/lal/en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "ab390a2b5b0bd2915354115c3734cebd7ef703d26a0fc7757e6c900de327aeb0",
+    "originalDimensions": [
+      6916,
+      3890
+    ],
+    "identityStatus": "Exact named island; camera -4.649944,55.398361 west of Mahe conflicts with coarse inventory -4.63,55.55.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · source identity/context review pending"
+  },
+  {
+    "siteId": "0ea38ae1-542d-43cc-8346-6c7098e82baa",
+    "slug": "htms-sattakut-742-wreck",
+    "photoNo": 25,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0ea38ae1-542d-43cc-8346-6c7098e82baa/preview-option-159738a6815c85e1.jpg",
+    "alt": "Unidentified wreck at Ko Tao, possibly HTMS Sattakut; vessel identity unconfirmed. Source date 2013-07-14. — underwater wreck · source identity/context review pending",
+    "credit": "Amada44 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Diving_Ko_Tao,_Thailand_1143.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "159738a6815c85e1a10695f92ce4f292bd2e1598c05d088f692c13885e8268f1",
+    "originalDimensions": [
+      4320,
+      2880
+    ],
+    "identityStatus": "Sattakut category; individual caption only Ko Tao diving. Camera coordinates differ from both inventory records. Exact vessel assignment remains unconfirmed.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck · source identity/context review pending"
+  },
+  {
+    "siteId": "c21dae1b-e2ef-43b9-8056-ba76af4e2caa",
+    "slug": "htms-sattakut",
+    "photoNo": 25,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0ea38ae1-542d-43cc-8346-6c7098e82baa/preview-option-159738a6815c85e1.jpg",
+    "alt": "Unidentified wreck at Ko Tao, possibly HTMS Sattakut; vessel identity unconfirmed. Source date 2013-07-14. — underwater wreck · source identity/context review pending",
+    "credit": "Amada44 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Diving_Ko_Tao,_Thailand_1143.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "159738a6815c85e1a10695f92ce4f292bd2e1598c05d088f692c13885e8268f1",
+    "originalDimensions": [
+      4320,
+      2880
+    ],
+    "identityStatus": "Sattakut category; individual caption only Ko Tao diving. Camera coordinates differ from both inventory records. Exact vessel assignment remains unconfirmed.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck · source identity/context review pending"
+  },
+  {
+    "siteId": "45c54084-5929-4334-8219-e4021476d465",
+    "slug": "benwood",
+    "photoNo": 26,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/45c54084-5929-4334-8219-e4021476d465/preview-option-74cb820967103cf7.jpg",
+    "alt": "Benwood, SS Benwood (Wreck): Clear genuine underwater wreck ribs on sandy seabed. Source date 2023-07-14. — underwater wreck",
+    "credit": "Jstuby / Wikimedia Commons / CC0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Wreck_of_the_Benwood_01_20230714.jpg"
+      },
+      {
+        "label": "CC0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "74cb820967103cf74f835c4720500c603e2806d910301b3943e92aa127c1c2a2",
+    "originalDimensions": [
+      5184,
+      3888
+    ],
+    "identityStatus": "Exact named Benwood wreck, Florida Keys; camera25.052395,-80.332321 matches inventory area.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck"
+  },
+  {
+    "siteId": "f9631229-53c6-401a-bbbb-8e2973d45b8a",
+    "slug": "ss-benwood-wreck",
+    "photoNo": 26,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/45c54084-5929-4334-8219-e4021476d465/preview-option-74cb820967103cf7.jpg",
+    "alt": "Benwood, SS Benwood (Wreck): Clear genuine underwater wreck ribs on sandy seabed. Source date 2023-07-14. — underwater wreck",
+    "credit": "Jstuby / Wikimedia Commons / CC0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Wreck_of_the_Benwood_01_20230714.jpg"
+      },
+      {
+        "label": "CC0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "74cb820967103cf74f835c4720500c603e2806d910301b3943e92aa127c1c2a2",
+    "originalDimensions": [
+      5184,
+      3888
+    ],
+    "identityStatus": "Exact named Benwood wreck, Florida Keys; camera25.052395,-80.332321 matches inventory area.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck"
+  },
+  {
+    "siteId": "0cfd63d9-af2a-4f4c-9a92-815b8a8c4610",
+    "slug": "mv-imperial-eagle-wreck",
+    "photoNo": 27,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0cfd63d9-af2a-4f4c-9a92-815b8a8c4610/preview-option-49e42ba17e4a51f7.jpg",
+    "alt": "MV Imperial Eagle, wreck, MV Imperial Eagle: Divers silhouetted descending a line; no wreck is visible. Camera still, Canon IXUS130, not a video frame. Source date 2013-06-21. — underwater dive context · source identity/context review pending",
+    "credit": "Pstraudo / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Malte2013-Imperial_Eagle-00.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "49e42ba17e4a51f7fed43444eb6c049b8432d24fa74ee46f4cb2b4804b462a33",
+    "originalDimensions": [
+      4320,
+      3240
+    ],
+    "identityStatus": "Caption identifies descent onto Imperial Eagle. Useful dive context but cannot visually identify wreck; not cleared as main photo.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater dive context · source identity/context review pending"
+  },
+  {
+    "siteId": "4c611bc4-ee92-4b83-b73b-325ae2970795",
+    "slug": "mv-imperial-eagle",
+    "photoNo": 27,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0cfd63d9-af2a-4f4c-9a92-815b8a8c4610/preview-option-49e42ba17e4a51f7.jpg",
+    "alt": "MV Imperial Eagle, wreck, MV Imperial Eagle: Divers silhouetted descending a line; no wreck is visible. Camera still, Canon IXUS130, not a video frame. Source date 2013-06-21. — underwater dive context · source identity/context review pending",
+    "credit": "Pstraudo / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Malte2013-Imperial_Eagle-00.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "49e42ba17e4a51f7fed43444eb6c049b8432d24fa74ee46f4cb2b4804b462a33",
+    "originalDimensions": [
+      4320,
+      3240
+    ],
+    "identityStatus": "Caption identifies descent onto Imperial Eagle. Useful dive context but cannot visually identify wreck; not cleared as main photo.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater dive context · source identity/context review pending"
+  },
+  {
+    "siteId": "6b1051d9-edb0-4527-8ce8-f25f3b00ec11",
+    "slug": "sundhauser-see-nordhausen",
+    "photoNo": 28,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/6b1051d9-edb0-4527-8ce8-f25f3b00ec11/preview-option-619f1d7d0896723b.jpg",
+    "alt": "Sundhäuser See, Nordhausen: Detailed pike amongst underwater roots and vegetation; genuine camera image. Source date 2021-09-07. — underwater wildlife",
+    "credit": "Lorenz Seebauer / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AHecht_im_Sundh%C3%A4user_See.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "619f1d7d0896723bccf0b8f418986aa6987b32aed69d1403bab611e08361bd11",
+    "originalDimensions": [
+      6000,
+      4000
+    ],
+    "identityStatus": "Individual title identifies pike in Sundhauser See. Wildlife scene at named lake, not evidence of a particular entry point.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wildlife"
+  },
+  {
+    "siteId": "7000e998-4df2-40cc-8f6f-2845d230e668",
+    "slug": "seebrucke-haffkrug",
+    "photoNo": 29,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/7000e998-4df2-40cc-8f6f-2845d230e668/preview-option-076d3bb02ab00da9.jpg",
+    "alt": "Seebrücke Haffkrug: Pier walkway with readable Haffkrug sign and sea. Source date 2010-06-13. — historical surface site context",
+    "credit": "Hejkal / Wikimedia Commons / CC BY-SA 3.0 Germany",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AHaffkrug.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0 Germany",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "076d3bb02ab00da92516a54b28d019bf5a8b2df562c62e5c57fe6a236d364a96",
+    "originalDimensions": [
+      2560,
+      1920
+    ],
+    "identityStatus": "Caption identifies old Haffkrug pier. Historical2010 structure; do not infer present pier configuration or access.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical surface site context"
+  },
+  {
+    "siteId": "dc17f872-f660-4a24-b1a7-4cd36993c540",
+    "slug": "seebrucke-scharbeutz",
+    "photoNo": 30,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/dc17f872-f660-4a24-b1a7-4cd36993c540/preview-option-9aa6675328a38ea4.jpg",
+    "alt": "Seebrücke Scharbeutz: Sharp wide pier, beach and sea photo. Source date 2026-08-25. — surface site context",
+    "credit": "Hans-Peter Balfanz (Hapebalf) / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3A2026-08-25_Seebr%C3%BCcke_Scharbeutz-1.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "9aa6675328a38ea488c390dce2c83dfd977358d7d9fdb2955b0a0f30fc5e5f92",
+    "originalDimensions": [
+      3522,
+      1819
+    ],
+    "identityStatus": "Individual title identifies Seebrucke Scharbeutz, matching named inventory pier.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Source declares own work and stated reusable licence. Preserve attribution and licence; share-alike applies where specified. Source edits, if any, are retained unchanged.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "2c013d2e-cf77-4132-b1a2-cfcb4d2031f1",
+    "slug": "lipah-bay-bali",
+    "photoNo": 31,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/2c013d2e-cf77-4132-b1a2-cfcb4d2031f1/preview-option-0cfc834c0d6189ff.jpg",
+    "alt": "Lipah Bay, Bali. Sharp in-situ nudibranch on natural underwater substrate. Source date: 15 September 2015, 09:04:42. — underwater site context",
+    "credit": "Bernard Picton / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:B150304.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Verify in-situ capture and site geography; strongest underwater lead. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "0cfc834c0d6189ff825c2c797e20e93b353b62c001ccb661d353b7c96ecaf6e7",
+    "originalDimensions": [
+      2000,
+      1335
+    ],
+    "identityStatus": "English: The nudibranch Phyllidiella pustulosa, Lipah Bay, Amed, Bali.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "6af3b17f-3689-45e2-b5a9-2ab5290f7dee",
+    "slug": "mikura-island",
+    "photoNo": 32,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/6af3b17f-3689-45e2-b5a9-2ab5290f7dee/preview-option-6bf1fcff9bbd8004.jpg",
+    "alt": "Mikura Island. Entire mountainous island seen across blue sea; source-provided wide camera image. Source date: 30 April 2008. — surface site context",
+    "credit": "名古屋太郎 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Whole_view_of_Mikurajima.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Surface island context only; verify actual original and rights. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6bf1fcff9bbd800485496649671612ac679b3c3938ef10c5e0642a3bc086e186",
+    "originalDimensions": [
+      3872,
+      2178
+    ],
+    "identityStatus": "English: The whole view of Mikurajima island 日本語: 御蔵島全景",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "2494a36e-31aa-4232-91b7-7392e63df872",
+    "slug": "koh-kai-chicken-island",
+    "photoNo": 33,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/2494a36e-31aa-4232-91b7-7392e63df872/preview-option-6dcb667dc850115d.jpg",
+    "alt": "Koh Kai /Chicken Island. Tropical beach and named island rock seen across shallow water. Source date: 21 January 2012. — surface site context",
+    "credit": "kallerna / Wikimedia Commons / CC Attribution-Share Alike 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ko_Kai_%26_Ko_Tub_5.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Surface context; distinguish similarly named Surin island; no panorama variants requested. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6dcb667dc850115ddd1b6035638b19a21727871bb7e118494c9b86911f46a7f0",
+    "originalDimensions": [
+      3000,
+      2000
+    ],
+    "identityStatus": "English: Chicken Island (Ko Kai) in Krabi, Thailand.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "90e6c284-8af8-4bdd-acd9-5c49fa78fc2e",
+    "slug": "racha-yai-island",
+    "photoNo": 34,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/90e6c284-8af8-4bdd-acd9-5c49fa78fc2e/preview-option-d1623065b6d000d6.jpg",
+    "alt": "Racha Yai Island. Elevated photograph of turquoise bay, beach and boats on the named island. Source date: 19 November 2024, 10:57:44. — surface site context",
+    "credit": "ELPHUKET / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Racha_Yai_Island.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Surface context; compare alias UUID39e04e8b-744f-4346-8051-90e183a0314d; no duplicate photo. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "d1623065b6d000d6acc875ddb4371bcb8f8c864087696d1b8e158990a910201c",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Русский: Остров Рача Яй Oʻzbekcha / ўзбекча: Racha Yai oroli",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "0955a70d-931b-4b1b-8e5f-acc7b2596da0",
+    "slug": "mosquito-island-reef",
+    "photoNo": 35,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/0955a70d-931b-4b1b-8e5f-acc7b2596da0/preview-option-bb6b848f125db5ff.jpg",
+    "alt": "Mosquito Island, possible context for Mosquito Island Reef; reef not visible. Source date: 7 June 2018. — surface site context · source identity/context review pending",
+    "credit": "Christophe95 / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Koh_Yung_(Mosquito_Island).jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  Island context for named reef only; verify framing and no existing equivalent coverage. Island context is supported but the specific reef is not visibly identified. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "bb6b848f125db5fff41f03ca9b8b0eab75cf68d6e4e098d2ae82a497701570aa",
+    "originalDimensions": [
+      5184,
+      3888
+    ],
+    "identityStatus": "English: Koh Yung (Mosquito Island) seen from a boat going from Ko Phi Phi Don to Krabi.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · source identity/context review pending"
+  },
+  {
+    "siteId": "4ca0b6b5-57d4-491a-b8ea-f3271a661bf9",
+    "slug": "boeing-b17-wreck",
+    "photoNo": 36,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/4ca0b6b5-57d4-491a-b8ea-f3271a661bf9/preview-option-88b9d54d1a5bf631.jpg",
+    "alt": "Boeing B17 (Wreck). Clear underwater B17 engine, propeller and fuselage with diver. Source date: 24 July 2014, 17:56:44. — underwater site context",
+    "credit": "Arnaud Abadie / Wikimedia Commons / CC Attribution 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Wreck_of_a_B-17_bomber_(Calvi,_Corsica).JPG"
+      },
+      {
+        "label": "CC Attribution 4.0 International",
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Confirm inventory Calvi location, no other B17 site mapping. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "88b9d54d1a5bf631395093bdb9b67058e840ac746f57f1321632046db5c855c4",
+    "originalDimensions": [
+      5184,
+      3456
+    ],
+    "identityStatus": "English: The wreck of a B-17 bomber from the World War II. The aircraft is situated at the foot of the Citadel of Calvi in Corsica.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "65e47523-1325-492e-8b9b-bd4f7d730608",
+    "slug": "fujikawa-maru",
+    "photoNo": 37,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/65e47523-1325-492e-8b9b-bd4f7d730608/preview-option-b43680102cd9512e.jpg",
+    "alt": "Fujikawa Maru. Underwater aircraft cargo inside wreck; green low-light scene with visible fuselage. Source date: 8 January 2015, 02:54:46. — underwater site context",
+    "credit": "Motoki Kurabayashi / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Japanese_airplane_ZERO_at_Fujikawa_maru_2.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Verify standalone still and wreck identity. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "b43680102cd9512e4edaad746b5830e2670f36ed870f4e8e18c757e437d976ba",
+    "originalDimensions": [
+      3200,
+      2400
+    ],
+    "identityStatus": "English: Japanese airplane ZERO at Fujikawa maru",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "a4e92425-ac68-442a-97aa-8029912103a9",
+    "slug": "kiyosumi-maru",
+    "photoNo": 38,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/a4e92425-ac68-442a-97aa-8029912103a9/preview-option-dbc0ea077ca0bec0.jpg",
+    "alt": "Kiyosumi Maru. Overhead water surface with faint submerged elongated wreck silhouette; detail is poor and vessel is not visually identifiable. Source date: 8 May 2019, 13:32:32. — surface wreck context · source identity/context review pending",
+    "credit": "Motoki Kurabayashi / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kiyosumi_maru.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  Individual file origin/rights not established by category. Do not substitute Flickr-origin DSC01995/DSC02004; reject if origin held. Source names wreck but visible silhouette is faint; exact visual identity and suitability need review. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "dbc0ea077ca0bec0a63cd1e90fc515bbe7faa6f31746ab3f8acbb8476ef5e015",
+    "originalDimensions": [
+      3200,
+      2400
+    ],
+    "identityStatus": "English: Kiyosumi maru",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface wreck context · source identity/context review pending"
+  },
+  {
+    "siteId": "bf143d68-59d7-4664-bd51-ea6c80a7f91f",
+    "slug": "br-20-wreck",
+    "photoNo": 39,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/bf143d68-59d7-4664-bd51-ea6c80a7f91f/preview-option-52dada67764410d8.jpg",
+    "alt": "BR-20 Wreck. Monochrome underwater aircraft wreck seen from above, engines and framework visible. Source date2010 conflicts with EXIF2012; capture date not independently verified. Source date: 4 September 2010. — underwater site context",
+    "credit": "Davide Bolsi / Wikimedia Commons / CC Attribution-Share Alike 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Relitto_del_BR20,_da_sopra.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Verify own-work source and current rights, exact inventory coordinates. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "52dada67764410d88ccd626d7a7a3f8eea486b4bd7b143880e3debaa34c3d757",
+    "originalDimensions": [
+      2000,
+      1500
+    ],
+    "identityStatus": "English: Fiat B.R.20 wreck on a 48m deep seabed in front of Santo Stefano al Mare, Liguria, Italy. Italiano: Relitto del Fiat B.R.20. Giace su un fondale di 48 m di fronte alle coste liguiri di Santo Stefano al Mare, Italia.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "ed881db2-13c8-46d5-8a61-eb4be435e587",
+    "slug": "mv-mikhail-lermontov-wreck",
+    "photoNo": 40,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/ed881db2-13c8-46d5-8a61-eb4be435e587/preview-option-e95d1766e32cbe58.jpg",
+    "alt": "MV Mikhail Lermontov, wreck. Historical white cruise vessel afloat in Geirangerfjord, Norway; not the New Zealand wreck site. Source date: 1984. — historical vessel context",
+    "credit": "U.Gomez / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Michail_Lermontow_1984.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Historical same-vessel context only, not New Zealand underwater capture. Vessel afloat in Norway in1984, before sinking in New Zealand; not the wreck site or current dive conditions. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "e95d1766e32cbe58d45a63b1526f0153cd320997bba63c4c647e172dd8706f96",
+    "originalDimensions": [
+      2472,
+      1584
+    ],
+    "identityStatus": "Deutsch: Kreuzfahrtschiff Mikhail Lermontov im norwegischen Geirangerfjord 1984 Русский: Круизное судно «Михаил Лермонтов» в норвежском Гейрангер-фьорде в 1984 году",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical vessel context"
+  },
+  {
+    "siteId": "7f7aa837-aeca-4ea9-969c-3d3f545cd88b",
+    "slug": "werbellinsee",
+    "photoNo": 41,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/7f7aa837-aeca-4ea9-969c-3d3f545cd88b/preview-option-4ac9e07812938011.jpg",
+    "alt": "Werbellinsee. Misty lake and wooden pier shoreline scene; not evidence of a particular entry point. Source date: 5 December 2016. — surface site context",
+    "credit": "LolaLanu / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ANebel_am_Werbellinsee.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [\"External discovery only. Verify own-work/provenance and reject any held-provider repost before acquisition.\", \"Verify camera photograph, full rights, visible named subject, coordinates and exact/perceptual dedup.\", \"Surface or aerial context only; not underwater. Tarpaulin lighthouse must visibly include actual cove; Alexander creek must show spring area, not remote downstream.\"] Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "4ac9e0781293801111c54c0a4cbfd65c1cdcc36827ba39145b4669127312ff18",
+    "originalDimensions": [
+      3264,
+      2448
+    ],
+    "identityStatus": "Deutsch: Dezembermorgen-Nebel am Werbellinsee, Biosphärenreservat Schorfheide-Chorin und FFH-Gebiet Werbellinkanal",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "7722fd90-9d5a-45c7-8cf1-0d651fa93b9c",
+    "slug": "bottomless-lakes-park",
+    "photoNo": 42,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/7722fd90-9d5a-45c7-8cf1-0d651fa93b9c/preview-option-5bd9d2c6af44ca50.jpg",
+    "alt": "Bottomless Lakes Park. Real-camera aerial view of multiple lakes and surrounding landscape, source-provided wide crop; not a map. Source date: 24 February 2013, 16:24:26. — surface site context",
+    "credit": "NMMIMAJ / Wikimedia Commons / CC Attribution-Share Alike 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ABottomless_Lakes_Feb_2013.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [\"External discovery only. Verify own-work/provenance and reject any held-provider repost before acquisition.\", \"Verify camera photograph, full rights, visible named subject, coordinates and exact/perceptual dedup.\", \"Surface or aerial context only; not underwater. Tarpaulin lighthouse must visibly include actual cove; Alexander creek must show spring area, not remote downstream.\"] Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "5bd9d2c6af44ca50dfd9f6c25a6cf98fb235f9ac1dc269cee0d1d731aa728f9b",
+    "originalDimensions": [
+      2710,
+      1214
+    ],
+    "identityStatus": "English: An aerial view of Bottomless Lakes State Park near Roswell, NM",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "654fb529-b94c-47ee-843d-ebb9c280ca77",
+    "slug": "bennett-springs",
+    "photoNo": 43,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/654fb529-b94c-47ee-843d-ebb9c280ca77/preview-option-8deee22b559b60af.jpg",
+    "alt": "Bennett Springs. Spring-fed water and low dam seen from bridge with people fishing; historical surface setting. Source date: 25 April 2004, 07:16:37. — surface site context",
+    "credit": "Wylie \"Cyote\" C / Wikimedia Commons / CC Attribution-Share Alike 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ABennett_Spring_State_Park_dam_near_Lebanon_Missouri.JPG"
+      },
+      {
+        "label": "CC Attribution-Share Alike 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [\"External discovery only. Verify own-work/provenance and reject any held-provider repost before acquisition.\", \"Verify camera photograph, full rights, visible named subject, coordinates and exact/perceptual dedup.\", \"Surface or aerial context only; not underwater. Tarpaulin lighthouse must visibly include actual cove; Alexander creek must show spring area, not remote downstream.\"] Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "8deee22b559b60afb1aefae11c026274a5b9ac79a8a43331572920fefe1b5126",
+    "originalDimensions": [
+      2083,
+      1746
+    ],
+    "identityStatus": "English: From the bridge looking upstream. The trout hatchery starts from here and continues downstream.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "19ecf390-e464-4bc6-8c6d-5dc0ad181bad",
+    "slug": "al-fahal-island",
+    "photoNo": 44,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/19ecf390-e464-4bc6-8c6d-5dc0ad181bad/preview-option-a1663816d4787e77.jpg",
+    "alt": "Al Fahal Island. Distant rocky Al Fahal Island visible beyond beach and breaking waves; source-provided original is only687x687. Source date: 13 December 2017, 10:17:35. — surface site context · source identity/context review pending",
+    "credit": "Neux-Neux / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Jaz%C4%ABrat_al-Fa%E1%B8%A9l.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.  Verify camera photograph, own-work source and island framing; no inference from unrelated Al Fahal coral categories. Low-resolution source original; no upscale. Review main-photo quality. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "a1663816d4787e77b2958c06ce0662e529c9ac1b1ce6d35f291d98a3854a4515",
+    "originalDimensions": [
+      687,
+      687
+    ],
+    "identityStatus": "中文：​阿曼马斯喀特费赫勒岛 English: Al Fahal Island, Muscat, Oman",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · source identity/context review pending"
+  },
+  {
+    "siteId": "05b00f8e-f4cb-46a0-a56f-eaa108c53483",
+    "slug": "sutera-harbour-marina",
+    "photoNo": 45,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/05b00f8e-f4cb-46a0-a56f-eaa108c53483/preview-option-a7c4758ba1b16594.jpg",
+    "alt": "Sutera Harbour Marina. Harbour marina boats and pontoons visible at sunset; dark foreground and strong sky colours. Source date: 22 April 2013, 18:29:43. — surface site context",
+    "credit": "Kevin85Sam / Wikimedia Commons / CC Attribution-Share Alike 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kota_Kinabalu_Sutera_Harbour.jpg"
+      },
+      {
+        "label": "CC Attribution-Share Alike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  Verify marina is identifiable rather than sky-only sunset; do not associate marina swimming pool. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "a7c4758ba1b165941ee03c27895cd16aca852c2d95180abc303ad04dd2eebeab",
+    "originalDimensions": [
+      3264,
+      2448
+    ],
+    "identityStatus": "English: Sunset at Sutera Harbour",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item declares own work and explicit reusable commercial CC licence. Preserve attribution, licence and adaptation notice; share-alike where specified.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "81635e66-6f75-42a4-ae2e-a9a7d18d5d02",
+    "slug": "usns-general-hoyt-s-vandenberg-t-agm-10",
+    "photoNo": 46,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/81635e66-6f75-42a4-ae2e-a9a7d18d5d02/preview-option-d05cb95fd2cc3787.jpg",
+    "alt": "Historical camera photograph of Vandenberg afloat at Key West before sinking,9 May2009; not present underwater conditions. — historical vessel context",
+    "credit": "Accel / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vandenberg.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "d05cb95fd2cc3787ae79f83ab5f1584ff0a684a7dc2dc8cade6e5fe7e32cd421",
+    "originalDimensions": [
+      1280,
+      725
+    ],
+    "identityStatus": "English: Ex-USNS Hoyt S. Vandenberg at Key West, Florida, waiting to be sunk.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical vessel context"
+  },
+  {
+    "siteId": "a73491a1-2127-4f9f-a818-4d055dbbae77",
+    "slug": "uss-vandenberg-wreck",
+    "photoNo": 46,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/81635e66-6f75-42a4-ae2e-a9a7d18d5d02/preview-option-d05cb95fd2cc3787.jpg",
+    "alt": "Historical camera photograph of Vandenberg afloat at Key West before sinking,9 May2009; not present underwater conditions. — historical vessel context",
+    "credit": "Accel / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vandenberg.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "d05cb95fd2cc3787ae79f83ab5f1584ff0a684a7dc2dc8cade6e5fe7e32cd421",
+    "originalDimensions": [
+      1280,
+      725
+    ],
+    "identityStatus": "English: Ex-USNS Hoyt S. Vandenberg at Key West, Florida, waiting to be sunk.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical vessel context"
+  },
+  {
+    "siteId": "f6d703fd-7bab-429f-8919-9d516330e93c",
+    "slug": "usns-general-hoyt-s-vandenberg",
+    "photoNo": 46,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/81635e66-6f75-42a4-ae2e-a9a7d18d5d02/preview-option-d05cb95fd2cc3787.jpg",
+    "alt": "Historical camera photograph of Vandenberg afloat at Key West before sinking,9 May2009; not present underwater conditions. — historical vessel context",
+    "credit": "Accel / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Vandenberg.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "d05cb95fd2cc3787ae79f83ab5f1584ff0a684a7dc2dc8cade6e5fe7e32cd421",
+    "originalDimensions": [
+      1280,
+      725
+    ],
+    "identityStatus": "English: Ex-USNS Hoyt S. Vandenberg at Key West, Florida, waiting to be sunk.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical vessel context"
+  },
+  {
+    "siteId": "1eff0142-7485-4507-8c1b-8a9d760c7e36",
+    "slug": "nippo-maru",
+    "photoNo": 47,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/1eff0142-7485-4507-8c1b-8a9d760c7e36/preview-option-2e2029d9dcfc5d3a.jpg",
+    "alt": "Underwater Nippo Maru wreck structures; source-provided912x684 original, low detail. — underwater wreck · source identity/context review pending",
+    "credit": "User: (WT-shared) Legis at wts wikivoyage / Wikimedia Commons / Public domain (author release)",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Nippo_maru.jpg"
+      },
+      {
+        "label": "Public domain (author release)",
+        "url": "https://commons.wikimedia.org/wiki/File:Nippo_maru.jpg#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Author releases work into public domain worldwide, or grants unrestricted any-purpose use where waiver impossible. Original imported from Wikivoyage/Wikitravel; no held provider indication.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "2e2029d9dcfc5d3ac895e507984cbf8044ea0aef80355065c5c0462e212ee776",
+    "originalDimensions": [
+      912,
+      684
+    ],
+    "identityStatus": "English: Photograph of the wreck of the Nippo Maru, Chuuk Lagoon. Taken by User:(WT-shared) Legis in January 2011.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Author releases work into public domain worldwide, or grants unrestricted any-purpose use where waiver impossible. Original imported from Wikivoyage/Wikitravel; no held provider indication.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck · source identity/context review pending"
+  },
+  {
+    "siteId": "636bbc4b-7a63-4c8b-9aa4-19961f6a6d80",
+    "slug": "stuka-wreck",
+    "photoNo": 48,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/636bbc4b-7a63-4c8b-9aa4-19961f6a6d80/preview-option-2e675d6c7c598891.jpg",
+    "alt": "Underwater aircraft wreck with divers; source identifies Stuka in Croatia but two candidate inventory coordinates conflict. — underwater wreck · source identity/context review pending",
+    "credit": "Lulebog / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Junkers_JU_87_%E2%80%98Stuka%E2%80%99_airplane_wreck_from_World_War_II.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "2e675d6c7c5988912adf3ec7e0d425e9d86f89facb400c8c58c6c351b633d048",
+    "originalDimensions": [
+      4032,
+      2268
+    ],
+    "identityStatus": "English: The underwater wreck of Junkers JU 87 ‘Stuka’ airplane in Croatia",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck · source identity/context review pending"
+  },
+  {
+    "siteId": "bee1e30f-1ee0-4b92-b851-a25ea9d84049",
+    "slug": "stuka-junkers-ju-87",
+    "photoNo": 48,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/636bbc4b-7a63-4c8b-9aa4-19961f6a6d80/preview-option-2e675d6c7c598891.jpg",
+    "alt": "Underwater aircraft wreck with divers; source identifies Stuka in Croatia but two candidate inventory coordinates conflict. — underwater wreck · source identity/context review pending",
+    "credit": "Lulebog / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Junkers_JU_87_%E2%80%98Stuka%E2%80%99_airplane_wreck_from_World_War_II.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "2e675d6c7c5988912adf3ec7e0d425e9d86f89facb400c8c58c6c351b633d048",
+    "originalDimensions": [
+      4032,
+      2268
+    ],
+    "identityStatus": "English: The underwater wreck of Junkers JU 87 ‘Stuka’ airplane in Croatia",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater wreck · source identity/context review pending"
+  },
+  {
+    "siteId": "1152ffcd-fd42-4ce2-a11b-2605e2a26fba",
+    "slug": "kanmurishima-island",
+    "photoNo": 49,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/1152ffcd-fd42-4ce2-a11b-2605e2a26fba/preview-option-9b053422e775b1ff.jpg",
+    "alt": "Historical1975 vertical aerial camera photograph of the entire Kanmuri Island and nearshore water; not a map. — historical aerial site context",
+    "credit": "国土交通省 · Made based on National Land Image Information (Color Aerial Photographs), Ministry of Land, Infrastructure, Transport and Tourism. · MLIT attribution permission (commercial use explicitly allowed)",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kanmuri_Island_Aerial_Photograph.JPG"
+      },
+      {
+        "label": "MLIT attribution permission (commercial use explicitly allowed)",
+        "url": "https://commons.wikimedia.org/wiki/File:Kanmuri_Island_Aerial_Photograph.JPG#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item explicitly states MLIT permits redistribution, derivatives and commercial use with attribution. Required credit: Made based on National Land Image Information (Color Aerial Photographs), Ministry of Land, Infrastructure, Transport and Tourism.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "9b053422e775b1ffc7cdaccbb0bd7f815be754049d6e73e0bc93895f384db36c",
+    "originalDimensions": [
+      2338,
+      1752
+    ],
+    "identityStatus": "English: Kanmuri Island Aerial Photograph 日本語: 冠島（京都府舞鶴市）の空中写真。ckk-75-6_c41_5を使用。",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item explicitly states MLIT permits redistribution, derivatives and commercial use with attribution. Required credit: Made based on National Land Image Information (Color Aerial Photographs), Ministry of Land, Infrastructure, Transport and Tourism.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "historical aerial site context"
+  },
+  {
+    "siteId": "369622b3-1870-428e-b2e1-0c9b41bf696c",
+    "slug": "mohne-delecker-brucke",
+    "photoNo": 50,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/369622b3-1870-428e-b2e1-0c9b41bf696c/preview-option-3ef55de781461e2f.jpg",
+    "alt": "Detailed aerial camera photograph of Delecker Bridge south side and divers bay; exact captioned context. — surface site context",
+    "credit": "Petra Klawikowski / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AM%C3%B6hnesee_Delecker_Br%C3%BCcke_FFSN-3944.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "3ef55de781461e2fe59d500ab41099028ed24e3375eaa7f2a27b86855a4d5b00",
+    "originalDimensions": [
+      4928,
+      3280
+    ],
+    "identityStatus": "Deutsch: Fotoflug Sauerland-Nord. Möhnesee: Südseite Delecker Brücke mit Taucherbucht. The production, editing or release of this file was supported by the Community-Budget of Wikimedia Deutschland. To see other files made with the support of Wikimedia Deutschland, please see the category Supported by Wikimedia Deutschland.العربية ∙ বাংলা ∙ Deutsch ∙ English ∙ Esperanto ∙ français ∙ हिन्दी ∙ magyar ∙ Bahasa Indonesia ∙ italiano ∙ 日本語 ∙ македонски ∙ മലയാളം ∙ Bahasa Melayu ∙ Nederlands ∙ português ∙ română ∙ русский ∙ slovenščina ∙ svenska ∙ தமிழ் ∙ українська ∙ 中文 ∙ +/−",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Item-level own-work CC licence, attribution and share-alike required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "ff8dd96c-f35c-43f8-a23e-4c5a015dd098",
+    "slug": "aare-worblaufen",
+    "photoNo": 51,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/2efa39f2-c340-4962-9054-45cf096a329e/preview-option-e1151878a04c66b6.jpg",
+    "alt": "Aare Worblaufen — proposed association with an existing photo — surface site context",
+    "credit": "Sandstein / Wikimedia Commons / CC BY 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Tiefenaubr%C3%BCcke.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. EXIF2008-06-11 13:38:44; source says12June2008 Saved source explicitly names Tiefenaubrücke over Aare. Existing independent bridge coordinates 46.977081,7.456880 are 55 m from Aare Worblaufen inventory point. Local preview visually rechecked: Aare water and gravel bank occupy foreground, stone bridge arches and partially obscured parallel bridge are visible, supporting this same short river reach as surface context. No new held-source request, download, or original reupload. Not exact entry/safety or underwater guidance. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "e1151878a04c66b633355d5287cc5c000a0bdc0a048c29b2047a50357e119372",
+    "originalDimensions": [
+      3872,
+      2592
+    ],
+    "identityStatus": "Saved source explicitly names Tiefenaubrücke over Aare. Existing independent bridge coordinates 46.977081,7.456880 are 55 m from Aare Worblaufen inventory point. Local preview visually rechecked: Aare water and gravel bank occupy foreground, stone bridge arches and partially obscured parallel bridge are visible, supporting this same short river reach as surface context. No new held-source request, download, or original reupload. Not exact entry/safety or underwater guidance.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Commons declares Sandstein own work under CC BY3.0. Preserve attribution, license link and indicate changes. Declaration is not independent ownership verification. Original unchanged; no publication/outreach.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "1d7ce8c2-a1fa-4625-9a75-299c7df4aa55",
+    "slug": "cod-hole-great-barrier-reef-australia",
+    "photoNo": 52,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/ae1d2912-00a7-46bc-861c-fb7af1da979f/preview-option-24d7d9c30127a837.jpg",
+    "alt": "Cod Hole — proposed association with an existing photo — underwater photo",
+    "credit": "Richard Ling / Wikimedia Commons / CC BY-SA 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Epinephelus_tukula.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Clear portrait of potato cod resting on sand beneath encrusted reef. Modest768 by1024 source resolution; useful underwater species and habitat context. Embedded lower-left photographer credit preserved. Does not establish current abundance or visibility.\"] Secure equivalent named site: Cod Hole / The Cod Hole; same specific destination, with catalogue pins 11.589 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "24d7d9c30127a837d25224f0193c37d2e6276a8386a63e63bde1d65ebf2ee20e",
+    "originalDimensions": [
+      768,
+      1024
+    ],
+    "identityStatus": "Secure equivalent named site: Cod Hole / The Cod Hole; same specific destination, with catalogue pins 11.589 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Richard Ling CC BY-SA2.0, confirmed by Commons FlickreviewR28 November2007. Flickr itself was not accessed. Preserve attribution, embedded credit, source/license/change notices and share-alike for adaptations.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater photo"
+  },
+  {
+    "siteId": "8d018886-8951-45e8-a813-d17bcdf5fb8a",
+    "slug": "tobia-arbaa",
+    "photoNo": 53,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/4883d898-8108-4d94-bb0f-8a097176a627/preview-option-6565398cab95ed85.jpg",
+    "alt": "Tobia Arbaa — proposed association with an existing photo — underwater site context",
+    "credit": "Peterkoelbl / Wikimedia Commons / CC BY-SA 2.5",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Scyllarides_latus.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.5",
+        "url": "https://creativecommons.org/licenses/by-sa/2.5/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Detailed slipper lobster on sandy substrate under flash lighting, dark shadow to right. Modest1536x1024 original. No divers or identifying landmark. Source preview inspected before original acquisition; original-derived preview checked after download.\"] Secure equivalent named site: Tobia Arbaa / Tobia Arbaa (7 pillars); same specific destination, with catalogue pins 12.710 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6565398cab95ed8553e112bc300629018e10216aea2271d0edded182e1a08c09",
+    "originalDimensions": [
+      1536,
+      1024
+    ],
+    "identityStatus": "Secure equivalent named site: Tobia Arbaa / Tobia Arbaa (7 pillars); same specific destination, with catalogue pins 12.710 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. CC BY-SA 2.5; attribution and indication of changes required. Adaptations require same/compatible share-alike licence.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "e54c62c1-c5eb-4e0f-8829-463b5a0a620c",
+    "slug": "um-el-faroud",
+    "photoNo": 54,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/12784cdb-3295-4f44-b5a7-30acc4657096/hero.jpg",
+    "alt": "Um el Faroud — proposed association with an existing photo — exact site photo",
+    "credit": "Pstraudo / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Partie_arri%C3%A8re_du_Um_El_Faroud.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Deck fittings and railings; soft low-resolution 1280x720.\"] Secure equivalent named site: Um el Faroud / UM-Faroud; same specific destination, with catalogue pins 30.822 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association. [] [] Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "c6f0c857428c0e6514cc9b016ba3a3b7802f3dd2d15504c2690d76cac90658b5",
+    "originalDimensions": [
+      1280,
+      720
+    ],
+    "identityStatus": "Secure equivalent named site: Um el Faroud / UM-Faroud; same specific destination, with catalogue pins 30.822 m apart. Source named identity, not proximity alone, supports association. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "e9f7d60c-274b-4c9b-bbbe-2127d5551726",
+    "slug": "kimon-m",
+    "photoNo": 55,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/043ff844-49a8-4372-bb6c-dec8169e6196/hero.jpg",
+    "alt": "Kimon M — proposed association with an existing photo — surface context photo",
+    "credit": "Wusel007 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Abu_Nuhas_parts_of_Kimon_M.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Surface reef with small protruding wreck remains; not underwater.\"] Secure equivalent named site: Kimon M / Kimon M, wreck; same specific destination, with catalogue pins 34.721 m apart. Source named identity, not proximity alone, supports association. Saved source point 27.580536, 33.9286 is 203.0 m from this proposed target, subject to the source-point caveat. [] [] Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "77bb10a6910165b6853487f1342f5fb4c45bd1cfb7da9348fef943e6cb986142",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Secure equivalent named site: Kimon M / Kimon M, wreck; same specific destination, with catalogue pins 34.721 m apart. Source named identity, not proximity alone, supports association. Saved source point 27.580536, 33.9286 is 203.0 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface context photo"
+  },
+  {
+    "siteId": "ee548cb8-2b9a-427f-8f08-679beb15a8bd",
+    "slug": "wraysbury",
+    "photoNo": 56,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/5f61af96-302a-4fd6-b9f4-a85f79515d7c/hero.jpg",
+    "alt": "Wraysbury — proposed association with an existing photo — nearby context photo",
+    "credit": "Martyn Davies / Wikimedia Commons / CC BY-SA 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Divers_in_the_Water_-_geograph.org.uk_-_4951750.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Divers training at lake edge and open lake beyond. Historical surface activity context; no endorsement, release or present-day access implied.\"] Secure equivalent named site: Wraysbury / Wraysbury Lake; same specific destination, with catalogue pins 46.014 m apart. Source named identity, not proximity alone, supports association. Saved source point 51.459854, -0.548187 is 27.4 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "161a53a4d76c314228a7501951efa538c112f050e5145889e13914a2463b396d",
+    "originalDimensions": [
+      4288,
+      2864
+    ],
+    "identityStatus": "Secure equivalent named site: Wraysbury / Wraysbury Lake; same specific destination, with catalogue pins 46.014 m apart. Source named identity, not proximity alone, supports association. Saved source point 51.459854, -0.548187 is 27.4 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific licensing reviewed. Originals unchanged, previews resized. Preserve creator attribution, source and licence links; adaptations require applicable share-alike and changes notice.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "a8fc4eba-86bc-4b15-a6e6-86c5a836d890",
+    "slug": "salem-express",
+    "photoNo": 57,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/4a212ba1-beca-4f38-b43f-579b7855ccf3/hero.jpg",
+    "alt": "Salem Express — proposed association with an existing photo — exact site photo",
+    "credit": "Thomei08 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:MV_Salem_Express_1.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Recognizable wreck superstructure on seabed; blue cast.\"] Secure equivalent named site: Salem Express / Salem Express, wreck; same specific destination, with catalogue pins 53.240 m apart. Source named identity, not proximity alone, supports association. Saved source point 26.63945, 34.061083 is 57.4 m from this proposed target, subject to the source-point caveat. [] [] Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "78dd28d6834b62441d26162315aa68c923fc4e34f94d217012394956f8bab910",
+    "originalDimensions": [
+      3264,
+      2448
+    ],
+    "identityStatus": "Secure equivalent named site: Salem Express / Salem Express, wreck; same specific destination, with catalogue pins 53.240 m apart. Source named identity, not proximity alone, supports association. Saved source point 26.63945, 34.061083 is 57.4 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "dad2a8bb-ea30-450b-a91d-c2ed0356e494",
+    "slug": "the-canyon-red-sea-egypt",
+    "photoNo": 58,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/e5a368a3-1de3-4a52-93ac-06d46cfa9ea9/preview-option-af952e139d126c48.jpg",
+    "alt": "The Canyon — proposed association with an existing photo — underwater site context",
+    "credit": "Tim Sheerman-Chase / Wikimedia Commons / CC BY 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Divers_Descending_into_the_Canyon%2C_Dahab.jpg"
+      },
+      {
+        "label": "CC BY 2.0",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Vertical view upward through narrow rocky canyon opening with divers and bubbles. Dark walls and backlit silhouettes, grain and bright opening; readable cave geometry but portrait orientation limits hero crop. Source preview inspected before original acquisition; original-derived preview checked after download.\"] Secure equivalent named site: The Canyon / Canyon, Dahab; same specific destination, with catalogue pins 114.011 m apart. Source named identity, not proximity alone, supports association. Saved source point 28.553851, 34.522465 is 167.6 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "af952e139d126c48fd439262b983da2ca7e5b844ec0393941f39b5d8bff43661",
+    "originalDimensions": [
+      2695,
+      3593
+    ],
+    "identityStatus": "Secure equivalent named site: The Canyon / Canyon, Dahab; same specific destination, with catalogue pins 114.011 m apart. Source named identity, not proximity alone, supports association. Saved source point 28.553851, 34.522465 is 167.6 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. CC BY 2.0; attribution and indication of changes required.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "c9fea09f-d2c4-4553-abbf-3b6e50f97028",
+    "slug": "cromhall",
+    "photoNo": 59,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/5b533958-9c3a-48e1-9880-faab79e8e642/hero.jpg",
+    "alt": "Cromhall — proposed association with an existing photo — nearby context photo",
+    "credit": "Roger Cornfoot / Wikimedia Commons / CC BY-SA 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cromhall_quarry.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Flooded quarry shoreline and former workings. Source is only 640x467; suitable as historical research context, not a large hero image.\"] Secure equivalent named site: Cromhall / Cromhall Quarry; same specific destination, with catalogue pins 142.966 m apart. Source named identity, not proximity alone, supports association. Saved source point 51.620999, -2.428375 is 338.7 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "87f3faccbbc49e9bbdec4504fec05c89b3f2e9b0bfe97d4ad3844859c705bfe4",
+    "originalDimensions": [
+      640,
+      467
+    ],
+    "identityStatus": "Secure equivalent named site: Cromhall / Cromhall Quarry; same specific destination, with catalogue pins 142.966 m apart. Source named identity, not proximity alone, supports association. Saved source point 51.620999, -2.428375 is 338.7 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific licensing reviewed. Originals unchanged, previews resized. Preserve creator attribution, source and licence links; adaptations require applicable share-alike and changes notice.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "d37272e2-ba55-47e9-bb60-415581daf778",
+    "slug": "steve-s-bommie",
+    "photoNo": 60,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/c901930e-1d1b-4ccc-86e0-d09fd7fa5bee/preview-option-7d183478ac24bcdb.jpg",
+    "alt": "Steve's Bommie — proposed association with an existing photo — underwater photo",
+    "credit": "Richard Ling; color adjustment by Togabi / Wikimedia Commons / CC BY-SA 2.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Caranx_sexfasciatus.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.0",
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Close underwater school of bigeye trevally. Recognizable fish and water context despite modest1024 by736 resolution and visible noise. Source color adjustment is already present; we did not alter image colors. No inference of current species abundance or dive safety.\"] Secure equivalent named site: Steve's Bommie / Steve’s Bommie - Ribbon No 3 Reef; same specific destination, with catalogue pins 149.532 m apart. Source named identity, not proximity alone, supports association. Saved source point -15.5017806, 145.7879694 is 109.7 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "7d183478ac24bcdbcd80f7a151f669efb66104ad6e892b31ac00d65d82241bc5",
+    "originalDimensions": [
+      1024,
+      736
+    ],
+    "identityStatus": "Secure equivalent named site: Steve's Bommie / Steve’s Bommie - Ribbon No 3 Reef; same specific destination, with catalogue pins 149.532 m apart. Source named identity, not proximity alone, supports association. Saved source point -15.5017806, 145.7879694 is 109.7 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Commons CC BY-SA2.0 confirmed by FlickreviewR25 August2007. Embedded older notice mentions GFDL and CC BY-SA2.5; retain that notice as well as selected reviewed2.0 license. Credit Richard Ling and Togabi color adjustment, preserve source/license/change notices and share-alike. No Flickr access.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater photo"
+  },
+  {
+    "siteId": "807f64c4-7244-4790-ba9d-5f9ff71038f1",
+    "slug": "walchensee",
+    "photoNo": 61,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/23854fbb-26ac-4289-9e2c-a56041f52dbe/hero.jpg",
+    "alt": "Walchensee — proposed association with an existing photo — nearby context photo",
+    "credit": "Luidger / Wikimedia Commons / CC BY 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:20080210-Walchensee_vom_Simetsberg.jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original is already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Walchensee in a distant mountain panorama with snow in foreground; broad lake context, not exact Einsiedlbucht entry.\"] Direct exact source-to-inventory waterbody name match. This is not an assertion that Einsiedlbucht and the lake-wide inventory record are identical entries. Source caption independently names Walchensee; panorama portrays the whole lake. Inventory target has no narrower entry, shore or wreck name. Existing Einsiedlbucht link retained without expansion to other named entries. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "bc2ec16f51c38f441fa2ca9affb909d5340b9cc4f4d8843c904a4f744d65fd34",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "Direct exact source-to-inventory waterbody name match. This is not an assertion that Einsiedlbucht and the lake-wide inventory record are identical entries. Source caption independently names Walchensee; panorama portrays the whole lake. Inventory target has no narrower entry, shore or wreck name. Existing Einsiedlbucht link retained without expansion to other named entries. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific Licensing reviewed. Preserve source, creator and license credit; previews resized from unchanged originals. Share-alike applies where required. No release or endorsement asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "6e44f3b7-f9e9-48ee-89fb-8bb77334f730",
+    "slug": "turtle-island-greece",
+    "photoNo": 62,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/302c28c0-6358-4cb4-999d-531466b529ec/hero.jpg",
+    "alt": "Turtle Island — proposed association with an existing photo — surface context photo",
+    "credit": "Ziegelbrenner · CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Marathonisi_Island%2C_Zakynthos%2C_Greece.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Backlit island silhouette beyond waterfront railing; contextual alternative, foreground prominent.\"] Equivalent named locality/site: Turtle Island / Turtle Island - Marathonisi; catalogue pins 18.457 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Source explicitly supplies German Turtle Island alias for Marathonisi; target pin is on the same island. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "857483760bdb40de22895d60557ae74dbe195c422eedcdbde6abe1f65b68eae3",
+    "originalDimensions": [
+      2048,
+      1536
+    ],
+    "identityStatus": "Equivalent named locality/site: Turtle Island / Turtle Island - Marathonisi; catalogue pins 18.457 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Source explicitly supplies German Turtle Island alias for Marathonisi; target pin is on the same island. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Credit creator, source, and selected license with links; indicate changes and retain share-alike when applicable. No model/property release or endorsement asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface context photo"
+  },
+  {
+    "siteId": "9fc86dd7-8c91-40b2-acc3-c167d9dd3d6f",
+    "slug": "marsa-mourain",
+    "photoNo": 63,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/6ee0645c-cbad-427c-ac58-7676eb3add08/hero.jpg",
+    "alt": "Marsa Mourain — proposed association with an existing photo — exact site photo",
+    "credit": "Wusel007 / Wikimedia Commons / CC BY-SA 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Marsa_Murena_Schildkr%C3%B6te.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Sea turtle resting and feeding near sandy reef floor; underwater scene.\"] Equivalent named locality/site: Marsa Mourain / Marsa Murena; catalogue pins 24.402 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Mourain/Murena is treated as a local spelling/transliteration variant at this same bay, independently supported by saved source camera point near target; not generalized to other Marsa names. Saved source point 25.394939, 34.701708 is 69.6 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "bfcbbac8fc4a1b20295a99f6b5e70ebe11447453f86503d04da4f52c7d1152a6",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Equivalent named locality/site: Marsa Mourain / Marsa Murena; catalogue pins 24.402 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Mourain/Murena is treated as a local spelling/transliteration variant at this same bay, independently supported by saved source camera point near target; not generalized to other Marsa names. Saved source point 25.394939, 34.701708 is 69.6 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original bytes unchanged; previews resized. Preserve creator credit, source and licence links; identify changes and observe share-alike if applicable. No photographer endorsement or model/property releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "68e8491e-02df-45f6-bc4b-795a5d5a0437",
+    "slug": "fort-de-brescou",
+    "photoNo": 64,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/04dc3bc7-835b-4d48-b2de-32ffdeebbec5/hero.jpg",
+    "alt": "Fort de Brescou — proposed association with an existing photo — surface context photo",
+    "credit": "Spedona / Wikimedia Commons / CC BY-SA 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cap_d%27Agde_-_Brescou01.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Brescou fort and island across open water; rocks in foreground.\"] Equivalent named locality/site: Fort de Brescou / Brescou; catalogue pins 32.500 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Visible fort occupies the explicitly named Brescou island. Proposal is fortified-island surface context, not exact dive pin. Saved source point 43.2631, 3.5019 is 60.7 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "160d11b663f034fc6b255ad756af5851b22b0c92a0c1ce2fa0e7a27e624d6df9",
+    "originalDimensions": [
+      3456,
+      2304
+    ],
+    "identityStatus": "Equivalent named locality/site: Fort de Brescou / Brescou; catalogue pins 32.500 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Visible fort occupies the explicitly named Brescou island. Proposal is fortified-island surface context, not exact dive pin. Saved source point 43.2631, 3.5019 is 60.7 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original bytes unchanged; preview resized. Preserve creator and source credit, stated license link, identify changes and observe share-alike where applicable. No endorsement, property or model release asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface context photo"
+  },
+  {
+    "siteId": "bc1327c6-b406-4b56-ae21-00f33b0a7ea9",
+    "slug": "ghar-lapsi-caves-ghar-lapsi-is-siggiewi-sur",
+    "photoNo": 65,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/86aa7156-4c8e-4a81-b732-ccdb9cb913ec/hero.jpg",
+    "alt": "GHAR LAPSI-CAVES, Ghar Lapsi, Is-Siggiewi (Sur) — proposed association with an existing photo — nearby context photo",
+    "credit": "Diego Delso, delso.photo / Wikimedia Commons / CC BY-SA 4.0 International",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ghar_Lapsi,_isla_de_Malta,_Malta,_2021-08-21,_DD_57-59_HDR.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Ghar Lapsi rocky inlet, cave opening and swimmers; surface entry context.\", \"Source labels this as an HDR photograph; the pre-existing source processing is preserved, with no new image modification.\"] Equivalent named locality/site: GHAR LAPSI-CAVES, Ghar Lapsi, Is-Siggiewi (Sur) / Ghar Lapsi cavern; catalogue pins 52.874 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6fde844d85abffad468e2c93bb335911f79ebc94406443954aaea365f8e748a2",
+    "originalDimensions": [
+      7680,
+      3475
+    ],
+    "identityStatus": "Equivalent named locality/site: GHAR LAPSI-CAVES, Ghar Lapsi, Is-Siggiewi (Sur) / Ghar Lapsi cavern; catalogue pins 52.874 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific license/permission section reviewed, not Commons footer. Original bytes unchanged; preview resized. Credit creators and source, link selected license, disclose modifications, preserve share-alike where applicable. No model/property releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "nearby context photo"
+  },
+  {
+    "siteId": "e3c7db0f-6272-403b-b23e-c7d7af517bf3",
+    "slug": "malahi-reef",
+    "photoNo": 66,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/62bf53ce-8529-4779-9088-077fb7eebd0d/hero.jpg",
+    "alt": "Malahi Reef — proposed association with an existing photo — named site fauna context",
+    "credit": "Alexander Vasenin / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Nudibranch_egg_ribbon_at_Malahi.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Nudibranch egg ribbon on reef substrate at named Malahi. Exact named-site habitat context; no unique landmark claim.\"] Equivalent named locality/site: Malahi Reef / Shaab Malahi; catalogue pins 67.179 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association. Credit creator, source and CC license, note changes; share-alike adaptations where required. Credit creator, source and CC license, note changes; share-alike adaptations where required. Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "4b28a0e36cc3315dde2c335a8392be2cb28c7ddc0d4be9e63705d0bf51c0549c",
+    "originalDimensions": [
+      2715,
+      3620
+    ],
+    "identityStatus": "Equivalent named locality/site: Malahi Reef / Shaab Malahi; catalogue pins 67.179 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "named site fauna context"
+  },
+  {
+    "siteId": "e90602cb-afae-47fb-bdd4-a6d27dfc75fe",
+    "slug": "daaibooi-baai",
+    "photoNo": 67,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/08394c27-b6fc-4f82-bbcc-342ce303927e/hero.jpg",
+    "alt": "Daaibooi Baai — proposed association with an existing photo — surface context photo",
+    "credit": "Hobie Reacher / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Beach_of_Daaibooi%2C_Curacao.jpeg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Daaibooi beach, coastal vegetation and bay.\"] Equivalent named locality/site: Daaibooi Baai / Playa Daaibooi; catalogue pins 111.377 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 12.212228, -69.084708 is 100.3 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "9888d73b879d283c7f96b297b94bae57110fd3a540a8fc480f3bdfaed6457aa9",
+    "originalDimensions": [
+      2731,
+      1536
+    ],
+    "identityStatus": "Equivalent named locality/site: Daaibooi Baai / Playa Daaibooi; catalogue pins 111.377 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 12.212228, -69.084708 is 100.3 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific licensing section reviewed, not website footer. Credit creator/source/license; originals unchanged, previews resized. Preserve share-alike where applicable. No model/property releases or endorsement asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface context photo"
+  },
+  {
+    "siteId": "c627925d-754c-459d-8dde-3108df282e27",
+    "slug": "big-brother-numidia",
+    "photoNo": 68,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/088f0ba1-e72f-4e8a-8c45-7c6c1471e081/photo-184d47e63fb683a8.jpg",
+    "alt": "Big Brother - Numidia — proposed association with an existing photo — exact site photo",
+    "credit": "W.Strickling / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ship_wreck_Numidia_(1901)_2015-05-02_12-41-06_Brothers-5820.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Wide deck structure visible; blue haze.\"] Equivalent named locality/site: Big Brother - Numidia / SS Numidia Wreck; catalogue pins 113.800 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 26.315728, 34.841938 is 88.6 m from this proposed target, subject to the source-point caveat. [] [] Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "184d47e63fb683a8b2c2d6c55f3e9124160783d4eaae9e308870195e845933ad",
+    "originalDimensions": [
+      2935,
+      2160
+    ],
+    "identityStatus": "Equivalent named locality/site: Big Brother - Numidia / SS Numidia Wreck; catalogue pins 113.800 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 26.315728, 34.841938 is 88.6 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "9e82fa26-6e96-4f66-b439-ed05940b8fcc",
+    "slug": "riihiniemi",
+    "photoNo": 69,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/2a0d7663-4060-4e7c-b154-640871bbcb13/hero.jpg",
+    "alt": "Riihiniemi — proposed association with an existing photo — surface context photo",
+    "credit": "DaysBrief205 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Riihiniemi_beach,_Kaukaj%C3%A4rvi.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Riihiniemi sandy beach, recreation facilities and lake. Surface access context.\"] Equivalent named locality/site: Riihiniemi / Riihiniemi/Kaukajärvi; catalogue pins 114.025 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 61.47175, 23.892454 is 149.7 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "6bfb70bd6ea96e3ecf136672880940c60a934dda6988aa4eaf90fdcf105ae1e6",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Equivalent named locality/site: Riihiniemi / Riihiniemi/Kaukajärvi; catalogue pins 114.025 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Saved source point 61.47175, 23.892454 is 149.7 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged; preview resized and EXIF orientation applied. Retain creator credit, source and exact license link; identify changes and apply share-alike where required. No property/model release or endorsement asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface context photo"
+  },
+  {
+    "siteId": "38df2c53-c6f9-4023-b9fb-d7092f9d02d4",
+    "slug": "abu-nuhas-ghiannis-d",
+    "photoNo": 70,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/eb5667eb-cf86-418c-8e20-b584c1919144/photo-072afbf45254dc33.jpg",
+    "alt": "Abu Nuhas Ghiannis D. — proposed association with an existing photo — exact site photo",
+    "credit": "Wusel007 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Giannis_D_Bridge_side.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Tilted bridge-side view with recognizable structure; cyan cast.\"] Equivalent named locality/site: Abu Nuhas Ghiannis D. / Giannis D, wreck; catalogue pins 154.444 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association. [] [] Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "072afbf45254dc33919c4ed334d893ca51730842013f12e7bd96711c14c7f679",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "Equivalent named locality/site: Abu Nuhas Ghiannis D. / Giannis D, wreck; catalogue pins 154.444 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original unchanged. Preview resized. Preserve creator, source and license links; apply share-alike where required. No endorsement or releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "ea7c04f2-1bdb-4999-9fce-fc893d507938",
+    "slug": "abu-dabab-iii",
+    "photoNo": 71,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/f1c96e9a-9dca-4706-ac7a-9f4fbaf1150b/preview-option-e7923ba2a7c0ded6.jpg",
+    "alt": "Abu Dabab III — proposed association with an existing photo — underwater site context",
+    "credit": "Roland Unger / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:AbuDabbab3Corals2.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Wide coral head underwater with bright foreground and blue water behind. Natural strong blue cast, some soft edges; recognizable reef habitat. Source preview inspected before original acquisition; original-derived preview checked after download.\"] Equivalent named locality/site: Abu Dabab III / Abu Dabbab Thalata; catalogue pins 227.280 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Source directly names Abu Dabbab 3, numerically identical to target III; existing Thalata is Arabic three. No assignment to other numbered reefs. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "e7923ba2a7c0ded6eaf8a205a13a8b9c8e092cbf58619fbc2762d9533a8ff20c",
+    "originalDimensions": [
+      3600,
+      2400
+    ],
+    "identityStatus": "Equivalent named locality/site: Abu Dabab III / Abu Dabbab Thalata; catalogue pins 227.280 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Source directly names Abu Dabbab 3, numerically identical to target III; existing Thalata is Arabic three. No assignment to other numbered reefs. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. CC BY-SA 4.0; attribution and indication of changes required. Adaptations require same/compatible share-alike licence.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "130598ec-10b9-4efa-ba16-e830f476c6d4",
+    "slug": "marsa-murain",
+    "photoNo": 72,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/6ee0645c-cbad-427c-ac58-7676eb3add08/hero.jpg",
+    "alt": "Marsa Murain — proposed association with an existing photo — exact site photo",
+    "credit": "Wusel007 / Wikimedia Commons / CC BY-SA 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Marsa_Murena_Schildkr%C3%B6te.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Sea turtle resting and feeding near sandy reef floor; underwater scene.\"] Equivalent named locality/site: Marsa Murain / Marsa Murena; catalogue pins 126.832 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Murain/Murena is treated as a local spelling/transliteration variant at this same bay, independently supported by saved source camera point near target; not generalized to other Marsa names. Saved source point 25.394939, 34.701708 is 184.1 m from this proposed target, subject to the source-point caveat. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "bfcbbac8fc4a1b20295a99f6b5e70ebe11447453f86503d04da4f52c7d1152a6",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "Equivalent named locality/site: Marsa Murain / Marsa Murena; catalogue pins 126.832 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. Murain/Murena is treated as a local spelling/transliteration variant at this same bay, independently supported by saved source camera point near target; not generalized to other Marsa names. Saved source point 25.394939, 34.701708 is 184.1 m from this proposed target, subject to the source-point caveat.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Original bytes unchanged; previews resized. Preserve creator credit, source and licence links; identify changes and observe share-alike if applicable. No photographer endorsement or model/property releases asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "exact site photo"
+  },
+  {
+    "siteId": "651b2960-0ce1-4749-b174-09065b639d98",
+    "slug": "nereo-cave-arches-of-nereo",
+    "photoNo": 73,
+    "batch": "group010-20261110",
+    "src": "/assets/dive-sites/55ba234f-40c9-4b9a-b528-b9127d8c3cf3/hero.jpg",
+    "alt": "Nereo Cave & Arches of Nereo — proposed association with an existing photo — underwater photo",
+    "credit": "Marco Busdraghi / Wikimedia Commons / CC BY 3.0 Unported",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ingresso_grande_Grotta_di_Nereo.jpg"
+      },
+      {
+        "label": "CC BY 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: REVIEW CANDIDATE ASSOCIATION; NOT PUBLICATION-APPROVED. [\"Metadata-only proposal; original already collected and must not be downloaded or exported again.\", \"No publication approval, exact entry, route, safety, current-condition, or release assertion.\", \"Diver in foreground at Nereo cave entrance with bright blue opening behind. Underwater photograph; identifiable person, no release asserted.\", \"Photograph establishes Nereo cave entrance only; compound target includes arches, which are not individually documented by this image. No expansion to differently named nearby caves.\"] Equivalent named locality/site: Nereo Cave & Arches of Nereo / Nereo Cave; catalogue pins 271.712 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association. []  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed.",
+    "originalSha256": "2fa85e9f84290015127f072b69b554d4a11fe52652dad272dbd95dcc8f3dac67",
+    "originalDimensions": [
+      1000,
+      750
+    ],
+    "identityStatus": "Equivalent named locality/site: Nereo Cave & Arches of Nereo / Nereo Cave; catalogue pins 271.712 m apart in consistent specific geography. Saved source named identity plus local geometry supports association; proximity alone is not relied upon. No independently verified camera position is asserted for this additional association.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. Image-specific license/permission reviewed before original download, not Commons footer. Original bytes unchanged; preview resized. Credit creator and source, link exact selected license, indicate changes and preserve share-alike where applicable. No model/property release asserted.",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater photo"
+  },
+  {
+    "siteId": "2530d886-a453-4491-b870-8c3a31d6df90",
+    "slug": "seepark-linzgau",
+    "photoNo": 1,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/2530d886-a453-4491-b870-8c3a31d6df90/preview-option-1ad84eb66b00ca35.jpg",
+    "alt": "Named Seepark Linzgau lake and wooded shore; source-provided769x577 original, limited detail. — surface site context · supplied review hold",
+    "credit": "ANKAWÜ / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AD-BW-Pfullendorf_-_Seepark_Linzgau_001.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Named Seepark Linzgau lake and wooded shore; source-provided769x577 original, limited detail. Supplied hold: HELD_QUALITY_REVIEW",
+    "originalSha256": "1ad84eb66b00ca3599826f002a7e89c5dbe5e6e4c23971b1a96e1cae5b414bfc",
+    "originalDimensions": [
+      769,
+      577
+    ],
+    "identityStatus": "Deutsch: Deutschland - Baden-Württemberg - Landkreis Sigmaringen - Pfullendorf: See im \"Seepark Linzgau\"",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "b6b532f8-5984-428c-ba36-9ec6b94b0cce",
+    "slug": "st-leon-rot-see",
+    "photoNo": 2,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/b6b532f8-5984-428c-ba36-9ec6b94b0cce/preview-option-d90d7f24ac21c082.jpg",
+    "alt": "Aerial camera view of three St Leon-Rot lakes with surrounding campgrounds and fields; no particular dive entry claimed. — surface site context",
+    "credit": "Rolf Kickuth / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AStLeonRotBadeweiher2019-04-20-12-38-01.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item-level own-work CC licence, attribution and share-alike required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Aerial camera view of three St Leon-Rot lakes with surrounding campgrounds and fields; no particular dive entry claimed.",
+    "originalSha256": "d90d7f24ac21c082814cac75f395475f0f6c2c513dc4da5cdc6e902148cdc91b",
+    "originalDimensions": [
+      5472,
+      3648
+    ],
+    "identityStatus": "Deutsch: Luftbild von Süd nach Nord der drei Seen bei St Leon-Rot, die der Naherholung dienen. Es handelt sich um einen Badesee sowie einen separaten Surf- bzw. Anglersee. English: Aerial view from south to north of the three lakes near St Leon-Rot, which are used for local recreation. These are a bathing lake and a separate surfing or fishing lake.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "92364fff-a353-4e3a-bfc7-6714decc06a1",
+    "slug": "playa-grandi-playa-piscado",
+    "photoNo": 3,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/92364fff-a353-4e3a-bfc7-6714decc06a1/preview-option-81d5a871f93da73d.jpg",
+    "alt": "Green sea turtle and fish swimming over sunlit sand at source-identified Playa Grandi; clear underwater camera photo. — underwater site context",
+    "credit": "Seasidesaltlife / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Green_Sea_Turtle,_Cura%C3%A7ao.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Green sea turtle and fish swimming over sunlit sand at source-identified Playa Grandi; clear underwater camera photo.",
+    "originalSha256": "81d5a871f93da73d7edd7452d4196446ca2bee8335859877660360f33faa0110",
+    "originalDimensions": [
+      4000,
+      3000
+    ],
+    "identityStatus": "English: Green sea turtle swimming over the sand plateau at playa Grandi, Curaçao",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "535829d6-3761-482b-ac4a-141132a3bbdc",
+    "slug": "vaersenbaai-kokomo-beach",
+    "photoNo": 4,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/535829d6-3761-482b-ac4a-141132a3bbdc/preview-option-0a4fcf4fc7a5bfa1.jpg",
+    "alt": "Kokomo beach and rocky bay shoreline with turquoise water and a pier, elevated shore view. — surface site context",
+    "credit": "Baklu23 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kokomo_Beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Kokomo beach and rocky bay shoreline with turquoise water and a pier, elevated shore view.",
+    "originalSha256": "0a4fcf4fc7a5bfa17ca927f545ce63ebba0e9af210a2189e2f1dc0d3bdcb8aef",
+    "originalDimensions": [
+      4422,
+      3000
+    ],
+    "identityStatus": "Nederlands: Strand van Kokomo Beach",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "43248cc9-5772-469f-ba96-482535b557f5",
+    "slug": "bos-400-wreck",
+    "photoNo": 5,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/43248cc9-5772-469f-ba96-482535b557f5/preview-option-dcc527b331378e18.jpg",
+    "alt": "BOS400 crane vessel wreck visible along rocky shore at source-identified Duikerpoint; historical2006 surface photo. Inventory coordinates(-33.82,18.36) are coarse and do not establish Duikerpoint wreck position; exact vessel described by source, assignment held. — surface site context · supplied review hold",
+    "credit": "Timothy Haig-Smith / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:BOS_400_2006-02-05.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: BOS400 crane vessel wreck visible along rocky shore at source-identified Duikerpoint; historical2006 surface photo. Supplied hold: HELD_IDENTITY_REVIEW Reason: Inventory coordinates(-33.82,18.36) are coarse and do not establish Duikerpoint wreck position; exact vessel described by source, assignment held.",
+    "originalSha256": "dcc527b331378e18a6d2b4c38639d54403f3e1bac15ae2d3a85e54efaa9f559d",
+    "originalDimensions": [
+      1280,
+      960
+    ],
+    "identityStatus": "BOS 400 shipwreck, ran aground 1994, Duikerpoint, South Africa",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "7598489f-313b-44ad-bd23-c6a65cffe936",
+    "slug": "kankirixche-cenote",
+    "photoNo": 6,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/7598489f-313b-44ad-bd23-c6a65cffe936/preview-option-f5710b2843331a6b.jpg",
+    "alt": "Underwater shafts of sunlight illuminating cenote water and rocks; source identifies Kankirixché, but assignment remains coordinate-held. Source camera20.637168,-89.633009 conflicts materially with inventory20.622,-89.5016. Named cenote photo retained for coordinate review. — underwater site context · supplied review hold",
+    "credit": "The Cosmonaut / Wikimedia Commons / CC BY-SA 2.5 Canada",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cenote_Kankirixch%C3%A9.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.5 Canada",
+        "url": "https://creativecommons.org/licenses/by-sa/2.5/ca/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater shafts of sunlight illuminating cenote water and rocks; source identifies Kankirixché, but assignment remains coordinate-held. Supplied hold: HELD_IDENTITY_REVIEW Reason: Source camera20.637168,-89.633009 conflicts materially with inventory20.622,-89.5016. Named cenote photo retained for coordinate review.",
+    "originalSha256": "f5710b2843331a6bd326c3cbee100cf1dff62c8b5f848ea585053a355c57b6bc",
+    "originalDimensions": [
+      3500,
+      2625
+    ],
+    "identityStatus": "English: Cenote Kankirixché.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context · supplied review hold"
+  },
+  {
+    "siteId": "52f9e7e9-5036-4710-8ab3-db1367916ff4",
+    "slug": "sas-transvaal-wreck-south-africa-south-africa",
+    "photoNo": 7,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/52f9e7e9-5036-4710-8ab3-db1367916ff4/preview-option-c0ad613ea61e97c5.jpg",
+    "alt": "Green low-visibility underwater foredeck winch and fractured deck; source identifies SAS Transvaal, but inventory location conflicts. Source says Cape Peninsula; inventory-33.9667,25.65 is near Port Elizabeth. Do not silently assign by vessel name. — underwater site context · supplied review hold",
+    "credit": "Peter Southwood / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Foredeck_winch_on_SAS_Transvaal_wreck_P9241614.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Green low-visibility underwater foredeck winch and fractured deck; source identifies SAS Transvaal, but inventory location conflicts. Supplied hold: HELD_IDENTITY_REVIEW Reason: Source says Cape Peninsula; inventory-33.9667,25.65 is near Port Elizabeth. Do not silently assign by vessel name.",
+    "originalSha256": "c0ad613ea61e97c52abfa9ab9a7076db7c1230bcae3e89e8b81a34bf1abf484b",
+    "originalDimensions": [
+      3648,
+      2736
+    ],
+    "identityStatus": "English: Foredeck of SAS Transvaal showing the fracture aft of the winch. Cape peninsula.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context · supplied review hold"
+  },
+  {
+    "siteId": "cff5ef65-c11b-4961-8c4f-304c3f6f44e9",
+    "slug": "whittle-rock-cape-town-south-africa",
+    "photoNo": 8,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/cff5ef65-c11b-4961-8c4f-304c3f6f44e9/preview-option-8e6f507720401a0f.jpg",
+    "alt": "Sidemount diver among rocky underwater Labyrinth reef at source-identified Whittle Rock. — underwater site context",
+    "credit": "Peter Southwood / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sidemount_diver_at_the_Labyrinth_reef_P7070036.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Sidemount diver among rocky underwater Labyrinth reef at source-identified Whittle Rock.",
+    "originalSha256": "8e6f507720401a0fc486ec5b909c3211e8c08b32cdb2e0064eed01b757256812",
+    "originalDimensions": [
+      3200,
+      2400
+    ],
+    "identityStatus": "English: Sidemount diver Martin Nieuwoudt at the Labyrinth reef at Whittle Rock in False Bay",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "26916182-e0a9-4da8-ada2-f259ec67df77",
+    "slug": "thomas-t-tucker",
+    "photoNo": 9,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/26916182-e0a9-4da8-ada2-f259ec67df77/preview-option-b48396d6dacebb99.jpg",
+    "alt": "Historical2006 photograph of Thomas T Tucker wreck remains on beach at Olifantsbos, Cape Point; no current condition implied. — surface site context",
+    "credit": "Timothy Haig-Smith / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Thomas_Tucker_shipwreck_24_Jun_2006.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Historical2006 photograph of Thomas T Tucker wreck remains on beach at Olifantsbos, Cape Point; no current condition implied.",
+    "originalSha256": "b48396d6dacebb99f71c15aefbe79a1884e43ee252d2dd0c83c4f073ac9f60c7",
+    "originalDimensions": [
+      2592,
+      1944
+    ],
+    "identityStatus": "English: Thomas T Tucker shipwreck, ran aground 1942, Olifantsbos, Cape Point Nature Reserve, South Africa",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "9111b93b-763e-4a78-bdbb-40eba179926e",
+    "slug": "cala-incina-parete-sud",
+    "photoNo": 10,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/9111b93b-763e-4a78-bdbb-40eba179926e/preview-option-c2de720fbc2fb763.jpg",
+    "alt": "Cala Incina rocky inlet and beach; south-wall diving subsite is unconfirmed. Cala Incina bay context supported; exact south-wall subsite is not established. — surface site context · supplied review hold",
+    "credit": "Lory692 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Polignano_a_Mare_-_cala_Incina_-_202209081515.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Cala Incina rocky inlet and beach; south-wall diving subsite is unconfirmed. Supplied hold: HELD_IDENTITY_REVIEW Reason: Cala Incina bay context supported; exact south-wall subsite is not established.",
+    "originalSha256": "c2de720fbc2fb7637f3639d866538c3e9ecd9a5b4adf5148c1d4efb878342dd7",
+    "originalDimensions": [
+      4000,
+      1800
+    ],
+    "identityStatus": "Italiano: Polignano a Mare - cala Incina This is a photo of a monument which is part of cultural heritage of Italy. This monument participates in the contest Wiki Loves Monuments Italia 2022. See authorisations. (wiki-ID: 16G7870023) This picture was uploaded via web-app \"Wiki Loves Monuments Italia\".",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "fd99c8d4-a4c5-45a1-acc1-a46c3b0aab11",
+    "slug": "punta-planka",
+    "photoNo": 11,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/fd99c8d4-a4c5-45a1-acc1-a46c3b0aab11/preview-option-426a627080de6c99.jpg",
+    "alt": "Stone church and coastal rocks at Punta Planka, with sea and navigation marker visible; source-provided rotated/cropped photo preserved. — surface site context",
+    "credit": "Tea Mličević / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Crkvica_sv._Ivana,_Punta_Planka,_Ra%C5%BEanj.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Stone church and coastal rocks at Punta Planka, with sea and navigation marker visible; source-provided rotated/cropped photo preserved.",
+    "originalSha256": "426a627080de6c991f50ed6f95cc7256ef65231e2b9bb9945046a619c659399b",
+    "originalDimensions": [
+      3920,
+      2116
+    ],
+    "identityStatus": "Hrvatski: Prema legendi teogirski biskup Ivan (11.st) je nakon brodoloma kod rta Planka hodajući po valovima spasio život kralju Kolomanu i mornarima. U spomen na njega 1324. godine izgrađena zavjetna crkva.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "ef443278-c828-4274-91b7-3640d3e4fdda",
+    "slug": "isola-foradada-dolmen",
+    "photoNo": 12,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/ef443278-c828-4274-91b7-3640d3e4fdda/preview-option-61cba62d96d71c6f.jpg",
+    "alt": "Foradada rocky island surrounded by sea; exact Dolmen subsite is not visually established. Named Foradada island context supported; Dolmen subsite is unconfirmed. — surface site context · supplied review hold",
+    "credit": "Gianni Careddu / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Alghero,_isola_di_Foradada_(01).JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Foradada rocky island surrounded by sea; exact Dolmen subsite is not visually established. Supplied hold: HELD_IDENTITY_REVIEW Reason: Named Foradada island context supported; Dolmen subsite is unconfirmed.",
+    "originalSha256": "61cba62d96d71c6fec83bf2e4b16218e0d96cd64a023d1c1e8ca5654ea2438b4",
+    "originalDimensions": [
+      2816,
+      2112
+    ],
+    "identityStatus": "Italiano: Alghero - Isola di Foradada",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "9112b1d4-4344-46ea-80c4-7bb0ffc58504",
+    "slug": "isola-argentarola",
+    "photoNo": 13,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/9112b1d4-4344-46ea-80c4-7bb0ffc58504/preview-option-24c4231304dbd180.jpg",
+    "alt": "Argentarola island surrounded by sea, low-resolution source original; capture date unknown. 800x506 source-provided original, no upscale. Capture date unknown;2009-04-03 is upload date only. — surface site context · supplied review hold",
+    "credit": "Matteo Vinattieri / Wikimedia Commons / CC BY 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Isola_Argentarola_(GR).jpg"
+      },
+      {
+        "label": "CC BY 3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending. photo date not recorded  Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Argentarola island surrounded by sea, low-resolution source original; capture date unknown. Supplied hold: HELD_QUALITY_REVIEW Reason: 800x506 source-provided original, no upscale. Capture date unknown;2009-04-03 is upload date only.",
+    "originalSha256": "24c4231304dbd1806096e3ed0a54d9c5e1c23fb6b5363a12df6999e3a804dc08",
+    "originalDimensions": [
+      800,
+      506
+    ],
+    "identityStatus": "Italiano: L'Isola Argentarola di fronte alla costa occidentale del Monte Argentario",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "3608535f-b0fc-481b-8698-5750c412e5aa",
+    "slug": "htms-chang-wreck-thailand",
+    "photoNo": 14,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/3608535f-b0fc-481b-8698-5750c412e5aa/preview-option-a91babc8c87e83a4.jpg",
+    "alt": "School of fish around the source-identified HTMS Chang wreck, underwater camera photograph. — underwater site context",
+    "credit": "Varakorn Kuldilok / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:%E0%B8%9D%E0%B8%B9%E0%B8%87%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%E0%B8%8A%E0%B9%89%E0%B8%B2%E0%B8%87.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: School of fish around the source-identified HTMS Chang wreck, underwater camera photograph.",
+    "originalSha256": "a91babc8c87e83a4ea60761a49f60d231cf48079f904d2d3a2c1331fb4573b19",
+    "originalDimensions": [
+      3832,
+      2248
+    ],
+    "identityStatus": "Thai title identifies a school of fish with HTMS Chang; caption identifies Mu Ko Chang National Park. Original shows wreck structure and fish.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "3839363b-fa36-42c7-b412-964cbc484f2d",
+    "slug": "bonegi-2-wreck",
+    "photoNo": 15,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/3839363b-fa36-42c7-b412-964cbc484f2d/preview-option-696349c6d3d55751.jpg",
+    "alt": "Bonegi Beach and tropical shoreline; no wreck visible, specific Bonegi 2 relationship unconfirmed. Bonegi Beach context is supported, but the specific Bonegi 2 wreck is not visible or individually identified. — surface site context · supplied review hold",
+    "credit": "Torbenbrinker / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Bonegi_Beach.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Bonegi Beach and tropical shoreline; no wreck visible, specific Bonegi 2 relationship unconfirmed. Supplied hold: HELD_IDENTITY_REVIEW Reason: Bonegi Beach context is supported, but the specific Bonegi 2 wreck is not visible or individually identified.",
+    "originalSha256": "696349c6d3d55751339d58fb2d872b1533a1931fe532641fd5ec3858ab922e91",
+    "originalDimensions": [
+      5184,
+      3888
+    ],
+    "identityStatus": "Individual source identifies Bonegi Beach, Guadalcanal; no explicit Bonegi 2 vessel identification.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "8c196225-fc5e-43b7-b627-b41da4675d1d",
+    "slug": "rio-de-janeiro-maru",
+    "photoNo": 16,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/8c196225-fc5e-43b7-b627-b41da4675d1d/preview-option-36536678101d091d.jpg",
+    "alt": "Rio de Janeiro Maru engine-room machinery, underwater camera photograph; dark scene with illuminated valves. — underwater site context",
+    "credit": "Motoki Kurabayashi / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Engine_room_of_Rio_de_Janeiro_maru.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Rio de Janeiro Maru engine-room machinery, underwater camera photograph; dark scene with illuminated valves.",
+    "originalSha256": "36536678101d091dbaec9e63a4ab66c3ef0982bc5c724ad80d7717de9d261053",
+    "originalDimensions": [
+      3200,
+      2400
+    ],
+    "identityStatus": "Individual caption names the engine room of Rio de Janeiro Maru; own work and VRT-reviewed permission.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "be0e956f-2f73-4675-a9d6-b6b561d9528d",
+    "slug": "cape-kyan",
+    "photoNo": 17,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/be0e956f-2f73-4675-a9d6-b6b561d9528d/preview-option-6f047f391f00563c.jpg",
+    "alt": "Rocky Cape Kyan shoreline detail viewed from above with shallow seawater visible. — surface site context",
+    "credit": "Mccapra / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Cape_Kyan,_Okinawa_5.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Rocky Cape Kyan shoreline detail viewed from above with shallow seawater visible.",
+    "originalSha256": "6f047f391f00563c0b8736f63d5576c24989fa135e29ae11f2ddc456ea30a84b",
+    "originalDimensions": [
+      2048,
+      1536
+    ],
+    "identityStatus": "Individual title and caption identify Cape Kyan, Okinawa.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "f8f7fecd-8bad-4b5b-86b6-b22ae9b0cd43",
+    "slug": "stillhouse-hallow-lake",
+    "photoNo": 18,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/f8f7fecd-8bad-4b5b-86b6-b22ae9b0cd43/preview-option-5853af9ecb4ede17.jpg",
+    "alt": "Stillhouse Hollow Lake and bridge across the water, source-identified upper-lake surface context; date and photographer unknown. — surface site context",
+    "credit": "U.S. Army Corps of Engineers, photographer not specified or unknown · U.S. Army Corps of Engineers / Wikimedia Commons / Public domain · Public domain, U.S. federal official-duty work",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AStillhouse_Hollow_Lake_with_bridge.jpg"
+      },
+      {
+        "label": "Public domain, U.S. federal official-duty work",
+        "url": "https://commons.wikimedia.org/wiki/File:Stillhouse_Hollow_Lake_with_bridge.jpg#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded  Item states U.S. Army Corps of Engineers official-duty image, public domain. Original source: images.usace.army.mil, Digital Visual Library, image4336-67.jpg. No applicable held source/exposure found in access audit; no USACE request made.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Stillhouse Hollow Lake and bridge across the water, source-identified upper-lake surface context; date and photographer unknown.",
+    "originalSha256": "5853af9ecb4ede17d5497e08305b40e30a4b2c01073767b86eeea535568e027d",
+    "originalDimensions": [
+      1500,
+      1000
+    ],
+    "identityStatus": "USACE item identifies Stillhouse Hollow Lake, Lampasas River, Bell County, with Farm Road 3481 bridge; source coordinates31.0092472,-97.6483722. Date unknown.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "e61a533b-a010-5a48-b582-75bff9762270",
+    "slug": "beddis-beach",
+    "photoNo": 19,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/e61a533b-a010-5a48-b582-75bff9762270/preview-option-112ac9ab758bd87b.jpg",
+    "alt": "Beddis Beach shore and calm sea; source location supported but inventory coordinates conflict. Inventory latitude48.6643 differs materially from source-named Beddis Beach on Salt Spring Island; retain for coordinate review. — surface site context · supplied review hold",
+    "credit": "Realc / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ABeddis_Beach%2C_Salt_Spring_Island%2C_BC%2C_Canada.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Beddis Beach shore and calm sea; source location supported but inventory coordinates conflict. Supplied hold: HELD_IDENTITY_REVIEW Reason: Inventory latitude48.6643 differs materially from source-named Beddis Beach on Salt Spring Island; retain for coordinate review.",
+    "originalSha256": "112ac9ab758bd87b697120829daf257ffc266a8900e08c4d91c171a48faaf802",
+    "originalDimensions": [
+      3683,
+      2762
+    ],
+    "identityStatus": "Individual title and caption identify Beddis Beach, Salt Spring Island, British Columbia.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "152c3873-ea31-43cd-8b85-e7caa19cfcbb",
+    "slug": "lake-ouachita-blakely-mountain-dam",
+    "photoNo": 20,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/152c3873-ea31-43cd-8b85-e7caa19cfcbb/preview-option-172c117f17b35aaa.jpg",
+    "alt": "Downstream river view of Blakely Mountain Dam and power station; not a reservoir-side entry view. Downstream face of named Blakely Mountain Dam; reservoir-side dive entry and conditions are not depicted. — surface site context · supplied review hold",
+    "credit": "William T. Allen IV / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ABlakely_Mountain_Dam_near_Hot_Springs_and_Lake_Ouachita%2C_Arkansas.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Downstream river view of Blakely Mountain Dam and power station; not a reservoir-side entry view. Supplied hold: HELD_IDENTITY_REVIEW Reason: Downstream face of named Blakely Mountain Dam; reservoir-side dive entry and conditions are not depicted.",
+    "originalSha256": "172c117f17b35aaaa217aca5535495f38f42b7c11a2bfa8d6c0b6c2ff1e986ee",
+    "originalDimensions": [
+      2712,
+      1264
+    ],
+    "identityStatus": "Individual caption identifies downstream side of Blakely Mountain Dam photographed from the river.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "d2411710-2126-41dc-bf1a-174eafb2a43f",
+    "slug": "elizabeth-park-trenton-channel",
+    "photoNo": 21,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/d2411710-2126-41dc-bf1a-174eafb2a43f/preview-option-7b93324fbb2a799c.jpg",
+    "alt": "Detroit River waterfront seen from Elizabeth Park, with railings, gazebo and bridge. — surface site context",
+    "credit": "Cookieman1.1.1 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ADetroit_River%2C_Elizabeth_Park%2C_Trenton%2C_Michigan.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Item declares own-work reusable CC licence. Preserve attribution and licence; share-alike applies where specified. Source-provided rotations/crops retained unchanged, no new edits.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Detroit River waterfront seen from Elizabeth Park, with railings, gazebo and bridge.",
+    "originalSha256": "7b93324fbb2a799c9324df59cf7ca2c553bf29b94ca88896c52111c44ec80e0d",
+    "originalDimensions": [
+      3264,
+      1504
+    ],
+    "identityStatus": "Caption identifies Detroit River seen southward from Elizabeth Park, Trenton.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "16aa1729-4f40-4cfc-89bc-58a84c5deba4",
+    "slug": "stavsnas-vinterhamn",
+    "photoNo": 22,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/16aa1729-4f40-4cfc-89bc-58a84c5deba4/preview-option-be26bdcb6f1742d8.jpg",
+    "alt": "Ferry quay and moored vessels at source-identified Stavsnäs winter harbour; exact surface harbour context, date unknown. — surface site context",
+    "credit": "Ankara / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Stavsn%C3%A4s_vinterhamn.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded  Own work, explicit CC BY-SA 3.0. Preserve attribution and licence; share-alike applies to adaptations.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Ferry quay and moored vessels at source-identified Stavsnäs winter harbour; exact surface harbour context, date unknown.",
+    "originalSha256": "be26bdcb6f1742d81c7738820333c72817b89fdc0709f4559aaad0aad671e748",
+    "originalDimensions": [
+      3089,
+      2048
+    ],
+    "identityStatus": "English: Stavsnäs vinterhamn",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "ced1e1cf-ea1f-4693-a47c-cfb7238d1c10",
+    "slug": "kaatialan-luohos",
+    "photoNo": 23,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/ced1e1cf-ea1f-4693-a47c-cfb7238d1c10/preview-option-93d1f556a86c2d49.jpg",
+    "alt": "Two underwater divers following a line along a rock wall; source title names Kaatiala, exact identity and club/uploader authority remain held. Source names diving club as author and uploader claims own work; uploader authority and exact capture identity need confirmation. Title names Kaatiala but caption is generic. — underwater site context · supplied review hold",
+    "credit": "Hyvinkään Urheilusukeltajat ry / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kaatialan_kaivossukellus.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit CC BY-SA 4.0, club named as author. Uploader authority remains unresolved and held.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Two underwater divers following a line along a rock wall; source title names Kaatiala, exact identity and club/uploader authority remain held. Supplied hold: HELD_IDENTITY_REVIEW Reason: Source names diving club as author and uploader claims own work; uploader authority and exact capture identity need confirmation. Title names Kaatiala but caption is generic.",
+    "originalSha256": "93d1f556a86c2d4982301d3ae4160ee096e5c90fbfebfa7ad32929cc7c489b74",
+    "originalDimensions": [
+      3212,
+      2145
+    ],
+    "identityStatus": "Suomi: Suomen kaivokset tarjoavat historiallisia kokemuksia ympäri vuoden",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context · supplied review hold"
+  },
+  {
+    "siteId": "b6c1a9bc-9e90-49dd-bdc5-29e3882b8367",
+    "slug": "bjorkviks-brygga",
+    "photoNo": 24,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/b6c1a9bc-9e90-49dd-bdc5-29e3882b8367/preview-option-a8552440cc394352.jpg",
+    "alt": "Historical aerial camera photograph with Björkviks pier at bottom and wooded archipelago; source original is 790 by 527 pixels. Source-provided original is only 790 by 527 pixels. Review quality before main-photo assignment; no upscale. — surface site context · supplied review hold",
+    "credit": "Jan Augustsson / Riksantikvarieämbetet / Wikimedia Commons / CC BY 2.5",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Klackn%C3%A4set_-_KMB_-_16001000451284.jpg"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Swedish National Heritage Board supplied file to Commons under explicit CC BY2.5; credit Jan Augustsson / Riksantikvarieämbetet.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Historical aerial camera photograph with Björkviks pier at bottom and wooded archipelago; source original is 790 by 527 pixels. Supplied hold: HELD_QUALITY_REVIEW Reason: Source-provided original is only 790 by 527 pixels. Review quality before main-photo assignment; no upscale.",
+    "originalSha256": "a8552440cc394352f7cdab6b9b498068c275c007b820daf0da5ece9a565df61d",
+    "originalDimensions": [
+      790,
+      527
+    ],
+    "identityStatus": "Northward aerial view with Björkviks brygga at bottom and Björnö nature reserve at right.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "a2d3c696-02c4-4621-ae1e-1f1a06e87b7f",
+    "slug": "paakkila-louhos",
+    "photoNo": 25,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/a2d3c696-02c4-4621-ae1e-1f1a06e87b7f/preview-option-f96e71df46355e0e.jpg",
+    "alt": "Underwater ice-diving scene with diver, line and bright hole in ice; source identifies Paakkila mine in 2004, original is 700 by 452 pixels. Source-provided original is only 700 by 452 pixels. Review quality before main-photo assignment; no upscale. — underwater site context · supplied review hold",
+    "credit": "en:User:Ttsalo / Wikimedia Commons / CC BY-SA 2.5",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ice_Diving_2.jpg"
+      },
+      {
+        "label": "CC BY-SA 2.5",
+        "url": "https://creativecommons.org/licenses/by-sa/2.5/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit CC BY-SA 2.5 by Ttsalo; transferred from English Wikipedia, no held-provider indication.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater ice-diving scene with diver, line and bright hole in ice; source identifies Paakkila mine in 2004, original is 700 by 452 pixels. Supplied hold: HELD_QUALITY_REVIEW Reason: Source-provided original is only 700 by 452 pixels. Review quality before main-photo assignment; no upscale.",
+    "originalSha256": "f96e71df46355e0e8f40fabbba66a93f7100988a3d705c8bff123710d0d4121a",
+    "originalDimensions": [
+      700,
+      452
+    ],
+    "identityStatus": "Ice diving in the mine of Paakkila, Finland, 2004.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context · supplied review hold"
+  },
+  {
+    "siteId": "4eca1ead-fa8c-4fcb-ae24-368cf3193a2e",
+    "slug": "leleszki",
+    "photoNo": 26,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/4eca1ead-fa8c-4fcb-ae24-368cf3193a2e/preview-option-923c792dd0ecfe96.jpg",
+    "alt": "Leleskie Lake and wooded shore seen from grassy bank at source-identified Leleszki; subdued light and moderate detail. — surface site context",
+    "credit": "Albertyanks Albert Jankowski / Wikimedia Commons / Public domain (author release)",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ALeleszki._Jezioro_Leleskie_01.JPG"
+      },
+      {
+        "label": "Public domain (author release)",
+        "url": "https://commons.wikimedia.org/wiki/File%3ALeleszki._Jezioro_Leleskie_01.JPG#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Author releases to public domain, with unrestricted any-purpose fallback where waiver is impossible.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Leleskie Lake and wooded shore seen from grassy bank at source-identified Leleszki; subdued light and moderate detail.",
+    "originalSha256": "923c792dd0ecfe9621270e995fb2c96a30473c2ef991531a73a4cb2a117a531e",
+    "originalDimensions": [
+      2592,
+      1636
+    ],
+    "identityStatus": "Individual title and caption identify Leleszki and Leleskie Lake; distinct exposure with filename suffix 01.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "65388b7d-3548-4d2f-9cb9-1ee7e4c65bd6",
+    "slug": "abades-bay",
+    "photoNo": 27,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/65388b7d-3548-4d2f-9cb9-1ee7e4c65bd6/preview-option-9df05e32c751c20a.jpg",
+    "alt": "Rocky coast and sea at Playa de Los Abriguitos, Abades, with abandoned building visible across the inlet. — surface site context",
+    "credit": "Flocci Nivis / Wikimedia Commons / CC BY 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3A20250703_Playa_de_Los_Abriguitos_02.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Rocky coast and sea at Playa de Los Abriguitos, Abades, with abandoned building visible across the inlet.",
+    "originalSha256": "9df05e32c751c20a6e40e4124f985611681b9e42c10a9e53bd69de5933f27104",
+    "originalDimensions": [
+      6016,
+      4016
+    ],
+    "identityStatus": "Caption identifies Playa de Los Abriguitos in Abades, Tenerife, with view across the sea toward Sanatorio de Abona.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "7fc88114-9814-4d5a-ad7f-7a1023377666",
+    "slug": "thurlestone-beach",
+    "photoNo": 28,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/7fc88114-9814-4d5a-ad7f-7a1023377666/preview-option-c5951a4d5632385e.jpg",
+    "alt": "Clear beach and bay view at South Milton Sands with the Thurlestone offshore; exact inventory beach assignment remains unconfirmed. South Milton Sands is named in source; precise Thurlestone Beach inventory relationship and latitude need review. — surface site context · supplied review hold",
+    "credit": "Nilfanion / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ASouth_Milton_Sands.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear beach and bay view at South Milton Sands with the Thurlestone offshore; exact inventory beach assignment remains unconfirmed. Supplied hold: HELD_IDENTITY_REVIEW Reason: South Milton Sands is named in source; precise Thurlestone Beach inventory relationship and latitude need review.",
+    "originalSha256": "c5951a4d5632385ef0e227eddcf7eb1d0570ecc1ad398e918e356cc189fbf9bb",
+    "originalDimensions": [
+      4000,
+      2848
+    ],
+    "identityStatus": "Caption identifies South Milton Sands and offshore Thurlestone rock; inventory location north of this beach remains to be reconciled.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "587723f6-e219-450c-a50b-2f11be13f66e",
+    "slug": "balaclava-bay",
+    "photoNo": 29,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/587723f6-e219-450c-a50b-2f11be13f66e/preview-option-641ef0c8a772adc8.jpg",
+    "alt": "Historical view across Balaclava Bay toward Portland harbour breakwaters; hazy and low-resolution source original. Historical 1024 by 768 source original; review main-photo quality, no upscale. — surface site context · supplied review hold",
+    "credit": "Mark.murphy at English Wikipedia / Wikimedia Commons / Public domain (author release)",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3APortland_harbour_south.JPG"
+      },
+      {
+        "label": "Public domain (author release)",
+        "url": "https://commons.wikimedia.org/wiki/File%3APortland_harbour_south.JPG#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Author releases to public domain, with unrestricted any-purpose fallback where waiver is impossible.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Historical view across Balaclava Bay toward Portland harbour breakwaters; hazy and low-resolution source original. Supplied hold: HELD_QUALITY_REVIEW Reason: Historical 1024 by 768 source original; review main-photo quality, no upscale.",
+    "originalSha256": "641ef0c8a772adc82a6fbd0adb4d35def25539a065a80923711ead7bfe2256b7",
+    "originalDimensions": [
+      1024,
+      768
+    ],
+    "identityStatus": "Saved page Captioned As section explicitly identifies view northeast across Balaclava Bay from the Isle of Portland toward harbour entrances.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "2b2a4b1c-8f9f-407d-b9ed-98c001ba9b5e",
+    "slug": "kacjak",
+    "photoNo": 30,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/2b2a4b1c-8f9f-407d-b9ed-98c001ba9b5e/preview-option-b6cfc77f1f4b5cf7.jpg",
+    "alt": "Kačjak coastal bay with rocky foreground, waterfront buildings and calm sea; strong source-provided colour treatment retained. — surface site context",
+    "credit": "Maria Sieglinda von Nudeldorf / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Ka%C4%8Djak.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Kačjak coastal bay with rocky foreground, waterfront buildings and calm sea; strong source-provided colour treatment retained.",
+    "originalSha256": "b6cfc77f1f4b5cf723c07ce13c6fdc871ce691b599ca010e5435c218614da48e",
+    "originalDimensions": [
+      4608,
+      3456
+    ],
+    "identityStatus": "Individual title and caption identify Kačjak.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "e4b437af-dd72-4f83-b1fb-008ccc0ab104",
+    "slug": "kalypso-bay",
+    "photoNo": 31,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/e4b437af-dd72-4f83-b1fb-008ccc0ab104/preview-option-dba01d666df2959f.jpg",
+    "alt": "Kalypso coastal resort and rocky cliffs seen across the sea; recognizable source-named context. — surface site context",
+    "credit": "Olaf Tausch / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Kalypso_02.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Kalypso coastal resort and rocky cliffs seen across the sea; recognizable source-named context.",
+    "originalSha256": "dba01d666df2959f21591f4be2936846b0282f09571201b5848f2f62b22e29cc",
+    "originalDimensions": [
+      2573,
+      1935
+    ],
+    "identityStatus": "Individual caption identifies Kalypso, Finikas, Rethymno, Crete.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "6d7d7db7-b85a-424a-a8ff-9bc623de5bbc",
+    "slug": "mali-losinj-cikat-bay",
+    "photoNo": 32,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/6d7d7db7-b85a-424a-a8ff-9bc623de5bbc/preview-option-69834b00bf111faa.jpg",
+    "alt": "Elevated camera view across Čikat Bay with wooded shores and waterfront buildings. — surface site context",
+    "credit": "Arne Müseler / www.arne-mueseler.com · Photo: Arne Müseler / arne-mueseler.com / CC-BY-SA-3.0 Germany / https://creativecommons.org/licenses/by-sa/3.0/de/deed.de · CC BY-SA 3.0 Germany",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:%C4%8Cikat_Bay.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0 Germany",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   CC BY-SA 3.0 Germany. Author requires visible credit beside the image or in image credits, including name, website and licence link; hover-only credit is insufficient. Preserve full source permission in parsed-evidence.json. No publication or outreach authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Elevated camera view across Čikat Bay with wooded shores and waterfront buildings.",
+    "originalSha256": "69834b00bf111faad8a7a80f73637bb98f190cda956bf951a25eea22426085f6",
+    "originalDimensions": [
+      4784,
+      2688
+    ],
+    "identityStatus": "Individual caption identifies Čikat Bay, Mali Lošinj, Croatia.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "2281b504-0110-469e-a7c9-429dbd5aac98",
+    "slug": "golden-beach",
+    "photoNo": 33,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/2281b504-0110-469e-a7c9-429dbd5aac98/preview-option-49e413d38300ac0f.jpg",
+    "alt": "Source-labelled Golden Beach, Paros, with surf and beach umbrella foreground; heavily colour-treated source photo and limited recognizable context. Source-provided original is 1024 by 1024 pixels; review main-photo quality, no upscale. — surface site context · supplied review hold",
+    "credit": "myParos.com / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Golden_Beach_Paros.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Source-labelled Golden Beach, Paros, with surf and beach umbrella foreground; heavily colour-treated source photo and limited recognizable context. Supplied hold: HELD_QUALITY_REVIEW Reason: Source-provided original is 1024 by 1024 pixels; review main-photo quality, no upscale.",
+    "originalSha256": "49e413d38300ac0f0f8981d145bc73a5322871937a93d02e3fbb01f974547a03",
+    "originalDimensions": [
+      1024,
+      1024
+    ],
+    "identityStatus": "Greek caption names Golden Beach (Chrysi Akti), Paros.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "1c3b611e-eb40-4962-bea6-004609f8bb27",
+    "slug": "insel-katarina",
+    "photoNo": 34,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/1c3b611e-eb40-4962-bea6-004609f8bb27/preview-option-a0fa054d59d387be.jpg",
+    "alt": "View across water toward Rovinj, with St Katarina Island included according to the source; city dominates the image, so island suitability remains held. Named island is included in source description but city dominates the scene; exact island framing and main-photo suitability require review. — surface site context · supplied review hold",
+    "credit": "Ivana / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Rovinj_and_Katarina.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: View across water toward Rovinj, with St Katarina Island included according to the source; city dominates the image, so island suitability remains held. Supplied hold: HELD_IDENTITY_REVIEW Reason: Named island is included in source description but city dominates the scene; exact island framing and main-photo suitability require review.",
+    "originalSha256": "a0fa054d59d387be877f18fec84c0d708292c97ac79162aeba59c218e372e07e",
+    "originalDimensions": [
+      2272,
+      1704
+    ],
+    "identityStatus": "Individual description identifies Rovinj and St Katarina Island viewed from Zlatni Rt park; subject framing is dominated by Rovinj.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "d0317650-5043-434e-a9d6-9958553f61ea",
+    "slug": "georgioupoli-beach-west",
+    "photoNo": 35,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/d0317650-5043-434e-a9d6-9958553f61ea/preview-option-ca1454b40f053693.jpg",
+    "alt": "Georgioupoli beachfront and parish church seen across the water; exact west-beach section unconfirmed. Beach is visible, but the specific west-beach inventory section is not established. — surface site context · supplied review hold",
+    "credit": "Wolfgang Sauber / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Georgiupolis_-_Strand_mit_Kirche.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Georgioupoli beachfront and parish church seen across the water; exact west-beach section unconfirmed. Supplied hold: HELD_IDENTITY_REVIEW Reason: Beach is visible, but the specific west-beach inventory section is not established.",
+    "originalSha256": "ca1454b40f05369314581d938e7bc59a19aa585ed2b23e9805efae3c3b35157c",
+    "originalDimensions": [
+      2560,
+      1920
+    ],
+    "identityStatus": "Individual caption identifies Georgioupoli beach and parish church, but not the inventory west-beach section.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "3a5fdfbd-352f-4615-99c0-ef4ca682a495",
+    "slug": "ilha-de-ancora",
+    "photoNo": 36,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/3a5fdfbd-352f-4615-99c0-ef4ca682a495/preview-option-ee39b5396cd99919.jpg",
+    "alt": "Bright orange and yellow sun coral photographed underwater at source-identified Ilha de Âncora; capture date uncertain because source date field is malformed. — underwater site context",
+    "credit": "Maraguary / Wikimedia Commons / Public domain (author release)",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Coral_Sol_01.JPG"
+      },
+      {
+        "label": "Public domain (author release)",
+        "url": "https://commons.wikimedia.org/wiki/File:Coral_Sol_01.JPG#Licensing"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending. photo date not recorded  Author releases to public domain, with unrestricted any-purpose fallback where waiver is impossible.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Bright orange and yellow sun coral photographed underwater at source-identified Ilha de Âncora; capture date uncertain because source date field is malformed.",
+    "originalSha256": "ee39b5396cd999190aa67c94b04f2594bd7ae602cf57e92342678fbff6fdec78",
+    "originalDimensions": [
+      1960,
+      1418
+    ],
+    "identityStatus": "Saved item explicitly states Ilha de Âncora, Búzios, Rio de Janeiro, Brazil beneath the information table; coral is source-identified as Tubastraea coccinea.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "62f58ec9-af1f-44f1-ac7f-11e639d7b659",
+    "slug": "ilha-do-frade",
+    "photoNo": 37,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/62f58ec9-af1f-44f1-ac7f-11e639d7b659/preview-option-2d330c63ac52a6f5.jpg",
+    "alt": "Atalaia tidal shallows with distinctive Ilha do Frade rock offshore; named island context in Fernando de Noronha. — surface site context",
+    "credit": "Thiago Tiganá / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Praia_da_Atalaia_com_Ilha_do_Frade_2.JPG"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Atalaia tidal shallows with distinctive Ilha do Frade rock offshore; named island context in Fernando de Noronha.",
+    "originalSha256": "2d330c63ac52a6f58a4ac9927c3e063e2ba82fa1bfa6b155c9c292f2ae6e648f",
+    "originalDimensions": [
+      3072,
+      2048
+    ],
+    "identityStatus": "Individual caption names Atalaia beach with Ilha do Frade; inventory island is in Fernando de Noronha.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "1185ecfe-dd87-46c8-9ed0-bf5574d8d028",
+    "slug": "islas-marietas",
+    "photoNo": 38,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/1185ecfe-dd87-46c8-9ed0-bf5574d8d028/preview-option-cd192f3e04292c12.jpg",
+    "alt": "Rocky Marietas island shoreline seen from the sea; source identifies the island group. — surface site context",
+    "credit": "Arbmosut / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Islas_Marietas.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Rocky Marietas island shoreline seen from the sea; source identifies the island group.",
+    "originalSha256": "cd192f3e04292c1227945c523dabbef4e40e30578ade73ec35b56c24af90aca3",
+    "originalDimensions": [
+      3264,
+      2448
+    ],
+    "identityStatus": "Individual caption identifies Islas Marietas, Mexico.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "37ffb544-7497-491c-9728-59c8aa20df87",
+    "slug": "punta-sur-isla-mujeres",
+    "photoNo": 39,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/37ffb544-7497-491c-9728-59c8aa20df87/preview-option-5ba945490efa9e8c.jpg",
+    "alt": "Waves breaking over rocks at source-identified Punta Sur, Isla Mujeres. — surface site context",
+    "credit": "Suwanosejima / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Punta_Sur,_Isla_Mujeres,_Quintana_Roo.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Waves breaking over rocks at source-identified Punta Sur, Isla Mujeres.",
+    "originalSha256": "5ba945490efa9e8c1a635ae279a7357592aee9d003f700438217e60fbf979183",
+    "originalDimensions": [
+      5152,
+      3864
+    ],
+    "identityStatus": "Individual title and caption identify Punta Sur, Isla Mujeres, Quintana Roo.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "8b71d365-5f2a-4611-b375-9773fcbc002a",
+    "slug": "isla-de-guadalupe",
+    "photoNo": 40,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/8b71d365-5f2a-4611-b375-9773fcbc002a/preview-option-8e6282f2aecb0f2c.jpg",
+    "alt": "Close underwater great-white shark face at source-identified Guadalupe; historical 2012 photograph, no current access or diving conditions implied. — underwater site context",
+    "credit": "Sharkcrew / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Guadalupe_Island_Great_White_Shark_Face_On.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Close underwater great-white shark face at source-identified Guadalupe; historical 2012 photograph, no current access or diving conditions implied.",
+    "originalSha256": "8e6282f2aecb0f2c1aaa959c8bdbbebdf64410258ea5575c9660c7a448c58336",
+    "originalDimensions": [
+      2816,
+      2382
+    ],
+    "identityStatus": "Individual caption identifies great-white shark cage diving at Guadalupe with Horizon.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "da05784a-f320-4003-96c7-ea4d059d93bf",
+    "slug": "san-pedro-island",
+    "photoNo": 41,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/da05784a-f320-4003-96c7-ea4d059d93bf/preview-option-a8acf96220d8e14a.jpg",
+    "alt": "Sea lions playing underwater over rocky seabed at source-identified San Pedro Nolasco, 2011. — underwater site context",
+    "credit": "DM289169 / Wikimedia Commons / CC BY-SA 3.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Sealions_playing.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Sea lions playing underwater over rocky seabed at source-identified San Pedro Nolasco, 2011.",
+    "originalSha256": "a8acf96220d8e14aa82c545c7fdf3300dacec7caf5aa4530d89c7262b32f4b64",
+    "originalDimensions": [
+      2560,
+      1920
+    ],
+    "identityStatus": "Individual caption explicitly identifies San Pedro Nolasco; inventory San Pedro Island refers to this island.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "fdf2c823-264c-41c2-87ec-9f5de10d4234",
+    "slug": "baie-ternay-marine-park",
+    "photoNo": 42,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/fdf2c823-264c-41c2-87ec-9f5de10d4234/preview-option-53070db3da8b8228.jpg",
+    "alt": "Wide elevated camera view of Baie Ternay, turquoise shallows and mountainous wooded shore. — surface site context",
+    "credit": "A.Savin, Wikipedia / Free Art License / http://artlibre.org/licence/lal/en",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Baie_Ternay_MNP_asv2024-10_img2.jpg"
+      },
+      {
+        "label": "Free Art License",
+        "url": "http://artlibre.org/licence/lal/en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Free Art License permits commercial reuse subject to attribution and copyleft. Requested credit: A.Savin, Wikipedia. Preserve licence and source; no publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Wide elevated camera view of Baie Ternay, turquoise shallows and mountainous wooded shore.",
+    "originalSha256": "53070db3da8b8228c7b41a70f5ee91bb6ba1a2ebb0fcbb292982d2d6a7427bbe",
+    "originalDimensions": [
+      8064,
+      5040
+    ],
+    "identityStatus": "Individual caption identifies Baie Ternay Marine National Park near Port Launay on west coast of Mahé, Seychelles.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "2d5b497e-3f27-46c1-a596-b49f9fae9846",
+    "slug": "sakatia",
+    "photoNo": 43,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/2d5b497e-3f27-46c1-a596-b49f9fae9846/preview-option-4573e3aa7eedc26a.jpg",
+    "alt": "Underwater whale shark and accompanying fish at source-identified Nosy Sakatia; blue low-contrast natural underwater light. — underwater site context",
+    "credit": "Charles J. Sharp / Sharp Photography / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Whale_shark,_Nosy_Sakatia,_Nosy_Be,_Madagascar.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater whale shark and accompanying fish at source-identified Nosy Sakatia; blue low-contrast natural underwater light.",
+    "originalSha256": "4573e3aa7eedc26aa0b5ef18c9882a6ce08abba0a4e302889d138b71d4a68cd8",
+    "originalDimensions": [
+      4608,
+      3456
+    ],
+    "identityStatus": "Individual caption identifies whale shark at Nosy Sakatia, Nosy Be, Madagascar.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "underwater site context"
+  },
+  {
+    "siteId": "ae6fc972-dd01-410b-be6b-649b7d2b8582",
+    "slug": "st-pierre",
+    "photoNo": 44,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/ae6fc972-dd01-410b-be6b-649b7d2b8582/preview-option-0ec4d3e3b1138187.jpg",
+    "alt": "St Pierre islet, distinctive granite rocks and palms, seen across turquoise sea near Praslin. — surface site context",
+    "credit": "Bjørn Christian Tørrissen / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Islet_Saint_Pierre_near_Praslin_Seychelles.JPG"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: St Pierre islet, distinctive granite rocks and palms, seen across turquoise sea near Praslin.",
+    "originalSha256": "0ec4d3e3b1138187a500884b40b36a765f3bde46e279f42beb202c87aed826cd",
+    "originalDimensions": [
+      5184,
+      3670
+    ],
+    "identityStatus": "Individual caption identifies Saint Pierre islet just offshore of Praslin, Seychelles.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "06506552-f91c-4c64-bd4e-e0dd24a54e6a",
+    "slug": "marianne-island",
+    "photoNo": 45,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/06506552-f91c-4c64-bd4e-e0dd24a54e6a/preview-option-641a308e8db37326.jpg",
+    "alt": "Entire Marianne Island seen across the sea from an elevated camera position; source describes an aerial view. — surface site context",
+    "credit": "A.Savin, Wikipedia / Free Art License / http://artlibre.org/licence/lal/en",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:La_Digue_asv2024-10_img61_Aerial_view_of_Marianne_Island.jpg"
+      },
+      {
+        "label": "Free Art License",
+        "url": "http://artlibre.org/licence/lal/en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Free Art License permits commercial reuse subject to attribution and copyleft. Requested credit: A.Savin, Wikipedia. Preserve licence and source; no publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Entire Marianne Island seen across the sea from an elevated camera position; source describes an aerial view.",
+    "originalSha256": "641a308e8db3732693c28790a24ba9a999588c5d370ad9cbc3bc8ba2646147fd",
+    "originalDimensions": [
+      3000,
+      1875
+    ],
+    "identityStatus": "Individual caption identifies an aerial view of Marianne Island, Seychelles.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "7bd21943-f6c0-4ef0-a9cb-3176703c5e62",
+    "slug": "bias-tugel-white-sand-beach",
+    "photoNo": 46,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/7bd21943-f6c0-4ef0-a9cb-3176703c5e62/preview-option-603b5577471e1ae8.jpg",
+    "alt": "Elevated view of Bias Tugel sandy beach and rocky wooded headlands; genuine camera image. — surface site context",
+    "credit": "FBilula / Wikimedia Commons / CC BY 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ABias_Tugel_Beach_aerial_2026_01.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Elevated view of Bias Tugel sandy beach and rocky wooded headlands; genuine camera image.",
+    "originalSha256": "603b5577471e1ae8fe362156bc454131456a733789911c467ad072decaf078f5",
+    "originalDimensions": [
+      4032,
+      3024
+    ],
+    "identityStatus": "Individual caption identifies Bias Tugel Beach, Padangbai.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "15088c64-63e6-4fda-a4d9-3350bf4d4590",
+    "slug": "freedom-beach",
+    "photoNo": 47,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/15088c64-63e6-4fda-a4d9-3350bf4d4590/preview-option-85b875727a31d591.jpg",
+    "alt": "Waves and shallow water at source-identified Freedom Beach, Phuket, with wooded coastline. — surface site context",
+    "credit": "Joachim Lutz / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3A20221108_Freedom_Beach_auf_Phuket_%282%29.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Waves and shallow water at source-identified Freedom Beach, Phuket, with wooded coastline.",
+    "originalSha256": "85b875727a31d591d91a5edd845df5412eea6309656e3d46a491007299ad810b",
+    "originalDimensions": [
+      1920,
+      1081
+    ],
+    "identityStatus": "Individual caption names Freedom Beach, Pa Tong, Kathu District, Phuket, Thailand.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "f631dd77-7238-4220-ab33-e0aaa0936fb3",
+    "slug": "viking-cave",
+    "photoNo": 48,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/f631dd77-7238-4220-ab33-e0aaa0936fb3/preview-option-e0727a2be118c10c.jpg",
+    "alt": "Viking Cave entrance and limestone cliff seen across turquoise water, with boats and swimmers. — surface site context",
+    "credit": "Christophe95 / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3AViking_Cave.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viking Cave entrance and limestone cliff seen across turquoise water, with boats and swimmers.",
+    "originalSha256": "e0727a2be118c10c64e9c97beacb5def92306ecfbe49718a7d56472c2c69e579",
+    "originalDimensions": [
+      4032,
+      3024
+    ],
+    "identityStatus": "Individual caption identifies Viking Cave on Ko Phi Phi Le.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context"
+  },
+  {
+    "siteId": "be41f825-a1de-49ac-9d3d-662d8f6ed6aa",
+    "slug": "nual-beach",
+    "photoNo": 49,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/be41f825-a1de-49ac-9d3d-662d8f6ed6aa/preview-option-5549b21ebcbb59b3.jpg",
+    "alt": "Source-labelled Sai Nual beach, tropical boulders and palms beside clear water; exact Koh Larn identity held pending confirmation. Source names Sai Nual beach; exact Koh Larn location and inventory relationship require confirmation. — surface site context · supplied review hold",
+    "credit": "Mmarkin / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3A%D0%9F%D0%BB%D1%8F%D0%B6_Sai_Nual.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Source-labelled Sai Nual beach, tropical boulders and palms beside clear water; exact Koh Larn identity held pending confirmation. Supplied hold: HELD_IDENTITY_REVIEW Reason: Source names Sai Nual beach; exact Koh Larn location and inventory relationship require confirmation.",
+    "originalSha256": "5549b21ebcbb59b3536fc558ebd532f2a237d86e7cc0792ab84ab4a403dcb612",
+    "originalDimensions": [
+      1280,
+      720
+    ],
+    "identityStatus": "Russian caption names Sai Nual beach; island/location requires comparison with inventory.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
+  },
+  {
+    "siteId": "3b0951af-6a52-45b9-aad3-b092bd19f237",
+    "slug": "sanur-beach",
+    "photoNo": 50,
+    "batch": "group011-20261110",
+    "src": "/assets/dive-sites/3b0951af-6a52-45b9-aad3-b092bd19f237/preview-option-7e719a312edea1f7.jpg",
+    "alt": "General Sanur Beach shoreline with boats at low tide. Relationship to the inventory’s possible boat-access Channel Point subsite is unconfirmed. — surface site context · supplied review hold",
+    "credit": "Sententiosus / Wikimedia Commons / CC BY-SA 4.0",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File%3ASanur_Beach%2C_Bali.jpg"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD. Human approval and live-catalogue verification pending.   Explicit commercial CC licence. Preserve attribution and licence; share-alike where specified. Source-provided edits retained unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Source-labelled Sanur beach at low tide with boats and shoreline buildings; exact inventory section remains held. Supplied hold: HELD_IDENTITY_REVIEW Reason: Inventory is named Sanur Beach, but its linked SSI URL explicitly includes sanur-beach-channel-point and inventory access is boat. Source photo identifies only the general Sanur beach; relationship to the possible Channel Point subsite is unconfirmed.",
+    "originalSha256": "7e719a312edea1f7e2eb992b507ca2146fb127b0fbc35eed8845ff056f567be1",
+    "originalDimensions": [
+      4272,
+      2848
+    ],
+    "identityStatus": "Individual caption identifies Sanur Beach, Bali; exact local shoreline segment requires review.",
+    "rightsStatus": "Supplied creator, licence and attribution evidence retained; no fresh source or ownership verification. ",
+    "publication": "NOT_AUTHORIZED",
+    "label": "surface site context · supplied review hold"
   }
 ];
