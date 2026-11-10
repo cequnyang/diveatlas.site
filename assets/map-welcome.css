@@ -51,7 +51,7 @@
 .map-welcome .tutorial-header { gap: 12px; }
 .map-welcome .tutorial-title { margin: 0; font-size: 21px; line-height: 1.2; gap: 6px; }
 .map-welcome .tutorial-title-logo { height: 24px; width: auto; }
-.map-welcome .map-welcome-navigation .tutorial-button { min-height: 44px; height: 44px; border-radius: var(--radius-control); }
+.map-welcome .map-welcome-navigation .tutorial-button { min-height: 44px; height: 44px; border-radius: 14px; }
 .map-welcome .map-welcome-navigation .tutorial-button:not(.primary) { min-width: 64px; border-color: var(--border-subtle); color: var(--text-primary); background: var(--panel-soft); }
 .map-welcome .map-welcome-navigation .tutorial-button.primary { flex: 1 1 auto; padding: 0 16px; }
 .map-welcome .map-welcome-navigation .tutorial-button.primary { font-size: 16px; }
@@ -77,6 +77,21 @@
 .map-welcome-number { display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; border: 1px solid var(--border-subtle); border-radius: 50%; font-size: 11px; color: var(--text-secondary); }
 [aria-current="step"] .map-welcome-number { background: var(--primary); border-color: var(--primary); color: #fff; }
 .map-welcome-content { min-height: 0; overflow: visible; }
+.map-welcome-preview { min-width: 0; margin: 0; padding: 0; border: 0; }
+.map-welcome-preview legend { margin-bottom: 7px; padding: 0; color: var(--text-secondary); font-size: 12px; }
+.map-welcome-preview-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.map-welcome-preview button { min-height: 32px; padding: 5px 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--panel-soft); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease; }
+.map-welcome-preview button[aria-pressed="true"] { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, var(--panel-soft)); }
+.map-welcome-preview[data-kind="overlays"] button::before { content: none; }
+.map-welcome-preview button:disabled { opacity: .5; cursor: default; }
+.map-welcome-preview button { display: inline-flex; align-items: center; }
+.map-welcome-preview button > .layer-symbol { flex-shrink: 0; margin-inline-end: 6px; }
+.map-welcome-preview .dive-brand-rating-logo { display: block; width: 103px; height: 20px; flex: 0 0 auto; }
+.map-welcome-step:not([hidden]) .map-welcome-preview:not(.is-used) button:first-child { animation: welcome-control-hint 2s ease 2; }
+@keyframes welcome-control-hint { 50% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent); } }
+@media (prefers-reduced-motion: reduce) {
+  .map-welcome .map-welcome-preview button { animation: none !important; transition: none; }
+}
 .map-welcome-step { display: grid; grid-template-columns: 1fr; gap: 14px; min-height: 0; }
 .map-welcome-step h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; line-height: 1.3; }
 .map-welcome-step p { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
@@ -101,11 +116,12 @@
 .map-welcome-utilities { display: flex; grid-column: 2; grid-row: 2; justify-content: flex-end; gap: 16px; margin-top: 0; }
 .map-welcome-link { color: var(--primary); border: 0; padding: 6px 0; min-height: 36px; background: transparent; font: inherit; font-size: 13px; text-decoration: none; cursor: pointer; }
 .map-welcome-link:hover { text-decoration: underline; }
+.map-welcome [data-action="guide"] { border-radius: 12px; }
 /* Briefly draw attention to optional help without competing indefinitely
    with the primary action or changing the footer's geometry. */
 .map-welcome.is-review-step [data-action="guide"] { position: relative; isolation: isolate; }
 .map-welcome.is-review-step [data-action="guide"]::before,
-.map-welcome.is-review-step [data-action="guide"]::after { content: ''; position: absolute; inset: 2px -6px; border-radius: var(--radius-control); pointer-events: none; opacity: 0; animation: welcome-guide-pulse 2.4s cubic-bezier(.4, 0, .2, 1) .4s 3; }
+.map-welcome.is-review-step [data-action="guide"]::after { content: ''; position: absolute; inset: 2px -6px; border-radius: 12px; pointer-events: none; opacity: 0; animation: welcome-guide-pulse 2.4s cubic-bezier(.4, 0, .2, 1) .4s 3; }
 .map-welcome.is-review-step [data-action="guide"]::before { z-index: -1; background: color-mix(in srgb, var(--primary) 14%, transparent); animation-name: welcome-guide-glow; }
 .map-welcome.is-review-step [data-action="guide"]::after { border: 1px solid var(--primary); }
 @keyframes welcome-guide-pulse {

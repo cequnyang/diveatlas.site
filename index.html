@@ -13666,6 +13666,18 @@ ZSD·2016–2025</span></span>
       return label.hidden ? '' : label.textContent;
     },
     getMonth: () => document.getElementById('diveExperienceMonth').value || new Date().getMonth() + 1,
+    getWelcomeControls: () => ({
+      views: els.environmentViewRadios.filter(input => ['dive-experience-outlook', 'temperature', 'water-clarity'].includes(input.value) && !input.closest('[hidden]')).map(input => ({
+        key: input.value, label: input.parentElement.textContent.trim() || input.getAttribute('aria-label') || els.environmentViewSelect.querySelector(`option[value="${input.value}"]`)?.textContent || input.value,
+        active: input.checked, disabled: input.disabled
+      })),
+      overlays: [els.diveLayerToggle, els.reefLayerToggle, els.speciesLayerToggle, els.fishLayerToggle, els.terrainLayerToggle, els.contoursLayerToggle].map(input => ({
+        key: input.dataset.layer, label: document.getElementById(input.getAttribute('aria-labelledby')).textContent.trim(), active: input.checked, disabled: input.disabled,
+        symbol: input.closest('.bio-legend-row')?.querySelector('.layer-symbol')
+      }))
+    }),
+    onWelcomeView: view => selectEnvironmentalView(view),
+    onWelcomeOverlay: (layer, visible) => setLayerVisibility(layer, visible),
     monthEnabled: DIVE_EXPERIENCE_OUTLOOK_ENABLED,
     suppressedKey: WELCOME_SUPPRESSED_STORAGE_KEY,
     onDismiss: () => {
@@ -13701,7 +13713,6 @@ ZSD·2016–2025</span></span>
     },
     onMonthChange: month => changeDiveConditionsMonth(month),
     onMonth: month => {
-      if (!selectEnvironmentalView('dive-experience-outlook')) return false;
       changeDiveConditionsMonth(month);
       return true;
     }
@@ -20915,6 +20926,7 @@ ZSD·2016–2025</span></span>
   if (layerVisibility.dive) diveSiteLayer.addTo(map);
 
   function syncLayerToggleUI() {
+    queueMicrotask(() => document.dispatchEvent(new Event('diveatlas-controls-sync')));
     els.contoursLayerToggle.checked = layerVisibility.contours;
     els.terrainLayerToggle.checked = layerVisibility.terrain;
     els.reefLayerToggle.checked = layerVisibility.reef;

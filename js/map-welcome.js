@@ -70,7 +70,7 @@
     no: ['Reisemål', 'Måned', 'Utforsk'],
     id: ['Destinasi', 'Bulan', 'Jelajahi']
   };
-  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onFocusMap, onMapControls, suppressedKey }) {
+  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onFocusMap, onMapControls, suppressedKey }) {
     const section = document.createElement('section');
     section.id = 'mapWelcome';
     section.className = 'map-welcome tutorial-dialog glass-surface';
@@ -102,6 +102,72 @@
     const searchInput = section.querySelector('#mapWelcomeSearch');
     const panels = { destination:section.querySelector('#mapWelcomeDestinationPanel'), month:section.querySelector('#mapWelcomeMonthPanel'), review:section.querySelector('#mapWelcomeReviewPanel') };
     const compactViewport = window.matchMedia('(max-width: 600px)');
+    const previews = {};
+    for (const [kind, panel] of [['views', panels.month], ['overlays', panels.review]]) {
+      const group = document.createElement('fieldset');
+      group.className = 'map-welcome-preview';
+      group.dataset.kind = kind;
+      const legend = document.createElement('legend');
+      const choices = document.createElement('div');
+      choices.className = 'map-welcome-preview-choices';
+      group.append(legend, choices);
+      panel.append(group);
+      previews[kind] = {group, legend, choices};
+    }
+    function syncControls() {
+      const state = getWelcomeControls();
+      const titles = ({
+        en:['Try a map view','Add map detail'], zh:['试试地图视图','添加地图细节'],
+        ja:['地図表示を試す','地図に詳細を追加'], fr:['Essayer une vue','Ajouter des détails'],
+        de:['Kartenansicht testen','Kartendetails ergänzen'], es:['Prueba una vista','Añade detalles'],
+        it:['Prova una vista','Aggiungi dettagli'], pt:['Experimente uma vista','Adicione detalhes'],
+        ru:['Попробуйте вид карты','Добавьте детали'], ko:['지도 보기 선택','지도 상세 추가'],
+        nl:['Probeer een kaartweergave','Voeg details toe'], sv:['Prova en kartvy','Lägg till detaljer'],
+        no:['Prøv en kartvisning','Legg til detaljer'], id:['Coba tampilan peta','Tambahkan detail']
+      })[getLanguage()] || ['Try a map view','Add map detail'];
+      previews.views.legend.textContent = titles[0];
+      previews.overlays.legend.textContent = titles[1];
+      Object.entries(previews).forEach(([kind, {group, choices}]) => {
+        // Map controls own state and persistence. Retain shortcut elements so
+        // map updates do not discard keyboard focus.
+        for (const item of state[kind]) {
+          let button = [...choices.children].find(el => el.dataset.key === item.key);
+          if (!button) {
+            button = document.createElement('button');
+            button.type = 'button';
+            button.dataset.key = item.key;
+            button.addEventListener('click', () => {
+              group.classList.add('is-used');
+              if (kind === 'views') onWelcomeView(item.key);
+              else onWelcomeOverlay(item.key, button.getAttribute('aria-pressed') !== 'true');
+              syncControls();
+            });
+            choices.append(button);
+          }
+          button.textContent = item.label;
+          if (kind === 'overlays' && item.symbol) {
+            const symbol = item.symbol.cloneNode(true);
+            // Share live legend geometry (including zoom-dependent symbols)
+            // without duplicating the legend's document IDs.
+            symbol.removeAttribute('id');
+            symbol.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+            symbol.setAttribute('aria-hidden', 'true');
+            button.prepend(symbol);
+          }
+          if (kind === 'views' && item.key === 'dive-experience-outlook') {
+            const logo = document.querySelector('#environmentDiveExperienceLabel .dive-brand-rating-logo');
+            if (logo) button.replaceChildren(logo.cloneNode(true));
+          }
+          button.setAttribute('aria-label', item.label);
+          button.setAttribute('aria-pressed', String(item.active));
+          button.disabled = item.disabled;
+        }
+        [...choices.children].filter(button => !state[kind].some(item => item.key === button.dataset.key)).forEach(button => button.remove());
+      });
+    }
+    document.addEventListener('diveatlas-controls-sync', () => {
+      if (!section.hidden) syncControls();
+    });
     const strings = () => copy[getLanguage()] || copy.en;
     const flow = () => flowCopy[getLanguage()] || flowCopy.en;
     const mapText = () => mapCopy[getLanguage()] || mapCopy.en;
@@ -147,6 +213,7 @@
       values.forEach(el => { el.textContent = label; });
     }
     function syncStep({ focus = false } = {}) {
+      syncControls();
       const current = steps[step];
       section.classList.toggle('is-map-step', current === 'destination');
       section.classList.toggle('is-review-step', current === 'review');
