@@ -26,6 +26,7 @@ playwright-report/
 !/docs/export_dive_site_category_review.py
 !/docs/dive-site-summary-descriptions.md
 !/docs/country-boundaries.md
+!/docs/map-welcome.md
 /tools/SEO_GENERATION.md
 /tools/audit_coral_inland.py
 /tools/build_bathymetry.py
@@ -160,3 +161,4 @@ playwright-report/
 !/tests/e2e/photo-assets.cjs
 !/tests/unit/test_photo_asset_upload_plan.py
 !/assets/dive-sites/.gitignore
+!/tests/unit/area-search.test.js
