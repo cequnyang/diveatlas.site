@@ -4,6 +4,14 @@ const {displayURL,mockR2Images}=require('./photo-assets.cjs');
 const FIRST = '1a532e42-9890-4ea9-b239-0f5fbb836317';
 const SECOND = '2a532e42-9890-4ea9-b239-0f5fbb836317';
 const MALPELO_PILOT = '02e2420d-02b2-4506-9725-f8be34da4c99';
+function photoMetadata(siteIds) {
+  const {execFileSync} = require('node:child_process');
+  // The full catalog can exceed Node's stdout buffer as photo intake grows.
+  // Export only these test records instead of raising a size-dependent limit.
+  return JSON.parse(execFileSync('python', ['-c',
+    'import json,sys; from pathlib import Path; from tools.detail_photo_data import load_detail_photos; photos=load_detail_photos(Path.cwd()); print(json.dumps({key:photos[key] for key in sys.argv[1:] if key in photos}))',
+    ...siteIds], {encoding:'utf8'}));
+}
 const record = (id = FIRST, name = 'Example reef') => ({
   schema:'dive-site-detail-v1', site_id:id, name, lat:-0.55, lon:130.7,
   country:'Indonesia', region:'Raja Ampat', depth_min:'12', depth_max:'25',
@@ -23,9 +31,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Dolphins Reef shared pilot renders its exported photo without an assignment lookup', async ({ page }) => {
-  const { execFileSync } = require('node:child_process');
   const id = '95b478be-2487-49dc-81dd-46e553f54935';
-  const photos = JSON.parse(execFileSync('python', ['-c', 'import json; from pathlib import Path; from tools.detail_photo_data import load_detail_photos; print(json.dumps(load_detail_photos(Path.cwd())))'], {encoding:'utf8'}));
+  const photos = photoMetadata([id]);
   const exported = {...record(id, 'Dolphins Reef'), photo:photos[id]};
   await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:exported}));
   // Disable the old post-render enhancement: initial photo and linked credit
@@ -41,11 +48,10 @@ test('Dolphins Reef shared pilot renders its exported photo without an assignmen
 });
 
 test('catalog photos render initially on shared and static detail pages', async ({ page, browser }) => {
-  const { execFileSync } = require('node:child_process');
   const assignments = require('../../assets/dive-sites/assignments.json');
-  const photos = JSON.parse(execFileSync('python', ['-c', 'import json; from pathlib import Path; from tools.detail_photo_data import load_detail_photos; print(json.dumps(load_detail_photos(Path.cwd())))'], {encoding:'utf8'}));
   const samples = [assignments[0], assignments.find(entry => entry.hide_context_label),
     assignments.find(entry => !entry.alt), assignments.find(entry => (entry.creator_links || []).length)];
+  const photos = photoMetadata(samples.map(entry => entry.site_id));
   await page.route('**/assets/dive-sites/assignments.json*', route => route.abort());
   const noScripts = await browser.newContext({javaScriptEnabled:false, viewport:page.viewportSize()});
   const staticPage = await noScripts.newPage();

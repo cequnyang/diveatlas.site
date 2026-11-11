@@ -2,6 +2,14 @@ const { test, expect } = require('@playwright/test');
 // Headless Chromium normally hides native scrollbars, masking header gaps.
 test.use({ launchOptions:{ ignoreDefaultArgs:['--hide-scrollbars'] } });
 
+// Shared-document interaction tests must not depend on whichever recommendation
+// release R2 currently serves. Include enough distinct regions for two pages.
+const documentSearchSites = [
+  {name:'Blue Magic',country:'Indonesia',region:'Raja Ampat',lat:-0.5074,lon:130.7368},
+  {name:'Cape Kri',country:'Indonesia',region:'Raja Ampat',lat:-0.5565,lon:130.6901},
+  ...Array.from({length:45},(_,i)=>({name:`United reef ${i}`,country:'United States',region:`Region ${i}`,lat:30+i/100,lon:-80}))
+].map((site,i)=>({...site,site_id:`1a532e42-9890-4ea9-b239-${String(i+1).padStart(12,'0')}`,features:[]}));
+
 test('glass popup interactions do not reach the map underneath', async ({ page, hasTouch }) => {
   const { openMap, setMapView, mapState, waitForClickResolution } = require('./support');
   await openMap(page);
@@ -48,13 +56,17 @@ test('glass popup interactions do not reach the map underneath', async ({ page, 
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.setItem('global-coral-map-tutorial-suppressed-v1', '1');
+    if (localStorage.getItem('global-coral-map-welcome-suppressed-v1') === null) localStorage.setItem('global-coral-map-welcome-suppressed-v1', '1');
     localStorage.setItem('diveatlas-tutorial-seen-v1', '1');
     localStorage.setItem('global-coral-map-theme', 'light');
     localStorage.setItem('global-coral-map-lang', 'en');
   });
   await page.route('https://**', route => route.abort());
   await page.route('**/api/auth/me', route => route.fulfill({ json:{ user:null } }));
+  await page.route('**/data/dive-site-details/v2/recommendations.json*', route =>
+    route.request().frame().url().includes('/plain-page-fixture.html')
+      ? route.fulfill({json:{schema:'dive-site-recommendations-v1',sites:documentSearchSites}})
+      : route.fallback());
   await page.route('**/plain-page-fixture.html', route => route.fulfill({
     contentType:'text/html',
     body:'<!doctype html><html><head><title>Plain document</title><link rel="stylesheet" href="/assets/site-header.css?v=1"><script src="/js/site-header.js?v=1" defer></script></head><body><main><h1>Plain document</h1></main></body></html>'
@@ -63,6 +75,12 @@ test.beforeEach(async ({ page }) => {
 
 test('welcome suppression defaults checked and remembers an explicit unchecked choice', async ({ page }) => {
   const key = 'global-coral-map-welcome-suppressed-v1';
+  await page.addInitScript(key => {
+    if (!sessionStorage.getItem('welcome-default-fixture-started')) {
+      localStorage.removeItem(key);
+      sessionStorage.setItem('welcome-default-fixture-started','1');
+    }
+  },key);
   await page.goto('/');
   const welcome = page.locator('#mapWelcome'), checkbox = page.locator('#mapWelcomeSuppress');
   await expect(welcome).toBeVisible();
@@ -81,7 +99,7 @@ test('welcome suppression defaults checked and remembers an explicit unchecked c
 });
 
 test('welcome offers real destination and month paths without blocking the map', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const welcome = page.locator('#mapWelcome');
   await expect(welcome).toBeVisible();
@@ -101,12 +119,13 @@ test('welcome offers real destination and month paths without blocking the map',
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('4');
   await expect(page.getByRole('button', { name: 'Current location', exact: true })).toBeVisible();
   await expect(page.locator('input[name="environmentView"][value="dive-experience-outlook"]')).toBeChecked();
-  await expect(page.locator('#bioLegendTitle')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#bioLegendTitle')).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('#bioLegendTitle')).toBeFocused();
 });
 
 test('welcome hides the month path when Outlook is disabled and keeps map and guide access', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.removeItem('global-coral-map-welcome-suppressed-v1');
     window.DIVEATLAS_FEATURE_FLAGS = { diveExperienceOutlook: false };
   });
   await page.goto('/');
@@ -115,13 +134,13 @@ test('welcome hides the month path when Outlook is disabled and keeps map and gu
   await expect(welcome.locator('[data-action="month"]')).toBeHidden();
   await expect(page.locator('#mapWelcomeMonthPanel')).toBeHidden();
   await expect(welcome.locator('[data-action="destination"]')).toBeVisible();
-  await expect(welcome.locator('[data-action="browse"]')).toBeVisible();
+  await expect(welcome.locator('[data-action="close"]')).toBeVisible();
   await welcome.locator('[data-action="language"]').click();
-  await page.locator('#languageDropdown [data-language="zh"]').click();
-  await expect(page.locator('#languageDropdown')).toBeHidden();
+  await page.locator('#tutorialLanguageDropdown [data-language="zh"]').click();
+  await expect(page.locator('#tutorialLanguageDropdown')).toBeHidden();
   await expect(welcome.locator('[data-action="month"]')).toBeHidden();
   await welcome.locator('[data-action="guide"]').click();
-  await expect(welcome).toBeHidden();
+  await expect(welcome).toBeVisible();
   await expect(page.locator('#tutorialBackdrop')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#tutorialBackdrop')).toBeHidden();
@@ -135,7 +154,7 @@ test('welcome hides the month path when Outlook is disabled and keeps map and gu
 });
 
 test('welcome carries the live map area and month through one guide', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   const welcome = page.locator('#mapWelcome');
   await expect(welcome.locator('[data-action="apply"]')).toBeHidden();
@@ -160,7 +179,8 @@ test('welcome carries the live map area and month through one guide', async ({ p
   await expect(page.locator('#mapWelcomeMonth')).toHaveValue('4');
   await welcome.locator('[data-action="next"]').click();
   const selectedArea = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
-  await expect(page.locator('#mapWelcomeReviewPanel')).toContainText(selectedArea.lng.toFixed(2));
+  const areaLabel = await page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value').textContent();
+  await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).toHaveText(areaLabel);
   await welcome.locator('[data-action="apply"]').click();
   await expect(welcome).toBeHidden();
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('4');
@@ -172,7 +192,7 @@ test('welcome carries the live map area and month through one guide', async ({ p
 
 for (const selection of ['pointer','keyboard']) {
 test(`welcome searches inline and selects on the real map with ${selection}`, async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   const input = page.locator('#mapWelcomeSearch');
   const guideBeforeSearch = await page.locator('#mapWelcome').boundingBox();
@@ -217,7 +237,7 @@ test(`welcome searches inline and selects on the real map with ${selection}`, as
 
 for (const areaInput of ['guide','header']) {
 test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide`, async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   // Warm the catalogue before making the two competing selections. Waiting
   // after the second selection exercises both the 200ms and 950ms callbacks.
@@ -275,7 +295,7 @@ async function recordedAreaExtent(page,name) {
 
 for (const name of ['Pacific Ocean','Fiji']) {
 test(`welcome area fit includes every recorded location for ${name}`, async ({ page },testInfo) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   await page.locator('#mapWelcomeSearch').fill(name);
   await page.locator('#diveSearchResults [data-area-key]').first().click();
@@ -291,7 +311,7 @@ test(`welcome area fit includes every recorded location for ${name}`, async ({ p
 
 for (const viewport of [{width:844,height:390},{width:568,height:320}]) {
 test(`welcome large area fits in landscape ${viewport.width}x${viewport.height} and restores the normal zoom floor`, async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.setViewportSize(viewport);
   await page.goto('/?__diveatlas_test=1');
   await page.locator('#mapWelcomeSearch').fill('Pacific Ocean');
@@ -306,7 +326,7 @@ test(`welcome large area fits in landscape ${viewport.width}x${viewport.height} 
 }
 
 test('top site selection still opens details and restores normal zoom limits after a large area overview', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   await page.locator('#mapWelcomeSearch').fill('Pacific Ocean');
   await page.locator('#diveSearchResults [data-area-key]').first().click();
@@ -320,14 +340,16 @@ test('top site selection still opens details and restores normal zoom limits aft
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getZoom())).toBeGreaterThanOrEqual(12);
 });
 
-test('welcome keeps destination and month frames equal and reuses the layer month wheel', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+test('welcome keeps its map anchor while steps use natural height and reuse the layer month wheel', async ({ page }) => {
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const frame = page.locator('#mapWelcome');
   const destination = await frame.boundingBox();
   await frame.locator('[data-action="next"]').click();
   const month = await frame.boundingBox();
-  for (const dimension of ['x','y','width','height']) expect(month[dimension]).toBeCloseTo(destination[dimension],0);
+  for (const dimension of ['x','width']) expect(month[dimension]).toBeCloseTo(destination[dimension],0);
+  expect(month.y + month.height).toBeCloseTo(destination.y + destination.height,0);
+  expect(month.y).toBeGreaterThanOrEqual(42);
   const select = page.locator('#mapWelcomeMonth');
   await select.click();
   const wheel = page.locator('.temperature-scroll-wheel[aria-labelledby="mapWelcomeMonth-wheel-heading"]');
@@ -352,15 +374,17 @@ test('welcome keeps destination and month frames equal and reuses the layer mont
   await expect(frame).toHaveCSS('width',`${destination.width}px`);
 });
 
-test('welcome shares the saved month with Layers and keeps it through language changes', async ({ page }) => {
+test('welcome starts with the current month then shares changes with Layers across languages', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-02-15T12:00:00Z'));
   await page.addInitScript(() => {
-    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.removeItem('global-coral-map-welcome-suppressed-v1');
     localStorage.setItem('global-coral-map-dive-experience-month-v1','9');
   });
   await page.goto('/?__diveatlas_test=1');
   await page.evaluate(() => window.__DIVEATLAS_TEST__.selectEnvironmentalView('dive-experience-outlook'));
   const month = page.locator('#mapWelcomeMonth');
-  await expect(month).toHaveValue('9');
+  await expect(month).toHaveValue('2');
+  await expect(page.locator('#diveExperienceMonth')).toHaveValue('2');
   await page.locator('#mapWelcome [data-action="next"]').click();
   await month.selectOption('4');
   await expect(page.locator('#diveExperienceMonth')).toHaveValue('4');
@@ -374,16 +398,16 @@ test('welcome shares the saved month with Layers and keeps it through language c
   const language = page.locator('#mapWelcome [data-action="language"]');
   await language.click();
   await expect(language).toHaveAttribute('aria-expanded','true');
-  await page.locator('#languageDropdown [data-language="fr"]').click();
+  await page.locator('#tutorialLanguageDropdown [data-language="fr"]').click();
   await expect(language).toHaveAttribute('aria-expanded','false');
   await expect(language).toBeFocused();
   await expect(month).toHaveValue('7');
   await expect(page.locator('#mapWelcomeMonthValue')).toHaveText('juillet');
-  await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).toContainText(/\d,\d{2}°/);
+  await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).not.toBeEmpty();
 });
 
 test('welcome controls and the shared month wheel follow the map theme without moving the frame', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const frame = page.locator('#mapWelcome');
   await frame.locator('[data-action="next"]').click();
@@ -402,19 +426,20 @@ test('welcome controls and the shared month wheel follow the map theme without m
 });
 
 test('welcome immediately saves suppression and follows changes from another tab', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
+  await page.locator('#mapWelcomeSuppress').uncheck();
   await page.locator('#mapWelcomeSuppress').check();
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('global-coral-map-tutorial-suppressed-v1'))).toBe('1');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe('1');
   const other = await page.context().newPage();
   await other.goto('/plain-page-fixture.html');
-  await other.evaluate(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await other.evaluate(() => localStorage.setItem('global-coral-map-welcome-suppressed-v1','0'));
   await expect(page.locator('#mapWelcomeSuppress')).not.toBeChecked();
   await other.close();
 });
 
 test('header destination selection keeps native site details separate from guide area search', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
@@ -460,7 +485,7 @@ test(`grouped search and filters fit their panes at ${viewport.width}x${viewport
 }
 
 test('grouped header puts destinations first and paginates individual sites', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const input = page.locator('#diveSearchInput');
@@ -484,7 +509,7 @@ test('grouped header puts destinations first and paginates individual sites', as
 });
 
 test('welcome and header hand the same results menu between their inputs', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const guideInput = page.locator('#mapWelcomeSearch');
   const first = page.locator('#diveSearchResults [role="option"]').first();
@@ -620,7 +645,7 @@ test(`grouped ${host} search uses destination and site keyboard actions`, async 
   await input.fill('Raja Ampat');
   const options = page.locator(`#${prefix}Results [role="option"]`);
   await expect(options.first()).toContainText('Explore Raja Ampat',{timeout:15000});
-  await expect(options.first()).toContainText('134 dive sites');
+  await expect(options.first()).toContainText(host === 'map' ? '134 dive sites' : '2 dive sites');
   await expect(options.nth(1)).toHaveAttribute('data-result-kind','site');
   await input.press('ArrowDown');
   await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-0`);
@@ -690,7 +715,7 @@ test(`grouped ${host} search exits loading when catalog loading fails`, async ({
 
 test('welcome inline search handles empty and cleared queries locally', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.removeItem('global-coral-map-welcome-suppressed-v1');
     localStorage.setItem('global-coral-map-lang','en');
   });
   await page.goto('/');
@@ -705,7 +730,7 @@ test('welcome inline search handles empty and cleared queries locally', async ({
 
 test('welcome inline search reports unavailable data without moving focus', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.removeItem('global-coral-map-tutorial-suppressed-v1');
+    localStorage.removeItem('global-coral-map-welcome-suppressed-v1');
     localStorage.setItem('global-coral-map-lang','en');
   });
   await page.route('**/*dive-site-search-locations*.json.gz*', route => route.fulfill({status:503,body:'Unavailable'}));
@@ -717,7 +742,7 @@ test('welcome inline search reports unavailable data without moving focus', asyn
 });
 
 test('welcome clearing an in-flight search discards its late results', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   let release, requested;
   const held = new Promise(resolve => { release = resolve; });
   const started = new Promise(resolve => { requested = resolve; });
@@ -740,7 +765,7 @@ test('welcome clearing an in-flight search discards its late results', async ({ 
 
 for (const viewport of [{width:844,height:390}, {width:568,height:320}]) {
 test(`welcome search menu fits the viewport and dismisses outside in landscape ${viewport.width}x${viewport.height}`, async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.setViewportSize(viewport);
   await page.goto('/');
   const guide = await page.locator('#mapWelcome').boundingBox();
@@ -755,7 +780,7 @@ test(`welcome search menu fits the viewport and dismisses outside in landscape $
   await expect(page.locator('#mapWelcome')).toBeVisible();
 });
 test(`welcome keeps month and footer controls clickable in landscape ${viewport.width}x${viewport.height}`, async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.setViewportSize(viewport);
   await page.goto('/');
   await page.getByRole('button',{name:'Zoom in',exact:true}).click();
@@ -770,34 +795,35 @@ test(`welcome keeps month and footer controls clickable in landscape ${viewport.
   await expect(page.locator('#mapWelcomeMonth')).toHaveValue('4');
   await page.locator('#mapWelcomeSuppress').check();
   await page.locator('#mapWelcomeSuppress').uncheck();
-  await page.locator('#mapWelcome [data-action="browse"]').click();
+  await page.locator('#mapWelcome [data-action="close"]').click();
   await expect(page.locator('#mapWelcome')).toBeHidden();
 });
 }
 
-test('welcome synchronizes suppression through the guide and honors unchecking', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+test('welcome keeps its suppression independent from the on-demand guide', async ({ page }) => {
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
-  const welcome = page.locator('#mapWelcome');
-  await page.locator('#mapWelcomeSuppress').check();
+  const welcome = page.locator('#mapWelcome'), suppress = page.locator('#mapWelcomeSuppress');
+  await suppress.uncheck();
   await welcome.locator('[data-action="guide"]').click();
-  await expect(page.locator('#tutorialSuppressInput')).toBeChecked();
-  await page.locator('#tutorialSuppressInput').uncheck();
+  await expect(page.locator('#tutorialBackdrop')).toBeVisible();
+  await expect(page.locator('#tutorialSuppressInput')).toHaveCount(0);
+  expect(await page.evaluate(() => localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe('0');
   await page.locator('#tutorialClose').click();
   await expect(welcome).toBeVisible();
-  await expect(page.locator('#mapWelcomeSuppress')).not.toBeChecked();
+  await expect(suppress).not.toBeChecked();
+  await suppress.check();
   await welcome.locator('[data-action="guide"]').click();
-  await page.locator('#tutorialSuppressInput').check();
   await page.locator('#tutorialClose').click();
   await expect(welcome).toBeVisible();
-  await expect(page.locator('#mapWelcomeSuppress')).toBeChecked();
-  await page.locator('#mapWelcomeSuppress').uncheck();
-  await welcome.locator('[data-action="browse"]').click();
-  expect(await page.evaluate(() => localStorage.getItem('global-coral-map-tutorial-suppressed-v1'))).toBeNull();
+  await expect(suppress).toBeChecked();
+  await suppress.uncheck();
+  await welcome.locator('[data-action="close"]').click();
+  expect(await page.evaluate(() => localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe('0');
 });
 
 test('welcome leaves real map zoom reachable on a short phone', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.setViewportSize({width:320,height:568});
   await page.goto('/');
   await expect(page.locator('#mapWelcomeDestinationPanel')).toBeVisible();
@@ -806,30 +832,30 @@ test('welcome leaves real map zoom reachable on a short phone', async ({ page })
 });
 
 test('welcome keeps the selected area live when the map moves during later steps', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   await page.locator('#mapWelcome [data-action="next"]').click();
   await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([10,120],6,{animate:false}));
-  await expect(page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value')).toContainText('10.00');
-  await expect(page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value')).toContainText('120.00');
+  await expect(page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value')).toContainText('Philippines');
   await page.locator('#mapWelcome [data-action="next"]').click();
-  await expect(page.locator('#mapWelcomeReviewPanel')).toContainText('120.00');
+  await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).toContainText('Philippines');
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.map.setView([35,139],6,{animate:false}));
+  await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).toContainText('Japan');
 });
 
 test('welcome preserves suppression and the on-demand layer guide', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const welcome = page.locator('#mapWelcome');
   await expect(welcome).toBeVisible();
   await page.locator('#mapWelcomeSuppress').check();
-  await welcome.locator('[data-action="browse"]').click();
+  await welcome.locator('[data-action="close"]').click();
   await expect(welcome).toBeHidden();
   await expect(page.locator('#bioLegendTitle')).toBeFocused();
   // Init-script order deliberately resets storage on reload, so remove that
   // fixture by checking the stored preference here, then use the suppressed
   // default fixture in the existing guide test below for the returning visit.
-  expect(await page.evaluate(() => localStorage.getItem('global-coral-map-tutorial-suppressed-v1'))).toBe('1');
-  await page.locator('#bioLegendTitle').click();
+  expect(await page.evaluate(() => localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe('1');
   await page.locator('#bioLegendOverflow > summary').click();
   await page.locator('#bioLegendGuide').click();
   await expect(page.locator('#tutorialBackdrop')).toBeVisible();
@@ -838,10 +864,10 @@ test('welcome preserves suppression and the on-demand layer guide', async ({ pag
 });
 
 test('welcome opens the full layer guide only on request', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   await page.locator('#mapWelcome [data-action="guide"]').click();
-  await expect(page.locator('#mapWelcome')).toBeHidden();
+  await expect(page.locator('#mapWelcome')).toBeVisible();
   await expect(page.locator('#tutorialBackdrop')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.locator('#tutorialBackdrop')).toBeHidden();
@@ -849,9 +875,9 @@ test('welcome opens the full layer guide only on request', async ({ page }) => {
 });
 
 test('welcome can skip directly to the real map and shared links bypass it', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
-  await page.locator('#mapWelcome [data-action="browse"]').click();
+  await page.locator('#mapWelcome [data-action="close"]').click();
   await expect(page.locator('#mapWelcome')).toBeHidden();
   expect(new URL(page.url()).pathname).toBe('/');
   await page.goto('/?lat=-0.5&lng=130&z=7');
@@ -1098,13 +1124,23 @@ for (const theme of ['light', 'dark']) {
     const checkBlur = async (selector, disable) => {
       const panel = page.locator(selector);
       await expect(panel).toBeVisible();
-      const blurred = await panel.screenshot({ animations: 'disabled' });
+      // Backdrop compositing can settle after the panel becomes visible.
+      // Compare against a stable frame, not the first opening paint.
+      let blurred = await panel.screenshot({ animations: 'disabled' });
+      await expect.poll(async () => {
+        const next = await panel.screenshot({ animations:'disabled' });
+        const stable = blurred.equals(next);
+        blurred = next;
+        return stable;
+      }).toBe(true);
       const override = await page.addStyleTag({ content: disable });
       const sharp = await panel.screenshot({ animations: 'disabled' });
       expect(blurred.equals(sharp)).toBe(false);
       expect(sharp.equals(await panel.screenshot({ animations: 'disabled' }))).toBe(true);
       await override.evaluate(el => el.remove());
-      expect(blurred.equals(await panel.screenshot({ animations: 'disabled' }))).toBe(true);
+      // Removing the override triggers a compositor repaint; wait for the
+      // restored material instead of sampling its transient sharp frame.
+      await expect.poll(async () => blurred.equals(await panel.screenshot({ animations:'disabled' }))).toBe(true);
     };
     await page.locator('#languageMenuButton').click();
     await checkBlur('#languageDropdown', '#languageDropdown { backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }');

@@ -31424,10 +31424,12 @@ function closeShareDialog() {
       if (!isOpen && dropdown.matches(':popover-open')) dropdown.hidePopover();
       positionAnchoredGlassPopover(dropdown, tutorialLanguageAnchor || els.tutorialLanguageMenuButton, false);
     }
+    // Closing the header menu also updates the shared welcome trigger. Do it
+    // before exposing this popover's expanded state, rather than clobbering it.
+    if (isOpen) setLanguageMenuOpen(false);
     els.tutorialLanguageMenuButton.setAttribute('aria-expanded', String(isOpen));
     document.querySelector('#mapWelcome [data-action="language"]')?.setAttribute('aria-expanded', String(isOpen && tutorialLanguageAnchor !== els.tutorialLanguageMenuButton));
     if (isOpen) {
-      setLanguageMenuOpen(false);
       if (focusFirst) {
         els.tutorialLanguageDropdown.querySelector('[role="menuitemradio"]')?.focus();
       }
