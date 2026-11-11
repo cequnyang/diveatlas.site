@@ -266,12 +266,20 @@
       scroll.scrollTop = top;
     }
 
-    function position({ anchor, filtersOpen, focused, inline = false }) {
+    function position({ anchor, filtersOpen, focused, inline = false, fitContent = false, topBoundary = 8 }) {
       const rect = anchor.getBoundingClientRect();
       if (inline) {
+        const minimumTop = Math.max(8, topBoundary);
+        surface.dataset.minimumTop = String(minimumTop);
         const below = window.innerHeight - rect.bottom - 20,
-          above = rect.top - 20;
-        const opensBelow = below >= 180 || below >= above;
+          above = Math.max(0, rect.top - 8 - minimumTop);
+        // Trip pickers need enough room for their actual rows, not merely a
+        // minimum-height menu. Measure at the anchor width before choosing a side.
+        surface.style.width = `${Math.min(rect.width, window.innerWidth - 16)}px`;
+        const contentHeight = scroll.scrollHeight + Math.max(0, surface.offsetHeight - scroll.clientHeight);
+        const requiredHeight = fitContent ? Math.min(440, contentHeight) : 180;
+        const opensBelow = below >= requiredHeight || below >= above;
+        surface.dataset.placement = opensBelow ? "below" : "above";
         Object.assign(surface.style, {
           left: `${Math.max(8, rect.left)}px`,
           width: `${Math.min(rect.width, window.innerWidth - 16)}px`,
@@ -279,7 +287,7 @@
           bottom: opensBelow
             ? "auto"
             : `${window.innerHeight - rect.top + 8}px`,
-          maxHeight: `${Math.max(60, Math.min(440, opensBelow ? below : above))}px`,
+          maxHeight: `${Math.max(0, Math.min(440, opensBelow ? below : above))}px`,
         });
       } else {
         const mobile = window.matchMedia("(max-width:720px)").matches;
@@ -867,6 +875,10 @@
         id: event.pointerId,
         x: event.clientX,
         y: event.clientY,
+        direction: results.dataset.placement === 'above' ? -1 : 1,
+        expansionRoom: results.dataset.placement === 'above'
+          ? Math.max(0, results.getBoundingClientRect().top - (Number(results.dataset.minimumTop) || 8))
+          : Math.max(0, window.innerHeight - results.getBoundingClientRect().bottom - 8),
         startHeight: results.getBoundingClientRect().height,
         startMaxHeight: results.style.maxHeight,
         moved: false,
@@ -878,7 +890,7 @@
     resultsHandle.addEventListener("pointermove", (event) => {
       if (!drag || event.pointerId !== drag.id) return;
       const deltaX = event.clientX - drag.x;
-      const deltaY = event.clientY - drag.y;
+      const deltaY = (event.clientY - drag.y) * drag.direction;
       if (Math.hypot(deltaX, deltaY) < 4) return;
       if (Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
         drag.moved = true;
@@ -891,12 +903,7 @@
       results.classList.add("mobile-vertical-dragging");
       const downwardStretch = Math.min(
         20 * (1 - Math.exp(-Math.max(0, deltaY) / 18)),
-        Math.max(
-          0,
-          window.innerHeight -
-            results.getBoundingClientRect().top -
-            drag.startHeight,
-        ),
+        drag.expansionRoom,
       );
       if (deltaY > 0) results.style.maxHeight = "none";
       else restoreMaxHeight(drag.startMaxHeight);
@@ -909,7 +916,7 @@
     const finishDrag = (event) => {
       if (!drag || event.pointerId !== drag.id) return;
       const deltaX = event.clientX - drag.x;
-      const deltaY = event.clientY - drag.y;
+      const deltaY = (event.clientY - drag.y) * drag.direction;
       const didMove = drag.moved;
       const hasMovedUpward = drag.hasMovedUpward;
       const hasResizedSheet = drag.hasResizedSheet;
@@ -923,7 +930,7 @@
       const startMaxHeight = drag.startMaxHeight;
       drag = null;
       if (upwardDrag) event.preventDefault();
-      // Use the map view's deliberate upward-pull threshold for dismissal.
+      // Normalized negative motion always collapses toward the selector.
       if (upwardDrag && finalCollapseDistance >= 72) {
         dismiss();
         return;

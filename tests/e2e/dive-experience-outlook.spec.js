@@ -158,6 +158,14 @@ test('Dive Experience popup reports the selected cell outlook and supporting evi
   const popup = page.locator('.dive-experience-popup-content');
   await expect(popup).toBeVisible();
   await expect(popup.locator('.dive-conditions-popup-region')).toHaveText('Greenland · Denmark · Europe');
+  if (test.info().project.name.includes('mobile')) {
+    const radii = await popup.evaluate(el => {
+      const sheet = el.closest('.leaflet-popup');
+      const wrapper = sheet.querySelector('.leaflet-popup-content-wrapper');
+      return [sheet, wrapper].map(node => [getComputedStyle(node).borderTopLeftRadius, getComputedStyle(node).borderTopRightRadius]);
+    });
+    expect(radii).toEqual([['18px','18px'],['18px','18px']]);
+  }
   const selectedCell = await page.evaluate(async () => {
     const store = window.DiveAtlasDiveExperienceMap.createDataStore();
     return store.sample({ lat:69.53125, lng:-23.46875 }, Number(document.querySelector('#diveExperienceMonth').value));

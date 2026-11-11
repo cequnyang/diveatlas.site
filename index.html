@@ -2442,7 +2442,7 @@
         overflow:hidden;
         border:1px solid var(--line);
         border:0;
-        border-radius:18px 18px 0 0 !important;
+        border-radius:var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0 !important;
         background:var(--panel-solid);
         box-shadow:0 12px 36px rgba(18,34,51,.24);
       }
@@ -2589,7 +2589,7 @@
         max-height:min(78dvh, 720px);
         overflow:hidden;
         border:0;
-        border-radius:18px 18px 0 0 !important;
+        border-radius:var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0 !important;
         background:var(--panel-solid);
         box-shadow:0 12px 36px rgba(18,34,51,.24);
       }
@@ -2627,14 +2627,11 @@
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) > .leaflet-popup-close-button,
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering,
-      .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-entering {
+      .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-entering,
+      .saved-trips-panel.mobile-sheet-entering {
         translate:0 100% !important;
         opacity:0;
         transition:none !important;
-      }
-      .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering.mobile-sheet-returning-from-detail {
-        translate:0 -100dvh !important;
-        opacity:1;
       }
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-exiting,
       .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-exiting {
@@ -2700,7 +2697,7 @@
       body.has-shared-header > .leaflet-popup.diveatlas-mobile-sheet::after {
         inset: 0;
         height: auto;
-        border-radius: 18px 18px 0 0;
+        border-radius: var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0;
         background: var(--popup-glass-tint);
         -webkit-backdrop-filter: blur(8px) saturate(145%);
         backdrop-filter: blur(8px) saturate(145%);
@@ -7145,10 +7142,10 @@
       mask: url('assets/info-circle.svg') center / contain no-repeat;
     }
   </style>
-  <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
+  <link rel="stylesheet" href="/assets/share-dialog.css?v=3">
   <link rel="stylesheet" href="/assets/site-contributions.css?v=1">
-  <link rel="stylesheet" href="/assets/saved-trips.css?v=1">
-<link rel="stylesheet" href="assets/liquid-glass.css?v=41">
+  <link rel="stylesheet" href="/assets/saved-trips.css?v=11">
+<link rel="stylesheet" href="assets/liquid-glass.css?v=43">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
 <link rel="stylesheet" href="assets/map-welcome.css?v=2">
 <script src="/js/site-header.js?v=5" defer></script>
@@ -7214,6 +7211,9 @@
     </div>
 
     <div class="top-menu-controls" aria-label="Page settings">
+      <button class="top-menu-share saved-trips-trigger" id="savedTripsButton" type="button" aria-label="My trips" title="My trips" aria-controls="savedTripsPanel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></svg>
+      </button>
       <div class="top-menu-share-wrap">
         <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map info" title="Share map info">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg>
@@ -8114,9 +8114,10 @@ ZSD·2016–2025</span></span>
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
     <script src="js/area-search.js?v=1"></script>
-    <script src="js/search-results-menu.js?v=1"></script>
-    <script src="js/map-welcome.js?v=1"></script>
-    <script src="js/saved-trips.js?v=1"></script>
+    <script src="js/search-results-menu.js?v=5"></script>
+    <script src="js/map-welcome.js?v=2"></script>
+    <script src="js/saved-trips-i18n.js?v=1"></script>
+    <script src="js/saved-trips.js?v=8"></script>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
     <script src="js/dive-site-name-localization.js"></script>
@@ -9721,6 +9722,12 @@ ZSD·2016–2025</span></span>
     }
   }
 
+  // Main map surfaces yield to a newly opened surface; child controls stay owned
+  // by their parent. Dispatch only on opens, never on background data refresh.
+  function notifyMapOverlayOpen(owner) {
+    return document.dispatchEvent(new CustomEvent("diveatlas:overlay-open", {detail:{owner}, cancelable:true}));
+  }
+
   function openManagedPopup(ownerKey, popup, latlng = null, ownerFeature = null) {
     if (!popup) return;
 
@@ -9753,6 +9760,7 @@ ZSD·2016–2025</span></span>
       if (!anchorChanged) return;
     }
 
+    if (!notifyMapOverlayOpen('map-detail')) return;
     activeClickPopup = popup;
     activeClickPopupOwner = popup._diveAtlasOwnerKey;
 
@@ -10582,6 +10590,7 @@ ZSD·2016–2025</span></span>
     clearInlineHeight = false
   } = {}) {
     const nextCollapsed = Boolean(collapsed);
+    if (!nextCollapsed && compactLayersPanelQuery.matches) notifyMapOverlayOpen('layers');
     // On phones, opening Layers dismisses search because both panels occupy the same map area.
     if (!nextCollapsed && compactLayersPanelQuery.matches) closeMobileDiveSearchForLayers();
     const stateChanged = nextCollapsed !== legendCollapsed;
@@ -13523,6 +13532,7 @@ ZSD·2016–2025</span></span>
   async function openTutorial({ automatic = false, origin = 'map', returnFocusTo = null } = {}) {
     if (tutorialState !== 'closed' || !els.tutorialBackdrop.hidden) return;
     if (automatic && (sharedMapState.hasValidState)) return;
+    notifyMapOverlayOpen('tutorial');
     if (!returnToWelcomeAfterTutorial) mapWelcome.dismiss({ focus: false });
 
     const fromLegend = !automatic && origin === 'legend';
@@ -13682,7 +13692,7 @@ ZSD·2016–2025</span></span>
   const mapWelcome = window.createDiveAtlasWelcome({
     // Opening welcome must dismiss a mobile sheet even if Layers is already
     // collapsed, so this cannot rely on a legend state change to close it.
-    onOpen: closeActiveMobileMapSheetForOverlay,
+    onOpen: () => { notifyMapOverlayOpen('welcome'); closeActiveMobileMapSheetForOverlay(); },
     getLanguage: () => currentLang,
     getTitle: () => tutorialText('tutorialTitle'),
     getSearchLabel: () => areaSearchText()[6],
@@ -22619,6 +22629,7 @@ ZSD·2016–2025</span></span>
   }
 
   function openShareDialog() {
+    notifyMapOverlayOpen('share');
     shareSnapshot = captureMapState();
     shareUrl = buildShareUrl(shareSnapshot);
     shareUiState = 'idle';
@@ -23601,6 +23612,7 @@ function closeShareDialog() {
   }
 
   function showDiveSearchResults() {
+    notifyMapOverlayOpen('search');
     // Search overlays and map detail sheets compete for the same mobile viewport.
     if (mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput) {
       setMobileSearchExpanded(true);
@@ -29296,6 +29308,26 @@ function closeShareDialog() {
   // The CSS entrance lasts 280ms; this fallback covers browsers that skip transitionend.
   const MOBILE_MAP_SHEET_ENTRANCE_FALLBACK_MS = 360;
 
+  const mobileSheetEntranceFrames = new WeakMap();
+  function cancelMobileSheetEntrance(surface) {
+    const frame = mobileSheetEntranceFrames.get(surface);
+    if (frame) cancelAnimationFrame(frame);
+    mobileSheetEntranceFrames.delete(surface);
+    surface?.classList.remove('mobile-sheet-entering', 'mobile-sheet-returning-from-detail');
+  }
+  function revealMobileSheetFromBottom(surface, isOpen) {
+    cancelMobileSheetEntrance(surface);
+    if (!compactLayersPanelQuery.matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    surface.classList.add('mobile-sheet-entering');
+    // Commit the offscreen starting geometry before transitioning to the sheet's
+    // own layout position. The same motion serves Leaflet and non-Leaflet sheets.
+    void surface.offsetHeight;
+    mobileSheetEntranceFrames.set(surface, requestAnimationFrame(() => {
+      mobileSheetEntranceFrames.delete(surface);
+      if (isOpen()) surface.classList.remove('mobile-sheet-entering', 'mobile-sheet-returning-from-detail');
+    }));
+  }
+
   function animateMobileMapSheetEntrance(popup) {
     const element = popup?.getElement?.();
     if (!element?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
@@ -29326,13 +29358,7 @@ function closeShareDialog() {
       element.classList.add('mobile-sheet-returning-from-detail');
       popup._diveAtlasMobileReturningFromDetail = false;
     }
-    element.classList.add('mobile-sheet-entering');
-    void element.offsetHeight;
-    requestAnimationFrame(() => {
-      if (popup.isOpen?.()) {
-        element.classList.remove('mobile-sheet-entering', 'mobile-sheet-returning-from-detail');
-      }
-    });
+    revealMobileSheetFromBottom(element, () => popup.isOpen?.());
   }
 
   const mobileMapSheetDismissals = new WeakMap();
@@ -31368,6 +31394,7 @@ function closeShareDialog() {
   }
   function setLanguageMenuOpen(open, { focusFirst = false, anchor = els.languageMenuButton } = {}) {
     const isOpen = Boolean(open);
+    if (isOpen) notifyMapOverlayOpen('language');
     if (isOpen) languageMenuReturnFocus = anchor;
     document.querySelector('#mapWelcome [data-action="language"]')?.setAttribute('aria-expanded',String(isOpen && languageMenuReturnFocus !== els.languageMenuButton));
     const useMobilePage = window.matchMedia('(max-width:720px)').matches;
@@ -31786,13 +31813,14 @@ function closeShareDialog() {
   function toggleSitePhotoUploadPolicyPopover(...args) { return getSitePhotoForms().toggleSitePhotoUploadPolicyPopover(...args); }
   function rememberSitePhotoUploadContinuation(...args) { return getSitePhotoForms().rememberSitePhotoUploadContinuation(...args); }
   function continueSitePhotoUploadAfterSignIn(...args) { return getSitePhotoForms().continueSitePhotoUploadAfterSignIn(...args); }
-  function openSitePhotoUploadModal(...args) { return getSitePhotoForms().openSitePhotoUploadModal(...args); }
+  function openSitePhotoUploadModal(...args) { notifyMapOverlayOpen('photo-upload'); return getSitePhotoForms().openSitePhotoUploadModal(...args); }
   function closeSitePhotoUploadModal(...args) { return getSitePhotoForms().closeSitePhotoUploadModal(...args); }
   function previewSitePhotoUpload(...args) { return getSitePhotoForms().previewSitePhotoUpload(...args); }
   function removeSelectedSitePhotoUpload(...args) { return getSitePhotoForms().removeSelectedSitePhotoUpload(...args); }
   function submitSitePhotoUpload(...args) { return getSitePhotoForms().submitSitePhotoUpload(...args); }
 
   function openSiteSuggestionModal() {
+    notifyMapOverlayOpen('suggestion');
     if (!els.siteSuggestionModal.hidden) return;
     siteSuggestionPreviousFocus = currentDiveSearchInput();
     setTopMenuOpen(false);
@@ -31886,6 +31914,7 @@ function closeShareDialog() {
   }
 
   function openContactModal() {
+    notifyMapOverlayOpen('contact');
     clearTimeout(contactSuccessCloseTimer);
     contactPreviousFocus = document.activeElement;
     setTopMenuOpen(false);
@@ -31950,6 +31979,7 @@ function closeShareDialog() {
 
   function setTopMenuOpen(open) {
     const nextOpen = Boolean(open);
+    if (nextOpen) notifyMapOverlayOpen('menu');
     const useMobilePage = window.matchMedia('(max-width:720px)').matches;
     clearTimeout(setTopMenuOpen.closeTimer);
     els.topMenuButton.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
@@ -33508,6 +33538,20 @@ function closeShareDialog() {
   // share-state codec for saved map context rather than creating a second format.
   let savedTripSelectedSiteId = null;
   window.DiveAtlasSavedTrips?.mount({
+    prepareOverlay({preserveSite = false} = {}) {
+      cancelDiveSearchPopup();
+      dismissDiveSearchResults();
+      hideDiveSearchResults();
+      activeTemperatureWheelSelector?.close();
+      mapWelcome.suspend();
+      setTopMenuOpen(false);
+      setLanguageMenuOpen(false);
+      if (compactLayersPanelQuery.matches) setLegendCollapsed(true, {persist:false, dismissMobileSheet:false});
+      if (!preserveSite) closeManagedPopup();
+    },
+    onOverlayOpen(callback) {
+      document.addEventListener('diveatlas:overlay-open', callback);
+    },
     monthWheel: select => createTemperatureWheelSelector(select, select.getAttribute('aria-label')),
     loadSites: ensureDiveSiteData,
     bindSheetDrag(handle, surface, onDismiss) {
@@ -33515,7 +33559,9 @@ function closeShareDialog() {
         tapToDismiss:false, closeDistance:72, expandOnUpwardDrag:true
       });
     },
+    enterSheet(surface) { revealMobileSheetFromBottom(surface, () => !surface.hidden); },
     resetSheet(surface) {
+      cancelMobileSheetEntrance(surface);
       cancelMobileMapSheetDismissal(surface);
       surface.classList.remove('mobile-sheet-exiting','mobile-vertical-dragging');
       surface.style.removeProperty('--mobile-panel-drag-y');
@@ -33529,7 +33575,9 @@ function closeShareDialog() {
         Object.hasOwn(environmentalMonths, view) ? environmentalMonth(view) : new Date().getMonth() + 1;
       const monthName = localizedTemperatureMonth(month);
       const location = site.location || site.name;
-      return { name:`${location.slice(0, Math.max(1, 66 - monthName.length))} in ${monthName}`, month };
+      const formatName = location => window.DiveAtlasTripCopy.text(document.documentElement.lang, 'exampleName', {location, month:monthName});
+      const locationLimit = Math.max(1, 70 - formatName('').length);
+      return { name:formatName(location.slice(0, locationLimit)), month };
     },
     depth(savedSite) {
       const site = DIVE_SITES.find(item => getDiveSiteStableId(item) === savedSite.id) ||
@@ -33537,6 +33585,12 @@ function closeShareDialog() {
       const values = site ? [site[3],site[4],site[5]] : [savedSite.depthMin,savedSite.depthMax,savedSite.recordedDepth];
       const [min,max,recorded] = values.map(value => value == null ? null : Number(value));
       return diveDepthRangeText(min,max) || (Number.isFinite(recorded) && recorded > 0 ? formatDepthMeters(recorded) : '');
+    },
+    details(savedSite) {
+      const site = DIVE_SITES.find(item => getDiveSiteStableId(item) === savedSite.id) ||
+        [...diveSiteMarkerCache.values()].map(item => item.site).find(item => getDiveSiteStableId(item) === savedSite.id);
+      // Reuse search's country/region deduplication and current depth units.
+      return site ? diveSearchMeta(site) : '';
     },
     describe(id) {
       const site = DIVE_SITES.find(item => getDiveSiteStableId(item) === id) ||

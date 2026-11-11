@@ -23,3 +23,15 @@ Run `npx playwright test --config=playwright.saved-trips.config.cjs`. The focuse
 AI assistance contributed to this implementation and its checks. It does not add server storage, synchronization, booking, or deployment configuration.
 
 The local preview used for this change is `node tools/serve_test_site.js --port=9876`. The generated-name month comes from the active monthly layer; with no monthly layer it falls back to the current local month. Saved-site rows include available depth formatted using the current unit setting.
+
+
+Trip surfaces share explicit open notifications with the map's existing overlays. Opening My trips or Add to trip suspends welcome without changing its suppression preference, dismisses search (including pending results/navigation), closes menus, and collapses Layers on mobile without persisting that layout choice. A newly opened map detail, search, welcome, menu, or modal dismisses My trips without taking focus from the new task. The trip selector and inline delete confirmation stay attached to their parent. My trips and dive-site details replace each other. Add to trip is a child modal of the source site: it preserves that sheet beneath the backdrop and returns focus without reopening or resetting it. Late map-detail responses cannot replace the source sheet or interrupt the modal form.
+
+The save chooser has one footer action: Save for existing trip selections, or Create & save while the new-trip form is open (including the first trip). Create & save creates and selects the new trip, saves the site, and dismisses the chooser. Invalid or duplicate names keep the form open. The shared footer submits the name form through its native form association, preserving required-field validation and keyboard submission.
+
+Mobile My trips reuses the map sheets’ bottom-up entrance, with the same 280ms easing. Each sheet settles at its own layout position; reduced motion skips the entrance, and closing cancels any pending reveal frame.
+
+Selection feedback appears in the save dialog’s live status area while that modal is open. After dismissal, the ordinary map toast can offer View saved sites; no body-level feedback is left behind its backdrop.
+
+
+Trip interface copy is in `js/saved-trips-i18n.js`, covering all 14 map languages and Traditional Chinese. It follows the document language, including live updates of open panels, selector confirmations, form drafts, validation, feedback, drag hints and accessibility labels. Saved trip names remain user data. Generated name templates and month names follow the active language; accepting the generated name still initializes the travel month. Counts use Intl plural and number formatting, including Russian few/many forms.

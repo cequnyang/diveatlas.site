@@ -20,7 +20,8 @@
 .saved-trips-dialog small { display:block; color:var(--muted); line-height:1.5; }
 .saved-trips-feedback { position:fixed; z-index:2400; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center; width:max-content; max-width:min(560px, calc(100vw - 32px)); box-sizing:border-box; padding:8px 10px 8px 14px; border:1px solid var(--line); border-radius:var(--radius-modal); font:inherit; font-size:12px; line-height:1.5; }
 .saved-trips-feedback span { min-width:0; overflow-wrap:anywhere; }
-.saved-trips-feedback button { flex-shrink:0; }
+/* Inset the button curve by the toast padding for matching nested corners. */
+.saved-trips-feedback .contact-button { flex-shrink:0; border-radius:calc(var(--radius-modal) - 8px); }
 /* Share/close remain measured by the map; the bookmark uses the same hit target. */
 .leaflet-popup .saved-trips-save { position:absolute; z-index:4; display:grid; place-items:center; color:var(--muted); }
 .saved-trips-save svg { width:20px; height:20px; }
@@ -33,7 +34,7 @@
 }
 .saved-trips-resume { width:100%; margin:12px 0 0; justify-content:center; }
 @media(max-width:720px) {
- .saved-trips-panel { top:auto; right:0; left:0; bottom:0; width:100%; max-width:none; max-height:62dvh; border-radius:12px 12px 0 0; padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
+ .saved-trips-panel { top:auto; right:0; left:0; bottom:0; width:100%; max-width:none; max-height:62dvh; border-radius:var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0; padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
  .saved-trips-feedback { bottom:calc(12px + env(safe-area-inset-bottom, 0px)); width:max-content; max-width:calc(100vw - 24px); }
  .saved-trips-trigger { font-size:11px; padding:0 6px; }
  #savedTripsButton { width:40px; flex-basis:40px; padding:0; justify-content:center; }
@@ -53,19 +54,19 @@
  .saved-trips-panel .saved-trips-first { padding-top:20px; }
 }
 
-/* Native dialog placement only; Suggest a dive site's shared classes own its skin. */
-.saved-trips-dialog { position:fixed; padding:0; font:inherit; font-size:13px; }
-.saved-trips-dialog::backdrop { background:rgba(18,30,42,.58); }
+/* Native top-layer dialog reuses Share geometry/material and suggestion form controls. */
+.saved-trips-dialog.share-dialog { position:fixed; width:var(--share-dialog-width); max-height:var(--share-dialog-max-height); border-radius:var(--radius-modal); padding:0; font:inherit; font-size:13px; }
+
 .saved-trips-create { display:grid; gap:13px; }
 /* The welcome component owns title, select, action and glass styling.
    Keep only placement and saved-list geometry here. */
-.saved-trips-panel.tutorial-dialog { position:fixed; left:auto; top:54px; right:58px; bottom:auto; transform:none; animation:none; width:min(400px, calc(100vw - 48px)); padding:20px 22px 14px; border-radius:var(--radius-modal); }
+.saved-trips-panel.tutorial-dialog { position:fixed; left:auto; top:54px; right:58px; bottom:auto; transform:none; animation:none; width:min(450px, calc(100vw - 48px)); padding:20px 22px 14px; border-radius:var(--radius-modal); }
 .saved-trips-panel label .temperature-select-hit-area { width:100%; }
 .saved-trips-panel .map-welcome-navigation { display:flex; margin-top:16px; }
 .saved-trips-panel .saved-trips-resume { margin:0; }
 .saved-trips-panel .saved-trips-first .tutorial-button { width:100%; }
 .saved-trips-panel > .saved-trips-heading { border-bottom:0; padding-bottom:0; }
-@media(max-width:720px) { .saved-trips-panel.tutorial-dialog { top:auto; right:0; bottom:0; left:0; width:100%; border-radius:var(--radius-modal) var(--radius-modal) 0 0; padding:16px 20px calc(20px + env(safe-area-inset-bottom, 0px)); } }
+@media(max-width:720px) { .saved-trips-panel.tutorial-dialog { top:auto; right:0; bottom:0; left:0; width:100%; border-radius:var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0; padding:16px 20px calc(20px + env(safe-area-inset-bottom, 0px)); } }
 
 /* Result rows/material are owned by the shared search menu; only this anchor differs. */
 #savedTripsMenu { z-index:1700; }
@@ -74,7 +75,7 @@
 .saved-trips-panel label .saved-trips-month-picker { width:min(100%, 200px); }
 
 /* One shared search-result surface contains two separate, accessible actions. */
-:is(.saved-trips-panel, #savedTripsMenu) .saved-trips-row { display:flex; align-items:center; gap:0; padding:0 6px 0 0; }
+:is(.saved-trips-panel, #savedTripsMenu, .saved-trips-source-site) .saved-trips-row { display:flex; align-items:center; gap:0; padding:0 6px 0 0; }
 .saved-trips-row .saved-trips-site { flex:1; min-width:0; padding:10px 12px; border:0; border-radius:inherit; background:transparent; color:inherit; text-align:left; font:inherit; cursor:pointer; }
 .saved-trips-site:focus-visible { outline:2px solid var(--primary); outline-offset:-2px; }
 
@@ -108,13 +109,13 @@
 
 .saved-trips-dialog summary::before { transform:translateY(-1.5px); }
 
-.saved-trips-dialog > .site-suggestion-form { row-gap:8px; padding-bottom:10px; }
+.saved-trips-dialog > .site-suggestion-form { row-gap:8px; padding-top:8px; padding-bottom:10px; }
 
 /* Preserve hidden controls even when shared layout rules assign display. */
 .saved-trips-panel [hidden] { display:none !important; }
 
 @media(max-width:720px) {
- .saved-trips-panel { translate:0 var(--mobile-panel-drag-y, 0px); transition:translate .22s ease, height .22s ease; }
+ .saved-trips-panel { translate:0 var(--mobile-panel-drag-y, 0px); transition:translate .28s cubic-bezier(.22,1,.36,1), opacity .22s ease, height .22s ease; }
  .saved-trips-panel > .diveatlas-mobile-sheet-handle { flex-shrink:0; }
  .saved-trips-panel.mobile-sheet-exiting { translate:0 calc(100% + 24px); pointer-events:none; }
 }
@@ -125,3 +126,49 @@
 .saved-trips-delete-confirm > p { margin:0 0 10px; overflow-wrap:anywhere; }
 
 @media(max-width:720px) { .saved-trips-panel .saved-trips-heading > [data-close] { display:none; } }
+
+/* Align the title/close row independently of the full-width site context. */
+.saved-trips-dialog .site-suggestion-header { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:10px 12px; padding:16px 20px 0; border-bottom:0; }
+.saved-trips-dialog .site-suggestion-header > .tutorial-close { align-self:center; }
+.saved-trips-dialog .saved-trips-source-site { grid-column:1 / -1; min-width:0; padding:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+.saved-trips-dialog .saved-trips-footer { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:12px; }
+/* Keep a two-line feedback slot even before a selection, so the footer is stable. */
+.saved-trips-dialog .saved-trips-inline-feedback { display:flex; align-items:center; gap:6px; box-sizing:border-box; height:40px; min-width:0; margin:0; padding:2px 10px; border-radius:var(--radius-control); background:var(--panel-soft); color:var(--muted); opacity:0; }
+.saved-trips-dialog .saved-trips-inline-feedback.has-feedback { opacity:1; }
+.saved-trips-inline-feedback [data-feedback-copy] { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; overflow-wrap:anywhere; }
+
+@media(max-width:520px) {
+ /* Override the native dialog max-width as well as width; its UA constraint
+    otherwise shrinks only the right side of an explicitly positioned dialog. */
+ .saved-trips-dialog.share-dialog { inset:auto 0 10px; margin:0 auto; width:calc(100% - 20px); max-width:calc(100% - 20px); border-radius:var(--radius-sheet, 18px) var(--radius-sheet, 18px) 12px 12px; }
+ .saved-trips-dialog .site-suggestion-header { padding:18px 18px 0; }
+ .saved-trips-dialog > .site-suggestion-form { padding-inline:18px; }
+}
+
+.saved-trips-dialog .site-suggestion-title { padding-right:48px; }
+.saved-trips-source-site .saved-trips-site { cursor:default; }
+
+@media(max-width:720px) {
+ #savedTripsMenu[data-placement="above"] { padding-top:30px; }
+ #savedTripsMenu[data-placement="above"] > .dive-search-results-handle { top:2px; bottom:auto; }
+ #savedTripsMenu[data-placement="above"] > .dive-search-results-scroll { padding-bottom:8px; }
+}
+
+.saved-trips-panel > .saved-trips-site-list { flex:0 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--faint) transparent; }
+.saved-trips-panel > :not(.saved-trips-site-list) { flex-shrink:0; }
+
+/* Passive save feedback must not block controls on the underlying site sheet. */
+.saved-trips-feedback { pointer-events:none; }
+.saved-trips-feedback button { pointer-events:auto; }
+
+/* Only trip rows scroll: the source header and footer remain reachable. */
+.saved-trips-dialog[open] { display:flex; flex-direction:column; overflow:hidden; }
+.saved-trips-dialog > .site-suggestion-header { flex-shrink:0; }
+.saved-trips-dialog > .site-suggestion-form { display:flex; flex-direction:column; flex:0 1 auto; min-height:0; overflow:auto; }
+.saved-trips-dialog > .site-suggestion-form:has(.saved-trips-choices) { overflow:hidden; }
+.saved-trips-choices { display:flex; flex-direction:column; flex:0 1 auto; min-height:0; }
+.saved-trips-choices > p { flex-shrink:0; }
+.saved-trips-choice-list { flex:0 1 auto; min-height:0; max-height:min(42dvh, 340px); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--faint) transparent; }
+.saved-trips-dialog .saved-trips-footer, .saved-trips-dialog details { flex-shrink:0; }
+.saved-trips-dialog details[open] { max-height:40dvh; overflow-y:auto; overscroll-behavior:contain; }

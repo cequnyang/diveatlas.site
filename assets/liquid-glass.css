@@ -3,6 +3,7 @@
    Add .glass-surface to new surfaces; keep geometry and focus rings with the
    component. Existing controls are adapters so their DOM and events stay intact. */
 :root {
+  --radius-sheet: 18px;
   --popup-glass-tint: color-mix(in srgb, var(--panel-solid) 85%, transparent);
   --glass-tint: rgb(255 255 255 / 25%);
   --glass-active-tint: rgb(255 255 255 / 40%);
@@ -278,7 +279,7 @@ body .leaflet-popup .dive-experience-metric-row--no-detail:is(:hover, :active) {
   body .leaflet-popup:is(.diveatlas-mobile-sheet, .dive-conditions-rating-sheet) {
     -webkit-backdrop-filter: blur(8px) saturate(145%);
     backdrop-filter: blur(8px) saturate(145%);
-    border-radius: 18px 18px 0 0;
+    border-radius: var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0;
   }
   body :is(#map, .diveatlas-mobile-sheet, .dive-conditions-rating-sheet) > .leaflet-popup-content-wrapper {
     --glass-surface-tint: var(--popup-glass-tint);
@@ -529,4 +530,15 @@ body.has-shared-header .unit-segmented-control:not([data-unit-segmented]) > butt
   /* Retain the explicitly requested photo tint; the preference still removes
      blur and highlights, including when the pointer hovers over the button. */
   .cinematic-pilot .site-photo-upload-button::before { --glass-highlight: none; }
+}
+
+/* Every mobile sheet silhouette uses the same top corners, including nested
+   Leaflet material wrappers; component styles must not square either layer. */
+@media (max-width:720px) {
+  body :is(.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet,
+    .saved-trips-panel, .saved-trips-dialog, .share-dialog),
+  body .leaflet-popup:is(.diveatlas-mobile-sheet, .dive-conditions-rating-sheet) > .leaflet-popup-content-wrapper {
+    border-top-left-radius:var(--radius-sheet, 18px) !important;
+    border-top-right-radius:var(--radius-sheet, 18px) !important;
+  }
 }

@@ -324,6 +324,8 @@
     section.addEventListener('keydown',event => { if (event.key === 'Escape') { event.stopPropagation();dismiss(); } });
     return {render,dismiss,syncMapArea,
       syncMonth(month) { picker.value = String(month);syncStep(); },
+      // Switching to another map task should not change the welcome preference.
+      suspend() { ++closeGeneration; closing = false; section.getAnimations().forEach(animation => animation.cancel()); hide(); },
       syncDestination(name) {
         searchInput.value = name;
         selectedDestination = { name, ...getMapArea() };

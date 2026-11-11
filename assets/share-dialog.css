@@ -8,18 +8,22 @@
       place-items: center;
       padding: 18px;
     }
-    .share-modal-backdrop {
+    .share-modal-backdrop,
+    .saved-trips-dialog::backdrop {
       position: absolute;
       inset: 0;
       background: rgba(18, 30, 42, .58);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
     }
-    [data-theme="dark"] .share-modal-backdrop { background: rgba(1, 4, 9, .72); }
+    [data-theme="dark"] .share-modal-backdrop,
+    [data-theme="dark"] .saved-trips-dialog::backdrop { background: rgba(1, 4, 9, .72); }
     .share-dialog {
       position: relative;
-      width: min(560px, calc(100vw - 28px));
-      max-height: min(720px, calc(100vh - 36px));
+      --share-dialog-width: min(560px, calc(100vw - 28px));
+      --share-dialog-max-height: min(720px, calc(100vh - 36px));
+      width: var(--share-dialog-width);
+      max-height: var(--share-dialog-max-height);
       overflow: auto;
       box-sizing: border-box;
       border: 1px solid var(--line);
@@ -35,7 +39,7 @@
       gap: 16px;
       padding: 20px 22px 14px;
     }
-    #shareCloseButton,
+    :is(#shareCloseButton, #savedTripsCloseButton),
     #contactCloseButton,
     #siteSuggestionCloseButton,
     #sitePhotoUploadCloseButton {
@@ -47,15 +51,15 @@
       flex: 0 0 60px;
       border-radius: 10px;
     }
-    #shareCloseButton svg,
+    :is(#shareCloseButton, #savedTripsCloseButton) svg,
     #contactCloseButton svg,
     #siteSuggestionCloseButton svg,
     #sitePhotoUploadCloseButton svg { width: 24px; height: 24px; }
-    html[data-theme="light"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+    html[data-theme="light"] :is(#contactCloseButton, #siteSuggestionCloseButton, :is(#shareCloseButton, #savedTripsCloseButton), #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
       background: color-mix(in srgb, var(--primary) 18%, var(--panel-solid));
       color: var(--text-primary);
     }
-    html[data-theme="dark"] :is(#contactCloseButton, #siteSuggestionCloseButton, #shareCloseButton, #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
+    html[data-theme="dark"] :is(#contactCloseButton, #siteSuggestionCloseButton, :is(#shareCloseButton, #savedTripsCloseButton), #sitePhotoUploadCloseButton):is(:hover, :focus-visible) {
       background: #1b2e48;
       color: var(--text-primary);
     }
@@ -401,9 +405,10 @@
     .share-status:empty { display: none; }
     @media (max-width: 520px) {
       .share-modal { align-items: end; padding: 10px; }
-      .share-dialog { width: 100%; max-height: calc(100vh - 20px); border-radius: 18px 18px 12px 12px; }
+      .saved-trips-dialog.share-dialog { inset:auto 10px 10px; margin:0; width:calc(100% - 20px); }
+      .share-dialog { --share-dialog-max-height:calc(100vh - 20px); width: 100%; max-height:var(--share-dialog-max-height); border-radius: var(--radius-sheet, 18px) var(--radius-sheet, 18px) 12px 12px; }
       .share-dialog-header { min-height:60px; padding:18px 70px 12px 18px; }
-      #shareCloseButton { position:absolute; top:0; right:0; z-index:2; border-radius:0 18px 0 12px; }
+      :is(#shareCloseButton, #savedTripsCloseButton) { position:absolute; top:0; right:0; z-index:2; border-radius:0 18px 0 12px; }
       #contactCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 10px 0 10px; }
       #siteSuggestionCloseButton,
       #sitePhotoUploadCloseButton { top: 0; right: 0; z-index: 2; border-radius: 0 12px 0 12px; }

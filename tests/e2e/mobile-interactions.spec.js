@@ -296,7 +296,7 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
   const siteId = '0000adba-c5c9-41f3-9cc0-6b525dcf959b';
   await page.addInitScript(() => {
     new MutationObserver(() => {
-      const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup.mobile-sheet-entering.mobile-sheet-returning-from-detail');
+      const surface = document.querySelector('.leaflet-popup.diveatlas-mobile-sheet.dive-site-popup.mobile-sheet-entering');
       if (!surface) return;
       sessionStorage.setItem('diveatlas-map-return-animation', JSON.stringify({
         translate:getComputedStyle(surface).translate,
@@ -466,7 +466,7 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
     } else {
       const returnAnimation = await page.evaluate(() => JSON.parse(sessionStorage.getItem('diveatlas-map-return-animation')));
       expect(returnAnimation).not.toBeNull();
-      expect(returnAnimation.translate).toMatch(/^0px -\d+(?:\.\d+)?px$/);
+      expect(returnAnimation.translate).toBe('0px 100%');
     }
   }
 });
