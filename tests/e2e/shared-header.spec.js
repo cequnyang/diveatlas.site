@@ -177,9 +177,14 @@ test('welcome carries the live map area and month through one guide', async ({ p
   await expect(page.locator('#mapWelcomeMonthValue')).toHaveText('April');
   await welcome.locator('[data-action="back"]').click();
   await expect(page.locator('#mapWelcomeMonth')).toHaveValue('4');
-  await welcome.locator('[data-action="next"]').click();
+  // Geographic names resolve asynchronously. Capture the resolved month-step
+  // label before navigation resets the labels for the review-step lookup.
+  const monthArea = page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value');
+  await expect(monthArea).not.toHaveText('Current map area');
+  await expect(monthArea).not.toBeEmpty();
+  const areaLabel = await monthArea.textContent();
   const selectedArea = await page.evaluate(() => window.__DIVEATLAS_TEST__.map.getCenter());
-  const areaLabel = await page.locator('#mapWelcomeMonthPanel .map-welcome-destination-value').textContent();
+  await welcome.locator('[data-action="next"]').click();
   await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).toHaveText(areaLabel);
   await welcome.locator('[data-action="apply"]').click();
   await expect(welcome).toBeHidden();

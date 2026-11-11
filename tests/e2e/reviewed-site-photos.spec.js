@@ -65,7 +65,9 @@ test('published directory cards show the same real thumbnail without changing th
  await page.goto('/regions/?area=%5B%22europe%22%2C%22southern%20europe%22%2C%22malta%22%2C%22malta%20and%20gozo%22%5D&page=8');
  const card=page.locator('a.site-recommendations__card[href*="4be432e2-22d5-4c5f-8cb2-609d61b15e68"]');
  await expect(card.locator('img[data-reviewed-thumbnail]')).toHaveCount(1);
- await card.scrollIntoViewIfNeeded();await expect(card.locator('img')).toHaveAttribute('src',displayURL(photos.find(p=>p.site_id==='4be432e2-22d5-4c5f-8cb2-609d61b15e68').hero));
+ // Directory hydration can replace the card while scrolling; reacquire it on retry.
+ await expect(async()=>{await card.scrollIntoViewIfNeeded();await expect(card).toBeInViewport();}).toPass({timeout:5000});
+ await expect(card.locator('img')).toHaveAttribute('src',displayURL(photos.find(p=>p.site_id==='4be432e2-22d5-4c5f-8cb2-609d61b15e68').hero));
  await expect(card.locator('[data-reviewed-thumbnail-tag]').first()).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
  await page.screenshot({path:'data/image-application-additional-20261108/directory-'+testInfo.project.name+'.png'});
