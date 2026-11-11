@@ -49925,5 +49925,1381 @@ export const reviewedPhotos = [
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED",
     "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. [\"The new catalogue pin is approximately 221 m from the reported bow. It supports regional consistency only; it does not validate an exact wreck/entry location.\", \"The cached guide prints S33 for the stern while S34 is given for the bow. This is an apparent source error, not silently corrected or used for navigation.\", \"The source category says ship, 1945 while the guide gives a 1944 launch. This is not assumed to be a launch-date conflict resolution or a different hull; preserve exact source wording.\", \"The Port Elizabeth record remains geographically inconsistent. No alias/merge, historical reassignment, inventory pin correction or publication is authorized.\", \"The 2010 photograph does not establish current wreck condition, access, diving safety or the exact camera position.\", \"Foredeck machinery/winch, fractured deck structure and marine growth are visible in green water. Severe green cast, haze/low contrast and black lens corners obscure fine detail. No people-primary composition, map, panel or composite is apparent.\", \"Low-quality documentary wreck-detail/context candidate for human review, not a hero image or whole-wreck view.\", \"The Commons description and guide share the photographer/source lineage; they are complementary evidence, not two independent eyewitness confirmations.\", \"The EXIF date is a camera-clock claim. First-ever publication and untouched camera-original provenance are not independently established.\"] The image-specific Commons caption names SAS Transvaal and Cape Peninsula. The cached Smitswinkel Bay guide embeds this exact P9241614 exposure and identifies SAS/HMSAS Transvaal F602, the Loch-class frigate scuttled there in 1978. This supports the separate Cape Peninsula inventory association. ['Credit Peter Southwood and requested licensor identity; link the source and licence.', 'Indicate modifications, if any; source bytes are unchanged in this review.', 'Share adaptations under the same or a compatible licence. No commercial-use prohibition appears in this image-specific grant.']  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Low-quality documentary wreck-detail/context candidate. Severe green cast, haze, low contrast and black lens corners obscure detail. Not a hero image or a whole-wreck view. Supplied geographic/date/survey evidence: {}"
+  },
+  {
+    "siteId": "fbe0c7a3-dabb-472c-b089-2be96c66a258",
+    "slug": "uss-monitor",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e053f06eae981b9ffc7795040b049af67e124ade3fc7971a32098eadd2d10573.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e053f06eae981b9ffc7795040b049af67e124ade3fc7971a32098eadd2d10573.jpg",
+    "originalSha256": "afdf4e0b7857067cfa8a65dbf064b346bfaa7d7578d3e6e780567dc91ce4d3f3",
+    "alt": "USS Monitor — Underwater wreck still photograph",
+    "label": "Underwater wreck still photograph",
+    "credit": "Underwater wreck still photograph · NOAA; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-monitor/ · Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image. · Cropped/resized",
+    "creator": "NOAA; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-monitor/",
+    "license": "Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image.",
+    "source": "reviewed-context",
+    "sourcePage": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-monitor/",
+    "licenceUrl": "https://oceanexplorer.noaa.gov/faqs/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-monitor/"
+      },
+      {
+        "label": "Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image.",
+        "url": "https://oceanexplorer.noaa.gov/faqs/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] None; downloaded bytes and embedded metadata preserved.   Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single portrait underwater photograph showing wreck structure with diver as scale, blue low-light water but useful and legible, no visible copyright reservation or graphic overlay. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_evidence\": \"Source FAQ expressly covers images and videos, allowing free distribution absent noted copyright. Item caption names NOAA. Embedded Copyright field is an image-courtesy attribution, not a reservation. Original metadata retained.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"coordinate_validation\": \"Inventory pins remain unvalidated and unchanged.\", \"capture_date_note\": \"EXIF DateTimeOriginal2015:09:09 09:45:29; source processing date2019-06-06 and media upload2025 are not capture date.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "1abee175-e739-46e7-a655-9ba07b1e9e6a",
+    "slug": "vitznau-seebad-gummiberg",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f24e3179e4483b53844c0471bb1ebc82626b8527c019e41ad970292236470757.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f24e3179e4483b53844c0471bb1ebc82626b8527c019e41ad970292236470757.jpg",
+    "originalSha256": "f4d6f6a3a7f9127a7ea6ae1eb815012733f3fb366e8cf842b5cff7c6afd15d8d",
+    "alt": "Abb. 85 : Portrait einer Erdröte ( Bufo bufo ) mit wunderschönen goldenen Augen. — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/vw-see/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear close-up underwater toad portrait with golden eye, native 800×533. Useful exact-site fauna, not a wide site overview. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "a1239809-154b-40f0-8206-f36981d6d222",
+    "slug": "seebad-gummiberg-vitznau",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f24e3179e4483b53844c0471bb1ebc82626b8527c019e41ad970292236470757.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f24e3179e4483b53844c0471bb1ebc82626b8527c019e41ad970292236470757.jpg",
+    "originalSha256": "f4d6f6a3a7f9127a7ea6ae1eb815012733f3fb366e8cf842b5cff7c6afd15d8d",
+    "alt": "Abb. 85 : Portrait einer Erdröte ( Bufo bufo ) mit wunderschönen goldenen Augen. — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/vw-see/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear close-up underwater toad portrait with golden eye, native 800×533. Useful exact-site fauna, not a wide site overview. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "7b577e00-603c-4e08-8c75-681060fbb2d0",
+    "slug": "brougierpark-vitznau",
+    "src": "https://assets.diveatlas.site/site-photos/v1/59ad821cf099bb24898bfde7dade71eb08c7d76cf176217b4180636a6ff9f8da.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/59ad821cf099bb24898bfde7dade71eb08c7d76cf176217b4180636a6ff9f8da.jpg",
+    "originalSha256": "09b1f0d01ea51da7c162383e1f4af05e7a37f8d10097e94c0a5b65fb9f8e0ce9",
+    "alt": "Abb. 102 : Welche Guggemusikgruppe wurde hier versenkt? Und wem gehört der Stiefel eigentlich? — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/vw-see/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Submerged brass instrument beneath a log, diver behind for context. Native portrait 533×800, green water but clear foreground; underwater feature rather than people-primary marketing. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "bcb65f3c-3f81-40e6-81d2-ea53d6c093bd",
+    "slug": "brougier-park-unterwilen",
+    "src": "https://assets.diveatlas.site/site-photos/v1/59ad821cf099bb24898bfde7dade71eb08c7d76cf176217b4180636a6ff9f8da.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/59ad821cf099bb24898bfde7dade71eb08c7d76cf176217b4180636a6ff9f8da.jpg",
+    "originalSha256": "09b1f0d01ea51da7c162383e1f4af05e7a37f8d10097e94c0a5b65fb9f8e0ce9",
+    "alt": "Abb. 102 : Welche Guggemusikgruppe wurde hier versenkt? Und wem gehört der Stiefel eigentlich? — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/vw-see/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/vw-see/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Submerged brass instrument beneath a log, diver behind for context. Native portrait 533×800, green water but clear foreground; underwater feature rather than people-primary marketing. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "658449a3-1a8a-4404-aa51-dbc68843c2bc",
+    "slug": "zigeunerplatzli-walchwil",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3c8674118c7eb2c895e7146233dcde280d3946feaad4616dea130a1a392d0375.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3c8674118c7eb2c895e7146233dcde280d3946feaad4616dea130a1a392d0375.jpg",
+    "originalSha256": "d3c87bf8d73cd9dee3b86d85b34833ad4c37d47a70e5cd2d19a9c5ab73da7940",
+    "alt": "Abb. 58 : Ein versunkener Baum. TG 666 am Zigünerplätzli im Zugersee. — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zug/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zug/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/lake_zug/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/lake_zug/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single monochrome underwater photograph of a submerged branching tree and surface light, native 1000×669; monochrome processing originates with source. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "e0b08508-02a3-4117-80c6-b9bb215c1d4a",
+    "slug": "zigeunerplatz",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3c8674118c7eb2c895e7146233dcde280d3946feaad4616dea130a1a392d0375.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3c8674118c7eb2c895e7146233dcde280d3946feaad4616dea130a1a392d0375.jpg",
+    "originalSha256": "d3c87bf8d73cd9dee3b86d85b34833ad4c37d47a70e5cd2d19a9c5ab73da7940",
+    "alt": "Abb. 58 : Ein versunkener Baum. TG 666 am Zigünerplätzli im Zugersee. — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zug/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zug/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/lake_zug/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/lake_zug/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single monochrome underwater photograph of a submerged branching tree and surface light, native 1000×669; monochrome processing originates with source. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "10a993fd-ea75-4043-b658-98522ba89ba5",
+    "slug": "ruschlikon-pumpwerk",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4cd417d9992cd12547d3fd2d0ba4cfd422178d24348ef78c4688fb75fdd0b867.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4cd417d9992cd12547d3fd2d0ba4cfd422178d24348ef78c4688fb75fdd0b867.jpg",
+    "originalSha256": "784bc48f87e84324135d8f757550ab127144b75d9567cddcc57006144d198fbe",
+    "alt": "Abb. 10 : Das Ansaugrohr vom Pumpwerk in Rüschlikon am Zürichsee. Hier wird aus 40 Metern Wassertiefe Trinkwasser angesaugt. Erstes Foto nach zehn Jahren im Zürichsee. Der See war ausserordentlich klar, vor allem da ich an dem Freitag ganz alleine am Tauchplatz war. Zwei Sea&Sea YS-110 Blitze mit Glowdive Diffusor-Domes. Tauchgang 661: Tauchplatz Pumpwerk Rüschlikon, Zürichsee. — exact named site underwater photograph",
+    "label": "exact named site underwater photograph",
+    "credit": "exact named site underwater photograph · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zurich/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/lake_zurich/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/lake_zurich/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/lake_zurich/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single underwater view along the intake pipe with growth, native 1000×669. Green water and darkness limit distant detail; main structure is legible. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery and author imprint grant website contents under CC BY 4.0 absent exceptions. Gallery metadata identifies Bernd Nies, with first-person diving commentary and detailed capture information. No contrary rights or third-party credit for selected photograph. Optional donation request is not a licence condition.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "dc59616e-3bef-463f-bc73-aeae1077d84b",
+    "slug": "nazumado",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ce09ac24e4369379aa2bd97ac7fcdbc263afeee850745ec2479b160a2b4b9ff0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ce09ac24e4369379aa2bd97ac7fcdbc263afeee850745ec2479b160a2b4b9ff0.jpg",
+    "originalSha256": "f7f335580a3759f9dc62fd3d5c26f6335da241e38439f77369f0408177e14ceb",
+    "alt": "Nazumado underwater site context, Hachijojima — underwater site context photo",
+    "label": "underwater site context photo",
+    "credit": "underwater site context photo · Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2016/08/18/; PDL1.0. · Public Data License1.0 (PDL1.0) · Cropped/resized",
+    "creator": "Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2016/08/18/; PDL1.0.",
+    "license": "Public Data License1.0 (PDL1.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://kanto.env.go.jp/blog/2016/08/18/",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://kanto.env.go.jp/blog/2016/08/18/"
+      },
+      {
+        "label": "Public Data License1.0 (PDL1.0)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Capture date unknown; article publication2016-08-18 is not capture proof. [{\"site_id\": \"dc59616e-3bef-463f-bc73-aeae1077d84b\", \"relationship\": \"Ranger article has exact heading 八丈島・ナズマド (Hachijojima, Nazumado), calls it a representative Izu diving spot, and immediately embeds this JPEG. Inventory Nazumado identifies Hachijojima location. Named site context only; no exact underwater position, entry, pin or current condition validated.\", \"status\": \"READY_FOR_REVIEW\"}] Source-served JPEG bytes retained unchanged; not proven untouched camera original. No upscale, crop or derivative. Kanto office specific terms explicitly assign unmarked content copyright to Ministry of Environment and apply PDL1.0. Exact image07 unmarked; same article explicitly credits image05 to Miyakejima Tourism Association, not image07. Ranger article author森山希美; actual individual camera operator unspecified. Do not infer photographer from filename. Cached PDL1.0 commercial attribution grant applies absent conflicting rights. Logos, third parties and specially labelled content remain excepted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One complete underwater documentary still: rocky overhang above, boulders below, fish and scuba divers. Foreground diver/fins prominent; substantial habitat visible. Native450x337 and limited detail; context candidate for human review, not recommended as hero image. No composite, video frame, crop, map or generated content. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"Capture date unknown; article publication2016-08-18 is not capture proof.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Kanto office specific terms explicitly assign unmarked content copyright to Ministry of Environment and apply PDL1.0. Exact image07 unmarked; same article explicitly credits image05 to Miyakejima Tourism Association, not image07. Ranger article author森山希美; actual individual camera operator unspecified. Do not infer photographer from filename. Cached PDL1.0 commercial attribution grant applies absent conflicting rights. Logos, third parties and specially labelled content remain excepted.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"coordinate_validation\": \"Unvalidated, unchanged.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "3174d57b-cca9-4848-940c-b0f1a6de66d3",
+    "slug": "kumomi-ushitsuki-rock",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2dfd6e997423e74cc23e723943bbb94443b15762eedd168eb4e37f213a3311af.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2dfd6e997423e74cc23e723943bbb94443b15762eedd168eb4e37f213a3311af.jpg",
+    "originalSha256": "3864c161c39de65e651c929d148e130e8fd26311958f1137ec61bbdf559ea7cf",
+    "alt": "Kumomi Ushitsuki Rock with Mount Fuji — surface landmark context photo",
+    "label": "surface landmark context photo",
+    "credit": "surface landmark context photo · Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/fujihakone/simoda/index_2.html; PDL1.0. · Public Data License1.0 (PDL1.0) · Cropped/resized",
+    "creator": "Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/fujihakone/simoda/index_2.html; PDL1.0.",
+    "license": "Public Data License1.0 (PDL1.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://kanto.env.go.jp/blog/fujihakone/simoda/index_2.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://kanto.env.go.jp/blog/fujihakone/simoda/index_2.html"
+      },
+      {
+        "label": "Public Data License1.0 (PDL1.0)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Capture date unknown; article publication2020-12-09 is not capture proof. [{\"site_id\": \"3174d57b-cca9-4848-940c-b0f1a6de66d3\", \"relationship\": \"Source article explicitly locates the scene at Kumomi Coast, Matsuzaki, Shizuoka and identifies its paired sea stacks as 牛着岩 (Ushitsuki Rock). Both sea stacks fill the middle foreground of the photograph. Exact named surface landmark context for Kumomi Ushitsuki Rock, not a generic Fuji or regional coast substitution. Underwater location, dive entry and inventory coordinates remain unvalidated.\", \"status\": \"READY_FOR_REVIEW\"}] Source-served JPEG bytes retained unchanged; not proven untouched camera original. No upscale, crop or derivative. Kanto office terms assign unmarked content copyright to the Ministry and apply PDL1.0 with attribution; third-party and marked-content exceptions retained. Exact December 9, 2020 ranger article authored by 齋田滉大 has no image-specific third-party credit or restriction. Individual camera operator and capture date unspecified; article author is not asserted to be photographer. Source JPEG contains Photoshop metadata; preserved delivered bytes are not proven untouched camera original.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-published 3000×2000 surface photograph: both Ushitsuki sea stacks clearly legible, joining rope, open sea and Fuji in background. Good landmark context; substantial sky/water and Fuji compete for attention. Not underwater habitat, current diving-condition proof, or guaranteed hero suitability. No panel, montage, generated content, video extraction or newly cropped image. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"Capture date unknown; article publication2020-12-09 is not capture proof.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Kanto office terms assign unmarked content copyright to the Ministry and apply PDL1.0 with attribution; third-party and marked-content exceptions retained. Exact December 9, 2020 ranger article authored by 齋田滉大 has no image-specific third-party credit or restriction. Individual camera operator and capture date unspecified; article author is not asserted to be photographer. Source JPEG contains Photoshop metadata; preserved delivered bytes are not proven untouched camera original.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"coordinate_validation\": \"Unvalidated, unchanged.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "483dbea5-8c19-4bd3-bb25-e844b95168bc",
+    "slug": "ita",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ecf6612d5abdddb034c27c98aaab8d12ca1b8448809f0583fd62a16784d5e066.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ecf6612d5abdddb034c27c98aaab8d12ca1b8448809f0583fd62a16784d5e066.jpg",
+    "originalSha256": "29d14024d3285f49fe0a615c23d110bd97c1838dc3694602aa2edcd1181a245e",
+    "alt": "Ita village and cove from Kirameki-no-oka — surface landmark context photo",
+    "label": "surface landmark context photo",
+    "credit": "surface landmark context photo · Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2016/01/post-139.html; PDL1.0. · Public Data License1.0 (PDL1.0) · Cropped/resized",
+    "creator": "Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2016/01/post-139.html; PDL1.0.",
+    "license": "Public Data License1.0 (PDL1.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://kanto.env.go.jp/blog/2016/01/post-139.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://kanto.env.go.jp/blog/2016/01/post-139.html"
+      },
+      {
+        "label": "Public Data License1.0 (PDL1.0)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. EXIF timestamp2015:12:22 12:05:13 agrees with patrol narrative; timezone and camera clock not independently verified. [{\"site_id\": \"483dbea5-8c19-4bd3-bb25-e844b95168bc\", \"relationship\": \"Kanto ranger patrol article names the Ita route and captions this exact linked photograph as taken from Ita Kirameki-no-oka. Viewed photograph shows the Ita settlement, fields and its adjoining cove/beach, supporting exact Ita surface context. Not underwater habitat or a verified entry/pin. Recorded inventory coordinates remain unvalidated.\", \"status\": \"READY_FOR_REVIEW\"}] Source-served JPEG bytes retained unchanged; not proven untouched camera original. No upscale, crop or derivative. Cached Kanto-specific terms assign unmarked content copyright to Ministry of the Environment and PDL1.0 commercial reuse with attribution. Article by Wakako Hashimoto (橋本 和加子) describes her 22 December patrol and presents image without third-party credit or exception. Individual camera operator is not proven; Olympus TG-4 EXIF supports camera origin and date2015-12-22. Source-served reduced image, not untouched camera original.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-served 480×360 photograph of Ita village and its cove from Kirameki-no-oka. Native low resolution limits detail and hero suitability; coast visible beside the village rather than generic distant open sea. Not a panel, map, generated image or video frame. No cropping/upscale performed. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"EXIF timestamp2015:12:22 12:05:13 agrees with patrol narrative; timezone and camera clock not independently verified.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Cached Kanto-specific terms assign unmarked content copyright to Ministry of the Environment and PDL1.0 commercial reuse with attribution. Article by Wakako Hashimoto (橋本 和加子) describes her 22 December patrol and presents image without third-party credit or exception. Individual camera operator is not proven; Olympus TG-4 EXIF supports camera origin and date2015-12-22. Source-served reduced image, not untouched camera original.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"coordinate_validation\": \"Unvalidated, unchanged.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "2c2f5c81-04a3-4542-9b59-d4bc773c61cb",
+    "slug": "tago-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a94878eed16cd25ae51b302ef22327a663d657f3f2a104bfd1bc59cae981e3ee.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a94878eed16cd25ae51b302ef22327a663d657f3f2a104bfd1bc59cae981e3ee.jpg",
+    "originalSha256": "cfad34e9f5685b498778b7871fd66bc74bd66bb9c555a701300a27fd89fd4430",
+    "alt": "Tago Island at sunset from Otago coast — surface landmark context photo",
+    "label": "surface landmark context photo",
+    "credit": "surface landmark context photo · Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2021/10/post-1127.html; PDL1.0. · Public Data License1.0 (PDL1.0) · Cropped/resized",
+    "creator": "Source: Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/2021/10/post-1127.html; PDL1.0.",
+    "license": "Public Data License1.0 (PDL1.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://kanto.env.go.jp/blog/2021/10/post-1127.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://kanto.env.go.jp/blog/2021/10/post-1127.html"
+      },
+      {
+        "label": "Public Data License1.0 (PDL1.0)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. EXIF 2017:09:29 18:00:47; clock/timezone and photographer unverified. Published2021-10-27. [{\"site_id\": \"2c2f5c81-04a3-4542-9b59-d4bc773c61cb\", \"relationship\": \"Ranger article specifically identifies the offshore male/female rocks as Tago Island and distinguishes the foreground Meganecho rock. Municipal search result independently identifies Tago Island as this island pair; diving sources describe diving around Tago Island. Exact named island surface context only, not underwater habitat or exact entry/pin. Inventory pin remains unvalidated and unchanged.\", \"status\": \"READY_FOR_REVIEW\"}] Source-served JPEG bytes retained unchanged; not proven untouched camera original. No upscale, crop or derivative. Kanto office terms assign unmarked content to Ministry of the Environment and apply PDL1.0 with attribution/commercial reuse. Ranger article authored by 齋田滉大 presents the photograph without third-party credit or exclusion. Individual camera operator unspecified. Canon EOS Kiss X3 EXIF suggests camera origin and 2017-09-29 18:00:47, not independently verified; article publication 2021-10-27 is not capture date. Source-served file is not proven untouched camera original.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-served 1735×1300 photograph: Tago Island male/female rock silhouettes in the middle distance, foreground Meganecho rock, sea and sunset. Identifiable named island surface context; low-light silhouettes limit geological detail. Not a composite, map, generated image, video frame, or people-primary marketing photo. Original delivered bytes retained without crop/upscale. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"EXIF 2017:09:29 18:00:47; clock/timezone and photographer unverified. Published2021-10-27.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Kanto office terms assign unmarked content to Ministry of the Environment and apply PDL1.0 with attribution/commercial reuse. Ranger article authored by 齋田滉大 presents the photograph without third-party credit or exclusion. Individual camera operator unspecified. Canon EOS Kiss X3 EXIF suggests camera origin and 2017-09-29 18:00:47, not independently verified; article publication 2021-10-27 is not capture date. Source-served file is not proven untouched camera original.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"coordinate_validation\": \"Unvalidated, unchanged.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "cecdfd73-9c52-465a-a641-b0a9d3fad094",
+    "slug": "kitzeberg",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8f87322cdda6f62b45fd3559ae2a867402581b5b1a50a1687b773f7867eb6115.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8f87322cdda6f62b45fd3559ae2a867402581b5b1a50a1687b773f7867eb6115.jpg",
+    "originalSha256": "5151cb58c22df686e3cf40d1885c8f5bf1097e5eee0635b2c8b513f8b0fb2d1b",
+    "alt": "Kitzeberg beach and dive-entry context, with the source-added arrow marking the concrete-barge wreck. Source date2018-05-06. — source annotated panoramic surface entry context",
+    "label": "source annotated panoramic surface entry context",
+    "credit": "source annotated panoramic surface entry context · Lasse Kattwinkel / Tauchplatzwiki / CC BY 4.0 / https://tauchspots-kiel.org/index.php?title=File:Kitzeberg.jpg · CC BY 4.0 · Cropped/resized",
+    "creator": "Lasse Kattwinkel / Tauchplatzwiki / CC BY 4.0 / https://tauchspots-kiel.org/index.php?title=File:Kitzeberg.jpg",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://tauchspots-kiel.org/index.php?title=File:Kitzeberg.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://tauchspots-kiel.org/index.php?title=File:Kitzeberg.jpg"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Image-specific CC BY4.0 own-photograph declaration, credit Lasse Kattwinkel. Attribution, licence/source links and change notice required. Incidental people present; no independent personality-rights clearance.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Actual complete2000x836 JPEG inspected. Continuous panoramic beach/sea surface view with source-added label and arrow pointing to above-water wreck remains. Distant incidental beach visitors. No standalone underwater view, map, diagram or extracted panel. Possible stitched panorama not determinable from file; no stitching claim. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Image-specific CC BY4.0 own-photograph declaration, credit Lasse Kattwinkel. Attribution, licence/source links and change notice required. Incidental people present; no independent personality-rights clearance.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "e4f7f02a-50ca-4fca-b4ce-14c4c0ac6764",
+    "slug": "jezioro-biae-k-kartuz",
+    "src": "https://assets.diveatlas.site/site-photos/v1/11d00497144e5117d28f4e5d7e8658b79ececc1174d9c8fd9e6b3ce4d68c370f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/11d00497144e5117d28f4e5d7e8658b79ececc1174d9c8fd9e6b3ce4d68c370f.jpg",
+    "originalSha256": "fa7ee5bb60e2fc37a9fd158bd8bd79ba170d9e03e6e271f688722d5fa2a04417",
+    "alt": "https://polona.pl/preview/20211ca8-ee82-4160-afa4-786466c78d07 — historical surface lake context HELD · supplied review hold",
+    "label": "historical surface lake context HELD · supplied review hold",
+    "credit": "historical surface lake context HELD · supplied review hold · Zdzisław Marcinkowski, circa1930; Biblioteka Narodowa / Polona, F.61085/II; public domain. · Public domain (item-specific Polona statement) · Cropped/resized",
+    "creator": "Zdzisław Marcinkowski, circa1930; Biblioteka Narodowa / Polona, F.61085/II; public domain.",
+    "license": "Public domain (item-specific Polona statement)",
+    "source": "reviewed-context",
+    "sourcePage": "https://polona.pl/preview/20211ca8-ee82-4160-afa4-786466c78d07",
+    "licenceUrl": "https://polona.pl/preview/20211ca8-ee82-4160-afa4-786466c78d07",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://polona.pl/preview/20211ca8-ee82-4160-afa4-786466c78d07"
+      },
+      {
+        "label": "Public domain (item-specific Polona statement)",
+        "url": "https://polona.pl/preview/20211ca8-ee82-4160-afa4-786466c78d07"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  Polona item explicitly declares public domain and permits copying, modifying, distributing and performing the work even commercially without permission, while respecting creator moral rights. Creator Zdzisław Marcinkowski (1881–1944), circa1930; silver-gelatin photographic print 10.4 x16.8cm, F.61085/II.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete sepia-toned landscape photograph scan, with entire print border, looking from a grassy hillside across a lake and wooded peninsulas toward fields and settlement. A second water area is visible in the distance. One continuous exposure, no panel/composite, no text overlay; print wear, dust and faded contrast visible. Full source scan, not thumbnail, crop, generated image or map. No underwater view or camera-original claim. Supplied hold: HELD_EXACT_SITE_IDENTITY Supplied geographic/date/survey evidence: {\"status\": \"HELD_EXACT_SITE_IDENTITY\", \"rights_note\": \"Polona item explicitly declares public domain and permits copying, modifying, distributing and performing the work even commercially without permission, while respecting creator moral rights. Creator Zdzisław Marcinkowski (1881–1944), circa1930; silver-gelatin photographic print 10.4 x16.8cm, F.61085/II.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "b65bb1fa-c27a-488f-9be0-7bd1d3fcb43c",
+    "slug": "lands-end-cabo-san-lucas",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8594b25d76ce5d72756659d79b02ebc62586c4878f8f512433aa20d142a206bb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8594b25d76ce5d72756659d79b02ebc62586c4878f8f512433aa20d142a206bb.jpg",
+    "originalSha256": "6c1ef981027c727b878bb5e2a8c7020b7afb2174e946542b360e436e8736b7d2",
+    "alt": "El Arco and adjacent Land’s End formations seen from a boat, Cabo San Lucas. — exact site surface photograph",
+    "label": "exact site surface photograph",
+    "credit": "exact site surface photograph · Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete single photograph of arch, sea stacks and turquoise water; boat engines and rail occupy foreground and limit composition. No people, composite or extracted frame. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "202aa65c-79d6-49ec-8925-aa86de5c8e65",
+    "slug": "santa-maria-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5511f6958c8b23c4e95e5e8a729f42b867fda74eda50c88684d39184c7165896.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5511f6958c8b23c4e95e5e8a729f42b867fda74eda50c88684d39184c7165896.jpg",
+    "originalSha256": "9c0442e64775218639404bb10247b9ac7f05dc705f6f7889003c63860978cfb7",
+    "alt": "School of fish while snorkeling at Santa Maria Bay, Los Cabos. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete underwater still of a school of spotted fish with yellow tails; green-blue water and moderate haze. No identifiable people, collage, video frame or added watermark. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "83e796b6-bcf3-43ae-91ae-718c8dc7b0f7",
+    "slug": "chileno-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4cfbe3b9613316249d5d5f20e5069c38728353841a86570b2b2fbc0a17cf6b8c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4cfbe3b9613316249d5d5f20e5069c38728353841a86570b2b2fbc0a17cf6b8c.jpg",
+    "originalSha256": "82b4ee99928acd0e67aca2c7c2bc79070ea2c6bbf25a47cb76459a8027bfe839",
+    "alt": "Coral-covered rocky seabed and striped fish at Chileno Bay, Los Cabos. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2019/05/mexican-riviera-cabo-san-lucas.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete underwater still of coral-encrusted rocks and striped fish, blue-green haze and sunlight. No person, composite, extracted frame or watermark. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Cabo snorkeling trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "37c921bc-321d-4f0e-aacb-6eee0c3bf65b",
+    "slug": "los-arcos-national-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9c1f3c9a94d5482628317299f4f8cb9e480cd13cd1f91192f7864549b031b316.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9c1f3c9a94d5482628317299f4f8cb9e480cd13cd1f91192f7864549b031b316.jpg",
+    "originalSha256": "c9599e267424f7344c8c3abd3098db3d842168ada63e31500c36cbfdabfab6f7",
+    "alt": "Los Arcos rock formations off Puerto Vallarta, viewed from the coastal road. — exact site surface photograph",
+    "label": "exact site surface photograph",
+    "credit": "exact site surface photograph · Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY 4.0. Link source and licence; indicate modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2019/04/mexican-riviera-puerto-vallarta.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2019/04/mexican-riviera-puerto-vallarta.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Puerto Vallarta coastal trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 1600x1200 landscape still showing two prominent offshore rock formations, blue sea and nearshore vegetation. Small distant boats; no identifiable people, panels, map, montage or video frame. Right foreground foliage limits composition. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY 4.0, without a text-only limitation. This first-person Puerto Vallarta coastal trip presents these photographs within the author’s own itinerary. No separate third-party photographer credit, purchased-photo statement, stock credit, or conflicting image exception appears in this post. Ownership is supported by the original-trip context, not independently authenticated by EXIF. Credit Dustin Marx, link source and licence, and identify modifications. No release or endorsement asserted.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "f39796de-a2f1-5009-a792-556bad21f8c2",
+    "slug": "race-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/eae527358a767e2ca41fbbecab9bca54be4e3d5f42ef12cbabbd15999ecd6cde.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/eae527358a767e2ca41fbbecab9bca54be4e3d5f42ef12cbabbd15999ecd6cde.jpg",
+    "originalSha256": "f0ab9e6ecb30d056d1afb23792071f16eddf0152be8a95ed2b3498f20f3e76c6",
+    "alt": "Race Point, Provincetown, aerial — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · NPGallery / U.S. National Park Service; individual photographer unspecified. · Public domain:Full Granting Rights · Cropped/resized",
+    "creator": "NPGallery / U.S. National Park Service; individual photographer unspecified.",
+    "license": "Public domain:Full Granting Rights",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/c12ccfe3-155d-451f-6732-cdfd354a919e",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/c12ccfe3-155d-451f-6732-cdfd354a919e",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/c12ccfe3-155d-451f-6732-cdfd354a919e"
+      },
+      {
+        "label": "Public domain:Full Granting Rights",
+        "url": "https://npgallery.nps.gov/AssetDetail/c12ccfe3-155d-451f-6732-cdfd354a919e"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The image-specific NPGallery record states Public domain:Full Granting Rights. Generic copyright warning applies to copyrighted materials, but this individual asset has an explicit unrestricted public-domain designation. Publisher is U.S. National Park Service; individual photographer is not supplied. Do not infer a named photographer, federal employment, releases or endorsement. No publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Oblique aerial camera photograph of Race Point coastline with beach, shallow coastal water, dunes and lighthouse buildings. No map, satellite asset, composite or people-primary content. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The image-specific NPGallery record states Public domain:Full Granting Rights. Generic copyright warning applies to copyrighted materials, but this individual asset has an explicit unrestricted public-domain designation. Publisher is U.S. National Park Service; individual photographer is not supplied. Do not infer a named photographer, federal employment, releases or endorsement. No publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "d9625c1b-2e66-58a1-89f7-8978b63a15b8",
+    "slug": "lovell-s-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b92d287934d4ad7b063f26e4f49797f145ef2bb86fd9348720e08b791e3b3ef1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b92d287934d4ad7b063f26e4f49797f145ef2bb86fd9348720e08b791e3b3ef1.jpg",
+    "originalSha256": "94d17633a04fd9cc5fbcb895b19cd885bc0e16cf0b528c297ef354aecd4be0a7",
+    "alt": "View from Lovells — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · NPGallery / U.S. National Park Service; individual photographer unspecified. · Public domain:Full Granting Rights · Cropped/resized",
+    "creator": "NPGallery / U.S. National Park Service; individual photographer unspecified.",
+    "license": "Public domain:Full Granting Rights",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/1943dbde-155d-451f-6742-78fa4a95d634",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/1943dbde-155d-451f-6742-78fa4a95d634",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/1943dbde-155d-451f-6742-78fa4a95d634"
+      },
+      {
+        "label": "Public domain:Full Granting Rights",
+        "url": "https://npgallery.nps.gov/AssetDetail/1943dbde-155d-451f-6742-78fa4a95d634"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The image-specific NPGallery record states Public domain:Full Granting Rights. Generic copyright warning applies to copyrighted materials, but this individual asset has an explicit unrestricted public-domain designation. Publisher is U.S. National Park Service; individual photographer is not supplied. Do not infer a named photographer, federal employment, releases or endorsement. No publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete portrait photograph of rocky intertidal shore, breakwater, Boston harbor water and distant skyline. Small educators exploring tidepools appear in the lower portion; the substantial shore and harbor environment make this an environment record, not people-primary marketing. Native 507x565 resolution limits display size. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The image-specific NPGallery record states Public domain:Full Granting Rights. Generic copyright warning applies to copyrighted materials, but this individual asset has an explicit unrestricted public-domain designation. Publisher is U.S. National Park Service; individual photographer is not supplied. Do not infer a named photographer, federal employment, releases or endorsement. No publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "a1a8c81b-d596-4ae9-a7ba-096e52ab8db9",
+    "slug": "point-lobos-state-reserve",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9c6eb4f311cdea5aa0fba6aef5c14055a7e824b6910e1a7c008faae7375857bf.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9c6eb4f311cdea5aa0fba6aef5c14055a7e824b6910e1a7c008faae7375857bf.jpg",
+    "originalSha256": "3d7783724fa7320dd48aedf09ab872203cf7117a82e105ceb7e1ae68bbd08f92",
+    "alt": "Quiet beach at Bisby Point, Point Lobos State Park, 13 April 1938 — historical surrounding environment photograph reproduction · supplied review hold",
+    "label": "historical surrounding environment photograph reproduction · supplied review hold",
+    "credit": "historical surrounding environment photograph reproduction · supplied review hold · Joseph S. Dixon / National Park Service History Collection, negative 7443. · No Copyright - United States; other-country status undetermined; GrantingRights Unknown · Cropped/resized",
+    "creator": "Joseph S. Dixon / National Park Service History Collection, negative 7443.",
+    "license": "No Copyright - United States; other-country status undetermined; GrantingRights Unknown",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/7cf399f9-4abb-47eb-908e-0de98d838683",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/7cf399f9-4abb-47eb-908e-0de98d838683",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/7cf399f9-4abb-47eb-908e-0de98d838683"
+      },
+      {
+        "label": "No Copyright - United States; other-country status undetermined; GrantingRights Unknown",
+        "url": "https://npgallery.nps.gov/AssetDetail/7cf399f9-4abb-47eb-908e-0de98d838683"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  Item-level Public domain designation and explicit NO COPYRIGHT - UNITED STATES statement: institution believes this item is public domain under United States law but has not determined status in other countries. GrantingRights Unknown. Held for rights/provenance review; no worldwide clearance, publication permission, or federal employment inference.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-served scan of one mounted black-and-white coastal photograph, retaining catalog-card text, border, mounting corners and punched hole. A rocky cove, beach and surf occupy the sole photographic exposure. Mount corners overlap photograph corners; no panel extraction, cropping, generated content or montage. Historical reproduction, not a proven camera original. Supplied hold: HELD_RIGHTS_PROVENANCE_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_RIGHTS_PROVENANCE_REVIEW\", \"rights_note\": \"Item-level Public domain designation and explicit NO COPYRIGHT - UNITED STATES statement: institution believes this item is public domain under United States law but has not determined status in other countries. GrantingRights Unknown. Held for rights/provenance review; no worldwide clearance, publication permission, or federal employment inference.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "5df144df-5cef-432c-8159-5222cb206702",
+    "slug": "cala-sidoti",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8157a3bc2a19e66e5ce0fd8c2bc3a8bb1f2760d1d9dbcc48c4feeab52646c194.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8157a3bc2a19e66e5ce0fd8c2bc3a8bb1f2760d1d9dbcc48c4feeab52646c194.jpg",
+    "originalSha256": "46c2f00b8e45f0da3beb2e81524b2d5eef6d6b5a27c6629403c36780dde2c2b2",
+    "alt": "Rocky shoreline and clear shallow coastal water at Cala Sidoti, Ustica, with shore access and incidental bathers. — same locality surface photograph · supplied review hold",
+    "label": "same locality surface photograph · supplied review hold",
+    "credit": "same locality surface photograph · supplied review hold · Ustica Sape / Pietro Bertucci (post and attachment author), stated CC BY 3.0. Link source and licence, identify changes. Capture authorship subject to review. · CC BY 3.0 (whole-work grant; authorship review pending) · Cropped/resized",
+    "creator": "Ustica Sape / Pietro Bertucci (post and attachment author), stated CC BY 3.0. Link source and licence, identify changes. Capture authorship subject to review.",
+    "license": "CC BY 3.0 (whole-work grant; authorship review pending)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.usticasape.it/ustica-cala-sidoti-6/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.usticasape.it/ustica-cala-sidoti-6/"
+      },
+      {
+        "label": "CC BY 3.0 (whole-work grant; authorship review pending)",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  First-party post and attachment carry CC BY 3.0 whole-work footer, without text-only limitation or specific image exclusion. Pietro Bertucci is post and attachment author. Reader thanks Pietro for his daily island pictures. No explicit photographer declaration; F.C.3005 filename initials unresolved. Capture authorship and validity of supplied-image rights require human review.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete landscape photograph of a rocky shallow coastal bay, with shore-access steps and a small incidental group of bathers. Embedded www.usticasape.it watermark preserved. No panels, montage or video frame. 640x480 source-served full-size image, low resolution, not camera-original or maximum-upstream claim. Supplied hold: HELD_AUTHORSHIP_RIGHTS_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_AUTHORSHIP_RIGHTS_REVIEW\", \"rights_note\": \"First-party post and attachment carry CC BY 3.0 whole-work footer, without text-only limitation or specific image exclusion. Pietro Bertucci is post and attachment author. Reader thanks Pietro for his daily island pictures. No explicit photographer declaration; F.C.3005 filename initials unresolved. Capture authorship and validity of supplied-image rights require human review.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "d7db213f-83c1-4f46-a6ed-1dac92ab1d1b",
+    "slug": "punta-spalmatore",
+    "src": "https://assets.diveatlas.site/site-photos/v1/bb25c5d843a5c36bad796f48d94f3cbcab9352f16657d6c2e6539740aef9a04f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/bb25c5d843a5c36bad796f48d94f3cbcab9352f16657d6c2e6539740aef9a04f.jpg",
+    "originalSha256": "cbbde3a52327a49a3718e959165dc72f86f260400ad6b97a54a023e738bfa287",
+    "alt": "Complete coastal photograph of tower, rocky shoreline and sea at Punta Spalmatore. Source watermark intact. — same locality surface photograph · supplied review hold",
+    "label": "same locality surface photograph · supplied review hold",
+    "credit": "same locality surface photograph · supplied review hold · Ustica Sape / Pietro Bertucci (publisher/post byline), stated CC BY 3.0. Link source and licence and identify changes. Capture authorship unresolved. · CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending) · Cropped/resized",
+    "creator": "Ustica Sape / Pietro Bertucci (publisher/post byline), stated CC BY 3.0. Link source and licence and identify changes. Capture authorship unresolved.",
+    "license": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.usticasape.it/punta-spalmatore-torre-con-solarium/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.usticasape.it/punta-spalmatore-torre-con-solarium/"
+      },
+      {
+        "label": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename attribution unresolved. Supplied-image rights and capture authorship require human review.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete coastal photograph of tower, rocky shoreline and sea at Punta Spalmatore. Source watermark intact. Supplied hold: HELD_AUTHORSHIP_RIGHTS_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_AUTHORSHIP_RIGHTS_REVIEW\", \"rights_note\": \"First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename attribution unresolved. Supplied-image rights and capture authorship require human review.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "22334109-e031-44e3-850f-ffef60075b2a",
+    "slug": "punta-san-paolo",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ccbdfe5f24c28004d72763e34c42fdc82d528f7d7c026723b98f76002612800f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ccbdfe5f24c28004d72763e34c42fdc82d528f7d7c026723b98f76002612800f.jpg",
+    "originalSha256": "fa1e781babc14bc614f7a936eb7263bb6cbf11f57f747110a1cd8910b4780bd7",
+    "alt": "Complete photograph of sea and a rock fissure at Punta San Paolo. Source watermark intact. — same locality surface photograph · supplied review hold",
+    "label": "same locality surface photograph · supplied review hold",
+    "credit": "same locality surface photograph · supplied review hold · Ustica Sape / Pietro Bertucci (publisher/post byline), stated CC BY 3.0. Link source and licence and identify changes. Capture authorship unresolved. · CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending) · Cropped/resized",
+    "creator": "Ustica Sape / Pietro Bertucci (publisher/post byline), stated CC BY 3.0. Link source and licence and identify changes. Capture authorship unresolved.",
+    "license": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.usticasape.it/ustica-punta-san-paolo-un-cuneo-che-dividere-due-rocce-e-mantiene-sempre-visibile-la-cavita/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.usticasape.it/ustica-punta-san-paolo-un-cuneo-che-dividere-due-rocce-e-mantiene-sempre-visibile-la-cavita/"
+      },
+      {
+        "label": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename attribution unresolved. Supplied-image rights and capture authorship require human review.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete photograph of sea and a rock fissure at Punta San Paolo. Source watermark intact. Supplied hold: HELD_AUTHORSHIP_RIGHTS_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_AUTHORSHIP_RIGHTS_REVIEW\", \"rights_note\": \"First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename attribution unresolved. Supplied-image rights and capture authorship require human review.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "bbeb1010-b431-493d-8ef5-ade1258f8247",
+    "slug": "cala-giacone",
+    "src": "https://assets.diveatlas.site/site-photos/v1/111d2f3a9ed4ff3ff5729504d53252c317454a190b7ed7a278003d54b4225811.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/111d2f3a9ed4ff3ff5729504d53252c317454a190b7ed7a278003d54b4225811.jpg",
+    "originalSha256": "94a33cbbfa69f9f8224cdf3e1da7dacd680b190b66368b44d5359f48f9142d99",
+    "alt": "Complete coastal photograph of rough sea and cliff at Cala Giacone, Ustica. Website watermark intact. — same locality surface photograph · supplied review hold",
+    "label": "same locality surface photograph · supplied review hold",
+    "credit": "same locality surface photograph · supplied review hold · Ustica Sape / Pietro Bertucci (publisher). Stated CC BY 3.0; capture authorship and grant authority unresolved. · CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending) · Cropped/resized",
+    "creator": "Ustica Sape / Pietro Bertucci (publisher). Stated CC BY 3.0; capture authorship and grant authority unresolved.",
+    "license": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.usticasape.it/usticacala-giacone-mare-mosso/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.usticasape.it/usticacala-giacone-mare-mosso/"
+      },
+      {
+        "label": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename prefix unresolved. Grotta Azzurra image credits Bruno Campolo in its watermark. About page describes archival photographs and contains a copyright-takedown disclaimer of ambiguous scope; CC BY3 statement coexists with generic Tutti i diritti riservati footer. None specifically excludes these images, proves infringement, or establishes supplied-image grant authority. Human review required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete coastal photograph of rough sea and cliff at Cala Giacone, Ustica. Website watermark intact. Supplied hold: HELD_AUTHORSHIP_RIGHTS_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_AUTHORSHIP_RIGHTS_REVIEW\", \"rights_note\": \"First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename prefix unresolved. Grotta Azzurra image credits Bruno Campolo in its watermark. About page describes archival photographs and contains a copyright-takedown disclaimer of ambiguous scope; CC BY3 statement coexists with generic Tutti i diritti riservati footer. None specifically excludes these images, proves infringement, or establishes supplied-image grant authority. Human review required.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "0adc49fd-e3a0-4a07-8a7f-c48fcab397a1",
+    "slug": "grotta-azzurra",
+    "src": "https://assets.diveatlas.site/site-photos/v1/49c674dada829a33c74b4656a995bc4172e92b017da30f46ba4b71df4d4c493f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/49c674dada829a33c74b4656a995bc4172e92b017da30f46ba4b71df4d4c493f.jpg",
+    "originalSha256": "f23e996bb732a57e2c265d8b36c977964ab520d475c467b508ebe91f77bb796f",
+    "alt": "Complete photograph of rock walls and water inside Grotta Azzurra, Ustica. Watermark foto Bruno Campolo intact. — named cave environment photograph · supplied review hold",
+    "label": "named cave environment photograph · supplied review hold",
+    "credit": "named cave environment photograph · supplied review hold · Bruno Campolo (watermark); Ustica Sape / Pietro Bertucci (publisher). Stated CC BY 3.0; supplied-image grant authority unresolved. · CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending) · Cropped/resized",
+    "creator": "Bruno Campolo (watermark); Ustica Sape / Pietro Bertucci (publisher). Stated CC BY 3.0; supplied-image grant authority unresolved.",
+    "license": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.usticasape.it/ustica-interno-grotta-azzurra-9/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.usticasape.it/ustica-interno-grotta-azzurra-9/"
+      },
+      {
+        "label": "CC BY 3.0 (whole-work statement; supplied-image authorship and rights review pending)",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename prefix unresolved. Grotta Azzurra image credits Bruno Campolo in its watermark. About page describes archival photographs and contains a copyright-takedown disclaimer of ambiguous scope; CC BY3 statement coexists with generic Tutti i diritti riservati footer. None specifically excludes these images, proves infringement, or establishes supplied-image grant authority. Human review required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete photograph of rock walls and water inside Grotta Azzurra, Ustica. Watermark foto Bruno Campolo intact. Supplied hold: HELD_AUTHORSHIP_RIGHTS_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_AUTHORSHIP_RIGHTS_REVIEW\", \"rights_note\": \"First-party post has a whole-work CC BY 3.0 statement without a text-only limitation or specific image exclusion. Pietro Bertucci is publisher/post byline, not a verified capture photographer. F.C. filename prefix unresolved. Grotta Azzurra image credits Bruno Campolo in its watermark. About page describes archival photographs and contains a copyright-takedown disclaimer of ambiguous scope; CC BY3 statement coexists with generic Tutti i diritti riservati footer. None specifically excludes these images, proves infringement, or establishes supplied-image grant authority. Human review required.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "b6105f43-5480-4414-b9c8-a9762e07802c",
+    "slug": "alexander-springs-florida-united-states-of-america",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7f2ce5ada63f80e8d6ebc363f8904de031a9372d9ff408998a60974fddeeb37f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7f2ce5ada63f80e8d6ebc363f8904de031a9372d9ff408998a60974fddeeb37f.jpg",
+    "originalSha256": "7204bb68d1ef9400f13c5b82ff861c24f046a796de33168212d93a7f079f21a1",
+    "alt": "Alexander Springs, Shallows and Vent Area — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · FHWA America's Byways photo catalogue, photo 76347; photographer not specified; Public Domain. · Public Domain · Cropped/resized",
+    "creator": "FHWA America's Byways photo catalogue, photo 76347; photographer not specified; Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76347",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76347",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76347"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76347"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Exact photograph item and byway gallery explicitly declare Public Domain. Photographer and supplying organization are not specified; do not invent individual authorship or federal employment. Rights clearance relies on this image-specific public-domain assertion, not government-host identity alone. No releases or endorsement inferred. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete surface camera photograph of transparent blue spring water, visible shallow bottom and main vent area, backed by dense woodland and palms. No people, text overlay, map, satellite imagery or composite. Clear and useful environmental record. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Exact photograph item and byway gallery explicitly declare Public Domain. Photographer and supplying organization are not specified; do not invent individual authorship or federal employment. Rights clearance relies on this image-specific public-domain assertion, not government-host identity alone. No releases or endorsement inferred. No publication authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "b9c895c3-44fd-4be8-a9b0-ccbf883b6a2c",
+    "slug": "the-madeira-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ebf3d09e43c024274570bd97b540d5117e4066d6c5fad6dc6e79271715563a5f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ebf3d09e43c024274570bd97b540d5117e4066d6c5fad6dc6e79271715563a5f.jpg",
+    "originalSha256": "3d55eecb51303eafab3f177f44df5fbb1310de39aa4f46ac08629a5b68cfba65",
+    "alt": "Gold Rock Point, shoreline environment of the Madeira wreck — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · FHWA America's Byways photo catalogue, photo 73977; photographer not specified; Public Domain. · Public Domain · Cropped/resized",
+    "creator": "FHWA America's Byways photo catalogue, photo 73977; photographer not specified; Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/73977",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/73977",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/73977"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/73977"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Exact FHWA photo item and North Shore Scenic Drive gallery explicitly declare Public Domain. Photographer and supplying organization are not specified; no individual authorship or federal employment is inferred. Rights clearance relies on the specific image grant and consistent source provenance, not government-host identity alone. No releases or endorsement inferred. Publication is not authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-served surface photograph of waves breaking against a dark sheer rocky headland, trees and snow at its top, with rough Lake Superior water. Native low resolution 393 x 294 is visible but retains a useful identifiable environmental view. No text overlay, people-primary marketing, map, satellite imagery or composite. No underwater wreck detail is depicted. No crop or upscaling. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Exact FHWA photo item and North Shore Scenic Drive gallery explicitly declare Public Domain. Photographer and supplying organization are not specified; no individual authorship or federal employment is inferred. Rights clearance relies on the specific image grant and consistent source provenance, not government-host identity alone. No releases or endorsement inferred. Publication is not authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "f732ea9b-b887-43bf-b6f5-d422fce352a4",
+    "slug": "steamboat-cove",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7e553fc2018f70d7e182f6197723616bbca655e700b487f3aeea5676526861d6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7e553fc2018f70d7e182f6197723616bbca655e700b487f3aeea5676526861d6.jpg",
+    "originalSha256": "b2f7eb6836edaeba2bb186dac3f40bbdce7fbbd9d8eeeb78f60369c71b5dd55a",
+    "alt": "Steamboat Cove cleanup, Lake Havasu, September 2020: canoes, boats and the rocky cove landscape — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · Photo: Chris Wonderly / Bureau of Land Management. Public Domain (US federal work). · Public Domain (United States federal employee work) · Cropped/resized",
+    "creator": "Photo: Chris Wonderly / Bureau of Land Management. Public Domain (US federal work).",
+    "license": "Public Domain (United States federal employee work)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.blm.gov/blog/2020-09-22/lake-havasu-field-office-partners-law-enforcement-departments-sea-scouts-lake",
+    "licenceUrl": "https://www.blm.gov/info/notices/drctp-policy",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.blm.gov/blog/2020-09-22/lake-havasu-field-office-partners-law-enforcement-departments-sea-scouts-lake"
+      },
+      {
+        "label": "Public Domain (United States federal employee work)",
+        "url": "https://www.blm.gov/info/notices/drctp-policy"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Named federal author/agency image credit plus BLM first-party policy that its posted content is mostly public domain and exceptions/limited-use terms are indicated on the displaying page. Neither selected figure has a contrary third-party credit or usage restriction. Not inferred merely from .gov hosting. No release, endorsement, trademark permission or unrestricted overseas rights implied. Use factual descriptive attribution; no commercial endorsement claim. Human review and separate publication approval remain required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete surface documentary photograph showing a wide cove and rocky desert hills, two canoes recovering cleanup debris, and boats. Landscape and water dominate; useful surrounding-environment record, not people-primary marketing. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Named federal author/agency image credit plus BLM first-party policy that its posted content is mostly public domain and exceptions/limited-use terms are indicated on the displaying page. Neither selected figure has a contrary third-party credit or usage restriction. Not inferred merely from .gov hosting. No release, endorsement, trademark permission or unrestricted overseas rights implied. Use factual descriptive attribution; no commercial endorsement claim. Human review and separate publication approval remain required.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "63edf87f-0eb2-4cb5-a5bd-c51b3c408fe7",
+    "slug": "alberssee",
+    "src": "https://assets.diveatlas.site/site-photos/v1/339d423f12d1fced7b44fce14ab7430c49d5697b507722536e699e62cf08eddd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/339d423f12d1fced7b44fce14ab7430c49d5697b507722536e699e62cf08eddd.jpg",
+    "originalSha256": "7435cf7cce7ccbba72db22a3495f1f6a59e625e36257e2da9bb8becd5d4298c5",
+    "alt": "Pedal boats and wooded shore at Alberssee, Lippstadt, Germany. — surface lake context",
+    "label": "surface lake context",
+    "credit": "surface lake context · Nele Rose / KWL Kultur und Werbung Lippstadt GmbH / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Nele Rose / KWL Kultur und Werbung Lippstadt GmbH / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://pages.destination.one/de/kwl-lippstadt/streaming/detail/POI/p_100208268/strandbad-am-alberssee",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://pages.destination.one/de/kwl-lippstadt/streaming/detail/POI/p_100208268/strandbad-am-alberssee"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial reuse and adaptations require attribution, licence link, change indication and applicable ShareAlike. No separate model or endorsement rights asserted. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Source photograph visually inspected through its local downscaled review derivative. Shows lake water, moored pedal boats, wooded shoreline and a red elevated lifeguard structure, with soft foreground foliage and a dock edge. No prominent people, watermark, overlay, map, composite or video frame. Useful present-day-style whole-lake surface context; capture date unknown. Original delivered bytes remain unchanged. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial reuse and adaptations require attribution, licence link, change indication and applicable ShareAlike. No separate model or endorsement rights asserted. No publication authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "90c53dfe-0509-4ed8-8566-ac683d85a68b",
+    "slug": "flaming-gorge-visitor-center",
+    "src": "https://assets.diveatlas.site/site-photos/v1/12d2d49d17e858646171689fce898183b2184b2c66070f139f917bdf6f3ccc22.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/12d2d49d17e858646171689fce898183b2184b2c66070f139f917bdf6f3ccc22.jpg",
+    "originalSha256": "0d76704adb3ffc6c4ab6fcf2d9fcaabcb8f80cddf6aa557296e2bbbaa23f1855",
+    "alt": "Flaming Gorge Dam roadway and canyon, surroundings of the visitor-center dive-site record — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · Courtesy of Ashley National Forest, via FHWA America's Byways photo 74601; individual photographer not specified; Public Domain. · Public Domain · Cropped/resized",
+    "creator": "Courtesy of Ashley National Forest, via FHWA America's Byways photo 74601; individual photographer not specified; Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/74601",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/74601",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/74601"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/74601"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA photo item and Flaming Gorge-Uintas gallery explicitly declare Public Domain and credit Ashley National Forest as supplier. Individual photographer is not specified; no individual authorship or federal employment is inferred. Qualification relies on the explicit image-level grant and consistent supplied provenance, not government-host identity alone. No releases or endorsement inferred. Publication is not authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete source-served surface photograph showing the top roadway and structure of Flaming Gorge Dam, curving road approach, rocky canyon slopes and trees. No clearly visible water or underwater detail. Useful surrounding-environment record, not a dive-entry photograph. Native 3300 x 2209 resolution. No text overlay, people-primary marketing, map, satellite imagery or composite. Original bytes retained without crop, upscaling or edits; separate downscaled preview only. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA photo item and Flaming Gorge-Uintas gallery explicitly declare Public Domain and credit Ashley National Forest as supplier. Individual photographer is not specified; no individual authorship or federal employment is inferred. Qualification relies on the explicit image-level grant and consistent supplied provenance, not government-host identity alone. No releases or endorsement inferred. Publication is not authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "6c37ab34-c0ea-422a-870b-adb3bd95da3a",
+    "slug": "the-gazzle",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d3663dee73501dc224a7542c71f4dba8531b3220304e8cd2aa8ef8b65abe1c2f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d3663dee73501dc224a7542c71f4dba8531b3220304e8cd2aa8ef8b65abe1c2f.jpg",
+    "originalSha256": "4a6a33eb9f6bdc762118fba6cca0b6c4e2bdf91fef1cdb430c27b13833624500",
+    "alt": "Rocky cove and coastal waters at Towan Head, Newquay, Cornwall, providing surroundings context for The Gazzle. Source EXIF records 4 September 2007; not independently validated. — named coastal surroundings",
+    "label": "named coastal surroundings",
+    "credit": "named coastal surroundings · Photoeverywhere.co.uk / CC BY 2.5, with hyperlinks to https://photoeverywhere.co.uk/ and https://creativecommons.org/licenses/by/2.5/. Indicate future modifications. · CC BY 2.5 · Cropped/resized",
+    "creator": "Photoeverywhere.co.uk / CC BY 2.5, with hyperlinks to https://photoeverywhere.co.uk/ and https://creativecommons.org/licenses/by/2.5/. Indicate future modifications.",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.photoeverywhere.co.uk/britain/cornwall/slides/towan_head_newquay.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.photoeverywhere.co.uk/britain/cornwall/slides/towan_head_newquay.htm"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Saved general image-use terms affirm Photoeverywhere is the copyright holder of the available digital files and original film slides where applicable. Embedded Copyright identifies photoeverywhere.co.uk and Creative Commons travel stock photos. No model or property releases provided. The separately labelled premium iStock recommended images and advertisements on the item page were not acquired and are not covered by this item grant. General all-rights-reserved website footer is qualified by the specific image download CC grant.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A continuous landscape photograph of a rocky cove, grassy cliff edges, clear green-blue seawater and the low Towan Head promontory. Useful visible shoreline and water context; no prominent people, text overlay, watermark, map, panel, satellite view or illustration. No visual sign of a montage. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Saved general image-use terms affirm Photoeverywhere is the copyright holder of the available digital files and original film slides where applicable. Embedded Copyright identifies photoeverywhere.co.uk and Creative Commons travel stock photos. No model or property releases provided. The separately labelled premium iStock recommended images and advertisements on the item page were not acquired and are not covered by this item grant. General all-rights-reserved website footer is qualified by the specific image download CC grant.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "aadd3791-fe23-413f-b278-ce2c37a930b0",
+    "slug": "candle-rock",
+    "src": "https://assets.diveatlas.site/site-photos/v1/584e5809cbfda0babbd50715540441f1e6108f282b7c54e84f9bc2fb40adf37a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/584e5809cbfda0babbd50715540441f1e6108f282b7c54e84f9bc2fb40adf37a.jpg",
+    "originalSha256": "4af71f85e9ad52c3acf59ef6d956723941815b98f4bfd05970f8eebc85fa3b23",
+    "alt": "Candle Rock (Rosoku-iwa), off Yoichi on Hokkaido’s Shakotan Peninsula, with surrounding sea and an incidental kayaker. 15 October 2022. — named coastal landmark",
+    "label": "named coastal landmark",
+    "credit": "named coastal landmark · Photo: Rob Thomson (HokkaidoWilds.org), “Candle Rock and Furubira Coast”, CC BY-SA 4.0. Link source and licence; indicate modifications and apply ShareAlike to adaptations. Original source-served bytes unchanged. · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Photo: Rob Thomson (HokkaidoWilds.org), “Candle Rock and Furubira Coast”, CC BY-SA 4.0. Link source and licence; indicate modifications and apply ShareAlike to adaptations. Original source-served bytes unchanged.",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://hokkaidowilds.org/water/candle-rock-and-furubira-coast",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://hokkaidowilds.org/water/candle-rock-and-furubira-coast"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Explicit first-party commercial photographic grant, supported by matching embedded Artist/Copyright. No model releases; incidental people must not imply endorsement. No model release asserted; do not imply participant endorsement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear single landscape photograph of the tall Candle Rock pinnacle, its rocky island base and surrounding sea. One small rear-facing kayaker adds scale; no visible face. No composite, text overlay, map, satellite image or illustration. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Explicit first-party commercial photographic grant, supported by matching embedded Artist/Copyright. No model releases; incidental people must not imply endorsement. No model release asserted; do not imply participant endorsement.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "711244a9-4474-47ff-a01f-31ace8f73781",
+    "slug": "mikuni-takara-island-west",
+    "src": "https://assets.diveatlas.site/site-photos/v1/63435ce53bb4132a2ef65a1e1be422b3829258f050fff58b041974b5219ca48b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/63435ce53bb4132a2ef65a1e1be422b3829258f050fff58b041974b5219ca48b.jpg",
+    "originalSha256": "6f63575518831174de366d136456641cda082ee200b07e76fd4b241ae3358613",
+    "alt": "Columnar cliff and sheltered coastal water at Takara-jima (Bikuni Treasure Island), Hokkaido, with two incidental kayakers. 12 June 2022. Island-surroundings context, not the precise western underwater dive route. — documented island surroundings",
+    "label": "documented island surroundings",
+    "credit": "documented island surroundings · Photo: Rob Thomson (HokkaidoWilds.org), “Shakotan Coast Sea Kayaking (Irika to Bikuni)”, CC BY-SA 4.0. Link source and licence; indicate modifications and apply ShareAlike to adaptations. Original source-served bytes unchanged. · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Photo: Rob Thomson (HokkaidoWilds.org), “Shakotan Coast Sea Kayaking (Irika to Bikuni)”, CC BY-SA 4.0. Link source and licence; indicate modifications and apply ShareAlike to adaptations. Original source-served bytes unchanged.",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://hokkaidowilds.org/water/shakotan-coast-sea-kayaking-irika-to-bikuni",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://hokkaidowilds.org/water/shakotan-coast-sea-kayaking-irika-to-bikuni"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Explicit first-party commercial photographic grant, supported by matching embedded Artist/Copyright. No model releases; incidental people must not imply endorsement. Source states it has no model releases and asks to be contacted before reuse where someone is clearly identifiable. No such contact has occurred. Documentary review only; no advertising, endorsement or publication permission asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear single photograph of Takara-jima columnar cliff, rocky shoreline and transparent seawater. The cliff dominates the frame; two incidental kayakers wearing hats provide scale. One small side/profile face is partly visible and shaded. Not a people-primary marketing image, composite, map or illustration. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Explicit first-party commercial photographic grant, supported by matching embedded Artist/Copyright. No model releases; incidental people must not imply endorsement. Source states it has no model releases and asks to be contacted before reuse where someone is clearly identifiable. No such contact has occurred. Documentary review only; no advertising, endorsement or publication permission asserted.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "f39f9cb3-7e6e-4d5e-9971-004cbd1d20d2",
+    "slug": "john-pennekamp-state-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/abea6adcd50eda92b9855e92b045b66e600ae9e8b24ee05506251805ab08e823.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/abea6adcd50eda92b9855e92b045b66e600ae9e8b24ee05506251805ab08e823.jpg",
+    "originalSha256": "b48b05cdfb4b78a472998bc4cd8d7d6aef607ee4ba4494ed0b5cf2baa9631e85",
+    "alt": "Roadside approach and directional sign for John Pennekamp Coral Reef State Park — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · Not specified in FHWA item; via FHWA America's Byways photo 76002; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "Not specified in FHWA item; via FHWA America's Byways photo 76002; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76002",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76002",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76002"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/76002"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete color surface photograph of the John Pennekamp Coral Reef State Park directional sign above the road, with motorcycle, boat trailer, roadside vegetation and utility poles. The sign is readable and the park approach is the primary subject. People are incidental. This is a useful environment/approach record, not an underwater or exact shore-entry view. Native 2100 x 1575 pixels. No montage, satellite, map, text overlay or modern asset editing. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "6a31930a-732b-41d1-8262-0632373ed801",
+    "slug": "christ-of-the-abyss",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0d47265c1aa2a2c61b65abfb8c73150904ffd0aae5de3e051eb0f0968ad2567b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0d47265c1aa2a2c61b65abfb8c73150904ffd0aae5de3e051eb0f0968ad2567b.jpg",
+    "originalSha256": "f4547b536dcf415dc7236abccd42b5d212eb88aa573198b51c487aeee6871ed6",
+    "alt": "Christ of the Deep / Christ of the Abyss statue at Key Largo Dry Rocks, with fish and a diver — underwater site photograph",
+    "label": "underwater site photograph",
+    "credit": "underwater site photograph · Individual photographer not specified; supplied credit: State Library and Archives of Florida's Photostream; via FHWA America's Byways photo 80990; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "Individual photographer not specified; supplied credit: State Library and Archives of Florida's Photostream; via FHWA America's Byways photo 80990; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. The depicted sculpture has its own authorship (Guido Galletti); the photo-level Public Domain assertion does not by itself adjudicate any separate rights in the sculpture. Human review should consider the proposed use.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete native 600 x 408 color underwater photograph of the encrusted Christ statue, fish and one diver partly obscured behind the statue. The distinctive statue is primary; it is not a people-primary marketing image. Low native resolution is useful for a small site photograph but unsuitable for large display. No montage, map or satellite imagery. The statue extends beyond the camera framing; this is the complete supplied photographic file, not a panel extraction. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. The depicted sculpture has its own authorship (Guido Galletti); the photo-level Public Domain assertion does not by itself adjudicate any separate rights in the sculpture. Human review should consider the proposed use.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "ab29b987-084a-40d2-84fe-364301d81cd2",
+    "slug": "christ-of-the-abyss-key-largo-dry-rocks",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0d47265c1aa2a2c61b65abfb8c73150904ffd0aae5de3e051eb0f0968ad2567b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0d47265c1aa2a2c61b65abfb8c73150904ffd0aae5de3e051eb0f0968ad2567b.jpg",
+    "originalSha256": "f4547b536dcf415dc7236abccd42b5d212eb88aa573198b51c487aeee6871ed6",
+    "alt": "Christ of the Deep / Christ of the Abyss statue at Key Largo Dry Rocks, with fish and a diver — underwater site photograph",
+    "label": "underwater site photograph",
+    "credit": "underwater site photograph · Individual photographer not specified; supplied credit: State Library and Archives of Florida's Photostream; via FHWA America's Byways photo 80990; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "Individual photographer not specified; supplied credit: State Library and Archives of Florida's Photostream; via FHWA America's Byways photo 80990; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80990"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. The depicted sculpture has its own authorship (Guido Galletti); the photo-level Public Domain assertion does not by itself adjudicate any separate rights in the sculpture. Human review should consider the proposed use.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete native 600 x 408 color underwater photograph of the encrusted Christ statue, fish and one diver partly obscured behind the statue. The distinctive statue is primary; it is not a people-primary marketing image. Low native resolution is useful for a small site photograph but unsuitable for large display. No montage, map or satellite imagery. The statue extends beyond the camera framing; this is the complete supplied photographic file, not a panel extraction. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. The depicted sculpture has its own authorship (Guido Galletti); the photo-level Public Domain assertion does not by itself adjudicate any separate rights in the sculpture. Human review should consider the proposed use.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "9da9e286-b3c4-4bca-8b8e-6aed5a718587",
+    "slug": "thunderbolt",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9328cfc876383f6c38be20b47ff8244a0ada718a45f520d433c4b240150dfcfc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9328cfc876383f6c38be20b47ff8244a0ada718a45f520d433c4b240150dfcfc.jpg",
+    "originalSha256": "014b42ceaa531d41a774fcea11718328ec38d52eee513ef2949e9a1bc8e384cf",
+    "alt": "Goliath grouper among encrusted structure at the Thunderbolt wreck off Marathon, Florida — underwater site photograph",
+    "label": "underwater site photograph",
+    "credit": "underwater site photograph · Flickr: Thespis377, as credited by FHWA; legal name not specified; via FHWA America's Byways photo 80989; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "Flickr: Thespis377, as credited by FHWA; legal name not specified; via FHWA America's Byways photo 80989; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80989",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80989",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80989"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/80989"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. FHWA credits Flickr user Thespis377. No Flickr page or media was retrieved; existing source-access holds remain. No conflicting photo licence was found in the inspected item.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete native 500 x 375 color underwater photograph showing a large grouper beneath encrusted wreck structure and alongside vertical marine-encrusted lines. No person is primary. The source caption identifies the wreck. Low native resolution is useful for a small environment record but unsuitable for large display. No montage, map, satellite image or panel crop. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page and its Florida Keys corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized. FHWA credits Flickr user Thespis377. No Flickr page or media was retrieved; existing source-access holds remain. No conflicting photo licence was found in the inspected item.\", \"depiction_scope\": \"Named site, feature or landmark depicted; see image-specific limits. No precise entry or pin validation.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "8eb40a28-7eee-43df-8ae0-07108c470d19",
+    "slug": "clarks-hill-east-dam",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6ea01968b0e9695f58c5a101fe706b0b5b7f18fc9ad3cd4c617840eca685deb9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6ea01968b0e9695f58c5a101fe706b0b5b7f18fc9ad3cd4c617840eca685deb9.jpg",
+    "originalSha256": "3d9e3c4f5e8bc38f1fc1613453cd912ba152694e53c60424e996b958776ee9df",
+    "alt": "Clarks Hill / J. Strom Thurmond Dam and reservoir viewed from the eastern visitor-center shore — surrounding environment surface photograph",
+    "label": "surrounding environment surface photograph",
+    "credit": "surrounding environment surface photograph · K. Armstrong, as credited by FHWA; via FHWA America's Byways photo 52444; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "K. Armstrong, as credited by FHWA; via FHWA America's Byways photo 52444; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/52444",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/52444",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/52444"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/52444"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page and its Savannah River corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete native 640 x 480 surface photograph showing the dam and rocky embankment at left, reservoir across the centre, wooded far shore, and visitor-area pavement and parking in the foreground. A small standing person and part of a motorcycle are incidental. The dam and reservoir environment are primary. Useful contextual photograph at native low resolution; not an underwater photograph or validated entry depiction. No montage, panel extraction, satellite image or map. Original source bytes retained, no upscaling or crop. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page and its Savannah River corridor gallery explicitly state Public Domain for this specific photograph and link the delivered Download Original. Qualification relies on this per-image assertion, not the federal host or an assumption of federal authorship. Supplied credit is preserved exactly; no individual authorship beyond that credit is inferred. Underlying photographer rights have not been independently verified with the credited contributor. No model/property/artwork release or endorsement is asserted. No publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "ba297e3c-e874-45b7-94dd-4f04e3e102f8",
+    "slug": "deer-lake-fish-dive-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/77a24fb767004080a667785e7bf3c34ef208a1e6e006cb650ecfdbe0dee9714f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/77a24fb767004080a667785e7bf3c34ef208a1e6e006cb650ecfdbe0dee9714f.jpg",
+    "originalSha256": "2a3a5f917c4bd50022dc3100171d321be34f59f0eddee37958e3ca45d990b68f",
+    "alt": "Archival coastal context: Deer Lake State Park shoreline beside the offshore Deer Lake Fish/Dive Reef locality — archival coastal context surface photograph",
+    "label": "archival coastal context surface photograph",
+    "credit": "archival coastal context surface photograph · SoWal.com; via FHWA America's Byways photo 82475; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "SoWal.com; via FHWA America's Byways photo 82475; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82475",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82475",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82475"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82475"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The exact FHWA item page states “Public Domain. SoWal.com”. Qualification relies on that image-specific assertion, not on the federal host or presumed federal authorship. SoWal.com is preserved as the supplied third-party credit; individual photographer is unspecified. No contrary licence for these items was found in locally available provenance. No independent upstream contributor licence verification, release or endorsement is claimed. Human review remains pending and publication is not authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 500 x 338 camera photograph of a park-boundary sign, bright sun, white-sand beach and Gulf shoreline. The beach is primary; the sign provides useful park context. No people-primary marketing content, montage, extracted panel, map or satellite product. Native low-resolution detail is useful for small contextual display. The reef and dive entry are not visible. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact FHWA item page states “Public Domain. SoWal.com”. Qualification relies on that image-specific assertion, not on the federal host or presumed federal authorship. SoWal.com is preserved as the supplied third-party credit; individual photographer is unspecified. No contrary licence for these items was found in locally available provenance. No independent upstream contributor licence verification, release or endorsement is claimed. Human review remains pending and publication is not authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "eaf3c3bb-3142-4404-8865-1e91afc9c3c4",
+    "slug": "makena-landing",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5f23587fdb235e6e31117c2cd5e6ed3972ba2c25d1a7c6a02fcbd98deabb5bfc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5f23587fdb235e6e31117c2cd5e6ed3972ba2c25d1a7c6a02fcbd98deabb5bfc.jpg",
+    "originalSha256": "18596882f1021deb1aea697009757f1979af24a7375d35da3f047cb88fb2dd70",
+    "alt": "Undated historical Makena coastal inlet, Maui, with Molokini Island in the background. Exact Makena Landing relationship unverified. — historical surface context identity held · supplied review hold",
+    "label": "historical surface context identity held · supplied review hold",
+    "credit": "historical surface context identity held · supplied review hold · George Bacon Collection, Hawaii State Archives. PPBAC-2-12-001. · Institutional collection-specific unrestricted-use statement; general rights caveats preserved · Cropped/resized",
+    "creator": "George Bacon Collection, Hawaii State Archives. PPBAC-2-12-001.",
+    "license": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+    "source": "reviewed-context",
+    "sourcePage": "https://digitalarchives.hawaii.gov/item/ark:70111/1wr6",
+    "licenceUrl": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://digitalarchives.hawaii.gov/item/ark:70111/1wr6"
+      },
+      {
+        "label": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+        "url": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  Archive general terms state that federal copyright/privacy restrictions may apply, that users resolve rights questions, and that the archive cannot give or deny permission to publish/distribute items. Preserve supplied credit and collection provenance. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One complete black-and-white coastal photographic print, original white print border and archive calibration/color ruler above it. Rocky sheltered inlet, nearshore water, trees, small shoreline building and item-identified Molokini offshore. Tiny figures near building may be incidental people. Supplied hold: HELD_SITE_IDENTITY Supplied geographic/date/survey evidence: {\"status\": \"HELD_SITE_IDENTITY\", \"rights_note\": \"Archive general terms state that federal copyright/privacy restrictions may apply, that users resolve rights questions, and that the archive cannot give or deny permission to publish/distribute items. Preserve supplied credit and collection provenance. No publication authorized.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "2399bdee-28b7-49e9-8b73-6bb273e1519e",
+    "slug": "entre-montes",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a842f848b50e04cbcf068213e68c76e6fbd1b4fd4bb6079a65e6581c18a0ca30.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a842f848b50e04cbcf068213e68c76e6fbd1b4fd4bb6079a65e6581c18a0ca30.jpg",
+    "originalSha256": "4eb93ff2b6a61583948d562ef5a659f23732c66aaeeb447f58d78b258287fed6",
+    "alt": "Moray eel (Muraena augusti), Monte da Guia, Faial Island, Azores, Portugal — surrounding underwater environment",
+    "label": "surrounding underwater environment",
+    "credit": "surrounding underwater environment · Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [{\"site_id\": \"2399bdee-28b7-49e9-8b73-6bb273e1519e\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"surrounding_underwater_environment\", \"relationship\": \"Official Visit Azores identifies Baía de Entre Montes as the sheltered bay dive beginning along the wall of Guia Hill (Monte da Guia). The photographer names Monte da Guia, Faial in the source caption. This supports a documented parent-coast surrounding-underwater-environment relationship, not a claim that the exposure was taken on the exact Entre Montes route. Neither same-island proximity nor inventory coordinates are used as the identity proof.\", \"caveat\": \"Monte da Guia surrounding underwater context only. Exact capture location within Baía de Entre Montes, dive route, entry, depth and conditions are unverified. The 2020 photograph is a marine-life close-up, not a site overview. Inventory coordinates remain unvalidated and unchanged.\"}] Downloaded source bytes unchanged. Credit creator, source and licence; indicate modifications and preserve applicable share-alike obligations for adaptations. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A complete single underwater photograph of a dark moray eel emerging from a crevice in encrusted rock, with visible eye, jaws and surrounding substrate. The delivered image is useful at 1024×682 despite dark shadows and grain. No visible watermark, text overlay, border, collage, people-primary marketing, map or satellite component. Image inspected directly at delivered dimensions; no crop, panel extraction or upscaling performed. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Credit creator, source and licence; indicate modifications and preserve applicable share-alike obligations for adaptations. No model/property release or endorsement asserted.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "7bacce41-e7ea-4ac1-a06a-b251c6a97f00",
+    "slug": "seahorse-snorkel-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5ec1f590f41deb8f3ab04aacb7f6f51a6e11eccd2f7cab722c1dcca1267c775a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5ec1f590f41deb8f3ab04aacb7f6f51a6e11eccd2f7cab722c1dcca1267c775a.jpg",
+    "originalSha256": "3877b2a1ca539136d263e3a3a1f65251881c1fed24f727f711219b9cb215f262",
+    "alt": "Archival coastal setting of Seahorse Snorkel Reef: boardwalk and dunes in Topsail Hill Preserve State Park. The offshore reef is not visible. — archival coastal context surface photograph",
+    "label": "archival coastal context surface photograph",
+    "credit": "archival coastal context surface photograph · SoWal.com; via FHWA America's Byways photo 82468; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "SoWal.com; via FHWA America's Byways photo 82468; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82468",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82468",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82468"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82468"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 500x338 surface photograph of a curved wooden boardwalk through coastal sand dunes, scrub and dune habitat. Warm evening light. No water, reef or exact offshore entry is visible. No primary people, montage, map, satellite asset or extracted panel. Native resolution is low but the setting is legible. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "a206a70f-2063-470a-88a3-28d4c4d8dccd",
+    "slug": "turtle-snorkel-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a07b4af40ab9d4180cbe3606205458d72cd764f1785cfb8825e30dfa45d2d8d8.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a07b4af40ab9d4180cbe3606205458d72cd764f1785cfb8825e30dfa45d2d8d8.jpg",
+    "originalSha256": "90bbd400e343846ea603b627d12d5e5157d2b9afabc40d983cc398ccc7eda82c",
+    "alt": "Archival coastal setting of Turtle Snorkel Reef and the Underwater Museum of Art: dunes, trail and Gulf horizon at Grayton Beach State Park. Neither offshore site is visible. — archival coastal context surface photograph",
+    "label": "archival coastal context surface photograph",
+    "credit": "archival coastal context surface photograph · SoWal.com; via FHWA America's Byways photo 82472; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "SoWal.com; via FHWA America's Byways photo 82472; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 500x338 surface landscape photograph of a trail through Grayton Beach State Park dunes, vegetation and outfall/pond edge, with the sandy coast and Gulf horizon beyond. Landscape is primary; tiny distant beachgoers do not dominate. Not a montage, map, satellite asset or extracted panel. Native low resolution is disclosed. No reef, underwater artwork or exact dive entry is depicted. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "3f354de1-489b-417e-8199-1a869a882aac",
+    "slug": "underwater-museum-of-art",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a07b4af40ab9d4180cbe3606205458d72cd764f1785cfb8825e30dfa45d2d8d8.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a07b4af40ab9d4180cbe3606205458d72cd764f1785cfb8825e30dfa45d2d8d8.jpg",
+    "originalSha256": "90bbd400e343846ea603b627d12d5e5157d2b9afabc40d983cc398ccc7eda82c",
+    "alt": "Archival coastal setting of Turtle Snorkel Reef and the Underwater Museum of Art: dunes, trail and Gulf horizon at Grayton Beach State Park. Neither offshore site is visible. — archival coastal context surface photograph",
+    "label": "archival coastal context surface photograph",
+    "credit": "archival coastal context surface photograph · SoWal.com; via FHWA America's Byways photo 82472; item marked Public Domain. · Public Domain · Cropped/resized",
+    "creator": "SoWal.com; via FHWA America's Byways photo 82472; item marked Public Domain.",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/82472"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 500x338 surface landscape photograph of a trail through Grayton Beach State Park dunes, vegetation and outfall/pond edge, with the sandy coast and Gulf horizon beyond. Landscape is primary; tiny distant beachgoers do not dominate. Not a montage, map, satellite asset or extracted panel. Native low resolution is disclosed. No reef, underwater artwork or exact dive entry is depicted. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Exact FHWA item page states Public Domain. SoWal.com. The explicit image-specific assertion is the commercial-use basis; federal hosting does not establish federal authorship. Supplied SoWal.com third-party credit is retained, individual photographer unspecified. No contradictory licence found in available local provenance. Independent upstream contributor licence/release not verified. Human review remains pending and no publication is authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "05edfa71-e4c2-4d64-9c35-ff974a837d10",
+    "slug": "olowalu-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a5e1811a10b8442fcf0e80229fb3736c7756809fa4af4a7f5008dd9480aae950.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a5e1811a10b8442fcf0e80229fb3736c7756809fa4af4a7f5008dd9480aae950.jpg",
+    "originalSha256": "47815a13ca01d8ba537448f767a48a2d99b422cf185f199611d007e62f3f4f84",
+    "alt": "Undated historical shoreline near Olowalu, Maui. Exact coast/camera position and relationship to Olowalu Beach are unresolved. — historical surface context identity held · supplied review hold",
+    "label": "historical surface context identity held · supplied review hold",
+    "credit": "historical surface context identity held · supplied review hold · George Bacon Collection, Hawaii State Archives. PPBAC-2-12-002. · Institutional collection-specific unrestricted-use statement; general rights caveats preserved · Cropped/resized",
+    "creator": "George Bacon Collection, Hawaii State Archives. PPBAC-2-12-002.",
+    "license": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+    "source": "reviewed-context",
+    "sourcePage": "https://digitalarchives.hawaii.gov/item/ark:70111/1wr7",
+    "licenceUrl": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://digitalarchives.hawaii.gov/item/ark:70111/1wr7"
+      },
+      {
+        "label": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+        "url": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  []  General archive caveat says federal copyright/privacy restrictions may apply and users resolve rights. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete black-and-white photograph of a sandy shoreline and bay, with palm tree in foreground, nearshore water, long visible coast, coastal hills and cloud-obscured mountain ridges. No main human subject. Supplied hold: HELD_SITE_IDENTITY Supplied geographic/date/survey evidence: {\"status\": \"HELD_SITE_IDENTITY\", \"rights_note\": \"General archive caveat says federal copyright/privacy restrictions may apply and users resolve rights. No publication authorized.\", \"depiction_scope\": \"HELD potential surroundings; suitability and all stated restrictions remain unresolved.\", \"review_disposition\": \"HELD\"}"
+  },
+  {
+    "siteId": "e618f974-c49f-449d-b837-5b68f2458bc8",
+    "slug": "airplane-wreck-santa-martha",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c189453da6fcd1a83420007d040b635ce677a66e7b5ff2fe2a4fc5eb3615da2a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c189453da6fcd1a83420007d040b635ce677a66e7b5ff2fe2a4fc5eb3615da2a.jpg",
+    "originalSha256": "5b4d672597d860e243361e12a51164a0cea3543f494e4c6b58eee65a581bad1d",
+    "alt": "Santa Martha Bay from its overlook. Surrounding-locality context for Airplane Wreck (Santa Martha), not the wreck or an entry photograph. — contextual surface photograph",
+    "label": "contextual surface photograph",
+    "credit": "contextual surface photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source and licence; indicate modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source and licence; indicate modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2022/12/santa-martha-bay-view-overlook.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2022/12/santa-martha-bay-view-overlook.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY4.0 without a text-only limitation. This first-person car-trip post presents the selected photograph as part of that visit. No separate photographer credit, bought-photo statement, stock-photo exception or conflicting image notice appears. Authorship is supported by the first-party narrative and work-level grant, not independently proven by EXIF. Attribute Dustin Marx, link source and licence, and identify modifications. No endorsement or property/model release asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete 3648x2736 landscape photograph showing Santa Martha Bay’s winding inland water, vegetated shores and hills, moored small boats, a dock and distant buildings. No people-primary content, panels, collage, map or video frame. It faces the inland bay: the offshore aircraft wreck and its breakwaters/entry are not identified or shown. Delivered bytes unchanged. The JPEG/MPO container also embeds a 1440x1080 preview of the same scene (visually checked, full-image pHash distance0), not a second photograph. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses Observations of the Practical Kind by Dustin Marx under CC BY4.0 without a text-only limitation. This first-person car-trip post presents the selected photograph as part of that visit. No separate photographer credit, bought-photo statement, stock-photo exception or conflicting image notice appears. Authorship is supported by the first-party narrative and work-level grant, not independently proven by EXIF. Attribute Dustin Marx, link source and licence, and identify modifications. No endorsement or property/model release asserted.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "2bbdb95d-3a33-41b4-85cb-13bb41b7cd4b",
+    "slug": "wailea",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f7a7c2b38c7197e962512660870637b6f35587cc015f1710c1da1f611e7a4cb6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f7a7c2b38c7197e962512660870637b6f35587cc015f1710c1da1f611e7a4cb6.jpg",
+    "originalSha256": "d4c6267fb5d6621801d5d87cd5177a1b7658be44045b03fbe1ac6f974d796989",
+    "alt": "Historical Wailea shoreline, Maui, as identified by the Hawaii State Archives. Surrounding-environment context, not an exact modern reef or dive-entry photograph. — historical contextual surface photograph",
+    "label": "historical contextual surface photograph",
+    "credit": "historical contextual surface photograph · George Bacon Collection, Hawaii State Archives. PPBAC-2-13-018. · Institutional collection-specific unrestricted-use statement; general rights caveats preserved · Cropped/resized",
+    "creator": "George Bacon Collection, Hawaii State Archives. PPBAC-2-13-018.",
+    "license": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+    "source": "reviewed-context",
+    "sourcePage": "https://digitalarchives.hawaii.gov/item/ark:70111/1wrB",
+    "licenceUrl": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://digitalarchives.hawaii.gov/item/ark:70111/1wrB"
+      },
+      {
+        "label": "Institutional collection-specific unrestricted-use statement; general rights caveats preserved",
+        "url": "https://ags.hawaii.gov/wp-content/uploads/2020/01/hsa_Photograph-Collection-Finding-Aid.pdf"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  General archive caveat says federal copyright/privacy restrictions may apply and users resolve rights. The archive does not independently settle all copyright/privacy issues. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete black-and-white photographic print showing a sandy beach, nearshore water and small waves, foreground tree trunks and overhanging branches, and a coastal hill. No main human subject, montage, map, satellite image or extracted panel. The unchanged source file includes the whole print, white border and archive calibration strip. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"General archive caveat says federal copyright/privacy restrictions may apply and users resolve rights. The archive does not independently settle all copyright/privacy issues. No publication authorized.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "1410d22b-8a4c-4125-8d1a-41a286c7ef7e",
+    "slug": "ship-wreck-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2635c10fb1beba36ca63bf7ddfe0370c56230ca37ffb1bd089aa9e7e0da37399.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2635c10fb1beba36ca63bf7ddfe0370c56230ca37ffb1bd089aa9e7e0da37399.jpg",
+    "originalSha256": "dc974909294ef3555ee379376333d5dec7a02d643e403644d9048b9246bd99a3",
+    "alt": "Coastal channel at Curaçao Sea Aquarium. Surrounding-locality context for Ship Wreck Point, not the underwater reef or a diving entry. — contextual surface photograph",
+    "label": "contextual surface photograph",
+    "credit": "contextual surface photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source and licence; indicate changes. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source and licence; indicate changes.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2022/12/curacao-sea-aquarium.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2022/12/curacao-sea-aquarium.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-person two-day visit narrative presents this photograph of the Sea Aquarium bridge/coastal setting as part of the authored work. No third-party photographer credit, purchase statement or image-specific exception identified. Work-level CC BY4.0 grant applies to the author’s own photographs, not every possible third-party object on the blog. Credit author, source and licence; identify changes. No independently proven camera original, endorsement or model/property release claimed.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete landscape photograph of the sheltered coastal channel at Curaçao Sea Aquarium, with water, rocks, palms, aquarium buildings and an open-water horizon. A black chain railing dominates the foreground; a few distant incidental visitors are not the subject. Useful surrounding-environment record, not a reef, wreck, entry or route image. No collage, map, satellite asset or video frame. Full source-served primary image decoded successfully; unchanged bytes retained. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-person two-day visit narrative presents this photograph of the Sea Aquarium bridge/coastal setting as part of the authored work. No third-party photographer credit, purchase statement or image-specific exception identified. Work-level CC BY4.0 grant applies to the author’s own photographs, not every possible third-party object on the blog. Credit author, source and licence; identify changes. No independently proven camera original, endorsement or model/property release claimed.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
   }
 ];
