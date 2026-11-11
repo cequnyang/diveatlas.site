@@ -39,6 +39,9 @@
       if (align) wheel.scrollTo({top: index * rows[0].offsetHeight, behavior:'instant'});
     }
     wheel.addEventListener('scroll', () => {
+      // Responsive pages may temporarily show the backing native select.
+      // Hiding the wheel must not turn its reset scroll offset into January.
+      if (!wheel.getClientRects().length) return;
       const height = rows[0].offsetHeight;
       if (height) choose(Math.round(wheel.scrollTop / height));
     }, {passive:true});

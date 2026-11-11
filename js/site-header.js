@@ -16,7 +16,62 @@
   function decorate(header, map = false) {
     header.classList.add('shared-site-header');
     header.dataset.sharedHeaderReady = 'true';
+    // Keep comparison units in the shared settings rail, using the same
+    // segmented-control styles and existing preference handlers as the map.
+    if (!map) {
+      const units = document.querySelector('.comparison-units');
+      const controls = header.querySelector('.seo-top-menu-controls');
+      if (units && controls) {
+        units.className = 'comparison-header-units';
+        units.querySelectorAll(':scope > span').forEach(group => {
+          group.className = 'unit-segmented-control unit-segmented-control--compact';
+          group.querySelectorAll('button').forEach(button => button.classList.remove('seo-secondary-button'));
+        });
+        controls.insertBefore(units, controls.querySelector('.seo-language-menu'));
+      }
+    }
+
     document.body.classList.add('has-shared-header');
+    // One navigation definition drives both menu implementations; reuse the
+    // map's existing links where present so repeated mounts never duplicate them.
+    const menu = header.querySelector(map ? '#topMenuDropdown' : '#seoMenuDropdown');
+    if (menu) {
+      const links = [
+        ['/dive-sites/', 'browseDiveSites', 'Browse dive sites'],
+        ['/regions/', 'browseRegions', 'Browse regions'],
+        ['/destinations/', 'browseDestinations', 'Browse destinations'],
+        ['/compare/', 'menu', 'Compare destinations']
+      ];
+      const anchor = menu.querySelector('.top-menu-divider, .top-menu-about-wrap');
+      const items = links.map(([href, key, label]) => {
+        let item = menu.querySelector(`a[href="${href}"]`);
+        if (!item) { item = document.createElement('a'); item.className = 'top-menu-dropdown-item'; item.href = href; item.textContent = label; }
+        item.dataset.sharedNavigation = key;
+        if (key === 'menu') { item.dataset.comparisonMenu = ''; item.dataset.i18nIgnore = ''; }
+        if (!map) item.dataset.i18nIgnore = '';
+        menu.insertBefore(item, anchor);
+        return item;
+      });
+      const compare = items[items.length - 1];
+      const divider = () => {
+        const element = document.createElement('div');
+        element.className = 'top-menu-divider';
+        element.setAttribute('role', 'separator');
+        return element;
+      };
+      if (!compare.previousElementSibling?.classList.contains('top-menu-divider')) menu.insertBefore(divider(), compare);
+      if (!compare.nextElementSibling?.classList.contains('top-menu-divider')) menu.insertBefore(divider(), compare.nextElementSibling);
+      window.DiveAtlasComparisonCopyReady ||= window.DiveAtlasComparisonCopy
+        ? Promise.resolve(window.DiveAtlasComparisonCopy)
+        : loadScript('/js/destination-comparison-i18n.js?v=8').then(() => window.DiveAtlasComparisonCopy);
+      const localize = () => {
+        const copy = window.DiveAtlasComparisonCopy;
+        if (copy) items.forEach(item => { item.textContent = copy.text(document.documentElement.lang, item.dataset.sharedNavigation); });
+      };
+      window.DiveAtlasComparisonCopyReady.then(localize).catch(error => console.warn('Navigation labels unavailable:', error));
+      window.addEventListener('diveatlas:language-change', localize);
+      new MutationObserver(localize).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
+    }
     if (!map && (document.body.classList.contains('seo-site-detail-layout') || document.querySelector('[data-detail-scroll]')) &&
         !document.querySelector('.detail-scroll-rail')) {
       // A document scrollbar reserves a full-height gutter even when its track
@@ -73,7 +128,7 @@
         header.querySelector(selector)?.classList.add(name);
       }
     }
-    stylesheet('/assets/site-header.css?v=12');
+    stylesheet('/assets/site-header.css?v=14');
     window.dispatchEvent(new CustomEvent('diveatlas:header-ready', { detail:{ map } }));
     return header;
   }

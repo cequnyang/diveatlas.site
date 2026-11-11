@@ -1662,7 +1662,7 @@
     if (!document.body.classList.contains('shared-site-detail-layout')) return;
     const siteName = document.querySelector('[data-seo-site-name]');
     if (siteName) {
-      document.title = `${siteName.textContent.trim()} ${translate('Dive Site')} | DiveAtlas`;
+      document.title = `${siteName.textContent.trim()} | ${translate('Dive Site')} | DiveAtlas`;
       return;
     }
     const heading = document.querySelector('#detailStatus h1');

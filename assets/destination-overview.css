@@ -1,4 +1,83 @@
 /* Destination layout; surfaces, buttons, header and scroll ownership stay shared. */
+/* The comparison is a document, not a modal or a pair of destination heroes.
+   Keep these layout adjustments scoped so the shared destination panels retain
+   their own geometry, controls and theme tokens. */
+.destination-comparison-page .detail-page {
+  width:min(1120px,100%); margin:16px auto 8px; padding:16px 28px 8px;
+  border-radius:0; background:transparent; box-shadow:none; overflow:visible;
+}
+.destination-comparison-page .comparison-panel { margin-top:0; border-radius:14px; background:var(--panel-solid); box-shadow:var(--shadow); }
+.destination-comparison-page .comparison-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; }
+.destination-comparison-page h1 { font-size:32px; font-weight:600; line-height:1.2; letter-spacing:-.025em; overflow-wrap:anywhere; }
+.destination-comparison-page .comparison-heading .destination-lead { margin-top:10px; max-width:70ch; font-size:14px; line-height:1.6; }
+.destination-comparison-page .comparison-controls { display:grid; grid-template-columns:170px minmax(0,1fr); gap:24px; align-items:center; margin:16px 0; padding:16px 0; border:0; border-bottom:1px solid var(--line); }
+.destination-comparison-page .comparison-selector-row { position:relative; --comparison-selector-gap:56px; }
+/* Center between the capped first field's right edge and column two's left
+   edge; the column midpoint alone drifts when fields reach their 300px cap. */
+.destination-comparison-page .comparison-swap { position:absolute; left:calc((100% + var(--comparison-selector-gap)) / 4 + min(150px, (100% - var(--comparison-selector-gap)) / 4)); bottom:0; transform:translateX(-50%); width:44px; min-width:44px; min-height:44px; padding:0; font-size:20px; }
+.destination-comparison-page .comparison-selectors { margin:0; gap:56px; }
+.destination-comparison-page .comparison-selectors > li { padding:0; border:0; }
+.destination-comparison-page .comparison-selectors label:not(.sr-only) { display:block; margin:0 0 8px; color:var(--text-secondary); font-size:12px; font-weight:500; }
+.destination-comparison-page .comparison-selectors .dive-filter-picker-wrap { width:100%; max-width:300px; }
+.destination-comparison-page .comparison-selectors .dive-filter-picker { height:44px; font-size:13px; }
+.destination-comparison-page .comparison-selectors .dive-filter-picker-wrap::after { top:18px; }
+.destination-comparison-page .comparison-month { align-self:center; width:149px; padding:0; border:0; }
+.destination-comparison-page .comparison-month label:not(.sr-only) { display:block; margin-bottom:8px; color:var(--text-secondary); font-size:12px; line-height:1.4; text-align:left; }
+.destination-comparison-page .comparison-month .scroll-wheel-frame { border-radius:8px; }
+/* Keep the wheel's viewport, padding and highlight at three equal rows so its
+   existing offsetHeight-based keyboard and scroll selection stays accurate. */
+.destination-comparison-page .comparison-month .scroll-wheel { height:96px; padding-block:32px; }
+.destination-comparison-page .comparison-month .scroll-wheel-option { height:32px; font-size:13px; }
+.destination-comparison-page .comparison-month .scroll-wheel-option.is-selected { font-size:16px; }
+.destination-comparison-page .comparison-month .scroll-wheel-frame::before { inset:32px 8px; }
+.destination-comparison-page .comparison-controls label.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.destination-comparison-page .comparison-month p { margin:6px 0 0; font-size:10px; }
+.destination-comparison-page .comparison-controls .coordinates { margin:12px 0 0; }
+.destination-comparison-page .comparison-controls .destination-source { margin:4px 0 0; line-height:1.6; }
+.destination-comparison-page .comparison-controls .monthly-conditions-status { margin:8px 0 0; font-size:11px; }
+.destination-comparison-page .comparison-overview,
+.destination-comparison-page #comparisonMetrics > section { display:grid; grid-template-columns:170px minmax(0,1fr); gap:24px; margin:0; padding:18px 0; border:0; }
+/* Inset-free shading preserves the selectors' and values' shared column edges. */
+.destination-comparison-page #comparisonMetrics > section:nth-of-type(odd) { --comparison-row-bg:color-mix(in srgb,var(--panel-soft) 80%,var(--line)); background:var(--comparison-row-bg); box-shadow:12px 0 var(--comparison-row-bg), -12px 0 var(--comparison-row-bg); }
+.destination-comparison-page .comparison-overview > h2,
+.destination-comparison-page #comparisonMetrics > section > h2 { margin:0; font-size:18px; font-weight:600; line-height:1.5; }
+.destination-comparison-page .comparison-overview > .site-list,
+.destination-comparison-page #comparisonMetrics .site-list { margin:0; gap:56px; }
+.destination-comparison-page .comparison-overview .site-list > li,
+.destination-comparison-page #comparisonMetrics .site-list > li { padding:0; border:0; }
+.destination-comparison-page .comparison-overview h2 a { font-family:"Google Sans Flex", "Segoe UI", Arial, sans-serif; font-size:24px; font-weight:700; line-height:1.2; letter-spacing:-.05em; color:var(--primary); overflow-wrap:anywhere; }
+.destination-comparison-page .destination-evidence { overflow-wrap:anywhere; }
+.destination-comparison-page .comparison-overview .lead { font-size:12px; line-height:1.6; }
+.destination-comparison-page .comparison-overview .destination-source { margin:10px 0; line-height:1.6; }
+.destination-comparison-page #comparisonMetrics [data-value] { margin:4px 0 8px; font-size:22px; font-weight:700; line-height:1.35; }
+.destination-comparison-page #comparisonMetrics .destination-source { margin:0; font-size:11px; line-height:1.6; }
+.destination-comparison-page #comparisonMetrics .coordinates { margin:6px 0 0; font-size:10px; }
+.destination-comparison-page .record-evidence { margin:8px 0 0; padding:0; border:0; }
+.destination-comparison-page .record-evidence > h2 { font-size:16px; font-weight:600; }
+.destination-comparison-page .record-evidence p { max-width:none; }
+.destination-comparison-page .record-evidence-summary { font-size:12px; }
+@media(max-width:720px) {
+  .destination-comparison-page .detail-page { padding:12px 4px 8px; margin-top:8px; }
+  .destination-comparison-page .comparison-panel { padding:16px; }
+  .destination-comparison-page .comparison-heading { display:block; }
+  .destination-comparison-page h1 { font-size:28px; }
+  .destination-comparison-page .comparison-heading .destination-lead { font-size:13px; }
+  .destination-comparison-page .comparison-controls { grid-template-columns:minmax(0,1fr); gap:16px; padding:16px 0; margin:20px 0 8px; }
+  .destination-comparison-page .comparison-selector-row { --comparison-selector-gap:48px; }
+  .destination-comparison-page .comparison-swap { width:44px; min-width:44px; }
+  .destination-comparison-page .comparison-selectors { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+  .destination-comparison-page .comparison-selectors .dive-filter-picker { font-size:12px; }
+  .destination-comparison-page .comparison-month { padding:0; }
+  .destination-comparison-page .comparison-month label:not(.sr-only) { text-align:left; font-size:11px; }
+  .destination-comparison-page .comparison-overview,
+.destination-comparison-page #comparisonMetrics > section { grid-template-columns:minmax(0,1fr); gap:12px; padding:16px 0; }
+  .destination-comparison-page .comparison-overview > .site-list,
+  .destination-comparison-page #comparisonMetrics .site-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+  .destination-comparison-page .comparison-overview > h2,
+  .destination-comparison-page #comparisonMetrics > section > h2 { font-size:16px; }
+  .destination-comparison-page .comparison-overview h2 a { font-size:20px; }
+  .destination-comparison-page #comparisonMetrics [data-value] { font-size:19px; overflow-wrap:anywhere; }
+}
 .destination-overview-page .destination-overview { width:min(1120px,100%); margin:16px auto 32px; padding:16px 28px; overflow:visible; background:transparent; box-shadow:none; }
 .destination-overview .eyebrow { margin:0 0 12px; font-size:11px; line-height:1.5; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
 .destination-overview .destination-section { margin:32px 0 0; padding:0; border:0; }
@@ -147,4 +226,121 @@ body.has-shared-header.destination-overview-page { padding-top:0; }
   .destination-season-body--no-month .destination-conditions { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
   .destination-season-body--no-month .destination-conditions > div { display:block; padding:0; border:0; }
   .destination-season-body--no-month .destination-conditions p { margin-top:6px; }
+}
+
+/* Match the existing contribution success colors in each website theme. */
+.destination-comparison-page #comparisonMetrics .comparison-preferred { color:#1a7f37; }
+[data-theme="dark"] .destination-comparison-page #comparisonMetrics .comparison-preferred { color:#3fb950; }
+
+.destination-comparison-page .comparison-selectors .dive-filter-picker,
+.destination-comparison-page .comparison-swap { border-radius:var(--radius-modal); }
+
+.destination-comparison-page .comparison-swap { border:0; background:transparent; box-shadow:none; }
+
+.destination-comparison-page .comparison-header-units { display:contents; }
+
+@media(max-width:360px) {
+  body.destination-comparison-page .shared-site-header .seo-site-search-slot { width:32px; min-width:32px; flex:0 0 32px; }
+  body.destination-comparison-page .seo-top-menu-controls { gap:2px; }
+  body.destination-comparison-page .seo-top-menu-controls .top-menu-theme,
+  body.destination-comparison-page .seo-top-menu-controls .top-menu-menu-button { width:28px; min-width:28px; flex-basis:28px; }
+  body.destination-comparison-page .seo-top-menu-controls .unit-segmented-control button { min-width:23px; padding:0 3px; font-size:11px; }
+}
+
+/* Keep the glass treatment on the field surface so popup text stays crisp. */
+.destination-comparison-page .comparison-selectors .dive-filter-picker {
+  background:linear-gradient(155deg,color-mix(in srgb,var(--panel-solid) 78%,transparent),color-mix(in srgb,var(--panel-soft) 48%,transparent));
+  border-color:color-mix(in srgb,var(--text) 18%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--panel-solid) 70%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--text) 5%,transparent),0 3px 10px color-mix(in srgb,var(--text) 7%,transparent);
+  -webkit-backdrop-filter:blur(14px) saturate(135%);
+  backdrop-filter:blur(14px) saturate(135%);
+}
+.destination-comparison-page .comparison-selectors .dive-filter-picker:focus-visible {
+  outline:2px solid var(--primary); outline-offset:2px;
+}
+
+.destination-comparison-page :is(#comparisonLeftSearchOptions, #comparisonRightSearchOptions) { border-radius:var(--radius-modal); overflow:hidden; }
+.destination-comparison-page :is(#comparisonLeftSearchOptions, #comparisonRightSearchOptions) .dive-filter-option { border-radius:var(--radius-control); }
+
+.destination-comparison-page .comparison-destination-photo { margin:0 0 12px; }
+.destination-comparison-page .comparison-destination-photo img { display:block; width:100%; height:140px; object-fit:cover; border-radius:var(--radius-control); }
+.destination-comparison-page .comparison-destination-photo figcaption { position:static; margin-top:5px; color:var(--text-secondary); font-size:9px; line-height:1.4; overflow-wrap:anywhere; }
+.destination-comparison-page .comparison-destination-photo figcaption a { color:inherit; }
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-destination-photo img { height:96px; }
+}
+
+/* Match MapView's compact unit control geometry in the shared header. */
+.destination-comparison-page .comparison-header-units .unit-segmented-control { gap:1px; padding:2px; border-radius:9px; }
+.destination-comparison-page .comparison-header-units .unit-segmented-control button { min-width:0; min-height:22px; padding:0 3px; border-radius:8px; font-size:11px; font-weight:700; line-height:1; }
+
+.destination-comparison-page .comparison-photo-scene { position:relative; overflow:hidden; border-radius:var(--radius-control); }
+.destination-comparison-page .comparison-photo-scene::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 35%,rgba(0,0,0,.7)); pointer-events:none; }
+.destination-comparison-page .comparison-photo-scene img { height:210px; border-radius:0; }
+.destination-comparison-page .comparison-photo-scene h2 { position:absolute; z-index:1; left:16px; right:16px; bottom:16px; margin:0; }
+.destination-comparison-page .comparison-photo-scene h2 a { color:#fff; font-size:30px; text-shadow:0 2px 8px rgba(0,0,0,.3); }
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-photo-scene img { height:150px; }
+  .destination-comparison-page .comparison-photo-scene h2 { left:10px; right:10px; bottom:12px; }
+  .destination-comparison-page .comparison-photo-scene h2 a { font-size:22px; }
+}
+
+.destination-comparison-page .comparison-header-photos { margin:0 0 12px; gap:56px; }
+.destination-comparison-page .comparison-header-photos > li { padding:0; border:0; min-width:0; }
+.destination-comparison-page .comparison-header-photos .comparison-destination-photo { margin:0; }
+.destination-comparison-page .comparison-header-photos .comparison-photo-scene img { height:150px; }
+.destination-comparison-page .comparison-header-photos:not(:has(img)) { display:none; }
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-header-photos { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+  .destination-comparison-page .comparison-header-photos .comparison-photo-scene img { height:100px; }
+}
+
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-controls { grid-template-columns:104px minmax(0,1fr); gap:12px; align-items:center; }
+  .destination-comparison-page .comparison-destination-controls { grid-column:2; grid-row:1; min-width:0; }
+  .destination-comparison-page .comparison-month { grid-column:1; grid-row:1; width:104px; }
+  .destination-comparison-page .comparison-selectors { grid-template-columns:minmax(0,1fr); gap:12px; padding-right:48px; }
+  .destination-comparison-page .comparison-selectors .dive-filter-picker-wrap { max-width:none; }
+  .destination-comparison-page .comparison-selectors .dive-filter-picker { font-size:13px; }
+  .destination-comparison-page .comparison-selector-row .comparison-swap { left:auto; right:0; top:50%; bottom:auto; transform:translateY(-50%); }
+  .destination-comparison-page .comparison-overview > .site-list,
+  .destination-comparison-page #comparisonMetrics .site-list { gap:16px; }
+  .destination-comparison-page .comparison-photo-scene img { height:140px; }
+}
+
+.destination-comparison-page .comparison-selectors .dive-filter-picker-wrap::after { display:none; }
+
+.destination-comparison-page .comparison-selectors .dive-filter-picker-clear { right:10px; }
+.destination-comparison-page .comparison-selectors .has-clear .dive-filter-picker { padding-right:40px; }
+
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-month { position:relative; }
+  .destination-comparison-page .comparison-month::after { content:""; position:absolute; top:0; bottom:0; right:-6px; width:1px; background:var(--line); pointer-events:none; }
+}
+
+@media(max-width:720px) {
+  .destination-comparison-page .comparison-panel { padding:0; border-radius:0; background:transparent; box-shadow:none; }
+}
+
+@media(max-width:720px) {
+  .destination-comparison-page .detail-page { width:100%; margin:0 auto 4px; padding:8px 4px; }
+  .destination-comparison-page .comparison-controls { margin:12px 0 4px; padding:12px 0; }
+  .destination-comparison-page .comparison-overview,
+  .destination-comparison-page #comparisonMetrics > section { padding:12px 0; }
+  .destination-comparison-page .record-evidence { margin-top:4px; }
+}
+
+.destination-comparison-page .comparison-overview[hidden] { display:none; }
+
+@media(min-width:721px) {
+  .destination-comparison-page .comparison-month { position:relative; }
+  .destination-comparison-page .comparison-month::after { content:""; position:absolute; top:0; bottom:0; right:-12px; width:1px; background:var(--line); pointer-events:none; }
+}
+
+/* Give destination-page month names more room without changing comparisons. */
+@media(max-width:650px) {
+  .destination-overview-page .destination-season-body:not(.destination-season-body--no-month) { grid-template-columns:120px minmax(0,1fr); }
+}
+@media(max-width:360px) {
+  .destination-overview-page .destination-season-body:not(.destination-season-body--no-month) { grid-template-columns:108px minmax(0,1fr); }
 }

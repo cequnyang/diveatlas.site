@@ -395,7 +395,7 @@
   }
 
   function render(site) {
-    document.title = `${site.name} Dive Site | DiveAtlas`;
+    document.title = `${site.name} | Dive Site | DiveAtlas`;
     document.querySelector('meta[name="description"]').content =
       `Explore ${site.name}${site.region ? ` in ${site.region}` : ''}. View recorded dive-site details and mapped coordinates.`;
     const link = document.createElement('link');

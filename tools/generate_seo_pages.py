@@ -701,6 +701,7 @@ def region_browser_page(groups: list[dict[str, object]], photos_by_path: dict[st
     <summary>Browse dive sites by area</summary>
     <div class="region-area-browser__content">
       <h1 id="regionPageTitle">{region_heading}</h1>
+      {'<p><a class="seo-secondary-button" href="/compare/">Compare destinations</a></p>' if is_region_index else ''}
       <nav class="breadcrumbs" id="regionPageBreadcrumbs" aria-label="Breadcrumb" hidden></nav>
       <p id="regionPageStatus" class="region-browser__scope" role="status" aria-live="polite">Loading area photos and dive-site locations…</p>
       <article class="region-area-feature" id="regionAreaPhoto" hidden>
@@ -880,7 +881,7 @@ def generate_site_page(
     site_breadcrumbs_markup = destination_breadcrumbs(country, region)
     coordinate_text = f"{float(site['lat']):.5f}, {float(site['lon']):.5f}"
     context = f" in {location}" if location else ""
-    title_base = f"{name} Dive Site{f' in {location}' if location else ''} | DiveAtlas"
+    title_base = f"{name} | Dive Site{f' in {location}' if location else ''} | DiveAtlas"
     depth_min, depth_max = str(site["depth_min"] or ""), str(site["depth_max"] or "")
     try:
         same_recorded_depth = bool(depth_min and depth_max and float(depth_min) == float(depth_max))
@@ -1100,7 +1101,7 @@ def generate_region_page(
     url = f"{BASE_URL}{path}"
     breadcrumbs = destination_breadcrumbs(country, region)
     sites = list(group["sites"])
-    title_base = f"Dive Sites in {region}, {country} | DiveAtlas" if country else f"Dive Sites in {region} | DiveAtlas"
+    title_base = f"{region}, {country}’s Dive Sites | DiveAtlas" if country else f"{region}’s Dive Sites | DiveAtlas"
     country_suffix = f", {country}" if country else ""
     site_page_count = list_page_count(len(sites))
     site_page = min(max(site_page, 1), site_page_count)

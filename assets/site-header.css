@@ -175,7 +175,7 @@ body.has-shared-header .seo-menu-wrap .top-menu-menu-button svg { display: block
 body.has-shared-header .seo-language-dropdown { width: min(126px, calc(100vw - 24px)); min-width: min(126px, calc(100vw - 24px)); max-height: min(360px, 70vh); padding: 5px; overflow-y: auto; border-radius: 7px; }
 body.has-shared-header .seo-language-dropdown .top-menu-dropdown-item { min-height: 34px; padding: 7px 10px; font-size: 13px; }
 body.has-shared-header .seo-language-dropdown .top-menu-dropdown-item[aria-checked="true"] { font-weight: 600; }
-body.has-shared-header .seo-menu-dropdown { width: min(320px, calc(100vw - 24px)); max-height: min(80vh, 620px); padding: 5px; border-radius: 7px; }
+body.has-shared-header .seo-menu-dropdown { width: min(320px, calc(100vw - 24px)); max-height: min(80vh, 620px); padding: 5px; border-radius: var(--radius-modal, 18px); }
 body.has-shared-header .seo-menu-dropdown .top-menu-page-header { display: none; }
 body.has-shared-header .seo-menu-dropdown .top-menu-dropdown-item { min-height: 32px; padding: 6px 9px; border-radius: 5px; font-size: 12px; line-height: 20px; }
 body.has-shared-header .seo-menu-account { padding: 7px 9px 6px; font-size: 12px; }
@@ -258,3 +258,5 @@ body.has-shared-header #topMenuBar .top-menu-logo { width: 95px; height: 30px; o
   body.has-shared-header #topMenuBar .top-menu-logo { content: url('/assets/mobile-logo-cutout.svg'); width: 28px; height: 28px; }
   body.has-shared-header #topMenuBar .top-menu-share-wrap { display: none; }
 }
+
+body.has-shared-header .shared-site-header .top-menu-divider { flex:0 0 auto; height:1px; margin:3px 6px; border:0; background:var(--line-soft); }

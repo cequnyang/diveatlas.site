@@ -450,6 +450,8 @@
       getClearLabel,
       getLanguage,
       onDraft,
+      clearSelection = true,
+      getEmptyLabel = () => 'No matching options',
     },
   ) {
     const source = mount ? "layer" : "search";
@@ -538,7 +540,7 @@
       }
     }
     function choose(index) {
-      if (!Number.isInteger(index) || index < 0) return;
+      if (!Number.isInteger(index) || index < 0 || select.options[index]?.disabled || select.disabled) return;
       select.selectedIndex = index;
       const selectedLabel = select.selectedOptions[0]?.textContent || "";
       button.value = select.value ? selectedLabel : "";
@@ -557,7 +559,7 @@
         index,
         label: option.textContent.toLocaleLowerCase(),
       })).filter(
-        ({ label }) => !normalizedQuery || label.includes(normalizedQuery),
+        ({ option, label }) => !option.disabled && (!normalizedQuery || label.includes(normalizedQuery)),
       );
       if (normalizedQuery) {
         matches.sort((a, b) => {
@@ -614,7 +616,7 @@
         const empty = document.createElement("div");
         empty.className = "dive-filter-option";
         empty.setAttribute("aria-disabled", "true");
-        empty.textContent = "No matching options";
+        empty.textContent = getEmptyLabel();
         scroll.append(empty);
       }
     }
@@ -702,14 +704,17 @@
     clearButton.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      select.value = "";
+      // Required pickers clear their search draft without discarding the
+      // committed selection. Optional filters retain their normal clear action.
+      if (clearSelection) select.value = "";
       button.value = "";
       close();
       syncClearButton();
-      select.dispatchEvent(
+      if (clearSelection) select.dispatchEvent(
         new CustomEvent("change", { bubbles: true, detail: { source } }),
       );
       button.focus({ preventScroll: true });
+      if (!clearSelection) open();
     });
     // Retain combobox focus while clicking or dragging inside its popup.
     list.addEventListener("mousedown", (event) => {
@@ -723,7 +728,9 @@
     document.addEventListener(
       "scroll",
       (event) => {
-        if (!list.contains(event.target)) close();
+        // A long query scrolls the input's text horizontally as the caret moves.
+        // That is not a page scroll and must not dismiss the matching options.
+        if (event.target !== button && !list.contains(event.target)) close();
       },
       true,
     );
