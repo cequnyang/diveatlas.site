@@ -51,6 +51,18 @@ class DestinationOverviewTests(unittest.TestCase):
         self.assertNotEqual(destination_map_key('/regions/a/island/'), destination_map_key('/regions/b/island/'))
         self.assertEqual(destination_map_key('/regions/indonesia/raja-ampat/'), 'raja-ampat')
 
+    def test_published_map_does_not_require_local_image(self):
+        from pathlib import Path
+        exists = Path.exists
+        def without_cache(path):
+            return False if 'destination-maps' in path.parts else exists(path)
+        with patch.object(Path, 'exists', without_cache), patch.object(Path, 'is_file', return_value=False):
+            with patch.object(seo, 'destination_photo_figure', return_value=''):
+                group = {**self.group, 'path': '/regions/indonesia/raja-ampat/'}
+                _, landing = seo.generate_region_page(group, [group], {})
+        self.assertIn('src="https://assets.diveatlas.site/assets/destination-maps/', landing)
+        self.assertIn('https://www.openstreetmap.org/copyright', landing)
+
     def test_directory_continuation_stays_crawlable_without_overview(self):
         group = {**self.group, 'sites': self.sites * 11}
         with patch.object(seo, 'destination_photo_figure', return_value=''):

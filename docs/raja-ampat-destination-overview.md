@@ -87,3 +87,19 @@ A local browser scan covered all 461 destinations at 320px. A separate matrix co
 Long mobile destination headings now participate in document flow beneath the map rather than growing upward into it; names longer than 24 characters use a responsive 36–48px heading size. Mobile recommendation cards grow with full recorded names and translated feature labels, reserving space above them for ratings. These overrides are destination-scoped so site-detail recommendation styling remains shared and unaffected. Card accessibility labels reuse the detail translator.
 
 Reports and German, Traditional Chinese and Japanese review screenshots are in `artifacts/destination-mobile-review-20261111/`. Browser regression checks are in `tests/e2e/destination-overview.spec.js`. Changes remain local for owner review.
+
+## R2 map storage
+
+Destination PNGs are served from `https://assets.diveatlas.site/assets/destination-maps/`.
+The local `assets/destination-maps/` folder is an ignored rendering cache.
+`datasets/destination-maps.json` preserves published map metadata and verified image
+hashes so a clean checkout can generate pages without local PNGs.
+
+After rendering new maps, run `python maintenance/upload_destination_maps_r2.py`
+with boto3 installed and the existing `CLOUDFLARE_ACCOUNT_ID`,
+`CLOUDFLARE_R2_BUCKET`, `CLOUDFLARE_R2_ACCESS_KEY_ID`, and
+`CLOUDFLARE_R2_SECRET_ACCESS_KEY` environment variables. The uploader targets the
+existing `diveatlas-site` bucket, refuses to overwrite different content, and
+checks every public image download before replacing the registry. Then regenerate
+the destination pages. A newly rendered fingerprint uses its local preview until
+uploaded; unchanged published fingerprints use R2. Keep map attribution links.

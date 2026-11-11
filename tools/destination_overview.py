@@ -36,10 +36,18 @@ def destination_overview(group, breadcrumbs, photo, render_card, feature_tokens)
     is_raja = path == '/regions/indonesia/raja-ampat/' or (country == 'Indonesia' and region == 'Raja Ampat')
     root = Path(__file__).resolve().parents[1]
     inset = ""
-    manifest_path = root / 'assets/destination-maps' / (destination_map_key(path) + '.json')
+    key = destination_map_key(path)
+    registry_path = root / 'datasets/destination-maps.json'
+    published = json.loads(registry_path.read_text(encoding='utf-8'))['maps'] if registry_path.exists() else {}
+    manifest_path = root / 'assets/destination-maps' / (key + '.json')
+    manifest = published.get(key)
     if manifest_path.exists():
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if (root / manifest["src"].lstrip("/")).is_file():
+        local = json.loads(manifest_path.read_text(encoding='utf-8'))
+        # A newly rendered fingerprint stays local until its upload is verified.
+        if not manifest or manifest['fingerprint'] != local['fingerprint']:
+            manifest = local
+    if manifest:
+        if manifest['src'].startswith('https://assets.diveatlas.site/assets/destination-maps/') or (root / manifest['src'].lstrip('/')).is_file():
             inset = f'''<aside class="destination-map-inset" aria-label="Raja Ampat location map">
               <a class="destination-map-inset__link" href="{escape(manifest['mapHref'], quote=True)}" aria-label="Explore Raja Ampat on the main map">
                 <img src="{escape(manifest['src'], quote=True)}" width="600" height="600" alt="Raja Ampat coastline and nearby places. Marker shows the mean of recorded site coordinates, not an individual dive site.">

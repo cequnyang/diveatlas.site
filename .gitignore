@@ -181,3 +181,7 @@ playwright-report/
 # Keep the local saved-trips behavior and verification reviewable.
 !/docs/saved-trips.md
 !/tests/e2e/saved-trips.spec.js
+
+# Destination map renders stay local; verified R2 metadata is tracked in datasets/.
+/assets/destination-maps/
+!/maintenance/upload_destination_maps_r2.py
