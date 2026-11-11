@@ -22,12 +22,12 @@ from urllib.parse import quote
 
 if __package__:
     from . import dive_site_record_policy as record_policy
-    from .site_header_assets import shared_header_assets, site_header_fallback
+    from .site_header_assets import shared_header_assets, site_header_fallback, install_initial_detail_appearance
     from .detail_photo_data import load_detail_photos
     from .photo_asset_urls import photo_asset_url, photo_asset_available
 else:
     import dive_site_record_policy as record_policy
-    from site_header_assets import shared_header_assets, site_header_fallback
+    from site_header_assets import shared_header_assets, site_header_fallback, install_initial_detail_appearance
     from detail_photo_data import load_detail_photos
     from photo_asset_urls import photo_asset_url, photo_asset_available
 
@@ -533,6 +533,10 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
     <link rel="stylesheet" href="/assets/seo-browse-header.css?v=5">
 ''' if has_document_header else ""
     detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=13">\n' if has_site_detail else ""
+    destination_head_assets = '''<link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=117">
+<link rel="stylesheet" href="/assets/scroll-wheel.css?v=1">
+<link rel="stylesheet" href="/assets/destination-overview.css?v=31">
+''' if "destination-overview-page" in body_classes else ""
     document_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
 <script src="/js/seo-page-controls.js?v=29" defer></script>
@@ -555,7 +559,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
   <script>try {{ if (localStorage.getItem('global-coral-map-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; }} catch (_) {{}}</script>
   <link rel="stylesheet" href="/assets/seo.css?v={seo_styles_version}">
   <link rel="stylesheet" href="/assets/region-browse.css?v={region_browse_styles_version}">
-{detail_search_head_assets}{document_head_assets}{shared_header_assets()}</head>
+{detail_search_head_assets}{document_head_assets}{destination_head_assets}{shared_header_assets()}</head>
 <body{body_class_attr}>
 {body}{document_body_scripts}{directory_rating_script}
 </body>
@@ -757,7 +761,7 @@ def recommendation_major_features(candidate: dict[str, object]) -> list[str]:
     return [value for _, value in indexed[:2]]
 
 
-def recommendation_card_link(candidate: dict[str, object]) -> str:
+def recommendation_card_link(candidate: dict[str, object], *, context: str = "", show_rating: bool = True) -> str:
     photo = candidate.get("photo") or {}
     photo_src = ""
     photo_credit = ""
@@ -775,14 +779,17 @@ def recommendation_card_link(candidate: dict[str, object]) -> str:
         for feature in recommendation_major_features(candidate)
     ) or '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>'
     location = str(candidate.get("region") or candidate.get("country") or "")
+    rating_markup = '<span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span>' if show_rating else ""
+    context_markup = f'<span class="site-recommendations__context">{html_text(context)}</span>' if context else ""
     return (
         f'<a class="site-recommendations__card" data-recommendation-card data-rating-lat="{float(candidate["lat"]):.6f}" '
         f'data-rating-lng="{float(candidate["lon"]):.6f}" href="/dive-sites/{quote(str(candidate["slug"]))}/">'
         f'{image}<span class="site-recommendations__card-body">'
         f'<span class="site-recommendations__name" title="{html_text(candidate["name"])}">{html_text(candidate["name"])}</span>'
         f'<span class="site-recommendations__meta"><span class="site-recommendations__location">{html_text(location)}</span>'
-        f'<span class="site-recommendations__rating" aria-label="DiveAtlas rating">Rating loading</span></span>'
+        f'{rating_markup}</span>'
         f'<span class="site-recommendations__features" aria-label="Recorded features">{feature_markup}</span>'
+        f'{context_markup}'
         f'</span></a>'
     )
 
@@ -1078,7 +1085,7 @@ def generate_site_page(
 <script type="application/ld+json">{json_ld}</script>
 <script src="/datasets/dive-site-name-translations.js?v=1" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=29" defer></script><script src="/js/dive-conditions-chart.js?v=56" defer></script><script src="/js/site-recommendations.js?v=19" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=16" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=28" defer></script>'''
     html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
-    return title_base, html
+    return title_base, install_initial_detail_appearance(html)
 
 
 def generate_region_page(
@@ -1134,6 +1141,20 @@ def generate_region_page(
         title = title_base
         canonical = url
         description = f"Browse {len(sites)} published dive-site profiles mapped in {region}{country_suffix}. Compare recorded locations and available site details on DiveAtlas."
+    # Landing pages share the destination layout; legacy pagination stays crawlable.
+    if site_page == 1 and related_page == 1:
+        if __package__:
+            from .destination_overview import destination_overview
+        else:
+            from destination_overview import destination_overview
+        overview = destination_overview(
+            group, breadcrumbs, destination_photo_figure(photo), recommendation_card_link, recommendation_feature_tokens,
+        )
+        body = site_header_fallback() + overview + site_footer_markup()
+        return title, page_shell(
+            title, f"Explore {region}{country_suffix}: mapped dive sites, available seasonal information and a starting selection of recorded profiles.",
+            canonical, body, body_class="region-destination-page destination-overview-page",
+        )
     body = f'''{site_header_fallback()}
 <main>
   <h1>Dive Sites in {html_text(region)}</h1>
@@ -1211,6 +1232,31 @@ def write_page(path: Path, content: str) -> None:
     path.write_text(normalized, encoding="utf-8", newline="\n")
 
 
+def destination_groups(candidates: list[dict[str, object]]) -> list[dict[str, object]]:
+    buckets: dict[tuple[str, str], dict[str, object]] = {}
+    for site in candidates:
+        country, region = str(site["country"]), str(site["region"])
+        if not region:
+            continue
+        key = (country.casefold(), region.casefold())
+        bucket = buckets.setdefault(key, {"country": country, "region": region, "sites": []})
+        bucket["sites"].append(site)
+    eligible_regions = [group for group in buckets.values() if len(group["sites"]) >= MIN_SITES_PER_REGION]
+    eligible_regions.sort(key=lambda group: (-len(group["sites"]), str(group["country"]).casefold(), str(group["region"]).casefold()))
+    path_counts = Counter(region_path(str(group["country"]), str(group["region"])) for group in eligible_regions)
+    for group in eligible_regions:
+        path = region_path(str(group["country"]), str(group["region"]))
+        if path_counts[path] > 1:
+            suffix = hashlib.sha256(
+                f'{group["country"]}\0{group["region"]}'.encode("utf-8")
+            ).hexdigest()[:8]
+            path = f"{path.rstrip('/')}-{suffix}/"
+        group["path"] = path
+    if len({str(group["path"]) for group in eligible_regions}) != len(eligible_regions):
+        raise ValueError("Destination URL collision after applying deterministic suffixes")
+    return eligible_regions
+
+
 def build(args: argparse.Namespace) -> dict[str, object]:
     rows, photos, summaries = load_rows(), load_photos(), load_summaries()
     area_index = public_region_index(rows)
@@ -1246,27 +1292,7 @@ def build(args: argparse.Namespace) -> dict[str, object]:
     rating_filename = f"recommendation-candidates-{hashlib.sha256(rating_payload.encode('utf-8')).hexdigest()[:12]}.json"
     rating_candidates_url = f"/dive-sites/{rating_filename}"
 
-    buckets: dict[tuple[str, str], dict[str, object]] = {}
-    for site in selected:
-        country, region = str(site["country"]), str(site["region"])
-        if not region:
-            continue
-        key = (country.casefold(), region.casefold())
-        bucket = buckets.setdefault(key, {"country": country, "region": region, "sites": []})
-        bucket["sites"].append(site)
-    eligible_regions = [group for group in buckets.values() if len(group["sites"]) >= MIN_SITES_PER_REGION]
-    eligible_regions.sort(key=lambda group: (-len(group["sites"]), str(group["country"]).casefold(), str(group["region"]).casefold()))
-    path_counts = Counter(region_path(str(group["country"]), str(group["region"])) for group in eligible_regions)
-    for group in eligible_regions:
-        path = region_path(str(group["country"]), str(group["region"]))
-        if path_counts[path] > 1:
-            suffix = hashlib.sha256(
-                f'{group["country"]}\0{group["region"]}'.encode("utf-8")
-            ).hexdigest()[:8]
-            path = f"{path.rstrip('/')}-{suffix}/"
-        group["path"] = path
-    if len({str(group["path"]) for group in eligible_regions}) != len(eligible_regions):
-        raise ValueError("Destination URL collision after applying deterministic suffixes")
+    eligible_regions = destination_groups(selected)
     destination_photos_by_path = load_destination_photos(eligible_regions)
     regions = eligible_regions if args.region_limit is None else eligible_regions[:args.region_limit]
     region_by_place = {(str(group["country"]).casefold(), str(group["region"]).casefold()): group for group in regions}

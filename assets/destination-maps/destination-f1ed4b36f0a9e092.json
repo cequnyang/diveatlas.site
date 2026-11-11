@@ -1,0 +1,46 @@
+{
+  "fingerprint": "c09f2ecaf4abbd26f604c29ac8697ef560ac7d439c6931baad61d21413f0f694",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/aruba/",
+    "center": [
+      -70.02685699,
+      12.540966430000001
+    ],
+    "bounds": [
+      -70.0634,
+      12.4657,
+      -69.98509999999999,
+      12.6232643
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -70.02425000000001,
+      12.544494201790911
+    ],
+    "zoom": 10.99334648707342,
+    "markerPixel": [
+      292.4415303976006,
+      310.47816920035416
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f1ed4b36f0a9e092-c09f2ecaf4abbd26.png",
+  "mapHref": "/?lat=12.54449&lng=-70.02425&z=10.99&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:57.533Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

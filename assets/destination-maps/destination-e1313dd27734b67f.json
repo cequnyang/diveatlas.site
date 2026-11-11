@@ -1,0 +1,46 @@
+{
+  "fingerprint": "4af508045cc6c9553622deac8e40dc4b4a864777aad7b4dea3885cc65dfce859",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/czechia/central-bohemian/",
+    "center": [
+      14.388764666666662,
+      49.79555933333334
+    ],
+    "bounds": [
+      13.893700000000024,
+      49.5649,
+      14.759999999999991,
+      50.3599
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      14.326849999999979,
+      49.96404113945894
+    ],
+    "zoom": 8.05668826653667,
+    "markerPixel": [
+      323.4458419624219,
+      399.0090534196297
+    ]
+  },
+  "src": "/assets/destination-maps/destination-e1313dd27734b67f-4af508045cc6c955.png",
+  "mapHref": "/?lat=49.96404&lng=14.32685&z=8.06&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:31.174Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

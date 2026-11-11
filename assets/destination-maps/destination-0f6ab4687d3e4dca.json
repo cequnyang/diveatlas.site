@@ -1,0 +1,46 @@
+{
+  "fingerprint": "8cbe853f76ff76837e02d171abb0b4b4be471c5f23cc31783f317cec021b3f4a",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/australia/lord-howe-island/",
+    "center": [
+      159.07942500000001,
+      -31.568025
+    ],
+    "bounds": [
+      159.03330000000005,
+      -31.7526,
+      159.23540000000003,
+      -31.5083
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      159.13435000000004,
+      -31.630530199484163
+    ],
+    "zoom": 10.16348103022725,
+    "markerPixel": [
+      210.4119309084283,
+      180.30044267614682
+    ]
+  },
+  "src": "/assets/destination-maps/destination-0f6ab4687d3e4dca-8cbe853f76ff7683.png",
+  "mapHref": "/?lat=-31.63053&lng=159.13435&z=10.16&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:27.536Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

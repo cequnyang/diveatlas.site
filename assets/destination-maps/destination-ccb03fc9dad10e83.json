@@ -1,0 +1,46 @@
+{
+  "fingerprint": "1350de09a72a998435fa3b9f753ff6c5aab3bae4327a41ad6b6102dc09feeb7d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/bonaire/",
+    "center": [
+      -68.30867976451613,
+      12.154195783870964
+    ],
+    "bounds": [
+      -68.41390810000001,
+      12.0311599,
+      -68.22245279999999,
+      12.2997359
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -68.31818045,
+      12.165481825340578
+    ],
+    "zoom": 10.22604637564286,
+    "markerPixel": [
+      316.1833749939998,
+      319.6657582560513
+    ]
+  },
+  "src": "/assets/destination-maps/destination-ccb03fc9dad10e83-1350de09a72a9984.png",
+  "mapHref": "/?lat=12.16548&lng=-68.31818&z=10.23&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:27.282Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

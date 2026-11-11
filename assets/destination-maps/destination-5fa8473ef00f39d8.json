@@ -1,0 +1,46 @@
+{
+  "fingerprint": "020c92a20e1b0a1caa49182bc79ee0360466de20775efc88e6d8f0a3b816384d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/norway/svalbard/",
+    "center": [
+      14.343785688888886,
+      78.15413912222223
+    ],
+    "bounds": [
+      11.050000000000011,
+      74.3462521,
+      19.093071199999997,
+      79.73
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      15.071535600000004,
+      77.31604282189483
+    ],
+    "zoom": 3.756161742910563,
+    "markerPixel": [
+      286.01485497112645,
+      224.15504355964524
+    ]
+  },
+  "src": "/assets/destination-maps/destination-5fa8473ef00f39d8-020c92a20e1b0a1c.png",
+  "mapHref": "/?lat=77.31604&lng=15.07154&z=3.76&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:18.183Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

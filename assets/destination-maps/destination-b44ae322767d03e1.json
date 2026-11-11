@@ -1,0 +1,46 @@
+{
+  "fingerprint": "46a8db1812a277be8678b3fb8cbae16549fd52a06713e309b52255b79dd57eb7",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/switzerland/zurich/",
+    "center": [
+      8.591915238095241,
+      47.354971428571424
+    ],
+    "bounds": [
+      8.51697999999999,
+      47.212,
+      8.704000000000008,
+      47.64281
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      8.610489999999999,
+      47.427845764128676
+    ],
+    "zoom": 9.013295338600743,
+    "markerPixel": [
+      286.3490469652911,
+      379.11057090146676
+    ]
+  },
+  "src": "/assets/destination-maps/destination-b44ae322767d03e1-46a8db1812a277be.png",
+  "mapHref": "/?lat=47.42785&lng=8.61049&z=9.01&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:59.607Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

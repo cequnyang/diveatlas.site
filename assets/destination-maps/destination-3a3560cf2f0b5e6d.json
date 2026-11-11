@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f00ad6f7d31e311ae9acd7f477b93d40e0169b6346e04897016bb072d80a8f30",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/canada/quebec/",
+    "center": [
+      -74.03364,
+      45.82904
+    ],
+    "bounds": [
+      -75.90999999999997,
+      45.4089,
+      -71.2697,
+      46.14
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -73.58984999999998,
+      45.77564810496611
+    ],
+    "zoom": 6.147999735878947,
+    "markerPixel": [
+      255.24131629420236,
+      292.27572352560236
+    ]
+  },
+  "src": "/assets/destination-maps/destination-3a3560cf2f0b5e6d-f00ad6f7d31e311a.png",
+  "mapHref": "/?lat=45.77565&lng=-73.58985&z=6.15&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:41.605Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

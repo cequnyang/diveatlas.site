@@ -1,0 +1,46 @@
+{
+  "fingerprint": "7a46fdd6386ec076f8d05c30d6736ada0c2ad8aefdf76e24b012b8acdf364313",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/australia/queensland/",
+    "center": [
+      150.391328,
+      -22.896606
+    ],
+    "bounds": [
+      146.87009999999998,
+      -27.98506,
+      153.44849999999997,
+      -19.1487
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      150.15929999999997,
+      -23.64139118665065
+    ],
+    "zoom": 5.091143094873356,
+    "markerPixel": [
+      311.2485007227978,
+      260.6962010577135
+    ]
+  },
+  "src": "/assets/destination-maps/destination-b1cdd33f24ec057d-7a46fdd6386ec076.png",
+  "mapHref": "/?lat=-23.64139&lng=150.15930&z=5.09&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:39.269Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

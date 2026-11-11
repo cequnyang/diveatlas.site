@@ -1,0 +1,46 @@
+{
+  "fingerprint": "76b618d149c7a46f689ae365d67695e96948d819e1069bcf539eff152b1caa6d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/seychelles/seychelles/",
+    "center": [
+      54.55861089166667,
+      -4.981594558333334
+    ],
+    "bounds": [
+      46.35000000000002,
+      -9.41,
+      55.94,
+      -4.2900691
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      51.14500000000001,
+      -6.856910399421622
+    ],
+    "zoom": 5.1006870006696765,
+    "markerPixel": [
+      466.58705915537143,
+      207.9882631565734
+    ]
+  },
+  "src": "/assets/destination-maps/destination-4e6d122a3c8197c3-76b618d149c7a46f.png",
+  "mapHref": "/?lat=-6.85691&lng=51.14500&z=5.10&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:23.509Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

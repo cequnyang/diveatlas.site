@@ -1,0 +1,46 @@
+{
+  "fingerprint": "03fa4e5e4d8efa6fa8fe9a3a9b44243130f62576e7900fc0b437d7f33208eb8c",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/italy/apulia/",
+    "center": [
+      17.34681810526316,
+      40.95699314619882
+    ],
+    "bounds": [
+      15.385277777777787,
+      39.9925,
+      18.566111111111127,
+      42.1408333333333
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      16.975694444444457,
+      41.07544206364298
+    ],
+    "zoom": 6.692813035193404,
+    "markerPixel": [
+      354.60388994388694,
+      323.09740854100636
+    ]
+  },
+  "src": "/assets/destination-maps/destination-0975661e985680c2-03fa4e5e4d8efa6f.png",
+  "mapHref": "/?lat=41.07544&lng=16.97569&z=6.69&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:03.635Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

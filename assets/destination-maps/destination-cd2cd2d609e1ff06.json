@@ -1,0 +1,46 @@
+{
+  "fingerprint": "d94f0acfe98d78ea92d035e3f94182c3758339603b59861a4f2353c86883a075",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/sudan/red-sea-sudan-red-sea/",
+    "center": [
+      37.533320769999996,
+      20.467472829999995
+    ],
+    "bounds": [
+      36.978943800000025,
+      18.5028321,
+      38.77735899999999,
+      21.9699494
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      37.878151400000036,
+      20.246062776408493
+    ],
+    "zoom": 6.476281613355199,
+    "markerPixel": [
+      256.3355170559593,
+      270.09607682651944
+    ]
+  },
+  "src": "/assets/destination-maps/destination-cd2cd2d609e1ff06-d94f0acfe98d78ea.png",
+  "mapHref": "/?lat=20.24606&lng=37.87815&z=6.48&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:01.030Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

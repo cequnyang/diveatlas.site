@@ -1,0 +1,46 @@
+{
+  "fingerprint": "acdfd3d0be1d88f48bbb190dc8734ff0f6910d5d59be559c99cad93bb57ff02a",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/saint-vincent-and-the-grenadines/saint-david/",
+    "center": [
+      -61.23038000000001,
+      13.319640000000001
+    ],
+    "bounds": [
+      -61.25970000000001,
+      13.2789,
+      -61.21030000000002,
+      13.3572
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -61.235,
+      13.318053166290767
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      313.456725333333,
+      295.2502587392595
+    ]
+  },
+  "src": "/assets/destination-maps/destination-4eb826b9985d21b3-acdfd3d0be1d88f4.png",
+  "mapHref": "/?lat=13.31805&lng=-61.23500&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:57.124Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

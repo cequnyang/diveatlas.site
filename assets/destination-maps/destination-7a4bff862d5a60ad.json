@@ -1,0 +1,46 @@
+{
+  "fingerprint": "cd1d2aca16998e411a9d1dc29702438a8641a9477e2170b065962a21512706ca",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/serbia/south-banat/",
+    "center": [
+      21.393400000000003,
+      44.88576666666666
+    ],
+    "bounds": [
+      21.373400000000004,
+      44.86576666666666,
+      21.413400000000003,
+      44.905766666666665
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      21.393400000000014,
+      44.885770143434144
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      300,
+      300.01429301732117
+    ]
+  },
+  "src": "/assets/destination-maps/destination-7a4bff862d5a60ad-cd1d2aca16998e41.png",
+  "mapHref": "/?lat=44.88577&lng=21.39340&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:31.789Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

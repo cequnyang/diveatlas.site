@@ -1,0 +1,46 @@
+{
+  "fingerprint": "aed8df840fd1081dda20cb3d40298a891c7159e4375f82f93cc1b741b922147e",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/switzerland/vaud/",
+    "center": [
+      6.750508333333339,
+      46.416243333333334
+    ],
+    "bounds": [
+      6.461500000000001,
+      46.2892,
+      6.960500000000025,
+      46.5035
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      6.711000000000041,
+      46.39645519847886
+    ],
+    "zoom": 9.36510609523782,
+    "markerPixel": [
+      337.05390781561533,
+      273.0851999106175
+    ]
+  },
+  "src": "/assets/destination-maps/destination-e1c330f7c5783bea-aed8df840fd1081d.png",
+  "mapHref": "/?lat=46.39646&lng=6.71100&z=9.37&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:28.472Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

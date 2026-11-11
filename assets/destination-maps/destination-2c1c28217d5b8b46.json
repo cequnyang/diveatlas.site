@@ -1,0 +1,46 @@
+{
+  "fingerprint": "5cb6b713fb2fea54ba09bef80bb8e855d0169c31fdf773d9a45834520c9a95c6",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/switzerland/st-gallen/",
+    "center": [
+      9.355402666666661,
+      47.28828066666667
+    ],
+    "bounds": [
+      9.119559999999979,
+      47.1131,
+      9.510400000000004,
+      47.4855
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      9.314979999999935,
+      47.29962787194012
+    ],
+    "zoom": 9.22700032986046,
+    "markerPixel": [
+      334.45056031856274,
+      314.25865722593335
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2c1c28217d5b8b46-5cb6b713fb2fea54.png",
+  "mapHref": "/?lat=47.29963&lng=9.31498&z=9.23&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:35.245Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

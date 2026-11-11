@@ -1,0 +1,46 @@
+{
+  "fingerprint": "2c359a665974e0bf70ffbc5229ef7ae1403b1261dad4fcc464085959536da661",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/japan/wakayama-prefecture/",
+    "center": [
+      135.70541666666665,
+      33.500733333333336
+    ],
+    "bounds": [
+      135.48609999999996,
+      33.4644,
+      135.77710000000002,
+      33.5513
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      135.6316,
+      33.50786090785225
+    ],
+    "zoom": 10.143126757666446,
+    "markerPixel": [
+      418.7154639175203,
+      313.7470528306895
+    ]
+  },
+  "src": "/assets/destination-maps/destination-9a8d16af8708a6da-2c359a665974e0bf.png",
+  "mapHref": "/?lat=33.50786&lng=135.63160&z=10.14&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:22.646Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

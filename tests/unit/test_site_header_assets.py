@@ -1,10 +1,28 @@
 import unittest
 
-from tools.site_header_assets import install_shared_header_assets
+from tools.site_header_assets import install_shared_header_assets, install_initial_detail_appearance
 from tools.generate_seo_pages import page_shell
 
 
 class SharedHeaderAssetsTests(unittest.TestCase):
+    def test_permalink_initial_layout_is_final_before_runtime_and_idempotent(self):
+        original = ('<html><head></head><body class="seo-site-detail-layout">'
+                    '<main class="detail-page" data-site-id="example"><section class="site-hero">'
+                    '<button class="site-photo-preview-trigger"><img src="photo.webp" loading="lazy"></button>'
+                    '<aside class="site-photo-gallery-rail"><section>Rating</section><a href="/?site=example">Map</a></aside>'
+                    '<div class="hero-copy">Title</div></section><div class="site-intro-detail">Summary</div>'
+                    '<img src="thumbnail.webp" loading="lazy"></main></body></html>')
+        result = install_initial_detail_appearance(original)
+        self.assertEqual(install_initial_detail_appearance(result), result)
+        self.assertIn('class="seo-site-detail-layout cinematic-pilot"', result)
+        self.assertIn('<main id="detailPage"', result)
+        self.assertIn('dive-site-cinematic-pilot.css?v=117', result)
+        self.assertIn('src="photo.webp" loading="eager" fetchpriority="high"', result)
+        self.assertIn('src="thumbnail.webp" loading="lazy"', result)
+        self.assertLess(result.index('Title</div></section>'), result.index('<aside'))
+        self.assertLess(result.index('</aside>'), result.index('class="site-intro-detail"'))
+        self.assertIn('href="/?site=example"', result)
+
     def test_build_covers_every_html_shape_and_is_idempotent(self):
         for document in ['<html><head></head><body>Page</body></html>',
                          '<html lang="en"><title>Legacy</title><h1>Page</h1></html>',
@@ -12,8 +30,8 @@ class SharedHeaderAssetsTests(unittest.TestCase):
             with self.subTest(document=document):
                 result = install_shared_header_assets(document, '1.2.3')
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
-                self.assertEqual(result.count('/js/site-header.js?v=5'), 1)
-                self.assertEqual(result.count('/assets/site-header.css?v=10'), 1)
+                self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
+                self.assertEqual(result.count('/assets/site-header.css?v=12'), 1)
                 self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
                 self.assertIn('data-app-version="2.0.0"', upgraded)
@@ -24,8 +42,8 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                      'site-directory-page', 'destination-directory-page']:
             with self.subTest(kind=kind):
                 result = page_shell('Test', 'Description', 'https://diveatlas.site/test/', '<main>Body</main>', kind)
-                self.assertIn('/js/site-header.js?v=5', result)
-                self.assertIn('/assets/site-header.css?v=10', result)
+                self.assertIn('/js/site-header.js?v=6', result)
+                self.assertIn('/assets/site-header.css?v=12', result)
                 if kind != 'seo-site-detail-layout':
                     self.assertIn('/js/seo-page-controls.js?v=29', result)
 
@@ -42,7 +60,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         self.assertIn('seo-site-search.css?v=13', result)
         self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
         self.assertNotIn('search-results-menu.css?v=0', result)
-        self.assertEqual(result.count('/js/site-header.js?v=5'), 1)
+        self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
 
     def test_cached_detail_pages_upgrade_glass_and_chart_assets(self):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo.css?v=200"></head>'

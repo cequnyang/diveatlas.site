@@ -1,0 +1,46 @@
+{
+  "fingerprint": "89a34ff17fb2a2cc13f05bea99646a4b9e21b3605cfa5d4c08c44b993898e743",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/mauritius/riviere-noire/",
+    "center": [
+      57.37802000000001,
+      -20.25102
+    ],
+    "bounds": [
+      57.35802,
+      -20.27102,
+      57.39802000000001,
+      -20.23102
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      57.378019999999964,
+      -20.251021287842633
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      300.00000000013245,
+      299.99600173433623
+    ]
+  },
+  "src": "/assets/destination-maps/destination-5743d0e1cf9122f1-89a34ff17fb2a2cc.png",
+  "mapHref": "/?lat=-20.25102&lng=57.37802&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:48.543Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

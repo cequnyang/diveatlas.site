@@ -1,0 +1,46 @@
+{
+  "fingerprint": "ac01147c77a1d36c1af5361d806998473d072a71540dc9795e11a84432e2c130",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/canada/british-columbia/",
+    "center": [
+      -124.01619416382728,
+      49.086834569363454
+    ],
+    "bounds": [
+      -125.95871110000002,
+      48.300677,
+      -121.98016999999999,
+      50.3956333
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -123.96944055,
+      49.35930883771289
+    ],
+    "zoom": 6.369978313195723,
+    "markerPixel": [
+      294.50032292712376,
+      349.0748372037957
+    ]
+  },
+  "src": "/assets/destination-maps/destination-08e25e5f764005e4-ac01147c77a1d36c.png",
+  "mapHref": "/?lat=49.35931&lng=-123.96944&z=6.37&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:20:33.212Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

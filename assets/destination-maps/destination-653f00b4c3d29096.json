@@ -1,0 +1,46 @@
+{
+  "fingerprint": "68b2224e5bf10edf13e48091b1b5a09cce668739195059bceeb649b5e1d5c419",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/france/val-d-oise/",
+    "center": [
+      2.198264000000006,
+      49.049432
+    ],
+    "bounds": [
+      2.0896999999999935,
+      48.9621,
+      2.278500000000008,
+      49.138
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      2.184100000000001,
+      49.050127789873926
+    ],
+    "zoom": 10.259834859949894,
+    "markerPixel": [
+      324.69854796442723,
+      301.8512076432837
+    ]
+  },
+  "src": "/assets/destination-maps/destination-653f00b4c3d29096-68b2224e5bf10edf.png",
+  "mapHref": "/?lat=49.05013&lng=2.18410&z=10.26&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:44.624Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

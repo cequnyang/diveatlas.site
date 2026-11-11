@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f56722c421f9278270f01294b61cb580e65f336bcef12a855678373f78451379",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/brazil/rio-de-janeiro/",
+    "center": [
+      -43.363584,
+      -22.985964000000003
+    ],
+    "bounds": [
+      -44.35019999999997,
+      -23.1598,
+      -41.87632000000002,
+      -22.74152
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -43.11326,
+      -22.950821635032923
+    ],
+    "zoom": 7.055442294420027,
+    "markerPixel": [
+      252.6445777483119,
+      307.220553959368
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f3914b0d32463d28-f56722c421f92782.png",
+  "mapHref": "/?lat=-22.95082&lng=-43.11326&z=7.06&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:40.467Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

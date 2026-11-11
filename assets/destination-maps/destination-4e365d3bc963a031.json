@@ -1,0 +1,46 @@
+{
+  "fingerprint": "4e0c5c27c557c73e8fc6869333668fda90e1846046001dbfab84af02cf7deb2d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/new-england-massachusetts/",
+    "center": [
+      -70.79749905714286,
+      42.25733107142857
+    ],
+    "bounds": [
+      -71.17846889999998,
+      41.4215648,
+      -70.57232909999999,
+      42.6776213
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -70.87539899999999,
+      42.05269783416185
+    ],
+    "zoom": 7.603830501011722,
+    "markerPixel": [
+      321.5519049021477,
+      223.6317749958858
+    ]
+  },
+  "src": "/assets/destination-maps/destination-4e365d3bc963a031-4e0c5c27c557c73e.png",
+  "mapHref": "/?lat=42.05270&lng=-70.87540&z=7.60&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:10.432Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "bd61b9b4a168b06f24d512f9976f862e15111a3c286d95abcb409bafab30d6c0",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/france/port-cros/",
+    "center": [
+      6.385543985185184,
+      43.008724977777774
+    ],
+    "bounds": [
+      6.27393330000001,
+      42.98,
+      6.513841099999979,
+      43.09185
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      6.393887199999995,
+      43.03595048363675
+    ],
+    "zoom": 10.421665846798302,
+    "markerPixel": [
+      283.7244785983033,
+      372.64537040991917
+    ]
+  },
+  "src": "/assets/destination-maps/destination-07f5e878efba12b9-bd61b9b4a168b06f.png",
+  "mapHref": "/?lat=43.03595&lng=6.39389&z=10.42&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:36.681Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "9d6871af04aff027d6272782514990d28920b86ce3c930023884414a2eca0d14",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/saudi-arabia/makkah/",
+    "center": [
+      39.041174999999996,
+      21.8950375
+    ],
+    "bounds": [
+      38.8648,
+      21.7331,
+      39.0838,
+      22.9181
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      38.9743,
+      22.32685811191341
+    ],
+    "zoom": 8.004884156664025,
+    "markerPixel": [
+      324.4310143168933,
+      470.27751356624066
+    ]
+  },
+  "src": "/assets/destination-maps/destination-c685ecfb66c6529d-9d6871af04aff027.png",
+  "mapHref": "/?lat=22.32686&lng=38.97430&z=8.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:40.611Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

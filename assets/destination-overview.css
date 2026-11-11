@@ -1,0 +1,150 @@
+/* Destination layout; surfaces, buttons, header and scroll ownership stay shared. */
+.destination-overview-page .destination-overview { width:min(1120px,100%); margin:16px auto 32px; padding:16px 28px; overflow:visible; background:transparent; box-shadow:none; }
+.destination-overview .eyebrow { margin:0 0 12px; font-size:11px; line-height:1.5; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+.destination-overview .destination-section { margin:32px 0 0; padding:0; border:0; }
+.destination-section > h2 { margin:0; font-size:24px; line-height:1.25; font-weight:550; letter-spacing:-.025em; }
+.destination-season-panel { padding:24px; margin-top:16px; border:0; border-radius:14px; background:var(--panel-solid); box-shadow:var(--detail-container-shadow, none); }
+.destination-season-body { display:grid; grid-template-columns:170px minmax(0,1fr); align-items:center; gap:24px; }
+.destination-month-control { min-width:0; padding-right:20px; border-right:1px solid var(--line); }
+.destination-month-control > div { min-width:0; }
+.destination-month-control p { margin:6px 0 0; color:var(--text-secondary); font-size:11px; line-height:1.65; text-align:center; }
+.destination-month-control .scroll-wheel-frame { width:100%; border:0; background:var(--panel-soft); border-radius:12px; }
+.destination-month-control select { max-width:100%; padding:10px; color:var(--text); background:var(--panel-solid); border:1px solid var(--line); border-radius:var(--radius-control); font:inherit; }
+.destination-conditions { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); align-items:start; gap:24px; }
+.destination-conditions h4 { margin:0 0 6px; color:var(--text-secondary); font-size:12px; line-height:1.5; font-weight:500; }
+.destination-conditions strong { display:block; color:var(--text-primary); font-size:21px; line-height:1.4; font-weight:550; letter-spacing:-.02em; }
+.destination-conditions p { margin:10px 0 0; color:var(--text-secondary); font-size:12px; line-height:1.75; }
+.destination-source { max-width:none; margin:14px 0 0; padding-top:0; border-top:0; color:var(--text-secondary); font-size:12px; line-height:1.75; }
+.destination-overview .destination-shortlist { width:100%; border-top:1px solid var(--line); padding-top:24px; }
+.destination-overview [id] { scroll-margin-top:72px; }
+.destination-overview .region-list-pagination { margin-top:24px; gap:14px; line-height:1.6; }
+@media (min-width:651px) and (max-width:1000px) {
+  .destination-season-body { grid-template-columns:170px minmax(0,1fr); gap:24px; }
+  .destination-conditions { grid-template-columns:1fr; gap:18px; }
+  .destination-conditions > div { display:grid; grid-template-columns:145px 1fr; gap:0 16px; }
+  .destination-conditions h4 { margin-bottom:5px; }
+  .destination-conditions strong { grid-column:1; font-size:18px; }
+  .destination-conditions p { grid-column:2; grid-row:1 / 3; margin:0; }
+}
+@media(max-width:650px) {
+  .destination-overview-page .destination-overview { margin:20px auto 32px; padding:0 6px 20px; }
+  .destination-overview .eyebrow { font-size:10px; letter-spacing:.09em; }
+  .destination-overview .destination-section { margin-top:28px; }
+  .destination-section > h2 { font-size:24px; }
+
+  .destination-source { font-size:12px; line-height:1.75; margin-top:22px; }
+  .destination-overview .region-list-pagination { flex-wrap:wrap; justify-content:center; gap:12px; }
+}
+
+.destination-section-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.destination-section-heading h2 { margin:0; font-size:24px; line-height:1.25; font-weight:550; letter-spacing:-.025em; }
+.destination-section-heading > a { font-size:13px; white-space:nowrap; }
+.destination-evidence { margin-top:16px; padding:0; border:0; color:var(--text-secondary); font-size:12px; line-height:1.7; }
+.destination-evidence summary { width:fit-content; cursor:pointer; }
+.destination-evidence p { margin:10px 0 0; max-width:none; }
+@media(max-width:650px) {
+  .destination-section-heading h2 { font-size:24px; }
+}
+
+/* Scope the shared cinematic detail hero to this wrapper; no detail-data or explorer controller is loaded. */
+.destination-map-inset { position:absolute; top:58px; right:20px; z-index:4; width:275px; padding:0; border:0; border-radius:9px; background:transparent; box-shadow:0 2px 6px rgb(8 22 34 / 10%), 0 6px 16px rgb(8 22 34 / 12%); }
+.destination-map-inset__link { display:block; border-radius:9px; overflow:hidden; color:var(--text-primary); text-decoration:none; }
+.destination-map-inset__link img { display:block; width:100%; height:auto; aspect-ratio:1; }
+.destination-map-inset__credits { position:absolute; right:5px; bottom:5px; max-width:none; padding:3px 5px; border-radius:3px 0 8px 0; background:rgb(255 255 255 / 90%); color:#334155; text-align:right; white-space:nowrap; font-size:6.5px; line-height:1.25; transform:scale(.27); transform-origin:bottom right; }
+.destination-map-inset__credits a { color:inherit; }
+@media(max-width:720px) {
+  .destination-map-inset { top:54px; right:12px; width:150px; padding:0; border-radius:6px; }
+  .destination-map-inset__link { border-radius:6px; }
+  .destination-map-inset__credits { right:3px; bottom:3px; max-width:none; padding:2px 4px; font-size:6.5px; border-bottom-right-radius:5px; }
+}
+body.has-shared-header.destination-overview-page { padding-top:0; }
+.destination-overview-page .destination-overview { margin:0 auto 8px; padding-top:0; padding-bottom:0; }
+.destination-overview-page > .site-detail-footer { margin-top:8px; }
+.destination-hero-shell { position:relative; width:100vw; margin-left:calc(50% - 50vw); }
+.destination-hero-shell .site-photo-feature { padding:0; }
+.destination-hero-shell .site-photo-gallery-main { position:relative; overflow:hidden; }
+.destination-hero-shell .site-photo-preview-trigger { height:100%; width:100%; }
+.destination-hero-shell .hero-copy .breadcrumbs { line-height:1.6; }
+.destination-lead { margin:0; color:var(--text-secondary); font-size:15px; line-height:1.7; max-width:70ch; }
+@media(max-width:720px) {
+  .destination-hero-shell .hero-copy .breadcrumbs { flex-wrap:wrap; }
+  .destination-lead { font-size:14px; }
+}
+
+/* Use the detail explorer's immersion cards verbatim; only inline grid sizing differs from its modal surface. */
+.destination-shortlist .site-recommendations__content ul { grid-template-columns:repeat(3,minmax(0,1fr)); justify-items:stretch; margin-top:16px; }
+.destination-shortlist .site-recommendations__content li,
+.destination-shortlist .site-recommendations__content li a.site-recommendations__card { width:100%; min-width:0; max-width:none; }
+@media(max-width:720px) {
+  .destination-shortlist .site-recommendations__content ul { grid-template-columns:minmax(0,1fr); }
+}
+
+/* Detail pages remove the framed surface below their 1060px content breakpoint. */
+@media(max-width:1060px) {
+  .destination-season-panel { padding:0; border-radius:0; background:transparent; box-shadow:none; }
+}
+
+.destination-season-panel > .destination-lead { max-width:none; margin:0 0 20px; }
+
+.destination-summary-divider { margin:0 0 20px; border:0; border-top:1px solid var(--line); }
+
+/* Translations may wrap to multiple lines without widening the condition grid. */
+.destination-conditions > div { min-width:0; overflow-wrap:anywhere; }
+
+/* Keep month selection and its four readings in one visual group on phones. */
+@media(max-width:650px) {
+  .destination-season-body { grid-template-columns:100px minmax(0,1fr); align-items:center; gap:16px; padding:16px; border:1px solid var(--line); border-radius:14px; background:var(--panel-solid); }
+  .destination-month-control { align-self:stretch; display:flex; flex-direction:column; justify-content:center; padding:0 14px 0 0; border-right:1px solid var(--line); border-bottom:0; }
+  .destination-month-control label { position:static; display:block; width:auto; height:auto; padding:0; margin:0 0 10px; overflow:visible; clip:auto; white-space:normal; color:var(--text-secondary); font-size:11px; line-height:1.4; text-align:center; }
+  .destination-month-control .scroll-wheel-frame { width:100%; border-radius:8px; }
+  .destination-month-control .scroll-wheel-option { font-size:12px; }
+  .destination-month-control .scroll-wheel-option.is-selected { font-size:14px; }
+  .destination-conditions { grid-template-columns:1fr; gap:12px; }
+  .destination-conditions > div { display:block; }
+  .destination-conditions > div + div { padding-top:12px; border-top:1px solid var(--line-soft); }
+  .destination-conditions h4 { margin:0 0 4px; font-size:11px; line-height:1.4; }
+  .destination-conditions strong { font-size:17px; line-height:1.4; }
+  .destination-conditions p { margin:4px 0 0; font-size:11px; line-height:1.5; }
+}
+@media(max-width:360px) {
+  .destination-season-body { grid-template-columns:88px minmax(0,1fr); padding:12px; gap:12px; }
+  .destination-month-control { padding-right:10px; }
+  .destination-month-control .scroll-wheel-option { font-size:11px; }
+  .destination-month-control .scroll-wheel-option.is-selected { font-size:12px; }
+  .destination-conditions strong { font-size:16px; }
+}
+
+@media(max-width:650px) {
+  .destination-summary-divider { display:none; }
+}
+
+/* Let long recorded names grow the mobile hero below the fixed map inset.
+   An absolutely positioned title otherwise grows upward into the map. */
+@media(max-width:720px) {
+  .destination-hero-shell .site-hero { display:grid; min-height:420px; }
+  .destination-hero-shell .destination-hero-photo { position:absolute; inset:0; }
+  .destination-hero-shell .destination-hero-photo .site-photo { height:100%; }
+  .destination-hero-shell .hero-copy { position:relative; inset:auto; align-self:end; min-width:0; padding:222px 22px 48px; }
+  .destination-hero-shell .hero-copy h1 { flex-basis:100%; max-width:100%; overflow-wrap:anywhere; }
+  .destination-hero-shell .hero-copy h1.destination-title--long { font-size:clamp(36px,11vw,48px); }
+  /* Full recorded names and translated feature tags must expand the card
+     rather than climbing behind its fixed rating badge. */
+  .destination-shortlist li a.site-recommendations__card { height:auto; }
+  .destination-shortlist .site-recommendations__card-body { padding-top:70px; }
+}
+
+/* No empty month column when a destination has no sourced monthly profile. */
+.destination-season-body--no-month { grid-template-columns:minmax(0,1fr); }
+@media(max-width:1000px) {
+  .destination-season-body--no-month .destination-conditions { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+  .destination-season-body--no-month .destination-conditions > div { display:block; padding:0; border:0; }
+  .destination-season-body--no-month .destination-conditions p { margin-top:6px; }
+}
+
+/* No empty month column when a destination has no sourced monthly profile. */
+.destination-season-body--no-month { grid-template-columns:minmax(0,1fr); }
+@media(max-width:1000px) {
+  .destination-season-body--no-month .destination-conditions { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+  .destination-season-body--no-month .destination-conditions > div { display:block; padding:0; border:0; }
+  .destination-season-body--no-month .destination-conditions p { margin-top:6px; }
+}

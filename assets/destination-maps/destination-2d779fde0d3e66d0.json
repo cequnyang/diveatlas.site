@@ -1,0 +1,46 @@
+{
+  "fingerprint": "8d507054053b48de922de4653f8b64ebf42dc0f38c049c8728d305559f3bc652",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/colombia/boyaca/",
+    "center": [
+      -72.907326,
+      5.552766
+    ],
+    "bounds": [
+      -72.927326,
+      5.52125,
+      -72.887326,
+      5.5737
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -72.90732600000001,
+      5.547475582922999
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      300,
+      284.51796320491366
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2d779fde0d3e66d0-8d507054053b48de.png",
+  "mapHref": "/?lat=5.54748&lng=-72.90733&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:42.027Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -13,13 +13,48 @@ def site_header_fallback() -> str:
 
 def shared_header_assets(version: str | None = None) -> str:
     release = f' data-app-version="{escape(version, quote=True)}"' if version else ''
-    return ('<link rel="stylesheet" href="/assets/site-header.css?v=10">\n'
+    return ('<link rel="stylesheet" href="/assets/site-header.css?v=12">\n'
             '<link rel="stylesheet" href="/assets/search-results-menu.css?v=1">\n'
-            f'<script src="/js/site-header.js?v=5"{release} defer></script>\n')
+            f'<script src="/js/site-header.js?v=6"{release} defer></script>\n')
+
+
+def install_initial_detail_appearance(markup: str) -> str:
+    """Give recorded permalinks their final geometry before any script runs.
+
+    Preserve record content and existing action nodes. The runtime still owns
+    photo preview, rating, translation and the recommendation explorer.
+    """
+    if not re.search(r'<main\b[^>]*data-site-id=', markup):
+        return markup
+    markup = re.sub(r'(<body\b[^>]*class=")([^"]*)(")',
+                    lambda m: m[1] + (m[2] if 'cinematic-pilot' in m[2].split() else m[2] + ' cinematic-pilot') + m[3], markup, count=1)
+    markup = re.sub(r'<main\b[^>]*data-site-id=[^>]*>',
+                    lambda m: m[0] if re.search(r'\sid=', m[0]) else m[0].replace('<main', '<main id="detailPage"', 1), markup, count=1)
+    if '/assets/dive-site-cinematic-pilot.css' not in markup:
+        markup = markup.replace('</head>', '<link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=117">\n</head>', 1)
+    rail = re.search(r'<aside\b[^>]*class="site-photo-gallery-rail[^\"]*"[^>]*>.*?</aside>', markup, re.S)
+    hero = re.search(r'<section\b[^>]*class="site-hero"[^>]*>.*?</section>', markup, re.S)
+    if rail and hero and rail.start() < hero.end():
+        rail_markup = rail[0].replace('class="site-photo-gallery-rail"', 'class="site-photo-gallery-rail cinematic-pilot__rail"')
+        markup = markup[:rail.start()] + markup[rail.end():]
+        markup = re.sub(r'(<section\b[^>]*class="site-hero"[^>]*>.*?</section>)',
+                        lambda m: m[0] + '\n' + rail_markup, markup, count=1, flags=re.S)
+    def eager_hero(match):
+        image = re.sub(r'\sloading="lazy"', ' loading="eager"', match[2])
+        if 'fetchpriority=' not in image:
+            image = image[:-1] + ' fetchpriority="high">'
+        return match[1] + image
+    # Only the hero image gets priority; recommendation thumbnails stay lazy.
+    markup = re.sub(r'(<button\b[^>]*class="site-photo-preview-trigger"[^>]*>)(<img\b[^>]*>)',
+                    eager_hero, markup, count=1)
+    if 'class="site-photo-preview-trigger"' not in markup:
+        markup = markup.replace('class="site-hero"', 'class="site-hero cinematic-pilot--no-photo"', 1)
+    return markup
 
 
 def install_shared_header_assets(markup: str, version: str) -> str:
     """Cover legacy and future pages without rewriting generated source trees."""
+    markup = install_initial_detail_appearance(markup)
     # Replace only our tags so repeated assembly is idempotent and carries the
     # current release into pages that never had a version label in their HTML.
     markup = re.sub(r'<link\b[^>]*href=["\']/assets/site-header\.css[^"\']*["\'][^>]*>\s*', '', markup)

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "71a14ffddd854f08212230104feabb77add65c1e97b78a5a51dc7ced15a331d6",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/italy/lecco/",
+    "center": [
+      9.355474999999998,
+      45.84400000000001
+    ],
+    "bounds": [
+      9.327699999999993,
+      45.732,
+      9.402600000000007,
+      45.8848
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      9.365149999999971,
+      45.808452395184446
+    ],
+    "zoom": 10.551854763789473,
+    "markerPixel": [
+      279.3441425545348,
+      191.0890630664097
+    ]
+  },
+  "src": "/assets/destination-maps/destination-4d57040237ed7f49-71a14ffddd854f08.png",
+  "mapHref": "/?lat=45.80845&lng=9.36515&z=10.55&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:30.672Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

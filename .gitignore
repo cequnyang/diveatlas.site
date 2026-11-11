@@ -163,3 +163,17 @@ playwright-report/
 !/tests/unit/test_photo_asset_upload_plan.py
 !/assets/dive-sites/.gitignore
 !/tests/unit/area-search.test.js
+
+# Destination overview source and focused checks must survive regeneration.
+!/tools/destination_overview.py
+!/tools/preview_raja_ampat.py
+!/tools/preview_destinations.py
+!/tools/render_destination_map.cjs
+!/tools/serve_local_preview.py
+!/docs/raja-ampat-destination-overview.md
+!/tests/unit/test_destination_overview.py
+!/tests/e2e/destination-overview.spec.js
+
+!/tools/render_destination_maps.cjs
+!/tools/templates/
+!/tools/templates/destination-map.html

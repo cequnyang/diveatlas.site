@@ -1,0 +1,46 @@
+{
+  "fingerprint": "7f4bfae8acd9d8bd32f0fa49a587197815a11bf3d6049a9e2e65567514ba8435",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/sweden/kronoberg/",
+    "center": [
+      14.894966666666663,
+      57.034511111111115
+    ],
+    "bounds": [
+      14.697299999999984,
+      56.8725,
+      15.257799999999975,
+      57.1803
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      14.97754999999998,
+      57.02671860207366
+    ],
+    "zoom": 9.184490855685677,
+    "markerPixel": [
+      231.66123735566933,
+      288.15047887444496
+    ]
+  },
+  "src": "/assets/destination-maps/destination-5467b7088782c740-7f4bfae8acd9d8bd.png",
+  "mapHref": "/?lat=57.02672&lng=14.97755&z=9.18&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:22.800Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

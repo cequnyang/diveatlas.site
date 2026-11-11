@@ -1,0 +1,46 @@
+{
+  "fingerprint": "88339b467b30ffc33fb6d3481a82edb03fc5491a3272f9789ffc787c04954849",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/italy/novara/",
+    "center": [
+      8.415699999999996,
+      45.78633333333334
+    ],
+    "bounds": [
+      8.38639999999998,
+      45.6965,
+      8.459000000000003,
+      45.8293
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      8.42270000000002,
+      45.76293951396934
+    ],
+    "zoom": 10.755422027009317,
+    "markerPixel": [
+      282.7904249578052,
+      217.54063278476397
+    ]
+  },
+  "src": "/assets/destination-maps/destination-079ff1ea0f568f35-88339b467b30ffc3.png",
+  "mapHref": "/?lat=45.76294&lng=8.42270&z=10.76&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:21.404Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

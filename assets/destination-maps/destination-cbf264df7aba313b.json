@@ -1,0 +1,46 @@
+{
+  "fingerprint": "6e1523d5fa7b19e0fcdc1097bdefe00d59392f35f0d65f2894f3d6b3dd98177d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/australia/ningaloo-reef/",
+    "center": [
+      114.44255833333334,
+      -21.604983333333333
+    ],
+    "bounds": [
+      113.67439999999999,
+      -22.6064,
+      119.35000000000002,
+      -17.2833
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      116.5122,
+      -19.96730442121209
+    ],
+    "zoom": 5.8574448999380095,
+    "markerPixel": [
+      129.34098597505027,
+      444.4479426956363
+    ]
+  },
+  "src": "/assets/destination-maps/destination-cbf264df7aba313b-6e1523d5fa7b19e0.png",
+  "mapHref": "/?lat=-19.96730&lng=116.51220&z=5.86&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:08.334Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

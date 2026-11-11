@@ -1,0 +1,46 @@
+{
+  "fingerprint": "5c11230d1576fa81f111f82739b6256d16504678c42e00753b77020c929c8c4e",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/cyprus/cyprus/",
+    "center": [
+      33.06770072727273,
+      34.94395649999999
+    ],
+    "bounds": [
+      32.30873100000002,
+      34.64655,
+      34.08442400000001,
+      35.349769
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      33.19657750000002,
+      34.99891489565394
+    ],
+    "zoom": 7.53383564056658,
+    "markerPixel": [
+      266.0333573222492,
+      317.67648895285197
+    ]
+  },
+  "src": "/assets/destination-maps/destination-fb2563acf4b239ab-5c11230d1576fa81.png",
+  "mapHref": "/?lat=34.99891&lng=33.19658&z=7.53&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:47.669Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

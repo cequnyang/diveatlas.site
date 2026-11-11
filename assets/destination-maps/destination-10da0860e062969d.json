@@ -1,0 +1,46 @@
+{
+  "fingerprint": "da00fb9825bf7af3c158e41c5e30ecb7eb45d704296f3000cf1d2f149cc42034",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/philippines/philippines-bohol/",
+    "center": [
+      123.76031823529411,
+      9.541704705882355
+    ],
+    "bounds": [
+      123.685,
+      9.49078,
+      123.92440999999997,
+      9.5893
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      123.80470500000001,
+      9.540043558799397
+    ],
+    "zoom": 10.424662496827054,
+    "markerPixel": [
+      213.23250539925363,
+      296.70723360300065
+    ]
+  },
+  "src": "/assets/destination-maps/destination-10da0860e062969d-da00fb9825bf7af3.png",
+  "mapHref": "/?lat=9.54004&lng=123.80471&z=10.42&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:11.053Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

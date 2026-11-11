@@ -1,0 +1,46 @@
+{
+  "fingerprint": "8f7574a61010f347239a2652c1ec66317ce2344df8b3dfc97c6f110c09d68680",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/curacao/",
+    "center": [
+      -69.03916490588236,
+      12.199110858823527
+    ],
+    "bounds": [
+      -69.16300999999999,
+      12.0679476,
+      -68.86195040000001,
+      12.37958
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -69.0124802,
+      12.223809700381366
+    ],
+    "zoom": 10.011213698186952,
+    "markerPixel": [
+      260.83433573401635,
+      337.09018996374476
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2f0de4b0f0485942-8f7574a61010f347.png",
+  "mapHref": "/?lat=12.22381&lng=-69.01248&z=10.01&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:10.297Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

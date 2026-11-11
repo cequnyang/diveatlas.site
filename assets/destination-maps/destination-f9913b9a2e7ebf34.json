@@ -1,0 +1,46 @@
+{
+  "fingerprint": "895c12219fc93bbaa3b34550a12926e8708672353526d293810996f6b6731ad1",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/russian-federation/moscow/",
+    "center": [
+      37.69802222222222,
+      55.815822222222224
+    ],
+    "bounds": [
+      37.438800000000015,
+      55.641,
+      38.047199999999975,
+      56.1429
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      37.74300000000002,
+      55.89276147853579
+    ],
+    "zoom": 8.522164573558246,
+    "markerPixel": [
+      276.482420585735,
+      371.67178150659635
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f9913b9a2e7ebf34-895c12219fc93bba.png",
+  "mapHref": "/?lat=55.89276&lng=37.74300&z=8.52&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:21.770Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

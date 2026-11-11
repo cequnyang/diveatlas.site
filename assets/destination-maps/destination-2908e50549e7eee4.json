@@ -1,0 +1,46 @@
+{
+  "fingerprint": "23fbd60a6150577efedd9620d49e47db89c4f2560fcbf2dd9d2d251017656b27",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/french-polynesia/windward-islands/",
+    "center": [
+      -149.751116,
+      -17.550694999999997
+    ],
+    "bounds": [
+      -149.9277,
+      -17.7679,
+      -149.3237,
+      -17.4748
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -149.6257,
+      -17.62140953059553
+    ],
+    "zoom": 9.08959736125012,
+    "markerPixel": [
+      202.8233642384079,
+      242.52164824409618
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2908e50549e7eee4-23fbd60a6150577e.png",
+  "mapHref": "/?lat=-17.62141&lng=-149.62570&z=9.09&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:42.403Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

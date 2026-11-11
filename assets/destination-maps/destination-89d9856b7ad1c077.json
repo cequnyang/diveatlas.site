@@ -1,0 +1,46 @@
+{
+  "fingerprint": "3aa23ad1f0620b098b733169c8ec83495d1a3ca21eaff0c2161e0c149f291f34",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/malaysia/selangor/",
+    "center": [
+      101.62935750000001,
+      3.0763450000000003
+    ],
+    "bounds": [
+      101.53715,
+      2.8769,
+      101.75580000000002,
+      3.2113
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      101.64647500000001,
+      3.0441129737835553
+    ],
+    "zoom": 9.94053186109602,
+    "markerPixel": [
+      276.077527732518,
+      254.88997201042042
+    ]
+  },
+  "src": "/assets/destination-maps/destination-89d9856b7ad1c077-3aa23ad1f0620b09.png",
+  "mapHref": "/?lat=3.04411&lng=101.64648&z=9.94&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:19.240Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

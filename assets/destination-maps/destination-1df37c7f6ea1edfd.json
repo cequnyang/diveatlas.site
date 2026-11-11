@@ -1,0 +1,46 @@
+{
+  "fingerprint": "2e48806777deba9f639a78853e566688253775943553720226116da6fa7ed42b",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/limburg/",
+    "center": [
+      5.888966666666666,
+      51.175466666666665
+    ],
+    "bounds": [
+      5.843099999999993,
+      51.15546666666666,
+      5.948199999999986,
+      51.19546666666667
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      5.895649999999989,
+      51.17547100436593
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      280.5333807407485,
+      300.0201526728604
+    ]
+  },
+  "src": "/assets/destination-maps/destination-1df37c7f6ea1edfd-2e48806777deba9f.png",
+  "mapHref": "/?lat=51.17547&lng=5.89565&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:20.418Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

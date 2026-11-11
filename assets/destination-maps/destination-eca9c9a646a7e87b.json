@@ -1,0 +1,46 @@
+{
+  "fingerprint": "a0a0c30fe4e2a9bffc412b8a8ef2764c3364c57fac8a082c1bf637c9545d9eb1",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/sri-lanka/sri-lanka/",
+    "center": [
+      79.96730904999998,
+      6.9133280125
+    ],
+    "bounds": [
+      79.69408929999997,
+      6.0004314,
+      80.23812179999999,
+      8.3673231
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      79.96610555000001,
+      7.185418036843814
+    ],
+    "zoom": 7.1077483273960045,
+    "markerPixel": [
+      300.2360798948093,
+      353.7800687828453
+    ]
+  },
+  "src": "/assets/destination-maps/destination-eca9c9a646a7e87b-a0a0c30fe4e2a9bf.png",
+  "mapHref": "/?lat=7.18542&lng=79.96611&z=7.11&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:41.883Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

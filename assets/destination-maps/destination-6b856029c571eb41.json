@@ -1,0 +1,46 @@
+{
+  "fingerprint": "d2c9e964156a77b71fb92fa0c01e4992efd5ca836c1694e3885ffcdee9e43820",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/japan/tokyo/",
+    "center": [
+      139.76369999999997,
+      34.386475
+    ],
+    "bounds": [
+      139.65679999999998,
+      33.0626,
+      139.82979999999998,
+      35.735
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      139.74330000000003,
+      34.4094710291873
+    ],
+    "zoom": 6.66651358209235,
+    "markerPixel": [
+      302.9472581841052,
+      304.0263976145494
+    ]
+  },
+  "src": "/assets/destination-maps/destination-6b856029c571eb41-d2c9e964156a77b7.png",
+  "mapHref": "/?lat=34.40947&lng=139.74330&z=6.67&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:31.836Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

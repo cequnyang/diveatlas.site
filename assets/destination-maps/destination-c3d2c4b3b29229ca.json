@@ -1,0 +1,46 @@
+{
+  "fingerprint": "7fe6895aecc16d92c963835464c7874d770fdccc4d76d90913082992d34976ad",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/cook-islands/cook-islands-rarotonga/",
+    "center": [
+      -159.79320172413796,
+      -21.215754482758626
+    ],
+    "bounds": [
+      -159.835,
+      -21.2717,
+      -159.7258,
+      -21.1968
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -159.7804,
+      -21.23425475567062
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      262.71227586194874,
+      242.19274586763646
+    ]
+  },
+  "src": "/assets/destination-maps/destination-c3d2c4b3b29229ca-7fe6895aecc16d92.png",
+  "mapHref": "/?lat=-21.23425&lng=-159.78040&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:31.542Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

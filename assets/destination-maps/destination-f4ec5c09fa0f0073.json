@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f826e89a39b8cf391c650b3eaee2e0ca743f3882d40dde6459e3acb28831f8be",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/croatia/split-dalmatia/",
+    "center": [
+      16.26136385964912,
+      43.147144385964914
+    ],
+    "bounds": [
+      15.458000000000027,
+      43.0053333333333,
+      16.888300000000015,
+      43.4125
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      16.17315000000002,
+      43.20925642119116
+    ],
+    "zoom": 7.845900037357626,
+    "markerPixel": [
+      328.863935059607,
+      327.86959036672283
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f4ec5c09fa0f0073-f826e89a39b8cf39.png",
+  "mapHref": "/?lat=43.20926&lng=16.17315&z=7.85&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:02.836Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

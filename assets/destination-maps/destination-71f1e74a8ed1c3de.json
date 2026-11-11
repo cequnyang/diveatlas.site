@@ -1,0 +1,46 @@
+{
+  "fingerprint": "748c580b36d8f72a4e564b9f32268eff39566276ec1929999f8276a9dd719f97",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/israel/tel-aviv/",
+    "center": [
+      34.74959999999999,
+      32.0486
+    ],
+    "bounds": [
+      34.729599999999984,
+      32.0219,
+      34.76959999999999,
+      32.0842
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      34.74959999999999,
+      32.05305530209057
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      300,
+      315.3107006356451
+    ]
+  },
+  "src": "/assets/destination-maps/destination-71f1e74a8ed1c3de-748c580b36d8f72a.png",
+  "mapHref": "/?lat=32.05306&lng=34.74960&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:10.123Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

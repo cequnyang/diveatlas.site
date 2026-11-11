@@ -1,0 +1,46 @@
+{
+  "fingerprint": "59a941075145efc35c1ad58a461088312bfb2557a4de3fb809677585c498531d",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/sweden/stockholm/",
+    "center": [
+      18.177550000000004,
+      59.318512500000004
+    ],
+    "bounds": [
+      17.984800000000007,
+      59.2129,
+      18.49939999999998,
+      59.4141
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      18.242099999999994,
+      59.31364882282935
+    ],
+    "zoom": 9.32069445372882,
+    "markerPixel": [
+      241.29537504858442,
+      291.33209970265625
+    ]
+  },
+  "src": "/assets/destination-maps/destination-89d704dc139e37e8-59a941075145efc3.png",
+  "mapHref": "/?lat=59.31365&lng=18.24210&z=9.32&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:44.480Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

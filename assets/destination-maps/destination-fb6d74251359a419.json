@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f432b992278743f4f3e50bdd04037e53d4c0091971aeded222182eff26b032da",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/japan/shizuoka-prefecture/",
+    "center": [
+      138.93487142857143,
+      34.891628571428576
+    ],
+    "bounds": [
+      138.75800000000004,
+      34.6111,
+      139.13480000000004,
+      35.1096
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      138.9464000000001,
+      34.8607276539001
+    ],
+    "zoom": 9.081202402789216,
+    "markerPixel": [
+      291.1190939680735,
+      270.98430526158876
+    ]
+  },
+  "src": "/assets/destination-maps/destination-fb6d74251359a419-f432b992278743f4.png",
+  "mapHref": "/?lat=34.86073&lng=138.94640&z=9.08&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:45.255Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -34,7 +34,7 @@ module.exports = defineConfig({
   ) : [
     {
       name: 'desktop-chromium',
-      testMatch: ['shared-header.spec.js', 'dive-site-detail.spec.js', 'reviewed-site-photos.spec.js', 'critical-contracts.spec.js', 'environmental-view.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'dive-site-photo-ui-desktop.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-flow.spec.js'],
+      testMatch: ['destination-overview.spec.js', 'shared-header.spec.js', 'dive-site-detail.spec.js', 'reviewed-site-photos.spec.js', 'critical-contracts.spec.js', 'environmental-view.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'dive-site-photo-ui-desktop.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-flow.spec.js'],
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1280, height: 900 }
@@ -42,7 +42,7 @@ module.exports = defineConfig({
     },
     {
       name: 'mobile-touch-chromium',
-      testMatch: ['shared-header.spec.js', 'dive-site-detail.spec.js', 'reviewed-site-photos.spec.js', 'mobile-interactions.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'dive-site-photo-ui-mobile.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-flow.spec.js'],
+      testMatch: ['destination-overview.spec.js', 'shared-header.spec.js', 'dive-site-detail.spec.js', 'reviewed-site-photos.spec.js', 'mobile-interactions.spec.js', 'dive-conditions.spec.js', 'dive-experience-outlook.spec.js', 'dive-site-photo-ui-mobile.spec.js', 'tide-feature.spec.js', 'reef-condition.spec.js', 'reef-condition-seaview-local.spec.js', 'reef-condition-thermal-history.spec.js', 'reef-condition-ocean-heat-history.spec.js', 'regional-currents.spec.js', 'regional-currents-real-data.spec.js', 'regional-currents-flow.spec.js'],
       use: { ...devices['Pixel 7'], browserName: 'chromium' }
     }
   ],

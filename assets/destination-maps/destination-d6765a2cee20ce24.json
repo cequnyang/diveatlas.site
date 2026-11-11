@@ -1,0 +1,46 @@
+{
+  "fingerprint": "731e9a3391104d0525b6afd4a4c66bc2e4125066d767cf89001acb1c62066c2e",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/grenada/grenada/",
+    "center": [
+      -61.75008166666668,
+      12.050340833333335
+    ],
+    "bounds": [
+      -61.776700000000005,
+      12.01,
+      -61.72000000000003,
+      12.08549
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -61.74835000000003,
+      12.047747653487463
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      294.9561552592781,
+      292.27666558027266
+    ]
+  },
+  "src": "/assets/destination-maps/destination-d6765a2cee20ce24-731e9a3391104d05.png",
+  "mapHref": "/?lat=12.04775&lng=-61.74835&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:13.672Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

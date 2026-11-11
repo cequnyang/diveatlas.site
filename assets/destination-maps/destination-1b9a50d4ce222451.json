@@ -1,0 +1,46 @@
+{
+  "fingerprint": "34ab6b7add48cbb4591abee9ab34dbfc478be0880ae5ebe4f62b7fe490ac3bb1",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/switzerland/schwyz/",
+    "center": [
+      8.535188000000005,
+      47.037118
+    ],
+    "bounds": [
+      8.486890000000017,
+      46.99037,
+      8.569799999999987,
+      47.08643
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      8.528345000000002,
+      47.03842161725157
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      319.9316821334097,
+      305.57149048189325
+    ]
+  },
+  "src": "/assets/destination-maps/destination-1b9a50d4ce222451-34ab6b7add48cbb4.png",
+  "mapHref": "/?lat=47.03842&lng=8.52834&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:03.100Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "c02b76dba7a376e2b77c5fe5b0e4d161f7955f4f33db15895b9348d6abe1cab0",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/florida-springs/",
+    "center": [
+      -84.86760000000001,
+      30.40645
+    ],
+    "bounds": [
+      -85.94870000000003,
+      29.4071,
+      -82.476,
+      30.7905
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -84.21235000000001,
+      30.101220369997463
+    ],
+    "zoom": 6.566160031512226,
+    "markerPixel": [
+      211.69493477697588,
+      252.37970917267933
+    ]
+  },
+  "src": "/assets/destination-maps/destination-94daebe4058949a0-c02b76dba7a376e2.png",
+  "mapHref": "/?lat=30.10122&lng=-84.21235&z=6.57&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:50.271Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

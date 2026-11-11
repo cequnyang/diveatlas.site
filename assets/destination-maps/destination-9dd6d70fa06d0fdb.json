@@ -1,0 +1,46 @@
+{
+  "fingerprint": "68225dcd96a675487aaa516ffeecb251ee7c102d8497c6bfede5ac70dcde2836",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/south-dakota/",
+    "center": [
+      -100.47290000000001,
+      44.51505999999999
+    ],
+    "bounds": [
+      -100.52930000000003,
+      44.4529,
+      -100.40370000000001,
+      44.5704
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -100.46650000000002,
+      44.51167961145845
+    ],
+    "zoom": 10.963676740565639,
+    "markerPixel": [
+      281.82212988919684,
+      286.53559395048353
+    ]
+  },
+  "src": "/assets/destination-maps/destination-9dd6d70fa06d0fdb-68225dcd96a67548.png",
+  "mapHref": "/?lat=44.51168&lng=-100.46650&z=10.96&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:06.386Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

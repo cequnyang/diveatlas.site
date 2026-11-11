@@ -1,0 +1,46 @@
+{
+  "fingerprint": "09c627832ed580e0e7ce7c698cb86670b033b49a8994620644b4749916c4563b",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/alaska/",
+    "center": [
+      -148.31347999999997,
+      62.90713000000001
+    ],
+    "bounds": [
+      -151.5521,
+      59.4677,
+      -145.4999,
+      65.0793
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -148.52599999999998,
+      62.40462483334559
+    ],
+    "zoom": 4.7651157904698875,
+    "markerPixel": [
+      308.21883105385893,
+      257.69085553982194
+    ]
+  },
+  "src": "/assets/destination-maps/destination-70000c6cd4a5ebb1-09c627832ed580e0.png",
+  "mapHref": "/?lat=62.40462&lng=-148.52600&z=4.77&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:05.419Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

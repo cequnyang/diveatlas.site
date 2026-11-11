@@ -1,0 +1,46 @@
+{
+  "fingerprint": "c765cf34282f263cc746eaa754bc7854876e799bc4ced6b509f97784c6bb9088",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states-of-america/crystal-river/",
+    "center": [
+      -82.52773868000001,
+      28.97360948
+    ],
+    "bounds": [
+      -82.59203000000002,
+      28.8879518,
+      -82.43029000000001,
+      29.1026
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -82.51116,
+      28.995331607048925
+    ],
+    "zoom": 10.388964164908034,
+    "markerPixel": [
+      268.38397643241615,
+      347.35601670642694
+    ]
+  },
+  "src": "/assets/destination-maps/destination-cd52f6e523213d88-c765cf34282f263c.png",
+  "mapHref": "/?lat=28.99533&lng=-82.51116&z=10.39&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:08.100Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

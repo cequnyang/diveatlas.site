@@ -1,0 +1,46 @@
+{
+  "fingerprint": "23781ba1e60fcdec7dbe177866b315cacbb6ccd7541d22ad0bcb18fefd0aa9ed",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/red-sea/",
+    "center": [
+      35.115390738095236,
+      25.116992261904766
+    ],
+    "bounds": [
+      33.8444667,
+      22.0044081,
+      37.01173399999999,
+      28.7289145
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      35.428100349999994,
+      25.41351092966798
+    ],
+    "zoom": 5.465319664754568,
+    "markerPixel": [
+      280.35129891659443,
+      320.60216513279
+    ]
+  },
+  "src": "/assets/destination-maps/destination-b8d2868d646f6306-23781ba1e60fcdec.png",
+  "mapHref": "/?lat=25.41351&lng=35.42810&z=5.47&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:51.904Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

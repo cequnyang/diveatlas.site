@@ -1,0 +1,46 @@
+{
+  "fingerprint": "e7fbd8d0ca82e3fdfa430e11b83699e5982fc1c855e22f1615cab642a702b242",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/switzerland/ticino/",
+    "center": [
+      8.756677500000002,
+      46.27234
+    ],
+    "bounds": [
+      8.611899999999991,
+      46.0019,
+      8.988099999999974,
+      46.5501
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      8.799999999999983,
+      46.2766855237804
+    ],
+    "zoom": 8.696570250189835,
+    "markerPixel": [
+      274.43713801206815,
+      303.7096410451995
+    ]
+  },
+  "src": "/assets/destination-maps/destination-5d8fd7ac063fda55-e7fbd8d0ca82e3fd.png",
+  "mapHref": "/?lat=46.27669&lng=8.80000&z=8.70&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:44.116Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

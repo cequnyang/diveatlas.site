@@ -1,0 +1,46 @@
+{
+  "fingerprint": "95c18ae5f56fd9f01fa938244a07dcea34c4e589b3e6fca1cde31a0fe2f17562",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/austria/salzburg/",
+    "center": [
+      13.36822500000001,
+      47.77885
+    ],
+    "bounds": [
+      13.079200000000014,
+      47.7339,
+      13.487300000000005,
+      47.7992
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      13.283250000000038,
+      47.76656024753373
+    ],
+    "zoom": 9.65522320020459,
+    "markerPixel": [
+      397.4474393531018,
+      279.0296501435505
+    ]
+  },
+  "src": "/assets/destination-maps/destination-1f996f2448c978b1-95c18ae5f56fd9f0.png",
+  "mapHref": "/?lat=47.76656&lng=13.28325&z=9.66&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:26:10.826Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

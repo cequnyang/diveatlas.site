@@ -1,0 +1,46 @@
+{
+  "fingerprint": "b0f51d6f05cb7b5582104f69a912d8ae274a35789195423c7994456b82b55e7c",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/japan/mie-prefecture/",
+    "center": [
+      136.5246923076923,
+      34.208630769230766
+    ],
+    "bounds": [
+      136.24720000000002,
+      34.0071,
+      136.6648,
+      34.3223
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      136.45599999999996,
+      34.164847108839865
+    ],
+    "zoom": 9.622024198892715,
+    "markerPixel": [
+      376.9827586206463,
+      240.68270541830196
+    ]
+  },
+  "src": "/assets/destination-maps/destination-6a6d255abedad2f9-b0f51d6f05cb7b55.png",
+  "mapHref": "/?lat=34.16485&lng=136.45600&z=9.62&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:57.179Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

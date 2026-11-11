@@ -1,0 +1,46 @@
+{
+  "fingerprint": "562e1932b1fa0a20bc574d6da7a62662d0d06f4055a7830d63970ff7d692cef7",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/mexico/socorro-islands/",
+    "center": [
+      -111.03143749999998,
+      18.986962500000004
+    ],
+    "bounds": [
+      -112.0667,
+      18.71,
+      -110.80000000000001,
+      19.3
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -111.43335,
+      19.00526157214776
+    ],
+    "zoom": 8.0211429329186,
+    "markerPixel": [
+      448.492184416213,
+      307.1502453225437
+    ]
+  },
+  "src": "/assets/destination-maps/destination-bf887c1f440659fb-562e1932b1fa0a20.png",
+  "mapHref": "/?lat=19.00526&lng=-111.43335&z=8.02&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:37.589Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

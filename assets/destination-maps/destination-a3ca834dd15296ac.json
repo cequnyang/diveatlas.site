@@ -1,0 +1,46 @@
+{
+  "fingerprint": "1cec22a2f410cd0317c30c27c262fa9762433da25ec4b9baadd18d79751c8b57",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/puerto-rico-u-s-virgin-islands/",
+    "center": [
+      -65.48006666666667,
+      18.371840000000002
+    ],
+    "bounds": [
+      -66.33940000000001,
+      18.2791,
+      -64.83260000000001,
+      18.479
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -65.58600000000001,
+      18.37907896530514
+    ],
+    "zoom": 7.770729877515143,
+    "markerPixel": [
+      332.9020440669068,
+      302.36916569343043
+    ]
+  },
+  "src": "/assets/destination-maps/destination-a3ca834dd15296ac-1cec22a2f410cd03.png",
+  "mapHref": "/?lat=18.37908&lng=-65.58600&z=7.77&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:39.862Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

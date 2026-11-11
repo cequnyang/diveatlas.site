@@ -1,0 +1,46 @@
+{
+  "fingerprint": "1bfee2a2ad5e2cf598dce9fd44aeb0d676757f8d49301b7bb165666fc691c0e3",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/france/guadeloupe/",
+    "center": [
+      -61.697182944444464,
+      16.140805611111105
+    ],
+    "bounds": [
+      -61.80000000000001,
+      15.850237,
+      -61.48000000000002,
+      16.4996
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -61.64,
+      16.17518533620003
+    ],
+    "zoom": 8.92684263423004,
+    "markerPixel": [
+      260.4194910958078,
+      324.7754082616501
+    ]
+  },
+  "src": "/assets/destination-maps/destination-c504537ce264a6a6-1bfee2a2ad5e2cf5.png",
+  "mapHref": "/?lat=16.17519&lng=-61.64000&z=8.93&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:20:48.931Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "88c33156fa32b375f5ceef112ade6cb43ae67f09392a3790feb3ce6681f7b4a6",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/indonesia/gili-islands-lombok/",
+    "center": [
+      116.04011033571429,
+      -8.344919992857141
+    ],
+    "bounds": [
+      116.02011033571429,
+      -8.364919992857141,
+      116.06011033571428,
+      -8.324919992857142
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      116.0401103357143,
+      -8.344920504884442
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      300,
+      299.99849265303874
+    ]
+  },
+  "src": "/assets/destination-maps/destination-01ad81a837686ef2-88c33156fa32b375.png",
+  "mapHref": "/?lat=-8.34492&lng=116.04011&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:42.032Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

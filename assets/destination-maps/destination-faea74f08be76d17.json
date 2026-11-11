@@ -1,0 +1,46 @@
+{
+  "fingerprint": "e1a360c50abac6a728d96692a72fd04a9a9754beab2126a524a3e93cab99a4c0",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/antigua-and-barbuda/antigua-and-barbuda/",
+    "center": [
+      -61.83904,
+      17.11932
+    ],
+    "bounds": [
+      -61.99000000000001,
+      17.0023,
+      -61.7167,
+      17.58
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -61.85334999999999,
+      17.291376657634686
+    ],
+    "zoom": 9.087098747588179,
+    "markerPixel": [
+      311.0686942356494,
+      439.3192230385542
+    ]
+  },
+  "src": "/assets/destination-maps/destination-faea74f08be76d17-e1a360c50abac6a7.png",
+  "mapHref": "/?lat=17.29138&lng=-61.85335&z=9.09&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:38.607Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

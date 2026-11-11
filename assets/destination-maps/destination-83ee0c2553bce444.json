@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f7c6f91297c780959fefc7f50c9cad6c8e79fc75ded3f53d551a171a5c39ba11",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/indonesia/sumbawa/",
+    "center": [
+      118.45778571428572,
+      -8.24167142857143
+    ],
+    "bounds": [
+      117.47500000000002,
+      -8.46,
+      119.27600000000001,
+      -8.1213
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      118.37549999999999,
+      -8.290686469623722
+    ],
+    "zoom": 7.5134196346688835,
+    "markerPixel": [
+      321.3824065995051,
+      287.1294505958342
+    ]
+  },
+  "src": "/assets/destination-maps/destination-83ee0c2553bce444-f7c6f91297c78095.png",
+  "mapHref": "/?lat=-8.29069&lng=118.37550&z=7.51&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:44.098Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "961aa9881bfb2a24dd0e5ca10d59f7a31a79217a70640319aa1ba57f45098695",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/mexico/yucatan/",
+    "center": [
+      -89.48137000000001,
+      20.622761666666666
+    ],
+    "bounds": [
+      -89.60672,
+      20.58042,
+      -89.38414999999998,
+      20.64648
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -89.49543499999999,
+      20.613453581111386
+    ],
+    "zoom": 10.529886764517542,
+    "markerPixel": [
+      329.5746057419976,
+      279.08837715963523
+    ]
+  },
+  "src": "/assets/destination-maps/destination-588b5a626d922a75-961aa9881bfb2a24.png",
+  "mapHref": "/?lat=20.61345&lng=-89.49543&z=10.53&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:25.203Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

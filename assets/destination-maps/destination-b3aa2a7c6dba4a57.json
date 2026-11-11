@@ -1,0 +1,46 @@
+{
+  "fingerprint": "4e6c6a9e4c0ab0c85f533eaafcc6e6f1c7fcd5dc045232e052eb035b7d728d33",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/south-holland/",
+    "center": [
+      4.477744761904763,
+      52.01005142857143
+    ],
+    "bounds": [
+      4.048099999999977,
+      51.6722,
+      5.127400000000023,
+      52.2892
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      4.587750000000028,
+      51.98176232341817
+    ],
+    "zoom": 8.25212188680959,
+    "markerPixel": [
+      252.30014692064788,
+      280.0776200522234
+    ]
+  },
+  "src": "/assets/destination-maps/destination-b3aa2a7c6dba4a57-4e6c6a9e4c0ab0c8.png",
+  "mapHref": "/?lat=51.98176&lng=4.58775&z=8.25&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:56.408Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

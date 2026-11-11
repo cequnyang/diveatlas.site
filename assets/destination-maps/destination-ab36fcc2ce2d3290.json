@@ -1,0 +1,46 @@
+{
+  "fingerprint": "43517b0511bb5d6c9f1fcd3d0f1adc4b39fea7c4dfa8b75380722f66c2ded776",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/saudi-arabia/red-sea/",
+    "center": [
+      36.697508285714264,
+      25.16827891428571
+    ],
+    "bounds": [
+      34.46089999999998,
+      22.223167,
+      39.02366699999999,
+      28.0333332
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      36.742283499999985,
+      25.16283585566717
+    ],
+    "zoom": 5.679310277272252,
+    "markerPixel": [
+      296.73676852442117,
+      299.56170664253125
+    ]
+  },
+  "src": "/assets/destination-maps/destination-ab36fcc2ce2d3290-43517b0511bb5d6c.png",
+  "mapHref": "/?lat=25.16284&lng=36.74228&z=5.68&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:33.487Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

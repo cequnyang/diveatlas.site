@@ -1,0 +1,46 @@
+{
+  "fingerprint": "49ae79e6ce98f80f368db79cb474af8ddd920ebcfaba6312e983ccf8c2fb654f",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/india/andaman-islands/",
+    "center": [
+      92.961661725,
+      12.050059749999999
+    ],
+    "bounds": [
+      92.78050999999999,
+      11.9218031,
+      93.09305280000001,
+      12.2237104
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      92.93678140000003,
+      12.07279928186989
+    ],
+    "zoom": 10.040092143042683,
+    "markerPixel": [
+      337.25567218310306,
+      334.8187131792638
+    ]
+  },
+  "src": "/assets/destination-maps/destination-1521488a2b44aad0-49ae79e6ce98f80f.png",
+  "mapHref": "/?lat=12.07280&lng=92.93678&z=10.04&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:18.251Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

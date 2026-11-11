@@ -1,0 +1,46 @@
+{
+  "fingerprint": "e548bfabfc57890abb5c7b7db68aeae89e1a14dceeed43d45708c0dec21a4736",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/france/var/",
+    "center": [
+      6.297662500000008,
+      43.167225
+    ],
+    "bounds": [
+      5.7076000000000136,
+      43.0471,
+      6.8577999999999975,
+      43.4202
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      6.2827000000000055,
+      43.23393552650549
+    ],
+    "zoom": 8.160333073073273,
+    "markerPixel": [
+      306.0880281690094,
+      337.2359311164005
+    ]
+  },
+  "src": "/assets/destination-maps/destination-faf2e8f5277252fa-e548bfabfc57890a.png",
+  "mapHref": "/?lat=43.23394&lng=6.28270&z=8.16&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:34.640Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

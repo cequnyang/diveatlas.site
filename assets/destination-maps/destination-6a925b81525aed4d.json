@@ -1,0 +1,46 @@
+{
+  "fingerprint": "a9b1040831684fed07d25de083dd58702d15c08a596a322981c9c763b4628e00",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/indonesia/bali/",
+    "center": [
+      115.32802458983045,
+      -8.312437407627117
+    ],
+    "bounds": [
+      114.49919999999997,
+      -8.7988333,
+      115.70510000000002,
+      -8.0905
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      115.10215,
+      -8.444829163837923
+    ],
+    "zoom": 8.09210754008946,
+    "markerPixel": [
+      387.6600945689115,
+      248.06551207924883
+    ]
+  },
+  "src": "/assets/destination-maps/destination-6a925b81525aed4d-a9b1040831684fed.png",
+  "mapHref": "/?lat=-8.44483&lng=115.10215&z=8.09&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:20:39.519Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

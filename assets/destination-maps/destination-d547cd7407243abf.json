@@ -1,0 +1,46 @@
+{
+  "fingerprint": "f009e0b33fc3f3c2a3f989f3426f3ee0ad46645165a09be6c6d75d045a2b56d8",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/california/",
+    "center": [
+      -119.22036521739128,
+      36.2609
+    ],
+    "bounds": [
+      -124.11439999999999,
+      32.8477,
+      -114.2535,
+      41.8333
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -119.18395000000001,
+      37.47535323460133
+    ],
+    "zoom": 4.86050189186829,
+    "markerPixel": [
+      298.49544790209376,
+      362.7223527712106
+    ]
+  },
+  "src": "/assets/destination-maps/destination-d547cd7407243abf-f009e0b33fc3f3c2.png",
+  "mapHref": "/?lat=37.47535&lng=-119.18395&z=4.86&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:00.476Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

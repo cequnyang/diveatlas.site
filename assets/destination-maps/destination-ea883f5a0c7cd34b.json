@@ -1,0 +1,46 @@
+{
+  "fingerprint": "5545b28ccbce9bd0a86720490c166a14d489e7b11116116f4ba562b83696a432",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/saint-vincent-and-the-grenadines/st-vincent-grenadines/",
+    "center": [
+      -61.2777090909091,
+      12.973818181818181
+    ],
+    "bounds": [
+      -61.38839999999999,
+      12.5392,
+      -61.19200000000001,
+      13.2118
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -61.2902,
+      12.875725604039431
+    ],
+    "zoom": 8.897649856378411,
+    "markerPixel": [
+      308.47268392859235,
+      231.73344613490832
+    ]
+  },
+  "src": "/assets/destination-maps/destination-ea883f5a0c7cd34b-5545b28ccbce9bd0.png",
+  "mapHref": "/?lat=12.87573&lng=-61.29020&z=8.90&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:31.976Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

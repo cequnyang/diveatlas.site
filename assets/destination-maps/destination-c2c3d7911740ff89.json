@@ -1,0 +1,46 @@
+{
+  "fingerprint": "659aa6304fcfd8623e5d05ba8ecab6f5e472338b715288efd57b08bd082a644c",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/greece/greece/",
+    "center": [
+      26.523737669999996,
+      36.81474549
+    ],
+    "bounds": [
+      24.524353099999985,
+      35.4022795,
+      28.238980000000026,
+      40.6351692
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      26.381666550000006,
+      38.06548591486833
+    ],
+    "zoom": 5.6294131268255025,
+    "markerPixel": [
+      310.0021986013589,
+      410.90752446042785
+    ]
+  },
+  "src": "/assets/destination-maps/destination-c2c3d7911740ff89-659aa6304fcfd862.png",
+  "mapHref": "/?lat=38.06549&lng=26.38167&z=5.63&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:52.170Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

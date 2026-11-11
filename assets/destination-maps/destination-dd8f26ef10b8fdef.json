@@ -1,0 +1,46 @@
+{
+  "fingerprint": "1dd382bc66bdcbccafef4da98af667d44f25753cf45056149ddc3b7928b698cd",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states-of-america/new-england/",
+    "center": [
+      -70.94973879000001,
+      42.218712915
+    ],
+    "bounds": [
+      -71.99185790000001,
+      41.2916994,
+      -69.96258549999999,
+      42.9751995
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -70.9772217,
+      42.13904371534255
+    ],
+    "zoom": 7.179299793029589,
+    "markerPixel": [
+      305.6651936726893,
+      277.83877267704656
+    ]
+  },
+  "src": "/assets/destination-maps/destination-dd8f26ef10b8fdef-1dd382bc66bdcbcc.png",
+  "mapHref": "/?lat=42.13904&lng=-70.97722&z=7.18&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:16.882Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

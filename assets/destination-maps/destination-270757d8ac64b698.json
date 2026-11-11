@@ -1,0 +1,46 @@
+{
+  "fingerprint": "ce1c70332da112f09e989472ac407855aa2a6efe31747cd9bdcd05d8b5b68adf",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/norway/nordland/",
+    "center": [
+      17.141371428571436,
+      68.12541428571429
+    ],
+    "bounds": [
+      14.730099999999993,
+      66.2804,
+      17.829200000000014,
+      68.5231
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      16.279650000000004,
+      67.4281322762256
+    ],
+    "zoom": 5.816006031584474,
+    "markerPixel": [
+      369.04410803447166,
+      152.27194240853294
+    ]
+  },
+  "src": "/assets/destination-maps/destination-270757d8ac64b698-ce1c70332da112f0.png",
+  "mapHref": "/?lat=67.42813&lng=16.27965&z=5.82&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:25:04.166Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "dc0f39654a4810a021fc6c4b1d39623ad1e4f31c1e8d9331ac3629a1a4359c3c",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/italy/treviso/",
+    "center": [
+      11.880729999999991,
+      45.72584333333333
+    ],
+    "bounds": [
+      11.860729999999991,
+      45.67503,
+      11.90072999999999,
+      45.8263
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      11.880729999999971,
+      45.75071624773739
+    ],
+    "zoom": 10.567867298666831,
+    "markerPixel": [
+      300.00000000013245,
+      376.9348284934958
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2291c59a5fd84aab-dc0f39654a4810a0.png",
+  "mapHref": "/?lat=45.75072&lng=11.88073&z=10.57&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:13.934Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

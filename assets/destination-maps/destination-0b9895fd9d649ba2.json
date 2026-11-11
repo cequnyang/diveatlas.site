@@ -1,0 +1,46 @@
+{
+  "fingerprint": "2fb2152607409e3a49f589d2ff4ce45919d8ed94e6d21b36d44ed7ec70f0361a",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states-of-america/michigan/",
+    "center": [
+      -84.79650333333332,
+      43.58201333333333
+    ],
+    "bounds": [
+      -86.66071,
+      42.13497,
+      -83.17626999999999,
+      46.42308
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -84.91848999999999,
+      44.31817993438827
+    ],
+    "zoom": 5.778825362210892,
+    "markerPixel": [
+      309.5253205169054,
+      379.84593845937195
+    ]
+  },
+  "src": "/assets/destination-maps/destination-0b9895fd9d649ba2-2fb2152607409e3a.png",
+  "mapHref": "/?lat=44.31818&lng=-84.91849&z=5.78&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:40.686Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

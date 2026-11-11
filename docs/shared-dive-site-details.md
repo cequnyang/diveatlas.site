@@ -30,10 +30,17 @@ implementation if every new URL needs search indexing and rich link previews.
 
 ```powershell
 npm run build:site-details
-python -m http.server 8765 --bind 127.0.0.1
+python -m tools.serve_local_preview --port 8765
 ```
 
 Open `/dive-site.html?id=tapor-tamiyam-cape-kri-raja-ampat-<UUID>` on that server.
+
+Direct `/dive-sites/<slug>/` permalinks receive their cinematic stylesheet and
+page class in the initial HTML. The rating/map rail is already below the hero,
+and the hero image loads eagerly. This avoids flashing the old boxed layout
+while the interactive controller loads. The generator and publication assembly
+share `install_initial_detail_appearance`; the local preview applies the same
+upgrade to older snapshots in memory, without rewriting generated page trees.
 The map popup's **View dive-site details** link supplies the name and persistent
 ID. Related-site cards use the same shared page. Older links with only the UUID
 continue to open and update their address to include the current English site

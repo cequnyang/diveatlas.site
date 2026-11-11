@@ -1,0 +1,46 @@
+{
+  "fingerprint": "613a6be61b7fe93e5adc5f945e6f6581821ef3426d1323a37b0dec1b20e048e5",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/florida-panhandle/",
+    "center": [
+      -86.27932499999999,
+      30.170483333333337
+    ],
+    "bounds": [
+      -87.31220000000002,
+      30.0351,
+      -85.73149999999998,
+      30.3936
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -86.52185,
+      30.21451328690067
+    ],
+    "zoom": 7.701654230367855,
+    "markerPixel": [
+      371.8047067754799,
+      315.0820266727689
+    ]
+  },
+  "src": "/assets/destination-maps/destination-314d7b5d888a1716-613a6be61b7fe93e.png",
+  "mapHref": "/?lat=30.21451&lng=-86.52185&z=7.70&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:25.153Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

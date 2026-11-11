@@ -1,0 +1,46 @@
+{
+  "fingerprint": "1ea9964af2b527518761c6637db8a2e4aff1ddf6f4d39501aa08c4722d878183",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/belarus/minsk/",
+    "center": [
+      27.097614285714283,
+      54.3514
+    ],
+    "bounds": [
+      26.45690000000002,
+      52.87,
+      27.86250000000001,
+      54.9515
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      27.159699999999987,
+      53.92372132718387
+    ],
+    "zoom": 6.540665297466375,
+    "markerPixel": [
+      291.77955007230656,
+      203.34007474952895
+    ]
+  },
+  "src": "/assets/destination-maps/destination-2cdf0a35502b0da2-1ea9964af2b52751.png",
+  "mapHref": "/?lat=53.92372&lng=27.15970&z=6.54&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:52.454Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

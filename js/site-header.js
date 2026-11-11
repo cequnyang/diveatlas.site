@@ -17,7 +17,7 @@
     header.classList.add('shared-site-header');
     header.dataset.sharedHeaderReady = 'true';
     document.body.classList.add('has-shared-header');
-    if (!map && document.body.classList.contains('seo-site-detail-layout') &&
+    if (!map && (document.body.classList.contains('seo-site-detail-layout') || document.querySelector('[data-detail-scroll]')) &&
         !document.querySelector('.detail-scroll-rail')) {
       // A document scrollbar reserves a full-height gutter even when its track
       // has a top margin. Mirror its position into a separate native rail so
@@ -73,7 +73,7 @@
         header.querySelector(selector)?.classList.add(name);
       }
     }
-    stylesheet('/assets/site-header.css?v=10');
+    stylesheet('/assets/site-header.css?v=12');
     window.dispatchEvent(new CustomEvent('diveatlas:header-ready', { detail:{ map } }));
     return header;
   }

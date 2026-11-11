@@ -2,8 +2,9 @@
 body.shared-header-document { padding-top: 49px; }
 /* The detail page keeps window scrolling, but paints its native scrollbar in
    a sibling rail below the header rather than reserving a top-bar gutter. */
+/* The ID specificity must beat liquid-glass.css’s important scrollbar theme. */
 html.has-detail-scroll-rail:has(#detailPage) { scrollbar-width: none !important; }
-html.has-detail-scroll-rail::-webkit-scrollbar { display: none !important; width: 0 !important; }
+html.has-detail-scroll-rail:has(#detailPage)::-webkit-scrollbar { display: none !important; width: 0 !important; }
 body.has-shared-header > .detail-scroll-rail {
   position: fixed; z-index: 1290; top: 42px; right: 0; bottom: 0;
   width: 6px; overflow-x: hidden; overflow-y: scroll;

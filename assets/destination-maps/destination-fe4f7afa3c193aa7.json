@@ -1,0 +1,46 @@
+{
+  "fingerprint": "b26aba335767935a6977ff4edbb42bebcfbfc3c3271b7008380cc46f77ee76c9",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/south-africa/kwazulu-natal/",
+    "center": [
+      31.96220333333334,
+      -28.48756333333333
+    ],
+    "bounds": [
+      30.796609999999987,
+      -30.19269,
+      32.55000000000001,
+      -27.63
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      31.673305,
+      -28.919260024125776
+    ],
+    "zoom": 6.8123280873339995,
+    "markerPixel": [
+      346.1771995409578,
+      221.33073215391073
+    ]
+  },
+  "src": "/assets/destination-maps/destination-fe4f7afa3c193aa7-b26aba335767935a.png",
+  "mapHref": "/?lat=-28.91926&lng=31.67331&z=6.81&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:32.656Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

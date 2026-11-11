@@ -1,0 +1,46 @@
+{
+  "fingerprint": "06d440cbd1cca25b6114f7d3b1f40c9765626deb28469ccf3f31bc6f64f0018a",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/indonesia/halmahera/",
+    "center": [
+      127.63773124999999,
+      0.5276124999999999
+    ],
+    "bounds": [
+      126.1445,
+      -1.401,
+      128.9207,
+      2.18
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      127.5326,
+      0.3896902673624254
+    ],
+    "zoom": 6.521587085546524,
+    "markerPixel": [
+      313.7370228438907,
+      281.9777466402575
+    ]
+  },
+  "src": "/assets/destination-maps/destination-65d336a2d6fbb819-06d440cbd1cca25b.png",
+  "mapHref": "/?lat=0.38969&lng=127.53260&z=6.52&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:22:19.018Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "58f66a76ca6687ef96513deea595e40699cae437c72a68fd509dffa78e12f140",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/netherlands/saba/",
+    "center": [
+      -63.25857499999999,
+      17.6343625
+    ],
+    "bounds": [
+      -63.27969999999999,
+      17.614362500000002,
+      -63.23009999999999,
+      17.6543625
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -63.25489999999999,
+      17.634363609606737
+    ],
+    "zoom": 11,
+    "markerPixel": [
+      289.29578666667146,
+      300.0033913251427
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f710d54e94842629-58f66a76ca6687ef.png",
+  "mapHref": "/?lat=17.63436&lng=-63.25490&z=11.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:24:37.843Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "fingerprint": "76b5b76fa8136ef6d9130783820f86a5d4bd8b4513c3204c3375d188556f6f05",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/indonesia/alor-archipelago/",
+    "center": [
+      124.34385083333335,
+      -8.291598333333333
+    ],
+    "bounds": [
+      124.1705,
+      -8.5087,
+      124.4255,
+      -8.17
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      124.298,
+      -8.339386686896248
+    ],
+    "zoom": 9.908800052391548,
+    "markerPixel": [
+      362.68458144327,
+      233.97238525973427
+    ]
+  },
+  "src": "/assets/destination-maps/destination-e296bfa0e1ade0ba-76b5b76fa8136ef6.png",
+  "mapHref": "/?lat=-8.33939&lng=124.29800&z=9.91&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:15.730Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

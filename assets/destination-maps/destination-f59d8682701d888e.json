@@ -1,0 +1,46 @@
+{
+  "fingerprint": "094116379ea264d8c4d4fa7cf1c7fa3cfaf1025911436694404115a54035bc3f",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/spain/las-palmas/",
+    "center": [
+      -14.62822227272727,
+      28.35166681818182
+    ],
+    "bounds": [
+      -15.699799999999982,
+      27.87275,
+      -13.473400000000026,
+      29.2402
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -14.586600000000004,
+      28.558695369343624
+    ],
+    "zoom": 7.20750500213095,
+    "markerPixel": [
+      291.2507978636482,
+      349.49832363139836
+    ]
+  },
+  "src": "/assets/destination-maps/destination-f59d8682701d888e-094116379ea264d8.png",
+  "mapHref": "/?lat=28.55870&lng=-14.58660&z=7.21&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:21:51.746Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

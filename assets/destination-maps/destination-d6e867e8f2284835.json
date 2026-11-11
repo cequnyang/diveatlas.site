@@ -1,0 +1,46 @@
+{
+  "fingerprint": "98bb9f84b569580374ced4daf3d7fe789d40dfb1a850c8fb63c222b768f5689f",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/united-states/nebraska/",
+    "center": [
+      -99.16186666666665,
+      40.68836666666667
+    ],
+    "bounds": [
+      -99.37779999999998,
+      40.6687,
+      -98.73329999999999,
+      40.7245
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      -99.05554999999998,
+      40.69660584212281
+    ],
+    "zoom": 8.99596555221355,
+    "markerPixel": [
+      222.7987587276929,
+      307.890627400991
+    ]
+  },
+  "src": "/assets/destination-maps/destination-d6e867e8f2284835-98bb9f84b5695803.png",
+  "mapHref": "/?lat=40.69661&lng=-99.05555&z=9.00&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:27:38.577Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}

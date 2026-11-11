@@ -1,0 +1,46 @@
+{
+  "fingerprint": "897bca1c3537372988ea6756e117fd20c19ec45a1ce863f5653596cc06fc408f",
+  "inputs": {
+    "schema": 2,
+    "region": "/regions/new-zealand/canterbury/",
+    "center": [
+      173.66484,
+      -42.4332
+    ],
+    "bounds": [
+      173.53750000000002,
+      -42.4745,
+      173.72130000000004,
+      -42.4081
+    ],
+    "size": 600,
+    "padding": 66,
+    "maxZoom": 11,
+    "styleUrl": "https://tiles.openfreemap.org/styles/positron",
+    "styleHash": "40565c7a5a0961cb1b33afefb55c1e48f06575d2e45868b309582334eeab82f1",
+    "rendererUrl": "https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js",
+    "marker": "centre-v1",
+    "compass": "rose-v1",
+    "attribution": "page-overlay-v1"
+  },
+  "camera": {
+    "center": [
+      173.62939999999998,
+      -42.44130879594966
+    ],
+    "zoom": 10.806009144173439,
+    "markerPixel": [
+      390.23895538634724,
+      272.02368539545273
+    ]
+  },
+  "src": "/assets/destination-maps/destination-bcbb9383c57786ff-897bca1c35373729.png",
+  "mapHref": "/?lat=-42.44131&lng=173.62940&z=10.81&layers=dive",
+  "markerMeaning": "Mean of recorded destination site coordinates; not an individual dive site",
+  "renderedAt": "2026-11-11T07:23:59.377Z",
+  "attribution": [
+    "OpenFreeMap",
+    "© OpenMapTiles",
+    "© OpenStreetMap contributors"
+  ]
+}
