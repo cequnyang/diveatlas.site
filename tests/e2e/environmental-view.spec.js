@@ -567,27 +567,38 @@ test('header filter control retains the Show all layers action without a duplica
   await page.keyboard.press('Enter');
   await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
   await expect(collapseToggle).toHaveAttribute('aria-expanded', 'false');
-  await page.waitForTimeout(260);
+  const expectCollapsedAlignment = async () => {
+    // The collapsed class changes before the grid/padding (and mobile height)
+    // animations finish. Wait for their actual completion, not a wall-clock delay
+    // that can sample an intermediate centerline on a busy CI renderer.
+    await page.locator('#bioLegend').evaluate(async node => {
+      await Promise.all(node.getAnimations({subtree:true}).map(animation =>
+        animation.finished.catch(() => {})));
+    });
+    const collapsedCenterDeltas = await page.evaluate(() => {
+      const centerY = selector => {
+        const { top, height } = document.querySelector(selector).getBoundingClientRect();
+        return top + height / 2;
+      };
+      const panelCenter = centerY('#bioLegend');
+      return Object.fromEntries([
+        ['header', '#bioLegendHeading'],
+        ['Layers icon', '.bio-legend-title-icon'],
+        // Phones show the compact summary in place of the desktop label.
+        ['Layers text', window.matchMedia('(max-width: 720px)').matches
+          ? '.bio-legend-collapsed-summary' : '.bio-legend-title-label'],
+        ['chevron', '.bio-legend-title-chevron'],
+        ['filter icon', '#bioLegendBulkAction .layer-filter-icon'],
+        ['All label', '#bioLegendBulkAction .bulk-action-label'],
+        ['overflow', '#bioLegendOverflow > summary']
+      ].map(([label, selector]) => [label, centerY(selector) - panelCenter]));
+    });
+    for (const [label, delta] of Object.entries(collapsedCenterDeltas)) {
+      expect(Math.abs(delta), `${label} should share the collapsed panel centerline`).toBeLessThanOrEqual(1);
+    }
+  };
+  await expectCollapsedAlignment();
   await expect(collapseChevron).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
-  const collapsedCenterDeltas = await page.evaluate(() => {
-    const centerY = selector => {
-      const { top, height } = document.querySelector(selector).getBoundingClientRect();
-      return top + height / 2;
-    };
-    const panelCenter = centerY('#bioLegend');
-    return Object.fromEntries([
-      ['header', '#bioLegendHeading'],
-      ['Layers icon', '.bio-legend-title-icon'],
-      ['Layers text', '.bio-legend-title-label'],
-      ['chevron', '.bio-legend-title-chevron'],
-      ['filter icon', '#bioLegendBulkAction .layer-filter-icon'],
-      ['All label', '#bioLegendBulkAction .bulk-action-label'],
-      ['overflow', '#bioLegendOverflow > summary']
-    ].map(([label, selector]) => [label, centerY(selector) - panelCenter]));
-  });
-  for (const delta of Object.values(collapsedCenterDeltas)) {
-    expect(Math.abs(delta)).toBeLessThanOrEqual(1);
-  }
   const collapsedHeaderHeight = await page.locator('#bioLegendHeading').evaluate(node => node.getBoundingClientRect().height);
   expect(Math.abs(headerGeometry.header.height - collapsedHeaderHeight)).toBeLessThanOrEqual(1.5);
   await page.keyboard.press('Enter');
@@ -613,6 +624,11 @@ test('header filter control retains the Show all layers action without a duplica
     expect(layout.action.right).toBeLessThanOrEqual(layout.overflow.x);
     expect(layout.view.y - layout.heading.bottom).toBeGreaterThanOrEqual(0);
     expect(layout.view.y - layout.heading.bottom).toBeLessThanOrEqual(18);
+    await collapseToggle.click();
+    await expect(collapseToggle).toHaveAttribute('aria-expanded', 'false');
+    await expectCollapsedAlignment();
+    await collapseToggle.click();
+    await expect(collapseToggle).toHaveAttribute('aria-expanded', 'true');
   }
   await bulkAction.focus();
   await expect(bulkAction).toBeFocused();
