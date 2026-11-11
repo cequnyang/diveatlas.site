@@ -48629,5 +48629,1301 @@ export const reviewedPhotos = [
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED",
     "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Human approval and live-catalogue verification pending.  [{\"site_id\": \"b4506921-c7eb-422e-8c43-30a1b8b78a5b\", \"relationship\": \"RLS photographic filename BON5_7m120612WebersJoy_RSS (5).JPG identifies the named station, consistent with Weber's Joy and its catalogue geography. Survey position 12.21, -68.32. Coordinates are rounded station locations, not precise individual camera fixes. Nearby different named subsites are not assigned.\", \"status\": \"READY_FOR_REVIEW\"}, {\"site_id\": \"129ea9a9-1166-430a-a5d5-189b34c7a129\", \"relationship\": \"The source filename explicitly names WebersJoy. Both inventory records name Weber’s Joy and their points are 0.535/0.553 km from the source station. One unchanged original supports these duplicate named catalogue entries; it remains one photograph.\", \"status\": \"READY_FOR_REVIEW\"}] Original bytes unchanged; preview separately resized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Underwater habitat survey photograph. Documentary composition; aesthetic suitability requires human review. Supplied geographic/date/survey evidence: {\"Survey date\": \"2012-06-12\", \"Source metadata created\": \"2019-11-21T08:10:18.392283\", \"Survey deployment ID\": \"5009\", \"Survey station\": \"{\\\"alt_max\\\": null, \\\"alt_min\\\": null, \\\"campaign\\\": {\\\"id\\\": 273, \\\"name\\\": \\\"RLS_Bonaire_2012\\\"}, \\\"color\\\": \\\"#fd93aa\\\", \\\"created_at\\\": \\\"2019-11-21T08:10:18.291155\\\", \\\"dep_max\\\": 7.0, \\\"dep_min\\\": 7.0, \\\"id\\\": 5009, \\\"is_valid\\\": true, \\\"key\\\": \\\"912340403\\\", \\\"media_count\\\": 23, \\\"name\\\": \\\"912340403_BON5_2012-06-12\\\", \\\"platform\\\": {\\\"id\\\": 4, \\\"name\\\": \\\"RLS Diver Photos\\\"}, \\\"pose\\\": {\\\"alt\\\": null, \\\"dep\\\": 7.0, \\\"lat\\\": 12.21, \\\"lon\\\": -68.32, \\\"timestamp\\\": \\\"Tue, 12 Jun 2012 00:00:01 GMT\\\"}, \\\"pose_count\\\": 23, \\\"timestamp_end\\\": \\\"2012-06-12T00:00:22\\\", \\\"timestamp_start\\\": \\\"2012-06-12T00:00:00\\\"}\"}"
+  },
+  {
+    "siteId": "bb2cc58b-9f60-442b-80cb-0645a3586a2b",
+    "slug": "oganzaki-lighthouse",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c3853c2a064cf8e9f25d5c7a60c061febce23d9123a98994ccfa91a0c14605d6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c3853c2a064cf8e9f25d5c7a60c061febce23d9123a98994ccfa91a0c14605d6.jpg",
+    "originalSha256": "a8dde070f70803ae369ebd79409b8279b30d8a5b0834dde79994ef2fb930c209",
+    "alt": "Ishigaki Oganzaki Lighthouse, Japan — surface landmark photo",
+    "label": "surface landmark photo",
+    "credit": "surface landmark photo · Source: Japan Coast Guard, Ishigaki Oganzaki Lighthouse (https://www.kaiho.mlit.go.jp/soshiki/ishigakimikamisaki.html), PDL1.0 (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0). · PDL1.0; CC BY 4.0 compatible reuse also permitted under section 1.7(3) · Cropped/resized",
+    "creator": "Source: Japan Coast Guard, Ishigaki Oganzaki Lighthouse (https://www.kaiho.mlit.go.jp/soshiki/ishigakimikamisaki.html), PDL1.0 (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0).",
+    "license": "PDL1.0; CC BY 4.0 compatible reuse also permitted under section 1.7(3)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.kaiho.mlit.go.jp/soshiki/ishigakimikamisaki.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.kaiho.mlit.go.jp/soshiki/ishigakimikamisaki.html"
+      },
+      {
+        "label": "PDL1.0; CC BY 4.0 compatible reuse also permitted under section 1.7(3)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. The source image page does not state the capture date. 2026 maintenance notice is identity evidence, not image capture evidence. [{\"site_id\": \"bb2cc58b-9f60-442b-80cb-0645a3586a2b\", \"relationship\": \"The official image page explicitly identifies Ishigaki Oganzaki Lighthouse. The official JCG lighthouse notice names the same structure at a rounded position nominally 0.041 km from the inventory point. Photograph visibly depicts the lighthouse tower and its immediate hillside. This is surface-landmark context, not a photograph of underwater habitat, entry conditions, or a navigation chart.\", \"status\": \"READY_FOR_REVIEW\"}] Original website JPEG bytes unchanged. Separate preview re-encoded for review, no image content added or removed. Current JCG terms explicitly state website information belongs to the agency unless otherwise indicated, and applies PDL1.0 absent a different rights notice. The inspected specific image page contains no third-party credit or separate restriction. PDL1.0 permits copying, public transmission, adaptation and commercial reuse with attribution; third-party rights and separate terms remain excepted. Agency logos/characters are excluded, but this is a documentary lighthouse photograph, not a logo asset.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear portrait photograph of the entire white lighthouse against blue sky, with the grassy hillside and access steps. No people or watermark. Modest 620 × 750 pixel resolution; human suitability review remains pending. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"The source image page does not state the capture date. 2026 maintenance notice is identity evidence, not image capture evidence.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Current JCG terms explicitly state website information belongs to the agency unless otherwise indicated, and applies PDL1.0 absent a different rights notice. The inspected specific image page contains no third-party credit or separate restriction. PDL1.0 permits copying, public transmission, adaptation and commercial reuse with attribution; third-party rights and separate terms remain excepted. Agency logos/characters are excluded, but this is a documentary lighthouse photograph, not a logo asset.\"}"
+  },
+  {
+    "siteId": "e0a2e92d-cf67-45f6-bba1-61e578ea1650",
+    "slug": "ex-tortuga",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b61f73323637827cc4ddbb15e23bc2e4d3a181fbffe583ab61e86cad54832468.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b61f73323637827cc4ddbb15e23bc2e4d3a181fbffe583ab61e86cad54832468.jpg",
+    "originalSha256": "a3b0142d88a15e1d4e759ca5ffee38530e6ea5ee447ff1af3e4e92a736bf1042",
+    "alt": "Ex-Tortuga aground near Cardwell Point, San Miguel Island, in 1987, before being towed offshore and sunk. — historical vessel context",
+    "label": "historical vessel context",
+    "credit": "historical vessel context · NPS / Public Domain · Public Domain · Cropped/resized",
+    "creator": "NPS / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/eda67373-155d-4519-3ebe-7abac2762a2a",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/eda67373-155d-4519-3ebe-7abac2762a2a",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/eda67373-155d-4519-3ebe-7abac2762a2a"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/eda67373-155d-4519-3ebe-7abac2762a2a"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Asset-specific Constraints Information: Public domain:Full Granting Rights; PhotoCredit NPS. No private photographer credit. Original bytes unchanged. No endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Standalone colour aerial photograph of rusted grounded ship alongside coastal cliffs and surf; no collage, map, illustration or video capture. Original visually inspected at 1500x1200; historical grain and modest scan softness but useful vessel detail. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Asset-specific Constraints Information: Public domain:Full Granting Rights; PhotoCredit NPS. No private photographer credit. Original bytes unchanged. No endorsement asserted.\"}"
+  },
+  {
+    "siteId": "ec9a9ef3-a653-4277-8ae1-fb06d2be435d",
+    "slug": "glenlyon",
+    "src": "https://assets.diveatlas.site/site-photos/v1/394e62d282b7fdaa08b11623d7256374579ef285be812ca0dd177140361608fe.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/394e62d282b7fdaa08b11623d7256374579ef285be812ca0dd177140361608fe.jpg",
+    "originalSha256": "73a79656099c285c1aedb5427373802a6c09f0d6ad8f07a65c1525dd1e530890",
+    "alt": "Divers filming the wreckage of SS Glenlyon at Isle Royale National Park, Lake Superior. — underwater named wreck context",
+    "label": "underwater named wreck context",
+    "credit": "underwater named wreck context · Susanna Pershern / NPS Submerged Resources Center / Public Domain · Public Domain · Cropped/resized",
+    "creator": "Susanna Pershern / NPS Submerged Resources Center / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/e366fbdc-937c-ba80-fd52-2718cf16c717",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/e366fbdc-937c-ba80-fd52-2718cf16c717",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/e366fbdc-937c-ba80-fd52-2718cf16c717"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/e366fbdc-937c-ba80-fd52-2718cf16c717"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual NPGallery record explicitly declares Public domain:Full Granting Rights, credits Susanna Pershern, Submerged Resources Center. Rights not inferred solely from federal hosting. No private copyright mark present. Original bytes unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed source-original-derived preview: standalone landscape colour underwater photograph with several divers filming substantial wreck machinery, metal plates and gears. Usable detail despite natural green-blue haze. No panel, map, illustration, watermark or video frame. Inventory pin conflict retained. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual NPGallery record explicitly declares Public domain:Full Granting Rights, credits Susanna Pershern, Submerged Resources Center. Rights not inferred solely from federal hosting. No private copyright mark present. Original bytes unchanged.\"}"
+  },
+  {
+    "siteId": "d60d31b0-4c05-4286-b108-32fc1d5027b7",
+    "slug": "la-corbera",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cf6a8499de1cbcd93192edb797b494cd014497a01754ab9d7db6b396fd30200e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cf6a8499de1cbcd93192edb797b494cd014497a01754ab9d7db6b396fd30200e.jpg",
+    "originalSha256": "c88237455d91e61fab02c2f06933b1297df53783efd4177ee092f452ab2b6449",
+    "alt": "Diver below Corbera Island, Santander, Spain — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [{\"site_id\": \"d60d31b0-4c05-4286-b108-32fc1d5027b7\", \"relationship\": \"Photographer gallery caption names Corbera Island, Santander, Spain. This is the same named island as La Corbera at 43.47379,-3.75372 in the inventory. Image depicts a diver beneath the island through submerged rock walls; no nearby different site is assigned.\", \"status\": \"READY_FOR_REVIEW\"}] Downloaded source bytes unchanged. Preview resized separately. The photographer’s first-party introduction permits use of all his media including commercial purposes and explicitly links CC BY-SA 4.0 legal code. Credit creator, source and licence; indicate changes and comply with share-alike for adaptations. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Vertical underwater view between dark rock walls with blue daylight, fish and a diver; clear photographic detail. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The photographer’s first-party introduction permits use of all his media including commercial purposes and explicitly links CC BY-SA 4.0 legal code. Credit creator, source and licence; indicate changes and comply with share-alike for adaptations. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "a40b9a2d-7560-45d7-b276-593193e6c958",
+    "slug": "temple-red-sea-egypt",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b76c42fb6a81a83317dec63dfd389683db6ca3439a669e637c42b8882bbc1719.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b76c42fb6a81a83317dec63dfd389683db6ca3439a669e637c42b8882bbc1719.jpg",
+    "originalSha256": "7cec77288795504b3056a4a95d9d628fa386286cfd22bb674e66474675bf3ac2",
+    "alt": "Common lionfish (Pterois miles), Temple, Sharm el-Sheikh, Egypt. — exact site photo",
+    "label": "exact site photo",
+    "credit": "exact site photo · Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso, CC BY-SA 4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [{\"site_id\": \"a40b9a2d-7560-45d7-b276-593193e6c958\", \"relationship\": \"Photographer gallery caption explicitly names Temple, Sharm el-Sheikh, Egypt. Inventory Temple is in the Red Sea at 27.8474,34.309, consistent with that named dive site. The same-name Temple in Spain and other Temple sites are excluded. This is a site-specific marine-life photograph, not a wide site overview.\", \"status\": \"READY_FOR_REVIEW\"}] Downloaded source bytes unchanged. Preview resized separately. The photographer’s first-party introduction permits use of all his media including commercial purposes and explicitly links CC BY-SA 4.0 legal code. Credit creator, source and licence; indicate changes and comply with share-alike for adaptations. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Square underwater lionfish photograph with coral substrate, sharp subject detail and no visible watermark. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The photographer’s first-party introduction permits use of all his media including commercial purposes and explicitly links CC BY-SA 4.0 legal code. Credit creator, source and licence; indicate changes and comply with share-alike for adaptations. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "8e67d4dd-976e-4d86-b764-445b61079c9b",
+    "slug": "halona-blowhole",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b971b2921b9d85c0bb41a0898122d18efd7315cd7b2ca530c15f384de478ecce.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b971b2921b9d85c0bb41a0898122d18efd7315cd7b2ca530c15f384de478ecce.jpg",
+    "originalSha256": "b86019ae0207027be44e5c21f106ab14097982dd7aaa41dfc38cbef1acc90c32",
+    "alt": "Halona Blowhole and the adjacent rocky shore on Oahu, Hawaii. Surface landmark view; EXIF records 1 March 2009. — surface named landmark context",
+    "label": "surface named landmark context",
+    "credit": "surface named landmark context · Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits. · CC BY 2.5 · Cropped/resized",
+    "creator": "Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits.",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/blowholeDSC_6642.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/blowholeDSC_6642.htm"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Standalone landscape colour photograph of the rocky coastline and blowhole water spray, viewed from above. Strong contrast and sunlit water; adequately sharp detail. No identifiable people, watermark, illustration, map, extracted panel or video frame. Coastline only; no claim that the image depicts the underwater dive. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.\"}"
+  },
+  {
+    "siteId": "a9306586-14c5-45af-aa7b-a3fdcf236953",
+    "slug": "rabbit-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f5448f45c21a3ff2432fd04820f9b1ed9b54881de9c09516d2851f5a2728036a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f5448f45c21a3ff2432fd04820f9b1ed9b54881de9c09516d2851f5a2728036a.jpg",
+    "originalSha256": "3ed0be41c8c30845b25b8e03c85da746ad502010e5a76d315d583e68f95da638",
+    "alt": "Manana (Rabbit Island), with Kaohikaipu at right, seen from the Oahu shore. Surface island context; EXIF records 1 March 2009. — surface named landmark context",
+    "label": "surface named landmark context",
+    "credit": "surface named landmark context · Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits. · CC BY 2.5 · Cropped/resized",
+    "creator": "Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits.",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/Kaohikaipu-Manana-rabbit%20island_6674b.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/Kaohikaipu-Manana-rabbit%20island_6674b.htm"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Standalone landscape colour photograph of the prominent pale-cliffed Manana/Rabbit Island, lower Kaohikaipu at right, ocean and rocky beach foreground. Clear, usable island surface view. No identifiable people, watermark, illustration, map, extracted panel or video frame. A single photo serves two alias-named island entries; do not count them as two photographed geographic subjects. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.\"}"
+  },
+  {
+    "siteId": "ce15026c-9971-4dd8-b047-59fcdb2d00b1",
+    "slug": "manana-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f5448f45c21a3ff2432fd04820f9b1ed9b54881de9c09516d2851f5a2728036a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f5448f45c21a3ff2432fd04820f9b1ed9b54881de9c09516d2851f5a2728036a.jpg",
+    "originalSha256": "3ed0be41c8c30845b25b8e03c85da746ad502010e5a76d315d583e68f95da638",
+    "alt": "Manana (Rabbit Island), with Kaohikaipu at right, seen from the Oahu shore. Surface island context; EXIF records 1 March 2009. — surface named landmark context",
+    "label": "surface named landmark context",
+    "credit": "surface named landmark context · Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits. · CC BY 2.5 · Cropped/resized",
+    "creator": "Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits.",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/Kaohikaipu-Manana-rabbit%20island_6674b.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.photoeverywhere.co.uk/west/usa/hawaii/slides/Kaohikaipu-Manana-rabbit%20island_6674b.htm"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Standalone landscape colour photograph of the prominent pale-cliffed Manana/Rabbit Island, lower Kaohikaipu at right, ocean and rocky beach foreground. Clear, usable island surface view. No identifiable people, watermark, illustration, map, extracted panel or video frame. A single photo serves two alias-named island entries; do not count them as two photographed geographic subjects. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"The individual photo page explicitly provides CC BY 2.5 and marks the image not property released. Source terms affirm Photoeverywhere owns the image copyrights and require an online hyperlink credit. Embedded artist/copyright tags request attribution to photoeverywhere.co.uk. No personal photographer name is supplied. Original downloaded bytes unchanged; separate reduced preview created only for review. No model or property release supplied; human publication/reuse review remains required.\"}"
+  },
+  {
+    "siteId": "4dc8ce6b-287d-4098-a3d0-2aa8057a4125",
+    "slug": "caves-of-babylon",
+    "src": "https://assets.diveatlas.site/site-photos/v1/65cc42eae025c8a5d5a2d6e7b37f3abe767f5fa1003c06f3463c6267e73c3257.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/65cc42eae025c8a5d5a2d6e7b37f3abe767f5fa1003c06f3463c6267e73c3257.jpg",
+    "originalSha256": "d5092bb434effe5d4d31798edb28714055729a594f2fd1b8011a91954ee7e462",
+    "alt": "Scuba divers among the underwater rock walls and fan corals of Caves of Babylon, Fiji. Source names this dive site; EXIF records 16 September 2012. — underwater named dive site",
+    "label": "underwater named dive site",
+    "credit": "underwater named dive site · Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits. · CC BY 2.5 · Cropped/resized",
+    "creator": "Photoeverywhere.co.uk / CC BY 2.5. Credit and link https://photoeverywhere.co.uk/ and the licence; identify any future edits.",
+    "license": "CC BY 2.5",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.photoeverywhere.co.uk/east/fiji/slides/cave_dive.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.photoeverywhere.co.uk/east/fiji/slides/cave_dive.htm"
+      },
+      {
+        "label": "CC BY 2.5",
+        "url": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The individual item explicitly provides CC BY 2.5 and marks the image not property released. Saved source terms affirm Photoeverywhere owns the digital-file copyrights and require an online hyperlink credit. Embedded artist and copyright tags identify photoeverywhere.co.uk. No personal photographer name supplied. Original native public download is unchanged; a reduced preview was made separately. No model or property releases supplied. Two divers are visible with obscured faces; human reuse review remains required.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Portrait underwater photograph looking through dark rock walls and fan corals toward blue light. A large silhouetted scuba diver and a smaller diver are visible; faces are obscured. Slight underwater haze and dark exposure are part of the scene, with useful diver and cave detail. No watermark, illustration, map, extracted panel or video frame. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"The individual item explicitly provides CC BY 2.5 and marks the image not property released. Saved source terms affirm Photoeverywhere owns the digital-file copyrights and require an online hyperlink credit. Embedded artist and copyright tags identify photoeverywhere.co.uk. No personal photographer name supplied. Original native public download is unchanged; a reduced preview was made separately. No model or property releases supplied. Two divers are visible with obscured faces; human reuse review remains required.\"}"
+  },
+  {
+    "siteId": "360218f4-bf19-4e91-8fe5-26d08657bd0b",
+    "slug": "uss-saratoga-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ead10f1c94d7e2f37147dd2fd7aa214a796399495b98e0872014a2a34d0e84f1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ead10f1c94d7e2f37147dd2fd7aa214a796399495b98e0872014a2a34d0e84f1.jpg",
+    "originalSha256": "2ff03bb9d2ec429e04f64fe2931d7c2c39f2be09a4656efbc2fad9c48f602a36",
+    "alt": "A diver filming exterior features of the USS Saratoga (CV-3) wreck at Bikini Atoll, Marshall Islands. — underwater named wreck context",
+    "label": "underwater named wreck context",
+    "credit": "underwater named wreck context · NPS Photo / Submerged Resources Center / Public Domain · Public Domain · Cropped/resized",
+    "creator": "NPS Photo / Submerged Resources Center / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/475a759a-620e-4585-bcbe-8289197090ac",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/475a759a-620e-4585-bcbe-8289197090ac",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/475a759a-620e-4585-bcbe-8289197090ac"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/475a759a-620e-4585-bcbe-8289197090ac"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. NPS article separately credits NPS Photo. No private copyright credit or mark. Original bytes unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed original-derived 1200-pixel preview: portrait colour underwater photograph of a scuba diver with camera beside the carrier exterior, including extensive corroded superstructure. Blue cast and moderate natural haze, but recognisable diver and wreck detail. Independently catalogued Resource Type Image, JPEG; scanned-photograph proportions and visible film-edge specks, no video controls, frame overlays, panels, map, or illustration. A photograph of filming, not an extracted video frame. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. NPS article separately credits NPS Photo. No private copyright credit or mark. Original bytes unchanged.\"}"
+  },
+  {
+    "siteId": "e56fd35c-2a4f-4230-93da-4d795ca118d3",
+    "slug": "hijms-nagato-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9074f68bacd4994a70d590ad45159d85818086747689f0e03587994ba759eab1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9074f68bacd4994a70d590ad45159d85818086747689f0e03587994ba759eab1.jpg",
+    "originalSha256": "4bd6341d778a91c04a30ada925e2bd313410424812c92624b0be667e34af7beb",
+    "alt": "NPS diver Larry Murphy examining a propeller of the sunken Japanese battleship Nagato at Bikini Atoll, Marshall Islands. — underwater named wreck context",
+    "label": "underwater named wreck context",
+    "credit": "underwater named wreck context · NPS Photo / Submerged Resources Center / Public Domain · Public Domain · Cropped/resized",
+    "creator": "NPS Photo / Submerged Resources Center / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/0fa5789c-c43f-412c-a954-4aad3ed6e001",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/0fa5789c-c43f-412c-a954-4aad3ed6e001",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/0fa5789c-c43f-412c-a954-4aad3ed6e001"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/0fa5789c-c43f-412c-a954-4aad3ed6e001"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. The accompanying NPS manual page credits NPS photo. No private copyright credit or mark. Original bytes unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed original-derived 1200-pixel preview: landscape colour underwater photograph showing a large corroded propeller and shaft at left and scuba diver illuminating it at right. Strong blue colour cast and moderate historical scan softness, usable subject detail. No video controls, frame overlay, collage, map, illustration, or added watermark. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. The accompanying NPS manual page credits NPS photo. No private copyright credit or mark. Original bytes unchanged.\"}"
+  },
+  {
+    "siteId": "12277483-ef97-4156-ac2e-8a238f5f16c5",
+    "slug": "sms-cormoran-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/709edb3d6db1c6522dac4fd81faafb3520b5871d4edba3514af14801a00c01db.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/709edb3d6db1c6522dac4fd81faafb3520b5871d4edba3514af14801a00c01db.jpg",
+    "originalSha256": "a21a198af5d2c69b98188b557257cde9711b070d36b8b2c5065ceb339fae8273",
+    "alt": "SMS Cormoran afloat in Apra Harbor, Guam, on 7 April 1917, the day she was scuttled. Historical vessel context. — historical named vessel context",
+    "label": "historical named vessel context",
+    "credit": "historical named vessel context · WAPA Photo Collection Box 12.66 / National Park Service / Public Domain · Public Domain · Cropped/resized",
+    "creator": "WAPA Photo Collection Box 12.66 / National Park Service / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/5c0a9005-a856-40a2-a74d-05f7233adb76",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/5c0a9005-a856-40a2-a74d-05f7233adb76",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/5c0a9005-a856-40a2-a74d-05f7233adb76"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/5c0a9005-a856-40a2-a74d-05f7233adb76"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual record explicitly states Public domain:Full Granting Rights and credits WAPA Photo Collection Box 12.66. Not an NHHC, LOC, NARA or DVIDS attributed asset. Gallery includes other providers but those items were not acquired. Original download is 1308027 bytes; older item size metadata reports 1224029 bytes; dimensions agree and actual downloaded bytes/hash are recorded. Original bytes unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed original-derived 1200-pixel preview: landscape black-and-white historical photograph of the full two-funnel ship afloat, with legible historic caption on the water stating Cormoran, sunk April 7th 1917, Guam. Moderate scan softness and fine scratches; coherent usable vessel detail, no added watermark, no diagram or collage. Historical surface image, not underwater. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual record explicitly states Public domain:Full Granting Rights and credits WAPA Photo Collection Box 12.66. Not an NHHC, LOC, NARA or DVIDS attributed asset. Gallery includes other providers but those items were not acquired. Original download is 1308027 bytes; older item size metadata reports 1224029 bytes; dimensions agree and actual downloaded bytes/hash are recorded. Original bytes unchanged.\"}"
+  },
+  {
+    "siteId": "4088af38-74c4-4d36-9744-f453d13e1b37",
+    "slug": "shinkoku-maru",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c07eb04a420b8def80556de58d36213309a6aba92439afcd85f40ca4ccfa7d90.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c07eb04a420b8def80556de58d36213309a6aba92439afcd85f40ca4ccfa7d90.jpg",
+    "originalSha256": "09bc75347f72e84a5975292fe2887868db2be5d7b939cd607c15edd023012ee6",
+    "alt": "Coral-covered interior controls inside the Shinkoku Maru wreck in Chuuk Lagoon, Federated States of Micronesia. — underwater named wreck context",
+    "label": "underwater named wreck context",
+    "credit": "underwater named wreck context · NPS / Submerged Resources Center / Public Domain · Public Domain · Cropped/resized",
+    "creator": "NPS / Submerged Resources Center / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/5939a287-cbce-44e6-ab71-8de9fb7ba579",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/5939a287-cbce-44e6-ab71-8de9fb7ba579",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/5939a287-cbce-44e6-ab71-8de9fb7ba579"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/5939a287-cbce-44e6-ab71-8de9fb7ba579"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. No external provider or private copyright credit appears. Original bytes unchanged.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed original-derived 1200-pixel preview. Landscape colour underwater photograph of heavily encrusted ship interior controls, circular handwheels, pillars, marine growth and small fish. Blue ambient background with brightly illuminated foreground and useful recognisable wreck detail. Some natural suspended particles and scan texture; no added watermark, collage, drawing, PDF panel, video controls or extracted-frame overlay. Independently catalogued Resource Type Image with original JPEG. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual item Constraints Information explicitly declares Public domain. Search metadata GrantingRights is Unknown, not Full; public-domain status is explicit and not inferred solely from federal hosting. No external provider or private copyright credit appears. Original bytes unchanged.\"}"
+  },
+  {
+    "siteId": "4b37c898-b943-4e4a-a2f1-31fbdaa2ff40",
+    "slug": "amtrak",
+    "src": "https://assets.diveatlas.site/site-photos/v1/98d7137daf0eb7c554a739186ae60ac1f3a7b7d402257e00528acadd25935c1c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/98d7137daf0eb7c554a739186ae60ac1f3a7b7d402257e00528acadd25935c1c.jpg",
+    "originalSha256": "16a1a405a8bf75cf0ca7299b1a78bf6fed929eca6f1935513bcce9f024f7d7c8",
+    "alt": "The submerged World War II Amtrac wreck off Ga'an Point, near Agat Cemetery, Guam, with a scuba diver. — underwater exact site photo",
+    "label": "underwater exact site photo",
+    "credit": "underwater exact site photo · National Park Service / Guam: A Biogeographic and Maritime Cultural Landscape Exploration of a WWII Amphibious Battlefield / Public Domain · Public Domain · Cropped/resized",
+    "creator": "National Park Service / Guam: A Biogeographic and Maritime Cultural Landscape Exploration of a WWII Amphibious Battlefield / Public Domain",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/b5ac5bad-c33b-4fc2-b335-4d208830e4a7",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/b5ac5bad-c33b-4fc2-b335-4d208830e4a7",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/b5ac5bad-c33b-4fc2-b335-4d208830e4a7"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/b5ac5bad-c33b-4fc2-b335-4d208830e4a7"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Individual item Constraints Information explicitly states Public domain:Full Granting Rights, Access Constraints Public Can View. No private copyright owner or restrictive item licence is stated. Federal hosting alone was not used as a rights grant. Original bytes unchanged. No endorsement or model/property-release claim.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed a 1400-pixel preview generated from the unchanged original. Landscape colour underwater camera photograph shows the extensive rectangular amphibious tractor wreck, open hull, corroded encrusted structures and tracks on a sandy bottom, with one scuba diver at right. Wreck dominates the composition. Natural blue cast and moderate grain/backscatter; no watermark, text, collage, map, illustration, video overlay or mosaic. Source gives Nikon D5 camera, exposure 1/250 second at f/16, 15mm and ISO2500, consistent with standalone photography. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"rights_note\": \"Individual item Constraints Information explicitly states Public domain:Full Granting Rights, Access Constraints Public Can View. No private copyright owner or restrictive item licence is stated. Federal hosting alone was not used as a rights grant. Original bytes unchanged. No endorsement or model/property-release claim.\"}"
+  },
+  {
+    "siteId": "9a674af7-7b1d-4caf-9d00-5861af9df90d",
+    "slug": "sohugan",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f86145c62048350bfb9df5a23240b6db49372c8eb0675690e0067dc8bd94dd6d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f86145c62048350bfb9df5a23240b6db49372c8eb0675690e0067dc8bd94dd6d.jpg",
+    "originalSha256": "5f12bf64359e34c16fefd7f9b8aa6cfad5f737b6057332d42d2f9d53d3c0fcae",
+    "alt": "Sohugan, Japan — surface landmark photo",
+    "label": "surface landmark photo",
+    "credit": "surface landmark photo · Source: Japan Coast Guard; individual photographer not named, https://www1.kaiho.mlit.go.jp/kaiikiDB/kaiyo17-2.htm; Japan Coast Guard Hydrographic and Oceanographic Department website terms, based on Government Standard Terms of Use 2.0 (https://www1.kaiho.mlit.go.jp/copyright.html). · Japan Coast Guard Hydrographic and Oceanographic Department website terms, based on Government Standard Terms of Use 2.0 · Cropped/resized",
+    "creator": "Source: Japan Coast Guard; individual photographer not named, https://www1.kaiho.mlit.go.jp/kaiikiDB/kaiyo17-2.htm; Japan Coast Guard Hydrographic and Oceanographic Department website terms, based on Government Standard Terms of Use 2.0 (https://www1.kaiho.mlit.go.jp/copyright.html).",
+    "license": "Japan Coast Guard Hydrographic and Oceanographic Department website terms, based on Government Standard Terms of Use 2.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www1.kaiho.mlit.go.jp/kaiikiDB/kaiyo17-2.htm",
+    "licenceUrl": "https://www1.kaiho.mlit.go.jp/copyright.html",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www1.kaiho.mlit.go.jp/kaiikiDB/kaiyo17-2.htm"
+      },
+      {
+        "label": "Japan Coast Guard Hydrographic and Oceanographic Department website terms, based on Government Standard Terms of Use 2.0",
+        "url": "https://www1.kaiho.mlit.go.jp/copyright.html"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Capture date and time stated beside the exact linked photo; time zone is not labelled. [{\"site_id\": \"9a674af7-7b1d-4caf-9d00-5861af9df90d\", \"relationship\": \"Official JCG source is headed 孀婦岩 / Sofugan, credits this exact image to Japan Coast Guard and dates it 2025/12/17 13:20. It gives landmark coordinates 29°47′39″N, 140°20′31″E, nominally about 0.068 km from the recorded inventory pin. Sohugan is a romanization variant of Sofugan. This identifies the named sea stack, not underwater conditions or a validated dive-position coordinate.\", \"status\": \"READY_FOR_REVIEW\"}] Source website original bytes retained unchanged. Separate review preview re-encoded at reduced size; no image content added or removed. The specific photograph is explicitly credited as photographed by Japan Coast Guard. The Hydrographic website terms permit copying, public transmission, translation/adaptation and commercial reuse with source attribution and modification disclosure. Third-party rights, separate notices, applicable laws and excluded logos remain excepted. The terms retain prohibitions on unlawful/public-order and national/public-safety-threatening uses. This is a documentary camera photograph, not a chart or bathymetric map. This licence is not labelled PDL1.0 or CC BY.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single clear aerial photograph of an isolated tall, sharply pointed sea stack in deep blue water. The rock is the central dominant subject. No chart, map, multipanel layout, labels, watermark or people. Website original shows mild photographic softness; human suitability review remains pending. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"Capture date and time stated beside the exact linked photo; time zone is not labelled.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The specific photograph is explicitly credited as photographed by Japan Coast Guard. The Hydrographic website terms permit copying, public transmission, translation/adaptation and commercial reuse with source attribution and modification disclosure. Third-party rights, separate notices, applicable laws and excluded logos remain excepted. The terms retain prohibitions on unlawful/public-order and national/public-safety-threatening uses. This is a documentary camera photograph, not a chart or bathymetric map. This licence is not labelled PDL1.0 or CC BY.\"}"
+  },
+  {
+    "siteId": "66315ce3-492d-441c-82dc-ee9e59d642d0",
+    "slug": "sanbondake",
+    "src": "https://assets.diveatlas.site/site-photos/v1/bce898f66d2f4444bcd9f9bc316d2246dea5ba4f7309cb40e93d4a0728fec709.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/bce898f66d2f4444bcd9f9bc316d2246dea5ba4f7309cb40e93d4a0728fec709.jpg",
+    "originalSha256": "19e533b133b0d3f36d3c644d0384c382ad695be5ae234b18a41ebedc5ebb9b79",
+    "alt": "Sanbondake, Japan — surface landmark photo",
+    "label": "surface landmark photo",
+    "credit": "surface landmark photo · Source: 小野可蓮 / Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/page_00174.html; Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0). · Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) · Cropped/resized",
+    "creator": "Source: 小野可蓮 / Ministry of the Environment, Kanto Regional Environment Office, https://kanto.env.go.jp/blog/page_00174.html; Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0).",
+    "license": "Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3)",
+    "source": "reviewed-context",
+    "sourcePage": "https://kanto.env.go.jp/blog/page_00174.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://kanto.env.go.jp/blog/page_00174.html"
+      },
+      {
+        "label": "Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. Capture date unknown. Source article published 2023-12-28; publication date is not assigned as the capture date. [{\"site_id\": \"66315ce3-492d-441c-82dc-ee9e59d642d0\", \"relationship\": \"The Ministry of the Environment ranger source explicitly captions the selected image 三本岳 (Sanbondake) and identifies it as the offshore rock group near Miyakejima. The article identifies its three principal rocks and says it was photographed from Miyakejima. The inventory name is an exact romanization match. Association is to the named landmark group; it does not validate the inventory pin or an individual underwater dive point.\", \"status\": \"READY_FOR_REVIEW\"}] Source website original bytes retained unchanged. Separate review preview re-encoded at reduced size; no image content added or removed. The Kanto office own copyright page states that content belongs to the Ministry of the Environment unless specially noted and applies PDL1.0 absent different rights notices. The ranger-authored source identifies the photograph as her Sanbondake sunset shot; no separate third-party ownership or restrictive notice is attached. PDL1.0 permits commercial reuse with attribution and modification disclosure. Third-party rights, logos, separate terms and applicable laws remain excepted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single landscape photograph with the three principal Sanbondake rock silhouettes, dark sea and orange sunset. Source caption identifies the rocks from left as 大根, 海老根 and 子安根. The rocks are the primary identifiable landmark; no composite, map, diagram, labels or watermark. Capture date is not stated. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"Capture date unknown. Source article published 2023-12-28; publication date is not assigned as the capture date.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The Kanto office own copyright page states that content belongs to the Ministry of the Environment unless specially noted and applies PDL1.0 absent different rights notices. The ranger-authored source identifies the photograph as her Sanbondake sunset shot; no separate third-party ownership or restrictive notice is attached. PDL1.0 permits commercial reuse with attribution and modification disclosure. Third-party rights, logos, separate terms and applicable laws remain excepted.\"}"
+  },
+  {
+    "siteId": "2be72fe0-cc06-43c8-98bd-cf605bbeed96",
+    "slug": "point-lobos-bluefish-cove",
+    "src": "https://assets.diveatlas.site/site-photos/v1/32c6c0c1d0dbe83dd96c10a242ab38468212aac7fbb1f2d1c26ce358a1eeb1a6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/32c6c0c1d0dbe83dd96c10a242ab38468212aac7fbb1f2d1c26ce358a1eeb1a6.jpg",
+    "originalSha256": "6ab5d53b4a7a6d69b6e0fa5090117983caa75825acd9534616f809d96b5bb67d",
+    "alt": "Surface view across Bluefish Cove at Point Lobos State Reserve, California. — surface view exact named cove",
+    "label": "surface view exact named cove",
+    "credit": "surface view exact named cove · Justin Watt / Justinsomnia / CC BY 4.0. Link https://justinsomnia.org/2006/02/point-lobos-state-reserve/ and the licence; identify any future modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Justin Watt / Justinsomnia / CC BY 4.0. Link https://justinsomnia.org/2006/02/point-lobos-state-reserve/ and the licence; identify any future modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://justinsomnia.org/2006/02/point-lobos-state-reserve/",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://justinsomnia.org/2006/02/point-lobos-state-reserve/"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [{\"site_id\": \"2be72fe0-cc06-43c8-98bd-cf605bbeed96\", \"relationship\": \"The exact article image alt text is 'Looking out across Bluefish Cove at Point Lobos State Reserve' and the adjacent caption is 'Bluefish Cove'. This establishes the named cove at Point Lobos, California, matching the unrepresented inventory record. Surface context only, not a photograph of its underwater wall. Bluefish Wall, generic Diving Area, historically assigned Whalers Cove, and the Point Lobos State Reserve record whose source URL mentions Middle Reef are not assigned. Existing catalogue coordinates remain unvalidated and unchanged.\", \"status\": \"READY_FOR_REVIEW\", \"coordinate_validation\": \"NOT_VALIDATED; no coordinates changed\"}] Source bytes unchanged. Separate JPEG preview supplied; no upscaling or original modification. The exact source article footer identifies Justin Watt and links CC BY 4.0 International. His first-party attribution policy expressly permits commercial copying and instructs users to download a local copy, credit him and link the original post. The policy body retains CC BY 3.0 while its footer says CC BY 4.0; both are preserved, with this item recorded under the current source article's explicit CC BY 4.0. No third-party credit or media exception appears on the selected image; no blanket clearance is inferred for separately credited photos elsewhere. No model/property releases or endorsement are asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Actual native JPEG visually inspected: portrait surface view across blue/teal cove water toward a pale rocky, pine-covered promontory, with trees in the right foreground, distant hills and cloudy blue sky. Clear recognizable coastal subject, no people, visible watermark, map, illustration, composite panel or video frame. Small web resolution (380x500) limits large main-image or desktop use; no upscaling or crop applied. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The exact source article footer identifies Justin Watt and links CC BY 4.0 International. His first-party attribution policy expressly permits commercial copying and instructs users to download a local copy, credit him and link the original post. The policy body retains CC BY 3.0 while its footer says CC BY 4.0; both are preserved, with this item recorded under the current source article's explicit CC BY 4.0. No third-party credit or media exception appears on the selected image; no blanket clearance is inferred for separately credited photos elsewhere. No model/property releases or endorsement are asserted.\"}"
+  },
+  {
+    "siteId": "0644e03d-580d-41be-918b-7efac8ec9126",
+    "slug": "masakijima",
+    "src": "https://assets.diveatlas.site/site-photos/v1/320285bb2568abd872cbc53fd1cce64f529b24a2e127bdaca387bb716bb001d0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/320285bb2568abd872cbc53fd1cce64f529b24a2e127bdaca387bb716bb001d0.jpg",
+    "originalSha256": "a11fd800862ca5ac9882749a9f66e05ce99402380658529ce61cb645ecc21442",
+    "alt": "Masakijima underwater habitat, Ago Bay, Japan — underwater habitat photo",
+    "label": "underwater habitat photo",
+    "credit": "underwater habitat photo · Source: 麻生里衣 / Ministry of the Environment, Chubu Regional Environment Office, https://chubu.env.go.jp/blog/2017/08/post-426.html; Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0). · Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) · Cropped/resized",
+    "creator": "Source: 麻生里衣 / Ministry of the Environment, Chubu Regional Environment Office, https://chubu.env.go.jp/blog/2017/08/post-426.html; Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3) (https://www.digital.go.jp/resources/open_data/public_data_license_v1.0).",
+    "license": "Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3)",
+    "source": "reviewed-context",
+    "sourcePage": "https://chubu.env.go.jp/blog/2017/08/post-426.html",
+    "licenceUrl": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://chubu.env.go.jp/blog/2017/08/post-426.html"
+      },
+      {
+        "label": "Public Data License 1.0 (PDL1.0); CC BY 4.0 compatible reuse option under PDL1.0 section 1.7(3)",
+        "url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. The article dates the depicted excursion to 29 July 2017. Exact shutter time is unavailable and EXIF is absent. Publication date is not assigned as capture date. [{\"site_id\": \"0644e03d-580d-41be-918b-7efac8ec9126\", \"relationship\": \"The ranger-authored 23 August 2017 article describes a 29 July ama-diving excursion moved from the rough outer sea to Masakijima (間崎島) in Ago Bay. The group arrives at Masakijima, walks to the beach, swims to the fishing spot and dives. This exact linked photograph immediately accompanies the discussion of underwater seaweeds and other organisms at that spot, before returning from the excursion. Association is to the named island diving area, not an independently identified underwater subsite or a validated inventory pin.\", \"status\": \"READY_FOR_REVIEW\"}] Source-hosted linked JPEG bytes retained unchanged. A separate re-encoded review preview is supplied; its image content has not been added to or removed. Chubu office own copyright policy states Ministry ownership unless specially noted and applies PDL1.0 absent another rights notice. The source describes the ranger own camera work at Masakijima; no third-party credit or separate image restriction appears. PDL1.0 permits attributed commercial reuse and adaptations with disclosure. Third-party rights, logos, separately licensed content and applicable laws remain excepted. Kyushu and Kanto policies are not used to license this image.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Viewed source-hosted 1259×705 JPEG and reduced source preview. A single underwater scene of textured rocks, green and brown seaweeds and attached organisms, with natural yellow-green water colour. No people, map, chart, composite layout, player controls, watermark or text. Some underwater softness remains; aesthetic and suitability approval is pending. Supplied geographic/date/survey evidence: {\"date_uncertainty\": \"The article dates the depicted excursion to 29 July 2017. Exact shutter time is unavailable and EXIF is absent. Publication date is not assigned as capture date.\", \"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"Chubu office own copyright policy states Ministry ownership unless specially noted and applies PDL1.0 absent another rights notice. The source describes the ranger own camera work at Masakijima; no third-party credit or separate image restriction appears. PDL1.0 permits attributed commercial reuse and adaptations with disclosure. Third-party rights, logos, separately licensed content and applicable laws remain excepted. Kyushu and Kanto policies are not used to license this image.\"}"
+  },
+  {
+    "siteId": "eeba2432-73c5-407a-84db-be0ee6cb3fa3",
+    "slug": "site-eeba2432-korea-republic-of",
+    "src": "https://assets.diveatlas.site/site-photos/v1/506d2f97fb4f18ddb93e69b5a8ccbcd5c677dde73c9c8b73cb54aa2fe1bbaf9f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/506d2f97fb4f18ddb93e69b5a8ccbcd5c677dde73c9c8b73cb54aa2fe1bbaf9f.jpg",
+    "originalSha256": "b63eb29f02c45803dbe3efddb4c82e06d3f75773be0cab0b2d346a776c0ec57b",
+    "alt": "통영 홍도 괭이갈매기 번식지 — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · [통영 홍도 괭이갈매기 번식지], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1 · KOGL Type 1 (attribution) · Cropped/resized",
+    "creator": "[통영 홍도 괭이갈매기 번식지], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1",
+    "license": "KOGL Type 1 (attribution)",
+    "source": "reviewed-context",
+    "sourcePage": "https://encykorea.aks.ac.kr/Article/E0005369",
+    "licenceUrl": "https://encykorea.aks.ac.kr/Guide/ContentUse",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://encykorea.aks.ac.kr/Article/E0005369"
+      },
+      {
+        "label": "KOGL Type 1 (attribution)",
+        "url": "https://encykorea.aks.ac.kr/Guide/ContentUse"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source bytes unchanged. Separate review JPEG converted from WebP; watermarks retained. No substantive image edits. The exact media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The linked content-use policy expressly limits free reuse to works for which the Academy holds all economic rights and individually marked media, rather than all website images. Unmarked third-party items were not used.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A standalone above-water color camera photograph shows a dark rocky cliff at left and a large flock of gulls against blue sky. No underwater habitat, dive route, map or composite. The scene has historical scan-like softness. Publisher logo and copyright watermarks are embedded along the lower edge and retained. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The exact media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The linked content-use policy expressly limits free reuse to works for which the Academy holds all economic rights and individually marked media, rather than all website images. Unmarked third-party items were not used.\"}"
+  },
+  {
+    "siteId": "2a302210-a482-4901-9d9c-8e6f0b0ab8cc",
+    "slug": "site-2a302210-south-korea",
+    "src": "https://assets.diveatlas.site/site-photos/v1/846078668b42840aa4fc93f96aa5c815853cc7d413b6678cd01d16fad28c6433.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/846078668b42840aa4fc93f96aa5c815853cc7d413b6678cd01d16fad28c6433.jpg",
+    "originalSha256": "090864101e0e916d3ce27ced35be32632ef3380a4ad6149d86bb6c0bbf2dc0e7",
+    "alt": "문섬·범섬 천연보호구역 — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · [문섬·범섬 천연보호구역], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1 · KOGL Type 1 (attribution) · Cropped/resized",
+    "creator": "[문섬·범섬 천연보호구역], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1",
+    "license": "KOGL Type 1 (attribution)",
+    "source": "reviewed-context",
+    "sourcePage": "https://encykorea.aks.ac.kr/Article/E0019521",
+    "licenceUrl": "https://encykorea.aks.ac.kr/Guide/ContentUse",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://encykorea.aks.ac.kr/Article/E0019521"
+      },
+      {
+        "label": "KOGL Type 1 (attribution)",
+        "url": "https://encykorea.aks.ac.kr/Guide/ContentUse"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source bytes unchanged. Separate review JPEG converted from WebP; watermarks retained. No substantive image edits. The exact media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The linked content-use policy expressly limits free reuse to works for which the Academy holds all economic rights and individually marked media, rather than all website images. Unmarked third-party items were not used.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A standalone above-water color camera photograph shows a wooded island with steep pale columnar coastal cliffs, a small offshore stack at left, boats along the near shore and a rocky mainland foreground. It is a wide island view, not an underwater photograph. Publisher logo and copyright watermarks remain at the bottom corners. No map or multi-panel composite. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The exact media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The linked content-use policy expressly limits free reuse to works for which the Academy holds all economic rights and individually marked media, rather than all website images. Unmarked third-party items were not used.\"}"
+  },
+  {
+    "siteId": "fe1aa533-e6ff-4df3-bc77-268e3ef11a47",
+    "slug": "site-fe1aa533-korea-republic-of",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a0a5a69da4c1122df369e83cbbf7a326be453aa6b57ed33978d016495f587cf5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a0a5a69da4c1122df369e83cbbf7a326be453aa6b57ed33978d016495f587cf5.jpg",
+    "originalSha256": "2ffe8226948f1c60c74dc62acc8bed7152c949e05a2213bf3d87bb08c0847c78",
+    "alt": "울릉 대풍감 향나무 자생지 — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · [울릉 대풍감 향나무 자생지], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1 · KOGL Type 1 (attribution) · Cropped/resized",
+    "creator": "[울릉 대풍감 향나무 자생지], 한국민족문화대백과사전 / Academy of Korean Studies / KOGL Type 1",
+    "license": "KOGL Type 1 (attribution)",
+    "source": "reviewed-context",
+    "sourcePage": "https://encykorea.aks.ac.kr/Article/E0014877",
+    "licenceUrl": "https://encykorea.aks.ac.kr/Guide/ContentUse",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://encykorea.aks.ac.kr/Article/E0014877"
+      },
+      {
+        "label": "KOGL Type 1 (attribution)",
+        "url": "https://encykorea.aks.ac.kr/Guide/ContentUse"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source bytes unchanged. Review JPEG converted from WebP with watermarks retained; no substantive edits. Access log original local name display-daepunggam-f6a2590e.webp was renamed to original-daepunggam-f6a2590e.webp without changing bytes. The exact f6a2590e media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The content-use policy limits free reuse to individually marked works for which the Academy holds all economic rights. Unmarked and third-party photographs are not cleared.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A standalone above-water color camera photograph of a steep rocky sea cliff with patchy green shrubs, blue sky and a narrow strip of blue water. The cliff occupies the left and lower frame and recedes toward the right. Mild scan-like softness and a tilted horizon are visible. AKS logo and copyright watermarks remain embedded at both lower corners. No identifiable people, underwater habitat, diagram or composite. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_note\": \"The exact f6a2590e media panel identifies 한국학중앙연구원 as copyright holder and marks the media 공공누리 제1유형. The content-use policy limits free reuse to individually marked works for which the Academy holds all economic rights. Unmarked and third-party photographs are not cleared.\"}"
+  },
+  {
+    "siteId": "de234f62-acd0-4a6c-9769-1f755b7f1fac",
+    "slug": "streitkopflesee",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9fc08b199e7b0ecaf451e7d4bfe811a2f7024c957085e88d09337898ec61db93.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9fc08b199e7b0ecaf451e7d4bfe811a2f7024c957085e88d09337898ec61db93.jpg",
+    "originalSha256": "c12c1f762f9aa7fd45928e895eca416bd6496cda39cab5a962d602fe53c50d67",
+    "alt": "Bathing shore and gravel land tongue at Streitköpflesee in Linkenheim-Hochstetten, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · KTG Karlsruhe Tourismus GmbH / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "KTG Karlsruhe Tourismus GmbH / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.karlsruhe-erleben.de/attraktion/streitkoepflesee-bali-linkenheim-8bf2526ab4",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.karlsruhe-erleben.de/attraktion/streitkoepflesee-bali-linkenheim-8bf2526ab4"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY-SA 4.0 permits commercial reuse and adaptations subject to credit, licence link, change indication and share-alike for adaptations. Copyright licensing does not grant publicity, privacy, trademark or endorsement rights. Incidental recreation visitors are not endorsements.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear surface photograph of the exact named lake, bathing shore and gravel land tongue, with water on both sides, wooded banks and incidental recreational visitors. An unrelated cropped visitor at the right edge is a composition limitation but the lake remains the subject. Native 2048x1536. Not underwater, a map, composite, video frame or screenshot. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY-SA 4.0 permits commercial reuse and adaptations subject to credit, licence link, change indication and share-alike for adaptations. Copyright licensing does not grant publicity, privacy, trademark or endorsement rights. Incidental recreation visitors are not endorsements.\"}"
+  },
+  {
+    "siteId": "e9b3fd14-24ec-4080-acf3-b5ed55a52869",
+    "slug": "untergrombach-metzgerallmend",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a565aa48801281bd1b9dfe8939b15d9362199fcf690d4dc7d0e04353dd6e0806.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a565aa48801281bd1b9dfe8939b15d9362199fcf690d4dc7d0e04353dd6e0806.jpg",
+    "originalSha256": "a455ebf7883d65ce863e26023ed15113ec0dbce38cb13348d362c9b67adba2ea",
+    "alt": "Autumn shoreline of Baggersee Untergrombach, also called Metzgerallmend, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · Schmidt / BTMV Bruchsal / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Schmidt / BTMV Bruchsal / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.schwarzwald-tourismus.info/attraktionen/baggersee-untergrombach-9657085f5d",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.schwarzwald-tourismus.info/attraktionen/baggersee-untergrombach-9657085f5d"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY-SA 4.0 permits commercial reuse and adaptations subject to credit, licence link, change indication and share-alike for adaptations. Copyright licensing does not grant publicity, privacy, trademark or endorsement rights. Incidental recreation visitors are not endorsements.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear surface photograph across Baggersee Untergrombach with substantial lake water, autumn-coloured shore trees, grassy recreation bank and a distant hilltop chapel. Native 2362x1772. No prominent people, no watermark or text overlay. Not underwater, a map, composite, video frame or screenshot. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY-SA 4.0 permits commercial reuse and adaptations subject to credit, licence link, change indication and share-alike for adaptations. Copyright licensing does not grant publicity, privacy, trademark or endorsement rights. Incidental recreation visitors are not endorsements.\"}"
+  },
+  {
+    "siteId": "57d71527-7c1f-4b50-8537-ef8fba7a2537",
+    "slug": "panoramabad-dinkelscherben",
+    "src": "https://assets.diveatlas.site/site-photos/v1/51fe601995518afb43d47cbd75414bf3fc9c8462808ab0abdc0ef7b2cb7c4d21.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/51fe601995518afb43d47cbd75414bf3fc9c8462808ab0abdc0ef7b2cb7c4d21.jpg",
+    "originalSha256": "496612c77ed8c0b7da845dbf92b79a52bc49f1adced61a54c494ea3734a99f0b",
+    "alt": "Outdoor pool and hillside setting at Panoramabad Dinkelscherben, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · Beatrix Treischl / Augsburger Land / CC BY-SA4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Beatrix Treischl / Augsburger Land / CC BY-SA4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.augsburger-land.de/attraktion/panoramabad-dinkelscherben-055afe4f44",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.augsburger-land.de/attraktion/panoramabad-dinkelscherben-055afe4f44"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial reuse and adaptation permitted by CC BY-SA4.0 with attribution, licence link, change indication and share-alike for adaptations. Distant pool users are incidental; copyright licence does not grant personality/privacy rights or endorsement.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear above-water landscape photograph of Panoramabad Dinkelscherben: blue outdoor swimming pool, diving structure, terraced seating, umbrellas, trees and distant town/countryside. Some foreground railings and plants overlap the pool; ample identifiable pool context remains. Incidental distant pool users. Genuine photograph, not underwater, map, composite, video frame or screenshot. Actual4000x3000 image reviewed via1600px preview; original bytes untouched. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial reuse and adaptation permitted by CC BY-SA4.0 with attribution, licence link, change indication and share-alike for adaptations. Distant pool users are incidental; copyright licence does not grant personality/privacy rights or endorsement.\"}"
+  },
+  {
+    "siteId": "84818fa2-9926-4bcd-b686-81d8eff113a8",
+    "slug": "schladitzer-bucht",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cf323b58e12adabcac4f23bcbcf3d9daf22ec2e0f33ecf7db6caa576333596fc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cf323b58e12adabcac4f23bcbcf3d9daf22ec2e0f33ecf7db6caa576333596fc.jpg",
+    "originalSha256": "6ab2f4fb0e3cef9808978a3c15c666b9b61ef9ec411fc6d49e6a52cf48fcb7bc",
+    "alt": "Aerial view of the All-on-SEA waterfront in Schladitzer Bucht, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · Philipp Kirschner / www.pkfotografie.com / CC BY4.0 · CC BY 4.0 · Cropped/resized",
+    "creator": "Philipp Kirschner / www.pkfotografie.com / CC BY4.0",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.leipzig.travel/en/poi/all-on-sea-at-lake-schladitz",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/deed.en",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.leipzig.travel/en/poi/all-on-sea-at-lake-schladitz"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.en"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY4.0 permits commercial reuse and adaptations with attribution, licence link and change indication. No implied endorsement. Copyright licence does not separately grant publicity/privacy rights for incidental people.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: High-resolution aerial real-camera photograph of the exact All-on-SEA waterfront in Schladitzer Bucht, showing curved sandy beach, sailing and paddle craft, waterfront buildings, and substantial lake water. The exact bay is established by official caption and description, not inferred from a generic Schladitzer See view. Not underwater, map, composite, screenshot, satellite, or video frame. Incidental distant beach users are present. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY4.0 permits commercial reuse and adaptations with attribution, licence link and change indication. No implied endorsement. Copyright licence does not separately grant publicity/privacy rights for incidental people.\"}"
+  },
+  {
+    "siteId": "f3538730-b8d4-46a4-abf6-b9c404e78e32",
+    "slug": "wunschsee",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6e9f229a1282eef89060256e140cf4977c86cea2cc1a391683fc63cf69367876.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6e9f229a1282eef89060256e140cf4977c86cea2cc1a391683fc63cf69367876.jpg",
+    "originalSha256": "fa0f91625bd1dab6f24e8db5778dbf0d6bff909340ce255f6262af1938dfd3ab",
+    "alt": "Aerial view of Wünschsee at Gundelfingen-Peterswörth, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · Dillinger Land e.V., Heiko Grandel / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Dillinger Land e.V., Heiko Grandel / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://pages.destination.one/de/donautal-aktiv/streaming/detail/POI/p_100021248/wuenschsee",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://pages.destination.one/de/donautal-aktiv/streaming/detail/POI/p_100021248/wuenschsee"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY-SA 4.0 permits commercial reuse and adaptations subject to its attribution, licence-link, change-indication and share-alike requirements. Copyright licensing does not grant privacy, publicity, trademark or endorsement rights. No model release evidence was supplied. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Clear aerial photograph of the exact small elongated lake with shallow bathing shore, green recreation lawn, trees, railway and surrounding agricultural fields. People are tiny incidental figures. No watermark or text overlay. Not underwater, a map, composite, video frame or screenshot. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY-SA 4.0 permits commercial reuse and adaptations subject to its attribution, licence-link, change-indication and share-alike requirements. Copyright licensing does not grant privacy, publicity, trademark or endorsement rights. No model release evidence was supplied. No publication authorized.\"}"
+  },
+  {
+    "siteId": "174f7c42-da99-4faa-a91f-fb75958b5018",
+    "slug": "buchenau-alte-allmend",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fef73382cd05d6d8e51e9ee3bfc3219eab6659b4b3e556b063852a2663f21bfd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fef73382cd05d6d8e51e9ee3bfc3219eab6659b4b3e556b063852a2663f21bfd.jpg",
+    "originalSha256": "4f7fc5772ab71ec9a958d7f9015aa82121be7e0ef9edad0b3f90acf8d512aa38",
+    "alt": "Shoreline of Baggersee Büchenau, also called Alte Allmend, Germany. — surface site context",
+    "label": "surface site context",
+    "credit": "surface site context · Stadt Bruchsal / BTMV Bruchsal / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Stadt Bruchsal / BTMV Bruchsal / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.schwarzwald-tourismus.info/attraktionen/baggersee-buechenau-alte-allmend-d5d78a2fcf",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.schwarzwald-tourismus.info/attraktionen/baggersee-buechenau-alte-allmend-d5d78a2fcf"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.de"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY-SA 4.0 permits commercial reuse and adaptations subject to its attribution, licence-link, change-indication and share-alike requirements. Copyright licensing does not grant privacy, publicity, trademark or endorsement rights. No model release evidence was supplied. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Useful but modest-resolution surface view across the exact lake, showing grassy foreground, reeds, open water and wooded bank. Bright sky and soft distant detail reduce visual quality, but lake and shore remain clear at native size. No prominent identifiable people or text overlay. Not underwater, a map, composite, video frame or screenshot. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY-SA 4.0 permits commercial reuse and adaptations subject to its attribution, licence-link, change-indication and share-alike requirements. Copyright licensing does not grant privacy, publicity, trademark or endorsement rights. No model release evidence was supplied. No publication authorized.\"}"
+  },
+  {
+    "siteId": "ecf9e698-f8fe-448c-a13d-d13edd5e7ce3",
+    "slug": "fehmarnsund-bridge",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a50f284278beff1df641cd8e4c3356cf8e9950fa5b22821439a6a0c5864ef454.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a50f284278beff1df641cd8e4c3356cf8e9950fa5b22821439a6a0c5864ef454.jpg",
+    "originalSha256": "a288a2e3b42aa46a50dee39c7a427bf47e4f59b76a5cc1156e9edca72df71b64",
+    "alt": "Fehmarnsund Bridge with a Deutsche Bundespost bus, photographed on 1 September 1964. Historical above-water bridge context. — historical surface site context",
+    "label": "historical surface site context",
+    "credit": "historical surface site context · Museumsstiftung Post und Telekommunikation / Foto: Bretschneider / CC BY-SA 4.0 · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Museumsstiftung Post und Telekommunikation / Foto: Bretschneider / CC BY-SA 4.0",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://onlinesammlung.museumsstiftung.de/detail/collection/6dc826e3-f8d8-40cf-a60f-dcdcda9a649a",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://onlinesammlung.museumsstiftung.de/detail/collection/6dc826e3-f8d8-40cf-a60f-dcdcda9a649a"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  CC BY-SA 4.0 permits commercial reuse and adaptations with attribution, licence link, change indication and ShareAlike for adaptations. No endorsement implied.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Actual 3000x1942 original source JPEG visually inspected. Black-and-white historical photographic print scan, showing the distinctive Fehmarnsund Bridge arch and suspension cables prominently, the combined road and railway deck, and a Deutsche Bundespost bus with other road traffic. Single real-camera photograph, not a map, collage, video frame or generated image. Small original print border retained unchanged. Scanned print texture and historical appearance are visible. Incidental distant people inside the bus. Above-water bridge context, not an underwater or dive-entry photograph. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"CC BY-SA 4.0 permits commercial reuse and adaptations with attribution, licence link, change indication and ShareAlike for adaptations. No endorsement implied.\"}"
+  },
+  {
+    "siteId": "1e2d789c-7b5e-4791-9e47-d9224872c27c",
+    "slug": "dive4life",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9cb50a796589b291151fd1797ceadeb98246031004e24817aad12fabcf9a7ecc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9cb50a796589b291151fd1797ceadeb98246031004e24817aad12fabcf9a7ecc.jpg",
+    "originalSha256": "2e3ccf32884310e6f89cc1caeccbcf8684f8fd4927ac034e808c6851840b35f4",
+    "alt": "Divers among artificial ruins inside the dive4life indoor diving tank, Siegburg, Germany. — exact site underwater",
+    "label": "exact site underwater",
+    "credit": "exact site underwater · Dr. Georg Nieß / CC BY-SA 3.0 DE / https://naturregion-sieg.de/poi/dive4life · CC BY-SA 3.0 DE · Cropped/resized",
+    "creator": "Dr. Georg Nieß / CC BY-SA 3.0 DE / https://naturregion-sieg.de/poi/dive4life",
+    "license": "CC BY-SA 3.0 DE",
+    "source": "reviewed-context",
+    "sourcePage": "https://naturregion-sieg.de/poi/dive4life",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://naturregion-sieg.de/poi/dive4life"
+      },
+      {
+        "label": "CC BY-SA 3.0 DE",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/de/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial use and adaptations permitted under CC BY-SA 3.0 DE with author credit, source and licence link, modification notice, and ShareAlike for adaptations. Original unchanged; review JPEG resized locally for inspection. Copyright licence does not separately grant privacy/publicity/model rights.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real-camera underwater photograph showing two scuba divers amid the indoor dive4life tank’s artificial ruins and arches, with the water surface and overhead roof visible. Strong diving-specific view. No text overlay, map, collage, satellite view or apparent watermark. Divers are part of the scene; no separate model release is asserted. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial use and adaptations permitted under CC BY-SA 3.0 DE with author credit, source and licence link, modification notice, and ShareAlike for adaptations. Original unchanged; review JPEG resized locally for inspection. Copyright licence does not separately grant privacy/publicity/model rights.\"}"
+  },
+  {
+    "siteId": "efe43021-0591-47f5-9eaf-faf074ea0eae",
+    "slug": "monte-mare-rheinbach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b10f8bf0a7ad5f062c7bf6802e8d226f762d29a0fb52ff2a625ce4e2b8f4240b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b10f8bf0a7ad5f062c7bf6802e8d226f762d29a0fb52ff2a625ce4e2b8f4240b.jpg",
+    "originalSha256": "5c2a3c4a856a6995bc52e1a6d7098a832092f3c5cae3b13e89c2f511bfe789bc",
+    "alt": "Water-walking ball at the indoor swimming pool of monte mare Rheinbach, Germany. Facility context, not an underwater dive-tank view. — surface facility context",
+    "label": "surface facility context",
+    "credit": "surface facility context · Tobias Friedrich / CC BY-SA 3.0 DE / https://www.rhein-voreifel-touristik.de/poi/monte-mare-rheinbach · CC BY-SA 3.0 DE · Cropped/resized",
+    "creator": "Tobias Friedrich / CC BY-SA 3.0 DE / https://www.rhein-voreifel-touristik.de/poi/monte-mare-rheinbach",
+    "license": "CC BY-SA 3.0 DE",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.rhein-voreifel-touristik.de/poi/monte-mare-rheinbach",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.rhein-voreifel-touristik.de/poi/monte-mare-rheinbach"
+      },
+      {
+        "label": "CC BY-SA 3.0 DE",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/de/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial use and adaptations permitted under CC BY-SA 3.0 DE with author credit, source and licence link, modification notice, and ShareAlike for adaptations. Original unchanged; review JPEG resized locally for inspection. Copyright licence does not separately grant privacy/publicity/model rights.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real-camera photograph at the water surface of the indoor swimming-pool facility. A large transparent water-walking ball dominates the view, with two adults beside the pool and the building roof visible. The source title Indoortauchzentrum is retained as source metadata, but the visual is not underwater and does not establish the specific 10-metre diving tank. Exact facility surface context only. No text overlay, map, collage, satellite view or apparent watermark. No separate model release is asserted. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial use and adaptations permitted under CC BY-SA 3.0 DE with author credit, source and licence link, modification notice, and ShareAlike for adaptations. Original unchanged; review JPEG resized locally for inspection. Copyright licence does not separately grant privacy/publicity/model rights.\"}"
+  },
+  {
+    "siteId": "4ec12459-8525-4829-ad11-4e41bee6c48e",
+    "slug": "waldsee",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e0567de066965036239cd654945db932825cf4bea0bb99679eef27031529abc6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e0567de066965036239cd654945db932825cf4bea0bb99679eef27031529abc6.jpg",
+    "originalSha256": "996a9663ee187d101482875cd3d4bd4fd140f67025c76498d6d7605895b7be07",
+    "alt": "Waldsee in Paderborn, Germany, viewed across the water toward the campsite. — surface lake context",
+    "label": "surface lake context",
+    "credit": "surface lake context · Verkehrsverein Paderborn e.V., K. Schäfer / CC BY4.0 / https://www.teutoburgerwald.de/natur/in-der-natur/tour/pb-1-paderborner-seentour · CC BY 4.0 · Cropped/resized",
+    "creator": "Verkehrsverein Paderborn e.V., K. Schäfer / CC BY4.0 / https://www.teutoburgerwald.de/natur/in-der-natur/tour/pb-1-paderborner-seentour",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.teutoburgerwald.de/natur/in-der-natur/tour/pb-1-paderborner-seentour",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.teutoburgerwald.de/natur/in-der-natur/tour/pb-1-paderborner-seentour"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial reuse and adaptations permitted under CC BY4.0 with creator credit, source/licence links and modification notice. Copyright grant does not separately establish privacy/publicity/model rights.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real-camera surface photograph looking across blue lake water toward the wooded opposite shore and camping caravans. Leafy branches frame the top. Water and shore dominate; no posed person, text overlay, collage, map, satellite imagery or apparent watermark. Exact named whole-lake context, not an underwater or particular entry-point view. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial reuse and adaptations permitted under CC BY4.0 with creator credit, source/licence links and modification notice. Copyright grant does not separately establish privacy/publicity/model rights.\"}"
+  },
+  {
+    "siteId": "a2aee044-a6a3-47a7-934e-96374357ce39",
+    "slug": "toucari-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/644dac5d76289f536f60df6a9847c1ec9c059539383312d96b2d7f4ce3fb26f2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/644dac5d76289f536f60df6a9847c1ec9c059539383312d96b2d7f4ce3fb26f2.jpg",
+    "originalSha256": "9e1264892e694473d0ef68cad6d1b15ccb2042d269c28b893a5f6f9c8acca0a2",
+    "alt": "Shallow underwater rocks and algae in Toucari Bay, Dominica. — exact named bay underwater photo",
+    "label": "exact named bay underwater photo",
+    "credit": "exact named bay underwater photo · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link the source post and https://creativecommons.org/licenses/by/4.0/; identify future modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link the source post and https://creativecommons.org/licenses/by/4.0/; identify future modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2022/02/toucari-snorkeling.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2022/02/toucari-snorkeling.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-served bytes unchanged; separate resized review JPEGs. No upscaling, original crop or retouching. The exact first-party page declares the named blog, Observations of the Practical Kind by Dustin Marx, licensed under CC BY4.0. This is a grant for the authored work, not labelled text-only or metadata-only. Its original trip narrative presents these photographs as part of the author’s own snorkeling visit. No third-party image credit, image exclusion or conflicting notice appears on the selected photograph or in this post. Ownership is supported by the first-party original-trip context, not independently established by EXIF. No blanket clearance is inferred for separately credited photographs in other posts. Preserve author, source and licence links and identify changes. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real shallow-underwater photograph: sunlight ripples across rounded, algae-covered rocks, with green-blue water and the rippled underside of the surface above. No person, watermark, text overlay, map, composite panel, satellite imagery or video frame. Modest underwater contrast and slight softness disclosed. Main image and embedded smaller preview were both visually inspected and depict the same scene. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact first-party page declares the named blog, Observations of the Practical Kind by Dustin Marx, licensed under CC BY4.0. This is a grant for the authored work, not labelled text-only or metadata-only. Its original trip narrative presents these photographs as part of the author’s own snorkeling visit. No third-party image credit, image exclusion or conflicting notice appears on the selected photograph or in this post. Ownership is supported by the first-party original-trip context, not independently established by EXIF. No blanket clearance is inferred for separately credited photographs in other posts. Preserve author, source and licence links and identify changes. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "b40928b3-6c8f-4c7b-987c-260f7eb911c3",
+    "slug": "champagne-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6c6317fd43473b59f8e982da2831551b8cf6937d5c94f63c584db15d3bd63afc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6c6317fd43473b59f8e982da2831551b8cf6937d5c94f63c584db15d3bd63afc.jpg",
+    "originalSha256": "0c25e79befb2f4d16973b51aa607a6b9dd542314304b080dade284fb5fc62189",
+    "alt": "Streams of gas bubbles rising above underwater rocks at Champagne Reef, Dominica. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2022/02/champagne-reef-snorkeling.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2022/02/champagne-reef-snorkeling.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-served bytes unchanged. Separate review JPEG resized locally without crop or retouching. The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real shallow-underwater photograph of multiple bubble streams rising from algae-covered rocks toward the rippled water surface. Reef floor and bubble field are the subjects. No visible person, watermark, overlay, map or composite. Moderate underwater haze and lens softness, but distinctive bubbles and substrate are clear. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "61a561ec-439c-4936-84ab-02bb4c67918f",
+    "slug": "ship-wreck-tugboat",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ba7f85e665f5ab7e35c52fe6f3b04818982fc29702bc3aa7d7bd72250bd3ee50.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ba7f85e665f5ab7e35c52fe6f3b04818982fc29702bc3aa7d7bd72250bd3ee50.jpg",
+    "originalSha256": "472fc1ac27fc2d5da5ae09c343dd1ac84ddbd768542a15b8756e9105bc3af965",
+    "alt": "The small sunken tugboat near Tugboat Beach, Curaçao, viewed underwater from above its coral-covered hull. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2022/12/tugboat-beach-curacao.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2022/12/tugboat-beach-curacao.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-served bytes unchanged. Separate review JPEG resized locally without crop or retouching. The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real underwater oblique view of the small sunken tugboat, showing its metal hull, open deck, collapsed wheelhouse and coral growth with surrounding sandy seabed. Wreck occupies most of image and no person obscures it. No watermark, overlay, montage or map. Some underwater haze and edge softness. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "54890cde-c0b6-435a-970e-998f2575fbb9",
+    "slug": "tamarindo-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/80bbedce7b06bbb066e6de9df9cf449b92e34ab6aa49c3aaf95c5cf6153b6294.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/80bbedce7b06bbb066e6de9df9cf449b92e34ab6aa49c3aaf95c5cf6153b6294.jpg",
+    "originalSha256": "67cf60fad9c1c2fb2c41263b1ae75541bb79e1005205278ff4b4f06f47fa3681",
+    "alt": "A sea turtle over sand and sparse seagrass in shallow water at Tamarindo Beach, Culebra, Puerto Rico. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2021/05/isla-culebra.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2021/05/isla-culebra.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-served bytes unchanged. Separate review JPEG resized locally without crop or retouching. The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real underwater photograph looking down at a relatively small sea turtle above a broad pale sandy seabed with sparse grass. Turtle and substrate are visible with muted contrast and green-blue haze. No person, watermark, text overlay, map or montage. Primary4000×3000 photograph decodes fully and has no visible truncation or missing strips. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer explicitly declares Observations of the Practical Kind by Dustin Marx is licensed under a Creative Commons Attribution4.0 International License. The grant names this authored blog, is not limited to text or metadata, and the selected images appear as the author’s own trip photographs in first-person snorkeling narratives. No third-party photographer credit, image exception, conflicting copyright notice or video-frame description occurs for the selected photographs. External travel/operator links and quoted attraction descriptions do not override the author-owned photographic sequence. Creator provenance is contextual, not independently authenticated by EXIF. Commercial reuse and adaptations require author credit, source and licence links and identification of changes. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "53418445-ea4c-435c-8d62-b211206efc69",
+    "slug": "carthaginian-ii-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/23aafc1ec887db9c3dca26df99067bf0e7882b6f483275ac37e5151917c50abd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/23aafc1ec887db9c3dca26df99067bf0e7882b6f483275ac37e5151917c50abd.jpg",
+    "originalSha256": "f7e9ad9fbf20046d3ad5d1c66b41c68277a65098a7b008badb07faa65f21b5ea",
+    "alt": "Carthaginian II wreck off Lahaina, Maui, photographed underwater through an Atlantis submarine porthole. — exact site underwater photograph",
+    "label": "exact site underwater photograph",
+    "credit": "exact site underwater photograph · Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications. · CC BY 4.0 · Cropped/resized",
+    "creator": "Dustin Marx / Observations of the Practical Kind / CC BY4.0. Link source post and https://creativecommons.org/licenses/by/4.0/; identify modifications.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://marxianobservations.blogspot.com/2015/03/maui-atlantis-submarine.html",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://marxianobservations.blogspot.com/2015/03/maui-atlantis-submarine.html"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-served bytes unchanged. Separate review JPEG generated locally at native dimensions without crop or retouching. The first-party footer licenses the named authored blog Observations of the Practical Kind by Dustin Marx under CC BY4.0, without a text-only limitation. This post presents the author’s own family visit and explicitly refers to the photographs included; the selected photograph appears in that original trip narrative. No third-party photographer credit, bought-photo statement, stock-photo statement or conflicting image exception occurs in this post. This is contextual author ownership evidence, not independent EXIF authentication. Commercial reuse and adaptations require creator credit, source and licence links and identification of changes. No model/property release or endorsement asserted.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One real underwater still showing the wreck’s upper deck, hull edges and bow with fish and a line extending upward. The submarine porthole rim is visible across the bottom and lower sides. Strong blue cast, moderate haze and some window specks, but the wreck structure is clearly discernible. No person, watermark, map, montage, extracted video frame or generated content. Native source-served dimensions are1024×768; no upscaling, crop or retouching. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-party footer licenses the named authored blog Observations of the Practical Kind by Dustin Marx under CC BY4.0, without a text-only limitation. This post presents the author’s own family visit and explicitly refers to the photographs included; the selected photograph appears in that original trip narrative. No third-party photographer credit, bought-photo statement, stock-photo statement or conflicting image exception occurs in this post. This is contextual author ownership evidence, not independent EXIF authentication. Commercial reuse and adaptations require creator credit, source and licence links and identification of changes. No model/property release or endorsement asserted.\"}"
+  },
+  {
+    "siteId": "a921437e-c508-4db9-872b-6c62f73f10cd",
+    "slug": "kreidsee-hemmoor",
+    "src": "https://assets.diveatlas.site/site-photos/v1/424887f674c9b8188cce79de4d51d18da57e2945c548edece271d6d5d4501c19.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/424887f674c9b8188cce79de4d51d18da57e2945c548edece271d6d5d4501c19.jpg",
+    "originalSha256": "5f78f565a555699384e911d8016719ec4c1d3cfeb8c60aecde054fe386075c1a",
+    "alt": "Underwater postbox, bicycle and submerged structures in Kreidesee, Hemmoor, Germany. The broad inventory record has a conflicting coarse pin and needs geographic review. — underwater site feature",
+    "label": "underwater site feature",
+    "credit": "underwater site feature · Holger Schmoldt / Cuxland-Tourismus / CC BY-SA4.0 / https://www.cuxland.de/poi/tauchbasis-und-tauchschule-kreidesee · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Holger Schmoldt / Cuxland-Tourismus / CC BY-SA4.0 / https://www.cuxland.de/poi/tauchbasis-und-tauchschule-kreidesee",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.cuxland.de/poi/tauchbasis-und-tauchschule-kreidesee",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.cuxland.de/poi/tauchbasis-und-tauchschule-kreidesee"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Commercial reuse and adaptation permitted under CC BY-SA4.0 with credit, source/licence link, modification notice and share-alike conditions for adaptations. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Real underwater still showing a yellow Kreidesee Mail postbox in the foreground beside a submerged bicycle, railings and industrial remnants. Green-blue water and background haze; distinctive foreground feature remains clear. No people, graphic overlay, montage, map, satellite image or video extraction. Visible lettering is physically on the photographed postbox, not a watermark. Useful documentary underwater scene, not a polished wide lake overview. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Commercial reuse and adaptation permitted under CC BY-SA4.0 with credit, source/licence link, modification notice and share-alike conditions for adaptations. No publication authorized.\"}"
+  },
+  {
+    "siteId": "22f10e89-2410-44b0-8cd7-5f16875952f5",
+    "slug": "oyashirazu",
+    "src": "https://assets.diveatlas.site/site-photos/v1/583710f0c7c389af48bc08c5fcae5d9187b3493ea7c77dafa3e20e5934a1bc35.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/583710f0c7c389af48bc08c5fcae5d9187b3493ea7c77dafa3e20e5934a1bc35.jpg",
+    "originalSha256": "0d51105d208c2e5febd5e783b77e619c29616c509f807c1b7b268630e936f17e",
+    "alt": "Historical photograph of the cliff-lined Oyashirazu shore, Niigata, Japan, reproduced in Nihon no meisho (December1900). Surface context only, not a current dive-entry or underwater view. — historical surface coast context",
+    "label": "historical surface coast context",
+    "credit": "historical surface coast context · Source: Exploring Japanese Landmarks in Nishiki-e and Photographs, National Diet Library, Japan; 親不知の険路 from 日本之名勝 (Nihon no meisho), edited by Segawa Mitsuyuki, 1900. https://ndlsearch.ndl.go.jp/en/gallery/landmarks/sights/oyashirazu · Public domain; NDL exhibition reuse terms require source citation · Cropped/resized",
+    "creator": "Source: Exploring Japanese Landmarks in Nishiki-e and Photographs, National Diet Library, Japan; 親不知の険路 from 日本之名勝 (Nihon no meisho), edited by Segawa Mitsuyuki, 1900. https://ndlsearch.ndl.go.jp/en/gallery/landmarks/sights/oyashirazu",
+    "license": "Public domain; NDL exhibition reuse terms require source citation",
+    "source": "reviewed-context",
+    "sourcePage": "https://ndlsearch.ndl.go.jp/en/gallery/landmarks/sights/oyashirazu",
+    "licenceUrl": "https://ndlsearch.ndl.go.jp/en/gallery/landmarks/about",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://ndlsearch.ndl.go.jp/en/gallery/landmarks/sights/oyashirazu"
+      },
+      {
+        "label": "Public domain; NDL exhibition reuse terms require source citation",
+        "url": "https://ndlsearch.ndl.go.jp/en/gallery/landmarks/about"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The NDL exhibition-specific About page explicitly declares all exhibit images public domain and permits reproduction/reuse including commercial use without application, with source citation. The selected digitized-book record separately labels image rights pdm; its metadata ccby field is not used as the photo licence. Current main-site terms refer to PDL1.0 and preserve third-party exceptions; the explicit exhibit-specific grant governs this selected exhibit image. No publication authorized.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One continuous black-and-white historical camera photograph showing ocean/shoreline on the left, a narrow stony beach, and steep vegetated cliffs across the right. Three small figures provide scale, not the primary subject. No second panel, montage, diagram, text overlay, painting or video frame. Grainy and low contrast due to historical printed reproduction, but the coastal landscape is discernible. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The NDL exhibition-specific About page explicitly declares all exhibit images public domain and permits reproduction/reuse including commercial use without application, with source citation. The selected digitized-book record separately labels image rights pdm; its metadata ccby field is not used as the photo licence. Current main-site terms refer to PDL1.0 and preserve third-party exceptions; the explicit exhibit-specific grant governs this selected exhibit image. No publication authorized.\"}"
+  },
+  {
+    "siteId": "5e18e951-83af-4b62-87c4-bd0ede7e7f43",
+    "slug": "jamsil-sport-complex-diving-pool",
+    "src": "https://assets.diveatlas.site/site-photos/v1/91da84662310131c3cdfe6691c03dcb357714ff69c4dc6aff79372f84251b5fe.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/91da84662310131c3cdfe6691c03dcb357714ff69c4dc6aff79372f84251b5fe.jpg",
+    "originalSha256": "faf814fb146a59066ce654bfd98041d1494f1c31e3a891347e040f954fbdbd1f",
+    "alt": "서울종합운동장 실내수영장 다이빙 풀 — historical surface diving pool facility context",
+    "label": "historical surface diving pool facility context",
+    "credit": "historical surface diving pool facility context · Seoul Museum of History, Seoul History Archives, “서울종합운동장 실내수영장 다이빙 풀” (Seoul Sports Complex indoor swimming pool diving pool), H-TRNS-97171-769, dated 1981-09-29, KOGL Type1. https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?ctgryId=CTGRY766&type=B&upperNodeId=CTGRY769&fileSn=300&fileId=H-TRNS-97171-769 · Korea Open Government License (KOGL) Type 1: Attribution · Cropped/resized",
+    "creator": "Seoul Museum of History, Seoul History Archives, “서울종합운동장 실내수영장 다이빙 풀” (Seoul Sports Complex indoor swimming pool diving pool), H-TRNS-97171-769, dated 1981-09-29, KOGL Type1. https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?ctgryId=CTGRY766&type=B&upperNodeId=CTGRY769&fileSn=300&fileId=H-TRNS-97171-769",
+    "license": "Korea Open Government License (KOGL) Type 1: Attribution",
+    "source": "reviewed-context",
+    "sourcePage": "https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?ctgryId=CTGRY766&type=B&upperNodeId=CTGRY769&fileSn=300&fileId=H-TRNS-97171-769",
+    "licenceUrl": "https://www.kogl.or.kr/info/licenseType1.do",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://museum.seoul.go.kr/archive/archiveNew/NR_archiveView.do?ctgryId=CTGRY766&type=B&upperNodeId=CTGRY769&fileSn=300&fileId=H-TRNS-97171-769"
+      },
+      {
+        "label": "Korea Open Government License (KOGL) Type 1: Attribution",
+        "url": "https://www.kogl.or.kr/info/licenseType1.do"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] Source-delivered JPEG unchanged. Separate local review preview resized and re-encoded; no crop. The exact named photograph record expressly identifies the museum as creator and applies KOGL Type1. The linked official Type1 instrument permits commercial use and adaptations with attribution and an online source link; do not imply institutional endorsement and respect moral rights. This is image-specific permission, not a blanket government metadata licence. No conflicting third-party credit appears on the selected record. Download-purpose form was not submitted: the retained JPEG is the publicly published full-view image already embedded in the same licensed record.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Actual downloaded JPEG is one continuous black-and-white photographic reproduction with a white print border. Diving platforms and the pool occupy the frame; small figures on the platforms provide activity and scale and are not the primary subject. Visible grain, scratches and uneven tonal density are historical reproduction limitations. No montage, second panel, map, painting, extracted video frame or our crop. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The exact named photograph record expressly identifies the museum as creator and applies KOGL Type1. The linked official Type1 instrument permits commercial use and adaptations with attribution and an online source link; do not imply institutional endorsement and respect moral rights. This is image-specific permission, not a blanket government metadata licence. No conflicting third-party credit appears on the selected record. Download-purpose form was not submitted: the retained JPEG is the publicly published full-view image already embedded in the same licensed record.\"}"
+  },
+  {
+    "siteId": "05be8c24-464f-4ec0-af92-17dbb470145d",
+    "slug": "k-26-dive-pool",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6060b905052af88fae4c0968e8246f46847fe4859f2d72c0c0760eb71ba4fdf1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6060b905052af88fae4c0968e8246f46847fe4859f2d72c0c0760eb71ba4fdf1.jpg",
+    "originalSha256": "850ce3c282edca36357c53e21c8dab25dd632f462df88870ddd21a437ad07be7",
+    "alt": "가평 K26 잠수풀 수중 장면 / K26 indoor diving pool underwater scene — underwater named diving pool facility context · supplied review hold",
+    "label": "underwater named diving pool facility context · supplied review hold",
+    "credit": "underwater named diving pool facility context · supplied review hold · © Gyeonggi Tourism Organization (경기관광공사), K26 pool photograph in Gyeonggi Province News Portal article “얼음판부터 수심 26m 수중까지…경기관광공사 추천 실내 피서지 6곳,” published 2026-08-19; KOGL Type1. https://gnews.gg.go.kr/news/news_detail.do?number=202608191332155594C049&s_code=C049 · Korea Open Government License (KOGL) Type1: Attribution · Cropped/resized",
+    "creator": "© Gyeonggi Tourism Organization (경기관광공사), K26 pool photograph in Gyeonggi Province News Portal article “얼음판부터 수심 26m 수중까지…경기관광공사 추천 실내 피서지 6곳,” published 2026-08-19; KOGL Type1. https://gnews.gg.go.kr/news/news_detail.do?number=202608191332155594C049&s_code=C049",
+    "license": "Korea Open Government License (KOGL) Type1: Attribution",
+    "source": "reviewed-context",
+    "sourcePage": "https://gnews.gg.go.kr/news/news_detail.do?number=202608191332155594C049&s_code=C049",
+    "licenceUrl": "http://www.kogl.or.kr/info/licenseType1.do",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://gnews.gg.go.kr/news/news_detail.do?number=202608191332155594C049&s_code=C049"
+      },
+      {
+        "label": "Korea Open Government License (KOGL) Type1: Attribution",
+        "url": "http://www.kogl.or.kr/info/licenseType1.do"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  [] Source-delivered JPEG bytes unchanged. No local crop, enhancement, frame extraction or upscaling. The exact illustrated article declares KOGL Type1 for the work, with no explicit text-only limit or photo exclusion in cached content. ©경기관광공사 is positive attribution, not a contrary licence. Cached official KOGL Type1 terms permit commercial reuse and adaptation with source/author attribution and an online link, no misleading endorsement and respect for moral rights. Supplied-image ownership chain/original capture remain uncorroborated, hence held for provenance review rather than labelled unlicensed.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One coherent underwater photograph of a deep blue indoor diving pool. A circular dark opening/shaft and blue angular walls dominate the environment. Two scuba divers with cylinders and fins appear in the left/center foreground; the left diver holds a camera. No text overlay, advertising panel, montage, obvious rendering or extracted video-frame evidence. Facility activity/context rather than a posed portrait. Capture mode is not independently proven by EXIF. Supplied hold: HELD_PROVENANCE_AND_GEOGRAPHY_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_PROVENANCE_AND_GEOGRAPHY_REVIEW\", \"decision\": \"HELD_PROVENANCE_AND_GEOGRAPHY_REVIEW\", \"rights_note\": \"The exact illustrated article declares KOGL Type1 for the work, with no explicit text-only limit or photo exclusion in cached content. ©경기관광공사 is positive attribution, not a contrary licence. Cached official KOGL Type1 terms permit commercial reuse and adaptation with source/author attribution and an online link, no misleading endorsement and respect for moral rights. Supplied-image ownership chain/original capture remain uncorroborated, hence held for provenance review rather than labelled unlicensed.\"}"
+  },
+  {
+    "siteId": "df4dccd0-6438-4857-bb78-bcd32eb583c6",
+    "slug": "black-rock-mauritius",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0e92182198c82bf6c3c8856b5f1f90160df0dc9925b5872e8227eb0bf0f9ff9e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0e92182198c82bf6c3c8856b5f1f90160df0dc9925b5872e8227eb0bf0f9ff9e.jpg",
+    "originalSha256": "4c8b09d0d5ef61ee67d764e8dfa873adb02160492b460a6acc5a1b2d04550596",
+    "alt": "Underwater images collected by a Paddle in Black-Rocks, Mauritius - 2017-11-19; camera member G0028667.JPG — underwater reef habitat field photo · supplied review hold",
+    "label": "underwater reef habitat field photo · supplied review hold",
+    "credit": "underwater reef habitat field photo · supplied review hold · Barde, Julien; Contini, Matteo; Illien, Victor; Bonhommeau, Sylvain. Underwater images collected by a Paddle in Black-Rocks, Mauritius - 2017-11-19. Zenodo dataset17532022, member128GOPRO/G0028667.JPG. CC BY4.0. https://zenodo.org/records/17532022 · Creative Commons Attribution 4.0 International · Cropped/resized",
+    "creator": "Barde, Julien; Contini, Matteo; Illien, Victor; Bonhommeau, Sylvain. Underwater images collected by a Paddle in Black-Rocks, Mauritius - 2017-11-19. Zenodo dataset17532022, member128GOPRO/G0028667.JPG. CC BY4.0. https://zenodo.org/records/17532022",
+    "license": "Creative Commons Attribution 4.0 International",
+    "source": "reviewed-context",
+    "sourcePage": "https://zenodo.org/records/17532022",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://zenodo.org/records/17532022"
+      },
+      {
+        "label": "Creative Commons Attribution 4.0 International",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: HELD.  [] No alteration to delivered member bytes; no crop, enhancement, upscaling or video-frame extraction. Independent original underwater-image dataset, including its expressly published DCIM.zip camera files. This is an image dataset grant, not a metadata-only licence or reliance on the separately held annotation collection. Cached record contains no noncommercial qualifier or express photo exclusion.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One coherent downward-looking underwater field photograph of coral growth, dark rocks, pale sandy/rubble gaps and small fish. Reef habitat fills the frame, with a broad dark shadow across the upper-left/central area, blue-green cast, chromatic fringing and soft edges. Still useful for habitat context, not a polished scenic hero. No people-primary marketing, text overlay, montage, map, figure-panel crop or visible rendering. No local colour correction, crop or upscaling. Supplied hold: HELD_PROVENANCE_GEOGRAPHY_AND_DATE_REVIEW Supplied geographic/date/survey evidence: {\"status\": \"HELD_PROVENANCE_GEOGRAPHY_AND_DATE_REVIEW\", \"decision\": \"HELD_PROVENANCE_GEOGRAPHY_AND_DATE_REVIEW\", \"rights_note\": \"Independent original underwater-image dataset, including its expressly published DCIM.zip camera files. This is an image dataset grant, not a metadata-only licence or reliance on the separately held annotation collection. Cached record contains no noncommercial qualifier or express photo exclusion.\"}"
+  },
+  {
+    "siteId": "3718c036-3eab-4ab5-be83-8fd1cea352f4",
+    "slug": "corveta-camaqua",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7f8af9a21decd52fb6ed70a388f5be3df53e369b854e3c0d91cdaaa9a1974b63.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7f8af9a21decd52fb6ed70a388f5be3df53e369b854e3c0d91cdaaa9a1974b63.jpg",
+    "originalSha256": "cc063d9fc92ef8f0e2fad23fcad1d139ce0ea1c634348195d8d3d7eb6bce9017",
+    "alt": "Hull of the Corveta Camaquã wreck underwater off Pernambuco, Brazil. Capture date unknown. — underwater wreck hull",
+    "label": "underwater wreck hull",
+    "credit": "underwater wreck hull · Imagem: Marinha do Brasil. Fonte: Agência Marinha de Notícias. https://www.agencia.marinha.mil.br/index.php/historia-naval/marinha-relembra-os-81-anos-do-naufragio-da-corveta-camaqua · Agency all-content reproduction permission with attribution; not CC or public domain · Cropped/resized",
+    "creator": "Imagem: Marinha do Brasil. Fonte: Agência Marinha de Notícias. https://www.agencia.marinha.mil.br/index.php/historia-naval/marinha-relembra-os-81-anos-do-naufragio-da-corveta-camaqua",
+    "license": "Agency all-content reproduction permission with attribution; not CC or public domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.agencia.marinha.mil.br/index.php/historia-naval/marinha-relembra-os-81-anos-do-naufragio-da-corveta-camaqua",
+    "licenceUrl": "https://www.agencia.marinha.mil.br/sobre",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.agencia.marinha.mil.br/index.php/historia-naval/marinha-relembra-os-81-anos-do-naufragio-da-corveta-camaqua"
+      },
+      {
+        "label": "Agency all-content reproduction permission with attribution; not CC or public domain",
+        "url": "https://www.agencia.marinha.mil.br/sobre"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  Specific policy covers reproduction of all Agency content in print, digital or electronic media with due credit and explicit Agência Marinha de Notícias citation. No NC condition or actual image-specific exclusion observed. Generic all-rights-reserved footer is preserved in evidence. No modification/adaptation rights inferred.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: A single underwater photograph of a large corroded ship hull lying on its side, in blue water above pale sand. Marine growth and a circular fitting are visible. Small source-supplied white Navy/anchor logo at the lower right. No panels, map, people, generated elements or extracted video frame evidence. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"Specific policy covers reproduction of all Agency content in print, digital or electronic media with due credit and explicit Agência Marinha de Notícias citation. No NC condition or actual image-specific exclusion observed. Generic all-rights-reserved footer is preserved in evidence. No modification/adaptation rights inferred.\"}"
+  },
+  {
+    "siteId": "48940df7-3a07-452f-8858-6b89f8220587",
+    "slug": "naaz-islands",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1e43381b48cbceac97799c43eaf6650ee9b096edba38bfd77c8efeeeb39187a5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1e43381b48cbceac97799c43eaf6650ee9b096edba38bfd77c8efeeeb39187a5.jpg",
+    "originalSha256": "416f8c94f4d5ccecc6c2f2669784ef106cb760bcce2232812a43fbb8ff099cae",
+    "alt": "Naaz Islands and surrounding shallow water near Qeshm, Iran. Source gallery published2February2020; capture date unverified. — exact island surface context",
+    "label": "exact island surface context",
+    "credit": "exact island surface context · Asghar Besharati / Mehr News Agency / CC BY4.0 / https://www.mehrnews.com/photo/4839977/%D8%AC%D8%B2%D8%A7%DB%8C%D8%B1-%D9%86%D8%A7%D8%B2-%DB%8C%DA%A9%DB%8C-%D8%A7%D8%B2-%D8%AC%D8%A7%D8%B0%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D9%82%D8%B4%D9%85 · CC BY 4.0 · Cropped/resized",
+    "creator": "Asghar Besharati / Mehr News Agency / CC BY4.0 / https://www.mehrnews.com/photo/4839977/%D8%AC%D8%B2%D8%A7%DB%8C%D8%B1-%D9%86%D8%A7%D8%B2-%DB%8C%DA%A9%DB%8C-%D8%A7%D8%B2-%D8%AC%D8%A7%D8%B0%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D9%82%D8%B4%D9%85",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.mehrnews.com/photo/4839977/%D8%AC%D8%B2%D8%A7%DB%8C%D8%B1-%D9%86%D8%A7%D8%B2-%DB%8C%DA%A9%DB%8C-%D8%A7%D8%B2-%D8%AC%D8%A7%D8%B0%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D9%82%D8%B4%D9%85",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.mehrnews.com/photo/4839977/%D8%AC%D8%B2%D8%A7%DB%8C%D8%B1-%D9%86%D8%A7%D8%B2-%DB%8C%DA%A9%DB%8C-%D8%A7%D8%B2-%D8%AC%D8%A7%D8%B0%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D9%82%D8%B4%D9%85"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  First-party gallery expressly licenses all Mehr News Agency content under CC BY4.0. Photographer byline and original agency watermark agree; no image-specific third-party exception observed. Commercial reuse/adaptations remain subject to attribution and licence conditions.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Selected. Single real aerial oblique photograph showing rocky tidal islands and blue-green shallow water, with the Qeshm shoreline behind. Small native agency/photographer credit lower left retained; no panels or maps. Native912x608 resolution; modest detail but useful named site context. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party gallery expressly licenses all Mehr News Agency content under CC BY4.0. Photographer byline and original agency watermark agree; no image-specific third-party exception observed. Commercial reuse/adaptations remain subject to attribution and licence conditions.\"}"
+  },
+  {
+    "siteId": "951873c2-6992-49bf-b07c-e16395058dd0",
+    "slug": "samarangersee",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f59e5850532c1ac81929a9518fb948faf8c0d56e0e118ea88d816b6b0146fadc.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f59e5850532c1ac81929a9518fb948faf8c0d56e0e118ea88d816b6b0146fadc.jpg",
+    "originalSha256": "f5dd8e47e8622b8dc0d6ac31533c650b92571772b99e19a47fc15f1544146303",
+    "alt": "Baum mit Schleimalgen, Samarangersee — exact named lake underwater habitat",
+    "label": "exact named lake underwater habitat",
+    "credit": "exact named lake underwater habitat · Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/samarangersee/index.de.php · CC BY 4.0 · Cropped/resized",
+    "creator": "Bernd Nies / CC BY 4.0 / https://www.nies.ch/gal/diving/samarangersee/index.de.php",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nies.ch/gal/diving/samarangersee/index.de.php",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nies.ch/gal/diving/samarangersee/index.de.php"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] No modifications by collector. First-party site-wide contents grant appears on the selected photographic gallery and author imprint. Gallery meta author is Bernd Nies; first-person photographic commentary, equipment and dated EXIF accompany the exact image. No third-party credit or contrary licence exception is present for selected figure 1.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: One clear underwater photograph of an algae-coated submerged tree and branches in blue-green lake water, with surface light above. No montage, panels, map, satellite imagery, generated content or visible watermark. Native 800×533 served JPEG has useful environmental detail. Source records Photoshop CS6 processing; not asserted to be an untouched camera original. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"First-party site-wide contents grant appears on the selected photographic gallery and author imprint. Gallery meta author is Bernd Nies; first-person photographic commentary, equipment and dated EXIF accompany the exact image. No third-party credit or contrary licence exception is present for selected figure 1.\"}"
+  },
+  {
+    "siteId": "6045335a-aa32-4a93-b91a-a5bc0e5b6293",
+    "slug": "u-352-wrack",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a466feea54e175727a9a2c49b96aba66c64a767b7623cb4e365cce1a86d77a29.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a466feea54e175727a9a2c49b96aba66c64a767b7623cb4e365cce1a86d77a29.jpg",
+    "originalSha256": "889fac70a6b9cbac344312209f1059fa9b614fdc00f65a02332515a11b570ce5",
+    "alt": "U-352 — Underwater wreck still photograph",
+    "label": "Underwater wreck still photograph",
+    "credit": "Underwater wreck still photograph · Tane Casserley/NOAA; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-u-352/ · Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image. · Cropped/resized",
+    "creator": "Tane Casserley/NOAA; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-u-352/",
+    "license": "Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image.",
+    "source": "reviewed-context",
+    "sourcePage": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-u-352/",
+    "licenceUrl": "https://oceanexplorer.noaa.gov/faqs/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1903-background-maritime-heritage-media-u-352/"
+      },
+      {
+        "label": "Public domain under the NOAA Ocean Exploration photograph-specific FAQ, except explicitly copyrighted contributions; no copyright reservation found in the source caption or delivered image.",
+        "url": "https://oceanexplorer.noaa.gov/faqs/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  [] None; downloaded bytes and embedded metadata preserved.   Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Single wide underwater photograph showing submarine hull/conning structure with schools of fish, useful and legible, no visible copyright reservation or graphic overlay. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_REVIEW\", \"decision\": \"READY_FOR_REVIEW\", \"rights_evidence\": \"Source FAQ expressly covers images and videos, allowing free distribution absent noted copyright. Item caption names Tane Casserley/NOAA. Embedded Copyright field is an image-courtesy attribution, not a reservation. Original metadata retained.\"}"
+  },
+  {
+    "siteId": "7d4cca11-172e-4330-a643-9dccc0558cc1",
+    "slug": "sas-transvaal-wreck-south-africa",
+    "src": "https://assets.diveatlas.site/site-photos/v1/555bb1fdd277f87eb2061ea1cd4202b9a4389218ad09d52471a9666d526244b3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/555bb1fdd277f87eb2061ea1cd4202b9a4389218ad09d52471a9666d526244b3.jpg",
+    "originalSha256": "c0ad613ea61e97c52abfa9ab9a7076db7c1230bcae3e89e8b81a34bf1abf484b",
+    "alt": "SAS Transvaal — existing photo, proposed Cape Peninsula association — underwater site context",
+    "label": "underwater site context",
+    "credit": "underwater site context · Peter Southwood (Pbsouthwood) / Wikimedia Commons / CC BY-SA 3.0; requested licensor credit: User: (WT-shared) Pbsouthwood at wts wikivoyage · CC BY-SA 3.0 Unported · Cropped/resized",
+    "creator": "Peter Southwood (Pbsouthwood) / Wikimedia Commons / CC BY-SA 3.0; requested licensor credit: User: (WT-shared) Pbsouthwood at wts wikivoyage",
+    "license": "CC BY-SA 3.0 Unported",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Foredeck_winch_on_SAS_Transvaal_wreck_P9241614.jpg",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.en",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Foredeck_winch_on_SAS_Transvaal_wreck_P9241614.jpg"
+      },
+      {
+        "label": "CC BY-SA 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW. [\"The new catalogue pin is approximately 221 m from the reported bow. It supports regional consistency only; it does not validate an exact wreck/entry location.\", \"The cached guide prints S33 for the stern while S34 is given for the bow. This is an apparent source error, not silently corrected or used for navigation.\", \"The source category says ship, 1945 while the guide gives a 1944 launch. This is not assumed to be a launch-date conflict resolution or a different hull; preserve exact source wording.\", \"The Port Elizabeth record remains geographically inconsistent. No alias/merge, historical reassignment, inventory pin correction or publication is authorized.\", \"The 2010 photograph does not establish current wreck condition, access, diving safety or the exact camera position.\", \"Foredeck machinery/winch, fractured deck structure and marine growth are visible in green water. Severe green cast, haze/low contrast and black lens corners obscure fine detail. No people-primary composition, map, panel or composite is apparent.\", \"Low-quality documentary wreck-detail/context candidate for human review, not a hero image or whole-wreck view.\", \"The Commons description and guide share the photographer/source lineage; they are complementary evidence, not two independent eyewitness confirmations.\", \"The EXIF date is a camera-clock claim. First-ever publication and untouched camera-original provenance are not independently established.\"] The image-specific Commons caption names SAS Transvaal and Cape Peninsula. The cached Smitswinkel Bay guide embeds this exact P9241614 exposure and identifies SAS/HMSAS Transvaal F602, the Loch-class frigate scuttled there in 1978. This supports the separate Cape Peninsula inventory association. ['Credit Peter Southwood and requested licensor identity; link the source and licence.', 'Indicate modifications, if any; source bytes are unchanged in this review.', 'Share adaptations under the same or a compatible licence. No commercial-use prohibition appears in this image-specific grant.']  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Low-quality documentary wreck-detail/context candidate. Severe green cast, haze, low contrast and black lens corners obscure detail. Not a hero image or a whole-wreck view. Supplied geographic/date/survey evidence: {}"
   }
 ];
