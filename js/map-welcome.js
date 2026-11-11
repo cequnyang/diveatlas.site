@@ -99,6 +99,7 @@
     }
     const picker = section.querySelector('#mapWelcomeMonth');
     const suppress = section.querySelector('#mapWelcomeSuppress');
+    suppress.checked = true;
     const searchInput = section.querySelector('#mapWelcomeSearch');
     const panels = { destination:section.querySelector('#mapWelcomeDestinationPanel'), month:section.querySelector('#mapWelcomeMonthPanel'), review:section.querySelector('#mapWelcomeReviewPanel') };
     const compactViewport = window.matchMedia('(max-width: 600px)');
@@ -269,12 +270,12 @@
       picker.value = selected;syncStep();
     }
     function syncSuppression() {
-      try { suppress.checked = localStorage.getItem(suppressedKey) === '1'; } catch (_) {}
+      try { suppress.checked = localStorage.getItem(suppressedKey) !== '0'; } catch (_) {}
     }
     function persistSuppression() {
       try {
-        if (suppress.checked) localStorage.setItem(suppressedKey,'1');
-        else localStorage.removeItem(suppressedKey);
+        // Missing means the default; persist an explicit opt-out separately.
+        localStorage.setItem(suppressedKey,suppress.checked ? '1' : '0');
       } catch (_) {}
     }
     function hide() { onCloseMonth();closeSearch();section.hidden = true;placeMapControls(); }

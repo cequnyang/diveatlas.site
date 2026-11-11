@@ -61,6 +61,25 @@ test.beforeEach(async ({ page }) => {
   }));
 });
 
+test('welcome suppression defaults checked and remembers an explicit unchecked choice', async ({ page }) => {
+  const key = 'global-coral-map-welcome-suppressed-v1';
+  await page.goto('/');
+  const welcome = page.locator('#mapWelcome'), checkbox = page.locator('#mapWelcomeSuppress');
+  await expect(welcome).toBeVisible();
+  await expect(checkbox).toBeChecked();
+  await checkbox.uncheck();
+  expect(await page.evaluate(key=>localStorage.getItem(key),key)).toBe('0');
+  await page.reload();
+  await expect(welcome).toBeVisible();
+  await expect(checkbox).not.toBeChecked();
+  await checkbox.check();
+  await welcome.locator('[data-action="close"]').click();
+  await expect(welcome).toBeHidden();
+  await page.reload();
+  await expect(welcome).toBeHidden();
+  expect(await page.evaluate(key=>localStorage.getItem(key),key)).toBe('1');
+});
+
 test('welcome offers real destination and month paths without blocking the map', async ({ page }) => {
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-tutorial-suppressed-v1'));
   await page.goto('/');
