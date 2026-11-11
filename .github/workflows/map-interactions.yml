@@ -137,8 +137,11 @@ jobs:
             --startup-assets-only --require-site-details
           npm run build
 
-      - name: Install Chromium and system dependencies
-        run: npx playwright install --with-deps chromium
+      # GitHub's hosted Ubuntu image supplies Chromium's runtime libraries.
+      # Avoid apt here: extra font downloads can fail when Ubuntu mirrors have DNS outages.
+      # Playwright's install and browser tests still fail if required libraries are missing.
+      - name: Install Chromium
+        run: npx playwright install chromium
 
       - name: Run desktop and touch browser regressions
         env:
