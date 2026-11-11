@@ -287,7 +287,10 @@
 }
 
 .dive-search-result:hover,
-.dive-search-result.active {
+.dive-search-result.active,
+.saved-trips-row:focus-within,
+.saved-trips-row:hover,
+.saved-trips-row:has(> .active) {
   background: var(--panel-soft);
 }
 

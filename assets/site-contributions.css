@@ -243,6 +243,6 @@
 .site-suggestion-modal .contact-dialog-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 32px; height: 32px; padding: 6px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; }
 .site-suggestion-modal .contact-dialog-close svg { width: 20px; height: 20px; fill: currentColor; }
 .site-suggestion-modal .contact-button { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-solid); color: var(--text); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
-.site-suggestion-modal .contact-button-primary { background: var(--primary); color: white; }
+.site-suggestion-modal .contact-button-primary, .saved-trips-dialog .contact-button-primary, .saved-trips-delete-confirm .contact-button-primary { background: var(--primary); color: white; }
 .site-suggestion-modal button:disabled { opacity: .65; cursor: wait; }
 .site-suggestion-modal .site-photo-upload-policy-popover { max-width: calc(100vw - 24px); }

@@ -1,0 +1,127 @@
+/* Reuse map palette, font inheritance, header buttons and share-dialog actions. */
+.saved-trips-trigger { width:auto; padding:0 8px; white-space:nowrap; font:inherit; font-size:12px; }
+#savedTripsButton { width:40px; flex-basis:40px; display:inline-flex; justify-content:center; padding:0; }
+.saved-trips-trigger svg { width:20px; height:20px; }
+.saved-trips-panel[hidden], .saved-trips-feedback[hidden] { display:none; }
+.saved-trips-panel { position:fixed; z-index:1400; top:54px; right:58px; bottom:auto; width:340px; max-height:calc(100dvh - 80px); max-width:calc(100vw - 24px); display:flex; flex-direction:column; padding:20px; box-sizing:border-box; border:1px solid var(--line); border-radius:8px; background:var(--panel-solid); color:var(--text); box-shadow:0 4px 20px rgb(0 0 0 / .12); overflow:auto; font:inherit; font-size:13px; }
+.saved-trips-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.saved-trips-heading h2 { margin:0; font-size:18px; font-weight:600; }
+.saved-trips-heading .top-menu-share { font-size:20px; }
+.saved-trips-panel { z-index:1600; }
+.saved-trips-panel label { display:grid; gap:6px; margin-top:16px; color:var(--muted); font-size:12px; }
+
+.saved-trips-panel h3 { margin:20px 0 4px; font-size:12px; font-weight:500; color:var(--muted); }
+.saved-trips-local { margin:20px 0 0; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; line-height:1.6; }
+.saved-trips-empty { color:var(--muted); padding:20px 0; line-height:1.5; }
+.saved-trips-dialog details { margin-top:0; border-top:1px solid var(--line); padding-top:4px; }
+.saved-trips-dialog summary { cursor:pointer; padding:6px 0; color:var(--text); font-weight:500; }
+.saved-trips-dialog details[open] summary { margin-bottom:8px; }
+.saved-trips-choices > p { font-size:12px; color:var(--muted); margin:0 0 8px; }
+.saved-trips-dialog small { display:block; color:var(--muted); line-height:1.5; }
+.saved-trips-feedback { position:fixed; z-index:2400; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center; width:max-content; max-width:min(560px, calc(100vw - 32px)); box-sizing:border-box; padding:8px 10px 8px 14px; border:1px solid var(--line); border-radius:var(--radius-modal); font:inherit; font-size:12px; line-height:1.5; }
+.saved-trips-feedback span { min-width:0; overflow-wrap:anywhere; }
+.saved-trips-feedback button { flex-shrink:0; }
+/* Share/close remain measured by the map; the bookmark uses the same hit target. */
+.leaflet-popup .saved-trips-save { position:absolute; z-index:4; display:grid; place-items:center; color:var(--muted); }
+.saved-trips-save svg { width:20px; height:20px; }
+.saved-trips-save.is-saved svg path { fill:currentColor; }
+.has-trip-bookmark .popup-share-heading { padding-right:100px; }
+@media(max-width:720px) {
+ .leaflet-popup .saved-trips-save--inline { position:static; flex:0 0 44px; width:44px; height:44px; margin-left:auto; }
+ .dive-site-popup--with-photo .bio-popup-title--share .saved-trips-save + .diveatlas-sheet-share-button { margin-left:0; }
+ .saved-trips-save svg { width:22px; height:22px; }
+}
+.saved-trips-resume { width:100%; margin:12px 0 0; justify-content:center; }
+@media(max-width:720px) {
+ .saved-trips-panel { top:auto; right:0; left:0; bottom:0; width:100%; max-width:none; max-height:62dvh; border-radius:12px 12px 0 0; padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
+ .saved-trips-feedback { bottom:calc(12px + env(safe-area-inset-bottom, 0px)); width:max-content; max-width:calc(100vw - 24px); }
+ .saved-trips-trigger { font-size:11px; padding:0 6px; }
+ #savedTripsButton { width:40px; flex-basis:40px; padding:0; justify-content:center; }
+ .saved-trips-trigger span { display:none; }
+}
+
+/* Content-sized empty state leaves the map available instead of reserving an empty rail. */
+.saved-trips-panel > .saved-trips-heading { padding-bottom:14px; border-bottom:1px solid var(--line); }
+.saved-trips-panel > .saved-trips-heading .top-menu-share { width:32px; height:32px; flex:0 0 32px; margin-right:-6px; }
+.saved-trips-panel .saved-trips-first { padding:24px 0 4px; }
+.saved-trips-first > svg { display:block; width:28px; height:28px; color:var(--muted); margin-bottom:12px; }
+.saved-trips-panel .saved-trips-first h3 { font-size:16px; font-weight:600; color:var(--text); margin:0 0 8px; }
+.saved-trips-first p { margin:0 0 18px; line-height:1.6; font-size:13px; }
+.saved-trips-first > button { width:100%; justify-content:center; min-height:40px; }
+@media(max-width:720px) {
+ .saved-trips-panel { padding:16px 20px calc(20px + env(safe-area-inset-bottom, 0px)); }
+ .saved-trips-panel .saved-trips-first { padding-top:20px; }
+}
+
+/* Native dialog placement only; Suggest a dive site's shared classes own its skin. */
+.saved-trips-dialog { position:fixed; padding:0; font:inherit; font-size:13px; }
+.saved-trips-dialog::backdrop { background:rgba(18,30,42,.58); }
+.saved-trips-create { display:grid; gap:13px; }
+/* The welcome component owns title, select, action and glass styling.
+   Keep only placement and saved-list geometry here. */
+.saved-trips-panel.tutorial-dialog { position:fixed; left:auto; top:54px; right:58px; bottom:auto; transform:none; animation:none; width:min(400px, calc(100vw - 48px)); padding:20px 22px 14px; border-radius:var(--radius-modal); }
+.saved-trips-panel label .temperature-select-hit-area { width:100%; }
+.saved-trips-panel .map-welcome-navigation { display:flex; margin-top:16px; }
+.saved-trips-panel .saved-trips-resume { margin:0; }
+.saved-trips-panel .saved-trips-first .tutorial-button { width:100%; }
+.saved-trips-panel > .saved-trips-heading { border-bottom:0; padding-bottom:0; }
+@media(max-width:720px) { .saved-trips-panel.tutorial-dialog { top:auto; right:0; bottom:0; left:0; width:100%; border-radius:var(--radius-modal) var(--radius-modal) 0 0; padding:16px 20px calc(20px + env(safe-area-inset-bottom, 0px)); } }
+
+/* Result rows/material are owned by the shared search menu; only this anchor differs. */
+#savedTripsMenu { z-index:1700; }
+.saved-trips-panel .saved-trips-picker { width:100%; height:44px; padding-inline:14px 40px; border-radius:999px; text-align:left; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.saved-trips-panel label .saved-trips-month-picker { width:min(100%, 200px); }
+
+/* One shared search-result surface contains two separate, accessible actions. */
+:is(.saved-trips-panel, #savedTripsMenu) .saved-trips-row { display:flex; align-items:center; gap:0; padding:0 6px 0 0; }
+.saved-trips-row .saved-trips-site { flex:1; min-width:0; padding:10px 12px; border:0; border-radius:inherit; background:transparent; color:inherit; text-align:left; font:inherit; cursor:pointer; }
+.saved-trips-site:focus-visible { outline:2px solid var(--primary); outline-offset:-2px; }
+
+
+/* Align each field's control beside its label without changing the shared controls. */
+.saved-trips-panel > label { grid-template-columns:90px minmax(0, 1fr); align-items:center; column-gap:12px; }
+.saved-trips-panel > label .temperature-select-hit-area { min-width:0; }
+.saved-trips-panel > label .saved-trips-month-picker { width:min(100%, 200px); }
+
+
+/* Reuse the welcome close glyph and responsive target; only its flow position differs. */
+/* Override the welcome header's positional offset, while retaining its icon and size. */
+.saved-trips-panel .saved-trips-row > .tutorial-close,
+.saved-trips-panel .saved-trips-heading > .tutorial-close { top:0; right:auto; margin:0; flex-basis:auto; align-self:center; }
+
+/* Use the same shared result surface and text hierarchy as saved dive sites. */
+.saved-trips-dialog .saved-trips-choice { display:flex; align-items:center; gap:8px; margin-top:4px; }
+.saved-trips-choice .dive-search-result-copy { flex:1; min-width:0; }
+.saved-trips-choice-status { flex:0 0 36px; text-align:center; color:var(--text-secondary); font-size:20px; }
+
+.saved-trips-dialog .site-suggestion-header > .tutorial-close { top:0; right:auto; margin:0; flex-basis:auto; flex-shrink:0; }
+
+#savedTripsMenu .saved-trips-row { border-radius:10px; }
+#savedTripsMenu .saved-trips-row > .tutorial-close { top:0; right:auto; margin:0; flex-basis:auto; flex-shrink:0; align-self:center; }
+
+.saved-trips-dialog summary { list-style:none; display:flex; align-items:center; }
+.saved-trips-dialog summary::-webkit-details-marker { display:none; }
+.saved-trips-dialog summary::before { content:'+'; display:inline-flex; align-items:center; justify-content:center; flex:0 0 1em; width:1em; margin-right:6px; font-size:150%; line-height:1; }
+
+.saved-trips-dialog details[open] > summary::before { content:'−'; }
+
+.saved-trips-dialog summary::before { transform:translateY(-1.5px); }
+
+.saved-trips-dialog > .site-suggestion-form { row-gap:8px; padding-bottom:10px; }
+
+/* Preserve hidden controls even when shared layout rules assign display. */
+.saved-trips-panel [hidden] { display:none !important; }
+
+@media(max-width:720px) {
+ .saved-trips-panel { translate:0 var(--mobile-panel-drag-y, 0px); transition:translate .22s ease, height .22s ease; }
+ .saved-trips-panel > .diveatlas-mobile-sheet-handle { flex-shrink:0; }
+ .saved-trips-panel.mobile-sheet-exiting { translate:0 calc(100% + 24px); pointer-events:none; }
+}
+@media(prefers-reduced-motion:reduce) { .saved-trips-panel { transition:none; } }
+
+#savedTripsMenu .saved-trips-row:has(> .saved-trips-delete-confirm) { padding:10px 12px; }
+.saved-trips-delete-confirm { width:100%; min-width:0; }
+.saved-trips-delete-confirm > p { margin:0 0 10px; overflow-wrap:anywhere; }
+
+@media(max-width:720px) { .saved-trips-panel .saved-trips-heading > [data-close] { display:none; } }

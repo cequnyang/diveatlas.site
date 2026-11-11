@@ -177,3 +177,7 @@ playwright-report/
 !/tools/render_destination_maps.cjs
 !/tools/templates/
 !/tools/templates/destination-map.html
+
+# Keep the local saved-trips behavior and verification reviewable.
+!/docs/saved-trips.md
+!/tests/e2e/saved-trips.spec.js

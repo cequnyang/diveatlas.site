@@ -71,7 +71,7 @@ body :is(.dive-filter-options, #bioLegend, .map-zoom-buttons, .map-current-locat
 body .fact dd .depth-meaning-unknown,
 body :is(#siteSuggestionDialog, .tutorial-language-dropdown,
   .site-suggestion-dialog, .contact-dialog, .seo-dialog, .tutorial-dialog,
-  .about-info-dialog, .temperature-scroll-wheel, .leaflet-popup-content-wrapper, .leaflet-tooltip,
+  .about-info-dialog, #savedTripsMenu, .saved-trips-feedback, .temperature-scroll-wheel, .leaflet-popup-content-wrapper, .leaflet-tooltip,
   .depth-meaning-unknown, .temperature-info-popover,
   .dive-conditions-info-popover, .dive-experience-info-popover,
   .site-photo-upload-policy-popover, .dive-location-coordinate-tooltip,

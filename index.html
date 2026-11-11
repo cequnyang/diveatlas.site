@@ -7146,6 +7146,8 @@
     }
   </style>
   <link rel="stylesheet" href="/assets/share-dialog.css?v=1">
+  <link rel="stylesheet" href="/assets/site-contributions.css?v=1">
+  <link rel="stylesheet" href="/assets/saved-trips.css?v=1">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=41">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
 <link rel="stylesheet" href="assets/map-welcome.css?v=2">
@@ -8114,6 +8116,7 @@ ZSD·2016–2025</span></span>
     <script src="js/area-search.js?v=1"></script>
     <script src="js/search-results-menu.js?v=1"></script>
     <script src="js/map-welcome.js?v=1"></script>
+    <script src="js/saved-trips.js?v=1"></script>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
     <script src="js/dive-site-name-localization.js"></script>
@@ -9090,6 +9093,13 @@ ZSD·2016–2025</span></span>
       shareButton.style.height = `${closeRect.height}px`;
       shareButton.style.top = closeButton.style.top;
       shareButton.style.right = `${Math.max(0, wrapperRect.right - headerRect.right) + closeRect.width + 8}px`;
+      const saveButton = popupElement.querySelector('.saved-trips-save');
+      if (saveButton && !saveButton.classList.contains('saved-trips-save--inline')) {
+        saveButton.style.width = `${closeRect.width}px`;
+        saveButton.style.height = `${closeRect.height}px`;
+        saveButton.style.top = closeButton.style.top;
+        saveButton.style.right = `${Math.max(0, wrapperRect.right - headerRect.right) + 2 * (closeRect.width + 8)}px`;
+      }
     }
   }
 
@@ -17497,7 +17507,7 @@ ZSD·2016–2025</span></span>
     return document.querySelector(`label[for="${select.id}"]`)?.textContent.trim() || select.id;
   }
 
-  function createTemperatureWheelSelector(select) {
+  function createTemperatureWheelSelector(select, labelOverride) {
     const panel = document.createElement('section');
     panel.className = 'temperature-scroll-wheel';
     panel.hidden = true;
@@ -17553,7 +17563,7 @@ ZSD·2016–2025</span></span>
         panel.style.colorScheme = panelStyle.getPropertyValue('--layers-color-scheme').trim() || 'dark';
       },
       renderOptions() {
-        const label = temperatureControlLabel(select);
+        const label = labelOverride || temperatureControlLabel(select);
         heading.textContent = label;
         panel.setAttribute('aria-label', label);
         list.setAttribute('aria-label', label);
@@ -17725,7 +17735,14 @@ ZSD·2016–2025</span></span>
       }
     });
     done.addEventListener('click', () => selector.close({ restoreFocus: true }));
-    new MutationObserver(() => selector.renderOptions()).observe(select, { childList: true, subtree: true });
+    const optionObserver = new MutationObserver(() => selector.renderOptions());
+    optionObserver.observe(select, { childList: true, subtree: true });
+    selector.destroy = () => {
+      selector.close();
+      clearTimeout(selector.suppressScrollTimer);
+      optionObserver.disconnect();
+      panel.remove();
+    };
     selector.renderOptions();
     // Keep the wheel outside the scrollable layer card so the options cannot be clipped.
     document.body.append(panel);
@@ -17733,7 +17750,7 @@ ZSD·2016–2025</span></span>
   }
 
   [els.tideTime, els.temperatureDepth, els.temperatureMonth, els.waterClarityMonth, els.currentsDepth, els.currentsMonth, els.wavesMonth, diveExperienceMonthSelect, document.getElementById('reefSurveyMetric'), document.getElementById('mapWelcomeMonth')]
-    .forEach(createTemperatureWheelSelector);
+    .forEach(select => createTemperatureWheelSelector(select));
   document.addEventListener('pointerdown', event => {
     const selector = activeTemperatureWheelSelector;
     if (!selector || selector.panel.contains(event.target) || selector.select === event.target) return;
@@ -21209,15 +21226,15 @@ ZSD·2016–2025</span></span>
     toastTimer = setTimeout(() => els.toast.classList.remove('show'), 1700);
   }
 
-  function applySharedSelections() {
-    const selections = sharedMapState.selections;
+  function applySharedSelections(state = sharedMapState) {
+    const selections = state.selections;
     if (!selections) return;
 
     withSuppressedPanelPreferenceWrites(() => {
       if (selections.month) {
         // A nested detail popup can use its own environmental month while the
         // map keeps the parent popup's view selected.
-        const monthContext = [sharedMapState.popup?.layer, sharedMapState.view]
+        const monthContext = [state.popup?.layer, state.view]
           .find(context => Object.hasOwn(environmentalMonths, context) &&
             SHARE_SELECTION_KEYS_BY_CONTEXT[context]?.includes('month'));
         if (monthContext) {
@@ -28489,6 +28506,8 @@ function closeShareDialog() {
 
     if (properties.length) rows.push(`<div class="dive-popup-properties">${properties.join('')}</div>`);
 
+
+
     const evidenceLinks = getDiveSiteEvidenceLinks(site);
     const evidenceUrlSet = new Set(
       evidenceLinks
@@ -29326,7 +29345,7 @@ function closeShareDialog() {
   }
 
   function animateMobileMapSheetDismissal(surface, onDismiss) {
-    if (!surface?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet') ||
+    if (!surface?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet, .saved-trips-panel') ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       onDismiss();
       return;
@@ -29952,6 +29971,24 @@ function closeShareDialog() {
     } else {
       wrapper.appendChild(button);
       wrapper.querySelector('.bio-popup-title--share')?.classList.remove('bio-popup-title--share');
+    }
+
+    if (popup._diveAtlasSiteId) {
+      let saveButton = wrapper.querySelector('[data-save-trip-site]');
+      if (!saveButton) {
+        saveButton = document.createElement('button');
+        saveButton.type = 'button';
+        saveButton.className = 'top-menu-share saved-trips-save';
+        saveButton.dataset.saveTripSite = popup._diveAtlasSiteId;
+        saveButton.setAttribute('aria-label', 'Save to trip');
+        saveButton.title = 'Save to trip';
+        saveButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></svg>';
+        L.DomEvent.disableClickPropagation(saveButton);
+      }
+      element.classList.add('has-trip-bookmark');
+      saveButton.classList.toggle('saved-trips-save--inline', Boolean(photoTitle));
+      button.before(saveButton);
+      if (isCompactPopup) alignMapPopupCloseButton(popup);
     }
 
     const label = t(element.classList.contains('dive-site-popup') ? 'shareCopySite' : 'shareMap');
@@ -33466,6 +33503,92 @@ function closeShareDialog() {
       });
     }).catch(error => console.warn('Could not open the requested site photo upload:', error));
   }
+
+  // Keep trip UI independent of Leaflet internals; reuse the existing validated
+  // share-state codec for saved map context rather than creating a second format.
+  let savedTripSelectedSiteId = null;
+  window.DiveAtlasSavedTrips?.mount({
+    monthWheel: select => createTemperatureWheelSelector(select, select.getAttribute('aria-label')),
+    loadSites: ensureDiveSiteData,
+    bindSheetDrag(handle, surface, onDismiss) {
+      bindMobileVerticalDragHandle(handle, surface, onDismiss, {
+        tapToDismiss:false, closeDistance:72, expandOnUpwardDrag:true
+      });
+    },
+    resetSheet(surface) {
+      cancelMobileMapSheetDismissal(surface);
+      surface.classList.remove('mobile-sheet-exiting','mobile-vertical-dragging');
+      surface.style.removeProperty('--mobile-panel-drag-y');
+      surface.style.removeProperty('height');
+    },
+    tripExample(site) {
+      const view = environmentalViewController.activeView;
+      // Only monthly layers supply a month. Tide/heat views without a monthly
+      // selection use today's month, never a stale selection in a hidden layer.
+      const month = view === 'dive-experience-outlook' ? diveConditionsMonth :
+        Object.hasOwn(environmentalMonths, view) ? environmentalMonth(view) : new Date().getMonth() + 1;
+      const monthName = localizedTemperatureMonth(month);
+      const location = site.location || site.name;
+      return { name:`${location.slice(0, Math.max(1, 66 - monthName.length))} in ${monthName}`, month };
+    },
+    depth(savedSite) {
+      const site = DIVE_SITES.find(item => getDiveSiteStableId(item) === savedSite.id) ||
+        [...diveSiteMarkerCache.values()].map(item => item.site).find(item => getDiveSiteStableId(item) === savedSite.id);
+      const values = site ? [site[3],site[4],site[5]] : [savedSite.depthMin,savedSite.depthMax,savedSite.recordedDepth];
+      const [min,max,recorded] = values.map(value => value == null ? null : Number(value));
+      return diveDepthRangeText(min,max) || (Number.isFinite(recorded) && recorded > 0 ? formatDepthMeters(recorded) : '');
+    },
+    describe(id) {
+      const site = DIVE_SITES.find(item => getDiveSiteStableId(item) === id) ||
+        [...diveSiteMarkerCache.values()].map(item => item.site).find(item => getDiveSiteStableId(item) === id);
+      if (!site) return null;
+      return { id, name:getDiveSiteDisplayName(site).displayName, lat:Number(site[1]), lng:normalizeBaseLongitude(Number(site[2])),
+        location:String(DIVE_SITE_SEARCH_LOCATIONS?.bySiteId?.[id]?.commonArea?.[0] || site[10] || DIVE_SITE_SEARCH_LOCATIONS?.bySiteId?.[id]?.stateProvince?.[0] || site[9] || ''), depthMin:site[3] ?? null, depthMax:site[4] ?? null, recordedDepth:site[5] ?? null };
+    },
+    capture(siteId) {
+      const state = captureMapState();
+      savedTripSelectedSiteId = siteId || state.selectedSiteId || savedTripSelectedSiteId;
+      state.selectedSiteId = savedTripSelectedSiteId;
+      return serializeMapState(state);
+    },
+    restore(query) {
+      const state = parseMapState(`${location.origin}/?${query}`);
+      if (!state.hasValidState) return;
+      if (activeClickPopup?.isOpen?.()) map.closePopup(activeClickPopup);
+      savedTripSelectedSiteId = state.selectedSiteId || state.requestedSiteId || null;
+      applySharedSelections(state);
+      selectEnvironmentalView(state.view || 'default', { persist:false });
+      applyMapState(state);
+      if (savedTripSelectedSiteId) {
+        const siteId = savedTripSelectedSiteId;
+        void ensureDiveSiteData().then(() => restoreSharedSiteDetail(siteId)).catch(() => {});
+      }
+    },
+    closePopup() { if (activeClickPopup?.isOpen?.()) map.closePopup(activeClickPopup); },
+    async focus(site) {
+      try { await ensureDiveSiteData(); } catch (_) { /* Stored coordinates still locate a site when the catalog is unavailable. */ }
+      const index = DIVE_SITES.findIndex(item => getDiveSiteStableId(item) === site.id);
+      savedTripSelectedSiteId = site.id;
+      if (index >= 0) {
+        await new Promise(resolve => {
+          // Search navigation animates and opens its popup after moveend. Save
+          // the resume point only after that sequence, including its popup pan.
+          let timer;
+          const finish = () => { map.off('moveend', settled); clearTimeout(timer); resolve(); };
+          const settled = () => { clearTimeout(timer); timer = setTimeout(finish, 400); };
+          map.on('moveend', settled);
+          timer = setTimeout(finish, 1800);
+          focusDiveSearchResult(index);
+        });
+      } else runInternalMapMovement(() => map.setView([site.lat,site.lng], Math.max(map.getZoom(), 11), {animate:false}));
+    },
+    onContextChange(callback) {
+      map.on('moveend popupopen', callback);
+      document.addEventListener('change', event => {
+        if (!event.target.closest('#savedTripsPanel, .saved-trips-dialog')) callback();
+      });
+    }
+  });
 })();
 </script>
 </body>

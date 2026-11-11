@@ -37,36 +37,36 @@
 .map-welcome-search input { width: 100%; min-width: 0; min-height: 40px; padding: 8px 0; border: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: 14px; }
 .map-welcome .map-welcome-search input:focus-visible { outline: none; }
 .map-welcome-search { box-sizing: border-box; min-height: 44px; transition: border-color 160ms ease, background-color 160ms ease; }
-.map-welcome .temperature-select-hit-area { width: min(100%, 200px); }
-.map-welcome .temperature-select-hit-area::after { right: 16px; color: var(--text-secondary); }
-.map-welcome .temperature-select-hit-area select { height: 44px; padding-inline: 14px 40px; border-radius: 999px; cursor: pointer; }
-.map-welcome .temperature-select-hit-area select[aria-expanded="true"] { border-color: var(--primary); }
-.map-welcome .temperature-select-hit-area select:focus-visible { outline-offset: -2px; }
+:is(.map-welcome, .saved-trips-panel) .temperature-select-hit-area { width: min(100%, 200px); }
+:is(.map-welcome, .saved-trips-panel) .temperature-select-hit-area::after { right: 16px; color: var(--text-secondary); }
+:is(.map-welcome, .saved-trips-panel) .temperature-select-hit-area select { height: 44px; padding-inline: 14px 40px; border-radius: 999px; cursor: pointer; }
+:is(.map-welcome, .saved-trips-panel) .temperature-select-hit-area select[aria-expanded="true"] { border-color: var(--primary); }
+:is(.map-welcome, .saved-trips-panel) .temperature-select-hit-area select:focus-visible { outline-offset: -2px; }
 .map-welcome #mapWelcomeMonthPanel { gap: 12px; }
 .map-welcome #mapWelcomeMonthPanel .map-welcome-field { margin: 8px 0 6px; }
 .map-welcome #mapWelcomeMonthPanel .map-welcome-context { padding: 10px 12px; }
-.map-welcome .tutorial-close { top: -8px; right: -10px; min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+:is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { top: -8px; right: -10px; min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
 .map-welcome .tutorial-language-menu { margin-top: 0; }
 .map-welcome .tutorial-topbar { align-items: center; margin-bottom: 12px; }
 .map-welcome .tutorial-header { gap: 12px; }
-.map-welcome .tutorial-title { margin: 0; font-size: 21px; line-height: 1.2; gap: 6px; }
+:is(.map-welcome, .saved-trips-panel) .tutorial-title { margin: 0; font-size: 21px; line-height: 1.2; gap: 6px; }
 .map-welcome .tutorial-title-logo { height: 24px; width: auto; }
-.map-welcome .map-welcome-navigation .tutorial-button { min-height: 44px; height: 44px; border-radius: 14px; }
-.map-welcome .map-welcome-navigation .tutorial-button:not(.primary) { min-width: 64px; border-color: var(--border-subtle); color: var(--text-primary); background: var(--panel-soft); }
-.map-welcome .map-welcome-navigation .tutorial-button.primary { flex: 1 1 auto; padding: 0 16px; }
-.map-welcome .map-welcome-navigation .tutorial-button.primary { font-size: 16px; }
-.map-welcome .map-welcome-navigation .tutorial-button.primary:focus-visible { padding: 0 16px; }
+:is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button { min-height: 44px; height: 44px; border-radius: 14px; }
+:is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button:not(.primary) { min-width: 64px; border-color: var(--border-subtle); color: var(--text-primary); background: var(--panel-soft); }
+:is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button.primary { flex: 1 1 auto; padding: 0 16px; }
+:is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button.primary { font-size: 16px; }
+:is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button.primary:focus-visible { padding: 0 16px; }
 .map-welcome-steps button[data-complete="true"] .map-welcome-number { border-color: var(--primary); color: var(--primary); }
 .map-welcome .tutorial-suppress-label { min-height: 36px; cursor: pointer; }
 .map-welcome #mapWelcomeSuppress { accent-color: var(--primary); width: 18px; height: 18px; flex-shrink: 0; }
 [data-theme="dark"] .map-welcome #mapWelcomeSuppress { color-scheme: dark; }
 @media (hover: hover) {
   .map-welcome-language:hover, .map-welcome .tutorial-button:not(.primary):hover { background: var(--panel-solid); }
-  .map-welcome .map-welcome-navigation .tutorial-button.primary:hover { padding: 0 16px; }
+  :is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button.primary:hover { padding: 0 16px; }
   .map-welcome-steps button:hover { color: var(--primary); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .map-welcome-search, .map-welcome .map-welcome-navigation .tutorial-button.primary.tutorial-cta { transition: none; }
+  .map-welcome-search, :is(.map-welcome, .saved-trips-panel) .map-welcome-navigation .tutorial-button.primary.tutorial-cta { transition: none; }
 }
 .map-welcome-step .map-welcome-area { font-size: 12px; margin: 8px 0 0; padding: 10px 12px; border: 1px solid var(--border-subtle); border-radius: 10px; background: var(--panel-soft); line-height: 1.5; font-variant-numeric: tabular-nums; }
 .map-welcome-language { min-width: 58px; height: 36px; padding: 0 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-control); background: var(--panel-soft); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; }
@@ -96,7 +96,7 @@
 .map-welcome-step h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; line-height: 1.3; }
 .map-welcome-step p { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
 .map-welcome-field { display: block; margin: 12px 0 7px; font-size: 12px; color: var(--text-secondary); }
-.map-welcome select { width: 100%; min-height: 42px; border: 1px solid var(--border-subtle); border-radius: var(--radius-control); padding: 8px 10px; font: inherit; font-size: 14px; background: var(--panel-solid); color: var(--text-primary); }
+:is(.map-welcome, .saved-trips-panel) select { width: 100%; min-height: 42px; border: 1px solid var(--border-subtle); border-radius: var(--radius-control); padding: 8px 10px; font: inherit; font-size: 14px; background: var(--panel-solid); color: var(--text-primary); }
 .map-welcome-step .map-welcome-note { margin: 10px 0 0; font-size: 12px; }
 .map-welcome-note:empty { display: none; }
 .map-welcome-context { align-self: start; padding: 12px 14px; border: 1px solid var(--border-subtle); border-radius: 12px; background: var(--panel-soft); }
@@ -132,13 +132,13 @@
   .map-welcome.is-review-step [data-action="guide"]::after { animation: none; }
 }
 .map-welcome .tutorial-suppress-label { grid-column: 1; grid-row: 2; margin-top: 0; min-height: 28px; }
-.map-welcome :is(button,a,input,select):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+:is(.map-welcome, .saved-trips-panel) :is(button,a,input,select):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 @media (max-width: 600px) {
   .map-welcome.tutorial-dialog { left: max(12px, env(safe-area-inset-left)); top: auto; bottom: max(12px, env(safe-area-inset-bottom)); transform: none; width: calc(100vw - 24px); height: auto; max-height: calc(100dvh - 84px - env(safe-area-inset-bottom)); padding: 18px 18px 12px; }
   .map-welcome.tutorial-dialog.is-map-step { left: max(12px, env(safe-area-inset-left)); bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100vw - 24px); }
   .map-welcome.tutorial-dialog.is-review-step { width: calc(100vw - 24px); }
-  .map-welcome .tutorial-title { font-size: 21px; }
-  .map-welcome .tutorial-close { min-width: 44px; min-height: 44px; }
+  :is(.map-welcome, .saved-trips-panel) .tutorial-title { font-size: 21px; }
+  :is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { min-width: 44px; min-height: 44px; }
   .map-welcome .tutorial-language-menu .top-menu-lang-trigger { min-height: 44px; }
   .map-welcome .tutorial-header { gap: 8px; }
   .map-welcome-language { min-width: 48px; padding: 0 6px; font-size: 11px; }
@@ -163,7 +163,7 @@
   .map-welcome .map-welcome-steps { margin-bottom: 8px; }
   .map-welcome .map-welcome-steps button { flex-direction: row; align-items: center; padding-bottom: 6px; font-size: 10px; }
   .map-welcome .map-welcome-footer.tutorial-footer { margin-top: 4px; padding-top: 8px; }
-  .map-welcome .tutorial-title { font-size: 21px; }
+  :is(.map-welcome, .saved-trips-panel) .tutorial-title { font-size: 21px; }
   .map-welcome-steps button { flex-direction: row; align-items: center; font-size: 10px; gap: 4px; }
   .map-welcome-number { flex-basis: 18px; width: 18px; height: 18px; font-size: 10px; }
 }
