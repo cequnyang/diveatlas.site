@@ -70,7 +70,7 @@
     no: ['Reisemål', 'Måned', 'Utforsk'],
     id: ['Destinasi', 'Bulan', 'Jelajahi']
   };
-  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onOpen = () => {}, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onAnimateClose, onFocusMap, onMapControls, suppressedKey }) {
+  root.createDiveAtlasWelcome = function ({ getLanguage, getTitle, getSearchLabel, getMapArea, getMapAreaName, getMonth, getWelcomeControls, onWelcomeView, onWelcomeOverlay, monthEnabled = true, onOpen = () => {}, onDismiss, onGuide, onMonth, onMonthChange, onSearchInput, onSearchKey, onSearchClose, onCloseMonth, onLanguage, onAnimateClose, onFocusMap, suppressedKey }) {
     const section = document.createElement('section');
     section.id = 'mapWelcome';
     section.className = 'map-welcome tutorial-dialog glass-surface';
@@ -102,7 +102,6 @@
     suppress.checked = true;
     const searchInput = section.querySelector('#mapWelcomeSearch');
     const panels = { destination:section.querySelector('#mapWelcomeDestinationPanel'), month:section.querySelector('#mapWelcomeMonthPanel'), review:section.querySelector('#mapWelcomeReviewPanel') };
-    const compactViewport = window.matchMedia('(max-width: 600px)');
     const previews = {};
     for (const [kind, panel] of [['views', panels.month], ['overlays', panels.review]]) {
       const group = document.createElement('fieldset');
@@ -172,8 +171,6 @@
     const strings = () => copy[getLanguage()] || copy.en;
     const flow = () => flowCopy[getLanguage()] || flowCopy.en;
     const mapText = () => mapCopy[getLanguage()] || mapCopy.en;
-    function placeMapControls() { onMapControls(!section.hidden && compactViewport.matches); }
-    compactViewport.addEventListener('change', placeMapControls);
     action('month').hidden = !monthEnabled;
     section.querySelector('#mapWelcomeMonthSummary').hidden = !monthEnabled;
     document.getElementById('app').append(section);
@@ -278,7 +275,7 @@
         localStorage.setItem(suppressedKey,suppress.checked ? '1' : '0');
       } catch (_) {}
     }
-    function hide() { onCloseMonth();closeSearch();section.hidden = true;placeMapControls(); }
+    function hide() { onCloseMonth();closeSearch();section.hidden = true; }
     let closing = false;
     let closeGeneration = 0;
     async function dismiss({focus = true} = {}) {
@@ -348,7 +345,7 @@
         section.scrollTop = 0;
         section.querySelector('.map-welcome-content').scrollTop = 0;
       }
-      syncSuppression();render();section.hidden = false;placeMapControls();if (restore) action('guide').focus();
+      syncSuppression();render();section.hidden = false;if (restore) action('guide').focus();
     }};
   };
 })(window);

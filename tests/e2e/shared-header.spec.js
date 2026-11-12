@@ -98,7 +98,7 @@ test('welcome suppression defaults checked and remembers an explicit unchecked c
   expect(await page.evaluate(key=>localStorage.getItem(key),key)).toBe('1');
 });
 
-test('welcome offers real destination and month paths without blocking the map', async ({ page }) => {
+test('welcome offers real destination and month paths without blocking the map', async ({ page, isMobile }) => {
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   const welcome = page.locator('#mapWelcome');
@@ -106,10 +106,11 @@ test('welcome offers real destination and month paths without blocking the map',
   await expect(page.locator('#tutorialBackdrop')).toBeHidden();
   await expect(page.locator('#bioLegendTitle')).toHaveAttribute('aria-expanded', 'false');
   await expect(page.locator('#mapWelcomeSearch')).toBeVisible();
-  // This checks the real map control outside the panel, not a synthetic click
-  // through an overlay. Welcome must remain nonmodal on both viewport sizes.
-  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Current location', exact: true })).toBeVisible();
+  // The phone sheet covers the bottom-right controls; desktop retains them.
+  if (!isMobile) {
+    await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Current location', exact: true })).toBeVisible();
+  }
   await expect(welcome).toBeVisible();
   await welcome.locator('[data-action="month"]').click();
   await page.locator('#mapWelcomeMonth').selectOption('4');
@@ -827,13 +828,26 @@ test('welcome keeps its suppression independent from the on-demand guide', async
   expect(await page.evaluate(() => localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe('0');
 });
 
-test('welcome leaves real map zoom reachable on a short phone', async ({ page }) => {
+test('welcome restores bottom-right map controls after closing on a short phone', async ({ page }) => {
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.setViewportSize({width:320,height:568});
   await page.goto('/');
   await expect(page.locator('#mapWelcomeDestinationPanel')).toBeVisible();
-  await page.getByRole('button',{name:'Zoom in',exact:true}).click();
+  const controls = page.locator('.leaflet-control-zoom.leaflet-bar');
+  await expect(controls).toBeVisible();
+  await expect(controls.locator('..')).toHaveClass(/leaflet-bottom/);
+  const sheet = await page.locator('#mapWelcome').boundingBox();
+  const buttons = await controls.boundingBox();
+  expect(sheet.x).toBeLessThan(buttons.x + buttons.width);
+  expect(sheet.x + sheet.width).toBeGreaterThan(buttons.x);
+  expect(sheet.y).toBeLessThan(buttons.y + buttons.height);
+  expect(sheet.y + sheet.height).toBeGreaterThan(buttons.y);
   await expect(page.locator('#mapWelcome [data-action="next"]')).toBeVisible();
+  await page.locator('#mapWelcome [data-action="close"]').click();
+  await expect(controls).toBeVisible();
+  await expect(controls.locator('..')).toHaveClass(/leaflet-bottom/);
+  await page.locator('#bioLegendTitle').click();
+  await page.getByRole('button',{name:'Zoom in',exact:true}).click();
 });
 
 test('welcome keeps the selected area live when the map moves during later steps', async ({ page }) => {
