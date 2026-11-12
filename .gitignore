@@ -185,3 +185,6 @@ playwright-report/
 # Destination map renders stay local; verified R2 metadata is tracked in datasets/.
 /assets/destination-maps/
 !/maintenance/upload_destination_maps_r2.py
+
+# Local design prototypes and rendered previews.
+/design-explorations/
