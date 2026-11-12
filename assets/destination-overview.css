@@ -518,3 +518,25 @@ body .comparison-share-dialog {
   .comparison-share-caption { padding:10px 12px; }
   .comparison-share-link-heading { margin-top:12px; }
 }
+
+/* The share controls remain focusable so the reason is available to keyboard and touch users. */
+.comparison-share-trigger[aria-disabled="true"] { color: color-mix(in srgb, var(--text) 55%, var(--panel-solid)); }
+[data-comparison-reminder] { position: relative; }
+[data-comparison-reminder]::after {
+  content: attr(data-comparison-reminder); position: absolute; z-index: 1000;
+  top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  width: max-content; max-width: min(240px, 80vw); padding: 8px 10px;
+  border: 1px solid var(--border-subtle, #526272); border-radius: 6px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--panel-solid) 84%, transparent), color-mix(in srgb, var(--panel-solid) 78%, transparent)); color: var(--text, #fff);
+  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
+  font-size: 13px; line-height: 1.35; text-align: center; white-space: normal;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), 0 8px 24px rgb(0 0 0 / 18%); pointer-events: none; visibility: hidden; opacity: 0;
+}
+/* A filtered parent would prevent the reminder from blurring the page behind it. */
+.comparison-share-trigger.comparison-share-reminder-visible { -webkit-backdrop-filter: none; backdrop-filter: none; }
+[data-comparison-reminder].comparison-share-reminder-visible::after { visibility: visible; opacity: 1; }
+#seoShareButton[data-comparison-reminder]::after { left: auto; right: 0; transform: none; }
+
+@media (prefers-reduced-transparency: reduce) { [data-comparison-reminder]::after { background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+
+@media (max-width: 600px) { #comparisonShare[data-comparison-reminder]::after { left: auto; right: 0; transform: none; } }

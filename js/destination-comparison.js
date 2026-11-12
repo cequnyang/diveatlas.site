@@ -74,7 +74,10 @@
     return url.href;
   }
   shareButton.addEventListener('click', () => {
-    if (destinations.some(d => !d) || destinations.length !== 2) return;
+    if (destinations.some(d => !d) || destinations.length !== 2) {
+      showShareReminder(shareButton);
+      return;
+    }
     shareUrl.value = currentShareUrl();
     shareStatus.textContent = ''; delete shareStatus.dataset.copyState;
     shareTaglineIndex = Math.floor(Math.random() * 8);
@@ -107,8 +110,38 @@
     if (!trigger) return;
     event.preventDefault();
     event.stopImmediatePropagation();
-    shareButton.click();
+    if (shareButton.getAttribute('aria-disabled') === 'true') showShareReminder(trigger);
+    else shareButton.click();
   }, true);
+  let reminderTimer;
+  function showShareReminder(trigger) {
+    document.querySelectorAll('.comparison-share-reminder-visible').forEach(node => node.classList.remove('comparison-share-reminder-visible'));
+    trigger.classList.add('comparison-share-reminder-visible');
+    clearTimeout(reminderTimer);
+    reminderTimer = setTimeout(() => trigger.classList.remove('comparison-share-reminder-visible'), 3000);
+  }
+  document.addEventListener('pointerdown', event => {
+    if (event.target.closest('[data-comparison-reminder]')) return;
+    document.querySelectorAll('.comparison-share-reminder-visible').forEach(node => node.classList.remove('comparison-share-reminder-visible'));
+    clearTimeout(reminderTimer);
+  });
+  function updateShareAvailability() {
+    const unavailable = destinations.length !== 2 || destinations.some(d => !d);
+    for (const trigger of [shareButton, document.getElementById('seoShareButton'), document.getElementById('seoMenuShareButton')]) {
+      if (!trigger) continue;
+      trigger.setAttribute('aria-disabled', String(unavailable));
+      if (unavailable) {
+        trigger.dataset.comparisonReminder = t('shareSelectDestinations');
+        trigger.setAttribute('aria-label', t('shareSelectDestinations'));
+        trigger.removeAttribute('title');
+      } else {
+        delete trigger.dataset.comparisonReminder;
+        trigger.classList.remove('comparison-share-reminder-visible');
+        trigger.setAttribute('aria-label', t('shareTitle'));
+        trigger.title = t('shareTitle');
+      }
+    }
+  }
   document.getElementById('comparisonShareClose').addEventListener('click', () => shareDialog.close());
   shareDialog.addEventListener('close', () => shareButton.focus());
   let shareBackdropPointerDown = false;
@@ -249,7 +282,7 @@
     set('.comparison-share-help p', 'seasonGeneric');
     document.getElementById('comparisonShareClose').setAttribute('aria-label', t('shareClose'));
     shareDialog.querySelector('.comparison-share-help summary').setAttribute('aria-label', t('shareInfo'));
-    shareButton.setAttribute('aria-label', t('shareTitle')); shareButton.title = t('shareTitle');
+    updateShareAvailability();
     document.getElementById('comparisonShareMonth').textContent = monthName(Number(select.value));
     platformElements.shareCopyButtonText.textContent = t(shareStatus.dataset.copyState === 'copied' ? 'shareCopiedLabel' : 'shareCopy');
     platformElements.shareCopyButton.setAttribute('aria-label', platformElements.shareCopyButtonText.textContent);
@@ -330,7 +363,7 @@
   function syncSelection() {
     destinations = pickers.map(picker => catalog.find(d => d.id === picker.value));
     document.getElementById('comparisonSwap').disabled = destinations.some(d => !d);
-    shareButton.disabled = destinations.length !== 2 || destinations.some(d => !d);
+    updateShareAvailability();
     pickers.forEach((picker, slot) => {
       for (const option of picker.options) option.disabled = !option.value || option.value === pickers[1 - slot].value;
     });

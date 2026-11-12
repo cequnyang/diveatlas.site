@@ -63,7 +63,7 @@
       if (!compare.nextElementSibling?.classList.contains('top-menu-divider')) menu.insertBefore(divider(), compare.nextElementSibling);
       window.DiveAtlasComparisonCopyReady ||= window.DiveAtlasComparisonCopy
         ? Promise.resolve(window.DiveAtlasComparisonCopy)
-        : loadScript('/js/destination-comparison-i18n.js?v=8').then(() => window.DiveAtlasComparisonCopy);
+        : loadScript('/js/destination-comparison-i18n.js?v=9').then(() => window.DiveAtlasComparisonCopy);
       const localize = () => {
         const copy = window.DiveAtlasComparisonCopy;
         if (copy) items.forEach(item => { item.textContent = copy.text(document.documentElement.lang, item.dataset.sharedNavigation); });

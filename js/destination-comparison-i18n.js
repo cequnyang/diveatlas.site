@@ -86,6 +86,7 @@
     "browseRegions": "Browse regions",
     "browseDestinations": "Browse destinations",
     "tabTitle": "{left} & {right} Comparison",
+    "shareSelectDestinations": "Select two destinations to share a comparison.",
     "shareTitle": "Share",
     "shareTagline": "Compare destinations. Choose your next dive.",
     "shareDescription": "Compare historical temperature, clarity, currents and waves.",
@@ -108,6 +109,7 @@
     "shareCopiedLabel": "Copied"
   },
   "zh": {
+    "shareSelectDestinations": "请选择两个目的地，然后分享比较结果。",
     "menu": "比较目的地",
     "title": "比较 {left} 与 {right}",
     "lead": "比较已收录潜点的历史环境数据，再探索各目的地的潜水体验。",
@@ -212,6 +214,7 @@
     "shareCopiedLabel": "已复制"
   },
   "zh-TW": {
+    "shareSelectDestinations": "請選擇兩個目的地，然後分享比較結果。",
     "menu": "比較目的地",
     "title": "比較 {left} 與 {right}",
     "lead": "比較已收錄潛點的歷史環境資料，再探索各目的地的潛水體驗。",
@@ -316,6 +319,7 @@
     "shareCopiedLabel": "已複製"
   },
   "es": {
+    "shareSelectDestinations": "Selecciona dos destinos para compartir una comparación.",
     "menu": "Comparar destinos",
     "title": "Comparar {left} y {right}",
     "lead": "Compara datos ambientales históricos de todos los sitios registrados y explora cada destino.",
@@ -420,6 +424,7 @@
     "shareCopiedLabel": "Copiado"
   },
   "de": {
+    "shareSelectDestinations": "Wähle zwei Reiseziele aus, um einen Vergleich zu teilen.",
     "menu": "Reiseziele vergleichen",
     "title": "{left} und {right} vergleichen",
     "lead": "Vergleiche historische Umweltdaten aller erfassten Tauchplätze und erkunde die Reiseziele.",
@@ -524,6 +529,7 @@
     "shareCopiedLabel": "Kopiert"
   },
   "fr": {
+    "shareSelectDestinations": "Sélectionnez deux destinations pour partager une comparaison.",
     "menu": "Comparer les destinations",
     "title": "Comparer {left} et {right}",
     "lead": "Comparez les données environnementales historiques de tous les sites recensés et explorez les destinations.",
@@ -628,6 +634,7 @@
     "shareCopiedLabel": "Copié"
   },
   "ja": {
+    "shareSelectDestinations": "比較を共有するには、目的地を2つ選択してください。",
     "menu": "目的地を比較",
     "title": "{left} と {right} を比較",
     "lead": "登録された全スポットの過去の環境データを比較し、各目的地を探索します。",
@@ -732,6 +739,7 @@
     "shareCopiedLabel": "コピー済み"
   },
   "pt": {
+    "shareSelectDestinations": "Selecione dois destinos para compartilhar uma comparação.",
     "menu": "Comparar destinos",
     "title": "Comparar {left} e {right}",
     "lead": "Compare dados ambientais históricos de todos os locais registados e explore cada destino.",
@@ -836,6 +844,7 @@
     "shareCopiedLabel": "Copiado"
   },
   "it": {
+    "shareSelectDestinations": "Seleziona due destinazioni per condividere un confronto.",
     "menu": "Confronta destinazioni",
     "title": "Confronta {left} e {right}",
     "lead": "Confronta i dati ambientali storici di tutti i siti registrati ed esplora le destinazioni.",
@@ -940,6 +949,7 @@
     "shareCopiedLabel": "Copiato"
   },
   "ru": {
+    "shareSelectDestinations": "Выберите два направления, чтобы поделиться сравнением.",
     "menu": "Сравнить направления",
     "title": "Сравнить {left} и {right}",
     "lead": "Сравните исторические данные среды по всем зарегистрированным местам и изучите направления.",
@@ -1044,6 +1054,7 @@
     "shareCopiedLabel": "Скопировано"
   },
   "ko": {
+    "shareSelectDestinations": "비교를 공유하려면 여행지 두 곳을 선택하세요.",
     "menu": "목적지 비교",
     "title": "{left} 및 {right} 비교",
     "lead": "등록된 모든 다이빙 포인트의 과거 환경 데이터를 비교하고 목적지를 둘러보세요.",
@@ -1148,6 +1159,7 @@
     "shareCopiedLabel": "복사됨"
   },
   "nl": {
+    "shareSelectDestinations": "Selecteer twee bestemmingen om een vergelijking te delen.",
     "menu": "Bestemmingen vergelijken",
     "title": "{left} en {right} vergelijken",
     "lead": "Vergelijk historische omgevingsgegevens van alle geregistreerde duiklocaties en verken de bestemmingen.",
@@ -1252,6 +1264,7 @@
     "shareCopiedLabel": "Gekopieerd"
   },
   "id": {
+    "shareSelectDestinations": "Pilih dua destinasi untuk membagikan perbandingan.",
     "menu": "Bandingkan destinasi",
     "title": "Bandingkan {left} dan {right}",
     "lead": "Bandingkan data lingkungan historis semua lokasi tercatat, lalu jelajahi setiap destinasi.",
@@ -1356,6 +1369,7 @@
     "shareCopiedLabel": "Disalin"
   },
   "sv": {
+    "shareSelectDestinations": "Välj två destinationer för att dela en jämförelse.",
     "menu": "Jämför resmål",
     "title": "Jämför {left} och {right}",
     "lead": "Jämför historiska miljödata för alla registrerade dykplatser och utforska resmålen.",
@@ -1460,6 +1474,7 @@
     "shareCopiedLabel": "Kopierad"
   },
   "no": {
+    "shareSelectDestinations": "Velg to reisemål for å dele en sammenligning.",
     "menu": "Sammenlign reisemål",
     "title": "Sammenlign {left} og {right}",
     "lead": "Sammenlign historiske miljødata for alle registrerte dykkesteder og utforsk reisemålene.",
