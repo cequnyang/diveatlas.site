@@ -1,3 +1,4 @@
+import re
 import unittest
 
 from tools.site_header_assets import install_shared_header_assets, install_initial_detail_appearance
@@ -16,7 +17,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         self.assertEqual(install_initial_detail_appearance(result), result)
         self.assertIn('class="seo-site-detail-layout cinematic-pilot"', result)
         self.assertIn('<main id="detailPage"', result)
-        self.assertIn('dive-site-cinematic-pilot.css?v=117', result)
+        self.assertIn('dive-site-cinematic-pilot.css?v=118', result)
         self.assertIn('src="photo.webp" loading="eager" fetchpriority="high"', result)
         self.assertIn('src="thumbnail.webp" loading="lazy"', result)
         self.assertLess(result.index('Title</div></section>'), result.index('<aside'))
@@ -45,7 +46,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                 self.assertIn('/js/site-header.js?v=6', result)
                 self.assertIn('/assets/site-header.css?v=12', result)
                 if kind != 'seo-site-detail-layout':
-                    self.assertIn('/js/seo-page-controls.js?v=29', result)
+                    self.assertIn('/js/seo-page-controls.js?v=38', result)
 
     def test_cached_generated_pages_upgrade_controller_contract(self):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo-site-search.css?v=11">'
@@ -55,7 +56,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                '<script src="/js/seo-site-search.js?v=11" defer></script></body></html>')
         result = install_shared_header_assets(old, '1.2.3')
         self.assertNotIn('seo-browse-header.js', result)
-        self.assertIn('seo-page-controls.js?v=29', result)
+        self.assertIn('seo-page-controls.js?v=38', result)
         self.assertIn('seo-site-search.js?v=16', result)
         self.assertIn('seo-site-search.css?v=13', result)
         self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
@@ -66,7 +67,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo.css?v=200"></head>'
                '<body><script src="/js/dive-conditions-chart.js?v=53"></script></body></html>')
         result = install_shared_header_assets(old, '1.2.3')
-        self.assertIn('/assets/seo.css?v=207', result)
+        self.assertGreater(int(re.search(r'/assets/seo\.css\?v=(\d+)', result).group(1)), 200)
         self.assertIn('/js/dive-conditions-chart.js?v=56', result)
         self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
 

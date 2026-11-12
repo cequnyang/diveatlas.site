@@ -31,7 +31,9 @@ def install_initial_detail_appearance(markup: str) -> str:
     markup = re.sub(r'<main\b[^>]*data-site-id=[^>]*>',
                     lambda m: m[0] if re.search(r'\sid=', m[0]) else m[0].replace('<main', '<main id="detailPage"', 1), markup, count=1)
     if '/assets/dive-site-cinematic-pilot.css' not in markup:
-        markup = markup.replace('</head>', '<link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=117">\n</head>', 1)
+        markup = markup.replace('</head>', '<link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=118">\n</head>', 1)
+    else:
+        markup = re.sub(r'(/assets/dive-site-cinematic-pilot\.css)\?v=\d+', r'\1?v=118', markup)
     rail = re.search(r'<aside\b[^>]*class="site-photo-gallery-rail[^\"]*"[^>]*>.*?</aside>', markup, re.S)
     hero = re.search(r'<section\b[^>]*class="site-hero"[^>]*>.*?</section>', markup, re.S)
     if rail and hero and rail.start() < hero.end():
@@ -63,7 +65,7 @@ def install_shared_header_assets(markup: str, version: str) -> str:
     # Cached generated trees must use the current renderer/controller contract
     # too; retaining the old renderer could replace newly bound header nodes.
     markup = re.sub(r'<script\b[^>]*src=["\']/js/seo-browse-header\.js[^"\']*["\'][^>]*>\s*</script>\s*', '', markup)
-    markup = re.sub(r'(/js/seo-page-controls\.js)\?v=\d+', r'\1?v=29', markup)
+    markup = re.sub(r'(/js/seo-page-controls\.js)\?v=\d+', r'\1?v=38', markup)
     markup = re.sub(r'(/assets/seo\.css)\?v=\d+', r'\1?v=207', markup)
     markup = re.sub(r'(/js/dive-conditions-chart\.js)\?v=\d+', r'\1?v=56', markup)
     markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=16', markup)
