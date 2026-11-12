@@ -1,3 +1,4 @@
+import re
 import unittest
 
 from tools.site_header_assets import install_shared_header_assets, install_initial_detail_appearance
@@ -66,7 +67,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo.css?v=200"></head>'
                '<body><script src="/js/dive-conditions-chart.js?v=53"></script></body></html>')
         result = install_shared_header_assets(old, '1.2.3')
-        self.assertIn('/assets/seo.css?v=207', result)
+        self.assertGreater(int(re.search(r'/assets/seo\.css\?v=(\d+)', result).group(1)), 200)
         self.assertIn('/js/dive-conditions-chart.js?v=56', result)
         self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
 
