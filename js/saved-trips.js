@@ -20,6 +20,8 @@
         data.active = data.trips.some(t => t.id === raw.active) ? raw.active : data.trips[0]?.id || null;
       }
     } catch (_) { storageOK = false; }
+    // Trips are stored in creation order, including records saved before this UI.
+    const newestTrips = () => [...data.trips].reverse();
     let tripTrigger, tripMenuIndex = 0, tripHandleInteraction, siteListObserver;
     const tripSurface = document.createElement('div');
     tripSurface.id = 'savedTripsMenu'; tripSurface.className = 'dive-search-results saved-trips-menu';
@@ -28,7 +30,7 @@
     tripSurface.append(tripScroll); document.body.append(tripSurface);
     const tripMenu = window.DiveAtlasSearchResultsMenu.create({
       surface:tripSurface, scroll:tripScroll, getInput:() => tripTrigger,
-      onSelect:index => { if (!data.trips[index]) return; remember(); data.active = data.trips[index].id; persist(); render(); tripTrigger.focus(); },
+      onSelect:index => { const trip = newestTrips()[index]; if (!trip) return; remember(); data.active = trip.id; persist(); render(); tripTrigger.focus(); },
       onLoadMore:() => {}
     });
     const tripHandle = document.createElement('button');
@@ -55,10 +57,11 @@
     }
     function openTripMenu() {
       monthWheel?.close(); tripSurface.classList.add('visible'); tripTrigger.setAttribute('aria-expanded','true');
-      tripMenuIndex = Math.max(0,data.trips.findIndex(t => t.id === data.active));
-      tripMenu.render({items:data.trips.map(t => ({name:t.name,meta:count(t.sites.length)})),total:data.trips.length,query:'',activeIndex:tripMenuIndex});
+      const trips = newestTrips();
+      tripMenuIndex = Math.max(0,trips.findIndex(t => t.id === data.active));
+      tripMenu.render({items:trips.map(t => ({name:t.name,meta:count(t.sites.length)})),total:data.trips.length,query:'',activeIndex:tripMenuIndex});
       tripScroll.querySelectorAll('.dive-search-result').forEach((item,index) => {
-        const trip = data.trips[index];
+        const trip = trips[index];
         const row = document.createElement('div'); row.className = 'saved-trips-row';
         item.before(row); row.append(item); item.classList.add('saved-trips-site');
         const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'tutorial-close';
@@ -93,7 +96,7 @@
         event.stopPropagation();
         remember();
         data.trips = data.trips.filter(candidate => candidate.id !== trip.id);
-        if (data.active === trip.id) data.active = data.trips[Math.min(index,data.trips.length - 1)]?.id || null;
+        if (data.active === trip.id) data.active = newestTrips()[Math.min(index,data.trips.length - 1)]?.id || null;
         persist(); render(); updateButtons();
         if (data.trips.length) { openTripMenu(); tripScroll.querySelector('button[data-delete-trip]')?.focus(); }
         else panel.querySelector(window.matchMedia('(max-width:720px)').matches ? '.diveatlas-mobile-sheet-handle' : '[data-close]').focus();
@@ -147,7 +150,7 @@
     function open(restore = false) {
       adapter.resetSheet(panel);
       if (restore && active()?.context) adapter.restore(active().context);
-      feedback.hidden = true; adapter.prepareOverlay(); panel.hidden = false; button.setAttribute('aria-expanded','true'); render(); panel.querySelector(window.matchMedia('(max-width:720px)').matches ? '.diveatlas-mobile-sheet-handle' : '[data-close]').focus();
+      feedback.hidden = true; adapter.prepareOverlay({tripPanel:true}); panel.hidden = false; button.setAttribute('aria-expanded','true'); render(); panel.querySelector(window.matchMedia('(max-width:720px)').matches ? '.diveatlas-mobile-sheet-handle' : '[data-close]').focus();
       adapter.enterSheet(panel);
       const openedTrip = data.active;
       void adapter.loadSites().then(() => {
@@ -248,7 +251,7 @@
       const example = adapter.tripExample(site); pendingExample = example;
       const details = adapter.details(site) || siteMeta(site);
       const form = `<form id="savedTripsCreateForm" class="saved-trips-create"><label class="site-suggestion-field"><span>${escape(tr('tripName'))}</span><input class="site-suggestion-input" name="name" aria-describedby="savedTripNameError" required maxlength="70" placeholder="${escape(tr('example',{name:example.name}))}" autocomplete="off"></label><p id="savedTripNameError" class="site-suggestion-status is-error" role="alert" hidden></p><p class="site-suggestion-copy">${localCopy()}</p></form>`;
-      dialog.innerHTML = `<div class="site-suggestion-header"><h2 class="site-suggestion-title" id="savedTripsDialogTitle">${escape(tr('saveTitle'))}</h2><button class="contact-dialog-close" id="savedTripsCloseButton" type="button" data-cancel aria-label="${escape(tr('closeSave'))}" title="${escape(tr('closeSave'))}">${document.getElementById('shareCloseButton').innerHTML}</button><div class="saved-trips-source-site"><div class="saved-trips-row"><div class="saved-trips-site">${siteCopy(site, details)}</div></div></div></div><div class="site-suggestion-form">${data.trips.length ? `<div class="saved-trips-choices"><p>${escape(tr('chooseTrip'))}</p><div class="saved-trips-choice-list" role="region" aria-label="${escape(tr('savedTrips'))}" tabindex="0">${data.trips.map(t => `<button type="button" class="dive-search-result saved-trips-choice" data-trip="${escape(t.id)}" aria-pressed="${t.sites.some(s => s.id === site.id)}"><span class="dive-search-result-copy"><span class="dive-search-result-name"><span class="dive-search-result-title">${escape(t.name)}</span></span><span class="dive-search-result-meta">${escape(count(t.sites.length,true))}</span></span>${t.sites.some(s => s.id === site.id) ? '<span class="saved-trips-choice-status" aria-hidden="true">✓</span>' : ''}</button>`).join('')}</div></div><details><summary>${escape(tr('createTrip'))}</summary>${form}</details>` : form}<div class="site-suggestion-actions saved-trips-footer"><p class="site-suggestion-status saved-trips-inline-feedback" role="status" aria-live="polite" data-feedback><span data-feedback-copy></span></p><button class="contact-button contact-button-primary" type="button" form="savedTripsCreateForm" data-save>${escape(tr('save'))}</button></div></div>`;
+      dialog.innerHTML = `<div class="site-suggestion-header"><h2 class="site-suggestion-title" id="savedTripsDialogTitle">${escape(tr('saveTitle'))}</h2><button class="contact-dialog-close" id="savedTripsCloseButton" type="button" data-cancel aria-label="${escape(tr('closeSave'))}" title="${escape(tr('closeSave'))}">${document.getElementById('shareCloseButton').innerHTML}</button><div class="saved-trips-source-site"><div class="saved-trips-row"><div class="saved-trips-site">${siteCopy(site, details)}</div></div></div></div><div class="site-suggestion-form">${data.trips.length ? `<div class="saved-trips-choices"><p>${escape(tr('chooseTrip'))}</p><div class="saved-trips-choice-list" role="region" aria-label="${escape(tr('savedTrips'))}" tabindex="0">${newestTrips().map(t => `<button type="button" class="dive-search-result saved-trips-choice" data-trip="${escape(t.id)}" aria-pressed="${t.sites.some(s => s.id === site.id)}"><span class="dive-search-result-copy"><span class="dive-search-result-name"><span class="dive-search-result-title">${escape(t.name)}</span></span><span class="dive-search-result-meta">${escape(count(t.sites.length,true))}</span></span>${t.sites.some(s => s.id === site.id) ? '<span class="saved-trips-choice-status" aria-hidden="true">✓</span>' : ''}</button>`).join('')}</div></div><details><summary>${escape(tr('createTrip'))}</summary>${form}</details>` : form}<div class="site-suggestion-actions saved-trips-footer"><p class="site-suggestion-status saved-trips-inline-feedback" role="status" aria-live="polite" data-feedback><span data-feedback-copy></span></p><button class="contact-button contact-button-primary" type="button" form="savedTripsCreateForm" data-save>${escape(tr('save'))}</button></div></div>`;
       dialog.querySelectorAll('[data-cancel]').forEach(node => { node.onclick = () => dialog.close(); });
       const saveButton = dialog.querySelector('[data-save]');
       const createDetails = dialog.querySelector('details');
@@ -332,8 +335,9 @@
         render();
         if (menuOpen) {
           openTripMenu();
-          const index = data.trips.findIndex(item => item.id === deleting);
-          if (index >= 0) confirmDeleteTrip(data.trips[index],index);
+          const trips = newestTrips();
+          const index = trips.findIndex(item => item.id === deleting);
+          if (index >= 0) confirmDeleteTrip(trips[index],index);
         }
       }
       if (dialog.open && pending) {

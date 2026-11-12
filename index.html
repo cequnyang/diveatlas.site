@@ -7144,7 +7144,7 @@
   </style>
   <link rel="stylesheet" href="/assets/share-dialog.css?v=3">
   <link rel="stylesheet" href="/assets/site-contributions.css?v=1">
-  <link rel="stylesheet" href="/assets/saved-trips.css?v=11">
+  <link rel="stylesheet" href="/assets/saved-trips.css?v=12">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=43">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
 <link rel="stylesheet" href="assets/map-welcome.css?v=2">
@@ -8117,7 +8117,7 @@ ZSD·2016–2025</span></span>
     <script src="js/search-results-menu.js?v=5"></script>
     <script src="js/map-welcome.js?v=2"></script>
     <script src="js/saved-trips-i18n.js?v=1"></script>
-    <script src="js/saved-trips.js?v=8"></script>
+    <script src="js/saved-trips.js?v=10"></script>
     <script src="js/data-assets-config.js"></script>
     <script src="js/data-assets.js"></script>
     <script src="js/dive-site-name-localization.js"></script>
@@ -32290,7 +32290,8 @@ function closeShareDialog() {
     }
   });
 
-  document.addEventListener('click', () => {
+  document.addEventListener('click', event => {
+    if (!compactLayersPanelQuery.matches && event.target.closest('#savedTripsButton')) return;
     setTopMenuOpen(false);
     setLanguageMenuOpen(false);
   });
@@ -32970,6 +32971,7 @@ function closeShareDialog() {
   document.addEventListener(
     'pointerdown',
     event => {
+      if (!compactLayersPanelQuery.matches && event.target.closest('#savedTripsButton')) return;
       if (
         !currentDiveSearchInput().contains(event.target) &&
         !els.diveSearchResults.contains(event.target) &&
@@ -33538,7 +33540,8 @@ function closeShareDialog() {
   // share-state codec for saved map context rather than creating a second format.
   let savedTripSelectedSiteId = null;
   window.DiveAtlasSavedTrips?.mount({
-    prepareOverlay({preserveSite = false} = {}) {
+    prepareOverlay({preserveSite = false, tripPanel = false} = {}) {
+      if (tripPanel && !compactLayersPanelQuery.matches) return;
       cancelDiveSearchPopup();
       dismissDiveSearchResults();
       hideDiveSearchResults();

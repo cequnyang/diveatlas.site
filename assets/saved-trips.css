@@ -130,7 +130,7 @@
 /* Align the title/close row independently of the full-width site context. */
 .saved-trips-dialog .site-suggestion-header { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:10px 12px; padding:16px 20px 0; border-bottom:0; }
 .saved-trips-dialog .site-suggestion-header > .tutorial-close { align-self:center; }
-.saved-trips-dialog .saved-trips-source-site { grid-column:1 / -1; min-width:0; padding:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.saved-trips-dialog .saved-trips-source-site { grid-column:1 / -1; min-width:0; padding:0; border-bottom:1px solid var(--line); }
 
 .saved-trips-dialog .saved-trips-footer { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:12px; }
 /* Keep a two-line feedback slot even before a selection, so the footer is stable. */

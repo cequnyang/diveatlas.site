@@ -268,7 +268,9 @@ test('trip surfaces yield to other map tasks and preserve their own child menu',
   expect(await page.evaluate(()=>localStorage.getItem('global-coral-map-welcome-suppressed-v1'))).toBe(preference);
   const panel=page.locator('#savedTripsPanel');
   await expect(panel).toBeVisible();
-  await expect(page.locator('#mapWelcome')).toBeHidden();
+  const mobile=await page.evaluate(()=>matchMedia('(max-width:720px)').matches);
+  if (mobile) await expect(page.locator('#mapWelcome')).toBeHidden();
+  else await expect(page.locator('#mapWelcome')).toBeVisible();
   await panel.getByRole('button',{name:'Choose trip',exact:true}).click();
   await expect(panel).toBeVisible();
   await expect(page.locator('#savedTripsMenu')).toBeVisible();
@@ -279,7 +281,8 @@ test('trip surfaces yield to other map tasks and preserve their own child menu',
   if (await page.evaluate(()=>matchMedia('(max-width:720px)').matches)) await page.keyboard.press('Escape');
   await page.locator('#savedTripsButton').click();
   await expect(panel).toBeVisible();
-  await expect(page.locator('#topMenuDropdown')).toBeHidden();
+  if (mobile) await expect(page.locator('#topMenuDropdown')).toBeHidden();
+  else await expect(page.locator('#topMenuDropdown')).toBeVisible();
   await page.evaluate(()=>window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,'overlay-trip-test',{withFallbackPhoto:true}));
   await clickFixture(page,'overlay-trip-test');
   await expect(panel).toBeHidden();
@@ -292,13 +295,14 @@ test('trip surfaces yield to other map tasks and preserve their own child menu',
   await expect(page.locator('[data-save-trip-site="overlay-trip-test"]')).toBeVisible();
   expect(await page.locator('.leaflet-popup').evaluate(el=>el===window.__savedTripSourceSheet)).toBe(true);
   await page.locator('#savedTripsButton').click();
-  await expect(page.locator('.leaflet-popup')).toHaveCount(0);
+  await expect(page.locator('.leaflet-popup')).toHaveCount(mobile ? 0 : 1);
   await page.locator('#diveSearchInput').fill('Test');
   await expect(page.locator('#diveSearchResults')).toBeVisible();
   await expect(panel).toBeHidden();
   await page.locator('#savedTripsButton').click();
   await expect(panel).toBeVisible();
-  await expect(page.locator('#diveSearchResults')).toBeHidden();
+  if (mobile) await expect(page.locator('#diveSearchResults')).toBeHidden();
+  else await expect(page.locator('#diveSearchResults')).toBeVisible();
   if (await page.evaluate(()=>matchMedia('(max-width:720px)').matches)) {
     await page.evaluate(()=>window.__DIVEATLAS_TEST__.setLegendCollapsed(false));
     await expect(panel).toBeHidden();
@@ -424,4 +428,19 @@ test('bookmark exists in initial HTML and is reused when trips initialize',async
   await expect(page.locator('#savedTripsPanel')).toBeVisible();
   await page.evaluate(()=>window.DiveAtlasSavedTrips.mount({}));
   await expect(page.locator('#savedTripsButton')).toHaveCount(1);
+});
+
+test('trip lists show newest created first and select the displayed trip',async({page})=>{
+  const trips={version:1,active:'old',trips:['old','middle','new'].map(id=>({id,name:id,month:null,sites:[],context:null}))};
+  await openMap(page,{localStorage:{[KEY]:JSON.stringify(trips)}});
+  await page.locator('#savedTripsButton').click();
+  await page.locator('#savedTripsPanel').getByRole('button',{name:'Choose trip'}).click();
+  const rows=page.locator('#savedTripsMenu .saved-trips-row');
+  await expect(rows.locator('.dive-search-result-title')).toHaveText(['new','middle','old']);
+  await rows.nth(1).locator('.saved-trips-site').click();
+  await expect(page.locator('#savedTripsPanel .saved-trips-picker')).toHaveText('middle');
+  await page.evaluate(()=>window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,'order-test',{withFallbackPhoto:true}));
+  await clickFixture(page,'order-test');
+  await page.locator('[data-save-trip-site="order-test"]').click();
+  await expect(page.locator('.saved-trips-choice .dive-search-result-title')).toHaveText(['new','middle','old']);
 });
