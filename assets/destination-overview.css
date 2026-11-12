@@ -41,6 +41,13 @@
 .destination-comparison-page #comparisonMetrics > section:nth-of-type(odd) { --comparison-row-bg:color-mix(in srgb,var(--panel-soft) 80%,var(--line)); background:var(--comparison-row-bg); box-shadow:12px 0 var(--comparison-row-bg), -12px 0 var(--comparison-row-bg); }
 .destination-comparison-page .comparison-overview > h2,
 .destination-comparison-page #comparisonMetrics > section > h2 { margin:0; font-size:18px; font-weight:600; line-height:1.5; }
+.destination-comparison-page .comparison-info { position:relative; display:inline-block; vertical-align:middle; }
+.destination-comparison-page .comparison-info-button { display:inline-grid; place-items:center; width:28px; height:28px; padding:0; border:0; border-radius:50%; background:transparent; color:var(--muted); font:inherit; font-size:16px; cursor:pointer; }
+.destination-comparison-page .comparison-info-button .note-icon::before { width:13px; height:13px; }
+.destination-comparison-page .comparison-info-button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+.destination-comparison-page .comparison-metric-note { position:absolute; z-index:10; top:calc(100% + 5px); left:0; width:min(260px, 75vw); padding:12px 14px; border:1px solid var(--glass-border); border-radius:14px; color:var(--text); background:var(--glass-highlight), color-mix(in srgb,var(--panel-solid) 88%,transparent); box-shadow:var(--glass-shadow); -webkit-backdrop-filter:blur(16px) saturate(150%); backdrop-filter:blur(16px) saturate(150%); font-size:12px; font-weight:400; line-height:1.5; }
+.destination-comparison-page .comparison-metric-note--above { top:auto; bottom:calc(100% + 5px); }
+.destination-comparison-page .comparison-metric-note[hidden] { display:none; }
 .destination-comparison-page .comparison-overview > .site-list,
 .destination-comparison-page #comparisonMetrics .site-list { margin:0; gap:56px; }
 .destination-comparison-page .comparison-overview .site-list > li,
@@ -338,6 +345,9 @@ body.has-shared-header.destination-overview-page { padding-top:0; }
   .destination-comparison-page .comparison-controls { margin:12px 0 4px; padding:12px 0; }
   .destination-comparison-page .comparison-overview,
   .destination-comparison-page #comparisonMetrics > section { padding:12px 0; }
+  .destination-comparison-page #comparisonMetrics > section { gap:4px; }
+  .destination-comparison-page #comparisonMetrics > section > h2 { color:var(--muted); font-size:14px; font-weight:600; line-height:1.3; }
+  .destination-comparison-page #comparisonMetrics [data-value] { margin-top:2px; }
   .destination-comparison-page .record-evidence { margin-top:4px; }
 }
 

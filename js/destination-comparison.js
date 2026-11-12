@@ -40,11 +40,6 @@
     const a = number(convert(min), digits), b = number(convert(max), digits);
     return `${a === b ? a : a + '–' + b} ${unit}`;
   }
-  function depthLabel(key) {
-    if (!api.METRICS[key].depth) return '';
-    const feet = preference('diveatlas-length-unit', 'm') === 'ft';
-    return key === 'temperature' ? (feet ? ' · ~16 ft' : ' · 5 m') : (feet ? ' · ~33 ft' : ' · ~10 m');
-  }
   function renderDestinations() {
     if (destinations.length !== 2 || destinations.some(d => !d)) { destinationsNode.innerHTML = ''; document.getElementById('comparisonPhotoCredits').innerHTML = ''; return; }
     // Keep the complete image license attribution available in the shared notes.
@@ -65,7 +60,7 @@
     if (destinations.length !== 2 || destinations.some(d => !d)) { metricsNode.innerHTML = ''; return; }
     metricsNode.innerHTML = Object.entries(api.METRICS).map(([key]) => {
       const preferred = api.preferredRange(key, ...destinations.map(destination => results.get(destination.id)?.metrics[key]));
-      return `<section class="detail-section"><h2 id="comparisonMetric-${key}">${t(key)}${depthLabel(key)}</h2><ul class="site-list">${destinations.map((destination, index) => {
+      return `<section class="detail-section"><h2 id="comparisonMetric-${key}">${t(key)}${['temperature', 'clarity', 'current', 'waves'].includes(key) ? `<span class="comparison-info"><button type="button" class="comparison-info-button" aria-label="${escape(t(key))}" aria-expanded="false" aria-controls="comparisonNote-${key}"><span class="note-icon" aria-hidden="true"></span></button><span class="comparison-metric-note" id="comparisonNote-${key}" hidden>${escape(t(key === 'current' ? 'currentMeasureNote' : key + 'Note'))}</span></span>` : ''}</h2><ul class="site-list">${destinations.map((destination, index) => {
       const data = results.get(destination.id), metric = data?.metrics[key];
       return `<li data-metric="${key}" data-destination="${escape(destination.id)}" aria-labelledby="comparisonDestination${index} comparisonMetric-${key}"><h2 data-value${index === preferred ? ` class="comparison-preferred" aria-label="${escape(t('preferredValue', {value:valueRange(key, metric.min, metric.max)}))}"` : ''}>${metric ? valueRange(key, metric.min, metric.max) : failures.has(destination.id) ? t('unavailable') : t('loading')}</h2><p class="destination-source" data-metric-coverage>${metric ? `${t('metricCoverage', {valid:number(metric.valid,0), total:number(metric.total,0), percent:percent(metric.valid,metric.total)})}` : failures.has(destination.id) ? t('retry') : t('queryAll')}</p></li>`;
     }).join('')}</ul></section>`;
@@ -158,8 +153,41 @@
     if (selectionCopy) selectionStatus.textContent = t(selectionCopy[0],localizedValues(selectionCopy[1]));
     searchPickers.forEach((picker, index) => { picker.input.placeholder = t(index ? 'second' : 'first'); picker.sync(); picker.close(); });
   }
+  function closeMetricNotes() {
+    metricsNode.querySelectorAll('.comparison-info-button[aria-expanded="true"]').forEach(button => {
+      button.setAttribute('aria-expanded', 'false');
+      document.getElementById(button.getAttribute('aria-controls')).hidden = true;
+    });
+  }
   document.addEventListener('click', event => {
+    const button = event.target.closest('.comparison-info-button');
+    if (button) {
+      const note = document.getElementById(button.getAttribute('aria-controls'));
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      const viewportWidth = document.documentElement.clientWidth;
+      closeMetricNotes();
+      button.setAttribute('aria-expanded', String(open));
+      note.hidden = !open;
+      if (open) {
+        note.classList.remove('comparison-metric-note--above');
+        note.style.left = '';
+        let bounds = note.getBoundingClientRect();
+        if (bounds.bottom > window.innerHeight - 8 && button.getBoundingClientRect().top >= bounds.height + 13) {
+          note.classList.add('comparison-metric-note--above');
+          bounds = note.getBoundingClientRect();
+        }
+        const shift = Math.min(0, viewportWidth - 8 - bounds.right) + Math.max(0, 8 - bounds.left);
+        if (shift) note.style.left = `${shift}px`;
+      }
+    } else if (!event.target.closest('.comparison-info')) closeMetricNotes();
     if (event.target.closest('[data-length-unit], [data-temperature-unit]')) refreshPreferences();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && metricsNode.querySelector('.comparison-info-button[aria-expanded="true"]')) {
+      const button = metricsNode.querySelector('.comparison-info-button[aria-expanded="true"]');
+      closeMetricNotes();
+      button.focus();
+    }
   });
   window.addEventListener('storage', refreshPreferences);
   new MutationObserver(refreshPreferences).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
