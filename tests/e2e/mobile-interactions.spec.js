@@ -243,7 +243,11 @@ test('main menu opens as a half-width page from the right on mobile', async ({ p
   await expect(menuPage.locator('.top-menu-page-back')).toHaveCount(0);
   await expect(menuPage.locator('a.top-menu-dropdown-item[href="/dive-sites/"]')).toBeVisible();
   await expect(menuPage.locator('a.top-menu-dropdown-item[href="/regions/"]')).toBeVisible();
-  await expect(menuPage.locator('.top-menu-divider')).toBeVisible();
+  const comparisonLink = menuPage.locator('a.top-menu-dropdown-item[href="/compare/"]');
+  await expect(comparisonLink).toBeVisible();
+  await expect(menuPage.locator('.top-menu-divider')).toHaveCount(2);
+  await expect(comparisonLink.locator('xpath=preceding-sibling::*[1]')).toHaveClass(/top-menu-divider/);
+  await expect(comparisonLink.locator('xpath=following-sibling::*[1]')).toHaveClass(/top-menu-divider/);
   await expect(menuPage.locator('#aboutMenuItem')).toBeVisible();
   await expect(menuPage.locator('#contactMenuItem')).toBeVisible();
   await expectTitleAtDrawerInset(menuPage, '#topMenuPageTitle', 15);
