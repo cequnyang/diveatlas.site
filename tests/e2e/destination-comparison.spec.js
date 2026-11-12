@@ -358,3 +358,29 @@ test('fresh comparison starts empty and queries only after two destinations are 
   await expect(page.locator('.comparison-overview')).toBeVisible();
   expect(requests).toBeGreaterThan(0);
 });
+
+test('sharing uses current comparison state and supports copying or manual fallback', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/compare/?left=bali&right=komodo&month=11');
+  await ready(page);
+  await page.locator('#comparisonShare').click();
+  const dialog = page.locator('#comparisonShareDialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('.comparison-share-scene')).toHaveCount(2);
+  const shareUrl = new URL(await page.locator('#comparisonShareUrl').inputValue());
+  expect(shareUrl.searchParams.get('left')).toBe('bali');
+  expect(shareUrl.searchParams.get('right')).toBe('komodo');
+  expect(shareUrl.searchParams.get('month')).toBe('11');
+  await page.locator('#comparisonShareCopy').click();
+  await expect(page.locator('#comparisonShareCopy')).toHaveText('Copied');
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(shareUrl.href);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(page.locator('#comparisonShare')).toBeFocused();
+  await page.locator('#comparisonSwap').click();
+  await page.locator('#comparisonShare').click();
+  const swapped = new URL(await page.locator('#comparisonShareUrl').inputValue());
+  expect(swapped.searchParams.get('left')).toBe('komodo');
+  expect(swapped.searchParams.get('right')).toBe('bali');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

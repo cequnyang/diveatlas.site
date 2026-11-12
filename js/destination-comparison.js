@@ -17,6 +17,116 @@
   const metricsNode = document.getElementById('comparisonMetrics');
   const destinationsNode = document.getElementById('comparisonDestinations');
   let generation = 0;
+  const shareButton = document.getElementById('comparisonShare');
+  const shareDialog = document.getElementById('comparisonShareDialog');
+  const shareUrl = document.getElementById('comparisonShareUrl');
+  const shareStatus = document.getElementById('comparisonShareStatus');
+  let shareTaglineIndex = 0;
+  let shareCopyFeedbackTimer;
+  await import('/js/share-dialog.js?v=1');
+  const shareStyles = document.createElement('link');
+  shareStyles.rel = 'stylesheet'; shareStyles.href = '/assets/share-dialog.css?v=1';
+  document.head.append(shareStyles);
+  const platformRow = document.createElement('div');
+  platformRow.innerHTML = window.DiveAtlasShare.actionsHtml;
+  shareDialog.querySelector('.comparison-share-url').replaceWith(platformRow);
+  shareUrl.hidden = true;
+  shareDialog.append(shareUrl);
+  const platformElements = Object.fromEntries([...platformRow.querySelectorAll('[id]')].map(node => [node.id, node]));
+  const copyComparisonLink = async platform => {
+    try {
+      await navigator.clipboard.writeText(currentShareUrl());
+      shareStatus.dataset.copyPlatform = platform || '';
+      shareStatus.dataset.copyState = 'copied';
+      shareStatus.textContent = '';
+      platformElements.shareCopyButtonText.textContent = t('shareCopiedLabel');
+      platformElements.shareCopyButton.setAttribute('aria-label', t('shareCopiedLabel'));
+      clearTimeout(shareCopyFeedbackTimer);
+      shareCopyFeedbackTimer = setTimeout(() => {
+        delete shareStatus.dataset.copyState;
+        platformElements.shareCopyButtonText.textContent = t('shareCopy');
+        platformElements.shareCopyButton.setAttribute('aria-label', t('shareCopy'));
+      }, 1800);
+    } catch (_) {
+      shareUrl.hidden = false; shareUrl.focus(); shareUrl.select();
+      shareStatus.dataset.copyState = 'failed'; shareStatus.textContent = t('shareFailed');
+    }
+  };
+  const platformActions = window.DiveAtlasShare.createDestinations({
+    els:platformElements, getLanguage:() => document.documentElement.lang || 'en',
+    getTitle:() => `${destinations.map(d => d.name).join(' & ')} · ${monthName(Number(select.value))}`,
+    getUrl:currentShareUrl, copyShareLink:copyComparisonLink,
+    t:() => t('sharePaste', {platform:'Instagram'})
+  });
+  platformElements.shareCopyButton.id = 'comparisonShareCopy';
+  platformElements.shareCopyButton.addEventListener('click', () => copyComparisonLink());
+  platformElements.shareNativeButton.addEventListener('click', async () => {
+    try { await navigator.share({title:document.title, url:currentShareUrl()}); }
+    catch (error) { if (error.name !== 'AbortError') shareStatus.textContent = t('shareUnavailable'); }
+  });
+
+  function currentShareUrl() {
+    // Build from committed controls rather than location: requests can still be in flight.
+    const url = new URL('/compare/', location.origin);
+    url.searchParams.set('left', destinations[0].id);
+    url.searchParams.set('right', destinations[1].id);
+    url.searchParams.set('month', select.value);
+    return url.href;
+  }
+  shareButton.addEventListener('click', () => {
+    if (destinations.some(d => !d) || destinations.length !== 2) return;
+    shareUrl.value = currentShareUrl();
+    shareStatus.textContent = ''; delete shareStatus.dataset.copyState;
+    shareTaglineIndex = Math.floor(Math.random() * 8);
+    localizeShare();
+    document.getElementById('comparisonShareMonth').textContent = monthName(Number(select.value));
+    const scenes = document.getElementById('comparisonShareScenes');
+    scenes.replaceChildren(...destinations.map(destination => {
+      const scene = document.createElement('div');
+      scene.className = 'comparison-share-scene';
+      const template = document.createElement('template');
+      template.innerHTML = photos[destination.areaKey] || '';
+      const original = template.content.querySelector('img');
+      if (original) {
+        const image = document.createElement('img');
+        image.src = original.src; image.alt = '';
+        scene.append(image);
+      }
+      const label = document.createElement('div');
+      const name = document.createElement('strong'); name.textContent = destination.name;
+      label.append(name); scene.append(label);
+      return scene;
+    }));
+    platformActions.visibility(); platformActions.links(); platformActions.sort();
+    shareDialog.showModal();
+    document.getElementById('comparisonShareClose').focus();
+  });
+  // The shared header otherwise opens its generic page-share flow, which loses comparison context.
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('#seoShareButton, #seoMenuShareButton');
+    if (!trigger) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    shareButton.click();
+  }, true);
+  document.getElementById('comparisonShareClose').addEventListener('click', () => shareDialog.close());
+  shareDialog.addEventListener('close', () => shareButton.focus());
+  let shareBackdropPointerDown = false;
+  const outsideShareDialog = event => {
+    const bounds = shareDialog.getBoundingClientRect();
+    return event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom;
+  };
+  // Require both ends outside so dragging from dialog content does not dismiss it.
+  shareDialog.addEventListener('pointerdown', event => {
+    shareBackdropPointerDown = event.target === shareDialog && outsideShareDialog(event);
+  });
+  shareDialog.addEventListener('click', event => {
+    if (shareBackdropPointerDown && event.target === shareDialog && outsideShareDialog(event)) shareDialog.close();
+    shareBackdropPointerDown = false;
+  });
+
+
   const escape = value => String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const preference = (key, fallback) => { try { return localStorage.getItem(key) || fallback; } catch (_) { return fallback; } };
   const locale = () => document.documentElement.lang || 'en';
@@ -117,7 +227,7 @@
     const failedRequests = [...results.values()].reduce((total, result) => total + Object.values(result.metrics).reduce((n, metric) => n + metric.failed, 0), 0);
     retry.parentElement.hidden = failedDestinations === 0 && failedRequests === 0;
     setStatus(failedDestinations ? 'statusFailed' : failedRequests ? 'statusRequests' : 'statusReady', {count:failedRequests,month:monthName(month)});
-    // Share the month through the normal page URL; no separate share window.
+    // Keep the page URL in sync after the displayed results have settled.
     const url = new URL(location.href); url.searchParams.set('month', String(month));
     url.searchParams.set('left', selected[0].id); url.searchParams.set('right', selected[1].id);
     history.replaceState(null, '', url);
@@ -129,6 +239,23 @@
     const tabTitle = destinations.length === 2 && destinations.every(Boolean)
       ? t('tabTitle', {left:destinations[0].name, right:destinations[1].name}) : title;
     document.title = `${tabTitle} | DiveAtlas`;
+  }
+  function localizeShare() {
+    const set = (selector, key) => { shareDialog.querySelector(selector).textContent = t(key); };
+    set('#comparisonShareTitle', 'shareTitle');
+    set('.comparison-share-caption strong', 'shareTagline' + shareTaglineIndex);
+    set('.comparison-share-caption p', 'shareDescription');
+    set('.comparison-share-link-heading label', 'shareLink');
+    set('.comparison-share-help p', 'seasonGeneric');
+    document.getElementById('comparisonShareClose').setAttribute('aria-label', t('shareClose'));
+    shareDialog.querySelector('.comparison-share-help summary').setAttribute('aria-label', t('shareInfo'));
+    shareButton.setAttribute('aria-label', t('shareTitle')); shareButton.title = t('shareTitle');
+    document.getElementById('comparisonShareMonth').textContent = monthName(Number(select.value));
+    platformElements.shareCopyButtonText.textContent = t(shareStatus.dataset.copyState === 'copied' ? 'shareCopiedLabel' : 'shareCopy');
+    platformElements.shareCopyButton.setAttribute('aria-label', platformElements.shareCopyButtonText.textContent);
+    if (shareStatus.dataset.copyState === 'copied') shareStatus.textContent = '';
+    if (shareStatus.dataset.copyState === 'failed') shareStatus.textContent = t('shareFailed');
+    platformActions.visibility();
   }
   function refreshPreferences() {
     const byId = new Map(catalog.map(destination => [destination.id, destination]));
@@ -148,6 +275,7 @@
     document.querySelectorAll('[data-comparison-aria]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.comparisonAria)); });
     updateMonthLabels(); renderDestinations(); renderMetrics();
     updateTitle();
+    localizeShare();
     status.textContent = t(statusCopy[0], localizedValues({...statusCopy[1],month:monthName(Number(select.value))}));
     status.classList.toggle('sr-only', statusCopy[0] === 'statusReady');
     if (selectionCopy) selectionStatus.textContent = t(selectionCopy[0],localizedValues(selectionCopy[1]));
@@ -202,6 +330,7 @@
   function syncSelection() {
     destinations = pickers.map(picker => catalog.find(d => d.id === picker.value));
     document.getElementById('comparisonSwap').disabled = destinations.some(d => !d);
+    shareButton.disabled = destinations.length !== 2 || destinations.some(d => !d);
     pickers.forEach((picker, slot) => {
       for (const option of picker.options) option.disabled = !option.value || option.value === pickers[1 - slot].value;
     });

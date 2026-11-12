@@ -20,7 +20,7 @@ def build():
 <main class="detail-page" id="detailPage" data-detail-scroll data-i18n-ignore>
 <div class="destination-season-panel comparison-panel">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Map</a><span aria-hidden="true">/</span><a href="/regions/">Regions</a><span aria-hidden="true">/</span><span>Compare destinations</span></nav>
-  <div class="comparison-heading"><div><h1 id="comparisonTitle">Compare destinations</h1>
+  <div class="comparison-heading"><div><div class="comparison-title-row"><h1 id="comparisonTitle">Compare destinations</h1><button id="comparisonShare" class="site-title-share comparison-share-trigger" type="button" aria-label="Share comparison" title="Share comparison" disabled><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div>
   <p class="destination-lead">Compare historical environmental data across all mapped site records, then explore the diving in each destination.</p></div>
   <div class="site-tools comparison-units" role="group" aria-label="Comparison units">
     <span id="seoLengthUnitSwitch" role="group" aria-label="Length unit"><button class="seo-secondary-button" data-length-unit="m" aria-pressed="true" type="button">m</button><button class="seo-secondary-button" data-length-unit="ft" aria-pressed="false" type="button">ft</button></span>
@@ -37,6 +37,13 @@ def build():
   <section class="detail-section comparison-overview" hidden aria-labelledby="comparisonCoverageTitle"><h2 id="comparisonCoverageTitle">Destinations &amp; data coverage</h2><ul class="site-list" id="comparisonDestinations"></ul></section>
   <div id="comparisonMetrics" aria-busy="true"></div>
 </div>
+  <dialog id="comparisonShareDialog" class="comparison-share-dialog" aria-labelledby="comparisonShareTitle">
+    <div class="comparison-share-head"><div><h2 id="comparisonShareTitle">Share</h2></div><button type="button" id="comparisonShareClose" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="comparison-share-body"><div class="comparison-share-preview"><div class="comparison-share-brand"><img class="comparison-share-logo" src="/assets/diveatlas-logo.svg?v=3" alt="DiveAtlas"><span id="comparisonShareMonth"></span></div><div id="comparisonShareScenes" class="comparison-share-scenes"></div><div class="comparison-share-caption"><strong>Compare destinations. Choose your next dive.</strong><p>Explore historical water temperature, clarity, currents and waves side by side.</p></div></div>
+
+      <div class="comparison-share-link-heading"><label for="comparisonShareUrl">Comparison link</label><details class="comparison-share-help"><summary aria-label="Sharing information"><span class="note-icon" aria-hidden="true"></span></summary><p>Monthly ranges describe historical data, not live conditions. Messaging apps may show a different link preview. Photo credits are available under Sources &amp; limitations.</p></details></div><div class="comparison-share-url"><input id="comparisonShareUrl" readonly><button type="button" id="comparisonShareCopy">Copy link</button></div><p id="comparisonShareStatus" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
   <section class="detail-section record-evidence" aria-labelledby="comparisonEvidenceTitle">
     <details><summary><span class="note-icon" aria-hidden="true"></span><span class="record-evidence-action" id="comparisonEvidenceTitle">Sources &amp; limitations</span></summary>
     <p class="record-evidence-summary" data-comparison-text="preferenceNote"></p>
