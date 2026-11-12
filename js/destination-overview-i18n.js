@@ -109,6 +109,9 @@
   for (const language of Object.keys(rows)) {
     if (genericRows[language]?.length !== genericKeys.length) throw new Error(`Incomplete generic destination translations: ${language}`);
   }
+  genericKeys.push('exploreMore');
+  const exploreMore = {en:'Explore more', zh:'探索更多', 'zh-TW':'探索更多', es:'Explorar más', de:'Mehr entdecken', fr:'Explorer davantage', ja:'もっと見る', pt:'Explorar mais', it:'Esplora di più', ru:'Узнать больше', ko:'더 둘러보기', nl:'Meer ontdekken', id:'Jelajahi lainnya', sv:'Utforska mer', no:'Utforsk mer'};
+  for (const language of Object.keys(rows)) genericRows[language].push(exploreMore[language]);
   function language() { return rows[document.documentElement.lang] ? document.documentElement.lang : 'en'; }
   function t(key) {
     const value = genericRows[language()][genericKeys.indexOf(key)] || rows[language()][keys.indexOf(key)] || rows.en[keys.indexOf(key)] || key;

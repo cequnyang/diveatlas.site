@@ -30,7 +30,7 @@ def starting_sites(sites, feature_tokens):
     return chosen
 
 
-def destination_overview(group, breadcrumbs, photo, render_card, feature_tokens):
+def destination_overview(group, breadcrumbs, photo, render_card, feature_tokens, browse_url):
     sites, region, country = group['sites'], str(group['region']), str(group['country'])
     path = str(group.get('path') or '')
     is_raja = path == '/regions/indonesia/raja-ampat/' or (country == 'Indonesia' and region == 'Raja Ampat')
@@ -89,7 +89,7 @@ def destination_overview(group, breadcrumbs, photo, render_card, feature_tokens)
     <section class="site-hero" aria-labelledby="destination-title">
       {photo}
       {inset}
-      <div class="hero-copy">{breadcrumbs}<div class="site-title-row"><h1 id="destination-title"{' class="destination-title--long"' if len(region) > 24 else ''}>{escape(region)}</h1></div></div>
+      <div class="hero-copy">{breadcrumbs}<div class="site-title-row"><h1 id="destination-title"{' class="destination-title--long"' if len(region) > 24 else ''}>{escape(region)}</h1><button class="site-title-share glass-surface" id="siteTitleShareButton" type="button" aria-label="Share this destination" title="Share this destination"><svg class="site-title-share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button></div></div>
     </section>
   </div>
   <section class="detail-section destination-section" id="destination-seasons" aria-label="Seasonal conditions">
@@ -109,14 +109,14 @@ def destination_overview(group, breadcrumbs, photo, render_card, feature_tokens)
     <aside class="record-evidence destination-evidence"><details><summary><span class="note-icon" aria-hidden="true"></span><span class="record-evidence-action" data-destination-text="sources">Sources and notes</span></summary><p><span data-destination-text="sourceIntro">Local guidance from</span> <a href="https://rajaampatbiodiversity.com/dive-into-raja-ampat/">Biodiversity Eco Resort</a><span data-destination-text="sourceNotes">, consulted 11 Nov 2026. Temperature is an annual surface average; visibility is a seasonal operator range. These are not measured monthly climatology, dive-depth readings or live conditions. Confirm conditions with a local guide.</span></p></details></aside>
   </section>
   <section class="detail-section destination-section destination-shortlist site-recommendations site-directory-recommendations cinematic-pilot__recommendations--immersion" aria-labelledby="destination-shortlist-title">
-    <div class="destination-section-heading"><h2 id="destination-shortlist-title" data-destination-text="selected">Selected dive sites</h2></div>
+    <div class="destination-section-heading"><h2 id="destination-shortlist-title" data-destination-text="selected">Selected dive sites</h2><a class="destination-explore-more" href="{escape(browse_url, quote=True)}" data-destination-text="exploreMore">Explore more</a></div>
     <div class="site-recommendations__content"><ul>{''.join(cards)}</ul></div>
     <p class="destination-source" data-destination-text="selection">Selected for contrasting recorded features. Confirm suitability with a local guide.</p>
   </section>
 </main>
 <script src="/js/dive-site-detail-i18n.js?v=12" defer></script>
 <script src="/js/scroll-wheel.js?v=2" defer></script>
-<script src="/js/destination-overview-i18n.js?v=4" defer></script>
+<script src="/js/destination-overview-i18n.js?v=5" defer></script>
 <script src="/js/destination-overview.js?v=4" defer></script>
 <script src="/js/seo-list-card-ratings.js?v=1" defer></script>'''
     if not is_raja:

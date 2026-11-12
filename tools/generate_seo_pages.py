@@ -535,7 +535,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
     detail_search_head_assets = '  <link rel="stylesheet" href="/assets/seo-site-search.css?v=13">\n' if has_site_detail else ""
     destination_head_assets = '''<link rel="stylesheet" href="/assets/dive-site-cinematic-pilot.css?v=117">
 <link rel="stylesheet" href="/assets/scroll-wheel.css?v=1">
-<link rel="stylesheet" href="/assets/destination-overview.css?v=31">
+<link rel="stylesheet" href="/assets/destination-overview.css?v=36">
 ''' if "destination-overview-page" in body_classes else ""
     document_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
@@ -1150,6 +1150,7 @@ def generate_region_page(
             from destination_overview import destination_overview
         overview = destination_overview(
             group, breadcrumbs, destination_photo_figure(photo), recommendation_card_link, recommendation_feature_tokens,
+            area_browse_url(location_nodes(country, region)[-1]) if location_nodes(country, region) else "/regions/",
         )
         body = site_header_fallback() + overview + site_footer_markup()
         return title, page_shell(

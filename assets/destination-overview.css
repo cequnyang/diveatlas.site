@@ -117,7 +117,18 @@
 
 .destination-section-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .destination-section-heading h2 { margin:0; font-size:24px; line-height:1.25; font-weight:550; letter-spacing:-.025em; }
-.destination-section-heading > a { font-size:13px; white-space:nowrap; }
+.destination-section-heading > a {
+  display:inline-flex; align-items:center; min-height:44px; padding:6px 14px;
+  border:1px solid color-mix(in srgb, var(--text-primary) 20%, transparent);
+  border-radius:999px; color:var(--text-primary); font-size:16px; font-weight:600;
+  text-decoration:none; white-space:nowrap;
+  background:linear-gradient(160deg, color-mix(in srgb, var(--panel-solid) 65%, white 15%) 0%, color-mix(in srgb, var(--panel-solid) 45%, transparent) 100%);
+  box-shadow:inset 0 1px 1px rgb(255 255 255 / 30%), inset 0 -1px 1px rgb(255 255 255 / 8%), 0 4px 12px rgb(0 0 0 / 12%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%); backdrop-filter:blur(16px) saturate(160%);
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.destination-section-heading > a:hover { border-color:color-mix(in srgb, var(--text-primary) 40%, transparent); box-shadow:inset 0 1px 2px rgb(255 255 255 / 40%), 0 6px 16px rgb(0 0 0 / 18%); }
+.destination-section-heading > a:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
 .destination-evidence { margin-top:16px; padding:0; border:0; color:var(--text-secondary); font-size:12px; line-height:1.7; }
 .destination-evidence summary { width:fit-content; cursor:pointer; }
 .destination-evidence p { margin:10px 0 0; max-width:none; }
@@ -343,4 +354,16 @@ body.has-shared-header.destination-overview-page { padding-top:0; }
 }
 @media(max-width:360px) {
   .destination-overview-page .destination-season-body:not(.destination-season-body--no-month) { grid-template-columns:108px minmax(0,1fr); }
+}
+
+/* Match the photo-overlay share control on dive-site detail pages. */
+.destination-hero-shell .hero-copy .site-title-share {
+  --glass-surface-tint:color-mix(in srgb, var(--panel-solid) 30%, transparent);
+  --glass-highlight:linear-gradient(155deg, rgb(255 255 255 / 8%), transparent 48%);
+  color:var(--text); border:1px solid var(--glass-border); border-radius:8px; text-shadow:none;
+  background:var(--glass-highlight), var(--glass-surface-tint);
+  -webkit-backdrop-filter:var(--glass-filter); backdrop-filter:var(--glass-filter); box-shadow:var(--glass-shadow);
+}
+.destination-hero-shell .hero-copy .site-title-share:is(:hover, :focus-visible) {
+  border-color:var(--glass-active-border); background:var(--glass-surface-tint);
 }
