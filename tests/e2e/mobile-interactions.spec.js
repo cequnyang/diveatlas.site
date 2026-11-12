@@ -706,6 +706,7 @@ test('showing the combined mobile search and filter menu closes any open map she
 
   const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
   await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchToggle').click();
   await page.locator('#diveSearchFilterToggle').click();
 
   await expect(page.locator('#diveSearchResults')).toHaveClass(/visible/);
@@ -1058,3 +1059,351 @@ for (const { language, primary, secondary } of [
     await expect(nextShareButton).toHaveClass(/is-share-discovery-active/);
   });
 }
+
+test('mobile map search expands its full-width sheet and preserves destination selection', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  const sheet = page.locator('#diveSearchResults');
+  await expect(sheet.locator('#diveSearchInput')).toBeVisible();
+  await expect(sheet.locator('#diveSearchFilterToggle')).toBeVisible();
+  const listHeight = (await sheet.locator('#diveSearchResultsScroll').boundingBox()).height;
+  await page.locator('#diveSearchFilterToggle').click();
+  const filters = sheet.locator('#diveSearchFilterControls');
+  await expect(filters).toBeVisible();
+  await expect(sheet.locator('#diveSearchResultsScroll')).toBeVisible();
+  expect((await sheet.locator('#diveSearchResultsScroll').boundingBox()).height).toBeCloseTo(listHeight, 0);
+  const material = await filters.evaluate(el => {
+    const style = getComputedStyle(el);
+    return {position:style.position, background:style.backgroundColor, backdrop:style.backdropFilter, reduced:matchMedia("(prefers-reduced-transparency: reduce)").matches};
+  });
+  expect(material.position).toBe('absolute');
+  expect(material.background).not.toBe('rgba(0, 0, 0, 0)');
+  if (material.reduced) expect(material.backdrop).toBe('none');
+  else expect(material.backdrop).toContain('blur(12px)');
+  await page.keyboard.press('Escape');
+  await expect(filters).toBeHidden();
+  await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await sheet.locator('#diveSearchResultsScroll').click({position:{x:10,y:10}});
+  await expect(filters).toBeHidden();
+  await expect(sheet.locator('#diveSearchResultsScroll')).toBeVisible();
+  await page.locator('#diveSearchInput').fill('Raja Ampat');
+  const first = sheet.locator('[role="option"]').first();
+  await expect(first).toHaveAttribute('data-result-kind', 'destination', {timeout:15000});
+  const initial = await sheet.boundingBox();
+  expect(initial.width).toBeCloseTo(page.viewportSize().width, 0);
+  const handle = page.locator('#diveSearchResultsHandle');
+  const box = await handle.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 2, box.y - 100, {steps:8});
+  await page.mouse.up();
+  await expect(handle).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
+  const expanded = await handle.boundingBox();
+  await page.mouse.move(expanded.x + expanded.width / 2, expanded.y + expanded.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(expanded.x + expanded.width / 2, expanded.y + expanded.height / 2 + 100, {steps:8});
+  await page.mouse.up();
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeGreaterThan(50);
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect(handle).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Enter');
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await first.click();
+  await expect(sheet).toBeHidden();
+  await expect(page.locator('.leaflet-popup')).toHaveCount(0);
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('Raja Ampat');
+  await expect(sheet).toBeVisible();
+  await page.locator('#diveSearchInput').press('Escape');
+  await expect(sheet).toBeHidden();
+});
+
+
+test('mobile search shows the swipe hint and loads the next page on an upward pull', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('reef');
+  const sheet = page.locator('#diveSearchResults');
+  const hint = sheet.locator('#diveSearchLoadHint');
+  await expect(hint).toBeVisible({timeout:15000});
+  await expect(hint).toContainText(/Swipe up to load more|向上滑动以加载更多/);
+  await expect(sheet.locator('[data-search-load-more]')).toBeHidden();
+  const before = await sheet.locator('[role="option"]').count();
+  const scroll = sheet.locator('#diveSearchResultsScroll');
+  await scroll.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  const box = await scroll.boundingBox();
+  const x = box.x + box.width / 2, y = box.y + box.height - 20;
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+  for (let step = 1; step <= 6; step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x,y:y - step * 20}]});
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+  await expect.poll(() => sheet.locator('[role="option"]').count()).toBeGreaterThan(before);
+});
+
+test('mobile search sheet tracks touch drags in both directions', async ({ page }) => {
+  const launcher = page.locator('#diveSearchToggle');
+  const launcherBox = page.locator('#diveSearchSection .dive-search-box');
+  await expect(launcherBox).toHaveCSS('border-top-left-radius', '999px');
+  await expect(launcherBox).toHaveCSS('border-top-width', '1px');
+  const icon = launcher.locator('svg');
+  const globe = page.locator('#languageMenuButton .language-globe-icon');
+  expect((await icon.boundingBox()).width).toBeCloseTo((await globe.boundingBox()).width, 1);
+  await expect(icon).toHaveCSS('stroke-width', '1.35px');
+  expect((await launcher.boundingBox()).width).toBeGreaterThanOrEqual(38);
+  await launcher.click();
+  const handle = page.locator('#diveSearchResultsHandle');
+  const sheet = page.locator('#diveSearchResults');
+  const cdp = await page.context().newCDPSession(page);
+  async function swipe(distance, fraction = 0.5) {
+    const box = await handle.boundingBox();
+    const x = box.x + box.width * fraction, y = box.y + box.height / 2;
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchStart', touchPoints:[{x,y}]});
+    for (let step = 1; step <= 5; step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove', touchPoints:[{x,y:y + distance * step / 5}]});
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd', touchPoints:[]});
+  }
+  await swipe(-120, 0.05);
+  await expect(handle).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(async () => (await sheet.boundingBox())?.y).toBeLessThanOrEqual(1);
+  await swipe(120, 0.95);
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => (await sheet.boundingBox())?.y).toBeGreaterThan(200);
+  await swipe(25);
+  await expect(sheet).toBeVisible();
+  await swipe(120);
+  await expect(sheet).toBeHidden();
+  await expect(page.locator('#diveSearchToggle')).toHaveAttribute('aria-expanded', 'false');
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeVisible();
+  await swipe(-120);
+  await expect.poll(async () => (await sheet.boundingBox())?.y).toBeLessThanOrEqual(1);
+  await swipe(600);
+  await expect(sheet).toBeHidden();
+});
+
+test('mobile floating filters retain picker selection after sheet expansion', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('Raja Ampat');
+  const sheet = page.locator('#diveSearchResults');
+  await expect(sheet.locator('[data-result-kind="destination"]').first()).toBeVisible({timeout:15000});
+  await page.locator('#diveSearchResultsHandle').focus();
+  await page.keyboard.press('Enter');
+  await page.locator('#diveSearchFilterToggle').click();
+  const filters = page.locator('#diveSearchFilterControls');
+  const box = await filters.boundingBox(), viewport = page.viewportSize();
+  expect(box.x).toBeGreaterThanOrEqual(0);
+  expect(box.x + box.width).toBeLessThanOrEqual(viewport.width);
+  expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
+  const country = page.locator('#diveSearchCountryFilterPicker');
+  await country.click();
+  const options = page.locator('#diveSearchCountryFilterPickerOptions');
+  await expect(options).toBeVisible();
+  const indonesia = options.getByRole('option', {name:'Indonesia', exact:true});
+  await indonesia.click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
+  await expect(page.locator('#diveSearchFilterToggle')).toHaveClass(/has-active-filters/);
+  const clear = page.locator('#diveSearchFilterClear');
+  await clear.scrollIntoViewIfNeeded();
+  await expect(clear).toBeInViewport();
+  await clear.click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('');
+});
+
+test('floating search filter handle resists, rebounds and dismisses on an upward drag', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchFilterToggle').click();
+  const filters = page.locator('#diveSearchFilterControls');
+  const handle = page.locator('#diveSearchFilterHandle');
+  await expect(handle).toBeVisible();
+  const initial = (await filters.boundingBox()).height;
+  const initialHandleY = (await handle.boundingBox()).y;
+  expect(await handle.evaluate(el => getComputedStyle(el, '::after').opacity)).toBe('0');
+  const cdp = await page.context().newCDPSession(page);
+  async function drag(distance, during) {
+    const box = await handle.boundingBox();
+    const x = box.x + box.width / 2, y = box.y + box.height / 2;
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchStart', touchPoints:[{x,y}]});
+    for (let step = 1; step <= 5; step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove', touchPoints:[{x,y:y + distance * step / 5}]});
+    if (during) await during();
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd', touchPoints:[]});
+  }
+  await drag(60, async () => {
+    const stretched = (await filters.boundingBox()).height;
+    expect(stretched).toBeGreaterThan(initial);
+    expect(stretched).toBeLessThan(initial + 25);
+    expect((await handle.boundingBox()).y).toBeGreaterThan(initialHandleY + 10);
+  });
+  await expect.poll(async () => (await handle.boundingBox()).y).toBeCloseTo(initialHandleY, 0);
+  await expect.poll(async () => (await filters.boundingBox()).height).toBeCloseTo(initial, 0);
+  await drag(-35, async () => {
+    const material = await handle.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      const parent = el.parentElement.getBoundingClientRect();
+      const y = Math.min(rect.bottom - 3, parent.bottom - 3);
+      return {background:getComputedStyle(el, "::after").backgroundColor, maskHeight:parseFloat(getComputedStyle(el, "::after").height), opacity:getComputedStyle(el, "::after").opacity, touchHeight:rect.height,
+        left:document.elementFromPoint(parent.left + 8, y) === el,
+        right:document.elementFromPoint(parent.right - 8, y) === el};
+    });
+    expect(material.background).not.toBe('rgba(0, 0, 0, 0)');
+    expect(material.maskHeight).toBe(18);
+    expect(material.opacity).toBe('1');
+    expect(material.touchHeight).toBe(44);
+    expect(material.left).toBe(true);
+    expect(material.right).toBe(true);
+  });
+  await expect(filters).toBeVisible();
+  await expect.poll(async () => (await filters.boundingBox()).height).toBeCloseTo(initial, 0);
+  await expect.poll(() => handle.evaluate(el => getComputedStyle(el, "::after").opacity)).toBe("0");
+  await drag(-90);
+  await expect(filters).toBeHidden();
+  await expect(page.locator('#diveSearchResults')).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await expect(handle).toBeVisible();
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect(filters).toBeHidden();
+  await expect(page.locator('#diveSearchFilterToggle')).toBeFocused();
+});
+
+test('pulling down at the search list top moves and dismisses the sheet', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('reef');
+  const sheet = page.locator('#diveSearchResults');
+  const list = page.locator('#diveSearchResultsScroll');
+  const handle = page.locator('#diveSearchResultsHandle');
+  await expect(list.locator('[role="option"]').first()).toBeVisible({timeout:15000});
+  const cdp = await page.context().newCDPSession(page);
+  async function pull(distance, during) {
+    const box = await list.boundingBox();
+    const x = box.x + box.width / 2, y = box.y + 35;
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+    for (let step=1;step<=6;step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x,y:y + distance * step / 6}]});
+    if (during) await during();
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+  }
+  await list.evaluate(el => { el.scrollTop = 500; });
+  const before = (await sheet.boundingBox()).height;
+  await pull(50);
+  expect((await sheet.boundingBox()).height).toBeCloseTo(before, 0);
+  await list.evaluate(el => { el.scrollTop = 25; });
+  await pull(140);
+  await expect(sheet).toBeHidden();
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeVisible();
+  await list.evaluate(el => { el.scrollTop = 0; });
+  await pull(25, async () => expect((await sheet.boundingBox()).height).toBeLessThan(before - 10));
+  await expect(sheet).toBeVisible();
+  await expect.poll(async () => (await sheet.boundingBox()).height).toBeCloseTo(before, 0);
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
+  await list.evaluate(el => { el.scrollTop = 0; });
+  await pull(120);
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeGreaterThan(200);
+  await list.evaluate(el => { el.scrollTop = 0; });
+  await pull(120);
+  await expect(sheet).toBeHidden();
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeVisible();
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
+  await list.evaluate(el => { el.scrollTop = 25; });
+  await pull(500);
+  await expect(sheet).toBeHidden();
+});
+
+test('mobile destination return bar stays compact and returns to grouped results', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('r');
+  const sheet = page.locator('#diveSearchResults');
+  const expand = sheet.locator('[data-result-kind="expand-destinations"]');
+  await expect(expand).toBeVisible({timeout:15000});
+  await expand.click();
+  const back = sheet.locator('[data-result-kind="back-to-results"]');
+  await expect(back).toBeVisible();
+  const rect = await back.boundingBox();
+  expect(rect.height).toBeGreaterThanOrEqual(44);
+  expect(rect.height).toBeLessThanOrEqual(52);
+  const scroll = sheet.locator('#diveSearchResultsScroll');
+  const scrollRect = await scroll.boundingBox();
+  expect(rect.x - scrollRect.x).toBeLessThanOrEqual(2);
+  expect(scrollRect.x + scrollRect.width - rect.x - rect.width).toBeLessThanOrEqual(2);
+  expect(await scroll.evaluate(el => getComputedStyle(el).scrollbarWidth)).not.toBe('none');
+  expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar-track').marginTop)).toBe('48px');
+  expect(await sheet.evaluate(el => getComputedStyle(el, '::after').width)).toBe('7px');
+  expect(await sheet.evaluate(el => getComputedStyle(el, '::after').pointerEvents)).toBe('none');
+  await scroll.evaluate(el => { el.scrollTop = 180; });
+  expect((await back.boundingBox()).y).toBeCloseTo(scrollRect.y, 0);
+  await expect(back.locator('.dive-search-result-meta')).not.toBeEmpty();
+  await back.click();
+  await expect(expand).toBeVisible();
+  await expect(expand).not.toHaveClass(/\bactive\b/);
+  await expect(expand).toHaveAttribute('aria-selected', 'false');
+  await expect(page.locator('#diveSearchInput')).not.toHaveAttribute('aria-activedescendant', /.+/);
+});
+
+test('mobile destination-only results load more by swiping at the end', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('r');
+  const sheet = page.locator('#diveSearchResults');
+  await sheet.locator('[data-result-kind="expand-destinations"]').click({timeout:15000});
+  const list = sheet.locator('#diveSearchResultsScroll');
+  const hint = list.locator('#diveSearchLoadHint');
+  await expect(hint).toBeVisible();
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  const before = await list.locator('[data-result-kind="destination"]').count();
+  const box = await list.boundingBox();
+  const x = box.x + box.width / 2, y = box.y + box.height - 20;
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+  for (let step=1;step<=3;step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x,y:y-step*20}]});
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+  expect(await list.locator('[data-result-kind="destination"]').count()).toBe(before);
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+  for (let step=1;step<=6;step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x,y:y-step*20}]});
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+  await expect.poll(() => list.locator('[data-result-kind="destination"]').count()).toBeGreaterThan(before);
+  const afterTouch = await list.locator('[data-result-kind="destination"]').count();
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await hint.hover();
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await list.dispatchEvent('wheel', {deltaY:48, deltaMode:0, bubbles:true});
+  expect(await list.locator('[data-result-kind="destination"]').count()).toBe(afterTouch);
+  await list.dispatchEvent('wheel', {deltaY:48, deltaMode:0, bubbles:true});
+  await expect.poll(() => list.locator('[data-result-kind="destination"]').count()).toBeGreaterThan(afterTouch);
+  const afterWheel = await list.locator('[data-result-kind="destination"]').count();
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await list.dispatchEvent('wheel', {deltaY:3, deltaMode:1, bubbles:true});
+  expect(await list.locator('[data-result-kind="destination"]').count()).toBe(afterWheel);
+  await list.dispatchEvent('wheel', {deltaY:3, deltaMode:1, bubbles:true});
+  await expect.poll(() => list.locator('[data-result-kind="destination"]').count()).toBeGreaterThan(afterWheel);
+  const afterLines = await list.locator('[data-result-kind="destination"]').count();
+  await hint.click();
+  await expect.poll(() => list.locator('[data-result-kind="destination"]').count()).toBeGreaterThan(afterLines);
+});
+
+test('mobile search launcher does not overlap the filter before scripts run', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({viewport:{width:390,height:844}, javaScriptEnabled:false});
+  const preview = await context.newPage();
+  await preview.goto(baseURL, {waitUntil:'domcontentloaded'});
+  await expect(preview.locator('#diveSearchToggle')).toBeVisible();
+  await expect(preview.locator('#diveSearchFilterToggle')).toBeHidden();
+  await preview.setViewportSize({width:1000,height:844});
+  await expect(preview.locator('#diveSearchFilterToggle')).toBeVisible();
+  await context.close();
+});
+
+test('mobile search capsule responds while pressed', async ({ page }) => {
+  const toggle = page.locator('#diveSearchToggle');
+  const box = page.locator('#diveSearchSection .dive-search-box');
+  const rect = await toggle.boundingBox();
+  await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2);
+  await page.mouse.down();
+  await expect.poll(() => toggle.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe('rgba(0, 0, 0, 0)');
+  await expect(box).toHaveCSS('transform', 'none');
+  await page.mouse.up();
+  await expect(page.locator('#diveSearchResults')).toBeVisible();
+});

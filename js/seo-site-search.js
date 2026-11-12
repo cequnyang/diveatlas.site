@@ -27,7 +27,7 @@
   const groupedText = () => window.DiveAtlasAreaSearch.resultsText(document.documentElement.lang.split('-')[0]);
   const menu = window.DiveAtlasSearchResultsMenu.create({
     surface:results, scroll:resultsScroll, getInput:() => input, filterToggle, slot,
-    onSelect:index => {
+    onSelect:(index, interaction) => {
       const match = matches[index];
       if (match?.expandDestinations || match?.backToResults) {
         const current = {visibleCount:visibleResultCount,activeIndex};
@@ -35,7 +35,7 @@
         visibleResultCount = view.visibleCount;
         activeIndex = -1;
         renderResults();
-        setActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
+        if (!match.backToResults || interaction?.source === "keyboard") setActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
         resultsScroll.scrollTop = view.scrollTop;
       } else navigateTo(match);
     },

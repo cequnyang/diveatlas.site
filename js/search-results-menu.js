@@ -125,7 +125,7 @@
       const button = event.target.closest(".dive-search-result");
       // Async catalog refreshes must not select an option for an obsolete query.
       if (button && renderedQuery === getInput().value.trim())
-        onSelect(Number(button.dataset.resultIndex));
+        onSelect(Number(button.dataset.resultIndex), { source: event.detail === 0 ? "keyboard" : "pointer" });
     });
 
     function updateModes({ mode, labels, areasOnly = false, grouped = false }) {
@@ -241,7 +241,7 @@
         setActive(Math.max(0, activeIndex - 1));
       } else if (event.key === "Enter" && activeIndex >= 0) {
         event.preventDefault();
-        if (renderedQuery === getInput().value.trim()) onSelect(activeIndex);
+        if (renderedQuery === getInput().value.trim()) onSelect(activeIndex, { source: "keyboard" });
       } else if (
         event.key === "Escape" &&
         surface.classList.contains("visible")
@@ -266,7 +266,22 @@
       scroll.scrollTop = top;
     }
 
-    function position({ anchor, filtersOpen, focused, inline = false, fitContent = false, topBoundary = 8 }) {
+    function position({ anchor, filtersOpen, focused, inline = false, fitContent = false, topBoundary = 8, bottomSheet = false }) {
+      surface.classList.toggle("is-mobile-bottom-sheet", bottomSheet && window.matchMedia("(max-width:720px)").matches);
+      if (surface.classList.contains("is-mobile-bottom-sheet")) {
+        const viewport = window.visualViewport;
+        const viewportTop = viewport?.offsetTop || 0;
+        const bottom = viewportTop + (viewport?.height || window.innerHeight);
+        const available = Math.max(0, bottom - viewportTop);
+        const collapsedAvailable = Math.max(0, bottom - Math.max(anchor.getBoundingClientRect().bottom + 8, viewportTop));
+        const compactHeight = Math.min(collapsedAvailable, Math.max(240, collapsedAvailable * 0.72));
+        surface.dataset.compactSheetHeight = String(compactHeight);
+        const height = surface.classList.contains("is-sheet-expanded") ? available : compactHeight;
+        Object.assign(surface.style, {left: "0px", width: "100%", top: "auto", bottom: `${Math.max(0, window.innerHeight - bottom)}px`, maxHeight: `${available}px`, height: `${height}px`});
+        surface.style.setProperty("--search-results-available-height", `${available}px`);
+        surface.classList.toggle("is-stacked", filtersOpen);
+        return;
+      }
       const rect = anchor.getBoundingClientRect();
       if (inline) {
         const minimumTop = Math.max(8, topBoundary);
@@ -351,7 +366,27 @@
       let diveSearchPullLastY = null;
       let diveSearchPullDistance = 0;
       let diveSearchPullLoaded = false;
+      // Require a deliberate pull past the end; reaching the end during a
+      // normal list swipe should not immediately request another page.
       const DIVE_SEARCH_PULL_LOAD_DISTANCE = 96;
+      let wheelDistance = 0;
+      let wheelResetTimer = 0;
+      scroll.addEventListener("wheel", (event) => {
+        if (window.innerWidth > 720 || !surface.classList.contains("visible") || !canLoadMore()) return;
+        const atBottom = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 2;
+        if (event.deltaY <= 0 || !atBottom) { wheelDistance = 0; return; }
+        // Wheel deltas can be pixels, lines, or pages. Normalize before
+        // comparing with the touch distance; device acceleration still varies.
+        const pixelDelta = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+          ? event.deltaY * 16
+          : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+            ? event.deltaY * scroll.clientHeight
+            : event.deltaY;
+        wheelDistance += pixelDelta;
+        clearTimeout(wheelResetTimer);
+        wheelResetTimer = window.setTimeout(() => { wheelDistance = 0; }, 500);
+        if (wheelDistance >= DIVE_SEARCH_PULL_LOAD_DISTANCE) { wheelDistance = 0; onLoadMore(); }
+      }, { passive: true });
 
       scroll.addEventListener(
         "touchstart",
@@ -753,6 +788,11 @@
     resultsHandle,
     onDismiss,
     returnFocus,
+    isBottomSheet = () => false,
+    onSheetResize = () => {},
+    followStretch = false,
+    contentScroll = null,
+    isVisible = () => results.classList.contains("visible"),
   }) {
     if (!resultsHandle) return { cancel() {}, dismiss: onDismiss };
     const mobileLayoutQuery = window.matchMedia("(max-width:720px)");
@@ -781,7 +821,8 @@
         "mobile-search-restoring",
         "mobile-vertical-dragging",
       );
-      results.style.removeProperty("height");
+      results.style.removeProperty("--mobile-handle-stretch");
+      if (!isBottomSheet()) results.style.removeProperty("height");
     }
 
     let drag = null;
@@ -801,6 +842,7 @@
       }
       results.classList.remove("mobile-vertical-dragging");
       results.classList.add("mobile-search-restoring");
+      results.style.removeProperty("--mobile-handle-stretch");
       results.style.removeProperty("--mobile-panel-drag-y");
       const currentHeight = results.getBoundingClientRect().height;
       if (
@@ -832,7 +874,7 @@
     };
     const dismiss = (completeDismissal = onDismiss) => {
       if (handleDismissal) return;
-      if (!results.classList.contains("visible") || !mobileLayoutQuery.matches || reducedMotionQuery.matches) {
+      if (!isVisible() || !mobileLayoutQuery.matches || reducedMotionQuery.matches) {
         completeDismissal();
         return;
       }
@@ -863,10 +905,56 @@
       dismissal.timer = window.setTimeout(complete, 280);
     };
 
+    // The list keeps native scrolling until a downward gesture reaches its top.
+    // From that point only the remaining movement controls the sheet.
+    let contentDrag = null;
+    contentScroll?.addEventListener("touchstart", (event) => {
+      if (!mobileLayoutQuery.matches || !isBottomSheet() || !isVisible() || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      contentDrag = { id: touch.identifier, x: touch.clientX, lastY: touch.clientY, startY: null };
+    }, { passive: true });
+    contentScroll?.addEventListener("touchmove", (event) => {
+      if (!contentDrag || event.touches.length !== 1) return;
+      const touch = [...event.touches].find(item => item.identifier === contentDrag.id);
+      if (!touch) return;
+      const step = touch.clientY - contentDrag.lastY;
+      contentDrag.lastY = touch.clientY;
+      if (contentDrag.startY === null) {
+        if (step <= 0 || contentScroll.scrollTop > 0 || Math.abs(touch.clientX - contentDrag.x) > Math.abs(step) * 2) return;
+        contentDrag.startY = touch.clientY - step;
+        contentDrag.startHeight = results.getBoundingClientRect().height;
+        contentDrag.maxHeight = parseFloat(results.style.maxHeight) || window.innerHeight;
+        contentDrag.expanded = results.classList.contains("is-sheet-expanded");
+      }
+      const dy = Math.max(0, touch.clientY - contentDrag.startY);
+      if (event.cancelable) event.preventDefault();
+      results.classList.add("mobile-vertical-dragging");
+      results.style.height = `${Math.max(200, Math.min(contentDrag.maxHeight, contentDrag.startHeight - dy))}px`;
+    }, { passive: false });
+    function finishContentDrag(event, cancelled = false) {
+      if (!contentDrag) return;
+      const touch = [...event.changedTouches].find(item => item.identifier === contentDrag.id);
+      const active = contentDrag.startY !== null;
+      const dy = active && touch ? touch.clientY - contentDrag.startY : 0;
+      const expanded = contentDrag.expanded;
+      const startHeight = contentDrag.startHeight;
+      contentDrag = null;
+      if (!active) return;
+      results.classList.remove("mobile-vertical-dragging");
+      const compactHeight = Number(results.dataset.compactSheetHeight) || startHeight;
+      if (!cancelled && dy >= 72 && startHeight - dy <= compactHeight - 72) dismiss();
+      else {
+        if (!cancelled && dy >= 40 && expanded) results.classList.remove("is-sheet-expanded");
+        onSheetResize();
+      }
+    }
+    contentScroll?.addEventListener("touchend", event => finishContentDrag(event), { passive: true });
+    contentScroll?.addEventListener("touchcancel", event => finishContentDrag(event, true), { passive: true });
+
     resultsHandle.addEventListener("pointerdown", (event) => {
       if (
         !mobileLayoutQuery.matches ||
-        !results.classList.contains("visible") ||
+        !isVisible() ||
         event.button !== 0
       )
         return;
@@ -877,6 +965,11 @@
         handleResetMaxHeight = "";
         results.classList.remove("mobile-search-restoring");
         results.style.removeProperty("height");
+      }
+      if (isBottomSheet()) {
+        drag = { id: event.pointerId, x: event.clientX, y: event.clientY, sheet: true, expanded: results.classList.contains("is-sheet-expanded"), startHeight: results.getBoundingClientRect().height, maxHeight: parseFloat(results.style.maxHeight) || window.innerHeight };
+        resultsHandle.setPointerCapture?.(event.pointerId);
+        return;
       }
       drag = {
         id: event.pointerId,
@@ -896,6 +989,15 @@
     });
     resultsHandle.addEventListener("pointermove", (event) => {
       if (!drag || event.pointerId !== drag.id) return;
+      if (drag.sheet) {
+        const dy = event.clientY - drag.y;
+        if (Math.abs(dy) > 5 && Math.abs(dy) > Math.abs(event.clientX - drag.x) * 1.2) {
+          if (event.cancelable) event.preventDefault();
+          results.classList.add("mobile-vertical-dragging");
+          results.style.height = `${Math.max(200, Math.min(drag.maxHeight, drag.startHeight - dy))}px`;
+        }
+        return;
+      }
       const deltaX = event.clientX - drag.x;
       const deltaY = (event.clientY - drag.y) * drag.direction;
       if (Math.hypot(deltaX, deltaY) < 4) return;
@@ -912,6 +1014,7 @@
         20 * (1 - Math.exp(-Math.max(0, deltaY) / 18)),
         drag.expansionRoom,
       );
+      if (followStretch) results.style.setProperty("--mobile-handle-stretch", `${deltaY > 0 ? downwardStretch : 0}px`);
       if (deltaY > 0) results.style.maxHeight = "none";
       else restoreMaxHeight(drag.startMaxHeight);
       const height =
@@ -922,6 +1025,23 @@
     });
     const finishDrag = (event) => {
       if (!drag || event.pointerId !== drag.id) return;
+      if (drag.sheet) {
+        const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+        const vertical = Math.abs(dy) > Math.abs(dx) * 1.2;
+        const compactHeight = Number(results.dataset.compactSheetHeight) || drag.startHeight;
+        const closeSheet = vertical && dy >= 72 && drag.startHeight - dy <= compactHeight - 72;
+        if (vertical && Math.abs(dy) >= 40) {
+          results.classList.toggle("is-sheet-expanded", dy < 0);
+          event.preventDefault();
+        }
+        results.classList.remove("mobile-vertical-dragging");
+        drag = null;
+        // The dismissal threshold is tied to the compact sheet position, so
+        // a continuous pull from full-screen can cross it without stopping.
+        if (closeSheet) dismiss();
+        else onSheetResize();
+        return;
+      }
       const deltaX = event.clientX - drag.x;
       const deltaY = (event.clientY - drag.y) * drag.direction;
       const didMove = drag.moved;
@@ -951,6 +1071,7 @@
     resultsHandle.addEventListener("pointerup", finishDrag);
     resultsHandle.addEventListener("pointercancel", (event) => {
       if (!drag || event.pointerId !== drag.id) return;
+      if (drag.sheet) { drag = null; results.classList.remove("mobile-vertical-dragging"); onSheetResize(); return; }
       const startHeight = drag.startHeight;
       const startMaxHeight = drag.startMaxHeight;
       const hasResizedSheet = drag.hasResizedSheet;
@@ -962,6 +1083,11 @@
       }
     });
     resultsHandle.addEventListener("click", (event) => {
+      if (event.detail === 0 && mobileLayoutQuery.matches && isBottomSheet()) {
+        results.classList.toggle("is-sheet-expanded");
+        onSheetResize();
+        return;
+      }
       if (event.detail === 0 && mobileLayoutQuery.matches) {
         onDismiss();
         returnFocus?.focus({ preventScroll: true });
@@ -970,5 +1096,5 @@
     return { cancel, dismiss };
   }
 
-  root.DiveAtlasSearchResultsMenu = { create, highlight, createFilterPicker, pageSize:PAGE_SIZE };
+  root.DiveAtlasSearchResultsMenu = { create, highlight, createFilterPicker, bindMobileSurface, pageSize:PAGE_SIZE };
 })(window);

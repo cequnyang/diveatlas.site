@@ -54,7 +54,7 @@
     href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css"
   />
 
-  <link rel="stylesheet" href="assets/search-results-menu.css?v=1">
+  <link rel="stylesheet" href="assets/search-results-menu.css?v=24">
   <style>
     :root {
       --map-safe-area-top: env(safe-area-inset-top, 0px);
@@ -7146,7 +7146,7 @@
   <link rel="stylesheet" href="/assets/share-dialog.css?v=3">
   <link rel="stylesheet" href="/assets/site-contributions.css?v=1">
   <link rel="stylesheet" href="/assets/saved-trips.css?v=12">
-<link rel="stylesheet" href="assets/liquid-glass.css?v=43">
+<link rel="stylesheet" href="assets/liquid-glass.css?v=52">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
 <link rel="stylesheet" href="assets/map-welcome.css?v=2">
 <script src="/js/site-header.js?v=5" defer></script>
@@ -7171,7 +7171,7 @@
       <div class="search-float" id="diveSearchSection">
         <div class="dive-search">
           <div class="dive-search-box">
-            <button class="dive-search-icon" id="diveSearchToggle" type="button" aria-label="Search dive sites" title="Search dive sites" aria-controls="diveSearchInput" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.75" cy="6.75" r="4.25"></circle><path d="M10.4 10.4 14 14"></path></svg></button>
+            <button class="dive-search-icon" id="diveSearchToggle" type="button" aria-label="Search dive sites" title="Search dive sites" aria-controls="diveSearchInput" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="6.75" cy="6.75" r="4.25"></circle><path d="M10.4 10.4 14 14"></path></svg><span class="dive-search-launcher-label" aria-hidden="true">Search</span></button>
             <input
               class="dive-search-input"
               id="diveSearchInput"
@@ -7195,17 +7195,19 @@
             <button class="dive-search-filter-toggle" id="diveSearchFilterToggle" type="button" aria-label="Search filters" title="Search filters" aria-controls="diveSearchFilterControls" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h10.1M18.9 7H21M3 17h2.1M10.9 17H21"/><circle cx="16" cy="7" r="2.9"/><circle cx="8" cy="17" r="2.9"/></svg></button>
           </div>
           <div class="dive-search-results" id="diveSearchResults">
-            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"><div class="dive-search-load-hint" id="diveSearchLoadHint" hidden></div></div>
+            <div class="dive-search-sheet-input" id="diveSearchSheetInput"></div>
+            <div class="dive-search-results-scroll" id="diveSearchResultsScroll" role="listbox" aria-label="Dive-site search results"><button type="button" class="dive-search-load-hint" id="diveSearchLoadHint" hidden></button></div>
             <div class="dive-search-filter-controls" id="diveSearchFilterControls" hidden>
               <label class="dive-search-filter-field"><span id="diveSearchCountryLabel">Country</span><select id="diveSearchCountryFilter" aria-labelledby="diveSearchCountryLabel"><option value="">Any country</option></select></label>
               <label class="dive-search-filter-field"><span id="diveSearchDifficultyLabel">Difficulty</span><select id="diveSearchDifficultyFilter" aria-labelledby="diveSearchDifficultyLabel"><option value="">Any difficulty</option></select></label>
               <label class="dive-search-filter-field"><span id="diveSearchFeatureLabel">Feature</span><select id="diveSearchFeatureFilter" aria-labelledby="diveSearchFeatureLabel"><option value="">Any feature</option></select></label>
               <button class="dive-search-filter-clear" id="diveSearchFilterClear" type="button" hidden>Clear All</button>
+              <button class="dive-search-filter-handle" id="diveSearchFilterHandle" type="button" aria-label="Close search filters" title="Close search filters"></button>
             </div>
             <div class="dive-search-suggestion" id="diveSearchSuggestion" hidden>
               <button class="dive-search-suggestion-button" id="diveSearchSuggestButton" type="button">Suggest a missing dive site</button>
             </div>
-            <button class="dive-search-results-handle" id="diveSearchResultsHandle" type="button" aria-label="Drag up to close dive-site results" title="Drag up to close"></button>
+            <button class="dive-search-results-handle" id="diveSearchResultsHandle" type="button" aria-label="Expand or collapse search results" aria-expanded="false" title="Expand or collapse search results"></button>
           </div>
     </div>
   </div>
@@ -8115,7 +8117,7 @@ ZSD·2016–2025</span></span>
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
     <script src="js/area-search.js?v=1"></script>
-    <script src="js/search-results-menu.js?v=5"></script>
+    <script src="js/search-results-menu.js?v=16"></script>
     <script src="js/map-welcome.js?v=2"></script>
     <script src="js/saved-trips-i18n.js?v=1"></script>
     <script src="js/saved-trips.js?v=10"></script>
@@ -8611,6 +8613,17 @@ ZSD·2016–2025</span></span>
     }
   }
 
+  // Move the existing controls, rather than mirror their values, so the same
+  // search, filtering and accessibility state serves both layouts.
+  function placeMobileSearchControls() {
+    const box = diveSearchSection.querySelector('.dive-search-box');
+    const sheetInput = document.getElementById('diveSearchSheetInput');
+    const target = mobileSearchQuery.matches ? sheetInput : box;
+    [diveSearchInput, document.getElementById('diveSearchClear'), document.getElementById('diveSearchFilterToggle')].forEach(control => target.append(control));
+  }
+  placeMobileSearchControls();
+  mobileSearchQuery.addEventListener('change', placeMobileSearchControls);
+
   function closeMobileDiveSearchForLayers() {
     if (!mobileSearchQuery.matches) return;
     // Invalidate pending renders too, so a delayed search response cannot reopen the flyout over Layers.
@@ -8637,12 +8650,15 @@ ZSD·2016–2025</span></span>
     const nextExpanded = !topMenuSearchSlot?.classList.contains('is-mobile-expanded');
     setMobileSearchExpanded(nextExpanded);
     if (nextExpanded) {
+      activateDiveSearchInput(diveSearchInput);
+      renderDiveSearchResults();
       requestAnimationFrame(() => {
         syncDiveSearchWidth();
         diveSearchInput?.focus({ preventScroll: true });
       });
     } else {
       diveSearchInput?.blur();
+      dismissDiveSearchResults();
     }
   });
   document.addEventListener('pointerdown', event => {
@@ -14171,6 +14187,8 @@ ZSD·2016–2025</span></span>
     els.panelLauncher.title = t('launcherTitle');
     els.diveSearchInput.placeholder = t('diveSearchPlaceholder');
     els.diveSearchInput.setAttribute('aria-label', t('diveSearchPlaceholder'));
+    const searchLabel = {en:'Search', zh:'搜索', ja:'検索', fr:'Rechercher', de:'Suche', es:'Buscar', it:'Cerca', pt:'Buscar', ru:'Поиск', ko:'검색', nl:'Zoeken', sv:'Sök', no:'Søk', id:'Cari'};
+    els.diveSearchToggle.querySelector('.dive-search-launcher-label').textContent = searchLabel[currentLang] || searchLabel.en;
     els.diveSearchToggle.title = t('diveSearchPlaceholder');
     els.diveSearchToggle.setAttribute('aria-label', t('diveSearchPlaceholder'));
     syncDiveSearchWidth();
@@ -23325,7 +23343,7 @@ function closeShareDialog() {
     surface:els.diveSearchResults, scroll:els.diveSearchResultsScroll,
     filterToggle:els.diveSearchFilterToggle, slot:topMenuSearchSlot,
     getInput:currentDiveSearchInput,
-    onSelect:index => {
+    onSelect:(index, interaction) => {
       const match = diveSearchMatches[index];
       if (match?.expandDestinations || match?.backToResults) {
         const current = {visibleCount:diveSearchVisibleCount,activeIndex:diveSearchActiveIndex};
@@ -23333,7 +23351,7 @@ function closeShareDialog() {
         diveSearchVisibleCount = view.visibleCount;
         diveSearchActiveIndex = -1;
         renderDiveSearchResults({forceRender:true});
-        setDiveSearchActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
+        if (!match.backToResults || interaction?.source === "keyboard") setDiveSearchActive(view.activeIndex < 0 ? (match.backToResults ? 3 : 1) : view.activeIndex);
         els.diveSearchResultsScroll.scrollTop = view.scrollTop;
       } else if (match != null) selectDiveSearchMatch(match);
     },
@@ -23341,10 +23359,28 @@ function closeShareDialog() {
   });
   const searchMenuMotion = searchResultsMenu.bindMobileHandle({
     resultsHandle:els.diveSearchResultsHandle,
+    contentScroll:els.diveSearchResultsScroll,
     returnFocus:els.diveSearchToggle,
+    isBottomSheet:() => els.diveSearchResults.classList.contains("is-mobile-bottom-sheet"),
+    onSheetResize:() => {
+      els.diveSearchResultsHandle.setAttribute("aria-expanded", String(els.diveSearchResults.classList.contains("is-sheet-expanded")));
+      positionDiveSearchFlyout();
+    },
     onDismiss:() => {
       diveSearchFiltersOpen = false; updateDiveSearchFilterControls();
       dismissDiveSearchResults(); setMobileSearchExpanded(false);
+    }
+  });
+  let diveFilterMotion;
+  diveFilterMotion = window.DiveAtlasSearchResultsMenu.bindMobileSurface({
+    results:els.diveSearchFilterControls,
+    resultsHandle:document.getElementById('diveSearchFilterHandle'),
+    followStretch:true,
+    isVisible:() => diveSearchFiltersOpen && !els.diveSearchFilterControls.hidden && els.diveSearchResults.classList.contains('is-mobile-bottom-sheet'),
+    returnFocus:els.diveSearchFilterToggle,
+    onDismiss:() => {
+      diveSearchFiltersOpen = false;
+      updateDiveSearchFilterControls();
     }
   });
   let diveAllFilterPickers = [];
@@ -23469,6 +23505,7 @@ function closeShareDialog() {
   }
 
   function updateDiveSearchFilterControls() {
+    if (!diveSearchFiltersOpen) diveFilterMotion?.cancel();
     diveAllFilterPickers.forEach(picker => picker.sync());
     searchResultsMenu.syncFilters({open:diveSearchFiltersOpen,active:hasActiveDiveSearchFilters(),pickers:diveFilterPickers});
     diveLayerFilterPickers.forEach(picker => {
@@ -23535,10 +23572,15 @@ function closeShareDialog() {
     searchResultsMenu.position({
       anchor:inline ? currentDiveSearchInput().closest('.map-welcome-search') : els.diveSearchBox,
       inline,
+      bottomSheet:!inline,
       filtersOpen:diveSearchFiltersOpen,
       focused:topMenuSearchSlot.contains(document.activeElement) || els.diveSearchResults.contains(document.activeElement) || topMenuSearchSlot.classList.contains('is-search-focus-retained')
     });
   }
+
+  // Mobile browsers can shrink or offset the visual viewport when the keyboard opens.
+  window.visualViewport?.addEventListener('resize', () => { if (els.diveSearchResults.classList.contains('visible')) positionDiveSearchFlyout(); });
+  window.visualViewport?.addEventListener('scroll', () => { if (els.diveSearchResults.classList.contains('visible')) positionDiveSearchFlyout(); });
 
   function diveSearchFilterDrafts() {
     return diveFilterPickers.map(picker => {
@@ -23585,7 +23627,8 @@ function closeShareDialog() {
     diveSearchMatches = [];
     diveSearchActiveIndex = -1;
     diveSearchVisibleCount = DIVE_SEARCH_PAGE_SIZE;
-    els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.classList.remove('visible', 'is-sheet-expanded');
+    els.diveSearchResultsHandle.setAttribute('aria-expanded', 'false');
     els.diveSearchResults.style.removeProperty('height');
     els.diveSearchResults.style.removeProperty('max-height');
     els.diveSearchLoadHint.hidden = true;
@@ -23602,7 +23645,8 @@ function closeShareDialog() {
   function dismissDiveSearchResults() {
     clearTimeout(diveSearchTimer);diveSearchRenderRequest++;
     cancelDiveSearchResultsDismissal();
-    els.diveSearchResults.classList.remove('visible');
+    els.diveSearchResults.classList.remove('visible', 'is-sheet-expanded');
+    els.diveSearchResultsHandle.setAttribute('aria-expanded', 'false');
     els.diveSearchResults.style.removeProperty('height');
     els.diveSearchResults.style.removeProperty('max-height');
     els.diveSearchLoadHint.hidden = true;
@@ -23633,7 +23677,7 @@ function closeShareDialog() {
     try { localStorage.removeItem(SEARCH_QUERY_STORAGE_KEY); } catch (_) {}
     els.diveSearchClear.classList.remove('visible');
     els.diveSearchBox.classList.remove('has-query');
-    if (hasActiveDiveSearchFilters() || diveSearchFiltersOpen) {
+    if (hasActiveDiveSearchFilters() || diveSearchFiltersOpen || (mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput && topMenuSearchSlot.classList.contains('is-mobile-expanded'))) {
       renderDiveSearchResults({ allowSameQueryRefresh: true });
     } else {
       hideDiveSearchResults();
@@ -23665,7 +23709,7 @@ function closeShareDialog() {
     // The clear/filter separator is created by has-query, so measure the anchor after syncing that class.
     positionDiveSearchFlyout();
 
-    if (!query && !hasActiveDiveSearchFilters() && !diveSearchFiltersOpen && document.activeElement !== currentDiveSearchInput()) {
+    if (!query && !hasActiveDiveSearchFilters() && !diveSearchFiltersOpen && document.activeElement !== currentDiveSearchInput() && !(mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput && topMenuSearchSlot.classList.contains('is-mobile-expanded'))) {
       els.diveSearchResults.setAttribute('aria-busy', 'false');
       hideDiveSearchResults();
       return;
@@ -23856,6 +23900,7 @@ function closeShareDialog() {
     map.stop();
     currentDiveSearchInput().value = match.name;
     hideDiveSearchResults();
+    if (mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput) setMobileSearchExpanded(false);
     map.closePopup();
     // Area exploration changes only the viewport: never invoke marker/popup
     // selection, which would replace the guide with a detail sheet on phones.
@@ -23974,6 +24019,7 @@ function closeShareDialog() {
     els.diveSearchClear.classList.add('visible');
     syncDiveSearchWidth();
     hideDiveSearchResults();
+    if (mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput) setMobileSearchExpanded(false);
 
     const targetZoom =
       Math.max(DIVE_CLUSTER_EXPAND_ZOOM, map.getZoom());
@@ -24044,6 +24090,7 @@ function closeShareDialog() {
 
 
   searchResultsMenu.bindPullPagination(() => diveSearchVisibleCount < diveSearchMatches.length);
+  els.diveSearchLoadHint.addEventListener('click', loadMoreDiveSearchResults);
 
   /* ---------- place selection ---------- */
 
@@ -32433,7 +32480,10 @@ function closeShareDialog() {
         dismiss:() => {
           clearTimeout(diveSearchTimer); diveSearchRenderRequest++;
           dismissDiveSearchResults();
-          if (currentDiveSearchInput() === els.diveSearchInput) els.diveSearchInput.blur();
+          if (currentDiveSearchInput() === els.diveSearchInput) {
+            els.diveSearchInput.blur();
+            if (mobileSearchQuery.matches) { setMobileSearchExpanded(false); els.diveSearchToggle.focus({preventScroll:true}); }
+          }
         }
       });
   }
@@ -32478,6 +32528,26 @@ function closeShareDialog() {
     }
     if (preserveSearchFocus) els.diveSearchInput.focus({ preventScroll: true });
   });
+
+  // An outside tap closes only the floating filters; the search sheet stays open.
+  document.addEventListener('pointerdown', event => {
+    if (!mobileSearchQuery.matches || !diveSearchFiltersOpen ||
+        !els.diveSearchResults.classList.contains('is-mobile-bottom-sheet')) return;
+    if (els.diveSearchFilterControls.contains(event.target) ||
+        els.diveSearchFilterToggle.contains(event.target) ||
+        event.target.closest('.dive-filter-options[data-filter-source="search"]')) return;
+    diveSearchFiltersOpen = false;
+    updateDiveSearchFilterControls();
+  }, true);
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !mobileSearchQuery.matches || !diveSearchFiltersOpen ||
+        !els.diveSearchResults.classList.contains('is-mobile-bottom-sheet') ||
+        diveFilterPickers.some(picker => picker.input.getAttribute('aria-expanded') === 'true')) return;
+    event.preventDefault(); event.stopPropagation();
+    diveSearchFiltersOpen = false;
+    updateDiveSearchFilterControls();
+    els.diveSearchFilterToggle.focus({preventScroll:true});
+  }, true);
 
   els.diveLegendFilterToggle.addEventListener('click', event => {
     event.stopPropagation();

@@ -328,9 +328,10 @@
   }
   .dive-search-load-hint:not([hidden]) {
     display: block;
-    padding: 6px 8px 8px;
+    width: 100%; min-height: 44px; padding: 6px 8px 8px;
+    border: 0; background: transparent; cursor: pointer;
     color: var(--muted);
-    font-size: 10px;
+    font: inherit; font-size: 10px;
     font-weight: 600;
     text-align: center;
   }
@@ -675,4 +676,180 @@ body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive
   .search-results-menu .dive-search-results-scroll {
     padding-bottom: 32px;
   }
+}
+
+/* The map search uses a bottom sheet; other shared search menus retain their
+   anchor-relative geometry and existing handle behavior. */
+@media (max-width: 720px) {
+  .search-results-menu.is-mobile-bottom-sheet {
+    border-radius: var(--radius-sheet, 18px) var(--radius-sheet, 18px) 0 0;
+    padding-top: 44px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-results-handle {
+    top: 0; bottom: auto; width: 100%; height: 44px;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-results-handle::before { transform: none; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-results-handle:focus-visible {
+    outline: 2px solid var(--primary); outline-offset: -3px;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result.has-result-kind { min-height: 56px; padding: 10px 16px; }
+  /* Keep the return control compact and visually distinct from selectable
+     destinations while preserving one full-width, sticky touch target. */
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] {
+    width: calc(100% - 2px); min-height: 48px; margin: 0 1px; padding: 8px 15px;
+    background: color-mix(in srgb, var(--panel-solid) 80%, transparent);
+    border-bottom: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(8px) saturate(145%);
+    backdrop-filter: blur(8px) saturate(145%);
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result[data-result-kind="back-to-results"] .dive-search-result-name {
+    flex: 1 1 auto; min-width: 0; gap: 8px; font-size: 13px; font-weight: 600;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result[data-result-kind="back-to-results"] .dive-search-result-meta {
+    flex: 0 1 auto; margin: 0; font-size: 12px; text-align: right;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-name,
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-title,
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-original,
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-meta {
+    white-space: normal; overflow: visible; overflow-wrap: anywhere;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-name { font-size: 14px; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-result-meta { font-size: 12px; }
+}
+
+.dive-search-sheet-input { display: none; }
+@media (max-width: 720px) {
+  /* The navigation keeps only the launcher; search controls share the sheet. */
+  #topMenuSearchSlot:is(.is-mobile-expanded, :not(.is-mobile-expanded)),
+  #topMenuSearchSlot:is(.is-mobile-expanded, :not(.is-mobile-expanded)) #diveSearchSection,
+  #topMenuSearchSlot:is(.is-mobile-expanded, :not(.is-mobile-expanded)) .dive-search-box {
+    width: 40px; min-width: 40px; max-width: 40px;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input {
+    position: absolute; z-index: 2; top: 44px; left: 16px; right: 16px;
+    display: flex; align-items: center; height: 48px;
+    border: 1px solid var(--line); border-radius: 14px; background: var(--panel-solid);
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input:focus-within { outline: 2px solid var(--primary); outline-offset: 1px; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input .dive-search-input {
+    display: block; visibility: visible; opacity: 1; width: 100%; min-width: 0; height: 100%;
+    padding: 0 90px 0 12px; font-size: 16px; font-weight: 500;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input .dive-search-clear.visible {
+    display: grid; visibility: visible; opacity: 1; right: 46px; width: 40px; height: 40px;
+  }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input .dive-search-filter-toggle {
+    display: grid; right: 2px; width: 44px; height: 44px;
+  }
+  .search-results-menu.is-mobile-bottom-sheet { padding-top: 104px; }
+  .search-results-menu.is-mobile-bottom-sheet.visible.has-filters { display: flex; }
+  /* Overlay filters without changing the result list's size or scroll position. */
+  .search-results-menu.is-mobile-bottom-sheet.has-filters > .dive-search-filter-controls {
+    position: absolute; z-index: 6; top: 98px; right: 16px;
+    width: min(300px, calc(100% - 32px)); max-height: calc(100% - 110px);
+    min-height: 0; padding: 16px; overflow: auto;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--panel-solid); box-shadow: 0 8px 24px rgb(0 0 0 / 25%);
+  }
+  .search-results-menu.is-mobile-bottom-sheet.is-sheet-expanded { border-radius: 0; }
+}
+
+@media (max-width: 720px) {
+  #topMenuSearchSlot:is(.is-mobile-expanded, :not(.is-mobile-expanded)) { flex: 0 0 40px; }
+  #topMenuSearchSlot .dive-search-box::after { display: none; }
+  #topMenuSearchSlot .dive-search-box #diveSearchToggle { width: 100%; height: 100%; flex: 1 1 auto; }
+}
+@media (max-width: 720px) {
+  /* Cover the shared header when expanded, while keeping filter pickers above the sheet. */
+  .search-results-menu.is-mobile-bottom-sheet { z-index: 2100; }
+  .dive-filter-options[data-filter-source="search"] { z-index: 2101; }
+}
+@media (max-width: 720px) {
+  #topMenuSearchSlot#topMenuSearchSlot { flex: 0 0 40px; width: 40px; min-width: 40px; max-width: 40px; }
+  #topMenuSearchSlot#topMenuSearchSlot #diveSearchSection,
+  #topMenuSearchSlot#topMenuSearchSlot .dive-search-box { width: 40px; min-width: 40px; max-width: 40px; }
+}
+
+.dive-search-filter-handle { display: none; }
+@media (max-width: 720px) {
+  .search-results-menu.is-mobile-bottom-sheet.has-filters > .dive-search-filter-controls {
+    padding-bottom: 0;
+    transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* Keep the clear action above the sticky grip even when the menu scrolls. */
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-clear:not([hidden]) { margin-bottom: 24px; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-controls.mobile-vertical-dragging { transition: none; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-controls.mobile-search-dismissing { overflow: hidden; pointer-events: none; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle {
+    position: sticky; bottom: 0; z-index: 1; grid-column: 1 / -1;
+    display: grid; place-items: center; justify-self: center;
+    width: calc(100% + 32px); height: 44px; margin-top: -20px; padding: 0; border: 0; background: transparent;
+    cursor: grab; touch-action: none; -webkit-tap-highlight-color: transparent;
+    transform: translateY(var(--mobile-handle-stretch, 0px));
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .search-results-menu.is-mobile-bottom-sheet .mobile-vertical-dragging .dive-search-filter-handle { transition: none; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle::before {
+    content: ''; position: relative; z-index: 1; width: 36px; height: 4px; border-radius: 999px; background: var(--muted); pointer-events: none; transform: translateY(7px);
+  }
+  /* The grip retains a 44px touch target; only its bottom edge paints a mask. */
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle::after {
+    content: ''; position: absolute; inset: auto 2px 1px; height: 18px; pointer-events: none;
+    border-radius: 0 0 8px 8px; opacity: 0;
+    background: color-mix(in srgb, var(--panel-solid) 97%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(145%); backdrop-filter: blur(12px) saturate(145%);
+  }
+  /* Paint only while content passes behind the grip, leaving the glass edge
+     unobscured when the floating menu is at rest. */
+  .search-results-menu.is-mobile-bottom-sheet :is(.mobile-vertical-dragging, .mobile-search-restoring) .dive-search-filter-handle::after { opacity: 1; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle:active { cursor: grabbing; }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle:focus-visible { outline: 2px solid var(--primary); outline-offset: -3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-results-menu.is-mobile-bottom-sheet.has-filters > .dive-search-filter-controls,
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle { transition: none; }
+}
+
+@media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle::after {
+    background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+}
+
+@media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] {
+    background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+}
+
+@media (max-width: 720px) {
+  /* The return row shares a scrollport with the list; reserve its height in
+     the scrollbar track so the thumb starts below the sticky navigation. */
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results #diveSearchResultsScroll::-webkit-scrollbar-track { margin-top: 48px; }
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] { width: calc(100% + 4px); }
+  /* Scrollbars reserve a gutter for the whole scrollport even when their
+     track starts below the sticky row. Continue its glass into that gutter. */
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results::after {
+    content: ''; position: absolute; z-index: 3; top: 104px; right: 1px;
+    width: 7px; height: 48px; pointer-events: none; box-sizing: border-box;
+    background: color-mix(in srgb, var(--panel-solid) 80%, transparent);
+    border-bottom: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(8px) saturate(145%); backdrop-filter: blur(8px) saturate(145%);
+  }
+}
+@media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
+  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results::after {
+    background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+}
+
+/* Navigation actions are not selected results; a pointer left over the
+   restored row must not look like a persistent selection. */
+body :is(#seoSiteSearchResults, #diveSearchResults) .dive-search-result[data-result-kind="expand-destinations"]:hover:not(.active) {
+  background: transparent;
+}
+body :is(#seoSiteSearchResults, #diveSearchResults) .dive-search-result[data-result-kind="expand-destinations"]:hover:not(.active) .dive-search-result-title {
+  text-decoration: underline; text-underline-offset: 3px;
 }

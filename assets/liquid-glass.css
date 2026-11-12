@@ -378,6 +378,24 @@ body .leaflet-control-zoom .map-zoom-buttons a:is(:hover, :focus-visible) {
 body :is(#seoSiteSearchFilterControls, #diveSearchFilterControls) {
   background: transparent;
 }
+/* The mobile filter floats over result text, unlike the desktop filter pane.
+   Its own material must obscure that text while retaining the sheet's glass. */
+@media (max-width: 720px) {
+  body #diveSearchResults.is-mobile-bottom-sheet #diveSearchFilterControls {
+    background: color-mix(in srgb, var(--panel-solid) 97%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(145%);
+    backdrop-filter: blur(12px) saturate(145%);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow), 0 8px 24px rgb(0 0 0 / 25%);
+  }
+}
+@media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
+  body #diveSearchResults.is-mobile-bottom-sheet #diveSearchFilterControls {
+    background: var(--panel-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 /* One scrollbar material for documents, overlays, forms and horizontal lists.
    Keep intentionally hidden gesture/scroll-snap bars hidden. Important material
    declarations override legacy component rules, including ID-based adapters. */
@@ -541,4 +559,45 @@ body.has-shared-header .unit-segmented-control:not([data-unit-segmented]) > butt
     border-top-left-radius:var(--radius-sheet, 18px) !important;
     border-top-right-radius:var(--radius-sheet, 18px) !important;
   }
+}
+@media (max-width: 720px) {
+  /* The search launcher uses the same glass material as other controls,
+     with a capsule silhouette that contains both its icon and label. */
+  body #topMenuSearchSlot #diveSearchSection .dive-search-box {
+    border: 1px solid var(--glass-border); border-radius: 999px;
+    background: var(--glass-highlight), var(--glass-tint);
+    -webkit-backdrop-filter: var(--glass-filter); backdrop-filter: var(--glass-filter);
+    box-shadow: var(--glass-shadow);
+  }
+  body #topMenuSearchSlot #diveSearchSection .dive-search-box:is(:hover, :focus-within) {
+    border-color: var(--glass-active-border);
+  }
+  body #topMenuSearchSlot #diveSearchToggle { border-radius: 999px; }
+}
+@media (max-width: 720px) {
+  /* Before the startup script moves it into the sheet, the filter control
+     must not overlap the mobile header's search launcher. */
+  body #topMenuSearchSlot #diveSearchSection .dive-search-box > #diveSearchFilterToggle { display: none; }
+}
+@media (max-width: 720px) {
+  /* Match the header's 21.6px icons. The search SVG uses a 16-unit viewBox,
+     so its stroke is scaled down to match the neighboring 24-unit icons. */
+  body #topMenuSearchSlot #diveSearchToggle svg { width: 21.6px; height: 21.6px; stroke-width: 1.35; }
+}
+.dive-search-launcher-label { display: none; }
+@media (390px <= width <= 720px) {
+  body #topMenuSearchSlot#topMenuSearchSlot { flex: 0 1 104px; width: 104px; min-width: 0; max-width: 104px; }
+  body #topMenuSearchSlot#topMenuSearchSlot #diveSearchSection,
+  body #topMenuSearchSlot#topMenuSearchSlot .dive-search-box { width: 100%; min-width: 0; max-width: 100%; }
+  body #topMenuSearchSlot #diveSearchToggle { display: flex; align-items: center; justify-content: flex-start; gap: 3px; padding: 0 5px; }
+  body #topMenuSearchSlot #diveSearchToggle svg { flex: 0 0 21.6px; }
+  body #topMenuSearchSlot .dive-search-launcher-label { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 500; }
+}
+@media (max-width: 720px) {
+  /* Match the adjacent header buttons' subtle fill and 140ms transition. */
+  body #topMenuSearchSlot #diveSearchToggle { transition: background-color .14s ease, color .14s ease; }
+  body #topMenuSearchSlot #diveSearchToggle:active { background: color-mix(in srgb, var(--text) 6%, transparent); }
+}
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  body #topMenuSearchSlot #diveSearchToggle { transition: none; }
 }
