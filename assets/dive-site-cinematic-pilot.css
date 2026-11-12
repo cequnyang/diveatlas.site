@@ -239,7 +239,7 @@ body.cinematic-pilot--exploring { overflow: hidden; }
   body.cinematic-pilot { padding-top: 42px; }
   .cinematic-pilot .site-photo { height: 440px; }
   .cinematic-pilot .hero-copy { right: 22px; left: 22px; bottom: 48px; }
-  .cinematic-pilot .hero-copy h1 { flex-basis: calc(100% - 56px); font-size: 48px; }
+  .cinematic-pilot .hero-copy h1 { flex-basis: calc(100% - 56px); font-size: clamp(28px, 8vw, 36px); }
   .cinematic-pilot .hero-copy > .breadcrumbs { font-size: 11px; margin-bottom: 12px; }
   .cinematic-pilot__trigger { font-size: 12px; }
   .cinematic-pilot #detailPage > :not(.site-hero) { width: calc(100% - 40px); }
