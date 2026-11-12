@@ -4388,6 +4388,7 @@
 
     @media (max-width: 720px) {
       #topMenuButton svg { width:24px; height:24px; }
+      #topMenuButton path { stroke-width:1.28; }
     }
 
     .top-menu-dropdown {
@@ -4689,7 +4690,7 @@
     #topMenuButton:hover,
     #topMenuButton:active { background:#f0f1f3; }
     #languageMenuButton,
-    #topMenuButton { color:#6b7280; }
+    #topMenuButton { color:var(--muted); }
     [data-theme="dark"] .top-menu-share:hover,
     [data-theme="dark"] .top-menu-share:active,
     [data-theme="dark"] #languageMenuButton:hover,
@@ -7216,7 +7217,7 @@
       </button>
       <div class="top-menu-share-wrap">
         <button class="top-menu-share" id="shareMapButton" type="button" aria-label="Share map info" title="Share map info">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L7 8m5-5 5 5M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="2.3"/></svg>
           <span class="top-menu-share-label" data-i18n="shareMap">Share map</span>
         </button>
       </div>
@@ -7237,7 +7238,7 @@
       <div class="top-menu-lang" id="languageMenu">
         <button class="top-menu-menu-button top-menu-lang-trigger" id="languageMenuButton" type="button" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="languageDropdown">
           <span id="languageMenuLabel">EN</span>
-          <svg class="language-chevron-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="language-chevron-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <svg class="language-globe-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.8 10h14.4M10 2.5c2 2 3 4.5 3 7.5s-1 5.5-3 7.5c-2-2-3-4.5-3-7.5s1-5.5 3-7.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="top-menu-dropdown language-dropdown" id="languageDropdown" role="menu" aria-label="Language" hidden>
@@ -7272,7 +7273,7 @@
           aria-label="Menu"
           aria-expanded="false"
           aria-controls="topMenuDropdown"
-        ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        ><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.92" stroke-linecap="round"/></svg></button>
         <div class="top-menu-dropdown" id="topMenuDropdown" hidden>
           <div class="top-menu-page-header">
             <span id="topMenuPageTitle">Menu</span>
