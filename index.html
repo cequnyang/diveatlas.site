@@ -4330,10 +4330,8 @@
     }
 
     .top-menu-lang {
-      width: var(--lang-control-width, 56px);
-      min-width: var(--lang-control-width, 56px);
-      max-width: var(--lang-control-width, 56px);
-      flex: 0 0 var(--lang-control-width, 56px);
+      width: max-content;
+      flex: 0 0 auto;
       border: 1px solid transparent;
       border-radius: 6px;
       transition: background-color .14s ease;
@@ -4669,11 +4667,10 @@
       outline-offset: -2px;
     }
 
-    .top-menu-lang-trigger {
-      width: var(--lang-control-width, 56px);
-      min-width: var(--lang-control-width, 56px);
-      max-width: var(--lang-control-width, 56px);
-      flex: 0 0 var(--lang-control-width, 56px);
+    .top-menu-menu-button.top-menu-lang-trigger {
+      width: max-content;
+      min-width: 56px;
+      flex: 0 0 auto;
       height: 28px;
       box-sizing: border-box;
       padding: 0 7px;
@@ -5786,17 +5783,14 @@
     .tutorial-header { position: static; display: flex; min-width: 0; flex: 0 1 auto; align-items: flex-start; justify-content: flex-start; gap: 12px; text-align: left; }
     .tutorial-header > div:first-child { min-width: 0; flex: 0 1 auto; }
     .tutorial-language-menu {
-      --lang-control-width: 72px;
       position: relative;
       z-index: 3;
       top: 0;
       right: auto;
-      min-width: 72px;
       height: 36px;
-      flex: 0 0 72px;
     }
     .tutorial-language-menu .top-menu-lang-trigger {
-      --lang-control-width: 72px;
+      min-width: 72px;
       height: 36px;
       border-color: var(--border-subtle);
       background: var(--panel-soft);
@@ -5974,7 +5968,8 @@
       .tutorial-backdrop { padding: 12px; align-items: center; }
       .tutorial-dialog { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); padding: 14px 14px max(12px, env(safe-area-inset-bottom)); border-radius: 18px; }
       .tutorial-topbar { gap: 8px; margin-bottom: 8px; }
-      .tutorial-header { gap: 8px; }
+      .tutorial-header { gap: 8px; flex-wrap: wrap; }
+      .tutorial-header > div:first-child { min-width: min-content; }
       .tutorial-language-menu { top: 0; margin-top: 7px; }
       .tutorial-title { margin: 7px 0 0; font-size: 28px; }
       .tutorial-intro { margin: 5px 0 8px; font-size: 12px; }
@@ -7159,7 +7154,7 @@
   <link rel="stylesheet" href="/assets/site-contributions.css?v=1">
   <link rel="stylesheet" href="/assets/saved-trips.css?v=13">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=52">
-<link rel="stylesheet" href="/assets/site-header.css?v=10">
+<link rel="stylesheet" href="/assets/site-header.css?v=13">
 <link rel="stylesheet" href="assets/map-welcome.css?v=4">
 <script src="/js/site-header.js?v=5" defer></script>
 <script type="module" src="/js/dive-site-reviewed-thumbnails.js"></script>
@@ -14011,39 +14006,6 @@ ZSD·2016–2025</span></span>
     els.languageMenuLabel.textContent = languageLabel;
     els.tutorialLanguageMenuLabel.textContent = languageLabel;
 
-    const style = getComputedStyle(els.languageMenuButton);
-    const canvas =
-      syncLanguageSelectWidth._canvas ||
-      (syncLanguageSelectWidth._canvas =
-        document.createElement('canvas'));
-    const context = canvas.getContext('2d');
-    if (!context) return;
-
-    context.font = [
-      style.fontStyle,
-      style.fontWeight,
-      style.fontSize,
-      style.fontFamily
-    ].join(' ');
-
-    const label = option.textContent || '';
-    const letterSpacing = cssPixelValue(style.letterSpacing);
-    const textWidth =
-      context.measureText(label).width +
-      Math.max(0, label.length - 1) * letterSpacing;
-
-    const width = Math.ceil(
-      textWidth +
-      cssPixelValue(style.paddingLeft) +
-      cssPixelValue(style.paddingRight) +
-      cssPixelValue(style.columnGap || style.gap) +
-      14
-    );
-
-    wrapper.style.setProperty(
-      '--lang-control-width',
-      Math.max(56, Math.min(124, width)) + 'px'
-    );
   }
 
   const COMPACT_DIVE_SEARCH_PLACEHOLDERS = Object.freeze({

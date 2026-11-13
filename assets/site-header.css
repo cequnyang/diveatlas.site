@@ -137,11 +137,10 @@ body.has-shared-header .seo-menu-wrap .top-menu-menu-button:focus-visible { outl
 body.has-shared-header .seo-language-menu { position: relative; display: inline-flex; align-items: center; }
 body.has-shared-header .seo-language-menu .top-menu-lang-trigger {
   display: inline-flex;
-  width: 56px;
+  width: max-content;
   min-width: 56px;
-  max-width: 56px;
   height: 28px;
-  flex: 0 0 56px;
+  flex: 0 0 auto;
   box-sizing: border-box;
   justify-content: space-between;
   gap: 6px;

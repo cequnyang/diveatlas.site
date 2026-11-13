@@ -33,7 +33,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                 result = install_shared_header_assets(document, '1.2.3')
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
                 self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
-                self.assertEqual(result.count('/assets/site-header.css?v=12'), 1)
+                self.assertEqual(result.count('/assets/site-header.css?v=13'), 1)
                 self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
                 self.assertIn('data-app-version="2.0.0"', upgraded)
@@ -59,7 +59,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
             with self.subTest(kind=kind):
                 result = page_shell('Test', 'Description', 'https://diveatlas.site/test/', '<main>Body</main>', kind)
                 self.assertIn('/js/site-header.js?v=6', result)
-                self.assertIn('/assets/site-header.css?v=12', result)
+                self.assertIn('/assets/site-header.css?v=13', result)
                 if kind != 'seo-site-detail-layout':
                     self.assertIn('/js/seo-page-controls.js?v=38', result)
 

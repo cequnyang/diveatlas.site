@@ -388,6 +388,7 @@ test('welcome starts with the current month then shares changes with Layers acro
     localStorage.setItem('global-coral-map-dive-experience-month-v1','9');
   });
   await page.goto('/?__diveatlas_test=1');
+  await page.waitForFunction(() => window.__DIVEATLAS_TEST__?.selectEnvironmentalView);
   await page.evaluate(() => window.__DIVEATLAS_TEST__.selectEnvironmentalView('dive-experience-outlook'));
   const month = page.locator('#mapWelcomeMonth');
   await expect(month).toHaveValue('2');
@@ -411,6 +412,200 @@ test('welcome starts with the current month then shares changes with Layers acro
   await expect(month).toHaveValue('7');
   await expect(page.locator('#mapWelcomeMonthValue')).toHaveText('juillet');
   await expect(page.locator('#mapWelcomeReviewPanel .map-welcome-destination-value')).not.toBeEmpty();
+});
+
+test('language controls contain every label and arrow', async ({ page, isMobile }) => {
+  test.setTimeout(60_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  await page.goto('/');
+  const welcome = page.locator('#mapWelcome');
+  const button = welcome.locator('[data-action="language"]');
+  await button.click();
+  await page.locator('#tutorialLanguageDropdown [data-language="zh"]').click();
+
+  async function expectContentsFit(control) {
+    await expect(control).toBeVisible();
+    const bounds = await control.evaluate(el => {
+      const button = el.getBoundingClientRect();
+      return [...el.querySelectorAll('span, svg')].filter(child => getComputedStyle(child).display !== 'none').map(child => {
+        const rect = child.getBoundingClientRect();
+        const style = getComputedStyle(el);
+        return { left: rect.left - button.left, right: button.right - rect.right, element: child.outerHTML, buttonWidth: button.width, width:style.width, maxWidth:style.maxWidth, flex:style.flex };
+      });
+    });
+    expect(bounds.length).toBe(2);
+    for (const edge of bounds) {
+      expect(edge.left).toBeGreaterThanOrEqual(0);
+      expect(edge.right, JSON.stringify(edge)).toBeGreaterThanOrEqual(0);
+    }
+  }
+
+  const languages = await page.locator('#langSelect option').evaluateAll(options =>
+    options.map(option => ({ value: option.value, label: option.textContent })));
+  async function checkLanguages(control) {
+    for (const language of languages) {
+      await page.locator('#langSelect').selectOption(language.value, { force:true });
+      await expect(control, language.value).toContainText(language.label);
+      await expectContentsFit(control);
+      if (!isMobile) await expectContentsFit(page.locator('#languageMenuButton'));
+    }
+  }
+
+  await checkLanguages(button);
+  await welcome.locator('[data-action="guide"]').click();
+  await checkLanguages(page.locator('#tutorialLanguageMenuButton'));
+});
+
+test('narrow phone headers fit in every language', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phone viewport check');
+  test.setTimeout(90_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  await page.goto('/');
+  const languages = await page.locator('#langSelect option').evaluateAll(options => options.map(option => option.value));
+  const welcome = page.locator('#mapWelcome');
+
+  async function checkHeader(container, language) {
+    const boxes = await container.locator('.tutorial-topbar').evaluate(bar => {
+      const elements = [bar.querySelector('.tutorial-title'), bar.querySelector('.top-menu-lang-trigger'), bar.querySelector('.tutorial-close')];
+      return elements.map(el => {
+        const r = el.getBoundingClientRect();
+        return { left:r.left, right:r.right, top:r.top, bottom:r.bottom };
+      });
+    });
+    const overflow = await container.locator('.tutorial-title').evaluate(el => ({ scroll:el.scrollWidth, client:el.clientWidth }));
+    expect(overflow.scroll, language).toBeLessThanOrEqual(overflow.client + 1);
+    for (const box of boxes) {
+      expect(box.left, language).toBeGreaterThanOrEqual(0);
+      expect(box.right, language).toBeLessThanOrEqual(page.viewportSize().width);
+    }
+    for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i], b = boxes[j];
+      expect(a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom, `${language}: ${JSON.stringify(boxes)}`).toBe(false);
+    }
+  }
+
+  for (const width of [320, 360]) {
+    await page.setViewportSize({ width, height: 800 });
+    for (const language of languages) {
+      await page.locator('#langSelect').selectOption(language, { force:true });
+      await checkHeader(welcome, `${width} welcome ${language}`);
+    }
+    await welcome.locator('[data-action="guide"]').click();
+    const guide = page.locator('#tutorialDialog');
+    await expect(guide).toBeVisible();
+    for (const language of languages) {
+      await page.locator('#langSelect').selectOption(language, { force:true });
+      await checkHeader(guide, `${width} guide ${language}`);
+    }
+    await page.locator('#tutorialClose').click();
+  }
+});
+
+test('short and landscape screens keep the welcome and guide usable in every language', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phone viewport check');
+  test.setTimeout(120_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  await page.goto('/');
+  const languages = await page.locator('#langSelect option').evaluateAll(options => options.map(option => option.value));
+  const welcome = page.locator('#mapWelcome');
+  const guide = page.locator('#tutorialDialog');
+  async function checkViewport(element, context) {
+    const bounds = await element.boundingBox();
+    expect(bounds, context).not.toBeNull();
+    expect(bounds.x, context).toBeGreaterThanOrEqual(-1);
+    expect(bounds.y, context).toBeGreaterThanOrEqual(-1);
+    expect(bounds.x + bounds.width, context).toBeLessThanOrEqual(page.viewportSize().width + 1);
+    expect(bounds.y + bounds.height, context).toBeLessThanOrEqual(page.viewportSize().height + 1);
+  }
+  async function checkHeader(panel, context) {
+    const result = await panel.locator('.tutorial-topbar').evaluate(bar => {
+      const title = bar.querySelector('.tutorial-title');
+      const controls = [title, bar.querySelector('.top-menu-lang-trigger'), bar.querySelector('.tutorial-close')];
+      const boxes = controls.map(el => { const r = el.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; });
+      const button = controls[1], outer = button.getBoundingClientRect();
+      const contentsFit = [...button.querySelectorAll('span, svg')].filter(el => getComputedStyle(el).display !== 'none').every(el => {
+        const r = el.getBoundingClientRect(); return r.left >= outer.left - 1 && r.right <= outer.right + 1;
+      });
+      return {boxes, contentsFit, titleFits:title.scrollWidth <= title.clientWidth + 1};
+    });
+    expect(result.contentsFit, context).toBe(true);
+    expect(result.titleFits, context).toBe(true);
+    for (let i = 0; i < result.boxes.length; i++) for (let j = i + 1; j < result.boxes.length; j++) {
+      const a = result.boxes[i], b = result.boxes[j];
+      expect(a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom, context).toBe(false);
+    }
+  }
+  for (const size of [{width:667,height:375}, {width:844,height:390}, {width:320,height:480}]) {
+    await page.setViewportSize(size);
+    for (const language of languages) {
+      await page.locator('#langSelect').selectOption(language, {force:true});
+      await checkViewport(welcome, `${size.width}x${size.height} welcome ${language}`);
+      await welcome.locator('[data-action="language"]').scrollIntoViewIfNeeded();
+      await checkViewport(welcome.locator('[data-action="language"]'), `welcome language ${language}`);
+      await checkHeader(welcome, `welcome header ${size.width}x${size.height} ${language}`);
+    }
+    await welcome.locator('[data-action="next"]').click();
+    await expect(page.locator('#mapWelcomeMonthPanel')).toBeVisible();
+    await welcome.locator('[data-action="back"]').click();
+    await welcome.locator('[data-action="guide"]').click();
+    await expect(guide).toBeVisible();
+    for (const language of languages) {
+      await page.locator('#langSelect').selectOption(language, {force:true});
+      await checkViewport(guide, `${size.width}x${size.height} guide ${language}`);
+      await checkViewport(page.locator('#tutorialLanguageMenuButton'), `guide language ${language}`);
+      await checkViewport(page.locator('#tutorialClose'), `guide close ${language}`);
+      await checkHeader(guide, `guide header ${size.width}x${size.height} ${language}`);
+    }
+    const toggle = page.locator('label[for="tutorialReefLayerToggle"]');
+    const before = await page.locator('#tutorialReefLayerToggle').isChecked();
+    await toggle.click();
+    await expect(page.locator('#tutorialReefLayerToggle')).toHaveJSProperty('checked', !before);
+    await page.locator('#tutorialStart').click();
+    await expect(guide).toBeHidden();
+    await expect(welcome).toBeVisible();
+  }
+});
+
+test('short and landscape language menus scroll and select every language', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phone viewport check');
+  test.setTimeout(240_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  await page.goto('/');
+  const languages = await page.locator('#langSelect option').evaluateAll(options => options.map(option => option.value));
+  const welcome = page.locator('#mapWelcome');
+
+  async function checkMenu(trigger, menu, context) {
+    for (const language of languages) {
+      await trigger.click();
+      await expect(menu).toBeVisible();
+      await expect.poll(async () => {
+        const box = await menu.boundingBox();
+        return box && box.x >= -1 && box.y >= -1 && box.x + box.width <= page.viewportSize().width + 1 && box.y + box.height <= page.viewportSize().height + 1;
+      }, { message: context }).toBe(true);
+      const bounds = await menu.boundingBox();
+      expect(bounds.x, context).toBeGreaterThanOrEqual(-1);
+      expect(bounds.y, context).toBeGreaterThanOrEqual(-1);
+      expect(bounds.x + bounds.width, context).toBeLessThanOrEqual(page.viewportSize().width + 1);
+      expect(bounds.y + bounds.height, context).toBeLessThanOrEqual(page.viewportSize().height + 1);
+      const option = menu.locator(`[data-language="${language}"]`);
+      await option.scrollIntoViewIfNeeded();
+      await option.click();
+      await expect(page.locator('#langSelect'), `${context} ${language}`).toHaveValue(language);
+      await expect(menu).toBeHidden();
+    }
+  }
+
+  for (const size of [{width:667,height:375}, {width:844,height:390}, {width:320,height:480}]) {
+    await page.setViewportSize(size);
+    await expect(welcome).toBeVisible();
+    const context = `${size.width}x${size.height}`;
+    await checkMenu(welcome.locator('[data-action="language"]'), page.locator('#tutorialLanguageDropdown'), `${context} welcome`);
+    await welcome.locator('[data-action="guide"]').click();
+    await checkMenu(page.locator('#tutorialLanguageMenuButton'), page.locator('#tutorialLanguageDropdown'), `${context} guide`);
+    await page.locator('#tutorialClose').click();
+    await expect(page.locator('#tutorialBackdrop')).toBeHidden();
+    await page.reload();
+  }
 });
 
 test('welcome controls and the shared month wheel follow the map theme without moving the frame', async ({ page }) => {
