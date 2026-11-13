@@ -11101,6 +11101,7 @@ ZSD·2016–2025</span></span>
             latSum: 0,
             lngSum: 0,
             densitySum: 0,
+            points: [],
             south: lat,
             west: lng,
             north: lat,
@@ -11109,6 +11110,7 @@ ZSD·2016–2025</span></span>
         }
 
         const group = grouped.get(key);
+        group.points.push(row);
         group.count += 1;
         group.latSum += lat;
         group.lngSum += lng;
@@ -11125,6 +11127,7 @@ ZSD·2016–2025</span></span>
         lng: group.lngSum / group.count,
         density: group.densitySum / group.count,
         site: '',
+        aggregatePoints: group.points,
         clusterWeight: group.count,
         clusterBounds: [
           group.south,
@@ -11175,11 +11178,13 @@ ZSD·2016–2025</span></span>
             west: lng,
             north: lat,
             east: lng,
-            item: null
+            item: null,
+            points: []
           });
         }
 
         const group = grouped.get(key);
+        group.points.push({ lat, lng });
         group.count += 1;
         group.latSum += lat;
         group.lngSum += lng;
@@ -11197,6 +11202,7 @@ ZSD·2016–2025</span></span>
         lng: group.lngSum / group.count,
         site: group.item?.site || null,
         index: group.item?.index ?? -1,
+        aggregatePoints: group.points,
         clusterWeight: group.count,
         clusterBounds: [
           group.south,
@@ -24646,9 +24652,8 @@ function closeShareDialog() {
     return tf('clusterCoral', { count });
   }
 
-  function clusterPointRows(points, type) {
+  function clusterPointRows(points, type, zoom = map.getZoom()) {
     const config = POINT_CLUSTER_CONFIG[type];
-    const zoom = map.getZoom();
 
     if (!config || zoom >= config.expandZoom) {
       return points.map(point => {
@@ -24791,16 +24796,46 @@ function closeShareDialog() {
     });
   }
 
-  function zoomIntoAggregate(cluster, config) {
+  function zoomIntoAggregate(cluster, config, type) {
     if (!cluster || !config) return false;
 
     const currentZoom = map.getZoom();
     const maxTargetZoom = Math.min(
       map.getMaxZoom(),
-      config.expandZoom,
-      currentZoom + 3
+      config.expandZoom
     );
     if (maxTargetZoom <= currentZoom) return false;
+
+    // Low-zoom LOD rows hide their original points. Recreate the same LOD
+    // buckets at each candidate zoom before testing for a singleton.
+    const points = (cluster.members || []).flatMap(member => {
+      if (!member.aggregatePoints) return [member];
+      const worldShift = member.lng - normalizeBaseLongitude(member.lng);
+      return member.aggregatePoints.map(point => ({ ...point, lng: normalizeBaseLongitude(point.lng) + worldShift }));
+    });
+    let targetZoom = maxTargetZoom;
+    for (let zoom = Math.floor(currentZoom) + 1; zoom < maxTargetZoom; zoom += 1) {
+      const step = type === 'species' ? 0 : fishLodStepForZoom(zoom);
+      let rows = points;
+      if (step && !(type === 'dive' && hasActiveDiveSearchFilters())) {
+        const buckets = new Map();
+        for (const point of points) {
+          const key = `${Math.floor((point.lat + 90) / step)}:${Math.floor((normalizeBaseLongitude(point.lng) + 180) / step)}`;
+          if (!buckets.has(key)) buckets.set(key, { lat: 0, lng: 0, clusterWeight: 0 });
+          const row = buckets.get(key);
+          row.lat += point.lat;
+          row.lng += point.lng;
+          row.clusterWeight += 1;
+        }
+        rows = [...buckets.values()].map(row => ({
+          ...row, lat: row.lat / row.clusterWeight, lng: row.lng / row.clusterWeight
+        }));
+      }
+      if (rows.length && clusterPointRows(rows, type, zoom).some(row => !row.clustered)) {
+        targetZoom = zoom;
+        break;
+      }
+    }
 
     let bounds = null;
     if (
@@ -24825,7 +24860,7 @@ function closeShareDialog() {
       if (!Number.isFinite(cluster.lat) || !Number.isFinite(cluster.lng)) return false;
       runInternalMapMovement(() => map.flyTo(
         [cluster.lat, cluster.lng],
-        Math.min(maxTargetZoom, currentZoom + 2),
+        targetZoom,
         { animate: true, duration: .45 }
       ));
       return true;
@@ -24840,20 +24875,11 @@ function closeShareDialog() {
     if (effectivelySamePoint) {
       runInternalMapMovement(() => map.flyTo(
         [cluster.lat, cluster.lng],
-        Math.min(maxTargetZoom, currentZoom + 2),
+        targetZoom,
         { animate: true, duration: .45 }
       ));
       return true;
     }
-
-    // Member bounds usually expand a cluster several levels at once; cap the
-    // result so the next render can split it without jumping to max zoom.
-    const fitZoom = map.getBoundsZoom(bounds, false, L.point(92, 92));
-    const targetZoom = Math.min(
-      maxTargetZoom,
-      Math.max(currentZoom + 1, fitZoom)
-    );
-    if (targetZoom <= currentZoom) return false;
 
     runInternalMapMovement(() => map.flyTo(bounds.getCenter(), targetZoom, {
       animate: true,
@@ -24871,7 +24897,7 @@ function closeShareDialog() {
       cancelPendingMapInteraction();
       marker.closeTooltip?.();
       const aggregate = marker._diveAtlasInteraction.aggregate;
-      return zoomIntoAggregate(aggregate.cluster, aggregate.config);
+      return zoomIntoAggregate(aggregate.cluster, aggregate.config, aggregate.type);
     }
 
     if (action !== 'details') return false;
@@ -24923,7 +24949,7 @@ function closeShareDialog() {
     marker._diveAtlasInteraction = {
       kind: MAP_MARKER_KIND.aggregate,
       count: cluster.count,
-      aggregate: { cluster, config }
+      aggregate: { cluster, config, type }
     };
 
     bindMapHoverTooltip(
