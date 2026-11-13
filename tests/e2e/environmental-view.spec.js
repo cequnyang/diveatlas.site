@@ -638,30 +638,50 @@ test('header filter control retains the Show all layers action without a duplica
   }
 });
 
+async function observeCheckTransitions(page, buttonId, inputIds) {
+  return page.evaluate(async ({buttonId, inputIds}) => {
+    const button = document.getElementById(buttonId);
+    const inputs = inputIds.map(id => document.getElementById(id));
+    const circles = inputs.map(input => input.nextElementSibling);
+    const initial = inputs.map(input => input.checked);
+    const bounds = element => {
+      const {width, height} = element.getBoundingClientRect();
+      return {width, height};
+    };
+    const size = bounds(circles[0]);
+    const overlaySize = bounds(document.querySelector('.bio-legend-row .layer-toggle-switch'));
+    const toggleAndRead = async () => {
+      // Observe browser-generated transitions, not one sampled frame: a busy
+      // runner may finish a 240ms animation before its next JS callback runs.
+      const starts = circles.map(circle => new Promise(resolve => {
+        const onRun = event => {
+          if (event.target !== circle || event.pseudoElement !== '::after' || event.propertyName !== 'clip-path') return;
+          circle.removeEventListener('transitionrun', onRun);
+          resolve(true);
+        };
+        circle.addEventListener('transitionrun', onRun);
+      }));
+      circles.forEach(circle => getComputedStyle(circle, '::after').clipPath);
+      button.click();
+      circles.forEach(circle => getComputedStyle(circle, '::after').clipPath);
+      const started = await Promise.all(starts);
+      const states = inputs.map((input, index) => ({checked:input.checked, checkTransitionStarted:started[index]}));
+      await Promise.all(circles.flatMap(circle => circle.getAnimations({subtree:true}))
+        .map(animation => animation.finished.catch(() => {})));
+      return states;
+    };
+    const first = await toggleAndRead();
+    const second = await toggleAndRead();
+    return {initial, size, overlaySize, first, second};
+  }, {buttonId, inputIds});
+}
+
 test('Layers bulk action animates changed overlay checks in both directions', async ({ page }) => {
   await openMap(page);
-  const animationStates = await page.evaluate(async () => {
-    const button = document.getElementById('bioLegendBulkAction');
-    const ids = ['terrainLayerToggle', 'contoursLayerToggle', 'speciesLayerToggle', 'fishLayerToggle'];
-    const read = () => ids.map(id => {
-      const input = document.getElementById(id);
-      const circle = input.nextElementSibling;
-      return {
-        checked: input.checked,
-        checkAnimating: circle.getAnimations({ subtree: true }).some(animation =>
-          animation.transitionProperty === 'clip-path')
-      };
-    });
-    button.click();
-    await new Promise(requestAnimationFrame);
-    const checking = read();
-    await new Promise(resolve => setTimeout(resolve, 350));
-    button.click();
-    await new Promise(requestAnimationFrame);
-    return { checking, unchecking: read() };
-  });
-  expect(animationStates.checking.every(state => state.checked && state.checkAnimating), JSON.stringify(animationStates)).toBe(true);
-  expect(animationStates.unchecking.every(state => !state.checked && state.checkAnimating), JSON.stringify(animationStates)).toBe(true);
+  const states = await observeCheckTransitions(page, 'bioLegendBulkAction',
+    ['terrainLayerToggle', 'contoursLayerToggle', 'speciesLayerToggle', 'fishLayerToggle']);
+  expect(states.first.every(state => state.checked && state.checkTransitionStarted), JSON.stringify(states)).toBe(true);
+  expect(states.second.every(state => !state.checked && state.checkTransitionStarted), JSON.stringify(states)).toBe(true);
 });
 
 test('Current speed tint uses the shared check circle and animates both directions', async ({ page }) => {
@@ -669,31 +689,12 @@ test('Current speed tint uses the shared check circle and animates both directio
   await page.locator('.environment-segment').filter({
     has: page.locator('input[name="environmentView"][value="currents"]')
   }).click();
-  const toggleState = await page.evaluate(async () => {
-    const input = document.getElementById('currentsSpeedTintToggle');
-    const circle = input.nextElementSibling;
-    const size = circle.getBoundingClientRect();
-    const overlaySize = document.querySelector('.bio-legend-row .layer-toggle-switch').getBoundingClientRect();
-    const initial = input.checked;
-    const toggleAndRead = async () => {
-      input.click();
-      await new Promise(requestAnimationFrame);
-      return {
-        checked: input.checked,
-        checkAnimating: circle.getAnimations({ subtree: true }).some(animation =>
-          animation.transitionProperty === 'clip-path')
-      };
-    };
-    const first = await toggleAndRead();
-    await new Promise(resolve => setTimeout(resolve, 350));
-    const second = await toggleAndRead();
-    return { initial, size: { width: size.width, height: size.height }, overlaySize: { width: overlaySize.width, height: overlaySize.height }, first, second };
-  });
-  expect(toggleState.size).toEqual(toggleState.overlaySize);
-  expect(toggleState.first.checked).toBe(!toggleState.initial);
-  expect(toggleState.second.checked).toBe(toggleState.initial);
-  expect(toggleState.first.checkAnimating, JSON.stringify(toggleState)).toBe(true);
-  expect(toggleState.second.checkAnimating, JSON.stringify(toggleState)).toBe(true);
+  const states = await observeCheckTransitions(page, 'currentsSpeedTintToggle', ['currentsSpeedTintToggle']);
+  expect(states.size).toEqual(states.overlaySize);
+  expect(states.first[0].checked).toBe(!states.initial[0]);
+  expect(states.second[0].checked).toBe(states.initial[0]);
+  expect(states.first[0].checkTransitionStarted, JSON.stringify(states)).toBe(true);
+  expect(states.second[0].checkTransitionStarted, JSON.stringify(states)).toBe(true);
 });
 
 test('temperature panel motion follows the latest view, stays inert while closing, and respects reduced motion', async ({ page }) => {
