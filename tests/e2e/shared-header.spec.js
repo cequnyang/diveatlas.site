@@ -243,6 +243,7 @@ test(`welcome searches inline and selects on the real map with ${selection}`, as
 
 for (const areaInput of ['guide','header']) {
 test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide`, async ({ page }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   // Warm the catalogue before making the two competing selections. Waiting
@@ -254,6 +255,7 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
   await header.fill('Bali');
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   if (areaInput === 'guide') await guide.fill('Raja Ampat');
   else {
@@ -341,6 +343,7 @@ test('top site selection still opens details and restores normal zoom limits aft
   await page.locator('#diveSearchInput').fill('Bali');
   await page.locator('#diveSearchInput').press('ArrowDown');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getMinZoom())).toBe(2);
@@ -638,11 +641,13 @@ test('welcome immediately saves suppression and follows changes from another tab
 });
 
 test('header destination selection keeps native site details separate from guide area search', async ({ page }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
   await header.fill('Bali');
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('#mapWelcomeSearch')).toHaveValue('');
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});

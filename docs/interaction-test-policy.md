@@ -61,3 +61,12 @@ computed skip calls, conflicting tags, missing project coverage and runtime skip
 The actual collection check runs as part of `check:test-policy` in both local
 aggregate verification and the required CI job. Production deployment depends on
 that job and publishes its tested artifact.
+
+Browser assertions that depend on the published data must wait for their actual
+ready state. The comparison suite queries all mapped site records and allows up
+to 90 seconds per query within a 180-second test budget; it still asserts the
+same coverage and values. Search tests allow 30 seconds for the cold catalogue
+and index within a 60-second flow budget. These are bounded data waits, not
+unconditional delays. Gesture tests wait for the entrance to finish before
+injecting touches at the grip's measured coordinates, so they test the resting
+sheet rather than racing a moving hit target.
