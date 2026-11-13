@@ -1466,3 +1466,31 @@ test('localized dive names search both shared header and map without merging nam
   await page.locator('#diveSearchInput').fill('双子岩');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toContainText('Twins Koh Tao');
 });
+
+
+test('opening the header language menu during welcome dismissal preserves focus', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Phone viewport check');
+  test.setTimeout(120_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  for (const size of [{width:667,height:375}, {width:844,height:390}, {width:320,height:480}]) {
+    await page.setViewportSize(size);
+    await page.goto('/');
+    const welcome = page.locator('#mapWelcome');
+    const trigger = page.locator('#languageMenuButton');
+    const menu = page.locator('#languageDropdown');
+    const languages = await page.locator('#langSelect option').evaluateAll(options => options.map(option => option.value));
+    await welcome.locator('[data-action="close"]').click();
+    await trigger.click();
+    await expect(welcome).toBeHidden();
+    await expect(menu).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    for (const language of languages) {
+      const option = menu.locator(`[data-language="${language}"]`);
+      await option.scrollIntoViewIfNeeded();
+      await option.click();
+      await expect(page.locator('#langSelect')).toHaveValue(language);
+      await expect(menu).toBeHidden();
+      if (language !== languages.at(-1)) await trigger.click();
+    }
+  }
+});
