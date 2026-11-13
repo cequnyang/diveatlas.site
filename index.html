@@ -18676,7 +18676,7 @@ ZSD·2016–2025</span></span>
 
   async function ensureRegionalCurrentFlowRenderer() {
     await ensureRegionalCurrentSpeedTintLayer();
-    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js?v=3').then(() => window.DiveAtlasCurrentFlow);
+    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js?v=4').then(() => window.DiveAtlasCurrentFlow);
     const api = await regionalCurrentFlowModulePromise;
     if (!regionalCurrentFlowRenderer) {
       regionalCurrentFlowRenderer = api.createRenderer({

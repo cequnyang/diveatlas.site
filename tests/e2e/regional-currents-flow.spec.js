@@ -53,7 +53,7 @@ test('flow experiment stays lazy and remains idle while Currents is off', async 
 test('shared current cache rebuilds on view and slice changes and stops on disable', async ({ page }) => {
   await openMap(page, { url: EXPERIMENT_URL });
   await page.evaluate(async () => {
-    await import('/js/current-flow.js?v=3');
+    await import('/js/current-flow.js?v=4');
     window.__cacheSourceCalls = 0;
     window.__cacheVelocity = 0.2;
     window.__cacheRenderer = window.DiveAtlasCurrentFlow.createRenderer({
@@ -90,10 +90,16 @@ test('shared current cache rebuilds on view and slice changes and stops on disab
   await expect.poll(() => page.evaluate(() => window.__cacheDiagnostics?.status)).toBe('animating');
   expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(true);
   const afterPan = await page.evaluate(() => window.__cacheSourceCalls);
-  await page.evaluate(() => {
+  const waitingCalls = await page.evaluate(() => {
     window.__cacheVelocity = 0.5;
     window.__cacheRenderer.selectSlice(11, '20');
+    const calls = window.__cacheSourceCalls;
+    // Force the late viewport event that previously restarted the old slice.
+    window.__DIVEATLAS_TEST__.map.fire('moveend');
+    window.__DIVEATLAS_TEST__.map.fire('zoomend');
+    return calls;
   });
+  expect(await page.evaluate(() => window.__cacheSourceCalls)).toBe(waitingCalls);
   expect(await page.evaluate(() => window.__cacheRenderer.state.rafActive)).toBe(false);
   await page.evaluate(() => window.__cacheRenderer.refreshData());
   await expect.poll(() => page.evaluate(() => window.__cacheSourceCalls)).toBeGreaterThan(afterPan);

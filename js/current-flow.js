@@ -179,6 +179,7 @@
     let viewportField = null;
     let displayView = null;
     let viewportFieldGeneration = 0;
+    let waitingForCurrentTiles = false;
     let active = false;
     let rafId = 0;
     let generation = 0;
@@ -402,7 +403,7 @@
     }
 
     async function rebuildViewportField() {
-      if (!active || !usesSharedTiles || !canvas || mapGestureActive) return false;
+      if (!active || !usesSharedTiles || !canvas || mapGestureActive || waitingForCurrentTiles) return false;
       const version = ++viewportFieldGeneration;
       if (!viewportField) pauseFrame();
       diagnostics('building-current-field');
@@ -691,6 +692,7 @@
       generation += 1;
       const currentGeneration = generation;
       active = true;
+      waitingForCurrentTiles = false;
       mapGestureActive = false;
       ensureCanvas();
       if (usesSharedTiles) {
@@ -741,6 +743,9 @@
     function selectSlice(month, depth) {
       if (!active) return Promise.resolve(false);
       if (usesSharedTiles) {
+        // A late moveend/zoomend must not rebuild from the previous slice.
+        // Only the tile owner can signal that the replacement data is ready.
+        waitingForCurrentTiles = true;
         viewportFieldGeneration += 1;
         viewportField = null;
         pauseFrame();
@@ -770,6 +775,7 @@
 
     function refreshData() {
       if (!active || !usesSharedTiles) return false;
+      waitingForCurrentTiles = false;
       void rebuildViewportField();
       return true;
     }
