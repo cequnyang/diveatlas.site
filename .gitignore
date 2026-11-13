@@ -189,6 +189,13 @@ playwright-report/
 # Local design prototypes and rendered previews.
 /design-explorations/
 
+# Interaction policy is maintained source, not generated tooling.
+!/tools/interaction_test_policy.js
+!/tools/check_browser_test_selection.js
+!/tools/interaction_test_reporter.js
+!/tests/unit/interaction-test-policy.test.js
+!/docs/interaction-test-policy.md
+
 # Search-name research stays local; runtime aliases are tracked separately.
 /datasets/search-name-review-ledger.json
 /scripts/README-search-name-review.md

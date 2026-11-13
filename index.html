@@ -8128,7 +8128,7 @@ ZSD·2016–2025</span></span>
 <!-- V34 embedded biodiversity payloads. The Builder fills these with gzip+base64 JSON. -->
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
-    <script src="js/area-search.js?v=29"></script>
+    <script src="js/area-search.js?v=30"></script>
     <script src="js/mobile-sheet-motion.js?v=2"></script>
     <script src="js/search-results-menu.js?v=18"></script>
     <script src="js/map-welcome.js?v=6"></script>
@@ -11454,7 +11454,12 @@ ZSD·2016–2025</span></span>
   function activateDiveSearchInput(input) {
     // Starting an area lookup is already a new navigation intent. Do not let
     // a previous site's delayed sheet cover the area options before selection.
-    if (input.id === 'mapWelcomeSearch') cancelDiveSearchPopup();
+    if (input.id === 'mapWelcomeSearch') {
+      cancelDiveSearchPopup();
+      // The site's timer may already have fired before input focus arrived.
+      // Area-search intent must also dismiss that sheet, or it covers results.
+      map.closePopup();
+    }
     if (currentDiveSearchInput() === input) return;
     clearTimeout(diveSearchTimer);diveSearchRenderRequest++;
     hideDiveSearchResults();activeDiveSearchInput = input;
@@ -18671,7 +18676,7 @@ ZSD·2016–2025</span></span>
 
   async function ensureRegionalCurrentFlowRenderer() {
     await ensureRegionalCurrentSpeedTintLayer();
-    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js?v=3').then(() => window.DiveAtlasCurrentFlow);
+    regionalCurrentFlowModulePromise ||= import('./js/current-flow.js?v=4').then(() => window.DiveAtlasCurrentFlow);
     const api = await regionalCurrentFlowModulePromise;
     if (!regionalCurrentFlowRenderer) {
       regionalCurrentFlowRenderer = api.createRenderer({

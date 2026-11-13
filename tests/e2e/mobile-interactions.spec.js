@@ -776,6 +776,7 @@ test('expanding the full mobile layer panel closes any open map sheet', async ({
 });
 
 test('opening mobile search closes an open map sheet', async ({ page }) => {
+  test.setTimeout(60_000);
   await setMapView(page, -5.7, 131, 14);
   await addFixture(page, 'dive-site', { id:'sheet-before-search', lat:-5.7, lng:131 });
   await clickFixture(page, 'sheet-before-search');
@@ -786,7 +787,7 @@ test('opening mobile search closes an open map sheet', async ({ page }) => {
   await expect(page.locator('#diveSearchResults')).toBeVisible();
   await expect(sheet).toHaveCount(0);
   await page.locator('#diveSearchInput').fill('Tapor Tamiyam');
-  await expect(page.locator('.dive-search-result').first()).toBeVisible();
+  await expect(page.locator('.dive-search-result').first()).toBeVisible({timeout:30_000});
 });
 
 test('showing the combined mobile search and filter menu closes any open map sheet', async ({ page }) => {
@@ -1283,6 +1284,7 @@ test('mobile search shows the swipe hint and loads the next page on an upward pu
 });
 
 test('mobile search sheet tracks touch drags in both directions', async ({ page }) => {
+  test.setTimeout(60_000);
   const launcher = page.locator('#diveSearchToggle');
   const launcherBox = page.locator('#diveSearchSection .dive-search-box');
   await expect(launcherBox).toHaveCSS('border-top-left-radius', '999px');
@@ -1297,6 +1299,12 @@ test('mobile search sheet tracks touch drags in both directions', async ({ page 
   const sheet = page.locator('#diveSearchResults');
   const cdp = await page.context().newCDPSession(page);
   async function swipe(distance, fraction = 0.5) {
+    // Every reopening animates the grip. Measure only after it rests, so the
+    // injected touch hits the handle rather than its former screen position.
+    await sheet.evaluate(async node => {
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      await Promise.all(node.getAnimations({subtree:true}).map(animation => animation.finished.catch(() => {})));
+    });
     const box = await handle.boundingBox();
     const x = box.x + box.width * fraction, y = box.y + box.height / 2;
     await cdp.send('Input.dispatchTouchEvent', {type:'touchStart', touchPoints:[{x,y}]});

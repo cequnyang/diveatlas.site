@@ -2964,17 +2964,41 @@
       countryNames.set(label, displays.map(display => display.of(code)).filter(value => value && value !== code));
     }
   }
+  // Search indexes ask for aliases once per mapped site. Normalize the static
+  // tables once, rather than scanning thousands of entries for every record.
+  // Sets preserve filter() semantics when two spellings normalize to one key.
+  function aliasIndex(entries, byId = false) {
+    const index = new Map();
+    const add = (key, entry) => {
+      if (!index.has(key)) index.set(key, new Set());
+      index.get(key).add(entry);
+    };
+    entries.forEach((entry, order) => {
+      const value = { order, aliases:entry.aliases };
+      if (entry.siteIds) {
+        if (byId) entry.siteIds.forEach(id => add(`id:${id}`, value));
+      } else {
+        for (const name of entry.names) add(JSON.stringify([normalize(entry.country), normalize(name)]), value);
+      }
+    });
+    return index;
+  }
+  const placeAliasIndex = aliasIndex(placeAliases);
+  const siteAliasIndex = aliasIndex(siteAliases, true);
   function aliasesFor(name, country = '') {
-    const key = normalize(name), parent = normalize(country);
-    return placeAliases.filter(entry => parent && parent === normalize(entry.country) && entry.names.some(value => normalize(value) === key)).flatMap(entry => entry.aliases);
+    const parent = normalize(country);
+    return parent ? [...(placeAliasIndex.get(JSON.stringify([parent, normalize(name)])) || [])].flatMap(entry => entry.aliases) : [];
   }
   function verifiedSiteNames(siteId) {
     const entries = root.DIVE_SITE_NAME_TRANSLATIONS?.verifiedBySiteId?.[String(siteId || '')] || {};
     return Object.values(entries).map(entry => typeof entry === 'string' ? entry : entry?.name).filter(Boolean);
   }
   function siteSearchAliases(country, siteName = '', siteId = '') {
-    const parent = normalize(country), site = normalize(siteName);
-    return siteAliases.filter(entry => entry.siteIds ? entry.siteIds.includes(String(siteId)) : parent === normalize(entry.country) && entry.names.some(name => normalize(name) === site)).flatMap(entry => entry.aliases);
+    const named = siteAliasIndex.get(JSON.stringify([normalize(country), normalize(siteName)])) || [];
+    const identified = siteAliasIndex.get(`id:${String(siteId)}`) || [];
+    // A site can match both a legacy name entry and a scoped ID entry. Retain
+    // their original table order, including repeated alias values.
+    return [...new Set([...named, ...identified])].sort((a, b) => a.order - b.order).flatMap(entry => entry.aliases);
   }
   function searchAliases(country, labels, siteName = '', siteId = '') {
     const parent = normalize(country);

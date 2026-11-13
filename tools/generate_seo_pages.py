@@ -540,7 +540,7 @@ def page_shell(title: str, description: str, canonical: str, body: str, body_cla
     document_body_scripts = "\n" + '''<script src="/js/data-assets-config.js"></script>
 <script src="/js/data-assets.js"></script>
 <script src="/js/seo-page-controls.js?v=38" defer></script>
-<script src="/js/seo-site-search.js?v=44" defer></script>
+<script src="/js/seo-site-search.js?v=45" defer></script>
 <script src="/js/seo-search-catalog-loader.js?v=1" defer></script>'''.strip() if has_document_header else ""
     directory_rating_script = '\n<script src="/js/seo-list-card-ratings.js?v=1" defer></script>' if has_site_directory else ""
     return f'''<!doctype html>
@@ -868,6 +868,63 @@ def build_recommendation_index(sites: list[dict[str, object]]) -> dict[str, dict
     return result
 
 
+def render_site_photo(site: dict[str, object]) -> str:
+    """Render the photo surface without geography or recommendation inputs."""
+    name = str(site["name"])
+    photo_markup = ""
+    photo = site["photo"]
+    if photo:
+        image_url = str(photo["src"]) if re.match(r"^https?://", str(photo["src"]), re.I) else "/" + str(photo["src"]).lstrip("/")
+        credit_text = f'Illustrative image · {photo.get("credit", "")}' if photo.get("source") == "illustrative-fallback" else photo.get("credit", "")
+        credit = f'<figcaption>{html_text(credit_text)}</figcaption>' if credit_text else ""
+        if photo.get("source_page"):
+            credit = (f'<figcaption>{html_text(photo["credit"])} · '
+                      f'<a href="{html_text(photo["source_page"])}" rel="noreferrer">Source</a> · '
+                      f'<a href="{html_text(photo["licence_url"])}" rel="noreferrer">{html_text(photo["licence"])}</a>'
+                      ' · Cropped/resized</figcaption>')
+        if photo.get("creator_links"):
+            creator_links = "".join(f' · <a href="{html_text(link["url"])}" rel="noreferrer">{html_text(link["label"])}</a>' for link in photo["creator_links"])
+            credit = credit.replace("</figcaption>", creator_links + "</figcaption>")
+        image_loading = 'loading="eager" fetchpriority="high"' if photo.get("source_page") else 'loading="lazy"'
+        upload_label = ""
+        if photo.get("source") == "illustrative-fallback":
+            upload_url = f'/?addPhoto=1&amp;site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14'
+            upload_label = (
+                f'<a class="site-photo-upload-label" href="{upload_url}" target="_blank" rel="noopener noreferrer" '
+                f'aria-label="Been diving here? Share a real photo.">'
+                f'<span class="site-photo-upload-label__rest">Representative image · not this dive site</span>'
+                f'<svg class="site-photo-upload-label__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
+                f'<circle cx="12" cy="13" r="3.25"/></svg>'
+                f'<span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a>'
+                f'<span class="site-photo-upload-label-mobile">Representative image · not this dive site</span>'
+                f'<a class="site-photo-upload-button" href="{upload_url}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo">'
+                f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
+                f'<circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>'
+            )
+        safe_image_url = html_text(image_url)
+        safe_photo_alt = html_text(photo["alt"])
+        photo_markup = (
+            f'<div class="site-photo-feature"><figure class="site-photo site-photo-gallery">'
+            f'<div class="site-photo-gallery-main{" site-photo-gallery-main--photo-upload" if upload_label else ""}"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
+            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" {image_loading}></button>{upload_label}{credit}</div>'
+            f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
+            f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
+            f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span data-i18n-ignore>Rating</span></div>'
+            f'<p class="site-photo-gallery-rating__score" role="status" aria-live="polite" data-status="loading">Loading rating…</p>'
+            f'<div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart" role="img" aria-label="Monthly dive-site rating scores"></div></div>'
+            f'</section>'
+            f'<div class="site-photo-gallery-map">'
+            f'<iframe class="site-photo-gallery-map__embed" title="Google Maps preview for {html_text(name)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q={float(site["lat"]):.6f}%2C{float(site["lon"]):.6f}&amp;z=12&amp;output=embed"></iframe>'
+            f'<a class="site-photo-gallery-map__mask" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map"></a>'
+            f'<a class="site-photo-gallery-map__cta" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map">View on map</a>'
+            f'</div></aside></div>'
+        )
+
+    return photo_markup
+
+
 def generate_site_page(
     site: dict[str, object],
     regions: dict[tuple[str, str], dict[str, object]],
@@ -1004,56 +1061,8 @@ def generate_site_page(
         source_items = "".join(f'<li><a href="{html_text(source_url)}" target="_blank" rel="noopener noreferrer">{html_text(label)}</a></li>' for label, source_url in unique_sources)
         sources_markup = f'<section class="detail-section source-section" aria-labelledby="sources-heading"><h2 id="sources-heading">Sources:</h2><ul class="source-list">{source_items}</ul></section>'
 
-    photo_markup = ""
+    photo_markup = render_site_photo(site)
     photo = site["photo"]
-    if photo:
-        image_url = str(photo["src"]) if re.match(r"^https?://", str(photo["src"]), re.I) else "/" + str(photo["src"]).lstrip("/")
-        credit_text = f'Illustrative image · {photo.get("credit", "")}' if photo.get("source") == "illustrative-fallback" else photo.get("credit", "")
-        credit = f'<figcaption>{html_text(credit_text)}</figcaption>' if credit_text else ""
-        if photo.get("source_page"):
-            credit = (f'<figcaption>{html_text(photo["credit"])} · '
-                      f'<a href="{html_text(photo["source_page"])}" rel="noreferrer">Source</a> · '
-                      f'<a href="{html_text(photo["licence_url"])}" rel="noreferrer">{html_text(photo["licence"])}</a>'
-                      ' · Cropped/resized</figcaption>')
-        if photo.get("creator_links"):
-            creator_links = "".join(f' · <a href="{html_text(link["url"])}" rel="noreferrer">{html_text(link["label"])}</a>' for link in photo["creator_links"])
-            credit = credit.replace("</figcaption>", creator_links + "</figcaption>")
-        image_loading = 'loading="eager" fetchpriority="high"' if photo.get("source_page") else 'loading="lazy"'
-        upload_label = ""
-        if photo.get("source") == "illustrative-fallback":
-            upload_url = f'/?addPhoto=1&amp;site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14'
-            upload_label = (
-                f'<a class="site-photo-upload-label" href="{upload_url}" target="_blank" rel="noopener noreferrer" '
-                f'aria-label="Been diving here? Share a real photo.">'
-                f'<span class="site-photo-upload-label__rest">Representative image · not this dive site</span>'
-                f'<svg class="site-photo-upload-label__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
-                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
-                f'<circle cx="12" cy="13" r="3.25"/></svg>'
-                f'<span class="site-photo-upload-label__action">Been diving here? Share a real photo.</span></a>'
-                f'<span class="site-photo-upload-label-mobile">Representative image · not this dive site</span>'
-                f'<a class="site-photo-upload-button" href="{upload_url}" target="_blank" rel="noopener noreferrer" aria-label="Share a real photo">'
-                f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
-                f'<path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9A1.5 1.5 0 0 1 20 19.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/>'
-                f'<circle cx="12" cy="13" r="3.25"/></svg><span>Share a real photo</span></a>'
-            )
-        safe_image_url = html_text(image_url)
-        safe_photo_alt = html_text(photo["alt"])
-        photo_markup = (
-            f'<div class="site-photo-feature"><figure class="site-photo site-photo-gallery">'
-            f'<div class="site-photo-gallery-main{" site-photo-gallery-main--photo-upload" if upload_label else ""}"><button class="site-photo-preview-trigger" type="button" aria-label="Open full-size photo preview">'
-            f'<img src="{safe_image_url}" alt="{safe_photo_alt}" {image_loading}></button>{upload_label}{credit}</div>'
-            f'</figure><aside class="site-photo-gallery-rail" aria-label="Dive site actions">'
-            f'<section class="site-photo-gallery-rating" data-rating-lat="{float(site["lat"]):.6f}" data-rating-lng="{float(site["lon"]):.6f}" aria-label="diveAtlas Rating" tabindex="0">'
-            f'<div class="site-photo-gallery-rating__brand"><img src="/assets/diveatlas-logo.svg?v=3" alt=""><span data-i18n-ignore>Rating</span></div>'
-            f'<p class="site-photo-gallery-rating__score" role="status" aria-live="polite" data-status="loading">Loading rating…</p>'
-            f'<div class="site-photo-gallery-rating__trend"><p class="site-photo-gallery-rating__trend-title">Monthly Rating</p><div class="site-photo-gallery-rating__trend-chart" role="img" aria-label="Monthly dive-site rating scores"></div></div>'
-            f'</section>'
-            f'<div class="site-photo-gallery-map">'
-            f'<iframe class="site-photo-gallery-map__embed" title="Google Maps preview for {html_text(name)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q={float(site["lat"]):.6f}%2C{float(site["lon"]):.6f}&amp;z=12&amp;output=embed"></iframe>'
-            f'<a class="site-photo-gallery-map__mask" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map"></a>'
-            f'<a class="site-photo-gallery-map__cta" href="/?site={html_text(site["site_id"])}&amp;lat={float(site["lat"]):.6f}&amp;lng={float(site["lon"]):.6f}&amp;z=14" aria-label="View {html_text(name)} on the DiveAtlas map">View on map</a>'
-            f'</div></aside></div>'
-        )
 
     photo_class = "has-photo" if photo else "no-photo"
     json_ld = json.dumps({
@@ -1084,7 +1093,7 @@ def generate_site_page(
 <div class="seo-share-modal" id="seoShareModal" hidden><div class="seo-modal-backdrop" data-seo-share-close></div><section class="seo-dialog seo-share-dialog" role="dialog" aria-modal="true" aria-labelledby="seoShareTitle"><div class="seo-dialog-header"><h2 id="seoShareTitle">Share this dive site</h2><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-share-close>×</button></div><p class="seo-share-url" id="seoShareUrl"></p><div class="seo-share-actions"><button type="button" class="seo-primary-button" id="seoCopyLinkButton">Copy link</button><button type="button" class="seo-secondary-button" id="seoNativeShareButton">More options</button><a id="seoShareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a><a id="seoShareWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a><a id="seoShareX" target="_blank" rel="noopener noreferrer">X</a><a id="seoShareReddit" target="_blank" rel="noopener noreferrer">Reddit</a><a id="seoShareTelegram" target="_blank" rel="noopener noreferrer">Telegram</a><a id="seoShareLine" target="_blank" rel="noopener noreferrer">LINE</a><a id="seoShareEmail">Email</a></div><p class="seo-dialog-status" id="seoShareStatus" role="status" aria-live="polite"></p></section></div>
 <div class="seo-contact-modal" id="seoContactModal" hidden><div class="seo-modal-backdrop" data-seo-contact-close></div><section class="seo-dialog" role="dialog" aria-modal="true" aria-labelledby="seoContactTitle"><div class="seo-dialog-header"><div><h2 id="seoContactTitle">Contact DiveAtlas</h2><p>Send a message to the DiveAtlas maintainer.</p></div><button class="seo-dialog-close" type="button" aria-label="Close" data-seo-contact-close>×</button></div><form id="seoContactForm" class="seo-contact-form" novalidate><label>Name <small>(optional)</small><input name="name" id="seoContactName" maxlength="100" autocomplete="name"></label><label>Email<input name="email" id="seoContactEmail" type="email" maxlength="254" autocomplete="email" required></label><label>Subject <small>(optional)</small><input name="subject" id="seoContactSubject" maxlength="150"></label><label>Message<textarea name="message" id="seoContactMessage" maxlength="5000" required></textarea></label><label class="seo-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><div id="seoContactTurnstile"></div><p class="seo-dialog-status" id="seoContactStatus" role="status" aria-live="polite"></p><div class="seo-dialog-actions"><button class="seo-secondary-button" type="button" data-seo-contact-close>Cancel</button><button class="seo-primary-button" type="submit">Send message</button></div></form></section></div>
 <script type="application/ld+json">{json_ld}</script>
-<script src="/datasets/dive-site-name-translations.js?v=2" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=38" defer></script><script src="/js/dive-conditions-chart.js?v=56" defer></script><script src="/js/site-recommendations.js?v=19" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=44" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=29" defer></script>'''
+<script src="/datasets/dive-site-name-translations.js?v=2" defer></script><script src="/js/dive-site-name-localization.js?v=1" defer></script><script src="/js/dive-site-summary-translations.js?v=1" defer></script><script src="/js/dive-photo-preview.js?v=1" defer></script><script src="/js/seo-page-controls.js?v=38" defer></script><script src="/js/dive-conditions-chart.js?v=56" defer></script><script src="/js/site-recommendations.js?v=19" defer></script><script src="/js/data-assets-config.js" defer></script><script src="/js/data-assets.js" defer></script><script src="/js/seo-site-search.js?v=45" defer></script><script src="/js/seo-search-catalog-loader.js?v=1" defer></script><script src="/js/dive-site-rating-card.js?v=29" defer></script>'''
     html = page_shell(title_base, description, canonical_url, body, "seo-site-detail-layout")
     return title_base, install_initial_detail_appearance(html)
 

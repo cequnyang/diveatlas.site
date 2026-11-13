@@ -1,6 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const catalog = require('../../js/destination-comparison-data.js').buildDestinations(require('../../regions/area-index.json'));
-const ready = page => expect(page.locator('#comparisonMetrics')).toHaveAttribute('data-state', 'ready');
+// Each destination samples every mapped site through the real R2 release.
+// Cold CI queries are not bounded by the 5s DOM assertion default.
+test.setTimeout(180_000);
+const ready = page => expect(page.locator('#comparisonMetrics')).toHaveAttribute('data-state', 'ready', { timeout:90_000 });
 const metric = (page, key, destination) => page.locator(`[data-metric="${key}"][data-destination="${destination}"]`);
 async function chooseDestination(page, side, destination) {
   const input = page.locator(`#comparison${side}Search`);

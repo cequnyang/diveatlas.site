@@ -407,7 +407,7 @@ def main() -> None:
         from .refresh_detail_photos import refresh as refresh_detail_photos
     else:
         from refresh_detail_photos import refresh as refresh_detail_photos
-    refresh_detail_photos()
+    refresh_detail_photos(include_shared_records=data_asset_base_url is None)
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)

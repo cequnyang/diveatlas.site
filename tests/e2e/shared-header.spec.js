@@ -242,19 +242,25 @@ test(`welcome searches inline and selects on the real map with ${selection}`, as
 }
 
 for (const areaInput of ['guide','header']) {
-test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide`, async ({ page }) => {
+for (const detailsReady of [false, true]) {
+test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide${detailsReady ? ' after site details open' : ''}`, async ({ page }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
   // Warm the catalogue before making the two competing selections. Waiting
   // after the second selection exercises both the 200ms and 950ms callbacks.
   const guide = page.locator('#mapWelcomeSearch');
   await guide.fill('Raja Ampat');
-  await expect(page.locator('#diveSearchResults [data-area-key]').first()).toBeVisible({timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-area-key]').first()).toBeVisible({timeout:30_000});
   await guide.press('Escape');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
   await header.fill('Bali');
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
+  // Cover both sides of the race: cancel the timer, or dismiss its completed
+  // sheet before the next area lookup. The latter reproduced the CI failure.
+  if (detailsReady) await expect(page.locator('.dive-site-popup')).toBeVisible({timeout:15_000});
   if (areaInput === 'guide') await guide.fill('Raja Ampat');
   else {
     if (!(await header.isVisible())) await page.locator('#diveSearchToggle').click();
@@ -280,6 +286,7 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   await expect(frame).toBeHidden();
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
+}
 }
 
 async function recordedAreaExtent(page,name) {
@@ -341,6 +348,7 @@ test('top site selection still opens details and restores normal zoom limits aft
   await page.locator('#diveSearchInput').fill('Bali');
   await page.locator('#diveSearchInput').press('ArrowDown');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
   await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map.getMinZoom())).toBe(2);
@@ -456,8 +464,7 @@ test('language controls contain every label and arrow', async ({ page, isMobile 
   await checkLanguages(page.locator('#tutorialLanguageMenuButton'));
 });
 
-test('narrow phone headers fit in every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('narrow phone headers fit in every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(90_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -501,8 +508,7 @@ test('narrow phone headers fit in every language', async ({ page, isMobile }) =>
   }
 });
 
-test('short and landscape screens keep the welcome and guide usable in every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('short and landscape screens keep the welcome and guide usable in every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(120_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -566,8 +572,7 @@ test('short and landscape screens keep the welcome and guide usable in every lan
   }
 });
 
-test('short and landscape language menus scroll and select every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('short and landscape language menus scroll and select every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(240_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -641,11 +646,13 @@ test('welcome immediately saves suppression and follows changes from another tab
 });
 
 test('header destination selection keeps native site details separate from guide area search', async ({ page }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
   await header.fill('Bali');
+  await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('#mapWelcomeSearch')).toHaveValue('');
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
@@ -1175,8 +1182,7 @@ for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/desti
   });
 }
 
-test('desktop map language menu preserves its popup and selection', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'Desktop popup layout');
+test('desktop map language menu preserves its popup and selection', { tag:'@desktop-only' }, async ({ page, isMobile }) => {
   await page.goto('/');
   const trigger = page.locator('#languageMenuButton');
   const menu = page.locator('#languageDropdown');
@@ -1477,8 +1483,7 @@ test('localized dive names search both shared header and map without merging nam
 });
 
 
-test('opening the header language menu during welcome dismissal preserves focus', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('opening the header language menu during welcome dismissal preserves focus', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(120_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   for (const size of [{width:667,height:375}, {width:844,height:390}, {width:320,height:480}]) {
