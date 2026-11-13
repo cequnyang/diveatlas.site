@@ -20,7 +20,9 @@
   const filterClear = document.getElementById('seoSiteSearchFilterClear');
   const mobileLayoutQuery = window.matchMedia('(max-width: 720px)');
   if (!slot || !section || !searchBox || !input || !results || !resultsScroll || !filterControls) return;
-  if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=1');
+  if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=27');
+  if (!window.DIVE_SITE_NAME_TRANSLATIONS) await import('/datasets/dive-site-name-translations.js?v=2')
+    .catch(error => console.warn('Verified search names unavailable:', error));
   if (!window.DiveAtlasSearchResultsMenu) await import('/js/search-results-menu.js?v=1');
   let areas = [];
   const areaText = () => window.DiveAtlasAreaSearch.text(document.documentElement.lang.split('-')[0]);
@@ -56,6 +58,13 @@
 
   const normalize = value => String(value || '').normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
+  // Catalog titles can retain HTML entities. Decode only for text display so
+  // stable IDs and original catalog names continue to match their source.
+  const displayName = value => String(value || '').replace(/&(?:amp|#(x[0-9a-f]+|[0-9]+));/gi, (entity, digits) => {
+    if (!digits) return '&';
+    const point = digits[0].toLowerCase() === 'x' ? parseInt(digits.slice(1), 16) : parseInt(digits, 10);
+    return point > 0 && point <= 0x10ffff && !(point >= 0xd800 && point <= 0xdfff) ? String.fromCodePoint(point) : entity;
+  });
   const valuesFor = (site, key) => Array.isArray(site[key]) ? site[key].filter(Boolean) : [];
   let searchSites = [];
   let catalogReady = false;
@@ -155,11 +164,13 @@
         ? valuesFor(site, 'feature_values') : valuesFor(site, 'features');
       const name = String(site.name || '');
       const location = [site.region, site.country].filter(Boolean).join(' ');
+      const siteNames = [...window.DiveAtlasAreaSearch.verifiedSiteNames(site.site_id), ...window.DiveAtlasAreaSearch.siteSearchAliases(site.country, name, site.site_id)];
       return {
         ...site,
         features,
         normalizedName:normalize(name),
-        normalizedSearch:normalize([name, site.aliases, location, site.difficulty, ...features].join(' '))
+        normalizedSiteNames:siteNames.map(normalize),
+        normalizedSearch:normalize([name, site.aliases, location, site.difficulty, ...features, ...window.DiveAtlasAreaSearch.verifiedSiteNames(site.site_id), ...window.DiveAtlasAreaSearch.searchAliases(site.country, [name, site.region, site.country], name, site.site_id)].join(' '))
       };
     }) : [];
     // Adapt the shared catalog to the map's geographic grouping contract.
@@ -266,8 +277,9 @@
       if (!queryWords.every(word => site.normalizedSearch.includes(word))) continue;
       const rank = !queryWords.length ? 0
         : site.normalizedName === queryWords.join(' ') ? 0
-          : site.normalizedName.startsWith(queryWords.join(' ')) ? 1
-            : site.normalizedName.includes(queryWords.join(' ')) ? 2 : 3;
+          : site.normalizedSiteNames.includes(queryWords.join(' ')) ? 1
+            : site.normalizedName.startsWith(queryWords.join(' ')) ? 2
+              : site.normalizedName.includes(queryWords.join(' ')) ? 3 : 4;
       ranked.push({ site, rank });
     }
     ranked.sort((a, b) => a.rank - b.rank || a.site.name.localeCompare(b.site.name));
@@ -328,7 +340,7 @@
         if (site.backToResults) return {name:site.name,meta:`${text.destinations}: ${new Intl.NumberFormat(document.documentElement.lang).format(site.totalDestinations)}`,group:text.destinations,kind:'back-to-results'};
         return site.siteIndices
           ? {name:text.explore(site.name),group:text.destinations,kind:'destination',meta:window.DiveAtlasAreaSearch.context(site,document.documentElement.lang.split('-')[0]),count:text.count(site.siteIndices.length),attributes:{'area-key':site.key}}
-          : {name:site.name,group:text.sites,kind:'site',meta:siteMeta(site),attributes:{'site-id':site.site_id}};
+          : {name:displayName(site.name),group:text.sites,kind:'site',meta:siteMeta(site),attributes:{'site-id':site.site_id}};
       })});
     if (!menu.isDestinationView()) appendSuggestion(input.value.trim());
     repositionResults();

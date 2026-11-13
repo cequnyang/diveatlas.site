@@ -532,7 +532,7 @@
     catch (_) { console.warn('Detail appearance could not load.'); }
     // Existing page modules inspect the DOM once at startup. Load them only
     // after the record is rendered so they bind to the correct site and title.
-    for (const src of ['/datasets/dive-site-name-translations.js?v=1',
+    for (const src of ['/datasets/dive-site-name-translations.js?v=2',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=29',
       '/js/dive-conditions-chart.js?v=56', '/js/site-recommendations.js?v=19',

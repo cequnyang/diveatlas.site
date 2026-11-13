@@ -15,7 +15,7 @@ def shared_header_assets(version: str | None = None) -> str:
     release = f' data-app-version="{escape(version, quote=True)}"' if version else ''
     return ('<link rel="stylesheet" href="/assets/site-header.css?v=13">\n'
             '<link rel="stylesheet" href="/assets/search-results-menu.css?v=33">\n'
-            f'<script src="/js/site-header.js?v=6"{release} defer></script>\n')
+            f'<script src="/js/site-header.js?v=7"{release} defer></script>\n')
 
 
 def install_initial_detail_appearance(markup: str) -> str:
@@ -68,8 +68,9 @@ def install_shared_header_assets(markup: str, version: str) -> str:
     markup = re.sub(r'(/js/seo-page-controls\.js)\?v=\d+', r'\1?v=38', markup)
     markup = re.sub(r'(/assets/seo\.css)\?v=\d+', r'\1?v=207', markup)
     markup = re.sub(r'(/js/dive-conditions-chart\.js)\?v=\d+', r'\1?v=56', markup)
-    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=16', markup)
+    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=42', markup)
     markup = re.sub(r'(/assets/seo-site-search\.css)\?v=\d+', r'\1?v=13', markup)
+    markup = re.sub(r'(/datasets/dive-site-name-translations\.js)\?v=\d+', r'\1?v=2', markup)
     assets = shared_header_assets(version)
     if re.search(r'</head\s*>', markup, flags=re.I):
         return re.sub(r'</head\s*>', lambda match: assets + match.group(), markup, count=1, flags=re.I)

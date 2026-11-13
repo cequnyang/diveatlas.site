@@ -7156,7 +7156,7 @@
 <link rel="stylesheet" href="assets/liquid-glass.css?v=52">
 <link rel="stylesheet" href="/assets/site-header.css?v=13">
 <link rel="stylesheet" href="assets/map-welcome.css?v=4">
-<script src="/js/site-header.js?v=5" defer></script>
+<script src="/js/site-header.js?v=7" defer></script>
 <script type="module" src="/js/dive-site-reviewed-thumbnails.js"></script>
 </head>
 
@@ -8124,7 +8124,7 @@ ZSD·2016–2025</span></span>
 <!-- V34 embedded biodiversity payloads. The Builder fills these with gzip+base64 JSON. -->
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
-    <script src="js/area-search.js?v=1"></script>
+    <script src="js/area-search.js?v=27"></script>
     <script src="js/mobile-sheet-motion.js?v=2"></script>
     <script src="js/search-results-menu.js?v=18"></script>
     <script src="js/map-welcome.js?v=6"></script>
@@ -20205,7 +20205,7 @@ ZSD·2016–2025</span></span>
       loadLocalScript('datasets/dive-site-photos.js?v=2'),
       import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Reviewed previews unavailable:', error)),
       loadLocalScript('datasets/dive-site-fallback-photos.js?v=1'),
-      loadLocalScript('datasets/dive-site-name-translations.js?v=1')
+      loadLocalScript('datasets/dive-site-name-translations.js?v=2')
     ])
       .then(() => {
         for (const photo of Object.values(window.DIVE_SITE_PHOTOS || {})) {
@@ -23179,9 +23179,9 @@ function closeShareDialog() {
               normalizeDiveSearchText(site[9] || ''),
               normalizeDiveSearchText((location.oceanArea || []).join(' ')),
               nameKey,
-              normalizeDiveSearchText((location.positionName || []).join(' ') || site[11] || ''),
+              normalizeDiveSearchText([...(location.positionName || []), site[11], ...window.DiveAtlasAreaSearch.verifiedSiteNames(site[12])].filter(Boolean).join(' ')),
               normalizeDiveSearchText((location.stateProvince || []).join(' ')),
-              normalizeDiveSearchText((location.commonArea || []).join(' ') || site[10] || '')
+              normalizeDiveSearchText([...(location.commonArea || []), site[10], ...window.DiveAtlasAreaSearch.searchAliases(site[9], [site[0], site[9], site[10], ...(location.oceanArea || []), ...(location.stateProvince || []), ...(location.commonArea || [])], site[0], site[12])].filter(Boolean).join(' '))
             ];
             const fieldTokens = fields.map(value => value.split(' ').filter(Boolean));
             const aliasKey = fields[3];
@@ -23191,6 +23191,9 @@ function closeShareDialog() {
               index: cursor,
               nameKey,
               localizedNameKeys: Object.create(null),
+              // A verified site alias deserves the same rank as an exact localized
+              // title; otherwise a fuzzy match in an earlier field can outrank it.
+              curatedSiteAliasKeys: [...window.DiveAtlasAreaSearch.siteSearchAliases(site[9],site[0],site[12]), ...window.DiveAtlasAreaSearch.verifiedSiteNames(site[12])].map(normalizeDiveSearchText),
               aliasKey,
               metaKey,
               fields,
@@ -23365,7 +23368,7 @@ function closeShareDialog() {
       if (Number.isFinite(score)) {
         const exactFieldIndex = item.fields.findIndex(field => field === q);
         if (exactFieldIndex >= 0) score = Math.min(score, exactFieldIndex * 100 - 1);
-        if (localizedNameKey === q) score = Math.min(score, 199);
+        if (localizedNameKey === q || item.curatedSiteAliasKeys.includes(q)) score = Math.min(score, 199);
       }
 
       if (Number.isFinite(score)) {

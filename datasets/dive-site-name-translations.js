@@ -6,6 +6,15 @@
 window.DIVE_SITE_NAME_TRANSLATIONS = {
   schema: 'dive-site-name-translations-v1',
   verifiedBySiteId: {
+    'efcdea6b-2e97-4cdf-8d5e-49d8550193ae': {
+      zh: {name: '海狼风暴点', source: 'PADI', sourceUrl: 'https://blog.padi.com/cn/diveinsipadan/', checkedAt: '2026-11-12'}
+    },
+    '0bf0cafb-6178-4107-bba7-afa72a66eae0': {
+      ja: {name: 'バラクーダポイント', source: 'PADI', sourceUrl: 'https://www.padi.com/ja/dive-site/hahuaniyu-kinia/barracuda-point-3/', checkedAt: '2026-11-12'}
+    },
+    '96dea5ad-6ef5-4231-85f4-dd7d005f5945': {
+      ja: {name: 'バラクーダポイント', source: 'PADI', sourceUrl: 'https://travel.padi.com/ja/dive-site/kiyuraso/barracuda-point-4/', checkedAt: '2026-11-12'}
+    },
     '9b18e578-9032-4a0d-b4ea-ee8a6642b4eb': {
       es: {
         name: 'El Gran Agujero Azul de Belice',

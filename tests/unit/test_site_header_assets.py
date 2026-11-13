@@ -32,7 +32,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
             with self.subTest(document=document):
                 result = install_shared_header_assets(document, '1.2.3')
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
-                self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
+                self.assertEqual(result.count('/js/site-header.js?v=7'), 1)
                 self.assertEqual(result.count('/assets/site-header.css?v=13'), 1)
                 self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
@@ -58,7 +58,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                      'site-directory-page', 'destination-directory-page']:
             with self.subTest(kind=kind):
                 result = page_shell('Test', 'Description', 'https://diveatlas.site/test/', '<main>Body</main>', kind)
-                self.assertIn('/js/site-header.js?v=6', result)
+                self.assertIn('/js/site-header.js?v=7', result)
                 self.assertIn('/assets/site-header.css?v=13', result)
                 if kind != 'seo-site-detail-layout':
                     self.assertIn('/js/seo-page-controls.js?v=38', result)
@@ -72,11 +72,11 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         result = install_shared_header_assets(old, '1.2.3')
         self.assertNotIn('seo-browse-header.js', result)
         self.assertIn('seo-page-controls.js?v=38', result)
-        self.assertIn('seo-site-search.js?v=16', result)
+        self.assertIn('seo-site-search.js?v=42', result)
         self.assertIn('seo-site-search.css?v=13', result)
         self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
         self.assertNotIn('search-results-menu.css?v=0', result)
-        self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
+        self.assertEqual(result.count('/js/site-header.js?v=7'), 1)
 
     def test_cached_detail_pages_upgrade_glass_and_chart_assets(self):
         old = ('<html><head><link rel="stylesheet" href="/assets/seo.css?v=200"></head>'
@@ -89,3 +89,11 @@ class SharedHeaderAssetsTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class SearchNameAssetVersionTests(unittest.TestCase):
+    def test_cached_pages_upgrade_verified_search_names(self):
+        old = '<html><head><script src="/datasets/dive-site-name-translations.js?v=1"></script></head><body></body></html>'
+        result = install_shared_header_assets(old, 'test')
+        self.assertIn('/datasets/dive-site-name-translations.js?v=2', result)
+        self.assertNotIn('/datasets/dive-site-name-translations.js?v=1', result)
