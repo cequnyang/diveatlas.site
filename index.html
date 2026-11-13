@@ -9754,7 +9754,11 @@ ZSD·2016–2025</span></span>
   // Main map surfaces yield to a newly opened surface; child controls stay owned
   // by their parent. Dispatch only on opens, never on background data refresh.
   function notifyMapOverlayOpen(owner) {
-    return document.dispatchEvent(new CustomEvent("diveatlas:overlay-open", {detail:{owner}, cancelable:true}));
+    const accepted = document.dispatchEvent(new CustomEvent("diveatlas:overlay-open", {detail:{owner}, cancelable:true}));
+    // Invalidate outstanding map samples as soon as a competing surface opens,
+    // rather than waiting for the old sheet's exit animation to finish.
+    if (accepted && owner !== 'map-detail' && window.matchMedia('(max-width:720px)').matches) activeClickPopupRevision++;
+    return accepted;
   }
 
   let mobilePopupTransitionRequest = 0;
@@ -9806,6 +9810,15 @@ ZSD·2016–2025</span></span>
         !popup._diveAtlasSkipMobileSheetEntrance &&
         outgoingElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet') &&
         !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (outgoing === diveConditionsPopup) {
+        diveConditionsPopupSuppressed = true;
+        diveExperienceOutlookGeneration++;
+        diveConditionsAbort?.abort();
+      }
+      if (outgoing === regionalCurrentsPopup) {
+        regionalCurrentsMonthlyComparison.generation++;
+        cancelRegionalCurrentsMonthlyRequests();
+      }
       // Leaflet removes the previous popup synchronously in openOn; wait for
       // the shared exit so a type switch does not bypass the outgoing motion.
       animateMobileMapSheetDismissal(outgoingElement, () => {
@@ -9892,6 +9905,7 @@ ZSD·2016–2025</span></span>
   }
 
   async function showRegionalCurrentMetricPopup(location) {
+    const popupRevision = activeClickPopupRevision;
     try {
       regionalCurrentsModulePromise ||= (async () => {
         await import('./js/current-math.js');
@@ -9906,7 +9920,7 @@ ZSD·2016–2025</span></span>
       const month = environmentalMonth('currents');
       const depth = regionalCurrentsDepth;
       const sample = await regionalCurrentsView.sample(location.lat, location.lng, month, depth);
-      if (!sample) return;
+      if (!sample || popupRevision !== activeClickPopupRevision) return;
       const locationKey = `${Number(location.lat).toFixed(5)},${Number(location.lng).toFixed(5)}:${String(depth)}`;
       if (locationKey !== regionalCurrentsMonthlyComparison.locationKey) {
         regionalCurrentsMonthlyComparison.generation += 1;
@@ -9931,12 +9945,13 @@ ZSD·2016–2025</span></span>
   }
 
   async function showWavesMetricPopup(location) {
+    const popupRevision = activeClickPopupRevision;
     try {
       wavesModulePromise ||= import('./js/waves-view.js').then(() => window.DiveAtlasWavesView);
       const api = await wavesModulePromise;
       if (!wavesView) wavesView = api.createWavesView({ L, map, onStatus:() => {} });
       const result = await wavesView.sample(location.lat, location.lng, environmentalMonth('waves'));
-      if (result) renderWavesPopup(result, location);
+      if (result && popupRevision === activeClickPopupRevision) renderWavesPopup(result, location);
     } catch (error) {
       console.warn('Wave detail could not be loaded:', error);
     }
@@ -9966,6 +9981,16 @@ ZSD·2016–2025</span></span>
     const popup = activeClickPopup;
     const popupElement = popup.getElement?.();
     if (!popupElement?.matches('.diveatlas-mobile-sheet, .dive-conditions-rating-sheet')) return;
+    if (popup === diveConditionsPopup) {
+      // A late outlook response must not reopen a sheet displaced by another panel.
+      diveConditionsPopupSuppressed = true;
+      diveExperienceOutlookGeneration++;
+      diveConditionsAbort?.abort();
+    }
+    if (popup === regionalCurrentsPopup) {
+      regionalCurrentsMonthlyComparison.generation++;
+      cancelRegionalCurrentsMonthlyRequests();
+    }
     if (popupElement.classList.contains('mobile-sheet-exiting')) return;
     animateMobileMapSheetDismissal(popupElement, () => { if (map.hasLayer(popup)) map.closePopup(popup); });
   }
@@ -15066,6 +15091,7 @@ ZSD·2016–2025</span></span>
   let diveConditionsPopup = null;
   let diveExperiencePopupInfoControl = null;
   let diveConditionsAbort = null;
+  let diveConditionsPopupSuppressed = false;
   let diveExperienceOutlookModulePromise = null;
   let diveExperienceOutlookMapApi = null;
   let diveExperienceOutlookDataStore = null;
@@ -15384,6 +15410,7 @@ ZSD·2016–2025</span></span>
     return t(key).replace('{month}', localizedTemperatureMonth(monthNumber));
   }
   function setDiveConditionsPopupMessage(messageKey, monthNumber = diveConditionsMonth) {
+    if (diveConditionsPopupSuppressed) return;
     diveConditionsPopupMessageKey = messageKey;
     const popup = ensureDiveConditionsPopup();
     const content = document.createElement('div');
@@ -15403,6 +15430,7 @@ ZSD·2016–2025</span></span>
   function setDiveConditionsLocation(latlng, { forcePopup = false, month = diveConditionsMonth, popupLocation = latlng } = {}) {
     if (!Number.isFinite(latlng?.lat) || !Number.isFinite(latlng?.lng) || Math.abs(latlng.lat) > 90) return;
     const popup = ensureDiveConditionsPopup();
+    diveConditionsPopupSuppressed = false;
     const keepOpenWhileLoading = window.matchMedia('(max-width:720px)').matches &&
       popup.isOpen() && activeClickPopup === popup &&
       ['dive-conditions', 'dive-rating'].includes(popup._diveAtlasLayerKey);
@@ -16249,11 +16277,13 @@ ZSD·2016–2025</span></span>
     popup.update();
   }
   function renderDiveConditions(result, { force = false, month = diveConditionsMonth } = {}) {
+    if (diveConditionsPopupSuppressed) return;
     if (!result || (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
     diveConditionsLastResult = result;
     renderDiveExperienceOutlookPopup(result, diveExperienceOutlookCurrentSample, month);
   }
   async function refreshDiveExperienceOutlook({ force = false, month = diveConditionsMonth } = {}) {
+    if (diveConditionsPopupSuppressed) return;
     if (!diveConditionsLocation || (!force && environmentalViewController.activeView !== 'dive-experience-outlook')) return;
     const generation = ++diveExperienceOutlookGeneration;
     const popup = ensureDiveConditionsPopup();
@@ -16396,7 +16426,7 @@ ZSD·2016–2025</span></span>
     }
     document.getElementById('diveExperienceLegendMonth').textContent = localizedTemperatureMonth(month);
     if (environmentalViewController.activeView === 'dive-experience-outlook') {
-      if (diveConditionsLocation) void refreshDiveExperienceOutlook();
+      if (diveConditionsLocation && !diveConditionsPopupSuppressed) void refreshDiveExperienceOutlook();
       else void ensureDiveExperienceOutlookMonth(month).then(({ manifest }) => {
         const entry = manifest.months[month - 1];
         const coverage = entry?.processedOceanCells ? (100 * entry.scoredCells / entry.processedOceanCells).toFixed(1) : null;

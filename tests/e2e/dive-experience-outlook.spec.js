@@ -133,6 +133,53 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   await expect(page.locator('.dive-experience-popup-info-popover')).toContainText('Prospek historis bulanan');
 });
 
+test('opening welcome does not reopen the displaced mobile outlook sheet', async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.includes('mobile'), 'Mobile sheet behavior');
+  await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({
+    contentType:'text/javascript', body:`window.DiveAtlasConditionsService = {
+      createDiveConditionsService: () => ({ query: async (location, month) => { await new Promise(resolve => setTimeout(resolve, 1200)); return ({location, month,
+        metrics:{temperature:{value:28}, clarity:{value:35}, current:{value:0.05}, waves:{value:0.1}}
+      }); } }) };`
+  }));
+  await openMap(page, {url:'/?__diveatlas_test=1&lat=69.53125&lng=-23.46875&z=7', theme:'dark', localStorage:{'global-coral-map-lang':'zh'}});
+  await setLegendCollapsed(page, false);
+  await page.locator('.environment-segment').filter({has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')}).click();
+  await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
+  await setLegendCollapsed(page, true);
+  await waitForMapInteractionWindow(page);
+  const point = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const p = map.latLngToContainerPoint([69.53125,-23.46875]);
+    const r = map.getContainer().getBoundingClientRect();
+    return {x:r.x+p.x,y:r.y+p.y};
+  });
+  await page.mouse.click(point.x,point.y);
+  await expect(page.locator('.dive-experience-popup-content')).toBeVisible({timeout:15000});
+  await page.locator('#bioLegendTitle').click();
+  await page.locator('#bioLegendOverflow > summary').click();
+  await page.locator('#bioLegendWelcome').click();
+  await expect(page.locator('#mapWelcome')).toBeVisible();
+  await expect(page.locator('.dive-experience-popup-content')).toHaveCount(0, {timeout:5000});
+  await page.waitForTimeout(1800);
+  await expect(page.locator('#mapWelcome')).toBeVisible();
+  await expect(page.locator('.dive-experience-popup-content')).toHaveCount(0);
+  await page.screenshot({path:testInfo.outputPath('welcome-after-rating-dismissal.png')});
+  await page.locator('#mapWelcome [data-action="close"]').click();
+  await expect(page.locator('#mapWelcome')).toBeHidden();
+  await setLegendCollapsed(page, true);
+  await waitForMapMovementToSettle(page);
+  await waitForMapInteractionWindow(page);
+  const reopenPoint = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const p = map.latLngToContainerPoint([69.53125,-23.46875]);
+    const r = map.getContainer().getBoundingClientRect();
+    return {x:r.x+p.x,y:r.y+p.y};
+  });
+  await page.mouse.click(reopenPoint.x,reopenPoint.y);
+  await expect(page.locator('.dive-experience-popup-content')).toBeVisible({timeout:15000});
+
+});
+
 test('Dive Experience popup reports the selected cell outlook and supporting evidence', async ({ page }) => {
   // The raster's legacy physical score can be null. In that case the existing
   // popup adapter scores service readings; use four independently known 100-point
