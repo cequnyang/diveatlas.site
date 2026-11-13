@@ -11454,7 +11454,12 @@ ZSD·2016–2025</span></span>
   function activateDiveSearchInput(input) {
     // Starting an area lookup is already a new navigation intent. Do not let
     // a previous site's delayed sheet cover the area options before selection.
-    if (input.id === 'mapWelcomeSearch') cancelDiveSearchPopup();
+    if (input.id === 'mapWelcomeSearch') {
+      cancelDiveSearchPopup();
+      // The site's timer may already have fired before input focus arrived.
+      // Area-search intent must also dismiss that sheet, or it covers results.
+      map.closePopup();
+    }
     if (currentDiveSearchInput() === input) return;
     clearTimeout(diveSearchTimer);diveSearchRenderRequest++;
     hideDiveSearchResults();activeDiveSearchInput = input;

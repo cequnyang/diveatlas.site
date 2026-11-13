@@ -242,7 +242,8 @@ test(`welcome searches inline and selects on the real map with ${selection}`, as
 }
 
 for (const areaInput of ['guide','header']) {
-test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide`, async ({ page }) => {
+for (const detailsReady of [false, true]) {
+test(`welcome area selection cancels pending site details through ${areaInput} and completes the guide${detailsReady ? ' after site details open' : ''}`, async ({ page }) => {
   test.setTimeout(60_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/?__diveatlas_test=1');
@@ -257,6 +258,9 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   await header.fill('Bali');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible({timeout:30_000});
   await page.locator('#diveSearchResults [data-site-index]').first().click();
+  // Cover both sides of the race: cancel the timer, or dismiss its completed
+  // sheet before the next area lookup. The latter reproduced the CI failure.
+  if (detailsReady) await expect(page.locator('.dive-site-popup')).toBeVisible({timeout:15_000});
   if (areaInput === 'guide') await guide.fill('Raja Ampat');
   else {
     if (!(await header.isVisible())) await page.locator('#diveSearchToggle').click();
@@ -282,6 +286,7 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   await expect(frame).toBeHidden();
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
+}
 }
 
 async function recordedAreaExtent(page,name) {
