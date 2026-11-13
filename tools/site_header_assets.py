@@ -14,7 +14,7 @@ def site_header_fallback() -> str:
 def shared_header_assets(version: str | None = None) -> str:
     release = f' data-app-version="{escape(version, quote=True)}"' if version else ''
     return ('<link rel="stylesheet" href="/assets/site-header.css?v=12">\n'
-            '<link rel="stylesheet" href="/assets/search-results-menu.css?v=25">\n'
+            '<link rel="stylesheet" href="/assets/search-results-menu.css?v=33">\n'
             f'<script src="/js/site-header.js?v=6"{release} defer></script>\n')
 
 

@@ -1,5 +1,6 @@
 import re
 import unittest
+from pathlib import Path
 
 from tools.site_header_assets import install_shared_header_assets, install_initial_detail_appearance
 from tools.generate_seo_pages import page_shell
@@ -33,10 +34,24 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
                 self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
                 self.assertEqual(result.count('/assets/site-header.css?v=12'), 1)
-                self.assertEqual(result.count('/assets/search-results-menu.css?v=25'), 1)
+                self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
                 self.assertIn('data-app-version="2.0.0"', upgraded)
                 self.assertNotIn('data-app-version="1.2.3"', upgraded)
+
+    def test_map_and_runtime_use_the_built_search_stylesheet_version(self):
+        root = Path(__file__).resolve().parents[2]
+        source = (root / 'index.html').read_text(encoding='utf-8')
+        built = install_shared_header_assets(source, '1.2.3')
+        runtime = (root / 'js/site-header.js').read_text(encoding='utf-8')
+        pattern = r'(?<![\w-])/?assets/search-results-menu\.css\?v=(\d+)'
+        source_versions = re.findall(pattern, source)
+        built_versions = re.findall(pattern, built)
+        runtime_versions = re.findall(pattern, runtime)
+        self.assertEqual(len(source_versions), 1)
+        self.assertEqual(built_versions, source_versions)
+        self.assertEqual(runtime_versions, source_versions)
+        self.assertGreater(int(source_versions[0]), 24)
 
     def test_generator_includes_header_for_plain_pages_too(self):
         for kind in ['', 'seo-site-detail-layout', 'region-browser-page',
@@ -59,7 +74,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         self.assertIn('seo-page-controls.js?v=38', result)
         self.assertIn('seo-site-search.js?v=16', result)
         self.assertIn('seo-site-search.css?v=13', result)
-        self.assertEqual(result.count('/assets/search-results-menu.css?v=25'), 1)
+        self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
         self.assertNotIn('search-results-menu.css?v=0', result)
         self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
 

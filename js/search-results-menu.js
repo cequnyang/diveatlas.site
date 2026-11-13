@@ -71,6 +71,25 @@
     let viewPositions = {mixed:null,destinations:null};
     let resetScrollOnRender = false;
     let renderedMode = null;
+    // Keep the mobile navigation outside the list scrollport so its background
+    // spans the scrollbar gutter while the native scrollbar starts below it.
+    function syncBackBar() {
+      const selector = '.dive-search-result[data-result-kind="back-to-results"]';
+      const docked = surface.querySelector(`:scope > ${selector}`);
+      const inline = scroll.querySelector(selector);
+      const shouldDock = surface.classList.contains("is-mobile-bottom-sheet") && surface.classList.contains("is-destination-results");
+      if (shouldDock && inline) {
+        surface.insertBefore(inline, scroll);
+        scroll.setAttribute("aria-owns", inline.id);
+      } else if (!shouldDock && docked) {
+        scroll.prepend(docked);
+        scroll.removeAttribute("aria-owns");
+      }
+    }
+    function clearBackBar() {
+      surface.querySelector(':scope > .dive-search-result[data-result-kind="back-to-results"]')?.remove();
+      scroll.removeAttribute("aria-owns");
+    }
     function switchDestinationView(next, current) {
       viewPositions[destinationsExpanded ? 'destinations' : 'mixed'] = {...current,scrollTop:scroll.scrollTop};
       destinationsExpanded = next;
@@ -151,6 +170,7 @@
 
     function empty(message, busy = false) {
       renderedQuery = "";
+      clearBackBar();
       scroll.removeAttribute("aria-setsize");
       scroll.innerHTML = `<div class="dive-search-empty" role="status">${escapeHtml(message)}</div>`;
       surface.setAttribute("aria-busy", String(busy));
@@ -171,6 +191,7 @@
       resetScrollOnRender = false;
       surface.setAttribute("aria-busy", "false");
       scroll.setAttribute("aria-setsize", String(total));
+      clearBackBar();
       scroll.innerHTML =
         items
           .map((item, index) => {
@@ -202,6 +223,7 @@
         (items.length < total
           ? `<button type="button" class="dive-search-load-more" data-search-load-more>${escapeHtml(moreLabel)}</button>`
           : "");
+      syncBackBar();
       if (activeIndex >= 0) setActive(activeIndex);
       else getInput().removeAttribute("aria-activedescendant");
       // DOM replacement retains scrollTop; a new query/filter/input must not
@@ -210,7 +232,7 @@
     }
 
     function setActive(next) {
-      const buttons = [...scroll.querySelectorAll(".dive-search-result")];
+      const buttons = [...surface.querySelectorAll(".dive-search-result")];
       const index = buttons.length
         ? Math.max(0, Math.min(next, buttons.length - 1))
         : -1;
@@ -268,6 +290,7 @@
 
     function position({ anchor, filtersOpen, focused, inline = false, fitContent = false, topBoundary = 8, bottomSheet = false }) {
       surface.classList.toggle("is-mobile-bottom-sheet", bottomSheet && window.matchMedia("(max-width:720px)").matches);
+      syncBackBar();
       if (surface.classList.contains("is-mobile-bottom-sheet")) {
         const viewport = window.visualViewport;
         const viewportTop = viewport?.offsetTop || 0;
@@ -800,6 +823,7 @@
       handleResetTransition = null,
       handleResetMaxHeight = "";
     function cancel() {
+      if (isBottomSheet()) root.DiveAtlasSheetMotion.cancelExit(results);
       if (handleDismissal) {
         clearTimeout(handleDismissal.timer);
         results.removeEventListener(
@@ -873,6 +897,11 @@
       results.addEventListener("transitionend", handleResetTransition);
     };
     const dismiss = (completeDismissal = onDismiss) => {
+      if (isBottomSheet()) {
+        if (!isVisible()) { completeDismissal(); return; }
+        root.DiveAtlasSheetMotion.exit(results, completeDismissal);
+        return;
+      }
       if (handleDismissal) return;
       if (!isVisible() || !mobileLayoutQuery.matches || reducedMotionQuery.matches) {
         completeDismissal();

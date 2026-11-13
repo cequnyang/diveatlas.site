@@ -117,7 +117,7 @@
 @media(max-width:720px) {
  .saved-trips-panel { translate:0 var(--mobile-panel-drag-y, 0px); transition:translate .28s cubic-bezier(.22,1,.36,1), opacity .22s ease, height .22s ease; }
  .saved-trips-panel > .diveatlas-mobile-sheet-handle { flex-shrink:0; }
- .saved-trips-panel.mobile-sheet-exiting { translate:0 calc(100% + 24px); pointer-events:none; }
+ .saved-trips-panel.mobile-sheet-exiting { translate:0 100%; opacity:0; pointer-events:none; transition:translate .24s cubic-bezier(.32,0,.67,0), opacity .2s ease-in; }
 }
 @media(prefers-reduced-motion:reduce) { .saved-trips-panel { transition:none; } }
 

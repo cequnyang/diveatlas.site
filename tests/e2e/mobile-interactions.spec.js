@@ -208,6 +208,17 @@ test('language selector opens as a half-width page that slides in from the right
   await expect(languageHeader).toBeVisible();
   await expect(languagePage.locator('.language-page-back')).toHaveCount(0);
   await expectTitleAtDrawerInset(languagePage, '.language-page-header > span', 21);
+  const firstLanguage = languagePage.locator('[data-language="en"]');
+  await expect.poll(async () => (await firstLanguage.boundingBox()).y - ((await languageHeader.boundingBox()).y + (await languageHeader.boundingBox()).height)).toBeGreaterThanOrEqual(0);
+  const options = languagePage.locator('.language-page-options');
+  await expect(options).toHaveCSS('scrollbar-width', 'none');
+  await options.evaluate(el => { el.scrollTop = 90; });
+  expect(await options.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  const headerBottom = await languageHeader.evaluate(el => el.getBoundingClientRect().bottom);
+  const optionsTop = await options.evaluate(el => el.getBoundingClientRect().top);
+  expect(optionsTop).toBeGreaterThanOrEqual(headerBottom);
+  expect(await languageHeader.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
+  await options.evaluate(el => { el.scrollTop = 0; });
   await expect.poll(() => languageHeader.evaluate(node => node.getBoundingClientRect().top)).toBeLessThanOrEqual(8);
   await expect.poll(() => languagePage.evaluate(node =>
     Math.abs(node.getBoundingClientRect().left - document.documentElement.clientWidth / 2)
@@ -475,6 +486,91 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
   }
 });
 
+test('mobile map sheets animate new types but not updates within one type', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 10);
+  await page.evaluate(() => {
+    const api = window.__DIVEATLAS_TEST__;
+    api.addDiveSite(-5.7, 131, 'motion-site-one');
+    api.addDiveSite(-5.7, 131.03, 'motion-site-two');
+    api.addCoralPoint(-5.7, 131.06, 'motion-coral');
+    window.__mapMotionEvents = [];
+    api.map.on('popupopen', event => {
+      const el = event.popup.getElement();
+      window.__mapMotionEvents.push({type:event.popup._diveAtlasLayerKey, entering:el.classList.contains('mobile-sheet-entering')});
+    });
+  });
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.openFixturePopup('motion-site-one'));
+  await expect.poll(() => page.evaluate(() => window.__mapMotionEvents.length)).toBe(1);
+  expect((await page.evaluate(() => window.__mapMotionEvents))[0]).toMatchObject({type:'dive', entering:true});
+  await page.waitForTimeout(400);
+  await page.evaluate(() => window.__DIVEATLAS_TEST__.openFixturePopup('motion-site-two'));
+  await expect.poll(() => page.evaluate(() => window.__mapMotionEvents.length)).toBe(2);
+  expect((await page.evaluate(() => window.__mapMotionEvents))[1]).toMatchObject({type:'dive', entering:false});
+  const outgoing = await page.evaluate(() => {
+    const old = window.__DIVEATLAS_TEST__.map._popup.getElement();
+    window.__DIVEATLAS_TEST__.openFixturePopup('motion-coral');
+    return {exiting:old.classList.contains('mobile-sheet-exiting'), connected:old.isConnected};
+  });
+  expect(outgoing).toEqual({exiting:true, connected:true});
+  await expect.poll(() => page.evaluate(() => window.__mapMotionEvents.length)).toBe(3);
+  expect((await page.evaluate(() => window.__mapMotionEvents))[2]).toMatchObject({type:'species', entering:true});
+});
+
+test('rapidly switching sheet types keeps the outgoing motion continuous and opens only the latest', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 10);
+  await page.evaluate(() => {
+    const api = window.__DIVEATLAS_TEST__;
+    api.addDiveSite(-5.7, 131, 'rapid-site');
+    api.addCoralPoint(-5.7, 131.03, 'rapid-coral');
+    api.addFishPoint(-5.7, 131.06, 'rapid-fish');
+    window.__rapidOpens = [];
+    api.map.on('popupopen', e => window.__rapidOpens.push(e.popup._diveAtlasLayerKey));
+    api.openFixturePopup('rapid-site');
+  });
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  const positions = await page.evaluate(async () => {
+    const api = window.__DIVEATLAS_TEST__;
+    const surface = api.map._popup.getElement();
+    api.openFixturePopup('rapid-coral');
+    await new Promise(resolve => setTimeout(resolve, 80));
+    const before = surface.getBoundingClientRect().top;
+    api.openFixturePopup('rapid-fish');
+    const after = surface.getBoundingClientRect().top;
+    return {before,after};
+  });
+  expect(positions.after).toBeGreaterThanOrEqual(positions.before - 1);
+  await expect.poll(() => page.evaluate(() => window.__rapidOpens)).toEqual(['dive','fish']);
+  await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet').last()).toBeVisible();
+  await page.waitForTimeout(400);
+  expect(await page.evaluate(() => window.__rapidOpens)).toEqual(['dive','fish']);
+});
+
+test('switching back to the current map sheet cancels a pending replacement', async ({ page }) => {
+  await setMapView(page, -5.7, 131, 10);
+  await page.evaluate(() => {
+    const api = window.__DIVEATLAS_TEST__;
+    api.addDiveSite(-5.7, 131, 'return-site');
+    api.addCoralPoint(-5.7, 131.03, 'return-coral');
+    window.__returnSheetOpens = [];
+    api.map.on('popupopen', e => window.__returnSheetOpens.push(e.popup._diveAtlasLayerKey));
+    api.openFixturePopup('return-site');
+  });
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet').last();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  await page.evaluate(async () => {
+    const api = window.__DIVEATLAS_TEST__;
+    api.openFixturePopup('return-coral');
+    await new Promise(resolve => setTimeout(resolve, 80));
+    api.openFixturePopup('return-site');
+  });
+  await expect(sheet).not.toHaveClass(/mobile-sheet-exiting/);
+  await page.waitForTimeout(400);
+  await expect(sheet).toBeVisible();
+  expect(await page.evaluate(() => window.__returnSheetOpens)).toEqual(['dive']);
+});
+
 test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', async ({ page }) => {
   await page.evaluate(() => {
     const marker = window.__DIVEATLAS_TEST__.addDiveSite(-5.7, 131, 'mobile-sheet-dismiss');
@@ -497,6 +593,12 @@ test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', asyn
   await expect(sheet).toBeVisible();
   await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
   const handle = sheet.locator('.diveatlas-mobile-sheet-handle');
+  await sheet.evaluate(element => {
+    window.__sheetGestureEntries = 0;
+    new MutationObserver(() => {
+      if (element.classList.contains('mobile-sheet-entering')) window.__sheetGestureEntries++;
+    }).observe(element, {attributes:true, attributeFilter:['class']});
+  });
   await handle.evaluate(element => {
     element.setPointerCapture = () => {};
     const bounds = element.getBoundingClientRect();
@@ -520,6 +622,7 @@ test('a dismissed map sheet stays offscreen through Leaflet popup cleanup', asyn
 
   await expect.poll(() => page.evaluate(() => window.__mobileSheetCloseState)).not.toBeNull();
   const closeState = await page.evaluate(() => window.__mobileSheetCloseState);
+  expect(await page.evaluate(() => window.__sheetGestureEntries)).toBe(0);
   expect(closeState.exiting).toBe(true);
   expect(closeState.top).toBeGreaterThanOrEqual(closeState.viewportHeight - 1);
 });
@@ -1047,6 +1150,51 @@ for (const { language, primary, secondary } of [
   });
 }
 
+test('mobile search animates on open and close but not result updates', async ({ page }) => {
+  const sheet = page.locator('#diveSearchResults');
+  await sheet.evaluate(el => {
+    window.__searchSheetMotion = [];
+    new MutationObserver(() => {
+      if (el.classList.contains('mobile-sheet-entering')) window.__searchSheetMotion.push('enter');
+      if (el.classList.contains('mobile-sheet-exiting')) window.__searchSheetMotion.push('exit');
+    }).observe(el, {attributes:true, attributeFilter:['class']});
+  });
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeVisible();
+  await expect.poll(() => page.evaluate(() => window.__searchSheetMotion.includes('enter'))).toBe(true);
+  await page.waitForTimeout(350);
+  await page.evaluate(() => { window.__searchSheetMotion = []; });
+  await page.locator('#diveSearchInput').fill('Raja');
+  await expect(sheet.locator('[data-result-kind="destination"]').first()).toBeVisible({timeout:15000});
+  expect(await page.evaluate(() => window.__searchSheetMotion.includes('enter'))).toBe(false);
+  await page.locator('#diveSearchToggle').click();
+  await expect.poll(() => page.evaluate(() => window.__searchSheetMotion.includes('exit'))).toBe(true);
+  await expect(sheet).toBeHidden();
+});
+
+test('mobile search cancels a pending close when reopened immediately', async ({ page }) => {
+  const trigger = page.locator('#diveSearchToggle');
+  const sheet = page.locator('#diveSearchResults');
+  await trigger.click();
+  await expect(sheet).toBeVisible();
+  await page.waitForTimeout(350);
+  await trigger.evaluate(el => { el.click(); el.click(); });
+  await expect(sheet).toBeVisible();
+  await page.waitForTimeout(400);
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-exiting/);
+});
+
+test('mobile search respects reduced motion on open and close', async ({ page }) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  const sheet = page.locator('#diveSearchResults');
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  await page.locator('#diveSearchToggle').click();
+  await expect(sheet).toBeHidden();
+});
+
 test('mobile map search expands its full-width sheet and preserves destination selection', async ({ page }) => {
   await page.locator('#diveSearchToggle').click();
   const sheet = page.locator('#diveSearchResults');
@@ -1054,6 +1202,11 @@ test('mobile map search expands its full-width sheet and preserves destination s
   await expect(sheet.locator('#diveSearchFilterToggle')).toBeVisible();
   const listHeight = (await sheet.locator('#diveSearchResultsScroll').boundingBox()).height;
   await page.locator('#diveSearchFilterToggle').click();
+  const inputBox = await sheet.locator('.dive-search-sheet-input').boundingBox();
+  const filterBox = await sheet.locator('#diveSearchFilterToggle').boundingBox();
+  const topGap = filterBox.y - inputBox.y;
+  expect(inputBox.x + inputBox.width - filterBox.x - filterBox.width).toBeCloseTo(topGap, 0);
+  expect(inputBox.y + inputBox.height - filterBox.y - filterBox.height).toBeCloseTo(topGap, 0);
   const filters = sheet.locator('#diveSearchFilterControls');
   await expect(filters).toBeVisible();
   await expect(sheet.locator('#diveSearchResultsScroll')).toBeVisible();
@@ -1176,7 +1329,14 @@ test('mobile floating filters retain picker selection after sheet expansion', as
   await expect(sheet.locator('[data-result-kind="destination"]').first()).toBeVisible({timeout:15000});
   await page.locator('#diveSearchResultsHandle').focus();
   await page.keyboard.press('Enter');
-  await page.locator('#diveSearchFilterToggle').click();
+  const filterToggle = page.locator('#diveSearchFilterToggle');
+  await filterToggle.click();
+  const searchBox = await page.locator('#diveSearchSheetInput').boundingBox();
+  const filterBox = await filterToggle.boundingBox();
+  expect(searchBox.x + searchBox.width - filterBox.x - filterBox.width).toBeGreaterThanOrEqual(1);
+  expect(searchBox.x + searchBox.width - filterBox.x - filterBox.width).toBeLessThanOrEqual(4);
+  await expect(filterToggle).toHaveCSS('border-top-right-radius', '11px');
+  await expect(filterToggle).toHaveCSS('border-bottom-right-radius', '11px');
   const filters = page.locator('#diveSearchFilterControls');
   const box = await filters.boundingBox(), viewport = page.viewportSize();
   expect(box.x).toBeGreaterThanOrEqual(0);
@@ -1190,6 +1350,13 @@ test('mobile floating filters retain picker selection after sheet expansion', as
   await indonesia.click();
   await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
   await expect(page.locator('#diveSearchFilterToggle')).toHaveClass(/has-active-filters/);
+  await filterToggle.click();
+  await expect(filters).toBeHidden();
+  await page.locator('#diveSearchInput').click();
+  await expect(filters).toBeHidden();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
+  await filterToggle.click();
+  await expect(filters).toBeVisible();
   const clear = page.locator('#diveSearchFilterClear');
   await clear.scrollIntoViewIfNeeded();
   await expect(clear).toBeInViewport();
@@ -1199,10 +1366,20 @@ test('mobile floating filters retain picker selection after sheet expansion', as
 
 test('floating search filter handle resists, rebounds and dismisses on an upward drag', async ({ page }) => {
   await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('Raja Ampat');
+  await expect(page.locator('#diveSearchResults [data-result-kind="destination"]').first()).toBeVisible({timeout:15000});
   await page.locator('#diveSearchFilterToggle').click();
   const filters = page.locator('#diveSearchFilterControls');
   const handle = page.locator('#diveSearchFilterHandle');
   await expect(handle).toBeVisible();
+  await page.locator('#diveSearchCountryFilterPicker').click();
+  await page.locator('#diveSearchCountryFilterPickerOptions').getByRole('option', {name:'Indonesia', exact:true}).click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
+  const clearBox = await page.locator('#diveSearchFilterClear').boundingBox();
+  const gripBox = await handle.boundingBox();
+  expect(gripBox.height).toBe(44);
+  expect(gripBox.y).toBeLessThan(clearBox.y + clearBox.height);
+  expect(await page.evaluate(({x,y}) => document.elementFromPoint(x,y)?.closest('#diveSearchFilterClear')?.id, {x:clearBox.x + clearBox.width / 2,y:clearBox.y + clearBox.height / 2})).toBe('diveSearchFilterClear');
   const initial = (await filters.boundingBox()).height;
   const initialHandleY = (await handle.boundingBox()).y;
   expect(await handle.evaluate(el => getComputedStyle(el, '::after').opacity)).toBe('0');
@@ -1245,6 +1422,9 @@ test('floating search filter handle resists, rebounds and dismisses on an upward
   await drag(-90);
   await expect(filters).toBeHidden();
   await expect(page.locator('#diveSearchResults')).toBeVisible();
+  await page.locator('#diveSearchInput').click();
+  await expect(filters).toBeHidden();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
   await page.locator('#diveSearchFilterToggle').click();
   await expect(handle).toBeVisible();
   await handle.focus();
@@ -1316,20 +1496,65 @@ test('mobile destination return bar stays compact and returns to grouped results
   expect(rect.height).toBeLessThanOrEqual(52);
   const scroll = sheet.locator('#diveSearchResultsScroll');
   const scrollRect = await scroll.boundingBox();
-  expect(rect.x - scrollRect.x).toBeLessThanOrEqual(2);
-  expect(scrollRect.x + scrollRect.width - rect.x - rect.width).toBeLessThanOrEqual(2);
+  const sheetRect = await sheet.boundingBox();
+  expect(Math.abs(rect.x - sheetRect.x)).toBeLessThanOrEqual(2);
+  expect(Math.abs(sheetRect.x + sheetRect.width - rect.x - rect.width)).toBeLessThanOrEqual(2);
+  expect(rect.y + rect.height).toBeCloseTo(scrollRect.y, 0);
+  expect(await back.evaluate(el => el.parentElement.id)).toBe('diveSearchResults');
+  expect(await scroll.getAttribute('aria-owns')).toBe(await back.getAttribute('id'));
   expect(await scroll.evaluate(el => getComputedStyle(el).scrollbarWidth)).not.toBe('none');
-  expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar-track').marginTop)).toBe('48px');
-  expect(await sheet.evaluate(el => getComputedStyle(el, '::after').width)).toBe('7px');
-  expect(await sheet.evaluate(el => getComputedStyle(el, '::after').pointerEvents)).toBe('none');
   await scroll.evaluate(el => { el.scrollTop = 180; });
-  expect((await back.boundingBox()).y).toBeCloseTo(scrollRect.y, 0);
+  expect((await back.boundingBox()).y).toBeCloseTo(rect.y, 0);
   await expect(back.locator('.dive-search-result-meta')).not.toBeEmpty();
   await back.click();
   await expect(expand).toBeVisible();
   await expect(expand).not.toHaveClass(/\bactive\b/);
   await expect(expand).toHaveAttribute('aria-selected', 'false');
   await expect(page.locator('#diveSearchInput')).not.toHaveAttribute('aria-activedescendant', /.+/);
+});
+
+test('mobile destination list stays open when search filters change', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  const input = page.locator('#diveSearchInput');
+  await input.fill('r');
+  const sheet = page.locator('#diveSearchResults');
+  await sheet.locator('[data-result-kind="expand-destinations"]').click({timeout:15000});
+  const back = sheet.locator('[data-result-kind="back-to-results"]');
+  await expect(back).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await page.locator('#diveSearchCountryFilterPicker').click();
+  await page.locator('#diveSearchCountryFilterPickerOptions').getByRole('option', {name:'Indonesia', exact:true}).click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
+  await expect(back).toBeVisible();
+  await expect(sheet.locator('[data-result-kind="expand-destinations"]')).toHaveCount(0);
+  await page.locator('#diveSearchFilterClear').click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('');
+  await expect(back).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await back.click();
+  await expect(sheet.locator('[data-result-kind="expand-destinations"]')).toBeVisible();
+});
+
+test('empty filtered destination list shows a message and can return to results', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('china');
+  const sheet = page.locator('#diveSearchResults');
+  await sheet.locator('[data-result-kind="expand-destinations"]').click({timeout:15000});
+  await page.locator('#diveSearchFilterToggle').click();
+  const country = page.locator('#diveSearchCountryFilterPicker');
+  await country.click();
+  await page.locator('#diveSearchCountryFilterPickerOptions').getByRole('option', {name:'Indonesia', exact:true}).click();
+  const back = sheet.locator('[data-result-kind="back-to-results"]');
+  await expect(back).toBeVisible();
+  await expect(back.locator('.dive-search-result-meta')).toContainText('0');
+  await expect(sheet.locator('[data-result-kind="destination"]')).toHaveCount(0);
+  await expect(sheet.locator('.dive-search-empty')).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await back.click();
+  await expect(back).toHaveCount(0);
+  await expect(sheet.locator('[data-result-kind="site"]').first()).toBeVisible();
+  await page.locator('#diveSearchFilterToggle').click();
+  await expect(page.locator('#diveSearchCountryFilter')).toHaveValue('Indonesia');
 });
 
 test('mobile destination-only results load more by swiping at the end', async ({ page }) => {

@@ -1138,6 +1138,40 @@ test('turning Temperature off while a query chunk is pending prevents the popup 
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
 });
 
+test('mobile temperature sheet stays open when sampling another location', async ({ page }) => {
+  await page.setViewportSize({width:390,height:844});
+  await openMap(page, {localStorage:{'global-coral-map-environment-month-v1':'9'}});
+  await installTemperatureQueryFixture(page);
+  await setLegendCollapsed(page, false);
+  await activateTemperatureView(page);
+  await setLegendCollapsed(page, true);
+  await placeCoordinateNearSafeTop(page, -5.7, 131);
+  await waitForMapInteractionWindow(page);
+  await clickMapCoordinate(page, -5.7, 131);
+  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet.temperature-detail-popup');
+  await expect(sheet).toBeVisible();
+  await expectTemperatureReadingRow(page, '2°C');
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  await sheet.evaluate(el => {
+    window.__temperatureMotion = [];
+    new MutationObserver(() => {
+      if (el.classList.contains('mobile-sheet-exiting')) window.__temperatureMotion.push('exit');
+      if (el.classList.contains('mobile-sheet-entering')) window.__temperatureMotion.push('enter');
+    }).observe(el, {attributes:true,attributeFilter:['class']});
+  });
+  await waitForMapInteractionWindow(page);
+  const next = await page.evaluate(() => {
+    const map = window.__DIVEATLAS_TEST__.map;
+    const point = map.containerPointToLatLng([40, 150]);
+    return {lat:point.lat, lng:point.lng};
+  });
+  await clickMapCoordinate(page, next.lat, next.lng);
+  await expect.poll(() => page.evaluate(() => window.__DIVEATLAS_TEST__.map._popup?.getLatLng().lat)).toBeCloseTo(next.lat, 3);
+  await page.waitForTimeout(400);
+  await expect(sheet).toBeVisible();
+  expect(await page.evaluate(() => window.__temperatureMotion)).toEqual([]);
+});
+
 test('temperature detail stays compact at a mobile viewport', async ({ page }) => {
   // This is a layout check; keep its sampled value independent of release data availability.
   await page.setViewportSize({ width: 390, height: 844 });

@@ -20,6 +20,33 @@ test('mobile trips handle reuses sheet drag, snaps back, dismisses and resets',a
 });
 
 
+test('mobile trips closes once with an exit transition',async({page})=>{
+  await openMap(page);
+  const sheet=page.locator('#savedTripsPanel');
+  await page.locator('#savedTripsButton').click();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  await page.keyboard.press('Escape');
+  await expect(sheet).toHaveClass(/mobile-sheet-exiting/);
+  await expect(sheet).toBeHidden();
+  await page.locator('#savedTripsButton').click();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-exiting/);
+});
+
+test('mobile trips cancels exit when reopened immediately',async({page})=>{
+  await openMap(page);
+  const button=page.locator('#savedTripsButton'), sheet=page.locator('#savedTripsPanel');
+  await button.click();
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
+  await button.evaluate(el=>{el.click();el.click();});
+  await expect(sheet).toBeVisible();
+  await page.waitForTimeout(400);
+  await expect(sheet).toBeVisible();
+  await expect(sheet).not.toHaveClass(/mobile-sheet-exiting/);
+});
+
 test('mobile trip selector uses the search-results drag handle',async({page})=>{
   const saved={version:1,active:'one',trips:[{id:'one',name:'Portugal in November',month:11,sites:[],context:null},{id:'two',name:'Madeira',month:null,sites:[],context:null}]};
   await openMap(page,{localStorage:{[KEY]:JSON.stringify(saved)}});

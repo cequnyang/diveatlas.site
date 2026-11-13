@@ -431,7 +431,7 @@
 
 @media (max-width: 720px) {
   .search-results-menu {
-    transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1), translate 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
   }
   .search-results-menu.mobile-vertical-dragging {
     transition: none;
@@ -697,11 +697,12 @@ body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive
   /* Keep the return control compact and visually distinct from selectable
      destinations while preserving one full-width, sticky touch target. */
   body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] {
-    width: calc(100% - 2px); min-height: 48px; margin: 0 1px; padding: 8px 15px;
-    background: color-mix(in srgb, var(--panel-solid) 80%, transparent);
-    border-bottom: 1px solid var(--line);
-    -webkit-backdrop-filter: blur(8px) saturate(145%);
-    backdrop-filter: blur(8px) saturate(145%);
+    position: static; flex: 0 0 auto; width: calc(100% - 2px); min-height: 48px; margin: 0 1px; padding: 8px 15px;
+    color: var(--text);
+    background: color-mix(in srgb, var(--panel-solid) 58%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(145%);
+    backdrop-filter: blur(12px) saturate(145%);
   }
   .search-results-menu.is-mobile-bottom-sheet .dive-search-result[data-result-kind="back-to-results"] .dive-search-result-name {
     flex: 1 1 auto; min-width: 0; gap: 8px; font-size: 13px; font-weight: 600;
@@ -741,8 +742,11 @@ body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive
     display: grid; visibility: visible; opacity: 1; right: 46px; width: 40px; height: 40px;
   }
   .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input .dive-search-filter-toggle {
-    display: grid; right: 2px; width: 44px; height: 44px;
+    display: grid; right: 1px; width: 44px; height: 44px;
+    /* Match the input corners while keeping equal top, right and bottom spacing. */
+    border-radius: 10px 11px 11px 10px;
   }
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-sheet-input .dive-search-filter-toggle:hover { scale: 1; }
   .search-results-menu.is-mobile-bottom-sheet { padding-top: 104px; }
   .search-results-menu.is-mobile-bottom-sheet.visible.has-filters { display: flex; }
   /* Overlay filters without changing the result list's size or scroll position. */
@@ -778,14 +782,14 @@ body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive
     padding-bottom: 0;
     transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  /* Keep the clear action above the sticky grip even when the menu scrolls. */
-  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-clear:not([hidden]) { margin-bottom: 24px; }
+  /* Keep Clear All clickable where it shares the grip row. */
+  .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-clear:not([hidden]) { position: relative; z-index: 2; margin-bottom: 8px; padding-block: 1px; }
   .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-controls.mobile-vertical-dragging { transition: none; }
   .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-controls.mobile-search-dismissing { overflow: hidden; pointer-events: none; }
   .search-results-menu.is-mobile-bottom-sheet .dive-search-filter-handle {
     position: sticky; bottom: 0; z-index: 1; grid-column: 1 / -1;
     display: grid; place-items: center; justify-self: center;
-    width: calc(100% + 32px); height: 44px; margin-top: -20px; padding: 0; border: 0; background: transparent;
+    width: calc(100% + 32px); height: 44px; margin-top: -40px; padding: 0; border: 0; background: transparent;
     cursor: grab; touch-action: none; -webkit-tap-highlight-color: transparent;
     transform: translateY(var(--mobile-handle-stretch, 0px));
     transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
@@ -820,27 +824,6 @@ body :is(#seoSiteSearchResults, #diveSearchResults).is-destination-results .dive
 
 @media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
   body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] {
-    background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
-  }
-}
-
-@media (max-width: 720px) {
-  /* The return row shares a scrollport with the list; reserve its height in
-     the scrollbar track so the thumb starts below the sticky navigation. */
-  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results #diveSearchResultsScroll::-webkit-scrollbar-track { margin-top: 48px; }
-  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results .dive-search-result[data-result-kind="back-to-results"] { width: calc(100% + 4px); }
-  /* Scrollbars reserve a gutter for the whole scrollport even when their
-     track starts below the sticky row. Continue its glass into that gutter. */
-  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results::after {
-    content: ''; position: absolute; z-index: 3; top: 104px; right: 1px;
-    width: 7px; height: 48px; pointer-events: none; box-sizing: border-box;
-    background: color-mix(in srgb, var(--panel-solid) 80%, transparent);
-    border-bottom: 1px solid var(--line);
-    -webkit-backdrop-filter: blur(8px) saturate(145%); backdrop-filter: blur(8px) saturate(145%);
-  }
-}
-@media (max-width: 720px) and (prefers-reduced-transparency: reduce) {
-  body #diveSearchResults.is-mobile-bottom-sheet.is-destination-results::after {
     background: var(--panel-solid); -webkit-backdrop-filter: none; backdrop-filter: none;
   }
 }

@@ -979,6 +979,32 @@ for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/desti
   });
 }
 
+test('desktop map language menu preserves its popup and selection', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Desktop popup layout');
+  await page.goto('/');
+  const trigger = page.locator('#languageMenuButton');
+  const menu = page.locator('#languageDropdown');
+  await trigger.click();
+  await expect(menu).toBeVisible();
+  await expect(menu.locator('.language-page-header')).toBeHidden();
+  await expect(menu.locator('.language-page-options')).toHaveCSS('display', 'contents');
+  await expect(menu.locator('[data-language]')).toHaveCount(15);
+  await expect(menu.locator('[data-language="en"]')).toHaveAttribute('aria-checked', 'true');
+  const popup = await menu.boundingBox();
+  const anchor = await trigger.boundingBox();
+  expect(popup.width).toBeLessThan(200);
+  expect(popup.y).toBeGreaterThanOrEqual(anchor.y + anchor.height - 1);
+  expect(await menu.evaluate(el => getComputedStyle(el).backdropFilter)).not.toBe('none');
+  await menu.locator('[data-language="zh"]').click();
+  await expect(page.locator('#langSelect')).toHaveValue('zh');
+  await expect(menu).toBeHidden();
+  await trigger.click();
+  await expect(menu.locator('[data-language="zh"]')).toHaveAttribute('aria-checked', 'true');
+  await menu.locator('[data-language="en"]').click();
+  await expect(page.locator('#langSelect')).toHaveValue('en');
+  await expect(menu).toBeHidden();
+});
+
 test.describe('shared header native scrollbar edge', () => {
   for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/destinations/', '/plain-page-fixture.html']) {
     test(`header fills the scrollbar edge on ${path}`, async ({ page }) => {

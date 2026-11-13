@@ -146,7 +146,16 @@
       feedback.hidden = false; timer = setTimeout(() => { feedback.hidden = true; }, 7000);
     }
     function remember() { if (!restoring && !panel.hidden && active()) { active().context = adapter.capture(); persist(); } }
-    function close(restoreFocus = true) { adapter.resetSheet(panel); dismissTripMenu(); monthWheel?.close(); remember(); panel.hidden = true; button.setAttribute('aria-expanded','false'); if (restoreFocus) button.focus(); }
+    function close(restoreFocus = true) {
+      if (panel.hidden) return;
+      dismissTripMenu(); monthWheel?.close(); remember();
+      const finish = () => {
+        adapter.resetSheet(panel); panel.hidden = true;
+        button.setAttribute('aria-expanded','false');
+        if (restoreFocus) button.focus();
+      };
+      adapter.exitSheet(panel, finish);
+    }
     function open(restore = false) {
       adapter.resetSheet(panel);
       if (restore && active()?.context) adapter.restore(active().context);
@@ -310,7 +319,7 @@
       if (selectionFeedback) { announce(selectionFeedback,true); selectionFeedback = null; }
       if (origin?.isConnected) origin.focus({preventScroll:true});
     });
-    button.onclick = () => panel.hidden ? open(false) : close();
+    button.onclick = () => (panel.hidden || panel.classList.contains('mobile-sheet-exiting')) ? open(false) : close();
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && !event.defaultPrevented && !document.querySelector('.saved-trips-dialog[open]') && !panel.hidden) { event.stopPropagation(); close(); } });
     document.addEventListener('click', event => { const target = event.target.closest('[data-save-trip-site]'); if (!target) return; event.preventDefault(); event.stopPropagation(); choose(adapter.describe(target.dataset.saveTripSite)); }, true);
     adapter.onOverlayOpen(event => {
