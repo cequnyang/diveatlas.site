@@ -188,3 +188,6 @@ playwright-report/
 
 # Local design prototypes and rendered previews.
 /design-explorations/
+
+# Search-name research stays local; runtime aliases are tracked separately.
+/datasets/search-name-review-ledger.json
