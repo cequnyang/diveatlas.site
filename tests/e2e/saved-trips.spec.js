@@ -301,6 +301,7 @@ test('trip surfaces yield to other map tasks and preserve their own child menu',
   expect(await page.locator('.leaflet-popup').evaluate(el=>el===window.__savedTripSourceSheet)).toBe(true);
   await page.locator('#savedTripsButton').click();
   await expect(page.locator('.leaflet-popup')).toHaveCount(mobile ? 0 : 1);
+  if (mobile) await page.locator('#diveSearchToggle').click();
   await page.locator('#diveSearchInput').fill('Test');
   await expect(page.locator('#diveSearchResults')).toBeVisible();
   await expect(panel).toBeHidden();

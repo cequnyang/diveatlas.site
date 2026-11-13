@@ -257,6 +257,7 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   if (areaInput === 'guide') await guide.fill('Raja Ampat');
   else {
+    if (!(await header.isVisible())) await page.locator('#diveSearchToggle').click();
     await header.fill('Raja Ampat');
   }
   await page.locator('#diveSearchResults [data-area-key]').first().click();
@@ -453,7 +454,7 @@ test('header destination selection keeps native site details separate from guide
   await page.locator('#diveSearchResults [data-site-index]').first().click();
   await expect(page.locator('#mapWelcomeSearch')).toHaveValue('');
   await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});
-  await expect(header).toBeFocused();
+  if (await header.isVisible()) await expect(header).toBeFocused();
   await expect(page.locator('#mapWelcome')).toBeVisible();
 });
 
@@ -478,7 +479,13 @@ test(`grouped search and filters fit their panes at ${viewport.width}x${viewport
     expect(box.y + box.height).toBeLessThanOrEqual(shell.y + shell.height + 1);
   }
   const stacked = await panel.evaluate(element => element.classList.contains('is-stacked'));
-  if (stacked) expect(filters.y).toBeGreaterThanOrEqual(results.y + results.height - 1);
+  const overlay = await panel.evaluate(element => element.classList.contains('is-mobile-bottom-sheet'));
+  // Mobile filters overlay the results to preserve their scroll position.
+  if (overlay) {
+    expect(filters.y).toBeLessThan(results.y + results.height);
+    expect(filters.y + filters.height).toBeGreaterThan(results.y);
+  }
+  else if (stacked) expect(filters.y).toBeGreaterThanOrEqual(results.y + results.height - 1);
   else {
     expect(filters.x).toBeGreaterThanOrEqual(results.x + results.width - 1);
     expect(filters.y).toBeLessThanOrEqual(results.y + 1);
@@ -509,6 +516,7 @@ test('grouped header puts destinations first and paginates individual sites', as
   await options.first().click();
   await expect(page.locator('.leaflet-popup')).toHaveCount(0);
   await expect(page.locator('#mapWelcome')).toBeVisible();
+  if (!(await input.isVisible())) await page.locator('#diveSearchToggle').click();
   await input.fill('Bali');
   await expect(options.first()).toHaveAttribute('data-area-key',/.+/,{timeout:15000});
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toBeVisible();
@@ -540,6 +548,7 @@ test('automatic translation results keep one compact selectable row', async ({ p
   const input = page.locator('#diveSearchInput');
   if (!(await input.isVisible())) await page.locator('#diveSearchToggle').click();
   for (const action of ['badge click','keyboard']) {
+    if (!(await input.isVisible())) await page.locator('#diveSearchToggle').click();
     await input.fill('');
     await input.fill('百福湾');
     const row = page.locator('#diveSearchResults .dive-search-result').filter({has:page.locator('.dive-search-name-auto')}).first();
@@ -553,7 +562,8 @@ test('automatic translation results keep one compact selectable row', async ({ p
     const badgeBox = await badge.boundingBox();
     expect(badgeBox.y).toBeGreaterThanOrEqual(titleBox.y);
     expect(badgeBox.y + badgeBox.height).toBeLessThanOrEqual(titleBox.y + titleBox.height + 1);
-    expect((await row.boundingBox()).height).toBeLessThanOrEqual(64);
+    const mobileSheet = await page.locator('#diveSearchResults').evaluate(el => el.classList.contains('is-mobile-bottom-sheet'));
+    expect((await row.boundingBox()).height).toBeLessThanOrEqual(mobileSheet ? 76 : 64);
     if (action === 'badge click') await badge.click();
     else { await input.press('ArrowDown'); await input.press('Enter'); }
     await expect(page.locator('#diveSearchResults')).toBeHidden();
@@ -671,13 +681,18 @@ test(`grouped ${host} search uses destination and site keyboard actions`, async 
     await page.goto('/plain-page-fixture.html');
     if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
   }
+  if (!(await input.isVisible())) await page.locator(`#${prefix}Toggle`).click();
   await input.fill('Blue Magic');
   await expect(options.first()).toHaveAttribute('data-result-kind','site',{timeout:15000});
   await input.press('ArrowDown');
   await expect(input).toHaveAttribute('aria-activedescendant',`${prefix}Results-option-0`);
   await input.press('Escape');
   await expect(page.locator(`#${prefix}Results`)).toBeHidden();
-  await input.focus();
+  if (!(await input.isVisible())) {
+    await page.locator(`#${prefix}Toggle`).click();
+    await input.fill('Blue Magic');
+    await expect(options.first()).toHaveAttribute('data-result-kind','site',{timeout:15000});
+  } else await input.focus();
   await input.press('ArrowDown');
   await input.press('Enter');
   if (host === 'map') await expect(page.locator('.leaflet-popup').first()).toBeVisible({timeout:15000});

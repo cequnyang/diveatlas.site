@@ -672,31 +672,18 @@ test('expanding the full mobile layer panel closes any open map sheet', async ({
   await expect(page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet')).toHaveCount(0);
 });
 
-test('focusing mobile search without opening its menu keeps an open map sheet', async ({ page }) => {
+test('opening mobile search closes an open map sheet', async ({ page }) => {
   await setMapView(page, -5.7, 131, 14);
-  await addFixture(page, 'dive-site', { id:'sheet-before-search-focus', lat:-5.7, lng:131 });
-  await clickFixture(page, 'sheet-before-search-focus');
+  await addFixture(page, 'dive-site', { id:'sheet-before-search', lat:-5.7, lng:131 });
+  await clickFixture(page, 'sheet-before-search');
 
   const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
   await expect(sheet).toBeVisible();
-  await page.locator('#diveSearchInput').click();
-
-  await expect(page.locator('#diveSearchResults')).not.toHaveClass(/visible/);
-  await expect(sheet).toBeVisible();
-});
-
-test('showing mobile search candidates closes any open map sheet', async ({ page }) => {
-  await setMapView(page, -5.7, 131, 14);
-  await addFixture(page, 'dive-site', { id:'sheet-before-search-candidates', lat:-5.7, lng:131 });
-  await clickFixture(page, 'sheet-before-search-candidates');
-
-  const sheet = page.locator('.leaflet-popup.diveatlas-mobile-sheet, .leaflet-popup.dive-conditions-rating-sheet');
-  await expect(sheet).toBeVisible();
-  await page.locator('#diveSearchInput').fill('Tapor Tamiyam');
-
-  await expect(page.locator('#diveSearchResults')).toHaveClass(/visible/);
-  await expect(page.locator('.dive-search-result').first()).toBeVisible();
+  await page.locator('#diveSearchToggle').click();
+  await expect(page.locator('#diveSearchResults')).toBeVisible();
   await expect(sheet).toHaveCount(0);
+  await page.locator('#diveSearchInput').fill('Tapor Tamiyam');
+  await expect(page.locator('.dive-search-result').first()).toBeVisible();
 });
 
 test('showing the combined mobile search and filter menu closes any open map sheet', async ({ page }) => {
