@@ -7100,18 +7100,22 @@
       .bio-legend.is-mobile-auto-collapsed .bio-legend-heading,
       .bio-legend.is-mobile-auto-collapsed .bio-legend-title { border-radius:50%; }
       .bio-legend.is-mobile-auto-collapsed .bio-legend-heading {
-        width:48px;
-        height:48px;
-        min-height:48px;
+        /* Match the circle's inner box; inherited collapsed dimensions shift the icon. */
+        box-sizing:border-box;
+        width:100%;
+        height:100%;
+        min-height:0;
         margin:0;
         padding:0;
         justify-content:center;
       }
       .bio-legend.is-mobile-auto-collapsed .bio-legend-title {
-        width:48px;
-        min-width:48px;
-        min-height:48px;
-        flex:0 0 48px;
+        box-sizing:border-box;
+        width:100%;
+        height:100%;
+        min-width:0;
+        min-height:0;
+        flex:1 1 auto;
         justify-content:center;
         padding:0;
       }
