@@ -55,8 +55,9 @@ class SharedHeroTests(unittest.TestCase):
             dump(base / 'assignments.json', [entry])
             catalog = root / 'js/dive-site-reviewed-photo-catalog.js'; catalog.parent.mkdir()
             catalog.write_text(json.dumps({'src': f'/assets/dive-sites/{SID}/thumbnail.jpg', 'fullSrc': hero}))
-            with patch.object(migration, 'ROOT', root), patch.object(migration, 'BASE', base):
+            with patch.object(migration, 'ROOT', root), patch.object(migration, 'BASE', base), patch.object(migration, 'refresh_photo_outputs') as refresh_outputs:
                 migration.migrate()
+                refresh_outputs.assert_called_once()
             self.assertEqual(json.loads((base / 'assignments.json').read_text(encoding='utf-8')), [entry])
             self.assertEqual((site / 'hero.jpg').read_bytes(), b'unchanged hero')
             self.assertEqual(list(site.iterdir()), [site / 'hero.jpg'])
@@ -78,8 +79,9 @@ class SharedHeroTests(unittest.TestCase):
             dump(base / 'assignments.json', [entry])
             catalog = root / 'js/dive-site-reviewed-photo-catalog.js'
             catalog.parent.mkdir(); catalog.write_text(json.dumps({'fullSrc': entry['desktop']}))
-            with patch.object(migration, 'ROOT', root), patch.object(migration, 'BASE', base):
+            with patch.object(migration, 'ROOT', root), patch.object(migration, 'BASE', base), patch.object(migration, 'refresh_photo_outputs') as refresh_outputs:
                 migration.migrate()
+                refresh_outputs.assert_called_once()
                 with self.assertRaises(ValueError): migration.migrate()
             result = json.loads((base / 'assignments.json').read_text(encoding='utf-8'))[0]
             self.assertEqual((site / 'hero.jpg').read_bytes(), b'desktop')
@@ -113,12 +115,14 @@ class SharedHeroTests(unittest.TestCase):
             page = root / 'dive-sites/fixture/index.html'; page.parent.mkdir(parents=True)
             page.write_text(f'<main data-site-id="{SID}">')
             dataset = root / 'datasets/dive-site-photos.js'; dataset.parent.mkdir(); dataset.write_text('{}')
-            with patch.object(importer, 'ROOT', root), patch('sys.argv', ['importer', '--decisions', str(decision), '--apply']):
+            with patch.object(importer, 'ROOT', root), patch('build_reviewed_site_photo_catalog.build') as rebuild, patch('sys.argv', ['importer', '--decisions', str(decision), '--apply']):
                 importer.main()
+                rebuild.assert_called_once()
             hero_digest = hashlib.sha256((base / SID / 'hero.jpg').read_bytes()).hexdigest()
-            with patch.object(builder, 'ROOT', root), patch.object(builder, 'ASSETS', base):
+            with patch.object(builder, 'ROOT', root), patch.object(builder, 'ASSETS', base), patch.object(builder, 'refresh', return_value={}) as refresh, patch.object(builder, 'build_directory'):
                 builder.build()
                 builder.build()
+                self.assertEqual(refresh.call_count, 2)
             self.assertEqual(hashlib.sha256((base / SID / 'hero.jpg').read_bytes()).hexdigest(), hero_digest)
             entry = json.loads((base / 'assignments.json').read_text(encoding='utf-8'))[0]
             self.assertEqual(entry['hero'], f'/assets/dive-sites/{SID}/hero.jpg')

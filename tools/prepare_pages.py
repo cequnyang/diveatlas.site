@@ -401,6 +401,13 @@ def main() -> None:
         else:
             from export_dive_site_details import export as export_dive_site_details
         export_dive_site_details(ROOT)
+    # Cover direct photo/assignment edits too: packaging must not retain an old
+    # static hero while the runtime catalog points at a newer photograph.
+    if __package__:
+        from .refresh_detail_photos import refresh as refresh_detail_photos
+    else:
+        from refresh_detail_photos import refresh as refresh_detail_photos
+    refresh_detail_photos()
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)

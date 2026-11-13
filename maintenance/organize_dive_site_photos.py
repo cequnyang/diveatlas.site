@@ -103,6 +103,9 @@ def organize():
         source.unlink()
     for batch in batches:
         batch.rmdir()
+    # A path migration changes the initial hero contract as much as a new photo.
+    from build_reviewed_site_photo_catalog import build
+    build()
     print(json.dumps({'moved_files': len(moves), 'photos': sum(p.suffix == '.jpg' for p in moves), 'image_bytes_preserved': True}))
 
 
