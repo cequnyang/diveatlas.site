@@ -456,8 +456,7 @@ test('language controls contain every label and arrow', async ({ page, isMobile 
   await checkLanguages(page.locator('#tutorialLanguageMenuButton'));
 });
 
-test('narrow phone headers fit in every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('narrow phone headers fit in every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(90_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -501,8 +500,7 @@ test('narrow phone headers fit in every language', async ({ page, isMobile }) =>
   }
 });
 
-test('short and landscape screens keep the welcome and guide usable in every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('short and landscape screens keep the welcome and guide usable in every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(120_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -566,8 +564,7 @@ test('short and landscape screens keep the welcome and guide usable in every lan
   }
 });
 
-test('short and landscape language menus scroll and select every language', async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'Phone viewport check');
+test('short and landscape language menus scroll and select every language', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
   test.setTimeout(240_000);
   await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
   await page.goto('/');
@@ -1175,8 +1172,7 @@ for (const path of ['/', '/dive-site.html', '/dive-sites/', '/regions/', '/desti
   });
 }
 
-test('desktop map language menu preserves its popup and selection', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'Desktop popup layout');
+test('desktop map language menu preserves its popup and selection', { tag:'@desktop-only' }, async ({ page, isMobile }) => {
   await page.goto('/');
   const trigger = page.locator('#languageMenuButton');
   const menu = page.locator('#languageDropdown');

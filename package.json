@@ -16,10 +16,11 @@
     "check:dataset-paths": "node tools/check_dataset_paths.js && python -m unittest tests.unit.test_r2_source_policy -v",
     "test:interactions": "npm run test:unit && npm run check:test-policy && npm run build && npm run test:e2e",
     "test": "npm run test:unit",
-    "check:test-policy": "node tools/check_interaction_test_policy.js",
+    "check:test-policy": "node tools/check_interaction_test_policy.js && node tools/check_browser_test_selection.js",
     "build": "python tools/prepare_pages.py --output _site && python tools/verify_pages_build.py --output _site"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "acorn": "8.19.0"
   }
 }

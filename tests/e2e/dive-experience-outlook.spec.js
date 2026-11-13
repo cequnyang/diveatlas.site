@@ -134,8 +134,7 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
 });
 
 for (const dismissFirst of [false, true]) {
-test(`opening welcome does not reopen the ${dismissFirst ? 'swiped-away' : 'displaced'} mobile outlook sheet`, async ({ page }, testInfo) => {
-  test.skip(!testInfo.project.name.includes('mobile'), 'Mobile sheet behavior');
+test(`opening welcome does not reopen the ${dismissFirst ? 'swiped-away' : 'displaced'} mobile outlook sheet`, { tag:'@mobile-only' }, async ({ page }, testInfo) => {
   await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({
     contentType:'text/javascript', body:`window.DiveAtlasConditionsService = {
       createDiveConditionsService: () => ({ query: async (location, month) => { await new Promise(resolve => setTimeout(resolve, 1200)); return ({location, month,
