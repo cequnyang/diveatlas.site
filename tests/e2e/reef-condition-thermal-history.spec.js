@@ -176,6 +176,10 @@ test('Thermal stress history is a lazy Reef Condition metric, not a standalone c
     await expect(page.locator('#bioLegend')).toHaveClass(/is-collapsed/);
   };
   const reopenThermalHistoryPopup = async () => {
+    // Localization/panel changes may leave the old sheet visible or exiting.
+    // Start a fresh query explicitly rather than accepting that old DOM node.
+    await page.evaluate(() => window.__DIVEATLAS_TEST__.map.closePopup());
+    await expect(page.locator('.reef-condition-raster-popup')).toHaveCount(0);
     await page.evaluate(() => window.__DIVEATLAS_TEST__.map.fire('click', { latlng: window.L.latLng(0, 0) }));
     await expect(page.locator('.reef-condition-raster-popup').first()).toBeVisible();
   };
