@@ -12,6 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'assets/dive-sites'
 
 
+def refresh_photo_outputs():
+    from build_reviewed_site_photo_catalog import build
+    build()
+
+
 def migrate():
     manifest = BASE / 'assignments.json'
     rows = json.loads(manifest.read_text(encoding='utf-8'))
@@ -68,6 +73,7 @@ def migrate():
     catalog.write_text(content, encoding='utf-8')
     for path in obsolete:
         path.unlink()
+    refresh_photo_outputs()
     print(json.dumps({'shared_heroes': len(moves), 'removed_derivatives': len(obsolete)}))
 
 

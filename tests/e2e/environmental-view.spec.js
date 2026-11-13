@@ -1309,3 +1309,30 @@ test('changing month and depth requests only the newest slice and leaves markers
   await page.waitForTimeout(250);
   expect(requests.length).toBe(beforePan);
 });
+
+
+test('opening welcome invalidates a pending mobile temperature sample', async ({ page }) => {
+  await page.setViewportSize({width:390,height:844});
+  await openMap(page, {localStorage:{'global-coral-map-environment-month-v1':'9'}});
+  await installTemperatureQueryFixture(page);
+  let release;
+  let pending = false;
+  await page.route('**/data/temperature/query/v2/chunks/**', async route => {
+    pending = true;
+    await new Promise(resolve => { release = resolve; });
+    await route.fulfill({status:200,contentType:'application/gzip',body:temperatureQueryChunkFixture});
+  });
+  await setLegendCollapsed(page, false);
+  await activateTemperatureView(page);
+  await setLegendCollapsed(page, true);
+  await placeCoordinateNearSafeTop(page, -5.7, 131);
+  await waitForMapInteractionWindow(page);
+  await clickMapCoordinate(page, -5.7, 131);
+  await expect.poll(() => pending).toBe(true);
+  await page.evaluate(() => document.getElementById('bioLegendWelcome').click());
+  await expect(page.locator('#mapWelcome')).toBeVisible();
+  release();
+  await page.waitForTimeout(800);
+  await expect(page.locator('.temperature-detail')).toHaveCount(0);
+  await expect(page.locator('#mapWelcome')).toBeVisible();
+});

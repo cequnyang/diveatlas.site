@@ -51301,5 +51301,3453 @@ export const reviewedPhotos = [
     "locationConfidence": "source-supported; not independently verified",
     "publication": "NOT_AUTHORIZED",
     "attributionDetail": "Owner-selected preview; identity and reuse evidence have NOT been newly verified. Supplied status: READY FOR HUMAN REVIEW.  []  The first-person two-day visit narrative presents this photograph of the Sea Aquarium bridge/coastal setting as part of the authored work. No third-party photographer credit, purchase statement or image-specific exception identified. Work-level CC BY4.0 grant applies to the author’s own photographs, not every possible third-party object on the blog. Credit author, source and licence; identify changes. No independently proven camera original, endorsement or model/property release claimed.  Full EXIF-oriented composition resized without upscaling and JPEG re-encoded; no crop, enhancement or watermark removal. Preserve applicable ShareAlike. No publication/deployment performed. Supplied visual / hold note: Complete landscape photograph of the sheltered coastal channel at Curaçao Sea Aquarium, with water, rocks, palms, aquarium buildings and an open-water horizon. A black chain railing dominates the foreground; a few distant incidental visitors are not the subject. Useful surrounding-environment record, not a reef, wreck, entry or route image. No collage, map, satellite asset or video frame. Full source-served primary image decoded successfully; unchanged bytes retained. Supplied geographic/date/survey evidence: {\"status\": \"READY_FOR_HUMAN_REVIEW\", \"rights_note\": \"The first-person two-day visit narrative presents this photograph of the Sea Aquarium bridge/coastal setting as part of the authored work. No third-party photographer credit, purchase statement or image-specific exception identified. Work-level CC BY4.0 grant applies to the author’s own photographs, not every possible third-party object on the blog. Credit author, source and licence; identify changes. No independently proven camera original, endorsement or model/property release claimed.\", \"depiction_scope\": \"Documented surrounding-environment context, not exact dive-route or entry depiction.\", \"review_disposition\": \"READY_FOR_REVIEW\"}"
+  },
+  {
+    "siteId": "51efd12a-5c20-4f77-8d74-85ea6bb5da43",
+    "slug": "south-button",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fe87c5687c1973d97dcf47fb406a36fffdd0d381c062f858e320754ef44de363.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fe87c5687c1973d97dcf47fb406a36fffdd0d381c062f858e320754ef44de363.jpg",
+    "originalSha256": "56a9e43389803006312a73509738624e4678d990e16b6a9e7ff73e883f35a662",
+    "alt": "51efd12a-5c20-4f77-8d74-85ea6bb5da43 — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Source: Directorate General of Lighthouses and Lightships, Ministry of Ports, Shipping and Waterways, Government of India; reproduce accurately and without misleading context. · DGLL attributed free-reproduction permission · Cropped/resized",
+    "creator": "Source: Directorate General of Lighthouses and Lightships, Ministry of Ports, Shipping and Waterways, Government of India; reproduce accurately and without misleading context.",
+    "license": "DGLL attributed free-reproduction permission",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.dgll.nic.in/DGLL-light-house-location/about-portblair/south-button-lighthouse",
+    "licenceUrl": "https://www.dgll.nic.in/terms-conditions",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.dgll.nic.in/DGLL-light-house-location/about-portblair/south-button-lighthouse"
+      },
+      {
+        "label": "DGLL attributed free-reproduction permission",
+        "url": "https://www.dgll.nic.in/terms-conditions"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. South Button Lighthouse amid vegetation on South Button Island, Andaman Islands, India. On-island landmark context, not an underwater view or verified dive entry. Identity: Native DGLL page and image alt explicitly identify South Button Lighthouse; text expressly locates the lighthouse on South Button Island. The inventory South Button reef carries the same island name and matching regional context. Indexed DGLL master ledger gives12°13.38N93°01.30E, consistent with the inventory locality but not independent validation of its pin. No Neil Lighthouse association is made. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "b1a57fcb-6355-43d8-8c88-9e5190df5d7b",
+    "slug": "hafen-mols",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4e869c2ae01c6c65cdb610d6cb8c4adfcda5491c3445f6f5d9c3cf119a72814b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4e869c2ae01c6c65cdb610d6cb8c4adfcda5491c3445f6f5d9c3cf119a72814b.jpg",
+    "originalSha256": "6a9c041a5bdfc84575ca684422fa2b1cf27f18dc7960ae422652ff1be1238b29",
+    "alt": "b1a57fcb-6355-43d8-8c88-9e5190df5d7b — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · zVg / Roland Zumbühl / picswiss.ch · Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence. · Cropped/resized",
+    "creator": "zVg / Roland Zumbühl / picswiss.ch",
+    "license": "Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.picswiss.ch/04-SG/s-SG-40/sSG-47-03.html",
+    "licenceUrl": "https://www.picswiss.ch/Bildanfrage.html",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.picswiss.ch/04-SG/s-SG-40/sSG-47-03.html"
+      },
+      {
+        "label": "Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence.",
+        "url": "https://www.picswiss.ch/Bildanfrage.html"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical view across Walensee from the Walenstadt side toward the Mols shoreline and mountains. Source-reported date: 18 April 2011. The foreground platform is on the Walenstadt side, not the Mols dive entry. / Mols shoreline across Walensee: historical surroundings Identity: {\"site_uuid\": \"b1a57fcb-6355-43d8-8c88-9e5190df5d7b\", \"site_name\": \"Hafen Mols\"} / {\"site_uuid\": \"bacca6ae-10ed-4c9a-8874-2f0c2172e29b\", \"site_name\": \"Walensee Hafen Mols\"} / Historical above-water surroundings of the named Mols shore, proposed separately for two records without merging them. / {\"site_uuid\": \"b1a57fcb-6355-43d8-8c88-9e5190df5d7b\", \"site_name\": \"Hafen Mols\"} / {\"site_uuid\": \"bacca6ae-10ed-4c9a-8874-2f0c2172e29b\", \"site_name\": \"Walensee Hafen Mols\"} Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "bacca6ae-10ed-4c9a-8874-2f0c2172e29b",
+    "slug": "walensee-hafen-mols",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4e869c2ae01c6c65cdb610d6cb8c4adfcda5491c3445f6f5d9c3cf119a72814b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4e869c2ae01c6c65cdb610d6cb8c4adfcda5491c3445f6f5d9c3cf119a72814b.jpg",
+    "originalSha256": "6a9c041a5bdfc84575ca684422fa2b1cf27f18dc7960ae422652ff1be1238b29",
+    "alt": "bacca6ae-10ed-4c9a-8874-2f0c2172e29b — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · zVg / Roland Zumbühl / picswiss.ch · Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence. · Cropped/resized",
+    "creator": "zVg / Roland Zumbühl / picswiss.ch",
+    "license": "Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.picswiss.ch/04-SG/s-SG-40/sSG-47-03.html",
+    "licenceUrl": "https://www.picswiss.ch/Bildanfrage.html",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.picswiss.ch/04-SG/s-SG-40/sSG-47-03.html"
+      },
+      {
+        "label": "Custom Picswiss unqualified free-use grant for directly retrieved files; picswiss.ch credit required. Not CC/GFDL. No explicit commercial-use sentence.",
+        "url": "https://www.picswiss.ch/Bildanfrage.html"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical view across Walensee from the Walenstadt side toward the Mols shoreline and mountains. Source-reported date: 18 April 2011. The foreground platform is on the Walenstadt side, not the Mols dive entry. / Mols shoreline across Walensee: historical surroundings Identity: {\"site_uuid\": \"b1a57fcb-6355-43d8-8c88-9e5190df5d7b\", \"site_name\": \"Hafen Mols\"} / {\"site_uuid\": \"bacca6ae-10ed-4c9a-8874-2f0c2172e29b\", \"site_name\": \"Walensee Hafen Mols\"} / Historical above-water surroundings of the named Mols shore, proposed separately for two records without merging them. / {\"site_uuid\": \"b1a57fcb-6355-43d8-8c88-9e5190df5d7b\", \"site_name\": \"Hafen Mols\"} / {\"site_uuid\": \"bacca6ae-10ed-4c9a-8874-2f0c2172e29b\", \"site_name\": \"Walensee Hafen Mols\"} Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "f178982b-87df-4772-acab-62c3ccd48ba6",
+    "slug": "jardim-das-gorgonias-portugal",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6fda69305bb6844477f00abadf67083c067bae11a3669fad600bf099cbac8e79.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6fda69305bb6844477f00abadf67083c067bae11a3669fad600bf099cbac8e79.jpg",
+    "originalSha256": "62a92ab1468f44d458b6e555661cd7e11a85fbc4f6e9251269ee63493438b8d8",
+    "alt": "f178982b-87df-4772-acab-62c3ccd48ba6 — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "delso.photo",
+        "url": "https://delso.photo/"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Octopus and surrounding underwater habitat in Arrábida Natural Park, Portugal, 2020. Broad coastal-park context for Jardim das Gorgónias (Sesimbra), not a verified image of its exact dive route. / Common octopus (Octopus vulgaris), Arrábida Natural Park, Portugal. Identity: {\"site_id\": \"f178982b-87df-4772-acab-62c3ccd48ba6\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_park_context\", \"relationship\": \"Exact inventory source object SSI96180 redirects through observed301 responses to Scubago96180, whose breadcrumb identifies Europe / Portugal / Lisbon Area / Sesimbra and whose heading is Jardim das Gorgónias. Official AMN Edital49/2022 lists Jardim das Gorgónias as a diving mooring in Professor Luiz Saldanha Marine Park under Arrábida Natural Park. The photographer captions this image Arrábida Natural Park. This supports broad named-coastal-park underwater surroundings for the Portugal UUID, not exact-site capture.\", \"caveat\": \"Broad named-coastal-park species/habitat context only. Exact camera location, dive route, entry, depth and present conditions are unverified. This is not a wide overview or proof that this organism was photographed at the target site. All inventory pins remain unvalidated and unchanged.\"} / Exact inventory source object SSI96180 redirects through observed301 responses to Scubago96180, whose breadcrumb identifies Europe / Portugal / Lisbon Area / Sesimbra and whose heading is Jardim das Gorgónias. Official AMN Edital49/2022 lists Jardim das Gorgónias as a diving mooring in Professor Luiz Saldanha Marine Park under Arrábida Natural Park. The photographer captions this image Arrábida Natural Park. This supports broad named-coastal-park underwater surroundings for the Portugal UUID, not exact-site capture. / {\"site_id\": \"f178982b-87df-4772-acab-62c3ccd48ba6\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_park_context\", \"relationship\": \"Exact inventory source object SSI96180 redirects through observed301 responses to Scubago96180, whose breadcrumb identifies Europe / Portugal / Lisbon Area / Sesimbra and whose heading is Jardim das Gorgónias. Official AMN Edital49/2022 lists Jardim das Gorgónias as a diving mooring in Professor Luiz Saldanha Marine Park under Arrábida Natural Park. The photographer captions this image Arrábida Natural Park. This supports broad named-coastal-park underwater surroundings for the Portugal UUID, not exact-site capture.\", \"caveat\": \"Broad named-coastal-park species/habitat context only. Exact camera location, dive route, entry, depth and present conditions are unverified. This is not a wide overview or proof that this organism was photographed at the target site. All inventory pins remain unvalidated and unchanged.\"} Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "843b282b-0cd3-4809-954c-aae764cdd7ea",
+    "slug": "ras-burg",
+    "src": "https://assets.diveatlas.site/site-photos/v1/16b13c9673875912c908dcace8efccfe026b80306ef3ef7fb306336866f018bb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/16b13c9673875912c908dcace8efccfe026b80306ef3ef7fb306336866f018bb.jpg",
+    "originalSha256": "e7a1da6d35684b2c68ac827808946b79dada82696cf5c2f2e220d12313b4cc3b",
+    "alt": "843b282b-0cd3-4809-954c-aae764cdd7ea — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "delso.photo",
+        "url": "https://delso.photo/"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Brain coral and sandy seabed in Ras Muhammad National Park, Egypt, 2022. Broad coastal-park underwater context for Ras Burg, not a verified photograph of the wall, cavern or entry. / Brain coral (Platygyra daedalea), Ras Muhammad National Park, Egypt Identity: {\"site_id\": \"843b282b-0cd3-4809-954c-aae764cdd7ea\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_park_context\", \"relationship\": \"Exact inventory source object SSI251828, despite its concatenated historical Domina Coral Bay / Ghozlani slug, redirects through observed301 responses to Scubago Ras Burg251828. The profile breadcrumb explicitly places Ras Burg in Ras Mohammed and its description identifies a wall drift dive with a large rock and underwater cavern. Independent Red Sea Marine text explicitly locates Ras Burg on Ras Mohammed National Park’s eastern coast. The photographer captions the image Ras Muhammad National Park. This supports broad named-coastal-park underwater surroundings for the exact Ras Burg UUID, not exact-site capture.\", \"caveat\": \"Broad named-coastal-park species/habitat context only. Exact camera location, dive route, entry, depth and present conditions are unverified. This is not a wide overview or proof that this organism was photographed at the target site. All inventory pins remain unvalidated and unchanged. Native512×768 resolution limits large display.\"} / Exact inventory source object SSI251828, despite its concatenated historical Domina Coral Bay / Ghozlani slug, redirects through observed301 responses to Scubago Ras Burg251828. The profile breadcrumb explicitly places Ras Burg in Ras Mohammed and its description identifies a wall drift dive with a large rock and underwater cavern. Independent Red Sea Marine text explicitly locates Ras Burg on Ras Mohammed National Park’s eastern coast. The photographer captions the image Ras Muhammad National Park. This supports broad named-coastal-park underwater surroundings for the exact Ras Burg UUID, not exact-site capture. / {\"site_id\": \"843b282b-0cd3-4809-954c-aae764cdd7ea\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_park_context\", \"relationship\": \"Exact inventory source object SSI251828, despite its concatenated historical Domina Coral Bay / Ghozlani slug, redirects through observed301 responses to Scubago Ras Burg251828. The profile breadcrumb explicitly places Ras Burg in Ras Mohammed and its description identifies a wall drift dive with a large rock and underwater cavern. Independent Red Sea Marine text explicitly locates Ras Burg on Ras Mohammed National Park’s eastern coast. The photographer captions the image Ras Muhammad National Park. This supports broad named-coastal-park underwater surroundings for the exact Ras Burg UUID, not exact-site capture.\", \"caveat\": \"Broad named-coastal-park species/habitat context only. Exact camera location, dive route, entry, depth and present conditions are unverified. This is not a wide overview or proof that this organism was photographed at the target site. All inventory pins remain unvalidated and unchanged. Native512×768 resolution limits large display.\"} Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "97576646-22f8-4ff7-8759-c897aa078597",
+    "slug": "mamas-t-reef-madeira",
+    "src": "https://assets.diveatlas.site/site-photos/v1/85b7fb15021573e00f61216176470f36d81e3a6b20fe1985749e8cf6049de622.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/85b7fb15021573e00f61216176470f36d81e3a6b20fe1985749e8cf6049de622.jpg",
+    "originalSha256": "08199aeafae4f73f80a796b969145abd4971700d0e5d2b925c4bb7354de660ac",
+    "alt": "97576646-22f8-4ff7-8759-c897aa078597 — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater · CC BY-SA 4.0 · Cropped/resized",
+    "creator": "Diego Delso / delso.photo / CC BY-SA 4.0 / Diego Delso, CC BY-SA4.0, delso.photo. Source: https://delso.photo/galleries/underwater",
+    "license": "CC BY-SA 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://delso.photo/galleries/underwater",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "links": [
+      {
+        "label": "delso.photo",
+        "url": "http://delso.photo"
+      },
+      {
+        "label": "delso.photo",
+        "url": "https://delso.photo/"
+      },
+      {
+        "label": "Source",
+        "url": "https://delso.photo/galleries/underwater"
+      },
+      {
+        "label": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Dusky grouper in Garajau Marine Nature Reserve, Madeira. Local-reserve habitat context for Mamas / T-Reef across the reserve’s documented7km coastline, not a photograph verified at the site. / Dusky grouper (Epinephelus marginatus), Garajau Marine Nature Reserve, Madeira, Portugal. Identity: {\"site_id\": \"97576646-22f8-4ff7-8759-c897aa078597\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_protected_area_context\", \"relationship\": \"Exact inventory source SSI135381 resolves through two observed301 responses to Scubago Mamas / T-Reef, Madeira135381. The returned heading and Europe / Portugal / Madeira breadcrumb identify the inventory site despite unrelated Padang Bay / Bali words in its historic slug. The description calls it Mamas-T Reef, also known as T-Reef, in Madeira’s underwater natural park. Independent official Visit Madeira explicitly lists Mamas among seven dive spots inside Garajau Partial Nature Reserve. Delso captions this photograph Garajau Marine Nature Reserve. This supports broad named-reserve underwater context for Mamas/T-Reef, not an exact photograph of either pinnacle. The independent official source defines the reserve as7km of coastline, from Lazareto to Ponta da Oliveira; this limited coastal scale supports local-reserve context only.\", \"caveat\": \"Broad local-reserve species/habitat context within Garajau’s documented7km coastline from Lazareto to Ponta da Oliveira. Not a verified capture at Mamas/T-Reef, its pinnacles, route or entry; no species occurrence at Mamas inferred. Exact photograph location within the reserve and capture date remain unverified. No pin validation or publication.\"} / Exact inventory source SSI135381 resolves through two observed301 responses to Scubago Mamas / T-Reef, Madeira135381. The returned heading and Europe / Portugal / Madeira breadcrumb identify the inventory site despite unrelated Padang Bay / Bali words in its historic slug. The description calls it Mamas-T Reef, also known as T-Reef, in Madeira’s underwater natural park. Independent official Visit Madeira explicitly lists Mamas among seven dive spots inside Garajau Partial Nature Reserve. Delso captions this photograph Garajau Marine Nature Reserve. This supports broad named-reserve underwater context for Mamas/T-Reef, not an exact photograph of either pinnacle. The independent official source defines the reserve as7km of coastline, from Lazareto to Ponta da Oliveira; this limited coastal scale supports local-reserve context only. / {\"site_id\": \"97576646-22f8-4ff7-8759-c897aa078597\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"documented_parent_coastal_protected_area_context\", \"relationship\": \"Exact inventory source SSI135381 resolves through two observed301 responses to Scubago Mamas / T-Reef, Madeira135381. The returned heading and Europe / Portugal / Madeira breadcrumb identify the inventory site despite unrelated Padang Bay / Bali words in its historic slug. The description calls it Mamas-T Reef, also known as T-Reef, in Madeira’s underwater natural park. Independent official Visit Madeira explicitly lists Mamas among seven dive spots inside Garajau Partial Nature Reserve. Delso captions this photograph Garajau Marine Nature Reserve. This supports broad named-reserve underwater context for Mamas/T-Reef, not an exact photograph of either pinnacle. The independent official source defines the reserve as7km of coastline, from Lazareto to Ponta da Oliveira; this limited coastal scale supports local-reserve context only.\", \"caveat\": \"Broad local-reserve species/habitat context within Garajau’s documented7km coastline from Lazareto to Ponta da Oliveira. Not a verified capture at Mamas/T-Reef, its pinnacles, route or entry; no species occurrence at Mamas inferred. Exact photograph location within the reserve and capture date remain unverified. No pin validation or publication.\"} Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "92a7402a-b175-442e-b93e-590c0d58d534",
+    "slug": "blue-pearl-bay-2",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5c0d8933f617a56ead53c526492aa4dbae2154287d1d01688af8f76480b2f0f1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5c0d8933f617a56ead53c526492aa4dbae2154287d1d01688af8f76480b2f0f1.jpg",
+    "originalSha256": "92c9626358a4e1e9fa67bef7e6c0a28d47ff372645c9ab32585f0129e6691938",
+    "alt": "92a7402a-b175-442e-b93e-590c0d58d534 — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · freeaussiestock.com, CC BY 3.0 / Photo: freeaussiestock.com / CC BY 3.0. Source: https://freeaussiestock.com/free/Queensland/whitsundays/slides/hayman_island_north.htm · CC BY 3.0 / CC BY 3.0 Unported · Cropped/resized",
+    "creator": "freeaussiestock.com, CC BY 3.0 / Photo: freeaussiestock.com / CC BY 3.0. Source: https://freeaussiestock.com/free/Queensland/whitsundays/slides/hayman_island_north.htm",
+    "license": "CC BY 3.0 / CC BY 3.0 Unported",
+    "source": "reviewed-context",
+    "sourcePage": "https://freeaussiestock.com/free/Queensland/whitsundays/slides/hayman_island_north.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://freeaussiestock.com/free/Queensland/whitsundays/slides/hayman_island_north.htm"
+      },
+      {
+        "label": "CC BY 3.0 / CC BY 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Northern Hayman Island cliffs and sea, Whitsundays, Queensland. Historical small-island coastal surroundings proposed for Blue Pearl Bay 2, not a verified photograph of the bay or dive site. / hayman island north Identity: {\"site_id\": \"92a7402a-b175-442e-b93e-590c0d58d534\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"small_named_island_coastal_surroundings\", \"relationship\": \"Proposed small-island context under the evidence and limitations in identity-evidence.json.\", \"caveat\": \"Historical coastal surroundings on the northern end of the small, approximately 4 km² Hayman Island, proposed as context for Blue Pearl Bay 2. The photograph is not verified as showing Blue Pearl Bay 2, its bay, reef, entry, access route or current conditions. Exact camera position is unknown. No pin validation or site equivalence is asserted.\"} / The exact inventory SSI object 87095 resolves to the current Blue Pearl Bay 2 profile in the Whitsundays. Separately indexed Tourism Whitsundays evidence places Blue Pearl Bay on northwestern Hayman Island, and secondary exact-name listings place Blue Pearl Bay 2 near the island’s northern tip. A directly retrieved Australian Explorer page describes Hayman Island as only 4 km². The first-party photograph caption and embedded description identify the northern end of the same small island. This supports proposed historical small-island coastal surroundings only. / {\"site_id\": \"92a7402a-b175-442e-b93e-590c0d58d534\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"small_named_island_coastal_surroundings\", \"relationship\": \"Proposed small-island context under the evidence and limitations in identity-evidence.json.\", \"caveat\": \"Historical coastal surroundings on the northern end of the small, approximately 4 km² Hayman Island, proposed as context for Blue Pearl Bay 2. The photograph is not verified as showing Blue Pearl Bay 2, its bay, reef, entry, access route or current conditions. Exact camera position is unknown. No pin validation or site equivalence is asserted.\"} / Proposed small-island context under the evidence and limitations in identity-evidence.json. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "c04d486d-5266-44eb-bdb6-770469b33894",
+    "slug": "cruise-whitsundays-pontoon",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5cad847a1d2f3f079e7465a1b960575ef08e762eaf5fe652a3ddc5b33a9d8611.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5cad847a1d2f3f079e7465a1b960575ef08e762eaf5fe652a3ddc5b33a9d8611.jpg",
+    "originalSha256": "4db52668081096d13c40c5ca0c25075f7d9994c1a2019717fbdf05febc57036e",
+    "alt": "c04d486d-5266-44eb-bdb6-770469b33894 — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Stephen Gibson / freeaussiestock.com / CC BY 3.0 / Photo: Stephen Gibson / freeaussiestock.com / CC BY 3.0. Source: https://freeaussiestock.com/free/Queensland/whitsundays/slides/cruise_whitsundays_pontoon.htm · CC BY 3.0 / CC BY 3.0 Unported · Cropped/resized",
+    "creator": "Stephen Gibson / freeaussiestock.com / CC BY 3.0 / Photo: Stephen Gibson / freeaussiestock.com / CC BY 3.0. Source: https://freeaussiestock.com/free/Queensland/whitsundays/slides/cruise_whitsundays_pontoon.htm",
+    "license": "CC BY 3.0 / CC BY 3.0 Unported",
+    "source": "reviewed-context",
+    "sourcePage": "https://freeaussiestock.com/free/Queensland/whitsundays/slides/cruise_whitsundays_pontoon.htm",
+    "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://freeaussiestock.com/free/Queensland/whitsundays/slides/cruise_whitsundays_pontoon.htm"
+      },
+      {
+        "label": "CC BY 3.0 / CC BY 3.0 Unported",
+        "url": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical Cruise Whitsundays tourist pontoon at Knuckle Reef, Queensland. Proposed named-pontoon surroundings for the inventory record, not a present-day Hardy Reef or access depiction. Embedded metadata reports10 March 2007, not independently authenticated. / knuckle reef pontoon Identity: {\"site_id\": \"c04d486d-5266-44eb-bdb6-770469b33894\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"historical_named_pontoon_surroundings\", \"relationship\": \"Proposed historical Knuckle-pontoon context under identity-evidence.json; parent acceptance remains pending.\", \"caveat\": \"Historical Knuckle Reef tourist-pontoon surroundings only, proposed for the inventory Cruise Whitsundays Pontoon record. The image is not evidence of present facilities, entry, dive conditions or reef health. The later Hardy Reef site is a separate named record and receives no association. Hardware continuity through relocation, exact camera position and current installation are not established. No pins are validated or changed.\"} / The photo caption names Knuckle Reef tourist pontoon. A directly retrieved 2013 Commonwealth Gazette confirms Cruise Whitsundays operated the tourist pontoon at Knuckle Reef. An independently discovered and directly retrieved OSM-derived Mapcarta record identifies the exact inventory name/type and matching displayed location as node2490191153, explicitly separate from the same-name Hardy Reef record 22 km away. This supports a proposed historical Knuckle-pontoon context, not present hardware continuity. / {\"site_id\": \"c04d486d-5266-44eb-bdb6-770469b33894\", \"status\": \"READY_FOR_REVIEW\", \"relationship_type\": \"historical_named_pontoon_surroundings\", \"relationship\": \"Proposed historical Knuckle-pontoon context under identity-evidence.json; parent acceptance remains pending.\", \"caveat\": \"Historical Knuckle Reef tourist-pontoon surroundings only, proposed for the inventory Cruise Whitsundays Pontoon record. The image is not evidence of present facilities, entry, dive conditions or reef health. The later Hardy Reef site is a separate named record and receives no association. Hardware continuity through relocation, exact camera position and current installation are not established. No pins are validated or changed.\"} / Proposed historical Knuckle-pontoon context under identity-evidence.json; parent acceptance remains pending. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "7b0e443a-3015-4fea-beb8-adb45fa5906e",
+    "slug": "puerto-de-la-restinga",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9b4c2ac52c2bd12f86e5c9485ac8c527235bd144e3aad95f0fe9a6f6d6ecb653.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9b4c2ac52c2bd12f86e5c9485ac8c527235bd144e3aad95f0fe9a6f6d6ecb653.jpg",
+    "originalSha256": "ae8203f9af27aa93fcd3aaf8ffd05bdada691d65e3b455ecc30775f2a3f2519e",
+    "alt": "7b0e443a-3015-4fea-beb8-adb45fa5906e — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Photograph: SINC. In Enrique Sacristán, “El Hierro: ciencia en los confines más occidentales de España” (2024-05-24), Agencia SINC. CC BY 4.0. · CC BY 4.0 · Cropped/resized",
+    "creator": "Photograph: SINC. In Enrique Sacristán, “El Hierro: ciencia en los confines más occidentales de España” (2024-05-24), Agencia SINC. CC BY 4.0.",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.agenciasinc.es/Reportajes/El-Hierro-ciencia-en-los-confines-mas-occidentales-de-Espana",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/deed.es_ES",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.agenciasinc.es/Reportajes/El-Hierro-ciencia-en-los-confines-mas-occidentales-de-Espana"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/deed.es_ES"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Harbor entrance and rocky shoreline at Puerto de La Restinga, El Hierro, Spain. Foreground cross and life-ring appear in the source photograph. Identity: The selected image caption explicitly identifies the port of La Restinga in southern El Hierro. The inventory record is Puerto de La Restinga at El Hierro. Actual pixels show the harbor entrance and breakwaters from rocky shore. This is a named-place match, not mere regional proximity. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "fe6cbad2-0869-43c5-860a-164aeea5539f",
+    "slug": "steps-tres-palmas",
+    "src": "https://assets.diveatlas.site/site-photos/v1/03db94e7811a4b1b19f60b9b7d45631bfc86eaecdad1f11322e4396af5637d74.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/03db94e7811a4b1b19f60b9b7d45631bfc86eaecdad1f11322e4396af5637d74.jpg",
+    "originalSha256": "c71cde2c72691ccc4e89dd66c4cff1599834f2a45efad1cc45d9f74ea628406f",
+    "alt": "fe6cbad2-0869-43c5-860a-164aeea5539f — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · National Oceanic and Atmospheric Administration (NOAA), National Ocean Service · Public domain under the native NOAA National Ocean Service image-use policy; retain NOAA credit and observe its no-endorsement and truthful-presentation conditions. Not a Creative Commons licence. · Cropped/resized",
+    "creator": "National Oceanic and Atmospheric Administration (NOAA), National Ocean Service",
+    "license": "Public domain under the native NOAA National Ocean Service image-use policy; retain NOAA credit and observe its no-endorsement and truthful-presentation conditions. Not a Creative Commons licence.",
+    "source": "reviewed-context",
+    "sourcePage": "https://oceanservice.noaa.gov/news/mar25/all-about-NOS.html",
+    "licenceUrl": "https://oceanservice.noaa.gov/about/faq.html",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://oceanservice.noaa.gov/news/mar25/all-about-NOS.html"
+      },
+      {
+        "label": "Public domain under the native NOAA National Ocean Service image-use policy; retain NOAA credit and observe its no-endorsement and truthful-presentation conditions. Not a Creative Commons licence.",
+        "url": "https://oceanservice.noaa.gov/about/faq.html"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Fish around branching coral at Tres Palmas, Puerto Rico. Named-reserve reef surroundings for Steps (Tres Palmas); capture date unknown. / Coral reef in Tres Palmas, Puerto Rico Identity: Underwater named-reserve reef surroundings only, proposed for Steps (Tres Palmas). Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "7cc015d3-1751-426f-8ce1-c4dd02bbfd10",
+    "slug": "nubble-light",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5cf7992c1c45bd0fef9cba0c1dc987f32261cbc2b71b575c3f8c0a0d8baf19c0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5cf7992c1c45bd0fef9cba0c1dc987f32261cbc2b71b575c3f8c0a0d8baf19c0.jpg",
+    "originalSha256": "7956dd4c4c66eaa64083b1da6158031ad0d23250a7896ee49f166cfb3235ed18",
+    "alt": "7cc015d3-1751-426f-8ce1-c4dd02bbfd10 — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Photo: Joseph Kelley / Maine Geological Survey. DigitalMaine, identifier 57629. Used under MGS free-use permission with credit. · Maine Geological Survey custom free-use photographic permission, with credit required · Cropped/resized",
+    "creator": "Photo: Joseph Kelley / Maine Geological Survey. DigitalMaine, identifier 57629. Used under MGS free-use permission with credit.",
+    "license": "Maine Geological Survey custom free-use photographic permission, with credit required",
+    "source": "reviewed-context",
+    "sourcePage": "https://digitalmaine.com/mgs_geologic_field_photos/11697/",
+    "licenceUrl": "https://digitalmaine.com/mgs_geologic_field_photos/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://digitalmaine.com/mgs_geologic_field_photos/11697/"
+      },
+      {
+        "label": "Maine Geological Survey custom free-use photographic permission, with credit required",
+        "url": "https://digitalmaine.com/mgs_geologic_field_photos/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical offshore view of Nubble Light (Cape Neddick Light Station) and its rocky islet in York, Maine. Source-reported date: 1 August 1986. / Nubble Light: historical coastal surroundings Identity: Historical above-water surroundings of the named Nubble lighthouse islet Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "e1c8a412-2cd4-4943-b13d-5361c2bef0f4",
+    "slug": "san-clemente-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/60259872d9175592ffb94fb7d4825401a910599551eb3b15c2e6e95bc44f1c87.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/60259872d9175592ffb94fb7d4825401a910599551eb3b15c2e6e95bc44f1c87.jpg",
+    "originalSha256": "c048e164ad747affe0057ec5e14fbe1f937fe0b89b8cfe4d7af309c165b0e9c9",
+    "alt": "e1c8a412-2cd4-4943-b13d-5361c2bef0f4 — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · U.S. Naval Air Station, San Diego / NPGallery, National Park Service / Public domain · Public domain:Full Granting Rights · Cropped/resized",
+    "creator": "U.S. Naval Air Station, San Diego / NPGallery, National Park Service / Public domain",
+    "license": "Public domain:Full Granting Rights",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/62ef1d23-5646-4f6b-9770-87efb9adfcdb",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/62ef1d23-5646-4f6b-9770-87efb9adfcdb",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/62ef1d23-5646-4f6b-9770-87efb9adfcdb"
+      },
+      {
+        "label": "Public domain:Full Granting Rights",
+        "url": "https://npgallery.nps.gov/AssetDetail/62ef1d23-5646-4f6b-9770-87efb9adfcdb"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical oblique aerial photograph of San Clemente Island, general view looking southeast. Identity: The individual NPGallery item title and location name identify San Clemente, its collection is Channel Islands, and the actual photographic print is captioned San Clemente Island, general view looking S.E. The inventory record is named San Clemente Island. This supports historical surrounding-island/coastal context, not an exact modern entry, reef, named subsite or pin. The catalogue coordinate 34.0039100646973,-119.725196838379 is inconsistent with the named island and is not used as photographic identity evidence. Inventory coordinates remain unvalidated and unchanged. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "29499c18-4f6c-4d02-a349-056cb0319132",
+    "slug": "phi-phi-islands",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3e02bff73a306450feef0d180a30f4b543bdc29a13cdd8eb5d1e78c7dbf3dae7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3e02bff73a306450feef0d180a30f4b543bdc29a13cdd8eb5d1e78c7dbf3dae7.jpg",
+    "originalSha256": "f2b57ef8a001d686e1140d6e031a589cdb096be9a1f3c4b501834ced930abe0c",
+    "alt": "29499c18-4f6c-4d02-a349-056cb0319132 — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · ISO Legacy / ISO Republic / CC0 (source declaration) · CC0 1.0 as specifically stated by ISO Republic for this item · Cropped/resized",
+    "creator": "ISO Legacy / ISO Republic / CC0 (source declaration)",
+    "license": "CC0 1.0 as specifically stated by ISO Republic for this item",
+    "source": "reviewed-context",
+    "sourcePage": "https://isorepublic.com/photo/phi-phi-islands-thailand/",
+    "licenceUrl": "https://isorepublic.com/license/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://isorepublic.com/photo/phi-phi-islands-thailand/"
+      },
+      {
+        "label": "CC0 1.0 as specifically stated by ISO Republic for this item",
+        "url": "https://isorepublic.com/license/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Limestone cliffs, turquoise water and tourist boats in the Phi Phi Islands, Thailand. Broad island surroundings; exact dive entry and capture date unverified. Identity: Exact source title Phi Phi Islands, Thailand supports the broad same-named inventory place. No narrower site or pin assigned. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "d18f676a-7c36-4dae-8604-b5f33319fbca",
+    "slug": "nivati-rock-light-house",
+    "src": "https://assets.diveatlas.site/site-photos/v1/308d7f665d88fa98c481bce8a3f754b21dc226b3b4a9796fcbcca8b49e6e940d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/308d7f665d88fa98c481bce8a3f754b21dc226b3b4a9796fcbcca8b49e6e940d.jpg",
+    "originalSha256": "8e61d0f2e50481f54da92c1b04435362371b1e7db8c010fdace9b4387672cca9",
+    "alt": "d18f676a-7c36-4dae-8604-b5f33319fbca — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Source: Directorate General of Lighthouses and Lightships, Ministry of Ports, Shipping and Waterways, Government of India; reproduce accurately and without misleading context. · DGLL attributed free-reproduction permission · Cropped/resized",
+    "creator": "Source: Directorate General of Lighthouses and Lightships, Ministry of Ports, Shipping and Waterways, Government of India; reproduce accurately and without misleading context.",
+    "license": "DGLL attributed free-reproduction permission",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.dgll.nic.in/DGLL-light-house-location/about-goa/vengurla-rocks-lighthouse",
+    "licenceUrl": "https://www.dgll.nic.in/terms-conditions",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.dgll.nic.in/DGLL-light-house-location/about-goa/vengurla-rocks-lighthouse"
+      },
+      {
+        "label": "DGLL attributed free-reproduction permission",
+        "url": "https://www.dgll.nic.in/terms-conditions"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Vengurla Rocks (Nivati Rock) lighthouse and surrounding sea, Maharashtra, India. Above-water locality context; not an underwater image or verified dive entry. Identity: Official page and image alt identify Vengurla Rocks Lighthouse. The independently indexed Maharashtra tourism MTDC listing calls the dive Vengurla–Nivati Lighthouse; local dive operator Konkan Travel Club describes lighthouse diving at Vengurla–Nivti rocks; a first-person Hindfiri guide explicitly identifies Vengurla Nivati lighthouse as the Vengurla Rocks/Burnt Island group and distinguishes old/new towers. Combined named evidence supports the inventory Nivati Rock Light House locality, not proximity alone. Official nautical coordinates15°53.38N73°27.78E are consistent with inventory but no exact pin or dive entry is validated. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "0d14eea5-fb6b-46d4-b154-c6023bf8ee4c",
+    "slug": "cabo-san-lucas",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0f69f56a7b3781934b328241d5531a0aff9194d3a1f235d1cc51eebb0d8c58bb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0f69f56a7b3781934b328241d5531a0aff9194d3a1f235d1cc51eebb0d8c58bb.jpg",
+    "originalSha256": "5610e81232be5769e6c3b35ede45c23dd6bb6a8aa7b1752179d67264f52d257f",
+    "alt": "0d14eea5-fb6b-46d4-b154-c6023bf8ee4c — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Jennifer Bourn / WordPress Photo Directory / CC0 1.0 · CC0 1.0 · Cropped/resized",
+    "creator": "Jennifer Bourn / WordPress Photo Directory / CC0 1.0",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://wordpress.org/photos/photo/7861f6b6b1/",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://wordpress.org/photos/photo/7861f6b6b1/"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Cabo Arch, Cabo San Lucas, Mexico. Coastal surroundings, not an exact dive-entry photograph. Identity: Item-specific caption explicitly names Cabo San Lucas. Inventory is the broad named Cabo San Lucas site, not an individual reef; SSI source link itself contains arcos and multiple Cabo-area feature names. This is named-locality coastal context only, with no asserted entry or underwater-feature depiction and no coordinate validation. Arch is useful seaward coastal landmark context. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "1040c6c3-afcc-46db-8b6f-58a45abdff52",
+    "slug": "maya-corner-maya-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/b5f2d5a5c2fa712a67118049e58c5dee29c28a9e45163e26eaa8eec52a11e690.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/b5f2d5a5c2fa712a67118049e58c5dee29c28a9e45163e26eaa8eec52a11e690.jpg",
+    "originalSha256": "25e0c2c13c0b314df0a7c5cdbbc525efb9dfb72afe2bf1fe2b0879acc3cdf3b9",
+    "alt": "1040c6c3-afcc-46db-8b6f-58a45abdff52 — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Malay Ladu / WordPress Photo Directory / CC0 1.0 · CC0 1.0 · Cropped/resized",
+    "creator": "Malay Ladu / WordPress Photo Directory / CC0 1.0",
+    "license": "CC0 1.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://wordpress.org/photos/photo/3616883106/",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://wordpress.org/photos/photo/3616883106/"
+      },
+      {
+        "label": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Maya Bay, Koh Phi Phi Islands, Thailand. Above-water bay surroundings for Maya Corner, not the precise underwater corner or dive entry. Identity: Item-specific alternative text names Maya Bay; source tags independently state Maya bay, Koh Phi Phi Islands and thailand. Inventory expressly names Maya Corner, Maya Bay. The shared named bay establishes useful parent-place context only, not exact reef/corner or entry depiction. Recorded inventory coordinates remain unvalidated and unchanged. Limitations:   Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "f275c5a9-883d-4c5c-9752-cc8e0d598b95",
+    "slug": "manta-bommie-australia",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3f4a420e5161c23c4bf1c850d3d39579ac94fbb0fc49fd56471b47a11d24da37.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3f4a420e5161c23c4bf1c850d3d39579ac94fbb0fc49fd56471b47a11d24da37.jpg",
+    "originalSha256": "63c1bcf8d3770c06ddbaece3f0c4e38b8993609fd91d5595846c0d469d110a89",
+    "alt": "Manta Bommie — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · View of Main Beach from the Point Lookout headland, 1906-1914, Linford Elfe Row (series attribution), Mark Wilson glass plate and photographic negatives collection, State Library of Queensland. Image 33383-0002-0006. https://collections.slq.qld.gov.au/viewer/IE3505797 · Out of copyright; institutional use without permission statement / Out of copyright. · Cropped/resized",
+    "creator": "View of Main Beach from the Point Lookout headland, 1906-1914, Linford Elfe Row (series attribution), Mark Wilson glass plate and photographic negatives collection, State Library of Queensland. Image 33383-0002-0006. https://collections.slq.qld.gov.au/viewer/IE3505797",
+    "license": "Out of copyright; institutional use without permission statement / Out of copyright.",
+    "source": "reviewed-context",
+    "sourcePage": "https://collections.slq.qld.gov.au/viewer/IE3505797",
+    "licenceUrl": "https://collections.slq.qld.gov.au/viewer/IE3505797",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://collections.slq.qld.gov.au/viewer/IE3505797"
+      },
+      {
+        "label": "Out of copyright; institutional use without permission statement / Out of copyright.",
+        "url": "https://collections.slq.qld.gov.au/viewer/IE3505797"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Main Beach viewed from Point Lookout headland, 1906-1914. Historical coastal surroundings near the offshore Manta Bommie dive area; not a photograph of the underwater reef, a dive entry or present-day conditions. / View of Main Beach from the Point Lookout headland. Identity: PROPOSED_HISTORICAL_NEARBY_COASTAL_SURROUNDINGS / {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"f275c5a9-883d-4c5c-9752-cc8e0d598b95\", \"site_name\": \"Manta Bommie\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Main Beach viewed from Point Lookout headland, 1906-1914. Historical coastal surroundings near the offshore Manta Bommie dive area; not a photograph of the underwater reef, a dive entry or present-day conditions.\", \"Passed; unchanged historical beach and headland view\", [\"No exact camera location or camera-to-site distance is established.\", \"Main Beach itself is not claimed to be Manta Bommie or a dive entry.\", \"The inventory pin remains unvalidated and unchanged.\", \"Only the existing Manta Bommie target is proposed; no additional site count.\"]]} Limitations: Main Beach viewed from Point Lookout headland, 1906-1914. Historical coastal surroundings near the offshore Manta Bommie dive area; not a photograph of the underwater reef, a dive entry or present-day conditions. / Passed; unchanged historical beach and headland view / No exact camera location or camera-to-site distance is established. / Main Beach itself is not claimed to be Manta Bommie or a dive entry. / The inventory pin remains unvalidated and unchanged. / Only the existing Manta Bommie target is proposed; no additional site count.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "2b7788e6-459e-41e8-a6a4-d98091396765",
+    "slug": "heron-island-pams",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9b8e9fa2cdb0fd3a14b8f004d0270f8ccf2ba710e10a03d53e00db071124ac08.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9b8e9fa2cdb0fd3a14b8f004d0270f8ccf2ba710e10a03d53e00db071124ac08.jpg",
+    "originalSha256": "1d083f3d5e758cc535d204b8909d247ef436878cf64822d9e163334628c96651",
+    "alt": "Heron Island - Pams — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · State Library of Queensland, image 31051-0003-0002. · Out of copyright; free use without permission with State Library of Queensland attribution. / Out of copyright. / You are free to use without permission. Please attribute the State Library of Queensland. · Cropped/resized",
+    "creator": "State Library of Queensland, image 31051-0003-0002.",
+    "license": "Out of copyright; free use without permission with State Library of Queensland attribution. / Out of copyright. / You are free to use without permission. Please attribute the State Library of Queensland.",
+    "source": "reviewed-context",
+    "sourcePage": "https://collections.slq.qld.gov.au/viewer/IE3295314",
+    "licenceUrl": "https://collections.slq.qld.gov.au/viewer/IE3295314",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://collections.slq.qld.gov.au/viewer/IE3295314"
+      },
+      {
+        "label": "Out of copyright; free use without permission with State Library of Queensland attribution. / Out of copyright. / You are free to use without permission. Please attribute the State Library of Queensland.",
+        "url": "https://collections.slq.qld.gov.au/viewer/IE3295314"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Coral reef surrounding Heron Island, Queensland, 1928 / Heron Island seen across its surrounding reef, Queensland, 1928. Historical island surroundings for Heron Island - Pams; this is not a verified view of Pams itself, its entry or present-day conditions. Identity: historical_named_island_coastal_surroundings / {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"2b7788e6-459e-41e8-a6a4-d98091396765\", \"site_name\": \"Heron Island - Pams\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Heron Island seen across its surrounding reef, Queensland, 1928. Historical island surroundings for Heron Island - Pams; this is not a verified view of Pams itself, its entry or present-day conditions.\", \"historical_named_island_coastal_surroundings\"]} Limitations: Heron Island seen across its surrounding reef, Queensland, 1928. Historical island surroundings for Heron Island - Pams; this is not a verified view of Pams itself, its entry or present-day conditions. / historical_named_island_coastal_surroundings  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "7750a6c4-944a-431b-8eab-348c7b03eb58",
+    "slug": "warrnambool-breakwater-inside",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4e72a3c83b8fd529ecab244478f8ed3eb3de38fe6a75883f0c2753fe95d5faf2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4e72a3c83b8fd529ecab244478f8ed3eb3de38fe6a75883f0c2753fe95d5faf2.jpg",
+    "originalSha256": "36757ae2d028bf1bb1952b46f4adddf888f159db366f7e52b3dd43e7dbc6a1f1",
+    "alt": "Warrnambool Breakwater, inside — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Lady Bay and Breakwater, Warrnambool, circa 1907, attributed to Joseph Jordan Photographic Studio. Flagstaff Hill Maritime Museum and Village, item 8484, via Victorian Collections. https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b · Public domain; explicit media-specific permission for use by anyone for any purpose / This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose. · Cropped/resized",
+    "creator": "Lady Bay and Breakwater, Warrnambool, circa 1907, attributed to Joseph Jordan Photographic Studio. Flagstaff Hill Maritime Museum and Village, item 8484, via Victorian Collections. https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b",
+    "license": "Public domain; explicit media-specific permission for use by anyone for any purpose / This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose.",
+    "source": "reviewed-context",
+    "sourcePage": "https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b",
+    "licenceUrl": "https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b"
+      },
+      {
+        "label": "Public domain; explicit media-specific permission for use by anyone for any purpose / This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose.",
+        "url": "https://victoriancollections.net.au/items/6507ecb50b484de1b47d6c9b"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Warrnambool Breakwater and Lady Bay, circa 1907, with moored vessels and shoreline. Historical surroundings for the Warrnambool Breakwater, inside dive site; not an underwater photograph or a guide to today’s entry or conditions. / Lady Bay and Breakwater, Warrnambool, circa 1907 Identity: PROPOSED_HISTORICAL_IMMEDIATE_COASTAL_SURROUNDINGS_FOR_REVIEW / {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"7750a6c4-944a-431b-8eab-348c7b03eb58\", \"site_name\": \"Warrnambool Breakwater, inside\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Warrnambool Breakwater and Lady Bay, circa 1907, with moored vessels and shoreline. Historical surroundings for the Warrnambool Breakwater, inside dive site; not an underwater photograph or a guide to today’s entry or conditions.\"]} Limitations: Warrnambool Breakwater and Lady Bay, circa 1907, with moored vessels and shoreline. Historical surroundings for the Warrnambool Breakwater, inside dive site; not an underwater photograph or a guide to today’s entry or conditions.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "d94849a3-4d87-43b6-80c0-e18a0fdd3c80",
+    "slug": "j4-submarine-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6137bb84020891c9411f6c5d745bac6ba42a4cfeddafa719df8daf59190be859.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6137bb84020891c9411f6c5d745bac6ba42a4cfeddafa719df8daf59190be859.jpg",
+    "originalSha256": "e3dfcd4a1e059ecc159793173ea6eb36ceca14d4e8b0c79635629e6e0fcf4b3d",
+    "alt": "J4 Submarine Wreck — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, H12458. Donor: Imperial War Museum SP187. Photographer not identified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, H12458. Donor: Imperial War Museum SP187. Photographer not identified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C329627",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C329627"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. J4 afloat at Portsmouth, England, circa 1919. Historical portrait of the submarine later sunk outside Port Phillip Heads in 1927; not a photograph of the present wreck or Victorian dive-site surroundings. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_CONTEXT_ONLY / Individual archive names the specific J4 transferred to Australia in 1919. Independent Navy history follows this hull to its 1927 sinking, and named wreck references describe that same service/disposal sequence. This is more than a ship-name-only match. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"d94849a3-4d87-43b6-80c0-e18a0fdd3c80\", \"site_name\": \"J4 Submarine Wreck\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"J4 afloat at Portsmouth, England, circa 1919. Historical portrait of the submarine later sunk outside Port Phillip Heads in 1927; not a photograph of the present wreck or Victorian dive-site surroundings.\"]} Limitations: J4 afloat at Portsmouth, England, circa 1919. Historical portrait of the submarine later sunk outside Port Phillip Heads in 1927; not a photograph of the present wreck or Victorian dive-site surroundings.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "ac616910-3e35-40c8-8cce-dcca1ba7c206",
+    "slug": "hmas-brisbane-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5f4d8a72a1ab86891b4f5d84a0f8a8af573742c83d09bafe2550c14b0966f1a0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5f4d8a72a1ab86891b4f5d84a0f8a8af573742c83d09bafe2550c14b0966f1a0.jpg",
+    "originalSha256": "390b5335394abf8e98e4dc68ac3a700a5aea297849cef4b7ef7b89e5974ed2cd",
+    "alt": "HMAS Brisbane (Wreck) — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, NAVYM1212/06. Photographer: Galloway, Elmer Christoper. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, NAVYM1212/06. Photographer: Galloway, Elmer Christoper.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C1209669",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C1209669"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical view of HMAS Brisbane (II), D41, with an unidentified ship alongside, circa March–October 1971, possibly at Subic Bay in the Philippines. The vessel later became the ex-HMAS Brisbane dive wreck off Queensland’s Sunshine Coast. This does not depict the present wreck, its dive surroundings or current conditions. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_CONTEXT_ONLY / The individual archive identifies HMAS Brisbane (II), D41, and links it to the 1967–2001 service unit. Queensland Parks identifies the same second HMAS Brisbane and service period as the ship scuttled to form the named Sunshine Coast dive wreck. This distinguishes it from the earlier cruiser and is not based on the name or inventory coordinates alone. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"ac616910-3e35-40c8-8cce-dcca1ba7c206\", \"site_name\": \"HMAS Brisbane (Wreck)\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Historical view of HMAS Brisbane (II), D41, with an unidentified ship alongside, circa March–October 1971, possibly at Subic Bay in the Philippines. The vessel later became the ex-HMAS Brisbane dive wreck off Queensland’s Sunshine Coast. This does not depict the present wreck, its dive surroundings or current conditions.\"]} Limitations: Historical view of HMAS Brisbane (II), D41, with an unidentified ship alongside, circa March–October 1971, possibly at Subic Bay in the Philippines. The vessel later became the ex-HMAS Brisbane dive wreck off Queensland’s Sunshine Coast. This does not depict the present wreck, its dive surroundings or current conditions.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "dfaf9626-e2ec-408a-ba35-9f6befad92c4",
+    "slug": "hmas-perth-ii",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0fe25345a7acfe45985051219b69a66e61ea17adb9100ae39385ef317ba8c39f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0fe25345a7acfe45985051219b69a66e61ea17adb9100ae39385ef317ba8c39f.jpg",
+    "originalSha256": "a51c22be84b68967fdc7cc5b1c4b10a27af47663d9c0029d2b164db3b4bbcf49",
+    "alt": "HMAS Perth II — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, 301172. Naval Historical Collection. Photographer not identified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, 301172. Naval Historical Collection. Photographer not identified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/301172",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/301172"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical aerial starboard view of HMAS Perth (II), D38, entering Sydney Harbour. The exact photograph date is unstated; the archive lists the period 1960–1969. This is the vessel later sunk near Albany in 2001, not a photograph of the present Albany dive wreck or its surroundings. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_CONTEXT_ONLY / The archive explicitly names HMAS Perth (II), D38, a Charles F Adams-class destroyer. The official Navy history connects that exact pennant, ship generation and class to the vessel sunk as an Albany dive site in 2001. The inventory names HMAS Perth II and supplies a specific same-named wreck source URL. No inference from the earlier HMAS Perth or from coordinates is used. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"dfaf9626-e2ec-408a-ba35-9f6befad92c4\", \"site_name\": \"HMAS Perth II\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Historical aerial starboard view of HMAS Perth (II), D38, entering Sydney Harbour. The exact photograph date is unstated; the archive lists the period 1960–1969. This is the vessel later sunk near Albany in 2001, not a photograph of the present Albany dive wreck or its surroundings.\"]} Limitations: Historical aerial starboard view of HMAS Perth (II), D38, entering Sydney Harbour. The exact photograph date is unstated; the archive lists the period 1960–1969. This is the vessel later sunk near Albany in 2001, not a photograph of the present Albany dive wreck or its surroundings.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "ef923f0e-c6f0-4dcf-90a6-2f29340302ab",
+    "slug": "hms-hermes",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d2563bad973fe8b76b632718f6fbdc3cb3afa62bb1cf877b55bd893675fd5bd3.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d2563bad973fe8b76b632718f6fbdc3cb3afa62bb1cf877b55bd893675fd5bd3.jpg",
+    "originalSha256": "54478268f622263a55f81b53c30b6a39c89155c783ce24af80ebad2faab92adc",
+    "alt": "HMS HERMES — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, 305254. Naval Historical Collection. Photographer not identified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, 305254. Naval Historical Collection. Photographer not identified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/305254",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/305254"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. HMS Hermes with HMS Dorsetshire in the Atlantic Ocean on 9 June 1940, escorting convoy US.3 toward the United Kingdom. Historical portrait of the carrier later sunk off Ceylon in 1942. This is not a photograph of the present Sri Lankan wreck or its dive surroundings. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_CONTEXT_ONLY / The AWM image identifies the aircraft carrier HMS Hermes escorting convoy US.3 on 9 June 1940. The independent chronology connects that exact convoy and service date to the ninth Hermes, the first purpose-built Royal Navy carrier. Official Sri Lankan records identify that 1919-launched carrier as the wreck sunk in 1942 off Batticaloa. This is a time-, type- and service-specific hull match, not a shared-name match to the 1898 cruiser or later post-war carrier. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"ef923f0e-c6f0-4dcf-90a6-2f29340302ab\", \"site_name\": \"HMS HERMES\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"HMS Hermes with HMS Dorsetshire in the Atlantic Ocean on 9 June 1940, escorting convoy US.3 toward the United Kingdom. Historical portrait of the carrier later sunk off Ceylon in 1942. This is not a photograph of the present Sri Lankan wreck or its dive surroundings.\"]} Limitations: HMS Hermes with HMS Dorsetshire in the Atlantic Ocean on 9 June 1940, escorting convoy US.3 toward the United Kingdom. Historical portrait of the carrier later sunk off Ceylon in 1942. This is not a photograph of the present Sri Lankan wreck or its dive surroundings.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "ef780f67-9b11-4685-b4de-808a8db8e521",
+    "slug": "hms-majestik",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d792c147e739bd8a84a550165a9920db5e098bba1eacd638e2807809b04ccb83.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d792c147e739bd8a84a550165a9920db5e098bba1eacd638e2807809b04ccb83.jpg",
+    "originalSha256": "fcf8c516efc872557b42fc487643de4265514e3112833abda656311c8d462d4f",
+    "alt": "HMS Majestik — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, H00208. Photographer not identified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, H00208. Photographer not identified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C44559",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C44559"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. HMS Majestic afloat off Cape Helles, Gallipoli, in May 1915. Historical same-vessel context for the battleship wreck known as HMS Majestik/Majestik Batığı. This does not show the present underwater wreck or current dive conditions. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_CONTEXT_ONLY / The native AWM photograph names HMS Majestic at Cape Helles in May 1915. The official tourism and underwater-park descriptions identify the Majestic-class battleship sunk at Cape Helles on 27 May 1915 as the present dive wreck. The independent Turkish alias Majestik Batığı and the inventory’s Türkiye record support the spelling relationship. This time-, place- and vessel-class match excludes the later carrier named HMS Majestic/HMAS Melbourne. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"ef780f67-9b11-4685-b4de-808a8db8e521\", \"site_name\": \"HMS Majestik\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"HMS Majestic afloat off Cape Helles, Gallipoli, in May 1915. Historical same-vessel context for the battleship wreck known as HMS Majestik/Majestik Batığı. This does not show the present underwater wreck or current dive conditions.\"]} Limitations: HMS Majestic afloat off Cape Helles, Gallipoli, in May 1915. Historical same-vessel context for the battleship wreck known as HMS Majestik/Majestik Batığı. This does not show the present underwater wreck or current dive conditions.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "db41246d-51f1-4cf7-9871-52c75531c488",
+    "slug": "sms-brummer",
+    "src": "https://assets.diveatlas.site/site-photos/v1/63eb808570e21605d5dedd47e8184152baa63b409d0a64409e307042ce1edbec.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/63eb808570e21605d5dedd47e8184152baa63b409d0a64409e307042ce1edbec.jpg",
+    "originalSha256": "61c462a0954e1de5baaddde24a86b0797849d665917675dcb87181d7dd78d756",
+    "alt": "SMS Brummer — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, H05365. Photographer not identified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, H05365. Photographer not identified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/H05365",
+    "licenceUrl": "https://www.awm.gov.au/collection/H05365",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/H05365"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://www.awm.gov.au/collection/H05365"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. SMS Brummer’s hull in dock in Germany, 19 October 1917. Historical same-vessel detail for the Scapa Flow wreck; not a view of the present underwater wreck or current conditions. Identity: PROPOSED_HISTORICAL_SAME_VESSEL_DETAIL_ONLY / The inventory explicitly names SMS Brummer in Scapa Flow. AWM identifies the photographed ship as the German cruiser minelayer Brummer in October 1917. The independent wreck factsheet ties that First World War minelayer to the Scapa Flow wreck. The name, vessel role, period and place distinguish it from other namesakes; no sister ship is substituted. / {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"db41246d-51f1-4cf7-9871-52c75531c488\", \"site_name\": \"SMS Brummer\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"SMS Brummer’s hull in dock in Germany, 19 October 1917. Historical same-vessel detail for the Scapa Flow wreck; not a view of the present underwater wreck or current conditions.\"]} Limitations: SMS Brummer’s hull in dock in Germany, 19 October 1917. Historical same-vessel detail for the Scapa Flow wreck; not a view of the present underwater wreck or current conditions.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "446f23f3-ad21-44b0-b398-295280fdf377",
+    "slug": "toa-maru-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1469b107d837746cdac610e6ca38e10e96ab0aa15b42c9a1d33fe4d1a90b2bbb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1469b107d837746cdac610e6ca38e10e96ab0aa15b42c9a1d33fe4d1a90b2bbb.jpg",
+    "originalSha256": "5fc08aa13c40c819f01a772255c9734b0f733eef8c14400f87091af741335857",
+    "alt": "Toa Maru Wreck — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Australian War Memorial, Naval Historical Collection, accession 304052/01. Photographer unidentified. · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "Australian War Memorial, Naval Historical Collection, accession 304052/01. Photographer unidentified.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C251031",
+    "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C251031"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Undated historical port-bow photograph of the Japanese cargo vessel Toa Maru, later Toa Maru No. 2 Go, proposed as same-vessel context for the Gizo wreck. The pictured port is unspecified. This is not a photograph of the present underwater wreck, dive entry or current conditions. Identity: {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"446f23f3-ad21-44b0-b398-295280fdf377\", \"site_name\": \"Toa Maru Wreck\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Undated historical port-bow photograph of the Japanese cargo vessel Toa Maru, later Toa Maru No. 2 Go, proposed as same-vessel context for the Gizo wreck. The pictured port is unspecified. This is not a photograph of the present underwater wreck, dive entry or current conditions.\"]} Limitations: Undated historical port-bow photograph of the Japanese cargo vessel Toa Maru, later Toa Maru No. 2 Go, proposed as same-vessel context for the Gizo wreck. The pictured port is unspecified. This is not a photograph of the present underwater wreck, dive entry or current conditions.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "bbddc45a-dfa7-4651-a8b7-c3fb76f0a7b7",
+    "slug": "lake-wazee-north-boat-ramp-sherwood-forest",
+    "src": "https://assets.diveatlas.site/site-photos/v1/dda2b44f3da8f060d18d885eab7829ffe62a7ac348f17ca530a3feb27e5f8aa1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/dda2b44f3da8f060d18d885eab7829ffe62a7ac348f17ca530a3feb27e5f8aa1.jpg",
+    "originalSha256": "7d919c55932b66781f78bae60ba9b3e829cbf7b8bd09f8e32c7d6e1a045c676d",
+    "alt": "Lake Wazee, North Boat Ramp, Sherwood Forest — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · GoodFreePhotos.com; source-declared public domain. Individual photographer and exact capture date unverified. · {\"source_declaration\": \"Public domain with express personal and commercial reuse under retained site-wide terms.\", \"source_terms_url\": \"https://www.goodfreephotos.com/pages/creative-commons-license-terms/\", \"legacy_license_url\": \"http://creativecommons.org/licenses/publicdomain/\", \"verified_cc0_1_0\": false, \"creator\": \"GoodFreePhotos.com (source/publisher); individual photographer not identified\", \"credit\": \"GoodFreePhotos.com; source-declared public domain. Individual photographer and exact capture date unverified.\", \"basis\": \"Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image.\", \"third_party_limits\": \"No warranty of ownership or model/property/trademark clearance. Human intended-use review remains necessary.\", \"terms_stop\": \"Failed current terms read remains stopped, and is not treated as revocation of a valid earlier grant.\", \"ownership_independently_verified\": false, \"historical_policy_effective_date_verified\": false} / Public domain with express personal and commercial reuse under retained site-wide terms. / Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image. · Cropped/resized",
+    "creator": "GoodFreePhotos.com; source-declared public domain. Individual photographer and exact capture date unverified.",
+    "license": "{\"source_declaration\": \"Public domain with express personal and commercial reuse under retained site-wide terms.\", \"source_terms_url\": \"https://www.goodfreephotos.com/pages/creative-commons-license-terms/\", \"legacy_license_url\": \"http://creativecommons.org/licenses/publicdomain/\", \"verified_cc0_1_0\": false, \"creator\": \"GoodFreePhotos.com (source/publisher); individual photographer not identified\", \"credit\": \"GoodFreePhotos.com; source-declared public domain. Individual photographer and exact capture date unverified.\", \"basis\": \"Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image.\", \"third_party_limits\": \"No warranty of ownership or model/property/trademark clearance. Human intended-use review remains necessary.\", \"terms_stop\": \"Failed current terms read remains stopped, and is not treated as revocation of a valid earlier grant.\", \"ownership_independently_verified\": false, \"historical_policy_effective_date_verified\": false} / Public domain with express personal and commercial reuse under retained site-wide terms. / Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.goodfreephotos.com/news/wazee-lake/",
+    "licenceUrl": "https://www.goodfreephotos.com/pages/creative-commons-license-terms/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.goodfreephotos.com/news/wazee-lake/"
+      },
+      {
+        "label": "{\"source_declaration\": \"Public domain with express personal and commercial reuse under retained site-wide terms.\", \"source_terms_url\": \"https://www.goodfreephotos.com/pages/creative-commons-license-terms/\", \"legacy_license_url\": \"http://creativecommons.org/licenses/publicdomain/\", \"verified_cc0_1_0\": false, \"creator\": \"GoodFreePhotos.com (source/publisher); individual photographer not identified\", \"credit\": \"GoodFreePhotos.com; source-declared public domain. Individual photographer and exact capture date unverified.\", \"basis\": \"Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image.\", \"third_party_limits\": \"No warranty of ownership or model/property/trademark clearance. Human intended-use review remains necessary.\", \"terms_stop\": \"Failed current terms read remains stopped, and is not treated as revocation of a valid earlier grant.\", \"ownership_independently_verified\": false, \"historical_policy_effective_date_verified\": false} / Public domain with express personal and commercial reuse under retained site-wide terms. / Retained terms cover all photos on the site; retained About declares the owners work public domain. Wazees own first-person native post directly embeds this exposure. No licence is transferred from the separate Devils Lake image.",
+        "url": "https://www.goodfreephotos.com/pages/creative-commons-license-terms/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Archival above-water view of Lake Wazee, Wisconsin, published in a post displaying 05/04/2015. Broad lake-surroundings context for the North Boat Ramp / Sherwood Forest dive locality; not a photograph of the exact entry or underwater forest. Strong source processing and a sky blemish are retained. / Light streaming in on the Lake / Wazee Lake Identity: {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"bbddc45a-dfa7-4651-a8b7-c3fb76f0a7b7\", \"site_name\": \"Lake Wazee, North Boat Ramp, Sherwood Forest\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Archival above-water view of Lake Wazee, Wisconsin, published in a post displaying 05/04/2015. Broad lake-surroundings context for the North Boat Ramp / Sherwood Forest dive locality; not a photograph of the exact entry or underwater forest. Strong source processing and a sky blemish are retained.\", \"Historical broad lake-surroundings context only; human review required\"]} Limitations: Archival above-water view of Lake Wazee, Wisconsin, published in a post displaying 05/04/2015. Broad lake-surroundings context for the North Boat Ramp / Sherwood Forest dive locality; not a photograph of the exact entry or underwater forest. Strong source processing and a sky blemish are retained. / Historical broad lake-surroundings context only; human review required  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "2b77851e-5069-4380-b9c1-c0f8b2bf03d0",
+    "slug": "u-576-wrack",
+    "src": "https://assets.diveatlas.site/site-photos/v1/3bc4d69456ca196cd904a7a96626f1350310669b41b70218cd18bb0bd2f8bdf2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/3bc4d69456ca196cd904a7a96626f1350310669b41b70218cd18bb0bd2f8bdf2.jpg",
+    "originalSha256": "f02d79b01dab17f4e1a6c1191217aed73c502b65f5dd615f3f59023d8402bc8e",
+    "alt": "U-576 (Wrack) — Historical underwater site still",
+    "label": "Historical underwater site still",
+    "credit": "Historical underwater site still · John McCord, UNC Coastal Studies Institute – Battle of the Atlantic expedition; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200701/ · Public domain / free distribution under the explicit NOAA Ocean Exploration image reuse statement, except specifically copyrighted contributions. · Cropped/resized",
+    "creator": "John McCord, UNC Coastal Studies Institute – Battle of the Atlantic expedition; NOAA Ocean Exploration. https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200701/",
+    "license": "Public domain / free distribution under the explicit NOAA Ocean Exploration image reuse statement, except specifically copyrighted contributions.",
+    "source": "reviewed-context",
+    "sourcePage": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200701/",
+    "licenceUrl": "https://oceanexplorer.noaa.gov/faqs/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200701/"
+      },
+      {
+        "label": "Public domain / free distribution under the explicit NOAA Ocean Exploration image reuse statement, except specifically copyrighted contributions.",
+        "url": "https://oceanexplorer.noaa.gov/faqs/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Underwater photographic still of the U-576 wreck’s conning-tower structure and grouper off North Carolina, from the Battle of the Atlantic expedition. Historical record associated with the 2016 expedition; exact exposure date is unverified. Source metadata suggests a video-derived still. It does not show current conditions or validate the inventory pin. / Conning Tower of the U-576 Identity: {\"scope\": \"underwater_site_historical_still\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"2b77851e-5069-4380-b9c1-c0f8b2bf03d0\", \"site_name\": \"U-576 (Wrack)\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": []} Limitations:  Likely source-video-derived still; not certified camera-original photograph. Historical wreck depiction, not current conditions. / Potentially source-video-derived photographic still; camera-original status is not established either way. Existing saved-photo accounting retained, not promoted to proven camera original. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "65892548-6350-457b-ab11-d495eec46d1d",
+    "slug": "the-spires-yellowstone-lake",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e46df331b30236e3727f4e9f7fdedf8a131de54b57dc4ab6dcc756e7892a8663.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e46df331b30236e3727f4e9f7fdedf8a131de54b57dc4ab6dcc756e7892a8663.jpg",
+    "originalSha256": "ebce0afee2f342d47d3dbb26fd13e0fe9b8aeee5f439962c9ffa89a1b1fa549e",
+    "alt": "The Spires (Yellowstone Lake) — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · NPS Photo by Jim Peaco · These images are in the public domain and may be reproduced, free of charge with the proper credit line. / These images are in the public domain and may therefore be used in your publications at no charge. · Cropped/resized",
+    "creator": "NPS Photo by Jim Peaco",
+    "license": "These images are in the public domain and may be reproduced, free of charge with the proper credit line. / These images are in the public domain and may therefore be used in your publications at no charge.",
+    "source": "reviewed-context",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hamilton's_Fishing_Bridge_Store,_chandelier.jpg",
+    "licenceUrl": "https://www.nps.gov/features/yell/slidefile/index.htm",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://commons.wikimedia.org/wiki/File:Hamilton's_Fishing_Bridge_Store,_chandelier.jpg"
+      },
+      {
+        "label": "These images are in the public domain and may be reproduced, free of charge with the proper credit line. / These images are in the public domain and may therefore be used in your publications at no charge.",
+        "url": "https://www.nps.gov/features/yell/slidefile/index.htm"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Divers working on silica-spire collection in Yellowstone Lake, August 1999. Historical research context for the Spires; not a view of the underwater formations or a verified dive entry. NPS Photo by Jim Peaco. / Historical diving research associated with Yellowstone Lake silica spires. Identity: Historical diving research associated with Yellowstone Lake silica spires. / Shop chandelier is irrelevant to the underwater Spires in Yellowstone Lake. / {\"scope\": \"surface_research_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"65892548-6350-457b-ab11-d495eec46d1d\", \"site_name\": \"The Spires (Yellowstone Lake)\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Divers working on silica-spire collection in Yellowstone Lake, August 1999. Historical research context for the Spires; not a view of the underwater formations or a verified dive entry. NPS Photo by Jim Peaco.\", \"Historical diving research associated with Yellowstone Lake silica spires.\"]} Limitations: Divers working on silica-spire collection in Yellowstone Lake, August 1999. Historical research context for the Spires; not a view of the underwater formations or a verified dive entry. NPS Photo by Jim Peaco. / Historical diving research associated with Yellowstone Lake silica spires.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "1a3e9b1c-a2fd-4a94-b278-6d548d297d52",
+    "slug": "cementco-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ad6b81b2955077358bd522555381c7817f5e7f9ef9acbdf0d903b74f4a5594cb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ad6b81b2955077358bd522555381c7817f5e7f9ef9acbdf0d903b74f4a5594cb.jpg",
+    "originalSha256": "e9d7a44a94ffefa00228bed728e83d58a59654a2a5df9c9f53900ce5a1f2b7d7",
+    "alt": "Cementco Wreck — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · L. Cpl E. McQuillan / Australian War Memorial, 124534. Public domain. / L. Cpl E. McQuillan / Australian War Memorial, photograph 124534 · Copyright expired - public domain / This item is in the Public Domain · Cropped/resized",
+    "creator": "L. Cpl E. McQuillan / Australian War Memorial, 124534. Public domain. / L. Cpl E. McQuillan / Australian War Memorial, photograph 124534",
+    "license": "Copyright expired - public domain / This item is in the Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C198593",
+    "licenceUrl": "http://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C198593"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain",
+        "url": "http://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. The stern and superstructure of Army vessel Crusader AV2767 in Sydney, 23 December 1945. This vessel was later converted and renamed Cementco. Historical same-hull context for Cementco Wreck, not a photograph of the submerged wreck or its present location. Identity: {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"1a3e9b1c-a2fd-4a94-b278-6d548d297d52\", \"site_name\": \"Cementco Wreck\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"The stern and superstructure of Army vessel Crusader AV2767 in Sydney, 23 December 1945. This vessel was later converted and renamed Cementco. Historical same-hull context for Cementco Wreck, not a photograph of the submerged wreck or its present location.\"]} Limitations: The stern and superstructure of Army vessel Crusader AV2767 in Sydney, 23 December 1945. This vessel was later converted and renamed Cementco. Historical same-hull context for Cementco Wreck, not a photograph of the submerged wreck or its present location.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "b718607b-1305-4ced-a5e2-eb8ec4d7b33b",
+    "slug": "keauhou-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2f3e64b803c84f5dd5afebeb37e787f7ae8a72b9cb43996c293fa32f2569a3ae.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2f3e64b803c84f5dd5afebeb37e787f7ae8a72b9cb43996c293fa32f2569a3ae.jpg",
+    "originalSha256": "ec86637fd5783e6460526a0fb5d23b12112a48c507de5597d2df77908884efe9",
+    "alt": "Keauhou Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS · The individually identified native item explicitly declares Public domain and credits NPS. This is not an assumption based on government hosting or a grant borrowed from another collection. · Cropped/resized",
+    "creator": "NPS",
+    "license": "The individually identified native item explicitly declares Public domain and credits NPS. This is not an assumption based on government hosting or a grant borrowed from another collection.",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/NTS/AssetDetail/0141100e-abb6-9cd2-c63f-f7b779e5bbbc",
+    "licenceUrl": "https://npgallery.nps.gov/NTS/AssetDetail/0141100e-abb6-9cd2-c63f-f7b779e5bbbc",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/NTS/AssetDetail/0141100e-abb6-9cd2-c63f-f7b779e5bbbc"
+      },
+      {
+        "label": "The individually identified native item explicitly declares Public domain and credits NPS. This is not an assumption based on government hosting or a grant borrowed from another collection.",
+        "url": "https://npgallery.nps.gov/NTS/AssetDetail/0141100e-abb6-9cd2-c63f-f7b779e5bbbc"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Na Pe`a at Keauhou Bay Identity: Surface canoe activity and shoreline surroundings at the exact named Keauhou Bay in Kailua Kona. / {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"b718607b-1305-4ced-a5e2-eb8ec4d7b33b\", \"site_name\": \"Keauhou Bay\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Canoe-sailing program at Keauhou Bay, Kailua Kona, Hawaii. Undated surface and shore context, not an underwater view or a verified dive entry. NPS.\", \"Surface canoe activity and shoreline surroundings at the exact named Keauhou Bay in Kailua Kona.\", \"LOW_RESOLUTION_REFERENCE_ONLY\"]} Limitations: Canoe-sailing program at Keauhou Bay, Kailua Kona, Hawaii. Undated surface and shore context, not an underwater view or a verified dive entry. NPS. / Surface canoe activity and shoreline surroundings at the exact named Keauhou Bay in Kailua Kona. / LOW_RESOLUTION_REFERENCE_ONLY LOW_RESOLUTION_REFERENCE_ONLY, 256 x 196; not promoted to usable hero image. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "8f0745bb-0fbf-4481-a396-fe01d7b1dcbc",
+    "slug": "main-beach-wreck-tassie-iii",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2581f0a7b10e56078783bca9c2a7a44973119012e676132103d9202e81ebd78f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2581f0a7b10e56078783bca9c2a7a44973119012e676132103d9202e81ebd78f.jpg",
+    "originalSha256": "c6205e2145a417d26e5626829b4ffcfa3df6c4887fe07bc9c95e992773557e86",
+    "alt": "Main Beach Wreck - Tassie III — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · United States Army Signal Corps / Australian War Memorial, P04853.020. Public domain. / United States Army Signal Corps / Australian War Memorial, P04853.020. From the collection of Arthur James Carfax-Foster. · Copyright expired - public domain / This item is in the Public Domain / Individual native item declaration, not government hosting, archival custody, metadata licensing or age alone. · Cropped/resized",
+    "creator": "United States Army Signal Corps / Australian War Memorial, P04853.020. Public domain. / United States Army Signal Corps / Australian War Memorial, P04853.020. From the collection of Arthur James Carfax-Foster.",
+    "license": "Copyright expired - public domain / This item is in the Public Domain / Individual native item declaration, not government hosting, archival custody, metadata licensing or age alone.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C1118081",
+    "licenceUrl": "http://creativecommons.org/publicdomain/mark/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C1118081"
+      },
+      {
+        "label": "Copyright expired - public domain / This item is in the Public Domain / Individual native item declaration, not government hosting, archival custody, metadata licensing or age alone.",
+        "url": "http://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Tassie III (Small Ships S-77) afloat at Morobe, New Guinea, circa 1943. Historical service view of the vessel later wrecked at Main Beach, Byron Bay. This is not a photograph of the wreck, its current condition, or the dive location. Identity: {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"8f0745bb-0fbf-4481-a396-fe01d7b1dcbc\", \"site_name\": \"Main Beach Wreck - Tassie III\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Tassie III (Small Ships S-77) afloat at Morobe, New Guinea, circa 1943. Historical service view of the vessel later wrecked at Main Beach, Byron Bay. This is not a photograph of the wreck, its current condition, or the dive location.\"]} Limitations: Tassie III (Small Ships S-77) afloat at Morobe, New Guinea, circa 1943. Historical service view of the vessel later wrecked at Main Beach, Byron Bay. This is not a photograph of the wreck, its current condition, or the dive location.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "63e6eb8b-5302-493f-8272-8e2feee6c622",
+    "slug": "stingray-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5885104de1f3615ff516bc848e00ec59c777ffb0570c26c75e435b764853c7bd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5885104de1f3615ff516bc848e00ec59c777ffb0570c26c75e435b764853c7bd.jpg",
+    "originalSha256": "3dbc5e4b91ec8a72e62ed74af69e0cef8ca7eba56978cc537393ae09eb18b528",
+    "alt": "Stingray Bay — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Viaduct to Warrnambool Breakwater - 1890. Photographer unidentified. Flagstaff Hill Maritime Museum and Village, item 2117. Mounted print presented by the South Warrnambool Primary School Centenary Committee in 1977. Public domain according to the native media panel. · This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose. · Cropped/resized",
+    "creator": "Viaduct to Warrnambool Breakwater - 1890. Photographer unidentified. Flagstaff Hill Maritime Museum and Village, item 2117. Mounted print presented by the South Warrnambool Primary School Centenary Committee in 1977. Public domain according to the native media panel.",
+    "license": "This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose.",
+    "source": "reviewed-context",
+    "sourcePage": "https://victoriancollections.net.au/items/521605ae19403a17c4ba083b",
+    "licenceUrl": "https://victoriancollections.net.au/items/521605ae19403a17c4ba083b",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://victoriancollections.net.au/items/521605ae19403a17c4ba083b"
+      },
+      {
+        "label": "This media item is listed as being within the public domain. As such, this item may be used by anyone for any purpose.",
+        "url": "https://victoriancollections.net.au/items/521605ae19403a17c4ba083b"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical Merri River mouth and footbridge surroundings for Stingray Bay, Warrnambool. Scene dated 1890 by the catalogue; this digital reproduction shows a mounted print presented in 1977. Photographer unidentified. Identity: PROPOSED_HISTORICAL_IMMEDIATE_SHORELINE_SURROUNDINGS / {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"63e6eb8b-5302-493f-8272-8e2feee6c622\", \"site_name\": \"Stingray Bay\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Historical Merri River mouth and footbridge surroundings for Stingray Bay, Warrnambool. Scene dated 1890 by the catalogue; this digital reproduction shows a mounted print presented in 1977. Photographer unidentified.\", \"PROPOSED_HISTORICAL_IMMEDIATE_SHORELINE_SURROUNDINGS\"]} Limitations: Historical Merri River mouth and footbridge surroundings for Stingray Bay, Warrnambool. Scene dated 1890 by the catalogue; this digital reproduction shows a mounted print presented in 1977. Photographer unidentified. / PROPOSED_HISTORICAL_IMMEDIATE_SHORELINE_SURROUNDINGS  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "c39fc868-94cd-4c6d-aaba-d8b570c3d3aa",
+    "slug": "skovshoved",
+    "src": "https://assets.diveatlas.site/site-photos/v1/00cb9098ee4320fb5801a85831a3ea874397c9ec1324125099322f1e57d939db.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/00cb9098ee4320fb5801a85831a3ea874397c9ec1324125099322f1e57d939db.jpg",
+    "originalSha256": "5a6e7e0e290c492b09cceec37999ed1ca36fda8b79339e429b6d70a2b9640aa1",
+    "alt": "Skovshoved — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Sylvest Jensen Luftfoto; Royal Danish Library · Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded. · Cropped/resized",
+    "creator": "Sylvest Jensen Luftfoto; Royal Danish Library",
+    "license": "Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107",
+    "licenceUrl": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107"
+      },
+      {
+        "label": "Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded.",
+        "url": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Skovshoved Havn Identity: {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"c39fc868-94cd-4c6d-aaba-d8b570c3d3aa\", \"site_name\": \"Skovshoved\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true, \"proposal_quote\": \"Historical harbor surroundings, parent review; no assignment\"}, {\"site_uuid\": \"6bd98d86-c8d7-4c72-b25b-14e45643a312\", \"site_name\": \"Skovshoved Havn Syd\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true, \"proposal_quote\": \"Overlapping harbor context only; modern south-entry identity unverified; not additional distinct-place credit\"}], \"limitations_verbatim\": [\"Historical surroundings of Skovshoved harbor only. Does not verify contemporary south-harbor access, dive entrance or underwater conditions.\", \"One clear whole aerial exposure showing harbor basins, breakwaters, boats, shore road and buildings. Original crosshair/annotation marks and borders retained. No extraction, crop, enhancement or image alteration to original. Preview is local review only and not another acquisition.\"]} Limitations: Historical surroundings of Skovshoved harbor only. Does not verify contemporary south-harbor access, dive entrance or underwater conditions. / One clear whole aerial exposure showing harbor basins, breakwaters, boats, shore road and buildings. Original crosshair/annotation marks and borders retained. No extraction, crop, enhancement or image alteration to original. Preview is local review only and not another acquisition. Two overlapping catalogue proposals share one harbor exposure; modern south-entry identity unverified; one distinct place only. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "6bd98d86-c8d7-4c72-b25b-14e45643a312",
+    "slug": "skovshoved-havn-syd",
+    "src": "https://assets.diveatlas.site/site-photos/v1/00cb9098ee4320fb5801a85831a3ea874397c9ec1324125099322f1e57d939db.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/00cb9098ee4320fb5801a85831a3ea874397c9ec1324125099322f1e57d939db.jpg",
+    "originalSha256": "5a6e7e0e290c492b09cceec37999ed1ca36fda8b79339e429b6d70a2b9640aa1",
+    "alt": "Skovshoved Havn Syd — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Sylvest Jensen Luftfoto; Royal Danish Library · Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded. · Cropped/resized",
+    "creator": "Sylvest Jensen Luftfoto; Royal Danish Library",
+    "license": "Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107",
+    "licenceUrl": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107"
+      },
+      {
+        "label": "Copyrighted; specific institutional reuse grant, not PD or Creative Commons / MODS marks all11 as copyrighted or possibly copyrighted. Current native FAQ explicitly permits all An Aerial View of Denmark photos on websites or in articles/books with Royal Danish Library and photographer credit. This is an institutional reuse grant, not verified per-item PD/CC0/CC BY. Parent notified for criterion review; no images downloaded.",
+        "url": "https://www.kb.dk/danmarksetfraluften/images/luftfo/2011/maj/luftfoto/object325107"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Skovshoved Havn Identity: {\"scope\": \"shore_or_lake_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"c39fc868-94cd-4c6d-aaba-d8b570c3d3aa\", \"site_name\": \"Skovshoved\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true, \"proposal_quote\": \"Historical harbor surroundings, parent review; no assignment\"}, {\"site_uuid\": \"6bd98d86-c8d7-4c72-b25b-14e45643a312\", \"site_name\": \"Skovshoved Havn Syd\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true, \"proposal_quote\": \"Overlapping harbor context only; modern south-entry identity unverified; not additional distinct-place credit\"}], \"limitations_verbatim\": [\"Historical surroundings of Skovshoved harbor only. Does not verify contemporary south-harbor access, dive entrance or underwater conditions.\", \"One clear whole aerial exposure showing harbor basins, breakwaters, boats, shore road and buildings. Original crosshair/annotation marks and borders retained. No extraction, crop, enhancement or image alteration to original. Preview is local review only and not another acquisition.\"]} Limitations: Historical surroundings of Skovshoved harbor only. Does not verify contemporary south-harbor access, dive entrance or underwater conditions. / One clear whole aerial exposure showing harbor basins, breakwaters, boats, shore road and buildings. Original crosshair/annotation marks and borders retained. No extraction, crop, enhancement or image alteration to original. Preview is local review only and not another acquisition. Two overlapping catalogue proposals share one harbor exposure; modern south-entry identity unverified; one distinct place only. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "22b65048-68ca-4713-88f5-cd42bc0fe88d",
+    "slug": "coral-nursery-niue-new-zealand",
+    "src": "https://assets.diveatlas.site/site-photos/v1/69077bd77cf2112fea8876a243988cd845058164e670bdbe9738e1bfa4fe5fe2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/69077bd77cf2112fea8876a243988cd845058164e670bdbe9738e1bfa4fe5fe2.jpg",
+    "originalSha256": "312b275c640b7dc659652980f5ea744ba258e9921c815b5a7d4598fd47671793",
+    "alt": "Coral Nursery — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS004-E-13341. https://eol.jsc.nasa.gov/ · {\"policy\": \"https://eol.jsc.nasa.gov/FAQ/default.htm\", \"basis\": \"NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS004-E-13341. https://eol.jsc.nasa.gov/\", \"commercial_cautions\": \"No implied NASA endorsement or trademark licence; recognizable-person restrictions do not arise in this landscape.\"} / NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS004-E-13341. https://eol.jsc.nasa.gov/",
+    "license": "{\"policy\": \"https://eol.jsc.nasa.gov/FAQ/default.htm\", \"basis\": \"NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS004-E-13341. https://eol.jsc.nasa.gov/\", \"commercial_cautions\": \"No implied NASA endorsement or trademark licence; recognizable-person restrictions do not arise in this landscape.\"} / NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=13341&mission=ISS004&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=13341&mission=ISS004&roll=E"
+      },
+      {
+        "label": "{\"policy\": \"https://eol.jsc.nasa.gov/FAQ/default.htm\", \"basis\": \"NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS004-E-13341. https://eol.jsc.nasa.gov/\", \"commercial_cautions\": \"No implied NASA endorsement or trademark licence; recognizable-person restrictions do not arise in this landscape.\"} / NASA material not protected by copyright unless noted; reproduction and distribution allowed without further permission if not copyrighted. Native item has no third-party exception. Informational use with credit and no implied endorsement; not CC.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Island fills most of whole frame. Western shore is legible and largely clear. Scattered clouds mainly over interior/east/south. Suitable historical surrounding-island context, not underwater/photo of exact reef or entry point. Identity: {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"22b65048-68ca-4713-88f5-cd42bc0fe88d\", \"site_name\": \"Coral Nursery\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [{\"site_id\": \"22b65048-68ca-4713-88f5-cd42bc0fe88d\", \"site_name\": \"Coral Nursery\", \"source\": \"https://www.padi.com/dive-site/niue/coral-nursery/\", \"evidence\": \"PADI names Niue and credits Niue Blue, lists coordinates -19.12717,-169.91541 identical to eligible row. Independent textual island relationship, not coordinate-nearest assignment.\", \"caveat\": \"This image illustrates the surrounding island as a whole. Coral Nursery itself is not visually identified. No claim that all other Niue sites are covered.\"}, \"Island fills most of whole frame. Western shore is legible and largely clear. Scattered clouds mainly over interior/east/south. Suitable historical surrounding-island context, not underwater/photo of exact reef or entry point.\"]} Limitations: {\"site_id\": \"22b65048-68ca-4713-88f5-cd42bc0fe88d\", \"site_name\": \"Coral Nursery\", \"source\": \"https://www.padi.com/dive-site/niue/coral-nursery/\", \"evidence\": \"PADI names Niue and credits Niue Blue, lists coordinates -19.12717,-169.91541 identical to eligible row. Independent textual island relationship, not coordinate-nearest assignment.\", \"caveat\": \"This image illustrates the surrounding island as a whole. Coral Nursery itself is not visually identified. No claim that all other Niue sites are covered.\"} / Island fills most of whole frame. Western shore is legible and largely clear. Scattered clouds mainly over interior/east/south. Suitable historical surrounding-island context, not underwater/photo of exact reef or entry point.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "23800712-bc5c-4711-804f-126ad7dc6017",
+    "slug": "carlisle-bay-marine-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1df43e4a808f1a13e22829770c25e86a1194a4f85fefdd2da18ee74869c4eec6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1df43e4a808f1a13e22829770c25e86a1194a4f85fefdd2da18ee74869c4eec6.jpg",
+    "originalSha256": "af53a0a2e25be81b75de948b0d9f75e427a1231b385fed394c8dbe575167ad34",
+    "alt": "Carlisle Bay Marine Park — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NASA astronaut crew; Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA photographs may be reproduced and distributed without further permission unless copyright noted. No individual third-party exception found on native item. NASA credit and no implied endorsement; saved native policy inherited. Not CC-labelled. · Cropped/resized",
+    "creator": "NASA astronaut crew; Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright noted. No individual third-party exception found on native item. NASA credit and no implied endorsement; saved native policy inherited. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11988&mission=ISS004&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11988&mission=ISS004&roll=E",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11988&mission=ISS004&roll=E"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright noted. No individual third-party exception found on native item. NASA credit and no implied endorsement; saved native policy inherited. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11988&mission=ISS004&roll=E"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Official Visit Barbados describes Carlisle Bay marine park on Barbados near Bridgetown. Eligible Carlisle Bay Marine Park supported textually. Retain as historical surrounding coast only, not exact dive entry, wreck depiction or verified pin. / Whole single camera coastal photograph. Bridgetown and broad curved shoreline clearly visible; scattered clouds chiefly over inland areas and some offshore water. Not a whole-island view. Original source identification margin retained. No crop or modification. Identity: Official Visit Barbados describes Carlisle Bay marine park on Barbados near Bridgetown. Eligible Carlisle Bay Marine Park supported textually. Retain as historical surrounding coast only, not exact dive entry, wreck depiction or verified pin. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"reviewed_provisional\", \"candidate_targets\": [{\"site_uuid\": \"23800712-bc5c-4711-804f-126ad7dc6017\", \"site_name\": \"Carlisle Bay Marine Park\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Official Visit Barbados describes Carlisle Bay marine park on Barbados near Bridgetown. Eligible Carlisle Bay Marine Park supported textually. Retain as historical surrounding coast only, not exact dive entry, wreck depiction or verified pin.\", \"Whole single camera coastal photograph. Bridgetown and broad curved shoreline clearly visible; scattered clouds chiefly over inland areas and some offshore water. Not a whole-island view. Original source identification margin retained. No crop or modification.\"]} Limitations: Official Visit Barbados describes Carlisle Bay marine park on Barbados near Bridgetown. Eligible Carlisle Bay Marine Park supported textually. Retain as historical surrounding coast only, not exact dive entry, wreck depiction or verified pin. / Whole single camera coastal photograph. Bridgetown and broad curved shoreline clearly visible; scattered clouds chiefly over inland areas and some offshore water. Not a whole-island view. Original source identification margin retained. No crop or modification.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "33302ab1-04fd-42ef-bcbd-dc6bab146259",
+    "slug": "anemone-garden-mauritius",
+    "src": "https://assets.diveatlas.site/site-photos/v1/518cdeecf9fb1e9fdaaaeb5e56cdfc4f7ecb95b6ef3a4fc08c1f502abd39312e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/518cdeecf9fb1e9fdaaaeb5e56cdfc4f7ecb95b6ef3a4fc08c1f502abd39312e.jpg",
+    "originalSha256": "c02802515b95db4ae5f89d05b9dcbcdc7f218a10fbbebc4356a0773b734b684f",
+    "alt": "Anemone Garden — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · {\"basis\": \"NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"required_presentation\": \"Retain attribution and source link; do not imply NASA endorsement or falsely claim copyright. No recognizable person or logo extracted as a brand asset.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"inherited-policy.body and inherited-policy-request.json from successful 20:23:50 metadata retrieval; not re-requested.\", \"commercial_status\": \"Applicable NASA reproduction terms allow communicative website use, subject to noted exceptions and no endorsement. No new third-party licence inferred.\"} / NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work. · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "{\"basis\": \"NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"required_presentation\": \"Retain attribution and source link; do not imply NASA endorsement or falsely claim copyright. No recognizable person or logo extracted as a brand asset.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"inherited-policy.body and inherited-policy-request.json from successful 20:23:50 metadata retrieval; not re-requested.\", \"commercial_status\": \"Applicable NASA reproduction terms allow communicative website use, subject to noted exceptions and no endorsement. No new third-party licence inferred.\"} / NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9659&mission=ISS022&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9659&mission=ISS022&roll=E"
+      },
+      {
+        "label": "{\"basis\": \"NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"required_presentation\": \"Retain attribution and source link; do not imply NASA endorsement or falsely claim copyright. No recognizable person or logo extracted as a brand asset.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"inherited-policy.body and inherited-policy-request.json from successful 20:23:50 metadata retrieval; not re-requested.\", \"commercial_status\": \"Applicable NASA reproduction terms allow communicative website use, subject to noted exceptions and no endorsement. No new third-party licence inferred.\"} / NASA native astronaut photograph and applicable native Terms of Use. No image-specific third-party copyright exception noted on item. NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a CC-labelled work.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: Exact supporting page stopped. No source photo requested. Not a blanket WordPress prohibition. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"reviewed_provisional\", \"candidate_targets\": [{\"site_uuid\": \"33302ab1-04fd-42ef-bcbd-dc6bab146259\", \"site_name\": \"Anemone Garden\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [{\"primary_proposed_record\": \"33302ab1-04fd-42ef-bcbd-dc6bab146259\", \"name\": \"Anemone Garden\", \"source\": \"https://www.snorkeling-report.com/spot/snorkeling-mahebourg-bay-mauritius/\", \"read_status\": \"Search index and parsed open both succeeded, 2026-11-12T21:46 UTC; no native HTTP status was exposed by search tool.\", \"evidence_summary\": \"The contributor-authored location page places the named Anemone Garden in Mahebourg Bay, southeastern Mauritius, less than one mile from the seafront. This establishes a named bay relationship, not an exact visible reef match.\", \"publication_date\": \"Page states last updated 2023-09-06.\", \"source_scope\": \"Relationship text only. No website images downloaded or image-reuse permission inferred.\", \"ambiguity\": \"The catalogue has two Anemone Garden name records globally and a separate Preyebere Anemone Garden. Only the Mauritius record at -20.40041,57.72099 is proposed, still awaiting exact catalogue-source identity verification. No inference of coverage from coordinates.\", \"secondary_target\": \"Trou moutou was screened but is not a separate proposed association in this package. Catalogue classifies it as pool; relationship and category require further review.\", \"excluded_search_leads\": \"AI forecast/aggregated directories not used as verification. Colorado Point not matched.\", \"new_access_hold\": {\"url\": \"https://walkmytalk.travel.blog/2023/05/25/not-a-repetitive-dive/\", \"operation\": \"parsed reference open through search tool\", \"outcome\": \"Timeout fetching; no native HTTP status or body recovered. Indexed excerpt exists but no substitute request or retry.\", \"scope\": \"Exact supporting page stopped. No source photo requested. Not a blanket WordPress prohibition.\"}}, {\"completed\": true, \"method\": \"Opened source preview and complete original using local view_image.\", \"finding\": \"One whole orbital camera photograph of Mahebourg coastal settlement, agricultural inland surroundings and part of the turquoise lagoon. Coasts, lagoon and developed shoreline are distinguishable, although most of frame is land and clouds obscure parts of the inland and offshore areas. Source identifier margin retained. Neither named anemone patch, entry, dive route nor underwater features identified.\", \"suitability\": \"Historical surrounding-bay context only, not contemporary underwater or exact dive-site imagery. No crop, enhancement, panel extraction or replacement made.\", \"reviewed_original_sha256\": \"c02802515b95db4ae5f89d05b9dcbcdc7f218a10fbbebc4356a0773b734b684f\"}]} Limitations: {\"primary_proposed_record\": \"33302ab1-04fd-42ef-bcbd-dc6bab146259\", \"name\": \"Anemone Garden\", \"source\": \"https://www.snorkeling-report.com/spot/snorkeling-mahebourg-bay-mauritius/\", \"read_status\": \"Search index and parsed open both succeeded, 2026-11-12T21:46 UTC; no native HTTP status was exposed by search tool.\", \"evidence_summary\": \"The contributor-authored location page places the named Anemone Garden in Mahebourg Bay, southeastern Mauritius, less than one mile from the seafront. This establishes a named bay relationship, not an exact visible reef match.\", \"publication_date\": \"Page states last updated 2023-09-06.\", \"source_scope\": \"Relationship text only. No website images downloaded or image-reuse permission inferred.\", \"ambiguity\": \"The catalogue has two Anemone Garden name records globally and a separate Preyebere Anemone Garden. Only the Mauritius record at -20.40041,57.72099 is proposed, still awaiting exact catalogue-source identity verification. No inference of coverage from coordinates.\", \"secondary_target\": \"Trou moutou was screened but is not a separate proposed association in this package. Catalogue classifies it as pool; relationship and category require further review.\", \"excluded_search_leads\": \"AI forecast/aggregated directories not used as verification. Colorado Point not matched.\", \"new_access_hold\": {\"url\": \"https://walkmytalk.travel.blog/2023/05/25/not-a-repetitive-dive/\", \"operation\": \"parsed reference open through search tool\", \"outcome\": \"Timeout fetching; no native HTTP status or body recovered. Indexed excerpt exists but no substitute request or retry.\", \"scope\": \"Exact supporting page stopped. No source photo requested. Not a blanket WordPress prohibition.\"}} / {\"completed\": true, \"method\": \"Opened source preview and complete original using local view_image.\", \"finding\": \"One whole orbital camera photograph of Mahebourg coastal settlement, agricultural inland surroundings and part of the turquoise lagoon. Coasts, lagoon and developed shoreline are distinguishable, although most of frame is land and clouds obscure parts of the inland and offshore areas. Source identifier margin retained. Neither named anemone patch, entry, dive route nor underwater features identified.\", \"suitability\": \"Historical surrounding-bay context only, not contemporary underwater or exact dive-site imagery. No crop, enhancement, panel extraction or replacement made.\", \"reviewed_original_sha256\": \"c02802515b95db4ae5f89d05b9dcbcdc7f218a10fbbebc4356a0773b734b684f\"} Only primary Anemone Garden UUID proposed; Trou moutou screened but explicitly excluded from this package association. Exact catalogue-source identity verification still pending. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "d8960abf-63d7-4610-b493-e4c9d928ede3",
+    "slug": "babylon-saba",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2945477a17a0486c30e20441da5e1eede2f6f72165794151911027eeb109dd25.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2945477a17a0486c30e20441da5e1eede2f6f72165794151911027eeb109dd25.jpg",
+    "originalSha256": "b0031147c23cb0176768e1ff670d3486f4cce9c81409fa58cca10a280aa0d1a7",
+    "alt": "Babylon, Saba — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS053-E-322866. https://eol.jsc.nasa.gov/ · NASA FAQ: NASA material is not protected by copyright unless noted; no item exception found. Informational reproduction with credit, no implied endorsement. Not a Creative Commons licence. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS053-E-322866. https://eol.jsc.nasa.gov/",
+    "license": "NASA FAQ: NASA material is not protected by copyright unless noted; no item exception found. Informational reproduction with credit, no implied endorsement. Not a Creative Commons licence.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS053&roll=E&frame=322866",
+    "licenceUrl": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS053&roll=E&frame=322866",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS053&roll=E&frame=322866"
+      },
+      {
+        "label": "NASA FAQ: NASA material is not protected by copyright unless noted; no item exception found. Informational reproduction with credit, no implied endorsement. Not a Creative Commons licence.",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS053&roll=E&frame=322866"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. PADI Babylon page independently names Saba and lists 17.62877,-63.25975, matching eligible Babylon, Saba 17.6285,-63.2599. Saba homonym at Curaçao12.0807,-68.8901 excluded. Relationship cannot fix image quality. / Whole real single-camera exposure. Saba occupies a small portion of the unchanged frame; clouds obscure much of the western side. Surrounding coast is not legible enough for useful Babylon context. No cropping or enhancement. No underwater, entry-point or exact reef claim. Identity: PADI Babylon page independently names Saba and lists 17.62877,-63.25975, matching eligible Babylon, Saba 17.6285,-63.2599. Saba homonym at Curaçao12.0807,-68.8901 excluded. Relationship cannot fix image quality. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"quality_held\", \"candidate_targets\": [{\"site_uuid\": \"d8960abf-63d7-4610-b493-e4c9d928ede3\", \"site_name\": \"Babylon, Saba\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"PADI Babylon page independently names Saba and lists 17.62877,-63.25975, matching eligible Babylon, Saba 17.6285,-63.2599. Saba homonym at Curaçao12.0807,-68.8901 excluded. Relationship cannot fix image quality.\", \"Whole real single-camera exposure. Saba occupies a small portion of the unchanged frame; clouds obscure much of the western side. Surrounding coast is not legible enough for useful Babylon context. No cropping or enhancement. No underwater, entry-point or exact reef claim.\"]} Limitations: PADI Babylon page independently names Saba and lists 17.62877,-63.25975, matching eligible Babylon, Saba 17.6285,-63.2599. Saba homonym at Curaçao12.0807,-68.8901 excluded. Relationship cannot fix image quality. / Whole real single-camera exposure. Saba occupies a small portion of the unchanged frame; clouds obscure much of the western side. Surrounding coast is not legible enough for useful Babylon context. No cropping or enhancement. No underwater, entry-point or exact reef claim. Quality-held collected photograph; excluded from candidate target count and not released by this audit. Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "07d1958c-ca4a-4ca3-a509-46322b155dc4",
+    "slug": "piste-de-ski-mayotte",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a71a01f6b0ec74cea1389074e88cd3647d33ff0c4384f6c441a0eb545595e9c8.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a71a01f6b0ec74cea1389074e88cd3647d33ff0c4384f6c441a0eb545595e9c8.jpg",
+    "originalSha256": "91286ec4e5c31b259bc3486deafc5480d43ad9c476cf6699318f20222e0cd05a",
+    "alt": "Piste de ski - Mayotte — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work. · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=14342&mission=ISS007&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=14342&mission=ISS007&roll=E"
+      },
+      {
+        "label": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred. Identity: Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"reviewed_provisional\", \"candidate_targets\": [{\"site_uuid\": \"07d1958c-ca4a-4ca3-a509-46322b155dc4\", \"site_name\": \"Piste de ski - Mayotte\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred.\", {\"target_site_id\": \"07d1958c-ca4a-4ca3-a509-46322b155dc4\", \"target_name\": \"Piste de ski - Mayotte\", \"relationship_source\": \"https://ultramarina.com/voyage-plongee-ocean-indien/mayotte/le-sud-de-mayotte-ngouja-boueni\", \"source_type\": \"Diving tour operator destination description; publicly readable parsed open.\", \"source_evidence\": \"Section La double barriere interieure names La Piste de Ski among the dive places in southern Mayotte. It places this section within the southern inner double-barrier area; no exact dive-site coordinates supplied.\", \"scope\": \"Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred.\", \"secondary_source\": \"https://sogival.com/en/destination/75\", \"secondary_evidence\": \"Readable destination dive list names La Piste de Ski with les Jardins de Mahore. Only locality/name corroboration used. Other unsupported page claims were not adopted.\", \"inventory\": \"Exact UUID present in recovered eligible15009 pool. Historical dive_collection/manifest.jsonl entry is an unreviewed generated Natural Earth context map, zero new photos; not a prior photographic exposure.\", \"unverified\": \"Original SSI-linked catalogue identity and coordinates remain unverified. Scubago indexed exact name and389311 are leads only, not substituted for a held route or used as native identity proof.\"}, {\"completed\": true, \"method\": \"Viewed complete source preview and original with local view_image.\", \"finding\": \"Single unmodified orbital camera exposure. Mayotte island forms, extensive western barrier reef, southern lagoon and reef lines are clearly visible. Many clouds obscure northeastern land and water; frame edges omit parts of the surrounding archipelago and outer water. Source ID margin is intact.\", \"suitability\": \"Historical named-island/lagoon context for proposed Piste de Ski record. Exact sandy slope, underwater reef, access point and pin are not identified.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is one rendition of the same exposure and gets no separate credit.\"}]} Limitations: Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred. / {\"target_site_id\": \"07d1958c-ca4a-4ca3-a509-46322b155dc4\", \"target_name\": \"Piste de ski - Mayotte\", \"relationship_source\": \"https://ultramarina.com/voyage-plongee-ocean-indien/mayotte/le-sud-de-mayotte-ngouja-boueni\", \"source_type\": \"Diving tour operator destination description; publicly readable parsed open.\", \"source_evidence\": \"Section La double barriere interieure names La Piste de Ski among the dive places in southern Mayotte. It places this section within the southern inner double-barrier area; no exact dive-site coordinates supplied.\", \"scope\": \"Named island and southern-lagoon association, not exact reef/pin matching. No operator photographs downloaded or reuse rights inferred.\", \"secondary_source\": \"https://sogival.com/en/destination/75\", \"secondary_evidence\": \"Readable destination dive list names La Piste de Ski with les Jardins de Mahore. Only locality/name corroboration used. Other unsupported page claims were not adopted.\", \"inventory\": \"Exact UUID present in recovered eligible15009 pool. Historical dive_collection/manifest.jsonl entry is an unreviewed generated Natural Earth context map, zero new photos; not a prior photographic exposure.\", \"unverified\": \"Original SSI-linked catalogue identity and coordinates remain unverified. Scubago indexed exact name and389311 are leads only, not substituted for a held route or used as native identity proof.\"} / {\"completed\": true, \"method\": \"Viewed complete source preview and original with local view_image.\", \"finding\": \"Single unmodified orbital camera exposure. Mayotte island forms, extensive western barrier reef, southern lagoon and reef lines are clearly visible. Many clouds obscure northeastern land and water; frame edges omit parts of the surrounding archipelago and outer water. Source ID margin is intact.\", \"suitability\": \"Historical named-island/lagoon context for proposed Piste de Ski record. Exact sandy slope, underwater reef, access point and pin are not identified.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is one rendition of the same exposure and gets no separate credit.\"}  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "83d59b5f-69c4-4d80-a0c3-3ca17029020a",
+    "slug": "scorpion-rock-praslin",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c0e993c51fd7ffd58514ea2af1beb84c56c423de232a0541e308f3535acab8c2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c0e993c51fd7ffd58514ea2af1beb84c56c423de232a0541e308f3535acab8c2.jpg",
+    "originalSha256": "bae97071724882fc839c3d976b69cef0d7c5d3fbdb4f21d3aebf70e37e92bfd8",
+    "alt": "Scorpion Rock Praslin — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work. · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7974&mission=ISS022&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7974&mission=ISS022&roll=E"
+      },
+      {
+        "label": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred. Identity: Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"reviewed_provisional\", \"candidate_targets\": [{\"site_uuid\": \"83d59b5f-69c4-4d80-a0c3-3ca17029020a\", \"site_name\": \"Scorpion Rock Praslin\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred.\", {\"target_site_id\": \"83d59b5f-69c4-4d80-a0c3-3ca17029020a\", \"target_name\": \"Scorpion Rock Praslin\", \"relationship_source\": \"https://www.trekdivers.com/actualites/reservez-votre-croisiere-plongee-du-3011-au-08122012?lang=en\", \"source_type\": \"Primary diving operator historical itinerary, published 5 August 2012; publicly readable parsed open.\", \"source_evidence\": \"The itinerary places a Praslin visit and dives including Scorpion Rock on its Praslin-to-La Digue day. It supports the named dive site in the Praslin/La Digue area, not an exact position or photographed boulder.\", \"scope\": \"Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred.\", \"inventory\": \"Exact UUID present in recovered eligible 15009 pool, with no prior candidate review in that row. Original catalogue identity and coordinates remain independently unverified.\", \"unverified\": \"Scubago 218110 indexed exact name and east-of-Praslin description are discovery leads only. No native record or media rights inferred. A Seychelles dive-behaviour research article also surfaced as a lead, but was not retrieved and is not used as evidence.\"}, {\"completed\": true, \"method\": \"Viewed complete source preview and original with local view_image. PIL integrity and dimensions checked.\", \"finding\": \"Single whole orbital camera exposure, unmodified, with native source ID margin. Southeastern Praslin shoreline, shallow reef flats, bays and nearby open sea are visible. Scattered clouds obscure portions of the island and water. Land and coastal detail is useful despite haze; the image covers only part of Praslin.\", \"suitability\": \"Historical named-island coastal context for Scorpion Rock Praslin. The exact underwater boulder, entry point and catalogue pin are not identified; image is not represented as a photograph of Scorpion Rock itself.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is one rendition of the same exposure and gets no separate credit.\"}]} Limitations: Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred. / {\"target_site_id\": \"83d59b5f-69c4-4d80-a0c3-3ca17029020a\", \"target_name\": \"Scorpion Rock Praslin\", \"relationship_source\": \"https://www.trekdivers.com/actualites/reservez-votre-croisiere-plongee-du-3011-au-08122012?lang=en\", \"source_type\": \"Primary diving operator historical itinerary, published 5 August 2012; publicly readable parsed open.\", \"source_evidence\": \"The itinerary places a Praslin visit and dives including Scorpion Rock on its Praslin-to-La Digue day. It supports the named dive site in the Praslin/La Digue area, not an exact position or photographed boulder.\", \"scope\": \"Named surrounding-island association only. No operator photographs downloaded and no reuse rights inferred.\", \"inventory\": \"Exact UUID present in recovered eligible 15009 pool, with no prior candidate review in that row. Original catalogue identity and coordinates remain independently unverified.\", \"unverified\": \"Scubago 218110 indexed exact name and east-of-Praslin description are discovery leads only. No native record or media rights inferred. A Seychelles dive-behaviour research article also surfaced as a lead, but was not retrieved and is not used as evidence.\"} / {\"completed\": true, \"method\": \"Viewed complete source preview and original with local view_image. PIL integrity and dimensions checked.\", \"finding\": \"Single whole orbital camera exposure, unmodified, with native source ID margin. Southeastern Praslin shoreline, shallow reef flats, bays and nearby open sea are visible. Scattered clouds obscure portions of the island and water. Land and coastal detail is useful despite haze; the image covers only part of Praslin.\", \"suitability\": \"Historical named-island coastal context for Scorpion Rock Praslin. The exact underwater boulder, entry point and catalogue pin are not identified; image is not represented as a photograph of Scorpion Rock itself.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is one rendition of the same exposure and gets no separate credit.\"}  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "beec0f42-0724-4a61-80cb-b2e26225af75",
+    "slug": "ss-kyarra",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9d8853f8f54df73fe0586675ef22c8e7a2c0f71973d37ad777d5e39839e8a3fe.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9d8853f8f54df73fe0586675ef22c8e7a2c0f71973d37ad777d5e39839e8a3fe.jpg",
+    "originalSha256": "7a2ebaea4f9ab52c925aa8c98759f030c0b6016fda90c3f30a089f07af08fc06",
+    "alt": "SS Kyarra — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Unknown photographer, HMAT Kyarra (A55) alongside a quay, circa 1916. Australian War Memorial, P07178.002. · Individual item declares Copyright expired - public domain and This item is in the Public Domain. General website footer is not substituted for the individual item statement. · Cropped/resized",
+    "creator": "Unknown photographer, HMAT Kyarra (A55) alongside a quay, circa 1916. Australian War Memorial, P07178.002.",
+    "license": "Individual item declares Copyright expired - public domain and This item is in the Public Domain. General website footer is not substituted for the individual item statement.",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.awm.gov.au/collection/C1222642",
+    "licenceUrl": "https://www.awm.gov.au/collection/C1222642",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.awm.gov.au/collection/C1222642"
+      },
+      {
+        "label": "Individual item declares Copyright expired - public domain and This item is in the Public Domain. General website footer is not substituted for the individual item statement.",
+        "url": "https://www.awm.gov.au/collection/C1222642"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. HMAT Kyarra alongside a quay, circa 1916, before her sinking near Swanage in 1918. Historical view of the same vessel, not the underwater wreck or present-day dive conditions. / HMAT Kyarra (A55) alongside a quay Identity: {\"scope\": \"historical_vessel\", \"status\": \"provisional\", \"candidate_targets\": [{\"site_uuid\": \"beec0f42-0724-4a61-80cb-b2e26225af75\", \"site_name\": \"SS Kyarra\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"HMAT Kyarra alongside a quay, circa 1916, before her sinking near Swanage in 1918. Historical view of the same vessel, not the underwater wreck or present-day dive conditions.\", \"Proposed historical same-vessel context only. Native caption identifies the 1903 HMAT Kyarra A55, sunk near Swanage on 26 May 1918. It does not identify the port pictured.\", {\"reviewed\": true, \"method\": \"Opened the unchanged local JPEG with view_image and verified complete decode using Pillow.\", \"scene\": \"One black-and-white photographic print with original oval presentation, showing the full broadside of the ship at a quay. Bow, stern, funnel and both masts are visible. AWM footer and accession identifier remain intact. No panel montage or map.\", \"quality\": \"Small and somewhat faded but vessel silhouette is recognizable. Preserve the archival age and low-resolution caveat; not a modern dive-site hero image.\"}, [\"No dive-entry, navigation, access, present conditions or pin verification.\", \"Do not infer a named pictured port from the later wreck location.\", \"217 missing historical identities prevent global uniqueness certification.\", \"No production, ready, export or certified coverage credit.\"]]} Limitations: HMAT Kyarra alongside a quay, circa 1916, before her sinking near Swanage in 1918. Historical view of the same vessel, not the underwater wreck or present-day dive conditions. / Proposed historical same-vessel context only. Native caption identifies the 1903 HMAT Kyarra A55, sunk near Swanage on 26 May 1918. It does not identify the port pictured. / {\"reviewed\": true, \"method\": \"Opened the unchanged local JPEG with view_image and verified complete decode using Pillow.\", \"scene\": \"One black-and-white photographic print with original oval presentation, showing the full broadside of the ship at a quay. Bow, stern, funnel and both masts are visible. AWM footer and accession identifier remain intact. No panel montage or map.\", \"quality\": \"Small and somewhat faded but vessel silhouette is recognizable. Preserve the archival age and low-resolution caveat; not a modern dive-site hero image.\"} / No dive-entry, navigation, access, present conditions or pin verification. / Do not infer a named pictured port from the later wreck location. / 217 missing historical identities prevent global uniqueness certification. / No production, ready, export or certified coverage credit.  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "50c1708c-60ae-4ffa-9a52-84de838ef9a4",
+    "slug": "anse-chastanet-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7894d987a84cd880f486b051c541d3c22e3df3d94bf9bea52c67ab11d4d1c4f4.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7894d987a84cd880f486b051c541d3c22e3df3d94bf9bea52c67ab11d4d1c4f4.jpg",
+    "originalSha256": "c022648dfbab20a7c33d96d3d829906afea0422c2fb5f348778da2b075862a16",
+    "alt": "Anse Chastanet Reef — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work. · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=12015&mission=ISS022&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=12015&mission=ISS022&roll=E"
+      },
+      {
+        "label": "{\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"policy_evidence\": \"Inherited successful policy and robots bodies and request records retained; no repeat of those metadata requests.\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"} / Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph. Identity: Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph. / {\"scope\": \"wide_island_or_orbital_context\", \"status\": \"reviewed_provisional\", \"candidate_targets\": [{\"site_uuid\": \"50c1708c-60ae-4ffa-9a52-84de838ef9a4\", \"site_name\": \"Anse Chastanet Reef\", \"name_basis\": \"explicit association or exact UUID catalogue lookup\", \"uuid_in_eligible_pool\": true}], \"limitations_verbatim\": [\"Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph.\", {\"target_site_id\": \"50c1708c-60ae-4ffa-9a52-84de838ef9a4\", \"target_name\": \"Anse Chastanet Reef\", \"relationship_source\": \"https://scubastlucia.com/snorkeling/\", \"source_type\": \"Primary dive operator description, successful parsed page open on 12 November 2026.\", \"source_evidence\": \"Scuba St Lucia identifies the named Anse Chastanet Reef immediately offshore from Anse Chastanet beach and in front of its dive centre. The same page locates the operator at Anse Chastanet Resort, Soufriere, St Lucia.\", \"scope\": \"Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph.\", \"inventory\": \"Exact UUID is present in recovered eligible 15009 pool. The generic OSM source link is not identity proof. Catalogue coordinates remain independently unverified.\"}, {\"completed\": true, \"method\": \"Viewed full source preview and original with local view_image; original JPEG verified by PIL.\", \"finding\": \"One whole unmodified orbital camera photograph. The west Saint Lucia coast, bays, settlements and mountainous green terrain around Soufriere are legible. Scattered clouds cover some water and headland, with overall atmospheric haze. Source ID margin preserved. The frame shows only part of the island.\", \"suitability\": \"Historical surrounding-coast context for Anse Chastanet Reef, not an underwater reef view. Exact reef features, entry point and catalogue pin have not been identified in the image.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is the same exposure and has no separate credit.\"}]} Limitations: Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph. / {\"target_site_id\": \"50c1708c-60ae-4ffa-9a52-84de838ef9a4\", \"target_name\": \"Anse Chastanet Reef\", \"relationship_source\": \"https://scubastlucia.com/snorkeling/\", \"source_type\": \"Primary dive operator description, successful parsed page open on 12 November 2026.\", \"source_evidence\": \"Scuba St Lucia identifies the named Anse Chastanet Reef immediately offshore from Anse Chastanet beach and in front of its dive centre. The same page locates the operator at Anse Chastanet Resort, Soufriere, St Lucia.\", \"scope\": \"Named surrounding Soufriere coast only. No operator images downloaded or reuse rights inferred. No current marine conditions asserted from a historical photograph.\", \"inventory\": \"Exact UUID is present in recovered eligible 15009 pool. The generic OSM source link is not identity proof. Catalogue coordinates remain independently unverified.\"} / {\"completed\": true, \"method\": \"Viewed full source preview and original with local view_image; original JPEG verified by PIL.\", \"finding\": \"One whole unmodified orbital camera photograph. The west Saint Lucia coast, bays, settlements and mountainous green terrain around Soufriere are legible. Scattered clouds cover some water and headland, with overall atmospheric haze. Source ID margin preserved. The frame shows only part of the island.\", \"suitability\": \"Historical surrounding-coast context for Anse Chastanet Reef, not an underwater reef view. Exact reef features, entry point and catalogue pin have not been identified in the image.\", \"exclusions\": \"No crop, composite, extracted panel, generated image or map counted. Preview is the same exposure and has no separate credit.\"}  Resized and JPEG re-encoded; hero may be cropped."
+  },
+  {
+    "siteId": "5f3268fe-f23a-4496-9df3-ebfc37b8f1ae",
+    "slug": "passe-de-tikehau-tuheiava",
+    "src": "https://assets.diveatlas.site/site-photos/v1/c722d5c4daeb19c56169d57b6b10f8ea2413b2c2d274d97612dcbdba87fe2a2b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/c722d5c4daeb19c56169d57b6b10f8ea2413b2c2d274d97612dcbdba87fe2a2b.jpg",
+    "originalSha256": "0abd6349ed68bca5990cfa00124ee7205055de0810a6a0b53d72f863f7543b18",
+    "alt": "Passe  de Tikehau - Tuheiava — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=17132&mission=ISS008&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=17132&mission=ISS008&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Tikehau historical atoll photograph. Identity: {\"relationship\": {\"site_id\": \"5f3268fe-f23a-4496-9df3-ebfc37b8f1ae\", \"site_name\": \"Passe  de Tikehau - Tuheiava\", \"public_site_url\": \"https://diveatlas.site/dive-sites/passe-de-tikehau-tuheiava/\", \"independent_source\": \"https://www.cocodivetikehau.com/en/diving-with-coco-dive-tikehau.html\", \"source_evidence\": \"Coco Dive Tikehau identifies its exploration dives at Tuheiava Pass in Tikehau. The exact eligible catalogue name is Passe de Tikehau - Tuheiava. The text establishes the surrounding atoll, not the catalogue coordinate or exact dive feature in the photo.\", \"scope\": \"Historical broad environment only. No original catalogue-source match, precise reef, pin, entry or current condition asserted.\", \"eligible_pool\": \"Exact UUID found in recovered 15,009-row eligible pool; no active assignment.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"NASA material may be reproduced and distributed without further NASA permission unless copyright is noted. Exact native item has no third-party copyright exception. Not Creative Commons.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"limitations\": \"Retain credit and source ID; no implied NASA endorsement or false copyright claim. No recognizable persons present.\"}"
+  },
+  {
+    "siteId": "571a42b7-9ca2-46b8-88e3-881dd82e7be9",
+    "slug": "jane-sea-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4c386377893b2a6d46202f93c26fbd2479e6ca3b88487984f68d8342388df7ed.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4c386377893b2a6d46202f93c26fbd2479e6ca3b88487984f68d8342388df7ed.jpg",
+    "originalSha256": "b23446418b39ccdc7ebc08b5e475c4c1a33bcdff0db6c8ee5eba091afb3eb7ba",
+    "alt": "Jane Sea (Wreck) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=20891&mission=ISS008&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=20891&mission=ISS008&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Aruba historical island photograph. Identity: {\"relationship\": {\"target_site_id\": \"571a42b7-9ca2-46b8-88e3-881dd82e7be9\", \"target_name\": \"Jane Sea (Wreck)\", \"relationship_source\": \"https://jadsaruba.com/scuba/dive-sites/\", \"source_evidence\": \"JADS identifies Jane Sea among Aruba wrecks and includes a named Jane Sea Wreck section under its southeast-island boat dives. This independently supports Aruba as the surrounding island.\", \"scope\": \"Named-island context only. The wreck is not visible in the orbital photograph. No operator photos downloaded or reuse rights inferred.\"}, \"proposed_catalogue_rows\": 1} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"}"
+  },
+  {
+    "siteId": "a2f32479-b196-4033-972a-59618cb09180",
+    "slug": "ollies-lolly",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5705f7ace04e33beba303289bba3525573acadd1c93b2d68a38e2697f4bcf5f7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5705f7ace04e33beba303289bba3525573acadd1c93b2d68a38e2697f4bcf5f7.jpg",
+    "originalSha256": "b3fd200fb2d910931355e231b75a3936317ef32152d9239ee755e51b165a59a6",
+    "alt": "Ollies Lolly — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=13167&mission=ISS035&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=13167&mission=ISS035&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Efate historical island photograph, quality hold. Identity: {\"relationship\": {\"site_id\": \"a2f32479-b196-4033-972a-59618cb09180\", \"site_name\": \"Ollies Lolly\", \"public_site_url\": \"https://diveatlas.site/dive-sites/ollies-lolly/\", \"independent_source\": \"https://www.vanuatu.travel/en/dive-into-a-different-world-in-vanuatu\", \"source_evidence\": \"Vanuatu Tourism Office has an Ollies Lolly, Efate section and locates the reef near Hideaway Island beyond Blacksands Reef. The same page places Hideaway Island in Mele Bay near Port Vila. This independently ties the exact named eligible target to Efate. The generic OSM inventory link is not identity proof.\", \"scope\": \"Historical broad environment only. No original catalogue-source match, precise reef, pin, entry or current condition asserted.\", \"eligible_pool\": \"Exact UUID found in recovered 15,009-row eligible pool; no active assignment.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / quality-held retained; not automatically batch-eligible. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"NASA material may be reproduced and distributed without further NASA permission unless copyright is noted. Exact native item has no third-party copyright exception. Not Creative Commons.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"limitations\": \"Retain credit and source ID; no implied NASA endorsement or false copyright claim. No recognizable persons present.\"}"
+  },
+  {
+    "siteId": "37893064-8c57-44c2-acf3-4a5dfc296c8f",
+    "slug": "alice-in-wonderland-curacao-curacao",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ba6af3eb2a300c88ae4c23fdbd6b4365426379ce4b10e72980775dfcc325a3c8.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ba6af3eb2a300c88ae4c23fdbd6b4365426379ce4b10e72980775dfcc325a3c8.jpg",
+    "originalSha256": "0913b6e87ed9bc5a14aba88a79fcdecf6a62dab38af10a1570af76ef3b9c9a4c",
+    "alt": "Alice in Wonderland — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9732&mission=ISS004&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9732&mission=ISS004&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Curacao historical island photograph. Identity: {\"relationship\": {\"target_site_id\": \"37893064-8c57-44c2-acf3-4a5dfc296c8f\", \"target_name\": \"Alice in Wonderland\", \"relationship_source\": \"https://www.gowestdiving.com/location/\", \"source_evidence\": \"Go West Diving explicitly identifies Alice in Wonderland as its shore-dive site off Playa Kalki, in Westpunt at the western end of Curacao. This corroborates both the eligible record name and its alias.\", \"scope\": \"Western Curacao surrounding context only. No operator photographs downloaded, and no operator media rights inferred.\"}, \"proposed_catalogue_rows\": 1} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"}"
+  },
+  {
+    "siteId": "574a1e1c-c698-4840-9946-ac1e48ab1bd1",
+    "slug": "le-jardin-de-corail",
+    "src": "https://assets.diveatlas.site/site-photos/v1/48680f0f4d7d8c5f8d366a850b7eb18321aa81c96bc66709e2180ccf3ea40f89.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/48680f0f4d7d8c5f8d366a850b7eb18321aa81c96bc66709e2180ccf3ea40f89.jpg",
+    "originalSha256": "56ac501af163122cacc462d19b152d10b6be64945e5098e026f599d35d563897",
+    "alt": "Le Jardin de Corail — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=8740&mission=ISS012&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=8740&mission=ISS012&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Guadeloupe historical photograph, quality hold. Identity: {\"relationship\": {\"target_site_id\": \"574a1e1c-c698-4840-9946-ac1e48ab1bd1\", \"target_name\": \"Le Jardin de Corail\", \"relationship_source\": \"https://www.plongee-guadeloupe-reserve-cousteau.fr/nos-sites-de-plongee/la-reserve-cousteau/\", \"source_evidence\": \"Anse Caraibe Plongee names Le Jardin de Corail on the eastern side of the Ilets Pigeon within its Guadeloupe Reserve Cousteau dives.\", \"scope\": \"Regional island/coastal surroundings only; quality held. No operator or federation photographs downloaded and no rights inferred for their images.\"}, \"proposed_catalogue_rows\": 1} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / quality-held retained; not automatically batch-eligible. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"}"
+  },
+  {
+    "siteId": "1c3f66ec-836f-44a0-8688-25d1d68e10b5",
+    "slug": "ilot-maitre",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9f4df7c121629c0609e072411fa6e5f2ac8c8cf750930abf3ca71022fe765f82.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9f4df7c121629c0609e072411fa6e5f2ac8c8cf750930abf3ca71022fe765f82.jpg",
+    "originalSha256": "0bc505ccb108609e1002ff2e26e8aa7c27573ead312283648819989ee1b1a68d",
+    "alt": "Îlot Maître — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=87794&mission=ISS063&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=87794&mission=ISS063&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Noumea / Ilot Maitre historical coastal photograph. Identity: {\"relationship\": {\"site_id\": \"1c3f66ec-836f-44a0-8688-25d1d68e10b5\", \"site_name\": \"Îlot Maître\", \"public_site_url\": \"https://diveatlas.site/dive-sites/ilot-maitre/\", \"independent_source\": \"https://www.newcaledonia.travel/offers/ilot-maitre-noumea-en-5883534/\", \"source_evidence\": \"The official New Caledonia Tourism listing is titled Îlot Maître (Nouméa), gives its address as Îlot Maître, 98849 Nouméa, and describes the island as less than five kilometres from Anse Vata. This independently ties the exact eligible named island to Nouméa. NASA lists Noumea and Master Island among the photograph features. No precise dive entry or catalogue-coordinate validation is claimed.\", \"scope\": \"Historical broad environment only. No original catalogue-source match, precise reef, pin, entry or current condition asserted.\", \"eligible_pool\": \"Exact UUID found in recovered 15,009-row eligible pool; no active assignment.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"NASA material may be reproduced and distributed without further NASA permission unless copyright is noted. Exact native item has no third-party copyright exception. Not Creative Commons.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"limitations\": \"Retain credit and source ID; no implied NASA endorsement or false copyright claim. No recognizable persons present.\"}"
+  },
+  {
+    "siteId": "0c51beb3-3cfa-4270-bdf9-4a1217baf154",
+    "slug": "my-lady-lata-ii-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6701e12c2f610abc726758e783cec51320b8090034d035b24fa94f33ce47d6fa.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6701e12c2f610abc726758e783cec51320b8090034d035b24fa94f33ce47d6fa.jpg",
+    "originalSha256": "ebaa33b9ee69467b5608dce239b5d11337e654f53508dc3c74edb1dbcf079f41",
+    "alt": "My Lady Lata II Wreck — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=63060&mission=ISS061&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=63060&mission=ISS061&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Tongatapu historical coastal photograph. Identity: {\"relationship\": {\"site_id\": \"0c51beb3-3cfa-4270-bdf9-4a1217baf154\", \"site_name\": \"My Lady Lata II Wreck\", \"public_site_url\": \"https://diveatlas.site/dive-sites/my-lady-lata-ii-wreck/\", \"independent_source\": \"https://www.virtualoceania.net/tonga/photos/coast/pangaimotu/\", \"source_evidence\": \"Virtual Oceania explicitly identifies the My Lady Lata II wreck beside Pangaimotu and places the island four kilometres off Nuku’alofa. The official Tonga Tourism Tongatapu page places Nuku’alofa and nearby Pangaimotu within that destination: https://www.tongatourism.travel/our-islands/tongatapu . Together these independently tie the exact named eligible wreck to Tongatapu’s northern coastal environment. They do not validate the catalogue pin or establish that the wreck is identifiable in this orbital photograph.\", \"scope\": \"Historical broad environment only. No original catalogue-source match, precise reef, pin, entry or current condition asserted.\", \"eligible_pool\": \"Exact UUID found in recovered 15,009-row eligible pool; no active assignment.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"NASA material may be reproduced and distributed without further NASA permission unless copyright is noted. Exact native item has no third-party copyright exception. Not Creative Commons.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"limitations\": \"Retain credit and source ID; no implied NASA endorsement or false copyright claim. No recognizable persons present.\"}"
+  },
+  {
+    "siteId": "2282b36d-09ef-46b9-a012-ee3acfa71c41",
+    "slug": "bimini-barge-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/61b21b35c8c1288e2776a3d772904936f208f4e0d640feec8488034215f94a62.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/61b21b35c8c1288e2776a3d772904936f208f4e0d640feec8488034215f94a62.jpg",
+    "originalSha256": "cdf0acf123c419b140c002510ead981cbcad7f8bdc97045d954ba5027be1eb67",
+    "alt": "Bimini Barge (Wreck) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7359&mission=ISS002&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7359&mission=ISS002&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Bimini historical coastal photograph. Identity: {\"relationship\": {\"target_site_id\": \"2282b36d-09ef-46b9-a012-ee3acfa71c41\", \"target_name\": \"Bimini Barge (Wreck)\", \"relationship_source\": \"https://www.regal-diving.co.uk/location/bimini\", \"source_evidence\": \"RegalDive identifies Bimini Barge among the dives available from the Bimini Scuba Centre, describing an upright wreck near the continental shelf edge. This supports the named Bimini destination association.\", \"scope\": \"Historical surrounding-island context only, not an image of the wreck. No operator media downloaded or operator image rights inferred.\"}, \"proposed_catalogue_rows\": 1} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"}"
+  },
+  {
+    "siteId": "bfca4b94-44c6-4f75-a744-240167b1a0a3",
+    "slug": "baixa-da-barca",
+    "src": "https://assets.diveatlas.site/site-photos/v1/47575675421e41f99f701662e2ac4c15e15ae5a77fbae21db8c8d58e9ad4a392.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/47575675421e41f99f701662e2ac4c15e15ae5a77fbae21db8c8d58e9ad4a392.jpg",
+    "originalSha256": "5225f5b63c55ad7e27173e91c076f92ca2ae35fffe43fc2091b336c2f7adfecd",
+    "alt": "Baixa da Barca — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9392&mission=ISS036&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9392&mission=ISS036&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Faial/Pico historical channel photograph. Identity: {\"relationship\": {\"target_site_id\": \"bfca4b94-44c6-4f75-a744-240167b1a0a3\", \"target_name\": \"Baixa da Barca\", \"relationship_source\": \"https://dive.visitazores.com/en/divespots/baixa-da-barca\", \"source_evidence\": \"The official page places Baixa da Barca in the Pico-Faial Channel, north of the Madalena Islets, reached from Porto da Madalena. NASA independently labels both islands, Horta and Madalena.\", \"scope\": \"Historical surrounding-islands/channel context only. The reef is not identified within the photograph. No tourism-site photographs downloaded or rights inferred.\"}, \"proposed_catalogue_rows\": 1} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph with no third-party copyright exception noted on exact item. Applicable native NASA material may be reproduced and distributed without further NASA permission unless copyright is noted; not a Creative Commons work.\", \"credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain source and credit; no false copyright claim or NASA endorsement. No recognizable people or logo used as branding.\"}"
+  },
+  {
+    "siteId": "fd8e90d3-1e47-41a8-8934-3194821df818",
+    "slug": "secca-della-colombara",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1181141c2b5810c41283845c9758052ee0ee6ab9613f5f81021f6a8f5cb12666.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1181141c2b5810c41283845c9758052ee0ee6ab9613f5f81021f6a8f5cb12666.jpg",
+    "originalSha256": "1632d241015449493399bc0f30ceecc2bfaac3a27c4f8fe2dc5eb609f295c932",
+    "alt": "Secca della Colombara — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7800&mission=ISS020&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7800&mission=ISS020&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Ustica historical island photograph. Identity: {\"proposed_catalogue_rows\": [{\"site_id\": \"fd8e90d3-1e47-41a8-8934-3194821df818\", \"name\": \"Secca della Colombara\", \"relationship\": \"historical_surrounding_island_context\"}]} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph; exact item notes no third-party copyright exception. NASA material not copyrighted unless noted, under retained native reuse policy; not a Creative Commons claim.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain credit, source identity and NASA link; no endorsement implied. No recognizable person depicted; no provider notification sent.\"}"
+  },
+  {
+    "siteId": "3dc41ab6-9add-4084-9beb-40c018816cb3",
+    "slug": "sol-la-palma-house-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d9689fe1de892fc8a64e3e55e86d26f495508fe554e8de354daaf18fd2bc13e1.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d9689fe1de892fc8a64e3e55e86d26f495508fe554e8de354daaf18fd2bc13e1.jpg",
+    "originalSha256": "60004be3ed6d8c36245f32c1b049e9fe8db9e692576e7cf27351d4c96ea79c45",
+    "alt": "Sol La Palma House Reef — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS069&roll=E&frame=62382",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS069&roll=E&frame=62382"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. La Palma historical island photograph. Identity: {\"proposed_catalogue_rows\": [{\"site_id\": \"3dc41ab6-9add-4084-9beb-40c018816cb3\", \"name\": \"Sol La Palma House Reef\", \"relationship\": \"historical_surrounding_island_context\"}]} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph; exact item notes no third-party copyright exception. NASA material not copyrighted unless noted, under retained native reuse policy; not a Creative Commons claim.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"presentation\": \"Retain credit, source identity and NASA link; no endorsement implied. No recognizable person depicted; no provider notification sent.\"}"
+  },
+  {
+    "siteId": "e4c8fef1-040e-402d-a795-5db8504c978c",
+    "slug": "taccio-vecchio",
+    "src": "https://assets.diveatlas.site/site-photos/v1/50becc0b87beb16e7ea3355f52917737df8176349527e79efc17c00b633f5a18.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/50becc0b87beb16e7ea3355f52917737df8176349527e79efc17c00b633f5a18.jpg",
+    "originalSha256": "0d89cc228c9310d1a3c076430c672fb7e834f6adb52ff82f64dfd6140de0ff0d",
+    "alt": "Taccio Vecchio — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS013-E-75173. · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS013-E-75173.",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=75173&mission=ISS013&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=75173&mission=ISS013&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical orbital photograph of Lampedusa, 2 September 2006. Surrounding-island context for Taccio Vecchio; the underwater tunnel and exact entry are not identified. Identity: {\"relationship\": {\"target_site_id\": \"e4c8fef1-040e-402d-a795-5db8504c978c\", \"target_name\": \"Taccio Vecchio\", \"source_url\": \"https://www.poseidondivinglampedusa.it/le-immersioni/\", \"evidence\": \"Successful native operator web page names Taccio Vecchio among Lampedusa dives and describes its underwater tunnel. NASA native item independently labels ISLE OF LAMPEDUSA, AIRPORT.\", \"scope\": \"Named surrounding-island relationship only. Exact tunnel, entry and inventory coordinates not independently verified; no neighbouring Lampione association inferred.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation. / No exact tunnel, entry, pin or current need verified  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph, no item-specific third-party copyright exception. Native terms permit reproduction and distribution unless copyright noted; not a CC grant.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS013-E-75173.\", \"limits\": \"No implied endorsement; retain credit/source ID.\"}"
+  },
+  {
+    "siteId": "6d996998-9e3c-4f56-92c4-921cae9dce81",
+    "slug": "punta-xarraca",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4dc7b706fcd03c754f77524f765265bb7befcc64d7632f60fa0ef9ac63dd89c0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4dc7b706fcd03c754f77524f765265bb7befcc64d7632f60fa0ef9ac63dd89c0.jpg",
+    "originalSha256": "40730ef646eb70754788711ea7fd8ea7ec48de1a730a1ecfbb16a694d25f54c6",
+    "alt": "Punta Xarraca — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit,NASA Johnson Space Center. ISS035-E-7431. · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit,NASA Johnson Space Center. ISS035-E-7431.",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7431&mission=ISS035&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7431&mission=ISS035&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical orbital photograph of Ibiza,22 March2013. Surrounding-island context for Punta Xarraca, not identification of the dive entry or underwater wall. Identity: {\"relationship\": {\"target_site_id\": \"6d996998-9e3c-4f56-92c4-921cae9dce81\", \"target_name\": \"Punta Xarraca\", \"source_url\": \"https://www.padi.com/dive-site/spain/punta-xarraca/\", \"evidence\": \"Successfully read PADI record names Punta Xarraca at the western end of Xarraca Bay.\", \"scope\": \"Named surrounding-island relationship only, not exact wall, entry or pin.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation. / PADI identifies its page content as supplied by third parties; no coordinate or exact photo-feature match validated  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph, no item-specific third-party copyright exception. Native terms permit reproduction and distribution unless copyright noted; not a CC grant.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit,NASA Johnson Space Center. ISS035-E-7431.\", \"limits\": \"No implied endorsement; retain credit/source ID.\"}"
+  },
+  {
+    "siteId": "7245d6d6-1ce4-49b6-8bbb-213426ba5162",
+    "slug": "scoglio-del-remaiolo",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8033b1bd00cf94b1073ca41bdccb3624a5396f76fc11287ecbd880e74ab32238.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8033b1bd00cf94b1073ca41bdccb3624a5396f76fc11287ecbd880e74ab32238.jpg",
+    "originalSha256": "61d4828256ef08c3ebaa75e4f37a17bf6a424186a95db692ec09be4803fc36ea",
+    "alt": "Scoglio del Remaiolo — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS032-E-27368. · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS032-E-27368.",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=27368&mission=ISS032&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=27368&mission=ISS032&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical orbital photograph of Elba, 15 September 2012. Surrounding-island context for Scoglio del Remaiolo; the exact dive feature and entry are not identified. Identity: {\"relationship\": {\"target_site_id\": \"7245d6d6-1ce4-49b6-8bbb-213426ba5162\", \"target_name\": \"Scoglio del Remaiolo\", \"source_url\": \"https://www.infoelba.it/sport-tempo-libero/sport-mare/diving/itinerari-sub-elba/scoglio-remaiolo/\", \"evidence\": \"Successfully read tourism guide page Immersioni allo scoglio del Remaiolo presents the named site as an Elba diving itinerary. NASA native item identifies Elba.\", \"scope\": \"Named surrounding-island relationship only, not exact reef, entry or pin. No third-party guide image requested.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation. / No exact rock, entry or pin verified  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph, no item-specific third-party copyright exception. Native terms permit reproduction and distribution unless copyright noted; not a CC grant.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS032-E-27368.\", \"limits\": \"No implied endorsement; retain credit/source ID.\"}"
+  },
+  {
+    "siteId": "272281cd-d8d8-42f9-8a6a-3fd4eb6e2d11",
+    "slug": "punta-pizzaco",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a167452c84fbbbb91e7b8754b097ca43be1212f35ef402d8253667113207a5f9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a167452c84fbbbb91e7b8754b097ca43be1212f35ef402d8253667113207a5f9.jpg",
+    "originalSha256": "53d349817a011d6993dc639dd7cd619fc32e182ac7c7316edf04e20f4c915672",
+    "alt": "Punta Pizzaco — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS017-E-9734. · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS017-E-9734.",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9734&mission=ISS017&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9734&mission=ISS017&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical orbital photograph of Ischia and Procida, 20 June 2008. Surrounding-island context for Punta Pizzaco; the exact dive feature and entry are not identified. Identity: {\"relationship\": {\"target_site_id\": \"272281cd-d8d8-42f9-8a6a-3fd4eb6e2d11\", \"target_name\": \"Punta Pizzaco\", \"source_url\": \"https://www.ischiadiving.net/sitoimmersione.html?id=punta_pizzaco\", \"evidence\": \"Successfully read Ischia Diving operator page identifies Punta Pizzaco as a wall dive on Procida. NASA native item identifies both Ischia and Procida. Directional descriptions differ among sources, so only the island-level association is proposed, not an exact cardinal coast or pin.\", \"scope\": \"Named surrounding-island relationship only, not exact reef, entry or pin. No third-party guide image requested.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation. / Directional source description is not adopted as validated geography; island-level relationship only  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph, no item-specific third-party copyright exception. Native terms permit reproduction and distribution unless copyright noted; not a CC grant.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS017-E-9734.\", \"limits\": \"No implied endorsement; retain credit/source ID.\"}"
+  },
+  {
+    "siteId": "b720ebb5-3c1c-4761-a5f0-53f5ac7806e5",
+    "slug": "kapalua-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2d4166224f3c20e47196829143984d73c768fb00a82e1b10d2a76bbf1884c4f9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2d4166224f3c20e47196829143984d73c768fb00a82e1b10d2a76bbf1884c4f9.jpg",
+    "originalSha256": "4002d6f4ea84d766462b4ee99d812c04c02dd6488c37339ba79ab6aab5c2e8c1",
+    "alt": "Kapalua Beach — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · Mark Feezell, Wedge-tail Triggerfish (P5271223), Kapalua Bay, Maui, Hawaii,27 May2023. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained. · CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions. · Cropped/resized",
+    "creator": "Mark Feezell, Wedge-tail Triggerfish (P5271223), Kapalua Bay, Maui, Hawaii,27 May2023. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained.",
+    "license": "CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.",
+    "source": "reviewed-context",
+    "sourcePage": "https://drfeezell.com/wedge-tail-triggerfish-p5271223/",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://drfeezell.com/wedge-tail-triggerfish-p5271223/"
+      },
+      {
+        "label": "CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Kapalua Bay underwater triggerfish photograph. Identity: {\"association\": {\"site_id\": \"b720ebb5-3c1c-4761-a5f0-53f5ac7806e5\", \"name\": \"Kapalua Beach\", \"relationship\": \"Underwater photograph at the same named Kapalua Bay/Beach locality, based on photographer caption and inventory source title kapalua-beach-bay-napili. Not a verified exact dive-pin photograph.\", \"status\": \"REVIEWED_SAME_NAMED_BAY_CONTEXT_PROPOSAL\", \"eligible_pool\": \"Present15009 recovered eligible pool; not a claim of current live need.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"license\": \"CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.\", \"license_url\": \"https://creativecommons.org/publicdomain/zero/1.0/\", \"creator\": \"Mark Feezell\", \"attribution\": \"Mark Feezell, Wedge-tail Triggerfish (P5271223), Kapalua Bay, Maui, Hawaii,27 May2023. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained.\"}"
+  },
+  {
+    "siteId": "a58307c8-02f3-4d75-a94e-6bc6adc5b468",
+    "slug": "salt-pier-49",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8c39efe6ccd1d0856e3dfe4e190bac8fbb655608296503194a59899057013794.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8c39efe6ccd1d0856e3dfe4e190bac8fbb655608296503194a59899057013794.jpg",
+    "originalSha256": "3d4984b53f650501c9c6be6cacd54056653e3f74227dad1bd39eaef85f560e80",
+    "alt": "Salt Pier (49) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS005-E-16382. · NASA reuse policy · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS005-E-16382.",
+    "license": "NASA reuse policy",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=16382&mission=ISS005&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=16382&mission=ISS005&roll=E"
+      },
+      {
+        "label": "NASA reuse policy",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historical orbital photograph of southern Bonaire and its solar salt works, 5 October 2002. Surrounding-coast context for Salt Pier (49); the underwater dive area and exact entry are not certified. Identity: {\"relationship\": {\"target_site_id\": \"a58307c8-02f3-4d75-a94e-6bc6adc5b468\", \"target_name\": \"Salt Pier (49)\", \"source_url\": \"https://bonaireisland.com/experiences/diving/sites/salt-pier/\", \"evidence\": \"Successfully read Tourism Corporation Bonaire native Salt Pier dive-site record describes dive pillars beneath the salt terminal. NASA native item identifies Bonaire solar salt works. Named coastal setting relationship, not precise pin or underwater identification.\", \"scope\": \"Named surrounding-coast relationship only. Not a georeferenced pier identification, dive-entry verification or present access assurance. No tourism photograph requested.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NASA relationship retention: retain original native item, inherited rights evidence, named-site relationship URL and recorded scope. Historical successful page-read assertions are not fresh verification; a URL or quoted summary is not a retained full source body. Orbital context is not exact dive-feature, entry, pin or current-need validation. / No georeferenced pier identification, current access, entry or current need verified  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NASA astronaut photograph, no item-specific third-party copyright exception. Native terms permit reproduction and distribution unless copyright noted; not a CC grant.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS005-E-16382.\", \"limits\": \"No implied endorsement; retain credit/source ID.\"}"
+  },
+  {
+    "siteId": "3f37f995-c790-4b21-8262-3033d5f68358",
+    "slug": "kahekili-beach-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9708b1fdcd3cdd895f8eb1d14d2bb66fd5636596a472a0ae7c30aace0adc93ca.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9708b1fdcd3cdd895f8eb1d14d2bb66fd5636596a472a0ae7c30aace0adc93ca.jpg",
+    "originalSha256": "7380cf1e986e5306a22d6d23d4a27db23eacd84a0c8fe644489c74077bc257de",
+    "alt": "Kahekili Beach Park — Underwater surroundings",
+    "label": "Underwater surroundings",
+    "credit": "Underwater surroundings · Mark Feezell, Snorkeler at Sunset (IMG_1166), Kahekili Beach Park, Maui, Hawaii,7 January2008. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained. · CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions. · Cropped/resized",
+    "creator": "Mark Feezell, Snorkeler at Sunset (IMG_1166), Kahekili Beach Park, Maui, Hawaii,7 January2008. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained.",
+    "license": "CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.",
+    "source": "reviewed-context",
+    "sourcePage": "https://drfeezell.com/snorkeler-at-sunset-img_1166/",
+    "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://drfeezell.com/snorkeler-at-sunset-img_1166/"
+      },
+      {
+        "label": "CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Kahekili Beach historical shore photograph. Identity: {\"association\": {\"site_id\": \"3f37f995-c790-4b21-8262-3033d5f68358\", \"name\": \"Kahekili Beach Park\", \"relationship\": \"Same exact named beach park based on photographer caption. Exact recorded dive pin not independently verified; source date2008.\", \"status\": \"REVIEWED_NAMED_BEACH_ENVIRONMENT_CONTEXT_PROPOSAL\", \"eligible_pool\": \"Present15009 recovered eligible pool; not live need verification.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"license\": \"CC0 1.0 Universal, explicitly dedicated2024 on individual native photo item; No use restrictions.\", \"license_url\": \"https://creativecommons.org/publicdomain/zero/1.0/\", \"creator\": \"Mark Feezell\", \"attribution\": \"Mark Feezell, Snorkeler at Sunset (IMG_1166), Kahekili Beach Park, Maui, Hawaii,7 January2008. CC0 1.0. Courtesy DrFeezell.com. Attribution voluntarily retained.\"}"
+  },
+  {
+    "siteId": "6974aa41-81fe-4a20-9798-4312b18eb1bd",
+    "slug": "asan-cut",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a1b50f7d2bc81baf1943351fc7f714d15836e16278937a29e065402fe13d694b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a1b50f7d2bc81baf1943351fc7f714d15836e16278937a29e065402fe13d694b.jpg",
+    "originalSha256": "d26b368c909bbf196c3b6f0a157154bcb81aefadc540417499dd303c7381bb2f",
+    "alt": "Asan Cut — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS Park Cultural Landscapes Program · Public domain (source statement) · Cropped/resized",
+    "creator": "NPS Park Cultural Landscapes Program",
+    "license": "Public domain (source statement)",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=5cefff79-b4cb-5be1-5745-7d23b50ed8bf",
+    "licenceUrl": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=5cefff79-b4cb-5be1-5745-7d23b50ed8bf",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=5cefff79-b4cb-5be1-5745-7d23b50ed8bf"
+      },
+      {
+        "label": "Public domain (source statement)",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=5cefff79-b4cb-5be1-5745-7d23b50ed8bf"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Asan Beach coastal setting, Guam, photographed in 2012. Provisional surrounding-environment candidate for Asan Cut; the exact dive channel, wreck and entry are not identified. Identity: {\"relationship\": {\"target_site_id\": \"6974aa41-81fe-4a20-9798-4312b18eb1bd\", \"target_name\": \"Asan Cut\", \"source_url\": \"https://www.guamdiveguide.com/all-dive-sites/northern-sites/asan-cut/\", \"evidence\": \"Native guide describes Asan Cut shore entry and WWII amtrak in the cut. Native NPS identifies Asan Beach. Geographic locality association only; precise shoreline viewpoint/channel inclusion is unverified.\", \"scope\": \"Surrounding coastal context, not verified exact dive-site coverage. Human association review required.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NPS album JSON per-image ConstraintsInformation states Public domain and GrantingRights Full. Does not rely on federal hosting alone.\", \"credit\": \"NPS Park Cultural Landscapes Program\", \"limits\": \"No endorsement or release claim.\"}"
+  },
+  {
+    "siteId": "6c803df2-c5ff-49bd-b152-e459771738c3",
+    "slug": "haps-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/19ae4c86ac5716e9f81a472ebf1a99954c45adec0ddd8cfe2946bdb2ceb1f4bb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/19ae4c86ac5716e9f81a472ebf1a99954c45adec0ddd8cfe2946bdb2ceb1f4bb.jpg",
+    "originalSha256": "3b1f39892219b1be14f7200c804a04f0936c1766e2ecd96448105b29d5df6828",
+    "alt": "Hap’s Reef — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS Park Cultural Landscapes Program · Public domain, as explicitly stated by source · Cropped/resized",
+    "creator": "NPS Park Cultural Landscapes Program",
+    "license": "Public domain, as explicitly stated by source",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=65f5f289-cff5-7970-1abf-908f1acaf02f",
+    "licenceUrl": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=65f5f289-cff5-7970-1abf-908f1acaf02f",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=65f5f289-cff5-7970-1abf-908f1acaf02f"
+      },
+      {
+        "label": "Public domain, as explicitly stated by source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=CBF92505-0511-B3D5-3160FF076413D314&id=65f5f289-cff5-7970-1abf-908f1acaf02f"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Agat Beach, Guam, viewed from a Ga’an Point pillbox in 2012. Surrounding coastal environment for Hap’s Reef in Agat Bay; the offshore reef, exact dive entry and underwater conditions are not shown or verified. Identity: {\"relationship\": {\"target_site_id\": \"6c803df2-c5ff-49bd-b152-e459771738c3\", \"target_name\": \"Hap’s Reef\", \"country\": \"Guam\", \"inventory_coordinates\": [13.3942, 144.6537], \"native_profile_coordinates\": [13.3942, 144.6537], \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/haps-reef-309238\", \"evidence\": \"The exact inventory-linked SSI309238 profile normally redirects to Scubago309238. Retained native HTML identifies Hap’s Reef in Agat Bay and JSON-LD coordinates match inventory. Native NPS identifies the photograph as the Agat coast at Ga’an Point. This supports a named regional coastal relationship, not inclusion of the reef in the field of view.\", \"scope\": \"PROPOSED_SURROUNDING_COAST_CONTEXT; exact view direction and distance to underwater feature unverified; no nearest-pin inference\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Agat coast is surrounding context for Hap’s Reef; exact reef in field of view, entry and present conditions unverified.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NPS album per-image ConstraintsInformation says Public domain and GrantingRights Full. This specific grant is preserved for asset65f5f289-cff5-7970-1abf-908f1acaf02f; government hosting alone is not the basis.\", \"license\": \"Public domain, as explicitly stated by source\", \"credit\": \"NPS Park Cultural Landscapes Program\", \"limits\": \"No endorsement, model release, safety or present-access assertion.\"}"
+  },
+  {
+    "siteId": "68382677-34c2-416f-a0c7-67db52a683ba",
+    "slug": "fort-pickens-jetty",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ace78b829b6e23cb5298acf8265ab2f97de3b902bd45432fc8bd0739a81e7289.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ace78b829b6e23cb5298acf8265ab2f97de3b902bd45432fc8bd0739a81e7289.jpg",
+    "originalSha256": "b4a31999685a790ade35a56347425fc06b25a7ccc9defa544941192acf18c591",
+    "alt": "Fort Pickens Jetty — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS/Carly Adams · Public domain · Cropped/resized",
+    "creator": "NPS/Carly Adams",
+    "license": "Public domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nps.gov/npgallery/AssetDetail/421f0d0b-1a5e-4d3a-a2d5-7cc6b0f7fa5c",
+    "licenceUrl": "https://www.nps.gov/npgallery/AssetDetail/421f0d0b-1a5e-4d3a-a2d5-7cc6b0f7fa5c",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/421f0d0b-1a5e-4d3a-a2d5-7cc6b0f7fa5c"
+      },
+      {
+        "label": "Public domain",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/421f0d0b-1a5e-4d3a-a2d5-7cc6b0f7fa5c"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Fort Pickens Jetties entrance context. Identity: {\"proposals\": [{\"site_id\": \"68382677-34c2-416f-a0c7-67db52a683ba\", \"site_name\": \"Fort Pickens Jetty\", \"relationship\": \"Named dive-entry surroundings at Fort Pickens Jetties\", \"status\": \"PROVISIONAL_CONTEXT_ONLY\", \"exact_site_verified\": false}], \"candidate_site\": {\"site_id\": \"68382677-34c2-416f-a0c7-67db52a683ba\", \"name\": \"Fort Pickens Jetty\", \"country\": \"United States of America\", \"region\": \"Florida Panhandle\"}, \"geography\": {}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Named Fort Pickens Jetties walkway surroundings, not validated singular catalogue UUID/pin or underwater feature. Park-unit coordinates are not camera coordinates. / Native date fields differ by one day and metadata file-size estimates differ from delivered original; literal fields and unchanged source bytes retained.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"label\": \"Public domain\", \"granting_rights\": \"Full\", \"basis\": \"Selected native catalogue record and native asset detail both state Public domain:Full Granting Rights and NPS/Carly Adams. Federal hosting alone is not the basis.\", \"source\": \"https://www.nps.gov/npgallery/AssetDetail/421f0d0b-1a5e-4d3a-a2d5-7cc6b0f7fa5c\"}"
+  },
+  {
+    "siteId": "41f47e4e-c501-48a9-b781-fe13c1420e4d",
+    "slug": "kohala-coast",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f5d2b1227bfacdcec72843169e55b5d0c609edc8cef7deb81408c8eb30605638.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f5d2b1227bfacdcec72843169e55b5d0c609edc8cef7deb81408c8eb30605638.jpg",
+    "originalSha256": "951ef36050e948ebc4a28fbde9f9014587aff99597c5a64d0838a7c79ac4476b",
+    "alt": "Kohala Coast — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS/M.Tadio · Public domain, as explicitly stated by source · Cropped/resized",
+    "creator": "NPS/M.Tadio",
+    "license": "Public domain, as explicitly stated by source",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nps.gov/media/photo/gallery-item.htm?pg=0&id=64a97bf6-6e7d-48b6-84f6-f9d12ebbd0c5&gid=13316E27-8008-48C3-8285-2AB2FCBA429A",
+    "licenceUrl": "https://www.nps.gov/media/photo/gallery-item.htm?pg=0&id=64a97bf6-6e7d-48b6-84f6-f9d12ebbd0c5&gid=13316E27-8008-48C3-8285-2AB2FCBA429A",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?pg=0&id=64a97bf6-6e7d-48b6-84f6-f9d12ebbd0c5&gid=13316E27-8008-48C3-8285-2AB2FCBA429A"
+      },
+      {
+        "label": "Public domain, as explicitly stated by source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?pg=0&id=64a97bf6-6e7d-48b6-84f6-f9d12ebbd0c5&gid=13316E27-8008-48C3-8285-2AB2FCBA429A"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Coastal view from Puukohola Heiau National Historic Site in Kawaihae, South Kohala, looking south along the west coast of Hawaii Island. Surrounding regional environment for the Kohala Coast listing; its cave, exact dive location and entry are not identified. Identity: {\"relationship\": {\"target_site_id\": \"41f47e4e-c501-48a9-b781-fe13c1420e4d\", \"target_name\": \"Kohala Coast\", \"country\": \"United States of America\", \"region\": \"Hawaii Big Island\", \"inventory_coordinates\": [19.9333, -155.8667], \"native_relationship_url\": \"https://www.nps.gov/media/photo/gallery.htm?id=13316E27-8008-48C3-8285-2AB2FCBA429A\", \"evidence\": \"Native gallery describes its location as Kawaihae (south kohala) and identifies Puukohola Heiau National Historic Site. Selected item says the view is south towards the Kona coast on the west side of Hawaii Island. The inventory name is Kohala Coast, on Hawaii Big Island. This is a broad named-region relationship only.\", \"limitations\": \"Inventory describes a cave and has no specific locality source beyond OSM homepage. The cave identity, exact inventory coordinate and photographed viewpoint-to-site relationship have not been independently verified. Do not assign as an exact site, cave, reef or entry image.\", \"scope\": \"PROPOSED_SURROUNDING_REGIONAL_COAST_CONTEXT; association review required\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / REGIONAL_CONTEXT_ONLY: source viewpoint is Kawaihae/South Kohala looking south toward Kona; inventory cave, exact pin, camera position and entry unverified. Park reference is not camera coordinates. / Native metadata byte count differs from delivered original; source bytes unchanged, camera-original equivalence not certified. Source January1 date may be placeholder.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native NPS album per-item ConstraintsInformation explicitly states Public domain and GrantingRights Full for the selected AssetID. Federal hosting alone is not the basis.\", \"license\": \"Public domain, as explicitly stated by source\", \"credit\": \"NPS/M.Tadio\", \"limits\": \"No endorsement, release, access or safety assertion.\"}"
+  },
+  {
+    "siteId": "507c9ef7-50e1-44c2-b39a-e682c3497fe5",
+    "slug": "munising-michigan",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2ac45890dbf4d19583670adc6d85fa647841a8eeec4a456da14bfb0f7b544444.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2ac45890dbf4d19583670adc6d85fa647841a8eeec4a456da14bfb0f7b544444.jpg",
+    "originalSha256": "625f0a0992f39bd3857182dc15db54534fe807ab2d85b29684d7d36248158c7d",
+    "alt": "Munising, Michigan — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · NPS · Public domain · Cropped/resized",
+    "creator": "NPS",
+    "license": "Public domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://npgallery.nps.gov/AssetDetail/c4f93a60-0f0d-431d-8530-1598702fd139",
+    "licenceUrl": "https://npgallery.nps.gov/AssetDetail/c4f93a60-0f0d-431d-8530-1598702fd139",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/c4f93a60-0f0d-431d-8530-1598702fd139"
+      },
+      {
+        "label": "Public domain",
+        "url": "https://npgallery.nps.gov/AssetDetail/c4f93a60-0f0d-431d-8530-1598702fd139"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Munising Bay Sand Point context. Identity: {\"proposals\": [{\"site_id\": \"507c9ef7-50e1-44c2-b39a-e682c3497fe5\", \"site_name\": \"Munising, Michigan\", \"relationship\": \"Munising Bay surroundings at Sand Point Beach\", \"status\": \"PROVISIONAL_CONTEXT_ONLY\", \"exact_site_verified\": false}], \"candidate_site\": {\"site_id\": \"507c9ef7-50e1-44c2-b39a-e682c3497fe5\", \"name\": \"Munising, Michigan\", \"country\": \"United States of America\", \"region\": \"Michigan\"}, \"geography\": {}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / NAMED_BAY_CONTEXT_ONLY: Sand Point Beach/Munising Bay freshwater shoreline, not an ocean coast or exact underwater wreck/entry. Park-unit coordinates are not camera coordinates.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"label\": \"Public domain\", \"granting_rights\": \"Full\", \"basis\": \"Selected native asset detail explicitly states Public domain:Full Granting Rights and PhotoCredit:NPS. Federal hosting alone is not the basis.\", \"source\": \"https://npgallery.nps.gov/AssetDetail/c4f93a60-0f0d-431d-8530-1598702fd139\"}"
+  },
+  {
+    "siteId": "ac091e34-d792-58dd-9f63-ffbf5b8b9f72",
+    "slug": "nauset-beach-area",
+    "src": "https://assets.diveatlas.site/site-photos/v1/573d0a90478684b2f0bdcbc201b68d054a902c92acf9248afca395a6ad385b4c.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/573d0a90478684b2f0bdcbc201b68d054a902c92acf9248afca395a6ad385b4c.jpg",
+    "originalSha256": "b358c2e9812c8dc6deeab286f7273d6ce397583987262a294ab47b63516abba7",
+    "alt": "NAUSET BEACH AREA — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · National Park Service (source). Individual photographer not specified in the selected native item metadata. · Public domain, explicitly stated by source · Cropped/resized",
+    "creator": "National Park Service (source). Individual photographer not specified in the selected native item metadata.",
+    "license": "Public domain, explicitly stated by source",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.nps.gov/media/photo/gallery-item.htm?gid=0D932194-8D61-437E-97BE-E7F974EE1A6B&id=6895ff38-6c62-4723-ba69-24fe3e971b82",
+    "licenceUrl": "https://www.nps.gov/media/photo/gallery-item.htm?gid=0D932194-8D61-437E-97BE-E7F974EE1A6B&id=6895ff38-6c62-4723-ba69-24fe3e971b82",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=0D932194-8D61-437E-97BE-E7F974EE1A6B&id=6895ff38-6c62-4723-ba69-24fe3e971b82"
+      },
+      {
+        "label": "Public domain, explicitly stated by source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=0D932194-8D61-437E-97BE-E7F974EE1A6B&id=6895ff38-6c62-4723-ba69-24fe3e971b82"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Nauset Light Beach in Eastham, Cape Cod, Massachusetts. Provisional surrounding Atlantic-coast environment for the Nauset Beach Area listing. Nauset Light Beach is a distinct named beach; the exact dive location, entry and underwater features are not identified. Identity: {\"relationship\": {\"target_site_id\": \"ac091e34-d792-58dd-9f63-ffbf5b8b9f72\", \"target_name\": \"NAUSET BEACH AREA\", \"country\": \"United States\", \"region\": \"Massachusetts\", \"inventory_coordinates\": [41.82985881, -69.94097722], \"native_relationship_url\": \"https://www.nps.gov/places/nauset-light-beach.htm\", \"evidence\": \"The photograph title and description explicitly name Nauset Light Beach. Native NPS place text locates it in Eastham at Cape Cod National Seashore and describes the sandy coastal beach and glacial scarp. The eligible inventory is a Nauset Beach Area record on the Cape Cod Atlantic coast.\", \"limitations\": \"Nauset Light Beach is distinct from Orleans Nauset Beach. The eligible record has no independently verified dive-feature relationship to the photographed beach; no exact-site, shared-entry, current access or field-of-view inclusion claim is made. No source gallery park-center coordinate is treated as camera position.\", \"scope\": \"PROPOSED_SURROUNDING_CAPE_COD_ATLANTIC_COAST_CONTEXT; not same-site verification\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / REGIONAL_CONTEXT_ONLY: Nauset Light Beach in Eastham is distinct from Orleans Nauset Beach. Proposed surrounding Cape Cod Atlantic-coast context, not exact inventory site, entry, underwater feature or photographed-site inclusion. No exact capture date supplied.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Native album per-item ConstraintsInformation explicitly states Public domain and GrantingRights Full for the selected AssetID. The album-level Unknown grant is not substituted for the individual Full record. Federal hosting alone is not the basis.\", \"license\": \"Public domain, explicitly stated by source\", \"credit\": \"National Park Service (source). Individual photographer not specified in the selected native item metadata.\", \"limits\": \"No endorsement, release, current access, diving suitability or safety assertion.\"}"
+  },
+  {
+    "siteId": "ee0487b4-0952-48de-98d7-859307d42e09",
+    "slug": "lake-chelan-monument",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e25c4157af1c96fee30c765b94a4c1a222e73befaecacdb636d85e9246ac9825.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e25c4157af1c96fee30c765b94a4c1a222e73befaecacdb636d85e9246ac9825.jpg",
+    "originalSha256": "59acf14a5719b247d18295e6780178efd3487af68850df55039ecabd80f736ea",
+    "alt": "Lake Chelan Monument — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Cascade Loop Foundation · Public Domain · Cropped/resized",
+    "creator": "Cascade Loop Foundation",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/83528",
+    "licenceUrl": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/83528",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/83528"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://fhwaapps.fhwa.dot.gov/bywaysp/photos/83528"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Lake Chelan sunset regional context. Identity: {\"proposals\": [{\"site_id\": \"ee0487b4-0952-48de-98d7-859307d42e09\", \"site_name\": \"Lake Chelan Monument\", \"relationship\": \"Lake Chelan surroundings at a different shoreline location, not Monument dive entry\", \"status\": \"PROVISIONAL_CONTEXT_ONLY\", \"exact_site_verified\": false}], \"candidate_site\": {\"site_id\": \"ee0487b4-0952-48de-98d7-859307d42e09\", \"name\": \"Lake Chelan Monument\", \"country\": \"United States\", \"region\": \"Washington\"}, \"geography\": {}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"label\": \"Public Domain\", \"basis\": \"Native individual FHWA item83528 and the corresponding gallery entry explicitly state Public Domain. Cascade Loop Foundation. Not based on federal hosting or presumed federal authorship; creator is a named third-party foundation.\", \"source\": \"https://fhwaapps.fhwa.dot.gov/bywaysp/photos/83528\", \"separate_rights_limits\": \"Property/model releases and trademarks are not established. Incidental resort guests are visible; no individual identity asserted. No advertising endorsement use proposed.\"}"
+  },
+  {
+    "siteId": "df3224b1-9ca5-4281-8da6-e7d3163470a7",
+    "slug": "meeks-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8adb773a59425781bbccde0e2162bfae78f92217317adb9e9fa2d6e3962af21e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8adb773a59425781bbccde0e2162bfae78f92217317adb9e9fa2d6e3962af21e.jpg",
+    "originalSha256": "292662b92af2ef846c64630080fc198d12c9bd839c483748f41a979dae75cdff",
+    "alt": "Meeks Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Joanna Gilkeson/USFWS · Public Domain, explicitly stated by source · Cropped/resized",
+    "creator": "Joanna Gilkeson/USFWS",
+    "license": "Public Domain, explicitly stated by source",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.fws.gov/media/lake-tahoe-pictured-lookout-nevada",
+    "licenceUrl": "https://www.fws.gov/media/lake-tahoe-pictured-lookout-nevada",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.fws.gov/media/lake-tahoe-pictured-lookout-nevada"
+      },
+      {
+        "label": "Public Domain, explicitly stated by source",
+        "url": "https://www.fws.gov/media/lake-tahoe-pictured-lookout-nevada"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Lake Tahoe viewed from a lookout in Nevada. Surrounding lake environment for Meeks Bay on the California shore; the bay, exact dive entry and underwater features are not identified in this view. Identity: {\"relationship\": {\"target_site_id\": \"df3224b1-9ca5-4281-8da6-e7d3163470a7\", \"target_name\": \"Meeks Bay\", \"country\": \"United States\", \"region\": \"California\", \"inventory_coordinates\": [39.0361, -120.121], \"native_profile_coordinates\": [39.0361, -120.121], \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/meeks-bay-82715\", \"evidence\": \"Inventory-linked SSI82715 normally redirects through Scubago forward-mdg to the canonical Meeks Bay82715 page. Retained native JSON-LD explicitly identifies Meeks Bay as a Lake Tahoe dive site and its coordinates match the inventory. The photo explicitly names Lake Tahoe viewed from a Nevada lookout.\", \"limitations\": \"This is not a Meeks Bay shore photograph. Camera position and field-of-view inclusion of the bay are unverified. No exact shoreline, entry, underwater or current-condition claim is made.\", \"scope\": \"PROPOSED_SURROUNDING_LAKE_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / This is not a Meeks Bay shore photograph. Camera position and field-of-view inclusion of the bay are unverified. No exact shoreline, entry, underwater or current-condition claim is made.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"The exact native FWS media item explicitly labels Media Usage Rights/License Public Domain and supplies the selected original download. Does not rely on government hosting alone.\", \"license\": \"Public Domain, explicitly stated by source\", \"credit\": \"Joanna Gilkeson/USFWS\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim.\"}"
+  },
+  {
+    "siteId": "6d94e815-f6e2-4d35-97b7-6cd094286dfe",
+    "slug": "la-llosa-de-platja-daro",
+    "src": "https://assets.diveatlas.site/site-photos/v1/622da6cf825b96520393de179a9a5d99a0c9a27d763ec024e51d234cc7b0218b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/622da6cf825b96520393de179a9a5d99a0c9a27d763ec024e51d234cc7b0218b.jpg",
+    "originalSha256": "74eacf1cadf06eb2349c5610e3889c0630a9853560b22176da7b80c351651669",
+    "alt": "La Llosa de Platja d’Aro — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Being on the edge/ Waterfront by Vladimir Safonov, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes. · Creative Commons Attribution 3.0 Unported (CC BY 3.0) · Cropped/resized",
+    "creator": "Being on the edge/ Waterfront by Vladimir Safonov, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes.",
+    "license": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/12416/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/12416/"
+      },
+      {
+        "label": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Rocky Mediterranean shoreline on the Costa Brava, near Platja d’Aro, photographed in May 2017. Surrounding coastal environment for La Llosa de Platja d’Aro; this does not identify the offshore dive point, entry route or underwater features. Identity: {\"relationship\": {\"target_site_id\": \"6d94e815-f6e2-4d35-97b7-6cd094286dfe\", \"target_name\": \"La Llosa de Platja d’Aro\", \"country\": \"Spain\", \"region\": \"Costa Brava\", \"inventory_coordinates\": [41.797, 3.0685], \"native_profile_coordinates\": [41.797, 3.0685], \"photo_source_coordinates\": [41.793111, 3.059708], \"geotag_to_inventory_point_m\": 847, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/la-llosa-de-platja-daro-146955\", \"evidence\": \"Inventory-linked SSI 146955 normally redirects to its canonical Scubago profile. Retained native JSON-LD names La Llosa de Platja d’Aro, locates it in Costa Brava and gives coordinates matching inventory. Exact Imaggeo item supplies geotag 41.793111, 3.059708 in Spain, approximately 847 m from the dive point; its caption describes the Mediterranean shore.\", \"limitations\": \"The source title does not name Platja d’Aro. Nearby-coast association relies on exact native geotag and matching dive-profile geography. Photo position is not independently surveyed. Offshore reef inclusion in the view is not verified, and this is not an entry or underwater photograph.\", \"scope\": \"PROPOSED_NEARBY_COASTAL_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / The source title does not name Platja d’Aro. Nearby-coast association relies on exact native geotag and matching dive-profile geography. Photo position is not independently surveyed. Offshore reef inclusion in the view is not verified, and this is not an entry or underwater photograph.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native Imaggeo item explicitly grants Creative Commons Attribution 3.0 Unported and supplies the full download link. Rights not inferred from hosting or search snippet.\", \"license\": \"Creative Commons Attribution 3.0 Unported (CC BY 3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Being on the edge/ Waterfront\", \"creator\": \"Vladimir Safonov\", \"credit\": \"Vladimir Safonov (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Being on the edge/ Waterfront by Vladimir Safonov, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "aeed9b9c-3ebf-4846-ba02-dd8bb046744f",
+    "slug": "baixa-do-lobo",
+    "src": "https://assets.diveatlas.site/site-photos/v1/73f55d21e8de9941cc43c23621218abaad34618bdacd8305dcf81e98ba0d62f0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/73f55d21e8de9941cc43c23621218abaad34618bdacd8305dcf81e98ba0d62f0.jpg",
+    "originalSha256": "05a565b668264f5416afb72f3be99d347eece331c2d05adbec487b66ebe67387",
+    "alt": "Baixa do Lobo — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Ponta de São Lourenço - Madeira by Julia Jeworrek, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes. · Creative Commons Attribution 3.0 Unported (CC BY 3.0) · Cropped/resized",
+    "creator": "Ponta de São Lourenço - Madeira by Julia Jeworrek, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes.",
+    "license": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/15297/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/15297/"
+      },
+      {
+        "label": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Coastal cliffs at Ponta de São Lourenço, Madeira, photographed in December 2018. Nearby coastal environment for Baixa do Lobo; the offshore seamount, dive entry and underwater features are not identified in this photograph. Identity: {\"relationship\": {\"target_site_id\": \"aeed9b9c-3ebf-4846-ba02-dd8bb046744f\", \"target_name\": \"Baixa do Lobo\", \"country\": \"Portugal\", \"region\": \"Madeira\", \"inventory_coordinates\": [32.7398, -16.6943], \"native_profile_coordinates\": [32.7398, -16.6943], \"photo_source_coordinates\": [32.742429, -16.684184], \"geotag_to_inventory_point_m\": 990, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/baixa-do-lobo-133456\", \"evidence\": \"Inventory-linked SSI 133456 normally redirects to its canonical Scubago profile. Retained native JSON-LD names Baixa do Lobo, locates it in Madeira and supplies coordinates matching inventory. It describes a seamount a few minutes from Quinta do Lorde Marina. Exact Imaggeo item names Ponta de São Lourenço, Madeira, and supplies geotag 32.742429, -16.684184, approximately 990 m from the dive point.\", \"limitations\": \"The source photograph does not identify the offshore dive feature. Geotags support nearby coastal context but are not independently surveyed. The visible coast and field of view are not proof of the exact dive point, entry, underwater conditions or present access.\", \"scope\": \"PROPOSED_NEARBY_COASTAL_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / The source photograph does not identify the offshore dive feature. Geotags support nearby coastal context but are not independently surveyed. The visible coast and field of view are not proof of the exact dive point, entry, underwater conditions or present access.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native Imaggeo item explicitly grants Creative Commons Attribution 3.0 Unported and supplies the full download link. Rights not inferred from hosting or search snippet.\", \"license\": \"Creative Commons Attribution 3.0 Unported (CC BY 3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Ponta de São Lourenço - Madeira\", \"creator\": \"Julia Jeworrek\", \"credit\": \"Julia Jeworrek (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Ponta de São Lourenço - Madeira by Julia Jeworrek, distributed via Imaggeo, CC BY 3.0. Link the native item and license; identify any later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "4b66bd7f-b2fc-49cb-86cd-96396ebb7c46",
+    "slug": "rosh-hanikra-caves",
+    "src": "https://assets.diveatlas.site/site-photos/v1/82b4141bf6bf9b79e9468549be0ad0075c1467472498c7eea079941cacfdd990.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/82b4141bf6bf9b79e9468549be0ad0075c1467472498c7eea079941cacfdd990.jpg",
+    "originalSha256": "422d3b648731f07d03fd398bb9384d8148fca8ff0cff3b0b4fb44f2cdc13634b",
+    "alt": "Rosh Hanikra Caves — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Where Waves Carve the Mountain by Vibhaw Shrivastava, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes. · Creative Commons Attribution3.0 Unported (CC BY3.0) · Cropped/resized",
+    "creator": "Where Waves Carve the Mountain by Vibhaw Shrivastava, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes.",
+    "license": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/19734/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/19734/"
+      },
+      {
+        "label": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Mediterranean Sea viewed between limestone walls at Rosh HaNikra, Israel. Nearby coastal grotto environment for Rosh Hanikra Caves; the precise underwater dive route is not identified. Identity: {\"relationship\": {\"target_site_id\": \"4b66bd7f-b2fc-49cb-86cd-96396ebb7c46\", \"target_name\": \"Rosh Hanikra Caves\", \"country\": \"Israel\", \"region\": \"Nahariya Coast\", \"inventory_coordinates\": [33.0929, 35.1038], \"native_profile_coordinates\": [33.0929, 35.1038], \"photo_source_coordinates\": [33.089206, 35.10286], \"geotag_to_inventory_point_m\": 420, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/rosh-hanikra-caves-289693\", \"evidence\": \"Inventory-linked SSI289693 normally redirects to canonical Scubago profile. Its retained JSON-LD names Rosh Hanikra Caves, describes shallow limestone erosion coves and supplies coordinates identical to inventory. Imaggeo names Rosh HaNikra and supplies a geotag 420m from inventory point.\", \"limitations\": \"Named locality and near geotag support surrounding coastal environment, not surveyed exact dive location, entry or underwater route. Current access and conditions not assessed.\", \"scope\": \"PROPOSED_NEARBY_COASTAL_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Named locality and near geotag support surrounding coastal environment, not surveyed exact dive location, entry or underwater route. Current access and conditions not assessed.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native item explicitly grants CC BY3.0 and supplies full download URL.\", \"license\": \"Creative Commons Attribution3.0 Unported (CC BY3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Where Waves Carve the Mountain\", \"creator\": \"Vibhaw Shrivastava\", \"credit\": \"Vibhaw Shrivastava (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Where Waves Carve the Mountain by Vibhaw Shrivastava, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "dc4c2d15-e4fd-4330-b2bb-6041297fae51",
+    "slug": "los-escullos-1",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0e274d65db048bee26b1c73f5c5f234c194f73b0db6a2bc26eeeef5a4a9225d2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0e274d65db048bee26b1c73f5c5f234c194f73b0db6a2bc26eeeef5a4a9225d2.jpg",
+    "originalSha256": "403fb5fb32181c67fd1139b57f1bfe1f5760609202e1a584c1dbc80b6d87a201",
+    "alt": "Los Escullos 1 — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Escullos by Alicia Morugán, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes. · Creative Commons Attribution3.0 Unported (CC BY3.0) · Cropped/resized",
+    "creator": "Escullos by Alicia Morugán, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes.",
+    "license": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/1931/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/1931/"
+      },
+      {
+        "label": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Aeolianite fossil dune above Escullos beach in Cabo de Gata, Spain, photographed in2008. Surrounding coastal environment for Los Escullos1; this photograph does not identify the dive entry at Cala Palo or the underwater route. Identity: {\"relationship\": {\"target_site_id\": \"dc4c2d15-e4fd-4330-b2bb-6041297fae51\", \"target_name\": \"Los Escullos 1\", \"country\": \"Spain\", \"region\": \"Andalusia\", \"inventory_coordinates\": [36.7974, -2.0604], \"native_profile_coordinates\": [36.7974, -2.0604], \"photo_source_coordinates\": null, \"geotag_to_inventory_point_m\": null, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/los-escullos-1-428951\", \"evidence\": \"Native Imaggeo title Escullos and photographer comment explicitly identify the fossil dune at Escullos beach in Cabo de Gata. Inventory-linked SSI428951 redirects normally to Scubago Los Escullos1 profile, whose coordinates match inventory and whose description explicitly locates the dive in Cabo de Gata Natural Park in Los Escullos area, near Punta del Esparto and Cala Palo. This supports same named coastal area only.\", \"limitations\": \"Photo has no native geotag. Escullos beach fossil dune is not shown to be the Cala Palo dive entry or precise dive point. Do not treat as exact entry, underwater-route, current access or safety evidence.\", \"scope\": \"PROPOSED_NEARBY_COASTAL_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Photo has no native geotag. Escullos beach fossil dune is not shown to be the Cala Palo dive entry or precise dive point. Do not treat as exact entry, underwater-route, current access or safety evidence.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native item explicitly grants CC BY3.0 and supplies full download URL.\", \"license\": \"Creative Commons Attribution3.0 Unported (CC BY3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Escullos\", \"creator\": \"Alicia Morugán\", \"credit\": \"Alicia Morugán (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Escullos by Alicia Morugán, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "c05e0b46-2179-4045-9e54-c29f42316ba6",
+    "slug": "tanjung-jepun-padang-bai-bali",
+    "src": "https://assets.diveatlas.site/site-photos/v1/7f00dc9107b7be2f23c01d65e3c45a902cca38f380b72bf63c267862f0962fe6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/7f00dc9107b7be2f23c01d65e3c45a902cca38f380b72bf63c267862f0962fe6.jpg",
+    "originalSha256": "fa410dd6a8d40e062871901835ae88b006e7420c8c9141cf4d5d0d265e848d5c",
+    "alt": "Tanjung Jepun, Padang Bai, Bali — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Sparkling blue waters invaded by human boats by Deepa Mele Veedu, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes. · Creative Commons Attribution3.0 Unported (CC BY3.0) · Cropped/resized",
+    "creator": "Sparkling blue waters invaded by human boats by Deepa Mele Veedu, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes.",
+    "license": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/4891/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/4891/"
+      },
+      {
+        "label": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Outrigger boats in shallow coastal water at Padangbai, Bali, photographed in June2015. Surrounding coastal-town environment for Tanjung Jepun; the precise dive site, wreck and underwater route are not identified. Identity: {\"relationship\": {\"target_site_id\": \"c05e0b46-2179-4045-9e54-c29f42316ba6\", \"target_name\": \"Tanjung Jepun, Padang Bai, Bali\", \"country\": \"Indonesia\", \"region\": \"Bali\", \"inventory_coordinates\": [-8.5192, 115.5102], \"native_profile_coordinates\": [-8.5192, 115.5102], \"photo_source_coordinates\": null, \"geotag_to_inventory_point_m\": null, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/tanjung-jepun-padang-bai-bali-114508\", \"evidence\": \"Native Imaggeo description explicitly identifies Padangbai, a small coastal town in Bali. Inventory-linked SSI114508 redirects normally to Scubago Tanjung Jepun, Padang Bai, Bali profile, whose coordinates match inventory and whose containedInPlace is Padang Bai. This supports same named coastal-town environment only.\", \"limitations\": \"Photo has no native geotag. Visible boats and bay are not demonstrated to be exact Tanjung Jepun dive point, entry or underwater route. Current access and conditions are not assessed.\", \"scope\": \"PROPOSED_NEARBY_COASTAL_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Photo has no native geotag. Visible boats and bay are not demonstrated to be exact Tanjung Jepun dive point, entry or underwater route. Current access and conditions are not assessed.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native item explicitly grants CC BY3.0 and supplies full download URL.\", \"license\": \"Creative Commons Attribution3.0 Unported (CC BY3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Sparkling blue waters invaded by human boats\", \"creator\": \"Deepa Mele Veedu\", \"credit\": \"Deepa Mele Veedu (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Sparkling blue waters invaded by human boats by Deepa Mele Veedu, distributed via Imaggeo, CC BY3.0. Link native item and license and identify later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "9aa3eb8e-9092-4805-80f7-1a82ff1a9674",
+    "slug": "south-padre-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8441c507316cf7d4b27ac09c3c34b98b74d11b1df8323e15e72d29389c34b91f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8441c507316cf7d4b27ac09c3c34b98b74d11b1df8323e15e72d29389c34b91f.jpg",
+    "originalSha256": "5d3faf527366a58eb0e0f74ed7b0a49ea0d48fe9a7e149bb59ca537ca0c10b18",
+    "alt": "South Padre Island — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Robert Burton/USFWS · Public Domain · Cropped/resized",
+    "creator": "Robert Burton/USFWS",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.fws.gov/media/sea-turtle-hatchlings-crawl-beach",
+    "licenceUrl": "https://www.fws.gov/media/sea-turtle-hatchlings-crawl-beach",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.fws.gov/media/sea-turtle-hatchlings-crawl-beach"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://www.fws.gov/media/sea-turtle-hatchlings-crawl-beach"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Sea turtle hatchlings during a release on South Padre Island, Texas. Coastal wildlife and sandy-beach environment record; not an underwater dive-site view or a verified entry location. Identity: {\"relationship\": {\"target_site_id\": \"9aa3eb8e-9092-4805-80f7-1a82ff1a9674\", \"target_name\": \"South Padre Island\", \"country\": \"United States\", \"native_relationship_url\": \"https://www.fws.gov/media/sea-turtle-hatchlings-crawl-beach\", \"evidence\": \"Native item description explicitly states Sea turtle hatchling release at South Padre Island. This is a direct named-island association to the broad South Padre Island catalogue entry.\", \"scope\": \"NAMED_ISLAND_COASTAL_WILDLIFE_ENVIRONMENT_CONTEXT_ONLY\", \"limits\": \"No named beach, exact camera position, catalogue pin relationship, underwater location or dive entry established. Texas is catalogue-context identification, not an exact camera-location claim. Human association and presentation review remain required.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / No named beach, exact camera position, catalogue pin relationship, underwater location or dive entry established. Texas is catalogue-context identification, not an exact camera-location claim. Human association and presentation review remain required. / Not stated in native item; URL2022-03 not treated as capture date.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"license\": \"Public Domain\", \"credit\": \"Robert Burton/USFWS\", \"basis\": \"Native individual item explicitly states Public Domain; no reliance on federal hosting alone.\", \"limits\": \"No endorsement, wildlife interaction permission, present access or dive safety assertion.\"}"
+  },
+  {
+    "siteId": "344ba744-f7ed-45c8-8c7e-060438101e6a",
+    "slug": "nautilus-como-lake",
+    "src": "https://assets.diveatlas.site/site-photos/v1/db790c80b32e1828708f13669a91deeb9c753459a01ffd211c8d2cb4bb01eabe.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/db790c80b32e1828708f13669a91deeb9c753459a01ffd211c8d2cb4bb01eabe.jpg",
+    "originalSha256": "bacf8eea829ba6b79087e1ee2ee04ecd3055373e3b160a4a9ce792697fc112d4",
+    "alt": "Nautilus (Como Lake) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Rainbow over Como Lake by Noemi Maglia, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes. · Creative Commons Attribution3.0 Unported (CC BY3.0) · Cropped/resized",
+    "creator": "Rainbow over Como Lake by Noemi Maglia, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes.",
+    "license": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/18286/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/18286/"
+      },
+      {
+        "label": "Creative Commons Attribution3.0 Unported (CC BY3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Rainbow over Como Lake, Italy, seen above shoreline homes and beneath storm clouds. Broad lake environment for Nautilus (Como Lake); this view is about 13 km from the inventory point and does not show the Nautilus dive entry or underwater route. Identity: {\"relationship\": {\"target_site_id\": \"344ba744-f7ed-45c8-8c7e-060438101e6a\", \"target_name\": \"Nautilus (Como Lake)\", \"country\": \"Italy\", \"region\": \"Lecco\", \"inventory_coordinates\": [45.8848, 9.3277], \"native_profile_coordinates\": null, \"photo_source_coordinates\": [45.997014, 9.282761], \"geotag_to_inventory_point_m\": 12952, \"native_relationship_url\": null, \"evidence\": \"Target-first inventory record explicitly names Nautilus (Como Lake). Independently, exact Imaggeo native title and caption explicitly name Como Lake, Italy. This establishes only shared named-waterbody environment, not exact dive site. Source geotag is 12952 m from inventory point. No provider profile was fetched for this item.\", \"limitations\": \"No exact Nautilus shoreline, entrance, dive feature, underwater route, current access or conditions claim. The source view is about 13 km from inventory point. Named-waterbody association is based on inventory plus independent photo caption, not nearest-point inference.\", \"scope\": \"PROPOSED_BROAD_NAMED_LAKE_ENVIRONMENT; no exact-site coverage claim\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / No exact Nautilus shoreline, entrance, dive feature, underwater route, current access or conditions claim. The source view is about 13 km from inventory point. Named-waterbody association is based on inventory plus independent photo caption, not nearest-point inference. / No endorsement, release, current access, dive conditions or safety claim. Original unchanged.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native item explicitly grants CC BY3.0 and supplies full download URL.\", \"license\": \"Creative Commons Attribution3.0 Unported (CC BY3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Rainbow over Como Lake\", \"creator\": \"Noemi Maglia\", \"credit\": \"Noemi Maglia (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Rainbow over Como Lake by Noemi Maglia, distributed via Imaggeo, CC BY 3.0. Link native item and license and identify later changes.\", \"limits\": \"No endorsement, release, current access, dive conditions or safety claim. Original unchanged.\"}"
+  },
+  {
+    "siteId": "81eb64f7-124c-41bd-a2f3-6094b09e549b",
+    "slug": "peniche",
+    "src": "https://assets.diveatlas.site/site-photos/v1/bee1f0d936c8293c3d97779534a798d935f93a73310e6d67109795c5bfa553fd.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/bee1f0d936c8293c3d97779534a798d935f93a73310e6d67109795c5bfa553fd.jpg",
+    "originalSha256": "0537b2ff73ee961005d95e8b639c93f89824a8fa2c8a7f2bd444f8458fb6ca0e",
+    "alt": "Peniche — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Opening the Mesozoic Atlantic ocean by Nuno Correia, distributed via Imaggeo, CC BY 3.0. Link native item and licence; identify any later edits. · Creative Commons Attribution 3.0 Unported (CC BY 3.0) · Cropped/resized",
+    "creator": "Opening the Mesozoic Atlantic ocean by Nuno Correia, distributed via Imaggeo, CC BY 3.0. Link native item and licence; identify any later edits.",
+    "license": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/18006/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/18006/"
+      },
+      {
+        "label": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Coastal cliffs and a sea stack on the Peniche peninsula, Portugal, photographed in August 2020. Named coastal setting for the Peniche dive-site record, not a verified view of its dive entry or underwater features. Identity: {\"relationship\": {\"target_site_id\": \"81eb64f7-124c-41bd-a2f3-6094b09e549b\", \"target_name\": \"Peniche\", \"country\": \"Portugal\", \"region\": \"Leiria\", \"inventory_coordinates\": [39.3509, -9.3812], \"native_profile_coordinates\": [39.3509, -9.3812], \"photo_source_coordinates\": [39.344487, -9.388719], \"geotag_to_inventory_point_m\": 963, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/peniche-79758\", \"evidence\": [\"inventory-record.json\", \"evidence/site-native.body\", \"evidence/item.body\"], \"scope\": \"EXPLICIT_NAMED_PENICHE_PENINSULA_COASTAL_SETTING_ONLY\", \"explanation\": \"Native photo description explicitly discusses the Peniche peninsula and its geology. Native dive profile independently matches inventory name and coordinates, describes diving from Portinho da Areia Sul and around Peniche fortress inlets. Photo geotag is approximately 963 m from profile point. Named peninsula association is explicit, but neither specific entry nor underwater feature is established.\", \"limitations\": \"Do not infer that the pictured stack or cliffs are the precise dive location. Photo geotag accuracy not independently surveyed. Human relationship review required; no assignment or coverage credit.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Do not infer that the pictured stack or cliffs are the precise dive location. Photo geotag accuracy not independently surveyed. Human relationship review required; no assignment or coverage credit. / No endorsement, release, safety or current access claim.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"license\": \"Creative Commons Attribution 3.0 Unported (CC BY 3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Opening the Mesozoic Atlantic ocean\", \"creator\": \"Nuno Correia\", \"credit\": \"Nuno Correia (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Opening the Mesozoic Atlantic ocean by Nuno Correia, distributed via Imaggeo, CC BY 3.0. Link native item and licence; identify any later edits.\", \"basis\": \"Exact native item explicitly specifies CC BY 3.0 and provides full original download.\", \"limits\": \"No endorsement, release, safety or current access claim.\"}"
+  },
+  {
+    "siteId": "b1a22894-3797-4662-9aca-5e8f7a1c86b1",
+    "slug": "canones-es-vedranell",
+    "src": "https://assets.diveatlas.site/site-photos/v1/efd126d1e2ef6107decda09ec3bc9ede2a1e73f6d8a853961293650f72efb640.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/efd126d1e2ef6107decda09ec3bc9ede2a1e73f6d8a853961293650f72efb640.jpg",
+    "originalSha256": "84bb0096d58ca4ca605a572221229222372d0348d769530a596cf387c69a8a8d",
+    "alt": "Cañones Es Vedranell — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Frimolada. Milky way behind Es Vedrà (Eivissa, Balearic Islands) by Gabriel Servera-Vives, distributed via Imaggeo, CC BY 3.0. Link the native item and licence; identify any later edits. · Creative Commons Attribution 3.0 Unported (CC BY 3.0) · Cropped/resized",
+    "creator": "Frimolada. Milky way behind Es Vedrà (Eivissa, Balearic Islands) by Gabriel Servera-Vives, distributed via Imaggeo, CC BY 3.0. Link the native item and licence; identify any later edits.",
+    "license": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+    "source": "reviewed-context",
+    "sourcePage": "https://imaggeo.egu.eu/view/12985/",
+    "licenceUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://imaggeo.egu.eu/view/12985/"
+      },
+      {
+        "label": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+        "url": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Night coastal scene with moored boats and Es Vedrà, Ibiza, photographed in August 2017. Nearby-islet environmental context for Cañones Es Vedranell; the underwater canyons and exact dive location are not shown. Identity: {\"relationship\": {\"target_site_id\": \"b1a22894-3797-4662-9aca-5e8f7a1c86b1\", \"target_name\": \"Cañones Es Vedranell\", \"country\": \"Spain\", \"region\": \"Ibiza\", \"inventory_coordinates\": [38.8687, 1.2067], \"native_profile_coordinates\": [38.8687, 1.2067], \"photo_source_coordinates\": [38.867812, 1.203594], \"geotag_to_inventory_point_m\": 286, \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/caones-es-vedranell-270773\", \"evidence\": [\"inventory-record.json\", \"evidence/site-native.body\", \"relationship-extract.json\", \"evidence/item.body\"], \"scope\": \"EXPLICIT_NAMED_NEIGHBORING_ES_VEDRA_ISLET_ENVIRONMENT_ONLY\", \"explanation\": \"Native photograph names Es Vedrà, Eivissa, in its title and Es Vedrà again in its description. Independently retained SSI-linked Scubago profile names Cañones Es Vedranell, supplies the exact inventory coordinates and explicitly describes the dive beneath Es Vedranell beside Es Vedrà. This establishes a named neighboring-islet association without relying only on geotag proximity.\", \"limitations\": \"The pictured rocky islet is identified as Es Vedrà by the image source, not as the Es Vedranell dive wall. Do not infer that the image depicts the exact entry, canyons, channel, or underwater features. The approximately 286 m source-coordinate distance is supporting metadata only, not verified camera position or visible-footprint proof. No assignment or coverage credit.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / The pictured rocky islet is identified as Es Vedrà by the image source, not as the Es Vedranell dive wall. Do not infer that the image depicts the exact entry, canyons, channel, or underwater features. The approximately 286 m source-coordinate distance is supporting metadata only, not verified camera position or visible-footprint proof. No assignment or coverage credit. / No endorsement, model/property release, safety or current access claim.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"license\": \"Creative Commons Attribution 3.0 Unported (CC BY 3.0)\", \"license_url\": \"http://creativecommons.org/licenses/by/3.0/\", \"title\": \"Frimolada. Milky way behind Es Vedrà (Eivissa, Balearic Islands)\", \"creator\": \"Gabriel Servera-Vives\", \"credit\": \"Gabriel Servera-Vives (distributed via imaggeo.egu.eu)\", \"required_attribution\": \"Frimolada. Milky way behind Es Vedrà (Eivissa, Balearic Islands) by Gabriel Servera-Vives, distributed via Imaggeo, CC BY 3.0. Link the native item and licence; identify any later edits.\", \"basis\": \"Exact native item explicitly specifies CC BY 3.0 and provides full original download. No license inferred from a host or a search snippet.\", \"limits\": \"No endorsement, model/property release, safety or current access claim.\"}"
+  },
+  {
+    "siteId": "deef32f0-fe69-44dd-ba22-d030a722b89c",
+    "slug": "comets-hole",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f1a992a8371da3e81016f389b9bdd07950236a12200e1b5983b72c6695489b35.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f1a992a8371da3e81016f389b9bdd07950236a12200e1b5983b72c6695489b35.jpg",
+    "originalSha256": "3f156e3a8aaf2e80f0651531a8beb06fabfdd22145f71cab49a5e219204e465b",
+    "alt": "Comets Hole — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-5731. · NASA material not protected by copyright unless noted; no exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-5731.",
+    "license": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=5731",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=5731"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Lord Howe Island and its lagoon and reefs, photographed from the International Space Station on 2 December 2002. Historical whole-island coastal context for Comets Hole; not a close view of the dive site. Identity: {\"relationship\": {\"target_site_id\": \"deef32f0-fe69-44dd-ba22-d030a722b89c\", \"target_name\": \"Comets Hole\", \"country\": \"Australia\", \"region\": \"Lord Howe Island\", \"inventory_coordinates\": [-31.5333, 159.05], \"native_relationship_url\": \"https://divemap.be/dive-sites/comets-hole-lord-howe.html\", \"independent_primary_operator_url\": \"https://lordhoweislandtours.com/avada_faq/where-do-we-go-on-the-tour/\", \"scope\": \"EXPLICIT_NAMED_LORD_HOWE_ISLAND_LAGOON_CONTEXT_ONLY\", \"evidence\": [\"inventory-record.json\", \"evidence/comets-dive-profile.body\", \"evidence/comets-relationship.body\", \"evidence/lord-howe-item.body\"], \"explanation\": \"Native Divemap dive profile explicitly names Comets Hole as the house reef of Lord Howe Island and matches inventory coordinates. Independently, the local tour operator includes Comets Hole among named snorkeling locations in the island lagoon. NASA identifies Lord Howe Island and reefs, visually visible in full.\", \"limitations\": \"Divemap coordinates share OSM origin with inventory, so not independent coordinate verification. Operator text has mismatched site-specific descriptive headings; used only for explicit lagoon and island relationship, not ecology or exact position. Independent government search evidence suggests a different precise lagoon point; no exact pin claim. Exact depicted dive site remains unverified.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Divemap coordinates share OSM origin with inventory, so not independent coordinate verification. Operator text has mismatched site-specific descriptive headings; used only for explicit lagoon and island relationship, not ecology or exact position. Independent government search evidence suggests a different precise lagoon point; no exact pin claim. Exact depicted dive site remains unverified.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material not protected by copyright unless noted; no exception indicated for this exposure\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-5731.\", \"no_endorsement\": true}"
+  },
+  {
+    "siteId": "04f15575-ee88-43cf-834c-4421bbfb197d",
+    "slug": "thundercliff-cave",
+    "src": "https://assets.diveatlas.site/site-photos/v1/efdf058da8e02f76fb62142d973140d987a1e7e177e22cea3d961b525b23e0a5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/efdf058da8e02f76fb62142d973140d987a1e7e177e22cea3d961b525b23e0a5.jpg",
+    "originalSha256": "21182a02ad2f22f0a48d3b52fcf6a7d3d0e80eb793df83939dd003262631e3ec",
+    "alt": "Thundercliff Cave — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS056-E-199816. · NASA material not protected by copyright unless noted; no exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS056-E-199816.",
+    "license": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS056&roll=E&frame=199816",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS056&roll=E&frame=199816"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Christmas Island, Australia, photographed from the International Space Station on 28 September 2018. Historical whole-island coastal context for Thundercliff Cave; the cave and underwater features are not visible or located in this view. Identity: {\"relationship\": {\"target_site_id\": \"04f15575-ee88-43cf-834c-4421bbfb197d\", \"target_name\": \"Thundercliff Cave\", \"country\": \"Indian Ocean Territories (Australia)\", \"region\": \"Christmas Island\", \"inventory_coordinates\": [-10.4476, 105.6904], \"native_relationship_url\": \"https://www.diveplanit.com/dive-site/thundercliff-cave/\", \"corroborating_dive_profile_url\": \"https://divemap.be/dive-sites/thundercliff-cave-christmas-island.html\", \"scope\": \"EXPLICIT_NAMED_CHRISTMAS_ISLAND_NORTH_COAST_SETTING_ONLY\", \"evidence\": [\"inventory-record.json\", \"evidence/thundercliff-diveplanit.body\", \"evidence/thundercliff-dive-profile.body\", \"evidence/christmas-item.body\"], \"explanation\": \"Diveplanit explicitly identifies Thundercliff Cave Christmas Island WA and locates it on the north coast. Independently retained Divemap profile identifies the same named cave and island. NASA names Christmas Island, Australia with native center -10.5,105.6, excluding Kiribati namesake. The whole small island and its coastline are visually legible.\", \"limitations\": \"Divemap point differs from inventory by approximately 1730 m and is not independent surveyed validation. Inventory also has a separate Thundercliff record; no second association is counted. Exact cave position and precise depicted entry are unverified. Only explicit named-island relation is proposed; no coverage or production assignment.\"}} Limitations: All inherited source/item/access/rights restrictions remain; saved does not mean publication or live assignment approval. / Divemap point differs from inventory by approximately 1730 m and is not independent surveyed validation. Inventory also has a separate Thundercliff record; no second association is counted. Exact cave position and precise depicted entry are unverified. Only explicit named-island relation is proposed; no coverage or production assignment.  Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material not protected by copyright unless noted; no exception indicated for this exposure\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS056-E-199816.\", \"no_endorsement\": true}"
+  },
+  {
+    "siteId": "26a67277-4455-43ac-98d9-7328b6c381cd",
+    "slug": "cabo-pearce",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d17df838725d9b104d182ab5efb38eeb61a053aadf46a8845f9660793ea40bce.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d17df838725d9b104d182ab5efb38eeb61a053aadf46a8845f9660793ea40bce.jpg",
+    "originalSha256": "ae51a32b699c6c2042612f3a4e9a67056c64089e7f89080a4a54d6d634dfa2c5",
+    "alt": "Cabo Pearce — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-11923. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-11923. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=11923",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=11923"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Socorro Island, Mexico, photographed from the International Space Station on 16 May 2002. Historical island and coastal setting for Cabo Pearce. The underwater dive site and its exact entry are not identified in this image. Identity: {\"relationship\": {\"country\": \"Mexico\", \"evidence\": [\"inventory-record.json\", \"evidence/cabo-relationship.body\", \"evidence/socorro-alt-item.body\"], \"explanation\": \"Retained native Divemap page explicitly identifies Cabo Pearce as a reef dive at Isla Socorro, Mexico. NASA item explicitly identifies Isla Socorro; whole island and coastline are visually legible. Relationship is based on named island, not proximity-only assignment.\", \"inventory_coordinates\": [18.73, -110.95], \"limitations\": \"Divemap point differs from inventory by approximately 6.9 km. Neither point is independently surveyed or resolved, so exact location, visible reef, entry and depicted pin are unverified. Only broad named-island environmental association is proposed. PADI and Nautilus native sources were not accessed beyond denied robots requests and do not supply the retained relationship evidence.\", \"native_relationship_url\": \"https://divemap.be/dive-sites/cabo-pearce.html\", \"profile_inventory_difference_m\": 6935, \"region\": \"Socorro Islands\", \"scope\": \"EXPLICIT_NAMED_SOCORRO_ISLAND_COASTAL_SETTING_ONLY\", \"source_profile_coordinates\": [18.7706, -110.9], \"target_name\": \"Cabo Pearce\", \"target_site_id\": \"26a67277-4455-43ac-98d9-7328b6c381cd\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Divemap point differs from inventory by approximately 6.9 km. Neither point is independently surveyed or resolved, so exact location, visible reef, entry and depicted pin are unverified. Only broad named-island environmental association is proposed. PADI and Nautilus native sources were not accessed beyond denied robots requests and do not supply the retained relationship evidence. / Useful whole-island environmental context; not an exact dive-site photograph. No brightening, cropping, footer removal or original modification. / Known SHA256, native ID including zero-padded aliases, original URL, target UUID and slug screened against recovered historical catalog, accepted first50 and fixed next50 creator-corrected ledger plus current registry. Baseline 25 unresolved IDs plus1slug-only and32missing original URLs remain. Exact/perceptual uniqueness is not globally certified. / {\"source_access_restrictions\": [{\"effects\": {\"new_stops\": [{\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://www.padi.com/robots.txt\"}, {\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://nautilusliveaboards.com/robots.txt\"}], \"no_retry_or_alternate_route\": true, \"preserved\": true}, \"retained_restriction_record_sha256\": \"454931a138a26ac43069f0f7b3e8f5674fa8ed41e2535bd88a5f9fbd4928c8b7\"}, {\"effects\": {\"holds_preserved\": true, \"new_stops\": [{\"host\": \"lordhoweisland.info\", \"outcome\": \"HTTP_404_STOP\", \"scope\": \"No further request to this publisher; no alternate-route attempt. Native diving page not requested.\", \"url\": \"https://lordhoweisland.info/robots.txt\"}], \"next_independent_relationship_source\": \"lordhoweislandtours.com independently published Comets Hole excursion description discovered in search. This is not a mirror, proxy, or alternate route to the held publisher.\"}, \"retained_restriction_record_sha256\": \"e10fe97f24371bc07521faf216c7b67fdfa615fc338b8fc4a1b32ea26fc7ad98\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-11923. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "394c63b4-ab80-4825-b6ba-a8a61931ae61",
+    "slug": "tanegashima-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d6864a55b3baf584458b42adb0886837ba0a664def8bdb775e1a135bdcf278c2.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d6864a55b3baf584458b42adb0886837ba0a664def8bdb775e1a135bdcf278c2.jpg",
+    "originalSha256": "4c1d11d75e36604a893dd31bdd518c8b921ffcb28e8e5fc1036b56805f58b39f",
+    "alt": "Tanegashima Island — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-17887. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-17887. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=17887",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=17887"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Tanegashima Island, Japan, photographed from the International Space Station on 2 May 2014. Historical whole-island and coastal context. No exact underwater dive site or entry is identified. Identity: {\"relationship\": {\"country\": \"Japan\", \"evidence\": [\"inventory-record.json\", \"evidence/tanegashima-alt-item.body\", \"evidence/tanegashima-relationship.body\"], \"explanation\": \"Inventory target is explicitly named Tanegashima Island. Native NASA item names Tanegashima. The official Kagoshima destination page explicitly names the island and describes scuba diving there. This named-island match is not proximity-only assignment.\", \"inventory_coordinates\": [30.6624, 131.001], \"limitations\": \"The inventory point at 30.6624, 131.001 and NASA photo center at 30.6, 131.0 have different purposes; neither establishes a specific dive entry or surveyed image footprint. The official destination page supplies no dive-point coordinate to resolve against the inventory. JNTO robots returned HTTP 302 to a homepage; that route was not followed and provides no retained native relationship evidence.\", \"native_relationship_url\": \"https://www.kagoshima-kankou.com/for/areaguide/tanegashima\", \"region\": \"Kagoshima Prefecture\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Tanegashima Island\", \"target_site_id\": \"394c63b4-ab80-4825-b6ba-a8a61931ae61\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / The inventory point at 30.6624, 131.001 and NASA photo center at 30.6, 131.0 have different purposes; neither establishes a specific dive entry or surveyed image footprint. The official destination page supplies no dive-point coordinate to resolve against the inventory. JNTO robots returned HTTP 302 to a homepage; that route was not followed and provides no retained native relationship evidence. / Limited whole-island environmental context, suitable for private human review; not exact-site detail or an unqualified hero-photo recommendation. / Known SHA256, canonical NASA ID and zero-padded aliases, native item identity, original URL, target UUID and slug screened against retained historical, recovered, current and two accepted private batches. Baseline 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs persist. This is not global or perceptual uniqueness certification. / {\"source_access_restrictions\": [{\"effects\": {\"holds_preserved\": true, \"new_stops\": [{\"host\": \"lordhoweisland.info\", \"outcome\": \"HTTP_404_STOP\", \"scope\": \"No further request to this publisher; no alternate-route attempt. Native diving page not requested.\", \"url\": \"https://lordhoweisland.info/robots.txt\"}], \"next_independent_relationship_source\": \"lordhoweislandtours.com independently published Comets Hole excursion description discovered in search. This is not a mirror, proxy, or alternate route to the held publisher.\"}, \"retained_restriction_record_sha256\": \"e10fe97f24371bc07521faf216c7b67fdfa615fc338b8fc4a1b32ea26fc7ad98\"}, {\"effects\": {\"new_stops\": [{\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://www.padi.com/robots.txt\"}, {\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://nautilusliveaboards.com/robots.txt\"}], \"no_retry_or_alternate_route\": true, \"preserved\": true}, \"retained_restriction_record_sha256\": \"454931a138a26ac43069f0f7b3e8f5674fa8ed41e2535bd88a5f9fbd4928c8b7\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True and UNCLAIMED; no live website state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"snapshot_copy_identical\": true}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-17887. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "d914db3a-8804-4acc-98b8-64451e932aad",
+    "slug": "tonbara",
+    "src": "https://assets.diveatlas.site/site-photos/v1/a7a4a4a7e36b3789437e4f6b1361e1b9d21c5ad5523b1461c829a337ee6f0e77.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/a7a4a4a7e36b3789437e4f6b1361e1b9d21c5ad5523b1461c829a337ee6f0e77.jpg",
+    "originalSha256": "ac4ec8a19a158dac7d424ec28e55e834c3e55f07aa5db1021915e393cbd0e255",
+    "alt": "Tonbara — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-12300. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-12300. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=12300",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=12300"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Kume Island, Japan, photographed from the International Space Station on 16 April 2014. Historical island and coastal setting for the Tonbara dive area. The exact Tonbara rock, entry and underwater terrain are not identified. Identity: {\"relationship\": {\"country\": \"Japan\", \"evidence\": [\"inventory-record.json\", \"evidence/kume-alt-item.body\", \"evidence/tonbara-relationship.body\"], \"explanation\": \"Native NASA item explicitly names Kumejima and Kume Island. The official Okinawa Convention & Visitors Bureau Kume Island Diving page names Tonbara among its diving sites. The inventory target is Tonbara. This provides an explicit named-island relationship rather than a proximity-only assignment.\", \"inventory_coordinates\": [26.2694, 126.8191], \"limitations\": \"No survey or georeferenced footprint confirms depiction of the exact Tonbara rock. Inventory point 26.2694, 126.8191 is retained. NASA catalog center 26.3, 126.8 and machine-learning center 26.33, 126.82 differ and are not exact dive-site coordinates. The official relationship page supplies no numeric point to resolve against the inventory; its relationship supports only island/coastal context.\", \"native_relationship_url\": \"https://visitokinawajapan.com/discover/dive-sites-okinawa/kume-island-diving/\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Tonbara\", \"target_site_id\": \"d914db3a-8804-4acc-98b8-64451e932aad\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / No survey or georeferenced footprint confirms depiction of the exact Tonbara rock. Inventory point 26.2694, 126.8191 is retained. NASA catalog center 26.3, 126.8 and machine-learning center 26.33, 126.82 differ and are not exact dive-site coordinates. The official relationship page supplies no numeric point to resolve against the inventory; its relationship supports only island/coastal context. / Useful named-island coastal context only; the exact offshore Tonbara rock is not independently identified in the image. / Known SHA256, canonical NASA ID and zero-padded aliases, native item identity, original URL, target UUID and slug screened against retained historical, recovered, current and two accepted private batches. Baseline 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs persist. This is not global or perceptual uniqueness certification. / {\"source_access_restrictions\": [{\"effects\": {\"holds_preserved\": true, \"new_stops\": [{\"host\": \"lordhoweisland.info\", \"outcome\": \"HTTP_404_STOP\", \"scope\": \"No further request to this publisher; no alternate-route attempt. Native diving page not requested.\", \"url\": \"https://lordhoweisland.info/robots.txt\"}], \"next_independent_relationship_source\": \"lordhoweislandtours.com independently published Comets Hole excursion description discovered in search. This is not a mirror, proxy, or alternate route to the held publisher.\"}, \"retained_restriction_record_sha256\": \"e10fe97f24371bc07521faf216c7b67fdfa615fc338b8fc4a1b32ea26fc7ad98\"}, {\"effects\": {\"new_stops\": [{\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://www.padi.com/robots.txt\"}, {\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:25:13Z\", \"state\": \"CLOSED\", \"url\": \"https://nautilusliveaboards.com/robots.txt\"}], \"no_retry_or_alternate_route\": true, \"preserved\": true}, \"retained_restriction_record_sha256\": \"454931a138a26ac43069f0f7b3e8f5674fa8ed41e2535bd88a5f9fbd4928c8b7\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True and UNCLAIMED; no live website state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"snapshot_copy_identical\": true}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-12300. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "571e4a1e-e7bc-44bc-b230-a8dd9dddd874",
+    "slug": "little-cayman",
+    "src": "https://assets.diveatlas.site/site-photos/v1/1d6183e959824f2e1d0345af2038953d1ca4b1e4d09beefdecc9c2599a1228c6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/1d6183e959824f2e1d0345af2038953d1ca4b1e4d09beefdecc9c2599a1228c6.jpg",
+    "originalSha256": "0a2950d58e315ff053b8284e7f4e5b12705c2eefb6633c718817f8f811bcef46",
+    "alt": "Little Cayman — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-20406. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-20406. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=20406&mission=ISS014&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=20406&mission=ISS014&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Little Cayman (left) and Cayman Brac (right), photographed from the International Space Station on 3 March 2007. Historical island and coastal context for Little Cayman; no exact underwater dive feature or entry is identified. Identity: {\"relationship\": {\"country\": \"Cayman Islands\", \"evidence\": [\"inventory-record.json\", \"evidence/little-item.body\", \"evidence/little-relationship.body\"], \"explanation\": \"Inventory target is explicitly named Little Cayman. NASA’s native item names Little Cayman and Cayman Brac, and the complete Little Cayman island is visible at left. Little Cayman Beach Resort’s independently published dive-sites page explicitly identifies Little Cayman Island as a diving destination. This supports broad named-island environmental context, not a proximity-only or exact-site assignment.\", \"inventory_coordinates\": [19.6878, -80.0468], \"limitations\": \"No underwater dive feature, entrance or inventory point is marked. Native catalog center19.5,-80.0 and machine-learning center19.71,-79.89 differ; neither is an exact dive coordinate. No claim is made about the currently available conditions or safety. The resort’s promotional conditions claims are not adopted. Cayman Brac appearing in the same exposure is not counted as another photo or another coverage assignment. Prior access/rights/quality/geography holds remain unchanged.\", \"native_relationship_url\": \"https://littlecayman.com/scuba-diving/dive-sites-and-map/\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Little Cayman\", \"target_site_id\": \"571e4a1e-e7bc-44bc-b230-a8dd9dddd874\", \"target_slug\": \"little-cayman\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / No underwater dive feature, entrance or inventory point is marked. Native catalog center19.5,-80.0 and machine-learning center19.71,-79.89 differ; neither is an exact dive coordinate. No claim is made about the currently available conditions or safety. The resort’s promotional conditions claims are not adopted. Cayman Brac appearing in the same exposure is not counted as another photo or another coverage assignment. Prior access/rights/quality/geography holds remain unchanged. / Useful historical coastal environmental context only; not exact underwater feature depiction or current conditions. / Known SHA256, canonical NASA ID and zero-padded aliases, original URL, target UUID and slug checked against retained historical/recovery/current catalogs and accepted batches. 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs remain. Not a global or perceptual uniqueness certificate. / {\"source_access_restrictions\": [{\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"independent_relationship_publisher\": \"Cayman Brac Beach Resort is an independent native publisher, not a proxy or alternate route for a held publisher.\", \"new_stops\": [{\"host\": \"doe.ky\", \"outcome\": \"HTTP202_CAPTCHA_NOT_COMPLETED\", \"reason\": \"robots response is an HTML refresh to sgcaptcha, not usable robots policy. No challenge followed or other request to publisher.\", \"url\": \"https://doe.ky/robots.txt\"}], \"prior_additional_stops\": [\"visitcaymanislands.com403\", \"tahititourisme.com403\", \"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\"]}, \"retained_restriction_record_sha256\": \"e7d4025a4cc67609394ed2621180a54837768bdecae3d02368e9b955a7817066\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, UNCLAIMED. No live site-state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-20406. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "8ce4cb5f-ba08-49f0-955c-28a0b1de94f0",
+    "slug": "off-cape-eleuthera",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ef8215da26455011ffa83189d0fbf8549c139e29ddf5ce0bc5cbb69a0284c804.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ef8215da26455011ffa83189d0fbf8549c139e29ddf5ce0bc5cbb69a0284c804.jpg",
+    "originalSha256": "092b8bf68b5e784389913e73bfefb3cf5172d8784f82a8d4f53269cbcec71249",
+    "alt": "Off Cape Eleuthera — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS008-E-11209. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS008-E-11209. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11209&mission=ISS008&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=11209&mission=ISS008&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Cape Eleuthera and surrounding southern Eleuthera coast, The Bahamas, photographed from the International Space Station on 29 December 2003. Historical coastal context for Off Cape Eleuthera; the exact dive wall and entry are not identified. Identity: {\"relationship\": {\"country\": \"The Bahamas\", \"evidence\": [\"inventory-record.json\", \"evidence/eleuthera-item.body\", \"evidence/eleuthera-relationship.body\"], \"explanation\": \"The inventory target is Off Cape Eleuthera. Native NASA metadata explicitly identifies Cape Eleuthera, and the independent Cape Eleuthera Resort dive-shop page explicitly identifies the waters surrounding Cape Eleuthera as its diving area. The cape and adjacent waters are legible in this historical image. This is a named-cape coastal setting relationship, not a distance-only match or an assertion that the exact wall or inventory point is pictured.\", \"inventory_coordinates\": [24.8172378, -76.3499165], \"limitations\": \"Broad cape/coastal context only. The exact Off Cape Eleuthera dive point, wall, entry and photographic footprint are not surveyed or independently marked. Catalog center25.0,-76.5 and machine-learning center24.93,-76.27 differ and are not used as exact dive coordinates. Scene cloud category is not a guarantee of clear water at the target. No current visibility, safety, wildlife or access claim is adopted from resort promotion. All prior holds remain.\", \"native_relationship_url\": \"https://capeeleuthera.com/activities/the-dive-shop/\", \"region\": \"Bahamas\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Off Cape Eleuthera\", \"target_site_id\": \"8ce4cb5f-ba08-49f0-955c-28a0b1de94f0\", \"target_slug\": \"off-cape-eleuthera\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Broad cape/coastal context only. The exact Off Cape Eleuthera dive point, wall, entry and photographic footprint are not surveyed or independently marked. Catalog center25.0,-76.5 and machine-learning center24.93,-76.27 differ and are not used as exact dive coordinates. Scene cloud category is not a guarantee of clear water at the target. No current visibility, safety, wildlife or access claim is adopted from resort promotion. All prior holds remain. / Useful historical coastal environmental context only; not exact underwater feature depiction or current conditions. / Known SHA256, canonical NASA ID and zero-padded aliases, original URL, target UUID and slug checked against retained historical/recovery/current catalogs and accepted batches. 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs remain. Not a global or perceptual uniqueness certificate. / {\"source_access_restrictions\": [{\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"independent_relationship_publisher\": \"Cayman Brac Beach Resort is an independent native publisher, not a proxy or alternate route for a held publisher.\", \"new_stops\": [{\"host\": \"doe.ky\", \"outcome\": \"HTTP202_CAPTCHA_NOT_COMPLETED\", \"reason\": \"robots response is an HTML refresh to sgcaptcha, not usable robots policy. No challenge followed or other request to publisher.\", \"url\": \"https://doe.ky/robots.txt\"}], \"prior_additional_stops\": [\"visitcaymanislands.com403\", \"tahititourisme.com403\", \"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\"]}, \"retained_restriction_record_sha256\": \"e7d4025a4cc67609394ed2621180a54837768bdecae3d02368e9b955a7817066\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, UNCLAIMED. No live site-state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS008-E-11209. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "4c60bda8-b5f0-4aff-8c32-d7d842ae9b69",
+    "slug": "canyons-moorea-tahiti",
+    "src": "https://assets.diveatlas.site/site-photos/v1/08952dfcca7798ad356b3efa615eecb8965be12f0da8e70feea91c67e727f857.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/08952dfcca7798ad356b3efa615eecb8965be12f0da8e70feea91c67e727f857.jpg",
+    "originalSha256": "9d4fe93441705c1808500cf42a7198a02388288791676b6d381f1f18e45110ad",
+    "alt": "Canyons - Moorea (Tahiti) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-39837. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-39837. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=39837&mission=ISS006&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=39837&mission=ISS006&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Moorea, French Polynesia, photographed from the International Space Station on 19 March 2003. Historical island and coastal setting for the Canyons–Moorea dive area. The exact underwater canyons and entry are not identified. Identity: {\"relationship\": {\"country\": \"French Polynesia\", \"evidence\": [\"inventory-record.json\", \"evidence/moorea-item.body\", \"evidence/moorea-relationship.body\", \"evidence/moorea-relationship.txt\"], \"explanation\": \"Inventory target explicitly names Canyons–Moorea. NASA names Moorea and the entire island/coast is visible. TOPDIVE’s independent native Opunohu Canyons article places the named canyon dive area on Moorea’s north side, between Opunohu and Cook’s bays and outside the lagoon. This supplies an explicit named-island and north-coast context relationship. It does not prove an exact underwater canyon or reconcile all dive-site naming variants.\", \"inventory_coordinates\": [-17.4779, -149.8511], \"limitations\": \"Broad Moorea/north-coast context only. Exact underwater canyons, entry and inventory point are not identified or surveyed in the image. Native photo center -17.5,-150.0 and machine-learning center -17.53,-149.83 have different accuracy and are not target coordinates. Independent source is a historical operator narrative; conditions, wildlife, feeding and safety statements are not adopted. Its credited underwater images were not downloaded. Tahiti tourism family403 and LTER rights holds were preserved; no alternate held-publisher route used.\", \"native_relationship_url\": \"https://topdive.com/the-opunohu-canyons-moorea/\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Canyons - Moorea (Tahiti)\", \"target_site_id\": \"4c60bda8-b5f0-4aff-8c32-d7d842ae9b69\", \"target_slug\": \"canyons-moorea-tahiti\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Broad Moorea/north-coast context only. Exact underwater canyons, entry and inventory point are not identified or surveyed in the image. Native photo center -17.5,-150.0 and machine-learning center -17.53,-149.83 have different accuracy and are not target coordinates. Independent source is a historical operator narrative; conditions, wildlife, feeding and safety statements are not adopted. Its credited underwater images were not downloaded. Tahiti tourism family403 and LTER rights holds were preserved; no alternate held-publisher route used. / Useful historical coastal environmental context only; not exact underwater feature depiction or current conditions. / Known SHA256, canonical NASA ID and zero-padded aliases, original URL, target UUID and slug checked against retained historical/recovery/current catalogs and accepted batches. 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs remain. Not a global or perceptual uniqueness certificate. / {\"source_access_restrictions\": [{\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"independent_relationship_publisher\": \"Cayman Brac Beach Resort is an independent native publisher, not a proxy or alternate route for a held publisher.\", \"new_stops\": [{\"host\": \"doe.ky\", \"outcome\": \"HTTP202_CAPTCHA_NOT_COMPLETED\", \"reason\": \"robots response is an HTML refresh to sgcaptcha, not usable robots policy. No challenge followed or other request to publisher.\", \"url\": \"https://doe.ky/robots.txt\"}], \"prior_additional_stops\": [\"visitcaymanislands.com403\", \"tahititourisme.com403\", \"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\"]}, \"retained_restriction_record_sha256\": \"e7d4025a4cc67609394ed2621180a54837768bdecae3d02368e9b955a7817066\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, UNCLAIMED. No live site-state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-39837. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "b018e304-d183-44b4-8349-441ad4f42135",
+    "slug": "east-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f0178380b10ce4a49d7303dec470b890ecdf9d2b67373fb01493d0e1c69842a5.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f0178380b10ce4a49d7303dec470b890ecdf9d2b67373fb01493d0e1c69842a5.jpg",
+    "originalSha256": "a5bd99a6d2537d81d47a8a3701b05b43e7f7907fd07affbee82b1af2d5d0f1ae",
+    "alt": "East Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS036-E-5626. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS036-E-5626. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=5626&mission=ISS036&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=5626&mission=ISS036&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Saipan and its surrounding coast and reef lagoon, photographed from the International Space Station on 31 May 2013. Historical island context for East Bay; not a photograph of the underwater dive site. Identity: {\"relationship\": {\"country\": \"United States of America\", \"evidence\": [\"evidence/saipan-relationship.body\", \"evidence/saipan-relationship-text.txt\", \"evidence/saipan-operator-robots.body\", \"evidence/saipan-item.body\"], \"explanation\": \"The independently retained native Saipan Adventure operator article explicitly titles its activity “saipan east bay Snorkeling tour”, repeatedly names “SAIPAN EAST BAY”, and describes it as a snorkeling and freediving tour on Saipan’s east side. This supports the named-island setting of eligible inventory East Bay, not pixel-level delineation. The native NASA item supplies northern Mariana geographic region and center 15.2 N,145.8 E; the visible island outline and reef context are consistent with Saipan. Public-input place labels on NASA’s page are not represented as NASA-authored identification.\", \"inventory_coordinates\": [15.15659, 145.77008], \"limitations\": \"Historical whole-island environmental context only. East Bay itself, the exact inventory coordinate, reef, entry and underwater wall are not certified as depicted. Do not use this frame as dive navigation or current conditions. Operator wording supports a broad named location, not safety or current access. Detailed NASA-page place names are public contributions. No precise footprint was verified. Inventory main-photo need is retained, not live-checked.\", \"native_relationship_url\": \"https://saipan-adventure.tistory.com/88\", \"region\": \"Saipan\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"East Bay\", \"target_site_id\": \"b018e304-d183-44b4-8349-441ad4f42135\", \"target_slug\": \"east-bay\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Historical whole-island environmental context only. East Bay itself, the exact inventory coordinate, reef, entry and underwater wall are not certified as depicted. Do not use this frame as dive navigation or current conditions. Operator wording supports a broad named location, not safety or current access. Detailed NASA-page place names are public contributions. No precise footprint was verified. Inventory main-photo need is retained, not live-checked. / Useful historical coastal environmental context only; not exact underwater feature depiction or current conditions. / Known SHA256, canonical NASA ID and zero-padded aliases, original URL, target UUID and slug checked against retained historical/recovery/current catalogs and accepted batches. 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs remain. Not a global or perceptual uniqueness certificate. / {\"source_access_restrictions\": [{\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [], \"prior_stops\": [\"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"doe.ky HTTP202 CAPTCHA\", \"visitcaymanislands.com403\", \"tahititourisme.com403\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\", \"Dryad download robots block\"]}, \"retained_restriction_record_sha256\": \"32ce79658b1511db6e11f8f46091e36ac45f1fd66d7cd7745a5caab525331167\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, UNCLAIMED. No live site-state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS036-E-5626. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "09508b76-2db9-4a96-9e1a-f20686cecd8a",
+    "slug": "cabbage-patch-cocos-keeling",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cc1054e79a7981b6c1ccd10ebe9a280d81b2f6f269b0741f7f41708abaf2ad83.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cc1054e79a7981b6c1ccd10ebe9a280d81b2f6f269b0741f7f41708abaf2ad83.jpg",
+    "originalSha256": "75d34ed161f4e372393e8b9ef395d24e634d96386dd220d0acaf7cf86ca2b876",
+    "alt": "Cabbage Patch Cocos Keeling — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS070-E-74721. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS070-E-74721. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=74721&mission=ISS070&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=74721&mission=ISS070&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. South Keeling Atoll in the Cocos (Keeling) Islands, photographed from the International Space Station on 19 January 2024. Historical atoll context for Cabbage Patch Cocos Keeling; not a photograph of the underwater coral garden. Identity: {\"relationship\": {\"country\": \"Australia\", \"evidence\": [\"evidence/cocos-relationship.body\", \"evidence/cocos-relationship-text.txt\", \"evidence/cocos-nasa-article.body\", \"evidence/cocos-nasa-article-text.txt\", \"evidence/cocos-item.body\"], \"explanation\": \"The native SSI/Scubago site profile 278793 explicitly names “Cabbage Patch Cocos Keeling” and calls it a dive site in the Cocos Islands, credited to COCOS DIVE, COCOS K ISLANDS. The eligible inventory uses the same native site identity and coordinates on the western South Keeling atoll reef. The independently retained NASA South Keeling article explicitly links photo ISS070-E-74721 to the photographed South Keeling atoll and distinguishes it from North Keeling outside the frame. This supports broad atoll environmental context, not an exact underwater coral-garden depiction.\", \"inventory_coordinates\": [-12.0946, 96.8422], \"limitations\": \"Historical atoll environmental context only. Exact Cabbage Patch coral structures, dive-site boundaries and the inventory point are not certified as depicted. Native item has no photo-center coordinates, and no precise footprint was verified. No dive-navigation or current-conditions use. The distinct official tourism publisher returned robots403 and was not retried; the independent native SSI/Scubago profile was discovered directly and is not a proxy or copy of that tourism page. Inventory photo need is retained, not live-checked.\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/cabbage-patch-cocos-keeling-278793\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"target_name\": \"Cabbage Patch Cocos Keeling\", \"target_site_id\": \"09508b76-2db9-4a96-9e1a-f20686cecd8a\", \"target_slug\": \"cabbage-patch-cocos-keeling\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Historical atoll environmental context only. Exact Cabbage Patch coral structures, dive-site boundaries and the inventory point are not certified as depicted. Native item has no photo-center coordinates, and no precise footprint was verified. No dive-navigation or current-conditions use. The distinct official tourism publisher returned robots403 and was not retried; the independent native SSI/Scubago profile was discovered directly and is not a proxy or copy of that tourism page. Inventory photo need is retained, not live-checked. / Useful historical coastal environmental context only; not exact underwater feature depiction or current conditions. / Known SHA256, canonical NASA ID and zero-padded aliases, original URL, target UUID and slug checked against retained historical/recovery/current catalogs and accepted batches. 25 unresolved native IDs plus 1 slug-only and 32 missing original URLs remain. Not a global or perceptual uniqueness certificate. / {\"source_access_restrictions\": [{\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [{\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:33:16Z\", \"state\": \"CLOSED\", \"url\": \"https://axfactordive.com/robots.txt\"}, {\"error\": \"HTTP Error 406: Not Acceptable\", \"http_status\": 406, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:33:16Z\", \"state\": \"CLOSED\", \"url\": \"https://www.vavau.to/robots.txt\"}, {\"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:38:08Z\", \"state\": \"CLOSED\", \"url\": \"https://cocoskeelingislands.com.au/robots.txt\"}], \"prior_stops\": [\"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"doe.ky HTTP202 CAPTCHA\", \"visitcaymanislands.com403\", \"tahititourisme.com403\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\", \"Dryad download robots block\"]}, \"retained_restriction_record_sha256\": \"448f187b4dd634e25abb0e1683cb50c17a01bf20c1ef03eb5beb7d0dc87c341c\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, UNCLAIMED. No live site-state check or current coverage claim.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception indicated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS070-E-74721. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "d673c10a-4eff-4de4-80bf-353d5e36c685",
+    "slug": "punta-castagna",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cfb1796bfad2a94e17592181454f10359383e9ba0113f4e24d49b316483ad3cb.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cfb1796bfad2a94e17592181454f10359383e9ba0113f4e24d49b316483ad3cb.jpg",
+    "originalSha256": "67ee488189bb0db5b2b91d10555573fc49e416cfd1bf087f27221229f70f1f46",
+    "alt": "Punta Castagna — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-9777. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific copyright exception found for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-9777. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific copyright exception found for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9777&mission=ISS017&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=9777&mission=ISS017&roll=E"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific copyright exception found for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Lipari Island and part of neighboring Vulcano, photographed from the International Space Station on 24 June 2008. Historical island/coastal context for Punta Castagna, not a verified photograph of the dive site. NASA photo ISS017-E-9777. Identity: {\"relationship\": {\"country\": \"Italy\", \"evidence\": [\"inventory-record.json\", \"evidence/lipari-relationship.body\", \"evidence/lipari-scubago-profile.body\", \"evidence/lipari-profile.body\", \"evidence/lipari-item.body\"], \"exact_coordinate_discrepancy_status\": \"HELD_UNRESOLVED_NOT_USED_FOR_EXACT_SITE_VALIDATION\", \"explanation\": \"NASA-authored Image Caption identifies Lipari and the northern portion of Vulcano, including Lipari north/northeast pumice beaches. The native Lipari Diving operator page explicitly lists Punta Castagna under its Lipari dives. The inventory-linked SSI URL canonically redirects to Scubago profile 309375, which retains the exact Punta Castagna name and inventory coordinates 38.521, 14.9629. Divemap independently corroborates the named Lipari association but its differing precise point is held. This supports only named Lipari island/coastal setting.\", \"inventory_coordinates\": [38.521, 14.9629], \"inventory_native_profile\": \"https://www.scubago.com/en/explore/divesite/punta-castagna-309375\", \"limitations\": \"Historical whole-island environmental context only. No exact Punta Castagna entry, seabed, wildlife, current conditions, or exact visible footprint is established. Divemap places the similarly named site at 38.524,14.959, approximately 476 m from the inventory/SSI-linked native point; that precise-coordinate discrepancy remains unresolved and is not used to move or validate the inventory point. Source center coordinates are image-center metadata, not the dive site or camera position. No production assignment, publication, or coverage credit.\", \"native_profile_coordinates\": [38.521, 14.9629], \"native_relationship_url\": \"https://www.liparidiving.it/eng/immersioni-lipari.html\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_LIPARI_ISLAND_COASTAL_SETTING_ONLY\", \"secondary_profile\": \"https://divemap.be/dive-sites/punta-castagna-lipari.html\", \"target_name\": \"Punta Castagna\", \"target_site_id\": \"d673c10a-4eff-4de4-80bf-353d5e36c685\", \"target_slug\": \"punta-castagna\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Historical whole-island environmental context only. No exact Punta Castagna entry, seabed, wildlife, current conditions, or exact visible footprint is established. Divemap places the similarly named site at 38.524,14.959, approximately 476 m from the inventory/SSI-linked native point; that precise-coordinate discrepancy remains unresolved and is not used to move or validate the inventory point. Source center coordinates are image-center metadata, not the dive site or camera position. No production assignment, publication, or coverage credit. / Historical named-island/coastal environment candidate only. / 25 unresolved native IDs plus 1 slug/file-only row and 32 missing original URLs remain. Known exact checks only. / {\"additional_source_restrictions\": {\"source_request_outcomes\": {\"all_prior_holds_preserved\": true, \"denied_or_uncertain_retries\": 0, \"global_request_history_complete\": false, \"new_source_denials\": 0, \"normal_canonical_redirects_followed\": 2, \"redirect_note\": \"SSI and Scubago returned explicit 301 Locations, followed as ordinary canonical redirects. These are not access denials.\"}}} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"independent_relationship_publisher\": \"Cayman Brac Beach Resort is an independent native publisher, not a proxy or alternate route for a held publisher.\", \"new_stops\": [{\"host\": \"doe.ky\", \"outcome\": \"HTTP202_CAPTCHA_NOT_COMPLETED\", \"reason\": \"robots response is an HTML refresh to sgcaptcha, not usable robots policy. No challenge followed or other request to publisher.\", \"url\": \"https://doe.ky/robots.txt\"}], \"prior_additional_stops\": [\"visitcaymanislands.com403\", \"tahititourisme.com403\", \"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\"]}, \"retained_restriction_record_sha256\": \"e7d4025a4cc67609394ed2621180a54837768bdecae3d02368e9b955a7817066\"}, {\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [{\"completed_not_after_utc\": \"2026-11-13T05:40:31Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:33:16Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual clock bounds; acquisition_completed_utc is a retained upper bound, not an exact transfer instant. Host timestamps ignored.\", \"url\": \"https://axfactordive.com/robots.txt\"}, {\"completed_not_after_utc\": \"2026-11-13T05:40:31Z\", \"error\": \"HTTP Error 406: Not Acceptable\", \"http_status\": 406, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:33:16Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual clock bounds; acquisition_completed_utc is a retained upper bound, not an exact transfer instant. Host timestamps ignored.\", \"url\": \"https://www.vavau.to/robots.txt\"}, {\"completed_not_after_utc\": \"2026-11-13T05:40:31Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:38:08Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual clock bounds; acquisition_completed_utc is a retained upper bound, not an exact transfer instant. Host timestamps ignored.\", \"url\": \"https://cocoskeelingislands.com.au/robots.txt\"}], \"prior_stops\": [\"PADI403\", \"Nautilus403\", \"USGS403\", \"japan.travel robots302\", \"doe.ky HTTP202 CAPTCHA\", \"visitcaymanislands.com403\", \"tahititourisme.com403\", \"NASA ISS034-E-12364 timeout\", \"NASA ISS013-E-5755 pending\", \"Dryad download robots block\"]}, \"retained_restriction_record_sha256\": \"ddced4962ed4232e6f1cb8100ef92db5e397ddaa3d93f0b2cb0c5188e2cb1613\"}, {\"effects\": {\"inherited_source_restrictions\": {\"scope\": \"Independent broad-source follow-on, excluding NPS/FWS/NASA and all previously held routes.\", \"sources\": [{\"detail\": \"Observation/photo routes on main website and data routes on API are disallowed for wildcard agents. No observation/photo/API data retrieval attempted; no GBIF/mirror substitute.\", \"source\": \"iNaturalist\", \"status\": \"ROBOTS_RESTRICTED\"}, {\"detail\": \"robots preflight failed. No image retrieval attempted. Indexed copyright guidance excludes third-party photos and individual portraits, so blanket website CC BY is not enough.\", \"source\": \"AIMS\", \"status\": \"PREFLIGHT_UNAVAILABLE_HTTP_503\"}, {\"detail\": \"www preflight denied. API robots separately returned 200 but no dataset/image query used to replace denied web route. Diveboard licence badge CC BY-NC conflicts with older metadata description; dataset rights cannot be assumed to cover photographs.\", \"source\": \"GBIF\", \"status\": \"WEB_PREFLIGHT_HTTP_403\"}, {\"detail\": \"Public main site and terms accessible. Terms reserve content rights and restrict public/commercial reproduction absent permission or site sharing features. No per-image reusable licence established; no photos downloaded.\", \"source\": \"Diveboard\", \"status\": \"RIGHTS_NOT_ESTABLISHED\"}, {\"detail\": \"robots disallows */download/* and API routes. Did not use a CDN or resized URL to evade the download-route restriction.\", \"source\": \"Pexels\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}, {\"detail\": \"robots disallows /photos/*/download. No direct-CDN bypass or photo retrieval attempted.\", \"source\": \"Unsplash\", \"status\": \"DOWNLOAD_ROUTE_DISALLOWED\"}]}, \"scope\": \"Read-only source-access outcomes for this collection. A denial is not permission to try an alternate host/route; preserve these holds when resuming.\", \"sources\": [{\"hosts\": [\"commons.wikimedia.org\", \"flickr.com\", \"staticflickr.com\", \"openverse.org\"], \"status\": \"PREEXISTING_HOLD\"}, {\"hosts\": [\"www.nps.gov\"], \"note\": \"Per-image rights and geographic identity still required\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"flowergarden.noaa.gov\", \"sanctuaries.noaa.gov\"], \"status\": \"HELD_HTTP_403\"}, {\"hosts\": [\"www.usgs.gov\"], \"status\": \"HELD_HTTP_403_PREFLIGHT\"}, {\"hosts\": [\"www.dvidshub.net\"], \"status\": \"HELD_HTTP_502_PREFLIGHT\"}, {\"hosts\": [\"www.fws.gov\"], \"note\": \"Some photographs explicitly copyrighted; do not assume all federal-site media public domain\", \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"fhwaapps.fhwa.dot.gov\"], \"status\": \"ACCESSIBLE_BOUNDED\"}, {\"hosts\": [\"science.nasa.gov\", \"www.nasa.gov\"], \"status\": \"ACCESSIBLE_BOUNDED_PASS_COMPLETE\"}, {\"hosts\": [\"earthobservatory.nasa.gov\"], \"status\": \"HELD_HTTP_503_PREFLIGHT\"}, {\"hosts\": [\"www.visitcaymanislands.com\", \"www.tahititourisme.com\"], \"status\": \"RELATIONSHIP_PAGE_ACCESS_HELD_HTTP_403\"}, {\"exact_url\": \"https://www.visitguam.com/listing/ritidian-point/5606/\", \"hosts\": [\"www.visitguam.com\"], \"status\": \"HELD_HTTP_403_SUPPORTING_PAGE\"}, {\"hosts\": [\"hs.pangaea.de\"], \"status\": \"ROBOTS_DISALLOW_ALL\"}, {\"hosts\": [\"zenodo.org\"], \"note\": \"General API and preview routes restricted; no alternate route used. Source record/file access independently assessed. Large archive not retained.\", \"status\": \"ONE_PERMITTED_ORIGINAL_COLLECTED_FURTHER_SUNBOAT_SAMPLING_HELD\"}, {\"hosts\": [\"oceanimagebank.theoceanagency.org\"], \"result\": \"No image retrieval. Commercial reuse requires separate permission; automated retrieval also restricted without express authorization.\", \"source_pages\": [\"https://oceanimagebank.theoceanagency.org/about\", \"https://oceanimagebank.theoceanagency.org/terms-of-service\", \"https://oceanimagebank.theoceanagency.org/imagery-use\"], \"status\": \"INELIGIBLE_NONCOMMERCIAL_AND_AUTOMATED_RETRIEVAL_RESTRICTION\"}]}, \"retained_restriction_record_sha256\": \"c9554c426118042c520073a109b444be31a5462c0376c6291753460d2e82120a\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True and UNCLAIMED; not a fresh live-state check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": [\"evidence/NASA-inherited-policy.html\", \"evidence/lipari-item.body\"], \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific copyright exception found for this exposure.\", \"no_endorsement\": true, \"outreach\": false, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-9777. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "caa3f34a-049e-4ae2-b17c-6e6e6f8f581b",
+    "slug": "alviksvraket",
+    "src": "https://assets.diveatlas.site/site-photos/v1/ac65306aa7c726f5ed7b5f2bd4904c3d014f1d03808d1d08a5c773770a8eb9e6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/ac65306aa7c726f5ed7b5f2bd4904c3d014f1d03808d1d08a5c773770a8eb9e6.jpg",
+    "originalSha256": "08cde0f1864226ab9f3ebc692005d5963c8e1f4fdd9706cb05265a94d017302c",
+    "alt": "Alviksvraket — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Axel Swinhufvud / Stadsmuseet i Stockholm, SSMASW004814 (1914–1931), via Stockholmskällan. CC BY, version not specified by source. · CC-BY · Cropped/resized",
+    "creator": "Axel Swinhufvud / Stadsmuseet i Stockholm, SSMASW004814 (1914–1931), via Stockholmskällan. CC BY, version not specified by source.",
+    "license": "CC-BY",
+    "source": "reviewed-context",
+    "sourcePage": "https://stockholmskallan.stockholm.se/post/31989",
+    "licenceUrl": "https://stockholmskallan.stockholm.se/vad-ar-stockholmskallan/upphovsratt/",
+    "links": [
+      {
+        "label": "Rights evidence",
+        "url": "https://se.creativecommons.net/om-cc/licenserna/"
+      },
+      {
+        "label": "Source",
+        "url": "https://stockholmskallan.stockholm.se/post/31989"
+      },
+      {
+        "label": "CC-BY",
+        "url": "https://stockholmskallan.stockholm.se/vad-ar-stockholmskallan/upphovsratt/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"evidence\": \"Native Scubago page explicitly places Alviksvraket near Alvik beach in Lake Mälaren and supplies exact inventory coordinates. Native Stockholm photograph caption explicitly identifies Alvik and Alviks strand. Independently indexed DYK and Ecodive descriptions identify the dive as Alvik/Tranebergs Strand, but raw origin responses for those corroborating pages were not fetched.\", \"inventory_coordinates\": [59.3316, 17.9893], \"limitations\": \"Historical 1914–1931 shore/bridge view only. It predates the wreck sinking in1991. No wreck, underwater habitat, precise entry or modern infrastructure is depicted or verified. Exact camera point and depicted shoreline footprint were not surveyed. Inventory/source pin equality is same-source consistency, not independent coordinate validation.\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/alviksvraket-4029\", \"production_assignment\": false, \"relationship_native_id\": \"SSI/Scubago:4029\", \"scope\": \"HISTORICAL_NAMED_ALVIK_SHORE_CONTEXT_ONLY\", \"source_coordinates_match_inventory\": true, \"source_description_names\": \"The Lars Montén & Co candle factory at Alviks strand is glimpsed to the right beyond the bridge.\", \"source_title_names\": \"Old Tranebergsbron toward southwest with Stora Essingen and Alvik in the background\", \"target_name\": \"Alviksvraket\", \"target_site_id\": \"caa3f34a-049e-4ae2-b17c-6e6e6f8f581b\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Historical 1914–1931 shore/bridge view only. It predates the wreck sinking in1991. No wreck, underwater habitat, precise entry or modern infrastructure is depicted or verified. Exact camera point and depicted shoreline footprint were not surveyed. Inventory/source pin equality is same-source consistency, not independent coordinate validation. / Before publication, preserve the exact source grant and attribution; do not silently relabel as a specific CC version. / {\"additional_source_restrictions\": {\"source_history_scope\": \"No matching earlier Stockholm/stockholmskallan or exact blob-host operation found in available local text before requests; this is a partial-history screen, not complete historical clearance.\"}} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"attribution\": \"Axel Swinhufvud / Stadsmuseet i Stockholm, SSMASW004814 (1914–1931), via Stockholmskällan. CC BY, version not specified by source.\", \"capture_date\": \"1914–1931\", \"changes\": \"None to original JPEG.\", \"creator\": \"Axel Swinhufvud\", \"creator_native_form\": \"Swinhufvud, Axel (1888-1978)\", \"holding_institution\": \"Stadsmuseet i Stockholm\", \"item_licence_label\": \"CC-BY\", \"item_native_rights_text\": \"Du får använda materialet fritt om du anger upphov (fotograf, författare, konstnär).\", \"licence_family\": \"Creative Commons Attribution\", \"licence_version\": null, \"limitation\": \"Before publication, preserve the exact source grant and attribution; do not silently relabel as a specific CC version.\", \"native_accession\": \"SSMASW004814\", \"native_item\": \"https://stockholmskallan.stockholm.se/post/31989\", \"policy_interpretation\": \"The source distinguishes unrestricted CC-BY reuse, including alteration/cropping/printing with credit, from CC-BY-NC commercial-use limits. This item is CC-BY, not CC-BY-NC. No assumption of public domain based on age.\", \"publication_or_assignment_approval\": false, \"source_license_explainer_link\": \"https://se.creativecommons.net/om-cc/licenserna/\", \"source_rights_policy\": \"https://stockholmskallan.stockholm.se/vad-ar-stockholmskallan/upphovsratt/\", \"version_status\": \"Source does not specify a version. No numbered version inferred.\"}"
+  },
+  {
+    "siteId": "dcad4cf4-756a-43a7-9204-b036eeacec79",
+    "slug": "anna-maria",
+    "src": "https://assets.diveatlas.site/site-photos/v1/cfcd9151b2e85945fab47b9a24d59e3a7de70682a34fa9fe212faddc1aaafb73.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/cfcd9151b2e85945fab47b9a24d59e3a7de70682a34fa9fe212faddc1aaafb73.jpg",
+    "originalSha256": "41c667028596dae8a034d3a3d7a92259bbf317ebfb938950a2a0c46c89b79b2d",
+    "alt": "Anna-Maria — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · John Kjellström / Stadsmuseet i Stockholm, Stadsmuseet:SvD 33441 (1953-01-12), via Stockholmskällan. CC BY, source version unspecified. · CC-BY · Cropped/resized",
+    "creator": "John Kjellström / Stadsmuseet i Stockholm, Stadsmuseet:SvD 33441 (1953-01-12), via Stockholmskällan. CC BY, source version unspecified.",
+    "license": "CC-BY",
+    "source": "reviewed-context",
+    "sourcePage": "https://stockholmskallan.stockholm.se/post/27294",
+    "licenceUrl": "https://se.creativecommons.net/om-cc/licenserna/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://stockholmskallan.stockholm.se/post/27294"
+      },
+      {
+        "label": "CC-BY",
+        "url": "https://se.creativecommons.net/om-cc/licenserna/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"evidence_type\": \"Retained indexed native relationship excerpt plus fresh native archive item; not a fresh native relationship origin response\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [59.1291, 18.4031], \"inventory_needs_main_photo\": \"True\", \"native_relationship_url\": \"https://www.scubago.com/sv/explore/divesite/anna-maria-273700\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"relationship_evidence\": \"evidence/relationship-retained-excerpt.json\", \"relationship_summary\": \"The retained indexed native Scubago profile explicitly places Anna-Maria just outside Dalarö harbor. The native archive photograph explicitly identifies the view at Dalarö Tullhus. This establishes a named harbor setting, not the wreck or precise entry.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_PLACE_CONTEXT_ONLY\", \"target_name\": \"Anna-Maria\", \"target_site_id\": \"dcad4cf4-756a-43a7-9204-b036eeacec79\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Scubago Anna-Maria origin retrieval remains uncertain, with no response body established. No retry or alternate retrieval. Relationship uses already-retained indexed excerpt only. / {\"additional_source_restrictions\": {\"source_relationship_access_hold\": \"Scubago Anna-Maria origin retrieval remains uncertain, with no response body established. No retry or alternate retrieval. Relationship uses already-retained indexed excerpt only.\"}} / {\"source_access_restrictions\": [{\"effects\": {\"coverage_limit\": \"Historical named harbor context only, no exact wreck or entry coverage.\", \"further_retrieval\": \"Held; no retry or alternative retrieval performed.\", \"outcome\": \"Retrieval outcome uncertain; no fresh origin response was established.\", \"relationship_basis\": \"Only the indexed native excerpt retained before the unsuccessful retrieval is used.\", \"response_body_retained\": false, \"source_url\": \"https://www.scubago.com/sv/explore/divesite/anna-maria-273700\"}, \"retained_restriction_record_sha256\": \"e52d42961cf1950ed0b8a3db96a45831c835dcb66846f546ff4fce45d17f1296\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"attribution\": \"John Kjellström / Stadsmuseet i Stockholm, Stadsmuseet:SvD 33441 (1953-01-12), via Stockholmskällan. CC BY, source version unspecified.\", \"capture_date\": \"1953-01-12\", \"commercial_restriction_seen_in_item_label\": false, \"creator_display\": \"John Kjellström\", \"licence_version\": null, \"licence_version_note\": \"Native label does not specify version. No version inferred or promoted.\", \"native_item\": \"https://stockholmskallan.stockholm.se/post/27294\", \"native_item_rights_text\": \"CC-BY\\nDu får använda materialet fritt om du anger upphov (fotograf, författare, konstnär).\", \"native_rights_link\": \"https://se.creativecommons.net/om-cc/licenserna/\", \"publication_or_assignment_authorized\": false, \"source_creator_raw\": \"Kjellström, John (1921-1995)\", \"source_date_raw\": \"12 januari 1953\", \"source_rights_label_raw\": \"CC-BY\", \"source_title_raw\": \"Utsikt vid Dalarö Tullhus\", \"unknown_creator_note\": null}"
+  },
+  {
+    "siteId": "7615d26b-5b89-41b6-bd77-e74d51c600c7",
+    "slug": "vardshusvraket",
+    "src": "https://assets.diveatlas.site/site-photos/v1/09a825f571a22a73bd889cbade4ed7433e816373f1000d13cb0a5826c9a35f67.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/09a825f571a22a73bd889cbade4ed7433e816373f1000d13cb0a5826c9a35f67.jpg",
+    "originalSha256": "3a6b26ed857604cda9a20e66f364e7c2816dfab14a01d34ad25c2285cc2991ca",
+    "alt": "Värdshusvraket — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Unknown photographer / Sjöhistoriska museet, Ekensbergs varvs samling, Sjöhistoriska:Fo169100 (1918–1919), via Stockholmskällan. CC BY, source version unspecified. · CC-BY · Cropped/resized",
+    "creator": "Unknown photographer / Sjöhistoriska museet, Ekensbergs varvs samling, Sjöhistoriska:Fo169100 (1918–1919), via Stockholmskällan. CC BY, source version unspecified.",
+    "license": "CC-BY",
+    "source": "reviewed-context",
+    "sourcePage": "https://stockholmskallan.stockholm.se/post/35619",
+    "licenceUrl": "https://se.creativecommons.net/om-cc/licenserna/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://stockholmskallan.stockholm.se/post/35619"
+      },
+      {
+        "label": "CC-BY",
+        "url": "https://se.creativecommons.net/om-cc/licenserna/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"evidence_type\": \"Retained indexed native relationship excerpt plus fresh native archive item; not a fresh native relationship origin response\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [59.3165, 17.9848], \"inventory_needs_main_photo\": \"True\", \"native_relationship_url\": \"https://www.dykarna.nu/dykplatser/vardshusvraket-fran-grondal_vardshusvraket-stockholm-826-961.html\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"relationship_evidence\": \"evidence/relationship-retained-excerpt.json\", \"relationship_summary\": \"The retained indexed native Dykarna page identifies Värdshusvraket from Gröndal and directs the approach to the water at Ekensberg. The native archive photograph explicitly identifies Ekensberg shipyard in Gröndal. This supports the named shore setting only, not a precise match of the depicted dock to the present entry.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_PLACE_CONTEXT_ONLY\", \"target_name\": \"Värdshusvraket\", \"target_site_id\": \"7615d26b-5b89-41b6-bd77-e74d51c600c7\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"attribution\": \"Unknown photographer / Sjöhistoriska museet, Ekensbergs varvs samling, Sjöhistoriska:Fo169100 (1918–1919), via Stockholmskällan. CC BY, source version unspecified.\", \"capture_date\": \"1918–1919\", \"commercial_restriction_seen_in_item_label\": false, \"creator_display\": \"Unknown photographer\", \"licence_version\": null, \"licence_version_note\": \"Native label does not specify version. No version inferred or promoted.\", \"native_item\": \"https://stockholmskallan.stockholm.se/post/35619\", \"native_item_rights_text\": \"CC-BY\\nDu får använda materialet fritt om du anger upphov (fotograf, författare, konstnär).\", \"native_rights_link\": \"https://se.creativecommons.net/om-cc/licenserna/\", \"publication_or_assignment_authorized\": false, \"source_creator_raw\": \"okänd fotograf\", \"source_date_raw\": \"1918 till 1919\", \"source_rights_label_raw\": \"CC-BY\", \"source_title_raw\": \"Ekensbergs varv i Gröndal 1918-1919\", \"unknown_creator_note\": \"No individual photographer identified by source.\"}"
+  },
+  {
+    "siteId": "8cbfc263-9059-4dc4-975a-5ec64e2547b5",
+    "slug": "bordellen-stockholm",
+    "src": "https://assets.diveatlas.site/site-photos/v1/41874bf9f387569c18bfbb7bf45a1dc6d66346b97cf7d25c247ab5c974faa9d6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/41874bf9f387569c18bfbb7bf45a1dc6d66346b97cf7d25c247ab5c974faa9d6.jpg",
+    "originalSha256": "e8c8ed7f99e709a27b6337eda92d45bb497e339e85432fb6552ade27eb1ad5e7",
+    "alt": "Bordellen, Stockholm — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Unknown photographer / Stadsmuseet i Stockholm, Stadsmuseet:C 3493 (1890–1899), via Stockholmskällan. CC BY, source version unspecified. · CC-BY · Cropped/resized",
+    "creator": "Unknown photographer / Stadsmuseet i Stockholm, Stadsmuseet:C 3493 (1890–1899), via Stockholmskällan. CC BY, source version unspecified.",
+    "license": "CC-BY",
+    "source": "reviewed-context",
+    "sourcePage": "https://stockholmskallan.stockholm.se/post/7384",
+    "licenceUrl": "https://se.creativecommons.net/om-cc/licenserna/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://stockholmskallan.stockholm.se/post/7384"
+      },
+      {
+        "label": "CC-BY",
+        "url": "https://se.creativecommons.net/om-cc/licenserna/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"evidence_type\": \"Retained indexed native relationship excerpt plus fresh native archive item; not a fresh native relationship origin response\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [59.3208, 18.0441], \"inventory_needs_main_photo\": \"True\", \"native_relationship_url\": \"https://www.dykarna.nu/dykplatser/sodermalarstrand-jarpen-bordellen-32.html\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"relationship_evidence\": \"evidence/relationship-retained-excerpt.json\", \"relationship_summary\": \"The retained indexed native Dykarna profile explicitly pairs Södermälarstrand with Järpen, called Bordellen. The native archive title explicitly identifies Söder Mälarstrand. This supports only the named waterfront setting. The indexed profile and an appended comment disagree about east/west positioning around Münchenbryggeriet; no exact location is resolved or claimed.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_PLACE_CONTEXT_ONLY\", \"target_name\": \"Bordellen, Stockholm\", \"target_site_id\": \"8cbfc263-9059-4dc4-975a-5ec64e2547b5\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"attribution\": \"Unknown photographer / Stadsmuseet i Stockholm, Stadsmuseet:C 3493 (1890–1899), via Stockholmskällan. CC BY, source version unspecified.\", \"capture_date\": \"1890–1899\", \"commercial_restriction_seen_in_item_label\": false, \"creator_display\": \"Unknown photographer\", \"licence_version\": null, \"licence_version_note\": \"Native label does not specify version. No version inferred or promoted.\", \"native_item\": \"https://stockholmskallan.stockholm.se/post/7384\", \"native_item_rights_text\": \"CC-BY\\nDu får använda materialet fritt om du anger upphov (fotograf, författare, konstnär).\", \"native_rights_link\": \"https://se.creativecommons.net/om-cc/licenserna/\", \"publication_or_assignment_authorized\": false, \"source_creator_raw\": \"Okänd\", \"source_date_raw\": \"1890 till 1899\", \"source_rights_label_raw\": \"CC-BY\", \"source_title_raw\": \"Söder Mälarstrand. Riddarholmen i fonden\", \"unknown_creator_note\": \"No individual photographer identified by source.\"}"
+  },
+  {
+    "siteId": "4ce4d2e3-a805-4631-af8a-bcf9752ffb2c",
+    "slug": "falken",
+    "src": "https://assets.diveatlas.site/site-photos/v1/2987ae2347216329a8c2da564bd953011bb31686e1bc6bf3ebc6cb1360ae93b6.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/2987ae2347216329a8c2da564bd953011bb31686e1bc6bf3ebc6cb1360ae93b6.jpg",
+    "originalSha256": "704998446c2032da5ddb24d9b49bf6b5ff5573ff27c0d2165cf31c7fd91ee8ab",
+    "alt": "Falken — Historical context",
+    "label": "Historical context",
+    "credit": "Historical context · Oscar Bladh / Stadsmuseet i Stockholm, Stadsmuseet:Pose 1081 (1932), via Stockholmskällan. CC BY, source version unspecified. · CC-BY · Cropped/resized",
+    "creator": "Oscar Bladh / Stadsmuseet i Stockholm, Stadsmuseet:Pose 1081 (1932), via Stockholmskällan. CC BY, source version unspecified.",
+    "license": "CC-BY",
+    "source": "reviewed-context",
+    "sourcePage": "https://stockholmskallan.stockholm.se/post/565",
+    "licenceUrl": "https://se.creativecommons.net/om-cc/licenserna/",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://stockholmskallan.stockholm.se/post/565"
+      },
+      {
+        "label": "CC-BY",
+        "url": "https://se.creativecommons.net/om-cc/licenserna/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"evidence_type\": \"Retained indexed native relationship excerpt plus fresh native archive item; not a fresh native relationship origin response\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [59.3274, 17.9981], \"inventory_needs_main_photo\": \"True\", \"native_relationship_url\": \"https://www.dykarna.nu/dykplatser/fredhall-falken-20.html\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"relationship_evidence\": \"evidence/relationship-retained-excerpt.json\", \"relationship_summary\": \"The retained indexed native Dykarna profile explicitly names Fredhäll Falken and places the approach at Fredhäll. The native archive aerial explicitly names Fredhäll and Tranebergssund, viewed northeast. Only the named shore setting is proposed; the camera footprint and exact Falken coordinates have not been surveyed against the image.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_PLACE_CONTEXT_ONLY\", \"target_name\": \"Falken\", \"target_site_id\": \"4ce4d2e3-a805-4631-af8a-bcf9752ffb2c\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"attribution\": \"Oscar Bladh / Stadsmuseet i Stockholm, Stadsmuseet:Pose 1081 (1932), via Stockholmskällan. CC BY, source version unspecified.\", \"capture_date\": \"1932\", \"commercial_restriction_seen_in_item_label\": false, \"creator_display\": \"Oscar Bladh\", \"licence_version\": null, \"licence_version_note\": \"Native label does not specify version. No version inferred or promoted.\", \"native_item\": \"https://stockholmskallan.stockholm.se/post/565\", \"native_item_rights_text\": \"CC-BY\\nDu får använda materialet fritt om du anger upphov (fotograf, författare, konstnär).\", \"native_rights_link\": \"https://se.creativecommons.net/om-cc/licenserna/\", \"publication_or_assignment_authorized\": false, \"source_creator_raw\": \"Bladh, Oscar (1895-1973)\", \"source_date_raw\": \"1932\", \"source_rights_label_raw\": \"CC-BY\", \"source_title_raw\": \"Flygbild över Tranebergssund, Kristineberg och Fredhäll. Mot nordost\", \"unknown_creator_note\": null}"
+  },
+  {
+    "siteId": "bd37c2f2-86b5-41d2-b423-988db05f33d5",
+    "slug": "sandy-island-garden-carriacou",
+    "src": "https://assets.diveatlas.site/site-photos/v1/04d52dd3ae62adb3c2027adb8f5216dd7e39349d54d0bc7b99318c4b242e696b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/04d52dd3ae62adb3c2027adb8f5216dd7e39349d54d0bc7b99318c4b242e696b.jpg",
+    "originalSha256": "f289cb2e71ff3c547f1dc94a15a1149d938c2c8c53067208d9c10bcfc9572107",
+    "alt": "Sandy Island Garden, Carriacou — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88525. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88525. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=88525",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=88525"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Carriacou, Grenada, photographed from the International Space Station on 10 March 2010. Historical island and coastal setting for Sandy Island Garden, Carriacou; the exact underwater reef and entry are not identified. Identity: {\"relationship\": {\"country\": \"Grenada\", \"evidence\": [\"inventory-record.json\", \"evidence/carriacou-item.body\", \"evidence/relationship-discovery.json\"], \"evidence_type\": \"Retained indexed search responses for relationship; full raw native NASA item for photographed place. No direct operator page body or live-origin verification claimed.\", \"explanation\": \"The retained inventory explicitly names Sandy Island Garden, Carriacou. The pre-stop indexed result for native Dive Carriacou lists Sandy Island Garden in its dive-site directory. Retained independent indexed results title the same exact dive site Sandy Island Garden, Carriacou and describe it as on Carriacou. NASA native catalog features independently identify CARRIACOU and CORAL REEFS. Together these support only the named island/coastal setting.\", \"inventory_coordinates\": [12.4857, -61.4837], \"limitations\": \"Broad island context, not an exact reef, entry, site pin or boundary. Retained discovery includes descriptions of differing local directions, which are not resolved or adopted. No coordinates from a relationship source are used to verify or correct the inventory pin. No claim of present conditions, access, safety, current habitat or current image need.\", \"native_relationship_url\": \"https://www.divecarriacou.com/page14.html\", \"region\": \"\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"supporting_urls\": [\"https://dive.site/explore/dive-centers/dive-carriacou-jRVB\", \"https://divechamp.com/divesite/sandy-island-garden-carriacou\", \"https://divejourney.io/dive-spots/grenada-sandy-island-garden-carriacou?suggestEdit=1\"], \"target_name\": \"Sandy Island Garden, Carriacou\", \"target_site_id\": \"bd37c2f2-86b5-41d2-b423-988db05f33d5\", \"target_slug\": \"sandy-island-garden-carriacou\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started. / Broad island context, not an exact reef, entry, site pin or boundary. Retained discovery includes descriptions of differing local directions, which are not resolved or adopted. No coordinates from a relationship source are used to verify or correct the inventory pin. No claim of present conditions, access, safety, current habitat or current image need. / Reviewed historical environmental context candidate only, unassigned. / Not north-up; rounded photograph center and machine-learning center refer to the scene, not a target pin. No georectification or footprint validation performed. / {\"additional_source_restrictions\": {\"unresolved_source_operation\": \"Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started.\"}} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [{\"observed_not_after_utc\": \"2026-11-13T06:22:28Z\", \"restriction_effects\": \"Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started.\", \"status\": \"ACCESS_DENIED_WITHOUT_RECORDED_ORIGIN_HTTP_RESPONSE\", \"url\": \"https://www.thelookoutbequia.com/robots.txt\"}]}, \"retained_restriction_record_sha256\": \"1c3230bcd098788663a49b736628ea9630b45b194f53d9fd4be273c60a560500\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, empty assignment and prior reviews; not a live website check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"conditions\": \"Preserve source attribution and photo ID; do not imply NASA endorsement or falsely claim copyright. No recognizable people observed.\", \"creator\": \"NASA astronaut photography; individual photographer not named in native item\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"institutional_credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88525. https://eol.jsc.nasa.gov/\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ HTML and successful request record from prior authorized pass; not a new rights-page retrieval.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "d48c900e-e892-4e04-a9db-8b3928e11b20",
+    "slug": "mayreau-gardens",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f5205bb027318d4a85144143ffea9730cb6768fe9c2e349b0a18f0ad6d06f976.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f5205bb027318d4a85144143ffea9730cb6768fe9c2e349b0a18f0ad6d06f976.jpg",
+    "originalSha256": "bdb41080e3d10edf4e463994e74c09d975f4a7d9aad564f29691d16a9304d138",
+    "alt": "Mayreau Gardens — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88528. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88528. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=88528",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=88528"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Mayreau and nearby Tobago Cays reef waters, Saint Vincent and the Grenadines, photographed from the International Space Station on 10 March 2010. Historical coastal setting for Mayreau Gardens; the exact underwater reef and entry are not identified. Identity: {\"relationship\": {\"country\": \"Saint Vincent and the Grenadines\", \"evidence\": [\"inventory-record.json\", \"evidence/mayreau-alt-item.body\", \"evidence/mayreau-relationship-indexed.json\", \"evidence/relationship-discovery.json\"], \"evidence_type\": \"Retained parsed/indexed public park and government page responses, plus pre-retained indexed discovery. Not raw native HTTP relationship bodies or live-origin verification.\", \"explanation\": \"The Tobago Cays Marine Park indexed page explicitly lists Mayreau Gardens as a scuba coral-reef site. Pre-retained indexed Mayreau.com results describe Mayreau Gardens as a reef between Mayreau and the Tobago Cays, and as a park dive site by Mayreau. The independent government page describes the Tobago Cays island-and-reef setting and its relationship to Mayreau. NASA native catalog features identify MAYREAU, reefs, PETIT BALEAU (native spelling) and CANOUAN. This supports a named Mayreau/Tobago Cays coastal-setting relationship only.\", \"inventory_coordinates\": [12.6366, -61.3884], \"limitations\": \"No exact Mayreau Gardens reef footprint, entry or inventory pin identified. The photo covers a small island/cay setting, not certified underwater coverage. Some secondary discovery results differ on directional placement; no such direction is adopted or used to repair coordinates. No claim of present conditions, access, safety, habitat or current image need.\", \"native_relationship_url\": \"https://www.tobagocays.org/attractions/\", \"region\": \"St Vincent Grenadines\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"supporting_urls\": [\"https://mayreau.com/\", \"https://mayreau.com/things-to-do-on-mayreau/\", \"https://tourism.gov.vc/tourism/index.php/national-sites-of-svg/tobago-cays\"], \"target_name\": \"Mayreau Gardens\", \"target_site_id\": \"d48c900e-e892-4e04-a9db-8b3928e11b20\", \"target_slug\": \"mayreau-gardens\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started. / No exact Mayreau Gardens reef footprint, entry or inventory pin identified. The photo covers a small island/cay setting, not certified underwater coverage. Some secondary discovery results differ on directional placement; no such direction is adopted or used to repair coordinates. No claim of present conditions, access, safety, habitat or current image need. / Reviewed historical environmental context candidate only, unassigned. / Not north-up; rounded photograph center and machine-learning center refer to the scene, not a target pin. No georectification or footprint validation performed. / {\"additional_source_restrictions\": {\"unresolved_source_operation\": \"Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started.\"}} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [{\"observed_not_after_utc\": \"2026-11-13T06:22:28Z\", \"restriction_effects\": \"Access to https://www.thelookoutbequia.com/robots.txt was denied. No origin HTTP response is recorded, so this is not evidence of an HTTP denial by the publisher. The request has no retained response body and its network completion is unresolved. No retry or alternate request to that publisher is permitted; no source-use clearance is granted. Subsequent planned robots-file requests to divecarriacou.com and tobagocays.org have no retained request record and are not known to have started.\", \"status\": \"ACCESS_DENIED_WITHOUT_RECORDED_ORIGIN_HTTP_RESPONSE\", \"url\": \"https://www.thelookoutbequia.com/robots.txt\"}]}, \"retained_restriction_record_sha256\": \"1c3230bcd098788663a49b736628ea9630b45b194f53d9fd4be273c60a560500\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained inventory needs_main_photo=True, empty assignment and prior reviews; not a live website check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"conditions\": \"Preserve source attribution and photo ID; do not imply NASA endorsement or falsely claim copyright. No recognizable people observed.\", \"creator\": \"NASA astronaut photography; individual photographer not named in native item\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"institutional_credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-88528. https://eol.jsc.nasa.gov/\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ HTML and successful request record from prior authorized pass; not a new rights-page retrieval.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "48548c4e-b557-4aba-b008-a8db7c229510",
+    "slug": "cathedral-cave-eua",
+    "src": "https://assets.diveatlas.site/site-photos/v1/d6ce776876a004179f02ab11b145b5d510c1998fae8535c91949807980b3465d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/d6ce776876a004179f02ab11b145b5d510c1998fae8535c91949807980b3465d.jpg",
+    "originalSha256": "eb9bf1ca3a6b13e6f6731c64cb26a55e503716e7defe51d0ab5c0c93804e9e35",
+    "alt": "Cathedral Cave ('Eua) — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS035-E-13720. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS035-E-13720. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS035&roll=E&frame=13720",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS035&roll=E&frame=13720"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. ʻEua, Tonga, photographed from the International Space Station on 2 April 2013. Historical island and coastal context for Cathedral Cave (ʻEua); the underwater cave and entry are not identified. Identity: {\"relationship\": {\"country\": \"Tonga\", \"evidence\": [\"inventory-record.json\", \"evidence/relationship-indexed-excerpt.json\", \"evidence/eua-item.body\", \"evidence/eua-results.body\"], \"explanation\": \"The retained inventory target is Cathedral Cave ('Eua). The independent Royal Society of Chemistry indexed research catalogue explicitly names Cathedral Cave, ‘Eua, Tonga. The native NASA item identifies EUA I. and OHONUA in its manual feature labels. These support named-island coastal context, not exact cave depiction.\", \"inventory_coordinates\": [-21.3833, -174.9333], \"limitations\": \"The cave is underwater and not identified in this orbital photograph. No exact entry, cave boundary, inventory-pin verification, current conditions or navigational suitability. No footprint validation. Retained image need not live checked.\", \"region\": \"Tonga\", \"relationship_evidence_limit\": \"Geographic phrase was verified in a search-index excerpt. Native RSC PDF request returned404; no retry or proxy. Not claimed as a fresh native relationship-page read.\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://www.rsc.org/suppdata/c9/np/c9np00069k/c9np00069k1.pdf\"], \"target_name\": \"Cathedral Cave ('Eua)\", \"target_site_id\": \"48548c4e-b557-4aba-b008-a8db7c229510\", \"target_slug\": \"cathedral-cave-eua\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / The cave is underwater and not identified in this orbital photograph. No exact entry, cave boundary, inventory-pin verification, current conditions or navigational suitability. No footprint validation. Retained image need not live checked. / Historical island/coastal context candidate only, unassigned. / {\"source_access_restrictions\": [{\"effects\": {\"additional_source_candidate_limits\": {\"Eua\": \"One reviewed original; historical named-island context only\", \"Fonualei\": \"Native feature query No Photos; no original\", \"Kadavu\": \"Native feature query No Photos; no original\", \"Taveuni\": \"ISS006-E-38733 preview fully viewed. Cloud and haze obscure much of target island/coast and useful channel context. No original requested. STS111-719-74 prior 51–75% cloud exclusion retained.\"}, \"all_prior_holds_preserved\": true, \"new_stops\": [{\"action\": \"web native PDF open\", \"no_retry_or_alternate_route\": true, \"outcome\": \"FAILED_CONTENT_MISSING_STOP\", \"result\": \"404 Not Found\", \"url\": \"https://www.rsc.org/suppdata/c9/np/c9np00069k/c9np00069k1.pdf\"}], \"other_preserved_stops\": [\"RLS/SQUIDLE family stop\", \"Scubago and dive-tourism/operator direct reads not attempted\", \"Smithsonian GVP ShowImage GVP-00840 prior403; no fresh GVP requests\", \"Rarotonga prior quality and rights holds\", \"Tongatapu already represented\", \"Vavau prior preview quality screens\"], \"prior_exact_NASA_stops\": [\"ISS034-E-12364 timeout\", \"ISS013-E-5755 uncertain/pending\"], \"source_exhaustion_claimed\": false}, \"retained_restriction_record_sha256\": \"8567a50991a37b0bb656c3e3abe69c4c8bd19231b8099131db502891c6ec2432\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained needs_main_photo=True, blank assignment, empty prior reviews. Existing unvalidated context map is separate and grants no photographic coverage.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"conditions\": \"Preserve credit and photo ID; do not imply NASA endorsement or falsely claim copyright. No recognizable people observed.\", \"creator\": \"NASA astronaut photography; individual photographer not named in native item\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS035-E-13720. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ HTML and successful request record from earlier authorized pass, not a new retrieval.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "67958d9b-d120-4ebf-ab46-f5e7907fa806",
+    "slug": "ile-moucha",
+    "src": "https://assets.diveatlas.site/site-photos/v1/52670aca70a43b31ae03ecc12449ab5aeacec355e40518496507573aa7dc3d7b.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/52670aca70a43b31ae03ecc12449ab5aeacec355e40518496507573aa7dc3d7b.jpg",
+    "originalSha256": "f069584b48df5257d3d47c3cdaef9ded08bcc3e4b424b40f68dafa84281628b0",
+    "alt": "Île Moucha جزيرة موشا — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-9105. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-9105. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=9105",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=9105"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Moucha Island and surrounding reef waters, Djibouti, photographed from the International Space Station on 11 December 2009. Historical environmental context for Île Moucha; underwater dive locations and entries are not identified. Identity: {\"relationship\": {\"country\": \"Djibouti\", \"evidence\": [\"inventory-record.json\", \"evidence/moucha-close-item.body\", \"evidence/moucha-results.body\", \"evidence/djibouti-relationship.body\", \"evidence/relationship-summary.json\"], \"explanation\": \"The inventory target is Île Moucha. NASA manually identifies MOUCHA ISLAND, CORAL REEFS, ISLETS and GULF OF TADJOURA in this exposure. The independently retrieved national tourism agency page describes the same named island as a diving destination in that gulf. The relationship is supported by explicit named place and shore setting, not by coordinate proximity.\", \"inventory_coordinates\": [11.7209561, 43.195043], \"limitations\": \"No exact underwater site, present condition, entry, dive boundary or inventory pin verified. Rounded and machine-learning photograph center coordinates are scene metadata, not dive-site pins. Nearby islets are not individually identified or assigned. No footprint validation or map creation.\", \"region\": \"Djibouti\", \"scope\": \"EXPLICIT_NAMED_ISLAND_ENVIRONMENTAL_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS022&roll=E&frame=9105\", \"https://guide.visitdjibouti.dj/les-sites-cles-de-djibouti/\"], \"target_name\": \"Île Moucha جزيرة موشا\", \"target_site_id\": \"67958d9b-d120-4ebf-ab46-f5e7907fa806\", \"target_slug\": \"ile-moucha\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / No exact underwater site, present condition, entry, dive boundary or inventory pin verified. Rounded and machine-learning photograph center coordinates are scene metadata, not dive-site pins. Nearby islets are not individually identified or assigned. No footprint validation or map creation. / Reviewed historical named-island environmental context candidate; not assigned. / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [], \"new_uncertain_operations\": [], \"pending_requests\": 0}, \"retained_restriction_record_sha256\": \"bdff24ecbc897b50506a5174356547bcca4f5d2de612ac4fc8b842257c9ac644\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained needs_main_photo=True and no current assignment. No fresh live-site check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"conditions\": \"Credit NASA/ESRS and preserve photo ID. Do not imply endorsement or falsely claim copyright. No identifiable people observed. NASA is institutional credit, not a named individual photographer.\", \"creator\": \"NASA astronaut photography; individual photographer not named in native item\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-9105. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ and successful request record from earlier authorized pass; not a new rights retrieval.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "474f6579-1065-44da-8ee0-53ba113cc51a",
+    "slug": "isla-espiritu-santo-the-wall",
+    "src": "https://assets.diveatlas.site/site-photos/v1/565d751f98419dd502277b3f3ed8662a151b21d9286b7f44a11ffce97104eb09.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/565d751f98419dd502277b3f3ed8662a151b21d9286b7f44a11ffce97104eb09.jpg",
+    "originalSha256": "c0504d4aff8b45b4ae24a4b464439cbaf4455c8f7f8beb723c5f3f7cbbe73b5e",
+    "alt": "Isla Espiritu Santo - The Wall — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-286000. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-286000. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS067&roll=E&frame=286000",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS067&roll=E&frame=286000"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Isla Espíritu Santo and adjacent La Partida, Mexico, photographed from the International Space Station on 20 August 2022. Historical surrounding-island context for Isla Espiritu Santo - The Wall; the underwater wall is not identified. Identity: {\"relationship\": {\"country\": \"Mexico\", \"distinct_setting\": \"Prior Los Islotes photo is sea lion/resting small-islet surface context. This is the main island setting and a different eligible target. No additional Los Islotes association is proposed.\", \"evidence\": [\"inventory-record.json\", \"evidence/espiritu-native.body\", \"evidence/espiritu-article.body\"], \"explanation\": \"Eligible inventory explicitly names Isla Espiritu Santo - The Wall. Native NASA manually identified features name ISLA ESPIRITU SANTO, GULF OF CALIFORNIA, REEF. Separate native NASA Earth Observatory article identifies this exposure and the main island Isla del Espiritu Santo. This supports the named surrounding island only, not the underwater wall.\", \"inventory_coordinates\": [24.528, -110.398], \"limitations\": \"No exact wall, dive entry, underwater scene, inventory-pin verification, footprint validation, current conditions or navigational suitability. Inventory retained image need not live checked.\", \"region\": \"La Paz Sea Of Cortez\", \"relationship_evidence_status\": \"NATIVE_NASA_EXPLICIT_NAMED_ISLAND_WITH_RETAINED_EXPLICIT_TARGET_NAME\", \"scope\": \"EXPLICIT_NAMED_ISLAND_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://science.nasa.gov/earth/earth-observatory/espiritu-santo-archipelago-151304/\"], \"target_name\": \"Isla Espiritu Santo - The Wall\", \"target_site_id\": \"474f6579-1065-44da-8ee0-53ba113cc51a\", \"target_slug\": \"isla-espiritu-santo-the-wall\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / No exact wall, dive entry, underwater scene, inventory-pin verification, footprint validation, current conditions or navigational suitability. Inventory retained image need not live checked. / Historical island/coastal setting candidate only, unassigned. / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"new_stops\": [{\"action\": \"web open native item\", \"handling\": \"No retry, alternate route or original request. Native content and request outcome not established.\", \"outcome\": \"RETRIEVAL_FAILED_CONTENT_AND_NETWORK_OUTCOME_UNESTABLISHED\", \"target\": \"NASA STS051-75-98\", \"url\": \"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=STS051&roll=75&frame=98\"}], \"prior_exact_NASA_stops\": [\"ISS034-E-12364 timeout\", \"ISS013-E-5755 uncertain/pending\"], \"source_candidate_limits\": {\"Arvoredo Brazil\": \"Indexed official brochure and science stories did not establish a standalone reusable original at finite screen; none requested.\", \"Cabo San Lucas\": \"Already represented by two WordPress images and other coast photos; no new original.\", \"Cerralvo\": \"ISS036-E-24168 preview only; broad southern Baja image makes island too small for useful site context. Original not requested.\", \"Cocos Costa Rica\": \"Existing Manuelita coastal context and Punta Maria underwater photo; no new original.\", \"Coronado near Loreto\": \"NASA discovery was Coronado/Smith Island in Bahia de los Angeles, a different island. No original.\", \"Espiritu Santo\": \"One new useful whole-island original. Prior Los Islotes asset is sea-lion/small-islet context, not the main-island setting or The Wall target.\", \"Gorgona Colombia\": \"No eligible inventory target established; no image requested.\", \"Ilha Grande Brazil\": \"Exact NASA native-item open inaccessible via web tool; no retry, no original.\"}, \"source_exhaustion_claimed\": false}, \"retained_restriction_record_sha256\": \"6762391adda361d74628b116119869b8541048e94f66fc045c6f6957f0b3a5c0\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Retained needs_main_photo=True, blank assignment, empty prior reviews.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"caption_author_not_photographer\": \"Sara Schmidt is credited for the separate NASA article caption, not the exposure.\", \"creator\": \"Member of the Expedition 67 crew; individual photographer not named\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific copyright exception stated for this exposure\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-286000. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ HTML and successful request record from earlier authorized pass, not a new retrieval.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "75a713b5-2d40-4c9b-97ee-81271d2cfb61",
+    "slug": "lighthouse-maratua",
+    "src": "https://assets.diveatlas.site/site-photos/v1/71fc90ad9d235cbc5577547a7a2feb3a0f735e2a491f459331347f17139b9ad0.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/71fc90ad9d235cbc5577547a7a2feb3a0f735e2a491f459331347f17139b9ad0.jpg",
+    "originalSha256": "62339d0f90d26929f2e2ecab4626474b949b4ff6fd15048e1b16a705fa386442",
+    "alt": "Lighthouse Maratua — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS009-E-7328. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS009-E-7328. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS009&roll=E&frame=7328",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS009&roll=E&frame=7328"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Part of Maratua Island and its reef/lagoon setting, Indonesia, photographed from the International Space Station on 15 May 2004. Historical island context only; the Lighthouse dive site is not located in this image. Identity: {\"relationship\": {\"chronology\": {\"kind\": \"SEARCH_INDEXED_ONLY_NOT_ORIGIN_VERIFIED\", \"not_an_alternate_route_to_denied_content\": true, \"search_result_actual_utc_bounds\": [\"2026-11-13T07:01:14Z\", \"2026-11-13T07:02:16Z\"], \"source_origin_requested\": false}, \"country\": \"Indonesia\", \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_exact_string_True\": true, \"search_status_UNCLAIMED\": true}, \"evidence\": [\"inventory-record.json\", \"evidence/maratua-item.body\", \"evidence/relations1.json\"], \"explanation\": \"The retained search-indexed Maratua Paradise Resort diving page lists Light House among the Maratua dive sites, gives a separate THE LIGHTHOUSE section, and states Dive Location: Maratua Island. It supports the inventory Lighthouse Maratua name and named-island relation. The resort origin was not requested. Native NASA manual Features explicitly names Maratua Island and reefs.\", \"inventory_coordinates\": [2.3149, 118.5709], \"limitations\": \"The Lighthouse dive point has NOT been located within the image footprint. The pictured island/reef continues beyond the right edge. No exact reef, Lighthouse structure, underwater site, entry or main-photo suitability is established. This is historical, partial named-island context only, not a whole-island portrait. Indexed-only relationship evidence was not independently verified at its origin. NASA Features is a manual catalog label, not a narrative caption or site-level geolocation.\", \"region\": \"East Kalimantan\", \"relationship_provenance\": \"SEARCH_INDEXED_EXCERPT_NOT_NATIVE_ORIGIN_VERIFICATION\", \"relationship_source_url\": \"https://www.maratua.com/en/diving/diving-in-maratua\", \"scope\": \"EXPLICIT_NAMED_ISLAND_SETTING_ONLY\", \"short_verbatim_quote\": \"Dive Location: Maratua Island\", \"target_eligible\": true, \"target_name\": \"Lighthouse Maratua\", \"target_site_id\": \"75a713b5-2d40-4c9b-97ee-81271d2cfb61\", \"target_slug\": \"lighthouse-maratua\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / The Lighthouse dive point has NOT been located within the image footprint. The pictured island/reef continues beyond the right edge. No exact reef, Lighthouse structure, underwater site, entry or main-photo suitability is established. This is historical, partial named-island context only, not a whole-island portrait. Indexed-only relationship evidence was not independently verified at its origin. NASA Features is a manual catalog label, not a narrative caption or site-level geolocation. / Useful limited historical named-island environmental context only, not certified site or main-photo coverage. / Exact comparison against retained known identities only. Existing missing native IDs/URLs remain unresolved. Not global or perceptual uniqueness certification. / {\"source_access_restrictions\": [{\"effects\": [{\"chronology\": \"Indexed search response was retained before origin request began at 07:06:32Z. No post-denial source lookup, mirror, origin retry or alternate request.\", \"indexed_result_actual_utc_bounds\": [\"2026-11-13T07:03:48Z\", \"2026-11-13T07:05:16Z\"], \"retained_request_outcome\": {\"completed_not_after_utc\": \"2026-11-13T07:09:36Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T07:06:32Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual enclosing clock bounds, not exact request completion. Host timestamps ignored.\", \"url\": \"https://www.malaysia.travel/explore/perhentianskie-ostrova-perhentian-island\"}, \"status\": \"HTTP403_NO_RETRY_NO_ALTERNATE_ROUTE\", \"url\": \"https://www.malaysia.travel/explore/perhentianskie-ostrova-perhentian-island\"}, {\"chronology\": \"Indexed search response was retained before origin request began at 07:06:32Z. No post-denial source lookup, mirror, origin retry or alternate request.\", \"indexed_result_actual_utc_bounds\": [\"2026-11-13T07:03:48Z\", \"2026-11-13T07:05:16Z\"], \"retained_request_outcome\": {\"completed_not_after_utc\": \"2026-11-13T07:09:36Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T07:06:32Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual enclosing clock bounds, not exact request completion. Host timestamps ignored.\", \"url\": \"https://ebrochures.malaysia.travel/en/malaysia-travel-guide/terengganu/\"}, \"status\": \"HTTP403_NO_RETRY_NO_ALTERNATE_ROUTE\", \"url\": \"https://ebrochures.malaysia.travel/en/malaysia-travel-guide/terengganu/\"}], \"retained_restriction_record_sha256\": \"326cabeff3efb81b5bca6bd7105347cb528eae9f84500d616e0e4397adede8d1\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal needs_main_photo == True string, empty assignment and UNCLAIMED verified. No live site-state check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS009-E-7328. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "c67265fd-c49d-43de-9aff-71c997c50190",
+    "slug": "goto-islands",
+    "src": "https://assets.diveatlas.site/site-photos/v1/65f3b22af1677370de660403bfaa1b04ecc3d3f9b73df922a2ba2e4246157d1e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/65f3b22af1677370de660403bfaa1b04ecc3d3f9b73df922a2ba2e4246157d1e.jpg",
+    "originalSha256": "25591cb4f98feb741c736b5b263597b05aaf4dbcf1dc491152e3f7e7affbadae",
+    "alt": "Goto Islands — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-20389. https://eol.jsc.nasa.gov/ · NASA does not maintain copyright on astronaut photographs, per retained native FAQ; no item-specific exception observed. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-20389. https://eol.jsc.nasa.gov/",
+    "license": "NASA does not maintain copyright on astronaut photographs, per retained native FAQ; no item-specific exception observed.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS017&roll=E&frame=20389",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS017&roll=E&frame=20389"
+      },
+      {
+        "label": "NASA does not maintain copyright on astronaut photographs, per retained native FAQ; no item-specific exception observed.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Nakadori Island coastline in the Goto Archipelago, Japan, photographed from the International Space Station on 21 October 2008. Historical named-island coastal context; no wreck or exact underwater dive site is identified. Identity: {\"relationship\": {\"country\": \"Japan\", \"evidence\": [\"inventory-record.json\", \"evidence/goto-item.body\", \"evidence/goto-relationship-search.json\"], \"explanation\": \"The retained eligible record is named Goto Islands. NASA native features explicitly name GOTO ARCH. and NAKADORI-JIMA. The official Nagasaki indexed excerpt explicitly places Nakadori and Wakamatsu in the upper Goto Islands. This is a named-setting relationship, not a radius-only assignment.\", \"inventory_coordinates\": [32.9443, 129.0273], \"limitations\": \"Inventory source-link slug is goto-islands-wreck-japan-290610. No fresh commercial dive-provider read was made. The photograph does not identify the wreck, its exact location, the underwater scene, or a specific dive entry. Both source photo center and the inventory coordinate are contextual catalog values, not surveyed footprint proof. The whole Goto archipelago is not visible.\", \"native_relationship_url\": \"https://www.discover-nagasaki.com/en/featured-topics/about-shinkamigoto\", \"region\": \"Nagasaki Prefecture\", \"relationship_source_provenance\": \"Indexed excerpt from the official Discover Nagasaki visitors guide. Not a direct publisher read.\", \"scope\": \"EXPLICIT_NAMED_GOTO_ISLANDS_NAKADORI_COASTAL_SETTING_ONLY\", \"target_name\": \"Goto Islands\", \"target_site_id\": \"c67265fd-c49d-43de-9aff-71c997c50190\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Inventory source-link slug is goto-islands-wreck-japan-290610. No fresh commercial dive-provider read was made. The photograph does not identify the wreck, its exact location, the underwater scene, or a specific dive entry. Both source photo center and the inventory coordinate are contextual catalog values, not surveyed footprint proof. The whole Goto archipelago is not visible. / Named island/coastal setting context for private review, not an underwater wreck image or an unqualified hero image. {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Strict exact-string gate passed: needs_main_photo == True string; current_assignment empty; search_status UNCLAIMED. This is retained inventory eligibility, not live coverage verification.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/inherited-policy.body\", \"individual_photographer\": null, \"license\": \"NASA does not maintain copyright on astronaut photographs, per retained native FAQ; no item-specific exception observed.\", \"no_endorsement\": true, \"publisher_requests\": \"FAQ asks users to notify NASA of links and send citations for publications. No outreach or publication was performed or authorized.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS017-E-20389. https://eol.jsc.nasa.gov/\", \"rights_evidence_provenance\": \"Successful prior direct NASA FAQ retrieval retained unchanged. No new policy request.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "7c591a3b-a30c-4b3b-9af2-2f528da20592",
+    "slug": "perhentian-shark-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f5cd5d3ad5ff4bb4df554c06137d7897bed04fd766bc1705c868ce5209982786.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f5cd5d3ad5ff4bb4df554c06137d7897bed04fd766bc1705c868ce5209982786.jpg",
+    "originalSha256": "89f5d2dcf2072421102228b45cec540070be7c29e93334eaee1cfe76f7ea349e",
+    "alt": "Perhentian Shark Point — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-1120. https://eol.jsc.nasa.gov/ · NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-1120. https://eol.jsc.nasa.gov/",
+    "license": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=1120",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS039&roll=E&frame=1120"
+      },
+      {
+        "label": "NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. The Perhentian Islands and nearby Malaysian coast, photographed from the International Space Station on 14 March 2014. Historical island setting only; Shark Point is not identified in the image. Identity: {\"relationship\": {\"chronology\": {\"indexed_content_not_fetched_as_bypass\": true, \"kind\": \"PRE_DENIAL_SEARCH_INDEXED_ONLY\", \"no_post_denial_request_or_query\": true, \"origin_outcome\": \"HTTP403_FAILED_STOP\", \"origin_request_not_before_utc\": \"2026-11-13T07:06:32Z\", \"search_result_actual_utc_bounds\": [\"2026-11-13T07:03:48Z\", \"2026-11-13T07:05:16Z\"]}, \"country\": \"Malaysia\", \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_exact_string_True\": true, \"search_status_UNCLAIMED\": true}, \"evidence\": [\"inventory-record.json\", \"evidence/perhentian-item.body\", \"evidence/relations3.json\"], \"explanation\": \"The retained pre-denial Tourism Malaysia search result is a Perhentian Islands article and explicitly lists Shark Point among the places to see. This independently links the eligible inventory Perhentian Shark Point name to that named island group. NASA manually catalogs Perhentian Islands, and both main islands and their shorelines are visible. This is named-island coastal context, not a proximity-only point assignment.\", \"inventory_coordinates\": [5.8829, 102.7456], \"limitations\": \"The government page origin subsequently returned HTTP403 and remains stopped. Only the earlier indexed excerpt supports the relationship; it is NOT a successful native page verification. No request or query was made for that content after the denial. Shark Point itself is not identified or pinpointed in the photograph. No exact underwater feature, surveyed position, entry, current conditions or main-photo suitability is established. NASA manual Features labels are not a narrative caption.\", \"region\": \"\", \"relationship_provenance\": \"SEARCH_INDEXED_EXCERPT_NOT_NATIVE_ORIGIN_VERIFICATION\", \"relationship_source_url\": \"https://www.malaysia.travel/explore/perhentianskie-ostrova-perhentian-island\", \"scope\": \"EXPLICIT_NAMED_ISLAND_SETTING_ONLY\", \"short_verbatim_quote\": \"Shark Point и Coral Bay\", \"target_eligible\": true, \"target_name\": \"Perhentian Shark Point\", \"target_site_id\": \"7c591a3b-a30c-4b3b-9af2-2f528da20592\", \"target_slug\": \"perhentian-shark-point\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / The government page origin subsequently returned HTTP403 and remains stopped. Only the earlier indexed excerpt supports the relationship; it is NOT a successful native page verification. No request or query was made for that content after the denial. Shark Point itself is not identified or pinpointed in the photograph. No exact underwater feature, surveyed position, entry, current conditions or main-photo suitability is established. NASA manual Features labels are not a narrative caption. / Useful limited historical named-island environmental context only, not certified site or main-photo coverage. / Exact comparison against retained known identities only. Existing missing native IDs/URLs remain unresolved. Not global or perceptual uniqueness certification. / {\"source_access_restrictions\": [{\"effects\": [{\"chronology\": \"Indexed search response was retained before origin request began at 07:06:32Z. No post-denial source lookup, mirror, origin retry or alternate request.\", \"indexed_result_actual_utc_bounds\": [\"2026-11-13T07:03:48Z\", \"2026-11-13T07:05:16Z\"], \"retained_request_outcome\": {\"completed_not_after_utc\": \"2026-11-13T07:09:36Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T07:06:32Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual enclosing clock bounds, not exact request completion. Host timestamps ignored.\", \"url\": \"https://www.malaysia.travel/explore/perhentianskie-ostrova-perhentian-island\"}, \"status\": \"HTTP403_NO_RETRY_NO_ALTERNATE_ROUTE\", \"url\": \"https://www.malaysia.travel/explore/perhentianskie-ostrova-perhentian-island\"}, {\"chronology\": \"Indexed search response was retained before origin request began at 07:06:32Z. No post-denial source lookup, mirror, origin retry or alternate request.\", \"indexed_result_actual_utc_bounds\": [\"2026-11-13T07:03:48Z\", \"2026-11-13T07:05:16Z\"], \"retained_request_outcome\": {\"completed_not_after_utc\": \"2026-11-13T07:09:36Z\", \"error\": \"HTTP Error 403: Forbidden\", \"http_status\": 403, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T07:06:32Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual enclosing clock bounds, not exact request completion. Host timestamps ignored.\", \"url\": \"https://ebrochures.malaysia.travel/en/malaysia-travel-guide/terengganu/\"}, \"status\": \"HTTP403_NO_RETRY_NO_ALTERNATE_ROUTE\", \"url\": \"https://ebrochures.malaysia.travel/en/malaysia-travel-guide/terengganu/\"}], \"retained_restriction_record_sha256\": \"326cabeff3efb81b5bca6bd7105347cb528eae9f84500d616e0e4397adede8d1\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal needs_main_photo == True string, empty assignment and UNCLAIMED verified. No live site-state check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"evidence\": \"evidence/NASA-inherited-policy.html\", \"individual_photographer\": null, \"license\": \"NASA material not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS039-E-1120. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "d2bbea4d-13c4-467a-99d8-9ea1ead99d34",
+    "slug": "bazaruto-island-reef",
+    "src": "https://assets.diveatlas.site/site-photos/v1/aa5358ad78daefc1e8ed44eb3024ffb1ed94867eed9d914bcf585287831caead.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/aa5358ad78daefc1e8ed44eb3024ffb1ed94867eed9d914bcf585287831caead.jpg",
+    "originalSha256": "928253dabbc996a0b987cac3ea0eb50a2e7d33c708db2f946bf4e1a52f319efc",
+    "alt": "Bazaruto Island Reef — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS010-E-6984. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS010-E-6984. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS010&roll=E&frame=6984",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS010&roll=E&frame=6984"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Bazaruto Island and surrounding coastal waters, Mozambique, photographed from the International Space Station on 15 November 2004. Historical environmental context for Bazaruto Island Reef; underwater dive locations and entries are not identified. Identity: {\"relationship\": {\"country\": \"Mozambique\", \"evidence\": [\"inventory-record.json\", \"evidence/bazaruto-wide-item.body\", \"evidence/bazaruto-results.body\", \"evidence/indexed-relationship-search.json\"], \"explanation\": \"The eligible target explicitly names Bazaruto Island. NASA manually labels BAZARUTO I., CHAN., REEFS, L. in the exposure. Previously retained indexed Mozambique national tourism text describes diving and coral reefs in the same named island/park setting. The association is named-island environmental context, not a verified exact reef position.\", \"inventory_coordinates\": [-21.6333, 35.5167], \"limitations\": \"No exact underwater dive site, dive entry, site boundary, present-day conditions, reef health, inventory pin or footprint verified. Photograph center coordinates are rounded scene metadata, not a dive-site pin. Neighboring islands visible in the photograph are not individually identified or assigned.\", \"region\": \"Mozambique\", \"scope\": \"EXPLICIT_NAMED_ISLAND_ENVIRONMENTAL_CONTEXT_ONLY\", \"secondary_evidence_access_note\": \"Mozambique national tourism evidence is a previously retained indexed search excerpt, obtained before its native robots request returned HTTP503. No native relationship page fetched, no retry or alternate route used.\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS010&roll=E&frame=6984\", \"https://www.visitmozambique.gov.mz/onde-ir/ilhas/ilha-do-bazaruto/\"], \"target_name\": \"Bazaruto Island Reef\", \"target_site_id\": \"d2bbea4d-13c4-467a-99d8-9ea1ead99d34\", \"target_slug\": \"bazaruto-island-reef\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / No exact underwater dive site, dive entry, site boundary, present-day conditions, reef health, inventory pin or footprint verified. Photograph center coordinates are rounded scene metadata, not a dive-site pin. Neighboring islands visible in the photograph are not individually identified or assigned. / Reviewed historical named-island environmental context candidate; not assigned. / {\"additional_source_restrictions\": {\"restrictions\": {\"all_prior_holds_preserved\": true, \"no_desktop\": true, \"no_maps\": true, \"no_outreach\": true, \"no_publication\": true}}} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"handling\": \"No retry, alternate route or mirror used after the Mozambique tourism robots HTTP503. Previously retained indexed page evidence is limited corroborating context only; native page was not fetched.\", \"new_stops\": [{\"completed_not_after_utc\": \"2026-11-13T07:19:57Z\", \"error\": \"HTTP Error 503: Service Unavailable\", \"http_status\": 503, \"location\": null, \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T07:17:07Z\", \"state\": \"CLOSED\", \"time_precision\": \"Actual recorded-clock upper bound after completed response, not exact transfer instant.\", \"url\": \"https://www.visitmozambique.gov.mz/robots.txt\"}]}, \"retained_restriction_record_sha256\": \"13f840a96987aff17f2b648b4c178f267a7e4dd47e139d4353d679717e6b3788\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_eligibility\": {\"checked_before_original\": true, \"current_assignment\": \"\", \"evidence\": \"inventory-record.json\", \"needs_main_photo\": \"True\", \"search_status\": \"UNCLAIMED\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"conditions\": \"Credit NASA/ESRS and retain the photo ID. Do not imply NASA endorsement or falsely claim copyright. NASA is institutional credit, not a named individual photographer. No identifiable people observed.\", \"creator\": \"NASA astronaut photography; individual photographer not named in native item\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS010-E-6984. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained full native NASA FAQ and successful request record from earlier authorized pass, not a new rights request.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "b85448d4-83b0-4f9f-9530-1134f6244449",
+    "slug": "caye-caulker-marine-reserve",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f8e0abc502a521a14ea1c2356a4b91f7a38e68cf1b89422834d7aa589f9029f9.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f8e0abc502a521a14ea1c2356a4b91f7a38e68cf1b89422834d7aa589f9029f9.jpg",
+    "originalSha256": "48d4164613657a0ed0c80f134db0aaa7031d9c1a551da7a75f382635414b8190",
+    "alt": "Caye Caulker Marine Reserve — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81942. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81942. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81942&mission=ISS062&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81942&mission=ISS062&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. The Cangrejo Cay and Cay Caulker reef setting in Belize, photographed from the International Space Station on 5 March 2020. Broad historical coastal context for Caye Caulker Marine Reserve; the reserve boundary and exact dive location are not identified. Identity: {\"relationship\": {\"country\": \"Belize\", \"distinct_setting\": \"Compared with retained ISS063-E-76408 Ambergris/San Pedro image: that image is a tighter town-and-shore scene. The new frame extends across surrounding cay/reef waters and source-names Cay Caulker. Distinct exposure and different eligible target; no new Ambergris or San Pedro association.\", \"evidence\": [\"inventory-record.json\", \"evidence/caulker-native.body\", \"evidence/relationship-indexed.json\"], \"explanation\": \"Native NASA manually identified features name CANGREJO CAY, CAY CAULKER. Retained inventory names Caye Caulker Marine Reserve. Separately retained indexed Belize Fisheries Department evidence describes the reserve as parallel to the cay, with its northern portion crossing the north point and lagoon. This supports a broad named cay/reef setting only; reserve limits have not been overlaid or verified.\", \"geography_hold\": false, \"inventory_coordinates\": [17.7394, -88.0255], \"limitations\": \"Broad surrounding coastal setting, not reserve-boundary proof or exact underwater site. Cay Caulker is source-named but not independently localized within this broad frame. No inventory-pin verification, footprint validation, current-condition inference or navigational use. Relationship evidence is retained search-index text, not a live origin body.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COASTAL_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_CAY_AND_SURROUNDING_REEF_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81942&mission=ISS062&roll=E\", \"https://fisheries.gov.bz/ccmr/\", \"https://fisheries.gov.bz/wp-content/uploads/2022/06/CCMR-Management-Plan-Final-Revised-1.pdf\"], \"target_name\": \"Caye Caulker Marine Reserve\", \"target_site_id\": \"b85448d4-83b0-4f9f-9530-1134f6244449\", \"target_slug\": \"caye-caulker-marine-reserve\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Broad surrounding coastal setting, not reserve-boundary proof or exact underwater site. Cay Caulker is source-named but not independently localized within this broad frame. No inventory-pin verification, footprint validation, current-condition inference or navigational use. Relationship evidence is retained search-index text, not a live origin body. / Historical surrounding-place context candidate only, not assigned. / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"limits\": \"No claim that the sources or regional opportunities are exhausted.\", \"new_access_stops\": [], \"no_direct_commercial_dive_provider_origin_reads\": true, \"preview_rejections\": [{\"id\": \"ISS003-E-7729\", \"reason\": \"Partial reef frame with sizeable clouds and incomplete atoll context. No original acquired.\"}, {\"id\": \"ISS039-E-20401\", \"reason\": \"Dark low-contrast frame centered on the previously represented Lighthouse-like reef setting; another named atoll only partial. No original acquired.\"}], \"uncertain_operations_started\": 0}, \"retained_restriction_record_sha256\": \"c055de8232a99994eec1d35c740b2e68be6d0c63754495944f33efe4ff05a7ef\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment and UNCLAIMED status. Matching JSONL snapshot agrees.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81942. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Previously retained full native NASA FAQ HTML, paired with retained request evidence. Not re-fetched in this pass.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "c8185e41-1512-4ee4-bb2f-b70c49133ff5",
+    "slug": "porto-san-nicolo-riva-del-garda",
+    "src": "https://assets.diveatlas.site/site-photos/v1/264cce030d19cce09130d452e13177404d6b2d0591f9b535138c8a2c0c7ca915.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/264cce030d19cce09130d452e13177404d6b2d0591f9b535138c8a2c0c7ca915.jpg",
+    "originalSha256": "90a585a6008f3543350754d0f3c8ab5f2c9564ce273f183604be638ac6bc2737",
+    "alt": "Porto San Nicolò - Riva del Garda — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS040-E-205. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS040-E-205. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=205&mission=ISS040&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=205&mission=ISS040&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": \"evidence/search2.json\", \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPT_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [45.8774, 10.856], \"native_relationship_url\": \"https://www.gardatrentino.it/Brochure/2023/brochure%20WATER%20SPORT_2023_WEB.pdf\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_LAKE_CONTEXT_ONLY\", \"summary\": \"Retained indexed official Garda Trentino Diving Areas brochure explicitly lists PORTO SAN NICOLÒ RIVA DEL GARDA among Lake Garda diving areas. It supports named-lake context, not the exact harbour footprint in this photograph.\", \"target_eligible\": true, \"target_name\": \"Porto San Nicolò - Riva del Garda\", \"target_site_id\": \"c8185e41-1512-4ee4-bb2f-b70c49133ff5\", \"target_slug\": \"porto-san-nicolo-riva-del-garda\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Limited historical named-lake environmental context only, not certified dive-site main-photo coverage. {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal CSV True, empty assignment and no skip status verified before original. No live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Inherited retained successful native policy response; not a fresh policy request in this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS040-E-205. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "f1e9a159-535a-48c8-ba95-e70a110bb7f7",
+    "slug": "turneffe-atoll",
+    "src": "https://assets.diveatlas.site/site-photos/v1/238c0a988216cdb9f07ea8782ff57cf25911ad7ad95f5518b6960766e739d929.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/238c0a988216cdb9f07ea8782ff57cf25911ad7ad95f5518b6960766e739d929.jpg",
+    "originalSha256": "ea8025365c58b409b97fb6185e3465f218468e49e74b30e78f778bf6f3594588",
+    "alt": "Turneffe Atoll — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81944. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81944. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81944&mission=ISS062&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81944&mission=ISS062&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Turneffe Atoll with Lighthouse Reef and Glover’s Atoll off Belize, photographed from the International Space Station on 5 March 2020. Historical surrounding-atoll context for Turneffe Atoll; no exact underwater dive location is identified. Identity: {\"relationship\": {\"country\": \"Belize\", \"distinct_setting\": \"Prior ISS062-E-81945 is a tighter Lighthouse Reef image acquired on the same pass. This uncropped wider exposure adds a separately visible named Turneffe Atoll and a different eligible target. Not proposing another Lighthouse Reef site.\", \"evidence\": [\"inventory-record.json\", \"evidence/turneffe3-native.body\", \"evidence/relationship-indexed.json\"], \"explanation\": \"Native NASA manually identified features name TURNEFFE ATOLL, LIGHTHOUSE REEF, GLOVERS ATOLL. The exact retained eligible inventory target names Turneffe Atoll. This is an atoll-setting image; it does not locate a particular underwater site or entry. Turneffe is distinct from the previously retained tighter Lighthouse Reef exposure.\", \"geography_hold\": false, \"inventory_coordinates\": [17.4382, -87.8304], \"limitations\": \"Broad atoll setting only. No underwater site, dive entry, inventory-pin verification, footprint validation, current condition or navigation claim. Other atolls in the frame receive no additional associations.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COASTAL_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_ATOLL_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=81944&mission=ISS062&roll=E\"], \"target_name\": \"Turneffe Atoll\", \"target_site_id\": \"f1e9a159-535a-48c8-ba95-e70a110bb7f7\", \"target_slug\": \"turneffe-atoll\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain. Private-review eligibility is not publication or production clearance. / Broad atoll setting only. No underwater site, dive entry, inventory-pin verification, footprint validation, current condition or navigation claim. Other atolls in the frame receive no additional associations. / Historical surrounding-place context candidate only, not assigned. / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"limits\": \"No claim that the sources or regional opportunities are exhausted.\", \"new_access_stops\": [], \"no_direct_commercial_dive_provider_origin_reads\": true, \"preview_rejections\": [{\"id\": \"ISS003-E-7729\", \"reason\": \"Partial reef frame with sizeable clouds and incomplete atoll context. No original acquired.\"}, {\"id\": \"ISS039-E-20401\", \"reason\": \"Dark low-contrast frame centered on the previously represented Lighthouse-like reef setting; another named atoll only partial. No original acquired.\"}], \"uncertain_operations_started\": 0}, \"retained_restriction_record_sha256\": \"c055de8232a99994eec1d35c740b2e68be6d0c63754495944f33efe4ff05a7ef\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment and UNCLAIMED status. Matching JSONL snapshot agrees.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception stated for this exposure. NASA credit and no implied endorsement required.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-81944. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Previously retained full native NASA FAQ HTML, paired with retained request evidence. Not re-fetched in this pass.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "dd5e3df3-6a91-4412-be24-b3e3f8b417ac",
+    "slug": "wharewaka-point",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fb3768cce7e32759a1b099f91753f793f5f06fb0ef8caccd81b84d4c7965c66f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fb3768cce7e32759a1b099f91753f793f5f06fb0ef8caccd81b84d4c7965c66f.jpg",
+    "originalSha256": "4e3c12a0cd625c6601bab3aa36b4c22a2afd1b4f9a5d94dc3e164a958b102656",
+    "alt": "Wharewaka Point — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS092-706-41. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS092-706-41. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=STS092&roll=706&frame=41",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=STS092&roll=706&frame=41"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": [\"evidence/index-relationship.json\", \"evidence/index-search-2.json\"], \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPTS_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [-38.7309, 176.0631], \"inventory_limitation\": \"Retained inventory calls this a marine/boat site, despite named lake evidence. Original fields preserved, no correction or production validation.\", \"native_relationship_url\": \"https://www.taupodc.govt.nz/recreation/parks-and-reserves/taupo-lakefront-reserve\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"scope\": \"QUALITY_HELD_NAMED_LAKE_ASSOCIATION_EVIDENCE_ONLY\", \"summary\": \"Indexed official Taupo District Council reserve page explicitly links Wharewaka Point to the Lake Taupo lakeshore reserve network. This supports named-lake context only; exact depicted point and dive entry are not established.\", \"target_eligible\": true, \"target_name\": \"Wharewaka Point\", \"target_site_id\": \"dd5e3df3-6a91-4412-be24-b3e3f8b417ac\", \"target_slug\": \"wharewaka-point\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The whole named lake and its surrounding farm/forest landscape are visible. The native high-resolution film scan is darker, more blue-purple, and rotated relative to the displayed low-resolution preview. Black film borders and frame markings remain unchanged. Scattered clouds mainly cover surrounding land. The lake outline is legible, but high-oblique scale, haze and low contrast limit shoreline detail. No exact dive entry or current conditions are verified.\", \"method\": \"Unchanged original and native preview inspected using image viewer; full native JPEG decoded with Pillow. No edits.\", \"no_commercial_watermark\": true, \"no_identifiable_people\": true, \"no_map_collage_or_artificial_rendering\": true, \"quality_decision\": \"QUALITY_HOLD\", \"quality_reason\": \"The original film scan is substantially darker and lower contrast than its native preview. Broad haze and colour variation obscure usable shoreline detail. Recognition of the overall lake outline is insufficient to clear the acquired original as a useful context candidate.\", \"reviewed_utc\": \"2026-11-13T07:58:58Z\", \"single_exposure\": true, \"suitability\": \"Retained original for evidence only. Quality held; not cleared as a useful dive-site or lake-context candidate.\"} / {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": [\"evidence/index-relationship.json\", \"evidence/index-search-2.json\"], \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPTS_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [-38.7309, 176.0631], \"inventory_limitation\": \"Retained inventory calls this a marine/boat site, despite named lake evidence. Original fields preserved, no correction or production validation.\", \"native_relationship_url\": \"https://www.taupodc.govt.nz/recreation/parks-and-reserves/taupo-lakefront-reserve\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"scope\": \"QUALITY_HELD_NAMED_LAKE_ASSOCIATION_EVIDENCE_ONLY\", \"summary\": \"Indexed official Taupo District Council reserve page explicitly links Wharewaka Point to the Lake Taupo lakeshore reserve network. This supports named-lake context only; exact depicted point and dive entry are not established.\", \"target_eligible\": true, \"target_name\": \"Wharewaka Point\", \"target_site_id\": \"dd5e3df3-6a91-4412-be24-b3e3f8b417ac\", \"target_slug\": \"wharewaka-point\"} / {\"source_access_restrictions\": [{\"effects\": {\"all_inherited_holds_preserved\": true, \"metadata_preview_exclusions\": [{\"id\": \"ISS016-E-12652\", \"reason\": \"Native metadata reports 76–100% cloud; no preview or original.\"}, {\"id\": \"ISS006-E-40157\", \"reason\": \"Preview crops the lake northern shore and gives poor target context; original not requested.\"}, {\"id\": \"ISS006-E-39493\", \"reason\": \"Preview is dominated by western coast and mountains, with the lake at frame edge; original not requested.\"}], \"new_source_stops\": [], \"no_held_source_used\": true, \"status\": \"FINITE_PASS_CLOSED\"}, \"retained_restriction_record_sha256\": \"29ed81bf7a9357e0744985b19f26a3c1c7fd8c4901203b1de4456289a12ae45a\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal CSV True, empty assignment and no skip status verified before original. Snapshot JSONL retained; no live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Inherited retained successful native NASA policy response copied from [retained reference c31289501445b0857e6863d480229ced4a0552d85b79fdb894a195eaf6e3f05d], not a fresh policy request in this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS092-706-41. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "27cdddcb-b6ee-4754-8694-0e104eb16f2b",
+    "slug": "bander-khiran-fahal-island",
+    "src": "https://assets.diveatlas.site/site-photos/v1/5be527f5bec4e6751b36ebc9c6d33048852494acf020dac04e9ab6ccecb46133.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/5be527f5bec4e6751b36ebc9c6d33048852494acf020dac04e9ab6ccecb46133.jpg",
+    "originalSha256": "54edde9db64122087a04cba1a468d5fb77c80e7a2930e548ad4c896c7ff61e08",
+    "alt": "Bander Khiran & Fahal island — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-19696. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-19696. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=19696&mission=ISS014&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=19696&mission=ISS014&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": \"evidence/search5.json\", \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPT_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_location_verified\": false, \"inventory_coordinates\": [23.54565, 58.64846], \"native_relationship_url\": \"https://www.omaninfo.om/en/pages/176/show/763\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_COAST_CONTEXT_ONLY\", \"summary\": \"The retained indexed Oman Ministry of Information description places Bandar Al Khiran Reserve a boat journey from Muscat, describes its rocky coastal setting and more than 22 dive sites. This supports broad east-Muscat coast context for the Bander Khiran part of the combined inventory name; it does not identify Fahal Island or an exact dive entry in this frame. The photograph is not claimed to depict both named parts of that combined record.\", \"target_eligible\": true, \"target_name\": \"Bander Khiran & Fahal island\", \"target_site_id\": \"27cdddcb-b6ee-4754-8694-0e104eb16f2b\", \"target_slug\": \"bander-khiran-fahal-island\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The full unchanged image shows a deeply indented rocky coast, arid mountains, several coves and a coastal settlement. Shore outlines are legible. Haze/softness and a large expanse of open water limit detail. Small colored specks and a dark spot over the water are retained original artifacts of undetermined cause. The native image-number strip remains. No exact dive entry, underwater reef, Fahal Island or current condition is verified.\", \"method\": \"Unchanged full original and native preview visually inspected using image viewer; full original decoded with Pillow. No edits.\", \"no_commercial_watermark\": true, \"no_identifiable_people\": true, \"no_map_collage_or_artificial_rendering\": true, \"reviewed_utc\": \"2026-11-13T07:56:12Z\", \"single_exposure\": true, \"suitability\": \"Limited historical named-coast environmental context only, not certified dive-site main-photo coverage.\"} / {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": \"evidence/search5.json\", \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPT_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_location_verified\": false, \"inventory_coordinates\": [23.54565, 58.64846], \"native_relationship_url\": \"https://www.omaninfo.om/en/pages/176/show/763\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_COAST_CONTEXT_ONLY\", \"summary\": \"The retained indexed Oman Ministry of Information description places Bandar Al Khiran Reserve a boat journey from Muscat, describes its rocky coastal setting and more than 22 dive sites. This supports broad east-Muscat coast context for the Bander Khiran part of the combined inventory name; it does not identify Fahal Island or an exact dive entry in this frame. The photograph is not claimed to depict both named parts of that combined record.\", \"target_eligible\": true, \"target_name\": \"Bander Khiran & Fahal island\", \"target_site_id\": \"27cdddcb-b6ee-4754-8694-0e104eb16f2b\", \"target_slug\": \"bander-khiran-fahal-island\"} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"denied_requests\": 0, \"new_stops\": [], \"pass_closed_no_further_requests\": true, \"pending_requests\": 0, \"uncertain_outcomes\": 0}, \"retained_restriction_record_sha256\": \"c4e77330d53dbaa74aa940736e5c7ea83fb7f11ad86f39d8a76a757553aeeca9\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal CSV True, empty assignment and no skip status verified before original. Snapshot independently agrees. No live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Inherited retained successful native policy response; not a fresh policy request in this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS014-E-19696. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "4c8c85f3-cc81-4fd2-8d8a-48924df00cf6",
+    "slug": "watamu-marine-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/62dc294aa4a99c4a8af0a7c6227fb39058737f6c62f7e5415862ca8c2af3490d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/62dc294aa4a99c4a8af0a7c6227fb39058737f6c62f7e5415862ca8c2af3490d.jpg",
+    "originalSha256": "904b9a596fd2e6095cbbfa4b6931da2ba26e960f60a82a9913e1f1bd3a6c76bd",
+    "alt": "Watamu Marine Park — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-106244. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-106244. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=106244&mission=ISS062&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=106244&mission=ISS062&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": \"evidence/search5.json\", \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPT_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_location_verified\": false, \"inventory_coordinates\": [-3.3673, 40.0098], \"native_relationship_url\": \"https://kws.go.ke/park/watamu-marine-national-park-reserve/\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_COAST_CONTEXT_ONLY\", \"summary\": \"The retained indexed Kenya Wildlife Service page explicitly identifies Watamu Marine National Park and Reserve, its beaches and reef-protected lagoons, and diving/snorkelling activities. The native NASA manually catalogued labels name Watamu. Together these support broad named-coast context only. The precise protected-area boundary, exact reef and inventory point are not verified in the image.\", \"target_eligible\": true, \"target_name\": \"Watamu Marine Park\", \"target_site_id\": \"4c8c85f3-cc81-4fd2-8d8a-48924df00cf6\", \"target_slug\": \"watamu-marine-park\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The full unchanged original shows a broad tropical coastal strip, pale shallow-water margins, a lagoon/creek opening, forest, settlements and a winding river. Blue haze reduces contrast and scattered clouds and shadows obscure small patches, but the coast remains legible. No individual reef, protected-area boundary, exact entry or current underwater condition is verified.\", \"method\": \"Unchanged full original and native preview visually inspected using image viewer; full original decoded with Pillow. No edits.\", \"no_commercial_watermark\": true, \"no_identifiable_people\": true, \"no_map_collage_or_artificial_rendering\": true, \"reviewed_utc\": \"2026-11-13T07:56:12Z\", \"single_exposure\": true, \"suitability\": \"Limited historical named-coast environmental context only, not certified dive-site main-photo coverage.\"} / {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": \"evidence/search5.json\", \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPT_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_location_verified\": false, \"inventory_coordinates\": [-3.3673, 40.0098], \"native_relationship_url\": \"https://kws.go.ke/park/watamu-marine-national-park-reserve/\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_COAST_CONTEXT_ONLY\", \"summary\": \"The retained indexed Kenya Wildlife Service page explicitly identifies Watamu Marine National Park and Reserve, its beaches and reef-protected lagoons, and diving/snorkelling activities. The native NASA manually catalogued labels name Watamu. Together these support broad named-coast context only. The precise protected-area boundary, exact reef and inventory point are not verified in the image.\", \"target_eligible\": true, \"target_name\": \"Watamu Marine Park\", \"target_site_id\": \"4c8c85f3-cc81-4fd2-8d8a-48924df00cf6\", \"target_slug\": \"watamu-marine-park\"} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"denied_requests\": 0, \"new_stops\": [], \"pass_closed_no_further_requests\": true, \"pending_requests\": 0, \"uncertain_outcomes\": 0}, \"retained_restriction_record_sha256\": \"c4e77330d53dbaa74aa940736e5c7ea83fb7f11ad86f39d8a76a757553aeeca9\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal CSV True, empty assignment and no skip status verified before original. Snapshot independently agrees. No live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Inherited retained successful native policy response; not a fresh policy request in this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS062-E-106244. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "151efc2b-a57f-4e50-9b47-b2024e37e421",
+    "slug": "marakura-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0188b1c23879a9205cc57e9a61e3af2ddd07b6f9dfaef362fb600855befc2304.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0188b1c23879a9205cc57e9a61e3af2ddd07b6f9dfaef362fb600855befc2304.jpg",
+    "originalSha256": "246ee640b96df18c9544f29a3d36ece7785bfeba2f223d3940eb1aee93e3d495",
+    "alt": "Marakura Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS102-717-7. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS102-717-7. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=STS102&roll=717&frame=7",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=STS102&roll=717&frame=7"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": [\"evidence/index-relationship.json\", \"evidence/index-search-2.json\"], \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPTS_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [-45.4264, 167.7161], \"inventory_limitation\": \"Retained inventory calls this a marine/boat site, despite named lake evidence. Original fields preserved, no correction or production validation.\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/marakura-bay-341999\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_LAKE_CONTEXT_ONLY\", \"summary\": \"Retained indexed Scubago excerpt identifies Marakura Bay as the stony shoreline at the south-eastern end of Te Anau township. Independent indexed DOC material establishes the town beside Lake Te Anau. Together these support named-lake context only, not the exact photographed bay or dive entry. No provider origin request was made.\", \"target_eligible\": true, \"target_name\": \"Marakura Bay\", \"target_site_id\": \"151efc2b-a57f-4e50-9b47-b2024e37e421\", \"target_slug\": \"marakura-bay\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The named lake, its branching arms and the surrounding deeply folded mountain terrain are legible. The native high-resolution film scan is rotated relative to the displayed preview, with low contrast, a blue cast, haze and strong terrain shadows. Black film borders and frame markings remain unchanged. Scattered clouds partly obscure surrounding terrain. The exact bay, dive entry and current conditions are not verified.\", \"method\": \"Unchanged original and native preview inspected using image viewer; full native JPEG decoded with Pillow. No edits.\", \"no_commercial_watermark\": true, \"no_identifiable_people\": true, \"no_map_collage_or_artificial_rendering\": true, \"quality_decision\": \"REVIEWED_LIMITED_HISTORICAL_CONTEXT_ONLY\", \"quality_reason\": \"Despite darkness, haze and low contrast, the elongated lake, branching arms and mountain shoreline remain legible in the unchanged original. This clears only limited historical named-lake context, not modern site-photo quality or an exact bay/entry.\", \"reviewed_utc\": \"2026-11-13T07:58:58Z\", \"single_exposure\": true, \"suitability\": \"Limited historical named-lake environmental context only, not certified dive-site main-photo coverage.\"} / {\"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_skip_already_has_main_photo\": true, \"prior_candidate_reviews_empty\": true}, \"evidence\": [\"evidence/index-relationship.json\", \"evidence/index-search-2.json\"], \"evidence_type\": \"RETAINED_INDEXED_SOURCE_EXCERPTS_NOT_FRESH_NATIVE_RELATIONSHIP_RESPONSE\", \"exact_site_or_entry_verified\": false, \"inventory_coordinates\": [-45.4264, 167.7161], \"inventory_limitation\": \"Retained inventory calls this a marine/boat site, despite named lake evidence. Original fields preserved, no correction or production validation.\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/marakura-bay-341999\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"scope\": \"QUARANTINED_HISTORICAL_NAMED_LAKE_CONTEXT_ONLY\", \"summary\": \"Retained indexed Scubago excerpt identifies Marakura Bay as the stony shoreline at the south-eastern end of Te Anau township. Independent indexed DOC material establishes the town beside Lake Te Anau. Together these support named-lake context only, not the exact photographed bay or dive entry. No provider origin request was made.\", \"target_eligible\": true, \"target_name\": \"Marakura Bay\", \"target_site_id\": \"151efc2b-a57f-4e50-9b47-b2024e37e421\", \"target_slug\": \"marakura-bay\"} / {\"source_access_restrictions\": [{\"effects\": {\"all_inherited_holds_preserved\": true, \"metadata_preview_exclusions\": [{\"id\": \"ISS016-E-12652\", \"reason\": \"Native metadata reports 76–100% cloud; no preview or original.\"}, {\"id\": \"ISS006-E-40157\", \"reason\": \"Preview crops the lake northern shore and gives poor target context; original not requested.\"}, {\"id\": \"ISS006-E-39493\", \"reason\": \"Preview is dominated by western coast and mountains, with the lake at frame edge; original not requested.\"}], \"new_source_stops\": [], \"no_held_source_used\": true, \"status\": \"FINITE_PASS_CLOSED\"}, \"retained_restriction_record_sha256\": \"29ed81bf7a9357e0744985b19f26a3c1c7fd8c4901203b1de4456289a12ae45a\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal CSV True, empty assignment and no skip status verified before original. Snapshot JSONL retained; no live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"creator\": \"NASA astronaut photography; Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Inherited retained successful native NASA policy response copied from [retained reference c31289501445b0857e6863d480229ced4a0552d85b79fdb894a195eaf6e3f05d], not a fresh policy request in this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo STS102-717-7. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "fcb66858-2de5-47db-927a-dac0e5bad6b7",
+    "slug": "hunter-springs-park",
+    "src": "https://assets.diveatlas.site/site-photos/v1/e9a0343fd5d36d7e2f5652a601a139a1be72644906179e269f8b6c68118a3f49.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/e9a0343fd5d36d7e2f5652a601a139a1be72644906179e269f8b6c68118a3f49.jpg",
+    "originalSha256": "28de7b6dfd3669f3698186ccfe54b86bfdb04ae2e64ee8a5800a584dd7b460d5",
+    "alt": "Hunter Springs Park — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Monica Scroggin/USFWS · Public Domain · Cropped/resized",
+    "creator": "Monica Scroggin/USFWS",
+    "license": "Public Domain",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.fws.gov/media/sunset-over-kings-bay",
+    "licenceUrl": "https://www.fws.gov/media/sunset-over-kings-bay",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://www.fws.gov/media/sunset-over-kings-bay"
+      },
+      {
+        "label": "Public Domain",
+        "url": "https://www.fws.gov/media/sunset-over-kings-bay"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Sunset over Kings Bay, Crystal River National Wildlife Refuge, Florida. Surrounding-bay environment for Hunter Springs Park; the park, its entry and underwater features are not identified in this photograph. Identity: {\"relationship\": {\"basis\": \"Official FWS Crystal River refuge activity page describes public kayak launches on Kings Bay and explicitly lists Hunter Springs Park, 104 NE 1st Ave, Crystal River. Inventory independently names Hunter Springs Park in Crystal River. Photo native caption identifies Kings Bay, Crystal River NWR. This supports surrounding-water context, not exact scene inclusion of the target.\", \"country\": \"United States of America\", \"evidence\": [\"inventory-record.json\", \"evidence/kings-relationship.html\", \"evidence/kings-relationship.txt\"], \"exact_site_identified\": false, \"inventory_coordinates\": [28.89564, -82.59203], \"limitations\": \"Source gives no camera coordinates, direction or identified park viewpoint. Do not relabel as Hunter Springs Park, exact dive entry, spring vent or underwater scene. Human association review remains pending.\", \"region\": \"Crystal River\", \"scope\": \"SURROUNDING_BAY_ENVIRONMENT_ONLY\", \"source_url\": \"https://www.fws.gov/refuge/crystal-river/visit-us/activities/boating---non-motorized\", \"target_name\": \"Hunter Springs Park\", \"target_site_id\": \"fcb66858-2de5-47db-927a-dac0e5bad6b7\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Single color photograph of sunset clouds reflected in calm water, tree silhouettes, marsh and low shoreline. Full image is somewhat soft in foliage and underexposed in shadow, but recognizable and consistent with native preview. No people, watermark, map, composite panel or text overlay visible.\", \"method\": \"Inspected the native preview and the complete unchanged 2560 x 1920 original, and verified JPEG decoding.\", \"quality_hold\": false, \"suitability\": \"Context photograph for private review. No hero-ready, exact-site or current-condition claim.\"} / {\"basis\": \"Official FWS Crystal River refuge activity page describes public kayak launches on Kings Bay and explicitly lists Hunter Springs Park, 104 NE 1st Ave, Crystal River. Inventory independently names Hunter Springs Park in Crystal River. Photo native caption identifies Kings Bay, Crystal River NWR. This supports surrounding-water context, not exact scene inclusion of the target.\", \"country\": \"United States of America\", \"evidence\": [\"inventory-record.json\", \"evidence/kings-relationship.html\", \"evidence/kings-relationship.txt\"], \"exact_site_identified\": false, \"inventory_coordinates\": [28.89564, -82.59203], \"limitations\": \"Source gives no camera coordinates, direction or identified park viewpoint. Do not relabel as Hunter Springs Park, exact dive entry, spring vent or underwater scene. Human association review remains pending.\", \"region\": \"Crystal River\", \"scope\": \"SURROUNDING_BAY_ENVIRONMENT_ONLY\", \"source_url\": \"https://www.fws.gov/refuge/crystal-river/visit-us/activities/boating---non-motorized\", \"target_name\": \"Hunter Springs Park\", \"target_site_id\": \"fcb66858-2de5-47db-927a-dac0e5bad6b7\"} / {\"additional_source_restrictions\": {\"access\": {\"native_item_http\": 200, \"native_relationship_http\": 200, \"no_bypass\": true, \"original_http\": 200, \"preview_http\": 200, \"robots_evidence\": \"evidence/retained-fws-robots.txt\", \"source_page_and_original_derivation\": \"Observed links in exact native item HTML, not guessed or taken from another asset.\"}, \"holds\": {\"exact_coverage\": \"NOT_ESTABLISHED\", \"human_rights_and_association_review\": \"PENDING\", \"new_access_stops\": [], \"new_rights_holds\": [], \"pending_uncertain_requests\": 0, \"publication\": \"NOT_AUTHORIZED\", \"source_restrictions\": \"All inherited source and item restrictions preserved; new success releases none.\"}}} / {\"source_access_restrictions\": [{\"effects\": [{\"bytes_received\": 0, \"ended_utc\": \"2026-11-12T17:25:31.850546+00:00\", \"outcome\": \"TIMEOUT_NO_RECOVERED_HTTP_RESPONSE\", \"scope\": \"Exact item remains stopped. No response, denial, origin cause or server-side completion established. No retry or alternate rendition/host.\", \"started_utc\": \"2026-11-12T17:25:16.774302+00:00\", \"url\": \"https://www.fws.gov/media/lighthouse-buck-island-national-wildlife-refuge\"}, {\"http_status\": 404, \"outcome\": \"EXACT_OBSERVED_PAGE_NOT_FOUND\", \"response_received_utc\": \"2026-11-12T17:26:33.192397+00:00\", \"scope\": \"Not a source-wide prohibition. No substitute URL or retry.\", \"url\": \"https://www.fws.gov/refuge/san-juan-islands/about-us\"}], \"retained_restriction_record_sha256\": \"1a9c69c80dba8f84d5e2fa95bb2bfc1431374011731b4f0eaa9f658a9c14e1c9\"}, {\"effects\": [{\"action\": \"STOP_SOURCE_NO_RETRY_OR_ALTERNATE\", \"observed_text\": \"Sorry, we can’t verify your browser! Access Denied: error code 9e4edb5b6b850c41.\", \"robots_restrictions\": [\"/downloads/\", \"/start_download/\"], \"source\": \"Digital Commonwealth\", \"status\": \"HTTP200_EXPLICIT_ANUBIS_ACCESS_DENIED\", \"url\": \"https://www.digitalcommonwealth.org/search?q=Plum+Cove&search_field=all_fields\"}, {\"action\": \"STOP_ITEM_NO_RETRY_OR_ALTERNATE\", \"identity\": \"det.4a17843\", \"no_alternate_item_api_cdn_tile_mirror\": true, \"scope\": \"Exact observed Bass Rocks item and replacement-copy routes. Not a blanket LOC ban. Prior Sand Key item hold remains unchanged.\", \"source\": \"Library of Congress\", \"status\": \"HTTP403_ITEM_STOP\", \"title\": \"[Surf at Bass Rocks, Gloucester, Mass.]\", \"url\": \"https://loc.gov/pictures/resource/det.4a17843/\"}], \"retained_restriction_record_sha256\": \"27a7ad1e4f5fa19ffaec5fab951c8012412b391b343d5457a963e0f6cf983f10\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"basis\": \"Exact native item explicitly states Public Domain under Media Usage Rights/License and credits Monica Scroggin/USFWS. No reliance on government hosting alone.\", \"creator\": \"Monica Scroggin/USFWS\", \"creator_type\": \"named_photographer_with_institution\", \"credit\": \"Monica Scroggin/USFWS\", \"evidence\": [\"evidence/kings-item.html\", \"evidence/kings-item.txt\"], \"human_reuse_review\": \"PENDING\", \"individual_photographer\": \"Monica Scroggin\", \"institution\": \"USFWS\", \"license\": \"Public Domain\", \"license_url\": \"https://www.fws.gov/media/sunset-over-kings-bay\", \"limits\": \"No endorsement or release assumed. No current access, safe diving, conditions or conservation-permission claim.\", \"publication_authorized\": false}"
+  },
+  {
+    "siteId": "e7db8908-d63d-4e06-80c6-5d3b0bba9898",
+    "slug": "lynch-blinder",
+    "src": "https://assets.diveatlas.site/site-photos/v1/28a765893e4bfca28750e861992d64b062b68857f7108dd4eb68740db92cbeb7.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/28a765893e4bfca28750e861992d64b062b68857f7108dd4eb68740db92cbeb7.jpg",
+    "originalSha256": "09cdf706d0d514a236f9ddc21068f3cbc191837b258b6c0ef5d291aff3f08ed3",
+    "alt": "Lynch Blinder — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-35748. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-35748. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS067&roll=E&frame=35748",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS067&roll=E&frame=35748"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"corroborating_relationship_urls\": [\"https://sbwqft.org.za/wp-content/uploads/sites/9/2022/09/Saldanha-Bay-ADZ-Reef-survey-1974_8-Final.pdf\", \"https://msi.nga.mil/api/publications/download?key=16694491%2FSFH00000%2FPub123bk.pdf&type=view\"], \"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_existing_target_proposal\": true, \"no_skip_status\": true, \"snapshot_agrees\": true}, \"evidence\": [\"evidence/langebaan-article.body\", \"evidence/search2.json\", \"evidence/search4.json\"], \"evidence_type\": \"FRESH_NATIVE_NASA_ARTICLE_PLUS_RETAINED_INDEXED_RELATIONSHIP_EXCERPTS\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_named_bay_verified\": true, \"inventory_coordinates\": [-33.039, 18.0114], \"native_photo_geography_url\": \"https://eol.jsc.nasa.gov/Collections/EarthObservatory/articles/SaldanhaBayandLangebaanLagoon.htm\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/lynch-blinder-83969\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"relationship_origin_requests\": \"None; direct dive-provider origin holds preserved. Indexed evidence is not a fresh native relationship response.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_BAY_CONTEXT_ONLY\", \"source_narrative_geography\": \"NASA article identifies this exact exposure as Saldanha Bay and Langebaan Lagoon, South Africa. This is institutional authored narrative, not public-contributed image labels or an ML center-based inference.\", \"summary\": \"The indexed SSI/Scubago source explicitly places Lynch Blinder at the West Cardinal Buoy in Saldanha Bay. An indexed Saldanha Bay Water Quality Forum reef-survey excerpt also identifies Lynch Blinder as a reef area in Saldanha Bay. NASA independently names the same bay in the article for ISS067-E-35748. This supports broad historical bay environmental context only; the exact underwater reef, buoy, entry or inventory point is not identified in the photograph.\", \"target_eligible\": true, \"target_name\": \"Lynch Blinder\", \"target_site_id\": \"e7db8908-d63d-4e06-80c6-5d3b0bba9898\", \"target_slug\": \"lynch-blinder\", \"target_url\": \"https://diveatlas.site/dive-sites/lynch-blinder/\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"One clear orbital photograph of a deeply indented bay, lagoon, tidal sand flats and channels, islands, coastal towns, port jetties and agricultural hinterland. Useful shore outlines and port/coast structure are legible. Light blue haze reduces contrast and small clouds obscure inland patches, not the main bay and lagoon. No exact reef, buoy, entry, underwater condition or current water state is verified.\", \"method\": \"Viewed native preview and unchanged full original with image viewer. Pillow fully decoded original bytes. No crop, enhancement, rotation or re-encoding performed.\", \"no_commercial_watermark\": true, \"no_identifiable_people\": true, \"no_map_collage_or_artificial_rendering\": true, \"reviewed_utc\": \"2026-11-13T08:42:28Z\", \"single_exposure\": true, \"suitability\": \"Reviewed historical named-bay environmental context, not certified dive-site coverage.\"} / {\"corroborating_relationship_urls\": [\"https://sbwqft.org.za/wp-content/uploads/sites/9/2022/09/Saldanha-Bay-ADZ-Reef-survey-1974_8-Final.pdf\", \"https://msi.nga.mil/api/publications/download?key=16694491%2FSFH00000%2FPub123bk.pdf&type=view\"], \"coverage_credit\": 0, \"current_conditions_verified\": false, \"eligibility_checks\": {\"current_assignment_empty\": true, \"needs_main_photo_literal_true\": true, \"no_existing_target_proposal\": true, \"no_skip_status\": true, \"snapshot_agrees\": true}, \"evidence\": [\"evidence/langebaan-article.body\", \"evidence/search2.json\", \"evidence/search4.json\"], \"evidence_type\": \"FRESH_NATIVE_NASA_ARTICLE_PLUS_RETAINED_INDEXED_RELATIONSHIP_EXCERPTS\", \"exact_site_or_entry_verified\": false, \"geography_hold\": false, \"independent_specific_frame_named_bay_verified\": true, \"inventory_coordinates\": [-33.039, 18.0114], \"native_photo_geography_url\": \"https://eol.jsc.nasa.gov/Collections/EarthObservatory/articles/SaldanhaBayandLangebaanLagoon.htm\", \"native_relationship_url\": \"https://www.scubago.com/en/explore/divesite/lynch-blinder-83969\", \"precise_camera_or_subject_footprint_verified\": false, \"production_assignment\": false, \"public_contributed_native_geography\": false, \"relationship_origin_requests\": \"None; direct dive-provider origin holds preserved. Indexed evidence is not a fresh native relationship response.\", \"scope\": \"QUARANTINED_HISTORICAL_NAMED_BAY_CONTEXT_ONLY\", \"source_narrative_geography\": \"NASA article identifies this exact exposure as Saldanha Bay and Langebaan Lagoon, South Africa. This is institutional authored narrative, not public-contributed image labels or an ML center-based inference.\", \"summary\": \"The indexed SSI/Scubago source explicitly places Lynch Blinder at the West Cardinal Buoy in Saldanha Bay. An indexed Saldanha Bay Water Quality Forum reef-survey excerpt also identifies Lynch Blinder as a reef area in Saldanha Bay. NASA independently names the same bay in the article for ISS067-E-35748. This supports broad historical bay environmental context only; the exact underwater reef, buoy, entry or inventory point is not identified in the photograph.\", \"target_eligible\": true, \"target_name\": \"Lynch Blinder\", \"target_site_id\": \"e7db8908-d63d-4e06-80c6-5d3b0bba9898\", \"target_slug\": \"lynch-blinder\", \"target_url\": \"https://diveatlas.site/dive-sites/lynch-blinder/\"} / {\"source_access_restrictions\": [{\"effects\": {\"all_prior_holds_preserved\": true, \"denied_requests\": 0, \"handling\": \"Only unheld NASA item/article/catalog/preview/original paths were requested. Indexed search results are retained as discovery/corroboration and do not release native access holds. No retry, bypass or alternative endpoint after failure.\", \"new_stops\": [], \"pass_closed_no_further_requests\": true, \"pending_requests\": 0, \"preserved_sources\": [\"Commons\", \"Flickr\", \"Openverse\", \"iNaturalist\", \"RLS\", \"SQUIDLE\", \"USGS\", \"archival sources with existing holds\", \"Mozambique tourism robots503\", \"Scubago direct origin\", \"commercial dive-provider direct origins\", \"NASA Aguni wrong-result token\", \"NASA STS051-75-98 failed item\"], \"uncertain_outcomes\": 0}, \"retained_restriction_record_sha256\": \"0bc85df2ed6c38aeda45f0e18bfb63a50a94521d719b1b02c257e7e566426590\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact literal True, empty assignment and no skip status before original; retained snapshot agrees. No live production check.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"rows\": 16571, \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"caption_author_not_photographer\": \"Justin Wilkinson, Texas State University, JETS Contract at NASA-JSC\", \"creator\": \"A member of the Expedition 67 crew; ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_evidence\": \"evidence/langebaan-article.body\", \"creator_type\": \"NASA_ASTRONAUT_CREW_INSTITUTIONAL_CREDIT_INDIVIDUAL_NOT_NAMED\", \"exact_policy_excerpt\": \"NASA material is not protected by copyright unless noted. If copyrighted, permission should be obtained from the copyright owner prior to use. If not copyrighted, NASA material may be reproduced and distributed without further permission from NASA.\", \"individual_photographer\": null, \"license\": \"NASA material is not protected by copyright unless noted; no item-specific exception indicated for this exposure.\", \"no_endorsement\": true, \"policy_evidence\": \"evidence/NASA-inherited-policy.html\", \"policy_provenance\": \"Retained successful native NASA policy response, not newly requested this pass.\", \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS067-E-35748. https://eol.jsc.nasa.gov/\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "0a2c2306-7d00-4989-b88f-d9db9d5d1574",
+    "slug": "montego-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6ef9d00e34e0f6bbb23d37f74a05cde57e7e1b1b283a0b67e920e55ed9b8ba9d.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6ef9d00e34e0f6bbb23d37f74a05cde57e7e1b1b283a0b67e920e55ed9b8ba9d.jpg",
+    "originalSha256": "8b56fd5c3d8a016117c75996dcee55615f466f65fd98591ccc0fb6a12697d56e",
+    "alt": "Montego Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS001-349-28. https://eol.jsc.nasa.gov/ · NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS001-349-28. https://eol.jsc.nasa.gov/",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=28&mission=ISS001&roll=349",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=28&mission=ISS001&roll=349"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Montego Bay coastal setting in Jamaica, photographed from the International Space Station on 15 January 2001. Historical surrounding-place context; no exact underwater dive location is identified. Identity: {\"relationship\": {\"country\": \"Jamaica\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/montego-native.body\", \"evidence/montego-native.txt\"], \"explanation\": \"The native NASA record manually identifies MONTEGO BAY in Jamaica. The retained eligible inventory record is named Montego Bay in Jamaica. The single exposure shows the named coastal setting with town, shoreline and offshore water. This is a name-to-setting correspondence, not a geographic pin validation.\", \"geography_hold\": false, \"inventory_coordinates\": [18.4824, -77.9343], \"limitations\": \"Historical surrounding-place context only. No exact underwater dive-site, entry, reef feature, inventory pin, present-day condition or navigation claim. No association to the separate Montego Bay Marine Park record.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COASTAL_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_BAY_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=28&mission=ISS001&roll=349\"], \"target_name\": \"Montego Bay\", \"target_site_id\": \"0a2c2306-7d00-4989-b88f-d9db9d5d1574\", \"target_slug\": \"montego-bay\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Dark, blue-toned film-scan exposure, but the coastal urban area, continuous shoreline, shallow-water margins and adjoining bay are discernible at full resolution. Small clouds scattered mostly inland and offshore; one small cloud covers part of the inner-water area. The original black film margins remain. Useful historical named-bay setting context, not a modern high-contrast promotional image.\", \"method\": \"Preview inspected before original request. Unchanged full original viewed directly with an image viewer and fully decoded by Pillow afterward.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:08:52Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/montego-native.txt\", \"suitability\": \"Historical named coastal setting candidate only; no assignment.\"} / {\"country\": \"Jamaica\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/montego-native.body\", \"evidence/montego-native.txt\"], \"explanation\": \"The native NASA record manually identifies MONTEGO BAY in Jamaica. The retained eligible inventory record is named Montego Bay in Jamaica. The single exposure shows the named coastal setting with town, shoreline and offshore water. This is a name-to-setting correspondence, not a geographic pin validation.\", \"geography_hold\": false, \"inventory_coordinates\": [18.4824, -77.9343], \"limitations\": \"Historical surrounding-place context only. No exact underwater dive-site, entry, reef feature, inventory pin, present-day condition or navigation claim. No association to the separate Montego Bay Marine Park record.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COASTAL_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_BAY_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=28&mission=ISS001&roll=349\"], \"target_name\": \"Montego Bay\", \"target_site_id\": \"0a2c2306-7d00-4989-b88f-d9db9d5d1574\", \"target_slug\": \"montego-bay\"} / {\"source_access_restrictions\": [{\"effects\": {\"coastalscience_noaa\": \"Not requested; prior denial and unresolved PENDING preserved.\", \"commercial_provider_origins\": \"Not requested.\", \"held_broad_sources\": \"Commons/Flickr/Openverse/iNaturalist/RLS/SQUIDLE and inherited archive holds untouched.\", \"new_denials\": [], \"new_uncertain_outcomes\": [], \"no_alternate_after_failure\": true, \"no_denied_or_pending_nasa_item_retried\": true, \"prior_holds_preserved\": true, \"used_source\": \"NASA Gateway eol.jsc.nasa.gov\"}, \"retained_restriction_record_sha256\": \"15b75edc54df1641fd94cd536345729f2e97d1485ea34cc001617be8bc9f8940\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment and UNCLAIMED status. Matching JSONL snapshot agrees.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS001-349-28. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained native full NASA FAQ HTML and paired original request evidence inherited from prior successful read; not re-fetched.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "8165e0f9-2191-4664-8976-9dcfd82959d3",
+    "slug": "atspas-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/0430fb7f67abd0114470da40edf68b6b02f58ae3ebcb47c3066b6c7bdf063161.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/0430fb7f67abd0114470da40edf68b6b02f58ae3ebcb47c3066b6c7bdf063161.jpg",
+    "originalSha256": "b66e4df1719d02a5c96c37cc724d72eafdb761b0e9d2dd161ef941927626e9c5",
+    "alt": "Atspas Beach — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS005-E-7955. https://eol.jsc.nasa.gov/ · NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS005-E-7955. https://eol.jsc.nasa.gov/",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7955&mission=ISS005&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7955&mission=ISS005&roll=E"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Thasos Island and surrounding coastline in Greece, photographed from the International Space Station on 14 July 2002. Historical island setting context for Atspas Beach; the beach and exact underwater dive location are not identified. Identity: {\"relationship\": {\"country\": \"Greece\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/thasos1-native.body\", \"evidence/thasos1-native.txt\", \"evidence/atspas-relationship.body\", \"evidence/atspas-relationship.body.txt\", \"evidence/atspas-relationship-request.json\"], \"explanation\": \"NASA names Thasos Island. The new direct native SSI Dive Pirates page explicitly lists Atspas Beach with Thassos and carries native site ID452775, linked profile, and coordinates 40.639000,24.512800 matching the retained exact inventory row. These establish the beach-to-island setting relationship. The photograph shows the island and its coasts; it does not identify or prove depiction of Atspas Beach itself.\", \"geography_hold\": false, \"inventory_coordinates\": [40.639, 24.5128], \"limitations\": \"Historical surrounding-island context only. No actual Atspas Beach depiction, underwater dive-site, entry, reef feature, geographic pin validation, present-day condition or navigation claim. Matching coordinates are source correspondence evidence, not photograph georeferencing.\", \"native_relationship_response\": {\"bytes\": 78202, \"http_status\": 200, \"response_type\": \"DIRECT_NATIVE_HTML_NOT_INDEXED_SNIPPET\", \"sha256\": \"78a9a0e76e586261c884f09e97528c1be9c94c88d0ba96b06130c5a1e5349b12\"}, \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ISLAND_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_ISLAND_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7955&mission=ISS005&roll=E\", \"https://www.divessi.com/en/divecenter/dive-pirates-thassos-greece-718064\"], \"target_name\": \"Atspas Beach\", \"target_site_id\": \"8165e0f9-2191-4664-8976-9dcfd82959d3\", \"target_slug\": \"atspas-beach\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Clear daylight island scene with continuous visible coastline, bays, thin turquoise coastal margins, textured mountainous terrain and roads. Thasos occupies substantial central image area; mainland coast is visible at left. Several dark sensor/window-like spots and a larger smudge lie mainly over sea. Fine grain/noise and modest contrast remain, but land and coastal details are discernible. Source identification strip retained unchanged.\", \"method\": \"Source preview inspected before original request. Full unchanged original viewed directly using an image viewer and fully decoded by Pillow.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:20:00Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/thasos1-native.txt\", \"suitability\": \"Useful historical surrounding-island context candidate only; no assignment and no exact beach depiction claim.\"} / {\"country\": \"Greece\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/thasos1-native.body\", \"evidence/thasos1-native.txt\", \"evidence/atspas-relationship.body\", \"evidence/atspas-relationship.body.txt\", \"evidence/atspas-relationship-request.json\"], \"explanation\": \"NASA names Thasos Island. The new direct native SSI Dive Pirates page explicitly lists Atspas Beach with Thassos and carries native site ID452775, linked profile, and coordinates 40.639000,24.512800 matching the retained exact inventory row. These establish the beach-to-island setting relationship. The photograph shows the island and its coasts; it does not identify or prove depiction of Atspas Beach itself.\", \"geography_hold\": false, \"inventory_coordinates\": [40.639, 24.5128], \"limitations\": \"Historical surrounding-island context only. No actual Atspas Beach depiction, underwater dive-site, entry, reef feature, geographic pin validation, present-day condition or navigation claim. Matching coordinates are source correspondence evidence, not photograph georeferencing.\", \"native_relationship_response\": {\"bytes\": 78202, \"http_status\": 200, \"response_type\": \"DIRECT_NATIVE_HTML_NOT_INDEXED_SNIPPET\", \"sha256\": \"78a9a0e76e586261c884f09e97528c1be9c94c88d0ba96b06130c5a1e5349b12\"}, \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ISLAND_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_ISLAND_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=7955&mission=ISS005&roll=E\", \"https://www.divessi.com/en/divecenter/dive-pirates-thassos-greece-718064\"], \"target_name\": \"Atspas Beach\", \"target_site_id\": \"8165e0f9-2191-4664-8976-9dcfd82959d3\", \"target_slug\": \"atspas-beach\"} / {\"source_access_restrictions\": [{\"effects\": [{\"error\": \"The read operation timed out\", \"outcome\": \"FAILED_STOP\", \"state\": \"CLOSED\", \"time\": \"2026-11-12T20:46:23.645046+00:00\", \"url\": \"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS034&roll=E&frame=12364\"}, {\"state\": \"PENDING\", \"time\": \"2026-11-12T21:25:54.070857+00:00\", \"url\": \"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=5755&mission=ISS013&roll=E\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/walchensee-2616\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T03:56:40Z\", \"state\": \"CLOSED\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/walchensee-germany-2616\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/walchensee-germany-2616\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T03:56:40Z\", \"state\": \"CLOSED\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/walchensee-germany-2616\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/walchensee-2616\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T03:56:40Z\", \"state\": \"CLOSED\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/walchensee-germany-2616\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/walchensee-germany-2616\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T03:56:40Z\", \"state\": \"CLOSED\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/walchensee-germany-2616\"}, {\"completed_not_after_utc\": \"2026-11-13T05:48:48Z\", \"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/punta-castagna-italy-309375\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:47:23Z\", \"state\": \"CLOSED\", \"time_precision\": \"Bounds from recorded UTC clock, not host clock; upper bound not an exact transfer instant.\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/punta-castagna-italy-309375\"}, {\"completed_not_after_utc\": \"2026-11-13T05:48:48Z\", \"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/punta-castagna-309375\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:47:23Z\", \"state\": \"CLOSED\", \"time_precision\": \"Bounds from recorded UTC clock, not host clock; upper bound not an exact transfer instant.\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/punta-castagna-italy-309375\"}, {\"completed_not_after_utc\": \"2026-11-13T05:48:48Z\", \"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/punta-castagna-italy-309375\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:47:23Z\", \"state\": \"CLOSED\", \"time_precision\": \"Bounds from recorded UTC clock, not host clock; upper bound not an exact transfer instant.\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/punta-castagna-italy-309375\"}, {\"completed_not_after_utc\": \"2026-11-13T05:48:48Z\", \"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/punta-castagna-309375\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T05:47:23Z\", \"state\": \"CLOSED\", \"time_precision\": \"Bounds from recorded UTC clock, not host clock; upper bound not an exact transfer instant.\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/punta-castagna-italy-309375\"}, {\"method\": \"GET\", \"redirects_followed\": false, \"request_not_before_utc\": \"2026-11-13T05:54:19Z\", \"state\": \"PENDING\", \"url\": \"https://www.scubago.com/sv/explore/divesite/anna-maria-273700\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/caones-es-vedranell-270773\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:00:38Z\", \"state\": \"CLOSED\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/caones-es-vedranell-spain-270773\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/caones-es-vedranell-spain-270773\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:00:38Z\", \"state\": \"CLOSED\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/caones-es-vedranell-spain-270773\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/explore/divesite/caones-es-vedranell-270773\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:00:38Z\", \"state\": \"CLOSED\", \"url\": \"https://www.scubago.com/en/forward-mdg/divesite/caones-es-vedranell-spain-270773\"}, {\"error\": \"HTTP Error 301: Moved Permanently\", \"http_status\": 301, \"location\": \"https://www.scubago.com/en/forward-mdg/divesite/caones-es-vedranell-spain-270773\", \"outcome\": \"FAILED_STOP\", \"request_not_before_utc\": \"2026-11-13T04:00:38Z\", \"state\": \"CLOSED\", \"url\": \"https://www.divessi.com/en/mydiveguide/divesite/caones-es-vedranell-spain-270773\"}], \"retained_restriction_record_sha256\": \"59e58aafa87d08ffc6ce222c704f3a9726a932395c6f201360a54e25a4d7d06e\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment and UNCLAIMED status. Matching JSONL snapshot agrees. No prior proposal found in comparison evidence.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS005-E-7955. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained native full NASA FAQ HTML and paired original request evidence inherited from prior successful read; not re-fetched.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "7f72a73c-6be6-4ee2-9c1b-7726e7c6764a",
+    "slug": "lago-llopango",
+    "src": "https://assets.diveatlas.site/site-photos/v1/6e1df7b42ffe10e793a3f8ad52efa6350beec1e6157b79a751a625f088699f6e.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/6e1df7b42ffe10e793a3f8ad52efa6350beec1e6157b79a751a625f088699f6e.jpg",
+    "originalSha256": "a0fbdaeb42198258417c92313921aff357a2132abd75415cae9e8673db440173",
+    "alt": "Lago Llopango — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS021-E-23475. https://eol.jsc.nasa.gov/ · NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS021-E-23475. https://eol.jsc.nasa.gov/",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=23475&mission=ISS021&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=23475&mission=ISS021&roll=E"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Lake Ilopango and its surrounding volcanic landscape in El Salvador, photographed from the International Space Station on 11 November 2009. Historical lake-setting context; no exact underwater dive location is identified. Identity: {\"relationship\": {\"country\": \"El Salvador\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/ilopango-native.body\", \"evidence/ilopango-native.txt\", \"evidence/discovery-search2.json\"], \"explanation\": \"NASA native manual Features identifies LLOPANGO LAKE, and its caption identifies Lake Ilopango approximately 16 kilometers east of San Salvador. Exact eligible inventory is Lago Llopango, a lake in El Salvador with region San Salvador. A retained indexed Scubago result for the identical 109097 site number independently says the diving is in the volcanic crater of Lake Ilopango. This supports the named-lake setting, not a diving pin or subsite.\", \"geography_hold\": false, \"inventory_coordinates\": [13.6691, -89.0489], \"limitations\": \"Historical surrounding lake setting only. No exact underwater dive location, entry point, present-day water condition, dive safety or navigation claim. Commercial relationship evidence is indexed search output only; no commercial provider origin requested.\", \"region\": \"San Salvador\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_LAKE_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_LAKE_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=23475&mission=ISS021&roll=E\", \"https://www.scubago.com/en/explore/divesite/lago-llopango-109097\"], \"target_name\": \"Lago Llopango\", \"target_site_id\": \"7f72a73c-6be6-4ee2-9c1b-7726e7c6764a\", \"target_slug\": \"lago-llopango\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The lake dominates the composition, with clearly discernible shoreline, volcanic hills and adjacent urban area. Haze softens contrast, but the surrounding terrain and shore remain detailed and useful. Small cumulus clouds obscure limited lake and inland portions. The lake reaches the lower image margin. The original NASA identifier strip is retained; no map labels, collage or rendered scene.\", \"method\": \"Preview inspected before original request. Unchanged full original viewed directly with an image viewer and fully decoded by Pillow afterward.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:26:06Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/ilopango-native.txt\", \"suitability\": \"Historical named lake setting candidate only; no assignment.\"} / {\"country\": \"El Salvador\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/ilopango-native.body\", \"evidence/ilopango-native.txt\", \"evidence/discovery-search2.json\"], \"explanation\": \"NASA native manual Features identifies LLOPANGO LAKE, and its caption identifies Lake Ilopango approximately 16 kilometers east of San Salvador. Exact eligible inventory is Lago Llopango, a lake in El Salvador with region San Salvador. A retained indexed Scubago result for the identical 109097 site number independently says the diving is in the volcanic crater of Lake Ilopango. This supports the named-lake setting, not a diving pin or subsite.\", \"geography_hold\": false, \"inventory_coordinates\": [13.6691, -89.0489], \"limitations\": \"Historical surrounding lake setting only. No exact underwater dive location, entry point, present-day water condition, dive safety or navigation claim. Commercial relationship evidence is indexed search output only; no commercial provider origin requested.\", \"region\": \"San Salvador\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_LAKE_SETTING_ONLY\", \"scope\": \"SOURCE_NAMED_LAKE_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=23475&mission=ISS021&roll=E\", \"https://www.scubago.com/en/explore/divesite/lago-llopango-109097\"], \"target_name\": \"Lago Llopango\", \"target_site_id\": \"7f72a73c-6be6-4ee2-9c1b-7726e7c6764a\", \"target_slug\": \"lago-llopango\"} / {\"source_access_restrictions\": [{\"effects\": {\"commercial_provider_origins\": \"No direct reads; indexed relationship snippets only.\", \"held_families_untouched\": [\"Commons\", \"Flickr\", \"Openverse\", \"iNaturalist\", \"RLS\", \"SQUIDLE\", \"USGS\", \"NARA\", \"NHHC\", \"NOAA inherited holds\", \"DOE.ky CAPTCHA\", \"PADI held origin\", \"Nautilus held origin\", \"axfactor held origin\"], \"new_denials\": [], \"new_uncertain_outcomes\": [], \"no_alternate_after_failure\": true, \"no_denied_or_pending_nasa_item_retried\": true, \"prior_holds_preserved\": true, \"recent_noaa_stops\": \"coastalscience denied/uncertain and floridakeys robots 403 not requested\", \"used_source\": \"NASA Gateway eol.jsc.nasa.gov\"}, \"retained_restriction_record_sha256\": \"d7ba022b9460ee3d2770f04d8a83cee46510377a40047f8492853fc0609073e5\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment, empty prior_candidate_reviews and UNCLAIMED status. Matching JSONL snapshot agrees. Historical/current target proposal scan found no exact UUID match.\", \"file\": \"[retained reference b2aa3c174809956df295ee12ce7faad11481bf34e825eef3e1c915ba8e7fc6e9]\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS021-E-23475. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained native full NASA FAQ HTML and paired original request evidence inherited from prior successful read; not re-fetched.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "54bbaaba-a355-4d44-8caa-8212d4275f5a",
+    "slug": "pam-liguria-wreck",
+    "src": "https://assets.diveatlas.site/site-photos/v1/8d527669e6282c146805a5f7482c2bf9fe4438759511f33b99fe3c69cd289975.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/8d527669e6282c146805a5f7482c2bf9fe4438759511f33b99fe3c69cd289975.jpg",
+    "originalSha256": "f42bf8fb93440bb98265212c0c8d3fd18e5a196a717e467bf6175c177b286b6d",
+    "alt": "Pam Liguria, wreck — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-82896. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-82896. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=82896&mission=ISS022&roll=E",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=82896&mission=ISS022&roll=E"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Talcahuano coastal setting, Chile, photographed from the International Space Station on 6 March 2010. Historical surrounding-coast context for the Pam Liguria wreck in San Vicente; the submerged wreck and exact dive location are not identified. Identity: {\"relationship\": {\"country\": \"Chile\", \"evidence\": [\"inventory-record.json\", \"evidence/talcahuano-native.body\", \"evidence/talcahuano-native.txt\", \"evidence/relationship-evidence.json\", \"evidence/source-access-hold.json\"], \"explanation\": \"NASA explicitly names Talcahuano, Biobio River and coast. Retained indexed exact Pam Liguria entry uses native dive-site ID97617, matching inventory source identity, and places the wreck in the port of San Vicente. Retained indexed official Chilean maritime records independently place San Vicente bay in Talcahuano. These support a provisional surrounding-coast relationship. The image does not identify or prove depiction of the submerged wreck or exact dive entry.\", \"geography_hold\": false, \"inventory_coordinates\": [-36.7472, -73.1778], \"limitations\": \"Historical named coastal setting only. No wreck visibility, exact pin/entry confirmation, navigation, present-day condition or underwater depiction claim. Source centerpoint and inventory pins are not proof of target pixels.\", \"native_relationship_limitation\": \"Official maritime robots URL returned HTTP 403. No content request or retry followed. Previously retained indexed findings are not live source-page evidence.\", \"native_relationship_response\": null, \"region\": \"Biobío\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_COAST_CONTEXT\", \"scope\": \"SOURCE_NAMED_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=82896&mission=ISS022&roll=E\", \"https://www.scubago.com/en/explore/divesite/pam-liguria-wreck-97617\", \"https://www.directemar.cl/directemar/site/docs/20201118/20201118122852/12200_66_261020_dgtm.pdf\"], \"target_name\": \"Pam Liguria, wreck\", \"target_site_id\": \"54bbaaba-a355-4d44-8caa-8212d4275f5a\", \"target_slug\": \"pam-liguria-wreck\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Daylight photograph of a prominent coastal peninsula, sheltered bay and industrial port at left, river mouth and sandy shoreline at right, and rocky outer coast. Coast, coves, vegetation, roads and port structures are distinguishable. Haze, muted contrast and fine sensor grain remain. No heavy cloud obstruction; no enhancement or crop applied. Native identification strip retained.\", \"method\": \"Source preview was visually inspected before acquisition. The full unchanged original was visually inspected and fully decoded.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:32:11Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/talcahuano-native.txt\", \"suitability\": \"Useful historical coastal-environment context candidate only, not an underwater wreck photograph. Detailed 800 mm scene rather than a broad regional landscape.\"} / {\"country\": \"Chile\", \"evidence\": [\"inventory-record.json\", \"evidence/talcahuano-native.body\", \"evidence/talcahuano-native.txt\", \"evidence/relationship-evidence.json\", \"evidence/source-access-hold.json\"], \"explanation\": \"NASA explicitly names Talcahuano, Biobio River and coast. Retained indexed exact Pam Liguria entry uses native dive-site ID97617, matching inventory source identity, and places the wreck in the port of San Vicente. Retained indexed official Chilean maritime records independently place San Vicente bay in Talcahuano. These support a provisional surrounding-coast relationship. The image does not identify or prove depiction of the submerged wreck or exact dive entry.\", \"geography_hold\": false, \"inventory_coordinates\": [-36.7472, -73.1778], \"limitations\": \"Historical named coastal setting only. No wreck visibility, exact pin/entry confirmation, navigation, present-day condition or underwater depiction claim. Source centerpoint and inventory pins are not proof of target pixels.\", \"native_relationship_limitation\": \"Official maritime robots URL returned HTTP 403. No content request or retry followed. Previously retained indexed findings are not live source-page evidence.\", \"native_relationship_response\": null, \"region\": \"Biobío\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_COAST_CONTEXT\", \"scope\": \"SOURCE_NAMED_COASTAL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?frame=82896&mission=ISS022&roll=E\", \"https://www.scubago.com/en/explore/divesite/pam-liguria-wreck-97617\", \"https://www.directemar.cl/directemar/site/docs/20201118/20201118122852/12200_66_261020_dgtm.pdf\"], \"target_name\": \"Pam Liguria, wreck\", \"target_site_id\": \"54bbaaba-a355-4d44-8caa-8212d4275f5a\", \"target_slug\": \"pam-liguria-wreck\"} / {\"source_access_restrictions\": [{\"effects\": {\"content_request_performed\": false, \"http_status\": 403, \"response_summary\": \"Forbidden; error code 1010.\", \"retry_performed\": false, \"status\": \"Access hold retained.\", \"url\": \"https://www.directemar.cl/robots.txt\"}, \"retained_restriction_record_sha256\": \"c21add5dc77ec57cec6837034e7b09fa024b5947933490b459089b44d264a6f9\"}]} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"The exact target has literal needs_main_photo=True, a blank assignment, empty prior candidate reviews and UNCLAIMED status. No prior target proposal was found in the checked collection records.\", \"file\": \"inventory-record.json\", \"full_inventory_source_description\": \"Retained complete DiveAtlas collection inventory CSV\", \"full_inventory_source_sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"sha256\": \"56c91e0ae6521e8598ab61f4ea5838f6c2e5d74208950077c560a1722b34d80a\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS022-E-82896. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-inherited-policy.html\", \"rights_evidence_provenance\": \"Retained native NASA FAQ HTML and text from a successful source read.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "e08be0d6-80a6-4d28-ac5b-11c95530c598",
+    "slug": "rasdhoo-madivaru-corner",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4aacd56ccf7d31f4dc2e9852def64e2249464582bb8ed286bf0f95119cea58b4.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4aacd56ccf7d31f4dc2e9852def64e2249464582bb8ed286bf0f95119cea58b4.jpg",
+    "originalSha256": "c3b5bf910dd8df72723d0fd7655d517ce20cf59e4a6a890e13ca288112f64793",
+    "alt": "Rasdhoo Madivaru Corner — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-E-9179. https://eol.jsc.nasa.gov/ · NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-E-9179. https://eol.jsc.nasa.gov/",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=E&frame=9179",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=E&frame=9179"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Rasdu (Rasdhoo) Atoll in the Maldives, photographed from the International Space Station on 12 July 2001. Historical surrounding-atoll context for Rasdhoo Madivaru Corner; the exact dive site is not identified. Identity: {\"relationship\": {\"country\": \"Maldives\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA names Rasdu Atoll. An indexed US National Geospatial-Intelligence Agency sailing-directions excerpt equates Rasdu and Rasdhoo. Independently indexed PADI and Reef Environmental Education Foundation records place Madivaru Corner within Rasdhoo Atoll. These connect the exact inventory name Rasdhoo Madivaru Corner to the photographed parent atoll without identifying the precise underwater feature.\", \"geography_hold\": false, \"inventory_coordinates\": [4.2642509, 72.999492], \"limitations\": \"Historical surrounding-atoll context only. No assertion of exact dive-site depiction, underwater condition, access permission, entry, reef feature, geographic pin validation or navigation suitability.\", \"region\": \"Maldives\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ATOLL_CONTEXT_INDEXED_RELATIONSHIP\", \"scope\": \"SOURCE_NAMED_RASDU_ATOLL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=E&frame=9179\", \"https://www.padi.com/dive-site/maldives/madivaru-corner/\", \"https://www.reef.org/db/zonecodes/list/?region_code=IORS\", \"https://msi.nga.mil/api/publications/download?key=16694491%2FSFH00000%2FPub173bk.pdf\"], \"target_name\": \"Rasdhoo Madivaru Corner\", \"target_site_id\": \"e08be0d6-80a6-4d28-ac5b-11c95530c598\", \"target_slug\": \"rasdhoo-madivaru-corner\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Close daylight view of a single atoll with turquoise reef rims, lagoon patch reefs, islands and a visible settlement. Near-white shallow reef areas, visible image noise, faint cloud or surface patterns and small clouds remain. The lower outer rim extends beyond the frame. Enough coastline and reef structure is visible for useful atoll context. The original identification strip remains intact.\", \"method\": \"Source preview inspected before acquisition; full unchanged original visually inspected and every pixel decoded with Pillow.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:39:24Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/source-native.txt\", \"suitability\": \"Useful historical atoll setting context candidate only; no assignment and no exact underwater-site depiction claim.\"} / {\"country\": \"Maldives\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA names Rasdu Atoll. An indexed US National Geospatial-Intelligence Agency sailing-directions excerpt equates Rasdu and Rasdhoo. Independently indexed PADI and Reef Environmental Education Foundation records place Madivaru Corner within Rasdhoo Atoll. These connect the exact inventory name Rasdhoo Madivaru Corner to the photographed parent atoll without identifying the precise underwater feature.\", \"geography_hold\": false, \"inventory_coordinates\": [4.2642509, 72.999492], \"limitations\": \"Historical surrounding-atoll context only. No assertion of exact dive-site depiction, underwater condition, access permission, entry, reef feature, geographic pin validation or navigation suitability.\", \"region\": \"Maldives\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ATOLL_CONTEXT_INDEXED_RELATIONSHIP\", \"scope\": \"SOURCE_NAMED_RASDU_ATOLL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=E&frame=9179\", \"https://www.padi.com/dive-site/maldives/madivaru-corner/\", \"https://www.reef.org/db/zonecodes/list/?region_code=IORS\", \"https://msi.nga.mil/api/publications/download?key=16694491%2FSFH00000%2FPub173bk.pdf\"], \"target_name\": \"Rasdhoo Madivaru Corner\", \"target_site_id\": \"e08be0d6-80a6-4d28-ac5b-11c95530c598\", \"target_slug\": \"rasdhoo-madivaru-corner\"} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment, no prior candidate review and UNCLAIMED status. Matching retained snapshot agrees. No prior proposal found in the checked historical/current evidence.\", \"file_name\": \"inventory.csv\", \"included_record\": \"Portable excerpt omits only local_url.\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-E-9179. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-terms.html\", \"rights_evidence_provenance\": \"Retained complete native NASA FAQ, not newly fetched in this pass.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "d68152df-0eed-48c0-954d-53661ad0cdd9",
+    "slug": "hanifaru-bay",
+    "src": "https://assets.diveatlas.site/site-photos/v1/10a98ea46274daad09d5fbc0b0266562dba920b25e6a704f57c840357af9e65a.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/10a98ea46274daad09d5fbc0b0266562dba920b25e6a704f57c840357af9e65a.jpg",
+    "originalSha256": "fbe5305c62dc2f7e0f3a625a663f2f223567a9a4c21109c272bc983a1da431ad",
+    "alt": "Hanifaru Bay — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-709-41. https://eol.jsc.nasa.gov/ · NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-709-41. https://eol.jsc.nasa.gov/",
+    "license": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=709&frame=41",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=709&frame=41"
+      },
+      {
+        "label": "NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. South Malosmadulu (Baa) Atoll in the Maldives, photographed from the International Space Station on 12 July 2001. Historical surrounding-atoll context for Hanifaru Bay; the bay and exact underwater location are not identified. Identity: {\"relationship\": {\"access_caution\": \"JNCC management review reports scuba diving prohibited in Hanifaru Bay. This photograph and inventory association do not establish current permission to dive.\", \"country\": \"Maldives\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA names South Malosmadulu Atoll. Indexed Getty and Smithsonian records support the Baa / South Malosmadulu / South Maalhosmadulu name equivalence. UNESCO independently places Hanifaru Bay in Baa Atoll. The photograph provides the surrounding atoll pattern, not identified depiction of Hanifaru Bay or its underwater life.\", \"geography_hold\": false, \"inventory_coordinates\": [5.1732, 73.1443], \"limitations\": \"Historical surrounding-atoll context only. No assertion of exact dive-site depiction, underwater condition, access permission, entry, reef feature, geographic pin validation or navigation suitability.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ATOLL_CONTEXT_INDEXED_RELATIONSHIP\", \"scope\": \"SOURCE_NAMED_SOUTH_MALOSMADULU_BAA_ATOLL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=709&frame=41\", \"https://www.unesco.org/mab/50anniversary/en/baa-atol\", \"https://repository.si.edu/items/b9f6604e-e896-42bd-8ef1-8a55ac0e9817\", \"https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=Togo&place=&subjectid=8716782\", \"https://data.jncc.gov.uk/data/97819c0b-2bce-4cf6-a1fe-7d98138ce919/ocpp-maldives-hanifaru-leaflet.pdf\"], \"target_name\": \"Hanifaru Bay\", \"target_site_id\": \"d68152df-0eed-48c0-954d-53661ad0cdd9\", \"target_slug\": \"hanifaru-bay\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Single-atoll photographic view with many clearly discernible reef islands, ring reefs and lagoon patches filling most of the image. Small clouds and a larger cloud bank affect the right and lower areas but leave much of the atoll structure visible. Film scan has a blue cast, soft fine detail, narrow dark borders and visible dust/hair marks. Useful historical atoll-wide context, not a close-up or exact bay image.\", \"method\": \"Source preview inspected before acquisition; full unchanged original visually inspected and every pixel decoded with Pillow.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:39:24Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/source-native.txt\", \"suitability\": \"Useful historical atoll setting context candidate only; no assignment and no exact underwater-site depiction claim.\"} / {\"access_caution\": \"JNCC management review reports scuba diving prohibited in Hanifaru Bay. This photograph and inventory association do not establish current permission to dive.\", \"country\": \"Maldives\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA names South Malosmadulu Atoll. Indexed Getty and Smithsonian records support the Baa / South Malosmadulu / South Maalhosmadulu name equivalence. UNESCO independently places Hanifaru Bay in Baa Atoll. The photograph provides the surrounding atoll pattern, not identified depiction of Hanifaru Bay or its underwater life.\", \"geography_hold\": false, \"inventory_coordinates\": [5.1732, 73.1443], \"limitations\": \"Historical surrounding-atoll context only. No assertion of exact dive-site depiction, underwater condition, access permission, entry, reef feature, geographic pin validation or navigation suitability.\", \"region\": \"\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_ATOLL_CONTEXT_INDEXED_RELATIONSHIP\", \"scope\": \"SOURCE_NAMED_SOUTH_MALOSMADULU_BAA_ATOLL_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS002&roll=709&frame=41\", \"https://www.unesco.org/mab/50anniversary/en/baa-atol\", \"https://repository.si.edu/items/b9f6604e-e896-42bd-8ef1-8a55ac0e9817\", \"https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=Togo&place=&subjectid=8716782\", \"https://data.jncc.gov.uk/data/97819c0b-2bce-4cf6-a1fe-7d98138ce919/ocpp-maldives-hanifaru-leaflet.pdf\"], \"target_name\": \"Hanifaru Bay\", \"target_site_id\": \"d68152df-0eed-48c0-954d-53661ad0cdd9\", \"target_slug\": \"hanifaru-bay\"} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment, no prior candidate review and UNCLAIMED status. Matching retained snapshot agrees. No prior proposal found in the checked historical/current evidence.\", \"file_name\": \"inventory.csv\", \"included_record\": \"Portable excerpt omits only local_url.\", \"sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA photographs may be reproduced and distributed without further permission unless copyright is noted. No item-specific third-party exception stated for this exposure. NASA credit and no implied endorsement required. Not CC-labelled.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS002-709-41. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-terms.html\", \"rights_evidence_provenance\": \"Retained complete native NASA FAQ, not newly fetched in this pass.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "1eb1e6f6-0270-40d3-8205-179769cf3eb1",
+    "slug": "coral-gardens-beqa",
+    "src": "https://assets.diveatlas.site/site-photos/v1/fd44ac6528762ad3f3d0b431b98afa2cede8ea8c7f65e6a47285ee86ac8d1a1f.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/fd44ac6528762ad3f3d0b431b98afa2cede8ea8c7f65e6a47285ee86ac8d1a1f.jpg",
+    "originalSha256": "0126a20e2fa9e3110f67ea2be25539f3a9f339a60dc4a3d2455d1714fd789911",
+    "alt": "Coral Gardens Beqa — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-38727. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-38727. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=38727",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=38727"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Beqa (Mbengga) Island and surrounding lagoon and reefs, Fiji, photographed from the International Space Station on 15 March 2003. Historical environment context for Coral Gardens Beqa; the exact underwater dive site is not identified. Identity: {\"relationship\": {\"country\": \"Fiji\", \"evidence\": [\"inventory-record.json\", \"evidence/NASA-native-item.html\", \"evidence/NASA-native-item.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly names Mbengga Island. Independent place-name sources equate Mbengga with Beqa. Indexed exact-name Coral Gardens Beqa dive entries place the site in Beqa Lagoon and near Beqa Island. This supports provisional surrounding-setting use; it does not establish exact dive-site pixels.\", \"geography_hold\": false, \"inventory_coordinates\": [-18.3833, 177.95], \"limitations\": \"Historical island-and-lagoon context only. No underwater coral detail, exact reef patch or entry confirmation, navigation accuracy or present-day condition is claimed.\", \"native_relationship_response\": null, \"photographed_named_setting\": \"Beqa (Mbengga) Island and its lagoon and surrounding reefs\", \"region\": \"Fiji\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_NAMED_SETTING_CONTEXT\", \"scope\": \"SOURCE_NAMED_ISLAND_AND_LAGOON_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=38727\", \"https://divemap.be/dive-sites/coral-gardens-beqa.html\", \"https://www.bluerides.com/dive-sites/coral-gardens-beqa\", \"https://placenames.org.au/wp-content/uploads/March_2024.pdf\", \"https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=66494\"], \"target_name\": \"Coral Gardens Beqa\", \"target_site_id\": \"1eb1e6f6-0270-40d3-8205-179769cf3eb1\", \"target_slug\": \"coral-gardens-beqa\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Beqa Island is fully in frame, with its indented coastline, broad lagoon, long bright barrier reef and nearby reef islets distinguishable. There is diffuse blue haze and moderate contrast. Small clouds cover limited portions of the island and lagoon; a larger bank lies over the mainland near the lower edge. Fine surface patterns and the source identification strip remain. No crop or enhancement was applied.\", \"full_original_dimensions\": [3032, 2064], \"method\": \"The source preview and full unchanged original were visually inspected. The original was fully decoded as JPEG.\", \"no_collage_map_or_artificial_rendering\": true, \"quality_hold\": false, \"review_completed_not_after_utc\": \"2026-11-13T09:48:15Z\", \"single_exposure\": true, \"suitability\": \"Useful historical named island-and-lagoon environment context, not a depiction of underwater Coral Gardens or an exact dive-entry view.\"} / {\"country\": \"Fiji\", \"evidence\": [\"inventory-record.json\", \"evidence/NASA-native-item.html\", \"evidence/NASA-native-item.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly names Mbengga Island. Independent place-name sources equate Mbengga with Beqa. Indexed exact-name Coral Gardens Beqa dive entries place the site in Beqa Lagoon and near Beqa Island. This supports provisional surrounding-setting use; it does not establish exact dive-site pixels.\", \"geography_hold\": false, \"inventory_coordinates\": [-18.3833, 177.95], \"limitations\": \"Historical island-and-lagoon context only. No underwater coral detail, exact reef patch or entry confirmation, navigation accuracy or present-day condition is claimed.\", \"native_relationship_response\": null, \"photographed_named_setting\": \"Beqa (Mbengga) Island and its lagoon and surrounding reefs\", \"region\": \"Fiji\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_NAMED_SETTING_CONTEXT\", \"scope\": \"SOURCE_NAMED_ISLAND_AND_LAGOON_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS006&roll=E&frame=38727\", \"https://divemap.be/dive-sites/coral-gardens-beqa.html\", \"https://www.bluerides.com/dive-sites/coral-gardens-beqa\", \"https://placenames.org.au/wp-content/uploads/March_2024.pdf\", \"https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=66494\"], \"target_name\": \"Coral Gardens Beqa\", \"target_site_id\": \"1eb1e6f6-0270-40d3-8205-179769cf3eb1\", \"target_slug\": \"coral-gardens-beqa\"} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal needs_main_photo=True, blank assignment, empty prior candidate reviews and UNCLAIMED status. No earlier photo proposal or photo skip found.\", \"file\": \"inventory-record.json\", \"full_inventory_source_description\": \"Retained complete DiveAtlas inventory CSV\", \"full_inventory_source_sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"sha256\": \"297a17ebefdf8fbfa99d0d6f274885e52c655f671e13b2881248963acb42c08f\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS006-E-38727. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-use-conditions.html\", \"rights_evidence_provenance\": \"Retained native NASA FAQ HTML and text from a successful source read.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "3a19cf5e-cb6b-4225-931b-253bb5c93d15",
+    "slug": "mactan-newtown-beach",
+    "src": "https://assets.diveatlas.site/site-photos/v1/9fdd5d1badf10828b7fc8fec9555d194316be5f76de292bee2e043abe87db220.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/9fdd5d1badf10828b7fc8fec9555d194316be5f76de292bee2e043abe87db220.jpg",
+    "originalSha256": "d330c9f4cc77a007448de4095942135b1c2bc1120315927f778f5fb6af140fce",
+    "alt": "Mactan Newtown Beach — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-7671. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-7671. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=7671",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=7671"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Mactan Island and the Cebu coastal channel, Philippines, photographed from the International Space Station on 4 February 2002. Historical environment context for Mactan Newtown Beach; the exact underwater site and current beach development are not identified. Identity: {\"relationship\": {\"country\": \"Philippines\", \"evidence\": [\"inventory-record.json\", \"evidence/NASA-native-item.html\", \"evidence/NASA-native-item.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly names Mactan Island and Cebu. Retained indexed exact-name dive entry 480172 matches the inventory source identity and places Mactan Newtown Beach in Mactan Newtown, Lapu-Lapu City. Independent indexed event-guide text describes the beach as part of Mactan Island. This supports historical surrounding-setting use, not exact dive-site pixels.\", \"geography_hold\": false, \"inventory_coordinates\": [10.3026, 124.0198], \"limitations\": \"Historical surrounding-island context only. No underwater terrain, exact beach boundary, entry point, present-day development, navigation accuracy or current condition is claimed.\", \"native_relationship_response\": null, \"photographed_named_setting\": \"Mactan Island, Cebu and the intervening coastal channel\", \"region\": \"Lapu-Lapu\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_NAMED_SETTING_CONTEXT\", \"scope\": \"SOURCE_NAMED_ISLAND_AND_COAST_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=7671\", \"https://www.scubago.com/en/explore/divesite/mactan-newtown-beach-480172\", \"https://www.ironman.com/sites/default/files/2025-07/IM703_Lapu-Lapu_AIG_ao_07282025.pdf\", \"https://cebu.travel/diving/mactan-olango\"], \"target_name\": \"Mactan Newtown Beach\", \"target_site_id\": \"3a19cf5e-cb6b-4225-931b-253bb5c93d15\", \"target_slug\": \"mactan-newtown-beach\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"Daylight oblique photograph of Mactan Island, the channel beside Cebu and the adjacent built coast. Northern coastal points, reef shallows, airport runways, ports, bridges, city blocks and nearby green hills are distinguishable. Scattered clouds cover parts of the eastern and southern margins and a small part of Mactan; mild haze and sensor spots remain. The source identification strip is retained. No crop or enhancement was applied.\", \"full_original_dimensions\": [3032, 2064], \"method\": \"The source preview and the full unchanged original were visually inspected. The full original was decoded successfully as JPEG.\", \"no_collage_map_or_artificial_rendering\": true, \"quality_hold\": false, \"review_completed_not_after_utc\": \"2026-11-13T09:58:19Z\", \"single_exposure\": true, \"suitability\": \"Useful historical named island-and-coast environment context. It does not identify the exact Mactan Newtown Beach dive site or its present development.\"} / {\"country\": \"Philippines\", \"evidence\": [\"inventory-record.json\", \"evidence/NASA-native-item.html\", \"evidence/NASA-native-item.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly names Mactan Island and Cebu. Retained indexed exact-name dive entry 480172 matches the inventory source identity and places Mactan Newtown Beach in Mactan Newtown, Lapu-Lapu City. Independent indexed event-guide text describes the beach as part of Mactan Island. This supports historical surrounding-setting use, not exact dive-site pixels.\", \"geography_hold\": false, \"inventory_coordinates\": [10.3026, 124.0198], \"limitations\": \"Historical surrounding-island context only. No underwater terrain, exact beach boundary, entry point, present-day development, navigation accuracy or current condition is claimed.\", \"native_relationship_response\": null, \"photographed_named_setting\": \"Mactan Island, Cebu and the intervening coastal channel\", \"region\": \"Lapu-Lapu\", \"relationship_evidence_status\": \"PROVISIONAL_INDEXED_TARGET_TO_NAMED_SETTING_CONTEXT\", \"scope\": \"SOURCE_NAMED_ISLAND_AND_COAST_CONTEXT_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS004&roll=E&frame=7671\", \"https://www.scubago.com/en/explore/divesite/mactan-newtown-beach-480172\", \"https://www.ironman.com/sites/default/files/2025-07/IM703_Lapu-Lapu_AIG_ao_07282025.pdf\", \"https://cebu.travel/diving/mactan-olango\"], \"target_name\": \"Mactan Newtown Beach\", \"target_site_id\": \"3a19cf5e-cb6b-4225-931b-253bb5c93d15\", \"target_slug\": \"mactan-newtown-beach\"} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Literal needs_main_photo=True, blank assignment, empty prior candidate reviews and UNCLAIMED status. No earlier photo proposal or photo skip found.\", \"file\": \"inventory-record.json\", \"full_inventory_source_description\": \"Retained complete DiveAtlas inventory CSV\", \"full_inventory_source_sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"sha256\": \"81f50b37c2614ac6602c8a3cd820beca5ae1bab2af5197604073fcf3e6859f3a\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement are required. This is not a CC-labelled photograph.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS004-E-7671. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-use-conditions.html\", \"rights_evidence_provenance\": \"Retained native NASA FAQ HTML and text from a successful source read.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "754205a9-b5e3-49f5-9abd-a5a5dfeeb4f6",
+    "slug": "ghoubbet-al-kharab",
+    "src": "https://assets.diveatlas.site/site-photos/v1/4fb5daba04b09c5ee907523f8c97f8b6e3bf58e1d3e9ea42710950efbabfe709.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/4fb5daba04b09c5ee907523f8c97f8b6e3bf58e1d3e9ea42710950efbabfe709.jpg",
+    "originalSha256": "21ec9a112194c765860e3a1a54cde70232b9a1854fdc7ba4e2c286244f59222b",
+    "alt": "Ghoubbet Al-Kharab — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS016-E-11501. https://eol.jsc.nasa.gov/ · NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image. · Cropped/resized",
+    "creator": "Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS016-E-11501. https://eol.jsc.nasa.gov/",
+    "license": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.",
+    "source": "reviewed-context",
+    "sourcePage": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS016&roll=E&frame=11501",
+    "licenceUrl": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms",
+    "links": [
+      {
+        "label": "Source",
+        "url": "https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS016&roll=E&frame=11501"
+      },
+      {
+        "label": "NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.",
+        "url": "https://eol.jsc.nasa.gov/FAQ/default.htm#terms"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Ghoubbet al-Kharab (Lake Ghoubet), Djibouti, photographed from the International Space Station on 18 November 2007. Historical surrounding-cove context; the exact dive site and underwater features are not identified. Identity: {\"relationship\": {\"country\": \"Djibouti\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/source-native.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly identifies Lake Ghoubet and the Gulf of Tadjoura. Independently indexed geographic text equates Lake Ghoubbet with Ghoubbet al-Kharab and corroborates the spelling variants. This supports a named surrounding-cove association for the exact inventory target Ghoubbet Al-Kharab. It does not validate the coarse inventory coordinate or identify a submerged reef or entry point.\", \"geography_hold\": false, \"inventory_coordinates\": [11.53, 42.53], \"limitations\": \"Historical named cove context only. No exact dive-site depiction, underwater condition, access permission, navigation suitability or pin validation is asserted. Inventory coordinates are coarse to two decimals.\", \"native_relationship_limitation\": \"Native NASA metadata identifies the photographed cove. Independent name-equivalence evidence is retained indexed text, not freshly fetched origin content.\", \"native_relationship_response\": null, \"region\": \"Djibouti\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COVE_CONTEXT_WITH_INDEXED_ALIAS_CORROBORATION\", \"scope\": \"SOURCE_NAMED_COVE_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS016&roll=E&frame=11501\", \"https://en.wikipedia.org/wiki/Ghoubbet-el-Kharab\", \"https://mapcarta.com/13142680\"], \"target_name\": \"Ghoubbet Al-Kharab\", \"target_site_id\": \"754205a9-b5e3-49f5-9abd-a5a5dfeeb4f6\", \"target_slug\": \"ghoubbet-al-kharab\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / {\"completed\": true, \"finding\": \"The whole dark-water Ghoubet cove and its narrow connection to the Gulf of Tadjoura are prominent and legible, with arid ridges, small islands and visible shoreline detail. Small clouds are mainly over adjacent land. The photograph has muted brown tones, dark water, soft fine detail and several circular dark sensor or window marks. These are retained without retouching. The identification strip is intact. Useful historical bay-level environmental context, not underwater reef imagery.\", \"method\": \"Source preview inspected before acquisition; full unchanged original visually inspected and every pixel decoded.\", \"no_collage_map_or_artificial_rendering\": true, \"review_completed_not_after_utc\": \"2026-11-13T09:59:40Z\", \"single_exposure\": true, \"source_metadata_file\": \"evidence/source-native.txt\", \"suitability\": \"Useful historical cove environmental context candidate only. No exact underwater-site depiction or current-condition claim.\"} / {\"country\": \"Djibouti\", \"evidence\": [\"inventory-record.json\", \"snapshot-record.json\", \"evidence/source-native.html\", \"evidence/source-native.txt\", \"evidence/relationship-evidence.json\"], \"explanation\": \"NASA explicitly identifies Lake Ghoubet and the Gulf of Tadjoura. Independently indexed geographic text equates Lake Ghoubbet with Ghoubbet al-Kharab and corroborates the spelling variants. This supports a named surrounding-cove association for the exact inventory target Ghoubbet Al-Kharab. It does not validate the coarse inventory coordinate or identify a submerged reef or entry point.\", \"geography_hold\": false, \"inventory_coordinates\": [11.53, 42.53], \"limitations\": \"Historical named cove context only. No exact dive-site depiction, underwater condition, access permission, navigation suitability or pin validation is asserted. Inventory coordinates are coarse to two decimals.\", \"native_relationship_limitation\": \"Native NASA metadata identifies the photographed cove. Independent name-equivalence evidence is retained indexed text, not freshly fetched origin content.\", \"native_relationship_response\": null, \"region\": \"Djibouti\", \"relationship_evidence_status\": \"PROVISIONAL_NAMED_COVE_CONTEXT_WITH_INDEXED_ALIAS_CORROBORATION\", \"scope\": \"SOURCE_NAMED_COVE_SETTING_ONLY\", \"source_urls\": [\"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS016&roll=E&frame=11501\", \"https://en.wikipedia.org/wiki/Ghoubbet-el-Kharab\", \"https://mapcarta.com/13142680\"], \"target_name\": \"Ghoubbet Al-Kharab\", \"target_site_id\": \"754205a9-b5e3-49f5-9abd-a5a5dfeeb4f6\", \"target_slug\": \"ghoubbet-al-kharab\"} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {\"inventory_provenance\": {\"eligibility\": \"Exact UUID has literal needs_main_photo=True, blank current_assignment, empty prior_candidate_reviews and UNCLAIMED status. No prior photo proposal found in the checked historical/current catalogs.\", \"file\": \"inventory-record.json\", \"full_inventory_source_description\": \"Retained complete DiveAtlas inventory CSV. Included record omits only the local preview URL.\", \"full_inventory_source_sha256\": \"db2b10337999c0728cb057c428b5d7085f33deda43766469b0ab7e52850b5e56\", \"sha256\": \"f8d418022c103dd994d96cc357631486f8e443d7bcad7326eb50e6306e50aa8d\"}}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"cataloguers_are_not_photographers\": true, \"creator\": \"Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"creator_type\": \"INSTITUTIONAL_CREDIT_INDIVIDUAL_PHOTOGRAPHER_NOT_NAMED\", \"individual_photographer\": null, \"institutional_credit\": \"ISS Crew Earth Observations Facility and Earth Science and Remote Sensing Unit, NASA Johnson Space Center\", \"license\": \"NASA material is not protected by copyright unless noted and may be reproduced and distributed without further permission. No item-specific third-party exception is stated for this exposure. NASA credit and no implied endorsement required. Not a CC-labelled image.\", \"no_endorsement\": true, \"required_attribution\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. NASA photo ISS016-E-11501. https://eol.jsc.nasa.gov/\", \"rights_evidence\": \"evidence/NASA-terms.html\", \"rights_evidence_provenance\": \"Retained native NASA FAQ HTML and text from a successful source read.\", \"rights_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm#terms\"}"
+  },
+  {
+    "siteId": "56705eb8-94bc-4991-afda-40034bf066a0",
+    "slug": "laguna-de-la-colgada",
+    "src": "https://assets.diveatlas.site/site-photos/v1/f38cca498044f82df5db85e40067d976cfc969e71d2333b04460b4fdf6e88b68.jpg",
+    "fullSrc": "https://assets.diveatlas.site/site-photos/v1/f38cca498044f82df5db85e40067d976cfc969e71d2333b04460b4fdf6e88b68.jpg",
+    "originalSha256": "fa46df6856bc435cb87235fcae30615455ebdac0ec3ad36d3cf029ab57377e46",
+    "alt": "Laguna de la Colgada — Nearby scenery / surface view",
+    "label": "Nearby scenery / surface view",
+    "credit": "Nearby scenery / surface view · Alejandro Muñoz / SINC, CC BY 4.0. Source: https://www.agenciasinc.es/Reportajes/La-conquista-de-los-antepasados-de-los-neandertales-se-descifra-en-Ruidera · CC BY 4.0 · Cropped/resized",
+    "creator": "Alejandro Muñoz / SINC, CC BY 4.0. Source: https://www.agenciasinc.es/Reportajes/La-conquista-de-los-antepasados-de-los-neandertales-se-descifra-en-Ruidera",
+    "license": "CC BY 4.0",
+    "source": "reviewed-context",
+    "sourcePage": "https://www.agenciasinc.es/Reportajes/La-conquista-de-los-antepasados-de-los-neandertales-se-descifra-en-Ruidera",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "links": [
+      {
+        "label": "Rights evidence",
+        "url": "https://www.agenciasinc.es/Sobre-SINC/Licencia-CC"
+      },
+      {
+        "label": "Source",
+        "url": "https://www.agenciasinc.es/Reportajes/La-conquista-de-los-antepasados-de-los-neandertales-se-descifra-en-Ruidera"
+      },
+      {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "locationConfidence": "source-supported; not independently verified",
+    "publication": "NOT_AUTHORIZED",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified.  Identity: {\"relationship\": {\"assignment_performed\": false, \"basis\": \"Native photograph caption identifies Laguna de la Colgada. Inventory names the same lake in Ciudad Real, Spain. No commercial provider origin read was performed.\", \"certified_site_coverage\": 0, \"classification\": \"Source-named lake environment; exact underwater entry or route not demonstrated.\", \"site_id\": \"56705eb8-94bc-4991-afda-40034bf066a0\", \"site_name\": \"Laguna de la Colgada\", \"target_name\": \"Laguna de la Colgada\", \"target_site_id\": \"56705eb8-94bc-4991-afda-40034bf066a0\"}} Limitations: All inherited source, access, rights, quality, geography, eligibility and near-redundancy holds remain; no publication, assignment, exact-site coverage or global/perceptual uniqueness clearance. / Private research candidate only; no publication or production assignment. / All source and association holds preserved. / No claim of exact underwater site depiction. / {\"assignment_performed\": false, \"basis\": \"Native photograph caption identifies Laguna de la Colgada. Inventory names the same lake in Ciudad Real, Spain. No commercial provider origin read was performed.\", \"certified_site_coverage\": 0, \"classification\": \"Source-named lake environment; exact underwater entry or route not demonstrated.\", \"site_id\": \"56705eb8-94bc-4991-afda-40034bf066a0\", \"site_name\": \"Laguna de la Colgada\", \"target_name\": \"Laguna de la Colgada\", \"target_site_id\": \"56705eb8-94bc-4991-afda-40034bf066a0\"} / {\"distinct_from_standard_cc_by_4_0\": true, \"interpretation\": \"SINC separately states that publications predominantly composed of SINC material may not be created. This is recorded as an additional source-policy restriction, not represented as a standard CC BY 4.0 licence condition.\", \"preserved\": true, \"wording\": \"El uso de los contenidos bajo la licencia Creative Commons BY 4.0, no permite, en ningún caso, la explotación, sea o no con fines comerciales, de los contenidos de SINC para la creación de publicaciones, en cualquier soporte, cuando estén integradas mayoritariamente por contenidos de la agenciasinc.es.\"} / {\"additional_source_restrictions\": {\"limitations\": [\"Private research candidate only; no publication or production assignment.\", \"All source and association holds preserved.\", \"No claim of exact underwater site depiction.\"]}} {\"association_eligibility_held\": false, \"gate\": {\"current_assignment_empty\": true, \"limit\": \"Exact retained inventory UUID and field checks only; not live site-state validation or clearance of other holds.\", \"needs_main_photo_literal\": \"True\", \"needs_main_photo_literal_true\": true, \"prior_candidate_reviews_empty\": true, \"retained_missing_photo_task_eligible\": true, \"search_status_unclaimed\": true, \"status\": \"RETAINED_NEED_MATCH_NO_OTHER_HOLDS_RELEASED\"}, \"retained_inventory\": {}} Resized and JPEG re-encoded; hero may be cropped. Rights evidence: {\"additional_source_policy_restriction\": {\"distinct_from_standard_cc_by_4_0\": true, \"interpretation\": \"SINC separately states that publications predominantly composed of SINC material may not be created. This is recorded as an additional source-policy restriction, not represented as a standard CC BY 4.0 licence condition.\", \"preserved\": true, \"wording\": \"El uso de los contenidos bajo la licencia Creative Commons BY 4.0, no permite, en ningún caso, la explotación, sea o no con fines comerciales, de los contenidos de SINC para la creación de publicaciones, en cualquier soporte, cuando estén integradas mayoritariamente por contenidos de la agenciasinc.es.\"}, \"attribution\": \"Alejandro Muñoz / SINC, CC BY 4.0. Source: https://www.agenciasinc.es/Reportajes/La-conquista-de-los-antepasados-de-los-neandertales-se-descifra-en-Ruidera\", \"evidence\": \"SINC article marked Creative Commons 4.0 and source SINC. Photograph caption credits the article author Alejandro Muñoz. SINC policy links CC BY 4.0 and permits commercial reuse, with author and SINC attribution and link. Third-party agency material is excluded; this image is credited to the named SINC author, not another agency. Policy also prohibits publications consisting predominantly of SINC content.\", \"license\": \"CC BY 4.0\", \"license_url\": \"https://creativecommons.org/licenses/by/4.0/\", \"policy_url\": \"https://www.agenciasinc.es/Sobre-SINC/Licencia-CC\", \"retained_wording_files\": [\"article-caption-extract.txt\", \"licence-policy-extract.txt\"]}"
   }
 ];

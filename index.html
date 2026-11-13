@@ -7100,18 +7100,22 @@
       .bio-legend.is-mobile-auto-collapsed .bio-legend-heading,
       .bio-legend.is-mobile-auto-collapsed .bio-legend-title { border-radius:50%; }
       .bio-legend.is-mobile-auto-collapsed .bio-legend-heading {
-        width:48px;
-        height:48px;
-        min-height:48px;
+        /* Match the circle's inner box; inherited collapsed dimensions shift the icon. */
+        box-sizing:border-box;
+        width:100%;
+        height:100%;
+        min-height:0;
         margin:0;
         padding:0;
         justify-content:center;
       }
       .bio-legend.is-mobile-auto-collapsed .bio-legend-title {
-        width:48px;
-        min-width:48px;
-        min-height:48px;
-        flex:0 0 48px;
+        box-sizing:border-box;
+        width:100%;
+        height:100%;
+        min-width:0;
+        min-height:0;
+        flex:1 1 auto;
         justify-content:center;
         padding:0;
       }
@@ -8124,7 +8128,7 @@ ZSD·2016–2025</span></span>
 <!-- V34 embedded biodiversity payloads. The Builder fills these with gzip+base64 JSON. -->
 <meta name="embedded-biodiversity-snapshot" id="embeddedSnapshotMeta" content='{"builtAt":"2026-09-22T05:38:01.320229+00:00","fishSource":"AODN/NRMN Cloud Optimised Parquet","fishRawRows":1906844,"fishSurveyUnits":71949,"fishEmbedded":false,"fishAsset":"data/fish_map_units.json.gz?v=1"}'>
 <script id="embeddedObisData" type="application/octet-stream" data-encoding="gzip-base64"></script>
-    <script src="js/area-search.js?v=28"></script>
+    <script src="js/area-search.js?v=30"></script>
     <script src="js/mobile-sheet-motion.js?v=2"></script>
     <script src="js/search-results-menu.js?v=18"></script>
     <script src="js/map-welcome.js?v=6"></script>

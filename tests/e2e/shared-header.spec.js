@@ -1446,6 +1446,15 @@ test('localized dive names search both shared header and map without merging nam
   sites.push({name:'Twins Koh Tao',country:'Thailand',region:'Koh Tao',lat:10.1166,lon:99.8119,site_id:'0d11452c-967f-4504-beb0-f1d57794177e',features:[]},
     {name:'Twins Koh Tao',country:'Thailand',region:'Other',lat:8,lon:98,site_id:'1a532e42-9890-4ea9-b239-000000000099',features:[]});
   await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({json:{schema:'dive-site-recommendations-v1',sites}}));
+  // Share the small catalog fixture across both entry points so map search does
+  // not depend on indexing the entire changing production catalog before timeout.
+  await page.route('**/datasets/dive-sites.js*', route => route.fulfill({
+    contentType:'text/javascript',
+    body:`window.DIVE_SITES_DATA = ${JSON.stringify(sites.map(site => [
+      site.name, site.lat, site.lon, null, null, null, null, null, null,
+      site.country, site.region, null, site.site_id
+    ]))};`
+  }));
   await page.goto('/compare/');
   await expect.poll(() => page.evaluate(() => window.DIVE_ATLAS_SEO_SEARCH_STATUS)).toBe('ready');
   if (hasTouch) await page.locator('#seoSiteSearchToggle').click();
@@ -1466,4 +1475,31 @@ test('localized dive names search both shared header and map without merging nam
   await expect(page.locator('#diveSearchResultsScroll')).toContainText('Lembeh Strait', {timeout:20000});
   await page.locator('#diveSearchInput').fill('双子岩');
   await expect(page.locator('#diveSearchResults [data-site-index]').first()).toContainText('Twins Koh Tao');
+});
+
+
+test('opening the header language menu during welcome dismissal preserves focus', { tag:'@mobile-only' }, async ({ page, isMobile }) => {
+  test.setTimeout(120_000);
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  for (const size of [{width:667,height:375}, {width:844,height:390}, {width:320,height:480}]) {
+    await page.setViewportSize(size);
+    await page.goto('/');
+    const welcome = page.locator('#mapWelcome');
+    const trigger = page.locator('#languageMenuButton');
+    const menu = page.locator('#languageDropdown');
+    const languages = await page.locator('#langSelect option').evaluateAll(options => options.map(option => option.value));
+    await welcome.locator('[data-action="close"]').click();
+    await trigger.click();
+    await expect(welcome).toBeHidden();
+    await expect(menu).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    for (const language of languages) {
+      const option = menu.locator(`[data-language="${language}"]`);
+      await option.scrollIntoViewIfNeeded();
+      await option.click();
+      await expect(page.locator('#langSelect')).toHaveValue(language);
+      await expect(menu).toBeHidden();
+      if (language !== languages.at(-1)) await trigger.click();
+    }
+  }
 });

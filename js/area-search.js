@@ -22,6 +22,235 @@
   // https://www.padi.com/zh-hans/diving-in/yin-du-ni-xi-ya/lun-bei/
   // https://www.padi.com/zh-hant/diving-in/si-wang-qun-dao/
   const placeAliases = [
+    // https://www.padi.com/zh-hans/dive-center/ken-ni-ya/dolphin-aquatics/
+    // https://www.siamdive.com/ja/explore/dive-center/diani-marine-ltd
+    {"names": ["Kenya Coast"], "country": "Kenya", "aliases": ["肯尼亚海岸", "ケニア海岸"]},
+    // https://cn.tripadvisor.com/Attractions-g189405-Activities-c42-Central_Greece.html
+    // https://www.scubago.com/cn/explore/destination/greece-9751098
+    {"names": ["Central Greece"], "country": "Greece", "aliases": ["希腊中部", "中部希腊"]},
+    // https://www.padi.com/ko/dive-site/oseuteuria/neufelder-see/
+    {"names": ["Burgenland"], "country": "Austria", "aliases": ["부르겐란트"]},
+    // https://www.divers.world/zh-cn/country/de/
+    // https://www.padi.com/ja/dive-sites/herurin/
+    // https://www.padi.com/ko/dive-sites/bereulrin/
+    {"names": ["Berlin"], "country": "Germany", "aliases": ["柏林", "ベルリン", "베를린"]},
+    // https://watermap-self.vercel.app/destinations/germany/family
+    {"names": ["Schleswig-Holstein"], "country": "Germany", "aliases": ["슐레스비히홀슈타인"]},
+    // https://www.scubago.com/cn/explore/destination/makkah-region-9752139
+    {"names": ["Makkah"], "country": "Saudi Arabia", "aliases": ["麦加地区", "麦加"]},
+    // https://www.swissinfo.ch/jpn/society/%E3%82%B9%E3%82%A4%E3%82%B9%E3%81%AF%E3%83%80%E3%82%A4%E3%83%90%E3%83%BC%E3%81%AE%E5%9B%BD/41192308
+    {"names": ["Thurgau"], "country": "Switzerland", "aliases": ["トゥールガウ"]},
+    // https://travel.padi.com/ja/diving-in/teneshi/
+    // https://www.padi.com.tw/zh-hant/diving-in/tian-na-xi/
+    // https://www.padi.com/ko/diving-in/tenesi/
+    // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/loch-low-minn-quarry-2/
+    {"names": ["Tennessee"], "country": "United States", "aliases": ["田纳西", "田納西", "テネシー", "테네시"]},
+    // https://www.padi.com.tw/ja/diving-in/a-kanso-zhou/
+    // https://www.padi.com.tw/zh-hant/diving-in/a-ken-se/
+    // https://www.padi.com/ko/diving-in/akansoju/
+    {"names": ["Arkansas"], "country": "United States", "aliases": ["阿肯色", "アーカンソー", "아칸소"]},
+    // https://www.padi.com/ja/dive-center/united-states-of-america-usa/dive-alaska/
+    // https://www.padi.com/ko/diving-in/alraeseuka/
+    // https://www.padi.com/zh-hans/diving-in/a-la-si-jia-zhou/
+    {"names": ["Alaska"], "country": "United States", "aliases": ["阿拉斯加", "アラスカ", "알래스카"]},
+    // https://www.bluerides.com/ja/saiteki-na-daibingu-jiki/takusu-kaikosu-shoto/rokugatsu
+    // https://www.padi.com.tw/ko/diving-in/teokeuseu-keikeoseu-jedo/
+    // https://www.padi.com.tw/zh-hans/diving-in/te-ke-si-he-kai-ke-si-qun-dao/
+    {"names": ["Turks And Caicos"], "country": "United Kingdom", "aliases": ["特克斯和凯科斯", "タークス・アンド・カイコス", "터크스 케이커스", "터크스 케이코스"]},
+    // https://maptlantis.com/mauritius
+    // https://sea-ing.com/diving/mauritius/
+    // https://www.padi.com/zh-hans/diving-in/mao-li-qiu-si/
+    // https://www.padi.com/zh-hant/dive-sites/mo-li-xi-si-gong-he-guo/
+    {"names": ["Mauritius"], "country": "Mauritius", "aliases": ["毛里求斯", "模里西斯", "モーリシャス", "모리셔스"]},
+    // https://cn.guidetoiceland.is/travel-iceland/drive/silfra
+    // https://lauyuettan.com/iceland-travel-info/things-to-do/thingvellir-silfra-snorkeling/
+    // https://maptlantis.com/places/iceland/thingvellir/dive-is-silfra
+    // https://www.divenavi.com/feature/best_recommended/2_silfra.html
+    {"names": ["Silfra Fissure"], "country": "Iceland", "aliases": ["丝浮拉", "絲浮拉", "史費拉", "シルフラ", "실프라"]},
+    // https://blog.padi.com/ko/diving-in-miura-and-shonan/
+    // https://divecolors.com/diving-pointmap.html
+    {"names": ["Kanagawa Prefecture"], "country": "Japan", "aliases": ["神奈川", "神奈川県", "가나가와", "가나가와현"]},
+    // https://blog.padi.com/ko/top-5-dive-sites-in-los-angeles-california/
+    // https://www.divenavi.com/la/diving/
+    // https://www.divers.world/zh-cn/dive-region/channel-islands-national-park/
+    // https://www.padi.com/zh-hant/dive-site/mei-li-jian-he-zhong-guo-usa/san-miguel-island/
+    {"names": ["California Channel Islands"], "country": "United States of America", "aliases": ["加州海峡群岛", "加利福尼亚海峡群岛", "加州海峽群島", "チャネル諸島", "채널 제도"]},
+    // https://travel.padi.com/zh-hans/diving-in/mei-li-jian-he-zhong-guo-usa/xia-wei-yi-dao/
+    // https://travel.padi.com/zh-hant/diving-in/mei-li-jian-he-zhong-guo-usa/xia-wei-yi-dao/
+    // https://www.bluehawaii.co.kr/tour/tour-list
+    // https://www.scubago.com/ja/explore/destination/kona-9750671
+    {"names": ["Hawaii Big Island"], "country": "United States of America", "aliases": ["夏威夷大岛", "夏威夷大島", "ハワイ島", "ビッグアイランド", "빅아일랜드"]},
+    // https://www.hellodive.com/dive/detail/info/183.html
+    // https://www.padi.com/ja/diving-in/suua-ruharuzhu-dao/
+    // https://www.padi.com/ko/diving-in/seubalbareu/
+    // https://www.padi.com/zh-hant/diving-in/si-wa-er-ba/
+    {"names": ["Svalbard"], "country": "Norway", "aliases": ["斯瓦尔巴", "冷岸群島", "斯瓦爾巴", "スヴァールバル", "スバールバル", "스발바르"]},
+    // https://www.asiadiveholidays.com/zh/destinations/diving-in-derawan/
+    // https://www.metrotvnews.com/cn/read/2025/05/03/42760
+    // https://www.sipadan.com/jp/Sangalaki.php
+    // https://www.sipadan.com/ko/Sangalaki.php
+    {"names": ["East Kalimantan"], "country": "Indonesia", "aliases": ["东加里曼丹", "東加里曼丹", "東カリマンタン", "동칼리만탄"]},
+    // https://travel.padi.com/zh-hant/dive-center/a-man/musandam-discovery-diving/
+    // https://www.divers.world/ja/divesite/musandam-peninsula/aquarium/
+    // https://www.padi.com/ko/diving-in/musandam/
+    // https://www.padi.com/zh-hans/diving-in/mu-sang-da-mu/
+    {"names": ["Musandam"], "country": "Oman", "aliases": ["穆桑达姆", "穆桑丹", "穆桑代姆", "穆桑達姆", "ムサンダム", "무산담"]},
+    // https://www.indonesia.travel/kr/ko/destination/sulawesi/central-sulawesi
+    // https://www.padi.com/ja/dive-sites/zhong-bu-suraueshizhou/
+    // https://www.padi.com/zh-hans/diving-in/zhong-su-la-wei-xi-sheng/
+    {"names": ["Central Sulawesi"], "country": "Indonesia", "aliases": ["中苏拉威西", "中部スラウェシ", "중부 술라웨시", "중술라웨시"]},
+    // https://travel.padi.com/ko/diving-in/seinteu-binsenteu-geurenadin/
+    // https://travel.padi.com/zh-hans/dive-course/saint-vincent-the-grenadines/padi-open-water-diver-course-64739/
+    // https://www.mofa.gov.tw/CountryInfo.aspx?CASN=6&n=166&s=85&sms=33&tabs=6AEF94FEF5545E67
+    // https://www.padi.com.cn/ja/diving-in/sentohinsento-kurenatei-n/
+    {"names": ["Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["格林纳丁斯", "格瑞那丁", "グレナディーン諸島", "그레나딘"]},
+    // https://freedive.one/zh-CN/country/switzerland
+    // https://www.swissinfo.ch/jpn/business/%E5%8C%BB%E7%99%82%E3%82%B1%E3%82%A2%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9_%E6%95%91%E6%80%A5%E8%BB%8A%E3%81%AE%E5%88%A9%E7%94%A8-%E9%AB%98%E9%A1%8D%E3%81%AA%E8%B2%BB%E7%94%A8%E3%81%AF%E8%AA%B0%E3%81%8C%E8%B2%A0%E6%8B%85%E3%81%99%E3%81%B9%E3%81%8D/44135722
+    {"names": ["St. Gallen"], "country": "Switzerland", "aliases": ["圣加仑", "ザンクト・ガレン"]},
+    // https://www.scubago.com/cn/explore/destination/veneto-9750924
+    // https://www.scubago.com/ja/explore/destination/veneto-9750924
+    // https://www.scubago.com/ko/explore/destination/veneto-9750924
+    {"names": ["Veneto"], "country": "Italy", "aliases": ["威尼托", "ヴェネト", "베네토"]},
+    // https://maptlantis.com/new-zealand
+    // https://www.padi.com/zh-hans/dive-center/xin-xi-lan/dive-hq-christchurch/
+    {"names": ["Canterbury"], "country": "New Zealand", "aliases": ["坎特伯雷", "캔터베리"]},
+    // https://www.expedia.co.jp/Oaxaca.dx11175
+    // https://www.padi.com/zh-hant/diving-in/mo-xi-ge-tai-ping-yang-hai-an/
+    {"names": ["Oaxaca"], "country": "Mexico", "aliases": ["瓦哈卡", "オアハカ"]},
+    // https://www.liveaboard.com/kr/diving/philippines/palawan
+    // https://www.padi.com/ja/diving-in/harawan/
+    // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/sunset-divers-palawan/
+    {"names": ["Philippines Palawan"], "country": "Philippines", "aliases": ["巴拉望", "巴拉望岛", "パラワン", "パラワン島", "팔라완"]},
+    // https://blog.padi.com/ko/whale-shark-diving-the-best-dive-sites-in-the-world/
+    // https://www.divenavi.com/tour_detail/PH-62DD-F6
+    // https://www.hellodive.com/dive/detail/info/104.html
+    {"names": ["Philippines Donsol"], "country": "Philippines", "aliases": ["董索", "当素", "栋索尔", "董锁", "ドンソール", "돈솔"]},
+    // https://marinediving.com/area/lapaz/
+    // https://www.diveandcruise.cn/destination/sea-of-cortez
+    {"names": ["La Paz Sea Of Cortez"], "country": "Mexico", "aliases": ["拉巴斯", "ラパス"]},
+    // https://marinediving.com/area/coco/
+    // https://www.diveandcruise.cn/destination/costa-rica-cocos-island
+    // https://www.padi.com/zh-hant/diving-in/ke-ke-si-dao/
+    // https://www.scubatimes.co.kr/articles/cocos-island-hammerheads-and-wonder-aboard-the-cocos-island-mvvtdyek-vxlmqy
+    {"names": ["Cocos Island"], "country": "Costa Rica", "aliases": ["科科斯岛", "科科斯島", "ココ島", "코코스섬"]},
+    // https://coralbound.com/zh-hans/posts/blog/triton-bay-guide
+    // https://coraltriangle.asia/indonesia/indonesia-20triton.html
+    // https://diveseason.com/zh-hant/dive/triton-bay/
+    // https://www.diveandcruise.cn/destination/triton-bay
+    // https://www.ezdivemag.com/zh_hans/%E6%9C%80%E5%90%8E%E7%9A%84%E6%BD%9C%E6%B0%B4%E4%B9%90%E5%9B%AD-%E8%A5%BF%E5%B7%B4%E5%B8%83%E4%BA%9A%E7%9A%84%E6%B5%B7%E7%A5%9E%E6%B9%BE/
+    // https://www.liveaboard.com/kr/diving/indonesia/triton-bay
+    {"names": ["Triton Bay"], "country": "Indonesia", "aliases": ["特里同湾", "特里顿湾", "海神湾", "特里頓灣", "トリトンベイ", "트리톤 베이"]},
+    // https://tapura.infotahiti.fr/en/annuaire/ecole-de-plongee-de-tahiti
+    // https://www.scubago.com/tw/explore/destination/windward-islands-9753690
+    {"names": ["Windward Islands"], "country": "French Polynesia", "aliases": ["Îles du Vent", "向風群島"]},
+    // https://diveseason.com/zh-hant/dive/lombok/
+    // https://www.hellodive.com/dive/detail/info/101.html
+    // https://www.padi.com/ja/diving-in/ronhokudao/
+    // https://www.padi.com/ko/diving-in/rombogseom/
+    {"names": ["Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "龙木岛", "龍目島", "ロンボク島", "롬복"]},
+    // https://www.amtvusa.com/2026/11/11/%E7%BE%8E%E5%9B%BD%E5%8F%B7%E9%82%AE%E8%BD%AE%E5%9C%A8%E4%BD%9B%E7%BD%97%E9%87%8C%E8%BE%BE%E5%B7%9E%E5%A2%A8%E8%A5%BF%E5%93%A5%E6%B9%BE%E6%B2%BF%E5%B2%B8%E6%B2%89%E6%B2%A1%EF%BC%8C%E5%B0%86%E6%88%90/
+    {"names": ["Florida Panhandle"], "country": "United States", "aliases": ["佛罗里达狭长地带"]},
+    // https://beachsearcher.com/zh/croatia/primorje-gorski-kotar-county
+    // https://www.ekvarner.info/dive-loft-krk/radno_vrijeme
+    // https://www.pgz.hr/informacije/
+    {"names": ["Primorje-Gorski"], "country": "Croatia", "aliases": ["Primorsko-goranska županija", "Primorje-Gorski Kotar County", "滨海和山区县"]},
+    // https://www.pomorskodobro.dalmacija.hr/u-fokusu/detalj/iii-hrvatski-ronilacki-kongres-objedinio-ronilacku-populaciju
+    {"names": ["Split-Dalmatia County"], "country": "Croatia", "aliases": ["Splitsko-dalmatinska županija"]},
+    // https://visitdubrovnik.hr/hr/aktivnosti/ostalo/
+    // https://www.getmyboat.com/ja/boat-rental/snorkeling/Dubrovnik-Neretva-County--Croatia/
+    {"names": ["Dubrovnik-Neretva County"], "country": "Croatia", "aliases": ["Dubrovačko-neretvanska županija", "ドゥブロヴニク＝ネレトヴァ"]},
+    // https://travel.padi.com/zh-hans/dive-center/an-ti-gua-he-ba-bu-da/divecarib/
+    // https://www.padi.com.cn/ja/diving-in/anteikua-ha-hu-ta/
+    // https://www.padi.com/ko/diving-in/aentiga-babuda/
+    // https://www.padi.com/zh-hant/diving-in/an-di-qia-ji-ba-bu-da/
+    {"names": ["Antigua And Barbuda"], "country": "Antigua and Barbuda", "aliases": ["安提瓜和巴布达", "安地卡及巴布達", "安提瓜和巴布達", "アンティグア・バーブーダ", "앤티가 바부다"]},
+    // https://www.padi.com.tw/ja/diving-in/misu-ri/
+    // https://www.padi.com.tw/zh-hans/diving-in/mi-su-li-zhou/
+    // https://www.padi.com.tw/zh-hant/diving-in/mi-su-li/
+    // https://www.padi.com/ko/dive-sites/mijuri/
+    {"names": ["Missouri"], "country": "United States", "aliases": ["密苏里州", "密蘇里州", "ミズーリ州", "미주리"]},
+    // https://travel.padi.com/ja/diving-in/niyu-shiya-shi/
+    // https://travel.padi.com/ko/diving-in/nyujeoji/
+    // https://www.divers.world/zh-tw/diveshop/aqua-adventures-2/
+    // https://www.siamdive.com/cn/explore/dive-center/elite-divers
+    {"names": ["New Jersey"], "country": "United States of America", "aliases": ["新泽西州", "紐澤西州", "ニュージャージー州", "뉴저지"]},
+    // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/the-scuba-shop-inc/
+    // https://www.padi.com/zh-hant/diving-in/nan-qia-luo-lai-na/
+    {"names": ["South Carolina"], "country": "United States", "aliases": ["南卡罗来纳州", "南卡羅來納州"]},
+    // https://travel.padi.com/zh-hans/dive-course/north-carolina/padi-deep-diver-65982/
+    // https://www.padi.com/ja/diving-in/no-sukaroraina/
+    // https://www.scubago.com/ko/offer/morehead-city-nc-26-juli-1-augusti-2026-hajar-undervattensfarkoster-och-skeppsvrak-151454
+    // https://www.scubago.com/tw/offer/offer-144296
+    {"names": ["North Carolina"], "country": "United States", "aliases": ["北卡罗来纳州", "北卡羅來納州", "北卡羅萊納州", "ノースカロライナ州", "노스캐롤라이나"]},
+    // https://ja.seattlesouthside.com/blog/scuba-diving-near-seattle/
+    // https://sangseek.com/index.php/communities/202032
+    // https://www.divers.world/zh-cn/divesite/puget-sound/fox-island-east-wall/
+    // https://www.divers.world/zh-tw/divesite/puget-sound/fox-island-east-wall/
+    {"names": ["Puget Sound"], "country": "United States of America", "aliases": ["普吉特海湾", "普吉特海灣", "ピュージェット湾", "퓨젯 사운드"]},
+    // https://pf.kakao.com/_LHBxixl
+    // https://travel.padi.com/zh-hant/dive-shops/guan-dao/
+    // https://www.ninjadive.com/menu/
+    // https://www.padi.com.tw/zh-hans/diving-in/guan-dao/
+    {"names": ["Guam"], "country": "United States of America", "aliases": ["关岛", "關島", "グアム", "괌"]},
+    // https://travel.padi.com/ja/diving-in/kororatozhou/
+    // https://www.padi.com.tw/zh-hant/diving-in/ke-luo-la-duo/
+    // https://zh-cn.larimer.gov/%E8%87%AA%E7%84%B6%E8%B5%84%E6%BA%90-a/%E5%85%AC%E5%9B%AD/%E5%8D%A1%E7%89%B9%E8%8E%B1%E5%85%8B
+    {"names": ["Colorado"], "country": "United States", "aliases": ["科罗拉多州", "科羅拉多州", "コロラド州"]},
+    // https://marinediving.com/area/hawaii/diving/
+    // https://www.padi.com/node/7786?lang=en
+    // https://www.padi.com/zh-hans/diving-in/mei-li-jian-he-zhong-guo-usa/maui/
+    // https://www.scubago.com/cn/explore/destination/maui-9750670
+    // https://www.youtube.com/watch?v=RSx4Yj7NqsI
+    {"names": ["Hawaii Maui"], "country": "United States of America", "aliases": ["茂宜岛", "毛伊", "茂宜島", "マウイ島", "마우이"]},
+    // https://travel.padi.com/ja/diving-in/ioniazhu-dao/
+    // https://www.diveandcruise.cn/destination/greece
+    // https://www.padi.com.tw/zh-hant/diving-in/ai-ao-ni-ya-qun-dao/
+    // https://www.padi.com/ko/dive-sites/ionia-jedo/
+    {"names": ["Ionian Islands"], "country": "Greece", "aliases": ["爱奥尼亚群岛", "愛奧尼亞群島", "イオニア諸島", "이오니아 제도"]},
+    // https://travel.padi.com/ko/diving-in/jibuti/
+    // https://travel.padi.com/zh-hant/diving-in/ji-bu-di/
+    // https://www.bluerides.com/ja/daibingu-pointo/kuni/djibouti
+    // https://www.divers.world/zh-tw/country/dj/
+    {"names": ["Djibouti"], "country": "Djibouti", "aliases": ["吉布提", "吉布地", "ジブチ", "지부티"]},
+    // https://travel.padi.com/zh-hant/diving-in/mo-san-bi-ke/
+    // https://www.padi.com/ko/diving-in/mojambikeu/
+    // https://www.padi.com/zh-hans/diving-in/mo-sang-bi-ke/
+    // https://www.scubago.com/ja/explore/destination/mozambique-9752886
+    {"names": ["Mozambique"], "country": "Mozambique", "aliases": ["莫桑比克", "莫三比克", "モザンビーク", "모잠비크"]},
+    // https://blog.padi.com/tw/just-in-time-for-halloween-the-worlds-spookiest-dive-sites/
+    // https://travel.padi.com/zh-hans/diving-in/ying-guo/
+    // https://www.siamdive.com/ja/explore/dive-center/planet-scuba-school-ltd
+    {"names": ["Scapa Flow"], "country": "United Kingdom", "aliases": ["斯卡帕湾", "斯卡帕灣", "スカパフロー"]},
+    // https://taucher.net/tauchen-in-mecklenburg-vorpommern-eaz24
+    {"names": ["Mecklenburg-Western Pomerania"], "country": "Germany", "aliases": ["Mecklenburg-Vorpommern"]},
+    // https://www.padi.com/ja/dive-shops/itaria/ha-ri/
+    // https://www.padi.com/zh-hans/dive-shops/yi-da-li/ba-li/
+    {"names": ["Bari"], "country": "Italy", "aliases": ["巴里", "バーリ"]},
+    // https://www.scubago.com/cn/explore/destination/marche-9750931
+    // https://www.scubago.com/tw/explore/destination/marche-9750931
+    {"names": ["Marche"], "country": "Italy", "aliases": ["马尔凯", "马尔凯大区", "馬爾凱"]},
+    // https://travel.padi.com/ko/diving-in/seinteu-binsenteu-geurenadin/
+    // https://www.padi.com.tw/ja/diving-in/sentohinsento-kurenatei-n/
+    // https://www.padi.com.tw/zh-hant/diving-in/sheng-wen-sen-ji-ge-rui-na-ding/
+    {"names": ["St Vincent Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["聖文森及格瑞那丁", "セントビンセント・グレナディーン", "세인트 빈센트 그레나딘", "세인트빈센트 그레나딘"]},
+    // https://maptlantis.com/tanzania
+    // https://travel.padi.com/zh-hans/diving-in/tan-sang-ni-ya/
+    // https://travel.padi.com/zh-hant/diving-in/tan-shang-ni-ya/
+    // https://www.padi.com/ja/dive-sites/tansania/
+    {"names": ["Tanzania"], "country": "United Republic of Tanzania", "aliases": ["坦桑尼亚", "坦尚尼亞", "タンザニア", "탄자니아"]},
+    // https://divejobs.padi.com/ja/job/internship-2-2-2-2-2/
+    // https://www.padi.com/ko/diving-in/namapeurika-gonghwagug/
+    // https://www.padi.com/zh-hans/diving-in/nan-fei/
+    {"names": ["South Africa"], "country": "South Africa", "aliases": ["南非", "南アフリカ", "남아프리카 공화국", "남아프리카공화국"]},
+    // https://tw.trip.com/things-to-do/detail/105196593/
+    // https://www.b-tabi.com/contribution/contribution2013/39zanzibar.html
+    // https://www.khan.co.kr/article/200704120911031
+    // https://www.padi.com/zh-hans/diving-in/sang-gei-ba-er/
+    {"names": ["Tanzania | Zanzibar"], "country": "Tanzania, United Republic of", "aliases": ["桑给巴尔", "桑給巴爾", "桑吉巴", "ザンジバル", "잔지바르"]},
+    // https://www.scubago.com/cn/explore/destination/utrecht-9750716
+    // https://www.scubago.com/ja/explore/destination/netherlands-9750714
+    // https://www.scubago.com/tw/explore/destination/netherlands-9750714
+    {"names": ["Utrecht"], "country": "Netherlands", "aliases": ["乌得勒支", "烏特勒支", "烏得勒支", "ユトレヒト"]},
     {"names": ["Cornwall"], "country": "United Kingdom", "aliases": ["康沃尔", "康沃尔郡", "康沃爾", "康沃爾郡", "コーンウォール"]},
     {"names": ["Selangor"], "country": "Malaysia", "aliases": ["雪兰莪州", "雪兰莪", "雪蘭莪"]},
     {"names": ["Seychelles"], "country": "Seychelles", "aliases": ["塞舌尔", "塞席爾", "セーシェル", "セイシェル", "세이셸"]},
