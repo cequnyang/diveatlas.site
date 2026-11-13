@@ -286,9 +286,11 @@
       persistSuppression();
       if (focus) await onAnimateClose(section);
       if (generation !== closeGeneration) return;
+      // Do not steal focus from a control the user opened during the exit animation.
+      const shouldFocusMap = focus && (section.contains(document.activeElement) || document.activeElement === document.body);
       hide();
       closing = false;
-      onDismiss();if (focus) onFocusMap();
+      onDismiss();if (shouldFocusMap) onFocusMap();
     }
     picker.addEventListener('change',() => {
       onMonthChange(Number(picker.value));syncStep();

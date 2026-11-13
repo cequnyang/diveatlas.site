@@ -1216,3 +1216,26 @@ for (const theme of ['light', 'dark']) {
     }
   });
 }
+
+
+test('welcome dismissal does not steal focus from the newly opened language menu', async ({ page }) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.addInitScript(() => localStorage.removeItem('global-coral-map-welcome-suppressed-v1'));
+  await page.goto('/');
+  const welcome = page.locator('#mapWelcome');
+  await expect(welcome).toBeVisible();
+  // Dispatch both real handlers in one turn to guarantee the second action
+  // happens before the asynchronous exit finishes, independently of CI speed.
+  await page.evaluate(() => {
+    document.querySelector('#mapWelcome [data-action="close"]').click();
+    const trigger = document.querySelector('#languageMenuButton');
+    trigger.focus(); // Native pointer activation focuses the trigger before click.
+    trigger.click();
+  });
+  await expect(welcome).toBeHidden();
+  await expect(page.locator('#languageDropdown')).toBeVisible();
+  await expect.poll(() => page.evaluate(() =>
+    document.querySelector('#languageDropdown').contains(document.activeElement) ||
+    document.activeElement === document.querySelector('#languageMenuButton')
+  )).toBe(true);
+});
