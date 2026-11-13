@@ -18,6 +18,13 @@ async function openFallbackPhotoPopup(page) {
   await clickFixture(page, fixtureId);
   const popup = page.locator('.leaflet-popup.dive-site-popup--with-photo');
   await expect(popup).toBeVisible();
+  // These layout and drag checks start from the resting sheet. Visibility is
+  // true during entrance, when measuring the handle can target its old position.
+  // Dedicated motion tests cover entrance and interrupted transitions separately.
+  await popup.evaluate(async node => {
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    await Promise.all(node.getAnimations().map(animation => animation.finished.catch(() => {})));
+  });
   return popup;
 }
 
