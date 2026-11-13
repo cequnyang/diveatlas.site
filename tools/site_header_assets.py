@@ -68,7 +68,7 @@ def install_shared_header_assets(markup: str, version: str) -> str:
     markup = re.sub(r'(/js/seo-page-controls\.js)\?v=\d+', r'\1?v=38', markup)
     markup = re.sub(r'(/assets/seo\.css)\?v=\d+', r'\1?v=207', markup)
     markup = re.sub(r'(/js/dive-conditions-chart\.js)\?v=\d+', r'\1?v=56', markup)
-    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=43', markup)
+    markup = re.sub(r'(/js/seo-site-search\.js)\?v=\d+', r'\1?v=44', markup)
     markup = re.sub(r'(/assets/seo-site-search\.css)\?v=\d+', r'\1?v=13', markup)
     markup = re.sub(r'(/datasets/dive-site-name-translations\.js)\?v=\d+', r'\1?v=2', markup)
     assets = shared_header_assets(version)

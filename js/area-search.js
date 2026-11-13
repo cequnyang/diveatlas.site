@@ -22,6 +22,41 @@
   // https://www.padi.com/zh-hans/diving-in/yin-du-ni-xi-ya/lun-bei/
   // https://www.padi.com/zh-hant/diving-in/si-wang-qun-dao/
   const placeAliases = [
+    // https://www.padi.com/zh-hans/dive-center/ken-ni-ya/dolphin-aquatics/
+    // https://www.siamdive.com/ja/explore/dive-center/diani-marine-ltd
+    {"names": ["Kenya Coast"], "country": "Kenya", "aliases": ["肯尼亚海岸", "ケニア海岸"]},
+    // https://cn.tripadvisor.com/Attractions-g189405-Activities-c42-Central_Greece.html
+    // https://www.scubago.com/cn/explore/destination/greece-9751098
+    {"names": ["Central Greece"], "country": "Greece", "aliases": ["希腊中部", "中部希腊"]},
+    // https://www.padi.com/ko/dive-site/oseuteuria/neufelder-see/
+    {"names": ["Burgenland"], "country": "Austria", "aliases": ["부르겐란트"]},
+    // https://www.divers.world/zh-cn/country/de/
+    // https://www.padi.com/ja/dive-sites/herurin/
+    // https://www.padi.com/ko/dive-sites/bereulrin/
+    {"names": ["Berlin"], "country": "Germany", "aliases": ["柏林", "ベルリン", "베를린"]},
+    // https://watermap-self.vercel.app/destinations/germany/family
+    {"names": ["Schleswig-Holstein"], "country": "Germany", "aliases": ["슐레스비히홀슈타인"]},
+    // https://www.scubago.com/cn/explore/destination/makkah-region-9752139
+    {"names": ["Makkah"], "country": "Saudi Arabia", "aliases": ["麦加地区", "麦加"]},
+    // https://www.swissinfo.ch/jpn/society/%E3%82%B9%E3%82%A4%E3%82%B9%E3%81%AF%E3%83%80%E3%82%A4%E3%83%90%E3%83%BC%E3%81%AE%E5%9B%BD/41192308
+    {"names": ["Thurgau"], "country": "Switzerland", "aliases": ["トゥールガウ"]},
+    // https://travel.padi.com/ja/diving-in/teneshi/
+    // https://www.padi.com.tw/zh-hant/diving-in/tian-na-xi/
+    // https://www.padi.com/ko/diving-in/tenesi/
+    // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/loch-low-minn-quarry-2/
+    {"names": ["Tennessee"], "country": "United States", "aliases": ["田纳西", "田納西", "テネシー", "테네시"]},
+    // https://www.padi.com.tw/ja/diving-in/a-kanso-zhou/
+    // https://www.padi.com.tw/zh-hant/diving-in/a-ken-se/
+    // https://www.padi.com/ko/diving-in/akansoju/
+    {"names": ["Arkansas"], "country": "United States", "aliases": ["阿肯色", "アーカンソー", "아칸소"]},
+    // https://www.padi.com/ja/dive-center/united-states-of-america-usa/dive-alaska/
+    // https://www.padi.com/ko/diving-in/alraeseuka/
+    // https://www.padi.com/zh-hans/diving-in/a-la-si-jia-zhou/
+    {"names": ["Alaska"], "country": "United States", "aliases": ["阿拉斯加", "アラスカ", "알래스카"]},
+    // https://www.bluerides.com/ja/saiteki-na-daibingu-jiki/takusu-kaikosu-shoto/rokugatsu
+    // https://www.padi.com.tw/ko/diving-in/teokeuseu-keikeoseu-jedo/
+    // https://www.padi.com.tw/zh-hans/diving-in/te-ke-si-he-kai-ke-si-qun-dao/
+    {"names": ["Turks And Caicos"], "country": "United Kingdom", "aliases": ["特克斯和凯科斯", "タークス・アンド・カイコス", "터크스 케이커스", "터크스 케이코스"]},
     // https://maptlantis.com/mauritius
     // https://sea-ing.com/diving/mauritius/
     // https://www.padi.com/zh-hans/diving-in/mao-li-qiu-si/
