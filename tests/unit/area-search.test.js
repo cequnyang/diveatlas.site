@@ -197,3 +197,16 @@ test('country-level aliases rank above partial matches in other destinations', (
     assert.equal(matches[0].name, 'Tonga');
   }
 });
+
+
+test('new localized destination aliases keep same-name regions in their country', () => {
+  const areas = build([
+    site('cocos-cr', 'A', 'Costa Rica', 5.5, -87, 'Cocos Island'),
+    site('cocos-au', 'B', 'Australia', -12, 96, 'Cocos Island'),
+    site('maui', 'C', 'United States of America', 20, -156, 'Hawaii Maui'),
+    site('big-island', 'D', 'United States of America', 19, -155, 'Hawaii Big Island')
+  ], {});
+  assert.deepEqual(search(areas, '科科斯岛').map(area => area.country), ['Costa Rica']);
+  assert.deepEqual(search(areas, 'マウイ島').map(area => area.name), ['Hawaii Maui']);
+  assert.deepEqual(search(areas, '빅아일랜드').map(area => area.name), ['Hawaii Big Island']);
+});

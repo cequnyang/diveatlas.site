@@ -72,7 +72,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         result = install_shared_header_assets(old, '1.2.3')
         self.assertNotIn('seo-browse-header.js', result)
         self.assertIn('seo-page-controls.js?v=38', result)
-        self.assertIn('seo-site-search.js?v=42', result)
+        self.assertIn('seo-site-search.js?v=43', result)
         self.assertIn('seo-site-search.css?v=13', result)
         self.assertEqual(result.count('/assets/search-results-menu.css?v=33'), 1)
         self.assertNotIn('search-results-menu.css?v=0', result)
