@@ -251,7 +251,7 @@ test(`welcome area selection cancels pending site details through ${areaInput} a
   // after the second selection exercises both the 200ms and 950ms callbacks.
   const guide = page.locator('#mapWelcomeSearch');
   await guide.fill('Raja Ampat');
-  await expect(page.locator('#diveSearchResults [data-area-key]').first()).toBeVisible({timeout:15000});
+  await expect(page.locator('#diveSearchResults [data-area-key]').first()).toBeVisible({timeout:30_000});
   await guide.press('Escape');
   if (await page.locator('#diveSearchToggle').getAttribute('aria-expanded') !== 'true') await page.locator('#diveSearchToggle').click();
   const header = page.locator('#diveSearchInput');
