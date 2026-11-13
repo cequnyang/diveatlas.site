@@ -147,7 +147,7 @@
     if (!detail) document.body.classList.add('seo-browse-layout', 'shared-header-document');
     if (!document.querySelector('link[href*="/assets/seo.css"]')) stylesheet('/assets/seo.css?v=200');
     stylesheet('/assets/seo-site-search.css?v=13');
-    stylesheet('/assets/search-results-menu.css?v=1');
+    stylesheet('/assets/search-results-menu.css?v=25');
     const fallback = current;
     // Keep a logo-only server-rendered header for no-JavaScript users, then replace it
     // with the shared detail-page controls once their dependencies can run.

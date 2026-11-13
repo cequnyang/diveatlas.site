@@ -33,7 +33,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
                 self.assertEqual(install_shared_header_assets(result, '1.2.3'), result)
                 self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
                 self.assertEqual(result.count('/assets/site-header.css?v=12'), 1)
-                self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
+                self.assertEqual(result.count('/assets/search-results-menu.css?v=25'), 1)
                 upgraded = install_shared_header_assets(result, '2.0.0')
                 self.assertIn('data-app-version="2.0.0"', upgraded)
                 self.assertNotIn('data-app-version="1.2.3"', upgraded)
@@ -59,7 +59,7 @@ class SharedHeaderAssetsTests(unittest.TestCase):
         self.assertIn('seo-page-controls.js?v=38', result)
         self.assertIn('seo-site-search.js?v=16', result)
         self.assertIn('seo-site-search.css?v=13', result)
-        self.assertEqual(result.count('/assets/search-results-menu.css?v=1'), 1)
+        self.assertEqual(result.count('/assets/search-results-menu.css?v=25'), 1)
         self.assertNotIn('search-results-menu.css?v=0', result)
         self.assertEqual(result.count('/js/site-header.js?v=6'), 1)
 
