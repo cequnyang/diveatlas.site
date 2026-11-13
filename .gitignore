@@ -191,3 +191,17 @@ playwright-report/
 
 # Search-name research stays local; runtime aliases are tracked separately.
 /datasets/search-name-review-ledger.json
+/scripts/README-search-name-review.md
+/scripts/audit_search_names.js
+/scripts/merge_scubago_observations.py
+/scripts/research_scubago_names.py
+/scripts/test_research_scubago_names.py
+
+# Local photo intake pilots and their generated output are not website releases.
+/.github/workflows/photo-intake.yml
+/.github/workflows/photo-intake-live-pilot.yml
+/.github/workflows/photo-intake-handoff-pilot.yml
+/intake-output/
+
+# Playwright runs may use named output directories during debugging.
+/test-results-*/
