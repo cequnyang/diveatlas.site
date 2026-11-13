@@ -16,7 +16,7 @@ else:
     import export_dive_site_details as details
 
 
-def refresh(root=None):
+def refresh(root=None, *, include_shared_records=True):
     root = Path(root) if root else seo.ROOT
     photos = seo.load_photos()
     assignments = json.loads((root / "assets/dive-sites/assignments.json").read_text(encoding="utf-8"))
@@ -33,7 +33,6 @@ def refresh(root=None):
     updates = []
     counts = {"static_updated": 0, "shared_updated": 0, "sites": len(selected)}
     pattern = re.compile(r'<div class="site-photo-feature"><figure\b.*?</figure>', re.S)
-    recommendations = {"nearby": [], "primary_features": [], "features": {}, "difficulty": [], "difficulty_level": ""}
     for entry in selected:
         site_id = entry["site_id"]
         path = root / "dive-sites" / entry["slug"] / "index.html"
@@ -42,7 +41,7 @@ def refresh(root=None):
         old = path.read_text(encoding="utf-8")
         if f'data-site-id="{site_id}"' not in old:
             raise ValueError(f"Wrong site identity in {path}")
-        _, generated = seo.generate_site_page(sites[site_id], {}, recommendations, "/unused-photo-refresh.json")
+        generated = seo.render_site_photo(sites[site_id])
         fragment = pattern.search(generated)
         if not fragment:
             raise ValueError(f"Missing generated hero for {site_id}")
@@ -52,6 +51,10 @@ def refresh(root=None):
         if new != old:
             updates.append((path, new))
             counts["static_updated"] += 1
+        # Production detail records belong to the verified external R2 release.
+        # A static-photo refresh must neither require nor rewrite local copies.
+        if not include_shared_records:
+            continue
         record_path = root / details.DATA_PATH / f"{site_id}.json"
         record = json.loads(record_path.read_text(encoding="utf-8"))
         if record.get("site_id") != site_id:

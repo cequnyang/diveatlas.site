@@ -376,6 +376,15 @@ class PublicDetailRecordsTest(unittest.TestCase):
 
 
 class DetailPhotoRefreshTest(unittest.TestCase):
+    def test_photo_render_does_not_load_country_boundaries(self):
+        site = {"site_id": "example", "name": "Example", "lat": 1, "lon": 2,
+                "photo": {"src": "/hero.jpg", "alt": "Example photo", "credit": "Owner", "source": "personal"}}
+        with patch.object(seo, 'country_geographies', side_effect=AssertionError('Photo refresh must not load geography')):
+            fragment = seo.render_site_photo(site)
+        self.assertIn('src="/hero.jpg"', fragment)
+        self.assertIn('<figcaption>Owner</figcaption>', fragment)
+
+
     def test_refresh_preserves_unrelated_content_and_is_repeatable(self):
         import json
         import tempfile
@@ -397,7 +406,7 @@ class DetailPhotoRefreshTest(unittest.TestCase):
                  patch.object(seo, 'load_summaries', return_value={}), \
                  patch.object(seo, 'load_fallback_photos', return_value=("", {})), \
                  patch.object(seo, 'validated_candidates', return_value=([{"site_id": "example"}], {})), \
-                 patch.object(seo, 'generate_site_page', return_value=("title", '<div class="site-photo-feature"><figure>new</figure>')):
+                 patch.object(seo, 'render_site_photo', return_value='<div class="site-photo-feature"><figure>new</figure>'):
                 result = refresh_module.refresh(root)
                 self.assertEqual(result["static_updated"], 1)
                 self.assertEqual(result["shared_updated"], 1)
@@ -407,6 +416,13 @@ class DetailPhotoRefreshTest(unittest.TestCase):
                 self.assertEqual(record["related"], ["keep"])
                 self.assertEqual(record["identity_urls"], ["keep"])
                 self.assertEqual(refresh_module.refresh(root), {"sites": 1, "static_updated": 0, "shared_updated": 0})
+                # External releases do not have local detail JSON. Refreshing
+                # their static photo must not read or recreate that record.
+                record_path.unlink()
+                self.assertEqual(refresh_module.refresh(root, include_shared_records=False),
+                                 {"sites": 1, "static_updated": 0, "shared_updated": 0})
+                self.assertFalse(record_path.exists())
+                record_path.write_text(json.dumps(record))
                 # An incomplete batch must fail before writing an earlier page.
                 before = page.read_bytes()
                 assignments.write_text(json.dumps([{"site_id": "example", "slug": "example"}, {"site_id": "example", "slug": "missing"}]))
