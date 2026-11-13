@@ -1619,3 +1619,53 @@ test('mobile search capsule responds while pressed', async ({ page }) => {
   await page.mouse.up();
   await expect(page.locator('#diveSearchResults')).toBeVisible();
 });
+
+
+for (const [factory, type] of [['addDiveSite','dive'], ['addCoralPoint','species'], ['addCoralGrid','coral-grid'], ['addFishPoint','fish']]) {
+test(`map sheet entrance survives content refresh for ${type}`, async ({ page }) => {
+  await page.evaluate(({factory,type}) => {
+    const api = window.__DIVEATLAS_TEST__;
+    api[factory](-5.7,131,`motion-${type}`);
+    window.__motionFrames = new Promise(resolve => api.map.once('popupopen', event => {
+      const popup = event.popup;
+      const el = popup.getElement();
+      const start = performance.now();
+      const frames = [];
+      setTimeout(() => popup.update(), 60);
+      const record = () => {
+        const value = getComputedStyle(el).translate;
+        const y = parseFloat(value.split(' ')[1]) || 0;
+        frames.push({elapsed:performance.now()-start, y:value.includes('%') ? y/100*el.offsetHeight : y, height:el.offsetHeight});
+        if (performance.now()-start < 450) requestAnimationFrame(record); else resolve(frames);
+      };
+      record();
+    }));
+  }, {factory,type});
+  if (type === 'coral-grid') await clickFixture(page, `motion-${type}`);
+  else await page.evaluate(type => window.__DIVEATLAS_TEST__.openFixturePopup(`motion-${type}`), type);
+  const frames = await page.evaluate(() => window.__motionFrames);
+  expect(frames.filter(frame => frame.y > 2 && frame.y < frame.height - 2).length, type).toBeGreaterThan(2);
+  expect(frames.at(-1).y, type).toBeCloseTo(0,0);
+});
+}
+
+test('welcome uses sheet motion for open close and reduced motion without replaying updates', async ({ page }) => {
+  await page.locator('#bioLegendTitle').click();
+  await page.locator('#bioLegendOverflow > summary').click();
+  await page.locator('#bioLegendWelcome').click();
+  const welcome = page.locator('#mapWelcome');
+  await expect(welcome).toBeVisible();
+  await welcome.evaluate(async el => {
+    await Promise.all(el.getAnimations().map(animation => animation.finished.catch(() => {})));
+  });
+  await page.locator('#mapWelcome [data-action="close"]').click();
+  await expect(welcome).toHaveClass(/mobile-sheet-exiting/);
+  await expect(welcome).toBeHidden();
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.locator('#bioLegendOverflow > summary').click();
+  await page.locator('#bioLegendWelcome').click();
+  await expect(welcome).toBeVisible();
+  await expect(welcome).not.toHaveClass(/mobile-sheet-entering/);
+  await page.locator('#mapWelcome [data-action="close"]').click();
+  await expect(welcome).toBeHidden();
+});

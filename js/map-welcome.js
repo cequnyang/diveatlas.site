@@ -275,7 +275,7 @@
         localStorage.setItem(suppressedKey,suppress.checked ? '1' : '0');
       } catch (_) {}
     }
-    function hide() { onCloseMonth();closeSearch();section.hidden = true; }
+    function hide() { onCloseMonth();closeSearch();section.hidden = true;root.DiveAtlasSheetMotion.cancel(section); }
     let closing = false;
     let closeGeneration = 0;
     async function dismiss({focus = true} = {}) {
@@ -322,13 +322,20 @@
     return {render,dismiss,syncMapArea,
       syncMonth(month) { picker.value = String(month);syncStep(); },
       // Switching to another map task should not change the welcome preference.
-      suspend() { ++closeGeneration; closing = false; section.getAnimations().forEach(animation => animation.cancel()); hide(); },
+      suspend() {
+        const generation = ++closeGeneration;
+        closing = false;
+        section.getAnimations().forEach(animation => animation.cancel());
+        if (section.hidden) return;
+        root.DiveAtlasSheetMotion.exit(section, () => { if (generation === closeGeneration) hide(); });
+      },
       syncDestination(name) {
         searchInput.value = name;
         selectedDestination = { name, ...getMapArea() };
         syncMapArea();
       },
       open({restore = false} = {}) {
+      const needsEntrance = section.hidden || closing || section.classList.contains('mobile-sheet-exiting');
       onOpen();
       ++closeGeneration;
       closing = false;
@@ -345,7 +352,10 @@
         section.scrollTop = 0;
         section.querySelector('.map-welcome-content').scrollTop = 0;
       }
-      syncSuppression();render();section.hidden = false;if (restore) action('guide').focus();
+      root.DiveAtlasSheetMotion.cancel(section);
+      syncSuppression();render();section.hidden = false;
+      if (needsEntrance) root.DiveAtlasSheetMotion.enter(section, () => !section.hidden);
+      if (restore) action('guide').focus();
     }};
   };
 })(window);

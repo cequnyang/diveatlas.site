@@ -171,3 +171,10 @@
   .map-welcome.tutorial-dialog.is-map-step { width: min(420px, calc(100vw - 96px)); max-height: calc(100dvh - 84px); }
   .map-welcome-content { overflow: visible; }
 }
+
+@media (max-width:720px) {
+  #mapWelcome { translate:0 0; transition:translate .28s cubic-bezier(.22,1,.36,1), opacity .22s ease; }
+}
+@media (max-width:720px) and (prefers-reduced-motion:reduce) {
+  #mapWelcome { transition:none; }
+}

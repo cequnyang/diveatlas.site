@@ -2628,12 +2628,14 @@
       .diveatlas-mobile-sheet:not(.dive-conditions-rating-sheet) .dive-conditions-popup-close { display:none !important; }
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-entering,
       .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-entering,
+      #mapWelcome.mobile-sheet-entering,
       .saved-trips-panel.mobile-sheet-entering,
       #diveSearchResults.is-mobile-bottom-sheet.mobile-sheet-entering {
         translate:0 100% !important;
         opacity:0;
         transition:none !important;
       }
+      #mapWelcome.mobile-sheet-exiting,
       .leaflet-popup.diveatlas-mobile-sheet.mobile-sheet-exiting,
       .leaflet-popup.dive-conditions-rating-sheet.mobile-sheet-exiting,
       #diveSearchResults.is-mobile-bottom-sheet.mobile-sheet-exiting {
@@ -7158,7 +7160,7 @@
   <link rel="stylesheet" href="/assets/saved-trips.css?v=13">
 <link rel="stylesheet" href="assets/liquid-glass.css?v=52">
 <link rel="stylesheet" href="/assets/site-header.css?v=10">
-<link rel="stylesheet" href="assets/map-welcome.css?v=3">
+<link rel="stylesheet" href="assets/map-welcome.css?v=4">
 <script src="/js/site-header.js?v=5" defer></script>
 <script type="module" src="/js/dive-site-reviewed-thumbnails.js"></script>
 </head>
@@ -8130,7 +8132,7 @@ ZSD·2016–2025</span></span>
     <script src="js/area-search.js?v=1"></script>
     <script src="js/mobile-sheet-motion.js?v=2"></script>
     <script src="js/search-results-menu.js?v=18"></script>
-    <script src="js/map-welcome.js?v=3"></script>
+    <script src="js/map-welcome.js?v=5"></script>
     <script src="js/saved-trips-i18n.js?v=1"></script>
     <script src="js/saved-trips.js?v=12"></script>
     <script src="js/data-assets-config.js"></script>
@@ -9158,6 +9160,7 @@ ZSD·2016–2025</span></span>
       const updatePopup = popup.update;
       popup.update = function (...args) {
         const shouldReposition = this._diveAtlasSafeArea &&
+          !isMobileMapSheetPopup(this) &&
           this.isOpen?.() &&
           !this._diveAtlasPlacementInProgress;
         if (shouldReposition) {
@@ -9973,6 +9976,23 @@ ZSD·2016–2025</span></span>
       closeManagedPopup();
     }
     closeActiveMapHoverTooltipsForLayer(layerKey);
+  }
+
+  function dismissMobileMapSheetByGesture(popup) {
+    // Dismissal ends the selection's presentation lifetime. Welcome syncs its
+    // month on open; that background refresh must not resurrect a swiped sheet.
+    mobilePopupTransitionRequest++;
+    activeClickPopupRevision++;
+    if (popup === diveConditionsPopup) {
+      diveConditionsPopupSuppressed = true;
+      diveExperienceOutlookGeneration++;
+      diveConditionsAbort?.abort();
+    }
+    if (popup === regionalCurrentsPopup) {
+      regionalCurrentsMonthlyComparison.generation++;
+      cancelRegionalCurrentsMonthlyRequests();
+    }
+    popup.close();
   }
 
   function closeActiveMobileMapSheetForOverlay() {
@@ -13809,6 +13829,10 @@ ZSD·2016–2025</span></span>
       try { localStorage.setItem(TUTORIAL_SEEN_STORAGE_KEY, '1'); } catch (_) {}
     },
     onAnimateClose: async dialog => {
+      if (compactLayersPanelQuery.matches) {
+        await new Promise(resolve => window.DiveAtlasSheetMotion.exit(dialog, resolve));
+        return;
+      }
       cancelLegendAutoCollapse();
       els.bioLegend.classList.add('is-tutorial-handoff');
       setLegendCollapsed(false);
@@ -28181,6 +28205,12 @@ function closeShareDialog() {
 
   function correctMapPopupSafeArea(popup, revealAfterPlacement = false) {
     const popupElement = popup.getElement();
+    // Fixed mobile sheets have no geographic collision placement. Applying the
+    // desktop hidden measurement state cancels their in-flight CSS transition.
+    if (isMobileMapSheetPopup(popup)) {
+      popupElement?.classList.remove('diveatlas-popup-pending');
+      return;
+    }
     if (
       !popup._diveAtlasSafeArea ||
       !popup.isOpen() ||
@@ -29929,7 +29959,7 @@ function closeShareDialog() {
         handle.className = 'dive-conditions-rating-handle';
         handle.setAttribute('aria-label', 'Hide rating sheet; swipe down');
         handle.title = 'Swipe down to hide';
-        bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
+        bindMobileVerticalDragHandle(handle, element, () => dismissMobileMapSheetByGesture(popup), {
           tapToDismiss:false,
           closeDistance:72,
           expandOnUpwardDrag:true
@@ -29937,7 +29967,7 @@ function closeShareDialog() {
         header.prepend(handle);
       }
       const content = element.querySelector('.leaflet-popup-content');
-      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), { closeDistance:72 });
+      if (content) bindMobileSheetContentPullToClose(content, element, () => dismissMobileMapSheetByGesture(popup), { closeDistance:72 });
       if (content && content._diveAtlasRatingSwipeBound !== true) {
         content._diveAtlasRatingSwipeBound = true;
         let dragStart = null;
@@ -29958,6 +29988,7 @@ function closeShareDialog() {
         content.addEventListener('pointercancel', () => { dragStart = null; });
       }
       element.classList.add('dive-conditions-rating-sheet');
+      element.classList.remove('diveatlas-popup-pending');
       element.style.removeProperty('--mobile-panel-drag-y');
       element.classList.remove('mobile-vertical-dragging');
       // Leaflet positions popups inside a panning/transformed map pane. Moving
@@ -30003,7 +30034,7 @@ function closeShareDialog() {
         handle.className = 'diveatlas-mobile-sheet-handle';
         handle.setAttribute('aria-label', 'Hide details sheet; swipe down');
         handle.title = 'Swipe down to hide';
-        bindMobileVerticalDragHandle(handle, element, () => popup.close(), {
+        bindMobileVerticalDragHandle(handle, element, () => dismissMobileMapSheetByGesture(popup), {
           tapToDismiss:false,
           closeDistance:72,
           expandOnUpwardDrag:true,
@@ -30011,7 +30042,7 @@ function closeShareDialog() {
         });
         content.prepend(handle);
       }
-      if (content) bindMobileSheetContentPullToClose(content, element, () => popup.close(), {
+      if (content) bindMobileSheetContentPullToClose(content, element, () => dismissMobileMapSheetByGesture(popup), {
         closeDistance:72,
         onUpwardSwipe:openDiveSiteDetails
       });
@@ -30034,6 +30065,7 @@ function closeShareDialog() {
         content.addEventListener('pointercancel', () => { dragStart = null; });
       }
       element.classList.add('diveatlas-mobile-sheet');
+      element.classList.remove('diveatlas-popup-pending');
       element.style.removeProperty('--mobile-panel-drag-y');
       element.classList.remove('mobile-vertical-dragging');
       if (element.parentElement !== document.body) document.body.appendChild(element);

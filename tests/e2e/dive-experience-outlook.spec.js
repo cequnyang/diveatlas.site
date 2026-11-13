@@ -133,7 +133,8 @@ test('Dive Experience panel, popup, and info tooltip follow every supported lang
   await expect(page.locator('.dive-experience-popup-info-popover')).toContainText('Prospek historis bulanan');
 });
 
-test('opening welcome does not reopen the displaced mobile outlook sheet', async ({ page }, testInfo) => {
+for (const dismissFirst of [false, true]) {
+test(`opening welcome does not reopen the ${dismissFirst ? 'swiped-away' : 'displaced'} mobile outlook sheet`, async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.includes('mobile'), 'Mobile sheet behavior');
   await page.route('**/js/dive-conditions-service.js*', route => route.fulfill({
     contentType:'text/javascript', body:`window.DiveAtlasConditionsService = {
@@ -153,8 +154,44 @@ test('opening welcome does not reopen the displaced mobile outlook sheet', async
     const r = map.getContainer().getBoundingClientRect();
     return {x:r.x+p.x,y:r.y+p.y};
   });
+  await page.evaluate(() => {
+    window.__ratingEntranceFrames = [];
+    window.__DIVEATLAS_TEST__.map.once('popupopen', event => {
+      const el = event.popup.getElement();
+      let remaining = 24;
+      const record = () => {
+        const style = getComputedStyle(el);
+        window.__ratingEntranceFrames.push({top:el.getBoundingClientRect().top,
+          height:el.getBoundingClientRect().height, translate:style.translate, time:performance.now(),
+          transition:style.transition, opacity:style.opacity, classes:el.className});
+        if (--remaining) requestAnimationFrame(record);
+      };
+      record();
+    });
+  });
   await page.mouse.click(point.x,point.y);
   await expect(page.locator('.dive-experience-popup-content')).toBeVisible({timeout:15000});
+  await expect.poll(() => page.evaluate(() => window.__ratingEntranceFrames.length)).toBe(24);
+  const frames = await page.evaluate(() => window.__ratingEntranceFrames);
+  await testInfo.attach('rating-entrance-frames', {body:JSON.stringify(frames,null,2), contentType:'application/json'});
+  expect(frames.filter(frame => { const y = parseFloat(frame.translate.split(' ')[1]); return y > 2 && (frame.translate.includes('%') ? y < 98 : y < frame.height - 10); }).length).toBeGreaterThan(2);
+  if (dismissFirst) {
+    await expect(page.locator('.dive-experience-subscore').first()).toContainText('28');
+    const handle = page.locator('.dive-conditions-rating-handle');
+    // Visibility can become true during the entrance. Start the gesture only
+    // once the handle has reached its resting position, as in the reported flow.
+    await handle.evaluate(async node => {
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      await Promise.all(node.closest('.leaflet-popup').getAnimations({subtree:true})
+        .map(animation => animation.finished.catch(() => {})));
+    });
+    const box = await handle.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2 + 160, {steps:12});
+    await page.mouse.up();
+    await expect(page.locator('.dive-experience-popup-content')).toHaveCount(0);
+  }
   await page.locator('#bioLegendTitle').click();
   await page.locator('#bioLegendOverflow > summary').click();
   await page.locator('#bioLegendWelcome').click();
@@ -179,6 +216,7 @@ test('opening welcome does not reopen the displaced mobile outlook sheet', async
   await expect(page.locator('.dive-experience-popup-content')).toBeVisible({timeout:15000});
 
 });
+}
 
 test('Dive Experience popup reports the selected cell outlook and supporting evidence', async ({ page }) => {
   // The raster's legacy physical score can be null. In that case the existing

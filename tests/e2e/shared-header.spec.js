@@ -859,6 +859,7 @@ test('welcome restores bottom-right map controls after closing on a short phone'
   expect(sheet.y + sheet.height).toBeGreaterThan(buttons.y);
   await expect(page.locator('#mapWelcome [data-action="next"]')).toBeVisible();
   await page.locator('#mapWelcome [data-action="close"]').click();
+  await expect(page.locator('#mapWelcome')).toBeHidden();
   await expect(controls).toBeVisible();
   await expect(controls.locator('..')).toHaveClass(/leaflet-bottom/);
   await page.locator('#bioLegendTitle').click();
