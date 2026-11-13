@@ -8,16 +8,40 @@ const testRoots = [path.join(root, 'tests', 'unit'), path.join(root, 'tests', 'e
 const testFiles = testRoots.flatMap(directory => fs.readdirSync(directory, { withFileTypes:true })
   .filter(entry => entry.isFile() && /\.(?:test|spec)\.js$/.test(entry.name))
   .map(entry => path.join(directory, entry.name)));
-const source = testFiles.map(file => fs.readFileSync(file, 'utf8')).join('\n');
+const sources = testFiles.map(file => ({ file, text:fs.readFileSync(file, 'utf8') }));
+const source = sources.map(item => item.text).join('\n');
 const appSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const forbidden = [
   /\.(?:skip|fixme|todo|only)\s*\(/,
   /\bskip\s*:\s*true/
 ];
 
-for (const pattern of forbidden) {
-  if (pattern.test(source)) {
-    throw new Error(`Critical interaction tests may not be skipped or focused: ${pattern}`);
+// These tests exercise a particular viewport and still run in the matching
+// Playwright project. Bind exceptions to the test declaration as well as the
+// condition, so another test cannot silently acquire a skip.
+const viewportExceptions = {
+  'shared-header.spec.js': [
+    ["narrow phone headers fit in every language", "async ({ page, isMobile })", "!isMobile, 'Phone viewport check'"],
+    ["short and landscape screens keep the welcome and guide usable in every language", "async ({ page, isMobile })", "!isMobile, 'Phone viewport check'"],
+    ["short and landscape language menus scroll and select every language", "async ({ page, isMobile })", "!isMobile, 'Phone viewport check'"],
+    ["opening the header language menu during welcome dismissal preserves focus", "async ({ page, isMobile })", "!isMobile, 'Phone viewport check'"],
+    ["desktop map language menu preserves its popup and selection", "async ({ page, isMobile })", "isMobile, 'Desktop popup layout'"]
+  ],
+  'dive-experience-outlook.spec.js': [
+    ["opening welcome does not reopen the displaced mobile outlook sheet", "async ({ page }, testInfo)", "!testInfo.project.name.includes('mobile'), 'Mobile sheet behavior'"]
+  ]
+};
+
+for (const item of sources) {
+  let guardedSource = item.text.replace(/\r\n/g, '\n');
+  for (const [name, callback, condition] of viewportExceptions[path.basename(item.file)] || []) {
+    const exception = `test('${name}', ${callback} => {\n  test.skip(${condition});`;
+    guardedSource = guardedSource.replace(exception, '');
+  }
+  for (const pattern of forbidden) {
+    if (pattern.test(guardedSource)) {
+      throw new Error(`Critical interaction tests may not be skipped or focused in ${path.relative(root, item.file)}: ${pattern}`);
+    }
   }
 }
 
@@ -71,4 +95,4 @@ if (missing.length) {
   throw new Error(`Required interaction contracts are missing: ${missing.join('; ')}`);
 }
 
-console.log(`Interaction test policy passed (${requiredBehaviorNames.length} required behaviors; no skips or focused-only tests).`);
+console.log(`Interaction test policy passed (${requiredBehaviorNames.length} required behaviors; only approved viewport exclusions).`);
