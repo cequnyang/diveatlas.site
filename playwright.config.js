@@ -5,6 +5,7 @@ module.exports = defineConfig({
   testDir: './tests/e2e',
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
+  failOnFlakyTests: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
   // Map rendering is CPU-heavy in GitHub's mobile Chromium; serialize CI runs
   // so popup placement is not competing with another browser context.

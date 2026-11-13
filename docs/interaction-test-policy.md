@@ -45,7 +45,9 @@ The gate has three complementary checks:
 
 The syntax check is a guard against mistakes, not a JavaScript security sandbox.
 The runtime check supplies a second layer for exclusions not visible statically.
-Use the configured reporter in release runs; overriding `--reporter` bypasses it.
+CI also fails if a browser test passes only after retry, so a recovered failure
+cannot silently satisfy the release gate. Retries remain enabled to retain
+diagnostic evidence. Use the configured reporter in release runs; overriding `--reporter` bypasses it.
 The collection command deliberately overrides the reporter because listing tests
 does not execute them.
 
