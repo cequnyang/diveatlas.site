@@ -18,7 +18,10 @@ test('area lookup uses geographic labels rather than dive-site names and dedupli
 
 test('homonymous regions in different countries remain distinct and names match accents',() => {
   const areas = build([site('a','A','France',1,2,'Équateur'),site('b','B','Ecuador',3,4,'Équateur')],{});
-  assert.equal(search(areas,'equateur').length,3); // Ecuador is also its French country name.
+  // Ecuador's French alias remains searchable alongside both exact region names.
+  assert.deepEqual(search(areas,'equateur').map(area => [area.name,area.country]),[
+    ['Équateur','Ecuador'],['Équateur','France'],['Ecuador','']
+  ]);
   assert.equal(search(areas,'EQUATEUR france')[0].country,'France');
   assert.deepEqual(search(areas,''),[]);
 });
@@ -52,6 +55,7 @@ test('broad destination queries retain all matches and keep the exact country fi
   const matches = destinations(areas,'Indonesia');
   assert.equal(matches.length,9);
   assert.equal(matches[0].type,'country');
+  assert.deepEqual(matches.slice(1).map(area => area.name),Array.from({length:8},(_,i) => `Region ${i}`));
   assert.equal(resultsText('en').explore(matches[0].name),'Explore Indonesia');
   assert.equal(resultsText('en').count(8),'8 dive sites');
 });
@@ -189,6 +193,7 @@ test('Yucab translations stay on the sourced Cozumel record', () => {
 test('exact local region names precede another region containing the query', () => {
   const areas = build([site('a','A','Germany',1,2,'Saxony'),site('b','B','Germany',3,4,'Lower Saxony')],{});
   assert.deepEqual(search(areas,'Sachsen').map(area => area.name),['Saxony','Lower Saxony']);
+  assert.deepEqual(search(areas,'Saxony').map(area => area.name),['Saxony','Lower Saxony']);
 });
 
 test('country-level aliases rank above partial matches in other destinations', () => {

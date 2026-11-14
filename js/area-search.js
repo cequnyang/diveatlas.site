@@ -3672,12 +3672,10 @@
     if (!tokens.length) return [];
     const exactAlias = area => (area.type === 'country' ? searchAliases(area.name, []) : aliasesFor(area.name, area.country)).some(alias => normalize(alias) === key);
     const matches = areas.filter(area => tokens.every(token => area.search.includes(token)));
-    const exactNames = matches.filter(area => normalize(area.name) === key);
-    const exactAliases = matches.filter(exactAlias);
-    // Prefer a full destination-name match so a shorter recorded spelling and
-    // its longer search alias do not appear as two results for the same place.
-    const preferred = exactNames.length ? exactNames : exactAliases.length ? exactAliases : matches;
-    return preferred.sort((a,b) => Number(normalize(b.name).startsWith(key)) - Number(normalize(a.name).startsWith(key)) || a.name.localeCompare(b.name) || a.country.localeCompare(b.country));
+    // Exact names and aliases affect ranking, not membership: a country query
+    // must still expose its regions, and shared names can identify distinct areas.
+    // Geographic identity is deduplicated by build(), not by the query spelling.
+    return matches.sort((a,b) => Number(normalize(b.name) === key) - Number(normalize(a.name) === key) || Number(exactAlias(b)) - Number(exactAlias(a)) || Number(normalize(b.name).startsWith(key)) - Number(normalize(a.name).startsWith(key)) || a.name.localeCompare(b.name) || a.country.localeCompare(b.country));
   }
   function bounds(points) {
     if (!points.length) return null;
