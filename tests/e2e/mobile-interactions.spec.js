@@ -1201,6 +1201,10 @@ test('mobile search respects reduced motion on open and close', async ({ page })
 test('mobile map search expands its full-width sheet and preserves destination selection', async ({ page }) => {
   await page.locator('#diveSearchToggle').click();
   const sheet = page.locator('#diveSearchResults');
+  await expect(sheet.locator('#diveSearchInput')).toBeFocused();
+  await expect(page.locator('#diveSearchResultsHandle')).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
+  await expect.poll(async () => Math.abs((await sheet.boundingBox()).height - page.viewportSize().height)).toBeLessThanOrEqual(1);
   await expect(sheet.locator('#diveSearchInput')).toBeVisible();
   await expect(sheet.locator('#diveSearchFilterToggle')).toBeVisible();
   const listHeight = (await sheet.locator('#diveSearchResultsScroll').boundingBox()).height;

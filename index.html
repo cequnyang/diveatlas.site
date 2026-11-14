@@ -8664,10 +8664,14 @@ ZSD·2016–2025</span></span>
     setMobileSearchExpanded(nextExpanded);
     if (nextExpanded) {
       activateDiveSearchInput(diveSearchInput);
+      diveSearchResultsPanel.classList.add('is-sheet-expanded');
+      document.getElementById('diveSearchResultsHandle').setAttribute('aria-expanded', 'true');
       renderDiveSearchResults();
+      // Keep focus in the click gesture: iOS may suppress the keyboard after an animation frame.
+      syncDiveSearchWidth();
+      diveSearchInput?.focus({ preventScroll: true });
       requestAnimationFrame(() => {
         syncDiveSearchWidth();
-        diveSearchInput?.focus({ preventScroll: true });
       });
     } else {
       diveSearchInput?.blur();
