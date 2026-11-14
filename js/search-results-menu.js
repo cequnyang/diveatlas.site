@@ -299,7 +299,11 @@
         const collapsedAvailable = Math.max(0, bottom - Math.max(anchor.getBoundingClientRect().bottom + 8, viewportTop));
         const compactHeight = Math.min(collapsedAvailable, Math.max(240, collapsedAvailable * 0.72));
         surface.dataset.compactSheetHeight = String(compactHeight);
-        const height = surface.classList.contains("is-sheet-expanded") ? available : compactHeight;
+        // Resizing the sheet changes the list's scroll extent and emits scroll
+        // events. Repositioning must preserve the finger-controlled height.
+        const height = surface.classList.contains("mobile-vertical-dragging")
+          ? Math.min(available, surface.getBoundingClientRect().height)
+          : surface.classList.contains("is-sheet-expanded") ? available : compactHeight;
         Object.assign(surface.style, {left: "0px", width: "100%", top: "auto", bottom: `${Math.max(0, window.innerHeight - bottom)}px`, maxHeight: `${available}px`, height: `${height}px`});
         surface.style.setProperty("--search-results-available-height", `${available}px`);
         surface.classList.toggle("is-stacked", filtersOpen);
@@ -442,6 +446,12 @@
           const currentY = event.touches[0].clientY;
           const upwardMovement = diveSearchPullLastY - currentY;
           diveSearchPullLastY = currentY;
+          // A compact sheet spends this gesture expanding; pagination remains
+          // available on a subsequent pull once the sheet is full height.
+          if (surface.classList.contains("is-mobile-bottom-sheet") && !surface.classList.contains("is-sheet-expanded")) {
+            diveSearchPullDistance = 0;
+            return;
+          }
           if (upwardMovement <= 0) {
             diveSearchPullDistance = 0;
             return;
@@ -934,8 +944,8 @@
       dismissal.timer = window.setTimeout(complete, 280);
     };
 
-    // The list keeps native scrolling until a downward gesture reaches its top.
-    // From that point only the remaining movement controls the sheet.
+    // Keep native scrolling until a pull reaches the relevant list boundary.
+    // Only movement beyond that boundary resizes the sheet.
     let contentDrag = null;
     contentScroll?.addEventListener("touchstart", (event) => {
       if (!mobileLayoutQuery.matches || !isBottomSheet() || !isVisible() || event.touches.length !== 1) return;
@@ -949,13 +959,19 @@
       const step = touch.clientY - contentDrag.lastY;
       contentDrag.lastY = touch.clientY;
       if (contentDrag.startY === null) {
-        if (step <= 0 || contentScroll.scrollTop > 0 || Math.abs(touch.clientX - contentDrag.x) > Math.abs(step) * 2) return;
+        const expanded = results.classList.contains("is-sheet-expanded");
+        const pullDown = step > 0 && contentScroll.scrollTop <= 0;
+        // Allow fractional scroll positions at the bottom, as in pagination.
+        const pullUp = step < 0 && !expanded && contentScroll.scrollTop + contentScroll.clientHeight >= contentScroll.scrollHeight - 2;
+        if ((!pullDown && !pullUp) || Math.abs(touch.clientX - contentDrag.x) > Math.abs(step) * 2) return;
         contentDrag.startY = touch.clientY - step;
+        contentDrag.direction = pullUp ? -1 : 1;
         contentDrag.startHeight = results.getBoundingClientRect().height;
         contentDrag.maxHeight = parseFloat(results.style.maxHeight) || window.innerHeight;
         contentDrag.expanded = results.classList.contains("is-sheet-expanded");
       }
-      const dy = Math.max(0, touch.clientY - contentDrag.startY);
+      const delta = touch.clientY - contentDrag.startY;
+      const dy = contentDrag.direction < 0 ? Math.min(0, delta) : Math.max(0, delta);
       if (event.cancelable) event.preventDefault();
       results.classList.add("mobile-vertical-dragging");
       results.style.height = `${Math.max(200, Math.min(contentDrag.maxHeight, contentDrag.startHeight - dy))}px`;
@@ -973,7 +989,10 @@
       const compactHeight = Number(results.dataset.compactSheetHeight) || startHeight;
       if (!cancelled && dy >= 72 && startHeight - dy <= compactHeight - 72) dismiss();
       else {
-        if (!cancelled && dy >= 40 && expanded) results.classList.remove("is-sheet-expanded");
+        // Match the handle's snap threshold; shorter or cancelled pulls restore
+        // the starting state through onSheetResize().
+        if (!cancelled && dy <= -40) results.classList.add("is-sheet-expanded");
+        else if (!cancelled && dy >= 40 && expanded) results.classList.remove("is-sheet-expanded");
         onSheetResize();
       }
     }

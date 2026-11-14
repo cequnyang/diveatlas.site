@@ -1289,6 +1289,48 @@ test('mobile search shows the swipe hint and loads the next page on an upward pu
   await expect.poll(() => sheet.locator('[role="option"]').count()).toBeGreaterThan(before);
 });
 
+test('pulling up at the search list bottom expands the compact sheet before pagination', async ({ page }) => {
+  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').fill('reef');
+  const sheet = page.locator('#diveSearchResults');
+  const list = sheet.locator('#diveSearchResultsScroll');
+  const handle = page.locator('#diveSearchResultsHandle');
+  await expect(sheet.locator('#diveSearchLoadHint')).toBeVisible({timeout:15000});
+  await handle.focus();
+  await page.keyboard.press('Enter');
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => sheet.evaluate(el => Math.abs(el.getBoundingClientRect().height - Number(el.dataset.compactSheetHeight)))).toBeLessThanOrEqual(1);
+  const compactHeight = (await sheet.boundingBox()).height;
+  const before = await list.locator('[role="option"]').count();
+  const cdp = await page.context().newCDPSession(page);
+  async function pullUp(distance, during) {
+    const box = await list.boundingBox();
+    const x = box.x + box.width / 2, y = box.y + box.height - 25;
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+    for (let step=1;step<=6;step++) await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x,y:y-distance*step/6}]});
+    if (during) await during();
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+  }
+  await list.evaluate(el => { el.scrollTop = 0; });
+  await pullUp(60);
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  expect((await sheet.boundingBox()).height).toBeCloseTo(compactHeight, 0);
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await pullUp(25);
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => (await sheet.boundingBox()).height).toBeCloseTo(compactHeight, 0);
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await pullUp(120, async () => {
+    expect((await sheet.boundingBox()).height).toBeGreaterThan(compactHeight + 40);
+  });
+  await expect(handle).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
+  expect(await list.locator('[role="option"]').count()).toBe(before);
+  await list.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await pullUp(140);
+  await expect.poll(() => list.locator('[role="option"]').count()).toBeGreaterThan(before);
+});
+
 test('mobile search sheet tracks touch drags in both directions', async ({ page }) => {
   test.setTimeout(60_000);
   const launcher = page.locator('#diveSearchToggle');
