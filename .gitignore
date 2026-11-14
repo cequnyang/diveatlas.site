@@ -198,6 +198,7 @@ playwright-report/
 
 # Search-name research stays local; runtime aliases are tracked separately.
 /datasets/search-name-review-ledger.json
+/--help/
 /scripts/README-search-name-review.md
 /scripts/audit_search_names.js
 /scripts/merge_scubago_observations.py
