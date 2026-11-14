@@ -363,7 +363,10 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
       }));
     }, { once:true });
   });
-  await sheet.locator('.diveatlas-mobile-sheet-handle').evaluate(handle => {
+  // Leaflet placement updates can replace the handle between locator resolution
+  // and evaluation. Resolve it inside the live surface in the same browser turn.
+  await sheet.evaluate(popup => {
+    const handle = popup.querySelector('.diveatlas-mobile-sheet-handle');
     handle.setPointerCapture = () => {};
     const bounds = handle.getBoundingClientRect();
     const x = bounds.left + bounds.width / 2;
@@ -382,7 +385,6 @@ test('mobile dive-site sheet and detail page share a reversible view transition'
     dispatch('pointerdown', y);
     dispatch('pointermove', y - 144);
     dispatch('pointermove', y - 124);
-    const popup = handle.closest('.leaflet-popup');
     const rect = popup.getBoundingClientRect();
     const glass = getComputedStyle(popup, '::after');
     sessionStorage.setItem('diveatlas-roundtrip-pull', JSON.stringify({

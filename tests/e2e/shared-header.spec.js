@@ -1445,9 +1445,10 @@ test('welcome dismissal does not steal focus from the newly opened language menu
 test('localized dive names search both shared header and map without merging namesakes', async ({ page, hasTouch }) => {
   const sites = [
     {name:'Nudi Falls',country:'Indonesia',region:'Lembeh Strait',lat:1.45,lon:125.2},
-    {name:'Blue Corner',country:'Palau',region:'Palau',lat:7.14,lon:134.21},
+    {name:'Blue Corner',country:'Palau',region:'Palau',lat:7.14,lon:134.21,site_id:'67b0fa7f-b4d9-4fdb-89c0-ae8fb5d10dcb'},
     {name:'Blue Corner',country:'Indonesia',region:'Bali',lat:-8.7,lon:115.5}
-  ].map((site,i) => ({...site,site_id:`1a532e42-9890-4ea9-b239-${String(i+1).padStart(12,'0')}`,features:[]}));
+  // Scoped aliases require the catalog ID; synthetic IDs remain useful for namesakes.
+  ].map((site,i) => ({...site,site_id:site.site_id || `1a532e42-9890-4ea9-b239-${String(i+1).padStart(12,'0')}`,features:[]}));
   sites.push({name:'Twins Koh Tao',country:'Thailand',region:'Koh Tao',lat:10.1166,lon:99.8119,site_id:'0d11452c-967f-4504-beb0-f1d57794177e',features:[]},
     {name:'Twins Koh Tao',country:'Thailand',region:'Other',lat:8,lon:98,site_id:'1a532e42-9890-4ea9-b239-000000000099',features:[]});
   await page.route('**/data/dive-site-details/v2/recommendations.json', route => route.fulfill({json:{schema:'dive-site-recommendations-v1',sites}}));
