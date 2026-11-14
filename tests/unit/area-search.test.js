@@ -83,9 +83,11 @@ test('localized aliases match destinations and remain scoped to their country', 
 
 test('site aliases use a known country and an exact site name', () => {
   const {searchAliases} = require('../../js/area-search');
-  assert.ok(searchAliases('Palau', [], 'Blue Corner').includes('蓝角'));
-  assert.ok(searchAliases('Palau', [], 'Blue Corner').includes('ブルーコーナー'));
-  assert.ok(!searchAliases('Indonesia', [], 'Blue Corner').includes('蓝角'));
+  const palauBlueCornerId = '67b0fa7f-b4d9-4fdb-89c0-ae8fb5d10dcb';
+  assert.ok(searchAliases('Palau', [], 'Blue Corner', palauBlueCornerId).includes('蓝角'));
+  assert.ok(searchAliases('Palau', [], 'Blue Corner', palauBlueCornerId).includes('ブルーコーナー'));
+  assert.ok(!searchAliases('Palau', [], 'Blue Corner').includes('蓝角'));
+  assert.ok(!searchAliases('Indonesia', [], 'Blue Corner', 'unrelated-site').includes('蓝角'));
   assert.ok(!searchAliases('', [], 'Blue Corner').includes('蓝角'));
   assert.ok(!searchAliases('Palau', [], 'Blue Corner North').includes('蓝角'));
   assert.ok(searchAliases('Philippines', ['Philippines Malapascua']).includes('妈妈拍丝瓜'));
