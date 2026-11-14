@@ -53,10 +53,16 @@ test('map popup and enlarged preview use the assigned photo with context and lin
   await expect(popup.locator('.dive-popup-photo')).toHaveAttribute('src',displayURL(p.hero));
   await expect.poll(()=>popup.locator('.dive-popup-photo').evaluate(image=>image.complete&&image.naturalWidth>0)).toBe(true);
   await expect(popup.locator('.dive-popup-photo-label--reviewed')).toHaveCount(0);
-  await expect(popup.locator('a[href="'+p.source_page+'"]')).toHaveCount(1);
-  await expect(popup.locator('a[href="'+p.licence_url+'"]')).toHaveCount(1);
+  // Source and licence evidence may share a URL. Check each credit role rather
+  // than assuming that URL occurs only once (including in site references).
+  const credit=popup.locator('.dive-popup-photo-credit');
+  await expect(credit.getByRole('link',{name:'Source',exact:true})).toHaveAttribute('href',p.source_page);
+  await expect(credit.getByRole('link',{name:p.licence,exact:true})).toHaveAttribute('href',p.licence_url);
   await popup.locator('.dive-popup-photo-trigger').click();await expect(page.locator('.dive-photo-preview[open]')).toBeVisible();await expect(page.locator('.dive-photo-preview__image')).toHaveAttribute('src',displayURL(p.hero));
-  await expect(page.locator('.dive-photo-preview__credit a[href="'+p.source_page+'"]')).toHaveCount(1);await page.locator('.dive-photo-preview__close').click();await expect(page.locator('.dive-photo-preview')).not.toBeVisible();
+  const previewCredit=page.locator('.dive-photo-preview__credit');
+  await expect(previewCredit.getByRole('link',{name:'Source',exact:true})).toHaveAttribute('href',p.source_page);
+  await expect(previewCredit.getByRole('link',{name:p.licence,exact:true})).toHaveAttribute('href',p.licence_url);
+  await page.locator('.dive-photo-preview__close').click();await expect(page.locator('.dive-photo-preview')).not.toBeVisible();
  }
 });
 

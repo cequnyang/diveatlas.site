@@ -146,6 +146,9 @@ test(`opening welcome does not reopen the ${dismissFirst ? 'swiped-away' : 'disp
   await page.locator('.environment-segment').filter({has:page.locator('input[name="environmentView"][value="dive-experience-outlook"]')}).click();
   await expect.poll(() => page.evaluate(() => window.DiveAtlasDiveExperienceMap?.getRenderDiagnostics().tileCount || 0)).toBeGreaterThan(0);
   await setLegendCollapsed(page, true);
+  // Collapsing the panel can still move the map after its state class changes.
+  // Resolve the screen coordinate only once that movement has settled.
+  await waitForMapMovementToSettle(page);
   await waitForMapInteractionWindow(page);
   const point = await page.evaluate(() => {
     const map = window.__DIVEATLAS_TEST__.map;
