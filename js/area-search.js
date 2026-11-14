@@ -439,7 +439,11 @@
     // https://beachsearcher.com/zh/croatia/primorje-gorski-kotar-county
     // https://www.ekvarner.info/dive-loft-krk/radno_vrijeme
     // https://www.pgz.hr/informacije/
-    {"names": ["Primorje-Gorski"], "country": "Croatia", "aliases": ["Primorsko-goranska županija", "Primorje-Gorski Kotar County", "滨海和山区县"]},
+    // https://scubaforecast.com/scuba-diving-weather/croatia/primorje-gorski-kotar-county
+    // https://www.padi.com/ja/diving-in/kuroachia/ (Kvarner dive context)
+    // https://www.padi.com/zh-hans/diving-in/ke-luo-di-ya/ (Kvarner dive context)
+    // https://www.pgz.hr/objave/more-na-kvarneru-vrhunske-kvalitete-cak-975-posto-plaza-dobilo-ocjenu-izvrsno/
+    {"names": ["Primorje-Gorski", "Primorje-Gorski Kotar"], "country": "Croatia", "aliases": ["Primorsko-goranska županija", "Primorje-Gorski Kotar County", "滨海和山区县"]},
     // https://www.pomorskodobro.dalmacija.hr/u-fokusu/detalj/iii-hrvatski-ronilacki-kongres-objedinio-ronilacku-populaciju
     {"names": ["Split-Dalmatia County"], "country": "Croatia", "aliases": ["Splitsko-dalmatinska županija"]},
     // https://visitdubrovnik.hr/hr/aktivnosti/ostalo/
@@ -930,7 +934,12 @@
     {"names": ["Israel"], "country": "Israel", "aliases": ["ישראל"]},
     {"names": ["Ambon"], "country": "Indonesia", "aliases": ["安汶", "アンボン", "암본"]},
     {"names": ["Alor Archipelago"], "country": "Indonesia", "aliases": ["阿洛群岛", "阿洛群島", "阿洛尔", "アロール", "알로르"]},
-    {"names": ["Western Australia"], "country": "Australia", "aliases": ["西澳", "西澳大利亚", "西澳大利亚州", "西澳大利亞", "西澳大利亞州", "澳大利亞西部", "西オーストラリア", "西オーストラリア州", "서호주", "웨스턴오스트레일리아"]},
+    // https://www.padi.com/zh-hans/diving-in/xi-ao-da-li-ya-zhou/
+    // https://www.padi.com/zh-hant/diving-in/ao-da-li-ya-xi-bu/
+    // https://www.padi.com/ja/diving-in/xi-o-sutorariazhou/
+    // https://www.padi.com/ko/diving-in/weseuteon-oseuteureilria/
+    // https://www.westernaustralia.com/en/things-to-do/beaches-and-lakes/snorkelling-and-diving
+    {"names": ["Western Australia"], "country": "Australia", "aliases": ["西澳", "西澳大利亚", "西澳大利亚州", "西澳大利亞", "西澳大利亞州", "澳大利亞西部", "西オーストラリア", "西オーストラリア州", "서호주", "웨스턴오스트레일리아", "웨스턴 오스트레일리아"]},
     {"names": ["Victoria"], "country": "Australia", "aliases": ["维多利亚", "维多利亚州", "維多利亞", "維多利亞州", "ビクトリア", "ビクトリア州", "빅토리아"]},
     // Multilingual diving-destination names for the Australian state.
     {"names": ["Queensland"], "country": "Australia", "aliases": ["昆士兰", "昆士兰州", "昆士蘭", "昆士蘭州", "クイーンズランド", "クイーンズランド州", "퀸즐랜드"]},
@@ -1091,7 +1100,11 @@
     {names:['Bali'], country:'Indonesia', aliases:['巴厘岛','巴厘','巴厘島','峇里島','バリ島','발리']},
     // https://www.padi.com/zh-hans/diving-in/bo-nai-er/
     // https://blog.padi.com/jp/eco-travel-destinations-leading-marine-protection/
-    {names:['Bonaire'], country:'Bonaire, Sint Eustatius and Saba', aliases:['博奈尔','博内尔','ボネール']},
+    // https://travel.padi.com/zh-hans/dive-course/bonaire/padi-divemaster-79941/
+    // https://www.padi.com/zh-hant/diving-in/bo-nei-er/
+    // https://www.padi.com/ja/diving-in/hone-rudao/
+    // https://blog.padi.com/ko/scuba-dive-without-a-wetsuit/
+    {names:['Bonaire'], country:'Bonaire, Sint Eustatius and Saba', aliases:['博奈尔','博内尔','博內爾','博內爾島','ボネール','ボネール島','보네르']},
     {names:['Lembeh','Lembeh Strait'], country:'Indonesia', aliases:['蓝碧','蓝碧海峡','蓝贝','蓝贝海峡','伦贝','伦贝海峡','藍碧','藍碧海峽','倫貝','倫貝海峽','レンベ','レンベ海峡','렘베','렘베 해협']},
     {names:['Raja Ampat'], country:'Indonesia', aliases:['四王群岛','四王群島','拉贾安帕特','拉賈安帕特','拉贾安帕特群岛','ラジャアンパット','ラジャ・アンパット','라자 암팟','라자 앰팟','라자앰팟']},
     {names:['Sipadan'], country:'Malaysia', aliases:['诗巴丹','詩巴丹','シパダン','시파단']},
