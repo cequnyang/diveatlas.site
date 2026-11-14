@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import re
 from collections import Counter, defaultdict
@@ -20,6 +21,7 @@ fallback_photo_for_site, row_value = seo.fallback_photo_for_site, seo.row_value
 
 DATA_PATH = Path("data/dive-site-details/v1")
 RECOMMENDATIONS_PATH = Path("data/dive-site-details/v2/recommendations.json")
+SEARCH_LOCATIONS_PATH = Path("datasets/dive-site-search-locations.json.gz")
 # 512 KiB keeps individual transfers moderate without creating per-site requests.
 MAX_RECOMMENDATION_SHARD_BYTES = 512 * 1024
 
@@ -71,8 +73,9 @@ def public_records(rows, photos, summaries, fallback_base, fallback_photos):
     return seo.record_policy.canonicalize_views(records)
 
 
-def recommendation_catalog(candidates):
+def recommendation_catalog(candidates, locations=None):
     """Publish every public detail record with enough identity and location data to recommend."""
+    locations = locations or {}
     sites = []
     priority = {value: index for index, value in enumerate(seo.FALLBACK_FEATURE_PRIORITY)}
     for site in candidates:
@@ -84,10 +87,18 @@ def recommendation_catalog(candidates):
         features = sorted(feature_values, key=lambda value: priority.get(
             re.sub(r"[^a-z0-9]+", "_", value.casefold()).strip("_"), len(priority)))
         photo = site.get("photo") or {}
+        location_fields = locations.get(site["site_id"], {})
         recommendation = {
             "site_id": site["site_id"], "name": site["name"],
             "lat": site["lat"], "lon": site["lon"],
             "features": features[:2], "feature_values": feature_values,
+            # The search UI needs these public source-dataset labels to resolve
+            # area, province, ocean, and position-name queries from the compact catalog.
+            "location_fields": {
+                key: list(dict.fromkeys(str(value).strip() for value in location_fields.get(key, [])
+                                        if str(value).strip()))
+                for key in ("stateProvince", "commonArea", "oceanArea", "positionName")
+            },
         }
         for key in ("country", "region", "difficulty", "aliases", "canonical_id", "identity_members"):
             if site.get(key):
@@ -142,6 +153,10 @@ def split_recommendation_catalog(catalog, max_bytes=MAX_RECOMMENDATION_SHARD_BYT
 def export(output: Path) -> dict:
     base, fallback = load_fallback_photos()
     rows, photos, summaries = load_rows(), load_photos(), load_summaries()
+    location_payload = json.loads(gzip.decompress((ROOT / SEARCH_LOCATIONS_PATH).read_bytes()))
+    locations = location_payload.get("bySiteId") if isinstance(location_payload, dict) else None
+    if not isinstance(locations, dict):
+        raise ValueError("Search-location dataset must contain a bySiteId mapping")
     records = public_records(rows, photos, summaries, base, fallback)
     candidates, _ = seo.validated_candidates(rows, photos, summaries, base, fallback)
     static_paths = {site['site_id']: f"/dive-sites/{site['slug']}/" for site in candidates}
@@ -166,7 +181,7 @@ def export(output: Path) -> dict:
             json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     # Keep the optional regional related-site lists small; the shared rating
     # catalog below still covers every public detail record.
-    catalog = recommendation_catalog(records)
+    catalog = recommendation_catalog(records, locations)
     catalog_manifest, shard_payloads = split_recommendation_catalog(catalog)
     recommendation_destination = output / RECOMMENDATIONS_PATH.parent
     recommendation_destination.mkdir(parents=True, exist_ok=True)

@@ -164,13 +164,19 @@
         ? valuesFor(site, 'feature_values') : valuesFor(site, 'features');
       const name = String(site.name || '');
       const location = [site.region, site.country].filter(Boolean).join(' ');
+      const locationFields = site.location_fields && typeof site.location_fields === 'object' ? site.location_fields : {};
+      const locationNames = ['stateProvince', 'commonArea', 'oceanArea', 'positionName']
+        .flatMap(key => Array.isArray(locationFields[key]) ? locationFields[key] : []).filter(Boolean);
       const siteNames = [...window.DiveAtlasAreaSearch.verifiedSiteNames(site.site_id), ...window.DiveAtlasAreaSearch.siteSearchAliases(site.country, name, site.site_id)];
       return {
         ...site,
         features,
+        locationFields,
         normalizedName:normalize(name),
         normalizedSiteNames:siteNames.map(normalize),
-        normalizedSearch:normalize([name, site.aliases, location, site.difficulty, ...features, ...window.DiveAtlasAreaSearch.verifiedSiteNames(site.site_id), ...window.DiveAtlasAreaSearch.searchAliases(site.country, [name, site.region, site.country], name, site.site_id)].join(' '))
+        normalizedSearch:normalize([name, site.aliases, location, ...locationNames, site.difficulty, ...features,
+          ...window.DiveAtlasAreaSearch.verifiedSiteNames(site.site_id),
+          ...window.DiveAtlasAreaSearch.searchAliases(site.country, [name, site.region, site.country, ...locationNames], name, site.site_id)].join(' '))
       };
     }) : [];
     // Adapt the shared catalog to the map's geographic grouping contract.
@@ -180,7 +186,7 @@
       row[1] = site.lat; row[2] = site.lon; row[9] = site.country;
       row[10] = site.region; row[12] = site.site_id;
       return row;
-    }), {});
+    }), {bySiteId:Object.fromEntries(searchSites.map(site => [site.site_id, site.locationFields]))});
     updateFilterOptions();
     if (isOpen) renderResults();
   }

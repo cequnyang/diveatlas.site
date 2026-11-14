@@ -21,7 +21,173 @@
   // homonymous region in another country must not inherit a destination name.
   // https://www.padi.com/zh-hans/diving-in/yin-du-ni-xi-ya/lun-bei/
   // https://www.padi.com/zh-hant/diving-in/si-wang-qun-dao/
+  // https://www.divessi.com/cn/blog/scuba-diving-in-malta-9492.html
+  // https://www.padi.com/zh-hans/diving-in/sang-gei-ba-er/
+  // https://travel.padi.com/zh-hant/dive-sites/sang-gei-ba-er/
+  // https://travel.padi.com/ja/diving-in/sanshiharu/
+  // https://www.padi.com/ko/diving-in/janjibareu/
+  // https://www.hellodive.com/dive/detail/info/150.html
+  // https://www.padi.com/ja/diving-in/intoneshia/kirizhu-dao/
+  // https://blog.padi.com/ko/bucket-list-freediving-destinations/
+  // https://www.tdisdi.com/sdi-diver-news/florida-springs/?lang=zh-hans
+  // https://www.scubago.com/tw/explore/destination/florida-9750644
+  // https://www.padi.com/zh-hans/diving-in/xia-wei-yi/
+  // https://www.padi.com/zh-hant/dive-center/mei-li-jian-he-zhong-guo-usa/dive-kauai-scuba-center-inc/
+  // https://www.padi.com/ja/diving-in/united-states-of-america-usa/kauaidao-toniihaudao/
+  // https://www.padi.com/ko/diving-in/amerika-habjunggug-usa/kauai-nihau/
+  // These locale-specific destination pages explicitly use the aliases below in dive context.
+  // https://www.padi.com/zh-hans/diving-in/bei-jing/
+  // https://www.padi.com/zh-hans/dive-shops/yan-dong-sheng/
+  // https://www.padi.com/zh-hans/diving-in/ao-di-li/wei-ye-na/
+  // https://www.padi.com/zh-hans/diving-in/caribbean/
+  // https://www.padi.com/zh-hant/diving-in/caribbean/
+  // https://www.padi.com/ja/diving-in/caribbean/
+  // https://www.padi.com/ko/diving-in/caribbean/
+  // https://www.padi.com/es/diving-in/caribe/
+  // https://www.padi.com/zh-hans/diving-in/the-pacific/
+  // https://travel.padi.com/zh-hant/diving-in/the-pacific/
+  // https://www.padi.com/ko/diving-in/the-pacific/
+  // https://www.padi.com/zh-hans/diving-in/pu-tao-ya/
+  // https://www.padi.com/ja/diving-in/taka-ru/
+  // https://www.padi.com/fr/diving-in/portugal/
+  // https://www.padi.com/es/centro-buceo/portugal/haliotis-faial-diving-center/
+  // https://www.padi.com/ko/diving-in/poreutugal/tereuseiraseom/
+  // https://www.padi.com/zh-hans/diving-in/asia/
+  // https://www.padi.com/zh-hant/diving-in/asia/
+  // https://www.padi.com/ja/diving-in/africa/
+  // https://www.padi.com/ko/diving-in/asia/
+  // https://www.padi.com/fr/diving-in/ocean-indien/
+  // https://www.padi.com/es/diving-in/oceano-indico/
+  // https://www.padi.com/zh-hans/diving-in/zhong-guo/
+  // https://www.padi.com/zh-hant/diving-in/zhong-guo/
+  // https://www.padi.com/ja/diving-in/china/
+  // https://travel.padi.com/es/diving-in/china/
+  // https://www.padi.com/ko/dive-center/malreisia/bubble-gazers-recreational-sdn-bhd/
+  // https://www.padi.com/zh-hans/diving-in/xi-xi-li-dao/
+  // https://www.padi.com/zh-hant/diving-in/sai-pu-le-si/
+  // https://www.padi.com/ja/diving-in/suhein/
+  // https://www.padi.com/fr/diving-in/france/
+  // https://www.padi.com/es/diving-in/espana/
+  // https://www.padi.com/ko/diving-in/keureta-seom/
+  // https://www.divingexpress.com/%E9%A6%99%E6%B8%AF%E6%BD%9B%E6%B0%B4%E8%88%B9%E6%BD%9B%E6%97%A5%E7%A8%8B/
+  // https://www.padi.com/zh-hans/dive-center/china/ocean-dive-shanghai/
   const placeAliases = [
+    {names:['Beijing'], country:'China', aliases:['北京']},
+    {names:['Guangdong'], country:'China', aliases:['广东省']},
+    {names:['Sai Kung'], country:'China', aliases:['西貢']},
+    {names:['Shanghai'], country:'China', aliases:['上海市']},
+    {names:['Vienna'], country:'Austria', aliases:['维也纳']},
+    {names:['Caribbean Sea'], country:'', aliases:['加勒比海','カリブ海','카리브해','Caribe']},
+    {names:['Pacific Ocean'], country:'', aliases:['太平洋','태평양']},
+    {names:['Atlantic Ocean'], country:'', aliases:['大西洋','Atlántico','océan Atlantique','Océano Atlántico','대서양']},
+    {names:['Indian Ocean'], country:'', aliases:['印度洋','インド洋','인도양','Océan Indien','Océano Índico']},
+    {names:['South China Sea'], country:'', aliases:['南海','南シナ海','Mar de China Meridional','남중국해']},
+    {names:['Mediterranean Sea'], country:'', aliases:['地中海','Méditerranée','Mediterráneo','지중해']},
+    {names:['Adriatic Sea'], country:'', aliases:['亚得里亚海','亞得里亞海','アドリア海','아드리아해']},
+    {names:['Aegean Sea'], country:'', aliases:['爱琴海','愛琴海','エーゲ海','에게해']},
+    {names:['Red Sea'], country:'', aliases:['红海','紅海','홍해']},
+    {names:['Andaman Sea'], country:'', aliases:['安达曼海','安達曼海','アンダマン海','안다만 해']},
+    {names:['Arabian Sea'], country:'', aliases:['阿拉伯海','阿拉伯海','アラビア海','아라비아해']},
+    {names:['Gulf of Mexico'], country:'', aliases:['墨西哥湾','墨西哥灣','メキシコ湾','멕시코만','Golfo de México']},
+    {names:['Bohol Sea'], country:'', aliases:['保和海','薄荷海','ボホール海']},
+    {names:['Salish Sea'], country:'', aliases:['살리시 해']},
+    {"names": ["Malta And Gozo"], "country": "Malta", "aliases": ["马耳他和戈佐岛"]},
+    {"names": ["Zanzibar"], "country": "United Republic of Tanzania", "aliases": ["桑给巴尔", "桑給巴爾", "ザンジバル", "잔지바르"]},
+    {"names": ["Gili Islands", "Gili Islands | Lombok"], "country": "Indonesia", "aliases": ["吉利群岛", "吉利群島", "ギリ諸島", "길리 제도"]},
+    {"names": ["Florida Springs"], "country": "United States", "aliases": ["佛罗里达泉水", "佛羅里達泉群"]},
+    {"names": ["Hawaii Kauai"], "country": "United States", "aliases": ["可爱岛", "考艾島", "カウアイ島", "카우아이"]},
+    {"names": ["Hawaii Kauai"], "country": "United States of America", "aliases": ["可爱岛", "考艾島", "カウアイ島", "카우아이"]},
+    {"names": ["Guerrero"], "country": "Mexico", "aliases": ["格雷罗"]},
+    {"names": ["Southland"], "country": "New Zealand", "aliases": ["南地"]},
+    {"names": ["Reggio Calabria"], "country": "Italy", "aliases": ["雷焦卡拉布里亚"]},
+    {"names": ["Kuala Lumpur"], "country": "Malaysia", "aliases": ["吉隆坡", "クアラルンプール", "쿠알라룸푸르"]},
+    {"names": ["Southern Leyte"], "country": "Philippines", "aliases": ["南莱特", "南萊特", "南レイテ", "남레이테"]},
+    {"names": ["Batangas"], "country": "Philippines", "aliases": ["八打雁", "バタンガス"]},
+    {"names": ["Dili"], "country": "East Timor", "aliases": ["帝力", "딜리"]},
+    {"names": ["Marlborough"], "country": "New Zealand", "aliases": ["马尔堡", "말버러"]},
+    {"names": ["Trincomalee"], "country": "Sri Lanka", "aliases": ["亭可马里", "亭可馬里", "トリンコマリー", "트링코말리"]},
+    {"names": ["Limassol"], "country": "Cyprus", "aliases": ["利马索尔", "利馬索爾", "リマソール", "리마솔"]},
+    {"names": ["Quebec"], "country": "Canada", "aliases": ["魁北克", "ケベック", "퀘벡"]},
+    {"names": ["Lower Austria"], "country": "Austria", "aliases": ["下奧地利", "下奧地利州", "ニーダーエスターライヒ州"]},
+    {"names": ["Chubut"], "country": "Argentina", "aliases": ["丘布特", "추부트"]},
+    {"names": ["New York"], "country": "United States of America", "aliases": ["纽约", "紐約", "ニューヨーク", "뉴욕"]},
+    {"names": ["Florida Springs"], "country": "United States of America", "aliases": ["佛罗里达泉水", "佛羅里達泉群"]},
+    {"names": ["Jordan Aqaba", "Jordan Aqaba | Red Sea"], "country": "Jordan", "aliases": ["亚喀巴", "亞喀巴", "アカバ", "아카바", "Mar Rojo"]},
+    {"names": ["Saba"], "country": "Bonaire, Sint Eustatius and Saba", "aliases": ["萨巴岛", "サバ島", "사바"]},
+    {"names": ["Constanța"], "country": "Romania", "aliases": ["康斯坦察", "콘스탄차"]},
+    {"names": ["Rio de Janeiro"], "country": "Brazil", "aliases": ["里约热内卢", "里約熱內盧", "リオデジャネイロ", "리우데자네이루"]},
+    {"names": ["Granada"], "country": "Spain", "aliases": ["格拉纳达", "格拉納達"]},
+    {"names": ["Peloponnese"], "country": "Greece", "aliases": ["伯罗奔尼撒"]},
+    {"names": ["Barcelona"], "country": "Spain", "aliases": ["巴塞罗那", "巴塞隆納", "バルセロナ", "바르셀로나"]},
+    {"names": ["Lecco"], "country": "Italy", "aliases": ["莱科"]},
+    {"names": ["Šibenik"], "country": "Croatia", "aliases": ["希贝尼克", "希貝尼克"]},
+    {"names": ["Zadar"], "country": "Croatia", "aliases": ["扎达尔", "扎達爾", "薩達爾", "ザダル", "자다르"]},
+    {"names": ["Styria"], "country": "Austria", "aliases": ["스티리아", "シュタイアーマルク州", "施蒂里亚", "施蒂利亞州"]},
+    {"names": ["Setúbal"], "country": "Portugal", "aliases": ["세투발"]},
+    {"names": ["Wakayama Prefecture"], "country": "Japan", "aliases": ["和歌山县", "和歌山", "和歌山県", "和歌山縣", "와카야마현"]},
+    {"names": ["New England | Massachusetts"], "country": "United States", "aliases": ["马萨诸塞州", "麻薩諸塞州"]},
+    {"names": ["San Diego La Jolla"], "country": "United States of America", "aliases": ["圣地亚哥", "拉霍亚", "聖地牙哥", "拉荷亞", "サンディエゴ", "ラホヤ"]},
+    {"names": ["Västra Götaland"], "country": "Sweden", "aliases": ["Västra Götalands län"]},
+    {"names": ["Zug"], "country": "Switzerland", "aliases": ["Zoug"]},
+    {"names": ["Neuchâtel"], "country": "Switzerland", "aliases": ["纳沙泰尔", "Neuenburg"]},
+    {"names": ["Málaga"], "country": "Spain", "aliases": ["马拉加"]},
+    {"names": ["Dobruvnik-Neretva"], "country": "Croatia", "aliases": ["Dubrovačko-neretvanska županija", "Dubrovnik-Neretva County"]},
+    {"names": ["Sri Lanka"], "country": "Sri Lanka", "aliases": ["斯里兰卡", "스리랑카", "スリランカ", "ශ්‍රී ලංකා"]},
+    {"names": ["East Macedonia and Thrace"], "country": "Greece", "aliases": ["Ανατολική Μακεδονία και Θράκη"]},
+    {"names": ["Uae Fujairah"], "country": "United Arab Emirates", "aliases": ["富查伊拉", "푸자이라"]},
+    {"names": ["Antalya"], "country": "Türkiye", "aliases": ["安塔利亚", "安塔利亞", "アンタルヤ"]},
+    {"names": ["Mersin"], "country": "Türkiye", "aliases": ["梅尔辛"]},
+    {"names": ["Muğla"], "country": "Turkey", "aliases": ["穆拉"]},
+    {"names": ["Flower Garden Banks"], "country": "United States of America", "aliases": ["花园礁", "花園礁", "花园浅滩", "花圃海岸"]},
+    {"names": ["South Florida"], "country": "United States", "aliases": ["南佛罗里达", "南佛羅里達", "sud de la Floride", "sur de Florida"]},
+    {"names": ["Puerto Rico"], "country": "United States", "aliases": ["波多黎各", "プエルトリコ", "푸에르토리코"]},
+    {names:['Puerto Rico'], country:'United States of America', aliases:['波多黎各','プエルトリコ','푸에르토리코']},
+    {names:['Puerto Rico'], country:'Puerto Rico', aliases:['波多黎各','プエルトリコ','푸에르토리코']},
+    {names:['Us Virgin Islands'], country:'United States', aliases:['美属维尔京群岛','美屬維京群島','米領ヴァージン諸島','미국령 버진아일랜드','Islas Vírgenes de los Estados Unidos']},
+    {names:['Us Virgin Islands'], country:'United States of America', aliases:['美属维尔京群岛','美屬維京群島','米領ヴァージン諸島','미국령 버진아일랜드','Islas Vírgenes de los Estados Unidos']},
+    {names:['Us Virgin Islands'], country:'United States Virgin Islands', aliases:['美属维尔京群岛','美屬維京群島','米領ヴァージン諸島','미국령 버진아일랜드','Islas Vírgenes de los Estados Unidos']},
+    {"names": ["Akmola"], "country": "Kazakhstan", "aliases": ["Акмолинская область"]},
+    {"names": ["Brescia"], "country": "Italy", "aliases": ["布雷西亚", "布雷西亞"]},
+    {"names": ["Malé"], "country": "Maldives", "aliases": ["马累", "馬累", "말레", "マレ"]},
+    {"names": ["Yucatán"], "country": "Mexico", "aliases": ["尤卡坦", "ユカタン"]},
+    {"names": ["Rome"], "country": "Italy", "aliases": ["罗马", "Roma"]},
+    {"names": ["Livorno"], "country": "Italy", "aliases": ["利沃诺", "里窝那", "里窩那"]},
+    {"names": ["Catania"], "country": "Italy", "aliases": ["卡塔尼亚", "卡塔尼亞"]},
+    {"names": ["Valparaíso"], "country": "Chile", "aliases": ["瓦尔帕莱索", "瓦爾帕萊索"]},
+    {"names": ["Newfoundland"], "country": "Canada", "aliases": ["纽芬兰"]},
+    {"names": ["Minsk"], "country": "Belarus", "aliases": ["Минск", "Мінск"]},
+    {"names": ["Antwerp"], "country": "Belgium", "aliases": ["Antwerpen", "Anvers"]},
+    {"names": ["Salzburg"], "country": "Austria", "aliases": ["薩爾茨堡", "薩爾斯堡"]},
+    {"names": ["Bahia"], "country": "Brazil", "aliases": ["巴伊亚", "巴伊亞"]},
+    {"names": ["Phang Nga"], "country": "Thailand", "aliases": ["攀牙", "パンガー", "พังงา"]},
+    {"names": ["Vaud"], "country": "Switzerland", "aliases": ["Waadt"]},
+    {"names": ["Nidwalden"], "country": "Switzerland", "aliases": ["Nidwald", "ニトヴァルデン"]},
+    {"names": ["Magdalena"], "country": "Colombia", "aliases": ["マグダレナ"]},
+    {"names": ["Free State"], "country": "South Africa", "aliases": ["自由州", "Vrijstaat"]},
+    {"names": ["Friuli Venezia Giulia"], "country": "Italy", "aliases": ["Frioul-Vénétie Julienne"]},
+    {"names": ["Warmian-Masurian Voivodeship"], "country": "Poland", "aliases": ["warmińsko-mazurskie"]},
+    {"names": ["West Pomeranian Voivodeship"], "country": "Poland", "aliases": ["zachodniopomorskie"]},
+    {"names": ["Kronoberg"], "country": "Sweden", "aliases": ["克鲁努贝里"]},
+    {"names": ["Schwyz"], "country": "Switzerland", "aliases": ["施维茨", "Svitto", "Schwytz"]},
+    {"names": ["Moscow"], "country": "Russian Federation", "aliases": ["莫斯科", "モスクワ", "모스크바", "Москва"]},
+    {"names": ["Verona"], "country": "Italy", "aliases": ["维罗纳", "維羅納"]},
+    {"names": ["Saba"], "country": "Netherlands", "aliases": ["萨巴岛", "薩巴島", "サバ島", "사바 섬"]},
+    {"names": ["Socorro Islands"], "country": "Mexico", "aliases": ["ソコロ諸島", "소코로 제도", "索科羅群島"]},
+    {"names": ["Southwest Florida"], "country": "United States", "aliases": ["西南佛罗里达州", "西南佛罗里达", "플로리다 남서부"]},
+    {"names": ["Thuringia"], "country": "Germany", "aliases": ["图林根", "テューリンゲン", "튀링겐"]},
+    {"names": ["Var"], "country": "France", "aliases": ["瓦尔省", "瓦爾省"]},
+    {"names": ["Alpes-Maritimes"], "country": "France", "aliases": ["濱海阿爾卑斯", "알프마리팀"]},
+    {"names": ["Namur"], "country": "Belgium", "aliases": ["那慕尔", "那慕爾", "ナミュール"]},
+    {"names": ["Hawaii"], "country": "United States", "aliases": ["夏威夷", "ハワイ", "하와이"]},
+    {"names": ["Cayman Islands"], "country": "Cayman Islands", "aliases": ["开曼群岛", "ケイマン諸島", "케이맨 제도"]},
+    {"names": ["Cayman Islands"], "country": "United Kingdom", "aliases": ["开曼群岛", "ケイマン諸島", "케이맨 제도", "Islas Caimán"]},
+    {"names": ["Pennsylvania"], "country": "United States", "aliases": ["宾夕法尼亚", "賓夕法尼亞", "펜실베이니아"]},
+    // Venice Beach needs a state-level identity before a localized alias is safe.
+    {"names": ["Stockholm"], "country": "Sweden", "aliases": ["斯德哥尔摩", "ストックホルム", "스톡홀름"]},
+    {"names": ["Ticino"], "country": "Switzerland", "aliases": ["提契诺", "ティチーノ", "티치노"]},
+    {"names": ["Lucerne"], "country": "Switzerland", "aliases": ["卢塞恩", "琉森", "ルツェルン", "루체른"]},
+    {"names": ["Dry Tortugas"], "country": "United States of America", "aliases": ["干龟岛", "드라이 토르투가스"]},
+    {"names": ["Monterey Bay"], "country": "United States", "aliases": ["蒙特雷湾", "蒙特利灣", "몬터레이 만"]},
     // https://www.padi.com/zh-hans/dive-center/ken-ni-ya/dolphin-aquatics/
     // https://www.siamdive.com/ja/explore/dive-center/diani-marine-ltd
     {"names": ["Kenya Coast"], "country": "Kenya", "aliases": ["肯尼亚海岸", "ケニア海岸"]},
@@ -52,7 +218,7 @@
     // https://www.padi.com/ja/dive-center/united-states-of-america-usa/dive-alaska/
     // https://www.padi.com/ko/diving-in/alraeseuka/
     // https://www.padi.com/zh-hans/diving-in/a-la-si-jia-zhou/
-    {"names": ["Alaska"], "country": "United States", "aliases": ["阿拉斯加", "アラスカ", "알래스카"]},
+    {"names": ["Alaska"], "country": "United States", "aliases": ["阿拉斯加", "阿拉斯加州", "アラスカ", "アラスカ州", "알래스카"]},
     // https://www.bluerides.com/ja/saiteki-na-daibingu-jiki/takusu-kaikosu-shoto/rokugatsu
     // https://www.padi.com.tw/ko/diving-in/teokeuseu-keikeoseu-jedo/
     // https://www.padi.com.tw/zh-hans/diving-in/te-ke-si-he-kai-ke-si-qun-dao/
@@ -66,7 +232,7 @@
     // https://lauyuettan.com/iceland-travel-info/things-to-do/thingvellir-silfra-snorkeling/
     // https://maptlantis.com/places/iceland/thingvellir/dive-is-silfra
     // https://www.divenavi.com/feature/best_recommended/2_silfra.html
-    {"names": ["Silfra Fissure"], "country": "Iceland", "aliases": ["丝浮拉", "絲浮拉", "史費拉", "シルフラ", "실프라"]},
+    {"names": ["Silfra Fissure"], "country": "Iceland", "aliases": ["丝浮拉", "絲浮拉", "史費拉", "西尔夫拉", "席爾弗拉", "シルフラ", "실프라"]},
     // https://blog.padi.com/ko/diving-in-miura-and-shonan/
     // https://divecolors.com/diving-pointmap.html
     {"names": ["Kanagawa Prefecture"], "country": "Japan", "aliases": ["神奈川", "神奈川県", "가나가와", "가나가와현"]},
@@ -84,7 +250,7 @@
     // https://www.padi.com/ja/diving-in/suua-ruharuzhu-dao/
     // https://www.padi.com/ko/diving-in/seubalbareu/
     // https://www.padi.com/zh-hant/diving-in/si-wa-er-ba/
-    {"names": ["Svalbard"], "country": "Norway", "aliases": ["斯瓦尔巴", "冷岸群島", "斯瓦爾巴", "スヴァールバル", "スバールバル", "스발바르"]},
+    {"names": ["Svalbard"], "country": "Norway", "aliases": ["斯瓦尔巴", "斯瓦尔巴群岛", "冷岸群島", "斯瓦爾巴", "スヴァールバル", "スヴァールバル諸島", "スバールバル", "스발바르"]},
     // https://www.asiadiveholidays.com/zh/destinations/diving-in-derawan/
     // https://www.metrotvnews.com/cn/read/2025/05/03/42760
     // https://www.sipadan.com/jp/Sangalaki.php
@@ -120,11 +286,13 @@
     // https://www.liveaboard.com/kr/diving/philippines/palawan
     // https://www.padi.com/ja/diving-in/harawan/
     // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/sunset-divers-palawan/
-    {"names": ["Philippines Palawan"], "country": "Philippines", "aliases": ["巴拉望", "巴拉望岛", "パラワン", "パラワン島", "팔라완"]},
+    // https://www.padi.com/zh-hant/diving-in/ba-la-wang-dao/
+    {"names": ["Philippines Palawan"], "country": "Philippines", "aliases": ["巴拉望", "巴拉望岛", "巴拉望島", "パラワン", "パラワン島", "팔라완"]},
     // https://blog.padi.com/ko/whale-shark-diving-the-best-dive-sites-in-the-world/
     // https://www.divenavi.com/tour_detail/PH-62DD-F6
     // https://www.hellodive.com/dive/detail/info/104.html
-    {"names": ["Philippines Donsol"], "country": "Philippines", "aliases": ["董索", "当素", "栋索尔", "董锁", "ドンソール", "돈솔"]},
+    // https://www.hellodive.com/uploads/2021/20210207/Philippines_diving.pdf
+    {"names": ["Philippines Donsol"], "country": "Philippines", "aliases": ["董索", "董索湾", "当素", "栋索尔", "董锁", "ドンソール", "돈솔"]},
     // https://marinediving.com/area/lapaz/
     // https://www.diveandcruise.cn/destination/sea-of-cortez
     {"names": ["La Paz Sea Of Cortez"], "country": "Mexico", "aliases": ["拉巴斯", "ラパス"]},
@@ -132,7 +300,7 @@
     // https://www.diveandcruise.cn/destination/costa-rica-cocos-island
     // https://www.padi.com/zh-hant/diving-in/ke-ke-si-dao/
     // https://www.scubatimes.co.kr/articles/cocos-island-hammerheads-and-wonder-aboard-the-cocos-island-mvvtdyek-vxlmqy
-    {"names": ["Cocos Island"], "country": "Costa Rica", "aliases": ["科科斯岛", "科科斯島", "ココ島", "코코스섬"]},
+    {"names": ["Cocos Island"], "country": "Costa Rica", "aliases": ["科科斯岛", "科科斯島", "ココ島", "코코스섬", "Isla del Coco"]},
     // https://coralbound.com/zh-hans/posts/blog/triton-bay-guide
     // https://coraltriangle.asia/indonesia/indonesia-20triton.html
     // https://diveseason.com/zh-hant/dive/triton-bay/
@@ -147,7 +315,7 @@
     // https://www.hellodive.com/dive/detail/info/101.html
     // https://www.padi.com/ja/diving-in/ronhokudao/
     // https://www.padi.com/ko/diving-in/rombogseom/
-    {"names": ["Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "龙木岛", "龍目島", "ロンボク島", "롬복"]},
+    {"names": ["Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "龙木岛", "龍目島", "ロンボク島", "롬복", "롬복섬"]},
     // https://www.amtvusa.com/2026/11/11/%E7%BE%8E%E5%9B%BD%E5%8F%B7%E9%82%AE%E8%BD%AE%E5%9C%A8%E4%BD%9B%E7%BD%97%E9%87%8C%E8%BE%BE%E5%B7%9E%E5%A2%A8%E8%A5%BF%E5%93%A5%E6%B9%BE%E6%B2%BF%E5%B2%B8%E6%B2%89%E6%B2%A1%EF%BC%8C%E5%B0%86%E6%88%90/
     {"names": ["Florida Panhandle"], "country": "United States", "aliases": ["佛罗里达狭长地带"]},
     // https://beachsearcher.com/zh/croatia/primorje-gorski-kotar-county
@@ -201,7 +369,7 @@
     // https://www.padi.com/zh-hans/diving-in/mei-li-jian-he-zhong-guo-usa/maui/
     // https://www.scubago.com/cn/explore/destination/maui-9750670
     // https://www.youtube.com/watch?v=RSx4Yj7NqsI
-    {"names": ["Hawaii Maui"], "country": "United States of America", "aliases": ["茂宜岛", "毛伊", "茂宜島", "マウイ島", "마우이"]},
+    {"names": ["Hawaii Maui"], "country": "United States of America", "aliases": ["茂宜岛", "毛伊", "毛伊島", "茂宜島", "マウイ島", "마우이"]},
     // https://travel.padi.com/ja/diving-in/ioniazhu-dao/
     // https://www.diveandcruise.cn/destination/greece
     // https://www.padi.com.tw/zh-hant/diving-in/ai-ao-ni-ya-qun-dao/
@@ -232,7 +400,7 @@
     // https://travel.padi.com/ko/diving-in/seinteu-binsenteu-geurenadin/
     // https://www.padi.com.tw/ja/diving-in/sentohinsento-kurenatei-n/
     // https://www.padi.com.tw/zh-hant/diving-in/sheng-wen-sen-ji-ge-rui-na-ding/
-    {"names": ["St Vincent Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["聖文森及格瑞那丁", "セントビンセント・グレナディーン", "세인트 빈센트 그레나딘", "세인트빈센트 그레나딘"]},
+    {"names": ["St Vincent Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["圣文森特和格林纳丁斯", "聖文森及格瑞那丁", "セントビンセント・グレナディーン", "セントビンセントおよびグレナディーン諸島", "세인트 빈센트 그레나딘", "세인트빈센트 그레나딘"]},
     // https://maptlantis.com/tanzania
     // https://travel.padi.com/zh-hans/diving-in/tan-sang-ni-ya/
     // https://travel.padi.com/zh-hant/diving-in/tan-shang-ni-ya/
@@ -257,13 +425,14 @@
     {"names": ["Dominica"], "country": "Dominica", "aliases": ["多米尼克", "ドミニカ国"]},
     {"names": ["Grenada"], "country": "Grenada", "aliases": ["格林纳达", "格瑞那達", "格林納達", "グレナダ", "그레나다"]},
     {"names": ["California"], "country": "United States of America", "aliases": ["加州", "加利福尼亚", "加利福尼亞州", "カリフォルニア州"]},
-    {"names": ["Micronesia Yap"], "country": "Federated States of Micronesia", "aliases": ["雅浦", "雅浦岛", "雅浦島", "ヤップ", "ヤップ島", "야프"]},
+    {"names": ["Micronesia Yap"], "country": "Federated States of Micronesia", "aliases": ["雅浦", "雅浦岛", "雅浦島", "ヤップ", "ヤップ島", "야프", "얍"]},
     {"names": ["Lapu-Lapu"], "country": "Philippines", "aliases": ["拉普拉普", "ラプラプ市", "라푸라푸"]},
     {"names": ["Mie Prefecture"], "country": "Japan", "aliases": ["三重県", "三重縣", "미에현"]},
     {"names": ["Banda Sea"], "country": "Indonesia", "aliases": ["班达海", "班達海", "バンダ海", "반다해"]},
     {"names": ["Aceh"], "country": "Indonesia", "aliases": ["亚齐", "亚齐省", "亞齊", "アチェ"]},
-    {"names": ["St Kitts And Nevis"], "country": "Saint Kitts and Nevis", "aliases": ["聖克里斯多福及尼維斯", "세인트키츠 네비스"]},
-    {"names": ["Gili Islands | Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "吉利岛", "龍目島", "吉利群島", "ロンボク島", "ギリ諸島", "롬복", "길리 제도"]},
+    {"names": ["St Kitts And Nevis"], "country": "Saint Kitts and Nevis", "aliases": ["圣基茨和尼维斯", "聖克里斯多福及尼維斯", "セントクリストファー・ネイビス", "セントキッツ・ネイビス", "세인트키츠 네비스"]},
+    // https://www.hellodive.com/dive/detail/info/150.html
+    {"names": ["Gili Islands | Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "吉利岛", "吉利群岛", "龍目島", "吉利群島", "ロンボク島", "ギリ諸島", "롬복", "길리 제도"]},
     {"names": ["North Carolina"], "country": "United States of America", "aliases": ["北卡罗来纳州", "ノースカロライナ州", "노스캐롤라이나"]},
     {"names": ["Arizona"], "country": "United States", "aliases": ["亞利桑那州", "アリゾナ州"]},
     {"names": ["Washington"], "country": "United States", "aliases": ["华盛顿州", "華盛頓州", "ワシントン州"]},
@@ -279,19 +448,19 @@
     {"names": ["Drenthe"], "country": "Netherlands", "aliases": ["德倫特"]},
     {"names": ["Drenthe"], "country": "Netherlands", "aliases": ["德伦特"]},
     {"names": ["Alaska"], "country": "United States of America", "aliases": ["알래스카"]},
-    {"names": ["Alaska"], "country": "United States of America", "aliases": ["アラスカ"]},
-    {"names": ["Alaska"], "country": "United States of America", "aliases": ["阿拉斯加"]},
+    {"names": ["Alaska"], "country": "United States of America", "aliases": ["アラスカ", "アラスカ州"]},
+    {"names": ["Alaska"], "country": "United States of America", "aliases": ["阿拉斯加", "阿拉斯加州"]},
     {"names": ["Attica"], "country": "Greece", "aliases": ["아티카"]},
     {"names": ["Attica"], "country": "Greece", "aliases": ["アッティカ"]},
     {"names": ["Attica"], "country": "Greece", "aliases": ["阿提卡"]},
     {"names": ["French Polynesia"], "country": "French Polynesia", "aliases": ["프랑스령 폴리네시아"]},
     {"names": ["French Polynesia"], "country": "French Polynesia", "aliases": ["フランス領ポリネシア"]},
     {"names": ["French Polynesia"], "country": "French Polynesia", "aliases": ["法屬玻里尼西亞"]},
-    {"names": ["French Polynesia"], "country": "French Polynesia", "aliases": ["法属波利尼西亚"]},
+    {"names": ["French Polynesia"], "country": "French Polynesia", "aliases": ["法属波利尼西亚", "Polynésie française"]},
     {"names": ["French Polynesia"], "country": "France", "aliases": ["프랑스령 폴리네시아"]},
     {"names": ["French Polynesia"], "country": "France", "aliases": ["フランス領ポリネシア"]},
     {"names": ["French Polynesia"], "country": "France", "aliases": ["法屬玻里尼西亞"]},
-    {"names": ["French Polynesia"], "country": "France", "aliases": ["法属波利尼西亚"]},
+    {"names": ["French Polynesia"], "country": "France", "aliases": ["法属波利尼西亚", "Polynésie française"]},
     {"names": ["Fiji"], "country": "Fiji", "aliases": ["피지"]},
     {"names": ["Fiji"], "country": "Fiji", "aliases": ["フィジー"]},
     {"names": ["Fiji"], "country": "Fiji", "aliases": ["斐濟"]},
@@ -330,10 +499,10 @@
     {"names": ["Northland"], "country": "New Zealand", "aliases": ["노스랜드"]},
     {"names": ["Northland"], "country": "New Zealand", "aliases": ["ノースランド"]},
     {"names": ["Northland"], "country": "New Zealand", "aliases": ["北地"]},
-    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["갈라파고스"]},
+    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["갈라파고스", "Galápagos", "Islas Galápagos"]},
     {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["ガラパゴス諸島"]},
-    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉巴哥群島"]},
-    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉帕戈斯"]},
+    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉巴哥群島", "加拉帕戈斯群島"]},
+    {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉帕戈斯", "加拉帕戈斯群岛"]},
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["할마헤라"]},
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["ハルマヘラ"]},
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["哈馬黑拉"]},
@@ -346,9 +515,11 @@
     {"names": ["Palau"], "country": "Palau", "aliases": ["パラオ"]},
     {"names": ["Palau"], "country": "Palau", "aliases": ["帛琉"]},
     {"names": ["Palau"], "country": "Palau", "aliases": ["帕劳"]},
-    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["수단 홍해"]},
-    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["蘇丹紅海"]},
-    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["苏丹红海"]},
+    // PADI's Spanish destination name uses the plural exonym for the country.
+    {"names": ["Palau"], "country": "Palau", "aliases": ["Palaos"]},
+    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["수단 홍해", "Mar Rojo"]},
+    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["蘇丹紅海", "Mar Rojo"]},
+    {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["苏丹红海", "Mar Rojo"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебская область"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебск"]},
     {"names": ["Saxony-Anhalt"], "country": "Germany", "aliases": ["ザクセン＝アンハルト"]},
@@ -359,9 +530,9 @@
     {"names": ["Brandenburg"], "country": "Germany", "aliases": ["ブランデンブルク"]},
     {"names": ["Brandenburg"], "country": "Germany", "aliases": ["布蘭登堡"]},
     {"names": ["Brandenburg"], "country": "Germany", "aliases": ["勃兰登堡"]},
-    {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["오아후"]},
+    {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["瓦胡岛", "오아후"]},
     {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["オアフ島"]},
-    {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["歐胡島"]},
+    {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["歐胡島", "瓦胡島"]},
     {"names": ["Hawaii Oahu"], "country": "United States of America", "aliases": ["欧胡岛"]},
     {"names": ["Bern"], "country": "Switzerland", "aliases": ["ベルン州"]},
     {"names": ["Bern"], "country": "Switzerland", "aliases": ["伯恩州"]},
@@ -394,7 +565,9 @@
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["バハマ"]},
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈馬"]},
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈马"]},
-    {"names": ["Maldives"], "country": "Maldives", "aliases": ["몰디브"]},
+    // PADI uses the island-group form on its Chinese diving destination pages.
+    {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈马群岛", "巴哈馬群島"]},
+    {"names": ["Maldives"], "country": "Maldives", "aliases": ["몰디브", "Maldivas"]},
     {"names": ["Maldives"], "country": "Maldives", "aliases": ["モルディブ"]},
     {"names": ["Maldives"], "country": "Maldives", "aliases": ["馬爾代夫"]},
     {"names": ["Maldives"], "country": "Maldives", "aliases": ["馬爾地夫"]},
@@ -403,10 +576,12 @@
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["クロアチア"]},
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["克羅埃西亞"]},
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["克罗地亚"]},
+    // Keep the French exonym discoverable from French-language dive searches.
+    {"names": ["Croatia"], "country": "Croatia", "aliases": ["Croatie"]},
     {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["영국령 버진아일랜드"]},
     {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["イギリス領ヴァージン諸島"]},
     {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["英屬維京群島"]},
-    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["英属维尔京群岛"]},
+    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["英属维尔京群岛", "Islas Vírgenes Británicas"]},
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["키프로스"]},
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["キプロス"]},
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["賽普勒斯"]},
@@ -447,7 +622,7 @@
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["拉斯帕尔马斯"]},
     {"names": ["South Aegean"], "country": "Greece", "aliases": ["南愛琴海"]},
     {"names": ["South Aegean"], "country": "Greece", "aliases": ["南爱琴海"]},
-    {"names": ["Red Sea"], "country": "Saudi Arabia", "aliases": ["红海"]},
+    {"names": ["Red Sea"], "country": "Saudi Arabia", "aliases": ["红海", "Mar Rojo"]},
     {"names": ["Los Cabos"], "country": "Mexico", "aliases": ["ロスカボス"]},
     {"names": ["Aqaba"], "country": "Jordan", "aliases": ["아카바"]},
     {"names": ["Manabí"], "country": "Ecuador", "aliases": ["马纳比", "馬納比", "マナビ"]},
@@ -465,7 +640,7 @@
     {"names": ["Aqaba"], "country": "Jordan", "aliases": ["亚喀巴", "阿卡巴", "亞喀巴"]},
     {"names": ["Tobago"], "country": "Trinidad and Tobago", "aliases": ["トバゴ", "トバゴ島"]},
     {"names": ["Los Cabos"], "country": "Mexico", "aliases": ["洛斯卡沃斯"]},
-    {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西開普省"]},
+    {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西開普省", "Wes-Kaap"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["南荷蘭"]},
     {"names": ["Crete"], "country": "Greece", "aliases": ["크레타섬"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["南荷兰"]},
@@ -477,16 +652,17 @@
     {"names": ["Crete"], "country": "Greece", "aliases": ["克里特島"]},
     {"names": ["Monterey Bay"], "country": "United States of America", "aliases": ["蒙特雷湾"]},
     {"names": ["Bocas Del Toro"], "country": "Panama", "aliases": ["博卡斯德尔托罗", "博卡斯德爾托羅"]},
-    {"names": ["Curacao"], "country": "Netherlands", "aliases": ["库拉索", "库拉索岛", "庫拉索"]},
-    {"names": ["Curacao"], "country": "Curaçao", "aliases": ["库拉索", "库拉索岛", "庫拉索"]},
-    {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西开普省"]},
+    {"names": ["Curacao"], "country": "Netherlands", "aliases": ["库拉索", "库拉索岛", "庫拉索", "Curazao", "キュラソー", "퀴라소"]},
+    {"names": ["Curacao"], "country": "Curaçao", "aliases": ["库拉索", "库拉索岛", "庫拉索", "Curazao", "キュラソー", "퀴라소"]},
+    {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西开普省", "Wes-Kaap"]},
     {"names": ["Crete"], "country": "Greece", "aliases": ["克里特岛"]},
     {"names": ["Muscat"], "country": "Oman", "aliases": ["马斯喀特", "マスカット", "무스카트"]},
-    {"names": ["Chuuk Lagoon"], "country": "Federated States of Micronesia", "aliases": ["Truk Lagoon", "楚克泻湖", "特鲁克泻湖", "チューク環礁", "トラック環礁", "트럭 라군"]},
+    {"names": ["Chuuk Lagoon"], "country": "Federated States of Micronesia", "aliases": ["Truk Lagoon", "楚克泻湖", "楚克潟湖", "特鲁克泻湖", "チューク環礁", "トラック環礁", "트럭 라군", "추크 라군"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["Zuid-Holland", "Zuid Holland"]},
     {"names": ["Auckland"], "country": "New Zealand", "aliases": ["奥克兰", "奧克蘭", "オークランド", "오클랜드"]},
-    {"names": ["Florida Keys"], "country": "United States", "aliases": ["佛罗里达群岛", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스"]},
-    {"names": ["Florida Keys"], "country": "United States of America", "aliases": ["佛罗里达群岛", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스"]},
+    {"names": ["Florida Keys"], "country": "United States", "aliases": ["佛罗里达群岛", "佛羅里達礁島群", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스", "Cayos de Florida", "Cayos de la Florida"]},
+    {"names": ["Florida Keys"], "country": "United States of America", "aliases": ["佛罗里达群岛", "佛羅里達礁島群", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스", "Cayos de Florida", "Cayos de la Florida"]},
+    // https://www.padi.com/zh-hant/dive-sites/stati-uniti-d-america-usa/florida-keys/
     {"names": ["Alicante"], "country": "Spain", "aliases": ["阿利坎特"]},
     { names: ["North Rhine-Westphalia"], country: "Germany", aliases: ["Nordrhein-Westfalen"] },
     { names: ["Baden-Württemberg"], country: "Germany", aliases: ["巴登-符腾堡州", "巴登符腾堡"] },
@@ -498,15 +674,23 @@
     {"names": ["North Brabant"], "country": "Netherlands", "aliases": ["Noord-Brabant"]},
     {"names": ["Christmas Island"], "country": "Australia", "aliases": ["圣诞岛", "聖誕島", "クリスマス島"]},
     {"names": ["Coiba National Park"], "country": "Panama", "aliases": ["科伊瓦国家公园", "科伊瓦國家公園", "科伊巴国家公园"]},
-    {"names": ["Philippines Tubbataha Reefs"], "country": "Philippines", "aliases": ["图巴塔哈", "圖巴塔哈", "トゥバタハ", "투바타하", "图巴塔哈群礁"]},
+    // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/stella-maris-explorer/
+    // https://www.padi.com/zh-hant/dive-sites/tu-ba-ta-ha-qun-jiao/
+    // https://www.padi.com/ko/dive-sites/tubataha-ripeu/
+    // https://blog.padi.com/jp/top-dive-sites-in-the-philippines/
+    {"names": ["Philippines Tubbataha Reefs"], "country": "Philippines", "aliases": ["图巴塔哈", "圖巴塔哈", "图巴塔哈礁", "图巴塔哈群礁", "圖巴塔哈群礁", "トゥバタハ", "투바타하", "투바타하 리프", "투바타하 리프 국립 해양 공원"]},
     {"names": ["North Sulawesi"], "country": "Indonesia", "aliases": ["北苏拉威西"]},
     {"names": ["Cabo Pulmo"], "country": "Mexico", "aliases": ["卡波普尔莫", "カボプルモ", "カボ・プルモ"]},
     {"names": ["Gipuzkoa"], "country": "Spain", "aliases": ["Guipúzcoa"]},
     {"names": ["Norway Lofoten Islands"], "country": "Norway", "aliases": ["ロフォーテン", "ロフォーテン諸島", "罗弗敦群岛", "罗弗敦岛"]},
     {"names": ["Waikato"], "country": "New Zealand", "aliases": ["ワイカト"]},
-    {"names": ["Andaman Islands"], "country": "India", "aliases": ["安达曼群岛", "安達曼群島"]},
+    {"names": ["Andaman Islands"], "country": "India", "aliases": ["安达曼群岛", "安達曼群島", "안다만 제도"]},
+    // https://www.padi.com/ko/conservation/activities/results/andaman-jedo/
+    // https://www.padi.com/zh-hans/dive-center/ai-ji-he-hong-hai/venus-diving-center/
+    {"names": ["South Sinai"], "country": "Egypt", "aliases": ["南西奈半岛"]},
+    {"names": ["Oman"], "country": "", "aliases": ["阿曼", "オマーン"]},
     {"names": ["Shizuoka Prefecture"], "country": "Japan", "aliases": ["静岡県", "静岡"]},
-    {"names": ["Puerto Vallarta"], "country": "Mexico", "aliases": ["巴亚尔塔港", "瓦拉塔港", "巴亞爾塔港"]},
+    {"names": ["Puerto Vallarta"], "country": "Mexico", "aliases": ["巴亚尔塔港", "瓦拉塔港", "巴亞爾塔港", "プエルト・バジャルタ", "プエルト バジャルタ", "푸에르토 발라타", "푸에르토 바야르타"]},
     {"names": ["Camiguin"], "country": "Philippines", "aliases": ["甘米银", "甘米銀", "卡米京", "卡米金", "カミギン", "カミギン島"]},
     {"names": ["Niigata Prefecture"], "country": "Japan", "aliases": ["新潟県", "新潟"]},
     {"names": ["Gjirokastër"], "country": "Albania", "aliases": ["吉诺卡斯特"]},
@@ -528,7 +712,10 @@
     { names: ["Upper Austria"], country: "Austria", aliases: ["Oberösterreich", "上奥地利州", "上奧地利州"] },
     // https://blog.padi.com/tw/jacques-cousteaus-favorite-dive-destinations-around-the-world/
     // https://www.siamdive.com/cn/explore/dive-center/sundown-diving
-    { names: ["Vancouver Island"], country: "Canada", aliases: ["温哥华岛", "溫哥華島"] },
+    // https://www.padi.com/ja/dive-center/canada/sundown-diving/
+    // https://travel.padi.com/ko/diving-in/beuritisikeolreombiaju/
+    // https://www.tdisdi.com/iti/diving-in-british-columbia/?lang=ko
+    { names: ["Vancouver Island"], country: "Canada", aliases: ["温哥华岛", "溫哥華島", "バンクーバー島", "밴쿠버 아일랜드", "밴쿠버 섬", "Isla de Vancouver"] },
     // https://www.padi.com.tw/zh-hant/diving-in/bo-li-zi-cheng/
     // https://www.liveaboard.com/kr/diving/belize
     { names: ["Belize Barrier Reef"], country: "Belize", aliases: ["伯利兹堡礁", "伯利茲堡礁", "벨리즈 배리어 리프"] },
@@ -541,7 +728,7 @@
     // https://travel.padi.com/zh-hans/dive-center/yi-da-li/evasioni-blu-diving-3/ and the sources in the review ledger.
     {"names": ["Ustica"], "country": "Italy", "aliases": ["乌斯蒂卡", "烏斯蒂卡", "烏斯蒂卡島", "ウスティカ島"]},
     // https://www.padi.com/zh-hans/dive-center/ku-ke-qun-dao/adventure-cook-islands/?from_lang=zh-hant and the sources in the review ledger.
-    {"names": ["Cook Islands Rarotonga"], "country": "Cook Islands", "aliases": ["拉罗汤加", "拉罗汤加岛", "拉羅湯加", "拉羅湯加島", "ラロトンガ", "ラロトンガ島", "라로통가"]},
+    {"names": ["Cook Islands Rarotonga"], "country": "Cook Islands", "aliases": ["拉罗汤加", "拉罗汤加岛", "拉羅湯加", "拉羅湯加島", "ラロトンガ", "ラロトンガ島", "라로통가", "라로통가섬"]},
     // https://www.padi.com/ja/diving-in/sentoyu-sutateiusu/
     {names:['Sint Eustatius'], country:'Netherlands', aliases:['セントユースタティウス','セント・ユースタティウス島','シント・ユースタティウス島']},
     // https://www.padi.com/ja/diving-in/netherlands/
@@ -549,25 +736,28 @@
     // https://www.padi.com/ja/diving-in/kataru-niya/
     {names:['Girona'], country:'Spain', aliases:['ジローナ']},
     // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/fort-stark/
-    {names:['New England'], country:'United States of America', aliases:['新英格兰']},
+    {names:['New England'], country:'United States of America', aliases:['新英格兰','ニューイングランド']},
+    {names:['New England'], country:'United States', aliases:['新英格兰','ニューイングランド']},
     // https://www.padi.com/zh-hans/diving-in/jia-li-fu-ni-ya/
     // https://www.padi.com/ja/diving-in/karihuoruniazhou/
     {names:['California'], country:'United States', aliases:['加利福尼亚','加利福尼亚州','加州','カリフォルニア','カリフォルニア州']},
     // https://www.padi.com/zh-hans/diving-in/ma-sa-zhu-sai-zhou/
     // https://www.padi.com/ja/diving-in/united-states-of-america-usa/
     {names:['Massachusetts'], country:'United States', aliases:['马萨诸塞州','マサチューセッツ州']},
+    {names:['Massachusetts'], country:'United States', aliases:['매사추세츠 주']},
+    {names:['Massachusetts'], country:'United States of America', aliases:['马萨诸塞州','マサチューセッツ州','매사추세츠 주']},
     // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/project-scuba/
     {names:['Texas'], country:'United States', aliases:['德克萨斯州','德克萨斯']},
     // https://www.padi.com/zh-hans/diving-in/liu-ni-wang/
     // https://www.padi.com/zh-hant/diving-in/liu-ni-wang/
-    {names:['Reunion'], country:'France', aliases:['留尼汪','留尼汪岛','留尼汪島','留尼旺']},
+    {names:['Reunion'], country:'France', aliases:['留尼汪','留尼汪岛','留尼汪島','留尼旺','レユニオン','La Réunion']},
     // https://www.padi.com/zh-hans/diving-in/ying-shu-wei-er-jing-qun-dao/
-    {names:['British Virgin Islands'], country:'United Kingdom', aliases:['英属维尔京群岛']},
+    {names:['British Virgin Islands'], country:'United Kingdom', aliases:['英属维尔京群岛','Islas Vírgenes Británicas']},
     // https://www.padi.com/zh-hans/dive-center/jia-na-da/dive-life-tobermory/
-    {names:['Ontario'], country:'Canada', aliases:['安大略','安大略省']},
+    {names:['Ontario'], country:'Canada', aliases:['安大略','安大略省','オンタリオ州']},
     // https://www.padi.com/zh-hans/diving-in/sa-ding-dao/
     // https://www.padi.com/ja/diving-in/itaria/harao-2/
-    {names:['Sardinia'], country:'Italy', aliases:['撒丁岛','サルデーニャ','サルデーニャ島']},
+    {names:['Sardinia'], country:'Italy', aliases:['撒丁岛','撒丁島','サルデーニャ','サルデーニャ島']},
     // https://www.padi.com/zh-hans/diving-in/xin-nan-wei-er-shi-zhou/
     {names:['New South Wales'], country:'Australia', aliases:['新南威尔士','新南威尔士州']},
     // https://www.padi.com/zh-hans/diving-in/gua-de-luo-pu-qun-dao/
@@ -592,23 +782,25 @@
     // https://www.scubago.com/cn/explore/destination/the-great-lakes-9750222
     // https://www.padi.com/ja/diving-in/canada/
     // https://travel.padi.com/ko/diving-in/kaenada/
-    {names:['Great Lakes'], country:'Canada', aliases:['五大湖','오대호']},
+    {names:['Great Lakes'], country:'Canada', aliases:['五大湖','グレートレイクス','오대호','Grandes Lagos','Grands Lacs']},
+    {names:['Great Lakes'], country:'United States of America', aliases:['五大湖','グレートレイクス','오대호','Grandes Lagos','Grands Lacs']},
     // https://www.scubago.com/cn/explore/destination/north-island-9749699
     // https://www.diveseason.com/dive/tutukaka-poor-knights/
     // https://www.newzealand.com/jp/diving/
     // https://www.newzealand.com/kr/diving/
-    {names:['Poor Knights Islands'], country:'New Zealand', aliases:['普尔骑士群岛','穷骑士群岛','窮騎士群島','プアナイツ諸島','プアー・ナイツ諸島','푸어 나이츠 제도','푸어나이츠 군도']},
+    // https://www.whangareinz.com/Discover/Destinations/Poor-Knights-Islands (Māori name; also names the largest island)
+    {names:['Poor Knights Islands'], country:'New Zealand', aliases:['普尔骑士群岛','穷骑士群岛','窮騎士群島','プアナイツ諸島','プアー・ナイツ諸島','푸어 나이츠 제도','푸어나이츠 군도','Tawhiti Rahi']},
     // https://www.padi.com/zh-hans/diving-in/ke-su-mei-er/
     // https://www.padi.com/ja/diving-in/kosumeru/
     // https://www.padi.com/ko/destinations/mexico/cozumel
-    {names:['Cozumel'], country:'Mexico', aliases:['科苏梅尔','コスメル','コズメル','코수멜','코주멜']},
+    {names:['Cozumel'], country:'Mexico', aliases:['科苏梅尔','科蘇梅爾','コスメル','コズメル','코수멜','코주멜']},
     // https://www.padi.com/zh-hans/dive-sites/australie/great-barrier-reef/
     // https://www.padi.com/ko/diving-in/great-barrier-reef/
     {names:['Great Barrier Reef'], country:'Australia', aliases:['大堡礁','그레이트 배리어 리프','グレートバリアリーフ','グレート・バリア・リーフ']},
     // https://www.padi.com/zh-hans/diving/japan
     // https://www.padi.com/ja/diving-in/japan/
     // https://www.padi.com/ko/diving-in/okinawa/
-    {names:['Okinawa','Okinawa Prefecture'], country:'Japan', aliases:['冲绳','沖縄','오키나와']},
+    {names:['Okinawa','Okinawa Prefecture'], country:'Japan', aliases:['冲绳','沖繩','沖縄','오키나와']},
     // https://www.padi.com/zh-hans/dive-site/thailand/similan-islands-national-marine-park/
     // https://www.padi.com/ja/dive-site/taiwang-guo/christmas-point/
     // https://www.padi.com/ko/dive-center/taegug/similan-divers-co-ltd/
@@ -616,60 +808,100 @@
     // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
     // https://www.padi.com/ja/diving-in/huirihin/huerutokarera/
     // https://www.padi.com/ko/diving-in/pilripin/puereuto-galrera/
-    {names:['Philippines Puerto Galera'], country:'Philippines', aliases:['海豚湾','プエルトガレラ','プエルト・ガレラ','푸에르토 갈레라']},
+    {names:['Philippines Puerto Galera'], country:'Philippines', aliases:['加莱拉港','加萊拉港','海豚湾','海豚灣','PG岛','PG島','プエルトガレラ','プエルト・ガレラ','푸에르토 갈레라']},
     // https://www.padi.com/zh-hans/dive-center/philippines/zhuilang-bohol/
+    // https://www.padi.com/zh-hans/diving-in/bao-he/
+    // https://diveseason.com/zh-hant/dive/bohol/
     // https://www.padi.com/ja/diving-in/hoho-ru/
     // https://www.padi.com/ko/dive-shops/bohol/
-    {names:['Bohol','Philippines Bohol'], country:'Philippines', aliases:['薄荷岛','ボホール','보홀']},
+    {names:['Bohol','Philippines Bohol'], country:'Philippines', aliases:['保和','薄荷岛','薄荷島','ボホール','보홀']},
     // https://www.padi.com/zh-hans/diving-in/su-wu-sheng/
     // https://www.padi.com/ja/diving-in/sehuzhou/
     // https://www.padi.com/ko/diving-in/sebuju/
     {names:['Cebu'], country:'Philippines', aliases:['宿务','セブ島','세부']},
     // https://travel.padi.com/zh-hans/dive-center/hong-du-la-si/utila-dive-centre/
     // https://www.padi.com/ja/diving-in/roatandao-touteiradao/
-    {names:['Utila'], country:'Honduras', aliases:['乌提拉','乌蒂拉','ウティラ島']},
+    {names:['Utila'], country:'Honduras', aliases:['乌提拉','乌提拉岛','乌蒂拉','ウティラ島','Isla de Utila']},
     // https://www.padi.com/zh-hans/diving-in/ya-su-er-qun-dao/
     // https://www.padi.com/ja/dive-shops/asoresuzhu-dao/
     // https://www.padi.com/ko/diving-in/a-joreseu/
-    {names:['Azores'], country:'Portugal', aliases:['亚速尔群岛','アゾレス諸島','아조레스']},
+    {names:['Azores'], country:'Portugal', aliases:['亚速尔群岛','アゾレス諸島','아조레스','Açores','Arquipélago dos Açores']},
     // https://www.padi.com/zh-hans/dive-center/nan-fei/into-the-blue/
     // https://www.padi.com/ja/dive-center/nan-ahurikagong-he-guo/pisces-divers/
     // https://www.padi.com/ko/diving-in/namapeurika-gonghwagug/keipeutaun/
-    {names:['Cape Town'], country:'South Africa', aliases:['开普敦','ケープタウン','케이프타운']},
+    {names:['Cape Town'], country:'South Africa', aliases:['开普敦','開普敦','ケープタウン','케이프타운']},
     // https://www.padi.com/zh-hans/diving-in/ba-li-a-li-qun-dao/
     // https://travel.padi.com/ja/diving-in/harearesuzhu-dao/
     {names:['Balearic Islands'], country:'Spain', aliases:['巴利阿里群岛','バレアレス諸島']},
     // https://www.padi.com/ja/diving-in/huriteitsushiyukoronhiazhou/
-    {names:['British Columbia'], country:'Canada', aliases:['ブリティッシュコロンビア州']},
+    {names:['British Columbia'], country:'Canada', aliases:['ブリティッシュコロンビア州','不列颠哥伦比亚省','不列顛哥倫比亞省','Columbia Británica']},
     // PADI diving sources are recorded beside each independently reviewed entry.
     // https://www.padi.com/zh-hant/exploration/?lang=en
     // https://www.padi.com/ko/destinations/egypt
-    {names:['Red Sea'], country:'Egypt', aliases:['红海','紅海','홍해']},
+    {names:['Red Sea'], country:'Egypt', aliases:['红海','紅海','홍해','Mar Rojo','Mer Rouge','Mar Vermelho']},
+    {names:['Bay Islands','Islas de Bahia'], country:'Honduras', aliases:['洪都拉斯海湾群岛','Islas de la Bahía','베이 아일랜드']},
     // https://www.padi.com/zh-hans/dive-center/hong-du-la-si/sun-divers-roatan/
     // https://www.padi.com/ko/dive-center/onduraseu/native-sons-water-sports/
-    {names:['Roatan'], country:'Honduras', aliases:['罗阿坦','罗阿坦岛','로아탄','ロアタン島']},
+    {names:['Roatan'], country:'Honduras', aliases:['罗阿坦','罗阿坦岛','羅阿坦島','로아탄','ロアタン島','Roatán']},
     // https://www.padi.com/zh-hans/conservation/activities/activite-de-preservation-45838/
     // https://www.padi.com/zh-hant/diving-in/ke-li-dao/
     // https://www.padi.com/ja/diving-in/haridao/
-    {names:['Bali'], country:'Indonesia', aliases:['巴厘岛','巴厘','峇里島','バリ島']},
+    {names:['Bali'], country:'Indonesia', aliases:['巴厘岛','巴厘','巴厘島','峇里島','バリ島','발리']},
     // https://www.padi.com/zh-hans/diving-in/bo-nai-er/
     // https://blog.padi.com/jp/eco-travel-destinations-leading-marine-protection/
     {names:['Bonaire'], country:'Bonaire, Sint Eustatius and Saba', aliases:['博奈尔','博内尔','ボネール']},
     {names:['Lembeh','Lembeh Strait'], country:'Indonesia', aliases:['蓝碧','蓝碧海峡','蓝贝','蓝贝海峡','伦贝','伦贝海峡','藍碧','藍碧海峽','倫貝','倫貝海峽','レンベ','レンベ海峡','렘베','렘베 해협']},
-    {names:['Raja Ampat'], country:'Indonesia', aliases:['四王群岛','四王群島','拉贾安帕特','拉賈安帕特','ラジャアンパット','ラジャ・アンパット','라자 암팟','라자 앰팟']},
+    {names:['Raja Ampat'], country:'Indonesia', aliases:['四王群岛','四王群島','拉贾安帕特','拉賈安帕特','拉贾安帕特群岛','ラジャアンパット','ラジャ・アンパット','라자 암팟','라자 앰팟','라자앰팟']},
     {names:['Sipadan'], country:'Malaysia', aliases:['诗巴丹','詩巴丹','シパダン','시파단']},
-    {names:['Tubbataha','Tubbataha Reef','Tubbataha Reefs'], country:'Philippines', aliases:['图巴塔哈','圖巴塔哈']},
-    {names:['Komodo','Komodo National Park'], country:'Indonesia', aliases:['科莫多','科摩多','コモド','코모도']},
+    {names:['Tubbataha','Tubbataha Reef','Tubbataha Reefs'], country:'Philippines', aliases:['图巴塔哈','圖巴塔哈','图巴塔哈礁','图巴塔哈群礁','圖巴塔哈群礁','トゥバタハ','투바타하 리프','투바타하 리프 국립 해양 공원']},
+    {names:['Komodo','Komodo National Park'], country:'Indonesia', aliases:['科莫多','科摩多','科莫多国家公园','科莫多國家公園','コモド','コモド国立公園','코모도','코모도 국립 공원','Parque Nacional de Komodo']},
     {names:['Manado Bunaken'], country:'Indonesia', aliases:['美娜多','万鸦老','マナド','마나도']},
     {names:['Manado Bunaken','Bunaken'], country:'Indonesia', aliases:['布纳肯','布納肯','ブナケン','부나켄']},
     {names:['Philippines Anilao','Anilao'], country:'Philippines', aliases:['阿尼洛','アニラオ','아닐라오']},
     {names:['Carinthia'], country:'Austria', aliases:['Kärnten','克恩顿','ケルンテン']},
     {names:['Bavaria'], country:'Germany', aliases:['Bayern','巴伐利亚']},
-    {names:['Quintana Roo'], country:'Mexico', aliases:['金塔纳罗奥','金塔纳罗奥州']},
-    {names:['Koh Tao'], country:'Thailand', aliases:['涛岛','龟岛','濤島','龜島','タオ島','꼬따오']},
+    {names:['Quintana Roo'], country:'Mexico', aliases:['金塔纳罗奥','金塔纳罗奥州','金塔納羅奧州']},
+    {names:['Koh Tao'], country:'Thailand', aliases:['涛岛','龟岛','濤島','龜島','タオ島','꼬따오','코타오']},
+    {names:['Red Sea'], country:'', aliases:['红海','紅海','홍해','Mar Rojo','Mer Rouge']},
+    {names:['Florida Panhandle'], country:'', aliases:['佛罗里达狭长地带','佛罗里达州狭长地带','フロリダ・パンハンドル','플로리다 팬핸들']},
     {names:['Mabul'], country:'Malaysia', aliases:['马布','马步','馬布','馬步','マブール','마불']},
-    {names:['Philippines Malapascua','Malapascua'], country:'Philippines', aliases:['妈妈拍丝瓜','媽媽拍絲瓜','妈妈岛','媽媽島','媽媽怕絲瓜','マラパスクア','말라파스쿠아']}
-
+    // https://www.padi.com/zh-hans/dive-center/philippines/malapascua-scuba-eco-adventures/
+    // https://www.hellodive.com/dive/detail/Philippines_Malapascua_Island
+    {names:['Philippines Malapascua','Malapascua'], country:'Philippines', aliases:['马拉帕斯夸岛','馬拉帕斯卡島','馬勒帕斯卡島','妈妈拍丝瓜','媽媽拍絲瓜','妈妈拍丝瓜岛','媽媽拍絲瓜島','妈妈岛','媽媽島','媽媽怕絲瓜','マラパスクア','말라파스쿠아']},
+    // Direct diving guides and operators use these destination names; keep the archipelago, island, park, and country scopes distinct.
+    {names:['Sangalaki'], country:'Indonesia', aliases:['桑加拉基岛']},
+    {names:['Sipadan'], country:'Malaysia', aliases:['西巴丹']},
+    {names:['South Australia Neptune Islands'], country:'Australia', aliases:['海王星群岛']},
+    {names:['Lord Howe Island'], country:'Australia', aliases:['豪勳爵島']},
+    {names:['Christmas Island'], country:'Australia', aliases:['圣诞岛']},
+    {names:['South Africa'], country:'South Africa', aliases:['南非']},
+    {names:['Mauritius'], country:'Mauritius', aliases:['毛里求斯','模里西斯']},
+    {names:['Madagascar'], country:'Madagascar', aliases:['马达加斯加']},
+    {names:['Los Cabos'], country:'Mexico', aliases:['洛斯卡沃斯']},
+    {names:['Cabo Pulmo'], country:'Mexico', aliases:['卡波普尔莫','卡波普尔莫国家公园']},
+    {names:['Providencia Island'], country:'Colombia', aliases:['普罗维登西亚岛']},
+    {names:['Cocos Island'], country:'Costa Rica', aliases:['科科斯岛']},
+    {names:['Coiba National Park'], country:'Panama', aliases:['科伊巴岛']},
+    {names:['British Virgin Islands'], country:'United Kingdom', aliases:['英属维尔京群岛','Islas Vírgenes Británicas']},
+    {names:['New Jersey'], country:'United States', aliases:['新泽西州']},
+    {names:['Crystal River'], country:'United States of America', aliases:['水晶河','クリスタルリバー']},
+    {names:['Split-Dalmatia County'], country:'Croatia', aliases:['Splitsko-dalmatinska županija']},
+    {names:['Greece'], country:'Greece', aliases:['希腊','ギリシャ','Ελλάδα']},
+    {names:['Fiji'], country:'Fiji', aliases:['斐济','フィジー']},
+    {names:['Vanuatu'], country:'Vanuatu', aliases:['瓦努阿图','バヌアツ']},
+    {names:['Greenland'], country:'Denmark', aliases:['格陵兰','格陵兰岛','그린란드']},
+    {names:['Sint Eustatius'], country:'Netherlands', aliases:['San Eustaquio']},
+    {names:['British Columbia'], country:'', aliases:['Columbia Británica']},
+    {names:['Vancouver Island'], country:'', aliases:['Isla de Vancouver']},
+    {names:['South Florida'], country:'United States of America', aliases:['sud de la Floride','sur de Florida']},
+    {names:['Crystal River'], country:'United States', aliases:['クリスタルリバー']},
+    {names:['Chuuk Lagoon'], country:'Micronesia, Federated States of', aliases:['楚克潟湖','추크 라군']},
+    {names:['Micronesia Yap'], country:'Micronesia, Federated States of', aliases:['얍']},
+    {names:['Istra'], country:'Croatia', aliases:['伊斯特拉半岛','伊斯特里亞半島']},
+    {names:['Scotland'], country:'United Kingdom', aliases:['苏格兰','スコットランド']},
+    {names:['New Caledonia'], country:'France', aliases:['新喀里多尼亚','Nouvelle-Calédonie','ニューカレドニア']},
+    {names:['New Caledonia'], country:'New Caledonia', aliases:['新喀里多尼亚','Nouvelle-Calédonie','ニューカレドニア']},
+    {names:['Ironbottom Sound, near Honiara'], country:'Solomon Islands', aliases:['铁底湾','铁底海峡','艾恩博特姆海峡']}
   ];
   // Site aliases are matched only to exact recorded names and a known country.
   // Blue Corner also exists in Indonesia and Japan; its Palau aliases must not
@@ -678,6 +910,62 @@
   // https://blog.padi.com/ko/shark-diving-the-best-dive-sites-in-the-world/
   // https://blog.padi.com/ko/best-scuba-diving-destinations-in-the-world/
   const siteAliases = [
+    // PADI's Chinese dive-site page uses 范宁泉 for this coordinate-matched spring.
+    {"names": ["Fanning Springs State Park"], "country": "United States of America", "siteIds": ["10f33892-1f4f-4fd7-b2f0-e7332529b19f"], "aliases": ["范宁泉", "패닝 스프링스 주립공원", "패닝 스프링스", "패닝 스프링"]},
+    // DiveSeason lists localized diving names for the exact Lembeh sites; the compare search resolves them to these records.
+    {"names": ["Hairball"], "country": "Indonesia", "siteIds": ["ecd80230-d522-47ab-b34a-7e07b904d09b"], "aliases": ["ヘアボール", "헤어볼"]},
+    {"names": ["Nudi Falls"], "country": "Indonesia", "siteIds": ["0e11c735-ed81-41cc-ad82-27102bfaabb6"], "aliases": ["ヌーディフォールズ", "누디 폴스"]},
+    {"names": ["Jahir"], "country": "Indonesia", "siteIds": ["2fc1043c-0ece-4011-9699-97004dcefe72"], "aliases": ["ジャヒール", "자히르"]},
+    {"names": ["Nudi Retreat"], "country": "Indonesia", "siteIds": ["92744da4-3973-4602-b942-1cdaebc32bfd"], "aliases": ["ヌーディリトリート", "누디 리트리트"]},
+    {"names": ["Police Pier"], "country": "Indonesia", "siteIds": ["bd739839-6249-4625-8e3f-51a47d90c4fe"], "aliases": ["ポリスピア", "폴리스 피어"]},
+    {"names": ["Angel's Window"], "country": "Indonesia", "siteIds": ["00bf9f9a-093e-42f8-964d-a6579ae80c3f"], "aliases": ["エンジェルズウィンドウ", "엔젤스 윈도"]},
+    // DiveSeason's Anilao guide lists Japanese and Korean dive-site forms; IDs bind repeat names to the Anilao records.
+    {"names": ["Secret Bay"], "country": "Philippines", "siteIds": ["765bbc62-72cd-48da-8cc1-679ce43946c0"], "aliases": ["シークレットベイ", "시크릿 베이"]},
+    {"names": ["Cathedral Rock"], "country": "Philippines", "siteIds": ["15eaf856-6271-420b-9dc9-4649c52d7f85"], "aliases": ["カテドラルロック", "캐시드럴 록"]},
+    {"names": ["Basura"], "country": "Philippines", "siteIds": ["8ff87784-f4aa-407d-939f-c90198622e50"], "aliases": ["バスラ", "바수라"]},
+    {"names": ["Twin Rocks"], "country": "Philippines", "siteIds": ["02e832cc-5e64-46c8-9218-2c16070ef105"], "aliases": ["ツインロックス", "트윈 록스"]},
+    {"names": ["Beatrice Rock"], "country": "Philippines", "siteIds": ["0d583f50-e71d-401c-89c1-89e1eb2dd8a9"], "aliases": ["ベアトリスロック", "베아트리체 록"]},
+    {"names": ["Arthur's Rock"], "country": "Philippines", "siteIds": ["17ef012d-b023-479d-9550-c9a2000c7d50"], "aliases": ["アーサーズロック", "아서스 록"]},
+    {"names": ["Mainit Point"], "country": "Philippines", "siteIds": ["e3ca1fe3-33ac-4e26-a224-61f623ba8baa"], "aliases": ["マイニットポイント", "마이닛 포인트"]},
+    {"names": ["Sepok Wall"], "country": "Philippines", "siteIds": ["5766d9c4-2943-454d-a317-b6d362bb8ca7"], "aliases": ["セポックウォール", "세폭 월"]},
+    {"names": ["Sombrero Island"], "country": "Philippines", "siteIds": ["2835244b-6b09-4d05-9b1f-b1b81834e1f1"], "aliases": ["ソンブレロ島", "솜브레로섬"]},
+    // DiveSeason's Malapascua guide provides these locale forms; IDs avoid collisions with similarly named Philippine sites.
+    {"names": ["Monad Shoal"], "country": "Philippines", "siteIds": ["81db1656-6a38-4dba-b862-c34ea950b640"], "aliases": ["モナドショール", "모나드 숄"]},
+    {"names": ["Gato Island"], "country": "Philippines", "siteIds": ["7015f625-541c-4f52-aee6-b0895a61d919"], "aliases": ["ガト島", "가토섬"]},
+    {"names": ["Lighthouse"], "country": "Philippines", "siteIds": ["1be73a7c-3428-4d0d-aa87-318ff60d8adc"], "aliases": ["라이트하우스"]},
+    {"names": ["Bantigue"], "country": "Philippines", "siteIds": ["ac675481-8431-4368-b5ee-f5b0a33afdd3"], "aliases": ["バンティゲ", "반티게"]},
+    {"names": ["Capitancillo Island"], "country": "Philippines", "siteIds": ["04bd171c-6aee-4c64-ac6a-866b8b561154"], "aliases": ["カピタンシージョ島", "카피탄시요섬"]},
+    {"names": ["Chocolate Island"], "country": "Philippines", "siteIds": ["8a644c9f-c358-40c4-8cb5-b1b5b66bac14"], "aliases": ["チョコレート島", "초콜릿섬"]},
+    {"names": ["Deep Rock"], "country": "Philippines", "siteIds": ["674cb7c1-59ba-4b1d-956d-89923b2f0efd"], "aliases": ["ディープロック", "딥 록"]},
+    {"names": ["Kalanggaman Island"], "country": "Philippines", "siteIds": ["c5a17443-8658-409a-a68e-0431f4c021f3"], "aliases": ["カランガマン島", "칼랑가만섬"]},
+    {"names": ["North Point"], "country": "Philippines", "siteIds": ["363f10f2-08ec-4104-8c41-314d92eee66a"], "aliases": ["ノースポイント", "노스 포인트"]},
+    // DiveSeason's Alor guide supplies the Japanese and Korean forms; IDs bind them to the Alor records.
+    {"names": ["Kal's Dream"], "country": "Indonesia", "siteIds": ["e9204f46-fc9b-476b-b527-a1e4666b1e96"], "aliases": ["カルズ・ドリーム", "칼스 드림"]},
+    {"names": ["The Cathedral"], "country": "Indonesia", "siteIds": ["2cd580cd-2e60-41ef-90e9-e3a5485f3c80"], "aliases": ["ザ・カセドラル", "더 캐서드럴"]},
+    {"names": ["Clown Valley"], "country": "Indonesia", "siteIds": ["6d5a1551-83df-4e53-a681-f110c439f200"], "aliases": ["クラウン・バレー", "클라운 밸리"]},
+    {"names": ["Bama Wall"], "country": "Indonesia", "siteIds": ["da96131c-9c53-442f-92ad-456d01d0907d"], "aliases": ["バマ・ウォール", "바마 월"]},
+    {"names": ["Current Alley"], "country": "Indonesia", "siteIds": ["c5d68b4e-434c-4a88-9e29-6f51f12edaab"], "aliases": ["カレント・アレー", "커런트 앨리"]},
+    // DiveSeason's Raja Ampat guide lists local-language names for these sites; IDs preserve record identity across reused names.
+    {"names": ["Tapor Tamiyam, Cape Kri, Raja Ampat"], "country": "Indonesia", "siteIds": ["a7ced4d1-f0e1-486c-b524-d08036c9673a"], "aliases": ["ケープクリ", "케이프 크리"]},
+    {"names": ["Blue Magic"], "country": "Indonesia", "siteIds": ["f7d2465f-0fe3-421d-9b35-2337c9d457f1"], "aliases": ["ブルーマジック", "블루 매직"]},
+    {"names": ["Manta Sandy"], "country": "Indonesia", "siteIds": ["6343ae6d-6436-48c3-8346-8ed434c3fa08"], "aliases": ["マンタサンディ", "만타 샌디"]},
+    {"names": ["Melissa’s Garden"], "country": "Indonesia", "siteIds": ["6c4e81de-9648-404c-8a32-69db89707e5c"], "aliases": ["メリッサズガーデン", "멜리사스 가든"]},
+    {"names": ["The Passage"], "country": "Indonesia", "siteIds": ["4a1b11b2-d545-4989-a020-b958fc6fe704"], "aliases": ["ザ・パッセージ", "더 패시지"]},
+    {"names": ["Chicken Reef"], "country": "Indonesia", "siteIds": ["006c7db3-1715-4f23-bd45-14e62b4749c9"], "aliases": ["チキンリーフ", "치킨 리프"]},
+    {"names": ["Mike’s Point"], "country": "Indonesia", "siteIds": ["7acd8a36-75a2-46d8-82ec-74a0144001ec"], "aliases": ["マイクスポイント", "마이크스 포인트"]},
+    {"names": ["Mioskun"], "country": "Indonesia", "siteIds": ["b36ee1f4-7404-4dd8-8540-b81a06aabd9b"], "aliases": ["ミオスコン", "미오스콘"]},
+    // PADI's localized dive pages identify this site at the exact dataset coordinate.
+    {"names": ["Electric beach"], "country": "United States of America", "siteIds": ["134daa05-6334-4142-b7e4-d235b26180c9"], "aliases": ["电力海滩", "電力海灘", "エレクトリックビーチ", "エレクトリック ビーチ", "일렉트릭 비치"]},
+    // PADI localized dive pages retain the canonical site identity and supply local forms at the same coordinate.
+    {"names": ["Ginnie Springs"], "country": "United States", "siteIds": ["13f0129f-2afb-4c4c-800f-4f9438711e49"], "aliases": ["金妮泉", "ジニー・スプリングス", "진니 스프링스"]},
+    {"names": ["Rainbow River"], "country": "United States of America", "siteIds": ["5aee45a0-3d50-4510-b5a2-49dc4d98c5c4"], "aliases": ["彩虹河"]},
+    // The PADI locale page names this exact Kuda Thila and gives the matching coordinates.
+    // https://www.padi.com/zh-hant/dive-site/ma-er-di-fu/kuda-thila-2/
+    // https://www.padi.com/zh-hans/dive-site/ma-er-dai-fu/kuda-thila-2/
+    {"names": ["Kuda Thila"], "country": "Maldives", "siteIds": ["aa75e8af-02a9-432d-b9b8-26035775260d"], "aliases": ["库达提拉", "庫達提拉", "クダティラ", "쿠다틸라"]},
+    {"names": ["Bounty Wreck, Gili Tarawang"], "country": "Indonesia", "siteIds": ["d3a4032a-3009-4fda-9d5c-b2bad31e17a5"], "aliases": ["バウンティ沈船", "바운티 난파선"]},
+    {"names": ["Blue Grotto"], "country": "United States of America", "siteIds": ["2da7bf92-523b-439d-9f66-56a6ebf2264c"], "aliases": ["蓝洞"]},
+    {"names": ["Tulamben Drop-Off"], "country": "Indonesia", "siteIds": ["eea176ef-df47-4666-907d-32b82f9ac98f"], "aliases": ["土蘭奔斷層"]},
     {"names": ["Jocker Reef"], "country": "Seychelles", "siteIds": ["ab38266c-9371-426b-b2a6-d45b2cce7049"], "aliases": ["Joker Reef"]},
     {"names": ["Wobby Rock, Gneering Shoals"], "country": "Australia", "siteIds": ["40fe99c3-946e-4959-b3b2-681b3c86c249"], "aliases": ["Wobbie Rock"]},
     {"names": ["Wobby Rock, Gneering Shoals"], "country": "Australia", "siteIds": ["40fe99c3-946e-4959-b3b2-681b3c86c249"], "aliases": ["Nurse Rock"]},
@@ -2048,6 +2336,7 @@
     // https://tournews.tw/coron-dive-guide/
     // https://www.diveandcruise.cn/destination/coron-and-apo-reef
     // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
+    // https://www.padi.com/zh-hans/diving-in/jia-lai-la-gang/
     {names:['Kogyo Maru'], country:'Philippines', siteIds:['14e475c0-c9c0-4f50-8009-8cba8f835faa'], aliases:['興業丸','兴业丸','工业丸号']},
     // https://anthonyskey.com/front-porch/
     {names:['Anthony’s Key Resort House Reef'], country:'Honduras', siteIds:['563d403d-bdaa-4066-a8c6-ad7eb2a7e650'], aliases:['Front Porch Reef','Front Porch']},
@@ -2353,7 +2642,7 @@
     // https://www.padi.com/zh-hans/dive-site/fei-lu-bin/olympia-maru/
     {siteIds:['90d0fcbe-e886-479c-b92f-6a0f0de77f7d'], aliases:['奥林匹亚丸号']},
     // https://www.padi.com/zh-hans/dive-site/thailand/sail-rock-7/
-    {siteIds:['e15ede43-d4df-4edb-abdb-22ece34e97d2'], aliases:['帆船石','Hin Bai']},
+    {siteIds:['e15ede43-d4df-4edb-abdb-22ece34e97d2'], aliases:['帆船石','Hin Bai','船帆岩','セイルロック']},
     // https://seaexplorersclub.com/htms-sattakut/
     {siteIds:['0ea38ae1-542d-43cc-8346-6c7098e82baa'], aliases:['HTMS Sattakut','LCI 742','USN LCI 739']},
     // The tourism dive guide names Kimud 基姆德浅滩; the operator also uses Kimod.
@@ -2810,7 +3099,7 @@
     {siteIds:['d3a4032a-3009-4fda-9d5c-b2bad31e17a5','a257e065-02a8-47a7-971d-d1536a0721cf'], aliases:['バウンティレック','バウンティ・レック','바운티 렉']},
     // Green Rock is a shared name; the tourism authority identifies Koh Tao.
     // https://www.thailandtravel.or.jp/green-rock/
-    {siteIds:['8b89ae55-eb26-400e-8e3b-df3378c44102'], aliases:['グリーンロック']},
+    {siteIds:['8b89ae55-eb26-400e-8e3b-df3378c44102'], aliases:['グリーンロック','绿岩']},
     // Utah's tourism office uses this Chinese name for the Midway dive site.
     // https://www.visitutah.com/zh-cn/articles/6-things-to-do-at-utahs-homestead-crater
     {siteIds:['928566c8-ae28-4dde-a414-5c9ffe3fba39'], aliases:['霍姆斯特德火山口']},
@@ -2889,7 +3178,7 @@
     {siteIds:['526a5e3f-6590-4e6c-a3f0-075d9815cdd5'], aliases:['Lake Rawlings']},
     // https://discoverydivers.com/zh-hans/blog/thailand-marine-national-parks-opening-closures
     // https://www.siamdive.com/cn/blogs/monsoon-season-diving-thailand-koh-tao-september-cn
-    {siteIds:['fe6d2e5e-7709-49a5-b43e-ef82559a2a37'], aliases:['西南尖峰','西南礁']},
+    {siteIds:['fe6d2e5e-7709-49a5-b43e-ef82559a2a37'], aliases:['西南尖峰','西南礁','西南石林']},
     // https://travel.padi.com/zh-hans/dive-site/thailand/tanote-bay/
     {siteIds:['227bee51-e969-4d17-a9ba-5ff0517c9e1b'], aliases:['塔诺特湾']},
     // https://divecodex.com/es/sites/mar-menuda
@@ -2904,7 +3193,7 @@
 
     // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
     // https://discoverydivers.com/zh-hans/blog/thailand-marine-national-parks-opening-closures
-    {siteIds:['822b44a1-0e07-40f3-89d1-fb4dbe50b008'], aliases:['春蓬尖峰','春蓬礁']},
+    {siteIds:['822b44a1-0e07-40f3-89d1-fb4dbe50b008'], aliases:['春蓬尖峰','春蓬礁','春篷石林']},
     // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
     {siteIds:['0d11452c-967f-4504-beb0-f1d57794177e'], aliases:['双子岩']},
     // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
@@ -2924,12 +3213,64 @@
     {names:['Deep Six'], country:'Thailand', aliases:['ディープ・シックス']},
     // https://www.padi.com/zh-hans/dive-site/hong-du-la-si/marys-place-2/
     {names:["Mary's Place",'Mary’s Place'], country:'Honduras', aliases:['玛丽之地']},
-    {names:['Blue Corner','Blue Corner Palau'], country:'Palau', aliases:['蓝角','藍角','ブルーコーナー','블루 코너']},
-    {names:['German Channel'], country:'Palau', aliases:['德国水道','德國水道','ジャーマンチャンネル']},
+    {names:['Blue Corner','Blue Corner Palau'], country:'Palau', siteIds:['67b0fa7f-b4d9-4fdb-89c0-ae8fb5d10dcb','61a22e99-8852-4828-b7da-8d37b8d9692b'], aliases:['蓝角','藍角','ブルーコーナー','블루 코너']},
+    {names:['German Channel'], country:'Palau', siteIds:['cb29a9de-db08-48ae-8f10-ba1c1bb8b6fb'], aliases:['德国水道','德國水道','ジャーマンチャネル','저먼 채널','저먼채널']},
+    {names:['The Big Drop Off'], country:'Palau', siteIds:['4cdc90bd-05f2-486b-b123-247434f4c18d'], aliases:['大断层','大斷層','ビッグドロップオフ','빅 드랍 오프']},
+    {names:['Siaes Corner'], country:'Palau', siteIds:['7f94c7f8-73e0-4d01-ac6b-7b34bac4de28'], aliases:['西亞斯角','シアズコーナー']},
+    {names:['New Drop-Off'], country:'Palau', siteIds:['d5cfc134-c6c9-4c8e-b139-d4822f769a2a'], aliases:['新断层','新大断层','新斷層','ニュードロップオフ']},
+    {names:['Chandelier Cave'], country:'Palau', siteIds:['cc412948-05b6-40de-9b85-ce790292b9d1'], aliases:['水晶吊灯洞','钟乳石洞','吊灯洞','シャンデリアケーブ','샹들리에 케이브','샹들리에 동굴']},
+    {names:['Chuyo Maru'], country:'Palau', siteIds:['5ed68d56-7361-42fc-8e59-b132e768dbfa'], aliases:['忠洋丸','Lionfish Wreck']},
+    {names:['Iro Maru Wreck Palau'], country:'Palau', siteIds:['b36c8b39-feeb-4930-b619-c8b77cd16c1f'], aliases:['Iro Wreck','IRO沉船','Iro 號油輪','이로']},
+    {names:['Jake SeaPlane'], country:'Palau', siteIds:['5627f747-41c8-49aa-a4e4-79f9b544d4a1'], aliases:['日軍偵察機','零式水上偵察機','レックJake Seaplane']},
+    {names:['Jellyfish Lake - Ongeim’l Tketau'], country:'Palau', siteIds:['29fbf75b-158c-4123-b8d1-bc9c9df49ac0'], aliases:['水母湖','ジェリーフィッシュ レイク','ジェリーフィッシュ湖','젤리피쉬레이크','해파리 호수']},
+    {names:['Lighthouse Channel'], country:'Palau', siteIds:['96abaacb-484d-4e35-8340-bec61537e646'], aliases:['Toachel ra Kesebekuu']},
+    {names:['Blue Holes'], country:'Palau', siteIds:['3f69938a-7d51-4ffb-a7ab-63146ec23a50'], aliases:['蓝洞','ブルーホール','블루홀','블루 홀']},
+    {names:['Ulong Channel'], country:'Palau', siteIds:['4a7b8b43-1154-43f1-a0a4-27f45303485d'], aliases:['乌龙水道','烏龍水道','울롱 채널']},
+    {names:['Siaes Tunnel'], country:'Palau', siteIds:['b719c824-45e0-49da-ad11-91c942458379'], aliases:['西亚斯隧道','西亞斯隧道','シアズトンネル','シアス・トンネル','시아스터널','시아스 터널']},
     {names:['Monad Shoal'], country:'Philippines', aliases:['莫纳德浅滩','莫納德淺灘','모나드 숄']},
-    {names:['USAT Liberty Wreck'], country:'Indonesia', aliases:['自由号沉船','自由號沉船','リバティ沈船','리버티 난파선']}
+    {names:['USAT Liberty Wreck'], country:'Indonesia', aliases:['自由号沉船','自由號沉船','リバティ沈船','리버티 난파선']},
+    // Chinese and Japanese dive references use localized names for these Koh Tao dive sites.
+   {names:['Red Rock'], country:'Thailand', siteIds:['e0e0add7-43c1-4b96-8959-c250c5d6441a'], aliases:['红岩']},
+    {names:['White Rock Koh Tao'], country:'Thailand', siteIds:['db0985d2-6be8-4147-9cd0-2d5d8f168bd6'], aliases:['白石','白岩']},
+   // Spanish dive centers use Palancar Jardines / Jardines de Palancar for this same Palancar section.
+    {names:['Palancar Gardens'], country:'Mexico', siteIds:['2629512d-8477-4c08-b917-3b73bf021c7d'], aliases:['Palancar Jardines','Jardines Palancar','Jardines de Palancar']},
+    {names:['Palancar Caves'], country:'Mexico', siteIds:['ab8ba4f7-e048-46b6-8bb2-b2d6d2e63a0a'], aliases:['Cuevas de Palancar']},
+    {names:['Palancar Bricks'], country:'Mexico', siteIds:['ba870135-1544-4147-816e-f52534dbbbe5'], aliases:['Palancar Ladrillos','Ladrillos Palancar','Colombia Bricks','Columbia Bricks']},
+    {names:['Palancar Horseshoe'], country:'Mexico', siteIds:['7c71b426-85da-4286-bc2a-efcfb35e25eb'], aliases:['La Herradura','Palancar Herradura','Herradura Palancar']},
+    // Same Barracuda Point wording occurs at distinct dive sites; keep each localized alias tied to its site ID.
+    {names:['Barracuda Point'], country:'Malaysia', siteIds:['efcdea6b-2e97-4cdf-8d5e-49d8550193ae'], aliases:['海狼风暴点']},
+    {names:['Barracuda Point'], country:'Papua New Guinea', siteIds:['0bf0cafb-6178-4107-bba7-afa72a66eae0'], aliases:['バラクーダポイント']},
+    {names:['Barracuda Point'], country:'Curaçao', siteIds:['96dea5ad-6ef5-4231-85f4-dd7d005f5945'], aliases:['バラクーダポイント']}
   ];
-  const countryAliases = {indonesia:['印尼'], palau:['帛琉']};
+  const countryAliases = {
+    indonesia:['印尼','印度尼西亞'], palau:['帛琉'],
+    australia:['澳大利亞'],
+    'new zealand':['新西蘭'],
+    'united states':['美利坚合众国','美利堅合眾國'],
+    'united states of america':['美利坚合众国','美利堅合眾國'],
+    'south africa':['南アフリカ共和国'],
+    'french polynesia':['法屬玻里尼西亞'],
+    'curacao':['古拉索'],
+    seychelles:['塞舌尔群岛'],
+    vanuatu:['瓦努阿圖'],
+    'saint kitts and nevis':['セントキッツ・アンド・ネイビス'],
+    'saint vincent and the grenadines':['세인트 빈센트 그레나딘','Saint Vincent & the Grenadines'],
+    'dominica':['도미니카 연방'],
+    'ecuador':['厄瓜多爾'],
+    'united states virgin islands':['アメリカ領ヴァージン諸島'],
+    guadeloupe:['과들루프 제도','Islas de Guadalupe'],
+    'federated states of micronesia':['密克罗尼西亚联邦'],
+    'micronesia federated states of':['密克罗尼西亚联邦'],
+    'south korea':['한국'],
+    taiwan:['臺灣'],
+    'taiwan province of china':['臺灣'],
+    'united arab emirates':['阿联酋','アラブ首長国連邦'],
+    czechia:['捷克共和国','チェコ共和国'],
+    'cabo verde':['Cape Verde'],
+    myanmar:['ミャンマー'],
+    turkey:['터키'],
+    turkiye:['터키']
+  };
   // Country labels come from the browser's locale data for every supported UI
   // language. Build once and keep the dataset's original country as the key.
   // Dataset labels include ISO long forms and historical English names that do
@@ -2987,7 +3328,8 @@
   const siteAliasIndex = aliasIndex(siteAliases, true);
   function aliasesFor(name, country = '') {
     const parent = normalize(country);
-    return parent ? [...(placeAliasIndex.get(JSON.stringify([parent, normalize(name)])) || [])].flatMap(entry => entry.aliases) : [];
+    // The index retains explicitly blank-country aliases for records without a country.
+    return [...(placeAliasIndex.get(JSON.stringify([parent, normalize(name)])) || [])].flatMap(entry => entry.aliases);
   }
   function verifiedSiteNames(siteId) {
     const entries = root.DIVE_SITE_NAME_TRANSLATIONS?.verifiedBySiteId?.[String(siteId || '')] || {};
