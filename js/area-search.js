@@ -72,6 +72,10 @@
   // https://www.divingexpress.com/%E9%A6%99%E6%B8%AF%E6%BD%9B%E6%B0%B4%E8%88%B9%E6%BD%9B%E6%97%A5%E7%A8%8B/
   // https://www.padi.com/zh-hans/dive-center/china/ocean-dive-shanghai/
   const placeAliases = [
+    {names:['Cape Town'], country:'', aliases:['开普敦','開普敦','ケープタウン','케이프타운','Kapstadt']},
+    {names:['Croatia'], country:'', aliases:['克罗地亚','克羅地亞','クロアチア','크로아티아','Croatie','Croacia','Kroatien','Croazia','Kroatië','Хорватия']},
+    {names:['Dominican Republic'], country:'', aliases:['多米尼加共和国','多明尼加共和國','ドミニカ共和国','도미니카 공화국','République dominicaine','República Dominicana','Dominikanische Republik']},
+    {names:['Israel'], country:'', aliases:['ישראל']},
     {names:['Beijing'], country:'China', aliases:['北京']},
     {names:['Guangdong'], country:'China', aliases:['广东省']},
     {names:['Sai Kung'], country:'China', aliases:['西貢']},
@@ -428,7 +432,11 @@
     {"names": ["Micronesia Yap"], "country": "Federated States of Micronesia", "aliases": ["雅浦", "雅浦岛", "雅浦島", "ヤップ", "ヤップ島", "야프", "얍"]},
     {"names": ["Lapu-Lapu"], "country": "Philippines", "aliases": ["拉普拉普", "ラプラプ市", "라푸라푸"]},
     {"names": ["Mie Prefecture"], "country": "Japan", "aliases": ["三重県", "三重縣", "미에현"]},
+    // Ocean-area labels are indexed without a country parent; keep these aliases global so both ocean and region searches resolve.
+    {"names": ["Banda Sea"], "country": "", "aliases": ["班达海", "班達海", "バンダ海", "반다해"]},
     {"names": ["Banda Sea"], "country": "Indonesia", "aliases": ["班达海", "班達海", "バンダ海", "반다해"]},
+    {"names": ["Coral Sea"], "country": "", "aliases": ["珊瑚海"]},
+    {"names": ["Celebes Sea"], "country": "", "aliases": ["苏拉威西海", "西里伯斯海", "セレベス海", "술라웨시해", "Mar de Célebes"]},
     {"names": ["Aceh"], "country": "Indonesia", "aliases": ["亚齐", "亚齐省", "亞齊", "アチェ"]},
     {"names": ["St Kitts And Nevis"], "country": "Saint Kitts and Nevis", "aliases": ["圣基茨和尼维斯", "聖克里斯多福及尼維斯", "セントクリストファー・ネイビス", "セントキッツ・ネイビス", "세인트키츠 네비스"]},
     // https://www.hellodive.com/dive/detail/info/150.html
@@ -3227,6 +3235,11 @@
     {names:['Blue Holes'], country:'Palau', siteIds:['3f69938a-7d51-4ffb-a7ab-63146ec23a50'], aliases:['蓝洞','ブルーホール','블루홀','블루 홀']},
     {names:['Ulong Channel'], country:'Palau', siteIds:['4a7b8b43-1154-43f1-a0a4-27f45303485d'], aliases:['乌龙水道','烏龍水道','울롱 채널']},
     {names:['Siaes Tunnel'], country:'Palau', siteIds:['b719c824-45e0-49da-ad11-91c942458379'], aliases:['西亚斯隧道','西亞斯隧道','シアズトンネル','シアス・トンネル','시아스터널','시아스 터널']},
+    {names:['Temple of Doom'], country:'Palau', siteIds:['a1de0d3f-9206-42eb-b9bc-0a2e223dfde9'], aliases:['毁灭神殿','厄运神庙','ザ・テンプルオブドーム']},
+    {names:['Peliliu Corner'], country:'Palau', siteIds:['20e0a994-2cb3-47e4-a5d1-28983bd223ee'], aliases:['Peleliu Corner','贝里琉角','貝里琉角','ペリリューコーナー','펠렐리우 코너']},
+    {names:['Sand Bar'], country:'Palau', siteIds:['8196562a-0112-4921-88f9-22b7449f7304'], aliases:['玻璃城']},
+    {names:['Hin Daeng - Hin Muang'], country:'Thailand', siteIds:['937f010e-9b4d-48bb-a5a3-a62951d164f8'], aliases:['红石和紫石','海丹和海姆昂','紅岩','紫岩','หินแดง หินม่วง','ヒンデーン','ヒンムアン','힌댕','힌 무앙']},
+    {names:['Sail Rock'], country:'Thailand', siteIds:['bffd65e8-0ffd-42a7-a78a-be36850a6af3'], aliases:['Hin Bai','หินใบ','帆船岩','帆船石','セイルロック','세일 락','세일락']},
     {names:['Monad Shoal'], country:'Philippines', aliases:['莫纳德浅滩','莫納德淺灘','모나드 숄']},
     {names:['USAT Liberty Wreck'], country:'Indonesia', aliases:['自由号沉船','自由號沉船','リバティ沈船','리버티 난파선']},
     // Chinese and Japanese dive references use localized names for these Koh Tao dive sites.
