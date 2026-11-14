@@ -1170,6 +1170,10 @@ test('mobile search animates on open and close but not result updates', async ({
   await page.locator('#diveSearchInput').fill('Raja');
   await expect(sheet.locator('[data-result-kind="destination"]').first()).toBeVisible({timeout:15000});
   expect(await page.evaluate(() => window.__searchSheetMotion.includes('enter'))).toBe(false);
+  // Full-height search covers the launcher; collapse before testing its close animation.
+  await page.locator('#diveSearchResultsHandle').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#diveSearchResultsHandle')).toHaveAttribute('aria-expanded','false');
   await page.locator('#diveSearchToggle').click();
   await expect.poll(() => page.evaluate(() => window.__searchSheetMotion.includes('exit'))).toBe(true);
   await expect(sheet).toBeHidden();
@@ -1194,7 +1198,7 @@ test('mobile search respects reduced motion on open and close', async ({ page })
   await page.locator('#diveSearchToggle').click();
   await expect(sheet).toBeVisible();
   await expect(sheet).not.toHaveClass(/mobile-sheet-entering/);
-  await page.locator('#diveSearchToggle').click();
+  await page.locator('#diveSearchInput').press('Escape');
   await expect(sheet).toBeHidden();
 });
 
@@ -1511,6 +1515,10 @@ test('pulling down at the search list top moves and dismisses the sheet', async 
   expect((await sheet.boundingBox()).height).toBeCloseTo(before, 0);
   await list.evaluate(el => { el.scrollTop = 25; });
   await pull(140);
+  await expect(handle).toHaveAttribute('aria-expanded', 'false');
+  await expect.poll(async () => (await sheet.boundingBox()).y).toBeGreaterThan(200);
+  await list.evaluate(el => { el.scrollTop = 0; });
+  await pull(120);
   await expect(sheet).toBeHidden();
   await page.locator('#diveSearchToggle').click();
   await expect(sheet).toBeVisible();
@@ -1518,8 +1526,6 @@ test('pulling down at the search list top moves and dismisses the sheet', async 
   await pull(25, async () => expect((await sheet.boundingBox()).height).toBeLessThan(before - 10));
   await expect(sheet).toBeVisible();
   await expect.poll(async () => (await sheet.boundingBox()).height).toBeCloseTo(before, 0);
-  await handle.focus();
-  await page.keyboard.press('Enter');
   await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
   await list.evaluate(el => { el.scrollTop = 0; });
   await pull(120);
@@ -1530,8 +1536,6 @@ test('pulling down at the search list top moves and dismisses the sheet', async 
   await expect(sheet).toBeHidden();
   await page.locator('#diveSearchToggle').click();
   await expect(sheet).toBeVisible();
-  await handle.focus();
-  await page.keyboard.press('Enter');
   await expect.poll(async () => (await sheet.boundingBox()).y).toBeLessThanOrEqual(1);
   await list.evaluate(el => { el.scrollTop = 25; });
   await pull(500);

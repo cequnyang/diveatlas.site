@@ -305,6 +305,13 @@ test('trip surfaces yield to other map tasks and preserve their own child menu',
   await page.locator('#diveSearchInput').fill('Test');
   await expect(page.locator('#diveSearchResults')).toBeVisible();
   await expect(panel).toBeHidden();
+  // Search opens over the header at full height. Collapse it before switching
+  // tasks so this remains a real pointer interaction with the trips launcher.
+  if (mobile) {
+    await page.locator('#diveSearchResultsHandle').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#diveSearchResultsHandle')).toHaveAttribute('aria-expanded','false');
+  }
   await page.locator('#savedTripsButton').click();
   await expect(panel).toBeVisible();
   if (mobile) await expect(page.locator('#diveSearchResults')).toBeHidden();
