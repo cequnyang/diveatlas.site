@@ -136,7 +136,12 @@
     {names:['Ionian Sea'], country:'', aliases:['Mar Ionio']},
     {names:['South China Sea'], country:'', aliases:['南海','南シナ海','Mar de China Meridional','남중국해']},
     {names:['Mediterranean Sea'], country:'', aliases:['地中海','Méditerranée','Mediterráneo','지중해']},
-    {names:['Monterey Bay'], country:'', aliases:['Bahía de Monterey']},
+    // PADI's local dive guides and site pages use these language-specific names for Monterey Bay diving.
+    // https://www.padi.com/es/diving-in/estados-unidos-de-america-ee-uu/monterey/
+    // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/aquarius-dive-shop/
+    // https://www.padi.com/zh-hant/dive-site/mei-li-jian-he-zhong-guo-usa/monterey-bay/
+    // https://www.padi.com/ja/diving-in/united-states-of-america-usa/montore/
+    {names:['Monterey Bay'], country:'', aliases:['Bahía de Monterey', '蒙特雷湾', '蒙特雷灣', '蒙特利灣', 'モントレー湾']},
     {names:['North Sea'], country:'', aliases:['Noordzee','Nordsee']},
     {names:['Skagerrak'], country:'', aliases:['Skagerack']},
     {names:['Vestfjorden'], country:'', aliases:['Vestfjord']},
@@ -514,6 +519,12 @@
     // https://www.padi.com/zh-hans/diving-in/mo-sang-bi-ke/
     // https://www.scubago.com/ja/explore/destination/mozambique-9752886
     {"names": ["Mozambique"], "country": "Mozambique", "aliases": ["莫桑比克", "莫三比克", "モザンビーク", "모잠비크"]},
+    // Localized PADI diving guides support these spellings for imported Mozambique region records without country metadata.
+    // https://www.padi.com/zh-hans/diving-in/mo-sang-bi-ke/
+    // https://travel.padi.com/zh-hant/diving-in/mo-san-bi-ke/
+    // https://www.padi.com/ko/diving-in/mojambikeu/
+    // https://travel.padi.com/ja/diving-in/africa/
+    {"names": ["Mozambique"], "country": "", "aliases": ["莫桑比克", "莫三比克", "モザンビーク", "모잠비크"]},
     // https://blog.padi.com/tw/just-in-time-for-halloween-the-worlds-spookiest-dive-sites/
     // https://travel.padi.com/zh-hans/diving-in/ying-guo/
     // https://www.siamdive.com/ja/explore/dive-center/planet-scuba-school-ltd
@@ -701,6 +712,12 @@
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["수단 홍해", "Mar Rojo"]},
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["蘇丹紅海", "Mar Rojo"]},
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["苏丹红海", "Mar Rojo"]},
+    // Localized scuba-destination pages identify Sudan as a Red Sea diving destination; scope these forms to imported Sudan-region records too.
+    // https://www.padi.com/zh-hans/dive-center/su-dan/don-questo/
+    // https://www.padi.com/zh-hant/dive-center/su-dan/le-baron-noir/
+    // https://travel.padi.com/ko/diving-in/sudan/
+    // https://www.padi.com/es/dive-site/sudan/sudan-mar-rojo/
+    {"names": ["Red Sea | Sudan Red Sea"], "country": "", "aliases": ["苏丹红海", "蘇丹紅海", "수단 홍해", "Sudán, Mar Rojo"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебская область"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебск"]},
     {"names": ["Saxony-Anhalt"], "country": "Germany", "aliases": ["ザクセン＝アンハルト"]},
@@ -804,6 +821,12 @@
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亞新幾內亞"]},
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亞紐幾內亞"]},
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亚新几内亚"]},
+    // PADI's localized scuba guides use these names; the empty country scope also covers imported region records with no country value.
+    // https://www.padi.com/zh-hans/diving-in/ba-bu-ya-xin-ji-nei-ya/
+    // https://www.padi.com/zh-hant/diving-in/ba-bu-ya-niu-ji-nei-ya/
+    // https://www.padi.com/ja/diving-in/hahuaniyu-kinia/
+    // https://www.padi.com/ko/destinations
+    {"names": ["Papua New Guinea"], "country": "", "aliases": ["巴布亚新几内亚", "巴布亞新幾內亞", "巴布亞紐幾內亞", "パプアニューギニア", "파푸아뉴기니"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["라스팔마스"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["拉斯帕爾馬斯"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["拉斯帕尔马斯"]},
@@ -2459,6 +2482,15 @@
     {names:['Ras Ghamila'], country:'Egypt', siteIds:['c03392b7-b420-4f5c-89df-f73b4cb2526b'], aliases:['拉斯加米拉','ラス・ガミーラ','Ras Gamila']},
     // https://scubaviva.ch/shop/events/tagesevent/ledi-wracks-walensee
     {names:['Ledi Wracks'], country:'Switzerland', siteIds:['d2cae8d8-871a-4d86-9227-1ba3873b4c01'], aliases:['Lediwracks']},
+    // The Portofino original has a distinct Italian name; keep it ID-scoped because replicas use the English name elsewhere.
+    // https://www.portofinoamp.it/siti-immersione/cristo-degli-abissi-c
+    // https://elpais.com/elviajero/2016/05/03/actualidad/1462269249_346823.html
+    {names:['Christ of the Abyss'], country:'', siteIds:['7a8b2a0e-a787-4541-b6be-21c1470d6f56'], aliases:['Cristo degli Abissi','Cristo del Abismo']},
+    // Madang dive guides identify this coordinate-matched wreck as the B-25 near Wongat Island; avoid Tufi's separate Pistoff wreck.
+    // https://diveseason.com/zh-hans/dive/madang/
+    // https://www.niuginidiveadventures.com/barracuda-point-1
+    // https://www.bluerides.com/ko/daiving-poineu/wongat-island
+    {names:['B-25 Mitchell Bomber'], country:'Papua New Guinea', siteIds:['00dece97-3cbb-4556-a3e4-0ca15da58fc9'], aliases:['B25 Mitchell Bomber','B25 Bomber (Wongat Island)','B-25轰炸机（Wongat岛）','B-25 轟炸機（Wongat 島）','웡갓 아일랜드 B25 미첼 폭격기']},
     // https://www.diveclub-marumar.com/point/
     {names:['Cenote Dream Gate'], country:'Mexico', siteIds:['1c0219e4-9b5e-4ca2-9d54-aff606ab2157'], aliases:['ドリームゲート']},
     // https://www.divers.world/fr/divesite/nosy-be-archipelago/mitsio-wreck/
@@ -2581,6 +2613,22 @@
     {names:['Arco Point'], country:'Philippines', siteIds:['c1987215-8021-405a-be7b-e3a29b21edf1'], aliases:['Hole in the Wall','墙上的洞']},
     // https://www.padi.com/dive-site/indonesia/simons-reef/
     {names:['Simon’s Reef'], country:'Indonesia', siteIds:['e0c04b45-de5e-4275-bb6f-3336e31e4cf7'], aliases:['사이먼리프']},
+    // Arabic dive-site naming corroborated by local Ras Mohammed dive guides; PADI places both reefs at Ras Mohammed.
+    // https://www.redseamarinesharm.net/ar/ghaws-ras-mohammed
+    // https://www.padi.com/dive-site/egypt/yolanda-house-reef/
+    {names:['Shark Reef'], country:'Egypt', siteIds:['88315598-3908-4723-9644-e9f7195d3278'], aliases:['شعاب القرش']},
+    {names:['Yolanda Reef'], country:'Egypt', siteIds:['ceedcb28-0eda-487e-9bb0-1935350b5f1a'], aliases:['شعاب يولاندا']},
+    // https://askdahab.com/ar/diving/eel-garden/ — Arabic Dahab site guide; exact dataset coordinates 28.5053, 34.5206.
+    {names:['Eel Garden'], country:'Egypt', siteIds:['83f9705d-3b5c-4578-9248-81d940109f38'], aliases:['حديقة ثعابين البحر']},
+    // https://www.cdws.travel/ar/divesites/marsa-alam — CDWS identifies Samadai as Dolphin House near Marsa Alam.
+    // https://egyptxdiving.com/ar/dive-sites — Arabic diving guide also uses the spelling شعاب سمداي.
+    {names:['Dolphin House/ Shaab Samadai'], country:'Egypt', siteIds:['e47d5440-a189-42ff-a049-5877268a76a4'], aliases:['شعاب صمداي','شعاب سمداي']},
+    // https://www.cdws.travel/ar/divesites/marsa-alam — official dive-site guide uses حيد إلفنستون for this reef.
+    {names:['Elphinstone Reef'], country:'Egypt', siteIds:['9261d9d1-3f38-4b5a-ab0f-2957541a4e39'], aliases:['حيد إلفنستون']},
+    // https://diveplaza.com/ar/sites/sataya-dolphin-reef-hamata — Arabic diving guide names the umbrella reef شعاب ساتايا.
+    {names:['Shaab Sataya'], country:'Egypt', siteIds:['a0006c7a-6d16-4e6e-a9b8-ecb86427166f'], aliases:['شعاب ساتايا']},
+    // https://diveplaza.com/ar/sites/hamada-wreck-abu-ghusun — Arabic local dive guide names this wreck حطام حمادة.
+    {names:['Abu Ghusun (Wreck)'], country:'Egypt', siteIds:['c5c45f79-8876-4443-a99e-0515aebdefd6'], aliases:['حطام حمادة']},
     // https://www.dive-club.com/diveclub/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88%E3%80%80%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%BB%E3%83%9F%E3%83%89%E3%83%AB/?lang=ja
     {names:['Middle Garden'], country:'Egypt', siteIds:['87f5dc4b-58ae-41b3-8dbc-ea4e96ed2c5d'], aliases:['ミドルガーデン','ミドル・ガーデン']},
     // https://busseltonjetty.com.au/wp-content/uploads/2024/01/Chinese-Simplified.pdf
@@ -3156,10 +3204,32 @@
     // Big Brother is one island, not the two-island Brothers group.
     // https://www.bluerides.com/ja/daibingu-pointo/big-brother
     // https://dive.heeho.net/spots/big-brother-island
-    {siteIds:['5b0a6fc7-7d5c-411f-afb1-c1e3e378361f'], aliases:['ビッグブラザー','빅브라더','Al Akhawain Kebir']},
+    // https://www.omneia.de/tauchsafaris/safarirouten/brother-islands-daedalus-sataya-elphinstone--sr50.pdf
+    {siteIds:['5b0a6fc7-7d5c-411f-afb1-c1e3e378361f'], aliases:['ビッグブラザー','빅브라더','Al Akhawain Kebir','Großer Bruder']},
     // Kubu Reef is separate from the nearby Boga wreck.
     // https://diverout.com/zh-Hant/dive-sites/id/kubu-reef
     {siteIds:['ac37b998-b1ce-4f3f-8321-838d6e52ed43'], aliases:['庫布礁','库布礁']},
+    // The local dive operator identifies the first Vouliagmeni port as this shore dive.
+    // https://www.sealsdivingcenter.gr/dive-from-shore/?lang=en
+    // https://www.sealsdivingcenter.gr/%CE%BA%CE%B1%CF%84%CE%AC%CE%B4%CF%85%CF%83%CE%B7-%CE%B1%CF%80%CF%8C-%CE%B1%CE%BA%CF%84%CE%AE/
+    {siteIds:['313927f8-44a4-40cb-adeb-eaee75843dea'], aliases:['1st port of Vouliagmeni','1ο λιμανάκι Βουλιαγμένης']},
+    // The second Vouliagmeni port is the shore dive around the Devil's Well.
+    // https://www.padi.com/dive-site/greece/2nd-gulf-of-vouliagmeni/
+    // https://www.sealsdivingcenter.gr/%CE%BA%CE%B1%CF%84%CE%AC%CE%B4%CF%85%CF%83%CE%B7-%CE%B1%CF%80%CF%8C-%CE%B1%CE%BA%CF%84%CE%AE/
+    // https://www.divers-society.com/en/fun-dives/vouliagmenis-well/
+    {siteIds:['7dd43bf4-6f3d-4d49-aed3-45e348513fa5'], aliases:['2ο λιμανάκι Βουλιαγμένης',"Devil's Well","Vouliagmeni's Well"]},
+    // Dive-site directories use both Abu and Abo for this exact Red Sea site.
+    // https://www.zentacle.com/loc/eg/red-sea-governorate/marsa-alam
+    // https://divemap.be/dive-sites/abo-soyaeer.html
+    {siteIds:['60156fd6-3a1b-4ddb-a7e3-c3be208ad61d'], aliases:['Abu Soyaeer']},
+    // Xàbia's English dive guide retains the local dive-site name Primera Ensenada.
+    // https://www.padi.com/dive-site/spain/1a-ensenada-de-la-reserva-marina-del-cabo-de-san-antonio/
+    // https://www.ruta-seda.comunitatvalenciana.com/sites/default/files/2020-08/Diving%20in%20X%C3%A0bia_compressed.pdf
+    {siteIds:['ddaa6b9e-87d1-4d11-8543-28d261796916'], aliases:['Primera Ensenada']},
+    // Local dive operators and PADI identify the second cove as Segunda Ensenada.
+    // https://www.padi.com/dive-site/spain/2a-ensenada-reserva-marina-del-cabo-de-san-antonio/
+    // https://www.mardaysresort.com/inmersiones/cabo-san-antonio-inmersion-buceo/
+    {siteIds:['d6a85097-1ec6-4adc-b1f2-2526846506e4'], aliases:['Segunda Ensenada']},
     // The St. Croix pier dive is at Ann E. Abramson Marine Facility.
     // https://reefwander.com/diving/st-croix/frederiksted-pier/
     {siteIds:['15e02bdb-f84f-43d1-925a-a11ff06388de'], aliases:['Ann E. Abramson Marine Facility']},
