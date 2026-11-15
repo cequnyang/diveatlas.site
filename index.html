@@ -11347,7 +11347,7 @@ ZSD·2016–2025</span></span>
       photo.locationConfidence !== 'exact' ||
       photo.source !== 'personal' ||
       photo.license !== 'owned' ||
-      !isLocalWebp ||
+      !(isLocalWebp || src === window.DiveAtlasReviewedPhotos?.assetUrl(`assets/dive-sites/${photoId}/hero.webp`)) ||
       !alt ||
       !credit
     ) return reviewed || null;

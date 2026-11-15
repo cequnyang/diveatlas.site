@@ -3,6 +3,14 @@ const {openMap, setMapView}=require('./support');
 const {displayURL,mockR2Images}=require('./photo-assets.cjs');
 const fs=require('node:fs');
 const photos=JSON.parse(fs.readFileSync('assets/dive-sites/assignments.json','utf8'));
+test('personal map heroes remain eligible after R2 resolution',async({page})=>{
+ await openMap(page);await mockR2Images(page);
+ const id='f7d2465f-0fe3-421d-9b35-2337c9d457f1';
+ const manifest=require('../../datasets/dive-site-photo-r2.json');
+ const expected=manifest.assets[`/assets/dive-sites/${id}/hero.webp`].url;
+ await page.evaluate(id=>window.__DIVEATLAS_TEST__.addDiveSite(-5.7,131,id,{withFallbackPhoto:true}).openPopup(),id);
+ await expect(page.locator('.dive-popup-photo')).toHaveAttribute('src',expected);
+});
 
 test('reviewed thumbnails follow stable permalinks across initial, dynamic and cloned cards',async({page})=>{
  // Bound simultaneous image decodes as the assignment catalog grows.

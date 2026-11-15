@@ -9,6 +9,16 @@ from tools import generate_seo_pages as seo
 
 
 class PublicDetailRecordsTest(unittest.TestCase):
+    def test_recommendation_card_resolves_legacy_photo_before_html(self):
+        from tools.photo_asset_urls import photo_asset_url
+        source = 'assets/dive-sites/f7d2465f-0fe3-421d-9b35-2337c9d457f1/hero.webp'
+        candidate = {'site_id': 'example', 'slug': 'example', 'name': 'Example',
+                     'lat': 0, 'lon': 0, 'categories': {},
+                     'photo': {'src': source, 'credit': 'Owner'}}
+        markup = seo.recommendation_card_link(candidate)
+        self.assertIn(photo_asset_url(seo.ROOT, source), markup)
+        self.assertNotIn('src="/' + source + '"', markup)
+
     def setUp(self):
         # Synthetic subsets do not load repository-wide identity decisions.
         patcher = patch.object(policy, 'read_reviews', return_value={})

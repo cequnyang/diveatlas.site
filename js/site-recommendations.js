@@ -1,5 +1,6 @@
 import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Reviewed previews unavailable:', error));
 (() => {
+  const photoAssets = import('/js/dive-site-photo-asset-urls.js');
   const recommendationPreviewLimit = 5;
   const recommendationPageSize = 10;
 
@@ -68,7 +69,11 @@ import('/js/dive-site-reviewed-thumbnails.js').catch(error => console.warn('Revi
       image.className = 'site-recommendations__image';
       image.alt = '';
       image.loading = 'lazy';
-      if (candidate.photo) image.src = candidate.photo;
+      // Resolve before setting src: post-render thumbnail replacement cannot
+      // prevent the browser's first request to a removed Git-hosted image.
+      if (candidate.photo) photoAssets.then(({ photoAssetUrl }) => {
+        if (!image.hasAttribute('src')) image.src = photoAssetUrl(candidate.photo);
+      }).catch(error => console.warn('Recommendation photo unavailable:', error));
       else image.classList.add('site-recommendations__image--placeholder');
       if (candidate.photoCredit) image.title = candidate.photoCredit;
       image.addEventListener('error', () => image.classList.add('site-recommendations__image--placeholder'), { once:true });

@@ -104,7 +104,7 @@ def recommendation_catalog(candidates, locations=None):
             if site.get(key):
                 recommendation[key] = site[key]
         if isinstance(photo, dict) and photo.get("src"):
-            recommendation["photo"] = str(photo["src"])
+            recommendation["photo"] = seo.photo_asset_url(ROOT, str(photo["src"]))
         if isinstance(photo, dict) and photo.get("credit"):
             recommendation["photo_credit"] = str(photo["credit"])
         sites.append(recommendation)

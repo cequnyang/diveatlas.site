@@ -2,6 +2,8 @@
   'use strict';
 
   const page = document.getElementById('detailPage');
+  let photoAssetUrl;
+  const photoUrl = src => safeUrl(photoAssetUrl(src));
   // Large feature and difficulty matches stay out of the initial DOM until requested.
   const recommendationPreviewLimit = 5;
   const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -292,7 +294,7 @@
         .filter(other => uuid.test(other.site_id) && !(site.identity_members || []).includes(other.site_id) && (other.canonical_id || other.site_id) !== (site.canonical_id || siteId))).slice(0, 8);
       if (!related.length) return;
       aside.innerHTML = `<h2>More in this region</h2><ul>${related.map(other => {
-        const image = safeUrl(other.photo?.src);
+        const image = photoUrl(other.photo?.src);
         return `<li><a class="site-recommendations__card" href="${detailUrl(other)}">${image ? `<img class="site-recommendations__image" src="${escape(image)}" alt="" loading="lazy">` : '<span class="site-recommendations__image site-recommendations__image--placeholder" aria-hidden="true"></span>'}<span class="site-recommendations__card-body"><span class="site-recommendations__name">${escape(other.name)}</span><span class="site-recommendations__location">${escape(other.region)}</span></span></a></li>`;
       }).join('')}</ul>`;
       aside.hidden = false;
@@ -368,7 +370,7 @@
       const featureLabel = primaryFeatures.length
         ? `<span class="site-recommendations__feature-values"> · ${escape(primaryFeatures.join(' · '))}</span>` : '';
       const card = (candidate, expanded = false) => {
-        const image = safeUrl(candidate.photo);
+        const image = photoUrl(candidate.photo);
         const featuresMarkup = (Array.isArray(candidate.features) ? candidate.features : []).slice(0, 2).map(feature =>
           `<span class="site-recommendations__feature">${escape(feature)}</span>`).join('')
           || '<span class="site-recommendations__feature site-recommendations__feature--empty">Features unavailable</span>';
@@ -416,7 +418,7 @@
     document.head.append(schema);
 
     const photo = site.photo;
-    const photoUrl = safeUrl(photo?.src);
+    const photoUrl = safeUrl(photoAssetUrl(photo?.src));
     const mapUrl = `/?site=${encodeURIComponent(site.canonical_id || siteId)}&lat=${site.lat}&lng=${site.lon}&z=14`;
     // Keep hrefs as a fallback; the contribution controller opens the form in place.
     const photoUploadUrl = `/?addPhoto=1&amp;site=${encodeURIComponent(site.canonical_id || siteId)}&amp;lat=${site.lat}&amp;lng=${site.lon}&amp;z=14`;
@@ -513,6 +515,9 @@
     }
     let response;
     try {
+      // Published detail JSON can predate the R2 migration. Resolve legacy image
+      // paths before rendering so removed Git payloads are never requested.
+      ({ photoAssetUrl } = await import('/js/dive-site-photo-asset-urls.js'));
       // A finite deadline gives people a retry action if the cloud request stalls.
       response = await fetch(window.DiveAtlasDataAssets.url(`data/dive-site-details/v1/${siteId}.json`),
         { signal:AbortSignal.timeout(15000) });
@@ -535,7 +540,7 @@
     for (const src of ['/datasets/dive-site-name-translations.js?v=2',
       '/js/dive-site-name-localization.js?v=1', '/js/dive-site-summary-translations.js?v=1',
       '/js/dive-photo-preview.js?v=5', '/js/seo-page-controls.js?v=29',
-      '/js/dive-conditions-chart.js?v=56', '/js/site-recommendations.js?v=19',
+      '/js/dive-conditions-chart.js?v=56', '/js/site-recommendations.js?v=20',
       '/js/dive-site-rating-card.js?v=28']) {
       try { await loadScript(src); }
       catch (_) { console.warn(`Optional dive-site feature could not load: ${src}`); }

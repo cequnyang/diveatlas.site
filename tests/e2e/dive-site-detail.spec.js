@@ -30,6 +30,28 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/**', route => route.fulfill({ status:404, body:'Unavailable in test' }));
 });
 
+test('legacy personal hero paths resolve to R2 without requesting removed Git images', async ({ page }) => {
+  const manifest = require('../../datasets/dive-site-photo-r2.json');
+  const requests = [];
+  page.on('request', request => requests.push(new URL(request.url()).pathname));
+  for (const id of ['f7d2465f-0fe3-421d-9b35-2337c9d457f1', 'a7ced4d1-f0e1-486c-b524-d08036c9673a']) {
+    const legacy = `assets/dive-sites/${id}/hero.webp`;
+    await page.route('**/data/dive-site-details/v1/*.json', route => route.fulfill({json:{...record(id), photo:{src:legacy, source:'personal', credit:'User-provided', alt:'Owner photo'}}}));
+    await page.goto(`/dive-site.html?id=${id}`);
+    const image = page.locator('.site-photo-gallery-main img');
+    await expect(image).toHaveAttribute('src', manifest.assets['/' + legacy].url);
+    await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
+    expect(requests).not.toContain('/' + legacy);
+    await page.waitForFunction(()=>Boolean(window.DiveAtlasRecommendationCards));
+    await page.evaluate(src=>{
+      const card=window.DiveAtlasRecommendationCards.create({photo:src,slug:'legacy-photo',name:'Legacy photo',lat:0,lon:0},null);
+      card.id='legacy-recommendation';document.body.append(card);
+    },legacy);
+    await expect(page.locator('#legacy-recommendation img')).toHaveAttribute('src',manifest.assets['/' + legacy].url);
+    expect(requests).not.toContain('/' + legacy);
+  }
+});
+
 test('Dolphins Reef shared pilot renders its exported photo without an assignment lookup', async ({ page }) => {
   const id = '95b478be-2487-49dc-81dd-46e553f54935';
   const photos = photoMetadata([id]);
