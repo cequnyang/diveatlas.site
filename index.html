@@ -28719,7 +28719,14 @@ function closeShareDialog() {
       /^https?:\/\//i.test(String(source.url || ''))
     );
     const datasetSourceLinks = renderDiveSourceLinks(sources, hasReferenceUrl);
+    // Keep full attribution in Sources; the footer contains an actual short
+    // string so popup sizing includes every visible line instead of clipping it.
+    const photoCreditContent = photo
+      ? `${t('divePhotoCredit')}: ${escapeHtml(photo.credit)}` +
+        (photo.source === 'reviewed-context' ? photo.links.map(item => ` · <a href="${escapeHtml(item.url)}" rel="noreferrer">${escapeHtml(item.label)}</a>`).join('') : '')
+      : '';
     const sourceContent = [
+      photoCreditContent ? `<div class="dive-popup-photo-attribution">${photoCreditContent}</div>` : '',
       datasetSourceLinks ? `<span class="dive-popup-dataset-sources">${datasetSourceLinks}</span>` : '',
       evidenceLinks
         .filter(({ url }) => /^https?:\/\//i.test(String(url || '')))
@@ -28728,10 +28735,21 @@ function closeShareDialog() {
     ].filter(Boolean).join(' · ');
     const footerItems = [];
     if (photo) {
+      const fullCredit = `${t('divePhotoCredit')}: ${photo.credit}`.replace(/\s+/g, ' ').trim();
+      let creditPreview = '';
+      let previewWidth = 0;
+      // Wide characters consume roughly twice the space of Latin characters.
+      // This conservative budget leaves room for Sources in narrow popups.
+      for (const character of fullCredit) {
+        const width = /[^\u0000-\u00ff]/.test(character) ? 2 : 1;
+        if (previewWidth + width > 32) break;
+        creditPreview += character;
+        previewWidth += width;
+      }
+      if (creditPreview.length < fullCredit.length) creditPreview = creditPreview.trimEnd() + '…';
       footerItems.push(
         `<div class="dive-popup-photo-credit">` +
-        `${t('divePhotoCredit')}: ${escapeHtml(photo.credit)}` +
-        (photo.source === 'reviewed-context' ? photo.links.map(item => ` · <a href="${escapeHtml(item.url)}" rel="noreferrer">${escapeHtml(item.label)}</a>`).join('') : '') +
+        `${escapeHtml(creditPreview)}` +
         `</div>`
       );
     }

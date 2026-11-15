@@ -63,9 +63,21 @@ test('map popup and enlarged preview use the assigned photo with context and lin
   await expect(popup.locator('.dive-popup-photo-label--reviewed')).toHaveCount(0);
   // Source and licence evidence may share a URL. Check each credit role rather
   // than assuming that URL occurs only once (including in site references).
-  const credit=popup.locator('.dive-popup-photo-credit');
-  await expect(credit.getByRole('link',{name:'Source',exact:true})).toHaveAttribute('href',p.source_page);
-  await expect(credit.getByRole('link',{name:p.licence,exact:true})).toHaveAttribute('href',p.licence_url);
+  const preview=popup.locator('.dive-popup-photo-credit');
+  await expect(preview).toHaveCSS('overflow', 'visible');
+  expect((await preview.textContent()).length).toBeLessThanOrEqual(33);
+  expect(await preview.evaluate(el=>el.getBoundingClientRect().height<=2*parseFloat(getComputedStyle(el).lineHeight)+1)).toBe(true);
+  // Summary hydration replaces source markup; open it after that update settles.
+  await page.waitForFunction(()=>window.__DIVEATLAS_TEST__.map._popup?._diveAtlasSummaryLoaded);
+  const credit=popup.locator('.dive-popup-photo-attribution');
+  // Mobile map auto-pan can dismiss sources while the sheet is settling.
+  await expect(async()=>{
+   if(!await credit.isVisible()) await popup.locator('.dive-popup-sources > summary').click();
+   await expect(credit).toBeVisible();
+   await expect(credit.getByRole('link',{name:'Source',exact:true})).toHaveAttribute('href',p.source_page);
+   await expect(credit.getByRole('link',{name:p.licence,exact:true})).toHaveAttribute('href',p.licence_url);
+  }).toPass({timeout:15000});
+  await page.keyboard.press('Escape');
   await popup.locator('.dive-popup-photo-trigger').click();await expect(page.locator('.dive-photo-preview[open]')).toBeVisible();await expect(page.locator('.dive-photo-preview__image')).toHaveAttribute('src',displayURL(p.hero));
   const previewCredit=page.locator('.dive-photo-preview__credit');
   await expect(previewCredit.getByRole('link',{name:'Source',exact:true})).toHaveAttribute('href',p.source_page);
