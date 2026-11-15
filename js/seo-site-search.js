@@ -1,6 +1,6 @@
 (async () => {
   'use strict';
-  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=9');
+  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=10');
   window.DiveAtlasHeader.mount();
 
   const slot = document.getElementById('seoSiteSearchSlot');
@@ -20,7 +20,7 @@
   const filterClear = document.getElementById('seoSiteSearchFilterClear');
   const mobileLayoutQuery = window.matchMedia('(max-width: 720px)');
   if (!slot || !section || !searchBox || !input || !results || !resultsScroll || !filterControls) return;
-  if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=34');
+  if (!window.DiveAtlasAreaSearch) await import('/js/area-search.js?v=35');
   if (!window.DIVE_SITE_NAME_TRANSLATIONS) await import('/datasets/dive-site-name-translations.js?v=2')
     .catch(error => console.warn('Verified search names unavailable:', error));
   if (!window.DiveAtlasSearchResultsMenu) await import('/js/search-results-menu.js?v=1');

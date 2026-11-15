@@ -103,6 +103,25 @@
   // https://www.padi.com/zh-hans/diving-in/ying-shu-wei-er-jing-qun-dao/
   // https://travel.padi.com/es/diving-in/islas-virgenes-britanicas/
   const placeAliases = [
+    // Exact regional labels; source review in vietnam-resume-reviewed-evidence-20261115.json.
+    {"names":["Khánh Hòa"],"country":"Vietnam","aliases":["Khanh Hoa"]},
+
+    // Exact regional labels; source review in seychelles-resume-evidence-20261115.json.
+    {"names":["Belombre"],"country":"Seychelles","aliases":["Bel Ombre"]},
+    {"names":["La Rivière Anglaise"],"country":"Seychelles","aliases":["English River"]},
+    {"names":["Zil Elwannyen Sesel"],"country":"Seychelles","aliases":["Outer Islands of Seychelles"]},
+
+    // Exact regional labels; source review in estonia-admin-evidence-20261115.json.
+    {"names":["Harju"],"country":"Estonia","aliases":["Harju County","Harjumaa","Harju maakond","Харьюмаа"]},
+    {"names":["Harju maakond"],"country":"Estonia","aliases":["Harju County","Harjumaa","Harju maakond","Харьюмаа"]},
+    {"names":["Harjumaa"],"country":"Estonia","aliases":["Harju County","Harjumaa","Harju maakond","Харьюмаа"]},
+
+    // Exact regional labels; source review in guatemala-admin-evidence-20261115.json.
+    {"names":["Sololá"],"country":"Guatemala","aliases":["ソロラ県"]},
+
+    // Exact regional labels; source review in latvia-admin-evidence-20261115.json.
+    {"names":["Jūrmala"],"country":"Latvia","aliases":["Юрмала"]},
+
     // Exact regional labels; source review in montenegro-evidence-20261115.json.
     {"names":["Herceg Novi"],"country":"Montenegro","aliases":["Херцег Нови"]},
 
@@ -860,6 +879,324 @@
   // https://blog.padi.com/ko/shark-diving-the-best-dive-sites-in-the-world/
   // https://blog.padi.com/ko/best-scuba-diving-destinations-in-the-world/
   const siteAliases = [
+    // Scoped source review; details in costa-brava-normalized-evidence-20261115.json.
+    {"names":["Aigua Xelida"],"country":"Spain","siteIds":["f2243c57-f023-448e-9668-f1bb2343a7e7"],"aliases":["Cala de Aigua Xelida"]},
+    {"names":["Badia de Tamariu"],"country":"Spain","siteIds":["1b5b9a06-6d78-44ed-9f4e-2508b9479384"],"aliases":["Cala de Tamariu"]},
+    {"names":["Cala Margarita"],"country":"Spain","siteIds":["2f2a4411-4a24-4ede-847a-004be2d62933"],"aliases":["Cala Margarida","Margarida"]},
+    {"names":["MARGARITA"],"country":"Spain","siteIds":["2ff2bd81-2bf5-4845-b28c-7d4b94c21cc0"],"aliases":["Cala Margarida","Margarida"]},
+    {"names":["Cala Nova"],"country":"Spain","siteIds":["742bd13f-daf0-4d09-a9c3-172bc9488d4e"],"aliases":["Tamariu Canyons"]},
+    {"names":["El Dofí Sud"],"country":"Spain","siteIds":["c142a510-fbf3-4a65-ad3c-75b306c7c7e1"],"aliases":["Dofí Sud"]},
+    {"names":["El Negre del Falaguer"],"country":"Spain","siteIds":["5449a896-ef00-4bc5-94aa-93c7bab4c9d4"],"aliases":["Negre del Falaguer"]},
+    {"names":["Furio de Aigua Xelida"],"country":"Spain","siteIds":["483b930f-287a-4562-8776-5ae4fb583153"],"aliases":["Tamariu rock"]},
+    {"names":["Furio Fitó"],"country":"Spain","siteIds":["381b008d-dd27-41cc-af01-b8981903ffa3"],"aliases":["Furió Fitó"]},
+    {"names":["Illa Ferriol"],"country":"Spain","siteIds":["e656445c-e92c-47d3-9e40-bff017e73267"],"aliases":["La Ferriola"]},
+    {"names":["La Reina"],"country":"Spain","siteIds":["38447049-e38c-4515-8f3e-f1b75da0dd90"],"aliases":["Cueva de La Reina","Cova de La Reina"]},
+    {"names":["Reina"],"country":"Spain","siteIds":["c0deecdb-d5f0-41e4-83f7-ff5e10c8e4bf"],"aliases":["Cueva de La Reina","Cova de La Reina"]},
+    {"names":["Leuchtturm / El Tabal"],"country":"Spain","siteIds":["be8fb1bb-4b14-4082-8848-1296c83ce12d"],"aliases":["Tabal"]},
+    {"names":["Never Come Back"],"country":"Spain","siteIds":["0f483d91-243a-4dc0-a3d6-698763c26619"],"aliases":["El Ancla"]},
+    {"names":["Reggio Messina"],"country":"Spain","siteIds":["84f4a686-4d19-40f7-bf51-0e26c0c4beb7"],"aliases":["El Reggio"]},
+    {"names":["Reggio Messina (Wreck)"],"country":"Spain","siteIds":["57ad8fbb-d011-4908-9184-cab9858f86f2"],"aliases":["El Reggio"]},
+    {"names":["Salinas"],"country":"Spain","siteIds":["b7708205-b37f-4e13-b703-e43c6163107a"],"aliases":["Punta Salines"]},
+    {"names":["Salpatxot"],"country":"Spain","siteIds":["9446dfec-9dd0-4416-8ab3-983e098ea8e1"],"aliases":["El Salpatxot"]},
+    {"names":["Ullastre I"],"country":"Spain","siteIds":["439c301c-04cf-4224-bf1c-da655d691968"],"aliases":["Ullastre de tierra"]},
+    {"names":["Ullastre II"],"country":"Spain","siteIds":["ea62d182-8058-4cad-be47-fd11e639cf3e"],"aliases":["Ullastre del medio"]},
+
+    // Scoped source review; details in vietnam-resume-reviewed-evidence-20261115.json.
+    {"names":["Moray Beach"],"country":"Vietnam","siteIds":["58a2f3e5-32eb-4e15-acbb-ab9e99afa0e8"],"aliases":["モーレイビーチ"]},
+    {"names":["Rainbow Reef"],"country":"Vietnam","siteIds":["28057175-f239-4b5d-8702-4ab99d246d6e"],"aliases":["レインボーリーフ"]},
+
+    // Scoped source review; details in philippines-mactan-reviewed-evidence-20261115.json.
+    {"names":["Agus"],"country":"Philippines","siteIds":["8f308279-2cf9-4da3-bba7-728507e0f98b"],"aliases":["アグス"]},
+    {"names":["Baring"],"country":"Philippines","siteIds":["7fec4c5b-df4c-4913-96e5-e617e0f7be96"],"aliases":["バリン"]},
+    {"names":["Bas Coral"],"country":"Philippines","siteIds":["53ada013-42f6-4dca-9f8d-8b12031e0b77"],"aliases":["バス コーラル"]},
+    {"names":["Cawhagan Island"],"country":"Philippines","siteIds":["8abca66b-b05b-4faa-82c7-72b7ef05401f"],"aliases":["カオハガン島"]},
+    {"names":["Costabella"],"country":"Philippines","siteIds":["b9e2e581-7733-455c-9a1a-00db22550a81"],"aliases":["コスタベラ"]},
+    {"names":["Gilutungan Marine Sanctuary"],"country":"Philippines","siteIds":["0d137161-06a6-435e-8488-aacf75b33c99"],"aliases":["ヒルトゥガン島"]},
+    {"names":["Hadsan"],"country":"Philippines","siteIds":["4aa6a71b-6d5c-44a9-b075-05b6aa07793d"],"aliases":["ハドサン"]},
+    {"names":["Hilutungan Island Marine Sanctuary"],"country":"Philippines","siteIds":["ca212d67-c10f-44af-97f0-c6f6bbe1b9fe"],"aliases":["ヒルトゥガン島"]},
+    {"names":["Marigondon Cave"],"country":"Philippines","siteIds":["53454a91-0667-43ab-9eb7-9f2401c439d1"],"aliases":["マリゴンドンケーブ"]},
+    {"names":["Nalusuan Island"],"country":"Philippines","siteIds":["ddd251e3-b293-4681-9f20-8124e55838b2"],"aliases":["ナルスアン島"]},
+    {"names":["Nalusuan Island Marine Sanctuary"],"country":"Philippines","siteIds":["f9ea2309-94c5-47d4-9e0f-3d2ff948b02a"],"aliases":["ナルスアン島"]},
+    {"names":["San Vicente"],"country":"Philippines","siteIds":["563604a1-9948-46cf-9666-d621d0128405"],"aliases":["サンビセンテ"]},
+    {"names":["Sulpa Island"],"country":"Philippines","siteIds":["0ec84874-2983-45d6-a230-696a96337e45"],"aliases":["ソルパ島"]},
+    {"names":["Tambuli"],"country":"Philippines","siteIds":["999fe8db-d938-4d29-89d2-1f837c637cb7"],"aliases":["タンブリ"]},
+    {"names":["Tingo"],"country":"Philippines","siteIds":["e8522fed-2b18-47ee-a13e-b2b679991b36"],"aliases":["ティンゴ"]},
+
+    // Scoped source review; details in japan-okinawa-normalized-evidence-20261115.json.
+    {"names":["Nakanoshima Channel"],"country":"Japan","siteIds":["19bdd41c-6c9e-4553-94bb-363fd3e14805"],"aliases":["中の島チャネル"]},
+    {"names":["Tori Ike"],"country":"Japan","siteIds":["9bd11621-e257-4259-a957-feecbfb97bf1"],"aliases":["通り池"]},
+    {"names":["Cross Line"],"country":"Japan","siteIds":["591756f8-c23f-4d0f-a8ab-d2ec0a8e9b29"],"aliases":["クロスライン"]},
+    {"names":["Crystal Park"],"country":"Japan","siteIds":["eddb9b93-726c-405d-b0f6-63eb34074f9d"],"aliases":["クリスタルパーク"]},
+    {"names":["Dream Hole"],"country":"Japan","siteIds":["00755dd5-84a8-45de-8ba4-e53b059d786d"],"aliases":["万座ドリームホール"]},
+    {"names":["Manzamo"],"country":"Japan","siteIds":["db9f3c61-9559-4afb-a84d-0827181608e7"],"aliases":["万座毛下"]},
+    {"names":["Marine Lake"],"country":"Japan","siteIds":["0c80cd5e-21b1-4631-b587-ff8d56b2a31c"],"aliases":["蜂の巣ホール","マリンレイク"]},
+    {"names":["Mini Grotto"],"country":"Japan","siteIds":["54954943-fc09-4156-9dbe-d3930601057b"],"aliases":["ミニグロット","ミニ通り池"]},
+    {"names":["Minna Popeye"],"country":"Japan","siteIds":["f0aa91bb-e169-4df1-864c-05af222752fb"],"aliases":["ポパイ"]},
+    {"names":["Minna Port Side"],"country":"Japan","siteIds":["d569ca6c-51f7-45b9-8e05-7bc80ceaddf4"],"aliases":["ポートサイド"]},
+    {"names":["Nagura Coral Garden"],"country":"Japan","siteIds":["80969534-2b4d-4ba7-9a2a-a642af553dc3"],"aliases":["名蔵：コーラルガーデン"]},
+    {"names":["Nakayukui"],"country":"Japan","siteIds":["010b366c-54e3-43ee-a423-14b0491160f8"],"aliases":["なかゆくい"]},
+    {"names":["Naruhodo The Cave"],"country":"Japan","siteIds":["730a01ec-cfd3-4b7b-92c2-c04e4a15b91d"],"aliases":["なるほど・ザ・ケーブ"]},
+    {"names":["Oganzaki Lighthouse"],"country":"Japan","siteIds":["bb2cc58b-9f60-442b-80cb-0645a3586a2b"],"aliases":["御神崎　灯台下"]},
+    {"names":["Overhead Rock"],"country":"Japan","siteIds":["e4fde472-0684-457b-8d60-ea79ca9229f7"],"aliases":["オーバーヘッドロック"]},
+    {"names":["Sakieda Big Arch"],"country":"Japan","siteIds":["91fd144b-921a-4bf4-8fb4-a0e55c871692"],"aliases":["崎枝　ビックアーチ"]},
+    {"names":["Sakieda Maze"],"country":"Japan","siteIds":["9b7e5651-c698-4ba8-9ca7-2471bf8af504"],"aliases":["崎枝　迷路"]},
+    {"names":["Sakuraguchi"],"country":"Japan","siteIds":["5d8e0431-5727-4ed5-8ece-35199062ddc6"],"aliases":["桜口"]},
+    {"names":["Sesoko Island Labyrinth"],"country":"Japan","siteIds":["6737b454-71c9-46bb-bcc7-90e7b2bfc92a"],"aliases":["瀬底島・ラビリンス"]},
+    {"names":["Shiratori"],"country":"Japan","siteIds":["c101a6a7-d7e6-42f2-b8d5-188bb2b78162"],"aliases":["白鳥崎"]},
+    {"names":["Snake Hole"],"country":"Japan","siteIds":["842251b2-0170-476b-8720-5e097e0120a3"],"aliases":["崖下・スネークホール"]},
+    {"names":["Sukuji Gurukun Rock"],"country":"Japan","siteIds":["b73c1db2-5b5e-47e6-ab39-e59106020e64"],"aliases":["底地沖　グルクンの根"]},
+    {"names":["Taketomi South Potato Rock"],"country":"Japan","siteIds":["7b1299de-0900-4344-b828-e7fbeaac208b"],"aliases":["竹富南　じゃがいも"]},
+    {"names":["The Devil’s Palace"],"country":"Japan","siteIds":["f54426e3-f324-49a0-a681-71f965d52942"],"aliases":["魔王の宮殿"]},
+    {"names":["Tokakinsone"],"country":"Japan","siteIds":["294dabc6-8f74-4cef-8b12-a91fd555bf13"],"aliases":["トカキン曽根"]},
+    {"names":["Twin Cave"],"country":"Japan","siteIds":["6397b8d0-8511-47f5-9c6c-e042cbdfcf98"],"aliases":["ツインケーブ"]},
+    {"names":["Yamada Point"],"country":"Japan","siteIds":["78ed0edb-5180-48ae-93f0-191f49b2c91a"],"aliases":["山田ポイント"]},
+
+    // Scoped source review; details in thailand-racha-similan-resume-normalized-evidence-20261115.json.
+    {"names":["Boulder City"],"country":"Thailand","siteIds":["8fef9cc4-a452-4a75-85af-9ecff5186bf4"],"aliases":["ボルダーシティ"]},
+    {"names":["Breakfast Bend"],"country":"Thailand","siteIds":["ba3daf09-cb1e-4fbd-9fc5-38b5ac1bfe44"],"aliases":["ブレックファーストベンド"]},
+    {"names":["Chinese Wall"],"country":"Thailand","siteIds":["45f7bac9-3477-43ce-9a07-53aa11201b64"],"aliases":["チャイニーズウォール"]},
+    {"names":["Donald Duck Bay"],"country":"Thailand","siteIds":["c06fb470-e502-4c8a-9953-f400005dd7a5"],"aliases":["ドナルドダックベイ"]},
+    {"names":["Honeymoon Bay"],"country":"Thailand","siteIds":["e1a0ab25-2a97-430b-b86d-dcb16c267d00"],"aliases":["ハネムーンベイ"]},
+    {"names":["Princess Bay"],"country":"Thailand","siteIds":["3091e0b4-6cd9-4183-8e6b-a1083b517b01"],"aliases":["プリンセスベイ"]},
+    {"names":["Tuna Wreck"],"country":"Thailand","siteIds":["b3f0c379-4117-4b0f-951a-2b41ea9d7c15"],"aliases":["ツナレック"]},
+    {"names":["Shark Fin Reef"],"country":"Thailand","siteIds":["4290bc14-e3f0-4a1b-9786-25e625446436"],"aliases":["シャークフィンリーフ"]},
+    {"names":["North Point"],"country":"Thailand","siteIds":["700739ec-db62-4891-99f7-0329a10813af"],"aliases":["ノースポイント"]},
+    {"names":["West of Eden"],"country":"Thailand","siteIds":["58ee2808-bd5b-4960-8c01-870e5dd1a271"],"aliases":["ウエストオブエデン"]},
+    {"names":["South of Eden/Screaming Rocks"],"country":"Thailand","siteIds":["7e22d2d0-7f2e-4386-aea0-eb0f9080586f"],"aliases":["サウスオブエデン"]},
+    {"names":["Koh Bon"],"country":"Thailand","siteIds":["1e0f045e-a97d-4e99-be1e-349709c724de"],"aliases":["ボン島"]},
+    {"names":["Koh Bon Similan National Park"],"country":"Thailand","siteIds":["c558f319-2e23-4d84-912e-d67cdd895b58"],"aliases":["ボン島"]},
+    {"names":["Similan Islands"],"country":"Thailand","siteIds":["d48769ea-2df3-4531-9241-a4409e025ea8"],"aliases":["シミラン諸島"]},
+    {"names":["West of Six"],"country":"Thailand","siteIds":["d8b5b98f-240a-4358-982e-8acea60c1067"],"aliases":["West of Eden","ウエストオブエデン"]},
+    {"names":["Koh Tachai Pinnacle"],"country":"Thailand","siteIds":["b7469f32-2ef1-4573-88b3-1de9bad89d29"],"aliases":["ツインピークス"]},
+    {"names":["Koh Tachai Pinnacle/The Dome"],"country":"Thailand","siteIds":["4381737d-daea-4cde-989e-fa3fbd387053"],"aliases":["ツインピークス"]},
+    {"names":["Racha Noi"],"country":"Thailand","siteIds":["836bd6cb-8ac5-475b-ab26-528c19711400"],"aliases":["ラチャノイ島"]},
+    {"names":["Racha Noi Island"],"country":"Thailand","siteIds":["b078c70b-f4f0-4960-85f6-aa3027ed85d2"],"aliases":["ラチャノイ島"]},
+    {"names":["Koh Racha Yai"],"country":"Thailand","siteIds":["8f9c2095-f307-4690-912f-e2b69627df4f"],"aliases":["ラチャヤイ島"]},
+    {"names":["Racha Yai"],"country":"Thailand","siteIds":["5f16cf35-57d7-497f-82d3-aeb5ae57fbf0"],"aliases":["ラチャヤイ島"]},
+    {"names":["Racha Yai Island"],"country":"Thailand","siteIds":["90e6c284-8af8-4bdd-acd9-5c49fa78fc2e"],"aliases":["ラチャヤイ島"]},
+    {"names":["Banana Bay Racha Noi"],"country":"Thailand","siteIds":["662c4e0a-c89b-4281-9e40-b48a34b9838d"],"aliases":["バナナベイ","อ่าวกล้วย"]},
+    {"names":["Racha Noi, Banana Bay"],"country":"Thailand","siteIds":["7510cc20-8abf-4aff-9749-8869b8cfcbda"],"aliases":["バナナベイ","อ่าวกล้วย"]},
+    {"names":["Racha Noi, Banana Rock"],"country":"Thailand","siteIds":["34db875a-b69c-4a99-bb88-d1710612c103"],"aliases":["バナナロック"]},
+    {"names":["Camera Bay, Racha Noi"],"country":"Thailand","siteIds":["9695cd9d-7596-461d-8b38-9aa40d23d51d"],"aliases":["カメラベイ"]},
+    {"names":["Racha Noi, Camera Bay"],"country":"Thailand","siteIds":["6192437c-d6cd-4b40-a1fa-24397868c8d3"],"aliases":["カメラベイ"]},
+    {"names":["Racha Noi, Marina Bay"],"country":"Thailand","siteIds":["a2019998-5a5c-4b51-8dd3-17f419464f17"],"aliases":["マリーナベイ"]},
+    {"names":["Racha Noi, North Point"],"country":"Thailand","siteIds":["a525d6e6-0bee-4263-a12d-f238078d1d0c"],"aliases":["ノースポイント"]},
+    {"names":["Racha Noi, South Tip"],"country":"Thailand","siteIds":["d3d7f03b-a5c5-4c84-bd45-6500ea2221fd"],"aliases":["サウスチップ"]},
+    {"names":["Bungalow Bay, Racha Yai"],"country":"Thailand","siteIds":["45d7ed63-4056-4173-97f1-c3ee96660b5f"],"aliases":["バンガローベイ"]},
+    {"names":["Racha Yai, Bungalow Bay"],"country":"Thailand","siteIds":["abdf6be0-05fc-4c9c-9d0c-9404cacbd6b9"],"aliases":["バンガローベイ"]},
+    {"names":["Siam Bay, Racha Yai"],"country":"Thailand","siteIds":["1a3579a2-47b3-4e72-9337-939780549876"],"aliases":["サイアムベイ","อ่าวสยาม"]},
+    {"names":["Racha Yai, Siam Bay"],"country":"Thailand","siteIds":["aa9ea40f-ad5d-4a54-9160-5e9d60e000ea"],"aliases":["サイアムベイ","อ่าวสยาม"]},
+    {"names":["Racha Yai, Bay 1"],"country":"Thailand","siteIds":["89beffd7-06d9-4406-b816-0ac30d9013bc"],"aliases":["ベイ1"]},
+    {"names":["Racha Yai, Bay 2"],"country":"Thailand","siteIds":["4ab2abef-8290-437a-814b-32876bfc06db"],"aliases":["ベイ2"]},
+    {"names":["Racha Yai, Bay 3"],"country":"Thailand","siteIds":["1ffc0957-ccb1-4842-bcf7-a964d63839ab"],"aliases":["ベイ3"]},
+    {"names":["Racha Yai, Homerun Reef"],"country":"Thailand","siteIds":["8582f69e-15ca-46a8-b310-ec69efd96037"],"aliases":["ホームランリーフ"]},
+    {"names":["Racha Yai, Lucy’s Reef"],"country":"Thailand","siteIds":["7bf4f56a-d50f-4212-b60e-df30acd465e9"],"aliases":["ルーシーリーフ"]},
+    {"names":["Racha Yai, Staghorn Reef"],"country":"Thailand","siteIds":["bd14ba4f-0eee-4069-bdef-c2eaadfa4d12"],"aliases":["スタックホーンリーフ"]},
+
+    // Scoped source review; details in malta-resume-normalized-evidence-20261115.json.
+    {"names":["Alex  Cave"],"country":"Malta","siteIds":["b2270525-0a7a-4a7b-a74c-4a271deb6ac8"],"aliases":["Cominotto Cave"]},
+    {"names":["Middle Finger"],"country":"Malta","siteIds":["633ff653-78db-42e4-8f9e-c2826d000cf3"],"aliases":["Ras il-Ħobż","Middle Finger","Mittelfinger"]},
+    {"names":["Santa Maria Caves"],"country":"Malta","siteIds":["4ca785c8-9746-4828-a288-a7d54f8a2217"],"aliases":["Comino Caves","Ghemieri Caves","Santa-Maria-Höhlen"]},
+    {"names":["Ahrax Inland Sea"],"country":"Malta","siteIds":["9e673695-bea3-4caf-ac2d-51dc77be2c45"],"aliases":["Dragonara Cave","Coral Lagoon","Coral Grotto"]},
+    {"names":["Azure Boulders"],"country":"Malta","siteIds":["b5b8497c-c248-4d19-92a9-f55de9a0bf06"],"aliases":["Azure Reef","Azure Alps"]},
+    {"names":["Blue Hole, Dwejra"],"country":"Malta","siteIds":["82277a60-08f0-41a2-aa5a-8c6270bbc2df"],"aliases":["Il-Ħofra tal-Bidwin"]},
+    {"names":["BLUE HOLE, Dwejra, Gozo"],"country":"Malta","siteIds":["579b7ab4-0352-4d54-95b1-3cc67b355846"],"aliases":["Il-Ħofra tal-Bidwin"]},
+    {"names":["Comino Island - Alex's Cave"],"country":"Malta","siteIds":["46d978dc-d70b-412c-bed9-d22e9555ee79"],"aliases":["Cominotto Cave"]},
+    {"names":["Comino Island - Lantern Point"],"country":"Malta","siteIds":["1a798515-db85-4245-b55d-8ab6fdb7319d"],"aliases":["Lantern Point","Ras L-Irqieqa"]},
+    {"names":["Comino Island - Santa Marija Cave"],"country":"Malta","siteIds":["df8242e7-ebc4-4275-b61f-46693423157f"],"aliases":["Comino Caves","Ghemieri Caves","Santa-Maria-Höhlen"]},
+    {"names":["Cueva De Coral"],"country":"Malta","siteIds":["ecae73db-1aa0-485e-99a2-c03cfc857ada"],"aliases":["Coral Cave"]},
+    {"names":["CUEVA DE CORAL, Dwejra, Gozo"],"country":"Malta","siteIds":["5f231204-6468-4194-89f0-7a3251af23bf"],"aliases":["Coral Cave"]},
+    {"names":["Dragonara cave"],"country":"Malta","siteIds":["6043885f-a38b-490e-93c3-c047012f29c1"],"aliases":["Dragonara Cave","Coral Lagoon","Coral Grotto"]},
+    {"names":["Lantern Point (Ras I-Irqieqa)"],"country":"Malta","siteIds":["c42e008a-31a5-44b9-a1b1-fc63638aa3b4"],"aliases":["Lantern Point","Ras L-Irqieqa"]},
+    {"names":["Lantern Point West Dive Site"],"country":"Malta","siteIds":["f606007e-823b-4688-bd6f-851e60255666"],"aliases":["Inner Lantern Point"]},
+    {"names":["Ras il-Hobz"],"country":"Malta","siteIds":["d2c3914e-a924-44ac-8f35-3fe91b78cf5c"],"aliases":["Ras il-Ħobż","Middle Finger","Mittelfinger"]},
+
+    // Scoped source review; details in singapore-remaining-resume-evidence-20261115.json.
+
+    // Scoped source review; details in fiji-resume-reviewed-evidence-20261115.json.
+    {"names":["BISTRO"],"country":"Fiji","siteIds":["2c1023a5-329b-4b32-ba83-5828c2acc530"],"aliases":["The Bistro"]},
+    {"names":["Cabbage Patch"],"country":"Fiji","siteIds":["48189e3c-0773-41e8-a84a-c03b7e2b48b3"],"aliases":["キャベッジ・パッチ"]},
+    {"names":["R&amp;B Dream"],"country":"Fiji","siteIds":["35d35e13-3cbb-42e3-a93b-77dd20e650fa"],"aliases":["R&B Dream"]},
+    {"names":["The Great White Wall"],"country":"Fiji","siteIds":["2ccb05a4-3e3f-404e-85af-6ac1be04006c"],"aliases":["グレート・ホワイトウォール"]},
+
+    // Scoped source review; details in singapore-oceanarium-resume-evidence-20261115.json.
+    {"names":["Open Ocean Habitat"],"country":"Singapore","siteIds":["db735dc1-c5c8-4af7-aad0-8924f489b558"],"aliases":["广阔海洋","深海奥秘生态区"]},
+    {"names":["Shark Tank"],"country":"Singapore","siteIds":["110c8034-96c9-4c78-b615-a81d1e2a036f"],"aliases":["鲨鱼海洋","鲨鱼海域","Shark Seas Habitat"]},
+
+    // Scoped source review; details in lombok-resume-reviewed-evidence-20261115.json.
+    {"names":["Gili Meno Slope"],"country":"Indonesia","siteIds":["40962d64-5f2c-4c96-8cc1-40eb83c92c3c"],"aliases":["Meno Slope"]},
+    {"names":["Gili Meno Wall"],"country":"Indonesia","siteIds":["fdd060e4-2e2c-4526-b148-1b171464bfcc"],"aliases":["Meno Wall"]},
+    {"names":["Magnet"],"country":"Indonesia","siteIds":["5f604faf-66cd-4fcb-bc8f-26558cc56c69"],"aliases":["The Magnet"]},
+    {"names":["Turtle City/ Heaven"],"country":"Indonesia","siteIds":["90390a6e-a7fa-4645-a3d5-65cccd6c6311"],"aliases":["Turtle City","Turtle Heaven"]},
+    {"names":["Bounty"],"country":"Indonesia","siteIds":["7502642a-dc53-4547-becd-ff7dc775f673"],"aliases":["Bounty Wreck"]},
+
+    // Scoped source review; details in seychelles-resume-evidence-20261115.json.
+
+    // Scoped source review; details in egypt-reefs-reviewed-evidence-20261115.json.
+    {"names":["Abu Ramada Cave"],"country":"Egypt","siteIds":["910b2994-417a-4c3f-ad97-0535ca83b571"],"aliases":["Abu Ramada Höhle"]},
+    {"names":["Abu Ramada South"],"country":"Egypt","siteIds":["7f1c14b8-5963-47d8-9096-17dc8eaf8655"],"aliases":["Abu Ramada Süd"]},
+    {"names":["Ben El Gebel"],"country":"Egypt","siteIds":["95929455-f4dd-4c24-9e57-88480e6780ba"],"aliases":["Torfa Ben El Gebel","Бен Эль Гебел"]},
+    {"names":["Dorfa El Fanus West"],"country":"Egypt","siteIds":["b7b87c04-cf0b-43e7-be30-74f20042a3c5"],"aliases":["Fanous West"]},
+    {"names":["El Fanadir Foc"],"country":"Egypt","siteIds":["ff056c9a-aa97-4e43-8bbc-25fc1f528ec6"],"aliases":["Fanadir Nord"]},
+    {"names":["El Fanadir, South"],"country":"Egypt","siteIds":["77baf8b2-b20b-4b30-86fb-0f43f8af5327"],"aliases":["Fanadir Süd"]},
+    {"names":["Erg Somaya"],"country":"Egypt","siteIds":["d6adbb57-5bb9-4e0f-985c-9edb37c02165"],"aliases":["Эрг Сомайя"]},
+    {"names":["Fanous East"],"country":"Egypt","siteIds":["892b61c3-efeb-40b4-915a-be945a368b19"],"aliases":["Fanous Ost"]},
+
+    // Scoped source review; details in singapore-islands-resume-evidence-20261115.json.
+    {"names":["Pulau Hantu"],"country":"Singapore","siteIds":["ede6ba24-5fd6-475b-b0a6-9fc1ac1dae22"],"aliases":["韩都岛"]},
+    {"names":["Pulau Jong"],"country":"Singapore","siteIds":["d24e3b2b-4f6e-4bcd-9dbe-cab1a887ee8e"],"aliases":["炯岛"]},
+
+    // Scoped source review; details in malaysia-resume-normalized-evidence-20261115.json.
+    {"names":["Barracuda Point Sipadan"],"country":"Malaysia","siteIds":["e10c7269-113a-46a5-8b2f-307ffcfced94"],"aliases":["海狼风暴","バラクーダ・ポイント"]},
+    {"names":["Coral Garden"],"country":"Malaysia","siteIds":["84d33cee-5be9-4ab1-839a-746fc1ee0078"],"aliases":["珊瑚花园"]},
+    {"names":["Garden Of Eden"],"country":"Malaysia","siteIds":["05d75ab3-2487-4377-9a86-d2d0f38c3977"],"aliases":["伊甸园"]},
+    {"names":["Kapalai House Reef"],"country":"Malaysia","siteIds":["fa9977c7-1ae8-4758-a5e0-66a0ee4eecbd"],"aliases":["Check Point","The Jetty"]},
+    {"names":["Lobster Wall"],"country":"Malaysia","siteIds":["4eacf8f7-fed0-405e-9e45-0af6e1f7b760"],"aliases":["龙虾墙"]},
+    {"names":["Mataking Wreck Post"],"country":"Malaysia","siteIds":["eff65776-df41-48cc-adab-9fe9e67d7028"],"aliases":["MATAKING 1","水下邮局"]},
+    {"names":["Mid Reef"],"country":"Malaysia","siteIds":["2bc61f1f-9e8c-4f32-b283-1d9cb69f680e"],"aliases":["中礁"]},
+    {"names":["Panglima"],"country":"Malaysia","siteIds":["9057b3b5-0cd7-479a-b69c-65f5ec2cf683"],"aliases":["Panglima Reef"]},
+    {"names":["Paradise 1"],"country":"Malaysia","siteIds":["91bd95b2-f3f3-4346-a52f-6f4dd32ca0e2"],"aliases":["Froggies"]},
+    {"names":["Sibuan Island"],"country":"Malaysia","siteIds":["b7b0a7aa-10ee-490c-8861-b6b3b27e28dc"],"aliases":["军舰岛","シブアン島"]},
+    {"names":["Sipadan"],"country":"Malaysia","siteIds":["69252d1e-74f8-4e02-ab5f-e7624d7bf8e0"],"aliases":["诗巴丹","シパダン"]},
+    {"names":["Turtle Playground"],"country":"Malaysia","siteIds":["46d8516e-3a34-4373-8f43-0b82fa60f40d"],"aliases":["海龟游乐场"]},
+
+    // Scoped source review; details in small-admin-resume-evidence-20261115.json.
+
+    // Scoped source review; details in bali-reviewed-evidence-20261115.json.
+    {"names":["Amed"],"country":"Indonesia","siteIds":["1b18f34e-8fa2-4aea-84b4-b6b2408b231b"],"aliases":["アメッド"]},
+    {"names":["Biaha"],"country":"Indonesia","siteIds":["e1373803-4bc4-4b6c-a09a-6d3f9e42962e"],"aliases":["ビアハ"]},
+    {"names":["Drop Off"],"country":"Indonesia","siteIds":["3c8053a8-1c8b-4a68-adeb-8e17322aa92e"],"aliases":["トランベンドロップオフ"]},
+    {"names":["Gili Mimpang"],"country":"Indonesia","siteIds":["43e7239f-7d02-4f4d-888b-2bb8851925ca"],"aliases":["Batu Tiga","ミンパン"]},
+    {"names":["Gili Tepekong"],"country":"Indonesia","siteIds":["80a023de-c35e-4c83-96ac-0de1260acf0c"],"aliases":["ギリテペコン"]},
+    {"names":["Indonesia Bali Tulamben USS Liberty Wreck"],"country":"Indonesia","siteIds":["11982658-8c28-4873-99df-1943c3d8c9e4"],"aliases":["USATリバティ号","自由号沉船"]},
+    {"names":["Japanese Shipwreck"],"country":"Indonesia","siteIds":["0fb73e76-0e8f-47fb-a528-8502ad34dcf5"],"aliases":["日本の沈船"]},
+    {"names":["Kubu Wreck"],"country":"Indonesia","siteIds":["c4e3cd90-e439-480b-b804-85cd935df75e"],"aliases":["Boga Wreck","沈船ボガ号"]},
+    {"names":["Mangrove point"],"country":"Indonesia","siteIds":["e007af37-14dc-4e77-bbdc-992be035bd58"],"aliases":["マングローブポイント"]},
+    {"names":["Ped"],"country":"Indonesia","siteIds":["5661df97-8502-47b0-8bdc-f0faec48002b"],"aliases":["ペッド"]},
+    {"names":["Pyramids"],"country":"Indonesia","siteIds":["3a57a92c-0e4a-4ac4-9f64-6e9750f4bc3a"],"aliases":["ピラミッド"]},
+    {"names":["Sampalan"],"country":"Indonesia","siteIds":["e8ce910d-99df-4b99-bd91-5c600934ab59"],"aliases":["サンパラン"]},
+    {"names":["SD"],"country":"Indonesia","siteIds":["e07c4f36-1dbd-4ece-844f-0c125aca8fd4"],"aliases":["Sekolah Dasar","エスデー"]},
+    {"names":["自由号沉船"],"country":"Indonesia","siteIds":["cf7fb236-e4b9-4ab0-9784-479a6cc42f62"],"aliases":["USAT Liberty Shipwreck","USATリバティ号"]},
+
+    // Scoped source review; details in albania-evidence-20261115.json.
+    {"names":["Cold Water"],"country":"Albania","siteIds":["896c343c-645a-4111-aa40-776ad0bbfd2c"],"aliases":["Uji i Ftohtë","Холодна Вода"]},
+    {"names":["Jale Beach"],"country":"Albania","siteIds":["5d259b38-b56f-4431-b071-5e494e7f6baa"],"aliases":["Jali Beach","Jal Beach","Plazhi i Jalit"]},
+
+    // Scoped source review; details in saint-pierre-evidence-20261115.json.
+
+    // Scoped source review; details in oman-muscat-reviewed-evidence-20261115.json.
+    {"names":["Al Munassir Wreck"],"country":"Oman","siteIds":["5420e401-8fc9-4a8a-a27f-4fb930a4f83a"],"aliases":["Al Munnassir","Аль-Мунассир"]},
+    {"names":["Al Fahal Island"],"country":"Oman","siteIds":["19ecf390-e464-4bc6-8c6d-5dc0ad181bad"],"aliases":["Fahal Island","Shark Island","法哈尔岛","鲨鱼岛"]},
+    {"names":["Bill&#039;s Bumps"],"country":"Oman","siteIds":["86d0e3e3-3180-47ca-9f0c-0333cd26a740"],"aliases":["Bill's Bumps","Bills Bumps"]},
+    {"names":["Rogers Barge"],"country":"Oman","siteIds":["9ccb8b2f-e990-49f3-a5b7-7eb8fa41cb3b"],"aliases":["Rodgers Barge"]},
+    {"names":["Oman Aquarium"],"country":"Oman","siteIds":["52c4422b-d6a6-4ce5-a5b2-e8ddabedea46"],"aliases":["أكواريوم عُمان"]},
+    {"names":["Hayut"],"country":"Oman","siteIds":["4ab3bfe8-567f-440e-addc-47de1717f9fd"],"aliases":["Hayut Run"]},
+    {"names":["Cockle Shell Bay"],"country":"Oman","siteIds":["a017794d-8786-4ec9-9051-7a1adf093740"],"aliases":["Cockleshell Bay"]},
+    {"names":["Wall Street"],"country":"Oman","siteIds":["dddbf5d1-8dde-4e46-a4f0-bf7fa5ad4a90"],"aliases":["Wallstreet"]},
+
+    // Scoped source review; details in philippines-moalboal-reviewed-evidence-20261115.json.
+    {"names":["Airplane Wreck"],"country":"Philippines","siteIds":["6f0ba48a-f76f-4913-a955-42950f49a8ea"],"aliases":["エアプレーンレック"]},
+    {"names":["BALABAGON"],"country":"Philippines","siteIds":["9682a8d3-b49c-4696-9afb-30d3c563362e"],"aliases":["Balabagun Point"]},
+    {"names":["Copton Point"],"country":"Philippines","siteIds":["3a1a90d9-956b-46fa-bfe2-70e998e269fe"],"aliases":["コプトン　ポイント"]},
+    {"names":["Dolphin House Moalboal"],"country":"Philippines","siteIds":["e1a58242-c282-453a-8b6a-b77e1902224b"],"aliases":["ドルフィンハウス","海豚之家"]},
+    {"names":["Marine Sanctuary"],"country":"Philippines","siteIds":["c9bbbb03-24be-431f-a77b-c4f3c5fe835b"],"aliases":["Saavedra Marine Sanctuary"]},
+    {"names":["Panagsama Beach"],"country":"Philippines","siteIds":["ce4a2395-5a2c-4cbf-b5f0-7cfd0e31fe8b"],"aliases":["パナグサマビーチ"]},
+    {"names":["Pescador East"],"country":"Philippines","siteIds":["7489cc58-9fdc-4259-94c7-b71187fda628"],"aliases":["ペスカドール　イースト"]},
+    {"names":["Pescador Island"],"country":"Philippines","siteIds":["ed793596-ab36-4782-a713-6ac49dfc2463"],"aliases":["ペスカドール島","佩斯卡多尔岛","佩斯卡多爾島"]},
+    {"names":["Pescador West / Cathedral"],"country":"Philippines","siteIds":["d5914792-08cb-4d57-a4ee-0b5d62a31587"],"aliases":["カテドラルケーブ"]},
+    {"names":["Ronda Bay Marine Sanctuary"],"country":"Philippines","siteIds":["0ae4b569-9ee3-46a4-a6be-11701b008b22"],"aliases":["Saavedra Marine Sanctuary","ロンダベイ　サンクチュアリ"]},
+    {"names":["Sunken Island"],"country":"Philippines","siteIds":["3a35b4a1-34c6-4f50-b4b1-7a9f1c640272"],"aliases":["サンケンアイランド"]},
+    {"names":["Sunken Island"],"country":"Philippines","siteIds":["b6729ae0-e5bf-4261-a8a9-3f7f5fb7263b"],"aliases":["Takot Shoal"]},
+    {"names":["Talisay"],"country":"Philippines","siteIds":["8610d632-8345-477b-97f3-2a230c708669"],"aliases":["タリサイ"]},
+    {"names":["Tongo"],"country":"Philippines","siteIds":["39fc1fa7-3afd-4a7e-8a82-cab63e8baea2"],"aliases":["通戈点"]},
+    {"names":["Tongo Point Marine Sanctuary"],"country":"Philippines","siteIds":["1aeab415-14a8-46ef-ab95-bb21f62d4a91"],"aliases":["通戈点"]},
+    {"names":["Tongo Sanctuary"],"country":"Philippines","siteIds":["89c23d45-ed23-40c4-97e2-ccd963f28f1c"],"aliases":["トンゴサンクチュアリ","通戈保护区"]},
+    {"names":["Tuble Marine Sanctuary"],"country":"Philippines","siteIds":["066cd9b8-0050-45a0-9221-8191913f8de9"],"aliases":["トブレサンクチュアリ"]},
+    {"names":["Tuble Sanctuary"],"country":"Philippines","siteIds":["00366be5-dfef-46fc-a86d-093078f508fd"],"aliases":["Tuble Point"]},
+
+    // Scoped source review; details in qatar-evidence-20261115.json.
+    {"names":["The Barge"],"country":"Qatar","siteIds":["faf6164d-8f1e-4aab-a249-400766c13eb5"],"aliases":["Dooba","Duba"]},
+
+    // Scoped source review; details in uae-east-coast-reviewed-evidence-20261115.json.
+    {"names":["3 Rocks (Sharm rock)"],"country":"United Arab Emirates","siteIds":["726b96fa-2a58-47f4-b1c5-017197f0442e"],"aliases":["Sharm Rocks","Three Rocks"]},
+    {"names":["Anenome Gardens"],"country":"United Arab Emirates","siteIds":["cb00d858-2ea5-44f2-8eea-c355ca4d6acd"],"aliases":["حدائق شقائق النعمان","Anemone Gardens"]},
+    {"names":["Coral Gardens"],"country":"United Arab Emirates","siteIds":["348ddd0c-b2bf-453b-b42d-32bb6e9877a4"],"aliases":["حدائق الشعاب المرجانية"]},
+    {"names":["Dibba Island"],"country":"United Arab Emirates","siteIds":["16f457af-5c51-476a-8c1d-c035733bd944"],"aliases":["صخرة دبا","Dibba Rock"]},
+    {"names":["Dibba Rock"],"country":"United Arab Emirates","siteIds":["26008bc0-443f-4477-8898-1ce85bc6f7b1"],"aliases":["迪巴岩","ディバロック"]},
+    {"names":["Hole in the Wall"],"country":"United Arab Emirates","siteIds":["55aae166-3183-428c-9f67-fa9e35de74e6"],"aliases":["الكهف البحري"]},
+    {"names":["Hole in the wall dive site"],"country":"United Arab Emirates","siteIds":["f43439c7-8a62-4f79-aeef-6e91b3502090"],"aliases":["الكهف البحري"]},
+    {"names":["Hole in the Wall Fujairah"],"country":"United Arab Emirates","siteIds":["8ec304fa-322a-48a0-899b-4130067eff16"],"aliases":["الكهف البحري","墙中洞","ホールインザウォール","Дыра в стене"]},
+    {"names":["Inchcape 2"],"country":"United Arab Emirates","siteIds":["7db369ff-3e11-40bd-9404-a0da7a6ce26a"],"aliases":["Inch 2"]},
+    {"names":["Martini Rock"],"country":"United Arab Emirates","siteIds":["7c1dd2c6-5813-4087-bb6c-cf15fb0e401d"],"aliases":["صخرة مارتيني"]},
+    {"names":["Sharm rocks"],"country":"United Arab Emirates","siteIds":["9419b697-958a-4d2e-bbd6-5975f787cd8e"],"aliases":["3 Rocks Pinnacles","3 Sisters","沙姆岩","シャルムロック"]},
+    {"names":["Snoopy Deep Reef"],"country":"United Arab Emirates","siteIds":["beac9a12-3738-4758-ba75-e9cc355b7b24"],"aliases":["史努比深礁","スヌーピー・ディープリーフ"]},
+    {"names":["Snoopy Island"],"country":"United Arab Emirates","siteIds":["3584eb8c-9aa1-4911-9d12-a5572352e0a3"],"aliases":["جزيرة سنوبي","史努比岛","史努比島","スヌーピー島"]},
+
+    // Scoped source review; details in estonia-admin-evidence-20261115.json.
+
+    // Scoped source review; details in libya-admin-evidence-20261115.json.
+
+    // Scoped source review; details in nicaragua-admin-evidence-20261115.json.
+
+    // Scoped source review; details in guatemala-admin-evidence-20261115.json.
+
+    // Scoped source review; details in maldives-male-atolls-reviewed-evidence-20261115.json.
+    {"names":["Embudu Channel / Embudu Express"],"country":"Maldives","siteIds":["b51022f9-964a-4ee9-a5e0-fef79b56d6db"],"aliases":["Embudhoo Express","Embudhu Express"]},
+    {"names":["Embudu Express"],"country":"Maldives","siteIds":["e3f7b036-be7f-4986-9cfb-dcb74694cdec"],"aliases":["Embudhoo Express","Embudhu Express"]},
+    {"names":["Maldives Victory (Wreck)"],"country":"Maldives","siteIds":["bd680301-c527-4b28-966e-7531c1c9a139"],"aliases":["モルディブ・ビクトリー・レック","Maldives Victory Wreck"]},
+    {"names":["Victory Wreck"],"country":"Maldives","siteIds":["f71aaa7a-f19e-4394-84d7-0f4d751030d9"],"aliases":["モルディブ・ビクトリー・レック","Maldives Victory Wreck"]},
+    {"names":["Cocoa Tila"],"country":"Maldives","siteIds":["b0dc036e-da2f-43f7-8de5-de7d05c69b84"],"aliases":["Cocoa Thila","可可亚浅礁","ココア・ティラ","Kandooma Thila"]},
+    {"names":["Okobe Thila"],"country":"Maldives","siteIds":["3a24a36a-8f57-40a4-900e-e2373123f6d9"],"aliases":["オコベ・ティラ"]},
+    {"names":["Sunlight Thila"],"country":"Maldives","siteIds":["085048ae-960d-4624-a9d6-59ba8e383c78"],"aliases":["サンライト・ティラ"]},
+    {"names":["Rannamaari Wreck"],"country":"Maldives","siteIds":["0ac61a25-83cf-4581-aab2-1cdf861eb3cb"],"aliases":["Раннамаари","Rannamaari Shipwreck"]},
+
+    // Scoped source review; details in tci-evidence-20261115.json.
+    {"names":["The Gulley"],"country":"Turks and Caicos Islands","siteIds":["74eaa704-40f2-4b95-98ae-e9ffc1c641f9"],"aliases":["Gully","The Gully"]},
+
+    // Scoped source review; details in canary-lanzarote-reviewed-evidence-20261115.json.
+    {"names":["The Cathedral"],"country":"Spain","siteIds":["845ed6c1-9b35-445d-8c5c-a26c2e2b30f7"],"aliases":["La Catedral","Die Kathedrale","La Cathédrale"]},
+    {"names":["Cathedral"],"country":"Spain","siteIds":["b62e935e-0d06-4570-8c3b-53cfbe829e75"],"aliases":["La Catedral","Die Kathedrale","La Cathédrale"]},
+    {"names":["catedral"],"country":"Spain","siteIds":["5c5aeab8-4d2e-4dc7-af57-afd0a995ef4f"],"aliases":["La Catedral","Die Kathedrale","La Cathédrale"]},
+    {"names":["Cueva de las Gambas"],"country":"Spain","siteIds":["ac5400c9-fad0-4cce-a554-543f8d6b2c59"],"aliases":["Shrimp Cave","Garnelenhöhle","Grotte des crevettes"]},
+    {"names":["Shrimp Cave"],"country":"Spain","siteIds":["8b28b3e6-3d4a-4ddd-aff1-2ecbcdd338dd"],"aliases":["Cueva de las Gambas","Garnelenhöhle","Grotte des crevettes"]},
+    {"names":["Pecio de Puerto del Carmen"],"country":"Spain","siteIds":["b08463b3-438d-4b0f-8161-daab17b0dc15"],"aliases":["Pecios Puerto del Carmen","Puerto del Carmen Wrecks","Alte Wracks","Épaves de Puerto del Carmen"]},
+    {"names":["Harbour Wrecks"],"country":"Spain","siteIds":["0b57f1e5-549e-415f-a1e3-7cd8b88d4283"],"aliases":["Pecios Puerto del Carmen","Puerto del Carmen Wrecks","Alte Wracks","Épaves de Puerto del Carmen"]},
+    {"names":["Quiquere Wrecks"],"country":"Spain","siteIds":["0c7bc2dc-f022-4fbe-b767-6e7a8557bcda"],"aliases":["Pecios Quíquere","Pecios del Barranco del Quíquere","Neue Wracks"]},
+    {"names":["Black Beach"],"country":"Spain","siteIds":["3c06e0bc-9f71-4aeb-b116-c7bf184080d8"],"aliases":["Playa Negra","Casa Chucho","Casa de las rayas"]},
+    {"names":["Fariones"],"country":"Spain","siteIds":["e53888d1-40a0-40ad-9576-2454502a11b3"],"aliases":["Veril de Fariones","Riff von Fariones","Paroi de Fariones"]},
+    {"names":["Veril de Fariones"],"country":"Spain","siteIds":["f860b420-27c0-499e-8992-c6db69e1e869"],"aliases":["Riff von Fariones","Paroi de Fariones"]},
+    {"names":["Orange Coral"],"country":"Spain","siteIds":["d16c14e3-6e48-46f2-a22f-e2d7486da161"],"aliases":["Le Corail Orange"]},
+    {"names":["Playa Chica Bay"],"country":"Spain","siteIds":["723e5eef-34bb-4c9f-b5a2-f98e9155b350"],"aliases":["La baie de Playa Chica"]},
+
+    // Scoped source review; details in egypt-wrecks-reviewed-evidence-20261115.json.
+    {"names":["Dunraven, wreck"],"country":"Egypt","siteIds":["34cff89c-ec50-4198-875e-0e1949d03cc6"],"aliases":["Данрейвен","ダンレイヴン"]},
+    {"names":["Giannis D, wreck"],"country":"Egypt","siteIds":["eb5667eb-cf86-418c-8e20-b584c1919144"],"aliases":["Wood Wreck","Holzfrachter","ジャンニスD号","Яннис Д"]},
+    {"names":["SS Carnatic, wreck"],"country":"Egypt","siteIds":["b1782ea4-7956-465d-9a30-3dca0f1c2e83"],"aliases":["Wine Wreck","Weinfrachter","カーナティック号","卡纳提克号"]},
+    {"names":["Chrisoula K., wreck"],"country":"Egypt","siteIds":["f19b7e15-9eb9-4d62-8ab0-0521484b5fbd"],"aliases":["Tile Wreck","Fliesenfrachter"]},
+    {"names":["Ulysses, wreck"],"country":"Egypt","siteIds":["69cddab4-e1c1-4868-9549-6c7b78fbf382"],"aliases":["Улисс"]},
+    {"names":["Abu Galawa Kebir Wreck"],"country":"Egypt","siteIds":["e4da84a7-b742-4380-90a4-f553a4dafd4e"],"aliases":["Tien Hsing","Tienstin","Тьен Хсин"]},
+    {"names":["Million Hope, Wreck"],"country":"Egypt","siteIds":["23bb98c1-ba2a-48ff-a929-adcd4ea7ccdd"],"aliases":["ミリオンホープ"]},
+    {"names":["Rosalie Moller"],"country":"Egypt","siteIds":["3a4bcb52-2057-48c1-91bf-617e5086b98d"],"aliases":["Розали Моллер","Розали Мюллер","罗莎莉·莫勒","ロザリー・モラー号"]},
+    {"names":["Big Brother - Numidia"],"country":"Egypt","siteIds":["c627925d-754c-459d-8dde-3108df282e27"],"aliases":["Нумидия","努米底亚"]},
+    {"names":["Al Kahfain (Wreck)"],"country":"Egypt","siteIds":["bbc50f63-03df-4ec4-91ae-e7bb15924aa2"],"aliases":["Al Kafain"]},
+    {"names":["Kimon M, wreck"],"country":"Egypt","siteIds":["043ff844-49a8-4372-bb6c-dec8169e6196"],"aliases":["Lentil Wreck","Linsenfrachter"]},
+    {"names":["SS Dunraven Wreck"],"country":"Egypt","siteIds":["36e12549-aa50-412d-b22c-99f3f2b2c2b4"],"aliases":["Данрейвен","ダンレイヴン"]},
+    {"names":["SS Numidia Wreck"],"country":"Egypt","siteIds":["088f0ba1-e72f-4e8a-8c45-7c6c1471e081"],"aliases":["Нумидия","努米底亚"]},
+    {"names":["Carnatic"],"country":"Egypt","siteIds":["30238a34-8a22-4915-95b6-db5f0043b367"],"aliases":["Wine Wreck","Weinfrachter","カーナティック号","卡纳提克号"]},
+    {"names":["Kimon M"],"country":"Egypt","siteIds":["e9f7d60c-274b-4c9b-bbbe-2127d5551726"],"aliases":["Lentil Wreck","Linsenfrachter"]},
+    {"names":["Giannis D"],"country":"Egypt","siteIds":["51166586-b3c9-4f81-9860-6a15545314d5"],"aliases":["Wood Wreck","Holzfrachter","ジャンニスD号","Яннис Д"]},
+    {"names":["Ulysses"],"country":"Egypt","siteIds":["10ed907d-07b8-4433-b564-83a961fb4b95"],"aliases":["Улисс"]},
+
+    // Scoped source review; details in latvia-admin-evidence-20261115.json.
+
+    // Scoped source review; details in sao-tome-evidence-20261115.json.
+    {"names":["Lagoa Azul"],"country":"Sao Tome and Principe","siteIds":["9e8edb8d-fe35-4dc8-b703-1ebb8e0dec49"],"aliases":["Lagoa Azul Bay"]},
+    {"names":["Parede da Lagoa Azul"],"country":"Sao Tome and Principe","siteIds":["5d2a6ea0-baec-481a-9221-fbb5db069289"],"aliases":["Lagoa Azul Wall"]},
+
+    // Scoped source review; details in cyprus-wrecks-evidence-20261115.json.
+    {"names":["Kyrenia wreck"],"country":"Cyprus","siteIds":["d0c7e37b-97a4-4d96-b6a5-97b33cf1240d"],"aliases":["Το Ναυάγιο της Κερύνειας"]},
+    {"names":["Zenobia Wreck, Cyprus"],"country":"Cyprus","siteIds":["9a37565d-1701-41ec-971c-bd1f53b5ff46"],"aliases":["Ζηνοβία","Зенобия","The Zen"]},
+
     // Scoped source review; details in thailand-koh-tao-reviewed-evidence-20261115.json.
     {"names":["Three Rocks"],"country":"Thailand","siteIds":["b178366d-b3e8-4fd0-a9c0-59b6dbcea505"],"aliases":["หินสามก้อน"]},
     {"names":["Lighthouse Bay"],"country":"Thailand","siteIds":["17382492-49e3-4c67-8bac-d582aaf675b8"],"aliases":["อ่าวไลท์เฮาส์","อ่าวกล้วยเถื่อน","Gluay Teun Bay","ライトハウスベイ"]},
@@ -1229,7 +1566,6 @@
     {"names": ["EN1"], "country": "Mozambique", "siteIds": ["e238642d-2c54-4db5-ae4f-bbc7f0a1abf5"], "aliases": ["EN1 Reef"]},
     {"names": ["Piège à Requins"], "country": "France", "siteIds": ["ef7d69e6-535e-4548-a979-63685e0adcd2"], "aliases": ["Piège à Requin"]},
     {"names": ["Nakanoshima Channel"], "country": "Japan", "siteIds": ["19bdd41c-6c9e-4553-94bb-363fd3e14805"], "aliases": ["中之島チャネル"]},
-    {"names": ["Nakanoshima Channel"], "country": "Japan", "siteIds": ["19bdd41c-6c9e-4553-94bb-363fd3e14805"], "aliases": ["中の島チャネル"]},
     {"names": ["Eidsvold  Wreck"], "country": "Australia", "siteIds": ["df14e21c-4459-4df7-988d-1cecc623fdfd"], "aliases": ["アイドスボルド・レック"]},
     {"names": ["Pam Liguria, wreck"], "country": "Chile", "siteIds": ["54bbaaba-a355-4d44-8caa-8212d4275f5a"], "aliases": ["naufragio PAM Liguria"]},
     {"names": ["French Cap Pinnacle"], "country": "United States", "siteIds": ["40ffd21c-8dfe-40c2-a0c5-5398e7366f35"], "aliases": ["French Cap", "Frenchman's Cap"]},
@@ -2563,10 +2899,10 @@
     {names:['대풍감'], country:'Korea, Republic of', siteIds:['fe1aa533-e6ff-4df3-bc77-268e3ef11a47'], aliases:['Daepunggam']},
     {names:['범섬'], country:'Korea, Republic of', siteIds:['c6ea9193-7940-4148-a293-3dd6199f1455'], aliases:['Beomseom']},
     {names:['스텔라'], country:'Korea, Republic of', siteIds:['d6ade746-2f05-49d7-be35-322d03092d55'], aliases:['Stella Wreck','Stellar Wreck']},
-    {names:['홍도'], country:'Korea, Republic of', siteIds:['eeba2432-73c5-407a-84db-be0ee6cb3fa3'], aliases:['Hongdo (Tongyeong)','Tongyeong Hongdo']},
     {names:['Black Rock Chimneys'], country:'Cook Islands', siteIds:['1f656a13-fbc9-4cc8-b5c9-7b6d49c0000a'], aliases:['The Chimneys']},
     {names:['Maritime Reefer'], country:'Cook Islands', siteIds:['cb31c1c7-4c09-4d4d-ae51-bee0aeaac479'], aliases:['FV Maritime Reefer','Maritime Reefer Wreck']},
     {names:['Tupis Passage'], country:'Cook Islands', siteIds:['53e5fad9-2e13-4707-bd89-fcd75c879223'], aliases:["Tupi's Passage"]},
+    {names:['홍도'], country:'Korea, Republic of', siteIds:['eeba2432-73c5-407a-84db-be0ee6cb3fa3'], aliases:['Hongdo (Tongyeong)','Tongyeong Hongdo']},
   ];
   const countryAliases = {
     indonesia:['印尼','印度尼西亞'], palau:['帛琉'],
