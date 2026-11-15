@@ -263,6 +263,34 @@ test('creating trips saves the site and dismisses the chooser',async({page})=>{
 
 
 
+test('late search results preserve a newly opened trips panel @desktop-only',async({page})=>{
+  await openMap(page);
+  let release;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route('**/*dive-site-search-locations*.json.gz*',async route => {
+    await held;
+    await route.continue();
+  });
+  try {
+    const search = page.locator('#diveSearchResults');
+    const panel = page.locator('#savedTripsPanel');
+    await page.locator('#diveSearchInput').fill('Raja Ampat');
+    await expect(search).toHaveAttribute('aria-busy','true');
+    await expect(search).toBeVisible();
+    await page.locator('#savedTripsButton').click();
+    await expect(panel).toBeVisible();
+    release();
+    await expect(search).toHaveAttribute('aria-busy','false',{timeout:15000});
+    await expect(search.locator('[data-result-kind="destination"]').first()).toBeVisible();
+    await expect(panel).toBeVisible();
+    // A fresh user search still takes ownership even while the menu remains visible.
+    await page.locator('#diveSearchInput').click();
+    await expect(panel).toBeHidden();
+  } finally {
+    release();
+  }
+});
+
 test('trip surfaces yield to other map tasks and preserve their own child menu',async({page})=>{
   const trips={version:1,active:'first',trips:[{id:'first',name:'My trip',month:null,sites:[],context:null}]};
   await openMap(page,{localStorage:{[KEY]:JSON.stringify(trips)}});

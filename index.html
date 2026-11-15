@@ -23743,7 +23743,9 @@ function closeShareDialog() {
 
   function showDiveSearchResults() {
     const wasVisible = els.diveSearchResults.classList.contains('visible');
-    notifyMapOverlayOpen('search');
+    // Completing an existing search is a repaint, not a new navigation intent.
+    // Otherwise late data closes a trips panel opened after the search began.
+    if (!wasVisible) notifyMapOverlayOpen('search');
     // Search overlays and map detail sheets compete for the same mobile viewport.
     if (mobileSearchQuery.matches && currentDiveSearchInput() === els.diveSearchInput) {
       setMobileSearchExpanded(true);
@@ -32531,6 +32533,7 @@ function closeShareDialog() {
     'focus',
     () => {
       activateDiveSearchInput(els.diveSearchInput);
+      if (els.diveSearchResults.classList.contains('visible')) notifyMapOverlayOpen('search');
       if (els.diveSearchInput.value.length > 0) {
         els.diveSearchInput.select();
       }
