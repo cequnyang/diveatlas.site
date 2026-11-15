@@ -198,6 +198,7 @@ playwright-report/
 
 # Search-name research stays local; runtime aliases are tracked separately.
 /datasets/search-name-review-ledger.json
+
 # Local help output includes generated label and summary JSON files.
 /--help/
 /scripts/README-search-name-review.md
@@ -205,6 +206,7 @@ playwright-report/
 /scripts/merge_scubago_observations.py
 /scripts/research_scubago_names.py
 /scripts/test_research_scubago_names.py
+/scripts/_tmp-*
 
 # Local photo intake pilots and their generated output are not website releases.
 /.github/workflows/photo-intake.yml

@@ -103,10 +103,27 @@
   // https://www.padi.com/zh-hans/diving-in/ying-shu-wei-er-jing-qun-dao/
   // https://travel.padi.com/es/diving-in/islas-virgenes-britanicas/
   const placeAliases = [
-    // Localized dive destinations: French PADI, German and Italian ScubaGo.
-    // https://www.padi.com/fr/dive-sites/toscane/
-    // https://www.scubago.com/de/explore/destination/tuscany-9750959
-    // https://www.scubago.com/it/explore/destination/tuscany-9750959
+    {names:["Murchison Island"], country:"Canada", aliases:["G̱aysiigas Gwaay"]},
+    {names:["Beechey Head"], country:"Canada", aliases:["Beechy Head"]},
+    {names:["Nakaya"], country:"Canada", aliases:["USS YMS-420"]},
+    {names:["Nootka Sound, Gardens, Espinsoa"], country:"Canada", aliases:["The Gardens - Espinoza Inlet"]},
+    {names:["Okeover Park"], country:"Canada", aliases:["Okeover Provincial Park"]},
+    {names:["Park Place Community Park"], country:"Canada", aliases:["Park Place"]},
+    {names:["Point Atkinson, Lighthouse Park"], country:"Canada", aliases:["Lighthouse Park"]},
+    {names:["Nakwakto Rapids, Turret Rock"], country:"Canada", aliases:["Tremble Island"]},
+    {names:["Nanaimo, wreck of Cape Breton"], country:"Canada", aliases:["HMCS Cape Breton"]},
+    {names:["Braermar Road"], country:"Canada", aliases:["Braemar Avenue", "Braemar Beach"]},
+    {names:["Brockville Underwater Sculpture Park"], country:"Canada", aliases:["Centeen Memorial Dive Park"]},
+    {names:["Brown Brothers (Wrack)"], country:"Canada", aliases:["Brown Brothers Wreck"]},
+    {names:["Britannia Beach, Old Customs House"], country:"Canada", aliases:["Britannia Beach Dock"]},
+    {names:["Brotchie Ledge"], country:"Canada", aliases:["Brotchie Ledge Wreck", "Wreck of the San Pedro at Brotchie Ledge"]},
+    {names:["Browning Passage, Butter Tart"], country:"Canada", aliases:["Rock of Life", "Snowball"]},
+    {names:["Bowyer Island East Wall"], country:"Canada", aliases:["East Wall Bowyer Island"]},
+    {names:["Bowen Island, Millers Landing"], country:"Canada", aliases:["Millers Landing"]},
+    {names:["Anthony Island"], country:"Canada", aliases:["SG̱ang Gwaay", "SGang Gwaay"]},
+    {names:["Agamemnon Channel, Power lines"], country:"Canada", aliases:["Beneath the Power Lines", "Agamemnon Channel Powerlines"]},
+    {names:["Desolation Sound"], country:"Canada", aliases:["Baie Desolation"]},
+    {names:["Foley Head"], country:"Canada", aliases:["Argonaut Point"]},
     {names:["Tuscany"], country:"Italy", aliases:["Toscane", "Toskana", "Toscana"]},
     {names:['Cape Town'], country:'', aliases:['开普敦','開普敦','ケープタウン','케이프타운','Kapstadt']},
     {names:['Croatia'], country:'', aliases:['克罗地亚','克羅地亞','クロアチア','크로아티아','Croatie','Croacia','Kroatien','Croazia','Kroatië','Хорватия']},
@@ -136,11 +153,6 @@
     {names:['Ionian Sea'], country:'', aliases:['Mar Ionio']},
     {names:['South China Sea'], country:'', aliases:['南海','南シナ海','Mar de China Meridional','남중국해']},
     {names:['Mediterranean Sea'], country:'', aliases:['地中海','Méditerranée','Mediterráneo','지중해']},
-    // PADI's local dive guides and site pages use these language-specific names for Monterey Bay diving.
-    // https://www.padi.com/es/diving-in/estados-unidos-de-america-ee-uu/monterey/
-    // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/aquarius-dive-shop/
-    // https://www.padi.com/zh-hant/dive-site/mei-li-jian-he-zhong-guo-usa/monterey-bay/
-    // https://www.padi.com/ja/diving-in/united-states-of-america-usa/montore/
     {names:['Monterey Bay'], country:'', aliases:['Bahía de Monterey', '蒙特雷湾', '蒙特雷灣', '蒙特利灣', 'モントレー湾']},
     {names:['North Sea'], country:'', aliases:['Noordzee','Nordsee']},
     {names:['Skagerrak'], country:'', aliases:['Skagerack']},
@@ -198,12 +210,11 @@
     {"names": ["Chubut"], "country": "Argentina", "aliases": ["丘布特", "추부트"]},
     {"names": ["New York"], "country": "United States of America", "aliases": ["纽约", "紐約", "ニューヨーク", "뉴욕"]},
     {"names": ["Florida Springs"], "country": "United States of America", "aliases": ["佛罗里达泉水", "佛羅里達泉群"]},
-    {"names": ["Jordan Aqaba", "Jordan Aqaba | Red Sea"], "country": "Jordan", "aliases": ["亚喀巴", "亞喀巴", "アカバ", "아카바", "Mar Rojo"]},
+    {"names": ["Jordan Aqaba", "Jordan Aqaba | Red Sea"], "country": "Jordan", "aliases": ["亚喀巴", "亞喀巴", "アカバ", "아카바", "العقبة", "Mar Rojo"]},
     {"names": ["Saba"], "country": "Bonaire, Sint Eustatius and Saba", "aliases": ["萨巴岛", "萨巴", "サバ島", "사바"]},
     {"names": ["Constanța"], "country": "Romania", "aliases": ["康斯坦察", "콘스탄차"]},
     {"names": ["Rio de Janeiro"], "country": "Brazil", "aliases": ["里约热内卢", "里約熱內盧", "リオデジャネイロ", "리우데자네이루"]},
     {"names": ["Granada"], "country": "Spain", "aliases": ["格拉纳达", "格拉納達"]},
-    // Greek-language diving destination page: https://www.scubago.com/el/explore/destination/peloponnese-west-greece-and-ionian-sea-9751127
     {"names": ["Peloponnese"], "country": "Greece", "aliases": ["伯罗奔尼撒", "Πελοπόννησος"]},
     {"names": ["Barcelona"], "country": "Spain", "aliases": ["巴塞罗那", "巴塞隆納", "バルセロナ", "바르셀로나"]},
     {"names": ["Lecco"], "country": "Italy", "aliases": ["莱科"]},
@@ -265,320 +276,123 @@
     {"names": ["Thuringia"], "country": "Germany", "aliases": ["图林根", "テューリンゲン", "튀링겐"]},
     {"names": ["Var"], "country": "France", "aliases": ["瓦尔省", "瓦爾省"]},
     {"names": ["Alpes-Maritimes"], "country": "France", "aliases": ["濱海阿爾卑斯", "알프마리팀"]},
-    // PADI's French dive-site directory uses the accented regional spelling.
-    // https://www.padi.com/fr/dive-sites/france/rhone-alpes/
     {"names": ["Rhone-Alpes"], "country": "France", "aliases": ["Rhône-Alpes"]},
-    // Scubago's Spanish diving destination uses the standard Spanish and French regional names.
-    // https://www.scubago.com/es/explore/destination/provence-alpes-cote-dand039azur-9751426
-    // https://provence-alpes-cotedazur.com/que-faire/activites-nature/ecotourisme/spots-plongee-et-snorkeling-en-mediterranee/
     {"names": ["Provenza-Alpes-Costa de Azul"], "country": "France", "aliases": ["Provenza-Alpes-Costa Azul", "Provence-Alpes-Côte d'Azur"]},
-    // PADI publishes localized Massachusetts diving guides; Mass.gov also calls the state the Bay State on its dive-site page.
-    // https://www.padi.com/zh-hans/diving-in/ma-sa-zhu-sai-zhou/
-    // https://www.padi.com/ja/diving-in/masachiyu-setsutsuzhou/
-    // https://www.padi.com/ko/diving-in/maesacuseceu-ju/
-    // https://www.mass.gov/info-details/cz-tip-scuba-diving-in-massachusetts
     {"names": ["Commonwealth of Massachusetts"], "country": "United States", "aliases": ["MA", "Mass.", "Massachusetts", "马萨诸塞州", "马萨诸塞", "マサチューセッツ州", "매사추세츠 주", "Bay State"]},
-    // https://duiken-in-belgie.be/Duikplaatsen.php
     {"names": ["Namur"], "country": "Belgium", "aliases": ["那慕尔", "那慕爾", "ナミュール", "Namen"]},
     {"names": ["Hawaii"], "country": "United States", "aliases": ["夏威夷", "ハワイ", "하와이", "Hawaï"]},
-    // https://www.padi.com/zh-hans/diving-in/kai-man-qun-dao/
-    // https://www.padi.com/zh-hant/diving-in/kai-man-qun-dao/
-    // https://www.padi.com/ja/diving-in/keimanzhu-dao/
-    // https://travel.padi.com/ko/diving-in/keimaen-jedo/
-    // https://www.padi.com/es/dive-sites/islas-caiman/
     {"names": ["Cayman Islands"], "country": "Cayman Islands", "aliases": ["开曼群岛", "開曼群島", "ケイマン諸島", "케이맨 제도", "Islas Caimán"]},
     {"names": ["Cayman Islands"], "country": "United Kingdom", "aliases": ["开曼群岛", "ケイマン諸島", "케이맨 제도", "Islas Caimán"]},
     {"names": ["Pennsylvania"], "country": "United States", "aliases": ["宾夕法尼亚", "賓夕法尼亞", "펜실베이니아"]},
-    // Venice Beach needs a state-level identity before a localized alias is safe.
-    // https://www.padi.com/es/centro-buceo/suecia/seastar-diving/
-    // https://www.padi.com/it/centro-sub/svezia/vrakdykarpensionatet-captain-baltic/
-    // https://www.lansstyrelsen.se/stockholm/om-oss/om-lansstyrelsen-stockholm/lanets-forfattningssamling/forfattningar-2023/forfattningssamling-2023/2023-06-16-01fs-202316.html
     {"names": ["Stockholm"], "country": "Sweden", "aliases": ["斯德哥尔摩", "ストックホルム", "스톡홀름", "Estocolmo", "Stoccolma", "Stockholms län"]},
     {"names": ["Ticino"], "country": "Switzerland", "aliases": ["提契诺", "ティチーノ", "티치노"]},
     {"names": ["Lucerne"], "country": "Switzerland", "aliases": ["卢塞恩", "琉森", "ルツェルン", "루체른"]},
     {"names": ["Dry Tortugas"], "country": "United States of America", "aliases": ["干龟岛", "드라이 토르투가스"]},
     {"names": ["Monterey Bay"], "country": "United States", "aliases": ["蒙特雷湾", "蒙特利灣", "몬터레이 만"]},
-    // https://www.padi.com/zh-hans/dive-center/ken-ni-ya/dolphin-aquatics/
-    // https://www.siamdive.com/ja/explore/dive-center/diani-marine-ltd
     {"names": ["Kenya Coast"], "country": "Kenya", "aliases": ["肯尼亚海岸", "ケニア海岸"]},
-    // https://cn.tripadvisor.com/Attractions-g189405-Activities-c42-Central_Greece.html
-    // https://www.scubago.com/cn/explore/destination/greece-9751098
-    // https://insete.gr/wp-content/uploads/2024/12/24-12_Greece.pdf (diving destinations by region)
     {"names": ["Central Greece"], "country": "Greece", "aliases": ["希腊中部", "中部希腊", "Στερεά Ελλάδα"]},
-    // https://www.padi.com/ko/dive-site/oseuteuria/neufelder-see/
     {"names": ["Burgenland"], "country": "Austria", "aliases": ["부르겐란트"]},
-    // https://www.divers.world/zh-cn/country/de/
-    // https://www.padi.com/ja/dive-sites/herurin/
-    // https://www.padi.com/ko/dive-sites/bereulrin/
     {"names": ["Berlin"], "country": "Germany", "aliases": ["柏林", "ベルリン", "베를린"]},
-    // https://watermap-self.vercel.app/destinations/germany/family
     {"names": ["Schleswig-Holstein"], "country": "Germany", "aliases": ["슐레스비히홀슈타인"]},
-    // https://www.scubago.com/cn/explore/destination/makkah-region-9752139
-    // https://saudipedia.com/en/diving-in-saudi-arabia
-    // https://visitingsaudi.net/en/details/689c8219f0321821b1a2a779
-    // https://www.bluerides.com/fr/sites-plongee/systeme-recifal-de-rabigh
-    // https://www.bluerides.com/de/tauchplaetze/five-corals
     {"names": ["Makkah"], "country": "Saudi Arabia", "aliases": ["麦加地区", "麦加", "La Meca", "Meca", "La Mecque", "Makkah al-Mukarramah", "Mecca", "Mekka"]},
-    // https://www.swissinfo.ch/jpn/society/%E3%82%B9%E3%82%A4%E3%82%B9%E3%81%AF%E3%83%80%E3%82%A4%E3%83%90%E3%83%BC%E3%81%AE%E5%9B%BD/41192308
     {"names": ["Thurgau"], "country": "Switzerland", "aliases": ["トゥールガウ"]},
-    // https://travel.padi.com/ja/diving-in/teneshi/
-    // https://www.padi.com.tw/zh-hant/diving-in/tian-na-xi/
-    // https://www.padi.com/ko/diving-in/tenesi/
-    // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/loch-low-minn-quarry-2/
     {"names": ["Tennessee"], "country": "United States", "aliases": ["田纳西", "田納西", "テネシー", "테네시"]},
-    // https://www.padi.com.tw/ja/diving-in/a-kanso-zhou/
-    // https://www.padi.com.tw/zh-hant/diving-in/a-ken-se/
-    // https://www.padi.com/ko/diving-in/akansoju/
     {"names": ["Arkansas"], "country": "United States", "aliases": ["阿肯色", "アーカンソー", "아칸소"]},
     {"names": ["Arkansas"], "country": "United States of America", "aliases": ["阿肯色", "アーカンソー", "아칸소"]},
-    // https://www.padi.com/ja/dive-center/united-states-of-america-usa/dive-alaska/
-    // https://www.padi.com/ko/diving-in/alraeseuka/
-    // https://www.padi.com/zh-hans/diving-in/a-la-si-jia-zhou/
     {"names": ["Alaska"], "country": "United States", "aliases": ["阿拉斯加", "阿拉斯加州", "アラスカ", "アラスカ州", "알래스카"]},
-    // https://www.bluerides.com/ja/saiteki-na-daibingu-jiki/takusu-kaikosu-shoto/rokugatsu
-    // https://www.padi.com.tw/ko/diving-in/teokeuseu-keikeoseu-jedo/
-    // https://www.padi.com.tw/zh-hans/diving-in/te-ke-si-he-kai-ke-si-qun-dao/
     {"names": ["Turks And Caicos"], "country": "United Kingdom", "aliases": ["特克斯和凯科斯", "タークス・アンド・カイコス", "터크스 케이커스", "터크스 케이코스"]},
-    // https://maptlantis.com/mauritius
-    // https://sea-ing.com/diving/mauritius/
-    // https://www.padi.com/zh-hans/diving-in/mao-li-qiu-si/
-    // https://www.padi.com/zh-hant/dive-sites/mo-li-xi-si-gong-he-guo/
     {"names": ["Mauritius"], "country": "Mauritius", "aliases": ["毛里求斯", "模里西斯", "モーリシャス", "모리셔스"]},
-    // https://cn.guidetoiceland.is/travel-iceland/drive/silfra
-    // https://lauyuettan.com/iceland-travel-info/things-to-do/thingvellir-silfra-snorkeling/
-    // https://maptlantis.com/places/iceland/thingvellir/dive-is-silfra
-    // https://www.divenavi.com/feature/best_recommended/2_silfra.html
     {"names": ["Silfra Fissure"], "country": "Iceland", "aliases": ["丝浮拉", "絲浮拉", "史費拉", "西尔夫拉", "席爾弗拉", "シルフラ", "실프라"]},
-    // https://blog.padi.com/ko/diving-in-miura-and-shonan/
-    // https://divecolors.com/diving-pointmap.html
     {"names": ["Kanagawa Prefecture"], "country": "Japan", "aliases": ["神奈川", "神奈川県", "가나가와", "가나가와현"]},
-    // https://blog.padi.com/ko/top-5-dive-sites-in-los-angeles-california/
-    // https://www.divenavi.com/la/diving/
-    // https://www.divers.world/zh-cn/dive-region/channel-islands-national-park/
-    // https://www.padi.com/zh-hant/dive-site/mei-li-jian-he-zhong-guo-usa/san-miguel-island/
     {"names": ["California Channel Islands"], "country": "United States of America", "aliases": ["加州海峡群岛", "加利福尼亚海峡群岛", "加州海峽群島", "チャネル諸島", "채널 제도"]},
-    // https://travel.padi.com/zh-hans/diving-in/mei-li-jian-he-zhong-guo-usa/xia-wei-yi-dao/
-    // https://travel.padi.com/zh-hant/diving-in/mei-li-jian-he-zhong-guo-usa/xia-wei-yi-dao/
-    // https://www.bluehawaii.co.kr/tour/tour-list
-    // https://www.scubago.com/ja/explore/destination/kona-9750671
     {"names": ["Hawaii Big Island"], "country": "United States of America", "aliases": ["夏威夷大岛", "夏威夷大島", "ハワイ島", "ビッグアイランド", "빅아일랜드"]},
-    // https://www.hellodive.com/dive/detail/info/183.html
-    // https://www.padi.com/ja/diving-in/suua-ruharuzhu-dao/
-    // https://www.padi.com/ko/diving-in/seubalbareu/
-    // https://www.padi.com/zh-hant/diving-in/si-wa-er-ba/
     {"names": ["Svalbard"], "country": "Norway", "aliases": ["斯瓦尔巴", "斯瓦尔巴群岛", "冷岸群島", "斯瓦爾巴", "スヴァールバル", "スヴァールバル諸島", "スバールバル", "스발바르"]},
-    // https://www.asiadiveholidays.com/zh/destinations/diving-in-derawan/
-    // https://www.metrotvnews.com/cn/read/2025/05/03/42760
-    // https://www.sipadan.com/jp/Sangalaki.php
-    // https://www.sipadan.com/ko/Sangalaki.php
-    // https://mediakaltim.com/bawah-laut-kaltim-sangat-menjanjikan-fpik-unmul-buka-sertifikasi-selam-internasional/
-    // https://jadesta.kemenpar.go.id/atraksi/titik_penyelaman_maratua
     {"names": ["East Kalimantan"], "country": "Indonesia", "aliases": ["东加里曼丹", "東加里曼丹", "東カリマンタン", "동칼리만탄", "Kaltim"]},
-    // https://travel.padi.com/zh-hant/dive-center/a-man/musandam-discovery-diving/
-    // https://www.divers.world/ja/divesite/musandam-peninsula/aquarium/
-    // https://www.padi.com/ko/diving-in/musandam/
-    // https://www.padi.com/zh-hans/diving-in/mu-sang-da-mu/
     {"names": ["Musandam"], "country": "Oman", "aliases": ["穆桑达姆", "穆桑丹", "穆桑代姆", "穆桑達姆", "ムサンダム", "무산담"]},
-    // https://www.indonesia.travel/kr/ko/destination/sulawesi/central-sulawesi
-    // https://www.padi.com/ja/dive-sites/zhong-bu-suraueshizhou/
-    // https://www.padi.com/zh-hans/diving-in/zhong-su-la-wei-xi-sheng/
-    // https://sulteng.antaranews.com/berita/321711/jambore-selam-di-sulteng-untuk-perkenalkan-wisata-bawah-laut-banggai-kepulauan
-    // https://www.padi.com/diving-in/central-sulawesi/
     {"names": ["Central Sulawesi"], "country": "Indonesia", "aliases": ["中苏拉威西", "中部スラウェシ", "중부 술라웨시", "중술라웨시", "Sulteng"]},
-    // https://travel.padi.com/ko/diving-in/seinteu-binsenteu-geurenadin/
-    // https://travel.padi.com/zh-hans/dive-course/saint-vincent-the-grenadines/padi-open-water-diver-course-64739/
-    // https://www.mofa.gov.tw/CountryInfo.aspx?CASN=6&n=166&s=85&sms=33&tabs=6AEF94FEF5545E67
-    // https://www.padi.com.cn/ja/diving-in/sentohinsento-kurenatei-n/
     {"names": ["Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["格林纳丁斯", "格瑞那丁", "グレナディーン諸島", "그레나딘"]},
-    // https://freedive.one/zh-CN/country/switzerland
-    // https://www.swissinfo.ch/jpn/business/%E5%8C%BB%E7%99%82%E3%82%B1%E3%82%A2%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9_%E6%95%91%E6%80%A5%E8%BB%8A%E3%81%AE%E5%88%A9%E7%94%A8-%E9%AB%98%E9%A1%8D%E3%81%AA%E8%B2%BB%E7%94%A8%E3%81%AF%E8%AA%B0%E3%81%8C%E8%B2%A0%E6%8B%85%E3%81%99%E3%81%B9%E3%81%8D/44135722
     {"names": ["St. Gallen"], "country": "Switzerland", "aliases": ["圣加仑", "ザンクト・ガレン"]},
-    // https://www.scubago.com/cn/explore/destination/veneto-9750924
-    // https://www.scubago.com/ja/explore/destination/veneto-9750924
-    // https://www.scubago.com/ko/explore/destination/veneto-9750924
     {"names": ["Veneto"], "country": "Italy", "aliases": ["威尼托", "ヴェネト", "베네토"]},
-    // https://maptlantis.com/new-zealand
-    // https://www.padi.com/zh-hans/dive-center/xin-xi-lan/dive-hq-christchurch/
     {"names": ["Canterbury"], "country": "New Zealand", "aliases": ["坎特伯雷", "캔터베리"]},
-    // https://www.expedia.co.jp/Oaxaca.dx11175
-    // https://www.padi.com/zh-hant/diving-in/mo-xi-ge-tai-ping-yang-hai-an/
     {"names": ["Oaxaca"], "country": "Mexico", "aliases": ["瓦哈卡", "オアハカ"]},
-    // https://www.liveaboard.com/kr/diving/philippines/palawan
-    // https://www.padi.com/ja/diving-in/harawan/
-    // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/sunset-divers-palawan/
-    // https://www.padi.com/zh-hant/diving-in/ba-la-wang-dao/
     {"names": ["Philippines Palawan"], "country": "Philippines", "aliases": ["巴拉望", "巴拉望岛", "巴拉望島", "パラワン", "パラワン島", "팔라완"]},
-    // https://blog.padi.com/ko/whale-shark-diving-the-best-dive-sites-in-the-world/
-    // https://www.divenavi.com/tour_detail/PH-62DD-F6
-    // https://www.hellodive.com/dive/detail/info/104.html
-    // https://www.hellodive.com/uploads/2021/20210207/Philippines_diving.pdf
     {"names": ["Philippines Donsol"], "country": "Philippines", "aliases": ["董索", "董索湾", "当素", "栋索尔", "董锁", "ドンソール", "돈솔"]},
-    // https://marinediving.com/area/lapaz/
-    // https://www.diveandcruise.cn/destination/sea-of-cortez
     {"names": ["La Paz Sea Of Cortez"], "country": "Mexico", "aliases": ["拉巴斯", "ラパス"]},
-    // https://marinediving.com/area/coco/
-    // https://www.diveandcruise.cn/destination/costa-rica-cocos-island
-    // https://www.padi.com/zh-hant/diving-in/ke-ke-si-dao/
-    // https://www.scubatimes.co.kr/articles/cocos-island-hammerheads-and-wonder-aboard-the-cocos-island-mvvtdyek-vxlmqy
     {"names": ["Cocos Island"], "country": "Costa Rica", "aliases": ["科科斯岛", "科科斯島", "ココ島", "코코스섬", "Isla del Coco"]},
-    // https://coralbound.com/zh-hans/posts/blog/triton-bay-guide
-    // https://coraltriangle.asia/indonesia/indonesia-20triton.html
-    // https://diveseason.com/zh-hant/dive/triton-bay/
-    // https://www.diveandcruise.cn/destination/triton-bay
-    // https://www.ezdivemag.com/zh_hans/%E6%9C%80%E5%90%8E%E7%9A%84%E6%BD%9C%E6%B0%B4%E4%B9%90%E5%9B%AD-%E8%A5%BF%E5%B7%B4%E5%B8%83%E4%BA%9A%E7%9A%84%E6%B5%B7%E7%A5%9E%E6%B9%BE/
-    // https://www.liveaboard.com/kr/diving/indonesia/triton-bay
     {"names": ["Triton Bay"], "country": "Indonesia", "aliases": ["特里同湾", "特里顿湾", "海神湾", "特里頓灣", "トリトンベイ", "트리톤 베이"]},
-    // https://tapura.infotahiti.fr/en/annuaire/ecole-de-plongee-de-tahiti
-    // https://www.scubago.com/tw/explore/destination/windward-islands-9753690
     {"names": ["Windward Islands"], "country": "French Polynesia", "aliases": ["Îles du Vent", "向風群島"]},
-    // The Philippines' dive tourism handbook localizes Oriental Mindoro for Chinese readers and lists dive operators there.
-    // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
     {"names": ["Oriental Mindoro"], "country": "Philippines", "aliases": ["东民都洛省"]},
-    // https://diveseason.com/zh-hant/dive/lombok/
-    // https://www.hellodive.com/dive/detail/info/101.html
-    // https://www.padi.com/ja/diving-in/ronhokudao/
-    // https://www.padi.com/ko/diving-in/rombogseom/
     {"names": ["Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "龙木岛", "龍目島", "ロンボク島", "롬복", "롬복섬"]},
-    // https://www.amtvusa.com/2026/11/11/%E7%BE%8E%E5%9B%BD%E5%8F%B7%E9%82%AE%E8%BD%AE%E5%9C%A8%E4%BD%9B%E7%BD%97%E9%87%8C%E8%BE%BE%E5%B7%9E%E5%A2%A8%E8%A5%BF%E5%93%A5%E6%B9%BE%E6%B2%BF%E5%B2%B8%E6%B2%89%E6%B2%A1%EF%BC%8C%E5%B0%86%E6%88%90/
     {"names": ["Florida Panhandle"], "country": "United States", "aliases": ["佛罗里达狭长地带"]},
-    // https://beachsearcher.com/zh/croatia/primorje-gorski-kotar-county
-    // https://www.ekvarner.info/dive-loft-krk/radno_vrijeme
-    // https://www.pgz.hr/informacije/
-    // https://scubaforecast.com/scuba-diving-weather/croatia/primorje-gorski-kotar-county
-    // https://www.padi.com/ja/diving-in/kuroachia/ (Kvarner dive context)
-    // https://www.padi.com/zh-hans/diving-in/ke-luo-di-ya/ (Kvarner dive context)
-    // https://www.pgz.hr/objave/more-na-kvarneru-vrhunske-kvalitete-cak-975-posto-plaza-dobilo-ocjenu-izvrsno/
-    {"names": ["Primorje-Gorski", "Primorje-Gorski Kotar"], "country": "Croatia", "aliases": ["Primorsko-goranska županija", "Primorje-Gorski Kotar County", "滨海和山区县"]},
-    // https://www.pomorskodobro.dalmacija.hr/u-fokusu/detalj/iii-hrvatski-ronilacki-kongres-objedinio-ronilacku-populaciju
+    {"names": ["Primorje-Gorski", "Primorje-Gorski Kotar", "Primorje-Gorski Kotar County"], "country": "Croatia", "aliases": ["Primorsko-goranska županija", "Primorje-Gorski Kotar County", "滨海和山区县"]},
+    {"names": ["Šibenik-Knin County"], "country": "Croatia", "aliases": ["Šibensko-kninska županija"]},
+    {"names": ["Zadar County"], "country": "Croatia", "aliases": ["Zadarska županija"]},
+    {"names": ["Northern Sporades, near Alonissos and Peristera"], "country": "Greece", "aliases": ["Βόρειες Σποράδες"]},
+    {"names": ["Turkey"], "country": "Turkey", "aliases": ["Türkiye"]},
+    {"names": ["Brussels Capital"], "country": "Belgium", "aliases": ["Région de Bruxelles-Capitale", "Brussels Hoofdstedelijk Gewest"]},
+    {"names": ["Flemish Brabant"], "country": "Belgium", "aliases": ["Vlaams-Brabant", "Brabant flamand"]},
+    {"names": ["Hainaut"], "country": "Belgium", "aliases": ["Henegouwen"]},
+    {"names": ["Liège"], "country": "Belgium", "aliases": ["Luik"]},
+    {"names": ["Walloon Brabant"], "country": "Belgium", "aliases": ["Brabant wallon", "Waals-Brabant"]},
+    {"names": ["West Flanders"], "country": "Belgium", "aliases": ["West-Vlaanderen"]},
+    {"names": ["Vlorë", "Vlora", "Valona"], "country": "Albania", "aliases": ["Vlorë", "Vlora", "Valona"]},
+    {"names": ["Gjirokastër", "Argirocastro", "Argyrocastro", "Argyrokastron", "Gjinokastër"], "country": "Albania", "aliases": ["Gjirokastër"]},
+    {"names": ["Chiba Prefecture", "千葉県"], "country": "Japan", "aliases": ["Chiba Prefecture", "千葉県"]},
+    {"names": ["Ehime Prefecture", "愛媛県"], "country": "Japan", "aliases": ["Ehime Prefecture", "愛媛県"]},
+    {"names": ["Fukui Prefecture", "福井県"], "country": "Japan", "aliases": ["Fukui Prefecture", "福井県"]},
+    {"names": ["Gifu Prefecture", "岐阜県"], "country": "Japan", "aliases": ["Gifu Prefecture", "岐阜県"]},
+    {"names": ["Hokkaidō", "北海道"], "country": "Japan", "aliases": ["Hokkaidō", "北海道"]},
+    {"names": ["Hyōgo Prefecture", "兵庫県"], "country": "Japan", "aliases": ["Hyōgo Prefecture", "兵庫県"]},
+    {"names": ["Iwate Prefecture", "岩手県"], "country": "Japan", "aliases": ["Iwate Prefecture", "岩手県"]},
+    {"names": ["Kagoshima Prefecture", "鹿児島県"], "country": "Japan", "aliases": ["Kagoshima Prefecture", "鹿児島県"]},
+    {"names": ["Miyagi Prefecture", "宮城県"], "country": "Japan", "aliases": ["Miyagi Prefecture", "宮城県"]},
+    {"names": ["Nagasaki Prefecture", "長崎県"], "country": "Japan", "aliases": ["Nagasaki Prefecture", "長崎県"]},
+    {"names": ["Ōsaka Prefecture", "大阪府"], "country": "Japan", "aliases": ["Ōsaka Prefecture", "大阪府"]},
+    {"names": ["Shiga Prefecture", "滋賀県"], "country": "Japan", "aliases": ["Shiga Prefecture", "滋賀県"]},
+    {"names": ["Shimane Prefecture", "島根県"], "country": "Japan", "aliases": ["Shimane Prefecture", "島根県"]},
+    {"names": ["Tokyo", "Tokio", "東京都"], "country": "Japan", "aliases": ["Tokyo", "Tokio", "東京都", "Tóquio"]},
+    {"names": ["Toyama Prefecture", "富山県"], "country": "Japan", "aliases": ["Toyama Prefecture", "富山県"]},
+    {"names": ["Yamagata Prefecture", "山形県"], "country": "Japan", "aliases": ["Yamagata Prefecture", "山形県"]},
+    {"names": ["Yamaguchi Prefecture", "山口県"], "country": "Japan", "aliases": ["Yamaguchi Prefecture", "山口県"]},
+    {"names": ["Yamanashi Prefecture", "山梨県"], "country": "Japan", "aliases": ["Yamanashi Prefecture", "山梨県"]},
     {"names": ["Split-Dalmatia County"], "country": "Croatia", "aliases": ["Splitsko-dalmatinska županija"]},
-    // https://visitdubrovnik.hr/hr/aktivnosti/ostalo/
-    // https://www.getmyboat.com/ja/boat-rental/snorkeling/Dubrovnik-Neretva-County--Croatia/
     {"names": ["Dubrovnik-Neretva County"], "country": "Croatia", "aliases": ["Dubrovačko-neretvanska županija", "ドゥブロヴニク＝ネレトヴァ"]},
-    // https://travel.padi.com/zh-hans/dive-center/an-ti-gua-he-ba-bu-da/divecarib/
-    // https://www.padi.com.cn/ja/diving-in/anteikua-ha-hu-ta/
-    // https://www.padi.com/ko/diving-in/aentiga-babuda/
-    // https://www.padi.com/zh-hant/diving-in/an-di-qia-ji-ba-bu-da/
     {"names": ["Antigua And Barbuda"], "country": "Antigua and Barbuda", "aliases": ["安提瓜和巴布达", "安地卡及巴布達", "安提瓜和巴布達", "アンティグア・バーブーダ", "앤티가 바부다", "Antigua y Barbuda"]},
-    // https://www.padi.com.tw/ja/diving-in/misu-ri/
-    // https://www.padi.com.tw/zh-hans/diving-in/mi-su-li-zhou/
-    // https://www.padi.com.tw/zh-hant/diving-in/mi-su-li/
-    // https://www.padi.com/ko/dive-sites/mijuri/
     {"names": ["Missouri"], "country": "United States", "aliases": ["密苏里州", "密蘇里州", "ミズーリ州", "미주리"]},
-    // https://travel.padi.com/ja/diving-in/niyu-shiya-shi/
-    // https://travel.padi.com/ko/diving-in/nyujeoji/
-    // https://www.divers.world/zh-tw/diveshop/aqua-adventures-2/
-    // https://www.siamdive.com/cn/explore/dive-center/elite-divers
     {"names": ["New Jersey"], "country": "United States of America", "aliases": ["新泽西州", "紐澤西州", "ニュージャージー州", "뉴저지"]},
-    // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/the-scuba-shop-inc/
-    // https://www.padi.com/zh-hant/diving-in/nan-qia-luo-lai-na/
     {"names": ["South Carolina"], "country": "United States", "aliases": ["南卡罗来纳州", "南卡羅來納州"]},
-    // https://travel.padi.com/zh-hans/dive-course/north-carolina/padi-deep-diver-65982/
-    // https://www.padi.com/ja/diving-in/no-sukaroraina/
-    // https://www.scubago.com/ko/offer/morehead-city-nc-26-juli-1-augusti-2026-hajar-undervattensfarkoster-och-skeppsvrak-151454
-    // https://www.scubago.com/tw/offer/offer-144296
     {"names": ["North Carolina"], "country": "United States", "aliases": ["北卡罗来纳州", "北卡羅來納州", "北卡羅萊納州", "ノースカロライナ州", "노스캐롤라이나"]},
-    // https://ja.seattlesouthside.com/blog/scuba-diving-near-seattle/
-    // https://sangseek.com/index.php/communities/202032
-    // https://www.divers.world/zh-cn/divesite/puget-sound/fox-island-east-wall/
-    // https://www.divers.world/zh-tw/divesite/puget-sound/fox-island-east-wall/
     {"names": ["Puget Sound"], "country": "United States of America", "aliases": ["普吉特海湾", "普吉特海灣", "ピュージェット湾", "퓨젯 사운드"]},
-    // https://pf.kakao.com/_LHBxixl
-    // https://travel.padi.com/zh-hant/dive-shops/guan-dao/
-    // https://www.ninjadive.com/menu/
-    // https://www.padi.com.tw/zh-hans/diving-in/guan-dao/
     {"names": ["Guam"], "country": "United States of America", "aliases": ["关岛", "關島", "グアム", "괌"]},
-    // https://www.padi.com/zh-hans/dive-center/guan-dao/guam-tropical-dive-station/
-    // https://www.padi.com/zh-hant/diving-in/guan-dao/
-    // https://www.padi.com/ja/diving-in/kuamu/
-    // https://travel.padi.com/ko/diving-in/gwam/
     {"names": ["Guam"], "country": "Guam", "aliases": ["关岛", "關島", "グアム", "괌"]},
-    // https://travel.padi.com/ja/diving-in/kororatozhou/
-    // https://www.padi.com.tw/zh-hant/diving-in/ke-luo-la-duo/
-    // https://zh-cn.larimer.gov/%E8%87%AA%E7%84%B6%E8%B5%84%E6%BA%90-a/%E5%85%AC%E5%9B%AD/%E5%8D%A1%E7%89%B9%E8%8E%B1%E5%85%8B
     {"names": ["Colorado"], "country": "United States", "aliases": ["科罗拉多州", "科羅拉多州", "コロラド州"]},
     {"names": ["Colorado"], "country": "United States of America", "aliases": ["科罗拉多州", "科羅拉多州", "コロラド州"]},
-    // https://marinediving.com/area/hawaii/diving/
-    // https://www.padi.com/node/7786?lang=en
-    // https://www.padi.com/zh-hans/diving-in/mei-li-jian-he-zhong-guo-usa/maui/
-    // https://www.scubago.com/cn/explore/destination/maui-9750670
-    // https://www.youtube.com/watch?v=RSx4Yj7NqsI
     {"names": ["Hawaii Maui"], "country": "United States of America", "aliases": ["茂宜岛", "毛伊", "毛伊島", "茂宜島", "マウイ島", "마우이"]},
-    // https://travel.padi.com/ja/diving-in/ioniazhu-dao/
-    // https://www.diveandcruise.cn/destination/greece
-    // https://www.padi.com.tw/zh-hant/diving-in/ai-ao-ni-ya-qun-dao/
-    // https://www.padi.com/ko/dive-sites/ionia-jedo/
-    // https://insete.gr/wp-content/uploads/2024/12/24-12_Greece.pdf (diving destinations by region)
     {"names": ["Ionian Islands"], "country": "Greece", "aliases": ["爱奥尼亚群岛", "愛奧尼亞群島", "イオニア諸島", "이오니아 제도", "Ιόνια Νησιά"]},
-    // https://travel.padi.com/ko/diving-in/jibuti/
-    // https://travel.padi.com/zh-hant/diving-in/ji-bu-di/
-    // https://www.bluerides.com/ja/daibingu-pointo/kuni/djibouti
-    // https://www.divers.world/zh-tw/country/dj/
     {"names": ["Djibouti"], "country": "Djibouti", "aliases": ["吉布提", "吉布地", "ジブチ", "지부티"]},
-    // https://travel.padi.com/zh-hant/diving-in/mo-san-bi-ke/
-    // https://www.padi.com/ko/diving-in/mojambikeu/
-    // https://www.padi.com/zh-hans/diving-in/mo-sang-bi-ke/
-    // https://www.scubago.com/ja/explore/destination/mozambique-9752886
     {"names": ["Mozambique"], "country": "Mozambique", "aliases": ["莫桑比克", "莫三比克", "モザンビーク", "모잠비크"]},
-    // Localized PADI diving guides support these spellings for imported Mozambique region records without country metadata.
-    // https://www.padi.com/zh-hans/diving-in/mo-sang-bi-ke/
-    // https://travel.padi.com/zh-hant/diving-in/mo-san-bi-ke/
-    // https://www.padi.com/ko/diving-in/mojambikeu/
-    // https://travel.padi.com/ja/diving-in/africa/
     {"names": ["Mozambique"], "country": "", "aliases": ["莫桑比克", "莫三比克", "モザンビーク", "모잠비크"]},
-    // https://blog.padi.com/tw/just-in-time-for-halloween-the-worlds-spookiest-dive-sites/
-    // https://travel.padi.com/zh-hans/diving-in/ying-guo/
-    // https://www.siamdive.com/ja/explore/dive-center/planet-scuba-school-ltd
     {"names": ["Scapa Flow"], "country": "United Kingdom", "aliases": ["斯卡帕湾", "斯卡帕灣", "スカパフロー"]},
-    // https://taucher.net/tauchen-in-mecklenburg-vorpommern-eaz24
     {"names": ["Mecklenburg-Western Pomerania"], "country": "Germany", "aliases": ["Mecklenburg-Vorpommern"]},
-    // https://www.padi.com/ja/dive-shops/itaria/ha-ri/
-    // https://www.padi.com/zh-hans/dive-shops/yi-da-li/ba-li/
     {"names": ["Bari"], "country": "Italy", "aliases": ["巴里", "バーリ"]},
-    // https://www.scubago.com/cn/explore/destination/marche-9750931
-    // https://www.scubago.com/tw/explore/destination/marche-9750931
     {"names": ["Marche"], "country": "Italy", "aliases": ["马尔凯", "马尔凯大区", "馬爾凱"]},
-    // https://travel.padi.com/ko/diving-in/seinteu-binsenteu-geurenadin/
-    // https://www.padi.com.tw/ja/diving-in/sentohinsento-kurenatei-n/
-    // https://www.padi.com.tw/zh-hant/diving-in/sheng-wen-sen-ji-ge-rui-na-ding/
     {"names": ["St Vincent Grenadines"], "country": "Saint Vincent and the Grenadines", "aliases": ["圣文森特和格林纳丁斯", "聖文森及格瑞那丁", "セントビンセント・グレナディーン", "セントビンセントおよびグレナディーン諸島", "세인트 빈센트 그레나딘", "세인트빈센트 그레나딘"]},
-    // https://maptlantis.com/tanzania
-    // https://travel.padi.com/zh-hans/diving-in/tan-sang-ni-ya/
-    // https://travel.padi.com/zh-hant/diving-in/tan-shang-ni-ya/
-    // https://www.padi.com/ja/dive-sites/tansania/
     {"names": ["Tanzania"], "country": "United Republic of Tanzania", "aliases": ["坦桑尼亚", "坦尚尼亞", "タンザニア", "탄자니아"]},
-    // https://divejobs.padi.com/ja/job/internship-2-2-2-2-2/
-    // https://www.padi.com/ko/diving-in/namapeurika-gonghwagug/
-    // https://www.padi.com/zh-hans/diving-in/nan-fei/
     {"names": ["South Africa"], "country": "South Africa", "aliases": ["南非", "南アフリカ", "남아프리카 공화국", "남아프리카공화국"]},
-    // https://tw.trip.com/things-to-do/detail/105196593/
-    // https://www.b-tabi.com/contribution/contribution2013/39zanzibar.html
-    // https://www.khan.co.kr/article/200704120911031
-    // https://www.padi.com/zh-hans/diving-in/sang-gei-ba-er/
     {"names": ["Tanzania | Zanzibar"], "country": "Tanzania, United Republic of", "aliases": ["桑给巴尔", "桑給巴爾", "桑吉巴", "ザンジバル", "잔지바르"]},
-    // https://www.scubago.com/cn/explore/destination/utrecht-9750716
-    // https://www.scubago.com/ja/explore/destination/netherlands-9750714
-    // https://www.scubago.com/tw/explore/destination/netherlands-9750714
     {"names": ["Utrecht"], "country": "Netherlands", "aliases": ["乌得勒支", "烏特勒支", "烏得勒支", "ユトレヒト"]},
-    // French-language ScubaGo diving destination: https://www.scubago.com/fr/explore/destination/cornwall-9751210
-    // Spanish and Italian PADI diving destinations: https://www.padi.com/es/diving-in/reino-unido/cornualles/ ; https://www.padi.com/it/diving-in/regno-unito-e-irlanda/cornovaglia/
-    // Portuguese dive-site page: https://openwateratlas.com/pt-br/mergulho/united-kingdom/pendennis-shore-dive/
     {"names": ["Cornwall"], "country": "United Kingdom", "aliases": ["康沃尔", "康沃尔郡", "康沃爾", "康沃爾郡", "コーンウォール", "Cornouailles", "Cornovaglia", "Cornualha", "Cornualles"]},
     {"names": ["Selangor"], "country": "Malaysia", "aliases": ["雪兰莪州", "雪兰莪", "雪蘭莪"]},
     {"names": ["Seychelles"], "country": "Seychelles", "aliases": ["塞舌尔", "塞席爾", "セーシェル", "セイシェル", "세이셸"]},
     {"names": ["Dominica"], "country": "Dominica", "aliases": ["多米尼克", "ドミニカ国"]},
     {"names": ["Grenada"], "country": "Grenada", "aliases": ["格林纳达", "格瑞那達", "格林納達", "グレナダ", "그레나다"]},
-    // PADI destination guides use localized California names in diving context.
-    // https://www.padi.com/zh-hans/diving-in/jia-li-fu-ni-ya/
-    // https://www.padi.com/ja/diving-in/karihuoruniazhou/
-    // https://www.padi.com/de/diving-in/kalifornien/
-    // https://www.padi.com/fr/diving-in/etats-unis-d-amerique-usa/
     {"names": ["California"], "country": "United States of America", "aliases": ["加州", "加利福尼亚", "加利福尼亚州", "加利福尼亞州", "カリフォルニア州", "Kalifornien", "Californie"]},
     {"names": ["Micronesia Yap"], "country": "Federated States of Micronesia", "aliases": ["雅浦", "雅浦岛", "雅浦島", "ヤップ", "ヤップ島", "야프", "얍"]},
     {"names": ["Lapu-Lapu"], "country": "Philippines", "aliases": ["拉普拉普", "ラプラプ市", "라푸라푸"]},
     {"names": ["Mie Prefecture"], "country": "Japan", "aliases": ["三重県", "三重縣", "미에현"]},
-    // Ocean-area labels are indexed without a country parent; keep these aliases global so both ocean and region searches resolve.
     {"names": ["Balearic Sea"], "country": "", "aliases": ["Mar Balear"]},
     {"names": ["Bali Sea"], "country": "", "aliases": ["Laut Bali"]},
+    {names:['Bali Sea'], country:'Indonesia', aliases:['Bali Sea','Laut Bali']},
     {"names": ["Baltic Sea"], "country": "", "aliases": ["Östersjön", "Morze Bałtyckie", "Bałtyk", "Ostsee"]},
     {"names": ["Bay of Biscay"], "country": "", "aliases": ["Golfe de Gascogne"]},
     {"names": ["Bay of Bengal"], "country": "", "aliases": ["孟加拉湾", "ベンガル湾", "Golfe du Bengale", "Golfo de Bengala"]},
@@ -616,15 +430,11 @@
     {"names": ["Banda Sea"], "country": "Indonesia", "aliases": ["班达海", "班達海", "バンダ海", "반다해"]},
     {"names": ["Coral Sea"], "country": "", "aliases": ["珊瑚海"]},
     {"names": ["Celebes Sea"], "country": "", "aliases": ["苏拉威西海", "西里伯斯海", "セレベス海", "술라웨시해", "Mar de Célebes"]},
-    // Preserve the dataset's Arabian Gulf naming; do not merge it with the politically contested Persian Gulf label.
     {"names": ["Arabian Gulf"], "country": "", "aliases": ["阿拉伯湾", "阿拉伯灣", "アラビア湾", "아라비아만", "الخليج العربي"]},
     {"names": ["Arafura Sea"], "country": "", "aliases": ["アラフラ海", "Laut Arafura"]},
     {"names": ["Alboran Sea"], "country": "", "aliases": ["阿尔沃兰海", "Mar de Alborán", "mer d'Alboran", "アルボラン海"]},
-    // https://spectator.clingendael.org/sites/spectator/files/2017-07/2011-02_0.pdf
-    // https://repository.ipb.ac.id/handle/123456789/32546
     {"names": ["Aceh"], "country": "Indonesia", "aliases": ["亚齐", "亚齐省", "亞齊", "アチェ", "Atjeh", "Nanggroe Aceh Darussalam"]},
     {"names": ["St Kitts And Nevis"], "country": "Saint Kitts and Nevis", "aliases": ["圣基茨和尼维斯", "聖克里斯多福及尼維斯", "セントクリストファー・ネイビス", "セントキッツ・ネイビス", "세인트키츠 네비스"]},
-    // https://www.hellodive.com/dive/detail/info/150.html
     {"names": ["Gili Islands | Lombok"], "country": "Indonesia", "aliases": ["龙目岛", "吉利岛", "吉利群岛", "龍目島", "吉利群島", "ロンボク島", "ギリ諸島", "롬복", "길리 제도"]},
     {"names": ["North Carolina"], "country": "United States of America", "aliases": ["北卡罗来纳州", "ノースカロライナ州", "노스캐롤라이나"]},
     {"names": ["Arizona"], "country": "United States", "aliases": ["亞利桑那州", "アリゾナ州"]},
@@ -632,7 +442,7 @@
     {"names": ["Washington"], "country": "United States", "aliases": ["华盛顿州", "華盛頓州", "ワシントン州"]},
     {"names": ["Tonga"], "country": "Tonga", "aliases": ["汤加", "東加", "湯加", "トンガ", "통가"]},
     {"names": ["Central Bohemian"], "country": "Czechia", "aliases": ["Středočeský kraj"]},
-    {"names": ["Hawaii Oahu"], "country": "United States", "aliases": ["欧胡岛", "歐胡島", "瓦胡島", "オアフ島", "오아후"]},
+    {"names": ["Hawaii Oahu"], "country": "United States", "aliases": ["欧胡岛", "歐胡島", "瓦胡岛", "瓦胡島", "オアフ島", "오아후"]},
     {"names": ["Sumbawa"], "country": "Indonesia", "aliases": ["松巴哇", "松巴哇岛", "松巴哇島", "スンバワ島", "숨바와"]},
     {"names": ["Haute-Savoie"], "country": "France", "aliases": ["オート・サヴォワ県"]},
     {"names": ["Haute-Savoie"], "country": "France", "aliases": ["上薩瓦省"]},
@@ -644,7 +454,6 @@
     {"names": ["Alaska"], "country": "United States of America", "aliases": ["알래스카"]},
     {"names": ["Alaska"], "country": "United States of America", "aliases": ["アラスカ", "アラスカ州"]},
     {"names": ["Alaska"], "country": "United States of America", "aliases": ["阿拉斯加", "阿拉斯加州"]},
-    // Greek-language ScubaGo destination and dive-site listings: https://www.scubago.com/el/explore/destination/attica-9751123
     {"names": ["Attica"], "country": "Greece", "aliases": ["아티카", "Αττική"]},
     {"names": ["Attica"], "country": "Greece", "aliases": ["アッティカ"]},
     {"names": ["Attica"], "country": "Greece", "aliases": ["阿提卡"]},
@@ -695,6 +504,10 @@
     {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["ガラパゴス諸島"]},
     {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉巴哥群島", "加拉帕戈斯群島"]},
     {"names": ["Galapagos Islands"], "country": "Ecuador", "aliases": ["加拉帕戈斯", "加拉帕戈斯群岛"]},
+    { names: ["Galápagos"], country: "Ecuador", aliases: ["加拉帕戈斯群岛", "加拉帕戈斯群島", "ガラパゴス諸島", "갈라파고스 제도"] },
+    { names: ["Sabah"], country: "Malaysia", aliases: ["沙巴州", "沙巴", "サバ州", "사바주"] },
+    { names: ["South Australia"], country: "Australia", aliases: ["南澳大利亚州", "南澳州", "南オーストラリア州"] },
+    { names: ["Tasmania"], country: "Australia", aliases: ["塔斯马尼亚州", "塔斯马尼亚", "塔斯馬尼亞州", "塔斯馬尼亞", "タスマニア州", "タスマニア", "태즈메이니아주", "태즈메이니아"] },
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["할마헤라"]},
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["ハルマヘラ"]},
     {"names": ["Halmahera"], "country": "Indonesia", "aliases": ["哈馬黑拉"]},
@@ -707,16 +520,10 @@
     {"names": ["Palau"], "country": "Palau", "aliases": ["パラオ"]},
     {"names": ["Palau"], "country": "Palau", "aliases": ["帛琉"]},
     {"names": ["Palau"], "country": "Palau", "aliases": ["帕劳"]},
-    // PADI's Spanish destination name uses the plural exonym for the country.
     {"names": ["Palau"], "country": "Palau", "aliases": ["Palaos"]},
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["수단 홍해", "Mar Rojo"]},
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["蘇丹紅海", "Mar Rojo"]},
     {"names": ["Red Sea | Sudan Red Sea"], "country": "Sudan", "aliases": ["苏丹红海", "Mar Rojo"]},
-    // Localized scuba-destination pages identify Sudan as a Red Sea diving destination; scope these forms to imported Sudan-region records too.
-    // https://www.padi.com/zh-hans/dive-center/su-dan/don-questo/
-    // https://www.padi.com/zh-hant/dive-center/su-dan/le-baron-noir/
-    // https://travel.padi.com/ko/diving-in/sudan/
-    // https://www.padi.com/es/dive-site/sudan/sudan-mar-rojo/
     {"names": ["Red Sea | Sudan Red Sea"], "country": "", "aliases": ["苏丹红海", "蘇丹紅海", "수단 홍해", "Sudán, Mar Rojo"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебская область"]},
     {"names": ["Vitebsk"], "country": "Belarus", "aliases": ["Витебск"]},
@@ -747,6 +554,7 @@
     {"names": ["Aruba"], "country": "Netherlands", "aliases": ["アルバ"]},
     {"names": ["Aruba"], "country": "Netherlands", "aliases": ["阿魯巴"]},
     {"names": ["Aruba"], "country": "Netherlands", "aliases": ["阿鲁巴"]},
+    { names: ["Aruba"], country: "Aruba", aliases: ["阿鲁巴", "阿魯巴", "アルバ", "아루바"] },
     {"names": ["New York"], "country": "United States", "aliases": ["뉴욕주"]},
     {"names": ["New York"], "country": "United States", "aliases": ["ニューヨーク州"]},
     {"names": ["New York"], "country": "United States", "aliases": ["紐約州"]},
@@ -764,7 +572,6 @@
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["バハマ"]},
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈馬"]},
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈马"]},
-    // PADI uses the island-group form on its Chinese diving destination pages.
     {"names": ["Bahamas"], "country": "The Bahamas", "aliases": ["巴哈马群岛", "巴哈馬群島"]},
     {"names": ["Maldives"], "country": "Maldives", "aliases": ["몰디브", "Maldivas"]},
     {"names": ["Maldives"], "country": "Maldives", "aliases": ["モルディブ"]},
@@ -775,12 +582,11 @@
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["クロアチア"]},
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["克羅埃西亞"]},
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["克罗地亚"]},
-    // Keep the French exonym discoverable from French-language dive searches.
     {"names": ["Croatia"], "country": "Croatia", "aliases": ["Croatie"]},
-    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["영국령 버진아일랜드"]},
-    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["イギリス領ヴァージン諸島"]},
-    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["英屬維京群島"]},
-    {"names": ["British Virgin Islands"], "country": "Virgin Islands, British", "aliases": ["英属维尔京群岛", "Islas Vírgenes Británicas"]},
+    { names: ["British Virgin Islands"], country: "British Virgin Islands", aliases: ["英属维尔京群岛", "英屬維京群島", "イギリス領ヴァージン諸島", "영국령 버진아일랜드"] },
+    { names: ["British Virgin Islands"], country: "United Kingdom", aliases: ["英属维尔京群岛", "英屬維京群島", "イギリス領ヴァージン諸島", "영국령 버진아일랜드"] },
+    { names: ["British Virgin Islands"], country: "Virgin Islands, British", aliases: ["英属维尔京群岛", "英屬維京群島", "イギリス領ヴァージン諸島", "영국령 버진아일랜드", "Islas Vírgenes Británicas"] },
+    { names: ["Sal"], country: "Cabo Verde", aliases: ["萨尔岛", "サル島", "카보 베르데 살", "Ilha do Sal"] },
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["키프로스"]},
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["キプロス"]},
     {"names": ["Cyprus"], "country": "Cyprus", "aliases": ["賽普勒斯"]},
@@ -805,12 +611,6 @@
     {"names": ["Marshall Islands"], "country": "Marshall Islands", "aliases": ["マーシャル諸島"]},
     {"names": ["Marshall Islands"], "country": "Marshall Islands", "aliases": ["馬紹爾群島"]},
     {"names": ["Marshall Islands"], "country": "Marshall Islands", "aliases": ["马绍尔群岛"]},
-    // PADI dive guides use these localized forms; keep the two imported US country labels separate.
-    // https://travel.padi.com/zh-hans/diving-in/fo-luo-li-da-zhou/
-    // https://travel.padi.com/zh-hant/diving-in/fo-luo-li-da-zhou/
-    // https://www.padi.com/ja/diving-in/huroritazhou/
-    // https://www.padi.com/ko/diving-in/amerika-habjunggug-usa/poteurodeodeil/
-    // https://www.padi.com/fr/diving-in/floride/
     {"names": ["Florida"], "country": "United States", "aliases": ["佛罗里达州", "佛羅里達州", "佛羅裡達州", "フロリダ州", "플로리다주", "Floride"]},
     {"names": ["Florida"], "country": "United States of America", "aliases": ["佛罗里达州", "佛羅里達州", "佛羅裡達州", "フロリダ州", "플로리다주", "Floride"]},
     {"names": ["Santa Cruz de Tenerife"], "country": "Spain", "aliases": ["サンタクルス デ テネリフェ"]},
@@ -821,60 +621,30 @@
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亞新幾內亞"]},
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亞紐幾內亞"]},
     {"names": ["Papua New Guinea"], "country": "Papua New Guinea", "aliases": ["巴布亚新几内亚"]},
-    // PADI's localized scuba guides use these names; the empty country scope also covers imported region records with no country value.
-    // https://www.padi.com/zh-hans/diving-in/ba-bu-ya-xin-ji-nei-ya/
-    // https://www.padi.com/zh-hant/diving-in/ba-bu-ya-niu-ji-nei-ya/
-    // https://www.padi.com/ja/diving-in/hahuaniyu-kinia/
-    // https://www.padi.com/ko/destinations
     {"names": ["Papua New Guinea"], "country": "", "aliases": ["巴布亚新几内亚", "巴布亞新幾內亞", "巴布亞紐幾內亞", "パプアニューギニア", "파푸아뉴기니"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["라스팔마스"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["拉斯帕爾馬斯"]},
     {"names": ["Las Palmas"], "country": "Spain", "aliases": ["拉斯帕尔马斯"]},
-    // The South Aegean dive-tourism report uses the official Greek regional name.
-    // https://andikat.eu/wp-content/uploads/2019/08/3.2.4_%CE%95%CE%A0%CE%99%CE%9B%CE%9F%CE%93%CE%97-%CE%9A%CE%91%CE%A4%CE%91%CE%9B%CE%9B%CE%97%CE%9B%CE%A9%CE%9D-%CE%98%CE%95%CE%A3%CE%95%CE%A9%CE%9D-%CE%93%CE%99%CE%91-%CE%94%CE%97%CE%9C%CE%99%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91-%CE%9A%CE%91%CE%A4%CE%91%CE%94%CE%A5%CE%A4%CE%99%CE%9A%CE%A9%CE%9D-%CE%94%CE%99%CE%91%CE%94%CE%A1%CE%9F%CE%9C%CE%A9%CE%9D-%CE%91%CE%9D%CE%94%CE%99%CE%9A%CE%91%CE%A4-2019.pdf
     {"names": ["South Aegean", "Aegean South", "Νοτίου Αιγαίου"], "country": "Greece", "aliases": ["南愛琴海"]},
     {"names": ["South Aegean"], "country": "Greece", "aliases": ["南爱琴海"]},
     {"names": ["Red Sea"], "country": "Saudi Arabia", "aliases": ["红海", "Mar Rojo"]},
     {"names": ["Los Cabos"], "country": "Mexico", "aliases": ["ロスカボス"]},
     {"names": ["Aqaba"], "country": "Jordan", "aliases": ["아카바"]},
-    // The Aqaba Marine Park diving guide uses the Arabic city spelling العقبة.
-    // https://www.visitaqaba.com/EN/List/Diving
-    // https://www.aqabadive.com/ar/%D8%A7%D9%84%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84-%D9%84%D9%84%D8%BA%D9%88%D8%B5-%D9%81%D9%8A-%D8%A7%D9%84%D8%B9%D9%82%D8%A8%D8%A9/
     {"names": ["Aqaba"], "country": "Jordan", "aliases": ["العقبة"]},
     {"names": ["Manabí"], "country": "Ecuador", "aliases": ["马纳比", "馬納比", "マナビ"]},
     {"names": ["North Holland"], "country": "Netherlands", "aliases": ["Noord-Holland"]},
     {"names": ["Tanzania | Zanzibar"], "country": "United Republic of Tanzania", "aliases": ["桑給巴爾"]},
     {"names": ["Zürich"], "country": "Switzerland", "aliases": ["蘇黎世"]},
     {"names": ["Tobago"], "country": "Trinidad and Tobago", "aliases": ["多巴哥", "多巴哥岛", "多巴哥島"]},
-    // The official county tourism board's Spanish page uses Split-Dalmacia while describing diving.
-    // https://www.dalmatia.hr/es/nauticki-turizam-2/
     {"names": ["Split-Dalmatia", "Split-Dalmacia"], "country": "Croatia", "aliases": ["Splitsko-dalmatinska županija"]},
     {"names": ["Zürich"], "country": "Switzerland", "aliases": ["苏黎世"]},
     {"names": ["Tanzania | Zanzibar"], "country": "United Republic of Tanzania", "aliases": ["Zanzibar", "桑给巴尔", "ザンジバル"]},
-    // PADI localized dive-site catalogs use these destination names for the same Apulia dive region.
-    // https://www.padi.com/de/dive-sites/apulien/
-    // https://www.padi.com/fr/dive-sites/les-pouilles/
-    // https://www.padi.com/it/dive-sites/puglia/
     {"names": ["Apulia"], "country": "Italy", "aliases": ["Puglia", "普利亚", "プーリア", "Apulien", "Pouilles", "Les Pouilles"]},
-    // PADI's localized dive-site catalogs use Lombardy's German, French, Italian, and English forms.
-    // https://www.padi.com.cn/de/dive-sites/lombardei/
-    // https://www.padi.com/fr/dive-sites/lombardie/
-    // https://www.padi.com/it/dive-sites/lombardia/
-    // https://www.padi.com.cn/dive-sites/lombardy/
+    {"names": ["Emilia Romagna"], "country": "Italy", "aliases": ["Emilia-Romagna"]},
+    {"names": ["Emilia Romagna"], "country": "International waters", "aliases": ["Emilia-Romagna"]},
     {"names": ["Lombardy"], "country": "Italy", "aliases": ["Lombardei", "Lombardie", "Lombardia"]},
-    // Regional tourism and diving directories use the French and Spanish Languedoc-Roussillon forms.
-    // https://www.tourisme-occitanie.com/fr/fiche/equipement/gpes-languedoc-roussillon-beziers_TFOSITRA2_LOI_7148670/
-    // https://www.yumping.com/es-MX/buceo/languedoc-rosellon
     {"names": ["Languedoc-Rosellon"], "country": "France", "aliases": ["Languedoc-Roussillon", "Languedoc-Rosellón"]},
-    // PADI publishes English and French dive-site listings for this Canadian province.
-    // https://www.padi.com/dive-sites/nova-scotia/
-    // https://www.padi.com/fr/dive-sites/nouvelle-ecosse/
     {"names": ["Nova Scotia"], "country": "Canada", "aliases": ["Nouvelle-Écosse"]},
-    // PADI localized dive-site catalogs use English, Italian, French, and German names for Sicily.
-    // https://www.padi.com/dive-sites/sicily/
-    // https://www.padi.com/it/dive-sites/sicilia/
-    // https://www.padi.com/fr/dive-sites/la-sicile/
-    // https://www.padi.com/de/dive-sites/sizilien/
     {"names": ["Sicily", "Sicilia"], "country": "Italy", "aliases": ["La Sicile", "Sizilien"]},
     {"names": ["North Holland"], "country": "Netherlands", "aliases": ["北荷蘭", "北荷蘭省"]},
     {"names": ["Aqaba"], "country": "Jordan", "aliases": ["アカバ"]},
@@ -884,8 +654,6 @@
     {"names": ["Los Cabos"], "country": "Mexico", "aliases": ["洛斯卡沃斯"]},
     {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西開普省", "Wes-Kaap"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["南荷蘭"]},
-    // Greek dive guides use Κρήτη for the Crete diving destination.
-    // https://www.diversclub-crete.gr/el/dive-sites-gr/
     {"names": ["Crete"], "country": "Greece", "aliases": ["크레타섬", "Κρήτη"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["南荷兰"]},
     {"names": ["Crete"], "country": "Greece", "aliases": ["クレタ", "クレタ島", "크레타", "크레타 섬"]},
@@ -897,23 +665,15 @@
     {"names": ["Monterey Bay"], "country": "United States of America", "aliases": ["蒙特雷湾"]},
     {"names": ["Bocas Del Toro"], "country": "Panama", "aliases": ["博卡斯德尔托罗", "博卡斯德爾托羅"]},
     {"names": ["Curacao"], "country": "Netherlands", "aliases": ["库拉索", "库拉索岛", "庫拉索", "Curazao", "キュラソー", "퀴라소"]},
-    // https://www.padi.com/zh-hans/diving-in/ku-la-suo/
-    // https://www.padi.com/zh-hant/dive-site/gu-la-suo/east-point/
-    // https://www.padi.com/ja/diving-in/kiyuraso/
-    // https://www.padi.com/ko/diving-in/kwiraso/piseukadera/
-    // https://www.padi.com/es/dive-sites/curazao/
     {"names": ["Curaçao", "Curacao"], "country": "Curaçao", "aliases": ["库拉索", "库拉索岛", "庫拉索", "庫拉索島", "Curazao", "キュラソー", "퀴라소"]},
     {"names": ["Western Cape"], "country": "South Africa", "aliases": ["西开普省", "Wes-Kaap"]},
     {"names": ["Crete"], "country": "Greece", "aliases": ["克里特岛"]},
-    // An Oman dive-center directory uses the local Romanization Muhafazat Masqat for the Muscat governorate.
-    // https://www.diveplannerpro.com/dive-centers/om
     {"names": ["Muscat"], "country": "Oman", "aliases": ["马斯喀特", "マスカット", "무스카트", "Masqat"]},
     {"names": ["Chuuk Lagoon"], "country": "Federated States of Micronesia", "aliases": ["Truk Lagoon", "楚克泻湖", "楚克潟湖", "特鲁克泻湖", "チューク環礁", "トラック環礁", "트럭 라군", "추크 라군"]},
     {"names": ["South Holland"], "country": "Netherlands", "aliases": ["Zuid-Holland", "Zuid Holland"]},
     {"names": ["Auckland"], "country": "New Zealand", "aliases": ["奥克兰", "奧克蘭", "オークランド", "오클랜드"]},
     {"names": ["Florida Keys"], "country": "United States", "aliases": ["佛罗里达群岛", "佛羅里達礁島群", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스", "Cayos de Florida", "Cayos de la Florida"]},
     {"names": ["Florida Keys"], "country": "United States of America", "aliases": ["佛罗里达群岛", "佛羅里達礁島群", "フロリダキーズ", "フロリダ・キーズ", "플로리다 키스", "Cayos de Florida", "Cayos de la Florida"]},
-    // https://www.padi.com/zh-hant/dive-sites/stati-uniti-d-america-usa/florida-keys/
     {"names": ["Alicante"], "country": "Spain", "aliases": ["阿利坎特"]},
     { names: ["North Rhine-Westphalia"], country: "Germany", aliases: ["Nordrhein-Westfalen"] },
     { names: ["Baden-Württemberg"], country: "Germany", aliases: ["巴登-符腾堡州", "巴登符腾堡"] },
@@ -925,27 +685,17 @@
     {"names": ["North Brabant"], "country": "Netherlands", "aliases": ["Noord-Brabant"]},
     {"names": ["Christmas Island"], "country": "Australia", "aliases": ["圣诞岛", "聖誕島", "クリスマス島"]},
     {"names": ["Coiba National Park"], "country": "Panama", "aliases": ["科伊瓦国家公园", "科伊瓦國家公園", "科伊巴国家公园"]},
-    // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/stella-maris-explorer/
-    // https://www.padi.com/zh-hant/dive-sites/tu-ba-ta-ha-qun-jiao/
-    // https://www.padi.com/ko/dive-sites/tubataha-ripeu/
-    // https://blog.padi.com/jp/top-dive-sites-in-the-philippines/
     {"names": ["Philippines Tubbataha Reefs"], "country": "Philippines", "aliases": ["图巴塔哈", "圖巴塔哈", "图巴塔哈礁", "图巴塔哈群礁", "圖巴塔哈群礁", "トゥバタハ", "투바타하", "투바타하 리프", "투바타하 리프 국립 해양 공원"]},
-    // ANTARA's diving-tourism report expands Sulut as Provinsi Sulawesi Utara.
-    // https://manado.antaranews.com/berita/256731/bi-fasilitasi-penyusunan-e-book-diving-tingkatkan-pariwisata-sulut
     {"names": ["North Sulawesi"], "country": "Indonesia", "aliases": ["北苏拉威西", "Sulut", "Sulawesi Utara"]},
+    {names:['East Nusa Tenggara','Nusa Tenggara Timur','NTT'], country:'Indonesia', aliases:['East Nusa Tenggara','Nusa Tenggara Timur','NTT']},
+    {names:['West Nusa Tenggara','Nusa Tenggara Barat','NTB'], country:'Indonesia', aliases:['West Nusa Tenggara','Nusa Tenggara Barat','NTB']},
+    {names:['North Maluku','Maluku Utara','Malut'], country:'Indonesia', aliases:['North Maluku','Maluku Utara','Malut']},
+    {names:['South Sulawesi','Sulawesi Selatan','Sulsel'], country:'Indonesia', aliases:['South Sulawesi','Sulawesi Selatan','Sulsel']},
     {"names": ["Cabo Pulmo"], "country": "Mexico", "aliases": ["卡波普尔莫", "カボプルモ", "カボ・プルモ"]},
     {"names": ["Gipuzkoa"], "country": "Spain", "aliases": ["Guipúzcoa"]},
     {"names": ["Norway Lofoten Islands"], "country": "Norway", "aliases": ["ロフォーテン", "ロフォーテン諸島", "罗弗敦群岛", "罗弗敦岛"]},
     {"names": ["Waikato"], "country": "New Zealand", "aliases": ["ワイカト"]},
     {"names": ["Andaman Islands"], "country": "India", "aliases": ["安达曼群岛", "安達曼群島", "안다만 제도"]},
-    // https://www.padi.com/ko/conservation/activities/results/andaman-jedo/
-    // Local dive-context names for the same 44-site South Sinai region.
-    // Arabic government diving notice: https://sis.gov.eg/ar/المركز-الإعلامي/الأخبار/وزيرة-التنمية-المحلية-والبيئة-تعلن-بدء-المرحلة-الأولى-لتجهيز-مواقع-الغوص-بشرم-الشيخ/
-    // PADI Chinese Traditional dive-center page: https://www.padi.com/zh-hant/dive-center/ai-ji-he-hong-hai/penguin-divers/
-    // PADI Japanese and German dive-center pages: https://www.padi.com/ja/dive-center/eshihutotohong-hai/venus-diving-center/ and https://www.padi.com/de/tauchcenter/egypt/venus-diving-center/
-    // Korean dive map: https://kdiver.com/eg ; Spanish government diving destination page: https://sis.gov.eg/es/egipto/el-r%C3%A9gimen-pol%C3%ADtico/el-poder-ejecutivo/gobernaci%C3%B3n-del-sina%C3%AD-del-sur/
-    // French dive shop in Dahab: https://www.divers.world/fr/diveshop/dahab-freedivers/
-    // “南西奈半岛” is intentionally excluded: it names a broader peninsula than this governorate.
     {"names": ["South Sinai"], "country": "Egypt", "aliases": ["南西奈", "南西奈省", "جنوب سيناء", "南シナイ", "남시나이", "Sinaí del Sur", "Sinaï du Sud", "Süd-Sinai"]},
     {"names": ["Oman"], "country": "", "aliases": ["阿曼", "オマーン"]},
     {"names": ["Shizuoka Prefecture"], "country": "Japan", "aliases": ["静岡県", "静岡"]},
@@ -957,176 +707,60 @@
     {"names": ["Israel"], "country": "Israel", "aliases": ["ישראל"]},
     {"names": ["Ambon"], "country": "Indonesia", "aliases": ["安汶", "アンボン", "암본"]},
     {"names": ["Alor Archipelago"], "country": "Indonesia", "aliases": ["阿洛群岛", "阿洛群島", "阿洛尔", "アロール", "알로르"]},
-    // https://www.padi.com/zh-hans/diving-in/xi-ao-da-li-ya-zhou/
-    // https://www.padi.com/zh-hant/diving-in/ao-da-li-ya-xi-bu/
-    // https://www.padi.com/ja/diving-in/xi-o-sutorariazhou/
-    // https://www.padi.com/ko/diving-in/weseuteon-oseuteureilria/
-    // https://www.westernaustralia.com/en/things-to-do/beaches-and-lakes/snorkelling-and-diving
     {"names": ["Western Australia"], "country": "Australia", "aliases": ["西澳", "西澳大利亚", "西澳大利亚州", "西澳大利亞", "西澳大利亞州", "澳大利亞西部", "西オーストラリア", "西オーストラリア州", "서호주", "웨스턴오스트레일리아", "웨스턴 오스트레일리아"]},
     {"names": ["Victoria"], "country": "Australia", "aliases": ["维多利亚", "维多利亚州", "維多利亞", "維多利亞州", "ビクトリア", "ビクトリア州", "빅토리아"]},
-    // Multilingual diving-destination names for the Australian state.
     {"names": ["Queensland"], "country": "Australia", "aliases": ["昆士兰", "昆士兰州", "昆士蘭", "昆士蘭州", "クイーンズランド", "クイーンズランド州", "퀸즐랜드"]},
-    // https://www.padi.com/zh-hans/dive-site/ao-da-li-ya/neptune-islands/
-    // https://www.liveaboard.com/ja/diving/australia/scuba
     { names: ["South Australia Neptune Islands"], country: "Australia", aliases: ["Neptune Islands", "海王星群岛", "海王星群島", "海神群島", "ネプチューン諸島"] },
-    // https://www.padi.com/dive-center/austria/tauchen-in-tirol/
-    // https://www.austria.info/ja/locations/lake-achensee/
     { names: ["Tyrol"], country: "Austria", aliases: ["Tirol", "チロル"] },
-    // https://www.scubago.com/tw/explore/destination/upper-austria-9750768
     { names: ["Upper Austria"], country: "Austria", aliases: ["Oberösterreich", "上奥地利州", "上奧地利州"] },
-    // https://blog.padi.com/tw/jacques-cousteaus-favorite-dive-destinations-around-the-world/
-    // https://www.siamdive.com/cn/explore/dive-center/sundown-diving
-    // https://www.padi.com/ja/dive-center/canada/sundown-diving/
-    // https://travel.padi.com/ko/diving-in/beuritisikeolreombiaju/
-    // https://www.tdisdi.com/iti/diving-in-british-columbia/?lang=ko
     { names: ["Vancouver Island"], country: "Canada", aliases: ["温哥华岛", "溫哥華島", "バンクーバー島", "밴쿠버 아일랜드", "밴쿠버 섬", "Isla de Vancouver"] },
-    // https://www.padi.com.tw/zh-hant/diving-in/bo-li-zi-cheng/
-    // https://www.liveaboard.com/kr/diving/belize
     { names: ["Belize Barrier Reef"], country: "Belize", aliases: ["伯利兹堡礁", "伯利茲堡礁", "벨리즈 배리어 리프"] },
-    // https://www.padi.com/zh-hans/dive-center/ao-da-li-ya/ningaloo-reef-dive/
-    // https://www.australia.com/ja-jp/places/perth-and-surrounds/guide-to-ningaloo-reef.html
-    // https://www.australia.com/ko-kr/places/perth-and-surrounds/guide-to-ningaloo-reef.html
     { names: ["Ningaloo Reef"], country: "Australia", aliases: ["宁格鲁礁", "宁加洛珊瑚礁", "ニンガルーリーフ", "닝갈루 리프"] },
-    // https://travel.padi.com/zh-hans/dive-course/south-of-france/discover-scuba-diving-in-the-port-cros-and-porquerolles-national-park-90582/
     {"names": ["Port Cros"], "country": "France", "aliases": ["克罗港"]},
-    // https://travel.padi.com/zh-hans/dive-center/yi-da-li/evasioni-blu-diving-3/ and the sources in the review ledger.
     {"names": ["Ustica"], "country": "Italy", "aliases": ["乌斯蒂卡", "烏斯蒂卡", "烏斯蒂卡島", "ウスティカ島"]},
-    // https://www.padi.com/zh-hans/dive-center/ku-ke-qun-dao/adventure-cook-islands/?from_lang=zh-hant
-    // https://www.divers.world/zh-hk/divesite/rarotonga/arorangi-passage/
-    // https://www.padi.com/ja/dive-center/kutsukuzhu-dao/dive-rarotonga-2/
-    // https://www.padi.com/ko/diving-in/rarotonggaseom/
     {"names": ["Rarotonga", "Cook Islands Rarotonga"], "country": "Cook Islands", "aliases": ["拉罗汤加", "拉罗汤加岛", "拉羅湯加", "拉羅湯加島", "ラロトンガ", "ラロトンガ島", "라로통가", "라로통가섬"]},
-    // https://www.padi.com/ja/diving-in/sentoyu-sutateiusu/
     {names:['Sint Eustatius'], country:'Netherlands', aliases:['セントユースタティウス','セント・ユースタティウス島','シント・ユースタティウス島']},
-    // https://www.padi.com/ja/diving-in/netherlands/
-    // PADI uses Japanese and Dutch forms for Zeeland; Spanish, French, and Portuguese names are already indexed as geodata labels.
-    // https://www.padi.com/nl/dive-sites/zeeland/
-    // https://www.padi.com/ja/diving-in/netherlands/
     {names:['Zeeland'], country:'Netherlands', aliases:['ゼーラント','ゼーラント州']},
-    // https://www.padi.com/ja/diving-in/kataru-niya/
     {names:['Girona'], country:'Spain', aliases:['ジローナ']},
-    // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/fort-stark/
     {names:['New England'], country:'United States of America', aliases:['新英格兰','ニューイングランド']},
     {names:['New England'], country:'United States', aliases:['新英格兰','ニューイングランド']},
-    // Same destination, kept parent-scoped because the two dataset imports use different country labels.
     {names:['California'], country:'United States', aliases:['加利福尼亚','加利福尼亚州','加利福尼亞州','加州','カリフォルニア','カリフォルニア州','Kalifornien','Californie']},
-    // https://www.padi.com/zh-hans/diving-in/ma-sa-zhu-sai-zhou/
-    // https://www.padi.com/ja/diving-in/united-states-of-america-usa/
     {names:['Massachusetts'], country:'United States', aliases:['马萨诸塞州','マサチューセッツ州']},
     {names:['Massachusetts'], country:'United States', aliases:['매사추세츠 주']},
     {names:['Massachusetts'], country:'United States of America', aliases:['马萨诸塞州','マサチューセッツ州','매사추세츠 주']},
-    // https://www.padi.com/zh-hans/dive-center/mei-li-jian-he-zhong-guo-usa/project-scuba/
     {names:['Texas'], country:'United States', aliases:['德克萨斯州','德克萨斯']},
-    // https://www.padi.com/zh-hans/diving-in/liu-ni-wang/
-    // https://www.padi.com/zh-hant/diving-in/liu-ni-wang/
     {names:['Reunion'], country:'France', aliases:['留尼汪','留尼汪岛','留尼汪島','留尼旺','レユニオン','La Réunion']},
-    // https://www.padi.com/zh-hans/diving-in/ying-shu-wei-er-jing-qun-dao/
     {names:['British Virgin Islands'], country:'United Kingdom', aliases:['英属维尔京群岛','Islas Vírgenes Británicas']},
     {names:['British Virgin Islands'], country:'British Virgin Islands', aliases:['英属维尔京群岛','Islas Vírgenes Británicas','Îles Vierges britanniques','イギリス領ヴァージン諸島','영국령 버진아일랜드']},
-    // https://www.padi.com/zh-hans/dive-center/jia-na-da/dive-life-tobermory/
     {names:['Ontario'], country:'Canada', aliases:['安大略','安大略省','オンタリオ州']},
-    // https://www.padi.com/zh-hans/diving-in/sa-ding-dao/
-    // https://www.padi.com/ja/diving-in/itaria/harao-2/
     {names:['Sardinia'], country:'Italy', aliases:['撒丁岛','撒丁島','サルデーニャ','サルデーニャ島']},
-    // https://www.padi.com/zh-hans/diving-in/xin-nan-wei-er-shi-zhou/
     {names:['New South Wales'], country:'Australia', aliases:['新南威尔士','新南威尔士州']},
-    // https://www.padi.com/zh-hans/diving-in/gua-de-luo-pu-qun-dao/
-    // https://www.padi.com/ja/diving-in/kuatoru-huzhu-dao/
     {names:['Guadeloupe'], country:'France', aliases:['瓜德罗普','瓜德罗普群岛','グアドループ','グアドループ諸島']},
-    // https://www.padi.com/zh-hans/diving-in/ma-ti-ni-ke/
-    // https://www.padi.com/ja/diving-in/maruteini-ku/
     {names:['Martinique'], country:'France', aliases:['马提尼克','马提尼克岛','マルティニーク','マルティニーク島']},
-    // https://www.padi.com/zh-hans/diving-in/rou-fo-zhou/
-    // https://www.ukm.my/ekomar/wp-content/uploads/2016/03/Siri-2-Bab-11.pdf
-    // https://gilldivers.com/dive-travel/malaysia/dayang-island/
     {names:['Johor'], country:'Malaysia', aliases:['柔佛','柔佛州','Johor Darul Takzim','Johore']},
-    // https://www.padi.com/zh-hans/dive-center/fei-lu-bin/easy-diving-dauin/
     {names:['Negros Oriental'], country:'Philippines', aliases:['东内格罗斯','东内格罗斯省','東內格羅斯','東內格羅斯省']},
-    // https://www.padi.com/ja/diving-in/hone-rudao/
     {names:['Bonaire'], country:'Netherlands', aliases:['ボネール','ボネール島']},
-    // https://www.siamdive.com/cn/explore/dive-center/red-alert-diving
-    // https://www.padi.com/ko/dive-center/amerika-habjunggug-usa/red-alert-diving/
     {names:['Florida Panhandle'], country:'United States of America', aliases:['佛罗里达狭长地带','佛罗里达州狭长地带','플로리다 팬핸들']},
-    // https://travel.padi.com/zh-hans/dive-trip/neuschottland/halifax-nova-scotia-local-shore-dives-12607/
-    // https://www.padi.com/ja/dive-center/canada/east-coast-scuba-watersports/
-    // https://travel.padi.com/ko/dive-center/kaenada/east-coast-scuba-watersports/
     {names:['Nova Scotia'], country:'Canada', aliases:['新斯科舍省','ノバスコシア州','노바스코샤']},
-    // https://www.scubago.com/cn/explore/destination/the-great-lakes-9750222
-    // https://www.padi.com/ja/diving-in/canada/
-    // https://travel.padi.com/ko/diving-in/kaenada/
     {names:['Great Lakes'], country:'Canada', aliases:['五大湖','グレートレイクス','오대호','Grandes Lagos','Grands Lacs']},
     {names:['Great Lakes'], country:'United States of America', aliases:['五大湖','グレートレイクス','오대호','Grandes Lagos','Grands Lacs']},
-    // https://www.scubago.com/cn/explore/destination/north-island-9749699
-    // https://www.diveseason.com/dive/tutukaka-poor-knights/
-    // https://www.newzealand.com/jp/diving/
-    // https://www.newzealand.com/kr/diving/
-    // https://www.whangareinz.com/Discover/Destinations/Poor-Knights-Islands (Māori name; also names the largest island)
     {names:['Poor Knights Islands'], country:'New Zealand', aliases:['普尔骑士群岛','穷骑士群岛','窮騎士群島','プアナイツ諸島','プアー・ナイツ諸島','푸어 나이츠 제도','푸어나이츠 군도','Tawhiti Rahi']},
-    // https://www.padi.com/zh-hans/diving-in/ke-su-mei-er/
-    // https://www.padi.com/ja/diving-in/kosumeru/
-    // https://www.padi.com/ko/destinations/mexico/cozumel
     {names:['Cozumel'], country:'Mexico', aliases:['科苏梅尔','科蘇梅爾','コスメル','コズメル','코수멜','코주멜']},
-    // https://www.padi.com/zh-hans/dive-sites/australie/great-barrier-reef/
-    // https://www.padi.com/ko/diving-in/great-barrier-reef/
     {names:['Great Barrier Reef'], country:'Australia', aliases:['大堡礁','그레이트 배리어 리프','グレートバリアリーフ','グレート・バリア・リーフ']},
-    // https://www.padi.com/zh-hans/diving/japan
-    // https://www.padi.com/ja/diving-in/japan/
-    // https://www.padi.com/ko/diving-in/okinawa/
-    // PADI's Japanese dive-center listings use 沖縄県 for Okinawa dive operations.
-    // https://www.padi.com/ja/dive-center/japan/umi-dive-okinawa/
     {names:['Okinawa','Okinawa Prefecture'], country:'Japan', aliases:['冲绳','沖繩','沖縄','沖縄県','오키나와']},
-    // https://www.padi.com/zh-hans/dive-site/thailand/similan-islands-national-marine-park/
-    // https://www.padi.com/ja/dive-site/taiwang-guo/christmas-point/
-    // https://www.padi.com/ko/dive-center/taegug/similan-divers-co-ltd/
     {names:['Thailand Similan Islands'], country:'Thailand', aliases:['斯米兰群岛','シミラン諸島','시밀란 섬']},
-    // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
-    // https://www.padi.com/ja/diving-in/huirihin/huerutokarera/
-    // https://www.padi.com/ko/diving-in/pilripin/puereuto-galrera/
     {names:['Philippines Puerto Galera'], country:'Philippines', aliases:['加莱拉港','加萊拉港','海豚湾','海豚灣','PG岛','PG島','プエルトガレラ','プエルト・ガレラ','푸에르토 갈레라']},
-    // https://www.padi.com/zh-hans/dive-center/philippines/zhuilang-bohol/
-    // https://www.padi.com/zh-hans/diving-in/bao-he/
-    // https://diveseason.com/zh-hant/dive/bohol/
-    // https://www.padi.com/ja/diving-in/hoho-ru/
-    // https://www.padi.com/ko/dive-shops/bohol/
     {names:['Bohol','Philippines Bohol'], country:'Philippines', aliases:['保和','薄荷岛','薄荷島','ボホール','보홀']},
-    // https://www.padi.com/zh-hans/diving-in/su-wu-sheng/
-    // https://www.padi.com/ja/diving-in/sehuzhou/
-    // https://www.padi.com/ko/diving-in/sebuju/
     {names:['Cebu'], country:'Philippines', aliases:['宿务','セブ島','세부']},
-    // https://travel.padi.com/zh-hans/dive-center/hong-du-la-si/utila-dive-centre/
-    // https://www.padi.com/ja/diving-in/roatandao-touteiradao/
     {names:['Utila'], country:'Honduras', aliases:['乌提拉','乌提拉岛','乌蒂拉','ウティラ島','Isla de Utila']},
-    // https://www.padi.com/zh-hans/diving-in/ya-su-er-qun-dao/
-    // https://www.padi.com/ja/dive-shops/asoresuzhu-dao/
-    // https://www.padi.com/ko/diving-in/a-joreseu/
     {names:['Azores'], country:'Portugal', aliases:['亚速尔群岛','アゾレス諸島','아조레스','Açores','Arquipélago dos Açores']},
-    // https://www.padi.com/zh-hans/dive-center/nan-fei/into-the-blue/
-    // https://www.padi.com/ja/dive-center/nan-ahurikagong-he-guo/pisces-divers/
-    // https://www.padi.com/ko/diving-in/namapeurika-gonghwagug/keipeutaun/
     {names:['Cape Town'], country:'South Africa', aliases:['开普敦','開普敦','ケープタウン','케이프타운']},
-    // https://www.padi.com/zh-hans/diving-in/ba-li-a-li-qun-dao/
-    // https://travel.padi.com/ja/diving-in/harearesuzhu-dao/
     {names:['Balearic Islands'], country:'Spain', aliases:['巴利阿里群岛','バレアレス諸島']},
-    // https://www.padi.com/ja/diving-in/huriteitsushiyukoronhiazhou/
     {names:['British Columbia'], country:'Canada', aliases:['ブリティッシュコロンビア州','不列颠哥伦比亚省','不列顛哥倫比亞省','Columbia Británica']},
-    // PADI diving sources are recorded beside each independently reviewed entry.
-    // https://www.padi.com/zh-hant/exploration/?lang=en
-    // https://www.padi.com/ko/destinations/egypt
     {names:['Red Sea'], country:'Egypt', aliases:['红海','紅海','홍해','Mar Rojo','Mer Rouge','Mar Vermelho']},
     {names:['Bay Islands','Islas de Bahia'], country:'Honduras', aliases:['洪都拉斯海湾群岛','Islas de la Bahía','베이 아일랜드']},
-    // https://www.padi.com/zh-hans/dive-center/hong-du-la-si/sun-divers-roatan/
-    // https://www.padi.com/ko/dive-center/onduraseu/native-sons-water-sports/
     {names:['Roatan'], country:'Honduras', aliases:['罗阿坦','罗阿坦岛','羅阿坦島','로아탄','ロアタン島','Roatán']},
-    // https://www.padi.com/zh-hans/conservation/activities/activite-de-preservation-45838/
-    // https://www.padi.com/zh-hant/diving-in/ke-li-dao/
-    // https://www.padi.com/ja/diving-in/haridao/
     {names:['Bali'], country:'Indonesia', aliases:['巴厘岛','巴厘','巴厘島','峇里島','バリ島','발리']},
-    // https://www.padi.com/zh-hans/diving-in/bo-nai-er/
-    // https://blog.padi.com/jp/eco-travel-destinations-leading-marine-protection/
-    // https://travel.padi.com/zh-hans/dive-course/bonaire/padi-divemaster-79941/
-    // https://www.padi.com/zh-hant/diving-in/bo-nei-er/
-    // https://www.padi.com/ja/diving-in/hone-rudao/
-    // https://blog.padi.com/ko/scuba-dive-without-a-wetsuit/
     {names:['Bonaire'], country:'Bonaire, Sint Eustatius and Saba', aliases:['博奈尔','博内尔','博內爾','博內爾島','ボネール','ボネール島','보네르']},
     {names:['Lembeh','Lembeh Strait'], country:'Indonesia', aliases:['蓝碧','蓝碧海峡','蓝贝','蓝贝海峡','伦贝','伦贝海峡','藍碧','藍碧海峽','倫貝','倫貝海峽','レンベ','レンベ海峡','렘베','렘베 해협']},
     {names:['Raja Ampat'], country:'Indonesia', aliases:['四王群岛','四王群島','拉贾安帕特','拉賈安帕特','拉贾安帕特群岛','ラジャアンパット','ラジャ・アンパット','라자 암팟','라자 앰팟','라자앰팟']},
@@ -1143,10 +777,7 @@
     {names:['Red Sea'], country:'', aliases:['红海','紅海','홍해','Mar Rojo','Mer Rouge']},
     {names:['Florida Panhandle'], country:'', aliases:['佛罗里达狭长地带','佛罗里达州狭长地带','フロリダ・パンハンドル','플로리다 팬핸들']},
     {names:['Mabul'], country:'Malaysia', aliases:['马布','马步','馬布','馬步','マブール','마불']},
-    // https://www.padi.com/zh-hans/dive-center/philippines/malapascua-scuba-eco-adventures/
-    // https://www.hellodive.com/dive/detail/Philippines_Malapascua_Island
     {names:['Philippines Malapascua','Malapascua'], country:'Philippines', aliases:['马拉帕斯夸岛','馬拉帕斯卡島','馬勒帕斯卡島','妈妈拍丝瓜','媽媽拍絲瓜','妈妈拍丝瓜岛','媽媽拍絲瓜島','妈妈岛','媽媽島','媽媽怕絲瓜','マラパスクア','말라파스쿠아']},
-    // Direct diving guides and operators use these destination names; keep the archipelago, island, park, and country scopes distinct.
     {names:['Sangalaki'], country:'Indonesia', aliases:['桑加拉基岛']},
     {names:['Sipadan'], country:'Malaysia', aliases:['西巴丹']},
     {names:['South Australia Neptune Islands'], country:'Australia', aliases:['海王星群岛']},
@@ -1179,7 +810,21 @@
     {names:['Scotland'], country:'United Kingdom', aliases:['苏格兰','スコットランド']},
     {names:['New Caledonia'], country:'France', aliases:['新喀里多尼亚','Nouvelle-Calédonie','ニューカレドニア']},
     {names:['New Caledonia'], country:'New Caledonia', aliases:['新喀里多尼亚','Nouvelle-Calédonie','ニューカレドニア']},
-    {names:['Ironbottom Sound, near Honiara'], country:'Solomon Islands', aliases:['铁底湾','铁底海峡','艾恩博特姆海峡']}
+    {names:['Ironbottom Sound, near Honiara'], country:'Solomon Islands', aliases:['铁底湾','铁底海峡','艾恩博特姆海峡']},
+    {names:['Burnaby Narrows'], country:'Canada', aliases:['Dolomite Narrows']},
+    {names:['Campbell River'], country:'Canada', aliases:['坎贝尔河','坎貝爾河']},
+    {names:['Alexander Islets'], country:'Canada', aliases:['Alexander Islands']},
+    {names:['Porteau, Centennial'], country:'Canada', aliases:['Centennial III']},
+    {names:['Powell River, Saltery Bay, Mermaid Cove'], country:'Canada', aliases:['Emerald Princess']},
+    {names:['Quadra Island, Richmond Reef'], country:'Canada', aliases:['The Gully']},
+    {names:['Quadra Island, Whiskey Point'], country:'Canada', aliases:['Whisky Point']},
+    {names:['Rebbeca Spit Provincial Park'], country:'Canada', aliases:['Rebecca Spit']},
+    {names:['Saanich Inlet, Henderson Point'], country:'Canada', aliases:['Senanus Drive']},
+    {names:['Sidney Pier'], country:'Canada', aliases:['Sidney Wharf','Bevan Fishing Pier','Pier on Bevan']},
+    {names:['Texada Island, Marshall Rock'], country:'Canada', aliases:['Marshal Rock']},
+    {names:['Tod Inlet'], country:'Canada', aliases:['SṈIDȻEȽ']},
+    {names:['Three Islets'], country:'Canada', aliases:['Cod Rocks']},
+    {names:['Wa-Wa-Kie Beach'], country:'Canada', aliases:['Wa Wa Kie Beach']}
   ];
   // Site aliases are matched only to exact recorded names and a known country.
   // Blue Corner also exists in Indonesia and Japan; its Palau aliases must not
@@ -1189,18 +834,63 @@
   // https://blog.padi.com/ko/best-scuba-diving-destinations-in-the-world/
   const siteAliases = [
     { names: ["Manijin island"], country: "Cyprus", siteIds: ["090f05fa-6bfe-423f-b98c-bc9d57edc0a1"], aliases: ["Manidjin Isle", "Μανίτζι"] },
-    // PADI's English dive-site record and Chinese diving guide identify Old Pian Island / 老偏岛 off Dalian; site ID binds the names to the coordinate-matched record.
+    { siteIds: ["735af4f4-be63-4927-aebd-7c77084f01c6"], aliases: ["플로리다 팬핸들"] },
+    { names: ["Grant Reefs, wreck of Capilano"], country: "Canada", siteIds: ["2d8ac97f-dc6f-562d-8ff0-0a22136dfba0"], aliases: ["Capilano I", "SS Capilano"] },
+    { names: ["Crab Trap Destin Reef"], country: "", siteIds: ["55c7e850-bd6a-44c3-82dd-6906f89e4249"], aliases: ["Destin Crab Trap Reef", "Crab Trap Snorkel Reef"] },
+    { names: ["El Casra"], country: "", siteIds: ["127fb83b-2b1e-47da-9f31-57e97043452c"], aliases: ["Torfet Ali", "Torfet Ghalib"] },
+    { names: ["El Sheig Malik"], country: "", siteIds: ["3cbc0bdf-bf82-417f-9ee9-54cd56dcabaf"], aliases: ["El Sheikh Malik"] },
+    { names: ["Chreche"], country: "", siteIds: ["6ca0b2c7-230e-47bd-8fe6-ff7296baabd0"], aliases: ["Creche Ponta do Ouro"] },
+    { names: ["Escoumins  - Crique Ouest"], country: "", siteIds: ["304cc231-ef67-4318-aa6a-6cb6bbdd14d0"], aliases: ["La Crique Ouest Les Escoumins", "Western Crack"] },
+    { names: ["Escoumins - la crique Est"], country: "", siteIds: ["89eb4273-93a7-4d0d-87a9-8c185f77737b"], aliases: ["La Crique Est Les Escoumins", "Eastern Crack"] },
+    { names: ["Galea  - Santa Maria - RICADI"], country: "", siteIds: ["8ad8d319-6f46-4cb8-a709-51ce68f6d030"], aliases: ["Scoglio della Galea"] },
+    { names: ["Gassous Bay"], country: "", siteIds: ["578bca82-f012-4158-9459-153a7b47dec0"], aliases: ["Coral Garden Safaga"] },
+    { names: ["Glen Ayr"], country: "", siteIds: ["5155a22d-8471-4121-b2cb-caf7175889a9"], aliases: ["Glen Ayr Resort", "Glen Ayr Waterfront Resort"] },
+    { names: ["Happy Life Housereef"], country: "", siteIds: ["c8fa2423-143d-4bca-8140-4afb5b612c1e"], aliases: ["Happy Life House Reef"] },
+    { names: ["Jackfish Alley - Ras Mohammed"], country: "", siteIds: ["0d13e906-5cb7-4ab9-9d9f-6f3be83560be"], aliases: ["Fisherman's Bank Ras Mohammed"] },
+    { names: ["Kabak Tunnel"], country: "", siteIds: ["9452c046-f9a9-4690-a325-1d7ade4d82cc"], aliases: ["Kabak Tüneli"] },
+    { names: ["La cullera"], country: "", siteIds: ["a52129e6-1cd3-4c61-8461-c39b6b67571c"], aliases: ["La Cullerà"] },
+    { names: ["PUNTA DEL VAPOR / MARINA DEL ESTE LEFT SIDE"], country: "", siteIds: ["34555dfe-7b8c-437a-8160-b2e84767ef53"], aliases: ["Punta del Vapor Marina del Este", "Los Berengueles"] },
+    { names: ["Rambo Cave"], country: "", siteIds: ["b04348db-4381-43fc-8bde-cfe8b953923f"], aliases: ["Rambohöhle", "Damlataş Cave Rambo"] },
+    { names: ["Ras Malah"], country: "", siteIds: ["46fd741c-4894-4cfb-8d92-e8e9ae8cdce4"], aliases: ["Ras Mamlah", "Ras Mamlach"] },
+    { names: ["Red Tooth Trigger Bay"], country: "", siteIds: ["3a2a46c3-2ca4-4ec5-9d30-043424fafcee"], aliases: ["The Garden Red Tooth Trigger Bay"] },
+    { names: ["ROQUEO DE LOS 14 / MARINA DEL ESTE RIGHT BAY"], country: "", siteIds: ["df2e75d5-572b-4a91-b12b-df53655fc1ce"], aliases: ["Cueva del Roqueo de los 14"] },
+    { names: ["PUNTA SEAME"], country: "", siteIds: ["e6446f4a-d47d-42ca-a113-1a6542c6e9fd"], aliases: ["Punta del Seame"] },
+    { names: ["Carter Bay, wreck of Ohio"], country: "Canada", siteIds: ["bff9a419-a4af-59a9-a61d-165c8f449757"], aliases: ["Wreck of the Ohio", "Ohio Wreck Carter Bay"] },
+    { names: ["Carmelo Point"], country: "Canada", siteIds: ["d8410a22-63b3-539d-9184-3043e59ef33c"], aliases: ["Carmelo Point Gambier Island"] },
+    { names: ["Africville Ramp Dive Site"], country: "Canada", siteIds: ["e3a73790-b225-43af-a118-758b88bcec27"], aliases: ["Africville Park Dive Site"] },
+    { names: ["Alice G.Tobermory Tugs (Wreck)"], country: "Canada", siteIds: ["445975c1-0fcc-4693-860d-5eaa5ee83ca6"], aliases: ["Alice G (The Tugs)", "Tobermory Tugs Alice G"] },
+    { names: ["Agamemnon Channel, Power lines"], country: "Canada", siteIds: ["6ef745e4-b747-5f2f-b88f-477bc36f1c8d"], aliases: ["Agamemnon Channel Powerlines"] },
+    { names: ["Admirals Point"], country: "Canada", siteIds: ["54d7cce1-0085-4ab4-aaf7-4882463b675f"], aliases: ["Admirals Dive Site"] },
+    { names: ["A. R. Colborn and Crane (Wrack)"], country: "Canada", siteIds: ["f5fb8505-2e50-4107-84ee-5bb7ef002874"], aliases: ["Colborn and Crane", "Colborn & Crane"] },
+    { names: ["Ansell Point Dive Site"], country: "Canada", siteIds: ["1e46d324-a90f-4591-9aab-e98478b30dcd"], aliases: ["Ansel Point", "Ansel Point Howe Sound"] },
+    { names: ["Arrow"], country: "Canada", siteIds: ["5f47649a-e251-4bec-8095-698133002dbf"], aliases: ["SS Arrow", "SS Arrow Wreck", "Wreck of the SS Arrow"] },
+    { names: ["Bachman's Beach"], country: "Canada", siteIds: ["d6ebb9a7-b430-4de8-bb57-f95112b8957a"], aliases: ["Bachmans Beach"] },
+    { names: ["Baleine"], country: "Canada", siteIds: ["e3d80153-b512-41a6-9916-0b2bbaffb2d6"], aliases: ["Wreck of the Baleine"] },
+    { names: ["Barkley Sound, Chup Point"], country: "Canada", siteIds: ["909124b0-25e4-5d8a-89b2-9409432ff688"], aliases: ["Chup Point"] },
+    { names: ["Barkley Sound, Kyen Point"], country: "Canada", siteIds: ["55ba3768-f19f-5d01-9319-d82a2fd58903"], aliases: ["Kyen Point"] },
+    { names: ["Barnard Castle"], country: "Canada", siteIds: ["e47522ab-b437-46e3-93ba-0d69a4e73e2e"], aliases: ["Barnard Castle Wreck", "Wreck of the Barnard Castle"] },
+    { names: ["Seahawk"], country: "", siteIds: ["5aab82d7-c8eb-4766-a472-45fb041bb407"], aliases: ["Seahawk Wreck"] },
+    { names: ["Sechelt Rapids (Skookumchuck)"], country: "", siteIds: ["029c0fa4-c85a-4a2a-85bb-04e1bbdda85c"], aliases: ["Skookumchuck Rapids"] },
+    { names: ["Soft Coral 軟珊瑚區"], country: "", siteIds: ["f28546d9-0307-4022-8fcf-69bc2bbbf2a4"], aliases: ["Houbihu Soft Coral", "Soft Coral Zone Houbihu", "後壁湖軟珊瑚區", "后壁湖软珊瑚区", "Secret Garden Houbihu", "East Current Houbihu"] },
+    { names: ["Spanish Barges"], country: "", siteIds: ["8261097d-e38f-4870-a82b-beb2bad90ab4"], aliases: ["Las Barcazas Españolas"] },
+    { names: ["Steps"], country: "", siteIds: ["18a72d5d-6954-4470-8168-93fb08953723"], aliases: ["Steps Reef Ponta do Ouro"] },
+    { names: ["Stillwater Cove"], country: "", siteIds: ["4504ca15-aea3-4ac5-bde7-0e974dd42ea2"], aliases: ["Stillwater Cove Monterey"] },
+    { names: ["The 3 Peaks"], country: "", siteIds: ["884306cd-bdaf-478b-bf15-af71a416cc9c"], aliases: ["The 3 Peaks La Herradura"] },
+    { names: ["Les Escoumins - Baie des anémones"], country: "", siteIds: ["160aa2bf-942b-48b8-906e-a609f97ccd55"], aliases: ["Anemone Bay Les Escoumins"] },
+    { names: ["Levanzo Wreck"], country: "", siteIds: ["ede186ae-037a-47af-907c-c4d2e3bd5133"], aliases: ["SS Isola di Levanzo", "Elba Reef Levanzo Wreck"] },
+    { names: ["LongDong NO.4"], country: "", siteIds: ["947b5e38-9cad-472c-a4f5-783773fcac81"], aliases: ["龍洞四號", "龙洞四号", "龍洞4号", "룽둥 4호"] },
+    { names: ["los tres picos"], country: "", siteIds: ["c1b75deb-4667-4b11-9a9f-56e7e17058a7"], aliases: ["Piedra del Hombre"] },
+    { names: ["Mermaid Cove"], country: "", siteIds: ["b9dae2bb-a81c-499f-94c3-a6163cb057e3"], aliases: ["Mermaid Cove Saltery Bay"] },
+    { names: ["Østerstrands"], country: "", siteIds: ["dae20443-e32d-4af8-b744-cebead94b716"], aliases: ["Østerstrand"] },
+    { names: ["Mohammed Hasabella wreck"], country: "", siteIds: ["fb61bb30-8b61-4491-a136-fb2874ba18e5"], aliases: ["Mohamed Hasabella Wreck", "Mohammed Hisabella Wreck"] },
     {"names":["Dalian, Liaoning: Old Pian Island"],"country":"China","siteIds":["6eb9de42-6ef1-4d70-9421-528c5c63bf54"],"aliases":["老偏岛"]},
-    // PADI's Chinese dive-site page uses 范宁泉 for this coordinate-matched spring.
     {"names": ["Fanning Springs State Park"], "country": "United States of America", "siteIds": ["10f33892-1f4f-4fd7-b2f0-e7332529b19f"], "aliases": ["范宁泉", "패닝 스프링스 주립공원", "패닝 스프링스", "패닝 스프링"]},
-    // DiveSeason lists localized diving names for the exact Lembeh sites; the compare search resolves them to these records.
     {"names": ["Hairball"], "country": "Indonesia", "siteIds": ["ecd80230-d522-47ab-b34a-7e07b904d09b"], "aliases": ["ヘアボール", "헤어볼"]},
     {"names": ["Nudi Falls"], "country": "Indonesia", "siteIds": ["0e11c735-ed81-41cc-ad82-27102bfaabb6"], "aliases": ["ヌーディフォールズ", "누디 폴스"]},
     {"names": ["Jahir"], "country": "Indonesia", "siteIds": ["2fc1043c-0ece-4011-9699-97004dcefe72"], "aliases": ["ジャヒール", "자히르"]},
     {"names": ["Nudi Retreat"], "country": "Indonesia", "siteIds": ["92744da4-3973-4602-b942-1cdaebc32bfd"], "aliases": ["ヌーディリトリート", "누디 리트리트"]},
     {"names": ["Police Pier"], "country": "Indonesia", "siteIds": ["bd739839-6249-4625-8e3f-51a47d90c4fe"], "aliases": ["ポリスピア", "폴리스 피어"]},
     {"names": ["Angel's Window"], "country": "Indonesia", "siteIds": ["00bf9f9a-093e-42f8-964d-a6579ae80c3f"], "aliases": ["エンジェルズウィンドウ", "엔젤스 윈도"]},
-    // DiveSeason's Anilao guide lists Japanese and Korean dive-site forms; IDs bind repeat names to the Anilao records.
     {"names": ["Secret Bay"], "country": "Philippines", "siteIds": ["765bbc62-72cd-48da-8cc1-679ce43946c0"], "aliases": ["シークレットベイ", "시크릿 베이"]},
     {"names": ["Cathedral Rock"], "country": "Philippines", "siteIds": ["15eaf856-6271-420b-9dc9-4649c52d7f85"], "aliases": ["カテドラルロック", "캐시드럴 록"]},
     {"names": ["Basura"], "country": "Philippines", "siteIds": ["8ff87784-f4aa-407d-939f-c90198622e50"], "aliases": ["バスラ", "바수라"]},
@@ -1210,7 +900,6 @@
     {"names": ["Mainit Point"], "country": "Philippines", "siteIds": ["e3ca1fe3-33ac-4e26-a224-61f623ba8baa"], "aliases": ["マイニットポイント", "마이닛 포인트"]},
     {"names": ["Sepok Wall"], "country": "Philippines", "siteIds": ["5766d9c4-2943-454d-a317-b6d362bb8ca7"], "aliases": ["セポックウォール", "세폭 월"]},
     {"names": ["Sombrero Island"], "country": "Philippines", "siteIds": ["2835244b-6b09-4d05-9b1f-b1b81834e1f1"], "aliases": ["ソンブレロ島", "솜브레로섬"]},
-    // DiveSeason's Malapascua guide provides these locale forms; IDs avoid collisions with similarly named Philippine sites.
     {"names": ["Monad Shoal"], "country": "Philippines", "siteIds": ["81db1656-6a38-4dba-b862-c34ea950b640"], "aliases": ["モナドショール", "모나드 숄"]},
     {"names": ["Gato Island"], "country": "Philippines", "siteIds": ["7015f625-541c-4f52-aee6-b0895a61d919"], "aliases": ["ガト島", "가토섬"]},
     {"names": ["Lighthouse"], "country": "Philippines", "siteIds": ["1be73a7c-3428-4d0d-aa87-318ff60d8adc"], "aliases": ["라이트하우스"]},
@@ -1220,13 +909,11 @@
     {"names": ["Deep Rock"], "country": "Philippines", "siteIds": ["674cb7c1-59ba-4b1d-956d-89923b2f0efd"], "aliases": ["ディープロック", "딥 록"]},
     {"names": ["Kalanggaman Island"], "country": "Philippines", "siteIds": ["c5a17443-8658-409a-a68e-0431f4c021f3"], "aliases": ["カランガマン島", "칼랑가만섬"]},
     {"names": ["North Point"], "country": "Philippines", "siteIds": ["363f10f2-08ec-4104-8c41-314d92eee66a"], "aliases": ["ノースポイント", "노스 포인트"]},
-    // DiveSeason's Alor guide supplies the Japanese and Korean forms; IDs bind them to the Alor records.
     {"names": ["Kal's Dream"], "country": "Indonesia", "siteIds": ["e9204f46-fc9b-476b-b527-a1e4666b1e96"], "aliases": ["カルズ・ドリーム", "칼스 드림"]},
     {"names": ["The Cathedral"], "country": "Indonesia", "siteIds": ["2cd580cd-2e60-41ef-90e9-e3a5485f3c80"], "aliases": ["ザ・カセドラル", "더 캐서드럴"]},
     {"names": ["Clown Valley"], "country": "Indonesia", "siteIds": ["6d5a1551-83df-4e53-a681-f110c439f200"], "aliases": ["クラウン・バレー", "클라운 밸리"]},
     {"names": ["Bama Wall"], "country": "Indonesia", "siteIds": ["da96131c-9c53-442f-92ad-456d01d0907d"], "aliases": ["バマ・ウォール", "바마 월"]},
     {"names": ["Current Alley"], "country": "Indonesia", "siteIds": ["c5d68b4e-434c-4a88-9e29-6f51f12edaab"], "aliases": ["カレント・アレー", "커런트 앨리"]},
-    // DiveSeason's Raja Ampat guide lists local-language names for these sites; IDs preserve record identity across reused names.
     {"names": ["Tapor Tamiyam, Cape Kri, Raja Ampat"], "country": "Indonesia", "siteIds": ["a7ced4d1-f0e1-486c-b524-d08036c9673a"], "aliases": ["ケープクリ", "케이프 크리"]},
     {"names": ["Blue Magic"], "country": "Indonesia", "siteIds": ["f7d2465f-0fe3-421d-9b35-2337c9d457f1"], "aliases": ["ブルーマジック", "블루 매직"]},
     {"names": ["Manta Sandy"], "country": "Indonesia", "siteIds": ["6343ae6d-6436-48c3-8346-8ed434c3fa08"], "aliases": ["マンタサンディ", "만타 샌디"]},
@@ -1235,15 +922,13 @@
     {"names": ["Chicken Reef"], "country": "Indonesia", "siteIds": ["006c7db3-1715-4f23-bd45-14e62b4749c9"], "aliases": ["チキンリーフ", "치킨 리프"]},
     {"names": ["Mike’s Point"], "country": "Indonesia", "siteIds": ["7acd8a36-75a2-46d8-82ec-74a0144001ec"], "aliases": ["マイクスポイント", "마이크스 포인트"]},
     {"names": ["Mioskun"], "country": "Indonesia", "siteIds": ["b36ee1f4-7404-4dd8-8540-b81a06aabd9b"], "aliases": ["ミオスコン", "미오스콘"]},
-    // PADI's localized dive pages identify this site at the exact dataset coordinate.
     {"names": ["Electric beach"], "country": "United States of America", "siteIds": ["134daa05-6334-4142-b7e4-d235b26180c9"], "aliases": ["电力海滩", "電力海灘", "エレクトリックビーチ", "エレクトリック ビーチ", "일렉트릭 비치"]},
-    // PADI localized dive pages retain the canonical site identity and supply local forms at the same coordinate.
     {"names": ["Ginnie Springs"], "country": "United States", "siteIds": ["13f0129f-2afb-4c4c-800f-4f9438711e49"], "aliases": ["金妮泉", "ジニー・スプリングス", "진니 스프링스"]},
     {"names": ["Rainbow River"], "country": "United States of America", "siteIds": ["5aee45a0-3d50-4510-b5a2-49dc4d98c5c4"], "aliases": ["彩虹河"]},
-    // The PADI locale page names this exact Kuda Thila and gives the matching coordinates.
-    // https://www.padi.com/zh-hant/dive-site/ma-er-di-fu/kuda-thila-2/
-    // https://www.padi.com/zh-hans/dive-site/ma-er-dai-fu/kuda-thila-2/
     {"names": ["Kuda Thila"], "country": "Maldives", "siteIds": ["aa75e8af-02a9-432d-b9b8-26035775260d"], "aliases": ["库达提拉", "庫達提拉", "クダティラ", "쿠다틸라"]},
+    {"siteIds": ["00ec4a60-954a-41a3-8709-350aa14ee4af"], "aliases": ["Bucht Bobina (Wreck)", "Bucht Bobina wreck"]},
+    {"siteIds": ["258aabf3-3dc0-42e3-9ea6-481c2ebc8287"], "aliases": ["Captain Franco Batığı"]},
+    {"siteIds": ["0462d4dc-945d-42fb-8a17-ed624f30b911"], "aliases": ["Site d’Hortense", "Site Hortense"]},
     {"names": ["Bounty Wreck, Gili Tarawang"], "country": "Indonesia", "siteIds": ["d3a4032a-3009-4fda-9d5c-b2bad31e17a5"], "aliases": ["バウンティ沈船", "바운티 난파선"]},
     {"names": ["Blue Grotto"], "country": "United States of America", "siteIds": ["2da7bf92-523b-439d-9f66-56a6ebf2264c"], "aliases": ["蓝洞"]},
     {"names": ["Tulamben Drop-Off"], "country": "Indonesia", "siteIds": ["eea176ef-df47-4666-907d-32b82f9ac98f"], "aliases": ["土蘭奔斷層"]},
@@ -1643,6 +1328,7 @@
     {"names": ["MKVI"], "country": "Australia", "siteIds": ["5257fe71-2b25-4df6-8dd8-0f3de5a65830"], "aliases": ["MK6"]},
     {"names": ["Anina (Wreck)"], "country": "Grenada", "siteIds": ["aeb16e14-3b7d-4507-9333-03feb08eaa92"], "aliases": ["MV Anina", "MV Anina Shipwreck", "MS Trinwillershagen"]},
     {"names": ["Bossy’s Canyon"], "country": "France", "siteIds": ["f5fc66a4-529f-4df7-9035-fc84a2dca4f9"], "aliases": ["Bossy's Canyon", "Boxy's Canyon", "Boxy’s Canyon", "Bosys Canyon", "Bosys's Canyon"]},
+    { names: ["Collingwood Channel marker"], country: "Canada", siteIds: ["770b9745-bb36-5ce3-b3f6-7bc83bbc5006"], aliases: ["Collingwood Channel Day Beacon", "Mini Reef Master", "West Bowen Marker"] },
     {"names": ["Dapdap"], "country": "Philippines", "siteIds": ["a68fcf1a-f0e6-4605-a253-679b90c076ce"], "aliases": ["Dap Dap"]},
     {"names": ["Calhaus"], "country": "Brazil", "siteIds": ["b3c42527-5eee-42ae-81e4-c14351a6a5fd"], "aliases": ["Rochedos dos Calhaus"]},
     {"names": ["Gola del Lupo"], "country": "Switzerland", "siteIds": ["4788a4ed-b8a1-47c8-b9a9-8b3a5370490b"], "aliases": ["Wolfsrachen", "Maggia-Gola del Lupo"]},
@@ -1722,7 +1408,6 @@
     {"names": ["HTMS Kled Keaw Ship Wreck"], "country": "Thailand", "siteIds": ["0a7fe86a-6dcc-446e-b347-5e7782c13cd0"], "aliases": ["Kled Kaew Wreck", "HTMS Kled Kaew", "Klad Kaew Wreck", "Kled Gaeow", "Kled Geaw", "Kled Kaeo Wreck", "The Phi Phi Wreck", "เรือจมเกล็ดแก้ว", "เรือหลวงเกล็ดแก้ว"]},
     {"names": ["Bezdan"], "country": "Croatia", "siteIds": ["f37f48d7-d9e4-444f-8743-76215241b70d"], "aliases": ["Cape Bezdan", "Punta Bezdan", "The Abyss"]},
     {"names": ["Smith Cove"], "country": "Cayman Islands", "siteIds": ["cb2b961d-e2ec-4e08-9575-9de5e517d368"], "aliases": ["Smith Barcadere", "Smith's Barcadere", "Smith’s Barcadere"]},
-    // B-29 is a local dive-site name; the Saipan wreck is an H8K flying boat.
     {"names": ["H8K Japanese Sea Reconnaissance Plane"], "country": "United States of America", "siteIds": ["4acd48c6-fad8-4020-90f6-b1a88839dc51"], "aliases": ["二式飛行艇", "H8Kエミリー", "B-29", "B29"]},
     {"names": ["Jim Atria"], "country": "United States of America", "siteIds": ["d991227b-20e5-4cfe-b383-77256d4b1e20"], "aliases": ["Poinciana", "Atria Reef"]},
     {"names": ["Ritidian Point"], "country": "Guam", "siteIds": ["5dab08c0-c0eb-4981-b8e2-7b6c5af28e3e"], "aliases": ["リティディアン岬"]},
@@ -2113,7 +1798,6 @@
     {"names": ["Cuevitas - Dominican Republic"], "country": "Dominican Republic", "siteIds": ["0fce8e01-5587-4e6e-b912-02b63296d7f7"], "aliases": ["Las Cuevitas de Las Ballenas", "Las Cuevitas"]},
     {"names": ["Släggö"], "country": "Sweden", "siteIds": ["5c1af959-dfca-4581-9782-41dda7c5afd7"], "aliases": ["Dyk-bryggan", "Dykbryggan"]},
     {"names": ["Sec Pate"], "country": "France", "siteIds": ["14720ced-a4a5-472e-812c-bebaab56c3d7"], "aliases": ["Sec Pâté", "Le Sec Pâté", "Sec Paté", "Le Sec Paté"]},
-    // The source name contains a malformed apostrophe; divers also use Sa Rata.
     {"names": ["Massa ďOr"], "country": "Spain", "siteIds": ["fbcfcbf8-6ee7-476f-ab1b-f3a31a98c0af"], "aliases": ["Massa d'Or", "Massa d’Or", "La Massa d'Or", "La Rata", "Sa Rata", "Sa Freu"]},
     {"names": ["Raggedy Cay"], "country": "Honduras", "siteIds": ["6f81dbe0-851e-4441-976f-e206bd1cbc01"], "aliases": ["Ragged Cay"]},
     {"names": ["Gerombong"], "country": "Indonesia", "siteIds": ["34c119e1-642b-498a-a953-e73bbba015e6"], "aliases": ["Gerombong Reef", "Pura Gerombong", "Secret Rock"]},
@@ -2122,13 +1806,11 @@
     {"names": ["Main Beach Wreck - Tassie III"], "country": "Australia", "siteIds": ["8f0745bb-0fbf-4481-a396-fe01d7b1dcbc"], "aliases": ["MV Tassie III", "S-77 Tassie III"]},
     {"names": ["First Cathedral"], "country": "United States", "siteIds": ["b2ea6e4d-87bb-41ea-94a7-a0f25b5e81c7"], "aliases": ["第一大教堂", "1st Cathedral"]},
     {"names": ["Doljo point"], "country": "Philippines", "siteIds": ["13c78dba-1985-4603-939d-d7a7adb58d4d"], "aliases": ["多爾霍角", "돌호 포인트", "Duljo Point"]},
-    // Cayman Brac wreck retains its former frigate number in dive guides.
     {"names": ["MV Captain Keith Tibbetts (Wreck)"], "country": "Cayman Islands", "siteIds": ["d751ae36-4e96-4080-9d04-2735efffda19"], "aliases": ["Frigate 356", "Russian Frigate 356", "キャプテン・キース・ティベッツ"]},
     {"names": ["Kahekili Beach Park"], "country": "United States", "siteIds": ["3f37f995-c790-4b21-8262-3033d5f68358"], "aliases": ["Airport Beach", "Old Airport Beach"]},
     {"names": ["Koh Rok"], "country": "Thailand", "siteIds": ["1198b122-0853-445c-9e05-fa0b758b5c9e"], "aliases": ["เกาะรอก", "ロック島"]},
     {"names": ["Cottage By The Sea"], "country": "Australia", "siteIds": ["cbaa8c01-84d8-42e4-973c-26640a26ade6"], "aliases": ["Cottage By The Sea Reef"]},
     {"names": ["Ulua Beach Park"], "country": "United States", "siteIds": ["ca8a4ca7-394f-4d05-93f2-687f0f07e229"], "aliases": ["乌鲁阿海滩"]},
-    // Both names refer to the aircraft wrecks off Renaissance Island.
     {"names": ["Airplanes (Wreck)"], "country": "Aruba", "siteIds": ["6f88bfaa-d23d-4ec2-8794-62f0fab77fd8"], "aliases": ["Renaissance Airplanes", "Sonesta Airplanes"]},
     {"names": ["Duzillet"], "country": "Switzerland", "siteIds": ["fe163655-8887-43ca-a749-e345d06eb616"], "aliases": ["Étang du Duzillet", "Gouille du Duzillet"]},
     {"names": ["El Peñon - Dominican Republic"], "country": "Dominican Republic", "siteIds": ["e7dc1e8f-e2c5-4868-acd0-bfb5eecdb993"], "aliases": ["Peñón Reef", "Arrecife Peñón"]},
@@ -2136,1412 +1818,559 @@
     {"names": ["Tobia Island"], "country": "Egypt", "siteIds": ["bcf380c6-3cd8-49d1-a44b-b8b14de861cf"], "aliases": ["托比亚岛"]},
     {"names": ["Spotted Bay"], "country": "Honduras", "siteIds": ["6d71f2c0-b5cf-4f60-8dce-2d6309883734"], "aliases": ["斯波特湾"]},
     {"names": ["Palong  Wall"], "country": "Thailand", "siteIds": ["a2cb5caf-8691-4489-99d4-3ada4ed11147"], "aliases": ["Palong Bay", "Pallong Bay", "ผาป่ะหล่อง"]},
-    // This record describes the Kona dive destination as a whole.
     {"names": ["Kona"], "country": "United States", "siteIds": ["b48528fe-8d05-4b4a-9018-31a8a296fc58"], "aliases": ["科纳", "科納", "コナ"]},
-    // Bayahibe wreck uses its former cargo-ship name and dive-site spelling.
     {"names": ["St. George (Wreck)"], "country": "Dominican Republic", "siteIds": ["a118159c-a81d-4d97-97ea-3fde68a1045f"], "aliases": ["Norbrae", "Saint George Wreck"]},
     {"names": ["Cenote Kukulkan"], "country": "Mexico", "siteIds": ["c5256d10-fc23-4673-88b2-3d0b1eaf22b7"], "aliases": ["库库尔坎仙人洞"]},
-    // Guanacaste operator calls the turtle-mooring wreck site Key Largo.
     {"names": ["La Tortuga"], "country": "Costa Rica", "siteIds": ["31b5ce55-7229-4614-8e82-767f28f90ab8"], "aliases": ["Key Largo"]},
     {"names": ["Punta Restinga"], "country": "Spain", "siteIds": ["f16d2274-52ab-41b9-9939-05901450c77e"], "aliases": ["Punta de La Restinga"]},
-    // Island names used for this Phuket dive destination.
     {"names": ["Mai Thon"], "country": "Thailand", "siteIds": ["ad38ec16-3b17-4cf6-8f67-1214db45d778"], "aliases": ["迈通岛", "เกาะไม้ท่อน", "Maiton Island", "Ko Mai Thon", "Honeymoon Island"]},
     {"names": ["Cerebros"], "country": "Mexico", "siteIds": ["8a83a47a-bd41-4858-8357-b03b706cabc7"], "aliases": ["Brains"]},
-    // Former vessel names and local Spanish dive-site spelling.
     {"names": ["C-50 Rivapalacios (Wreck)"], "country": "Mexico", "siteIds": ["5a266be7-5618-44e2-a173-fd0e67913c9a"], "aliases": ["C-50 Riva Palacio", "ARM Riva Palacio", "USS Jubilant (AM-255)", "C50 Rivapalacio", "Barco Hundido C50 Rivapalacio"]},
     {"names": ["Edmonds Underwater Park"], "country": "United States", "siteIds": ["9139d365-4142-4fa7-b5a5-133a3c8a6ae0"], "aliases": ["Brackett's Landing", "Bruce Higgins Underwater Trails", "Edmonds UW Park"]},
     {"names": ["Kandooma Caves"], "country": "Maldives", "siteIds": ["ee3148c4-9e41-4692-9897-23e3dc01d9f2"], "aliases": ["康杜玛洞穴"]},
     {"names": ["Moc Che Deep"], "country": "Mexico", "siteIds": ["f20d19ba-ebda-4179-a65d-f1edf7b0c7d5"], "aliases": ["Moc Che Profundo", "Moc-Che Deep"]},
-    // Curaçao dive operator spelling of Playa Jeremi.
     {"names": ["Playa Jeremi"], "country": "Curaçao", "siteIds": ["9032d667-eef2-42e3-8dfb-e3e0b09de85a"], "aliases": ["Jeremy"]},
-    // Guadeloupe operators also call the mooring site Les Sources.
     {"names": ["Bouée Anticyclonique"], "country": "France", "siteIds": ["1e6de0fd-39f1-4887-be2e-ec2da3b34a87"], "aliases": ["Les Sources", "Les sources d’eau chaude", "Les sources d'eau chaude", "La bouée anticyclonique"]},
-    // Operators use these names for the dive accessed from Makena Landing.
     {"names": ["Makena Landing"], "country": "United States", "siteIds": ["eaf3c3bb-3142-4404-8865-1e91afc9c3c4"], "aliases": ["Five Graves", "Five Caves", "5 Caves", "Turtle Town", "Turtle Arches"]},
-    // French ligature spelling used by the Port-Louis dive operator.
     {"names": ["Oeil"], "country": "France", "siteIds": ["c5ebee9d-d8b4-4682-bb9c-6ea3add77af1"], "aliases": ["Œil"]},
-    // St Croix shore dive commonly called Cane Bay Wall.
     {"names": ["Cane Bay"], "country": "United States", "siteIds": ["da561699-8759-497d-9d61-f057bd038085"], "aliases": ["Cane Bay Wall", "Cane Bay Drop Off", "Cane Bay Drop-off", "凯恩湾峭壁"]},
-    // This record names the Cayman Brac destination, not a single reef.
     {"names": ["Cayman Brac"], "country": "Cayman Islands", "siteIds": ["2d84c2ae-a1ac-4fc9-b038-a841a7b9fdf7"], "aliases": ["开曼布拉克", "开曼布拉克岛", "開曼布拉克", "開曼布拉克島", "ケイマン・ブラック島", "ケイマンブラック島", "ケイマンブラク", "ケイマンブラク島"]},
     {"names": ["Punta Sur - Devil’s Throat"], "country": "Mexico", "siteIds": ["f83ce4a6-3567-4e79-b3f2-284adca5b547"], "aliases": ["Garganta del Diablo", "La Garganta del Diablo"]},
     {"names": ["Carriere Flintkote"], "country": "Canada", "siteIds": ["a36acd8a-b2f9-4a29-8f07-ee9f3647a438"], "aliases": ["Flintkote Quarry"]},
-    // Local dive operator uses Turning Point for Virador.
     {"names": ["Virador"], "country": "Costa Rica", "siteIds": ["03e7738c-fd59-47a3-9f02-e0fd0d46e7c3"], "aliases": ["Turning Point"]},
-    // Diver spellings and Dhivehi channel name for this Huvadhoo site.
     {"names": ["Maarehaa Kandu"], "country": "Maldives", "siteIds": ["0c43c690-fca8-4f39-accc-40bc301ef107"], "aliases": ["Marehaa Kandu", "Maarehaa Channel", "Maareehaa Kandu", "މާރެހާ ކަނޑު"]},
-    // Chinese dive-site name for the Ras Abu Galum reef near Dahab.
     {"names": ["Ras Abu Galum"], "country": "Egypt", "siteIds": ["b68fe0df-398e-41ea-b970-09cf6795545b"], "aliases": ["拉斯阿布加卢姆", "阿布加卢姆"]},
-    // The NSW aquatic reserve and dive site also use the singular spelling.
     { names: ["Bushrangers Bay"], country: "Australia", siteIds: ["96e513e4-a18f-4cfa-ab43-948cd80eb2af"], aliases: ["Bushranger Bay", "Bushrangers Bay Aquatic Reserve"] },
-    // Rangiroa dive-site spelling used in French diving references.
     { names: ["Eolienne"], country: "French Polynesia", siteIds: ["7138366f-16d5-4c34-b2d8-bcf96f071b6f"], aliases: ["L’Éolienne", "L'Éolienne", "L'Eolienne"] },
-    // The Nosy Be plateau has English names used by dive operators.
     { names: ["Banc des Fusiliers"], country: "Madagascar", siteIds: ["56c452a3-2633-4b5b-a451-6e13147fd9cb"], aliases: ["Fusiliers Bank", "Fusilers Bank", "Fusillier Plateau"] },
-    // A Guadeloupe dive survey uses the geographic point name.
     { names: ["Machette"], country: "France", siteIds: ["10a3208c-d399-4e0a-9ee1-22bc0155988c"], aliases: ["Pointe Machette"] },
-    // Sharm divers formerly called this canyon Wichita Falls.
     { names: ["White Knight"], country: "Egypt", siteIds: ["3a106b88-0b69-4598-a0d1-9190e327fd24"], aliases: ["Wichita Falls"] },
-    // PADI’s Chinese dive description uses this name for Bunaken’s Mandolin.
     { names: ["Mandolin"], country: "Indonesia", siteIds: ["558e570e-c2f4-4b56-9c71-b86747669ac7"], aliases: ["曼陀林"] },
-    // The dataset uses the destination name as a dive record here.
     { names: ["Punta Cana"], country: "Dominican Republic", siteIds: ["83416dcb-c5fa-4b2f-a5f1-72f8ebff80a1"], aliases: ["蓬塔卡纳", "蓬塔卡納", "プンタカナ", "プンタ・カナ"] },
-    // Saint-François has a separate Japanese Garden on the opposite coast.
     { names: ["Jardin Japonais"], country: "France", siteIds: ["d20eb0c6-d911-4483-a336-aeb27ddcde81"], aliases: ["Japanese Garden"] },
-    // This Japanese Garden is the Guadeloupe site north of Pointe Malendure.
     { names: ["Jardin Japonais"], country: "France", siteIds: ["5a5dd053-de81-4b1e-b1b5-405f3c82b0b9"], aliases: ["Japanese Garden", "Le Jardin Japonais"] },
-    // This Curaçao dive is the Saba tugboat wreck, not the island of Saba.
     { names: ["Saba"], country: "Curaçao", siteIds: ["8b924dc7-286d-4ab0-91cc-a315a82b5fcb"], aliases: ["Saba Wreck", "Tugboat Saba"] },
-    // Guadeloupe dive operators and local guides use these French forms.
     { names: ["Pointe Malendure"], country: "France", siteIds: ["3e76a996-7095-4675-9fd1-c6ecb41fd1a4"], aliases: ["La pointe Malendure", "Pointe de Malendure"] },
-    // Menorca sources spell the contracted place name in both forms.
     { names: ["Cala’n Forcat"], country: "Spain", siteIds: ["3d9c6294-debd-42e8-bff3-76d20b0821af"], aliases: ["Cala'n Forcat", "Cala en Forcat"] },
-    // North Komodo’s channel has local and translated dive names.
     { names: ["Golden Passage Komodo"], country: "Indonesia", siteIds: ["fdf41d45-73b7-4a0a-8841-b55ee39e5566"], aliases: ["黄金通道", "ゴールデン・パッセージ", "Gili Lawa Passage"] },
-    // Local dive guides reverse the bay and headland in this site’s name.
     { names: ["Norah Head (Cabbage Tree Bay)"], country: "Australia", siteIds: ["18b068e9-b737-4163-b1e8-002a79129ef2"], aliases: ["Cabbage Tree Bay (Norah Head)", "Cabbage Tree Bay, Norah Head"] },
-    // NOAA records the earlier Atlantis name for the Key Biscayne memorial reef.
     { names: ["Neptune Memorial Reef"], country: "United States", siteIds: ["510bcaeb-1ada-4536-8237-5b65b3be6649"], aliases: ["Atlantis Memorial Reef", "Atlantis Reef Project"] },
-    // Menjangan dive guides use Roman numerals and the ranger-station name.
     { names: ["Pos 1"], country: "Indonesia", siteIds: ["da6fcfa0-bdfb-491d-9142-71d83622f461"], aliases: ["Pos I", "Pos Satu", "Jetty Post I", "Pos I Ranger Station"] },
-    // Swiss dive-club records distinguish this Herrliberg entry from the larger car park.
     { names: ["Kleiner Parkplatz"], country: "Switzerland", siteIds: ["7fe9e017-5366-4801-8a94-d0dd067e9033"], aliases: ["Kleiner P", "Kastanie"] },
-    // Marujín was the vessel’s earlier name before it became El Condesito.
     { names: ["El Condesito (Wreck)"], country: "Spain", siteIds: ["882c5c39-4c98-473c-ae7c-216830d0d195"], aliases: ["Marujín", "The Condesito"] },
-    // The decommissioned vessel and hull number are used by local diving sources.
     { names: ["HMAS Swan (Wreck)"], country: "Australia", siteIds: ["bca9e258-4ab6-453a-9b48-8777f23222e1"], aliases: ["ex-HMAS Swan", "HMAS Swan DE 50", "HMAS Swan (DE 50)"] },
-    // Fuvahmulah operators use these names for the north-point dive.
     { names: ["Thoondu"], country: "Maldives", siteIds: ["92a89e38-f8b8-4e83-bc0f-f41162b5a019"], aliases: ["Hudhukede", "Kedevari", "胡杜克德"] },
-    // Granada’s dive guide records Los Coches as this site’s local name.
     { names: ["Piedra de la Higuera"], country: "Spain", siteIds: ["f68d34d5-181a-4c05-a407-f055fc3825f1"], aliases: ["Los Coches"] },
-    // English dive reporting calls this Fernando de Noronha site Dry Rocks.
     { names: ["Pedras Secas"], country: "Brazil", siteIds: ["a82c6871-9322-400f-b223-b74f7123be27"], aliases: ["Dry Rocks"] },
-    // The Mooloolaba operator formerly called this site Wobby Rock.
     { names: ["Nurse Rock"], country: "Australia", siteIds: ["36a9a5c6-93c3-4cd3-905c-29ef28547a90"], aliases: ["Wobby Rock"] },
-    // The local Maltese name and tunnel nickname refer to Billinghurst itself.
     { names: ["Billinghurst Cave"], country: "Malta", siteIds: ["566f8e0d-f48e-4f18-8bd6-3e458fff7321"], aliases: ["Billingshurst Cave", "Booming Cave", "Railway Tunnel", "Għar ix-Xiħ", "Ghar ix-Xih"] },
-    // Blue Caves here denotes the North Ari thila, not unrelated blue holes.
     { names: ["Maalhos Thila"], country: "Maldives", siteIds: ["96901eed-bdb3-4611-bf1d-596cd100c3f6"], aliases: ["Blue Caves"] },
-    // A Krk dive centre identifies the same reef in Croatian and English.
     { names: ["Plic Tenki"], country: "Croatia", siteIds: ["12105a8d-9a63-42ee-a502-11c5104447bc"], aliases: ["Tenki reef"] },
-    // A regional marine-life report uses the alternative Portuguese preposition.
     { names: ["Laje Dois Irmãos"], country: "Brazil", siteIds: ["816c63eb-e4c4-4c56-a3cd-bd6e4033dce7"], aliases: ["Laje dos Dois Irmãos"] },
-    // Tenerife operators use the bay and village names for this shore dive.
     { names: ["El Poris"], country: "Spain", siteIds: ["b1fbc761-51e0-48d1-bc28-7b6475f5ea47"], aliases: ["El Poris Bay", "Porís de Abona"] },
-    // Veracruz dive guides use both the Spanish and English names.
     { names: ["Catedrales"], country: "Mexico", siteIds: ["13ca0613-2ea0-4c78-8187-456d47777a89"], aliases: ["Las Catedrales", "The Cathedrals"] },
-    // Aqaba sources commonly put Hercules before the aircraft model.
     { names: ["C-130 Hercules, wreck"], country: "Jordan", siteIds: ["3d832f6f-b46b-49cb-b1ce-e71b296f7391"], aliases: ["Hercules C-130", "C-130 Hercules Plane Wreck", "C-130 Hercules Aircraft"] },
-    // The recorded label is the island destination; local dive operators abbreviate Saint.
     { names: ["Saint George’s Caye"], country: "Belize", siteIds: ["d36fd433-11a2-4839-afab-86c4f08058b4"], aliases: ["St. George’s Caye", "St. George's Caye", "St George's Caye"] },
-    // The Hawaiian name identifies Maui’s Black Rock, not its namesakes.
     { names: ["Black Rock - Hawaii"], country: "United States", siteIds: ["45d76fa7-6300-4573-baa4-f1c651145589"], aliases: ["Puʻu Kekaʻa", "Puu Kekaa"] },
-    // Location-qualified names distinguish this beach from Australian namesakes.
     { names: ["Little Beach - NSW"], country: "Australia", siteIds: ["83e594e5-9f65-4d3f-ab5c-9b3eec4ed61c"], aliases: ["Little Beach - Nelson Bay", "Little Beach (Nelson Bay)"] },
-    // Tascó Gros is one islet within the wider Tascons dive area.
     { names: ["Tascó Gros"], country: "Spain", siteIds: ["0642fd96-b4b1-4685-b933-d3a74140f649"], aliases: ["El Tascó Gross", "Tascó Gran"] },
-    // Ras Mohammed Wall is distinct from the neighboring Shark Reef.
     { names: ["Shark Observatory"], country: "Egypt", siteIds: ["66b5a1e6-3420-4c48-9632-c21eb8344e6d"], aliases: ["Ras Mohammed Wall", "シャーク・オブザーバトリー"] },
-    // Regional dive-site documentation records the historic local name.
     { names: ["Bajo de Fuera"], country: "Spain", siteIds: ["cd3d396d-4ac7-4494-b8b2-cc83260497e0"], aliases: ["Piedra del Vapor", "La Piedra del Vapor"] },
-    // Maa Kandu contains this specific cleaning station; the channel is broader.
     { names: ["Addu Manta Point"], country: "Maldives", siteIds: ["b27e845c-8862-4cb9-8ac0-d7eb0eb14a8f"], aliases: ["Mudakan", "Mudakan Manta Point", "Maa Kandu Manta Point"] },
-    // Local cenote operators use both c and k spellings for Kukulkan.
     { names: ["Cenote Kukulcan"], country: "Mexico", siteIds: ["bfc6624e-51fe-41a2-90e7-991b32f1949c"], aliases: ["Cenote Kukulkan", "Kukulkan"] },
-    // Cozumel dive guides use the Spanish reef name for this site.
     { names: ["Las Palmas Reef"], country: "Mexico", siteIds: ["35a1cb87-6787-49bd-804e-48646be9954f"], aliases: ["Arrecife Las Palmas", "Las Palmas"] },
-    // The local dive guide and transport authority identify this Woodman Point jetty.
     { names: ["Ammo Jetty"], country: "Australia", siteIds: ["9769492b-25bf-48a2-9c83-c9fa188f20e6"], aliases: ["Ammunition Jetty", "Woodman Point Jetty", "Woodman Point Ammo Jetty", "Woodmans Point Jetty"] },
-    // These names refer to the Silfra fissure as a whole, not an individual section.
     { names: ["Silfra Diving"], country: "Iceland", siteIds: ["5e646533-e7d6-4205-9a94-fa82a4c78204"], aliases: ["西尔夫拉", "席尔弗拉", "シルフラ"] },
-    // Alcúdia dive operator identifies the Cabo Pinar cavern by both names.
     { names: ["Swiss Cheese"], country: "Spain", siteIds: ["f836f867-f7ff-4362-9ba7-58aa0cde219b"], aliases: ["Queso suizo", "El queso suizo"] },
-    // https://www.westernaustralia.com/cn/attraction/exmouth-navy-pier/59cb344eec83773e725c3197
-    // https://www.divers.world/zh-cn/divesite/ningaloo-reef/exmouth-navy-pier/
-    // https://www.bluerides.com/ja/daibingu-pointo/navy-pier
     { names: ["Exmouth Navy Pier"], country: "Australia", siteIds: ["15fb3e17-236b-4618-82cb-1439a1486f4f"], aliases: ["埃克斯茅斯海军码头", "Point Murat Navy Pier", "ネイビーピア"] },
-    // https://www.justgottadive.com/dive_resources/dive_sites/pedernales-wreck
     { names: ["Pedernalis (Wreck)"], country: "Aruba", siteIds: ["a44259d2-c276-4d4a-ad6e-b995dee568a9"], aliases: ["Pedernales", "Pedernales Wreck"] },
-    // https://musan.com.cy/faq/
-    // https://travel.padi.com/ja/dive-site/kihurosu/musan/
     { names: ["MUSAN"], country: "Cyprus", siteIds: ["a38781c6-753b-4ee4-9995-bb896de8df2b"], aliases: ["Museum of Underwater Sculpture Ayia Napa", "アギアナパの水中彫刻博物館"] },
-    // https://www.scubago.com/cn/explore/destination/granitic-islands-9752986
-    // https://www.padi.com/zh-hans/dive-site/sai-she-er/btc-baie-ternay-center/
-    // https://www.scubago.com/ja/explore/destination/granitic-islands-9752986
     { names: ["Baie Ternay Marine Park"], country: "Seychelles", siteIds: ["fdf2c823-264c-41c2-87ec-9f5de10d4234"], aliases: ["特尔奈湾海洋公园", "特奈湾海洋公园", "ベイ・テルネ海洋公園"] },
-    // https://www.lustricadiving.it/dives/doctors-rock/
-    // https://usticadiving.com/index.php?do=discover-ustica&id=17
     { names: ["Scoglio del Medico"], country: "Italy", siteIds: ["77b58b6c-cde8-49cb-b4fc-dead8c8f1c12"], aliases: ["Doctor’s Rock", "Doctor's Rock", "Medico Rock"] },
-    // https://kknews.cc/zh-tw/travel/xgk2pmg.html
     { names: ["Fridays Rock"], country: "Philippines", siteIds: ["8459d6d4-abab-4bef-9ddd-689546d9bb2e"], aliases: ["星期五岩"] },
-    // https://www.scubago.com/tw/explore/destination/north-guam-9749648
-    // https://guam-navi.jp/gun-beach/
-    // https://tour.interpark.com/freeya/Spot/View.aspx?SpotNo=85757
     { names: ["Gun Beach"], country: "Guam", siteIds: ["9056b4e9-ae4b-49eb-8850-328fa21060d1"], aliases: ["枪滩", "槍灘", "炮灘", "ガンビーチ", "건 비치", "건비치"] },
-    // https://scubadiving.place/divesite/corner-bar-corner-bay
     { names: ["Corner bar"], country: "Cambodia", siteIds: ["cf415af4-e0c5-458a-8cd0-285327212015"], aliases: ["Corner Bay"] },
-    // https://www.edenplongee.fr/Sur-le-site-de-plongee-de-l-Avion-un-Cessna-Agwagon-188_a60.html
     { names: ["Avion Cessna 188"], country: "France", siteIds: ["473e3b7c-d73e-4c44-9cf7-2d6a30eaa56e"], aliases: ["Cessna Agwagon 188", "Avion de Port-Louis"] },
-    // https://www.neptuneliveaboards.com/zh/blog/dampier-strait-diving/
-    // https://www.wtp.co.jp/area/detail/28/Raja%20Ampat/
-    // https://www.bluerides.com/ko/vessels/blue-manta/raja-ampat-misool-10n
     { names: ["Manta Ridge"], country: "Indonesia", siteIds: ["c66d16b2-4f87-45de-9dbb-68d32f7c356d"], aliases: ["蝠鲼脊", "マンタリッジ", "만타 리지"] },
-    // https://history.ifeng.com/c/8lkkcyfpqYh
-    // https://blog.padi.com/ko/wreck-diving-best-dive-sites-in-the-world/
-    // https://www.jica.go.jp/Resource/jica-ri/IFIC_and_JBICI-Studies/jica-ri/publication/archives/jica/kyakuin/pdf/200407_02_05.pdf
     { names: ["SS President Coolidge (Wreck)"], country: "Vanuatu", siteIds: ["1eedf563-f0f0-45ea-844d-493350267980"], aliases: ["柯立芝总统号", "柯立芝總統號", "프레지던트 쿨리지", "プレジデント・クーリッジ"] },
-    // https://www.papuaparadise.com/news/dive-sites-in-raja-ampat/
     { names: ["Batu Lima"], country: "Indonesia", siteIds: ["e20ed80f-c7cb-472d-a934-7fc3ce02d73b"], aliases: ["Five Rocks"] },
-    // https://www.komodoresort.com/zh/komodo-liveaboard/
-    // https://komodonationalpark.com/ko/komodo-diving-snorkeling/
     { names: ["Manta Alley"], country: "Indonesia", siteIds: ["877fd63c-7f3f-47af-9c7a-d64058c92fbb"], aliases: ["曼塔巷", "만타 앨리"] },
-    // https://www.eleutheratahiti.com/fr/calendrier
     { names: ["Les 3 Pitons"], country: "French Polynesia", siteIds: ["d882a086-4688-4fad-9aeb-b2707a574f74"], aliases: ["Trois Pitons", "Les Trois Pitons"] },
-    // https://divecodex.com/es/sites/cabo-san-antonio
     { names: ["Cabo San Antonio"], country: "Spain", siteIds: ["a854f64a-36b7-4309-8183-c9e40df03ee6"], aliases: ["Cap de Sant Antoni"] },
-    // https://www.scubalo.com/divesites/indonesia/nusa-penida/buyuk
     { names: ["Buyuk"], country: "Indonesia", siteIds: ["abfffbdb-49ea-49d9-a015-5341c3814225"], aliases: ["Buyuk Point"] },
-    // https://divechamp.com/divesite/tug-2-wreck
     { names: ["Tug 2, Wreck"], country: "Mauritius", siteIds: ["4027637e-c01d-412b-9427-e137a48e20d6"], aliases: ["Tug II"] },
-    // https://www.scubago.com/cn/explore/destination/little-cayman-9750206
-    // https://www.divers.world/zh-tw/diveshop/reef-divers-at-little-cayman/
-    // https://www.bluerides.com/ja/liveaboards/cayman-islands
     { names: ["Little Cayman"], country: "Cayman Islands", siteIds: ["571e4a1e-e7bc-44bc-b230-a8dd9dddd874"], aliases: ["小开曼", "小开曼岛", "小開曼", "小開曼島", "リトルケイマン"] },
-    // https://www.hellodive.com/dive/pointlist/84.html
-    // https://travel.padi.com/ja/dive-site/intoneshia/ceningan-wall-2/
     { names: ["Ceningan wall, Nusa Lembongan, Bali, Indonesia"], country: "Indonesia", siteIds: ["9dfe03d7-1fee-4348-946e-048f49b04a43"], aliases: ["金银岛海墙", "チュニガンウォール"] },
-    // https://reefwander.com/diving/ambergris-caye/paradise-canyons/
     { names: ["Paradise Canyons"], country: "Belize", siteIds: ["d57fe7d7-e6cf-450e-9c26-7e73244d9d3c"], aliases: ["Paradise Canyon"] },
-    // https://www.padi.com/zh-hans/dive-site/ao-da-li-ya/flinders-pier/
-    // https://divedb.net/sites/flinders-pier
     { names: ["Flinders Pier"], country: "Australia", siteIds: ["3041cfac-5be9-47f2-9087-5b855ec31265"], aliases: ["弗林德斯码头", "Flinders Jetty"] },
-    // https://www.divers.world/divesite/dahab/bannerfish-bay/
     { names: ["Bannerfish Bay"], country: "Egypt", siteIds: ["385dd470-b082-4de7-9913-0bf9e188a5ab"], aliases: ["Banner Fish Bay", "Trash Area"] },
-    // https://www.divers.world/divesite/florida-keys-national-marine-sanctuary/sombrero-reef/
     { names: ["Sombrero Reef"], country: "United States", siteIds: ["c9e51385-35c1-421a-ab07-d5fd272610fb"], aliases: ["Sombrero Key Reef"] },
-    // https://www.reef.org/db/reports/geo?region_code=TWA&zones=87010007
     { names: ["Buraco do Inferno"], country: "Brazil", siteIds: ["a47492f8-7514-4741-b91d-68dd04ad7576"], aliases: ["Hell Hole"] },
-    // https://redcostabrava.com/canons-de-tamariu-inmersiones-de-buceo-en-la-costa-brava/
-    // https://palamosdivecenter.com/en/canons-de-tamariu/
     { names: ["Canons de Tamariu"], country: "Spain", siteIds: ["c2343ae3-086e-4a57-9c2b-7aff254ec4cb"], aliases: ["Cañones de Tamariu", "Tamariu Canyons"] },
-    // https://aquatica.se/utfarder/
     { names: ["Ön, Limhamn"], country: "Sweden", siteIds: ["589b7a9f-ea8a-400c-b239-2a1e16408adb"], aliases: ["Ön i Limhamn"] },
-    // https://viconservationsociety.org/wp-content/uploads/2024/11/CC-STT-Guide-Final.pdf
     { names: ["Coki Point Beach"], country: "United States", siteIds: ["a932ffb7-8eff-4268-b2ac-9e22ea0afe9d"], aliases: ["Coki Beach"] },
-    // https://cairnsdiveadventures.com.au/review/tusa-dive-trip-review/
     { names: ["Saxon Reef Magic Wall"], country: "Australia", siteIds: ["22955985-4ed5-4ad3-a746-51a64f6f6422"], aliases: ["Magic Wall Saxon Reef"] },
-    // https://www.scubago.com/en/explore/destination/guam-9749646
-    // https://portofguam.com/sites/default/files/ea_marine_survey_combined.pdf
     { names: ["Outhouse Beach"], country: "Guam", siteIds: ["8d0440eb-f972-4fbe-8a88-86c04db791e6"], aliases: ["Apra Beach", "Divers Beach", "Diver’s Beach"] },
-    // https://www.manadodive.co.kr/research/bunaken
-    // https://divememo.com/en/dive-sites/alung-banua
     { names: ["Alung Banua"], country: "Indonesia", siteIds: ["280dfe34-5b2a-4e77-a687-868570e84893"], aliases: ["알룽 바누아", "Alban"] },
-    // https://conanp.gob.mx/conanp/dominios/islasgc/files/Guia_buceo.pdf
     { names: ["Swanee Reef"], country: "Mexico", siteIds: ["5a135a43-85e5-4029-9325-92004fd9b49b"], aliases: ["Swany Rock", "Roca Swany", "Roca Swanee"] },
-    // https://kefidivers.com/el/dive-sites/shore
-    // https://www.divingchaniacrete.com/diving-programs-for-certified-divers/elephant-cave-program/
     { names: ["Elephants Cave"], country: "Greece", siteIds: ["9f2e70dd-3a0d-4566-97ac-7b32cabb4a7a"], aliases: ["Σπήλαιο Ελεφάντων", "Σπήλαιο των Ελεφάντων"] },
-    // https://abcdive972.com/sites-plongee-martinique/
     { names: ["Pointe Lezarde"], country: "France", siteIds: ["6d68eeef-39c8-4fee-81ac-80f8e6cd0312"], aliases: ["Pointe de la Lézarde", "La Pointe de la Lézarde"] },
-    // https://scuba.network/dive-site/afeabf52-bc9a-48c7-96bc-ef110543dcd9/dive-log/212fcd01-353a-4515-8417-b9c8afcbcef4
     { names: ["Eight Acre Lake"], country: "United Kingdom", siteIds: ["7dd8f9c2-505e-48af-b4f8-578d39007fe5"], aliases: ["8 Acre Lake"] },
-    // https://www.duikersgids.nl/en/dive-spots/jan-thiel-baai
     { names: ["Jan Thiel baai"], country: "Curaçao", siteIds: ["c6886ed9-f053-4f3b-8d42-b360aaf3c83b"], aliases: ["Jan Thiel Bay"] },
-    // https://thisis-egypt.com/diving/sites/abu-kafan-north
     { names: ["Abu Kafan North"], country: "Egypt", siteIds: ["ce9d7b0b-c3de-4dce-a55d-f5634c7c6451"], aliases: ["Abu Gafan North"] },
-    // https://seychellen.com/tauchspots-seychellen/
     { names: ["Coral Garden"], country: "Seychelles", siteIds: ["47a75503-70ab-4d2c-bdd6-6c410a3db412"], aliases: ["Coral Gardens"] },
-    // https://temoanadiving.com/centres-de-plongee/eleuthera-tahiti
     { names: ["Hydravion et Goelett"], country: "French Polynesia", siteIds: ["6f7542b4-a48a-4cac-9047-d90bcac004d8"], aliases: ["Hydravion et Goélette", "Hydravion & Goélette"] },
-    // https://www.scubago.com/en/explore/divesite/pink-beach-komodo-77790
-    // https://discoverindonesia.co/zh/blog/diving-komodo
     { names: ["Pink Beach Komodo"], country: "Indonesia", siteIds: ["feb7f204-aa19-44c2-a025-48b21b5a7963"], aliases: ["Pantai Merah", "粉红沙滩"] },
-    // https://www.divinginelba.com/siti-di-immersione/isola-delba/relitto-di-pomonte/
     { names: ["Relitto di Pomonte"], country: "Italy", siteIds: ["6e3f1429-1761-4167-98be-4320b27b0fd5"], aliases: ["Elviscot", "Relitto Elviscot"] },
-    // https://www.padi.com/zh-hant/dive-center/duo-ming-ni-jia/scubacaribe-bayahibe-dr/
-    // https://travel.padi.com/zh-hans/dive-trip/bayahibe/10-dive-package-16884/
     { names: ["Bayahibe"], country: "Dominican Republic", siteIds: ["aa588a42-0bf3-4f38-ad5d-51a473d95478"], aliases: ["巴亚希贝", "巴亞希貝"] },
-    // https://www.padi.com/zh-hans/dive-site/ai-ji-he-hong-hai/um-sid/
-    // https://scuba.aura.llc/dive-sites/umm-sid/
     { names: ["Um Sid"], country: "Egypt", siteIds: ["11afa6ab-8753-4d48-877b-73bfd09efd36"], aliases: ["乌姆西德", "Umm El Sid", "Um El Sid"] },
-    // https://roatansplashinn.com/en/diving/dive-sites/the-odyssey
     { names: ["Odyssey (Wreck)"], country: "Honduras", siteIds: ["e8c34034-cf64-4ecc-b719-b7ef884e2fb5"], aliases: ["The Odyssey", "The Odyssey Wreck"] },
-    // https://divemap.be/dive-sites/underwater-cave-menjangan.html
     { names: ["Underwater Cave"], country: "Indonesia", siteIds: ["c78e9c90-217e-4ff1-8a10-d40ef90da99c"], aliases: ["Underwater Cave Menjangan"] },
-    // https://thelakeuk.com/activities/scuba-diving/
     { names: ["Cromhall Quarry"], country: "United Kingdom", siteIds: ["5b533958-9c3a-48e1-9880-faab79e8e642"], aliases: ["The Lake at Cromhall Quarry"] },
-    // https://maxdivebali.com/dive-sites/gili-tepekong-and-mimpang/
-    // https://reefwander.com/diving/padangbai-candidasa/gili-mimpang/
     { names: ["Gili Mimpang, Candidasa"], country: "Indonesia", siteIds: ["f2188051-21c8-48d9-9916-f45ee02dec0e"], aliases: ["Batu Tiga", "Three Rocks", "ギリミンパン", "バトゥティガ"] },
-    // https://goldcoastdiveadventures.com.au/north-stradbroke-island-dive-sites/
     { names: ["Flat Rock - Nursery"], country: "Australia", siteIds: ["0c9bd707-1edf-454e-bcf8-5f7e93713e4a"], aliases: ["Flat Rock The Nursery", "The Nursery"] },
-    // https://www.scubago.com/cn/explore/divesite/menjangan-bat-cave-136667
-    // https://xn--eckya9b7cr9ksc.com/menjangan-diving-tour-enjoy-diving-and-hot-spring/
     { names: ["Menjangan - Bat Cave"], country: "Indonesia", siteIds: ["8b3c2fd7-3d35-4810-9184-40f70fc6a18f"], aliases: ["蝙蝠洞", "バットケーブ"] },
-    // https://travel.padi.com/zh-hans/dive-trip/pacific-coast-of-mexico/marietas-islands-dive-adventure-national-park-scuba-snorkel-experience-from-sayulita-11899/
-    // https://www.divers.world/zh-cn/country/mx/
     { names: ["Islas Marietas"], country: "Mexico", siteIds: ["1185ecfe-dd87-46c8-9ed0-bf5574d8d028"], aliases: ["玛丽埃塔斯岛", "玛丽埃塔群岛", "马里埃塔群岛"] },
-    // https://www.divingcenterposeidonroses.com/pf/inmersion-el-gat-costa-brava-cap-de-creus/
-    // https://www.submarinismocostabrava.com/compromiso-azul/rutas-de-inmersiones-ecoguiadas-en-la-costa-brava
     { names: ["El Gat"], country: "Spain", siteIds: ["0a2c0275-ab51-4648-8d0a-e5455d2df0b7"], aliases: ["El Gato", "El Gat del Cap Norfeu"] },
-    // https://pro.reunion.fr/sites/default/files/2017-09/IRT-Guide%20activite%202017_FR%20WEB.pdf
     { names: ["Sec Jaune"], country: "France", siteIds: ["ffdd82d8-a59f-4623-a6f0-4814d8373ab0"], aliases: ["Le Sec Jaune"] },
-    // https://pepedivemahahual.com/preguntas-frecuentes-sobre-el-buceo-en-mahahual/
     { names: ["Acuario"], country: "Mexico", siteIds: ["e9c7b489-c28f-4ea2-8948-fcff25afd510"], aliases: ["El Acuario"] },
-    // https://happybubbles.com/tr/ds-big-reef/
     { names: ["Big Reef"], country: "Türkiye", siteIds: ["17f9dc02-174e-4f22-8a38-72a4ce4c3ec1"], aliases: ["Büyük Resif"] },
-    // https://bleumarineplongee.re/nos-spots-de-plongee-a-la-reunion/
     { names: ["Tour de Boucan"], country: "France", siteIds: ["949f5a44-ae4a-4edb-a1d8-c41f1fa0092c"], aliases: ["La Tour de Boucan"] },
-    // https://www.swiss-divers.ch/informationen/tauchplaetze/bodensee/wildsau-berlingen/
     { names: ["Berlingen, Wildsau"], country: "Switzerland", siteIds: ["2716af03-2441-4c2d-9764-4bec9b6f0714"], aliases: ["Wildsau Berlingen", "Wildsau"] },
-    // https://www.duikbuddygezocht.nl/locaties/locatie/venue/285%3Agrasbroek
-    // https://duikplaats.net/nederland/overijssel/het-grasbroek
     { names: ["Grasbroek"], country: "Netherlands", siteIds: ["c2ff0475-e295-468d-a109-a72f69567259"], aliases: ["'t Grasbroek", "Het Grasbroek"] },
-    // https://divecodex.com/sites/vilingili-kandu
     {"names": ["Vilingili Kandu"], "country": "Maldives", "siteIds": ["7b447d7d-67ec-4df5-8df8-37d2bef9886c"], "aliases": ["Villingili Kandu"]},
-    // https://www.justgottadive.com/dive_resources/travel_articles/cave-diving-belizes-ambergris-caye-love-tunnels-victoria-canyons
     {"names": ["Tuffy Canyon"], "country": "Belize", "siteIds": ["6a8f3635-f02e-4a02-864c-38a8b005c7c8"], "aliases": ["Tuffy Rocks", "Tuffy Canyons"]},
-    // https://www.sea-point.co.jp/blog/overseas/maldives/20th6days/
     {"names": ["Villivaru Giri"], "country": "Maldives", "siteIds": ["2eb749ad-2e33-45ec-97d3-98bb162df328"], "aliases": ["ヴィルバルギリ"]},
-    // https://endheridivecenter.com/five-rocks-rheeti-thila/ and the sources in the review ledger.
     {"names": ["Five Rocks"], "country": "Maldives", "siteIds": ["e76fc46e-ad2f-4c2e-9cae-073c7fa99430"], "aliases": ["Reethi Thila", "Rheeti Thila", "五石礁"]},
-    // https://www.divers-guide.com/en/car-pile
     {"names": ["Car Pile - Marie Pampoen (Wreck)"], "country": "Curaçao", "siteIds": ["8ecd51c6-f574-4670-9b5c-e5b58ee05f25"], "aliases": ["Carpile Marie Pampoen"]},
-    // https://observatoriodoturismo.es.gov.br/Media/observatorio/Pesquisas/Inventarios%20Municipais/Guarapari.pdf
     {"names": ["Ilha Escalvada"], "country": "Brazil", "siteIds": ["122f1036-c7f4-4941-910e-a174d93da682"], "aliases": ["Ilha da Escalvada"]},
-    // https://www.scubago.com/ja/explore/destination/flores-9752455 and the sources in the review ledger.
     {"names": ["Wai Nilu"], "country": "Indonesia", "siteIds": ["c8a4093f-86ac-41a1-a00e-ba5ed2acfc50"], "aliases": ["ワイニル", "Wainilu"]},
-    // https://pmc.ncbi.nlm.nih.gov/articles/PMC10622855/
     {"names": ["Bikini"], "country": "South Africa", "siteIds": ["475c1c87-aebc-4e31-a6d2-0e54ddbffbf1"], "aliases": ["Bikini Reef"]},
-    // https://www.padi.com/zh-hans/dive-site/ao-da-li-ya/rottnest-island/ and the sources in the review ledger.
     {"names": ["Rottnest Island"], "country": "Australia", "siteIds": ["753b4fc0-17ca-45b8-84aa-eb2ba6edc6be"], "aliases": ["罗特尼斯岛", "罗特内斯特岛", "ロットネスト島"]},
-    // https://manta-dive-giliair.com/gili-islands-dive-sites/goodheart-all-levels
     {"names": ["Good Heart"], "country": "Indonesia", "siteIds": ["4f74ca0f-d7b4-4680-8621-db4be63860eb"], "aliases": ["Goodheart"]},
-    // https://turismofuencalientedelapalma.com/fuencaliente/playa-de-las-cabras/
     {"names": ["Las  Cabras"], "country": "Spain", "siteIds": ["c7c0153f-109c-42f5-a0a6-8b1189f9c232"], "aliases": ["Playa de las Cabras"]},
-    // https://ultramarina.com/voyage-plongee-ocean-indien/seychelles/mahe
     {"names": ["Twin Barges"], "country": "Seychelles", "siteIds": ["ea576fe4-9efa-49f5-93d6-619b12778145"], "aliases": ["Twin Barges Wreck"]},
-    // https://taucher.net/tauchplatz-messinghausener_see__see_im_berg___brilon_-_messinghausen-haz2343
     {"names": ["Messinghausen, See im Berg"], "country": "Germany", "siteIds": ["4e74b1eb-6e60-40dd-971c-72b291863f0d"], "aliases": ["Messinghausener See"]},
-    // https://sportnature.var.fr/plongee/pointe-de-montremian/
     {"names": ["Pointe de Montrémian"], "country": "France", "siteIds": ["dc701956-0191-4884-8dd5-e60199b6ef99"], "aliases": ["La piste de ski"]},
-    // https://oceanworx.co.za/diving-the-shoal.html
     {"names": ["Chunnel"], "country": "South Africa", "siteIds": ["976b98fe-9fa3-41f4-a693-42637de3d0b9"], "aliases": ["Chunnel Cave"]},
-    // https://www.ezdivemag.com/en/magic-moalboal/ and the sources in the review ledger.
     {"names": ["Kasai Wall"], "country": "Philippines", "siteIds": ["ea86bf2d-e381-4226-b0f3-3dcc22bdedd3"], "aliases": ["Kasai House Reef", "卡赛墙"]},
-    // https://www.kkday.com/zh-cn/product/124072-dolphin-and-seal-swim-and-reef-snorkel-tour-melbourne and the sources in the review ledger.
     {"names": ["Popes Eye"], "country": "Australia", "siteIds": ["b2e92add-c6ca-4235-a78e-61fe367dc2fa"], "aliases": ["教皇之眼", "Pope's Eye", "Popes Eye Annulus"]},
-    // https://www.scubago.com/de/explore/divesite/voglstangsee-3832
     {"names": ["Voglstangsee"], "country": "Germany", "siteIds": ["a66fb9d4-33d2-450f-ba78-d7b1c75a9226"], "aliases": ["Vogelstangsee"]},
-    // https://www.africanwatersports.co.za/diving/cathedral-reef-dive/
     {"names": ["Cathedral"], "country": "South Africa", "siteIds": ["48094813-3dfc-4d8f-a59d-1660c2ea3162"], "aliases": ["Cathedral Reef"]},
-    // https://travel.padi.com/zh-hans/dive-site/a-lu-ba/antilla-wreck/
     {"names": ["Antilla (Wreck)"], "country": "Aruba", "siteIds": ["74d089d8-18b5-4b3c-8d43-610fa2db5f43"], "aliases": ["安蒂拉号"]},
-    // https://www.divecuracao.info/dive-travel-curacao/curacao-dive-travel-guide/curacao-beaches/
     {"names": ["Snake Bay"], "country": "Curaçao", "siteIds": ["084525e5-cf98-4d36-9264-6da669a38ce8"], "aliases": ["Playa Wachi", "Slangenbaai"]},
-    // https://www.timyeotravel.com/uploads/1/4/2/1/142109617/bonaire_dive_sites.pdf
     {"names": ["Pink Beach (53)"], "country": "Bonaire, Sint Eustatius and Saba", "siteIds": ["1f35026f-a94c-458a-a55c-ab1feab89229"], "aliases": ["Kabayé"]},
-    // https://www.visit-mexico.mx/guerrero/ecotourism-and-adventure-in-acapulco/
     {"names": ["El Jardin"], "country": "Mexico", "siteIds": ["7fb97361-3696-4475-95ae-bf357c640646"], "aliases": ["The Garden"]},
-    // https://www.mardaysresort.com/concurso/bases-competicion.pdf
     {"names": ["San Martin Sur"], "country": "Spain", "siteIds": ["130611ba-cfb3-4774-88ce-91750ce84eca"], "aliases": ["Cabo San Martín Sur"]},
-    // https://vie-sous-marine.photo/site/passe-exterieure-de-boulari
     {"names": ["Passe exterieure Boulari"], "country": "New Caledonia", "siteIds": ["5352e08a-9e09-48c4-a7d6-17344649c7ff"], "aliases": ["Passe extérieure de Boulari"]},
-    // https://tahiti-aqua.com/docs/hirodive_info.pdf and the sources in the review ledger.
     {"names": ["Tapu"], "country": "French Polynesia", "siteIds": ["872d5d92-24a9-49b0-bb3a-b940dfaf3eb3"], "aliases": ["タプー", "タプ"]},
-    // https://www.klook.com/zh-HK/blog/philippines-diving/ and the sources in the review ledger.
     {"names": ["Angol Point"], "country": "Philippines", "siteIds": ["044188a2-5090-45b2-81bd-22d3fa8b2f7e"], "aliases": ["安戈尔角", "安戈爾角", "安格點", "앙골"]},
-    // https://reefwander.com/diving/central-coast-nsw/ex-hmas-adelaide/
     {"names": ["Adelaide (Wreck)"], "country": "Australia", "siteIds": ["ffc43ebd-7885-4a0c-ac10-7f20456337b3"], "aliases": ["Ex-HMAS Adelaide", "HMAS Adelaide"]},
-    // https://www.scubalov.in/havelock-island/havelock-dive-sites/the-slope/
     {"names": ["Slope"], "country": "India", "siteIds": ["b9801517-2101-40bc-9b48-889585ee8115"], "aliases": ["The Slope"]},
-    // https://www.divers.world/divesite/sodwana-bay/4-buoy/
     {"names": ["Four Buoy, Sodwana Bay"], "country": "South Africa", "siteIds": ["87f09f31-03f9-4588-8be8-8da6beebb365"], "aliases": ["4 Buoy"]},
-    // https://www.magnumbelize.com/wp-content/uploads/2018/10/islandtours.pdf
     {"names": ["Long Caye Aquarium"], "country": "Belize", "siteIds": ["798a7b3e-ae89-403e-8e45-f5ca223fa3ad"], "aliases": ["The Aquarium"]},
-    // https://www.padi.com/zh-hant/dive-site/ao-da-li-ya/flinders-reef-2/ and the sources in the review ledger.
     {"names": ["Flinders Reef"], "country": "Australia", "siteIds": ["e7a0ad53-23e4-4617-bf73-4cae2020a793"], "aliases": ["弗林德斯礁", "플린더스 리프", "福林德礁", "費蓮達礁"]},
-    // https://cebu.travel/diving/malapascua
     {"names": ["Quiliano"], "country": "Philippines", "siteIds": ["f4b9de98-26f0-4db0-9ebc-9a3e133e92db"], "aliases": ["Quilliano", "Guilliano"]},
-    // https://islasaona.com/explore/isla-saona-vs-isla-catalina/
     {"names": ["Catalina The Wall"], "country": "Dominican Republic", "siteIds": ["b8f74ac2-82b2-421c-ba46-873949a624b5"], "aliases": ["El Muro"]},
-    // https://www.barcelo.com/guia-turismo/es/republica-dominicana/republica-dominicana/que-ver/donde-bucear-en-punta-cana/
     {"names": ["Catalina Aquarium"], "country": "Dominican Republic", "siteIds": ["cc9101ec-157d-4bb6-b240-23d7da4352e5"], "aliases": ["El Acuario"]},
-    // https://tahtilbahar.com/sites/anchorbay
     {"names": ["Anchor Bay"], "country": "Malta", "siteIds": ["b0be2cdd-007f-417b-a362-2bd968a7f3fd"], "aliases": ["Il-Prajjet", "Prajjet Bay", "Popeye Village"]},
-    // https://deepdivemexico.com/arrecife-barracuda-en-playa-del-carmen/?lang=es and https://scubaspotadvisor.com/en/diving-spots/mexico/playa-del-carmen/barracuda-8479
     {"names": ["Barracuda - Playa del Carmen"], "country": "Mexico", "siteIds": ["aee63b68-1384-4fb7-96aa-1dd6d53c6a76"], "aliases": ["Arrecife Barracuda", "Barracuda Reef"]},
-    // https://www.scubago.com/ja/explore/divesite/anau-22315
     {"names": ["Anau"], "country": "French Polynesia", "siteIds": ["546c34f1-6223-4bfc-a3d0-117f57f1efa6"], "aliases": ["アナウ"]},
-    // https://www.buceoenrepublicadominicana.com/inmersiones/catalina-the-wall/
     {"names": ["Catalina The Wall"], "country": "Dominican Republic", "siteIds": ["b8f74ac2-82b2-421c-ba46-873949a624b5"], "aliases": ["La Pared", "The Wall Catalina"]},
-    // https://programadestinosmexico.com/guias-turisticas-de-mexico/acapulco-guia/Travel-Guide-Acapulco.pdf
     {names:['Casa Del Árabe'], country:'Mexico', siteIds:['b1f76b98-242b-4a9c-9804-1df99aebdde4'], aliases:["Arab's House"]},
-    // https://travel.padi.com/zh-hans/dive-center/ai-ji-he-hong-hai/coral-diving-club/
-    // https://www.dive-club.com/diveclub/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88%E3%80%80%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%BB%E3%83%8E%E3%83%BC%E3%82%B9/?lang=ja
     {names:['Ras Ghamila'], country:'Egypt', siteIds:['c03392b7-b420-4f5c-89df-f73b4cb2526b'], aliases:['拉斯加米拉','ラス・ガミーラ','Ras Gamila']},
-    // https://scubaviva.ch/shop/events/tagesevent/ledi-wracks-walensee
     {names:['Ledi Wracks'], country:'Switzerland', siteIds:['d2cae8d8-871a-4d86-9227-1ba3873b4c01'], aliases:['Lediwracks']},
-    // The Portofino original has a distinct Italian name; keep it ID-scoped because replicas use the English name elsewhere.
-    // https://www.portofinoamp.it/siti-immersione/cristo-degli-abissi-c
-    // https://elpais.com/elviajero/2016/05/03/actualidad/1462269249_346823.html
     {names:['Christ of the Abyss'], country:'', siteIds:['7a8b2a0e-a787-4541-b6be-21c1470d6f56'], aliases:['Cristo degli Abissi','Cristo del Abismo']},
-    // Madang dive guides identify this coordinate-matched wreck as the B-25 near Wongat Island; avoid Tufi's separate Pistoff wreck.
-    // https://diveseason.com/zh-hans/dive/madang/
-    // https://www.niuginidiveadventures.com/barracuda-point-1
-    // https://www.bluerides.com/ko/daiving-poineu/wongat-island
     {names:['B-25 Mitchell Bomber'], country:'Papua New Guinea', siteIds:['00dece97-3cbb-4556-a3e4-0ca15da58fc9'], aliases:['B25 Mitchell Bomber','B25 Bomber (Wongat Island)','B-25轰炸机（Wongat岛）','B-25 轟炸機（Wongat 島）','웡갓 아일랜드 B25 미첼 폭격기']},
-    // https://www.diveclub-marumar.com/point/
     {names:['Cenote Dream Gate'], country:'Mexico', siteIds:['1c0219e4-9b5e-4ca2-9d54-aff606ab2157'], aliases:['ドリームゲート']},
-    // https://www.divers.world/fr/divesite/nosy-be-archipelago/mitsio-wreck/
     {names:['Mitsio Wreck'], country:'Madagascar', siteIds:['1038e262-ec00-444f-b192-81e153d86f5d'], aliases:['Mistio Wreck']},
-    // https://seekocean.cn/destinations/anilao
     {names:['Twin Rocks'], country:'Philippines', siteIds:['02e832cc-5e64-46c8-9218-2c16070ef105'], aliases:['双石']},
-    // https://www.scubalife.hr/lina/
-    // https://krnica.com/web_pages.php?kat=Wrecks&r=73
     {names:['Lina (Wreck)'], country:'Croatia', siteIds:['6d94f915-a67c-45a5-a487-9218b3d1c27f'], aliases:['Kraljica Kvarnera','Nuevo Estramadura','Ville de Nemours']},
-    // https://www.padi.com/ja/dive-site/suhein/el-bajon-5/
     {names:['El Bajón'], country:'Spain', siteIds:['61bc1302-57d5-41cd-9f95-f961c901b3ce'], aliases:['エル・バホン']},
-    // https://diveandsea-tahiti.com/club-de-plongee-tahiti/
     {names:['La Faille St Etienne, Tahiti'], country:'French Polynesia', siteIds:['523334e0-6834-4b69-97a3-efe77bf3100d'], aliases:['Faille Saint Étienne']},
-    // https://www.padi.com/ko/dive-site/oseuteureilria/fly-point/
     {names:['Fly Point'], country:'Australia', siteIds:['bd9bb575-a98d-477d-9fa4-ddc821a84265'], aliases:['플라이 포인트']},
-    // https://www.scubago.com/cn/explore/divesite/montego-bay-115950
-    // https://www.divers.world/zh-hk/country/jm/
     {names:['Montego Bay'], country:'Jamaica', siteIds:['0a2c2306-7d00-4989-b88f-d9db9d5d1574'], aliases:['蒙特哥湾','蒙特哥灣']},
-    // https://vie-sous-marine.photo/site/fausse-passe-d-uitoe
     {names:['Fausse passe de Uitoé'], country:'New Caledonia', siteIds:['0a9d6d87-f510-44e3-bd43-b5cc6a281c14'], aliases:["Fausse passe d'Uitoé"]},
-    // https://www.picture-worl.org/plongee-sous-marine-penetration-epave-caledonie-toho-v-lagon-noumea.html
     {names:['Toho V (Wreck)'], country:'New Caledonia', siteIds:['b2eed636-db66-4a86-8919-0c319db092ca'], aliases:['Calédonie Toho 5','Toho 5']},
-    // https://www.divers.world/divesite/sodwana-bay/antons/
     {names:['Antons'], country:'South Africa', siteIds:['06e55200-2ce8-4279-a5fb-4361330c7dd8'], aliases:["Anton's Cave"]},
-    // https://www.padi.com/zh-hans/dive-center/gu-ba/cuba-gardens-of-the-queen/
-    // https://www.padi.com.tw/ko/diving-in/jareudin-delra-reina-jardines-de-la-reina/
     {names:['Jardines de la Reina'], country:'Cuba', siteIds:['d5f23680-93ce-4025-a9b2-dcf320d788c6'], aliases:['女王花园','女王花园群岛','Gardens of the Queen','자르딘 델라 레이나']},
-    // https://www.bluerides.com/zh/mudidi/maldives/qianshui-didian
-    // https://www.diveworldwide.com/pdf/Dive_Worldwide_Spring_2022_Brochure.pdf
     {names:['Kudimaa (Wreck)'], country:'Maldives', siteIds:['d796b0df-b580-4c9b-ac4d-5ce3b199243b'], aliases:['库迪马沉船','Kudhimaa Wreck','Machchafushi Wreck']},
-    // https://www.padi.com/es/sitio-buceo/mexico/cuavitas/
     {names:['Cuevitas'], country:'Mexico', siteIds:['7cc09015-a932-4b82-af52-1f78b8c42fe1'], aliases:['Cuavitas']},
-    // https://www.bluerides.com/zh/qianshui-didian/roca-partida
-    // https://www.wtp.co.jp/area/47/Socorro/
     {names:['Roca Partida'], country:'Mexico', siteIds:['ef293d73-40e9-41f9-a766-b756e4268f13'], aliases:['罗卡帕蒂达','ロカパルティダ']},
-    // https://www.amedjepundivers.com/dive-sites/amed/japanese-shipwreck
     {names:['Japanese Shipwreck (Wreck)'], country:'Indonesia', siteIds:['5dc20762-563c-4def-824b-6d7b3975f972'], aliases:['Japanese Wreck']},
-    // https://www.bluerides.com/zh/qianshui-didian/guraidhoo-corner
-    // https://www.diversetravel.co.uk/wp-content/uploads/2019/07/Sharktastic.pdf
     {names:['Guraidhoo Corner'], country:'Maldives', siteIds:['40c4b9a7-d235-4c49-b045-8acbf9df2453'], aliases:['古莱杜角','Guraidhoo Kandu South']},
-    // https://www.scubadoctor.com.au/diveshop/index.php?main_page=divesite&site=St-Leonards-Pier
     {names:['St Leonards Pier'], country:'Australia', siteIds:['91fb2107-f346-46e6-993a-e410243b3930'], aliases:['St Leonards Jetty and Breakwater']},
-    // https://www.scubaspotadvisor.com/en/diving-spots/mauritius/beau-bassin-rose-hill/la-cathedrale-1018
     {names:['La Cathédrale'], country:'Mauritius', siteIds:['555148fd-901b-42b2-a073-4e409d38a1cb'], aliases:['The Cathedral']},
-    // https://tahtilbahar.com/sites/xattlahmarreef-xattlahmar
     {names:["Xatt L'Ahmar Reef"], country:'Malta', siteIds:['c8c04e06-8539-421b-9fa0-1e8d2bbcca69'], aliases:['Red Bay Reef']},
-    // https://travel.padi.com/zh-hans/dive-site/mo-xi-ge/cenote-angelita/
-    // https://www.kwda.co.kr/skin/html/book/2024-W-dentist.pdf
-    // https://oacis.repo.nii.ac.jp/record/2254/files/kam3649.pdf
     {names:['Cenote Angelita'], country:'Mexico', siteIds:['593e81e7-2241-4259-a3be-3a1318fc95e5'], aliases:['小天使','앙헬리타','アンヘリータ']},
-    // https://bluetrend.media/wreck-diving-with-dugong-in-coron-philippines/
-    // https://www.pacificwarwrecks.com/gallery/akitsushima
     {names:['AKITSUSHIMA'], country:'Philippines', siteIds:['50ff3696-31fa-4be1-af3b-64788f9f7b91'], aliases:['秋津洲','秋津洲號']},
-    // https://divememo.com/zh/dive-sites/fang-ming-wreck
     {names:['Fang Ming (Wreck)'], country:'Mexico', siteIds:['e291d5f2-4b8d-4ab1-80b9-69f632a47953'], aliases:['方銘號']},
-    // https://jp.scubafreedom.com/?q=carwash
-    // https://www.kwda.co.kr/skin/html/book/2024-W-dentist.pdf
     {names:['Cenote Car Wash (Aktun Ha)'], country:'Mexico', siteIds:['e3dfd53f-4a2f-48da-92cc-fa73ec9a7b2b'], aliases:['カーウォッシュ','アクトゥンハ','카워시']},
-    // https://blog.padi.com/seeking-adventure-in-malaysias-perhentian-islands/
     {names:['Batu Layar'], country:'Malaysia', siteIds:['21595059-b135-4b70-ab9d-1cc07730eaad'], aliases:['Sail Rock']},
-    // https://www.padi.com/zh-hant/dive-site/kai-man-qun-dao/ex/
-    // https://blog.padi.com/ko/the-10-best-dive-sites-for-underwater-photography/
-    // https://howisitgoing44.hatenablog.jp/entry/2017/01/27/184755
     {names:['USS Kittiwake (Wreck)'], country:'Cayman Islands', siteIds:['6401c78c-d572-43c7-8937-bcaa53991892'], aliases:['基蒂韋克號','키티웨이크','キティウェイク']},
-    // https://news.blueforcefleet.com/snorkeling-in-the-red-sea/
-    // https://71guardians.com/dive-sites/small-crack/
     {names:['Small Crack'], country:'Egypt', siteIds:['002e1a3e-bdd1-4532-9e35-e3892f68f7c3'], aliases:['Fossma Saghir','Small Passage']},
-    // https://raja.meridianadventuredive.com/blog/friwen-wall-raja-ampat-local-dive-site-guide/
-    // https://www.bluerides.com/ko/daiving-poineu/friwin-wall
     {names:['Friwen Wall, Raja Ampat'], country:'Indonesia', siteIds:['d326b806-0f23-43e6-bca9-0e449d85637d'], aliases:['Friwin Wall','프리윈 월']},
-    // https://www.padi.com/ja/dive-site/nan-ahurikagong-he-guo/windmill-beach/
     {names:['Windmill Beach'], country:'South Africa', siteIds:['7f1de30f-c581-46d9-a783-e1a39819e011'], aliases:['ウィンドミルビーチ']},
-    // https://tahititourisme.pf/experiences/les-spots-a-ne-pas-manquer/aquarium-de-faaa-faaa-fr-3346359/
     {names:['L&#039; Aquarium, Tahiti'], country:'French Polynesia', siteIds:['2b69f1a8-07e8-4531-af68-e8f572c76269'], aliases:["L'Aquarium Tahiti","Aquarium de Faa'a"]},
-    // https://turismo.cartagena.es/gestion/documentos/54832.pdf
     {names:['Naranjito'], country:'Spain', siteIds:['419fbb53-36b8-4ef1-bd4a-9b63a710b6a7'], aliases:['Isla Gomera','Nadir']},
-    // https://maldives-magazine.com/diving/ari-atoll.htm
-    // https://www.bluerides.com/zh/qianshui-didian/maamigili-beyru
     {names:['Maamigili Beyru'], country:'Maldives', siteIds:['0767134f-f8cf-44ae-b7b5-183087830aff'], aliases:['Maamigili Outside','马米吉利贝鲁']},
-    // https://jp.scubafreedom.com/?q=tajmaha
-    // https://www.kooxdiving.com/en/activities/diving-in-cenotes/cenote-tajma-ha/
     {names:['Cenote Tajma  Ha'], country:'Mexico', siteIds:['da2566fb-2ebb-4b78-9e3d-78d7ec6c4042'], aliases:['タージマハ','Cenote Taj Mahal']},
-    // https://diveplaza.com/ar/sites/abu-kafan-safaga
-    // https://thisis-egypt.com/diving/sites/abu-kafan
     {names:['Abu Kafan'], country:'Egypt', siteIds:['ba5a6773-1e14-4009-ab7e-b75b9fcbc5af'], aliases:['ابو كفان','أبو كفن','Abu Gafan','Abu Kifan','Abu Qafan']},
-    // https://www.hellodive.com/dive/pointlist/25.html
-    // https://msocean.com.tw/archives/46905
-    // https://divingholic.com/barracuda-lake-202304
     {names:['Barracuda Lake'], country:'Philippines', siteIds:['39e673c4-233f-4b0f-a7e3-f202d4754dd6'], aliases:['冷热湖','冷熱湖','海狼湖','바라쿠다 레이크']},
-    // https://www.wediveutila.com/utila-dive-sites
     {names:['Ted&#039;s Point'], country:'Honduras', siteIds:['60211a54-e6f0-4b02-9198-28613bf1d878'], aliases:["Ted's Point",'Teds Point']},
-    // https://divemap.be/dive-sites/el-natural-aguadilla.html
     {names:['El Natural'], country:'United States', siteIds:['808dc9ab-a63b-4ec7-9d86-07af6e1df035'], aliases:['Gas Chamber']},
-    // https://turkeyscuba.com/tr/dive-sites/lego-hill
     {names:['Lego Hill'], country:'Türkiye', siteIds:['8b208cac-19cb-42a9-b534-c141fc0ffcdc'], aliases:['Legovil']},
-    // https://divecodex.com/es/sites/portichol-norte
     {names:['Portitxol Norte'], country:'Spain', siteIds:['dba31f6f-5fda-4ebf-8b4b-acd4f5c1706b'], aliases:['Portichol Norte','Portixoll North']},
-    // https://www.manadodive.co.kr/research/bunaken
     {names:['Lekuan 3'], country:'Indonesia', siteIds:['4155dd42-74ca-415f-a5ee-3d9c7f54d883'], aliases:['Lekuan III','레쿠안 III','레쿠안 3']},
-    // https://www.indonesia.travel/sg/zh-cn/destination/bali-nusa-tenggara/bali/bali---menjangan-island
     {names:['Anchor Wreck'], country:'Indonesia', siteIds:['13c5ea96-7c39-4891-a34d-ef863afd32b7'], aliases:['Anker Wreck','Kapal Budak']},
-    // https://martiniquepro.org/wp-content/uploads/2024/08/BrochureDiving_US.pdf
     {names:['Rocher du Diamant'], country:'France', siteIds:['dfcd8e57-eaa4-45d0-9b61-60248c674a99'], aliases:['Diamond Rock']},
-    // https://jp.scubafreedom.com/?q=eden
-    // https://travel.padi.com/dive-site/mexico/jardin-del-eden/
     {names:['Jardin del Eden Cenote (Ponderosa)'], country:'Mexico', siteIds:['15bf5383-b717-41f0-9a99-5ffaabf16f3c'], aliases:['セノーテ・エデン','セノーテポンデローサ','Garden of Eden']},
-    // https://www.barefootsharkencounters.com/the-awakening-shark-dive-fiji
     {names:['The Awakening Bull Shark Dive'], country:'Fiji', siteIds:['2fdb5fa0-954d-4320-aa43-50f8edad3080'], aliases:['Awakening Shark Dive']},
-    // https://www.padi.com/es/sitio-buceo/italia/scoglio-remaiolo/
     {names:['Scoglio del Remaiolo'], country:'Italy', siteIds:['7245d6d6-1ce4-49b6-8bbb-213426ba5162'], aliases:['Scoglio di Remaiolo']},
-    // https://endheridivecenter.com/rangali-madivaru-manta-point/
-    // https://www.shorediving.com/loc/mv/alif-dhaal-atoll/alifu-dhaalu-atoll/mandhoo
     {names:['Rangali Madivaru'], country:'Maldives', siteIds:['3e1ce1cf-90c1-4220-84c5-40a6b21cd0b3'], aliases:['Madivaru Rangali','Rangali Madivaru Manta Point']},
-    // https://www.mikumbadiving.com/fam-island-paradise/
     {names:['Batu Rufas'], country:'Indonesia', siteIds:['aa75b416-5bf5-4616-9f29-2c523b74fda2'], aliases:['Batu Rufus']},
-    // https://sunsethouse.com/divers-at-sunset-house/
     {names:['Sunset House Reef'], country:'Cayman Islands', siteIds:['ff15aad1-71b7-43b9-9568-0475c074310d'], aliases:['Sunset Reef']},
-    // https://www.alonaboholdiversclub.com/scuba-diving-areas-in-bohol/dive-sites-in-panglao/
-    // https://www.diveseason.com/dive/bohol/arco-point/
     {names:['Arco Point'], country:'Philippines', siteIds:['c1987215-8021-405a-be7b-e3a29b21edf1'], aliases:['Hole in the Wall','墙上的洞']},
-    // https://www.padi.com/dive-site/indonesia/simons-reef/
     {names:['Simon’s Reef'], country:'Indonesia', siteIds:['e0c04b45-de5e-4275-bb6f-3336e31e4cf7'], aliases:['사이먼리프']},
-    // Arabic dive-site naming corroborated by local Ras Mohammed dive guides; PADI places both reefs at Ras Mohammed.
-    // https://www.redseamarinesharm.net/ar/ghaws-ras-mohammed
-    // https://www.padi.com/dive-site/egypt/yolanda-house-reef/
     {names:['Shark Reef'], country:'Egypt', siteIds:['88315598-3908-4723-9644-e9f7195d3278'], aliases:['شعاب القرش']},
     {names:['Yolanda Reef'], country:'Egypt', siteIds:['ceedcb28-0eda-487e-9bb0-1935350b5f1a'], aliases:['شعاب يولاندا']},
-    // https://askdahab.com/ar/diving/eel-garden/ — Arabic Dahab site guide; exact dataset coordinates 28.5053, 34.5206.
     {names:['Eel Garden'], country:'Egypt', siteIds:['83f9705d-3b5c-4578-9248-81d940109f38'], aliases:['حديقة ثعابين البحر']},
-    // https://www.cdws.travel/ar/divesites/marsa-alam — CDWS identifies Samadai as Dolphin House near Marsa Alam.
-    // https://egyptxdiving.com/ar/dive-sites — Arabic diving guide also uses the spelling شعاب سمداي.
+    {names:['1 CRATER DE SAN ANDRES'], country:'Spain', siteIds:['63f070f6-b921-41ac-a228-99de11454e81'], aliases:['El Crater','El Cráter']},
+    {names:['10 ACUARIO 2'], country:'Spain', siteIds:['e6cfb434-6fe1-44e2-8d43-1aa4eb1a3da0'], aliases:['El Acuario 2']},
+    {names:['4 PARED DE LAS GORGONIAS'], country:'Spain', siteIds:['c1db5a89-5a04-478b-81fb-15c677cc783c'], aliases:['Gorgonias']},
+    {names:['5 CAÑONES  SAN ANDRES'], country:'Spain', siteIds:['e198d24f-b56f-4238-aa52-335b312e7497'], aliases:['Los Cañones']},
+    {names:['6 PARED DE LA ISLA DE SAN ANDRES'], country:'Spain', siteIds:['06be8c77-16e3-473f-a3c6-8de5cba72f37'], aliases:['Pared de la Isla']},
+    {names:['9 EL ARRECIFE'], country:'Spain', siteIds:['1b123de7-0d29-4860-a314-48b674b6f74a'], aliases:['El Arrecife']},
+    {names:['Alupat Island'], country:'Guam', siteIds:['0d301435-eaf7-4bd3-8d69-69d1a440c695'], aliases:['アルパット島']},
+    {names:['Fish Eye Marine Park'], country:'Guam', siteIds:['7f00def2-4265-425b-bd30-364382eb6626'], aliases:['鱼眼海洋公园']},
+    {names:['Gab Gab 2'], country:'Guam', siteIds:['58b0cb4b-40a2-4a53-95ec-ea54d171aab1'], aliases:['Gab Gab II','加布加布II']},
+    {names:['Japanese Salvage Tug (Wreck)'], country:'Guam', siteIds:['6a15d9c7-74e9-4c93-80d9-9f979c5eb294'], aliases:['Salvage Tug','Japanese Tug']},
+    {names:['Cocos East'], country:'Guam', siteIds:['aa4308a3-4292-47b5-9854-6042b13baaf8'], aliases:['Yellow Wall','黄墙','黃牆','イエローウォール','노란 벽','Parede Amarela']},
+    {names:['Piti Bomb Holes'], country:'Guam', siteIds:['3ffdfae3-53cb-424f-81c7-342a6c387aed'], aliases:['皮提炸彈洞']},
+    {names:['Piti Channel'], country:'Guam', siteIds:['b1666572-7216-41c9-bc20-23bf2256961d'], aliases:['皮提水道']},
+    {names:['Toguan Bay'], country:'Guam', siteIds:['2c643dcf-feb1-4176-88c2-ce8c36aa83c4'], aliases:['Tuguan Bay']},
+    {names:['American Tanker (Wreck)'], country:'Guam', siteIds:['9f7fa963-1bcd-48c8-b4cc-f5d0c6c4b1c7'], aliases:['アメリカンタンカー']},
+    {names:['Amphitheater - Guam'], country:'Guam', siteIds:['7ee49eff-985b-48b3-bba5-68283b7f058d'], aliases:['Ampitheater']},
+    {names:['Blue Hole - Guam'], country:'Guam', siteIds:['05939cb4-063d-4a18-9a35-e26da76efaa1'], aliases:['蓝洞','藍洞','ブルーホール']},
+    {names:['Crevice'], country:'Guam', siteIds:['d5a5733e-e01e-4dba-830a-47ad2e6b3029'], aliases:['大裂口','大裂缝']},
     {names:['Dolphin House/ Shaab Samadai'], country:'Egypt', siteIds:['e47d5440-a189-42ff-a049-5877268a76a4'], aliases:['شعاب صمداي','شعاب سمداي']},
-    // https://www.cdws.travel/ar/divesites/marsa-alam — official dive-site guide uses حيد إلفنستون for this reef.
     {names:['Elphinstone Reef'], country:'Egypt', siteIds:['9261d9d1-3f38-4b5a-ab0f-2957541a4e39'], aliases:['حيد إلفنستون']},
-    // https://diveplaza.com/ar/sites/sataya-dolphin-reef-hamata — Arabic diving guide names the umbrella reef شعاب ساتايا.
     {names:['Shaab Sataya'], country:'Egypt', siteIds:['a0006c7a-6d16-4e6e-a9b8-ecb86427166f'], aliases:['شعاب ساتايا']},
-    // https://diveplaza.com/ar/sites/hamada-wreck-abu-ghusun — Arabic local dive guide names this wreck حطام حمادة.
     {names:['Abu Ghusun (Wreck)'], country:'Egypt', siteIds:['c5c45f79-8876-4443-a99e-0515aebdefd6'], aliases:['حطام حمادة']},
-    // https://www.dive-club.com/diveclub/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88%E3%80%80%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%BB%E3%83%9F%E3%83%89%E3%83%AB/?lang=ja
+    {names:['Marsa Egla'], country:'Egypt', siteIds:['204d2865-63c1-4138-a2da-23831be93125'], aliases:['مرسى إجلا']},
+    {names:['Marsa Shouna'], country:'Egypt', siteIds:['2ab5772e-c9a8-4bc0-9b86-aee3506b6834'], aliases:['مرسى شونة']},
     {names:['Middle Garden'], country:'Egypt', siteIds:['87f5dc4b-58ae-41b3-8dbc-ea4e96ed2c5d'], aliases:['ミドルガーデン','ミドル・ガーデン']},
-    // https://busseltonjetty.com.au/wp-content/uploads/2024/01/Chinese-Simplified.pdf
-    // https://www.busseltonjetty.com.au/wp-content/uploads/2024/01/Chinese-Traditional.pdf
-    // https://busseltonjetty.com.au/wp-content/uploads/2024/01/Japanese.pdf
     {names:['Busselton Jetty'], country:'Australia', siteIds:['fc806c04-359f-403a-a5b5-8b9afe58b78d'], aliases:['巴瑟尔顿码头','巴瑟爾頓碼頭','バッセルトン桟橋']},
-    // https://www.padi.com/zh-hant/dive-site/ai-ji-he-hong-hai/anemone-city-ras-mohammed/
-    // https://thisis-egypt.com/diving/sites/anemone-city
-    // https://aphroditeliveaboard.com/ja/north-tiran/
     {names:['Anemone City'], country:'Egypt', siteIds:['083d0167-c66f-4c71-bc00-0a282b31fb1b'], aliases:['海葵城','مدينة شقائق النعمان','アネモネシティ']},
-    // https://tournews.tw/coron-dive-guide/
-    // https://www.diveandcruise.cn/destination/coron-and-apo-reef
-    // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
-    // https://www.padi.com/zh-hans/diving-in/jia-lai-la-gang/
     {names:['Kogyo Maru'], country:'Philippines', siteIds:['14e475c0-c9c0-4f50-8009-8cba8f835faa'], aliases:['興業丸','兴业丸','工业丸号']},
-    // https://anthonyskey.com/front-porch/
     {names:['Anthony’s Key Resort House Reef'], country:'Honduras', siteIds:['563d403d-bdaa-4066-a8c6-ad7eb2a7e650'], aliases:['Front Porch Reef','Front Porch']},
-    // https://tpwd.texas.gov/state-parks/balmorhea/swimming-and-scuba-diving
     {names:['Balmorhea State Park'], country:'United States', siteIds:['ae0a4fcd-e945-4a49-9555-44ead7eca7f3'], aliases:['San Solomon Springs']},
-    // https://thisis-egypt.com/diving/sites/far-garden
     {names:['Far Garden'], country:'Egypt', siteIds:['e73531f8-1221-487d-8525-6d9ad8b9dc6d'], aliases:['الحديقة البعيدة','Far Gardens']},
-    // https://divemap.be/dive-sites/piscadera-piscadera-playa-largu-piscadera-playa-playa-grandi.html
     {names:['Piscadera Bay'], country:'Curaçao', siteIds:['ab9f809d-a858-4675-aaf7-015961f70f0c'], aliases:['Piscaderabaai','Piscadera Playa Largu']},
-    // https://kdiver.com/ph/shop/Cebu-Malapascua-Sol-Divers-Cecilia?sea=%2Fbuddy%3Fview%3Dmeet%26id%3D63
     {names:['Dakit Dakit'], country:'Philippines', siteIds:['58dc25b4-103e-4727-a7d0-50c857768082'], aliases:['다킷 다킷','다킷-다킷']},
-    // https://www.hellodive.com/dive/detail/7.html
-    // https://www.bluerides.com/ja/daibingu-pointo/kuni/belize
-    // https://www.liveaboard.com/kr/diving/belize/blue-hole
     {names:['Great Blue Hole - Belize'], country:'Belize', siteIds:['9b18e578-9032-4a0d-b4ea-ee8a6642b4eb'], aliases:['大蓝洞','大藍洞','伯利兹大蓝洞','グレートブルーホール','그레이트 블루 홀']},
-    // https://www.divers.world/divesite/st-john-s-fury-shoals/abu-galawa-soraya/
     {names:['Abu Galawa Soraya'], country:'Egypt', siteIds:['2c55184c-c2c5-477f-87b3-deefaf9bd431'], aliases:['Abu Galawa Small','Abu Galawa Saghir','Abu Galawi Soraya']},
-    // https://bonaire.com/en/dive-sites/eighteenth-palm/
     {names:['18th Palm'], country:'Bonaire, Sint Eustatius and Saba', siteIds:['dcec47b8-815e-49d1-b85d-a1d0d83cb09f'], aliases:['Eighteenth Palm','18 Palms','Eighteen Palms']},
-    // https://hawaiitour.world-tours.jp/en/column/diving-spot
-    // https://andyoucreations.com/ko/%EA%B1%B0%EB%B6%81%EC%9D%B4-%EC%8A%A4%EB%85%B8%ED%81%B4%EB%A7%81-%EC%98%88%EC%95%BD%ED%95%98%EA%B8%B0/
     {names:['Turtle Canyon'], country:'United States', siteIds:['37f13ccc-32d7-421d-9b3c-3251112be6f0'], aliases:['タートルキャニオン','터틀 캐니언']},
-    // https://divecodex.com/sites/lusong-gunboat
-    // https://reefwander.com/diving/coron/lusong-gunboat/
     {names:['Lusong Gunboat'], country:'Philippines', siteIds:['d6a8eb69-58ff-448e-b62f-04f8cac718e4'], aliases:['Lusong Wreck','Lusong Island Gunboat']},
-    // https://www.padi.com/dive-site/denmark/amager-strandpark-og-havheksen/
     {names:['Amager Strandpark - Havheksen'], country:'Denmark', siteIds:['02b75cf5-ee51-4c8a-83a7-e1ce49d8606b'], aliases:['The Sea Witch']},
-    // https://www.curacao.com/en/activity/playa-grandi-playa-piskado
     {names:['Playa Grandi / Playa Piscado'], country:'Curaçao', siteIds:['92364fff-a353-4e3a-bfc7-6714decc06a1'], aliases:['Playa Piskadó','Playa Piskado']},
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/chicken-reef/
-    // https://marinediving.com/area/indonesia/rajaampat/
     {names:['Chicken Reef'], country:'Indonesia', siteIds:['006c7db3-1715-4f23-bd45-14e62b4749c9'], aliases:['鸡礁','チキンリーフ']},
-    // https://www.aqabadive.com/ar/%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%BA%D9%88%D8%B5-%D9%81%D9%8A-%D8%B4%D8%B9%D8%A7%D8%A8-%D8%A7%D9%84%D9%83%D9%8A%D9%88%D9%8A-%D8%A7%D9%84%D8%B9%D9%82%D8%A8%D8%A9/
     {names:['Kiwi Reef'], country:'Jordan', siteIds:['f0158c0f-6add-41bc-8ee3-f913867c8844'], aliases:['شعاب الكيوي']},
-    // https://divecodex.com/es/sites/illes-formigues
     {names:['Illes Formigues'], country:'Spain', siteIds:['3ddb2fba-9bc1-4e48-8788-11d671ff0496'], aliases:['Formigues Islands','Islas Formigues','Islas Hormigas']},
-    // https://wetset.com/dive-sites/
     {names:['The Wall'], country:'Mexico', siteIds:['058d0f2f-2490-4277-b4eb-fadfa3b5c800'], aliases:['La Pared']},
-    // https://profundonomundo.com/pontos-de-mergulho-cozumel/
     {names:['San Francisco Wall'], country:'Mexico', siteIds:['0c39d2f3-7cbf-45bb-8956-dbff85dab437'], aliases:['Parede São Francisco']},
-    // https://www.aircalin.nc/en/inspire-me/new-caledonia/sea/diving-new-caledonia
     {names:['Tépava'], country:'New Caledonia', siteIds:['efb443ab-0b48-4a77-a4c3-668ca24255cd'], aliases:['Tepava Potato']},
-    // https://www.phuket-scuba.com/diving-liveaboards-divesites.html
     {names:['Hideaway Bay'], country:'Thailand', siteIds:['6c579423-9139-459e-820f-c4ffdf7e9b2d'], aliases:['Hideaway Reef']},
-    // https://www.vg-wackersdorf.de/wackersdorf-tourismus/unsere-angebote/tauchen
     {names:['Murner See Rutsche'], country:'Germany', siteIds:['87bd6802-c3a8-411a-b25b-c4b6a92fdf48'], aliases:['Rutschn','Rutsch’n']},
-    // https://www.amira-indonesien.de/wp-content/uploads/sites/4/2019/02/2018-02-ScubaNet-Raja_Ampat_mit_der_MV_Amira.pdf
     {names:['Blue Magic'], country:'Indonesia', siteIds:['f7d2465f-0fe3-421d-9b35-2337c9d457f1'], aliases:['블루매직','블루 매직']},
-    // https://m.sohu.com/a/1053559827_145439/
     {names:['Batu Malang'], country:'Malaysia', siteIds:['ef652574-246f-4439-b1ae-34c2b131da5c'], aliases:['巴都马浪']},
-    // https://www.divers.world/fr/divesite/nosy-be-archipelago/tanikely-nord/
     {names:['Tanikely Pain de Sucre'], country:'Madagascar', siteIds:['a7e7e390-e593-4dd0-bc26-640ee3ccc6d0'], aliases:['Tanikely Nord','Tanikely North','Petit Pain de Sucre']},
-    // https://maltadives.com/sites/thepoint-reqqapoint/en
     {names:['Reqqa Point'], country:'Malta', siteIds:['07fe6160-ad81-4728-a917-74e865b42494'], aliases:['Ras ir-Reqqa','Reqqa Reef']},
-    // https://balisharks.com/menjangan-island-diving/
     {names:['Menjangan - Pos 2'], country:'Indonesia', siteIds:['47a508bf-3846-4474-bcdf-a4511f09a182'], aliases:['Pos II']},
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/citrus-ridge/
-    // https://www.padi.com/zh-hant/dive-site/yin-du-ni-xi-ya/citrus-ridge/
     {names:['Citrus Ridge'], country:'Indonesia', siteIds:['3485702c-bc23-48af-a01e-0ad5eaa7c016'], aliases:['柑橘岭','柑橘嶺']},
-    // https://ttb.ch/tauchplaetze/schweiz?b=1000128&c=ND1000016&s=djEtqbXh4LP2L76k75XPNKTKPzp9_ejrSFKOuY7Qaii_b5U%3D
-    // https://kaltunddunkel.ch/tauchplaetze
     {names:['Serrieres'], country:'Switzerland', siteIds:['ae3f44c3-854c-4e08-994a-7f522bc6a832'], aliases:['Serrières Marlboro','Serrières Philip Morris']},
-    // https://travel.padi.com/zh-hans/dive-site/mo-xi-ge/pelican-rock/
-    // https://travel.padi.com/ja/dive-site/mekishiko/pelican-rock/
     {names:['Pelican Rock'], country:'Mexico', siteIds:['a9922833-57d5-41c3-b9e7-e2ff7f12d4df'], aliases:['鹈鹕岩','ペリカンロック']},
-    // https://www.scubago.com/cn/explore/divesite/pelican-rock-716453
     {names:['Pelican Rock'], country:'Costa Rica', siteIds:['1935052e-0067-4b5e-bad0-207d02418b91'], aliases:['鹈鹕岩']},
-    // https://diverout.com/es/dive-sites/hn/west-end-wall
     {names:['West End Wall'], country:'Honduras', siteIds:['a721675c-a932-47c7-90cd-89c71ddf1141'], aliases:['Pared de West End']},
-    // https://www.padi.com/zh-hans/dive-site/jordan/wreck-of-the-cedar-pride/
-    // https://wowjordan.com/ar/listing/cedar-pride/
     {names:['Cedar Pride, wreck'], country:'Jordan', siteIds:['d775e666-458e-4eaa-bd94-dba61d3d8fbe'], aliases:['雪松骄傲号','سيدار برايد']},
-    // https://travel.padi.com/zh-hans/dive-site/ku-la-suo/double-reef/
     {names:['Double Reef'], country:'Curaçao', siteIds:['4989b42a-8d2c-42af-be96-22a55cc894ed'], aliases:['双礁']},
-    // https://letsdive.app/sites/the-canyon-el-can
-    // https://www.wtp.co.jp/area/detail/169/Socorro/
     {names:['San Benedicto Canyon'], country:'Mexico', siteIds:['80cdf224-de2a-4339-b5ea-f0cb0a319331'], aliases:['El Cañón','The Canyon','キャニオン']},
-    // https://www.freedomdive.com/th/dive_location/khao-lak
-    // https://www.seadragondivecenter.com/diving-day-trips/khao-lak-reefs/
     {names:['Khao Na Yak'], country:'Thailand', siteIds:['f837d822-3dd7-4bd7-8e9d-71180148522b'], aliases:['เขาหน้ายักษ์','Khao Nayak Reef']},
-    // https://www.divejct-phuket.com/diveblog/2025/09/28/christmas-point-similan-liveaboard/
-    // https://www.hellodive.com/index.php/dive/pointlist/48.html
     {names:['Christmas Point'], country:'Thailand', siteIds:['1e82c4b9-4eb8-40cc-ac9c-0e2dd893ea6d'], aliases:['クリスマスポイント','圣诞潜点']},
-    // https://www.ezdivemag.com/zh/%E5%8B%9D%E6%99%AF%E4%B9%8B%E9%96%93%E7%9A%84%E5%A4%A9%E5%A0%82/
     {names:['Seahorse Bay'], country:'Indonesia', siteIds:['2498a501-284a-4875-a798-984fbea73a69'], aliases:['海馬灣']},
-    // https://cairnsaustralia.com/attraction/milln-reef/
     {names:['Milln Reef - The Whale'], country:'Australia', siteIds:['47b8d4ec-1182-4ec1-8786-7ed2c5ff848e'], aliases:['Whale Bommie']},
-    // https://banyantreedivers.com/articles/mala-wharf-maui/
     {names:['Mala Wharf'], country:'United States', siteIds:['9d160013-e2fe-4b88-bae0-7a94a33358ad'], aliases:['Mala Pier']},
-    // https://pdf.secretchina.com/UnitedKingdom/2020_1014_665/KZG_665.pdf
     {names:['Fish Rock Cave'], country:'Australia', siteIds:['dff87a2b-5cc9-4c49-8361-4fa5af02a7a9'], aliases:['魚岩','鱼岩洞']},
-    // https://www.divers.world/es/divesite/roatan/el-aguila/
     {names:['El Aguila (Wreck)'], country:'Honduras', siteIds:['344b6ea7-9707-4a9f-945d-356ce1da961f'], aliases:['El Aguila Wreck','The Eagle','El Águila']},
-    // https://www.divers.world/divesite/belize-barrier-reef-ambergris-caye/tackle-box-canyons/
     {names:['Tackle Box'], country:'Belize', siteIds:['5139429a-182f-403f-8092-cd37645b898c'], aliases:['Tackle Box Canyons','Tackle Box Canyon']},
-    // https://xicodivecenter.com/zh-CN/first-time-cenote-diving-everything-you-need-to-know/
-    // https://oacis.repo.nii.ac.jp/record/2254/files/kam3649.pdf
     {names:['Cenote Chac Mool'], country:'Mexico', siteIds:['0411ebe4-21f7-4dfc-85c6-1e2eeaa983fa'], aliases:['查克莫尔','チャックモール']},
-    // https://www.scubago.com/cn/explore/destination/lighthouse-reef-9750366
     {siteIds:['0a8f16c3-06a1-4081-a715-09ced4bc8c20'], aliases:['半月岛墙']},
-    // https://destinationcozumel.com/discover-scuba-diving-in-cozumel-paradise-reef/
-    // https://www.scubago.com/es/explore/destination/cozumel-9750450
     {siteIds:['63ee624c-b6f2-49fb-87c2-9a462dceb529'], aliases:['Paradise Reef','Arrecife Paraíso']},
-    // https://www.hellodive.com/uploads/2021/20210207/Philippines_diving.pdf
-    // https://dcomeabroad.com/philippines-info/studylife/elnido_diving/
     {siteIds:['39e2144a-a418-47a4-9f4e-a5e80b01a726'], aliases:['南米尼洛克','南米尼洛']},
-    // https://reefwander.com/diving/aliwal-shoal/raggies-cave/
     {siteIds:['bbf25c56-0293-44c8-9657-b79fdea1fcdb'], aliases:['Raggie Cave']},
-    // https://www.youtube.com/watch?v=mUx2wl2Ipqo
-    // https://www.siamdive.com/cn/blogs/htms-prab-741-wreck-diving-guide
     {siteIds:['e834757c-8fac-41f4-98d9-907cbb4743fb'], aliases:['เรือหลวงปราบ 741','HTMS Prap']},
-    // https://www.scubago.com/en/explore/divesite/playa-cas-abao-142223
     {siteIds:['c2332b87-e906-4427-9bd7-580c304561f3'], aliases:['Playa Cas Abou','Cas Abou']},
-    // https://www.dawndiveslanzarote.com/mejores-inmersiones-en-lanzarote/
     {siteIds:['369ecd41-c73c-47fa-bf3e-5d78169d614f'], aliases:['Calimera Reef']},
-    // https://divecodex.com/sites/mgarr-ix-xini
-    // https://tahtilbahar.com/sites/mgarrixxini
     {siteIds:['ab193cb3-9a81-4f47-99d9-3ce1309a3f54'], aliases:['Imġarr ix-Xini','Harbour of the Galleys']},
-    // https://www.komodoresort.com/zh/blog/komodo-day-trip/
-    // https://www.scubatimes.co.kr/articles/current-affairs-diving-komodo-with-aggressor-adventures-muorsf3v-xmhsnq
     {siteIds:['192903e2-0367-488e-97fd-abe06ecb1923'], aliases:['小塔塔瓦','타타와 케칠']},
-    // https://www.oceantherapycharters.com/dive-sites
     {siteIds:['12593a97-b03f-4b0c-bff1-a1c3cba0f58a'], aliases:['Point Panic Pipe']},
-    // https://scubadownunder.com/dive-sites/cook-island
-    // https://goldcoastdiveadventures.com.au/cook-island-diving/
     {siteIds:['2e5e2c08-54bd-4ab3-9d40-fd12ddec01cc'], aliases:['Northern Ledges','Cook Island Northern Wall']},
-    // https://www.scubago.com/en/explore/divesite/san-pedro-canyons-belize-199643
-    // https://divebooker.com/tuffy-canyons-baz14891
     {siteIds:['7fb676cf-45a7-4065-a81c-e15077d79388'], aliases:['Tuffy Canyons','Tuffy Rocks']},
-    // https://divesites.com.au/dive-site/the-caves-lady-musgrave
     {siteIds:['3b81c51d-a335-435d-a6f7-c614c1b3e6b1'], aliases:['The Caves Lady Musgrave']},
-    // https://diveplaza.com/ar/sites/near-garden
     {siteIds:['099f30ca-3adb-4cc1-bc80-096929eb216c'], aliases:['الحديقة القريبة']},
-    // https://hobo-ya-similan.com/similan/divesite/deepsix.html
     {siteIds:['7c7eca96-550c-4b88-9fa4-40cb66e557b6'], aliases:['ディープ シックス','ディープシックス']},
-    // https://cdnc.heyzine.com/files/uploaded/11463057147015816d1d6472bd73fef6a20bc911.pdf
-    // https://www.wtp.co.jp/area/detail/28/Raja%20Ampat/
     {siteIds:['6343ae6d-6436-48c3-8346-8ed434c3fa08'], aliases:['曼塔桑迪','マンタサンディ']},
-    // https://natlib.govt.nz/records/35295991
-    // https://www.performancediver.co.nz/trips-and-events/dive-spots
     {siteIds:['1e4de4a7-3bb6-4d00-8550-004a7597b3ff'], aliases:['Te Kohuroa','Matheson Bay']},
-    // https://scuba-diving-tahiti.com/dive-site/la-vallee-blanche/
-    // https://tahititourisme.pf/experiences/les-spots-a-ne-pas-manquer/vallee-blanche-papeete-fr-3347331/
     {siteIds:['89067520-f644-464a-b13b-2b28dda0eb63'], aliases:['White Valley','La vallée aux requins']},
-    // https://travel.padi.com/zh-hans/dive-center/curacao/go-west-diving-2/
-    // https://travel.padi.com/ko/dive-center/kwiraso/go-west-diving-2/
     {siteIds:['27bbdc7d-5953-4786-b0ce-147bf3758d10'], aliases:['爱丽丝梦游仙境','앨리스 인 원더랜드']},
-    // https://www.scubaspotadvisor.com/es/puntos-de-buceo/mexico/mahahual/mahahual-reef-1311
     {siteIds:['fd7f27bc-7045-4d68-b6f5-5a0ba580ee0f'], aliases:['Arrecife Mahahual']},
-    // https://vie-sous-marine.photo/site/spot-aux-mantas
     {siteIds:['3c4692ff-05b1-4ffc-8e80-49f469a280b7'], aliases:['Spot aux Mantas']},
-    // https://www.scubago.com/en/explore/destination/brazil-9749765
     {siteIds:['59dcbbe4-4b1c-49b9-a84b-23e2e1c795c3'], aliases:['Ponta Grossa do Sítio Forte']},
-    // https://www.tauchrevierdeutschland.de/2015-brechtsee/
     {siteIds:['741119c7-8df9-4d83-97c4-9a7ff5f46592'], aliases:['Baggersee Brecht']},
-    // https://maltadives.com/sites/tug2-exiles/en
     {siteIds:['f0b835e2-ba58-4f63-9654-31cba0927445'], aliases:['Tugboat 2','Tug Boat 2','Tuo Lun Er Hao']},
-    // https://www.padi.com/ja/dive-site/ekuatoru/kicker-rock/
     {siteIds:['7548cd06-d262-4a36-bcb9-b3a898eab4e8'], aliases:['キッカーロック','スリーピング ライオン']},
-    // https://iyoulifeday.com/entry/%EC%84%B8%EB%B6%80-%EB%A7%89%ED%83%84-%EB%8B%A4%EC%9D%B4%EB%B9%99-%EC%9E%85%EC%9E%A5%EB%A3%8C-%EB%82%B4%EA%B3%A0-%EA%B0%88-%ED%95%84%EC%9A%94-%EC%9E%88%EC%9D%84%EA%B9%8C-%EC%83%B9%EA%B7%B8%EB%A6%B4%EB%9D%BC-%ED%83%90%EB%B6%88%EB%A6%AC-%ED%9E%90%EB%A3%A8%EB%9A%B1%EC%95%88
     {siteIds:['032b6454-318a-4c0d-9b1c-916cb848ca7d'], aliases:['샹그릴라 해양 보호구역']},
-    // https://scubasensationcc.com/divetours/esmeralda
     {siteIds:['f7f02dd1-7f0a-4d92-aace-35ecb2b045f8'], aliases:['Esmeralda Canyons']},
-    // https://www.padi.com/zh-hans/dive-site/ao-da-li-ya/blairgowrie-pier-2/
-    // https://www.scubadoctor.com.au/diveshop/index.php?main_page=divesite&site=Blairgowrie-Pier
     {siteIds:['a02c1cf8-95e4-4246-8b0a-b41d6af4e4f4'], aliases:['布莱尔高里码头','Blairgowrie Jetty']},
-    // https://vivabluediving.com/inmersiones/playa-de-jabillo/
-    // https://www.turismoteguise.com/es/naturaleza-playas/el-jablillo
     {siteIds:['26654013-b164-4da5-91f2-fcd8547efcbf'], aliases:['Playa del Jablillo','El Jablillo']},
-    // https://www.scubago.com/en/explore/divesite/flynn-reef-2-gordonand039s-71696
     {siteIds:['e2f02035-1edd-460b-adcc-c96b531037ba'], aliases:["Gordon's Mooring","Flynn Reef - 2 Gordon's"]},
-    // https://www.neptuneliveaboards.com/zh/blog/raja-ampat-islands-in-indonesia/
-    // https://www.scubago.com/ja/explore/destination/indonesia-9752445
     {siteIds:['b36ee1f4-7404-4dd8-8540-b81a06aabd9b'], aliases:['米奥斯昆','ミオスクン']},
-    // https://maltadives.com/sites/cathedralcave/en
-    // https://tahtilbahar.com/sites/cathedralcave
     {siteIds:['0fdc841b-490b-41c7-a3c2-500ab276d6ff'], aliases:['Blue Dome','Ghar ir-Rih','Għar ir-Riħ','Cave of Wind']},
-    // https://vilaombakdivers.com/zh/%E6%BD%9C%E7%82%B9/
     {siteIds:['6b1a2564-ef8d-437d-b544-f22988bd30a5'], aliases:['Mirko礁','Mirko Reef']},
-    // https://www.scubago.com/en/explore/divesite/menjangan-eel-garden-113895
     {siteIds:['80262094-a16c-4b55-9f70-0e0161e16898'], aliases:['Garden Eel']},
-    // https://egyptdivers.com/hurghada/dive-sites/carless-reef/
     {siteIds:['d21fb77e-2f45-4012-8ed8-ab661b7660d5'], aliases:['Careless Reef']},
-    // https://www.duikersgids.nl/en/dive-spots/marie-pampoen
     {siteIds:['4698875e-96ff-4ba0-9839-72db82ff1344'], aliases:['Pierbaai']},
-    // https://www.scubago.com/ar/explore/divesite/ras-nasrani-200837
-    // https://viamare.jp/%E6%B5%B7%E5%A4%96%E3%83%84%E3%82%A2%E3%83%BC%E3%81%AE%E3%81%94%E5%A0%B1%E5%91%8A/5478/
     {siteIds:['971ca4c7-6077-42ad-a832-88589956a1bb'], aliases:['رأس نصراني','ラス・ナスラニ']},
-    // https://diveschool.pro/en/dive-sites/zeelandbrug/
     {siteIds:['c19b1a92-5a08-4b31-9dfa-5cec6e2ebf88'], aliases:['Zeeland Bridge']},
-    // https://www.blacktipdiverscr.com/las-catalinas
     {siteIds:['db147e30-aa5d-427f-a7d3-60ae163e6411'], aliases:['El Clásico']},
-    // https://curacao.day/en/dive-sites
     {siteIds:['20532eb7-4cac-413c-8f04-96fa124f6306'], aliases:['Boka Sami']},
-    // https://jp.scubafreedom.com/?q=pit
-    // https://www.lumosdive.com/cenote-diving
     {siteIds:['33bcd6f6-6151-4510-a364-95efff41563d'], aliases:['エル・ピット','세노테 엘핏','세노테 엘 핏']},
-    // https://www.dresseldivers.com/blog/punta-francesa-reef/
     {siteIds:['ab4d7c9c-8022-403f-884d-67e4f5cb2062'], aliases:['La Francesa','La Francesca','La Dama Francesa']},
-    // https://medusadive.com/ullastres-iii/
     {siteIds:['c95fa310-706c-48f5-9492-bb56b3a6a5fa'], aliases:['Ullastres III']},
-    // https://www.sunshinedive.com/dive-site
-    // https://traveldive.co.kr/12
     {siteIds:['621e25bf-07bd-4d1a-95de-584cbcb75c0e'], aliases:['선셋리프','선셋 리프']},
-    // https://blog.padi.com/cn/top-dive-travel-destinations-as-recommended-padi-travel/
-    // https://trip.hellodive.com/package/The_SS_Yongala_Wreck_Dive_Day_Trip_Townsville
-    // https://oceana.ne.jp/from_ocean/64571
-    // https://dive.heeho.net/spots/ss-yongala
     {siteIds:['a8039b55-bb7b-4652-9544-079c0b855091'], aliases:['永加拉','永嘉拉沉船','ヨンガラレック','SSヨンガラ','SS 용갈라']},
-    // https://www.divers.world/divesite/bay-of-naples/banco-di-santa-croce/
     {siteIds:['ec91ceaf-70e8-4447-a1be-c77a2260147e'], aliases:['Banco Santa Croce','Santa Croce Bank','Banco di Santacroce','Secca del Bikini']},
-    // https://divecodex.com/sites/palancar-horseshoe
     {siteIds:['7c71b426-85da-4286-bc2a-efcfb35e25eb'], aliases:['La Herradura','Palancar Herradura']},
-    // https://www.scubago.com/tw/explore/destination/panglao-9753628
-    // https://www.scubago.com/ko/explore/divesite/danao-wall-253888
-    // https://french-touch-diving.com/zh-CN/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4/%E9%82%A6%E5%8A%B3%E6%BD%9C%E6%B0%B4/
     {siteIds:['041eeba1-b6ae-4677-9763-b0dda3b6e76a'], aliases:['达瑙墙','達瑙牆','다나오 월']},
-    // https://divesites.com.au/dive-site/troppos-norman-reef
     {siteIds:['e13cb587-0d79-42e9-ae74-66c226f6f0cc'], aliases:["Troppo's"]},
-    // https://www.siamdive.com/ja/explore/dive-center/kuramathi-dive-club
     {siteIds:['bfe3173c-5b24-44f6-b9a8-b518482e3b28'], aliases:['クラマティのハウスリーフ']},
-    // https://www.mvgiamani.com/thailand-dive-sites/koh-bon-koh-tachai-dive-sites/koh-bon-pinnacle/
-    // https://hobo-ya-similan.com/similan/divesite/bonpinnacle.html
     {siteIds:['eb506a51-0231-45fe-a9fa-016272e43415'], aliases:['Hin Luang','コ ボン ピナクル']},
-    // https://www.padi.com/dive-site/portugal/pedra-do-leao-lions-rock/
     {siteIds:['3df8b701-92ac-43c6-a54f-fe8f54ba15ba'], aliases:['Lion’s Rock','Lions Rock']},
-    // https://www.hellodive.com/news/121.html
-    // https://divesites.com.au/dive-site/rye-pier
     {siteIds:['437bd142-0d56-4374-bb6c-e9458b146956'], aliases:['莱依码头','萊依碼頭','Rye Jetty']},
-    // https://www.divers.world/zh-cn/divesite/bali/lipah-bay/
     {siteIds:['2c013d2e-cf77-4132-b1a2-cfcb4d2031f1'], aliases:['利帕湾','利帕灣']},
-    // https://vilaombakdivers.com/zh/%E6%BD%9C%E7%82%B9/
     {siteIds:['5a4aff86-f991-45af-ba72-94e0f492c509'], aliases:['美诺斜坡','美諾斜坡']},
-    // https://www.hellodive.com/dive/pointlist/53.html
-    // https://feeldeep.com.ph/ja-home
-    // https://www.neverdieve.com/fundiving
     {siteIds:['9fe2f9fa-20e4-4d63-a364-c2884b6c3e74'], aliases:['塔利马','塔利馬','タリマ海洋保護区','탈리마']},
-    // https://ilhamuseu.org/ilha-das-cabras/
     {siteIds:['000bd772-c75f-4032-9307-0a549104ce56'], aliases:['Santuário Ecológico da Ilha das Cabras','Ilhote das Cabras']},
-    // https://portghalib.com/media/news/2018/torfet
     {siteIds:['310ec3b2-69af-4ed1-878e-8d0c5131abcf'], aliases:['Villa Kharafi','Villa Al Kharafi']},
-    // https://www.padi.com/zh-hans/dive-center/belize/turneffe-flats/
-    // https://www.travelbelize.org/zh-tw/attraction/wit-turneffe-dive-snorkel-site/
     {siteIds:['f1e9a159-535a-48c8-ba95-e70a110bb7f7'], aliases:['特内夫环礁','特內夫環礁','圖內夫環礁']},
-    // https://www.scubago.com/tw/explore/divesite/molokini-crater-86297
-    // https://www.jtb.co.jp/kaigai_guide/hawaii/the_united_states_of_america/IMU/112179/
     {siteIds:['22d584d6-ec67-4f33-a9c8-11fea992d629'], aliases:['莫洛基尼火山口','モロキニ島']},
-    // https://www.blueoceandive.de/en/diving/dive-sites/
     {siteIds:['1ea29c4e-02c7-49b2-b841-f590c085b8ec'], aliases:['El Bells']},
-    // https://publications.gov.cy/assets/user/publications/2019/2019_326/HTML/38/
     {siteIds:['679c4ff8-fd17-4a62-ae05-9ace7d071071'], aliases:['Σπηλιά του Κύκλωπα']},
-    // https://files.hawaii.gov/dbedt/erp/Doc_Library/2021-06-23-HA-DEA-Kaukalaelae-Point-and-Makako-Bay-Installation-of-Day-Use-Mooring-Buoys.pdf
     {siteIds:['2ffd53f2-20d1-49d8-8308-ed49dda62056'], aliases:['Makako Bay','Manta Heaven','Manta Ray Heaven']},
-    // https://komodounderwater.com/siaba-kecil-secret-garden/
     {siteIds:['35b9d445-df3e-472b-aa2c-5449c31d17c9'], aliases:['Secret Garden']},
-    // https://www.crystallake.org/home/showpublisheddocument/21520/637998894309400000
     {siteIds:['887ee05f-8f63-4230-9db0-3bd9df476501'], aliases:['Three Oaks Recreation Area Scuba Zone']},
-    // https://scuba10.net/scuba-diving-playa-del-carmen/
-    // https://divebooker.com/chunzubul-baz11780
     {siteIds:['45b362fa-0ab2-4508-8906-6b89ea1fe7e2'], aliases:['Chunzumbul','Chun Zumbul Reef']},
-    // https://kohtaothailand.com/dive-sites/tao-thong/
     {siteIds:['22a3492f-df98-47b5-ba21-676bc96f751f'], aliases:['Tao Thong']},
-    // https://www.duikersgids.nl/toolenburger-plas
     {siteIds:['fbdb88f1-96f7-4c38-93bb-a3f053dff9bf'], aliases:['Toolenburger Plas','Recreatieplas Toolenburg']},
-    // https://buceotenerife.net/el-bufadero-o-palm-mar-wall-sigue-mereciendo-la-pena-este-conocido-punto-de-buceo/
     {siteIds:['d98caa5b-53ae-4d85-a388-591b98609ed0'], aliases:['El Bufadero','Buffadero','Palmar Wall']},
-    // https://www.submarinismocostabrava.com/fr/ecoguides-sous-marins-costa-brava/rutas-de-inmersiones-ecoguiadas-en-la-costa-brava/cala-viuda-coves-del-mila
     {siteIds:['66111954-90d0-4381-95c8-7da47dd04831'], aliases:['Coves del Milà']},
-    // https://travel.padi.com/zh-hans/dive-site/ai-ji-he-hong-hai/shark-yolanda-reef-ras-mohammed/
     {siteIds:['e05e36ea-ef4f-4f5d-9202-da86e5e28b79','bb5a81fd-f431-4d1b-931a-8514594d3276'], aliases:['鲨鱼礁和约兰达礁','鯊魚礁和約蘭達礁']},
-    // https://www.padi.com/dive-site/australia/manta-ray-bommie/
     {siteIds:['f275c5a9-883d-4c5c-9752-cc8e0d598b95'], aliases:['Manta Ray Bommie']},
-    // https://bonairian.com/en/dive-sites/karpata/
     {siteIds:['d1392200-defe-4b01-a767-f2999348a5bc'], aliases:['Karpata Reef']},
-    // https://www.purpledivepenida.com/batu-mulapan
     {siteIds:['afb8546d-4b56-415f-a9eb-92e2e2c0e3ef'], aliases:['Batu Mulapan']},
-    // https://www.puertodelcarmen.com/wp-content/uploads/2024/10/Evolucion-del-proyecto-ZEConsciente-2021-2024-para-dossier-actualizado-a-18-de-octubre.pdf
     {siteIds:['673088dc-750d-4fbd-8afd-cb34fae5d59a'], aliases:['Pila de la Barrilla','Playa de Pila de la Barrilla']},
-    // https://www.padi.com/de/tauchplatz/spanien/el-balito-marazur/
-    // https://tenerife-diving.club/es/nosotros/lugares-buceo/desde-la-costa/
     {siteIds:['b858a164-63de-4aaa-a05d-a584d5b0a09b'], aliases:['El Balito Marazur','El Balito Marazul']},
-    // https://www.padi.com/dive-site/malta/comino-island-santa-marija-cave/
     {siteIds:['4ca785c8-9746-4828-a288-a7d54f8a2217'], aliases:['Santa Marija Caves','Comino Caves','Ghemieri Caves']},
-    // https://www.padi.com/zh-hans/dive-site/ai-ji-he-hong-hai/ras-katy/
-    // https://www.dive-club.com/diveclub/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88/%E3%83%80%E3%82%A4%E3%83%96%E3%83%BB%E3%82%B5%E3%82%A4%E3%83%88%E3%80%80%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%BB%E3%82%B5%E3%82%A6%E3%82%B9/?lang=ja
-    // https://taucher.net/tauchplatz-ras_kati__sharm_el_sheik_-haz2492
     {siteIds:['c62a8145-8065-43e7-bc46-5499be71e456'], aliases:['拉斯·凯蒂','拉斯·凱蒂','ラス・カティ','Ras Kati']},
-    // https://vie-sous-marine.photo/site/passe-interieure-de-boulari
     {siteIds:['a67d17f1-0e00-48bc-915f-301868b9ebe9'], aliases:['Passe de Boulari intérieure']},
-    // https://www.padi.com/zh-hans/dive-site/a-la-bo-lian-he-qiu-chang-guo/shark-island-2/
-    // https://lokalee.app/ar/recommendations/shark-island
     {siteIds:['b68dc851-76e9-41f1-ad53-d0eb18914d91'], aliases:['鲨鱼岛','鯊魚島','جزيرة القرش']},
-    // https://www.bluerides.com/ja/daibingu-pointo/koh-talang
     {siteIds:['98ecf21e-840e-402f-87d6-64ce89966f02'], aliases:['コ・タラン・ステップス']},
-    // https://www.divers.world/zh-cn/divesite/raja-ampat/yenbuba-jetty/
-    // https://www.neptuneliveaboards.com/zh/blog/dampier-strait-diving/
     {siteIds:['389d4056-49f0-4fdf-bddd-53862defa063'], aliases:['Yenbuba码头','Yenbuba碼頭','延布巴']},
-    // https://tcaarau.ch/newtca/index.php/sichtweiten/sichtweiten-tauchplatzliste/location/5390
     {siteIds:['f008e48f-d26b-4dab-8b34-12a9ae7b5cc0'], aliases:['Zofiger Fisch','Bajazzo']},
-    // The Lower Saxony bathing-water atlas uses Geester See for this reservoir.
-    // https://www.apps.nlga.niedersachsen.de/batlas/index.php?b=DENI_PR_TK25_3409_01&p=bx
     {siteIds:['b9c95988-0185-4acc-85ea-cd402905a430'], aliases:['Geester See']},
-    // https://www.padi.com/zh-hans/dive-site/fei-lu-bin/olympia-maru/
     {siteIds:['90d0fcbe-e886-479c-b92f-6a0f0de77f7d'], aliases:['奥林匹亚丸号']},
-    // https://www.padi.com/zh-hans/dive-site/thailand/sail-rock-7/
     {siteIds:['e15ede43-d4df-4edb-abdb-22ece34e97d2'], aliases:['帆船石','Hin Bai','船帆岩','セイルロック']},
-    // https://seaexplorersclub.com/htms-sattakut/
     {siteIds:['0ea38ae1-542d-43cc-8346-6c7098e82baa'], aliases:['HTMS Sattakut','LCI 742','USN LCI 739']},
-    // The tourism dive guide names Kimud 基姆德浅滩; the operator also uses Kimod.
-    // https://morefun-philippines.sdyf-pros.dragontrail.cn/wp-content/uploads/sites/6/2024/07/%E8%8F%B2%E5%BE%8B%E5%AE%BE%E6%BD%9C%E6%B0%B4%E6%89%8B%E5%86%8C2024V5.pdf
-    // https://www.malapascuabeachresort.com/diving/
     {siteIds:['0c52b806-1483-492f-a528-c78101404de8'], aliases:['基姆德浅滩','基姆德淺灘','Kimod Shoal']},
-    // Boga Wreck is also called Kubu Wreck; both catalog entries name it.
-    // https://letsdivetulamben.com/dive-sites/boga-wreck/
     {siteIds:['c1aa604c-1a2d-4ab8-a9a5-76702e056a72','ba84eff4-018a-4ed2-96ac-d3ae1e1e9ef1'], aliases:['Kubu Wreck']},
-    // Cozumel's Santa Rosa Wall names refer to this wall dive.
-    // https://www.padi.com/zh-hans/dive-site/mo-xi-ge/santa-rosa-wall-2/
-    // https://www.diveandcruise.cn/blog/cozumel-diving-guide
-    // https://www.bluerides.com/ja/daibingu-pointo/santa-rosa-wall
     {siteIds:['b1b412a9-b25f-4722-a987-a4dded681a70'], aliases:['圣罗莎墙','圣罗莎大断层','サンタローザウォール']},
-    // Diving sources name the Toyapakeh reef in Chinese, Japanese and Korean.
-    // https://www.hellodive.com/dive/pointlist/251.html
-    // https://scubali.com/ja/lembongan/
-    // https://www.okdiversbali.com/ko/portfolio/%ED%86%A0%EC%95%BC%ED%8C%8C%EC%BC%80-%EB%88%84%EC%82%AC%ED%8E%98%EB%8B%88%EB%8B%A4%EC%84%AC/
     {siteIds:['4d2844b4-994f-45bd-8470-3d89e74c90f9'], aliases:['托亚帕克','トヤパケ','토야파케']},
-    // Fisherman's Bank is this Ras Mohammed site, not Zanzibar's namesake.
-    // https://www.divers.world/divesite/sharm-el-sheikh-ras-mohammed/jackfish-alley/
     {siteIds:['15c7b234-fa58-487b-97bd-dd08536dc865'], aliases:["Fisherman's Bank"]},
-    // These names describe Fiji's Somosomo Rainbow Reef, not its namesakes.
-    // https://www.padi.com/zh-hans/dive-site/fei-ji/rainbow-reef-5/
-    // https://www.padi.com/ja/dive-site/huishi/rainbow-reef-5/
     {siteIds:['7ba5c6d0-1da3-4cfe-91e7-fb30d7620c8c'], aliases:['彩虹礁','レインボーリーフ']},
-    // Japanese diving accounts use several spacings for Koh Haa Lagoon.
-    // https://life-with-dive.jp/kohhaalagoon-kohhaa-thailand/
-    // https://www.divejct-phuket.com/diveblog/2026/10/13/mv-seatopia-south-andaman-liveaboard-2026/
     {siteIds:['2d61fd4e-5449-4bc2-9c15-70510dca2e7f'], aliases:['コハー・ラグーン','コ・ハー・ラグーン','コー・ハー・ラグーン']},
-    // Amed diver's Korean log names the Jemeluk wall dive.
-    // https://divingholic.com/dive-concepts-tulamben-2023
     {siteIds:['bd171ebe-cd67-4779-9799-3b32ec4b7fc8'], aliases:['제멜룩 월']},
-    // Two nearby records refer to the uniquely named Salem Express wreck.
-    // https://www.liveaboard.com/zh/diving/egypt/salem-express
-    // https://www.liveaboard.com/kr/diving/egypt/salem-express
     {siteIds:['4a212ba1-beca-4f38-b43f-579b7855ccf3','a8fc4eba-86bc-4b15-a6e6-86c5a836d890'], aliases:['塞勒姆快船','塞勒姆快车号','살렘 익스프레스']},
-    // Cozumel's Paradise Reef is also known by its Spanish name.
-    // https://www.padi.com/zh-hans/dive-site/mo-xi-ge/paradise-reef-4/
-    // https://www.divers.world/divesite/cozumel-reefs-national-marine-park/paradise-reef/
     {siteIds:['880de6d9-d2e3-4c04-ae82-4ca2837bc72c'], aliases:['天堂礁','Paraiso','Paraíso','Paraiso Reef']},
-    // SSI uses this Japanese name for Florida's Molasses Reef dive area.
-    // https://www.scubago.com/ja/explore/divesite/molasses-reef-3020
     {siteIds:['4fb69c8d-7e97-4842-b995-2ed9cabfeea1'], aliases:['モラセスリーフ']},
-    // The Bonaire salt pier is a specific shore dive, not every salt pier.
-    // https://blog.padi.com/cn/diving-in-bonaire/
-    // https://whatismylocation.ai/zh/quanqiu-zuijia-qianshui-mudidi
     {siteIds:['a58307c8-02f3-4d75-a94e-6bc6adc5b468'], aliases:['盐墩','盐码头']},
-    // Sources identify these names with Koh Tao's Hin Wong Bay.
-    // https://marinediving.com/area/thai/gulf_of_thailand/
-    // https://www.thailandaddict.com/zh/koh-tao-guide
     {siteIds:['3e7a5a02-5437-442d-8bc7-4c150a8e3eb2'], aliases:['ヒンウォンベイ','欣旺湾']},
-    // Sharm's Temple dive is distinct from other sites with that name.
-    // https://www.padi.com/ko/dive-site/ijibteu-wa-honghae/temple/
-    // https://www.dive-club.com/diveclub/%E3%83%80%E3%82%A4%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88/%E3%83%80%E3%82%A4%E3%83%96%E3%83%BB%E3%82%B5%E3%82%A4%E3%83%88%E3%80%80%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%83%BB%E3%82%B5%E3%82%A6%E3%82%B9/?lang=ja
     {siteIds:['a40b9a2d-7560-45d7-b276-593193e6c958'], aliases:['템플','テンプル']},
-    // Black Forest is a common name; these sources identify Balicasag.
-    // https://www.hellodive.com/dive/detail/Philippines_Balicasag_Island
-    // https://bohol.jp/?page_id=73
-    // https://www.letsgodiving.co.kr/DIVINGPOINT
     {siteIds:['83167995-4713-4aa4-b5d9-4123c8bdea09'], aliases:['黑森林','ブラック・フォレスト','블랙 포레스트']},
-    // The Catalina dive park is also called Avalon Underwater Park.
-    // https://scubabydesign.com/visiting-casino-point/casino-point-dive-park/
     {siteIds:['64d1824a-e36e-47ab-bb54-4f9efa29f0f2'], aliases:['Avalon Underwater Park']},
-    // Phuket's Koh Doc Mai is known as Flower Island among divers.
-    // https://www.padi.com/zh-hans/dive-site/thailand/koh-doc-mai-2/
-    // https://www.divejct-phuket.com/diveblog/2026/10/13/mv-seatopia-south-andaman-liveaboard-2026/
     {siteIds:['6f7cad64-8efb-4690-b138-3dab5c4a1523'], aliases:['花岛','Flower Island','コ・ドクマイ']},
-    // The Gold Coast dive guide also spells this Wavebreak Island.
-    // https://divesites.com.au/dive-site/wave-break-island
     {siteIds:['9d8138c0-c9e1-475f-8f87-97bb347806dd'], aliases:['Wavebreak Island']},
-    // Cozumel dive guide uses the shorter reef name for Punta Dalila.
-    // https://cozumeldivehub.com/dive-sites/punta-dalila-reef-cozumel-dive-site
     {siteIds:['7dd92fa5-1ffc-4234-904f-fbf67e7d5237'], aliases:['Dalila Reef']},
-    // Raja Ampat divers use these Chinese and Korean names for Melissa’s Garden.
-    // https://7scuba.com/divesites/rajaampat/
-    // https://www.rajaride.com/blog/ko/diving-guide
     {siteIds:['6c4e81de-9648-404c-8a32-69db89707e5c'], aliases:['玛丽莎的花园','瑪麗莎的花園','멜리사스 가든','멜리사 가든']},
-    // Beacon Rock is the reef near, but distinct from, the Dunraven wreck.
-    // https://thisis-egypt.com/diving/sites/beacon-rock
     {siteIds:['bd43d007-e65c-4d20-9939-d8c1ef37c072'], aliases:["Sha'ab Mahmud beacon",'Beacon Rock (Dunraven reef)']},
-    // PADI names this Curaçao site Ocean Encounters House Reef.
-    // https://www.padi.com/dive-site/curacao/stella-maris-ocean-encounters-house-reef/
     {siteIds:['f23f0ce6-273f-4371-b5ff-38cecab8a1ba'], aliases:['Ocean Encounters House Reef']},
-    // Guadeloupe National Park names this mooring L’Aquarium.
-    // https://www.guadeloupe-parcnational.fr/sites/guadeloupe-parcnational.fr/files/atoms/files/depliant_ilets-pigeon_6_volets_png.pdf
     {siteIds:['590c9de6-6ffe-4490-b403-fffd1bba8080'], aliases:['L’Aquarium']},
-    // Sharm dive guides use multiple transliterations for Ras Za’atar.
-    // https://sharm101.com/diving/dive-sites/ras-zaatar
     {siteIds:['3b8e5774-04a5-473c-930a-7a5b7eed6f1e'], aliases:['Ras Zaatar','Ras Zatar']},
-    // Cozumel operators also spell Colombia Reef Columbia Reef.
-    // https://www.dresseldivers.com/blog/columbia-reef/
     {siteIds:['95a1c41d-f5a6-4802-ab81-29b5e50d7022'], aliases:['Columbia Reef','Colombia Regular']},
-    // PADI's Traditional Chinese guide names Gabr el Bint 加布爾賓特.
-    // https://www.padi.com/zh-hant/dive-site/ai-ji-he-hong-hai/gabr-el-bint/
     {siteIds:['5a104c19-5210-4069-85cd-81ce19d77235'], aliases:['加布爾賓特','加布尔宾特','少女之墓']},
-    // Similan divers call Elephant Head Rock 象头岩 and Hin Pusa.
-    // https://www.hellodive.com/index.php/dive/detail/info/48.html
-    // https://divecodex.com/sites/elephant-head-rock
-    // https://hobo-ya-similan.com/similan/divesite/elephant.html
     {siteIds:['67bc7bfd-dd44-4a8f-85df-98272e7ff9d8'], aliases:['象头岩','象頭岩','象头石','象頭石','Hin Pusa','Hin Pusar','エレファントヘッドロック']},
-    // The facility calls itself Transfo Duiktank.
-    // https://www.duiktanktransfo.be/
     {siteIds:['4927bbbf-ddf9-43e0-9203-1210f83bd5f6'], aliases:['Transfo Duiktank']},
-    // Similan dive guides call Three Trees 三棵树.
-    // https://www.hellodive.com/dive/pointdetail/48/4208916735.html
     {siteIds:['b639e137-1141-4f3a-9296-7ce6c4f7ea6b'], aliases:['三棵树','三棵樹']},
-    // Nusa Penida's Manta Bay is separate from Manta Point.
-    // https://neptunescubadiving.com/zh/blog/diving-manta-rays-nusa-penida/
-    // https://kdiver.com/id/shop/Bali-Nusa-Penida-Mantascape-Diving
     {siteIds:['8586415f-3ba6-4297-8c24-02a486c493fa'], aliases:['蝠鲼湾','蝠鱝灣','曼塔湾','曼塔灣','만타 베이']},
-    // German divers also call this quarry Steinbruchsee Horka.
-    // https://taucher.net/tauchplatz-steinbruch_horka-bericht-hlz12338
     {siteIds:['cc6cc236-ab08-455b-8418-84bcd9ae0868'], aliases:['Steinbruchsee Horka','Horkaer Steinbruch']},
-    // Perhentian dive center writes this site Sanchoi Wreck.
-    // https://btsdivers.com/dive-site/
     {siteIds:['f6ef523c-9b14-499c-a2aa-d32d0aebf48f'], aliases:['Sanchoi Wreck']},
-    // Gozo dive center calls the Middle Finger pinnacle Ras il-Ħobż.
-    // https://www.atlantisgozo.com/dive-sites/ras-il-hobz/
     {siteIds:['633ff653-78db-42e4-8f9e-c2826d000cf3'], aliases:['Ras il-Ħobż','Ras il-Hobz','Middle Finger Reef']},
-    // NSW divers know the bridge dive as Swansea Channel.
-    // https://centralcoastdivers.com.au/pages/local-shore-dives
     {siteIds:['a776557c-1000-4b86-a5ed-e3bd30c1eb4a'], aliases:['Swansea Channel']},
-    // California divers also use the island's full name Santa Catalina Island.
-    // https://dan.org/alert-diver/article/santa-catalina-island/
     {siteIds:['324f3118-6084-4512-b80b-a8dc25b33bb2'], aliases:['Santa Catalina Island']},
-    // CDWS identifies the Hurghada minesweeper known as El Mina as Minya.
-    // https://www.cdws.travel/wreck-diving/minya
     {siteIds:['9a6bedaf-01ca-4324-aa2b-c3bb873043bb'], aliases:['Minya','El Minya','Minija']},
-    // C-53 was formerly USS Scuffle; both entries share the wreck coordinates.
-    // https://dan.org/alert-diver/article/cozumel-revisited/
-    // https://divecodex.com/sites/felipe-xicotencatl-c-53
     {siteIds:['daba2826-ab5c-4067-85ab-3c31e7c6cd79','d6869270-e668-5ad4-9d03-2ab5acf81b88'], aliases:['USS Scuffle','Pecio C-53','ARM General Felipe Xicoténcatl']},
-    // Cozumel operators also list Tormentos as Tormentos Reef.
-    // https://pelagicventuresscuba.com/cozumel-dive-sites/tormentos-reef-cozumel/
     {siteIds:['9ee56a90-73d5-4ac0-863f-b2aa60e9c46d'], aliases:['Tormentos Reef']},
-    // Bonaire dive map names site 51 The Invisibles Reef.
-    // https://divoceanbonaire.com/wp-content/uploads/2025/12/dive-sites.pdf
     {siteIds:['aa8ff57e-eb71-4fed-8364-4b586ce4ccf9'], aliases:['The Invisibles','The Invisibles Reef']},
-    // Komodo dive sources call Castle Rock 城堡岩 and 卡斯尔岩.
-    // https://www.scubago.com/cn/explore/divesite/castle-rock-komodo-109654
-    // https://pinta-liveaboard.com/zh/blog/castle-rock-or-crystal-rock-komodo-pinnacles/
     {siteIds:['d0d02e01-2667-460b-9371-ca0dcd2f69c0','58eb8ead-363d-43b7-ac23-fae2645e7b69'], aliases:['城堡岩','卡斯尔岩','卡斯爾岩','キャッスルロック']},
-    // Cozumel guides also call the brick field Palancar Ladrillos.
-    // https://divecodex.com/sites/palancar-bricks
     {siteIds:['ba870135-1544-4147-816e-f52534dbbbe5'], aliases:['Palancar Ladrillos','Colombia Bricks','Columbia Bricks']},
-    // Guadeloupe dive guide renders Le Jardin de Corail as The Coral Garden.
-    // https://visiteguadeloupe.com/en/cousteau-reserve-guadeloupe-snorkeling-diving-pigeon-islets/
     {siteIds:['574a1e1c-c698-4840-9946-ac1e48ab1bd1'], aliases:['The Coral Garden']},
-    // Key Largo dive operator uses the French name Récif français.
-    // https://www.scubafunflorida.com/fr/key-largo-dive-trips/french-reef/
     {siteIds:['2ff79b20-70cf-49f2-9741-6ca4b3a61e4d'], aliases:['Récif français']},
-    // Pramuka Island is the English place name used for this reef dive.
-    // https://divemap.be/dive-sites/pulau-pramuka.html
     {siteIds:['739ed560-7163-4a68-a2ac-b2a24fd7ef90'], aliases:['Pramuka Island']},
-    // Tenerife dive centers call Montaña Amarilla Yellow Mountain.
-    // https://dive-tenerife.com/dive-site/yellow-mountain/
     {siteIds:['6bb036a7-d82e-404b-8116-7377834f7956'], aliases:['Yellow Mountain']},
-    // German dive guides name this lake Baggersee Linkenheim.
-    // https://www.pro-taucher.de/tauchplaetze/europa/deutschland/baden-wuerttemberg/streitkoepflesee/
     {siteIds:['de234f62-acd0-4a6c-9769-1f755b7f1fac'], aliases:['Badesee Streitköple','Baggersee Linkenheim']},
-    // Khobar dive operator also calls Half Moon Bay خليج نصف القمر.
-    // https://www.adventurekhobar.com/ar/diving-al-khobar-and-dammam
     {siteIds:['d9ae5984-5bb1-45f9-b290-679323d0fc58'], aliases:['خليج نصف القمر']},
-    // Cozumel dive guides use these alternate Tunich spellings.
-    // https://divecodex.com/sites/punta-tunich
     {siteIds:['2c3a4b34-69b9-4b67-ab4a-e67bac2d4561'], aliases:['Punta Tuniche','Punta Tunish','Tunich Reef']},
-    // Sharm dive operator uses the Arabic name خليج القرش.
-    // https://www.redseamarinesharm.net/ar/mawaqe-ghaws-sharm-el-sheikh
     {siteIds:['ddc24996-f7d7-4c28-9e96-e6a03f258f90'], aliases:['خليج القرش','鲨鱼湾','鯊魚灣','Shark Bay']},
-    // Casa Cenote is also Cenote Manatí; Japanese divers call it カサセノーテ.
-    // https://deepdivemexico.com/our-cenote-dive-sites-in-the-region/the-casa-cenote/?lang=en
-    // https://www.diveclub-marumar.com/point/
     {siteIds:['f29a3cf2-b2c5-4566-8936-3e34cbf65e12'], aliases:['Cenote Manatí','Cenote Manati','Cenote Manatee','カサセノーテ']},
-    // Phi Phi dive guides also spell Pileh Wall as Phi Leh or Piley Wall.
-    // https://www.divers.world/divesite/phi-phi-islands/pileh-wall/
     {siteIds:['aa7af00d-a1ae-49af-b444-50206988cc6e'], aliases:['Phi Leh Wall','Piley Wall']},
-    // Hurghada dive operators also call Ras Disha Torfa Ras Disha.
-    // https://egyptdivers.com/hurghada/dive-sites/ras-disha/
-    // https://cloudfront.masterliveaboards.com/website-docs/Egypt/Itineraries/Northern-Red-Sea-Wrecks-and-Reefs-Itinerary.pdf
     {siteIds:['95ec2ef3-7a25-4739-b3b3-4a0412a78656'], aliases:['Torfa Ras Disha','Disha Malagk','Disha Malagka']},
-    // South Malé dive operator calls Cocoa Corner 可可角.
-    // https://maldives.holidayinnresorts.com/zh-hans/recreation-facilities/diving/diving-sites/
     {siteIds:['8a62f3f4-419d-4c54-8c67-fc9edc96c1e8'], aliases:['可可角']},
-    // The Poor Knights site is also called The Canyon by local divers.
-    // https://www.seafriends.org.nz/issues/res/pk/night_dive.htm
     {siteIds:['b56f57bb-9b1c-4234-b880-dad97ced72e7'], aliases:['The Canyon']},
-    // Dutch and Belgian dive clubs call Bergse Diepsluis Oesterdam.
-    // https://www.dios.be/index.php?i=80&p=pagina
     {siteIds:['80a2f073-f19c-401c-a89a-a0d3fd987d78'], aliases:['Oesterdam','Gat van Tholen']},
-    // Cretan dive center uses the Greek site name Μονοναύτης.
-    // https://www.diversclub-crete.gr/el/sites-mononaftis-gr/
     {siteIds:['046e089c-b3c2-4cba-a9c1-3106ba9717d2'], aliases:['Μονοναύτης','Μονοναύτη','Mononaftis Rock']},
-    // Padang Bai snorkeling guides use these names for Tanjung Jepun.
-    // https://www.kkday.com/zh-cn/product/131795-blue-lagoon-snorkeling-tanjung-jepun-tour-bali-indonesia
-    // https://4travel.jp/travelogue/11883817
     {siteIds:['c05e0b46-2179-4045-9e54-c29f42316ba6'], aliases:['丹绒捷鹏','丹戎杰蓬','タンジュンジュプン','タンジュンジェプン']},
-    // The Sauwandarek dive follows the reef by the village jetty.
-    // https://divernet.com/features/local-guide-to-raja-ampat-dive-sites-sauwandarek-jetty/
     {siteIds:['19e2eedc-5728-4224-af20-487f74a5d8b2'], aliases:['Sauwandarek Jetty']},
-    // Gili dive operators use these names for Deep Turbo, not Shallow Turbo.
-    // https://vilaombakdivers.com/zh/%E6%BD%9C%E7%82%B9/
-    // https://www.sunshinedive.com/dive-site
-    // https://www.padi.com/ja/dive-site/intoneshia/deep-turbo/
     {siteIds:['30dc8cdf-ebc4-4de0-9a33-c5454dca2d4b'], aliases:['深涡轮','深渦輪','딥터보','ディープターボ']},
-    // Havelock dive operators also call Nemo Reef the Nemo Beach dive site.
-    // https://frogman.in/nemo-reef-scuba-diving-havelock/
     {siteIds:['c099ba04-5cb7-41fb-8d60-8186f5ac7824'], aliases:['Nemo Beach']},
-    // Greek dive guide identifies the Protaras site as Γκριν Μπέι.
-    // https://simerini.sigmalive.com/media/documents/IN_LOVE_WITH_CYPRUS_BINDER.pdf
     {siteIds:['b9d3aea3-6748-4442-bd31-5e18050a516c'], aliases:['Γκριν Μπέι','Green Bay Beach']},
-    // Hin Wong Pinnacle is offshore from the separate Hin Wong Bay site.
-    // https://japancoralgranddivers.com/course_fun/point.html
-    // https://www.padi.com/dive-site/thailand/hin-wong/
     {siteIds:['0273f356-329a-4c68-be42-d85550651b8d'], aliases:['ヒンウォンピナクル','Hin Wong Pinnacles']},
-    // Khao Lak dive operators also spell the wreck Boon Sung and Boonsong.
-    // https://www.localdivethailand.com/phuket-diving-sites/the-similan-and-surin-islands/boonsung-wreck/
-    // https://www.idcphuket.com/scuba-diving/boonsong-wreck-khao-lak/
     {siteIds:['761fc2e3-9c19-4b5f-bf38-f6d0d84f04fc'], aliases:['Boon Sung Wreck','Boonsong Wreck']},
-    // Two catalog records describe the same Komodo Crystal Rock pinnacle.
-    // https://www.scubago.com/cn/explore/divesite/crystal-rock-komodo-132149
-    // https://marinediving.com/area/komodo/
     {siteIds:['3b9f386a-25fd-4023-9015-d378f3944898','b64f80e3-d9e8-46af-ae9e-fdb380da1692'], aliases:['水晶岩','クリスタルロック','クリスタル・ロック']},
-    // Dahab dive guide records Orca House Reef as Moray Garden.
-    // https://71guardians.com/dive-sites/moray-garden/
     {siteIds:['71e381ad-5706-4f92-b71b-a8871de0a8f0'], aliases:['Orca House Reef','Marey Garden']},
-    // Murcia's dive guide calls the Cabo de Palos cove Cala Escalerica.
-    // https://www.turismoregiondemurcia.es/webs/murciaturistica/folletos/1/PTMDOC_1_3872019.pdf
     {siteIds:['85f5c87b-1af4-44ac-8932-455dc19aeeaa'], aliases:['Cala Escalerica','Cala Escalera']},
-    // Coron operators call this wreck East Tangat Gunboat, distinct from Lusong.
-    // https://piratescoron.com/dive-sites/
     {siteIds:['76a8d900-4bd9-4baf-8ef1-6ef0e9fce955'], aliases:['Terukaze Maru','East Tangat Gunboat','East Tangat Wreck']},
-    // Tiran's Woodhouse Reef has established Chinese, Japanese and Korean names.
-    // https://www.seawolf-safari.de/zh/divesite/woodhouse-reef
-    // https://www.liveaboard.com/ja/diving/egypt/woodhouse-reef
-    // https://www.padi.com.cn/ko/diving-in/tiran-haehyeob/
     {siteIds:['2a291d90-d225-4b3f-b9b8-057c93321907'], aliases:['伍德豪斯礁','ウッドハウスリーフ','ウッドハウス・リーフ','우드하우스 리프']},
-    // PADI lists the northern Kata Beach reef under both word orders.
-    // https://travel.padi.com/dive-site/thailand/kata-beach-north/
     {siteIds:['2ebe0cef-fea9-4788-9f93-f12a2b3a7011'], aliases:['Kata Beach North','Kata Beach Reef North']},
-    // São Miguel divers also call the Dori wreck SS Dori.
-    // https://reefwander.com/diving/sao-miguel-azores/dori/
     {siteIds:['db6b9914-9239-4739-ae16-df917c44315f'], aliases:['SS Dori','MV Dori']},
-    // Les Ferranelles is also charted as Ferranelles and Les Ferrenelles.
-    // https://divemap.be/dive-sites/ferranelles.html
     {siteIds:['c89d036d-e2f3-45bb-8c66-edbe741c18ab'], aliases:['Ferranelles','Les Ferrenelles']},
-    // Curaçao dive guides refer to this site as Daaibooi Baai.
-    // https://scubasnap.app/destinations.php?country=Curacao&divesite=Daaibooi+Baai
     {siteIds:['08394c27-b6fc-4f82-bbcc-342ce303927e'], aliases:['Daaibooi Baai']},
-    // Northern Nursery is the named dive area at Nguthungulli Julian Rocks.
-    // https://www.dpird.nsw.gov.au/fishing/marine-protected-areas/marine-parks/cape-byron-marine-park/scuba-diving-and-snorkelling
     {siteIds:['be4585b2-015f-4254-8319-9e915487c239'], aliases:['Northern Nursery']},
-    // Big Brother is one island, not the two-island Brothers group.
-    // https://www.bluerides.com/ja/daibingu-pointo/big-brother
-    // https://dive.heeho.net/spots/big-brother-island
-    // https://www.omneia.de/tauchsafaris/safarirouten/brother-islands-daedalus-sataya-elphinstone--sr50.pdf
     {siteIds:['5b0a6fc7-7d5c-411f-afb1-c1e3e378361f'], aliases:['ビッグブラザー','빅브라더','Al Akhawain Kebir','Großer Bruder']},
-    // Kubu Reef is separate from the nearby Boga wreck.
-    // https://diverout.com/zh-Hant/dive-sites/id/kubu-reef
     {siteIds:['ac37b998-b1ce-4f3f-8321-838d6e52ed43'], aliases:['庫布礁','库布礁']},
-    // The local dive operator identifies the first Vouliagmeni port as this shore dive.
-    // https://www.sealsdivingcenter.gr/dive-from-shore/?lang=en
-    // https://www.sealsdivingcenter.gr/%CE%BA%CE%B1%CF%84%CE%AC%CE%B4%CF%85%CF%83%CE%B7-%CE%B1%CF%80%CF%8C-%CE%B1%CE%BA%CF%84%CE%AE/
     {siteIds:['313927f8-44a4-40cb-adeb-eaee75843dea'], aliases:['1st port of Vouliagmeni','1ο λιμανάκι Βουλιαγμένης']},
-    // The second Vouliagmeni port is the shore dive around the Devil's Well.
-    // https://www.padi.com/dive-site/greece/2nd-gulf-of-vouliagmeni/
-    // https://www.sealsdivingcenter.gr/%CE%BA%CE%B1%CF%84%CE%AC%CE%B4%CF%85%CF%83%CE%B7-%CE%B1%CF%80%CF%8C-%CE%B1%CE%BA%CF%84%CE%AE/
-    // https://www.divers-society.com/en/fun-dives/vouliagmenis-well/
     {siteIds:['7dd43bf4-6f3d-4d49-aed3-45e348513fa5'], aliases:['2ο λιμανάκι Βουλιαγμένης',"Devil's Well","Vouliagmeni's Well"]},
-    // Dive-site directories use both Abu and Abo for this exact Red Sea site.
-    // https://www.zentacle.com/loc/eg/red-sea-governorate/marsa-alam
-    // https://divemap.be/dive-sites/abo-soyaeer.html
     {siteIds:['60156fd6-3a1b-4ddb-a7e3-c3be208ad61d'], aliases:['Abu Soyaeer']},
-    // Xàbia's English dive guide retains the local dive-site name Primera Ensenada.
-    // https://www.padi.com/dive-site/spain/1a-ensenada-de-la-reserva-marina-del-cabo-de-san-antonio/
-    // https://www.ruta-seda.comunitatvalenciana.com/sites/default/files/2020-08/Diving%20in%20X%C3%A0bia_compressed.pdf
     {siteIds:['ddaa6b9e-87d1-4d11-8543-28d261796916'], aliases:['Primera Ensenada']},
-    // Local dive operators and PADI identify the second cove as Segunda Ensenada.
-    // https://www.padi.com/dive-site/spain/2a-ensenada-reserva-marina-del-cabo-de-san-antonio/
-    // https://www.mardaysresort.com/inmersiones/cabo-san-antonio-inmersion-buceo/
     {siteIds:['d6a85097-1ec6-4adc-b1f2-2526846506e4'], aliases:['Segunda Ensenada']},
-    // The St. Croix pier dive is at Ann E. Abramson Marine Facility.
-    // https://reefwander.com/diving/st-croix/frederiksted-pier/
     {siteIds:['15e02bdb-f84f-43d1-925a-a11ff06388de'], aliases:['Ann E. Abramson Marine Facility']},
-    // Local and PADI dive guides list these names for Safaga and Gozo.
-    // https://www.padi.com/dive-site/egypt/gamul-kebir/
     {siteIds:['b6df7cbd-f21d-41ef-86c2-f862af589b51'], aliases:['Gamul Kabir','Gamul Al Kabeir','Gamul al Kebeir']},
-    // https://tahtilbahar.com/sites/inlandseatunnel-dwejra
     {siteIds:['037eeb37-bc91-49af-952c-1bcb846316da'], aliases:['Il-Qawra','Inland Sea Tunnel']},
-    // REEF records Claudia and Claude as spellings of this Fury Shoals reef.
-    // https://www.reef.org/db/zonecodes/list/?region_code=IORS
     {siteIds:['8d943276-e3bf-45b5-9602-c480c0f9f6cc'], aliases:["Sha'ab Claudia","Sha'ab Claude",'Claudia Reef','Abu Aklas']},
-    // South Ari divers use Chinese, Japanese and alternate Latin spellings.
-    // https://www.divers.world/ja/divesite/ari-atoll/kudarah-thila/
-    // https://travel.padi.com/zh-hans/dive-center/ma-er-dai-fu/euro-divers-lux-south-ari-atoll/
     {siteIds:['053f27ee-3fb0-48ae-91f6-fc70174b32fb'], aliases:['Kudarah Thila','Kudahrah Thila','クダラ・ティラ','库达拉蒂拉','库达拉提拉','庫達拉蒂拉','庫達拉提拉']},
-    // Xlendi Bay is known locally as Ix-Xlendi.
-    // https://tahtilbahar.com/sites/xlendibay
     {siteIds:['4be432e2-22d5-4c5f-8cb2-609d61b15e68'], aliases:['Ix-Xlendi','Xlendi Tunnel and Reef']},
-    // Swiss divers still recognize the former TZT name and current WZT acronym.
-    // https://tcaarau.ch/newtca/index.php/sichtweiten/sichtweiten-tauchplatzliste/location/5446
     {siteIds:['b2d6b7ae-c9d8-4c62-abc3-a9d50ff036d9'], aliases:['WZT','TZT','Tauchsportzentrum Tiefenbrunnen']},
-    // Cape Kri is also known as Tapor Tamiyam.
-    // https://www.divers.world/zh-tw/divesite/raja-ampat/cape-kri/
-    // https://xn--eckya9b7cr9ksc.com/raja-ampat-diving-4/
     {siteIds:['a7ced4d1-f0e1-486c-b524-d08036c9673a'], aliases:['克里角','ケープクリ']},
-    // Safaga research records Tobia Soraya as Tobia Segir.
-    // https://www.vliz.be/imisdocs/publications/267356.pdf
     {siteIds:['14ea6d64-39c7-4458-8a08-47b622cd9432'], aliases:['Tobia Segir']},
-    // The Curaçao dive area Caracasbaai is also called Caracas Bay.
-    // https://scuba.network/dive-site/00bc1b43-709d-4c00-9260-8d6f128a9091
     {siteIds:['bf78ccbf-d7b3-41cb-a56f-484168f25a4d'], aliases:['Caracas Bay']},
-    // Similan Island 8 divers use these names for Turtle Rock.
-    // https://www.hellodive.com/index.php/dive/pointlist/48.html
-    // https://bluemarine-divers.com/blog/similan-diving/
     {siteIds:['191872a5-4631-471f-825a-57ed8430181c'], aliases:['海龟岩','海龜岩','タートルロック']},
-    // Breakwater Cove is the dive area entered from San Carlos Beach.
-    // https://opendivesites.org/Breakwater_Cove
     {siteIds:['76a9fca6-6816-41f1-8ab8-332af484013b'], aliases:['San Carlos Beach']},
-    // Localized dive references use these Chinese forms; keep both the abbreviated PADI names and the full-name Traditional Chinese form searchable.
-    // https://www.padi.com/zh-hans/dive-site/caribbean-netherlands/hilma-hooker/
-    // https://www.padi.com/zh-hant/dive-site/caribbean-netherlands/hilma-hooker/
-    // https://www.divers.world/zh-tw/divesite/bonaire-national-marine-park/hilma-hooker/
     {siteIds:['a0005094-194b-4b02-ac1e-1adde4def1f4'], aliases:['Hilma 号','希爾瑪號','希尔玛号','希爾瑪·胡克號']},
-    // PADI calls the Koh Tao training reef 浮力世界.
-    // https://travel.padi.com/zh-hans/dive-site/thailand/buoyancy-world/
     {siteIds:['8be8adbf-393b-4ddc-a619-5892217770ec'], aliases:['浮力世界']},
-    // Curaçao dive centers use Porto Marie and Playa Porto Mari interchangeably.
-    // https://www.central-dive-curacao.com/playa-porto-mari
     {siteIds:['919f5818-e7ed-422f-af27-dea25223c60d'], aliases:['Porto Marie','Playa Porto Mari','Playa Porto Marie']},
-    // Belgian dive federation identifies the quarry as La Roche Fontaine.
-    // https://www.lifras.be/doc/202/141024_CLL_Roche.pdf
     {siteIds:['8eb4a1b9-8352-4853-ac19-2d31df512194'], aliases:['La Roche Fontaine','Carrière de Rochefontaine','Carriere de Rochefontaine']},
-    // The outer Ras Abu Soma wall is also called Ras Abu Soma Drift.
-    // https://71guardians.com/dive-sites/ras-abu-soma/
     {siteIds:['846af5c0-c0da-42c1-aa54-f76b3c712deb'], aliases:['Ras Abu Soma Drift']},
-    // The southern plateau has distinct dive-site names from the north.
-    // https://divemap.be/dive-sites/elphinstone-reef.html
     {siteIds:['35796dc3-1d95-479d-9beb-bcd42efcdea5'], aliases:['Elphinstone Reef South','Elphinstone zuid']},
-    // Chinese diving guides call Lanzarote's Museo Atlántico 大西洋博物馆.
-    // https://www.divers.world/zh-cn/divesite/lanzarote-south-coast-museo-atlantico/museo-atlantico/
     {siteIds:['e1e3b7d5-0f3f-4538-9916-daa3deef1c5f'], aliases:['大西洋博物馆','大西洋博物館']},
-    // Marsa Alam divers use these spellings for Marsa Assalaya.
-    // https://sealog.life/sites/marsa-assalaya-152157
-    // https://deepsouthdiverseg.com/tours/marsa-assalaya/
     {siteIds:['8c03e5ec-28dd-4190-a015-6c8eeaeabcec'], aliases:['Marsa Asalaya',"Kilo Saba'a",'Sharm Assalaya']},
-    // PADI uses these Chinese names for the Radazul dive area.
-    // https://www.padi.com/zh-hans/dive-site/xi-ban-ya/radazul-3/
     {siteIds:['d8073fab-acdf-4105-9ec8-9ad714381849'], aliases:['拉达祖尔','拉達祖爾','拉达苏尔','拉達蘇爾']},
-    // Tiran liveaboards call Thomas Reef 托马斯礁.
-    // https://aphroditeliveaboard.com/zh/north-tiran/
     {siteIds:['03de7c33-d571-43a2-8072-7e7f774bf5b0'], aliases:['托马斯礁','托馬斯礁']},
-    // The Pemuteran Biorock dive site is also called Karang Lestari.
-    // https://indive.io/sites/menjangan-pemuteran/pemuteran-biorock
     {siteIds:['6e17f6fb-b26d-469d-a92c-f1b27d882b61'], aliases:['Pemuteran Biorock','Karang Lestari']},
-    // Hong Kong Underwater Association lists this site as 橋咀洲.
-    // https://www.prodiver-hk.com/_files/ugd/bd15dc_5be7c5719d90469fa72de57221768d74.pdf
     {siteIds:['52f486f9-6988-44f3-a82c-d0e373a11c63'], aliases:['橋咀洲','桥咀洲']},
-    // Fish Head is the protected Mushimasmingili Thila in North Ari Atoll.
-    // https://www.fao.org/fishery/docs/CDrom/bobp/cd1/Bobp/Publns/MIS/0007.pdf
     {siteIds:['eb9e602a-e0bc-4a8e-b2f4-19cb2fc63146'], aliases:['Mushimasmingili Thila','Mushi Mas Mingili Thila','Shark Thila']},
-    // A Vaavu dive log names this channel ミヤル・カンドゥ.
-    // https://otosann-preciousdays.blogspot.com/2009/07/
     {siteIds:['34a4c8f9-c798-400b-ad7a-cda32680b91d'], aliases:['ミヤル・カンドゥ']},
-    // North Ari's Maaya Thila has established Chinese and Japanese dive names.
-    // https://www.hellodive.com/dive/pointlist/44.html
-    // https://diveity.com/ja/dive-spots/maaya-thila
     {siteIds:['36c23070-335f-4f42-929e-080deb468db7'], aliases:['玛亚蒂拉','马亚蒂拉','瑪雅·蒂拉','マーヤ・ティラ']},
-    // Penida operators abbreviate Pura Mas Gading as PMG.
-    // https://www.scubacenterasia.com/dive-site/pura-mas-gading/
     {siteIds:['7ca1a936-a6ba-4067-99dd-63dac6943733'], aliases:['PMG']},
-    // A Cozumel operator calls Cedar Pass Paseo del Cedral Reef.
-    // https://www.blueh2ocozumel.com/copy-of-scuba-diving-dy8xb
     {siteIds:['0055b9a6-0d13-497a-9f5a-356318afcbb5'], aliases:['Paseo del Cedral Reef']},
-    // Portugal Dive gives this English form for the Sesimbra site.
-    // https://www.portugaldive.com/best-dives/spot/baia-da-armacao-1.html
     {siteIds:['e9b775c3-b8d8-412e-97c7-42592854629c'], aliases:['Armação Bay','Armacao Bay']},
-    // Kandooma Thila is a distinct reef in South Male Atoll.
-    // https://www.padi.com/zh-hans/dive-site/ma-er-dai-fu/kandooma-thila/
-    // https://stworld.jp/area/maldives/hotel/south_male_atoll/24318
     {siteIds:['82e21a8d-95af-400a-957f-763848c64f9e'], aliases:['坎杜玛蒂拉','カンドゥマティラ']},
-    // Safaga divers use these alternative spellings for Gamul Soraya.
-    // https://www.nemodive.com/diving-with-nemo/dive-sites-around-safaga/gamul-soraya/?lang=en
-    // https://71guardians.com/dive-sites/gamul-soraya/
     {siteIds:['f594d23b-9663-4ba1-90c2-3395d8e293ac'], aliases:['Gamul Al Saghair','Gamoul Soraya']},
-    // The Gili dive center distinguishes Shallow Turbo from Deep Turbo.
-    // https://www.sunshinedive.com/dive-site
     {siteIds:['1f12028f-8dd2-4b3a-a76f-b23536fe30bb'], aliases:['쉘로우터보']},
-    // The Canyon is a common name; PADI's Dahab source matches this pin.
-    // https://www.padi.com/zh-hans/dive-site/ai-ji-he-hong-hai/canyon-2/
     {siteIds:['e5a368a3-1de3-4a52-93ac-06d46cfa9ea9'], aliases:['峡谷','峽谷']},
-    // Local cave-diving documentation records the previous name of this sink.
-    // https://www.mejeme.com/dive/hgrotto.htm
     {siteIds:['3ffd8065-2dad-4b43-84cc-54ba028f6807'], aliases:['Edwards Sink']},
-    // Tatawa Besar is distinct from nearby Tatawa Kecil.
-    // https://neptunescubadiving.com/zh/komodo-diving/
-    // https://komodonationalpark.com/ko/komodo-diving-snorkeling/
-    // https://nob-log.info/archives/20135
     {siteIds:['8944f693-7aca-48e5-8c52-9111eb87dc7e'], aliases:['塔塔瓦大岛','塔塔瓦大礁','塔塔瓦贝萨尔','塔塔瓦·贝萨尔','타타와 베사르','タタワ バサール']},
-    // PADI identifies the Ohio quarry in Chinese and Japanese.
-    // https://www.padi.com/zh-hant/dive-site/mei-li-jian-he-zhong-guo-usa/gilboa-quarry/
-    // https://www.padi.com.tw/ja/diving-in/ohaio/
     {siteIds:['5e3410af-e80a-4728-b4dd-248879e2873e'], aliases:['吉爾伯採石場','ギルボア採石場']},
-    // Amed operators call this artificial reef Pyramids.
-    // https://diveity.com/ja/dive-spots/pyramids-amed
     {siteIds:['2a3415bf-0e11-46d2-be29-81a4b50493ac'], aliases:['Pyramids','The Pyramids']},
-    // PADI names this La Jolla Shores shore-dive area in Chinese and Japanese.
-    // https://www.padi.com/zh-hans/dive-site/mei-li-jian-he-zhong-guo-usa/la-jolla-shores/
-    // https://www.padi.com/ja/dive-site/united-states-of-america-usa/la-jolla-shores/
     {siteIds:['b136ca86-f2f3-4320-968f-d040a7e9a306'], aliases:['拉霍亚海岸','ラホヤ海岸']},
-    // The Safaga dive center explains the seven-pillar nickname.
-    // https://blueaqua-gdc.com/wp-content/uploads/2025/02/Divesites-Blue-Aqua-3.pdf
     {siteIds:['8d018886-8951-45e8-a813-d17bcdf5fb8a'], aliases:['Seven Pillars','Seven Pinnacles']},
-    // Divers use these localized names for the two-eye cenote complex.
-    // https://www.diveandcruise.cn/blog/dive-in-the-mexican-cenotes
-    // https://jp.scubafreedom.com/?q=dosojos
-    // https://travel.padi.com/ko/dive-site/mexico/cenote-dos-ojos-4/
     {siteIds:['a1fac657-c231-4a30-852a-cef2d006c573'], aliases:['双眼','双眼天坑','ドスオホス','ドス・オホス','도스 오호스']},
-    // Monterey divers commonly call San Carlos Beach the Breakwater.
-    // https://montereyscubaboard.com/monterey-dive-sites/san-carlos-beach/
-    // https://pacificscubadivers.com/charters/breakwater-beach-fun-dives-2-dives
     {siteIds:['9ebe082d-3538-40c4-9c4c-fc9abca77040'], aliases:['Breakwater','Breakwater Beach','Breakwater Cove']},
-    // Meno Wall and adjacent Meno Slope are separate Gili Meno dives.
-    // https://vilaombakdivers.com/zh/%E6%BD%9C%E7%82%B9/
-    // https://www.scubago.com/cn/explore/divesite/meno-wall-117817
     {siteIds:['6878f515-6d73-407c-82fd-eb1f0948c101'], aliases:['美诺海墙','梅诺墙','메노월']},
-    // This record names Makassar Reef; other Komodo pins are kept separate.
-    // https://www.wetfrogdivers.com/scuba-diving-komodo/dive-spots-komodo/
     {siteIds:['e5fb29e8-374d-4805-9a09-35249f7d738e'], aliases:['Karang Makasar','Karang Makassar']},
-    // This bay is also marketed as Oriental Bay; avoid generalizing beyond it.
-    // https://sealog.life/sites/marsa-gabal-el-rosas-ducks-center-1595
     {siteIds:['36e91e1e-f012-4833-be41-895fcf106d72'], aliases:['Oriental Bay']},
-    // SSI uses localized names in the body of its Gili Air reef profile.
-    // https://www.scubago.com/ko/explore/divesite/hans-reef-140578
-    // https://www.scubago.com/cn/explore/wildlife/spade_fish-324
     {siteIds:['f6e98246-e184-43e9-a268-a5b3842ce02f'], aliases:['한스 리프','汉斯礁']},
-    // PADI uses this Chinese name for Lembongan's mangrove-coast dive.
-    // https://www.padi.com/zh-hans/dive-site/indonesia/mangrove-point/
     {siteIds:['3b567830-d310-4195-8df4-3702c8ef5099'], aliases:['红树林潜水点']},
-    // Madivaru names several Maldivian sites; PADI matches this Rasdhoo pin.
-    // https://www.bluerides.com/zh/mudidi/maldives/qianshui-didian
-    // https://www.bluerides.com/ja/daibingu-pointo/madivaru-corner
-    // https://www.bluerides.com/ko/daiving-poineu/madivaru-corner
     {siteIds:['ee3d0f83-e11c-4c4a-8287-eed9c152dcf1'], aliases:['马迪瓦鲁角','マディバルーコーナー','마디바루 코너']},
-    // Turtle Heaven also names other sites; this usage is Pura Ped in Penida.
-    // https://nusalembongan.org/dive-sites/
     {siteIds:['bb0262b5-fafe-4752-b793-5d1e0b5f1c69'], aliases:['Turtle Heaven']},
-    // SSI's localized descriptions identify this Cozumel reef record.
-    // https://www.scubago.com/cn/news/cozumel-scuba-diving-dive-sites-2805
-    // https://www.scubago.com/ko/explore/divesite/yucab-reef-90753
     {siteIds:['aa0354f4-a7c2-4a9c-9a6b-a2c3c41f41f2'], aliases:['尤卡布礁','尤卡布','유캡','ユカブ・リーフ']},
-    // PADI documents the Pelham quarry's former name, scoped to its site ID.
-    // https://www.padi.com/dive-site/united-states-of-america-usa/blue-water-park/
     {siteIds:['b21fef6b-a65f-40bb-9bd9-e9e9ef0f7150'], aliases:['Dive Alabama']},
-    // PADI describes the northernmost Tiran reef represented by this pin.
-    // https://www.padi.com/zh-hans/dive-site/sha-te-a-la-bo/jackson-reef/
     {siteIds:['73142385-282a-4fe4-8bf2-2ba1a35567ae'], aliases:['杰克逊礁','傑克遜礁']},
-    // Malapascua diving references distinguish Gato Island and Monad Shoal.
-    // https://howdiving.com/guides/malapascua-thresher-shark-guide
-    // https://silverspoon99.com/%E3%80%90%E3%83%95%E3%82%A3%E3%83%AA%E3%83%94%E3%83%B3%E3%80%91%E3%83%9E%E3%83%A9%E3%83%91%E3%82%B9%E3%82%AF%E3%82%A2/
     {siteIds:['7015f625-541c-4f52-aee6-b0895a61d919'], aliases:['加托岛','加托島','ガト島']},
     {siteIds:['81db1656-6a38-4dba-b862-c34ea950b640'], aliases:['モナドショール']},
-    // SSI's Korean diving article describes the Florida spring.
-    // https://www.divessi.com/ko/blog/diving-the-devils-den-9673.html
     {siteIds:['025fb079-1af5-4466-9fdc-e7346c999268'], aliases:['데블스 덴','데빌스 덴']},
-    // Gordon Reef here is the southernmost Tiran reef, not other namesakes.
-    // https://www.bluerides.com/zh/qianshui-didian/gordon-reef
-    // https://aphroditeliveaboard.com/ja/north-tiran/
     {siteIds:['989d9aae-9bee-49f6-b97b-017906d02950'], aliases:['戈登礁','ゴードン・リーフ']},
-    // Sources identify the isolated Egyptian reef by name; source pins differ.
-    // https://www.padi.com/zh-hant/dive-site/ai-ji-he-hong-hai/daedalus-reef/
-    // https://aphroditeliveaboard.com/ko/daedalus-reef/
-    // https://aphroditeliveaboard.com/ja/daedalus-reef/
     {siteIds:['05210ba8-9427-4d44-9b46-e5b1e7c6d0c5'], aliases:['代達羅斯礁','阿布基贊','다이달루스 리프','다이달러스 암초','ダイダロス']},
-    // Two nearby catalog records identify the Gili Meno Bounty wreck site.
-    // https://www.padi.com/ja/dive-site/intoneshia/bounty-wreck/
-    // https://traveldive.co.kr/12
     {siteIds:['d3a4032a-3009-4fda-9d5c-b2bad31e17a5','a257e065-02a8-47a7-971d-d1536a0721cf'], aliases:['バウンティレック','バウンティ・レック','바운티 렉']},
-    // Green Rock is a shared name; the tourism authority identifies Koh Tao.
-    // https://www.thailandtravel.or.jp/green-rock/
     {siteIds:['8b89ae55-eb26-400e-8e3b-df3378c44102'], aliases:['グリーンロック','绿岩']},
-    // Utah's tourism office uses this Chinese name for the Midway dive site.
-    // https://www.visitutah.com/zh-cn/articles/6-things-to-do-at-utahs-homestead-crater
     {siteIds:['928566c8-ae28-4dde-a414-5c9ffe3fba39'], aliases:['霍姆斯特德火山口']},
-    // Pottery Pinnacle is distinct from neighboring Three Rocks despite combined dives.
-    // https://kohtaothailand.com/dive-sites/three-rocks-pottery/
     {siteIds:['407edb17-0312-42cb-b473-3ab44a752f74'], aliases:['Pottery Pinnacle','Pottery Pinnacles']},
-    // Japanese diving sources use several spellings for this named shipwreck.
-    // https://www.padi.com/ja/dive-site/eshihutotohong-hai/thistlegorm-wreck/
-    // https://www.divessi.com/ja/blog/wreck-diving--zenobia-vs-thistlegorm-1203
-    // https://tsumishima.com/soraweb/2018/10/02/101_201810_Redsea.pdf
     {siteIds:['24578a6d-215e-4d04-8c74-334bddbc60d7'], aliases:['シスルゴーム','シストレゴーム','ティスルゴーム']},
-    // Shark Island is a common name; these sources identify the Koh Tao site.
-    // https://www.thailandtravel.or.jp/shark-island/
-    // https://www.hellodive.com/dive/detail/info/23.html
     {siteIds:['2116ca0d-362c-4c88-8675-f51857138205'], aliases:['シャークアイランド','鲨鱼岛']},
-    // The Japanese diving guide identifies Hin Pee Wee beside the Sattakut wreck.
-    // https://life-with-dive.jp/kohtao-thailand/
     {siteIds:['ac74f1c5-ee13-4d35-a38b-3beebcca8498'], aliases:['ヒンピーウィー']},
-    // PADI places this Tanote Bay dive within the same Koh Tao bay.
-    // https://travel.padi.com/zh-hans/dive-site/thailand/tanote-bay/
-    // https://www.bigbluediving.com/koh-tao-dive-sites/aow-tanote/
     {siteIds:['227bee51-e969-4d17-a9ba-5ff0517c9e1b'], aliases:['塔诺特湾','塔諾特灣','Aow Tanote']},
-    // Crystal Bay occurs elsewhere; PADI's Penida coordinates match this pin.
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/crystal-bay-2/
     {siteIds:['06c2add5-bd53-46a4-bba1-d7a83cddba18'], aliases:['水晶湾']},
-    // The operator's Chinese name is tied to the catalog pin by PADI's coordinates.
-    // https://neptunescubadiving.com/zh/komodo-diving/
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/mawan/
     {siteIds:['bd81ed39-d684-4b8d-ae06-52639afb2172'], aliases:['马万']},
-    // PADI's translated Komodo page and pin identify this exact Manta Point;
-    // Indonesia has several other unrelated points with the same English name.
-    // https://travel.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/manta-point-komodo/
     {siteIds:['6b9ce539-316e-463c-a278-453e5565aeeb'], aliases:['曼塔角']},
-    // https://dive-tenerife.com/es/sitio-de-buceo/bah%C3%ADa-de-abades/
     {siteIds:['65388b7d-3548-4d2f-9cb9-1ee7e4c65bd6'], aliases:['Bahía de Abades']},
-    // https://duikplaats.net/nederland/utrecht/eiland-4
-    // https://www.duikersgids.nl/actueel/eiland-4-het-blijft-een-fantastische-duikplaats
     {siteIds:['aa7088d0-e2c2-446d-b9e1-ae438de5347a'], aliases:['Eiland 4']},
-    // Dolphin House is a shared nickname; only this Samadai record is matched.
-    // https://blog.padi.com/cn/top-10-dive-sites-in-egypt/
-    // https://travel.padi.com/zh-hant/dive-site/ai-ji-he-hong-hai/shaab-samadai-dolphin-house/
-    // https://travel.padi.com/ja/dive-site/eshihutotohong-hai/shaab-samadai-dolphin-house/
     {siteIds:['cf580194-edd8-4527-83d3-89505a5cd59d'], aliases:['海豚屋','海豚之家','萨马代礁','沙阿布薩馬代','シャーブ・サマダイ','ドルフィン・ハウス']},
-    // https://vilaombakdivers.com/zh/%E6%BD%9C%E7%82%B9/
-    // https://www.sunshinedive.com/fundiving
     {siteIds:['26637d74-ec44-4e54-b8d9-bbc06a760f53','c4db7253-35c2-4147-9475-20b46bf194f1'], aliases:['海龟天堂','터틀 헤븐']},
-    // PADI names this Komodo site but places its map pin in the Philippines;
-    // the recorded location was independently matched through SSI and Blue Rides.
-    // https://www.bluerides.com/ko/daiving-poineu/siaba-besar
-    // https://pinta-liveaboard.com/zh/blog/is-komodo-diving-dangerous-for-beginners/
     {siteIds:['c88c36d2-a077-4ca2-b095-e4d3622f968a'], aliases:['西亚巴贝萨尔','西阿巴贝萨尔','シアバ・ベサール','시아바 베사르']},
-    // Matching is restricted to Komodo records: Batu Bolong also names sites
-    // in Nusa Penida, while the nearby catalog pins remain separate records.
-    // https://www.padi.com/zh-hans/dive-center/yin-du-ni-xi-ya/taa-dive-resort/
-    // https://www.komodoresort.com/zh/komodo-liveaboard/
     {siteIds:['1aa8e744-abd5-47ed-916b-acb0de9bf028','f8cedff1-c153-49e0-b376-f9b9979eab07'], aliases:['巴都博隆','巴图博隆']},
-    // https://www.komodoresort.com/zh/komodo-liveaboard/
     {siteIds:['d0d02e01-2667-460b-9371-ca0dcd2f69c0','58eb8ead-363d-43b7-ac23-fae2645e7b69'], aliases:['城堡岩']},
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/shotgun-2/
     {siteIds:['ec48c5d7-ca5f-4349-8e80-89deef0119f7','fef2c31d-8aef-4c89-a512-f82c7072a84c'], aliases:['大锅','霰弹枪']},
-    // https://travel.padi.com/zh-hans/dive-site/fei-lu-bin/monad-shoal-thresher-shark-divers-mooring-line/
     {siteIds:['9f7e5d44-c3f4-410d-80fa-18bc9846e9cc'], aliases:['莫纳德浅滩']},
-    // https://www.divessi.com/ko/blog/diving-the-devils-den-9673.html
-    // https://www.padi.com/ko/dive-site/amerika-habjunggug-usa/devils-den/
     {siteIds:['025fb079-1af5-4466-9fdc-e7346c999268'], aliases:['데블스 덴','악마의 동굴']},
-    // PADI's map pin differs from the catalog; the named offshore reef and
-    // lighthouse are corroborated by the independent location below.
-    // https://www.padi.com/zh-hans/dive-site/ai-ji-he-hong-hai/daedalus-reef/
-    // https://diveplaza.com/regions/daedalus
     {siteIds:['05210ba8-9427-4d44-9b46-e5b1e7c6d0c5'], aliases:['代达罗斯礁','ダイダロス']},
-    // https://www.visitutah.com/zh-cn/articles/6-things-to-do-at-utahs-homestead-crater
     {siteIds:['928566c8-ae28-4dde-a414-5c9ffe3fba39'], aliases:['霍姆斯特德火山口']},
-    // https://www.padi.com/ja/dive-site/eshihutotohong-hai/ss-thistlegorm/
     {siteIds:['24578a6d-215e-4d04-8c74-334bddbc60d7'], aliases:['シスルゴーム','シスルゴーム号']},
-    // https://scubadiverlife.com/dive-site-lake-phoenix-virginia/
     {siteIds:['526a5e3f-6590-4e6c-a3f0-075d9815cdd5'], aliases:['Lake Rawlings']},
-    // https://discoverydivers.com/zh-hans/blog/thailand-marine-national-parks-opening-closures
-    // https://www.siamdive.com/cn/blogs/monsoon-season-diving-thailand-koh-tao-september-cn
     {siteIds:['fe6d2e5e-7709-49a5-b43e-ef82559a2a37'], aliases:['西南尖峰','西南礁','西南石林']},
-    // https://travel.padi.com/zh-hans/dive-site/thailand/tanote-bay/
     {siteIds:['227bee51-e969-4d17-a9ba-5ff0517c9e1b'], aliases:['塔诺特湾']},
-    // https://divecodex.com/es/sites/mar-menuda
     {siteIds:['969f00c0-900d-4bbb-a0ba-28ec3755a3e9'], aliases:['Cala Mar Menuda','La Mar Menuda','Platja de la Mar Menuda']},
 
-    // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
     {siteIds:['fed8a1d0-5bf4-435f-9539-b366c7ded1d2','24226288-9ff4-4b39-a549-4eca921d36dd'], aliases:['芒果湾']},
-    // https://www.padi.com/zh-hans/dive-site/thailand/koh-bida-nok/
     {siteIds:['9e0f1d6e-1435-4dd3-9d53-57076a97a179'], aliases:['比达诺克']},
-    // https://travel.padi.com/zh-hans/dive-trip/bali-indonesia/morning-dive-trip-mantapoint-crystal-bay-14841/
     {siteIds:['06c2add5-bd53-46a4-bba1-d7a83cddba18'], aliases:['水晶湾']},
 
-    // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
-    // https://discoverydivers.com/zh-hans/blog/thailand-marine-national-parks-opening-closures
     {siteIds:['822b44a1-0e07-40f3-89d1-fb4dbe50b008'], aliases:['春蓬尖峰','春蓬礁','春篷石林']},
-    // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
     {siteIds:['0d11452c-967f-4504-beb0-f1d57794177e'], aliases:['双子岩']},
-    // https://cn.kohsanuk.com/cruises/snorkeling/premium-diving-discovery
     {siteIds:['189e631c-598d-46f4-b338-da8097d0a9fe'], aliases:['日本花园']},
-    // https://www.aulanocean.com/zh/%E5%89%AF%E6%9C%AC-maldive
     {siteIds:['db0985d2-6be8-4147-9cd0-2d5d8f168bd6'], aliases:['白石']},
 
-    // https://www.padi.com/ja/dive-site/taiwang-guo/richelieu-rock-3/
-    // https://blog.padi.com/ko/jacques-cousteaus-favorite-dive-destinations-around-the-world/
     {names:['Richelieu Rock'], country:'Thailand', aliases:['リシュリュー・ロック','리슐리외 록','黎塞留岩','黎塞留岩石','黎胥留礁','里契留岩','리체리우 락']},
-    // https://www.padi.com/zh-hans/dive-site/yin-du-ni-xi-ya/tulamben/
-    // https://www.padi.com/zh-hans/dive-center/yin-du-ni-xi-ya/dive-dwell/
     {names:['Tulamben'], country:'Indonesia', aliases:['图兰奔','图蓝本']},
-    // https://www.padi.com/ja/dive-site/taiwang-guo/christmas-point/
     {names:['Christmas Point'], country:'Thailand', aliases:['クリスマスポイント']},
-    // https://www.padi.com/ja/dive-site/taiwang-guo/deep-six-2/
     {names:['Deep Six'], country:'Thailand', aliases:['ディープ・シックス']},
-    // https://www.padi.com/zh-hans/dive-site/hong-du-la-si/marys-place-2/
     {names:["Mary's Place",'Mary’s Place'], country:'Honduras', aliases:['玛丽之地']},
     {names:['Blue Corner','Blue Corner Palau'], country:'Palau', siteIds:['67b0fa7f-b4d9-4fdb-89c0-ae8fb5d10dcb','61a22e99-8852-4828-b7da-8d37b8d9692b'], aliases:['蓝角','藍角','ブルーコーナー','블루 코너']},
     {names:['German Channel'], country:'Palau', siteIds:['cb29a9de-db08-48ae-8f10-ba1c1bb8b6fb'], aliases:['德国水道','德國水道','ジャーマンチャネル','저먼 채널','저먼채널']},
@@ -3564,18 +2393,36 @@
     {names:['Sail Rock'], country:'Thailand', siteIds:['bffd65e8-0ffd-42a7-a78a-be36850a6af3'], aliases:['Hin Bai','หินใบ','帆船岩','帆船石','セイルロック','세일 락','세일락']},
     {names:['Monad Shoal'], country:'Philippines', aliases:['莫纳德浅滩','莫納德淺灘','모나드 숄']},
     {names:['USAT Liberty Wreck'], country:'Indonesia', aliases:['自由号沉船','自由號沉船','リバティ沈船','리버티 난파선']},
-    // Chinese and Japanese dive references use localized names for these Koh Tao dive sites.
    {names:['Red Rock'], country:'Thailand', siteIds:['e0e0add7-43c1-4b96-8959-c250c5d6441a'], aliases:['红岩']},
     {names:['White Rock Koh Tao'], country:'Thailand', siteIds:['db0985d2-6be8-4147-9cd0-2d5d8f168bd6'], aliases:['白石','白岩']},
-   // Spanish dive centers use Palancar Jardines / Jardines de Palancar for this same Palancar section.
     {names:['Palancar Gardens'], country:'Mexico', siteIds:['2629512d-8477-4c08-b917-3b73bf021c7d'], aliases:['Palancar Jardines','Jardines Palancar','Jardines de Palancar']},
     {names:['Palancar Caves'], country:'Mexico', siteIds:['ab8ba4f7-e048-46b6-8bb2-b2d6d2e63a0a'], aliases:['Cuevas de Palancar']},
     {names:['Palancar Bricks'], country:'Mexico', siteIds:['ba870135-1544-4147-816e-f52534dbbbe5'], aliases:['Palancar Ladrillos','Ladrillos Palancar','Colombia Bricks','Columbia Bricks']},
     {names:['Palancar Horseshoe'], country:'Mexico', siteIds:['7c71b426-85da-4286-bc2a-efcfb35e25eb'], aliases:['La Herradura','Palancar Herradura','Herradura Palancar']},
-    // Same Barracuda Point wording occurs at distinct dive sites; keep each localized alias tied to its site ID.
     {names:['Barracuda Point'], country:'Malaysia', siteIds:['efcdea6b-2e97-4cdf-8d5e-49d8550193ae'], aliases:['海狼风暴点']},
     {names:['Barracuda Point'], country:'Papua New Guinea', siteIds:['0bf0cafb-6178-4107-bba7-afa72a66eae0'], aliases:['バラクーダポイント']},
-    {names:['Barracuda Point'], country:'Curaçao', siteIds:['96dea5ad-6ef5-4231-85f4-dd7d005f5945'], aliases:['バラクーダポイント']}
+    {names:['Barracuda Point'], country:'Curaçao', siteIds:['96dea5ad-6ef5-4231-85f4-dd7d005f5945'], aliases:['バラクーダポイント']},
+    {names:['Burns Point'], country:'Canada', siteIds:['014577ce-682c-45b2-8722-291f0cc234e8'], aliases:['Burns Point Dive Site']},
+    {names:['Carlingford (Wrack)'], country:'Canada', siteIds:['18797239-301e-477f-9ad4-56ee168eb908'], aliases:['Carlingford Wreck']},
+    {names:['Caroline Rose (Schooner)'], country:'Canada', siteIds:['459ad268-6b1f-4d0a-bcfe-af521fdce7ce'], aliases:['Caroline Rose Wreck']},
+    {names:['Carriere Kahnawake'], country:'Canada', siteIds:['4bb6c741-ff1e-4b03-a712-5968fbad6493'], aliases:['Carrière Kahnawake','Carrière de Kahnawake','Carrière Bédard']},
+    {names:['Cascades'], country:'Canada', siteIds:['ebc1c7d9-34ee-42ae-a5ea-3cf9a69033c6'], aliases:['Pointe-des-Cascades','Pointe aux Cascades']},
+    {names:['Cecil J. (Wrack)'], country:'Canada', siteIds:['a72186ce-6d89-4427-a13c-69195a813436'], aliases:['Cecil J Wreck']},
+    {names:['Rummu quarry'], country:'Estonia', siteIds:['89398d97-e4b2-41c8-a25d-dc607d690711'], aliases:['Rummu karjäär']},
+    {names:['Antilla Shipwreck'], country:'Aruba', siteIds:['9bd331fe-e49c-43d1-b58d-e631d73eafd1'], aliases:['安蒂拉号']},
+    {names:['épave le toulonnais'], country:'Monaco', siteIds:['d359d817-2663-4f3e-8a03-ce806863c338'], aliases:['Le Toulonnais','Épave du Toulonnais']},
+    {names:['石朗'], country:'Taiwan', siteIds:['c9d81462-1932-4ef6-9f17-165f2d14460b'], aliases:['Shilang','Shinlang']},
+    {names:['Narqin Island'], country:'Azerbaijan', siteIds:['d14262e9-bc86-4394-9032-7a57a85df8e6'], aliases:['Nargin Island','Old Soviet Fleet Graveyard']},
+    {names:['Big Coral'], country:'Iran', siteIds:['7a637c48-1e96-45e4-aa40-682871ec10c5'], aliases:['Big Corals','بیگ کورال']},
+    {names:['Dolomite quarry reservoir'], country:'Latvia', siteIds:['df6bbeca-df41-4337-952e-59d18ac52a6b'], aliases:['Slokas Quarry','Slokas karjera ūdenskrātuve','Dolomīta karjera ūdenskrātuve']},
+    {names:['대풍감'], country:'Korea, Republic of', siteIds:['fe1aa533-e6ff-4df3-bc77-268e3ef11a47'], aliases:['Daepunggam']},
+    {names:['범섬'], country:'Korea, Republic of', siteIds:['c6ea9193-7940-4148-a293-3dd6199f1455'], aliases:['Beomseom']},
+    {names:['스텔라'], country:'Korea, Republic of', siteIds:['d6ade746-2f05-49d7-be35-322d03092d55'], aliases:['Stella Wreck','Stellar Wreck']},
+    {names:['홍도'], country:'Korea, Republic of', siteIds:['eeba2432-73c5-407a-84db-be0ee6cb3fa3'], aliases:['Hongdo (Tongyeong)','Tongyeong Hongdo']},
+    {names:['Black Rock Chimneys'], country:'Cook Islands', siteIds:['1f656a13-fbc9-4cc8-b5c9-7b6d49c0000a'], aliases:['The Chimneys']},
+    {names:['Dianas Ridge'], country:'Cook Islands', siteIds:['be4073f8-62e2-4811-b4ab-40bb5eafb540'], aliases:["Diana's Ridge"]},
+    {names:['Maritime Reefer'], country:'Cook Islands', siteIds:['cb31c1c7-4c09-4d4d-ae51-bee0aeaac479'], aliases:['FV Maritime Reefer','Maritime Reefer Wreck']},
+    {names:['Tupis Passage'], country:'Cook Islands', siteIds:['53e5fad9-2e13-4707-bd89-fcd75c879223'], aliases:["Tupi's Passage"]}
   ];
   const countryAliases = {
     indonesia:['印尼','印度尼西亞'], palau:['帛琉'],

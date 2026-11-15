@@ -8,7 +8,7 @@ import('/js/dive-site-reviewed-image-sites.js').then(({reviewedSiteIds}) => {
 }).catch(error => console.error('Reviewed image component unavailable:', error));
 
 (async () => {
-  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=3');
+  if (!window.DiveAtlasHeader) await import('/js/site-header.js?v=8');
   window.DiveAtlasHeader.mount();
   // Detail and browse headers historically shipped a static unavailable label.
   // Reuse the map's session handling so all entry points report real state.
