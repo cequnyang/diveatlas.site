@@ -1,4 +1,34 @@
 const { test, expect } = require('@playwright/test');
+test('map icon button backgrounds remain square', async ({ page }) => {
+  const { openMap } = require('./support');
+  const { openFallbackPhotoPopup } = require('./photo-ui-support');
+  await openMap(page);
+  const popup = await openFallbackPhotoPopup(page);
+  const bookmark = popup.locator('.saved-trips-save');
+  await expect(bookmark).toBeVisible();
+  const saveBox = await bookmark.boundingBox();
+  expect(Math.abs(saveBox.width - saveBox.height)).toBeLessThan(1);
+  await page.evaluate(()=>document.querySelector('#bioLegendGuide').click());
+  const close = page.locator('#tutorialClose');
+  await expect(close).toBeVisible();
+  const closeBox = await close.boundingBox();
+  expect(Math.abs(closeBox.width - closeBox.height)).toBeLessThan(1);
+});
+test('Chinese language control stays clear of the header menu', async ({ page }) => {
+  await page.addInitScript(()=>localStorage.setItem('global-coral-map-lang','zh'));
+  for (const width of [1400, 1024, 721, 390]) {
+    await page.setViewportSize({width,height:900});
+    await page.goto('/');
+    const language = page.locator('#languageMenuButton');
+    const menu = page.locator('#topMenuButton');
+    await expect(language).toBeVisible();
+    await expect(page.locator('body')).toHaveClass(/has-shared-header/);
+    // Browser translation can replace the label after the initial layout.
+    await page.locator('#languageMenuLabel').evaluate(el=>el.textContent='简体中文');
+    const a = await language.boundingBox(), b = await menu.boundingBox();
+    expect(a.x + a.width).toBeLessThanOrEqual(b.x);
+  }
+});
 // Headless Chromium normally hides native scrollbars, masking header gaps.
 test.use({ launchOptions:{ ignoreDefaultArgs:['--hide-scrollbars'] } });
 

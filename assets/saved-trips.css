@@ -28,7 +28,9 @@
 .saved-trips-save.is-saved svg path { fill:currentColor; }
 .has-trip-bookmark .popup-share-heading { padding-right:100px; }
 @media(max-width:720px) {
- .leaflet-popup .saved-trips-save--inline { position:static; flex:0 0 44px; width:44px; height:44px; margin-left:auto; }
+ /* Match the touch target in both axes; generic popup button heights must not
+    flatten the bookmark's hover background. */
+ .leaflet-popup .saved-trips-save--inline { position:static; flex:0 0 44px; width:44px; height:44px; min-width:44px; min-height:44px; box-sizing:border-box; margin-left:auto; }
  .dive-site-popup--with-photo .bio-popup-title--share .saved-trips-save + .diveatlas-sheet-share-button { margin-left:0; }
  .saved-trips-save svg { width:22px; height:22px; }
 }

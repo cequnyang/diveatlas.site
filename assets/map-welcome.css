@@ -45,7 +45,7 @@
 .map-welcome #mapWelcomeMonthPanel { gap: 12px; }
 .map-welcome #mapWelcomeMonthPanel .map-welcome-field { margin: 8px 0 6px; }
 .map-welcome #mapWelcomeMonthPanel .map-welcome-context { padding: 10px 12px; }
-:is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { top: -8px; right: -10px; min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+:is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { top: -8px; right: -10px; min-width: 36px; min-height: 36px; width: 36px; height: 36px; flex: 0 0 36px; box-sizing: border-box; }
 .map-welcome .tutorial-language-menu { margin-top: 0; }
 .map-welcome .tutorial-topbar { align-items: center; margin-bottom: 12px; }
 .map-welcome .tutorial-header { gap: 12px; }
@@ -138,7 +138,7 @@
   .map-welcome.tutorial-dialog.is-map-step { left: max(12px, env(safe-area-inset-left)); bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100vw - 24px); }
   .map-welcome.tutorial-dialog.is-review-step { width: calc(100vw - 24px); }
   :is(.map-welcome, .saved-trips-panel) .tutorial-title { font-size: 21px; }
-  :is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { min-width: 44px; min-height: 44px; }
+  :is(.map-welcome, .saved-trips-panel, .saved-trips-dialog, .saved-trips-menu) .tutorial-close { min-width: 44px; min-height: 44px; width: 44px; height: 44px; flex-basis: 44px; }
   .map-welcome .tutorial-language-menu .top-menu-lang-trigger { min-height: 44px; }
   .map-welcome .tutorial-header { gap: 8px; }
   .map-welcome-language { min-width: 48px; padding: 0 6px; font-size: 11px; }

@@ -134,7 +134,9 @@ body.has-shared-header .seo-top-menu-controls .top-menu-theme:focus-visible,
 body.has-shared-header .seo-language-menu .top-menu-lang-trigger:focus-visible,
 body.has-shared-header .seo-menu-wrap .top-menu-menu-button:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 52%, transparent); outline-offset: 2px; }
 
-body.has-shared-header .seo-language-menu { position: relative; display: inline-flex; align-items: center; }
+/* Reserve the label's intrinsic width even after localization or translation;
+   shrinking the wrapper lets its button paint over the adjacent menu. */
+body.has-shared-header .seo-language-menu { position: relative; display: inline-flex; align-items: center; width: max-content; flex: 0 0 auto; }
 body.has-shared-header .seo-language-menu .top-menu-lang-trigger {
   display: inline-flex;
   width: max-content;
