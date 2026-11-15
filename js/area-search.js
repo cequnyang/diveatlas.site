@@ -103,6 +103,33 @@
   // https://www.padi.com/zh-hans/diving-in/ying-shu-wei-er-jing-qun-dao/
   // https://travel.padi.com/es/diving-in/islas-virgenes-britanicas/
   const placeAliases = [
+    // Exact regional labels; source review in montenegro-evidence-20261115.json.
+    {"names":["Herceg Novi"],"country":"Montenegro","aliases":["Херцег Нови"]},
+
+    // Exact regional labels; source review in new-caledonia-evidence-20261115.json.
+    {"names":["South"],"country":"New Caledonia","aliases":["Province Sud","South Province","Southern Province","南部州"]},
+
+    // Exact regional labels; source review in korea-evidence-20261115.json.
+    {"names":["Gyeonggi"],"country":"Korea, Republic of","aliases":["Gyeonggi-do","경기도","京畿道"]},
+    {"names":["경기도"],"country":"Korea, Republic of","aliases":["Gyeonggi-do","Gyeonggi","京畿道"]},
+
+    // Exact regional labels; source review in micronesia-normalized-evidence-20261115.json.
+    {"names":["Yap State"],"country":"Micronesia, Federated States of","aliases":["ヤップ州","雅浦州"]},
+    {"names":["Saipan"],"country":"Northern Mariana Islands","aliases":["サイパン","사이판"]},
+
+    // Exact regional labels; source review in china-normalized-evidence-20261115.json.
+    {"names":["North District"],"country":"China","aliases":["北區"]},
+
+    // Exact regional labels; source review in french-polynesia-normalized-evidence-20261115.json.
+    {"names":["Leeward Islands"],"country":"French Polynesia","aliases":["Îles sous-le-vent","背风群岛","リーワード諸島","리워드 제도"]},
+
+    // Explicit state-level names, not a city-only translation: https://daydreampalau.com/divingpoint/ and https://www.thalassophile.club/
+    {names:['Koror'], country:'Palau', aliases:['コロール州','科羅州']},
+    // County-level dive context, including Green Island, not Taitung city alone.
+    // https://tour.taitung.gov.tw/zh-tw/discover/diving
+    // https://tour.taitung.gov.tw/zh-cn/discover/diving
+    // https://tour.taitung.gov.tw/ja/discover/diving
+    { names: ["Taitung", "Taidong"], country: "Taiwan", aliases: ["台東", "臺東", "台东", "台東県"] },
     {names:["Murchison Island"], country:"Canada", aliases:["G̱aysiigas Gwaay"]},
     {names:["Beechey Head"], country:"Canada", aliases:["Beechy Head"]},
     {names:["Nakaya"], country:"Canada", aliases:["USS YMS-420"]},
@@ -833,6 +860,124 @@
   // https://blog.padi.com/ko/shark-diving-the-best-dive-sites-in-the-world/
   // https://blog.padi.com/ko/best-scuba-diving-destinations-in-the-world/
   const siteAliases = [
+    // Scoped source review; details in thailand-koh-tao-reviewed-evidence-20261115.json.
+    {"names":["Three Rocks"],"country":"Thailand","siteIds":["b178366d-b3e8-4fd0-a9c0-59b6dbcea505"],"aliases":["หินสามก้อน"]},
+    {"names":["Lighthouse Bay"],"country":"Thailand","siteIds":["17382492-49e3-4c67-8bac-d582aaf675b8"],"aliases":["อ่าวไลท์เฮาส์","อ่าวกล้วยเถื่อน","Gluay Teun Bay","ライトハウスベイ"]},
+    {"names":["Laem Thian Bay"],"country":"Thailand","siteIds":["1ec79275-5c02-49b8-8d04-cb465800c135"],"aliases":["Laem Thien Bay"]},
+    {"names":["Laem Thian Caves"],"country":"Thailand","siteIds":["56d3813a-416d-4557-87d2-ed1a35450f14"],"aliases":["Laem Thien Caves"]},
+    {"names":["Buddha Rock"],"country":"Thailand","siteIds":["1c54f2ac-dc91-4733-aa7e-cabf47e5a92a"],"aliases":["Hin Taa Toh"]},
+    {"names":["Chalok Bay"],"country":"Thailand","siteIds":["f135b476-45e2-4b3a-843e-898ff752aaaf"],"aliases":["Chalok Baan Kao Bay","อ่าวโฉลกบ้านเก่า","チャロックバンカオ"]},
+    {"names":["Jansom Bay"],"country":"Thailand","siteIds":["7fbe827b-6679-41f6-8dc1-8f0ea7834eab"],"aliases":["อ่าวจันทร์สม"]},
+    {"names":["Lang  Khaai Bay"],"country":"Thailand","siteIds":["b4f4c801-490f-4441-8699-7775ac9852f0"],"aliases":["Lang Khai Bay","Lang Khaai Bay"]},
+    {"names":["AOW Mao"],"country":"Thailand","siteIds":["0d005e19-b53f-4e41-bce3-886e8b405d8a"],"aliases":["Aow Mao Bay","อ่าวเมา"]},
+    {"names":["Junkyard Reef"],"country":"Thailand","siteIds":["750a0053-63e6-4c22-84cf-dbc7c12cade2"],"aliases":["จังก์ยาด รีฟ","ジャンクヤード"]},
+    {"names":["HTMS Sattakut"],"country":"Thailand","siteIds":["c21dae1b-e2ef-43b9-8056-ba76af4e2caa"],"aliases":["ซากเรือจมสัตกูต","ซากเรือหลวงสัตกูต"]},
+    {"names":["No Name Pinnacle"],"country":"Thailand","siteIds":["ac208fa1-afff-42ec-96ad-5d6ab25f5574"],"aliases":["กองหินโนเนม"]},
+    {"names":["HTMS Suphairin 313, Wreck"],"country":"Thailand","siteIds":["0b49a802-58df-406d-8540-8aa0185d8473"],"aliases":["เรือหลวงสู้ไพรินทร์","ซากเรือจมสู้ไพรินทร์","HTMS Suphairon"]},
+    {"names":["HTMS Suphairin"],"country":"Thailand","siteIds":["5a64cf7c-de2c-4c54-b459-bb46a21116a6"],"aliases":["เรือหลวงสู้ไพรินทร์","ซากเรือจมสู้ไพรินทร์","HTMS Suphairon"]},
+    {"names":["HTMS Hanhak Sattru 312, Wreck"],"country":"Thailand","siteIds":["c12b244f-c6f3-4d40-976c-19ab57e7acc7"],"aliases":["เรือหลวงหาญหักศัตรู","ซากเรือจมหาญหักศัตรู","HTMS Hanhak Sattru"]},
+    {"names":["อ่าวลึก"],"country":"Thailand","siteIds":["0f88d581-2222-4543-b8f2-b843735298fb"],"aliases":["Aow Leuk","アオルーク"]},
+    {"names":["อ่าวโตนด"],"country":"Thailand","siteIds":["a046bac3-f2f3-4916-b6bf-b6d2875430dc"],"aliases":["Tanote Bay","タノーテベイ"]},
+
+    // Scoped source review; details in japan-okinawa-reviewed-evidence-20261115.json.
+    {"names":["Cape Maeda"],"country":"Japan","siteIds":["8cd5c227-dc03-45c1-a62f-3ba09bb1f5da"],"aliases":["真栄田岬","真榮田岬"]},
+    {"names":["Cape Maeda (Blue Cave)"],"country":"Japan","siteIds":["a9cd3044-7f0a-4ae5-9fc6-2cfc6b083e88"],"aliases":["Cape Maeda, Blue Cave","青の洞窟（真栄田岬）","青之洞窟"]},
+    {"names":["Sunabe No.1"],"country":"Japan","siteIds":["ee6258cc-3976-42ad-9290-182100a909c4"],"aliases":["砂辺No.1"]},
+    {"names":["Dragon Lady"],"country":"Japan","siteIds":["1b164e96-0463-4ca8-85e9-71f02b171060"],"aliases":["ドラゴンレディ","ドラゴンレディー"]},
+    {"names":["Nozaki"],"country":"Japan","siteIds":["6ec89902-a36e-487e-8242-4804c2a561bf"],"aliases":["野崎"]},
+    {"names":["Kamekichi"],"country":"Japan","siteIds":["1660f241-db0a-4266-a5f9-70aa5bf56b0b"],"aliases":["カメキチ"]},
+    {"names":["Sand Triangle"],"country":"Japan","siteIds":["5098f24f-adc9-4212-ba0e-cbf650f4b9f9"],"aliases":["サンドトライアングル"]},
+    {"names":["Toma No.1"],"country":"Japan","siteIds":["90d93f5b-6fcf-418e-b910-c43bd09241b4"],"aliases":["トウマ No.1","Touma No.1","唐馬NO.1","アイダーアイダー","アイダーアイダー（トウマNo1）"]},
+    {"names":["Toma No.2"],"country":"Japan","siteIds":["aa205fd8-9eb6-4ea8-92a8-d01c92608f87"],"aliases":["トウマ No.2","Touma No.2","唐馬NO.2","アイダー","アイダー（トウマNo2）"]},
+    {"names":["Kamigu"],"country":"Japan","siteIds":["dd953f88-a351-4cf7-ad3f-7270cff43623"],"aliases":["カミグー","カミグウ"]},
+    {"names":["Osaki Hanagoi Reef"],"country":"Japan","siteIds":["9d3e6ea0-553a-48fa-9f39-110cddccba27"],"aliases":["大崎ハナゴイリーフ"]},
+    {"names":["Yonara Channel"],"country":"Japan","siteIds":["347bae3b-5af2-436c-8730-92c3a07146d0"],"aliases":["ヨナラ水道"]},
+    {"names":["Taketomi Island UW Hotspring"],"country":"Japan","siteIds":["fac82576-e276-47dd-b8c0-74a41de66129"],"aliases":["竹富海底温泉","竹富島海底温泉"]},
+    {"names":["Kuroshima V-Drop"],"country":"Japan","siteIds":["a34c8b3e-bb0c-4c95-8f58-5e97bd0f910a"],"aliases":["黒島V字ドロップ","黒島Ｖ字ドロップ"]},
+    {"names":["Panari Big Corner"],"country":"Japan","siteIds":["46a40e41-7e8d-4d9e-9901-c721b7e11dd6"],"aliases":["パナリビッグコーナー","新城島（パナリ）マンタビッグコーナー"]},
+
+    // Scoped source review; details in malta-reviewed-evidence-20261115.json.
+    {"names":["Blue Hole"],"country":"Malta","siteIds":["f24f8645-7d94-4878-a0c5-270b45d51d60"],"aliases":["Le Trou Bleu"]},
+    {"names":["P29"],"country":"Malta","siteIds":["ea696c8a-76c9-449f-b8a2-5ef525d15800"],"aliases":["Patrol Boat P29","P29 Wrack","P 29 Boltenhagen Wrack"]},
+    {"names":["Rozi"],"country":"Malta","siteIds":["2795e9e6-fd0b-4da7-8b86-ba863a94b267"],"aliases":["Rożi","Rożi Tugboat","Tugboat Rożi","MV Rozi Wrack"]},
+    {"names":["MV Karwela (Wreck)"],"country":"Malta","siteIds":["bc162a99-7127-45dc-b5d6-baa39eb7e9ab"],"aliases":["MV Karwela","MV Karwela Wrack","MV Karwela Épave"]},
+    {"names":["P31 Wreck"],"country":"Malta","siteIds":["35db0660-2367-4bd5-ba0b-19d7bb712a11"],"aliases":["Patrol Boat 31","P31 Wrack","P31 Épave","P31 Relitto"]},
+    {"names":["MV Cominoland (Wreck)"],"country":"Malta","siteIds":["05e07e7b-37e5-467b-ae07-e859acc18fb8"],"aliases":["MV Cominoland","MV Cominoland Wrack","MV Cominoland Épave","Relitto della MV Cominoland"]},
+    {"names":["Cirkewwa Arch"],"country":"Malta","siteIds":["ff52cba6-5553-4e2b-a7b6-de2183948cbe"],"aliases":["Ċirkewwa Arch","Right Arch","Green Arch","L'arche de Cirkewwa"]},
+    {"names":["Comino Island - P31 Patrol Boat"],"country":"Malta","siteIds":["5f2b0e68-efea-4db4-a604-aacc8547b89d"],"aliases":["Patrol Boat 31","P31 Wrack","P31 Épave","P31 Relitto"]},
+    {"names":["Cominoland - MV"],"country":"Malta","siteIds":["5e5323f4-95b4-46ff-95f5-793ad1d05b97"],"aliases":["MV Cominoland","MV Cominoland Wrack","MV Cominoland Épave","Relitto della MV Cominoland"]},
+    {"names":["Karwela"],"country":"Malta","siteIds":["badab4f7-4fbf-40ed-9b78-4b56c2985b47"],"aliases":["MV Karwela","MV Karwela Wrack","MV Karwela Épave"]},
+    {"names":["Karwela - MV"],"country":"Malta","siteIds":["960d5b66-10d8-4b0a-af95-47f738a3198e"],"aliases":["MV Karwela","MV Karwela Wrack","MV Karwela Épave"]},
+    {"names":["P-29 - Patrol Boat"],"country":"Malta","siteIds":["5ddc540e-9861-4f94-867e-6699f21de009"],"aliases":["Patrol Boat P29","P29 Wrack","P 29 Boltenhagen Wrack"]},
+    {"names":["P-29, Cirkewwa (Norte)"],"country":"Malta","siteIds":["e1d5aace-ab96-470b-be01-4e38f2dd234c"],"aliases":["Patrol Boat P29","P29 Wrack","P 29 Boltenhagen Wrack"]},
+    {"names":["P-31, Comino"],"country":"Malta","siteIds":["4a0b68f0-368e-4688-a1ad-46ed2335ff14"],"aliases":["Patrol Boat 31","P31 Wrack","P31 Épave","P31 Relitto"]},
+    {"names":["ROZI, Cirkewwa (Norte)"],"country":"Malta","siteIds":["dbf712fb-82bc-462d-a5e1-8aa914f1084c"],"aliases":["Rożi","Rożi Tugboat","Tugboat Rożi","MV Rozi Wrack"]},
+    {"names":["Tug Boat Rozi - Cirkewwa"],"country":"Malta","siteIds":["659e982a-e5ac-4ce4-bf57-e36d65dba13c"],"aliases":["Rożi","Rożi Tugboat","Tugboat Rożi","MV Rozi Wrack"]},
+
+    // Scoped source review; details in montenegro-evidence-20261115.json.
+    {"names":["Patrol Boat PBR512 wreck"],"country":"Montenegro","siteIds":["668f43d7-66c4-43f1-b4a1-f35dfe198891"],"aliases":["Patrol Boat PBR 512","ПБР512"]},
+    {"names":["reef Galiola"],"country":"Montenegro","siteIds":["d970da61-ec16-41bc-9351-dfdd69edd77f"],"aliases":["Galiola"]},
+    {"names":["Submarine tunel"],"country":"Montenegro","siteIds":["0c698ae0-6ffb-4ea6-b691-bf8b59d10972"],"aliases":["Submarine Tunnel","Submarines Tunnel"]},
+    {"names":["Tihani Shipwreck"],"country":"Montenegro","siteIds":["b3196157-d210-43f2-83b6-0b9d011d9c17"],"aliases":["Tihany","Parnjača","Пароход Тихани"]},
+
+    // Scoped source review; details in new-caledonia-evidence-20261115.json.
+
+    // Scoped source review; details in taiwan-variant-evidence-20261115.json.
+    {"names":["Beauty Cave 美人洞"],"country":"Taiwan, Province of China","siteIds":["ff827f41-2115-4fa0-8f8b-ab82b7dcb3af"],"aliases":["Beauty Cave","美人洞","Meirendong","미인동"]},
+    {"names":["Shanfu Boat Wreck 杉福破沈船"],"country":"Taiwan, Province of China","siteIds":["c3a9de10-fa45-403a-afb5-48be48ab88c3"],"aliases":["杉福破沈船","破沈船"]},
+    {"names":["杉福沉船群 Shanfu Boat Wrecks"],"country":"Taiwan, Province of China","siteIds":["bfcc9ecb-5559-4272-8f7a-0ce63ec5bc27"],"aliases":["杉福五沈船群","Shanfu Five Shipwrecks"]},
+    {"names":["軟珊瑚區"],"country":"Taiwan, Province of China","siteIds":["88dd473d-0fa5-4c73-8e94-80cd2db36bc0"],"aliases":["後壁湖軟珊瑚區","水流東","軟珊瑚","秘密花園","Soft Coral Area","Soft Coral","East Current","Secret Garden"]},
+
+    // Scoped source review; details in korea-evidence-20261115.json.
+
+    // Scoped source review; details in aruba-evidence-20261115.json.
+    {"names":["Jane Sea (Wreck)"],"country":"Aruba","siteIds":["571a42b7-9ca2-46b8-88e3-881dd82e7be9"],"aliases":["Jane Sea Wreck"]},
+    {"names":["Pedernalis (Wreck)"],"country":"Aruba","siteIds":["a44259d2-c276-4d4a-ad6e-b995dee568a9"],"aliases":["SS Pedernales"]},
+
+    // Scoped source review; details in cook-islands-evidence-20261115.json.
+    {"names":["Dianas Ridge"],"country":"Cook Islands","siteIds":["be4073f8-62e2-4811-b4ab-40bb5eafb540"],"aliases":["Diana's Ridge"]},
+
+    // Scoped source review; details in micronesia-normalized-evidence-20261115.json.
+    {"names":["Cabbage Patch - Micronesia"],"country":"Micronesia, Federated States of","siteIds":["6c161a9b-1e48-4a66-8685-2727024c08b6"],"aliases":["Cabbage Patch"]},
+    {"names":["Eagle’s Nest - Micronesia"],"country":"Micronesia, Federated States of","siteIds":["cce4d256-c7be-4e92-837d-5772a6ef2ae7"],"aliases":["Eagle’s Nest"]},
+    {"names":["Heian Maru Wreck"],"country":"Micronesia, Federated States of","siteIds":["fc34404d-46db-4e26-a5c0-ce3e003e53f3"],"aliases":["平安丸"]},
+    {"names":["Magic Kingdom"],"country":"Micronesia, Federated States of","siteIds":["20a457e5-ab49-491d-8faf-673e387aebff"],"aliases":["マジックキングダム"]},
+    {"names":["Truk Lagoon"],"country":"Micronesia, Federated States of","siteIds":["d12b83d3-88ae-4995-a639-73ce4a440e46"],"aliases":["チューク環礁","トラック環礁"]},
+    {"names":["Yap Caverns"],"country":"Micronesia, Federated States of","siteIds":["e0e7ed81-0ee8-425e-8cd9-3e3986606862"],"aliases":["ヤップ・カバーンズ"]},
+
+    // Scoped source review; details in china-normalized-evidence-20261115.json.
+    {"names":["DiveHub 46"],"country":"China","siteIds":["7272f7c7-8314-4025-ac2f-f107c3717acf"],"aliases":["東莞DiveHub潛水館"]},
+    {"names":["Guangdong: Wanshan Island, Zhuhai"],"country":"China","siteIds":["d98c4e49-3690-4e3e-95f5-b204badca2fb"],"aliases":["万山岛","Wanshan Island"]},
+    {"names":["Suzhou Xishan Diving Center"],"country":"China","siteIds":["05705c74-4339-4206-90af-7e22d1b1eb5d"],"aliases":["苏州西山潜水基地"]},
+    {"names":["Yunnan: Fuxian Lake"],"country":"China","siteIds":["7054b3c4-5d6e-44f5-9bab-e20741c1149a"],"aliases":["抚仙湖","Fuxian Lake"]},
+    {"names":["伙頭墳洲 Town Island"],"country":"China","siteIds":["fca0c0e8-0c22-4db6-9eeb-b205bc711a75"],"aliases":["伙頭墳洲","Town Island"]},
+    {"names":["南果洲 South Ninepin Island"],"country":"China","siteIds":["ba3647e8-5633-4c46-a96c-821421bcf513"],"aliases":["南果洲","South Ninepin Island"]},
+    {"names":["小棕林 Little Palm Beach"],"country":"China","siteIds":["875e8e38-762e-4935-8ff8-c2c064f479c3"],"aliases":["小棕林","Little Palm Beach"]},
+    {"names":["東果洲 East Ninepin Island"],"country":"China","siteIds":["46eb57bc-f3dd-4cf2-aa29-dc3f2e475314"],"aliases":["東果洲","East Ninepin Island"]},
+    {"names":["東霸 East Dam"],"country":"China","siteIds":["29d54a6e-98b8-4c66-ab69-fca76b1a06e0"],"aliases":["東霸","East Dam","東壩"]},
+    {"names":["潘家口水下长城Underwater Great Wall"],"country":"China","siteIds":["8d08c2d7-f7ab-4f60-85e8-c351685537fe"],"aliases":["潘家口水下长城"]},
+    {"names":["火石洲 (西) Basalt Island (West)"],"country":"China","siteIds":["1937e7f0-4562-4eb7-bb2a-872b50252fae"],"aliases":["火石洲 (西)","Basalt Island (West)"]},
+    {"names":["燕子岩 Yin Tsz Ngam"],"country":"China","siteIds":["da1251d1-ea73-4dff-a086-175ed5e2494b"],"aliases":["燕子岩","Yin Tsz Ngam"]},
+    {"names":["牛尾洲 Shelter Island"],"country":"China","siteIds":["18eb18a3-76dc-404a-b110-f0070ceafcde"],"aliases":["牛尾洲","Shelter Island"]},
+    {"names":["白水碗 Pak Shui Wun"],"country":"China","siteIds":["918290b9-7745-459f-839d-0bbb0a0f1e1a"],"aliases":["白水碗","Pak Shui Wun"]},
+    {"names":["香港浸會園泳池 Hong Kong Baptist Assembly Pool"],"country":"China","siteIds":["79978558-4d3f-4d7d-832d-79a6ec62e4f4"],"aliases":["香港浸會園泳池","Hong Kong Baptist Assembly Pool"]},
+
+    // Scoped source review; details in french-polynesia-normalized-evidence-20261115.json.
+    {"names":["Epave Catalina"],"country":"French Polynesia","siteIds":["a5b596b6-6309-4661-84a0-7e74422388ab"],"aliases":["Catalina PBY-5A","Épave Catalina"]},
+    {"names":["Faille d'Arue"],"country":"French Polynesia","siteIds":["8d91623d-5d5b-4586-8e3c-9c0e76c22114"],"aliases":["La Faille d'Arue"]},
+    {"names":["La source"],"country":"French Polynesia","siteIds":["189425e1-5a4b-4d46-a7f7-19e0d29061ad"],"aliases":["The Spring","Underwater Spring","Source"]},
+    {"names":["La zelée"],"country":"French Polynesia","siteIds":["e8db93c7-a615-4dff-a013-056e323b50f3"],"aliases":["La Zélée","Zélée"]},
+    {"names":["Papa Whisky"],"country":"French Polynesia","siteIds":["8fb6c709-9614-4c58-9df3-a31a3069d2a7"],"aliases":["Papa Whiskey"]},
+    {"names":["Tombant St Etienne"],"country":"French Polynesia","siteIds":["0e3e6b69-3426-46f7-aa3a-a9fe5ec6fca6"],"aliases":["St Etienne drop-off","Tombant Saint-Étienne"]},
+
+    // Scoped source review; details in guam-evidence-20261115.json.
+    {"names":["Gab Gab 1"],"country":"Guam","siteIds":["ce4e2d17-fab9-4070-9d17-0a282a19c691"],"aliases":["ギャブギャブ1"]},
+    {"names":["SMS Cormoran (Wreck)"],"country":"Guam","siteIds":["12277483-ef97-4156-ac2e-8a238f5f16c5"],"aliases":["SMS コーモラン","SMS コーモラン Ⅱ","莫蘭號","科爾莫朗號","SMS 코모란"]},
+    {"names":["Tokai Maru (Wreck)"],"country":"Guam","siteIds":["59bd0af1-b74a-45d5-a160-4ce707b25dac"],"aliases":["東海丸","東海丸號","토카이 마루"]},
+
+    // Official tourism location 22.65577,121.47454 is 67 m from this catalog pin.
+    // https://tour.taitung.gov.tw/ja/attraction/details/898
+    { names: ["石朗"], country: "Taiwan", siteIds: ["c9d81462-1932-4ef6-9f17-165f2d14460b"], aliases: ["石朗スクーバダイビングスポット"] },
     { names: ["Manijin island"], country: "Cyprus", siteIds: ["090f05fa-6bfe-423f-b98c-bc9d57edc0a1"], aliases: ["Manidjin Isle", "Μανίτζι"] },
     { siteIds: ["735af4f4-be63-4927-aebd-7c77084f01c6"], aliases: ["플로리다 팬핸들"] },
     { names: ["Grant Reefs, wreck of Capilano"], country: "Canada", siteIds: ["2d8ac97f-dc6f-562d-8ff0-0a22136dfba0"], aliases: ["Capilano I", "SS Capilano"] },
@@ -2377,7 +2522,7 @@
     {names:['The Big Drop Off'], country:'Palau', siteIds:['4cdc90bd-05f2-486b-b123-247434f4c18d'], aliases:['大断层','大斷層','ビッグドロップオフ','빅 드랍 오프']},
     {names:['Siaes Corner'], country:'Palau', siteIds:['7f94c7f8-73e0-4d01-ac6b-7b34bac4de28'], aliases:['西亞斯角','シアズコーナー']},
     {names:['New Drop-Off'], country:'Palau', siteIds:['d5cfc134-c6c9-4c8e-b139-d4822f769a2a'], aliases:['新断层','新大断层','新斷層','ニュードロップオフ']},
-    {names:['Chandelier Cave'], country:'Palau', siteIds:['cc412948-05b6-40de-9b85-ce790292b9d1'], aliases:['水晶吊灯洞','钟乳石洞','吊灯洞','シャンデリアケーブ','샹들리에 케이브','샹들리에 동굴']},
+    {names:['Chandelier Cave'], country:'Palau', siteIds:['cc412948-05b6-40de-9b85-ce790292b9d1'], aliases:['水晶吊灯洞','钟乳石洞','鐘乳石洞','吊灯洞','シャンデリアケーブ','샹들리에 케이브','샹들리에 동굴']},
     {names:['Chuyo Maru'], country:'Palau', siteIds:['5ed68d56-7361-42fc-8e59-b132e768dbfa'], aliases:['忠洋丸','Lionfish Wreck']},
     {names:['Iro Maru Wreck Palau'], country:'Palau', siteIds:['b36c8b39-feeb-4930-b619-c8b77cd16c1f'], aliases:['Iro Wreck','IRO沉船','Iro 號油輪','이로']},
     {names:['Jake SeaPlane'], country:'Palau', siteIds:['5627f747-41c8-49aa-a4e4-79f9b544d4a1'], aliases:['日軍偵察機','零式水上偵察機','レックJake Seaplane']},
@@ -2388,7 +2533,7 @@
     {names:['Siaes Tunnel'], country:'Palau', siteIds:['b719c824-45e0-49da-ad11-91c942458379'], aliases:['西亚斯隧道','西亞斯隧道','シアズトンネル','シアス・トンネル','시아스터널','시아스 터널']},
     {names:['Temple of Doom'], country:'Palau', siteIds:['a1de0d3f-9206-42eb-b9bc-0a2e223dfde9'], aliases:['毁灭神殿','厄运神庙','ザ・テンプルオブドーム']},
     {names:['Peliliu Corner'], country:'Palau', siteIds:['20e0a994-2cb3-47e4-a5d1-28983bd223ee'], aliases:['Peleliu Corner','贝里琉角','貝里琉角','ペリリューコーナー','펠렐리우 코너']},
-    {names:['Sand Bar'], country:'Palau', siteIds:['8196562a-0112-4921-88f9-22b7449f7304'], aliases:['玻璃城']},
+    {names:['Sand Bar'], country:'Palau', siteIds:['8196562a-0112-4921-88f9-22b7449f7304'], aliases:['玻璃城','グラスランド','Grass Land']},
     {names:['Hin Daeng - Hin Muang'], country:'Thailand', siteIds:['937f010e-9b4d-48bb-a5a3-a62951d164f8'], aliases:['红石和紫石','海丹和海姆昂','紅岩','紫岩','หินแดง หินม่วง','ヒンデーン','ヒンムアン','힌댕','힌 무앙']},
     {names:['Sail Rock'], country:'Thailand', siteIds:['bffd65e8-0ffd-42a7-a78a-be36850a6af3'], aliases:['Hin Bai','หินใบ','帆船岩','帆船石','セイルロック','세일 락','세일락']},
     {names:['Monad Shoal'], country:'Philippines', aliases:['莫纳德浅滩','莫納德淺灘','모나드 숄']},
@@ -2420,9 +2565,8 @@
     {names:['스텔라'], country:'Korea, Republic of', siteIds:['d6ade746-2f05-49d7-be35-322d03092d55'], aliases:['Stella Wreck','Stellar Wreck']},
     {names:['홍도'], country:'Korea, Republic of', siteIds:['eeba2432-73c5-407a-84db-be0ee6cb3fa3'], aliases:['Hongdo (Tongyeong)','Tongyeong Hongdo']},
     {names:['Black Rock Chimneys'], country:'Cook Islands', siteIds:['1f656a13-fbc9-4cc8-b5c9-7b6d49c0000a'], aliases:['The Chimneys']},
-    {names:['Dianas Ridge'], country:'Cook Islands', siteIds:['be4073f8-62e2-4811-b4ab-40bb5eafb540'], aliases:["Diana's Ridge"]},
     {names:['Maritime Reefer'], country:'Cook Islands', siteIds:['cb31c1c7-4c09-4d4d-ae51-bee0aeaac479'], aliases:['FV Maritime Reefer','Maritime Reefer Wreck']},
-    {names:['Tupis Passage'], country:'Cook Islands', siteIds:['53e5fad9-2e13-4707-bd89-fcd75c879223'], aliases:["Tupi's Passage"]}
+    {names:['Tupis Passage'], country:'Cook Islands', siteIds:['53e5fad9-2e13-4707-bd89-fcd75c879223'], aliases:["Tupi's Passage"]},
   ];
   const countryAliases = {
     indonesia:['印尼','印度尼西亞'], palau:['帛琉'],
