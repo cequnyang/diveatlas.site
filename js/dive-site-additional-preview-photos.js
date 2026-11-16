@@ -36131,5 +36131,603 @@ export const additionalPreviewPhotos = [
     "rightsStatus": "Supplied evidence, not independently verified: {\"label\": \"NASA public material unless copyright noted; not Creative Commons.\", \"policy_url\": \"https://eol.jsc.nasa.gov/FAQ/default.htm\", \"evidence_sha256\": \"413348e05957e98745ee608ed161650945f8c63f95061a10343df9c08ecc9b88\", \"private_download_and_retention_supported\": true, \"basis\": \"Retained NASA FAQ supports private retention/reproduction absent an applicable copyright exception; none observed on this item. Ownership not independently warranted. Adobe processing-profile copyright metadata is not a photograph copyright claim.\", \"credit\": \"Image courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. ISS066-E-137961.\", \"source_link\": \"https://eol.jsc.nasa.gov/SearchPhotos/photo.pl?mission=ISS066&roll=E&frame=137961\", \"distribution_gate\": \"Private retention supported. Publication, exact-site/canonical assignment and production changes held. No endorsement/exclusive-ownership claim. SSI/Scubago locality text is supporting metadata only; none of its photographs is copied or licensed here.\"}",
     "publication": "NOT_AUTHORIZED",
     "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "0dcee6eb-fa89-442d-8c6f-2872c986a36c",
+    "slug": "anacapa-island",
+    "photoNo": 7,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/0dcee6eb-fa89-442d-8c6f-2872c986a36c/preview-option-e2fbb5a42e6e9ce0.jpg",
+    "alt": "Anacapa Island — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour / National Park Service, Channel Islands Live underwater programme. CHIS-DUW-141027-069.jpg",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/27414145-4366-4c6e-baef-118db89e9e26"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_island_context Identity: Item keywords Landing Cove/Channel Islands Live; native NPS programme overview identifies live dive at landing cove of Anacapa Island. Island-context match, not certified exact camera coordinates and not Channel Islands Break Wall. Limitations: Item keywords Landing Cove/Channel Islands Live; native NPS programme overview identifies live dive at landing cove of Anacapa Island. Island-context match, not certified exact camera coordinates and not Channel Islands Break Wall. Unmodified delivered full-resolution JPEG from native original asset route, dimensions match Original metadata. Delivered byte size differs from catalogue Size; cause unknown, no historical-master byte-identity or camera RAW claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "e2fbb5a42e6e9ce0a565741b3035ce4411d3358c0b9527dccd645b8bfa5041ba",
+    "originalDimensions": [
+      3000,
+      1996
+    ],
+    "identityStatus": "Item keywords Landing Cove/Channel Islands Live; native NPS programme overview identifies live dive at landing cove of Anacapa Island. Island-context match, not certified exact camera coordinates and not Channel Islands Break Wall.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS catalogue ConstraintsInformation=Public domain,GrantingRights=Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/27414145-4366-4c6e-baef-118db89e9e26\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 9,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-c279dafa7f6f4434.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Aerial Image of Fort Jefferson, Dry Tortugas National Park Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "c279dafa7f6f443447024aa57f3556c93782181112363c87bfc7acad9f6a774a",
+    "originalDimensions": [
+      3072,
+      2044
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "208c3599-db47-48c0-bf1e-6ec7893b5fb3",
+    "slug": "fort-jefferson-wall",
+    "photoNo": 9,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-c279dafa7f6f4434.jpg",
+    "alt": "Fort Jefferson Wall — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Aerial Image of Fort Jefferson, Dry Tortugas National Park Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "c279dafa7f6f443447024aa57f3556c93782181112363c87bfc7acad9f6a774a",
+    "originalDimensions": [
+      3072,
+      2044
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9461638f-a8b0-dd83-168e-287ad9fa78b1\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 10,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-f69d54e42facd7af.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=946ef80b-e2d6-842f-a7a8-c2e6eea3a1f2 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=946ef80b-e2d6-842f-a7a8-c2e6eea3a1f2"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Bird Key Wreck Propeller Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "f69d54e42facd7aff1a649af3818749086bd0c1bf363e822d6a0415eb727dd15",
+    "originalDimensions": [
+      3407,
+      4834
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=946ef80b-e2d6-842f-a7a8-c2e6eea3a1f2\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 11,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-c3fb1a6a930a0df3.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948416d0-c0fa-38fd-5aaa-006fce156383 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948416d0-c0fa-38fd-5aaa-006fce156383"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Ranger Snorkeling with a Curious Youth Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "c3fb1a6a930a0df37e300b279d6d41b3391dacbcdd6a79d0d2c49ca60e669ae4",
+    "originalDimensions": [
+      4039,
+      2688
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948416d0-c0fa-38fd-5aaa-006fce156383\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 12,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-70485fd957591566.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9488bb4d-0767-a8d0-0c54-732187ea0c4b . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9488bb4d-0767-a8d0-0c54-732187ea0c4b"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Snorkeler on a Submerged Anchor Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "70485fd9575915665e7d23e95a8f5b8563283a8077b23951675bfff80bb4c41c",
+    "originalDimensions": [
+      4256,
+      2832
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=9488bb4d-0767-a8d0-0c54-732187ea0c4b\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 13,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-90e95bbc3a417005.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Brett Seymour, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948fc1ec-c8bd-ffc0-df21-d50bb272b392 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948fc1ec-c8bd-ffc0-df21-d50bb272b392"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Staghorn Coral Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "90e95bbc3a417005be691acbd20ac1e9a9d9595f36f7d7211aa094fa91bd8c30",
+    "originalDimensions": [
+      2560,
+      3847
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=948fc1ec-c8bd-ffc0-df21-d50bb272b392\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 14,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-6e5988b782102db2.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94962a60-9101-e1a3-6f2c-c6be00bc0af6 . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94962a60-9101-e1a3-6f2c-c6be00bc0af6"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Fish Aggregate Below a Pier Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "6e5988b782102db238508464612a3dd0a6e4195f80ba94eaea75a01f0b7c0fc2",
+    "originalDimensions": [
+      2832,
+      4256
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94962a60-9101-e1a3-6f2c-c6be00bc0af6\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 15,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-75f2732ec37aa5e1.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=949d49bc-fe44-f2d5-f358-0c119278a7bf . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=949d49bc-fe44-f2d5-f358-0c119278a7bf"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Snorkler with Silversides Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "75f2732ec37aa5e100ba2f20d136ff5467872c5edfb7ae1962988b12f2501fc8",
+    "originalDimensions": [
+      4256,
+      2832
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=949d49bc-fe44-f2d5-f358-0c119278a7bf\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "fb1c5db7-89dc-48ce-976c-15da98c9813c",
+    "slug": "dry-tortugas-national-park",
+    "photoNo": 16,
+    "batch": "incremental16-20261116",
+    "src": "/assets/dive-sites/fb1c5db7-89dc-48ce-976c-15da98c9813c/preview-option-2b8ddc7472492f38.jpg",
+    "alt": "Dry Tortugas National Park — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern, Submerged Resources Center / U.S. National Park Service. https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94ada178-e89b-4c06-6d6e-b8f78a9c27ef . Public domain; no endorsement implied.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94ada178-e89b-4c06-6d6e-b8f78a9c27ef"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Historic Coaling Pier Pilings Identity: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID. Limitations: Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "2b8ddc7472492f38ad95d94913297ed1e445fa47adcbe9186c2972cf4291414d",
+    "originalDimensions": [
+      2044,
+      3072
+    ],
+    "identityStatus": "Native named Dry Tortugas gallery and per-item captions establish park context, not exact dive pin. Aerial Fort Jefferson also labels surrounding wall context. Bird Key Wreck is not assumed identical to Bird Key Reef inventory. Coaling pilings are named feature context, no invented site UUID.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain: explicit per-asset NPS ConstraintsInformation and embedded source metadata. GrantingRights field Unknown retained as catalog metadata; not inferred solely from federal hosting.\", \"licence_url\": \"https://www.nps.gov/media/photo/gallery-item.htm?gid=932AA945-C5AB-8C49-94F542BF68F3BA22&id=94ada178-e89b-4c06-6d6e-b8f78a9c27ef\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "269d43c2-35a6-4393-be7e-0eed46189185",
+    "slug": "three-sisters-springs",
+    "photoNo": 50,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/269d43c2-35a6-4393-be7e-0eed46189185/preview-option-4ceead3c5e0668df.jpg",
+    "alt": "Three Sisters Springs — Context photo — site identity not independently verified",
+    "credit": "Keith Ramos/USFWS / U.S. Fish and Wildlife Service; source Public Domain.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.fws.gov/media/three-sisters-springs-area"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Manatee seen through clear spring water with bank vegetation and safety marker; surface view. Identity: Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext. Limitations: Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "4ceead3c5e0668dfa3b6b5c41e6da81647f313c35d6492106a1d33950ebed570",
+    "originalDimensions": [
+      3000,
+      2008
+    ],
+    "identityStatus": "Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public Domain,explicit individual FWSmedia record. Creditretained; no impliedendorsement. No private rights override visible in source or image.\", \"licence_url\": \"https://www.fws.gov/media/three-sisters-springs-area\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "269d43c2-35a6-4393-be7e-0eed46189185",
+    "slug": "three-sisters-springs",
+    "photoNo": 51,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/269d43c2-35a6-4393-be7e-0eed46189185/preview-option-52957c5a63398d70.jpg",
+    "alt": "Three Sisters Springs — Context photo — site identity not independently verified",
+    "credit": "Steve Hillebrand/USFWS / U.S. Fish and Wildlife Service; source Public Domain.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.fws.gov/media/florida-manatee-2"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. Wide surface view along clear spring water and wooded banks,with manatee shape visible below surface; not an underwater camera view. Identity: Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext. Limitations: Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext.  Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "52957c5a63398d708b9aa517ffca465182b996523285db9cb53829fe653eecf6",
+    "originalDimensions": [
+      3504,
+      2336
+    ],
+    "identityStatus": "Individual source text names Three Sisters Springs near Crystal RiverNWR. Inventory Three Sisters Springs28.8906,-82.5889. Clearwater,banklandscapeandmanatees arecompatible. No sourcecameraGPS or exact entry/pinverified; labelnamed-site surfacecontext.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public Domain,explicit individual FWSmedia record. Creditretained; no impliedendorsement. No private rights override visible in source or image.\", \"licence_url\": \"https://www.fws.gov/media/florida-manatee-2\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "86c8010d-4c5f-4da8-a785-030b263ad700",
+    "slug": "buck-island-reef",
+    "photoNo": 80,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/86c8010d-4c5f-4da8-a785-030b263ad700/preview-option-9c39f339d2c6f868.jpg",
+    "alt": "Buck Island Reef — Context photo — site identity not independently verified",
+    "credit": "NPS staff / Buck Island Reef National Monument. NPGallery eef77559-03ed-4606-a2f9-d3b0b1e1b9ab.",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://npgallery.nps.gov/AssetDetail/eef77559-03ed-4606-a2f9-d3b0b1e1b9ab"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_named_reef_context Identity: Native item identifies Buck Island Reef National Monument, St Croix, USVI, Fish and coral; photo geographic reference17.8101005554199,-64.6221008300781. Inventory named reef matched, exact camera pin unverified; never Buck Island Point St Thomas. Limitations: Native item identifies Buck Island Reef National Monument, St Croix, USVI, Fish and coral; photo geographic reference17.8101005554199,-64.6221008300781. Inventory named reef matched, exact camera pin unverified; never Buck Island Point St Thomas. Full3072x2048 JPEG offered by explicit Original anchor. Historical digitized photo, originally described TIF/MrSID; not camera-native master claim. Unmodified delivered JPEG476790bytes. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "9c39f339d2c6f868111e115eb7bbcec15696b78489c74d7dbcbffe7a697c0ab6",
+    "originalDimensions": [
+      3072,
+      2048
+    ],
+    "identityStatus": "Native item identifies Buck Island Reef National Monument, St Croix, USVI, Fish and coral; photo geographic reference17.8101005554199,-64.6221008300781. Inventory named reef matched, exact camera pin unverified; never Buck Island Point St Thomas.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; item-specific Constraint and NPS staff photographer; no individual copyright restriction shown.\", \"licence_url\": \"https://npgallery.nps.gov/AssetDetail/eef77559-03ed-4606-a2f9-d3b0b1e1b9ab\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 89,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-b873096258778b7f.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-102",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/0802b5f5-915a-11b0-aef8-0fe149508ddd"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "b873096258778b7f3df82c86b44b25fdfbe6b6f18a9b5f08cfdf7b265c950853",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/0802b5f5-915a-11b0-aef8-0fe149508ddd\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 90,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-a1f4d87eb3edf56a.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-108",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/084f502c-a1fa-889f-3bf3-d92fac5c688d"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "a1f4d87eb3edf56a5a5bac8ca2e86989d4ab42bf94d9f3b1c904f277d0d23f3b",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/084f502c-a1fa-889f-3bf3-d92fac5c688d\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 91,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-9a1ceb0e1873f582.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-111",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/087b65ff-046a-eb43-e96e-f6ff14543a95"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "9a1ceb0e1873f582aafd3400f047d6c24ed52583259b8187db187cd158d3b267",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/087b65ff-046a-eb43-e96e-f6ff14543a95\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 92,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-b136f6b55b603808.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-112",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/089c3125-eb2b-8f8f-4dd0-7e633802d5d6"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "b136f6b55b603808ab4002bfbce47a2e22f9d05f24f802d9f972813b30bea69e",
+    "originalDimensions": [
+      7360,
+      4912
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/089c3125-eb2b-8f8f-4dd0-7e633802d5d6\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 93,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-99a9f65731fbe77a.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-121",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/08e95c16-db9c-de4a-c1bb-1c49c6b7d0e1"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "99a9f65731fbe77a8ffa193cc79ae3124d8a5b486136a7fff35add376f88e3f0",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/08e95c16-db9c-de4a-c1bb-1c49c6b7d0e1\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 94,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-9f93d4e2723aaaa7.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-124",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/090f57b0-034d-99f8-8844-034e248151e7"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "9f93d4e2723aaaa78e1a4ff74837810437ef5031b826ecb317f1164d70bbb171",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/090f57b0-034d-99f8-8844-034e248151e7\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 95,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-b43349cb222ffd38.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-131",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/09765b3c-dce0-f10d-2189-6c6d392ddb6c"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "b43349cb222ffd3898e79e44f0c216b86c0313a57eee7480b163f85d3be57652",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/09765b3c-dce0-f10d-2189-6c6d392ddb6c\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 96,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-54b0d12de639718d.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-156",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/09d2b657-e8a2-84ee-1371-efbacf88d144"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "54b0d12de639718d747e29c7f06e4cdc91bf65411b4ecbb4164ee741585a1213",
+    "originalDimensions": [
+      2850,
+      3990
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/09d2b657-e8a2-84ee-1371-efbacf88d144\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 97,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-8f132e078d5225b0.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-162",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/09e2b597-96a1-b659-c761-5543cb3017da"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "8f132e078d5225b0f5ffcd7da34f18bb027bca2e6d914298ae4fb93c27ff4fff",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/09e2b597-96a1-b659-c761-5543cb3017da\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
+  },
+  {
+    "siteId": "513c25df-476e-4cdb-a862-6dfd6f402982",
+    "slug": "salt-river-canyon",
+    "photoNo": 98,
+    "batch": "12h29-20261116",
+    "src": "/assets/dive-sites/513c25df-476e-4cdb-a862-6dfd6f402982/preview-option-14e613a8cb8bb6cd.jpg",
+    "alt": "Salt River Canyon — Context photo — site identity not independently verified",
+    "credit": "Susanna Pershern / National Park Service. SARI_DUW_150515-174",
+    "creditLinks": [
+      {
+        "label": "Source",
+        "url": "https://www.nps.gov/npgallery/AssetDetail/0a0aa6bf-a542-155a-be28-ec2f82c28808"
+      }
+    ],
+    "creditSuffix": "Resized",
+    "attributionDetail": "Owner-selected; identity and reuse evidence have NOT been newly verified. camera_photograph_underwater_named_site_candidate Identity: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Limitations: Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit. Unmodified JPEG delivered by native original route; dimensions match original metadata. Byte sizes differ slightly from catalogue size; cause unknown. Not a camera RAW or historical-master byte-identity claim. Resized and JPEG re-encoded; hero may be cropped.",
+    "originalSha256": "14e613a8cb8bb6cd9c882951af218682ea74520dbd373aefa39b0d8b49ffbada",
+    "originalDimensions": [
+      4912,
+      7360
+    ],
+    "identityStatus": "Native NPS Salt River Canyon album and item captions identify submerged canyon off St Croix, US Virgin Islands. Not Arizona canyon. Exact camera coordinates unverified. Existing inventory has four earlier photographs; no new site coverage credit.",
+    "rightsStatus": "Supplied evidence, not independently verified: {\"license\": \"Public domain; individual NPS metadata ConstraintsInformation Public domain, GrantingRights Full; no individual copyright restriction.\", \"licence_url\": \"https://www.nps.gov/npgallery/AssetDetail/0a0aa6bf-a542-155a-be28-ec2f82c28808\"}",
+    "publication": "NOT_AUTHORIZED",
+    "label": "Context photo — site identity not independently verified"
   }
 ];
