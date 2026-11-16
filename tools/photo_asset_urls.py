@@ -62,7 +62,9 @@ def write_storage_ignores(root):
   if not src.startswith('/assets/dive-sites/') or '..' in src.split('/'):
    raise ValueError('Invalid backup ignore path')
  path=root/'assets/dive-sites/.gitignore';path.parent.mkdir(parents=True,exist_ok=True)
- path.write_text('# Generated from datasets/dive-site-photo-r2.json.\n# Verified R2 payloads are optional ignored local backups, not Git source.\n'+''.join(src.removeprefix('/assets/dive-sites')+'\n' for src in keys),'utf8')
+ # Only current backups need entries; a clean checkout should not regenerate thousands of absent paths.
+ existing=[src for src in keys if (root/src.lstrip('/')).is_file()]
+ path.write_text('# Generated from datasets/dive-site-photo-r2.json.\n# Verified R2 payloads are optional ignored local backups, not Git source.\n'+''.join(src.removeprefix('/assets/dive-sites')+'\n' for src in existing),'utf8')
 
 def write_browser_photo_map(root):
  write_storage_ignores(root)

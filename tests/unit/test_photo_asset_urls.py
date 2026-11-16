@@ -11,7 +11,10 @@ class PhotoAssetURLTests(unittest.TestCase):
    self.assertTrue(photo_asset_available(root,src));self.assertEqual(photo_asset_size(root,src),1234);self.assertEqual(photo_asset_sha256(root,src),digest)
    self.assertFalse(photo_asset_available(root,'/assets/dive-sites/unuploaded/hero.jpg'))
    with self.assertRaises(FileNotFoundError):photo_asset_size(root,'/assets/dive-sites/unuploaded/hero.jpg')
+   write_storage_ignores(root);self.assertNotIn('/example/hero.jpg',(root/'assets/dive-sites/.gitignore').read_text('utf8'))
+   backup=root/src.lstrip('/');backup.parent.mkdir(parents=True,exist_ok=True);backup.write_bytes(b'backup')
    write_storage_ignores(root);self.assertIn('/example/hero.jpg',(root/'assets/dive-sites/.gitignore').read_text('utf8'))
+   backup.unlink();write_storage_ignores(root);self.assertNotIn('/example/hero.jpg',(root/'assets/dive-sites/.gitignore').read_text('utf8'))
  def test_verified_mapping_fallback_and_remote_idempotence(self):
   with tempfile.TemporaryDirectory() as directory:
    root=Path(directory);(root/'datasets').mkdir();src='/assets/dive-sites/example/hero.jpg';digest='a'*64
